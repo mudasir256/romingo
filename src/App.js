@@ -1,21 +1,11 @@
+/* eslint-disable */
 import React from "react";
 
+import { ListingCard } from "./components/ListingCard/ListingCard";
 const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListingCard title="test" paragraph="testing1234" />
     </div>
   );
 };
