@@ -70,6 +70,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "autoprefixer": "^9.8.6",
+    "chromatic": "*",
     "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.24.0",
     "path": "^0.12.7",
