@@ -21,7 +21,7 @@ export const ListingCard: FunctionComponent<ListingCardProps> = ({
   <>
     <div
       id="app"
-      className="bg-white shadow flex card text-grey-darkest md:m-2 max-w-screen-sm"
+      className="bg-white shadow-md flex card text-grey-darkest md:m-2 max-w-screen-sm"
     >
       <img
         className="lg:w-36 w-24 object-cover"
@@ -60,6 +60,6 @@ ListingCard.propTypes = {
   location: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  amenity1: PropTypes.string,
-  amenity2: PropTypes.string,
+  amenity1: PropTypes.string.isRequired,
+  amenity2: PropTypes.string.isRequired,
 };

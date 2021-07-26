@@ -29,7 +29,8 @@
     "test": "craco test",
     "eject": "craco eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token=e54200c3e638"
   },
   "eslintConfig": {
     "extends": [
@@ -75,6 +76,7 @@
     "eslint-plugin-react": "^7.24.0",
     "path": "^0.12.7",
     "postcss": "^7.0.36",
+    "storybook-preset-craco": "^0.0.4",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
   }
 }

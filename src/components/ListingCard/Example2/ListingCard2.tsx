@@ -10,7 +10,7 @@ type ListingCard2Props = {
   amenity2: string;
 };
 
-export const ListingCard2: FunctionComponent<ListingCardProps> = ({
+export const ListingCard2: FunctionComponent<ListingCard2Props> = ({
   propertyName,
   location,
   currency = "$",
@@ -62,6 +62,6 @@ ListingCard2.propTypes = {
   location: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  amenity1: PropTypes.string,
-  amenity2: PropTypes.string,
+  amenity1: PropTypes.string.isRequired,
+  amenity2: PropTypes.string.isRequired,
 };

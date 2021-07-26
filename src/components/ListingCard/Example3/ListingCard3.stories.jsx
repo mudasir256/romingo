@@ -14,6 +14,7 @@ const Template = (args) => <ListingCard3 {...args} />;
 export const Example = Template.bind({});
 
 Example.args = {
+  imageSrc: "https://bit.ly/2EApSiC",
   propertyName: "Hilton Tucson",
   location: "6330 N Papaya Pl, Tucson AZ 85741",
   currency: "$",
