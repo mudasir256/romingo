@@ -74,7 +74,10 @@ const ListingCard: FC<Props> = ({
             {location}
           </Typography>
           <Box sx={{ display: "flex" }}>
-            <Typography variant="h6" sx={{ fontStyle: "italic" }}>
+            <Typography
+              variant="h6"
+              sx={{ color: "secondary.main", fontStyle: "italic" }}
+            >
               {score}
             </Typography>
             <Typography variant="body1" sx={{ ml: 1, mt: "5px" }}>
@@ -107,7 +110,7 @@ const ListingCard: FC<Props> = ({
                       display: "flex",
                     }}
                   >
-                    <Check fontSize="small" />
+                    <Check fontSize="small" sx={{ color: "success.main" }} />
                     <Typography
                       variant="body2"
                       sx={{
