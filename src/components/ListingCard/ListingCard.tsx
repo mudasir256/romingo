@@ -30,6 +30,7 @@ const ListingCard: FC<Props> = ({
         borderRadius: 3,
         boxShadow: 1,
         flexDirection: { xs: "column", sm: "row" },
+        maxWidth: "100%",
       }}
     >
       <Box
@@ -47,13 +48,27 @@ const ListingCard: FC<Props> = ({
       <Box sx={{ p: 2, flex: 1 }}>
         <Typography
           variant="h6"
-          sx={{ color: "primary.main", textDecoration: "underline" }}
+          sx={{
+            color: "primary.main",
+            textDecoration: "underline",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
         >
           {name}
         </Typography>
 
         <Box>
-          <Typography variant="body1" sx={{ mt: 0 }}>
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 0,
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
             {location}
           </Typography>
           <Box sx={{ display: "flex" }}>
@@ -71,13 +86,25 @@ const ListingCard: FC<Props> = ({
               alignItems: "flex-end",
             }}
           >
-            <Stack sx={{ mt: 1 }} spacing={1}>
+            <Stack sx={{ mt: 1, mr: 2 }} spacing={1}>
               {amenities.map((amenity) => (
-                <Box key={amenity} sx={{ display: "flex" }}>
+                <Box
+                  key={amenity}
+                  sx={{
+                    display: "flex",
+                  }}
+                >
                   <Check fontSize="small" />
                   <Typography
                     variant="body2"
-                    sx={{ fontStyle: "italic", ml: 0.5, mt: 0.25 }}
+                    sx={{
+                      fontStyle: "italic",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                      ml: 0.5,
+                      mt: 0.25,
+                    }}
                   >
                     {amenity}
                   </Typography>
@@ -85,12 +112,20 @@ const ListingCard: FC<Props> = ({
               ))}
             </Stack>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Typography variant="h6">
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ fontSize: { xs: 16 }, mr: { xs: 0.5, sm: 1 } }}
+              >
                 {currency}
                 {price}
               </Typography>
-              <Typography variant="body1" sx={{ ml: 1 }}>
+              <Typography variant="body1" sx={{ fontSize: { xs: 13 } }}>
                 /night
               </Typography>
             </Box>
