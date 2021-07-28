@@ -53,7 +53,7 @@ const ListingCard: FC<Props> = ({
           variant="h6"
           sx={{
             color: "primary.main",
-            textDecoration: "underline",
+            fontWeight: "bold",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
@@ -79,7 +79,6 @@ const ListingCard: FC<Props> = ({
               variant="h6"
               sx={{
                 color: "secondary.dark",
-                fontStyle: "italic",
               }}
             >
               {score}
@@ -140,11 +139,19 @@ const ListingCard: FC<Props> = ({
                 textAlign: "right",
               }}
             >
-              <Typography variant="h6" sx={{ mr: { xs: 0, sm: 0.2 } }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  mr: { xs: 0, sm: 0.45 },
+                  letterSpacing: 1,
+                  fontWeight: "bold",
+                  color: "text.secondary",
+                }}
+              >
                 {currency}
                 {price}
               </Typography>
-              <Typography variant="body2">/night</Typography>
+              <Typography variant="body2">/ night</Typography>
             </Box>
           </Box>
         </Box>
