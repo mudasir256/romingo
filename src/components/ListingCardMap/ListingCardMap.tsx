@@ -30,7 +30,7 @@ const ListingCard: FC<Props> = ({
         display: "flex",
         borderRadius: 0,
         boxShadow: 4,
-        maxWidth: "500px",
+        maxWidth: "350px",
       }}
     >
       <Box
@@ -50,6 +50,8 @@ const ListingCard: FC<Props> = ({
           <Typography
             variant="h6"
             sx={{
+              color: "primary.main",
+              fontWeight: "bold",
               fontSize: "85%",
               overflow: "hidden",
               whiteSpace: "nowrap",
@@ -77,16 +79,17 @@ const ListingCard: FC<Props> = ({
               display: "flex",
               justifyContent: "space-between",
               width: "100%",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
               minWidth: 0,
-              mt: 0.25,
+              mt: 0.5,
             }}
           >
             <Box
               sx={{
                 display: "flex",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
+                minWidth: 0,
               }}
             >
               <Typography
@@ -94,12 +97,23 @@ const ListingCard: FC<Props> = ({
                 sx={{
                   fontSize: "85%",
                   color: "secondary.dark",
+                  flex: 1,
                 }}
               >
                 {score}
               </Typography>
-              <Typography variant="body1" sx={{ ml: 0.2, fontSize: "85%" }}>
-                Romingo Score
+              <Typography
+                variant="body1"
+                sx={{
+                  ml: 0.2,
+                  mt: "1px",
+                  fontSize: "80%",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                RS
               </Typography>
             </Box>
             <Box
@@ -112,7 +126,7 @@ const ListingCard: FC<Props> = ({
               <Typography
                 variant="h6"
                 sx={{
-                  mr: { xs: 0, sm: 0.45 },
+                  mr: 0.25,
                   letterSpacing: 1,
                   fontWeight: "bold",
                   color: "text.secondary",
@@ -122,10 +136,7 @@ const ListingCard: FC<Props> = ({
                 {currency}
                 {price}
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{ display: { xs: "none", sm: "inline-block" } }}
-              >
+              <Typography variant="body2" sx={{ fontSize: "70%" }}>
                 / night
               </Typography>
             </Box>

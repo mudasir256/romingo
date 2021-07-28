@@ -54,6 +54,8 @@ const ListingCard: FC<Props> = ({
         <Typography
           variant="h6"
           sx={{
+            color: "primary.main",
+            fontWeight: "bold",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",

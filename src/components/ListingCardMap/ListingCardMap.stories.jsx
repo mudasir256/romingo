@@ -14,6 +14,6 @@ Default.args = {
   name: "Staybridge Suites Las Colinas",
   location: "1201 Executive Circle, Irving, TX",
   score: 95,
-  price: 139.99,
+  price: 140,
   amenities: ["dog park nearby", "pet friendly rooftop"],
 };
