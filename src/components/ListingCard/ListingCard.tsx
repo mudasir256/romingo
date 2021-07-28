@@ -12,6 +12,7 @@ interface Props {
   price: number;
   currency?: string;
   amenities?: string[];
+  showAmenities?: boolean;
 }
 
 const ListingCard: FC<Props> = ({
@@ -22,6 +23,7 @@ const ListingCard: FC<Props> = ({
   price,
   currency = "$",
   amenities = [],
+  showAmenities = true,
 }) => {
   return (
     <Box
@@ -52,8 +54,6 @@ const ListingCard: FC<Props> = ({
         <Typography
           variant="h6"
           sx={{
-            color: "primary.main",
-            fontWeight: "bold",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
@@ -66,6 +66,7 @@ const ListingCard: FC<Props> = ({
           <Typography
             variant="body1"
             sx={{
+              fontWeight: "light",
               mt: 0,
               overflow: "hidden",
               whiteSpace: "nowrap",
@@ -102,35 +103,37 @@ const ListingCard: FC<Props> = ({
                 overflow: "hidden",
               }}
             >
-              <Stack
-                sx={{ mt: 1, mr: 2, minWidth: 0, overflow: "hidden" }}
-                spacing={0.5}
-              >
-                {amenities.map((amenity) => (
-                  <Box
-                    key={amenity}
-                    sx={{
-                      display: "flex",
-                    }}
-                  >
-                    <Check
-                      sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
-                    />
-                    <Typography
-                      variant="body2"
+              {!!showAmenities && (
+                <Stack
+                  sx={{ mt: 1, mr: 0.5, minWidth: 0, overflow: "hidden" }}
+                  spacing={0.5}
+                >
+                  {amenities.map((amenity) => (
+                    <Box
+                      key={amenity}
                       sx={{
-                        fontStyle: "italic",
-                        pr: 0.15,
-                        overflow: "hidden",
-                        whiteSpace: "nowrap",
-                        textOverflow: "ellipsis",
+                        display: "flex",
                       }}
                     >
-                      {amenity}
-                    </Typography>
-                  </Box>
-                ))}
-              </Stack>
+                      <Check
+                        sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontStyle: "italic",
+                          pr: 0.15,
+                          overflow: "hidden",
+                          whiteSpace: "nowrap",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {amenity}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              )}
             </Box>
             <Box
               sx={{
