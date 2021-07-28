@@ -26,6 +26,7 @@ const ListingCard: FC<Props> = ({
   return (
     <Box
       sx={{
+        color: "text.primary",
         display: "flex",
         borderRadius: 0,
         boxShadow: 4,
@@ -76,11 +77,14 @@ const ListingCard: FC<Props> = ({
           <Box sx={{ display: "flex" }}>
             <Typography
               variant="h6"
-              sx={{ color: "secondary.main", fontStyle: "italic" }}
+              sx={{
+                color: "secondary.dark",
+                fontStyle: "italic",
+              }}
             >
               {score}
             </Typography>
-            <Typography variant="body1" sx={{ ml: 1, mt: "5px" }}>
+            <Typography variant="body1" sx={{ ml: 0.75, mt: "5px" }}>
               Romingo Score
             </Typography>
           </Box>
@@ -110,11 +114,14 @@ const ListingCard: FC<Props> = ({
                       display: "flex",
                     }}
                   >
-                    <Check fontSize="small" sx={{ color: "success.main" }} />
+                    <Check
+                      sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
+                    />
                     <Typography
                       variant="body2"
                       sx={{
                         fontStyle: "italic",
+                        pr: 0.15,
                         overflow: "hidden",
                         whiteSpace: "nowrap",
                         textOverflow: "ellipsis",
