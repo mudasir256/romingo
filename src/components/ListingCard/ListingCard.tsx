@@ -24,12 +24,25 @@ const ListingCard: FC<Props> = ({
   amenities = [],
 }) => {
   return (
-    <Box sx={{ display: "flex", borderRadius: 3, boxShadow: 1 }}>
+    <Box
+      sx={{
+        display: "flex",
+        borderRadius: 3,
+        boxShadow: 1,
+        flexDirection: { xs: "column", sm: "row" },
+      }}
+    >
       <Box
         component="img"
         src={image}
         alt={name}
-        sx={{ width: 250, height: 200, borderRadius: 3 }}
+        sx={{
+          objectFit: "cover",
+          width: "100%",
+          height: 180,
+          maxWidth: { sm: 250 },
+          borderRadius: 3,
+        }}
       />
       <Box sx={{ p: 2, flex: 1 }}>
         <Typography
@@ -38,26 +51,27 @@ const ListingCard: FC<Props> = ({
         >
           {name}
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-          }}
-        >
-          <Box>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {location}
+
+        <Box>
+          <Typography variant="body1" sx={{ mt: 0 }}>
+            {location}
+          </Typography>
+          <Box sx={{ display: "flex" }}>
+            <Typography variant="h6" sx={{ fontStyle: "italic" }}>
+              {score}
             </Typography>
-            <Box sx={{ display: "flex" }}>
-              <Typography variant="h6" sx={{ fontStyle: "italic" }}>
-                {score}
-              </Typography>
-              <Typography variant="body1" sx={{ ml: 1, mt: "5px" }}>
-                Romingo Score
-              </Typography>
-            </Box>
-            <Stack sx={{ mt: 2 }} spacing={1}>
+            <Typography variant="body1" sx={{ ml: 1, mt: "5px" }}>
+              Romingo Score
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+            }}
+          >
+            <Stack sx={{ mt: 1 }} spacing={1}>
               {amenities.map((amenity) => (
                 <Box key={amenity} sx={{ display: "flex" }}>
                   <Check fontSize="small" />
@@ -70,16 +84,16 @@ const ListingCard: FC<Props> = ({
                 </Box>
               ))}
             </Stack>
-          </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="h6">
-              {currency}
-              {price}
-            </Typography>
-            <Typography variant="body1" sx={{ ml: 1 }}>
-              / night
-            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Typography variant="h6">
+                {currency}
+                {price}
+              </Typography>
+              <Typography variant="body1" sx={{ ml: 1 }}>
+                /night
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Box>
