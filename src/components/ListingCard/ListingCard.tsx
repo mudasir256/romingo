@@ -3,7 +3,6 @@ import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
 import Check from "@material-ui/icons/Check";
 import { FC } from "react";
-import { Calculate } from "@material-ui/icons";
 
 interface Props {
   image: string;
@@ -28,8 +27,8 @@ const ListingCard: FC<Props> = ({
     <Box
       sx={{
         display: "flex",
-        borderRadius: 3,
-        boxShadow: 2,
+        borderRadius: 0,
+        boxShadow: 4,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
       }}
@@ -41,13 +40,14 @@ const ListingCard: FC<Props> = ({
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: 164,
           maxWidth: { sm: 200 },
-          borderRadius: 3,
-          boxShadow: 2,
+          maxHeight: { xs: 180, sm: "100%" },
+          minHeight: { xs: 180, sm: "100%" },
+          borderRadius: 0,
+          boxShadow: 0,
         }}
       />
-      <Box sx={{ py: 1.5, px: 1.8, flex: 1 }}>
+      <Box sx={{ py: 1.2, px: 1.8, flex: 1, minWidth: 0 }}>
         <Typography
           variant="h6"
           sx={{
