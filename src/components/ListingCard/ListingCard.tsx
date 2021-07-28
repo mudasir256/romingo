@@ -29,7 +29,7 @@ const ListingCard: FC<Props> = ({
       sx={{
         display: "flex",
         borderRadius: 3,
-        boxShadow: 1,
+        boxShadow: 2,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
       }}
@@ -41,12 +41,13 @@ const ListingCard: FC<Props> = ({
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: 170,
-          maxWidth: { sm: 240 },
+          height: 164,
+          maxWidth: { sm: 200 },
           borderRadius: 3,
+          boxShadow: 2,
         }}
       />
-      <Box sx={{ p: 1.5, flex: 1 }}>
+      <Box sx={{ py: 1.5, px: 1.8, flex: 1 }}>
         <Typography
           variant="h6"
           sx={{
@@ -97,7 +98,7 @@ const ListingCard: FC<Props> = ({
             >
               <Stack
                 sx={{ mt: 1, mr: 2, minWidth: 0, overflow: "hidden" }}
-                spacing={1}
+                spacing={0.5}
               >
                 {amenities.map((amenity) => (
                   <Box
@@ -124,20 +125,16 @@ const ListingCard: FC<Props> = ({
             </Box>
             <Box
               sx={{
-                display: "flex",
                 alignItems: "center",
+                display: { xs: "inline-block", sm: "flex" },
+                textAlign: "right",
               }}
             >
-              <Typography
-                variant="h6"
-                sx={{ fontSize: { xs: 16 }, mr: { xs: 0.2, sm: 1 } }}
-              >
+              <Typography variant="h6" sx={{ mr: { xs: 0, sm: 0.2 } }}>
                 {currency}
                 {price}
               </Typography>
-              <Typography variant="body1" sx={{ fontSize: { xs: 13 } }}>
-                /night
-              </Typography>
+              <Typography variant="body2">/night</Typography>
             </Box>
           </Box>
         </Box>
