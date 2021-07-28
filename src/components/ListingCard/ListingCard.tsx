@@ -3,6 +3,7 @@ import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
 import Check from "@material-ui/icons/Check";
 import { FC } from "react";
+import { Calculate } from "@material-ui/icons";
 
 interface Props {
   image: string;
@@ -40,12 +41,12 @@ const ListingCard: FC<Props> = ({
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: 180,
-          maxWidth: { sm: 250 },
+          height: 170,
+          maxWidth: { sm: 240 },
           borderRadius: 3,
         }}
       />
-      <Box sx={{ p: 2, flex: 1 }}>
+      <Box sx={{ p: 1.5, flex: 1 }}>
         <Typography
           variant="h6"
           sx={{
@@ -84,34 +85,43 @@ const ListingCard: FC<Props> = ({
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-end",
+              width: "100%",
             }}
           >
-            <Stack sx={{ mt: 1, mr: 2 }} spacing={1}>
-              {amenities.map((amenity) => (
-                <Box
-                  key={amenity}
-                  sx={{
-                    display: "flex",
-                  }}
-                >
-                  <Check fontSize="small" />
-                  <Typography
-                    variant="body2"
+            <Box
+              sx={{
+                display: "flex",
+                minWidth: 0,
+                overflow: "hidden",
+              }}
+            >
+              <Stack
+                sx={{ mt: 1, mr: 2, minWidth: 0, overflow: "hidden" }}
+                spacing={1}
+              >
+                {amenities.map((amenity) => (
+                  <Box
+                    key={amenity}
                     sx={{
-                      fontStyle: "italic",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      ml: 0.5,
-                      mt: 0.25,
+                      display: "flex",
                     }}
                   >
-                    {amenity}
-                  </Typography>
-                </Box>
-              ))}
-            </Stack>
-
+                    <Check fontSize="small" />
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontStyle: "italic",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {amenity}
+                    </Typography>
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
             <Box
               sx={{
                 display: "flex",
@@ -120,7 +130,7 @@ const ListingCard: FC<Props> = ({
             >
               <Typography
                 variant="h6"
-                sx={{ fontSize: { xs: 16 }, mr: { xs: 0.5, sm: 1 } }}
+                sx={{ fontSize: { xs: 16 }, mr: { xs: 0.2, sm: 1 } }}
               >
                 {currency}
                 {price}
