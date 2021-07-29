@@ -1,5 +1,6 @@
 import Box from "@material-ui/core/Box";
 import Stack from "@material-ui/core/Stack";
+import Divider from "@material-ui/core/Divider";
 import { motion, useMotionValue } from "framer-motion";
 import { FC, useState } from "react";
 import { useWindowSize } from "react-use";
@@ -23,7 +24,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
       borderTopRightRadius: "24px",
     },
     preview: {
-      y: (-2 * height) / 5,
+      y: -height / 2,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
     },
@@ -99,7 +100,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
             }}
           />
         </Box>
-        <Stack spacing={3}>
+        <Stack spacing={3} divider={<Divider variant="middle" />}>
           {cards.map((card, index) => (
             <ListingCard key={index} {...card} boxShadow={0} />
           ))}

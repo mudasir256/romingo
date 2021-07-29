@@ -32,6 +32,10 @@ const ListingCard: FC<ListingCardProps> = ({
   boxShadow = 4,
   ...props
 }) => {
+  let mobileCardPadding = 1.8;
+  if (boxShadow === 0) {
+    mobileCardPadding = 0;
+  }
   return (
     <Box
       sx={{
@@ -59,7 +63,15 @@ const ListingCard: FC<ListingCardProps> = ({
           boxShadow: 0,
         }}
       />
-      <Box sx={{ py: 1.2, px: 1.8, flex: 1, minWidth: 0 }}>
+      <Box
+        sx={{
+          pt: 1.8,
+          px: { xs: mobileCardPadding, sm: 1.8 },
+          pb: { xs: mobileCardPadding, sm: 1.8 },
+          flex: 1,
+          minWidth: 0,
+        }}
+      >
         <Typography
           variant="h6"
           sx={{
@@ -174,7 +186,7 @@ const ListingCard: FC<ListingCardProps> = ({
               }}
             >
               <Typography
-                variant="h6"
+                variant="body1"
                 sx={{
                   mr: { xs: 0, sm: 0.45 },
                   letterSpacing: 1,
