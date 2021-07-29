@@ -2,8 +2,8 @@ import Box from "@material-ui/core/Box";
 import Stack from "@material-ui/core/Stack";
 import Divider from "@material-ui/core/Divider";
 import { motion, useMotionValue } from "framer-motion";
-import { FC, useState } from "react";
-import { useWindowSize } from "react-use";
+import { FC, useRef, useState } from "react";
+import { useWindowSize, useScroll } from "react-use";
 import ListingCard, {
   ListingCardProps,
 } from "../../components/ListingCard/ListingCard";
@@ -41,6 +41,8 @@ const ListingPage: FC<Props> = ({ cards }) => {
     expanded: { height: 0, marginBottom: "0px" },
   };
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const { y: scrollY } = useScroll(scrollRef);
 
   return (
     <Box
@@ -74,6 +76,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
           zIndex: 200,
           boxShadow: "4px -1px 10px 0px rgba(0,0,0,0.3)",
         }}
+        ref={scrollRef}
         variants={variants}
         animate={animate}
         transition={{ duration: 0.3 }}
@@ -81,13 +84,14 @@ const ListingPage: FC<Props> = ({ cards }) => {
           if (offset.y < -30) {
             if (animate === "collapsed") {
               setAnimate("preview");
-            } else {
+            } else if (animate === "preview") {
               setAnimate("expanded");
             }
           } else if (offset.y > 30) {
             if (animate === "preview") {
               setAnimate("collapsed");
-            } else {
+            } else if (animate === "expanded") {
+              scrollRef?.current?.scrollTo({ top: 0, behavior: "smooth" });
               setAnimate("preview");
             }
           }
