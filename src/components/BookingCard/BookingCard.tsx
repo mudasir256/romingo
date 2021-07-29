@@ -12,9 +12,26 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Stack from "@material-ui/core/Stack";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { MouseEventHandler } from "react";
+import Popover from "@material-ui/core/Popover";
+import IconButton from "@material-ui/core/IconButton";
+import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
+import RemoveCircleOutline from "@material-ui/icons/RemoveCircleOutline";
 
 const BookingCard: FC = () => {
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [dogs, setDogs] = useState(0);
+
+  const handleClick: MouseEventHandler = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <Box sx={{ borderRadius: 3, boxShadow: 1, p: 3 }}>
@@ -34,51 +51,107 @@ const BookingCard: FC = () => {
           )}
         />
       </LocalizationProvider>
+      <TextField
+        fullWidth
+        sx={{ mt: 3 }}
+        value={`Adults : ${adults} - Children : ${children} - Dogs : ${dogs}`}
+        inputProps={{ readOnly: true }}
+        onClick={handleClick}
+      />
+      <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <Stack sx={{ p: 3 }} spacing={2}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={12}
+            justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="h6">Adults</Typography>
+            <Stack spacing={2} direction="row" alignItems="center">
+              <IconButton onClick={() => setAdults(Math.max(adults - 1, 0))}>
+                <RemoveCircleOutline />
+              </IconButton>
+              <Typography
+                variant="body1"
+                sx={{ width: 16, textAlign: "center" }}
+              >
+                {adults}
+              </Typography>
+              <IconButton onClick={() => setAdults(adults + 1)}>
+                <AddCircleOutline />
+              </IconButton>
+            </Stack>
+          </Stack>
 
-      <Stack direction="row" spacing={3} sx={{ mt: 3 }}>
-        <FormControl fullWidth>
-          <InputLabel>Adults</InputLabel>
-          <Select label="Adults">
-            {Array.from({ length: 5 }, (_, i) => (
-              <MenuItem value={i} key={i}>
-                {i} Adults
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl fullWidth>
-          <InputLabel>Children</InputLabel>
-          <Select label="Children">
-            {Array.from({ length: 5 }, (_, i) => (
-              <MenuItem value={i} key={i}>
-                {i} Children
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl fullWidth>
-          <InputLabel>Dogs</InputLabel>
-          <Select label="Dogs">
-            {Array.from({ length: 5 }, (_, i) => (
-              <MenuItem value={i} key={i}>
-                {i} Dogs
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={16}
+            justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="h6">Children</Typography>
+            <Stack spacing={2} direction="row" alignItems="center">
+              <IconButton
+                onClick={() => setChildren(Math.max(children - 1, 0))}
+              >
+                <RemoveCircleOutline />
+              </IconButton>
+              <Typography
+                variant="body1"
+                sx={{ width: 16, textAlign: "center" }}
+              >
+                {children}
+              </Typography>
+              <IconButton onClick={() => setChildren(children + 1)}>
+                <AddCircleOutline />
+              </IconButton>
+            </Stack>
+          </Stack>
 
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={12}
+            justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="h6">Dogs</Typography>
+            <Stack spacing={2} direction="row" alignItems="center">
+              <IconButton onClick={() => setDogs(Math.max(dogs - 1, 0))}>
+                <RemoveCircleOutline />
+              </IconButton>
+              <Typography
+                variant="body1"
+                sx={{ width: 16, textAlign: "center" }}
+              >
+                {dogs}
+              </Typography>
+              <IconButton onClick={() => setDogs(dogs + 1)}>
+                <AddCircleOutline />
+              </IconButton>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Popover>
       <FormControl fullWidth sx={{ mt: 3 }}>
         <InputLabel>Room Type</InputLabel>
-        <Select label="Adults">
+        <Select label="Room Type">
           <MenuItem value={1}>Room TWO DOUBLE BEDS</MenuItem>
           <MenuItem value={2}>Two Double Beds - Non-refundable</MenuItem>
           <MenuItem value={3}>SUITE TWO BEDROOMS</MenuItem>
         </Select>
       </FormControl>
-
       <Box sx={{ my: 3, borderTop: 1, borderColor: "primary.main" }} />
-
       <Box
         sx={{
           display: "flex",
