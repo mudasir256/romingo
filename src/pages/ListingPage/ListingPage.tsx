@@ -23,7 +23,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
       borderTopRightRadius: "24px",
     },
     preview: {
-      y: -250,
+      y: (-2 * height) / 5,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
     },

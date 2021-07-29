@@ -1,20 +1,10 @@
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
-import ListingCard from "../../../components/ListingCard";
-
-interface Card {
-  image: string;
-  name: string;
-  location: string;
-  score: number;
-  cancellation?: boolean;
-  price: number;
-  currency?: string;
-  amenities?: string[];
-  showAmenities?: boolean;
-}
+import ListingCard, {
+  ListingCardProps,
+} from "../../../components/ListingCard/ListingCard";
 interface Props {
-  cards: Array<Card>;
+  cards: ListingCardProps[];
 }
 
 const CardList: FC<Props> = ({ cards }) => {
