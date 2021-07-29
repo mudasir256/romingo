@@ -5,6 +5,7 @@ import Check from "@material-ui/icons/Check";
 import Star from "@material-ui/icons/Star";
 import Chip from "@material-ui/core/Chip";
 import { FC } from "react";
+import RomingoScore from "../UI/RomingoScore/RomingoScore";
 
 interface Props {
   image: string;
@@ -81,19 +82,8 @@ const ListingCard: FC<Props> = ({
           >
             {location}
           </Typography>
-          <Box sx={{ display: "flex", mt: 3 }}>
-            <Star sx={{ color: "primary.main", mt: 0.4 }} />
-            <Typography
-              variant="h6"
-              sx={{
-                color: "primary.main",
-              }}
-            >
-              {score}
-            </Typography>
-            <Typography variant="body1" sx={{ ml: 0.75, mt: "5px" }}>
-              Romingo Score
-            </Typography>
+          <Box sx={{ mt: 3 }}>
+            <RomingoScore score={score} />
           </Box>
           <Box
             sx={{ display: "flex", flexDirection: "row", minHeight: "20px" }}

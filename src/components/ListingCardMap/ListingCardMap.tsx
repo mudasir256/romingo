@@ -2,6 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Star from "@material-ui/icons/Star";
 import { FC } from "react";
+import RomingoScore from "../UI/RomingoScore/RomingoScore";
 
 interface Props {
   image: string;
@@ -86,24 +87,7 @@ const ListingCardMap: FC<Props> = ({
               mt: 0.5,
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                minWidth: 0,
-              }}
-            >
-              <Star sx={{ color: "primary.main", mt: 0.4, fontSize: "85%" }} />
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "primary.main",
-                  flex: 1,
-                  fontSize: "85%",
-                }}
-              >
-                {score}
-              </Typography>
-            </Box>
+            <RomingoScore score={score} sm />
             <Box
               sx={{
                 alignItems: "center",
