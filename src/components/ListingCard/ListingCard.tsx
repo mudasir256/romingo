@@ -2,7 +2,6 @@ import Typography from "@material-ui/core/Typography";
 import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
 import Check from "@material-ui/icons/Check";
-import Star from "@material-ui/icons/Star";
 import Chip from "@material-ui/core/Chip";
 import { FC } from "react";
 import RomingoScore from "../UI/RomingoScore/RomingoScore";

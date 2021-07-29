@@ -1,5 +1,5 @@
 import Box from "@material-ui/core/Box";
-import React from "react";
+import { useState, useCallback } from "react";
 import { FC } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
@@ -10,36 +10,28 @@ interface Props {
   center: { lat: number; lng: number };
 }
 
-const mapCenter = {
-  lat: 32.22095,
-  lng: -110.97067,
-};
-
 const containerStyle = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
 
 const ListingMap: FC<Props> = ({ center }) => {
+  const [map, setMap] = useState(null);
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBQdGurIVjZYjX22m_EVRwA4vRO5hFLD7M", // ,
     // ...otherOptions
   });
 
-  const [map, setMap] = React.useState(null);
-
-  const onLoad = React.useCallback(function callback(map) {
+  const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     map.setOptions(stylesArray);
     map.fitBounds(bounds);
     setMap(map);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
-
-  console.log(stylesArray);
 
   return isLoaded ? (
     <Box
@@ -72,7 +64,7 @@ const ListingMap: FC<Props> = ({ center }) => {
         />
       </Box>
       <GoogleMap
-        center={mapCenter}
+        center={center}
         mapContainerStyle={containerStyle}
         options={{
           fullscreenControl: false,

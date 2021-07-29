@@ -1,4 +1,4 @@
-import { FC, useState, Fragment } from "react";
+import { FC, useState, Fragment, MouseEventHandler } from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import DateRangePicker from "@material-ui/lab/DateRangePicker";
@@ -12,7 +12,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Stack from "@material-ui/core/Stack";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { MouseEventHandler } from "react";
 import Popover from "@material-ui/core/Popover";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
@@ -26,7 +25,7 @@ const BookingCard: FC = () => {
   const [dogs, setDogs] = useState(0);
 
   const handleClick: MouseEventHandler = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.target);
   };
 
   const handleClose = () => {
@@ -53,9 +52,9 @@ const BookingCard: FC = () => {
       </LocalizationProvider>
       <TextField
         fullWidth
-        sx={{ mt: 3 }}
-        value={`Adults : ${adults} - Children : ${children} - Dogs : ${dogs}`}
-        inputProps={{ readOnly: true }}
+        sx={{ mt: 3, textAlign: "center" }}
+        value={`Adults: ${adults} - Children: ${children} - Dogs: ${dogs}`}
+        inputProps={{ readOnly: true, style: { textAlign: "center" } }}
         onClick={handleClick}
       />
       <Popover

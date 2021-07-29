@@ -1,6 +1,5 @@
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Star from "@material-ui/icons/Star";
 import { FC } from "react";
 import RomingoScore from "../UI/RomingoScore/RomingoScore";
 
