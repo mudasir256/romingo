@@ -20,12 +20,12 @@ import RemoveCircleOutline from "@material-ui/icons/RemoveCircleOutline";
 
 const BookingCard: FC = () => {
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [dogs, setDogs] = useState(0);
 
-  const handleClick: MouseEventHandler = (event) => {
+  const handleClick: MouseEventHandler<Element> = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
