@@ -72,6 +72,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
           overflow: animate === "expanded" ? "auto" : "hidden",
           maxHeight: height - 48,
           zIndex: 200,
+          boxShadow: "4px -1px 10px 0px rgba(0,0,0,0.3)",
         }}
         variants={variants}
         animate={animate}
