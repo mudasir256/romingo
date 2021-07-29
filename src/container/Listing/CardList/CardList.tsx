@@ -16,15 +16,7 @@ const CardList: FC<Props> = ({ cards }) => {
     >
       {cards.map((card) => (
         <Box key={card.id} sx={{ my: 2, maxWidth: "100%" }}>
-          <ListingCard
-            image={card.image}
-            name={card.name}
-            location={card.location}
-            score={card.score}
-            price={card.price}
-            currency="$"
-            amenities={card.amenities}
-          />
+          <ListingCard {...card} />
         </Box>
       ))}
     </Box>

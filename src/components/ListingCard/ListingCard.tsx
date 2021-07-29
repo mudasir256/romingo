@@ -2,6 +2,8 @@ import Typography from "@material-ui/core/Typography";
 import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
 import Check from "@material-ui/icons/Check";
+import Star from "@material-ui/icons/Star";
+import Chip from "@material-ui/core/Chip";
 import { FC } from "react";
 
 interface Props {
@@ -9,6 +11,7 @@ interface Props {
   name: string;
   location: string;
   score: number;
+  cancellation?: boolean;
   price: number;
   currency?: string;
   amenities?: string[];
@@ -20,6 +23,7 @@ const ListingCard: FC<Props> = ({
   name,
   location,
   score,
+  cancellation = false,
   price,
   currency = "$",
   amenities = [],
@@ -43,7 +47,7 @@ const ListingCard: FC<Props> = ({
         sx={{
           objectFit: "cover",
           width: "100%",
-          maxWidth: { sm: 200 },
+          maxWidth: { sm: 280 },
           maxHeight: { xs: 180, sm: "100%" },
           minHeight: { xs: 180, sm: "100%" },
           borderRadius: 0,
@@ -77,11 +81,12 @@ const ListingCard: FC<Props> = ({
           >
             {location}
           </Typography>
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", mt: 3 }}>
+            <Star sx={{ color: "primary.main", mt: 0.4 }} />
             <Typography
               variant="h6"
               sx={{
-                color: "secondary.dark",
+                color: "primary.main",
               }}
             >
               {score}
@@ -89,6 +94,36 @@ const ListingCard: FC<Props> = ({
             <Typography variant="body1" sx={{ ml: 0.75, mt: "5px" }}>
               Romingo Score
             </Typography>
+          </Box>
+          <Box
+            sx={{ display: "flex", flexDirection: "row", minHeight: "20px" }}
+          >
+            {cancellation && (
+              <Chip
+                sx={{ mr: 1 }}
+                color="secondary"
+                label={
+                  <Typography
+                    variant="body2"
+                    sx={{ fontSize: "90%", color: "white" }}
+                  >
+                    Free Cancellation
+                  </Typography>
+                }
+              />
+            )}
+            <Chip
+              sx={{ mr: 1 }}
+              label={
+                <Typography
+                  variant="body2"
+                  sx={{ fontSize: "90%" }}
+                  color="primary"
+                >
+                  Top Property
+                </Typography>
+              }
+            />
           </Box>
           <Box
             sx={{
@@ -107,7 +142,7 @@ const ListingCard: FC<Props> = ({
             >
               {!!showAmenities && (
                 <Stack
-                  sx={{ mt: 1, mr: 0.5, minWidth: 0, overflow: "hidden" }}
+                  sx={{ mt: 3, mr: 0.5, minWidth: 0, overflow: "hidden" }}
                   spacing={0.5}
                 >
                   {amenities.map((amenity) => (

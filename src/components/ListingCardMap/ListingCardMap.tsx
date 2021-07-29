@@ -1,7 +1,6 @@
 import Typography from "@material-ui/core/Typography";
-import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
-import Check from "@material-ui/icons/Check";
+import Star from "@material-ui/icons/Star";
 import { FC } from "react";
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
   showAmenities?: boolean;
 }
 
-const ListingCard: FC<Props> = ({
+const ListingCardMap: FC<Props> = ({
   image,
   name,
   location,
@@ -26,6 +25,7 @@ const ListingCard: FC<Props> = ({
   return (
     <Box
       sx={{
+        backgroundColor: "white",
         color: "text.primary",
         display: "flex",
         borderRadius: 0,
@@ -92,28 +92,16 @@ const ListingCard: FC<Props> = ({
                 minWidth: 0,
               }}
             >
+              <Star sx={{ color: "primary.main", mt: 0.4, fontSize: "85%" }} />
               <Typography
                 variant="h6"
                 sx={{
-                  fontSize: "85%",
-                  color: "secondary.dark",
+                  color: "primary.main",
                   flex: 1,
+                  fontSize: "85%",
                 }}
               >
                 {score}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  ml: 0.2,
-                  mt: "1px",
-                  fontSize: "80%",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                RS
               </Typography>
             </Box>
             <Box
@@ -147,4 +135,4 @@ const ListingCard: FC<Props> = ({
   );
 };
 
-export default ListingCard;
+export default ListingCardMap;
