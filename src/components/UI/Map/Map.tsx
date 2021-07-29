@@ -33,12 +33,12 @@ const Map: FC<Props> = ({ center }) => {
   }, [size]);
 
   return (
-    <LoadScript googleMapsApiKey="">
+    <LoadScript googleMapsApiKey={"AIzaSyCiG_g1goO4MNFO3GNUYu9Vk5pthTorwGA"}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         options={mapOptions}
-        zoom={10}
+        zoom={11}
         onResize={() => console.log("Size changed")}
       >
         <></>

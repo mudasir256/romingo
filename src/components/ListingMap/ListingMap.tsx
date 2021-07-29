@@ -1,6 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
+import Map from "../UI/Map/Map";
 
 interface Props {
   center: { lat: number; lng: number };
@@ -19,13 +20,14 @@ const ListingMap: FC<Props> = ({ center }) => {
         height: "100%",
       }}
     >
+      <Map center={center} />
       <Box
         sx={{
           position: "fixed",
           bottom: 80,
           left: "50%",
           transform: "translateX(-50%)",
-          zIndex: 1000,
+          zIndex: 100,
         }}
       >
         <ListingCardMap
