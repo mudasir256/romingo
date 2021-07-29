@@ -6,7 +6,7 @@ import Star from "@material-ui/icons/Star";
 import Chip from "@material-ui/core/Chip";
 import { FC } from "react";
 
-interface Props {
+export interface ListingCardProps {
   image: string;
   name: string;
   location: string;
@@ -16,9 +16,10 @@ interface Props {
   currency?: string;
   amenities?: string[];
   showAmenities?: boolean;
+  boxShadow?: number;
 }
 
-const ListingCard: FC<Props> = ({
+const ListingCard: FC<ListingCardProps> = ({
   image,
   name,
   location,
@@ -28,6 +29,8 @@ const ListingCard: FC<Props> = ({
   currency = "$",
   amenities = [],
   showAmenities = true,
+  boxShadow = 4,
+  ...props
 }) => {
   return (
     <Box
@@ -35,15 +38,17 @@ const ListingCard: FC<Props> = ({
         color: "text.primary",
         display: "flex",
         borderRadius: 0,
-        boxShadow: 4,
+        boxShadow,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
       }}
+      {...props}
     >
       <Box
         component="img"
         src={image}
         alt={name}
+        draggable="false"
         sx={{
           objectFit: "cover",
           width: "100%",
