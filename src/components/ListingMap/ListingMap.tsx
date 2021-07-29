@@ -1,39 +1,14 @@
 import Box from "@material-ui/core/Box";
-import { useState, useCallback } from "react";
 import { FC } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
-
-import { stylesArray } from "./GoogleMapStyles";
+import Map from "../UI/Map/Map";
 
 interface Props {
   center: { lat: number; lng: number };
 }
 
-const containerStyle = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-};
-
 const ListingMap: FC<Props> = ({ center }) => {
-  const [map, setMap] = useState(null);
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBQdGurIVjZYjX22m_EVRwA4vRO5hFLD7M", // ,
-    // ...otherOptions
-  });
-
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.setOptions(stylesArray);
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
-
-  return isLoaded ? (
+  return (
     <Box
       sx={{
         color: "text.primary",
@@ -45,13 +20,14 @@ const ListingMap: FC<Props> = ({ center }) => {
         height: "100%",
       }}
     >
+      <Map center={center} />
       <Box
         sx={{
           position: "fixed",
           bottom: 80,
           left: "50%",
           transform: "translateX(-50%)",
-          zIndex: 1000,
+          zIndex: 100,
         }}
       >
         <ListingCardMap
@@ -63,25 +39,7 @@ const ListingMap: FC<Props> = ({ center }) => {
           amenities={["dog park nearby", "pet friendly rooftop"]}
         />
       </Box>
-      <GoogleMap
-        center={center}
-        mapContainerStyle={containerStyle}
-        options={{
-          fullscreenControl: false,
-          zoomControl: false,
-          mapTypeControl: false,
-          streetViewControl: false,
-          keyboardShortcuts: false,
-        }}
-        zoom={12}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        {/* Child components, such as markers, info windows, etc. */}
-      </GoogleMap>
     </Box>
-  ) : (
-    <></>
   );
 };
 

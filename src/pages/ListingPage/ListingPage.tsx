@@ -7,6 +7,7 @@ import { useWindowSize, useScroll } from "react-use";
 import ListingCard, {
   ListingCardProps,
 } from "../../components/ListingCard/ListingCard";
+import ListingMap from "../../components/ListingMap";
 
 const MotionBox = motion(Box);
 
@@ -24,7 +25,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
       borderTopRightRadius: "24px",
     },
     preview: {
-      y: -height / 2,
+      y: (-2 * height) / 5,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
     },
@@ -54,6 +55,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
         backgroundColor: "grey.200",
       }}
     >
+      <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
       <motion.div
         drag="y"
         dragElastic={0.5}
@@ -67,10 +69,11 @@ const ListingPage: FC<Props> = ({ cards }) => {
           top: height - 52,
           left: 0,
           right: 0,
-          padding: 24,
+          padding: "24px 20px",
           backgroundColor: "white",
           overflow: animate === "expanded" ? "auto" : "hidden",
           maxHeight: height - 48,
+          zIndex: 200,
         }}
         ref={scrollRef}
         variants={variants}

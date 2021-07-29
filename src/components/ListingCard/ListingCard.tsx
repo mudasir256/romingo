@@ -75,6 +75,7 @@ const ListingCard: FC<ListingCardProps> = ({
         <Typography
           variant="h6"
           sx={{
+            fontSize: { xs: "95%", sm: "100%" },
             color: "primary.main",
             fontWeight: "bold",
             overflow: "hidden",
@@ -89,6 +90,7 @@ const ListingCard: FC<ListingCardProps> = ({
           <Typography
             variant="body1"
             sx={{
+              fontSize: { xs: "95%", sm: "100%" },
               fontWeight: "light",
               mt: 0,
               overflow: "hidden",
@@ -118,18 +120,6 @@ const ListingCard: FC<ListingCardProps> = ({
                 }
               />
             )}
-            <Chip
-              sx={{ mr: 1 }}
-              label={
-                <Typography
-                  variant="body2"
-                  sx={{ fontSize: "90%" }}
-                  color="primary"
-                >
-                  Top Property
-                </Typography>
-              }
-            />
           </Box>
           <Box
             sx={{
