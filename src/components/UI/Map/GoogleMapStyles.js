@@ -1,4 +1,9 @@
-export const stylesArray = [
+const stylesArray = [
+  {
+    featureType: `road`,
+    elementType: `all`,
+    stylers: [{ visibility: `on` }],
+  },
   {
     featureType: "all",
     elementType: "geometry.fill",
@@ -354,3 +359,5 @@ export const stylesArray = [
     ],
   },
 ];
+
+export default stylesArray;

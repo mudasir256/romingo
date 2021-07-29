@@ -11,3 +11,6 @@ export const Default = Template.bind({});
 Default.args = {
   center: { lat: 32.22045, lng: -110.96874 },
 };
+Default.parameters = {
+  layout: "fullscreen",
+};
