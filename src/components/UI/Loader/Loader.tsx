@@ -1,3 +1,4 @@
+import { FC } from "react";
 import Lottie from "lottie-react";
 import tennisBall from "./tennisBall.json";
 

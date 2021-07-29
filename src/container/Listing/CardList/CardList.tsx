@@ -2,8 +2,19 @@ import Box from "@material-ui/core/Box";
 import { FC } from "react";
 import ListingCard from "../../../components/ListingCard";
 
+interface Card {
+  image: string;
+  name: string;
+  location: string;
+  score: number;
+  cancellation?: boolean;
+  price: number;
+  currency?: string;
+  amenities?: string[];
+  showAmenities?: boolean;
+}
 interface Props {
-  cards: ListingCard[];
+  cards: Array<Card>;
 }
 
 const CardList: FC<Props> = ({ cards }) => {
@@ -15,7 +26,7 @@ const CardList: FC<Props> = ({ cards }) => {
       }}
     >
       {cards.map((card) => (
-        <Box key={card.id} sx={{ my: 2, maxWidth: "100%" }}>
+        <Box key={card.name} sx={{ my: 2, maxWidth: "100%" }}>
           <ListingCard {...card} />
         </Box>
       ))}
