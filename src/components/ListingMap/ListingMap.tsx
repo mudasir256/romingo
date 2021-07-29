@@ -58,7 +58,7 @@ const ListingMap: FC<Props> = ({ center }) => {
           position: "fixed",
           bottom: 80,
           left: "50%",
-          marginLeft: { xs: "-150px", sm: "-125px" },
+          transform: "translateX(-50%)",
           zIndex: 1000,
         }}
       >
