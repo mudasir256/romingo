@@ -9,12 +9,23 @@ import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
 
 interface Props {
   name: string;
-  location: string;
+  location: {
+    lat: string;
+    lon: string;
+    address: string;
+  };
   mainImg: string;
   gallery: string[];
   score: number;
+  defaultDescription?: string;
   cancellation?: boolean;
+  cancelPenalty?: {
+    refundable: boolean;
+    deadline: { absoluteDeadline: date };
+    amountPercent: { amount: number; currencyCode: string };
+  }[];
   amenities?: string[];
+  nearby?: { text: string; distance: number }[];
 }
 
 const DetailsPage: FC<Props> = ({
@@ -23,6 +34,7 @@ const DetailsPage: FC<Props> = ({
   mainImg,
   gallery,
   score,
+  defaultDescription = "",
   cancellation = false,
   amenities = [],
   ...props
@@ -94,9 +106,19 @@ const DetailsPage: FC<Props> = ({
               textOverflow: "ellipsis",
             }}
           >
-            {location}
+            {location.address}
           </Typography>
           <RomingoScore score={score} />
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: { xs: "95%", sm: "100%" },
+              lineHeight: 2,
+              mt: 2,
+            }}
+          >
+            {defaultDescription}
+          </Typography>
         </Grid>
         <Grid item xs={12} md={5} lg={4}>
           <BookingCard sx={{ position: "sticky", top: "1rem" }} />
