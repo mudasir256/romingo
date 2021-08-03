@@ -1,4 +1,4 @@
-import { FC, useState, MouseEventHandler } from "react";
+import { FC, useState } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -12,19 +12,20 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
-import OccupantSelector from "../OccupantSelector";
+import OccupantSelector, {
+  Occupant,
+} from "../OccupantSelector/OccupantSelector";
 
 const BookingCard: FC = () => {
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
   const [roomType, setRoomType] = useState("0");
-
   const [occupants, setOccupants] = useState({
     adults: 2,
     children: 0,
     dogs: 0,
   });
 
-  const onOccupantChange = (value) => {
+  const onOccupantChange = (value: Occupant) => {
     setOccupants(value);
   };
 
