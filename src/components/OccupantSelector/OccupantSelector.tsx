@@ -1,4 +1,5 @@
 import { CSSObject } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import Popover from "@material-ui/core/Popover";
 import Stack from "@material-ui/core/Stack";
 import TextField from "@material-ui/core/TextField";
@@ -35,29 +36,36 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
     <>
       <TextField
         fullWidth
+        label="Occupants"
         sx={sx}
         value={`Adults: ${value.adults} - Children: ${value.children} - Dogs: ${value.dogs}`}
-        inputProps={{ readOnly: true, style: { textAlign: "center" } }}
+        inputProps={{
+          readOnly: true,
+          style: { textAlign: "center" },
+          sx: { fontSize: { xs: "85%", sm: "100%" } },
+        }}
         onClick={handleClick}
         ref={ref}
       />
       <Popover
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "left",
+          horizontal: "center",
         }}
         sx={{ ".MuiPopover-paper": { width } }}
       >
-        <Stack sx={{ p: 3 }} spacing={2}>
+        <Stack sx={{ p: 3 }} spacing={1}>
           <Stack
             direction="row"
             alignItems="center"
-            spacing={12}
             justifyContent="space-between"
-            sx={{ width: "100%" }}
           >
             <Typography variant="h6">Adults</Typography>
             <NumberInput
@@ -69,7 +77,6 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing={12}
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
@@ -83,7 +90,6 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing={12}
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
@@ -93,6 +99,7 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
               onChange={(dogs) => onChange({ ...value, dogs })}
             />
           </Stack>
+          <Button onClick={handleClose}>Done</Button>
         </Stack>
       </Popover>
     </>
