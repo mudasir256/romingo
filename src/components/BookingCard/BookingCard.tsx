@@ -16,7 +16,11 @@ import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
 
-const BookingCard: FC = () => {
+interface Props {
+  sx?: CSSObject;
+}
+
+const BookingCard: FC<Props> = ({ sx }) => {
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
   const [roomType, setRoomType] = useState("0");
   const [occupants, setOccupants] = useState({
@@ -30,7 +34,7 @@ const BookingCard: FC = () => {
   };
 
   return (
-    <Box sx={{ borderRadius: 3, boxShadow: 1, p: 3 }}>
+    <Box sx={{ ...sx, borderRadius: 3, boxShadow: 1, p: 3 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
           startText="Check-in"

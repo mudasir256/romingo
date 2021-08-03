@@ -2,45 +2,105 @@ import { FC } from "react";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import Stack from "@material-ui/core/Stack";
-import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
+import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
 
 interface Props {
   name: string;
-  address: string;
-  mainImage: string;
-  gallerySrc: [string];
+  location: string;
+  mainImg: string;
+  gallery: string[];
+  score: number;
+  cancellation?: boolean;
+  amenities?: string[];
 }
 
-const DetailsPage: FC<Props> = () => {
+const DetailsPage: FC<Props> = ({
+  name,
+  location,
+  mainImg,
+  gallery,
+  score,
+  cancellation = false,
+  amenities = [],
+  ...props
+}) => {
   return (
-    <Box>
+    <Box sx={{ px: { xs: 0, md: 3, lg: 8 } }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
-          <Box boxShadow={2} sx={{ width: "100%", pb: "76%" }}></Box>
+          <Box
+            component="img"
+            src={mainImg}
+            alt={name}
+            draggable="false"
+            boxShadow={2}
+            sx={{
+              width: "100%",
+              height: { xs: "150px", sm: "375px" },
+              objectFit: "cover",
+            }}
+          />
         </Grid>
-        <Hidden lgDown>
+        <Hidden smDown>
           <Grid item xs={12} sm={6}>
             <Grid container spacing={2}>
-              <Grid item md={6}>
-                <Box boxShadow={2} sx={{ width: "100%", pb: "76%" }}></Box>
-              </Grid>
-              <Grid item md={6}>
-                <Box boxShadow={2} sx={{ width: "100%", pb: "76%" }}></Box>
-              </Grid>
-              <Grid item md={6}>
-                <Box boxShadow={2} sx={{ width: "100%", pb: "75%" }}></Box>
-              </Grid>
-              <Grid item md={6}>
-                <Box boxShadow={2} sx={{ width: "100%", pb: "75%" }}></Box>
-              </Grid>
+              {gallery.map((img) => {
+                return (
+                  <Grid item sm={6} key={img}>
+                    <Box
+                      boxShadow={2}
+                      component="img"
+                      src={img}
+                      alt={name}
+                      sx={{
+                        width: "100%",
+                        height: "178px",
+                        objectFit: "cover",
+                      }}
+                    ></Box>
+                  </Grid>
+                );
+              })}
             </Grid>
           </Grid>
         </Hidden>
-        <BookingCard />
+      </Grid>
+      <Grid container spacing={2} sx={{ mt: 0 }}>
+        <Grid item xs={12} md={7} lg={8} sx={{ minHeight: "2000px" }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: { xs: "95%", sm: "125%" },
+              color: "primary.main",
+              fontWeight: "bold",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {name}
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: { xs: "95%", sm: "125%" },
+              fontWeight: "light",
+              mt: 0,
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {location}
+          </Typography>
+          <RomingoScore score={score} />
+        </Grid>
+        <Grid item xs={12} md={5} lg={4}>
+          <BookingCard sx={{ position: "sticky", top: "1rem" }} />
+        </Grid>
       </Grid>
     </Box>
   );
