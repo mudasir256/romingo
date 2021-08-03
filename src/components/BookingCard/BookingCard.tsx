@@ -34,7 +34,7 @@ const BookingCard: FC<Props> = ({ sx }) => {
   };
 
   return (
-    <Box sx={{ ...sx, borderRadius: 3, boxShadow: 1, p: 3 }}>
+    <Box sx={{ ...sx, borderRadius: 0, boxShadow: 3, p: 3 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
           startText="Check-in"

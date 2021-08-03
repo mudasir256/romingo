@@ -67,7 +67,7 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="h6">Adults</Typography>
+            <Typography variant="body1">Adults</Typography>
             <NumberInput
               value={value.adults}
               onChange={(adults) => onChange({ ...value, adults })}
@@ -80,7 +80,7 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="h6">Children</Typography>
+            <Typography variant="body1">Children</Typography>
             <NumberInput
               value={value.children}
               onChange={(children) => onChange({ ...value, children })}
@@ -93,7 +93,7 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="h6">Dogs</Typography>
+            <Typography variant="body1">Dogs</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => onChange({ ...value, dogs })}
