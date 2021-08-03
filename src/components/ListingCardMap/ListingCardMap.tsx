@@ -60,7 +60,6 @@ const ListingCardMap: FC<Props> = ({
           >
             {name}
           </Typography>
-
           <Typography
             variant="body1"
             sx={{

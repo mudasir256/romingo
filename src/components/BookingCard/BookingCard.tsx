@@ -1,7 +1,9 @@
-import { FC, useState, Fragment, MouseEventHandler } from "react";
+import { FC, useState, MouseEventHandler } from "react";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import DateRangePicker from "@material-ui/lab/DateRangePicker";
+
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import { RangeInput } from "@material-ui/lab/DateRangePicker/RangeTypes";
@@ -19,6 +21,8 @@ import RemoveCircleOutline from "@material-ui/icons/RemoveCircleOutline";
 
 const BookingCard: FC = () => {
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
+  const [roomType, setRoomType] = useState("0");
+
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -38,51 +42,64 @@ const BookingCard: FC = () => {
         <DateRangePicker
           startText="Check-in"
           endText="Check-out"
+          calendars={1}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
           }}
           renderInput={(startProps, endProps) => (
-            <Fragment>
-              <TextField {...startProps} sx={{ flex: 1 }} />
-              <TextField {...endProps} sx={{ flex: 1, ml: 3 }} />
-            </Fragment>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TextField {...startProps} fullWidth={true} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField {...endProps} fullWidth={true} />
+              </Grid>
+            </Grid>
           )}
         />
       </LocalizationProvider>
       <TextField
+        label="Occupants"
         fullWidth
         sx={{ mt: 3 }}
+        color="primary"
         value={`Adults: ${adults} - Children: ${children} - Dogs: ${dogs}`}
-        inputProps={{ readOnly: true, style: { textAlign: "center" } }}
+        inputProps={{
+          readOnly: true,
+          style: { textAlign: "center", fontSize: "85%" },
+        }}
         onClick={handleClick}
       />
       <Popover
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        PaperProps={{
+          style: { width: "350px", maxWidth: "80%" },
+        }}
         onClose={handleClose}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "left",
+          horizontal: "center",
         }}
       >
-        <Stack sx={{ p: 3 }} spacing={2}>
+        <Stack sx={{ p: 2 }} spacing={1}>
           <Stack
             direction="row"
             alignItems="center"
-            spacing={12}
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="h6">Adults</Typography>
-            <Stack spacing={2} direction="row" alignItems="center">
+            <Typography variant="body1">Adults</Typography>
+            <Stack spacing={1} direction="row" alignItems="center">
               <IconButton onClick={() => setAdults(Math.max(adults - 1, 0))}>
                 <RemoveCircleOutline />
               </IconButton>
-              <Typography
-                variant="body1"
-                sx={{ width: 16, textAlign: "center" }}
-              >
+              <Typography variant="body1" sx={{ textAlign: "center" }}>
                 {adults}
               </Typography>
               <IconButton onClick={() => setAdults(adults + 1)}>
@@ -94,21 +111,17 @@ const BookingCard: FC = () => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing={16}
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="h6">Children</Typography>
-            <Stack spacing={2} direction="row" alignItems="center">
+            <Typography variant="body1">Children</Typography>
+            <Stack spacing={1} direction="row" alignItems="center">
               <IconButton
                 onClick={() => setChildren(Math.max(children - 1, 0))}
               >
                 <RemoveCircleOutline />
               </IconButton>
-              <Typography
-                variant="body1"
-                sx={{ width: 16, textAlign: "center" }}
-              >
+              <Typography variant="body1" sx={{ textAlign: "center" }}>
                 {children}
               </Typography>
               <IconButton onClick={() => setChildren(children + 1)}>
@@ -120,19 +133,15 @@ const BookingCard: FC = () => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing={12}
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="h6">Dogs</Typography>
-            <Stack spacing={2} direction="row" alignItems="center">
+            <Typography variant="body1">Dogs</Typography>
+            <Stack spacing={1} direction="row" alignItems="center">
               <IconButton onClick={() => setDogs(Math.max(dogs - 1, 0))}>
                 <RemoveCircleOutline />
               </IconButton>
-              <Typography
-                variant="body1"
-                sx={{ width: 16, textAlign: "center" }}
-              >
+              <Typography variant="body1" sx={{ textAlign: "center" }}>
                 {dogs}
               </Typography>
               <IconButton onClick={() => setDogs(dogs + 1)}>
@@ -140,14 +149,19 @@ const BookingCard: FC = () => {
               </IconButton>
             </Stack>
           </Stack>
+          <Button onClick={handleClose}>Done</Button>
         </Stack>
       </Popover>
       <FormControl fullWidth sx={{ mt: 3 }}>
         <InputLabel>Room Type</InputLabel>
-        <Select label="Room Type">
-          <MenuItem value={1}>Room TWO DOUBLE BEDS</MenuItem>
-          <MenuItem value={2}>Two Double Beds - Non-refundable</MenuItem>
-          <MenuItem value={3}>SUITE TWO BEDROOMS</MenuItem>
+        <Select
+          value={roomType}
+          onChange={(e) => setRoomType(e.target.value)}
+          label="Room Type"
+        >
+          <MenuItem value="0">Room TWO DOUBLE BEDS</MenuItem>
+          <MenuItem value="1">Two Double Beds - Non-refundable</MenuItem>
+          <MenuItem value="2">SUITE TWO BEDROOMS</MenuItem>
         </Select>
       </FormControl>
       <Box sx={{ my: 3, borderTop: 1, borderColor: "primary.main" }} />
