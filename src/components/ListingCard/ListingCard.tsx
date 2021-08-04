@@ -41,7 +41,7 @@ const ListingCard: FC<ListingCardProps> = ({
       sx={{
         color: "text.primary",
         display: "flex",
-        borderRadius: 0,
+        borderRadius: 1,
         boxShadow,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
@@ -59,7 +59,7 @@ const ListingCard: FC<ListingCardProps> = ({
           maxWidth: { sm: 280 },
           maxHeight: { xs: 180, sm: "100%" },
           minHeight: { xs: 180, sm: "100%" },
-          borderRadius: 0,
+          borderRadius: 1,
           boxShadow: 0,
         }}
       />

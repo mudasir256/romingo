@@ -11,7 +11,7 @@ const CardList: FC<Props> = ({ cards }) => {
   return (
     <Box
       sx={{
-        borderRadius: 3,
+        borderRadius: 1,
         maxWidth: "100%",
       }}
     >
