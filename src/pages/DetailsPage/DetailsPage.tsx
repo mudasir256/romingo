@@ -164,8 +164,8 @@ const DetailsPage: FC<Props> = ({
             <Box
               sx={{
                 position: "absolute",
-                right: { xs: "10px", sm: "20px" },
-                bottom: "20px",
+                right: { xs: "-10px", sm: "20px" },
+                bottom: { xs: "8px", sm: "20px" },
                 textAlign: "right",
               }}
             >
@@ -186,7 +186,7 @@ const DetailsPage: FC<Props> = ({
                 }}
               >
                 <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
-                View All Photos
+                View Photos
               </Button>
             </Box>
           </Grid>
