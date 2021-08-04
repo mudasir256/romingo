@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
+import AmenitiesCard from "../../components/AmenitiesCard/AmenitiesCard";
+import Map from "../../components/UI/Map/Map";
 
 interface Props {
   name: string;
@@ -24,7 +26,13 @@ interface Props {
     deadline: { absoluteDeadline: date };
     amountPercent: { amount: number; currencyCode: string };
   }[];
-  amenities?: string[];
+  dogAmenitiesTitle: string;
+  amenitiesTitle: string;
+  amenities?: {
+    Code: number;
+    Description: string;
+    Value: string;
+  }[];
   nearby?: { text: string; distance: number }[];
 }
 
@@ -36,6 +44,8 @@ const DetailsPage: FC<Props> = ({
   score,
   defaultDescription = "",
   cancellation = false,
+  dogAmenitiesTitle,
+  amenitiesTitle,
   amenities = [],
   ...props
 }) => {
@@ -119,6 +129,44 @@ const DetailsPage: FC<Props> = ({
           >
             {defaultDescription}
           </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
+              <Box
+                sx={{
+                  mt: 2
+                }}>
+                <AmenitiesCard 
+                  title={dogAmenitiesTitle}
+                  amenities={amenities}
+                  />
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
+              <Box
+                sx={{
+                  mt: 2
+                }}>
+                <AmenitiesCard 
+                  title={amenitiesTitle}
+                  amenities={amenities}
+                  />
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Box
+              sx={{
+                display: "flex",
+                mt: 2,
+                width: "100%"
+              }}>
+              <Map 
+                center={{
+                  lat: parseFloat(location.lat),
+                  lng: parseFloat(location.lon)
+                }}/>
+            </Box>
+          </Grid>
         </Grid>
         <Grid item xs={12} md={5} lg={4}>
           <BookingCard sx={{ position: "sticky", top: "1rem" }} />

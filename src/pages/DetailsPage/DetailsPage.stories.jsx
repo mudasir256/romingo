@@ -11,8 +11,8 @@ export const Default = Template.bind({});
 Default.args = {
   name: "Hotel McCoy",
   location: {
-    Lat: "32.19983",
-    Lon: "-110.98048",
+    lat: "32.19983",
+    lon: "-110.98048",
     address: "720 W. Silverlake Road, Tucson, 85713, AZ",
   },
   score: 5,
@@ -56,7 +56,9 @@ Default.args = {
       },
     },
   ],
-  hotelAmenities: [
+  dogAmenitiesTitle: "Dog Friendly Amenities",
+  amenitiesTitle: "Other Amenities",
+  amenities: [
     {
       Code: 101,
       Description: "Wheelchair access",
