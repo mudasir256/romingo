@@ -1,11 +1,12 @@
 import DetailsPage from "./DetailsPage";
+import SimpleReactLightbox from 'simple-react-lightbox'
 
 export default {
   title: "DetailsPage",
   component: DetailsPage,
 };
 
-const Template = (args) => <DetailsPage {...args} />;
+const Template = (args) => <SimpleReactLightbox><DetailsPage {...args} /></SimpleReactLightbox>;
 
 export const Default = Template.bind({});
 Default.args = {

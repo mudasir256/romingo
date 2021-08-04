@@ -1,11 +1,10 @@
 import { FC } from "react";
 import Container from "@material-ui/core/Container";
-import Collapse from "@material-ui/core/Collapse";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
+import { SRLWrapper } from "simple-react-lightbox";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
@@ -54,47 +53,57 @@ const DetailsPage: FC<Props> = ({
 }) => {
   return (
     <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Box
-            component="img"
-            src={mainImg}
-            alt={name}
-            draggable="false"
-            boxShadow={2}
-            sx={{
-              width: "100%",
-              height: { xs: "150px", sm: "375px" },
-              objectFit: "cover",
-              borderRadius: 1,
-            }}
-          />
-        </Grid>
-        <Hidden smDown>
+      <SRLWrapper options={{
+        buttons: {
+          showAutoplayButton: false,
+          showDownloadButton: false,
+          showThumbnailsButton: false,
+        }
+      }}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <Grid container spacing={2}>
-              {gallery.map((img) => {
-                return (
-                  <Grid item sm={6} key={img}>
-                    <Box
-                      boxShadow={2}
-                      component="img"
-                      src={img}
-                      alt={name}
-                      sx={{
-                        width: "100%",
-                        height: "178px",
-                        objectFit: "cover",
-                        borderRadius: 1,
-                      }}
-                    ></Box>
-                  </Grid>
-                );
-              })}
-            </Grid>
+            <Box
+              component="img"
+              src={mainImg}
+              alt={name}
+              draggable="false"
+              boxShadow={2}
+              sx={{
+                width: "100%",
+                height: { xs: "150px", sm: "375px" },
+                objectFit: "cover",
+                borderRadius: 1,
+                cursor: "pointer"
+              }}
+            />
           </Grid>
-        </Hidden>
-      </Grid>
+          <Hidden smDown>
+            <Grid item xs={12} sm={6}>
+              <Grid container spacing={2}>
+                {gallery.map((img) => {
+                  return (
+                    <Grid item sm={6} key={img}>
+                      <Box
+                        boxShadow={2}
+                        component="img"
+                        src={img}
+                        alt={name}
+                        sx={{
+                          width: "100%",
+                          height: "178px",
+                          objectFit: "cover",
+                          borderRadius: 1,
+                          cursor: "pointer"
+                        }}
+                      ></Box>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+          </Hidden>
+        </Grid>
+      </SRLWrapper>
       <Grid container spacing={2} sx={{ mt: 0 }}>
         <Grid item xs={12} md={7} lg={8} sx={{ minHeight: "2000px" }}>
           <Typography
