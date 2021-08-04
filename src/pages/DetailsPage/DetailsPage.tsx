@@ -11,9 +11,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
-import { useTheme } from "@material-ui/core/styles";
-import { SRLWrapper } from "simple-react-lightbox";
-import SimpleReactLightbox from "simple-react-lightbox";
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
@@ -220,18 +218,44 @@ const DetailsPage: FC<Props> = ({
             </Typography>
             <RomingoScore score={score} />
             <ReadMore text={defaultDescription} length={200} />
-            <Grid container spacing={2} sx={{ mt: 0 }}>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Box>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                mt: 0,
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={6}
+                lg={6}
+                sx={{ display: "flex", flex: 1 }}
+              >
+                <Box sx={{ display: "flex", flex: 1 }}>
                   <AmenitiesCard
                     title={dogAmenitiesTitle}
                     amenities={amenities}
                   />
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Box>
-                  <AmenitiesCard title={amenitiesTitle} amenities={amenities} />
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={6}
+                lg={6}
+                sx={{ display: "flex", flex: 1 }}
+              >
+                <Box sx={{ display: "flex", flex: 1 }}>
+                  <AmenitiesCard
+                    title={amenitiesTitle}
+                    amenities={amenities}
+                    viewAll
+                  />
                 </Box>
               </Grid>
             </Grid>
@@ -244,8 +268,8 @@ const DetailsPage: FC<Props> = ({
                       color: "text.primary",
                       borderRadius: 1,
                       boxShadow: 4,
-                      py: 1,
-                      px: 1,
+                      py: 2,
+                      px: 2,
                     }}
                   >
                     <Typography
@@ -253,7 +277,7 @@ const DetailsPage: FC<Props> = ({
                       sx={{
                         color: "primary.main",
                         fontWeight: "bold",
-                        textAlign: "center"
+                        textAlign: "center",
                       }}
                     >
                       The Romingo Guarantee
@@ -265,21 +289,21 @@ const DetailsPage: FC<Props> = ({
                         mt: 0.3,
                         overflow: "hidden",
                         color: "text.primary",
-                        textAlign: "center"
+                        textAlign: "center",
                       }}
                     >
                       Rooms booked through Romingo always include:
                     </Typography>
-                    <Box 
+                    <Box
                       sx={{
                         mt: 0.5,
-                        px: 0.5
+                        px: 0.5,
                       }}
                     >
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <Check
@@ -287,7 +311,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 20,
                             color: "primary.main",
                             mt: 0.3,
-                            mr: 0.5
+                            mr: 0.5,
                           }}
                         />
                         <Typography
@@ -296,7 +320,7 @@ const DetailsPage: FC<Props> = ({
                             fontWeight: "light",
                             mt: 0,
                             overflow: "hidden",
-                            color: "text.light"
+                            color: "text.light",
                           }}
                         >
                           {"No pet fees, ever"}
@@ -305,7 +329,7 @@ const DetailsPage: FC<Props> = ({
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <Check
@@ -313,7 +337,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 20,
                             color: "primary.main",
                             mt: 0.3,
-                            mr: 0.5
+                            mr: 0.5,
                           }}
                         />
                         <Typography
@@ -322,7 +346,7 @@ const DetailsPage: FC<Props> = ({
                             fontWeight: "light",
                             mt: 0,
                             overflow: "hidden",
-                            color: "text.light"
+                            color: "text.light",
                           }}
                         >
                           {"Up to 2 dogs <75 lbs each"}
@@ -331,7 +355,7 @@ const DetailsPage: FC<Props> = ({
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "center"
+                          alignItems: "center",
                         }}
                       >
                         <Check
@@ -339,7 +363,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 20,
                             color: "primary.main",
                             mt: 0.3,
-                            mr: 0.5
+                            mr: 0.5,
                           }}
                         />
                         <Typography
@@ -348,7 +372,7 @@ const DetailsPage: FC<Props> = ({
                             fontWeight: "light",
                             mt: 0,
                             overflow: "hidden",
-                            color: "text.light"
+                            color: "text.light",
                           }}
                         >
                           {"Bedding & bowls in your room"}
