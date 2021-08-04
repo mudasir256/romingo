@@ -47,7 +47,7 @@ const AmenitiesCard: FC<Props> = ({
         color: "text.primary",
         borderRadius: 1,
         boxShadow: 4,
-        py: 1,
+        py: 2,
         px: 2,
         width: "100%",
       }}
@@ -69,7 +69,8 @@ const AmenitiesCard: FC<Props> = ({
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "bottom",
+              mt: 0.8,
             }}
             key={key}
           >
@@ -79,11 +80,10 @@ const AmenitiesCard: FC<Props> = ({
               sx={{
                 fontWeight: "light",
                 mt: 0,
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
                 textTransform: "capitalize",
                 color: "text.primary",
+                textIndent: "-8px",
+                paddingLeft: "8px",
               }}
             >
               {amenity.Description}
@@ -180,8 +180,9 @@ const AmenitiesCard: FC<Props> = ({
                         sx={{
                           fontWeight: "light",
                           mt: 0,
-                          overflow: "hidden",
                           color: "text.light",
+                          textIndent: "-8px",
+                          paddingLeft: "8px",
                         }}
                       >
                         {amenity.Description}

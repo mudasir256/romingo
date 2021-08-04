@@ -224,33 +224,18 @@ const DetailsPage: FC<Props> = ({
               sx={{
                 mt: 0,
                 display: "flex",
-                flexDirection: "row",
               }}
             >
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={6}
-                lg={6}
-                sx={{ display: "flex", flex: 1 }}
-              >
-                <Box sx={{ display: "flex", flex: 1 }}>
+              <Grid item xs={12} sm={6} md={6} lg={6}>
+                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
                   <AmenitiesCard
                     title={dogAmenitiesTitle}
                     amenities={amenities}
                   />
                 </Box>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={6}
-                lg={6}
-                sx={{ display: "flex", flex: 1 }}
-              >
-                <Box sx={{ display: "flex", flex: 1 }}>
+              <Grid item xs={12} sm={6} md={6} lg={6}>
+                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
                   <AmenitiesCard
                     title={amenitiesTitle}
                     amenities={amenities}
@@ -287,7 +272,6 @@ const DetailsPage: FC<Props> = ({
                       sx={{
                         fontWeight: "light",
                         mt: 0.3,
-                        overflow: "hidden",
                         color: "text.primary",
                         textAlign: "center",
                       }}
@@ -303,7 +287,8 @@ const DetailsPage: FC<Props> = ({
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "center",
+                          alignItems: "bottom",
+                          mt: 1,
                         }}
                       >
                         <Check
@@ -319,7 +304,6 @@ const DetailsPage: FC<Props> = ({
                           sx={{
                             fontWeight: "light",
                             mt: 0,
-                            overflow: "hidden",
                             color: "text.light",
                           }}
                         >
@@ -329,7 +313,8 @@ const DetailsPage: FC<Props> = ({
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "center",
+                          alignItems: "bottom",
+                          mt: 1,
                         }}
                       >
                         <Check
@@ -355,7 +340,8 @@ const DetailsPage: FC<Props> = ({
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "center",
+                          alignItems: "bottom",
+                          mt: 1,
                         }}
                       >
                         <Check
