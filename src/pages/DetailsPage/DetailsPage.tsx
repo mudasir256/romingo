@@ -64,6 +64,10 @@ const DetailsPage: FC<Props> = ({
           settings: {
             boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
             overlayColor: "rgba(255, 255, 255, 0.95)",
+            slideAnimationType: "slide",
+            slideSpringValues: [20000, 100],
+            slideTransitionSpeed: 0.2,
+            lightboxTransitionSpeed: 0.1,
           },
           caption: {
             captionFontSize: "20px",
