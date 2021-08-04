@@ -1,5 +1,8 @@
 import { FC } from "react";
+import Container from "@material-ui/core/Container";
+import Collapse from "@material-ui/core/Collapse";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
@@ -40,7 +43,7 @@ const DetailsPage: FC<Props> = ({
   ...props
 }) => {
   return (
-    <Box sx={{ px: { xs: 0, md: 3, lg: 8 } }}>
+    <Container>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Box
@@ -53,6 +56,7 @@ const DetailsPage: FC<Props> = ({
               width: "100%",
               height: { xs: "150px", sm: "375px" },
               objectFit: "cover",
+              borderRadius: 1,
             }}
           />
         </Grid>
@@ -71,6 +75,7 @@ const DetailsPage: FC<Props> = ({
                         width: "100%",
                         height: "178px",
                         objectFit: "cover",
+                        borderRadius: 1,
                       }}
                     ></Box>
                   </Grid>
@@ -98,12 +103,9 @@ const DetailsPage: FC<Props> = ({
           <Typography
             variant="body1"
             sx={{
-              fontSize: { xs: "95%", sm: "125%" },
+              fontSize: { xs: "90%", sm: "125%" },
               fontWeight: "light",
               mt: 0,
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
             }}
           >
             {location.address}
@@ -112,9 +114,12 @@ const DetailsPage: FC<Props> = ({
           <Typography
             variant="body2"
             sx={{
-              fontSize: { xs: "95%", sm: "100%" },
+              fontSize: { xs: "85%", sm: "100%" },
               lineHeight: 2,
               mt: 2,
+              overflow: "hidden",
+              whiteSpace: "normal",
+              textOverflow: "ellipsis",
             }}
           >
             {defaultDescription}
@@ -124,7 +129,7 @@ const DetailsPage: FC<Props> = ({
           <BookingCard sx={{ position: "sticky", top: "1rem" }} />
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 };
 
