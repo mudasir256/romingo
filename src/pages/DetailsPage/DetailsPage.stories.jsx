@@ -1,12 +1,16 @@
 import DetailsPage from "./DetailsPage";
-import SimpleReactLightbox from 'simple-react-lightbox'
+import SimpleReactLightbox from "simple-react-lightbox";
 
 export default {
   title: "DetailsPage",
   component: DetailsPage,
 };
 
-const Template = (args) => <SimpleReactLightbox><DetailsPage {...args} /></SimpleReactLightbox>;
+const Template = (args) => (
+  <SimpleReactLightbox>
+    <DetailsPage {...args} />
+  </SimpleReactLightbox>
+);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -188,4 +192,8 @@ Default.args = {
       value: "",
     },
   ],
+};
+
+Default.parameters = {
+  layout: "fullscreen",
 };
