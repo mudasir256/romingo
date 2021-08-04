@@ -7,13 +7,12 @@ import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { useTheme } from "@material-ui/core/styles";
 import { SRLWrapper } from "simple-react-lightbox";
 import SimpleReactLightbox from "simple-react-lightbox";
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
@@ -30,7 +29,7 @@ interface Props {
   };
   mainImg: string;
   gallery: string[];
-  moreGallery: string[],
+  moreGallery: string[];
   score: number;
   defaultDescription?: string;
   cancellation?: boolean;
@@ -63,9 +62,7 @@ const DetailsPage: FC<Props> = ({
   amenities = [],
   ...props
 }) => {
-
   const [showGallery, setShowGallery] = useState(false);
-  const theme = useTheme();
 
   const lightBoxOptions = {
     buttons: {
@@ -75,8 +72,7 @@ const DetailsPage: FC<Props> = ({
       backgroundColor: "rgba(3, 152, 158, .7)",
     },
     settings: {
-      boxShadow:
-        "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+      boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
       overlayColor: "rgba(255, 255, 255, 0.95)",
       slideAnimationType: "slide",
       slideSpringValues: [20000, 100],
@@ -91,11 +87,11 @@ const DetailsPage: FC<Props> = ({
     progressBar: {
       backgroundColor: "#03989E",
     },
-  }
+  };
 
   const handleClose = () => {
     setShowGallery(false);
-  }
+  };
 
   return (
     <>
@@ -115,12 +111,14 @@ const DetailsPage: FC<Props> = ({
         }}
       />
       <Container sx={{ mt: { xs: 0, md: 4 } }}>
-        <SRLWrapper
-          options={lightBoxOptions}
-        >
-          <Grid container spacing={2} sx={{
-            position: "relative"
-          }}>
+        <SRLWrapper options={lightBoxOptions}>
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              position: "relative",
+            }}
+          >
             <Grid item xs={12} sm={6}>
               <Box
                 component="img"
@@ -163,23 +161,32 @@ const DetailsPage: FC<Props> = ({
                 </Grid>
               </Grid>
             </Hidden>
-            <Box sx={{
-              position: "absolute",
-              right: "24px",
-              bottom: "24px",
-              textAlign: "right"
-            }}>
-              <Button 
+            <Box
+              sx={{
+                position: "absolute",
+                right: { xs: "10px", sm: "20px" },
+                bottom: "20px",
+                textAlign: "right",
+              }}
+            >
+              <Button
                 variant="outlined"
+                size="small"
                 sx={{
-                  backgroundColor: "white"
+                  textTransform: "none",
+                  backgroundColor: "white",
+                  "&:hover": {
+                    backgroundColor: "#fff",
+                  },
                 }}
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   setShowGallery(true);
-                }}>
-                More Photos
+                }}
+              >
+                <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
+                View All Photos
               </Button>
             </Box>
           </Grid>
@@ -264,7 +271,11 @@ const DetailsPage: FC<Props> = ({
                 textAlign: "center",
               }}
             >
-              <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+              <Typography
+                variant="h6"
+                color="primary"
+                sx={{ fontWeight: "bold" }}
+              >
                 Photos
               </Typography>
               <IconButton
@@ -282,11 +293,14 @@ const DetailsPage: FC<Props> = ({
             </DialogTitle>
             <DialogContent>
               <Container sx={{ mt: { xs: 0, md: 4 } }}>
-                <SRLWrapper options={lightBoxOptions}
-                >
-                  <Grid container spacing={2} sx={{
-                    position: "relative"
-                  }}>
+                <SRLWrapper options={lightBoxOptions}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                      position: "relative",
+                    }}
+                  >
                     <Grid item xs={12}>
                       <Grid container spacing={2}>
                         {moreGallery.map((img) => {
