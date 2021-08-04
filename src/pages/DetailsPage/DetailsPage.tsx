@@ -1,10 +1,19 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import { useTheme } from "@material-ui/core/styles";
 import { SRLWrapper } from "simple-react-lightbox";
+import SimpleReactLightbox from "simple-react-lightbox";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
@@ -21,6 +30,7 @@ interface Props {
   };
   mainImg: string;
   gallery: string[];
+  moreGallery: string[],
   score: number;
   defaultDescription?: string;
   cancellation?: boolean;
@@ -44,6 +54,7 @@ const DetailsPage: FC<Props> = ({
   location,
   mainImg,
   gallery,
+  moreGallery,
   score,
   defaultDescription = "",
   cancellation = false,
@@ -52,6 +63,40 @@ const DetailsPage: FC<Props> = ({
   amenities = [],
   ...props
 }) => {
+
+  const [showGallery, setShowGallery] = useState(false);
+  const theme = useTheme();
+
+  const lightBoxOptions = {
+    buttons: {
+      showAutoplayButton: false,
+      showDownloadButton: false,
+      showThumbnailsButton: false,
+      backgroundColor: "rgba(3, 152, 158, .7)",
+    },
+    settings: {
+      boxShadow:
+        "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+      overlayColor: "rgba(255, 255, 255, 0.95)",
+      slideAnimationType: "slide",
+      slideSpringValues: [20000, 100],
+      slideTransitionSpeed: 0.2,
+      lightboxTransitionSpeed: 0.1,
+    },
+    caption: {
+      captionFontSize: "20px",
+      captionColor: "#03989E",
+      captionFontFamily: "Montserrat, sans-serif",
+    },
+    progressBar: {
+      backgroundColor: "#03989E",
+    },
+  }
+
+  const handleClose = () => {
+    setShowGallery(false);
+  }
+
   return (
     <>
       <Box
@@ -71,33 +116,11 @@ const DetailsPage: FC<Props> = ({
       />
       <Container sx={{ mt: { xs: 0, md: 4 } }}>
         <SRLWrapper
-          options={{
-            buttons: {
-              showAutoplayButton: false,
-              showDownloadButton: false,
-              showThumbnailsButton: false,
-              backgroundColor: "rgba(3, 152, 158, .7)",
-            },
-            settings: {
-              boxShadow:
-                "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-              overlayColor: "rgba(255, 255, 255, 0.95)",
-              slideAnimationType: "slide",
-              slideSpringValues: [20000, 100],
-              slideTransitionSpeed: 0.2,
-              lightboxTransitionSpeed: 0.1,
-            },
-            caption: {
-              captionFontSize: "20px",
-              captionColor: "#03989E",
-              captionFontFamily: "Montserrat, sans-serif",
-            },
-            progressBar: {
-              backgroundColor: "#03989E",
-            },
-          }}
+          options={lightBoxOptions}
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{
+            position: "relative"
+          }}>
             <Grid item xs={12} sm={6}>
               <Box
                 component="img"
@@ -140,6 +163,25 @@ const DetailsPage: FC<Props> = ({
                 </Grid>
               </Grid>
             </Hidden>
+            <Box sx={{
+              position: "absolute",
+              right: "24px",
+              bottom: "24px",
+              textAlign: "right"
+            }}>
+              <Button 
+                variant="outlined"
+                sx={{
+                  backgroundColor: "white"
+                }}
+                onClick={e => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowGallery(true);
+                }}>
+                More Photos
+              </Button>
+            </Box>
           </Grid>
         </SRLWrapper>
         <Grid container spacing={2} sx={{ mt: 0 }}>
@@ -205,6 +247,75 @@ const DetailsPage: FC<Props> = ({
             <BookingCard sx={{ position: "sticky", top: "1rem" }} />
           </Grid>
         </Grid>
+        <SimpleReactLightbox>
+          <Dialog
+            open={showGallery}
+            keepMounted
+            fullScreen
+            onClose={handleClose}
+            scroll="body"
+            aria-labelledby="photo-dialog-slide-title"
+            aria-describedby="photo-dialog-slide-description"
+            sx={{ maxWidth: "xl" }}
+          >
+            <DialogTitle
+              id="photo-dialog-slide-title"
+              sx={{
+                textAlign: "center",
+              }}
+            >
+              <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+                Photos
+              </Typography>
+              <IconButton
+                aria-label="close"
+                onClick={handleClose}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </DialogTitle>
+            <DialogContent>
+              <Container sx={{ mt: { xs: 0, md: 4 } }}>
+                <SRLWrapper options={lightBoxOptions}
+                >
+                  <Grid container spacing={2} sx={{
+                    position: "relative"
+                  }}>
+                    <Grid item xs={12}>
+                      <Grid container spacing={2}>
+                        {moreGallery.map((img) => {
+                          return (
+                            <Grid item sm={6} key={img}>
+                              <Box
+                                boxShadow={2}
+                                component="img"
+                                src={img}
+                                alt={name}
+                                sx={{
+                                  width: "100%",
+                                  height: "178px",
+                                  objectFit: "cover",
+                                  borderRadius: 1,
+                                  cursor: "pointer",
+                                }}
+                              ></Box>
+                            </Grid>
+                          );
+                        })}
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </SRLWrapper>
+              </Container>
+            </DialogContent>
+          </Dialog>
+        </SimpleReactLightbox>
       </Container>
     </>
   );
