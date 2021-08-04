@@ -53,13 +53,28 @@ const DetailsPage: FC<Props> = ({
 }) => {
   return (
     <Container>
-      <SRLWrapper options={{
-        buttons: {
-          showAutoplayButton: false,
-          showDownloadButton: false,
-          showThumbnailsButton: false,
-        }
-      }}>
+      <SRLWrapper
+        options={{
+          buttons: {
+            showAutoplayButton: false,
+            showDownloadButton: false,
+            showThumbnailsButton: false,
+            backgroundColor: "rgba(3, 152, 158, .7)",
+          },
+          settings: {
+            boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+            overlayColor: "rgba(255, 255, 255, 0.95)",
+          },
+          caption: {
+            captionFontSize: "20px",
+            captionColor: "#03989E",
+            captionFontFamily: "Montserrat, sans-serif",
+          },
+          progressBar: {
+            backgroundColor: "#03989E",
+          },
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <Box
@@ -73,7 +88,7 @@ const DetailsPage: FC<Props> = ({
                 height: { xs: "150px", sm: "375px" },
                 objectFit: "cover",
                 borderRadius: 1,
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             />
           </Grid>
@@ -93,7 +108,7 @@ const DetailsPage: FC<Props> = ({
                           height: "178px",
                           objectFit: "cover",
                           borderRadius: 1,
-                          cursor: "pointer"
+                          cursor: "pointer",
                         }}
                       ></Box>
                     </Grid>
@@ -147,23 +162,22 @@ const DetailsPage: FC<Props> = ({
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <Box
                 sx={{
-                  mt: 2
-                }}>
-                <AmenitiesCard 
+                  mt: 2,
+                }}
+              >
+                <AmenitiesCard
                   title={dogAmenitiesTitle}
                   amenities={amenities}
-                  />
+                />
               </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <Box
                 sx={{
-                  mt: 2
-                }}>
-                <AmenitiesCard 
-                  title={amenitiesTitle}
-                  amenities={amenities}
-                  />
+                  mt: 2,
+                }}
+              >
+                <AmenitiesCard title={amenitiesTitle} amenities={amenities} />
               </Box>
             </Grid>
           </Grid>
@@ -172,13 +186,15 @@ const DetailsPage: FC<Props> = ({
               sx={{
                 display: "flex",
                 mt: 2,
-                width: "100%"
-              }}>
-              <Map 
+                width: "100%",
+              }}
+            >
+              <Map
                 center={{
                   lat: parseFloat(location.lat),
-                  lng: parseFloat(location.lon)
-                }}/>
+                  lng: parseFloat(location.lon),
+                }}
+              />
             </Box>
           </Grid>
         </Grid>
