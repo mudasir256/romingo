@@ -10,6 +10,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import Check from "@material-ui/icons/Check";
+import { useTheme } from "@material-ui/core/styles";
 import { SRLWrapper } from "simple-react-lightbox";
 import SimpleReactLightbox from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
@@ -230,6 +232,130 @@ const DetailsPage: FC<Props> = ({
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box>
                   <AmenitiesCard title={amenitiesTitle} amenities={amenities} />
+                </Box>
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} sx={{ mt: 0.5 }}>
+              <Grid item xs={12}>
+                <Box>
+                  <Box
+                    sx={{
+                      backgroundColor: "white",
+                      color: "text.primary",
+                      borderRadius: 1,
+                      boxShadow: 4,
+                      py: 1,
+                      px: 1,
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: "bold",
+                        textAlign: "center"
+                      }}
+                    >
+                      The Romingo Guarantee
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: "light",
+                        mt: 0.3,
+                        overflow: "hidden",
+                        color: "text.primary",
+                        textAlign: "center"
+                      }}
+                    >
+                      Rooms booked through Romingo always include:
+                    </Typography>
+                    <Box 
+                      sx={{
+                        mt: 0.5,
+                        px: 0.5
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Check
+                          sx={{
+                            fontSize: 20,
+                            color: "primary.main",
+                            mt: 0.3,
+                            mr: 0.5
+                          }}
+                        />
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "light",
+                            mt: 0,
+                            overflow: "hidden",
+                            color: "text.light"
+                          }}
+                        >
+                          {"No pet fees, ever"}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Check
+                          sx={{
+                            fontSize: 20,
+                            color: "primary.main",
+                            mt: 0.3,
+                            mr: 0.5
+                          }}
+                        />
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "light",
+                            mt: 0,
+                            overflow: "hidden",
+                            color: "text.light"
+                          }}
+                        >
+                          {"Up to 2 dogs <75 lbs each"}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Check
+                          sx={{
+                            fontSize: 20,
+                            color: "primary.main",
+                            mt: 0.3,
+                            mr: 0.5
+                          }}
+                        />
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "light",
+                            mt: 0,
+                            overflow: "hidden",
+                            color: "text.light"
+                          }}
+                        >
+                          {"Bedding & bowls in your room"}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
