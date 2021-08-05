@@ -18,6 +18,7 @@ import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 import BookingCard from "../../components/BookingCard";
+import MobileBookingBar from "../../components/MobileBookingBar";
 import RomingoGuarantee from "../../components/RomingoGuarantee";
 import RomingoScore from "../../components/UI/RomingoScore";
 import AmenitiesCard from "../../components/AmenitiesCard";
@@ -57,6 +58,10 @@ interface Props {
     amountPercent: { amount: number; currencyCode: string };
   }[];
   dogAmenitiesTitle: string;
+  roomList: {
+    value: number;
+    description: string;
+  }[];
   amenitiesTitle: string;
   amenities?: {
     Code: number;
@@ -76,6 +81,7 @@ const DetailsPage: FC<Props> = ({
   dogAmenitiesTitle,
   amenitiesTitle,
   amenities = [],
+  roomList,
   nearby
 }) => {
   const [showGallery, setShowGallery] = useState(false);
@@ -290,7 +296,20 @@ const DetailsPage: FC<Props> = ({
             <CancelPolicy sx={{ mt: 2 }} />
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
-            <BookingCard sx={{ position: "sticky", top: "1rem" }} />
+            <Hidden smDown>
+              <BookingCard 
+                sx={{ 
+                  position: "sticky", 
+                  top: "1rem" 
+                }} 
+                roomList={roomList}
+              />
+            </Hidden>
+            <Hidden smUp>
+              <MobileBookingBar
+                roomList={roomList}
+              />
+            </Hidden>
           </Grid>
         </Grid>
         <SimpleReactLightbox>

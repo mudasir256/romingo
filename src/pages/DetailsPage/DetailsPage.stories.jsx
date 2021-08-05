@@ -46,6 +46,20 @@ Default.args = {
     { text: "Accomodare his consul nesarchum qui posse", distance: 1.2 },
     { text: "Ei mea falli legere efficiantur", distance: 2.1 },
   ],
+  roomList: [
+    {
+      value: 0,
+      description: "Room TWO DOUBLE BEDS"
+    },
+    {
+      value: 1,
+      description: "Two Double Beds - Non-refundable"
+    },
+    {
+      value: 2,
+      description: "SUITE TWO BEDROOMS"
+    },
+  ],
   cancelPenalty: [
     {
       Refundable: true,

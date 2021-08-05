@@ -1,11 +1,11 @@
-import BookingCard from "./BookingCard";
+import MobileBookingBar from "./MobileBookingBar";
 
 export default {
-  title: "BookingCard",
-  component: BookingCard,
+  title: "MobileBookingBar",
+  component: MobileBookingBar,
 };
 
-const Template = (args) => <BookingCard {...args} />;
+const Template = (args) => <MobileBookingBar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

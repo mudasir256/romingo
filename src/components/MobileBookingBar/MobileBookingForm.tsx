@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -17,25 +17,50 @@ import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
 
+interface ChangeFunc {
+  (roomType: string, dateRange: RangeInput<Date | null>, occupantsValue: {
+    adults: number;
+    children: number;
+    dogs: number;
+  }): void;
+}
+
 interface Props {
   sx?: CSSObject;
   roomList: {
     value: number;
     description: string;
   }[];
+  handleChange: ChangeFunc;
+  initialValue: {
+    value: RangeInput<Date | null>;
+    roomType: string;
+    occupants: {
+      adults: number;
+      children: number;
+      dogs: number;
+    }
+  }
 }
 
-const BookingCard: FC<Props> = ({ sx, roomList }) => {
-  const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
-  const [roomType, setRoomType] = useState("0");
-  const [occupants, setOccupants] = useState({
-    adults: 2,
-    children: 0,
-    dogs: 0,
-  });
+const MobileBookingForm: FC<Props> = ({ 
+  sx, 
+  roomList,
+  initialValue,
+  handleChange }) => {
+
+  const [value, setValue] = useState(initialValue.value);
+  const [roomType, setRoomType] = useState(initialValue.roomType);
+  const [occupants, setOccupants] = useState(initialValue.occupants);
 
   const onOccupantChange = (value: Occupant) => {
     setOccupants(value);
+  };
+
+  const handleClick: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleChange(roomType, value, occupants);
   };
 
   return (
@@ -92,12 +117,12 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
             / night
           </Typography>
         </Box>
-        <Button variant="contained" size="large" color="primary" sx={{ mt: 2 }}>
-          Book Now
+        <Button variant="contained" size="large" color="primary" sx={{ mt: 2 }} onClick={handleClick}>
+          Save
         </Button>
       </Box>
     </Box>
   );
 };
 
-export default BookingCard;
+export default MobileBookingForm;
