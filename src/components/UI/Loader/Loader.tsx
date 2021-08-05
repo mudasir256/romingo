@@ -7,7 +7,6 @@ interface Props {
 }
 
 const Loader: FC<Props> = ({ size = "200px" }) => {
-  console.log(size);
   const styleObject = { height: size };
   return <Lottie animationData={tennisBall} style={styleObject} />;
 };

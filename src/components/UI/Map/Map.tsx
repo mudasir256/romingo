@@ -23,7 +23,6 @@ const Map: FC<Props> = ({ center }) => {
   });
   const size = useWindowSize();
   useEffect(() => {
-    console.log(size);
     setContainerStyle(size);
     if (size.width > 720) {
       setMapOptions({ ...mapOptions, zoomControl: true });

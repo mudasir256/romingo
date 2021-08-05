@@ -8,8 +8,12 @@ import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import ImageList from "@material-ui/core/ImageList";
+import ImageListItem from "@material-ui/core/ImageListItem";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
@@ -20,6 +24,19 @@ import AmenitiesCard from "../../components/AmenitiesCard/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 
+type BreakpointOrNull = Breakpoint | null;
+
+const useWidth = () => {
+  const theme: Theme = useTheme();
+  const keys: readonly Breakpoint[] = [...theme.breakpoints.keys].reverse();
+  return (
+    keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
+      const matches = useMediaQuery(theme.breakpoints.up(key));
+      return !output && matches ? key : output;
+    }, null) || "xs"
+  );
+};
+
 interface Props {
   name: string;
   location: {
@@ -29,7 +46,6 @@ interface Props {
   };
   mainImg: string;
   gallery: string[];
-  moreGallery: string[];
   score: number;
   defaultDescription?: string;
   cancellation?: boolean;
@@ -53,7 +69,6 @@ const DetailsPage: FC<Props> = ({
   location,
   mainImg,
   gallery,
-  moreGallery,
   score,
   defaultDescription = "",
   cancellation = false,
@@ -63,7 +78,7 @@ const DetailsPage: FC<Props> = ({
   ...props
 }) => {
   const [showGallery, setShowGallery] = useState(false);
-
+  const width = useWidth();
   const lightBoxOptions = {
     buttons: {
       showAutoplayButton: false,
@@ -93,6 +108,17 @@ const DetailsPage: FC<Props> = ({
     setShowGallery(false);
   };
 
+  const getImageCols: number = () => {
+    const width = useWidth();
+    if (width === "xs") {
+      return 1;
+    }
+    if (width === "md" || width === "sm") {
+      return 2;
+    }
+    return 3;
+  };
+
   return (
     <>
       <Box
@@ -100,6 +126,11 @@ const DetailsPage: FC<Props> = ({
         src={mainImg}
         alt={name}
         boxShadow={2}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setShowGallery(true);
+        }}
         display={{ xs: "block", md: "none" }}
         sx={{
           width: "100%",
@@ -111,86 +142,94 @@ const DetailsPage: FC<Props> = ({
         }}
       />
       <Container sx={{ mt: { xs: 0, md: 4 } }}>
-        <SRLWrapper options={lightBoxOptions}>
-          <Grid
-            container
-            spacing={2}
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            position: "relative",
+          }}
+        >
+          <Grid item xs={12} sm={6}>
+            <Box
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowGallery(true);
+              }}
+              component="img"
+              src={mainImg}
+              alt={name}
+              draggable="false"
+              boxShadow={2}
+              display={{ xs: "none", md: "block" }}
+              sx={{
+                width: "100%",
+                height: { xs: "150px", sm: "375px" },
+                objectFit: "cover",
+                borderRadius: 1,
+                cursor: "pointer",
+              }}
+            />
+          </Grid>
+          <Hidden mdDown>
+            <Grid item xs={12} sm={6}>
+              <Grid container spacing={2}>
+                {gallery.slice(0, 4).map((img) => {
+                  return (
+                    <Grid item sm={6} key={img}>
+                      <Box
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setShowGallery(true);
+                        }}
+                        boxShadow={2}
+                        component="img"
+                        src={img}
+                        alt={name}
+                        sx={{
+                          width: "100%",
+                          height: "178px",
+                          objectFit: "cover",
+                          borderRadius: 1,
+                          cursor: "pointer",
+                        }}
+                      ></Box>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+          </Hidden>
+          <Box
             sx={{
-              position: "relative",
+              position: "absolute",
+              right: { xs: "-10px", md: "20px" },
+              bottom: { xs: "8px", md: "20px" },
+              textAlign: "right",
             }}
           >
-            <Grid item xs={12} sm={6}>
-              <Box
-                component="img"
-                src={mainImg}
-                alt={name}
-                draggable="false"
-                boxShadow={2}
-                display={{ xs: "none", md: "block" }}
-                sx={{
-                  width: "100%",
-                  height: { xs: "150px", sm: "375px" },
-                  objectFit: "cover",
-                  borderRadius: 1,
-                  cursor: "pointer",
-                }}
-              />
-            </Grid>
-            <Hidden mdDown>
-              <Grid item xs={12} sm={6}>
-                <Grid container spacing={2}>
-                  {gallery.map((img) => {
-                    return (
-                      <Grid item sm={6} key={img}>
-                        <Box
-                          boxShadow={2}
-                          component="img"
-                          src={img}
-                          alt={name}
-                          sx={{
-                            width: "100%",
-                            height: "178px",
-                            objectFit: "cover",
-                            borderRadius: 1,
-                            cursor: "pointer",
-                          }}
-                        ></Box>
-                      </Grid>
-                    );
-                  })}
-                </Grid>
-              </Grid>
-            </Hidden>
-            <Box
+            <Button
+              variant="outlined"
+              size="small"
               sx={{
-                position: "absolute",
-                right: { xs: "-10px", md: "20px" },
-                bottom: { xs: "8px", md: "20px" },
-                textAlign: "right",
+                textTransform: "none",
+                backgroundColor: "white",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                },
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowGallery(true);
               }}
             >
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  textTransform: "none",
-                  backgroundColor: "white",
-                  "&:hover": {
-                    backgroundColor: "#fff",
-                  },
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setShowGallery(true);
-                }}
-              >
-                <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
-                View Photos
-              </Button>
-            </Box>
-          </Grid>
-        </SRLWrapper>
+              <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
+              View Photos
+            </Button>
+          </Box>
+        </Grid>
         <Grid container spacing={2} sx={{ mt: 0 }}>
           <Grid item xs={12} md={7} lg={8} sx={{ minHeight: "2000px" }}>
             <Typography
@@ -296,40 +335,21 @@ const DetailsPage: FC<Props> = ({
                 <CloseIcon />
               </IconButton>
             </DialogTitle>
-            <DialogContent>
-              <Container sx={{ mt: { xs: 0, md: 4 } }}>
+            <DialogContent sx={{ px: 0 }}>
+              <Container sx={{ mt: { xs: 0, md: 2 } }}>
                 <SRLWrapper options={lightBoxOptions}>
-                  <Grid
-                    container
-                    spacing={2}
-                    sx={{
-                      position: "relative",
-                    }}
-                  >
-                    <Grid item xs={12}>
-                      <Grid container spacing={2}>
-                        {moreGallery.map((img) => {
-                          return (
-                            <Grid item sm={6} key={img}>
-                              <Box
-                                boxShadow={2}
-                                component="img"
-                                src={img}
-                                alt={name}
-                                sx={{
-                                  width: "100%",
-                                  height: "178px",
-                                  objectFit: "cover",
-                                  borderRadius: 1,
-                                  cursor: "pointer",
-                                }}
-                              ></Box>
-                            </Grid>
-                          );
-                        })}
-                      </Grid>
-                    </Grid>
-                  </Grid>
+                  <ImageList variant="masonry" cols={getImageCols()} gap={8}>
+                    {gallery.map((item) => (
+                      <ImageListItem key={item} cols={1} rows={1}>
+                        <img
+                          srcSet={`${item}?w=161&fit=crop&auto=format 1x,
+${item}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                          alt={name}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
                 </SRLWrapper>
               </Container>
             </DialogContent>
