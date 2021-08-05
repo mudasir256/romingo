@@ -10,13 +10,12 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Check from "@material-ui/icons/Check";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import PetsIcon from "@material-ui/icons/Pets";
-import KingBedIcon from "@material-ui/icons/KingBed";
+import SingleBedIcon from "@material-ui/icons/SingleBed";
 import MoneyOffIcon from "@material-ui/icons/MoneyOff";
-import EmojiFoodBeverageIcon from "@material-ui/icons/EmojiFoodBeverage";
+import RoomServiceIcon from "@material-ui/icons/RoomService";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
@@ -292,7 +291,7 @@ const DetailsPage: FC<Props> = ({
                             color: "text.light",
                           }}
                         >
-                          No pay pet fees, now or ever
+                          Zero pet fees for up to 2 dogs
                         </Typography>
                       </Box>
                       <Box
@@ -320,7 +319,7 @@ const DetailsPage: FC<Props> = ({
                             color: "text.light",
                           }}
                         >
-                          Up to 2 dogs (75 lbs each)
+                          75 lb weight limit per dog
                         </Typography>
                       </Box>
                       <Box
@@ -331,7 +330,7 @@ const DetailsPage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        <KingBedIcon
+                        <SingleBedIcon
                           sx={{
                             fontSize: 20,
                             mr: 0.75,
@@ -360,7 +359,7 @@ const DetailsPage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        <EmojiFoodBeverageIcon
+                        <RoomServiceIcon
                           sx={{
                             fontSize: 20,
                             mr: 0.75,
