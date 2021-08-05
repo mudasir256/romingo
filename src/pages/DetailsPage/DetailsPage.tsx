@@ -149,7 +149,7 @@ const DetailsPage: FC<Props> = ({
           cursor: "pointer",
         }}
       />
-      <Container sx={{ mt: { xs: 0, md: 3 }, mb: 3 }}>
+      <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
         <Grid
           container
           spacing={2}
@@ -297,19 +297,17 @@ const DetailsPage: FC<Props> = ({
             <CancelPolicy sx={{ mt: 2 }} />
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
-            <Hidden smDown>
-              <BookingCard 
-                sx={{ 
-                  position: "sticky", 
-                  top: "1rem" 
-                }} 
+            <Hidden mdDown>
+              <BookingCard
+                sx={{
+                  position: "sticky",
+                  top: "1rem",
+                }}
                 roomList={roomList}
               />
             </Hidden>
-            <Hidden smUp>
-              <MobileBookingBar
-                roomList={roomList}
-              />
+            <Hidden mdUp>
+              <MobileBookingBar roomList={roomList} />
             </Hidden>
           </Grid>
         </Grid>

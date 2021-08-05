@@ -41,119 +41,140 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
 
   const handleClose = () => {
     setShowPopup(false);
-  }
+  };
 
-  const handleChange = (roomValue: string, dateRange: RangeInput<Date | null>, occupantsValue: {
-    adults: number;
-    children: number;
-    dogs: number;
-  }) => {
+  const handleChange = (
+    roomValue: string,
+    dateRange: RangeInput<Date | null>,
+    occupantsValue: {
+      adults: number;
+      children: number;
+      dogs: number;
+    }
+  ) => {
     setValue(dateRange);
     setRoomType(roomValue);
     setOccupants(occupantsValue);
     setShowPopup(false);
-  }
+  };
 
   const dateToString = (isoString: string | Date) => {
     const date = new Date(isoString);
-    return `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
-  }
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  };
 
   return (
-    <Box 
-      sx={{ 
-        ...sx, 
+    <Box
+      sx={{
+        ...sx,
         position: "fixed",
         bottom: 0,
         left: 0,
         width: "100%",
         zIndex: 100,
-        backgroundColor: "white"
-      }}>
-      <Box 
-        sx={{
-          borderRadius: 1, 
-          boxShadow: 3,
-        }}
-      >
+        boxShadow: 6,
+        backgroundColor: "white",
+      }}
+    >
+      <Box>
         <Box
           sx={{
-            display: "grid",
-            gridAutoFlow: "column",
-            justifyContent: "space-between"
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
           <Box
+            onClick={handleClick}
             sx={{
-              py: 0.3,
-              px: 0.5
-            }}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-              }}
-            >
-              <Box >
-                <Typography
-                  sx={{
-                    fontSize: "80%"
-                  }}
-                >
-                  {value[0] ? dateToString(value[0]) : "7/7/2021"} - {value[1] ? dateToString(value[1]) : "7/15/2021"}
-                </Typography>
-              </Box>
-              <Box>
-                <Link href="#" onClick={handleClick}>
-                  <Typography 
-                    sx={{
-                      fontSize: "80%",
-                      fontWeight: "bold"
-                    }}
-                  >
-                    Edit
-                  </Typography>
-                </Link>
-              </Box>
-            </Box>
-            <Box 
-              sx={{
-                mt: 0.5
-              }}
-            >
+              py: 1.25,
+              px: 1.25,
+              display: "flex",
+              flexDirection: "column",
+              minWidth: "100px",
+              cursor: "pointer",
+            }}
+          >
+            <Box>
               <Typography
                 sx={{
-                  fontSize: "85%"
+                  fontSize: "80%",
+                  textDecoration: "underline",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
                 }}
               >
-                Adults: {occupants.adults} - Children: {occupants.children} - Dogs: {occupants.dogs}
+                {value[0] ? dateToString(value[0]) : "07/22/2021"} -{" "}
+                {value[1] ? dateToString(value[1]) : "07/24/2021"}
               </Typography>
             </Box>
             <Box
               sx={{
-                mt: 0.5
+                mt: 0.5,
               }}
             >
               <Typography
                 sx={{
-                  fontSize: "85%"
+                  fontSize: "85%",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
                 }}
               >
                 {roomList[parseInt(roomType)].description}
               </Typography>
             </Box>
           </Box>
-          <Box>
-            <Button 
-              variant="contained" 
-              size="small" 
-              color="primary" 
+          <Box sx={{ display: "flex", flex: 1, justifyContent: "flex-end" }}>
+            <Button
+              variant="contained"
+              color="primary"
               sx={{
-                height: "100%" 
+                height: "100%",
+                whiteSpace: "nowrap",
+                minWidth: "150px",
+                py: 0,
+                borderRadius: 1,
+                lineHeight: 1.35,
               }}
             >
-              Book Now
+              <Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    display: "inline-block",
+                    my: 0,
+                    fontSize: "120%",
+                  }}
+                >
+                  Book Now
+                </Typography>
+                <Box>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      display: "inline-block",
+                      my: 0,
+                      fontWeight: "light",
+                      lineHeight: 0,
+                    }}
+                  >
+                    $139.99
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      ml: 0.25,
+                      fontSize: "75%",
+                      display: "inline-block",
+                      textTransform: "none",
+                      fontWeight: "light",
+                    }}
+                  >
+                    / night
+                  </Typography>
+                </Box>
+              </Box>
             </Button>
           </Box>
         </Box>
@@ -167,7 +188,14 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
         scroll="body"
         aria-labelledby="booking-dialog-slide-title"
         aria-describedby="booking-dialog-slide-description"
-        sx={{ maxWidth: "xl" }}
+        sx={{
+          height: "auto",
+          width: "100%",
+          position: "fixed",
+          bottom: 0,
+          top: "auto",
+          alignItems: "end",
+        }}
       >
         <DialogTitle
           id="booking-dialog-slide-title"
@@ -175,11 +203,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="h6"
-            color="primary"
-            sx={{ fontWeight: "bold" }}
-          >
+          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
             Edit Your Booking
           </Typography>
           <IconButton
@@ -197,18 +221,18 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
         </DialogTitle>
         <DialogContent
           sx={{
-            px: 0
-          }}>
+            p: 0,
+          }}
+        >
           <MobileBookingForm
             roomList={roomList}
             handleChange={handleChange}
             initialValue={{
               value,
               roomType,
-              occupants
+              occupants,
             }}
-          >
-          </MobileBookingForm>
+          ></MobileBookingForm>
         </DialogContent>
       </Dialog>
     </Box>

@@ -18,11 +18,15 @@ import OccupantSelector, {
 } from "../OccupantSelector/OccupantSelector";
 
 interface ChangeFunc {
-  (roomType: string, dateRange: RangeInput<Date | null>, occupantsValue: {
-    adults: number;
-    children: number;
-    dogs: number;
-  }): void;
+  (
+    roomType: string,
+    dateRange: RangeInput<Date | null>,
+    occupantsValue: {
+      adults: number;
+      children: number;
+      dogs: number;
+    }
+  ): void;
 }
 
 interface Props {
@@ -39,16 +43,16 @@ interface Props {
       adults: number;
       children: number;
       dogs: number;
-    }
-  }
+    };
+  };
 }
 
-const MobileBookingForm: FC<Props> = ({ 
-  sx, 
+const MobileBookingForm: FC<Props> = ({
+  sx,
   roomList,
   initialValue,
-  handleChange }) => {
-
+  handleChange,
+}) => {
   const [value, setValue] = useState(initialValue.value);
   const [roomType, setRoomType] = useState(initialValue.roomType);
   const [occupants, setOccupants] = useState(initialValue.occupants);
@@ -64,7 +68,7 @@ const MobileBookingForm: FC<Props> = ({
   };
 
   return (
-    <Box sx={{ ...sx, borderRadius: 1, boxShadow: 3, p: 3 }}>
+    <Box sx={{ ...sx, borderRadius: 1, boxShadow: 3, px: 3, pt: 0, pb: 2 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
           startText="Check-in"
@@ -99,16 +103,30 @@ const MobileBookingForm: FC<Props> = ({
           label="Room Type"
         >
           {roomList.map((room, key) => {
-            return <MenuItem value={room.value} key={key}>{room.description}</MenuItem>
+            return (
+              <MenuItem value={room.value} key={key}>
+                {room.description}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>
-      <Box sx={{ my: 3, borderTop: 1, borderColor: "primary.main" }} />
+      <Box
+        sx={{
+          position: "fixed",
+          bottom: "61px",
+          left: 0,
+          width: "100%",
+          borderBottom: 1,
+          borderColor: "primary.main",
+        }}
+      />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: "start",
+          mt: 5,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -117,7 +135,20 @@ const MobileBookingForm: FC<Props> = ({
             / night
           </Typography>
         </Box>
-        <Button variant="contained" size="large" color="primary" sx={{ mt: 2 }} onClick={handleClick}>
+        <Button
+          variant="outlined"
+          color="primary"
+          sx={{
+            whiteSpace: "nowrap",
+            minWidth: "150px",
+            py: 0,
+            position: "fixed",
+            bottom: 0,
+            right: 0,
+            height: "62px",
+            boxShadow: 2,
+          }}
+        >
           Save
         </Button>
       </Box>
