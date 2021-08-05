@@ -222,32 +222,6 @@ const DetailsPage: FC<Props> = ({
             </Typography>
             <RomingoScore score={score} />
             <ReadMore text={defaultDescription} length={200} />
-            <Grid
-              container
-              spacing={2}
-              sx={{
-                mt: 0,
-                display: "flex",
-              }}
-            >
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
-                  <AmenitiesCard
-                    title={dogAmenitiesTitle}
-                    amenities={amenities}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
-                  <AmenitiesCard
-                    title={amenitiesTitle}
-                    amenities={amenities}
-                    viewAll
-                  />
-                </Box>
-              </Grid>
-            </Grid>
             <Grid container spacing={2} sx={{ mt: 0.5 }}>
               <Grid item xs={12}>
                 <Box>
@@ -260,7 +234,6 @@ const DetailsPage: FC<Props> = ({
                       pt: 2,
                       pb: 2.5,
                       px: 2,
-                      maxWidth: "350px",
                       mx: "auto",
                     }}
                   >
@@ -413,6 +386,33 @@ const DetailsPage: FC<Props> = ({
                 </Box>
               </Grid>
             </Grid>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                mt: 0,
+                display: "flex",
+              }}
+            >
+              <Grid item xs={12} sm={6} md={6} lg={6}>
+                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                  <AmenitiesCard
+                    title={dogAmenitiesTitle}
+                    amenities={amenities}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6} md={6} lg={6}>
+                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                  <AmenitiesCard
+                    title={amenitiesTitle}
+                    amenities={amenities}
+                    viewAll
+                  />
+                </Box>
+              </Grid>
+            </Grid>
+
             <Grid container>
               <Box
                 sx={{
