@@ -59,7 +59,7 @@ const AmenitiesCard: FC<Props> = ({
           fontWeight: "bold",
           fontSize: "85%",
           textAlign: "center",
-          mb: 0.5,
+          mb: 1,
         }}
       >
         {title}
@@ -70,7 +70,7 @@ const AmenitiesCard: FC<Props> = ({
             sx={{
               display: "flex",
               alignItems: "bottom",
-              mt: 0.8,
+              mt: 0.4,
             }}
             key={key}
           >
@@ -95,7 +95,7 @@ const AmenitiesCard: FC<Props> = ({
         <>
           <Box
             sx={{
-              py: 0.5,
+              py: 0.2,
               textAlign: "center",
             }}
           >

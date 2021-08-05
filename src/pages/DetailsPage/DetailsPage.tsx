@@ -13,6 +13,10 @@ import CloseIcon from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+import PetsIcon from "@material-ui/icons/Pets";
+import KingBedIcon from "@material-ui/icons/KingBed";
+import MoneyOffIcon from "@material-ui/icons/MoneyOff";
+import EmojiFoodBeverageIcon from "@material-ui/icons/EmojiFoodBeverage";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
@@ -253,12 +257,15 @@ const DetailsPage: FC<Props> = ({
                       color: "text.primary",
                       borderRadius: 1,
                       boxShadow: 4,
-                      py: 2,
+                      pt: 2,
+                      pb: 2.5,
                       px: 2,
+                      maxWidth: "350px",
+                      mx: "auto",
                     }}
                   >
                     <Typography
-                      variant="h6"
+                      variant="body2"
                       sx={{
                         color: "primary.main",
                         fontWeight: "bold",
@@ -271,6 +278,7 @@ const DetailsPage: FC<Props> = ({
                       variant="body2"
                       sx={{
                         fontWeight: "light",
+                        fontSize: "80%",
                         mt: 0.3,
                         color: "text.primary",
                         textAlign: "center",
@@ -282,47 +290,24 @@ const DetailsPage: FC<Props> = ({
                       sx={{
                         mt: 0.5,
                         px: 0.5,
+                        width: "260px",
+                        mx: "auto",
                       }}
                     >
                       <Box
                         sx={{
                           display: "flex",
                           alignItems: "bottom",
+                          justifyContent: "start",
                           mt: 1,
                         }}
                       >
-                        <Check
+                        <MoneyOffIcon
                           sx={{
                             fontSize: 20,
+                            mr: 0.75,
+                            mt: 0.125,
                             color: "primary.main",
-                            mt: 0.3,
-                            mr: 0.5,
-                          }}
-                        />
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            fontWeight: "light",
-                            mt: 0,
-                            color: "text.light",
-                          }}
-                        >
-                          {"No pet fees, ever"}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "bottom",
-                          mt: 1,
-                        }}
-                      >
-                        <Check
-                          sx={{
-                            fontSize: 20,
-                            color: "primary.main",
-                            mt: 0.3,
-                            mr: 0.5,
                           }}
                         />
                         <Typography
@@ -334,7 +319,65 @@ const DetailsPage: FC<Props> = ({
                             color: "text.light",
                           }}
                         >
-                          {"Up to 2 dogs <75 lbs each"}
+                          No pay pet fees, now or ever
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "bottom",
+                          justifyContent: "start",
+                          mt: 1,
+                        }}
+                      >
+                        <PetsIcon
+                          sx={{
+                            fontSize: 18,
+                            mr: 0.75,
+                            mt: 0.125,
+                            color: "primary.main",
+                          }}
+                        />
+
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "light",
+                            mt: 0,
+                            color: "text.light",
+                          }}
+                        >
+                          Up to 2 dogs (75 lbs each)
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "bottom",
+                          justifyContent: "start",
+                          mt: 1,
+                        }}
+                      >
+                        <KingBedIcon
+                          sx={{
+                            fontSize: 20,
+                            mr: 0.75,
+                            mt: 0.125,
+                            color: "primary.main",
+                          }}
+                        />
+
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "light",
+                            mt: 0,
+                            overflow: "hidden",
+                            color: "text.light",
+                            justifyContent: "start",
+                          }}
+                        >
+                          Pet bedding in your room
                         </Typography>
                       </Box>
                       <Box
@@ -344,14 +387,15 @@ const DetailsPage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        <Check
+                        <EmojiFoodBeverageIcon
                           sx={{
                             fontSize: 20,
+                            mr: 0.75,
+                            mt: 0.125,
                             color: "primary.main",
-                            mt: 0.3,
-                            mr: 0.5,
                           }}
                         />
+
                         <Typography
                           variant="body1"
                           sx={{
@@ -361,7 +405,7 @@ const DetailsPage: FC<Props> = ({
                             color: "text.light",
                           }}
                         >
-                          {"Bedding & bowls in your room"}
+                          Food &amp; water bowls provided
                         </Typography>
                       </Box>
                     </Box>
