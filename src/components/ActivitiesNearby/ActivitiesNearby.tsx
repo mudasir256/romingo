@@ -41,6 +41,7 @@ const ActivitiesNeary: FC<Props> = ({
           color: "secondary.main",
           fontWeight: "bold",
           mb: 1,
+          fontSize: { xs: "85%", sm: "100%" }
         }}
       >
         {title}
@@ -70,6 +71,7 @@ const ActivitiesNeary: FC<Props> = ({
                 color: "text.primary",
                 textIndent: "-8px",
                 paddingLeft: "8px",
+                fontSize: { xs: "85%", sm: "100%" }
               }}
             >
               {item.text}({item.distance} mi)

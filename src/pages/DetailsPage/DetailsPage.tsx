@@ -24,6 +24,7 @@ import AmenitiesCard from "../../components/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import ActivitiesNearby from "../../components/ActivitiesNearby";
+import CancelPolicy from "../../components/CancelPolicy";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -286,6 +287,7 @@ const DetailsPage: FC<Props> = ({
               nearby={nearby}
               title={"Dog-Friendly Activities Nearby"}
             />
+            <CancelPolicy sx={{ mt: 2 }} />
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
             <BookingCard sx={{ position: "sticky", top: "1rem" }} />

@@ -32,6 +32,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
             color: "secondary.main",
             fontWeight: "bold",
             textAlign: "center",
+            fontSize: { xs: "85%", sm: "100%" }
           }}
         >
           The Romingo Guarantee
@@ -78,6 +79,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontWeight: "light",
                 mt: 0,
                 color: "text.light",
+                fontSize: { xs: "85%", sm: "100%" }
               }}
             >
               Zero pet fees for up to 2 dogs
@@ -106,6 +108,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontWeight: "light",
                 mt: 0,
                 color: "text.light",
+                fontSize: { xs: "85%", sm: "100%" }
               }}
             >
               75 lb weight limit per dog
@@ -134,6 +137,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontWeight: "light",
                 mt: 0,
                 color: "text.light",
+                fontSize: { xs: "85%", sm: "100%" }
               }}
             >
               Pet bedding in your room
@@ -161,6 +165,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontWeight: "light",
                 mt: 0,
                 color: "text.light",
+                fontSize: { xs: "85%", sm: "100%" }
               }}
             >
               Food &amp; water bowls provided
