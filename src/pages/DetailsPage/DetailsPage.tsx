@@ -221,7 +221,7 @@ const DetailsPage: FC<Props> = ({
             </Typography>
             <RomingoScore score={score} />
             <ReadMore text={defaultDescription} length={200} />
-            <Grid container spacing={2} sx={{ mt: 0.5 }}>
+            <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Box>
                   <Box
@@ -229,17 +229,19 @@ const DetailsPage: FC<Props> = ({
                       backgroundColor: "white",
                       color: "text.primary",
                       borderRadius: 1,
-                      boxShadow: 4,
+                      border: "1px solid #DDD",
                       pt: 2,
                       pb: 2.5,
                       px: 2,
+                      mt: 1,
+                      maxWidth: "375px",
                       mx: "auto",
                     }}
                   >
                     <Typography
-                      variant="body2"
+                      variant="h6"
                       sx={{
-                        color: "primary.main",
+                        color: "secondary.main",
                         fontWeight: "bold",
                         textAlign: "center",
                       }}
@@ -279,7 +281,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 20,
                             mr: 0.75,
                             mt: 0.125,
-                            color: "primary.main",
+                            color: "secondary.main",
                           }}
                         />
                         <Typography
@@ -307,7 +309,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 18,
                             mr: 0.75,
                             mt: 0.125,
-                            color: "primary.main",
+                            color: "secondary.main",
                           }}
                         />
 
@@ -335,7 +337,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 20,
                             mr: 0.75,
                             mt: 0.125,
-                            color: "primary.main",
+                            color: "secondary.main",
                           }}
                         />
 
@@ -364,7 +366,7 @@ const DetailsPage: FC<Props> = ({
                             fontSize: 20,
                             mr: 0.75,
                             mt: 0.125,
-                            color: "primary.main",
+                            color: "secondary.main",
                           }}
                         />
 
