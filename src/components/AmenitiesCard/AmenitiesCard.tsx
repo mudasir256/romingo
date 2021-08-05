@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, MouseEventHandler } from "react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Check from "@material-ui/icons/Check";
@@ -38,6 +38,12 @@ const AmenitiesCard: FC<Props> = ({
 
   const handleClose = () => {
     setShowDialog(false);
+  };
+
+  const handleOpen: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowDialog(true);
   };
 
   return (
@@ -99,15 +105,7 @@ const AmenitiesCard: FC<Props> = ({
               textAlign: "center",
             }}
           >
-            <Link
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setShowDialog(true);
-                console.log("here");
-              }}
-            >
+            <Link href="#" onClick={handleOpen}>
               <Typography
                 variant="body2"
                 sx={{

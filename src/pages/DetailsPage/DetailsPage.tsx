@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEventHandler } from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -11,16 +11,16 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import { useTheme } from "@material-ui/core/styles";
+import { Breakpoint, Theme, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CloseIcon from "@material-ui/icons/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
-import BookingCard from "../../components/BookingCard/BookingCard";
-import RomingoGuarantee from "../../components/RomingoGuarantee/RomingoGuarantee";
-import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
-import AmenitiesCard from "../../components/AmenitiesCard/AmenitiesCard";
+import BookingCard from "../../components/BookingCard";
+import RomingoGuarantee from "../../components/RomingoGuarantee";
+import RomingoScore from "../../components/UI/RomingoScore";
+import AmenitiesCard from "../../components/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 
@@ -51,7 +51,7 @@ interface Props {
   cancellation?: boolean;
   cancelPenalty?: {
     refundable: boolean;
-    deadline: { absoluteDeadline: date };
+    deadline: { absoluteDeadline: Date };
     amountPercent: { amount: number; currencyCode: string };
   }[];
   dogAmenitiesTitle: string;
@@ -71,14 +71,11 @@ const DetailsPage: FC<Props> = ({
   gallery,
   score,
   defaultDescription = "",
-  cancellation = false,
   dogAmenitiesTitle,
   amenitiesTitle,
   amenities = [],
-  ...props
 }) => {
   const [showGallery, setShowGallery] = useState(false);
-  const width = useWidth();
   const lightBoxOptions = {
     buttons: {
       showAutoplayButton: false,
@@ -104,11 +101,17 @@ const DetailsPage: FC<Props> = ({
     },
   };
 
+  const handleOpen: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowGallery(true);
+  };
+
   const handleClose = () => {
     setShowGallery(false);
   };
 
-  const getImageCols: number = () => {
+  const getImageCols = () => {
     const width = useWidth();
     if (width === "xs") {
       return 1;
@@ -126,11 +129,7 @@ const DetailsPage: FC<Props> = ({
         src={mainImg}
         alt={name}
         boxShadow={2}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowGallery(true);
-        }}
+        onClick={handleOpen}
         display={{ xs: "block", md: "none" }}
         sx={{
           width: "100%",
@@ -151,11 +150,7 @@ const DetailsPage: FC<Props> = ({
         >
           <Grid item xs={12} sm={6}>
             <Box
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setShowGallery(true);
-              }}
+              onClick={handleOpen}
               component="img"
               src={mainImg}
               alt={name}
@@ -178,11 +173,7 @@ const DetailsPage: FC<Props> = ({
                   return (
                     <Grid item sm={6} key={img}>
                       <Box
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setShowGallery(true);
-                        }}
+                        onClick={handleOpen}
                         boxShadow={2}
                         component="img"
                         src={img}
@@ -219,11 +210,7 @@ const DetailsPage: FC<Props> = ({
                   backgroundColor: "#fff",
                 },
               }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setShowGallery(true);
-              }}
+              onClick={handleOpen}
             >
               <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
               View Photos

@@ -3,7 +3,7 @@ import Stack from "@material-ui/core/Stack";
 import Divider from "@material-ui/core/Divider";
 import { motion, useMotionValue } from "framer-motion";
 import { FC, useRef, useState } from "react";
-import { useWindowSize, useScroll } from "react-use";
+import { useWindowSize } from "react-use";
 import ListingCard, {
   ListingCardProps,
 } from "../../components/ListingCard/ListingCard";
@@ -42,7 +42,6 @@ const ListingPage: FC<Props> = ({ cards }) => {
   };
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const { y: scrollY } = useScroll(scrollRef);
 
   return (
     <Box

@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { CSSObject } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
