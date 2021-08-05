@@ -1,16 +1,7 @@
-import React, { FC, useState, MouseEventHandler } from "react";
+import { FC } from "react";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Check from "@material-ui/icons/Check";
-import Link from "@material-ui/core/Link";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { useTheme } from "@material-ui/core/styles";
 
 interface Props {
   title: string;
@@ -20,19 +11,14 @@ interface Props {
   }[];
 }
 
-const ActivitiesNeary: FC<Props> = ({
-  title,
-  nearby,
-}) => {
+const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
   return (
     <Box
       sx={{
         backgroundColor: "white",
         color: "text.primary",
         borderRadius: 1,
-        pt: 2,
-        pb: 2.5,
-        mt: 1,
+        py: 0,
       }}
     >
       <Typography
@@ -41,7 +27,7 @@ const ActivitiesNeary: FC<Props> = ({
           color: "secondary.main",
           fontWeight: "bold",
           mb: 1,
-          fontSize: { xs: "85%", sm: "100%" }
+          fontSize: { xs: "85%", sm: "100%" },
         }}
       >
         {title}
@@ -56,12 +42,12 @@ const ActivitiesNeary: FC<Props> = ({
             }}
             key={key}
           >
-            <Check 
-              sx={{ 
-                fontSize: 15, 
-                color: "primary.main", 
-                mt: 0.4 
-              }} 
+            <Check
+              sx={{
+                fontSize: 15,
+                color: "primary.main",
+                mt: 0.4,
+              }}
             />
             <Typography
               variant="body1"
@@ -71,7 +57,7 @@ const ActivitiesNeary: FC<Props> = ({
                 color: "text.primary",
                 textIndent: "-8px",
                 paddingLeft: "8px",
-                fontSize: { xs: "85%", sm: "100%" }
+                fontSize: { xs: "85%", sm: "100%" },
               }}
             >
               {item.text}({item.distance} mi)

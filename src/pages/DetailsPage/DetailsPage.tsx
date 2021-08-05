@@ -82,7 +82,7 @@ const DetailsPage: FC<Props> = ({
   amenitiesTitle,
   amenities = [],
   roomList,
-  nearby
+  nearby,
 }) => {
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
@@ -149,7 +149,7 @@ const DetailsPage: FC<Props> = ({
           cursor: "pointer",
         }}
       />
-      <Container sx={{ mt: { xs: 0, md: 4 } }}>
+      <Container sx={{ mt: { xs: 0, md: 3 }, mb: 3 }}>
         <Grid
           container
           spacing={2}
@@ -227,7 +227,7 @@ const DetailsPage: FC<Props> = ({
           </Box>
         </Grid>
         <Grid container spacing={2} sx={{ mt: 0 }}>
-          <Grid item xs={12} md={7} lg={8} sx={{ minHeight: "2000px" }}>
+          <Grid item xs={12} md={7} lg={8}>
             <Typography
               variant="h6"
               sx={{
@@ -277,7 +277,7 @@ const DetailsPage: FC<Props> = ({
               <Box
                 sx={{
                   display: "flex",
-                  mt: 2,
+                  my: 2,
                   width: "100%",
                 }}
               >
@@ -286,10 +286,11 @@ const DetailsPage: FC<Props> = ({
                     lat: parseFloat(location.lat),
                     lng: parseFloat(location.lon),
                   }}
+                  height={300}
                 />
               </Box>
             </Grid>
-            <ActivitiesNearby 
+            <ActivitiesNearby
               nearby={nearby}
               title={"Dog-Friendly Activities Nearby"}
             />
