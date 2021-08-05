@@ -23,6 +23,7 @@ import RomingoScore from "../../components/UI/RomingoScore";
 import AmenitiesCard from "../../components/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
+import ActivitiesNearby from "../../components/ActivitiesNearby";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -61,7 +62,7 @@ interface Props {
     Description: string;
     Value: string;
   }[];
-  nearby?: { text: string; distance: number }[];
+  nearby: { text: string; distance: number }[];
 }
 
 const DetailsPage: FC<Props> = ({
@@ -74,6 +75,7 @@ const DetailsPage: FC<Props> = ({
   dogAmenitiesTitle,
   amenitiesTitle,
   amenities = [],
+  nearby
 }) => {
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
@@ -280,6 +282,10 @@ const DetailsPage: FC<Props> = ({
                 />
               </Box>
             </Grid>
+            <ActivitiesNearby 
+              nearby={nearby}
+              title={"Dog-Friendly Activities Nearby"}
+            />
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
             <BookingCard sx={{ position: "sticky", top: "1rem" }} />
