@@ -5,9 +5,10 @@ import stylesArray from "./GoogleMapStyles";
 
 interface Props {
   center: { lat: number; lng: number };
+  height?: number | null;
 }
 
-const Map: FC<Props> = ({ center }) => {
+const Map: FC<Props> = ({ center, height }) => {
   const [containerStyle, setContainerStyle] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -21,9 +22,15 @@ const Map: FC<Props> = ({ center }) => {
     keyboardShortcuts: false,
     styles: stylesArray,
   });
+
   const size = useWindowSize();
+
   useEffect(() => {
-    setContainerStyle(size);
+    if (!height) {
+      setContainerStyle(size);
+    } else {
+      setContainerStyle({ width: size.width, height });
+    }
     if (size.width > 720) {
       setMapOptions({ ...mapOptions, zoomControl: true });
     } else {
@@ -38,7 +45,6 @@ const Map: FC<Props> = ({ center }) => {
         center={center}
         options={mapOptions}
         zoom={11}
-        onResize={() => console.log("Size changed")}
       >
         <></>
       </GoogleMap>
