@@ -12,12 +12,9 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import PetsIcon from "@material-ui/icons/Pets";
-import SingleBedIcon from "@material-ui/icons/SingleBed";
-import MoneyOffIcon from "@material-ui/icons/MoneyOff";
-import RoomServiceIcon from "@material-ui/icons/RoomService";
 
 import BookingCard from "../../components/BookingCard/BookingCard";
+import RomingoGuarantee from "../../components/RomingoGuarantee/RomingoGuarantee";
 import RomingoScore from "../../components/UI/RomingoScore/RomingoScore";
 import AmenitiesCard from "../../components/AmenitiesCard/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
@@ -103,10 +100,10 @@ const DetailsPage: FC<Props> = ({
         src={mainImg}
         alt={name}
         boxShadow={2}
-        display={{ xs: "block", sm: "none" }}
+        display={{ xs: "block", md: "none" }}
         sx={{
           width: "100%",
-          height: "200px",
+          height: { xs: "200px", sm: "300px" },
           objectFit: "cover",
           borderRadius: 1,
           mx: 0,
@@ -129,7 +126,7 @@ const DetailsPage: FC<Props> = ({
                 alt={name}
                 draggable="false"
                 boxShadow={2}
-                display={{ xs: "none", sm: "block" }}
+                display={{ xs: "none", md: "block" }}
                 sx={{
                   width: "100%",
                   height: { xs: "150px", sm: "375px" },
@@ -139,7 +136,7 @@ const DetailsPage: FC<Props> = ({
                 }}
               />
             </Grid>
-            <Hidden smDown>
+            <Hidden mdDown>
               <Grid item xs={12} sm={6}>
                 <Grid container spacing={2}>
                   {gallery.map((img) => {
@@ -167,8 +164,8 @@ const DetailsPage: FC<Props> = ({
             <Box
               sx={{
                 position: "absolute",
-                right: { xs: "-10px", sm: "20px" },
-                bottom: { xs: "8px", sm: "20px" },
+                right: { xs: "-10px", md: "20px" },
+                bottom: { xs: "8px", md: "20px" },
                 textAlign: "right",
               }}
             >
@@ -221,180 +218,7 @@ const DetailsPage: FC<Props> = ({
             </Typography>
             <RomingoScore score={score} />
             <ReadMore text={defaultDescription} length={200} />
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Box>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      color: "text.primary",
-                      borderRadius: 1,
-                      border: "1px solid #DDD",
-                      pt: 2,
-                      pb: 2.5,
-                      px: 2,
-                      mt: 1,
-                      maxWidth: "375px",
-                      mx: "auto",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: "secondary.main",
-                        fontWeight: "bold",
-                        textAlign: "center",
-                      }}
-                    >
-                      The Romingo Guarantee
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontWeight: "light",
-                        fontSize: "80%",
-                        mt: 0.3,
-                        color: "text.primary",
-                        textAlign: "center",
-                      }}
-                    >
-                      Rooms booked through Romingo always include:
-                    </Typography>
-                    <Box
-                      sx={{
-                        mt: 0.5,
-                        px: 0.5,
-                        width: "260px",
-                        mx: "auto",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "bottom",
-                          justifyContent: "start",
-                          mt: 1,
-                        }}
-                      >
-                        <MoneyOffIcon
-                          sx={{
-                            fontSize: 20,
-                            mr: 0.75,
-                            mt: 0.125,
-                            color: "secondary.main",
-                          }}
-                        />
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            fontWeight: "light",
-                            mt: 0,
-                            overflow: "hidden",
-                            color: "text.light",
-                          }}
-                        >
-                          Zero pet fees for up to 2 dogs
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "bottom",
-                          justifyContent: "start",
-                          mt: 1,
-                        }}
-                      >
-                        <PetsIcon
-                          sx={{
-                            fontSize: 18,
-                            mr: 0.75,
-                            mt: 0.125,
-                            color: "secondary.main",
-                          }}
-                        />
-
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            fontWeight: "light",
-                            mt: 0,
-                            color: "text.light",
-                          }}
-                        >
-                          75 lb weight limit per dog
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "bottom",
-                          justifyContent: "start",
-                          mt: 1,
-                        }}
-                      >
-                        <SingleBedIcon
-                          sx={{
-                            fontSize: 20,
-                            mr: 0.75,
-                            mt: 0.125,
-                            color: "secondary.main",
-                          }}
-                        />
-
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            fontWeight: "light",
-                            mt: 0,
-                            overflow: "hidden",
-                            color: "text.light",
-                            justifyContent: "start",
-                          }}
-                        >
-                          Pet bedding in your room
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "bottom",
-                          mt: 1,
-                        }}
-                      >
-                        <RoomServiceIcon
-                          sx={{
-                            fontSize: 20,
-                            mr: 0.75,
-                            mt: 0.125,
-                            color: "secondary.main",
-                          }}
-                        />
-
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            fontWeight: "light",
-                            mt: 0,
-                            overflow: "hidden",
-                            color: "text.light",
-                          }}
-                        >
-                          Food &amp; water bowls provided
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              spacing={2}
-              sx={{
-                mt: 0,
-                display: "flex",
-              }}
-            >
+            <Grid container spacing={2} sx={{ mt: 0 }}>
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
                   <AmenitiesCard
@@ -413,7 +237,7 @@ const DetailsPage: FC<Props> = ({
                 </Box>
               </Grid>
             </Grid>
-
+            <RomingoGuarantee sx={{ mt: 2 }} />
             <Grid container>
               <Box
                 sx={{
