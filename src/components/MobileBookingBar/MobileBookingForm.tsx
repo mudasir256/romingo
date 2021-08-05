@@ -130,8 +130,8 @@ const MobileBookingForm: FC<Props> = ({
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h5">$139.99</Typography>
-          <Typography variant="body1" sx={{ ml: 1 }}>
+          <Typography variant="h6">$139.99</Typography>
+          <Typography variant="body1" sx={{ ml: 0.5, fontSize: "90%" }}>
             / night
           </Typography>
         </Box>
