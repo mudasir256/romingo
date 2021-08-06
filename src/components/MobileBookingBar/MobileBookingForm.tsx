@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import DateRangePicker from "@material-ui/lab/DateRangePicker";
+import MobileDateRangePicker from "@material-ui/lab/MobileDateRangePicker";
 import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
 import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
 import { RangeInput } from "@material-ui/lab/DateRangePicker/RangeTypes";
@@ -70,7 +70,7 @@ const MobileBookingForm: FC<Props> = ({
   return (
     <Box sx={{ ...sx, borderRadius: 1, boxShadow: 3, px: 3, pt: 1, pb: 2 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateRangePicker
+        <MobileDateRangePicker
           startText="Check-in"
           endText="Check-out"
           calendars={1}
