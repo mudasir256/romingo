@@ -18,9 +18,10 @@ interface Props {
   value: Occupant;
   onChange: (value: Occupant) => void;
   sx?: CSSObject;
+  fullWidth?: boolean;
 }
 
-const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
+const OccupantSelector: FC<Props> = ({ value, onChange, sx, fullWidth=true }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
 
@@ -35,7 +36,7 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx }) => {
   return (
     <>
       <TextField
-        fullWidth
+        fullWidth={fullWidth}
         label="Occupants"
         sx={sx}
         value={`Adults: ${value.adults} - Children: ${value.children} - Dogs: ${value.dogs}`}

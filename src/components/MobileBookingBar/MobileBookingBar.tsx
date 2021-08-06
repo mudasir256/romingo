@@ -58,7 +58,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
     setShowPopup(false);
   };
 
-  const dateToString = (isoString: string | Date) => {
+  const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   };
