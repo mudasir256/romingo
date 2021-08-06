@@ -19,9 +19,16 @@ interface Props {
   onChange: (value: Occupant) => void;
   sx?: CSSObject;
   fullWidth?: boolean;
+  size?: "small" | "medium" | undefined;
 }
 
-const OccupantSelector: FC<Props> = ({ value, onChange, sx, fullWidth=true }) => {
+const OccupantSelector: FC<Props> = ({
+  value,
+  onChange,
+  sx,
+  fullWidth = true,
+  size = "medium",
+}) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
 
@@ -39,6 +46,7 @@ const OccupantSelector: FC<Props> = ({ value, onChange, sx, fullWidth=true }) =>
         fullWidth={fullWidth}
         label="Occupants"
         sx={sx}
+        size={size}
         value={`Adults: ${value.adults} - Children: ${value.children} - Dogs: ${value.dogs}`}
         inputProps={{
           readOnly: true,

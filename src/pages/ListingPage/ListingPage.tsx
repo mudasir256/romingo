@@ -1,13 +1,10 @@
 import Box from "@material-ui/core/Box";
-import Stack from "@material-ui/core/Stack";
-import Divider from "@material-ui/core/Divider";
 import Hidden from "@material-ui/core/Hidden";
 import { motion, useMotionValue } from "framer-motion";
 import { FC, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
-import ListingCard, {
-  ListingCardProps,
-} from "../../components/ListingCard/ListingCard";
+import CardList from "../../components/CardList/CardList";
+import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
 
@@ -49,31 +46,33 @@ const ListingPage: FC<Props> = ({ cards }) => {
     <Box>
       <Box
         sx={{
-          py: 0.3
+          position: { xs: "fixed", md: "relative" },
+          top: 0,
+          left: 0,
+          right: 0,
+          width: "45%",
+          margin: { xs: "0 auto", md: "0 auto" },
+          display: "flex",
+          justifyContent: "center",
+          zIndex: 1000,
+          py: 1,
         }}
       >
         <FilterBar />
       </Box>
       <Box
         sx={{
-          backgroundColor: "grey.200",
+          backgroundColor: "white",
           display: {
-            md: "flex"
+            md: "flex",
           },
-          height: "90vh",
+          height: { md: "calc(100vh - 60px)" },
           overflow: {
-            md: "hidden"
-          }
+            md: "hidden",
+          },
         }}
       >
-        <ListingMap 
-          center={{ lat: 32.221, lng: -110.969 }} 
-          sx={{
-            maxWidth: {
-              md: "45%"
-            }
-          }}
-        />
+        <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
         <Hidden mdUp>
           <motion.div
             drag="y"
@@ -127,35 +126,28 @@ const ListingPage: FC<Props> = ({ cards }) => {
                 }}
               />
             </Box>
-            <Stack spacing={3} divider={<Divider variant="middle" />}>
-              {cards.map((card, index) => (
-                <ListingCard key={index} {...card} boxShadow={0} />
-              ))}
-            </Stack>
+            <CardList cards={cards} boxShadow={0} />
           </motion.div>
         </Hidden>
         <Hidden mdDown>
           <Box
             sx={{
+              width: "55%",
               overflowY: "auto",
-              '&::-webkit-scrollbar': {
-                width: '0.4em'
+              "&::-webkit-scrollbar": {
+                width: "0.4em",
               },
-              '&::-webkit-scrollbar-track': {
-                boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-                borderRadius: '0.3em'
+              "&::-webkit-scrollbar-track": {
+                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                borderRadius: "0.3em",
               },
-              '&::-webkit-scrollbar-thumb': {
-                backgroundColor: 'rgba(0,0,0,.1)',
-                borderRadius: '0.3em'
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "rgba(0,0,0,.1)",
+                borderRadius: "0.3em",
               },
             }}
           >
-            <Stack spacing={3} divider={<Divider variant="middle" />}>
-              {cards.map((card, index) => (
-                <ListingCard key={index} {...card} boxShadow={0} />
-              ))}
-            </Stack>
+            <CardList cards={cards} />
           </Box>
         </Hidden>
       </Box>

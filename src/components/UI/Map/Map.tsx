@@ -5,13 +5,13 @@ import stylesArray from "./GoogleMapStyles";
 
 interface Props {
   center: { lat: number; lng: number };
-  height?: number | null;
-  width?: string | number | null;
+  height?: string | number | undefined;
+  width?: string | number | undefined;
 }
 
 interface Size {
-  width: string | number | null;
-  height: string | number | null;
+  width: string | number | undefined;
+  height: string | number | undefined;
 }
 
 const Map: FC<Props> = ({ center, height, width }) => {
@@ -37,13 +37,13 @@ const Map: FC<Props> = ({ center, height, width }) => {
     } else if (width) {
       setContainerStyle({
         width,
-        height: size.height
+        height: size.height,
       });
     } else if (height) {
       setContainerStyle({
         width: size.width,
-        height
-      })
+        height,
+      });
     } else {
       setContainerStyle({ width, height });
     }

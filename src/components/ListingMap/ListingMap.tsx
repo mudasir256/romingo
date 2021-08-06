@@ -18,17 +18,14 @@ const ListingMap: FC<Props> = ({ center, sx }) => {
         p: 0,
         m: 0,
         boxShadow: 4,
-        width: "100%",
+        width: { xs: "100%", md: "45%" },
         height: "100%",
-        ...sx,
         position: "relative",
-        overflow: "hidden"
+        overflow: "hidden",
+        ...sx,
       }}
     >
-      <Map 
-        center={center} 
-        width={"100%"}
-      />
+      <Map center={center} width={"100%"} />
       <Box
         sx={{
           position: "absolute",

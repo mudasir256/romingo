@@ -51,3 +51,7 @@ Default.args = {
     },
   ],
 };
+
+Default.parameters = {
+  layout: "fullscreen",
+};

@@ -1,14 +1,11 @@
 import Box from "@material-ui/core/Box";
 import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Zoom from "@material-ui/core/Zoom";
-import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from '@material-ui/icons/Search';
-import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import SearchIcon from "@material-ui/icons/Search";
+import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
@@ -26,9 +23,11 @@ interface Props {
 }
 
 const FilterBar: FC<Props> = ({ sx }) => {
-
   const [zoomIn, setZoomIn] = useState(false);
-  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([null, null]);
+  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
+    null,
+    null,
+  ]);
 
   const [occupants, setOccupants] = useState({
     adults: 2,
@@ -59,10 +58,11 @@ const FilterBar: FC<Props> = ({ sx }) => {
         ...sx,
       }}
     >
-      {!zoomIn && 
-        (<Box
+      {!zoomIn && (
+        <Box
           sx={{
-            display: "inline-block"
+            display: "inline-block",
+            minWidth: "300px",
           }}
         >
           <Box
@@ -71,18 +71,18 @@ const FilterBar: FC<Props> = ({ sx }) => {
               alignItems: "center",
               border: "1px solid #DDDDDD",
               borderRadius: "19px",
+              backgroundColor: "white",
               py: 0.125,
-              px: 0.5
+              px: 0.5,
             }}
           >
-            <Button
-              onClick={handleFilterInClick}>
+            <Button onClick={handleFilterInClick}>
               <Typography
                 sx={{
                   textTransform: "none",
                   fontSize: {
-                    xs: "85%"
-                  }
+                    xs: "85%",
+                  },
                 }}
               >
                 Map Area
@@ -93,20 +93,19 @@ const FilterBar: FC<Props> = ({ sx }) => {
                 backgroundColor: "#DDDDDD",
                 flex: "0 0 1px",
                 height: "24px",
-                width: "1px"
+                width: "1px",
               }}
-            >
-            </Box>
-            <Button
-              onClick={handleFilterInClick}>
+            ></Box>
+            <Button onClick={handleFilterInClick}>
               <Typography
                 sx={{
                   fontSize: {
-                    xs: "85%"
-                  }
+                    xs: "85%",
+                  },
                 }}
               >
-                {checkDate[0] ? dateToString(checkDate[0]) : "8/6/2021"} - {checkDate[1] ? dateToString(checkDate[1]) : "8/10/2021"}
+                {checkDate[0] ? dateToString(checkDate[0]) : "8/6/2021"} -{" "}
+                {checkDate[1] ? dateToString(checkDate[1]) : "8/10/2021"}
               </Typography>
             </Button>
             <Box
@@ -114,51 +113,55 @@ const FilterBar: FC<Props> = ({ sx }) => {
                 backgroundColor: "#DDDDDD",
                 flex: "0 0 1px",
                 height: "24px",
-                width: "1px"
+                width: "1px",
               }}
-            >
-            </Box>
-            <Button
-              onClick={handleFilterInClick}>
+            ></Box>
+            <Button onClick={handleFilterInClick}>
               <Typography
                 sx={{
                   textTransform: "none",
                   fontSize: {
-                    xs: "85%"
-                  }
+                    xs: "85%",
+                  },
                 }}
               >
                 {occupants.adults} guests
               </Typography>
             </Button>
-            <IconButton
-              onClick={handleFilterInClick}>
+            <IconButton onClick={handleFilterInClick}>
               <SearchOutlinedIcon />
             </IconButton>
           </Box>
         </Box>
       )}
       {zoomIn && (
-        <Box>
-          <Zoom 
+        <Box
+          sx={{
+            backgroundColor: "white",
+            borderRadius: 1,
+            boxShadow: { xs: 4, md: 0 },
+            p: { xs: 2, md: 0 },
+          }}
+        >
+          <Zoom
             in={zoomIn}
             timeout={{
-              enter: 200
+              enter: 200,
             }}
           >
             <Box
               sx={{
-                py: 0.5,
-                px: 0.5
+                py: { xs: 0.5, sm: 0.25 },
+                px: 0.5,
               }}
             >
               <Box
                 sx={{
                   display: {
-                    sm: "inline-flex",
-                    xs: "block"
+                    sm: "flex",
+                    xs: "block",
                   },
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
               >
                 <Box>
@@ -176,22 +179,26 @@ const FilterBar: FC<Props> = ({ sx }) => {
                           sx={{
                             display: {
                               xs: "block",
-                              sm: "flex"
-                            }
+                              sm: "flex",
+                            },
                           }}
                         >
-                          <TextField 
-                            {...startProps} 
-                            fullWidth={true} 
+                          <TextField
+                            {...startProps}
+                            fullWidth={true}
+                            size="small"
+                            sx={{ minWidth: "120px" }}
                           />
-                          <TextField 
-                            {...endProps} 
-                            fullWidth={true} 
+                          <TextField
+                            {...endProps}
+                            fullWidth={true}
+                            size="small"
                             sx={{
+                              minWidth: "120px",
                               mt: {
-                                xs: 1,
-                                sm: 0
-                              }
+                                xs: 2,
+                                sm: 0,
+                              },
                             }}
                           />
                         </Box>
@@ -204,18 +211,17 @@ const FilterBar: FC<Props> = ({ sx }) => {
                     value={occupants}
                     onChange={onOccupantChange}
                     fullWidth={true}
+                    size="small"
                     sx={{
                       mt: {
-                        xs: 1,
-                        sm: 0
+                        xs: 2,
+                        sm: 0,
                       },
-                      minWidth: {
-                        sm: "300px"
-                      }
+                      minWidth: "300px",
                     }}
                   />
                 </Box>
-                <Box>
+                <Box sx={{ textAlign: "center", mt: { xs: 2, sm: 0 } }}>
                   <Button onClick={handleFilterOutClick}>
                     <SearchIcon /> Search
                   </Button>
