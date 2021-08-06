@@ -55,7 +55,7 @@ const Map: FC<Props> = ({ center, height, width }) => {
   }, [size]);
 
   return (
-    <LoadScript googleMapsApiKey={"AIzaSyCiG_g1goO4MNFO3GNUYu9Vk5pthTorwGA"}>
+    <LoadScript googleMapsApiKey={"AIzaSyDiSsCLyFLprO-__v94Ix0XihG4hUVRz5w"}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

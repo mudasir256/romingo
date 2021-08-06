@@ -2,6 +2,10 @@ import Box from "@material-ui/core/Box";
 import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select, { SelectChangeEvent } from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
@@ -28,6 +32,7 @@ const FilterBar: FC<Props> = ({ sx }) => {
     null,
     null,
   ]);
+  const [location, setLocation] = useState("Tucson, AZ");
 
   const [occupants, setOccupants] = useState({
     adults: 2,
@@ -42,6 +47,10 @@ const FilterBar: FC<Props> = ({ sx }) => {
 
   const onOccupantChange = (value: Occupant) => {
     setOccupants(value);
+  };
+
+  const handleSelect = (event: SelectChangeEvent) => {
+    setLocation(event.target.value);
   };
 
   const handleFilterInClick: MouseEventHandler<Element> = (e) => {
@@ -158,12 +167,33 @@ const FilterBar: FC<Props> = ({ sx }) => {
               <Box
                 sx={{
                   display: {
-                    sm: "flex",
+                    md: "flex",
                     xs: "block",
                   },
                   alignItems: "center",
                 }}
               >
+                <Box sx={{ minWidth: "230px" }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Location
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      size="small"
+                      value={location}
+                      label="Location"
+                      onChange={handleSelect}
+                    >
+                      <MenuItem value={"Tucson, AZ"}>Tucson, AZ</MenuItem>
+                      <MenuItem value={"San Francisco, CA"}>
+                        San Francisco, CA
+                      </MenuItem>
+                      <MenuItem value={"San Diego, CA"}>San Diego, CA</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
                 <Box>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateRangePicker
@@ -179,7 +209,7 @@ const FilterBar: FC<Props> = ({ sx }) => {
                           sx={{
                             display: {
                               xs: "block",
-                              sm: "flex",
+                              md: "flex",
                             },
                           }}
                         >
@@ -187,17 +217,23 @@ const FilterBar: FC<Props> = ({ sx }) => {
                             {...startProps}
                             fullWidth={true}
                             size="small"
-                            sx={{ minWidth: "120px" }}
+                            sx={{
+                              width: { xs: "100%", md: "120px" },
+                              mt: {
+                                xs: 2,
+                                md: 0,
+                              },
+                            }}
                           />
                           <TextField
                             {...endProps}
                             fullWidth={true}
                             size="small"
                             sx={{
-                              minWidth: "120px",
+                              width: { xs: "100%", md: "120px" },
                               mt: {
                                 xs: 2,
-                                sm: 0,
+                                md: 0,
                               },
                             }}
                           />
@@ -215,13 +251,13 @@ const FilterBar: FC<Props> = ({ sx }) => {
                     sx={{
                       mt: {
                         xs: 2,
-                        sm: 0,
+                        md: 0,
                       },
                       minWidth: "300px",
                     }}
                   />
                 </Box>
-                <Box sx={{ textAlign: "center", mt: { xs: 2, sm: 0 } }}>
+                <Box sx={{ textAlign: "center", mt: { xs: 2, md: 0 } }}>
                   <Button onClick={handleFilterOutClick}>
                     <SearchIcon /> Search
                   </Button>

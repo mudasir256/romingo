@@ -15,15 +15,14 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4 }) => {
       sx={{
         borderRadius: 1,
         maxWidth: "100%",
-        pt: 0,
-        px: 2,
-        pb: 2,
+        py: 1,
+        px: 2.5,
       }}
     >
       {cards.map((card) => (
         <Box
           key={card.name}
-          sx={{ maxWidth: "100%", backgroundColor: "white", pb: 2 }}
+          sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
         >
           <ListingCard {...card} boxShadow={boxShadow} />
         </Box>
