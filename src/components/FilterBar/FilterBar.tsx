@@ -56,14 +56,7 @@ const FilterBar: FC<Props> = ({ sx }) => {
   return (
     <Box
       sx={{
-        color: "text.primary",
-        borderRadius: 0,
-        p: 0,
-        m: 0,
-        boxShadow: 4,
-        width: "100%",
-        height: "100%",
-        textAlign: "center"
+        ...sx,
       }}
     >
       {!zoomIn && 
@@ -203,6 +196,9 @@ const FilterBar: FC<Props> = ({ sx }) => {
                       mt: {
                         xs: 1,
                         sm: 0
+                      },
+                      minWidth: {
+                        sm: "300px"
                       }
                     }}
                   />
