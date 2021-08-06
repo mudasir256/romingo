@@ -6,10 +6,16 @@ import stylesArray from "./GoogleMapStyles";
 interface Props {
   center: { lat: number; lng: number };
   height?: number | null;
+  width?: string | number | null;
 }
 
-const Map: FC<Props> = ({ center, height }) => {
-  const [containerStyle, setContainerStyle] = useState({
+interface Size {
+  width: string | number | null;
+  height: string | number | null;
+}
+
+const Map: FC<Props> = ({ center, height, width }) => {
+  const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
     height: window.innerHeight,
   });
@@ -26,10 +32,20 @@ const Map: FC<Props> = ({ center, height }) => {
   const size = useWindowSize();
 
   useEffect(() => {
-    if (!height) {
+    if (!height && !width) {
       setContainerStyle(size);
+    } else if (width) {
+      setContainerStyle({
+        width,
+        height: size.height
+      });
+    } else if (height) {
+      setContainerStyle({
+        width: size.width,
+        height
+      })
     } else {
-      setContainerStyle({ width: size.width, height });
+      setContainerStyle({ width, height });
     }
     if (size.width > 720) {
       setMapOptions({ ...mapOptions, zoomControl: true });

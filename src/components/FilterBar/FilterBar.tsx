@@ -79,7 +79,10 @@ const FilterBar: FC<Props> = ({ sx }) => {
               onClick={handleFilterInClick}>
               <Typography
                 sx={{
-                  textTransform: "none"
+                  textTransform: "none",
+                  fontSize: {
+                    xs: "85%"
+                  }
                 }}
               >
                 Map Area
@@ -96,7 +99,13 @@ const FilterBar: FC<Props> = ({ sx }) => {
             </Box>
             <Button
               onClick={handleFilterInClick}>
-              <Typography>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: "85%"
+                  }
+                }}
+              >
                 {checkDate[0] ? dateToString(checkDate[0]) : "8/6/2021"} - {checkDate[1] ? dateToString(checkDate[1]) : "8/10/2021"}
               </Typography>
             </Button>
@@ -113,7 +122,10 @@ const FilterBar: FC<Props> = ({ sx }) => {
               onClick={handleFilterInClick}>
               <Typography
                 sx={{
-                  textTransform: "none"
+                  textTransform: "none",
+                  fontSize: {
+                    xs: "85%"
+                  }
                 }}
               >
                 {occupants.adults} guests

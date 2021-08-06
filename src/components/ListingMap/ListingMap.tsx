@@ -1,13 +1,15 @@
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
+import { CSSObject } from "@material-ui/core";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
 import Map from "../UI/Map/Map";
 
 interface Props {
   center: { lat: number; lng: number };
+  sx?: CSSObject;
 }
 
-const ListingMap: FC<Props> = ({ center }) => {
+const ListingMap: FC<Props> = ({ center, sx }) => {
   return (
     <Box
       sx={{
@@ -18,12 +20,18 @@ const ListingMap: FC<Props> = ({ center }) => {
         boxShadow: 4,
         width: "100%",
         height: "100%",
+        ...sx,
+        position: "relative",
+        overflow: "hidden"
       }}
     >
-      <Map center={center} />
+      <Map 
+        center={center} 
+        width={"100%"}
+      />
       <Box
         sx={{
-          position: "fixed",
+          position: "absolute",
           bottom: 80,
           left: "50%",
           transform: "translateX(-50%)",
