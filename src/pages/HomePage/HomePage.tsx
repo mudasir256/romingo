@@ -50,7 +50,7 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                   sm: "1.5rem"
                 },
                 textAlign: "center",
-                mt: 1,
+                mt: 2,
                 mb: 2
               }}
             >
@@ -264,7 +264,7 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                           <Box
                             sx={{
                               border: "1px solid #DDDDDD",
-                              borderRadius: "20px",
+                              borderRadius: "10px",
                               my: 1
                             }}
                           >
@@ -277,14 +277,15 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                                 objectFit: "cover",
                                 width: "100%",
                                 height: "240px",
-                                borderRadius: "20px"
+                                borderRadius: "10px"
                               }}
                             />
                             <Typography
                               variant="body1"
                               sx={{
                                 textAlign: "center",
-                                textDecoration: "underline"
+                                textDecoration: "underline",
+                                fontWeight: "bold"
                               }}
                             >
                               {nearCity.city}

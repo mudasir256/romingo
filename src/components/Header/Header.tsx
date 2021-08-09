@@ -16,7 +16,8 @@ const Header: FC<Props> = ({ sx }) => {
         width: "100%",
         minHeight: {
           xs: 600,
-          sm: 640
+          sm: 640,
+          md: "100vh"
         },
         position: "relative",
         display: "flex",
@@ -44,7 +45,7 @@ const Header: FC<Props> = ({ sx }) => {
             sx={{
               objectFit: "cover",
               width: "100%",
-              height: { xs: 600, sm: 640 },
+              height: { xs: 600, sm: 640, md: "100vh" },
             }}
           />
         </Box>
@@ -68,7 +69,7 @@ const Header: FC<Props> = ({ sx }) => {
             },
             backgroundColor: "rgba(255, 255, 255, 0.7)",
             borderRadius: "10px",
-            padding: "10px",
+            padding: "20px 10px",
             zIndex: 100
           }}
         >
@@ -90,7 +91,6 @@ const Header: FC<Props> = ({ sx }) => {
           <Typography
             variant="h5"
             sx={{
-              mt: 1,
               color: "text.primary",
               textAlign: "center",
               fontSize: {
@@ -101,7 +101,8 @@ const Header: FC<Props> = ({ sx }) => {
                 md: "70%",
                 sm: "90%"
               },
-              margin: "0 auto"
+              margin: "0 auto",
+              mt: 1
             }}
           >
             Book with Romingo and pay $0 on pet fees at the most dog-friendly hotels in the world
@@ -110,7 +111,8 @@ const Header: FC<Props> = ({ sx }) => {
             sx={{
               width: "100%",
               margin: "0 auto",
-              my: 1,
+              mb: 1,
+              mt: 2,
               display: "flex",
               justifyContent: "center"
             }}
