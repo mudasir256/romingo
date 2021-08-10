@@ -16,6 +16,11 @@ interface Props {
     city: string;
     state: string;
   }[];
+  featureHotels: {
+    img: string;
+    name: string;
+    description: string;
+  }[],
   footerMenus: {
     about: {
       text: string;
@@ -36,7 +41,7 @@ interface Props {
   }
 }
 
-const HomePage: FC<Props> = ({ sx, nearCities, footerMenus }) => {
+const HomePage: FC<Props> = ({ sx, nearCities, featureHotels, footerMenus }) => {
   return (
     <>
       <Header />
@@ -356,6 +361,119 @@ const HomePage: FC<Props> = ({ sx, nearCities, footerMenus }) => {
                               }}
                             >
                               {nearCity.state}
+                            </Typography>
+                          </Box>
+                        </Link>
+                      </Box>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+        <Box
+          sx={{
+            py: 6,
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            width: "100vw",
+            position: "relative",
+            marginLeft: "-50vw",
+            left: "50%",
+          }}
+        >
+          <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
+            <Grid item xs={12}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "primary.main",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: {
+                    xs: "1.5rem",
+                    sm: "2.5rem",
+                    md: "3rem",
+                    pb: 4
+                  },
+                }}
+              >
+                Stay at a Romingo Favorite
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  display: { xs: "grid", lg: "flex" },
+                  gridAutoFlow: {
+                    xs: "column",
+                  },
+                  overflow: "auto hidden",
+                  pb: 4,
+                  px: 4,
+                  scrollSnapType: "x",
+                }}
+              >
+                {featureHotels.map((hotel, key) => {
+                  return (
+                    <Grid item xs={12} lg={4} key={key}>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          my: 1,
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          color: "primary.main",
+                          width: "100%"
+                        }}
+                      >
+                        {hotel.name}
+                      </Typography>
+                      <Box
+                        sx={{
+                          minWidth: "250px",
+                          px: 3
+                        }}
+                      >
+                        <Link
+                          href="#"
+                          sx={{
+                            textDecoration: "none",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              border: "1px solid #DDDDDD",
+                              borderRadius: 1,
+                              boxShadow: 2,
+                              backgroundColor: "white",
+                            }}
+                          >
+                            <Box
+                              component="img"
+                              src={hotel.img}
+                              alt="background"
+                              draggable="false"
+                              sx={{
+                                objectFit: "cover",
+                                width: "100%",
+                                height: "240px",
+                                borderRadius: 1,
+                              }}
+                            />
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                mb: 2,
+                                color: "text.primary",
+                                px: 2,
+                              }}
+                            >
+                              {hotel.description}
                             </Typography>
                           </Box>
                         </Link>

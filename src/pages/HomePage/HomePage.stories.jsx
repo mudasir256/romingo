@@ -51,6 +51,23 @@ Default.args = {
 			state: "California"
 		},
 	],
+	featureHotels: [
+		{
+			img: "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
+			name: "Hotel 1",
+			description: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata"
+		},
+		{
+			img: "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
+			name: "Hotel 2",
+			description: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata"
+		},
+		{
+			img: "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
+			name: "Hotel 3",
+			description: "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata"
+		}
+	],
 	footerMenus: {
 		about: [
 			{

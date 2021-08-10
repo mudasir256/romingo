@@ -1,0 +1,25 @@
+import BookingDetailCard from "./BookingDetailCard";
+
+export default {
+  title: "BookingDetailCard",
+  component: BookingDetailCard,
+};
+
+const Template = (args) => <BookingDetailCard {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+	details: {
+		checkin: "8/1/2021",
+		checkout: "8/9/2021",
+		guests: {
+			adults: 2,
+			dogs: 1,
+			children: 3
+		},
+		roomType: "King Suite"
+	}
+};
+Default.parameters = {
+  layout: "fullscreen",
+};
