@@ -1,8 +1,8 @@
 import HomePage from "./HomePage";
 
 export default {
-  title: "HomePage",
-  component: HomePage,
+	title: "HomePage",
+	component: HomePage,
 };
 
 const Template = (args) => <HomePage {...args} />;
@@ -50,8 +50,90 @@ Default.args = {
 			city: "Sacramento",
 			state: "California"
 		},
-	]
+	],
+	footerMenus: {
+		about: [
+			{
+				text: "How Romingo Works",
+				link: "#"
+			},
+			{
+				text: "Newsroom",
+				link: "#"
+			},
+			{
+				text: "Romingo 2021",
+				link: "#"
+			},
+			{
+				text: "Investors",
+				link: "#"
+			},
+			{
+				text: "Romingo Plus",
+				link: "#"
+			},
+		],
+		contact: [
+			{
+				text: "Contact Us",
+				link: "#"
+			},
+			{
+				text: "Schedule a Meeting",
+				link: "#"
+			},
+			{
+				text: "Romingo 2021",
+				link: "#"
+			},
+			{
+				text: "Investors",
+				link: "#"
+			},
+			{
+				text: "Romingo Plus",
+				link: "#"
+			},
+		],
+		blog: [
+			{
+				text: "Overview",
+				link: "#"
+			},
+			{
+				text: "Romingo Blog",
+				link: "#"
+			},
+			{
+				text: "Romingo 2021",
+				link: "#"
+			},
+		],
+		sitemap: [
+			{
+				text: "How Romingo Works",
+				link: "#"
+			},
+			{
+				text: "Newsroom",
+				link: "#"
+			},
+			{
+				text: "Romingo 2021",
+				link: "#"
+			},
+			{
+				text: "Investors",
+				link: "#"
+			},
+			{
+				text: "Romingo Plus",
+				link: "#"
+			},
+		]
+	}
 };
 Default.parameters = {
-  layout: "fullscreen",
+	layout: "fullscreen",
 };
