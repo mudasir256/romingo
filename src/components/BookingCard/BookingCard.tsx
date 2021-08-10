@@ -45,6 +45,7 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
           startText="Check-in"
           endText="Check-out"
           calendars={1}
+          allowSameDateSelection={false}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);
@@ -74,7 +75,11 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
           label="Room Type"
         >
           {roomList.map((room, key) => {
-            return <MenuItem value={room.value} key={key}>{room.description}</MenuItem>
+            return (
+              <MenuItem value={room.value} key={key}>
+                {room.description}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>

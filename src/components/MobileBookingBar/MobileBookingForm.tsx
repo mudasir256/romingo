@@ -74,6 +74,7 @@ const MobileBookingForm: FC<Props> = ({
           startText="Check-in"
           endText="Check-out"
           calendars={1}
+          allowSameDateSelection={false}
           value={value}
           onChange={(newValue) => {
             setValue(newValue);

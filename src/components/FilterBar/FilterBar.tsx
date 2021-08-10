@@ -1,5 +1,5 @@
 import Box from "@material-ui/core/Box";
-import { FC, useState, MouseEventHandler } from "react";
+import { FC, useState, MouseEventHandler, useRef } from "react";
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import FormControl from "@material-ui/core/FormControl";
@@ -34,12 +34,15 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     null,
   ]);
   const [location, setLocation] = useState("");
+  const checkRef = useRef<HTMLDivElement>(null);
+  const occupantRef = useRef<HTMLDivElement>(null);
 
   const [occupants, setOccupants] = useState({
     adults: 2,
     children: 0,
     dogs: 0,
   });
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
@@ -52,6 +55,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
 
   const handleSelect = (event: SelectChangeEvent) => {
     setLocation(event.target.value);
+    console.log(inputRef.current);
+    inputRef.current?.focus();
   };
 
   const handleFilterInClick: MouseEventHandler<Element> = () => {
@@ -162,7 +167,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
               sx={{
                 pt: { xs: 1, md: 0 },
                 pb: 0,
-                px: 1,
+                px: 2.5,
                 my: { xs: 0, md: -0.35 },
               }}
             >
@@ -206,6 +211,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                       startText="Check-in"
                       endText="Check-out"
                       calendars={1}
+                      allowSameDateSelection={false}
                       value={checkDate}
                       onChange={(newValue) => {
                         setCheckDate(newValue);
@@ -225,6 +231,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
+                            inputRef={inputRef}
+                            ref={
+                              startProps.inputRef as React.Ref<HTMLInputElement>
+                            }
                             sx={{
                               width: { xs: "50%", md: "105px" },
                               my: { xs: 0.5, md: 0 },
@@ -240,6 +250,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
+                            ref={
+                              endProps.inputRef as React.Ref<HTMLInputElement>
+                            }
                             sx={{
                               width: { xs: "50%", md: "105px" },
                               my: { xs: 0.5, md: 0 },
@@ -259,6 +272,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                     onChange={onOccupantChange}
                     variant="standard"
                     fullWidth={true}
+                    inputRef={occupantRef}
                     size="small"
                     sx={{
                       minWidth: "240px",

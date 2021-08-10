@@ -1,12 +1,18 @@
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
+import Stack from "@material-ui/core/Stack";
+import Divider from "@material-ui/core/Divider";
+import MapIcon from "@material-ui/icons/Map";
 import { motion, useMotionValue } from "framer-motion";
 import { FC, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
+
 import CardList from "../../components/CardList/CardList";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
+import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
+import { Button } from "@material-ui/core";
 
 const MotionBox = motion(Box);
 
@@ -74,26 +80,25 @@ const ListingPage: FC<Props> = ({ cards }) => {
         <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
         <Hidden mdUp>
           <motion.div
-            drag="y"
+            drag={animate !== "expanded" && "y"}
             dragElastic={0.5}
             dragConstraints={{
               top: variants[animate].y,
               bottom: variants[animate].y,
             }}
+            ref={scrollRef}
             style={{
               y,
               position: "absolute",
               top: height - 52,
               left: 0,
               right: 0,
-              padding: "24px 20px",
+              padding: 24,
               backgroundColor: "white",
               overflow: animate === "expanded" ? "auto" : "hidden",
               maxHeight: height - 48,
-              zIndex: 200,
-              boxShadow: "4px -1px 10px 0px rgba(0,0,0,0.3)",
+              zIndex: 100,
             }}
-            ref={scrollRef}
             variants={variants}
             animate={animate}
             transition={{ duration: 0.3 }}
@@ -101,26 +106,19 @@ const ListingPage: FC<Props> = ({ cards }) => {
               if (offset.y < -30) {
                 if (animate === "collapsed") {
                   setAnimate("preview");
-                } else if (animate === "preview") {
+                } else {
                   setAnimate("expanded");
                 }
               } else if (offset.y > 30) {
                 if (animate === "preview") {
                   setAnimate("collapsed");
-                } else if (animate === "expanded") {
-                  scrollRef?.current?.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
                   setAnimate("preview");
                 }
               }
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                overflow: animate === "expanded" ? "auto" : "hidden",
-              }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <MotionBox
                 variants={triggerVariants}
                 animate={animate}
@@ -131,8 +129,34 @@ const ListingPage: FC<Props> = ({ cards }) => {
                 }}
               />
             </Box>
-            <CardList cards={cards} boxShadow={0} />
+            <Stack spacing={3} divider={<Divider variant="middle" />}>
+              {cards.map((card, index) => (
+                <ListingCard key={index} {...card} boxShadow={0} />
+              ))}
+            </Stack>
           </motion.div>
+          {animate === "expanded" && (
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => {
+                scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
+                setAnimate("collapsed");
+              }}
+              sx={{
+                position: "absolute",
+                bottom: 30,
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 100,
+                boxShadow: 10,
+                borderRadius: 1,
+              }}
+            >
+              <MapIcon sx={{ fontSize: 15, mr: 0.5 }} />
+              Map
+            </Button>
+          )}
         </Hidden>
         <Hidden mdDown>
           <Box
