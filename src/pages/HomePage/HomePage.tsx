@@ -272,20 +272,19 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 container
                 spacing={2}
                 sx={{
-                  display: {
-                    xs: "grid",
-                    sm: "flex",
-                  },
+                  display: { xs: "grid", lg: "flex" },
                   gridAutoFlow: {
                     xs: "column",
                   },
                   overflow: "auto hidden",
+                  pb: 4,
+                  px: 4,
                   scrollSnapType: "x",
                 }}
               >
                 {nearCities.map((nearCity, key) => {
                   return (
-                    <Grid item xs={12} sm={6} md={3} key={key}>
+                    <Grid item xs={12} sm={6} lg={3} key={key}>
                       <Box
                         sx={{
                           minWidth: "250px",
