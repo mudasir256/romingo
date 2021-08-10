@@ -4,8 +4,7 @@ import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import Select, { SelectChangeEvent } from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import Autocomplete from "@material-ui/core/Autocomplete";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
@@ -33,16 +32,24 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     null,
     null,
   ]);
-  const [location, setLocation] = useState("");
-  const checkRef = useRef<HTMLDivElement>(null);
-  const occupantRef = useRef<HTMLDivElement>(null);
 
   const [occupants, setOccupants] = useState({
     adults: 2,
     children: 0,
     dogs: 0,
   });
-  const inputRef = useRef<HTMLInputElement>(null);
+
+  const cities = [
+    { label: "San Francisco, CA", id: 1 },
+    { label: "Los Angeles, CA", id: 2 },
+    { label: "Sacramento, CA", id: 3 },
+    { label: "Oceanside, CA", id: 4 },
+    { label: "San Diego, CA", id: 5 },
+    { label: "Tucson, AZ", id: 6 },
+    { label: "Phoenix, AZ", id: 7 },
+    { label: "Portland, OR", id: 8 },
+    { label: "Seattle, WA", id: 9 },
+  ];
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
@@ -55,8 +62,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
 
   const handleSelect = (event: SelectChangeEvent) => {
     setLocation(event.target.value);
-    console.log(inputRef.current);
-    inputRef.current?.focus();
   };
 
   const handleFilterInClick: MouseEventHandler<Element> = () => {
@@ -181,29 +186,18 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                 }}
               >
                 <Box sx={{ minWidth: "180px" }}>
-                  <FormControl fullWidth variant="standard">
-                    <InputLabel id="demo-simple-select-label">
-                      Location
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      size="small"
-                      value={location}
-                      label="Location"
-                      onChange={handleSelect}
-                      sx={{
-                        color: "primary.main",
-                        my: { xs: 0.5, md: 0 },
-                      }}
-                    >
-                      <MenuItem value={"Tucson, AZ"}>Tucson, AZ</MenuItem>
-                      <MenuItem value={"San Francisco, CA"}>
-                        San Francisco, CA
-                      </MenuItem>
-                      <MenuItem value={"San Diego, CA"}>San Diego, CA</MenuItem>
-                    </Select>
-                  </FormControl>
+                  <Autocomplete
+                    disablePortal
+                    size="small"
+                    options={cities}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Location"
+                        variant="standard"
+                      />
+                    )}
+                  />
                 </Box>
                 <Box>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -231,7 +225,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
-                            inputRef={inputRef}
                             ref={
                               startProps.inputRef as React.Ref<HTMLInputElement>
                             }
@@ -272,7 +265,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                     onChange={onOccupantChange}
                     variant="standard"
                     fullWidth={true}
-                    inputRef={occupantRef}
                     size="small"
                     sx={{
                       minWidth: "240px",
