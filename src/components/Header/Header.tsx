@@ -41,7 +41,7 @@ const Header: FC<Props> = ({ sx }) => {
         <Box>
           <Box
             component="img"
-            src="/images/people-2589544_1920.jpeg"
+            src="/images/dog-background.webp"
             alt="background"
             draggable="false"
             sx={{
@@ -75,7 +75,7 @@ const Header: FC<Props> = ({ sx }) => {
           <Typography
             variant="h2"
             sx={{
-              color: "white",
+              color: "primary.main",
               fontWeight: "bold",
               textAlign: "center",
               fontSize: {
@@ -90,7 +90,7 @@ const Header: FC<Props> = ({ sx }) => {
           <Typography
             variant="h5"
             sx={{
-              color: "primary.light",
+              color: "text.secondary",
               textAlign: "center",
               fontSize: {
                 xs: "1rem",
@@ -106,10 +106,10 @@ const Header: FC<Props> = ({ sx }) => {
           <Box
             sx={{
               backgroundColor: "rgba(255, 255, 255, 0.95)",
-              p: 2,
-              pt: 2,
-              mt: 2,
-              borderRadius: 5,
+              p: 1.5,
+              pb: 0.5,
+              mt: { xs: 2, md: 8 },
+              borderRadius: { xs: 1, md: 25 },
             }}
           >
             <FilterBar

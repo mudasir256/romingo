@@ -7,11 +7,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from "@material-ui/core/IconButton";
 import Hidden from "@material-ui/core/Hidden";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 interface Props {
   sx?: CSSObject;
@@ -32,7 +32,7 @@ interface Props {
       text: string;
       link: string;
     }[];
-  }
+  };
 }
 
 const Footer: FC<Props> = ({ sx, footerMenus }) => {
@@ -40,17 +40,17 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
     <Box
       sx={{
         pt: 3,
-        backgroundColor: "#F7F7F7"
+        backgroundColor: "#F7F7F7",
       }}
     >
       <Container maxWidth="lg">
-        <Grid container sx={{borderBottom: "1px solid #DDDDDD"}}>
+        <Grid container sx={{ borderBottom: "1px solid #DDDDDD" }}>
           <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               sx={{
                 fontWeight: "bold",
-                color: "text.primary"
+                color: "text.primary",
               }}
             >
               About Us
@@ -58,19 +58,19 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
             <List>
               {footerMenus.about.map((menu, key) => {
                 return (
-                  <ListItem key={key} sx={{pl: 0}}>
+                  <ListItem key={key} sx={{ pl: 0 }}>
                     <Link href={menu.link}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main"
+                          color: "primary.main",
                         }}
                       >
                         {menu.text}
                       </Typography>
                     </Link>
                   </ListItem>
-                )
+                );
               })}
             </List>
           </Grid>
@@ -79,7 +79,7 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
               variant="body2"
               sx={{
                 fontWeight: "bold",
-                color: "text.primary"
+                color: "text.primary",
               }}
             >
               Contact Us
@@ -87,19 +87,19 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
             <List>
               {footerMenus.contact.map((menu, key) => {
                 return (
-                  <ListItem key={key} sx={{pl: 0}}>
+                  <ListItem key={key} sx={{ pl: 0 }}>
                     <Link href={menu.link}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main"
+                          color: "primary.main",
                         }}
                       >
                         {menu.text}
                       </Typography>
                     </Link>
                   </ListItem>
-                )
+                );
               })}
             </List>
           </Grid>
@@ -108,7 +108,7 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
               variant="body2"
               sx={{
                 fontWeight: "bold",
-                color: "text.primary"
+                color: "text.primary",
               }}
             >
               Blog
@@ -116,19 +116,19 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
             <List>
               {footerMenus.blog.map((menu, key) => {
                 return (
-                  <ListItem key={key} sx={{pl: 0}}>
+                  <ListItem key={key} sx={{ pl: 0 }}>
                     <Link href={menu.link}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main"
+                          color: "primary.main",
                         }}
                       >
                         {menu.text}
                       </Typography>
                     </Link>
                   </ListItem>
-                )
+                );
               })}
             </List>
           </Grid>
@@ -137,7 +137,7 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
               variant="body2"
               sx={{
                 fontWeight: "bold",
-                color: "text.primary"
+                color: "text.primary",
               }}
             >
               Sitemap
@@ -145,19 +145,19 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
             <List>
               {footerMenus.sitemap.map((menu, key) => {
                 return (
-                  <ListItem key={key} sx={{pl: 0}}>
+                  <ListItem key={key} sx={{ pl: 0 }}>
                     <Link href={menu.link}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main"
+                          color: "primary.main",
                         }}
                       >
                         {menu.text}
                       </Typography>
                     </Link>
                   </ListItem>
-                )
+                );
               })}
             </List>
           </Grid>
@@ -168,28 +168,28 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            py: 1
+            py: 1,
           }}
         >
           <Typography
             variant="body2"
             sx={{
               fontWeight: "light",
-              mr: 1
+              mr: 1,
             }}
           >
-            © {new Date().getFullYear()} Airbnb, Inc.
+            © {new Date().getFullYear()} Romingo, Inc.
           </Typography>
-          <Link 
+          <Link
             href="#"
             sx={{
-              mr: 1
+              mr: 1,
             }}
           >
             <Typography
               variant="body2"
               sx={{
-                color: "primary.main"
+                color: "primary.main",
               }}
             >
               Privacy
@@ -199,7 +199,7 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
             <Typography
               variant="body2"
               sx={{
-                color: "primary.main"
+                color: "primary.main",
               }}
             >
               Terms
@@ -211,14 +211,33 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
             sx={{
               display: "flex",
               alignItems: "center",
-            }}>
-            <IconButton edge="start" sx={{mr: 1, color: "black"}} aria-label="menu" href="https://www.facebook.com/RomingoTravel" target="_blank">
+            }}
+          >
+            <IconButton
+              edge="start"
+              sx={{ mr: 1, color: "black" }}
+              aria-label="menu"
+              href="https://www.facebook.com/RomingoTravel"
+              target="_blank"
+            >
               <FacebookIcon />
             </IconButton>
-            <IconButton edge="start" sx={{mr: 1, color: "black"}} aria-label="menu" href="https://www.instagram.com/romingotravel" target="_blank">
+            <IconButton
+              edge="start"
+              sx={{ mr: 1, color: "black" }}
+              aria-label="menu"
+              href="https://www.instagram.com/romingotravel"
+              target="_blank"
+            >
               <InstagramIcon />
             </IconButton>
-            <IconButton edge="start" sx={{mr: 1, color: "black"}} aria-label="menu" href="https://twitter.com/RomingoTravel" target="_blank">
+            <IconButton
+              edge="start"
+              sx={{ mr: 1, color: "black" }}
+              aria-label="menu"
+              href="https://twitter.com/RomingoTravel"
+              target="_blank"
+            >
               <TwitterIcon />
             </IconButton>
           </Box>
