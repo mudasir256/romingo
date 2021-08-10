@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 interface Props {
   sx?: CSSObject;
@@ -15,9 +16,27 @@ interface Props {
     city: string;
     state: string;
   }[];
+  footerMenus: {
+    about: {
+      text: string;
+      link: string;
+    }[];
+    contact: {
+      text: string;
+      link: string;
+    }[];
+    blog: {
+      text: string;
+      link: string;
+    }[];
+    sitemap: {
+      text: string;
+      link: string;
+    }[];
+  }
 }
 
-const HomePage: FC<Props> = ({ sx, nearCities }) => {
+const HomePage: FC<Props> = ({ sx, nearCities, footerMenus }) => {
   return (
     <>
       <Header />
@@ -349,6 +368,9 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
           </Grid>
         </Box>
       </Container>
+      <Footer 
+        footerMenus={footerMenus}
+      />
     </>
   );
 };
