@@ -273,12 +273,19 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                   <Button
                     onClick={handleFilterOutClick}
                     color="primary"
+                    size="large"
                     sx={{
-                      py: 1.5,
+                      pb: { xs: 1.4, md: 0.4 },
+                      pt: { xs: 1.5, md: 1.8 },
                       px: 2,
+                      borderRadius: "0px",
                       my: { xs: 0.5, md: 0 },
                       width: { xs: "100%" },
                       fontWeight: "bold",
+                      borderBottom: {
+                        xs: "none",
+                        md: "1px solid rgba(0, 0, 0, 0.42)",
+                      },
                     }}
                   >
                     <SearchIcon /> Search

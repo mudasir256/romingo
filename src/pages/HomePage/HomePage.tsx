@@ -42,13 +42,12 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
             <Typography
               variant="body2"
               sx={{
-                color: "text.primary",
+                color: "text.secondary",
                 fontSize: {
                   xs: "1rem",
                   sm: "1.5rem",
                 },
                 textAlign: "center",
-                mt: 1,
                 mb: 5,
               }}
             >
@@ -254,13 +253,12 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: "text.primary",
+                  color: "text.secondary",
                   fontSize: {
                     xs: "1rem",
                     sm: "1.5rem",
                   },
                   textAlign: "center",
-                  mt: 1,
                   mb: 5,
                 }}
               >

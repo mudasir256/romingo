@@ -107,7 +107,7 @@ const Header: FC<Props> = ({ sx }) => {
               width: "100%",
               margin: "0 auto",
               mb: 2,
-              mt: 4,
+              mt: { xs: 2, md: 4 },
               display: "flex",
               justifyContent: "center",
             }}
