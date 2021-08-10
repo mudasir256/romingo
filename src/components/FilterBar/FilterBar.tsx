@@ -60,10 +60,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     setOccupants(value);
   };
 
-  const handleSelect = (event: SelectChangeEvent) => {
-    setLocation(event.target.value);
-  };
-
   const handleFilterInClick: MouseEventHandler<Element> = () => {
     setZoomIn(true);
   };
