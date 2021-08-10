@@ -1,6 +1,4 @@
-import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
-import Divider from "@material-ui/core/Divider";
 import { FC } from "react";
 import ListingCard, { ListingCardProps } from "../ListingCard/ListingCard";
 

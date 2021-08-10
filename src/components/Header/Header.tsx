@@ -17,7 +17,7 @@ const Header: FC<Props> = ({ sx }) => {
         minHeight: {
           xs: 600,
           sm: 640,
-          md: "100vh"
+          md: "100vh",
         },
         position: "relative",
         display: "flex",
@@ -27,7 +27,7 @@ const Header: FC<Props> = ({ sx }) => {
         left: 0,
       }}
     >
-      <Box 
+      <Box
         sx={{
           position: "absolute",
           top: 0,
@@ -61,29 +61,23 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box
           sx={{
-            width: {
-              lg: "70%",
-              md: "85%",
-              sm: "90%",
-              xs: "90%"
-            },
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
-            borderRadius: "10px",
-            padding: "20px 10px",
-            zIndex: 100
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            borderRadius: 1,
+            zIndex: 100,
+            py: 4,
           }}
         >
           <Typography
             variant="h2"
             sx={{
-              color: "secondary.main",
+              color: "primary.main",
               fontWeight: "bold",
               textAlign: "center",
               fontSize: {
                 xs: "2rem",
                 sm: "3rem",
-                md: "3.75rem"
-              }
+                md: "3.75rem",
+              },
             }}
           >
             Goodbye Pet Fees
@@ -91,31 +85,29 @@ const Header: FC<Props> = ({ sx }) => {
           <Typography
             variant="h5"
             sx={{
-              color: "text.primary",
+              color: "text.secondary",
               textAlign: "center",
               fontSize: {
                 xs: "1rem",
-                sm: "1.5rem"
+                sm: "1.25rem",
               },
-              width: {
-                md: "70%",
-                sm: "90%"
-              },
+              maxWidth: { xs: "100%", sm: "60%" },
               margin: "0 auto",
-              mt: 1
             }}
           >
-            Book with Romingo and pay $0 on pet fees at the most dog-friendly hotels in the world
+            Book with Romingo and pay $0 on pet fees at the most dog-friendly
+            hotels in the world
           </Typography>
-          <FilterBar 
+          <FilterBar
             sx={{
               width: "100%",
               margin: "0 auto",
-              mb: 1,
-              mt: 2,
+              mb: 2,
+              mt: 4,
               display: "flex",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
+            zoomed
           />
         </Box>
       </Box>

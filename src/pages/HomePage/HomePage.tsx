@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
-
 import Header from "../../components/Header";
 
 interface Props {
@@ -23,7 +22,7 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
     <>
       <Header />
       <Container maxWidth="lg">
-        <Grid container>
+        <Grid container sx={{ py: 6 }}>
           <Grid item xs={12}>
             <Typography
               variant="body1"
@@ -34,9 +33,8 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 fontSize: {
                   xs: "1.5rem",
                   sm: "2.5rem",
-                  md: "3rem"
+                  md: "3rem",
                 },
-                mt: 2
               }}
             >
               Seriously, No Pet Fees?
@@ -47,35 +45,38 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 color: "text.primary",
                 fontSize: {
                   xs: "1rem",
-                  sm: "1.5rem"
+                  sm: "1.5rem",
                 },
                 textAlign: "center",
-                mt: 2,
-                mb: 2
+                mt: 1,
+                mb: 5,
               }}
             >
               {"Here's how..."}
             </Typography>
           </Grid>
-          <Grid item xs={12}
+          <Grid
+            item
+            xs={12}
             sx={{
               px: {
                 md: 8,
-                sm: 0
-              }
-            }}>
-            <Grid container spacing={{sm: 3, md: 5}}>
+                sm: 0,
+              },
+            }}
+          >
+            <Grid container spacing={{ sm: 3, md: 5 }}>
               <Grid item xs={12} sm={6}>
                 <Box
                   sx={{
                     height: "100%",
-                    display: "flex"
+                    display: "flex",
                   }}
                 >
                   <Box
                     sx={{
                       margin: "auto 0",
-                      padding: "10px"
+                      padding: "10px",
                     }}
                   >
                     <Typography
@@ -86,8 +87,8 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                         textAlign: "center",
                         fontSize: {
                           md: "1.2rem",
-                          sm: "1rem"
-                        }
+                          sm: "1rem",
+                        },
                       }}
                     >
                       We partner with dog friendly hotels
@@ -98,12 +99,20 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                         mt: 1,
                         fontSize: {
                           md: "1rem",
-                          sm: "0.875rem"
-                        }
+                          sm: "0.875rem",
+                        },
                       }}
                     >
-                      Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu. Vidit dissentiet eos cu eum an brute copiosae hendrerit. Eos erant dolorum an. Per facer affert ut.<br/>
-                      Dicat falli consulatu at vis. Te facilisis mnesarchum qui posse omnium mediocritatem est cu. Modus argumentum ne qui tation efficiendi in eos. Ei orem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at
+                      Lorem ipsum dolor sit amet et delectus accommodare his
+                      consul copiosae legendos at vix ad putent delectus
+                      delicata usu. Vidit dissentiet eos cu eum an brute
+                      copiosae hendrerit. Eos erant dolorum an. Per facer affert
+                      ut.
+                      <br />
+                      Dicat falli consulatu at vis. Te facilisis mnesarchum qui
+                      posse omnium mediocritatem est cu. Modus argumentum ne qui
+                      tation efficiendi in eos. Ei orem ipsum dolor sit amet et
+                      delectus accommodare his consul copiosae legendos at
                     </Typography>
                   </Box>
                 </Box>
@@ -112,59 +121,61 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 <Box
                   sx={{
                     height: "100%",
-                    display: "flex"
+                    display: "flex",
                   }}
                 >
                   <Box
                     component="img"
-                    src={"https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium"}
+                    src={
+                      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium"
+                    }
                     alt="background"
                     draggable="false"
                     sx={{
                       width: "100%",
                       borderRadius: "20px",
-                      margin: "auto 0"
+                      margin: "auto 0",
                     }}
-                  >
-                  </Box>
+                  ></Box>
                 </Box>
               </Grid>
             </Grid>
-            <Grid container spacing={{sm: 3, md: 5}} sx={{pt: 3}}>
-              <Grid item xs={12} sm={6} order={{xs: 2, sm: 1}}>
+            <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 3 }}>
+              <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
                 <Box
                   sx={{
                     height: "100%",
-                    display: "flex"
+                    display: "flex",
                   }}
                 >
                   <Box
                     component="img"
-                    src={"https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium"}
+                    src={
+                      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium"
+                    }
                     alt="background"
                     draggable="false"
                     sx={{
                       width: "100%",
                       borderRadius: "20px",
-                      margin: "auto 0"
+                      margin: "auto 0",
                     }}
-                  >
-                  </Box>
+                  ></Box>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6} order={{xs: 1, sm: 2}}>
+              <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
                 <Box
                   sx={{
                     height: "100%",
-                    display: "flex"
+                    display: "flex",
                   }}
                 >
                   <Box
                     sx={{
                       margin: {
-                        sm: "auto 0"
+                        sm: "auto 0",
                       },
-                      padding: "10px"
+                      padding: "10px",
                     }}
                   >
                     <Typography
@@ -175,8 +186,8 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                         textAlign: "center",
                         fontSize: {
                           md: "1.2rem",
-                          sm: "1rem"
-                        }
+                          sm: "1rem",
+                        },
                       }}
                     >
                       And pass the savings onto you
@@ -187,12 +198,20 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                         mt: 1,
                         fontSize: {
                           md: "1rem",
-                          sm: "0.875rem"
-                        }
+                          sm: "0.875rem",
+                        },
                       }}
                     >
-                      Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata usu. Vidit dissentiet eos cu eum an brute copiosae hendrerit. Eos erant dolorum an. Per facer affert ut.<br/>
-                      Dicat falli consulatu at vis. Te facilisis mnesarchum qui posse omnium mediocritatem est cu. Modus argumentum ne qui tation efficiendi in eos. Ei orem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at
+                      Lorem ipsum dolor sit amet et delectus accommodare his
+                      consul copiosae legendos at vix ad putent delectus
+                      delicata usu. Vidit dissentiet eos cu eum an brute
+                      copiosae hendrerit. Eos erant dolorum an. Per facer affert
+                      ut.
+                      <br />
+                      Dicat falli consulatu at vis. Te facilisis mnesarchum qui
+                      posse omnium mediocritatem est cu. Modus argumentum ne qui
+                      tation efficiendi in eos. Ei orem ipsum dolor sit amet et
+                      delectus accommodare his consul copiosae legendos at
                     </Typography>
                   </Box>
                 </Box>
@@ -200,72 +219,87 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "primary.main",
-                fontWeight: "bold",
-                textAlign: "center",
-                fontSize: {
-                  xs: "1.5rem",
-                  sm: "2.5rem",
-                  md: "3rem"
-                },
-                mt: 2
-              }}
-            >
-              Explore a Romingo City
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "text.primary",
-                fontSize: {
-                  xs: "1rem",
-                  sm: "1.5rem"
-                },
-                textAlign: "center",
-                my: 1
-              }}
-            >
-              Near (or far) from you
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={2}
-              sx={{
-                display: {
-                  xs: "grid",
-                  sm: "flex"
-                },
-                gridAutoFlow: {
-                  xs: "column"
-                },
-                overflow: "auto hidden",
-                scrollSnapType: "x"
-              }}
-            >
-              {
-                nearCities.map((nearCity, key) => {
+        <Box
+          sx={{
+            backgroundColor: "#fafafa",
+            py: 6,
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            width: "100vw",
+            position: "relative",
+            marginLeft: "-50vw",
+            left: "50%",
+          }}
+        >
+          <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
+            <Grid item xs={12}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "primary.main",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: {
+                    xs: "1.5rem",
+                    sm: "2.5rem",
+                    md: "3rem",
+                  },
+                }}
+              >
+                Explore a Romingo City
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "text.primary",
+                  fontSize: {
+                    xs: "1rem",
+                    sm: "1.5rem",
+                  },
+                  textAlign: "center",
+                  mt: 1,
+                  mb: 5,
+                }}
+              >
+                Near (or far) from you
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  display: {
+                    xs: "grid",
+                    sm: "flex",
+                  },
+                  gridAutoFlow: {
+                    xs: "column",
+                  },
+                  overflow: "auto hidden",
+                  scrollSnapType: "x",
+                }}
+              >
+                {nearCities.map((nearCity, key) => {
                   return (
                     <Grid item xs={12} sm={6} md={3} key={key}>
                       <Box
                         sx={{
-                          minWidth: "250px"
+                          minWidth: "250px",
                         }}
                       >
-                        <Link href="#"
+                        <Link
+                          href="#"
                           sx={{
-                            textDecoration: "none"
+                            textDecoration: "none",
                           }}
                         >
                           <Box
                             sx={{
                               border: "1px solid #DDDDDD",
-                              borderRadius: "10px",
-                              my: 1
+                              borderRadius: 1,
+                              backgroundColor: "white",
                             }}
                           >
                             <Box
@@ -277,15 +311,16 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                                 objectFit: "cover",
                                 width: "100%",
                                 height: "240px",
-                                borderRadius: "10px"
+                                borderRadius: 1,
                               }}
                             />
                             <Typography
                               variant="body1"
                               sx={{
+                                mt: 2,
                                 textAlign: "center",
                                 textDecoration: "underline",
-                                fontWeight: "bold"
+                                fontWeight: "bold",
                               }}
                             >
                               {nearCity.city}
@@ -294,7 +329,7 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                               variant="body2"
                               sx={{
                                 textAlign: "center",
-                                mb: 1
+                                mb: 2,
                               }}
                             >
                               {nearCity.state}
@@ -303,12 +338,12 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                         </Link>
                       </Box>
                     </Grid>
-                  )
-                })
-              }  
+                  );
+                })}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </Container>
     </>
   );

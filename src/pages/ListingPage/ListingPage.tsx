@@ -42,8 +42,9 @@ const ListingPage: FC<Props> = ({ cards }) => {
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
+  console.log(animate);
   return (
-    <Box>
+    <>
       <Box
         sx={{
           position: { xs: "fixed", md: "relative" },
@@ -51,12 +52,12 @@ const ListingPage: FC<Props> = ({ cards }) => {
           left: 0,
           right: 0,
           width: "100%",
-          margin: { xs: "0 auto", md: "0 auto" },
+          margin: "0 auto",
           boxShadow: { xs: 0, md: 2 },
           display: "flex",
           justifyContent: "center",
           zIndex: 1000,
-          py: 1,
+          py: { xs: 0, md: 1 },
         }}
       >
         <FilterBar />
@@ -68,9 +69,6 @@ const ListingPage: FC<Props> = ({ cards }) => {
             md: "flex",
           },
           height: { md: "calc(100vh - 60px)" },
-          overflow: {
-            md: "hidden",
-          },
         }}
       >
         <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
@@ -116,7 +114,13 @@ const ListingPage: FC<Props> = ({ cards }) => {
               }
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                overflow: animate === "expanded" ? "auto" : "hidden",
+              }}
+            >
               <MotionBox
                 variants={triggerVariants}
                 animate={animate}
@@ -152,7 +156,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
           </Box>
         </Hidden>
       </Box>
-    </Box>
+    </>
   );
 };
 

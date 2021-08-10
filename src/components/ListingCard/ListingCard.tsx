@@ -171,7 +171,7 @@ const ListingCard: FC<ListingCardProps> = ({
             <Box
               sx={{
                 alignItems: "center",
-                display: { xs: "inline-block", sm: "flex" },
+                display: { xs: "inline-block", lg: "flex" },
                 textAlign: "right",
               }}
             >

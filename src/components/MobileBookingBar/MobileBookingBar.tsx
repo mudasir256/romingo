@@ -2,7 +2,6 @@ import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
 import { RangeInput } from "@material-ui/lab/DateRangePicker/RangeTypes";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";

@@ -20,6 +20,7 @@ interface Props {
   sx?: CSSObject;
   fullWidth?: boolean;
   size?: "small" | "medium" | undefined;
+  variant?: "filled" | "outlined" | "standard" | undefined;
 }
 
 const OccupantSelector: FC<Props> = ({
@@ -28,6 +29,7 @@ const OccupantSelector: FC<Props> = ({
   sx,
   fullWidth = true,
   size = "medium",
+  variant = "outlined",
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
@@ -47,11 +49,10 @@ const OccupantSelector: FC<Props> = ({
         label="Occupants"
         sx={sx}
         size={size}
-        value={`Adults: ${value.adults} - Children: ${value.children} - Dogs: ${value.dogs}`}
+        variant={variant}
+        value={`Adults: ${value.adults}  Children: ${value.children}  Dogs: ${value.dogs}`}
         inputProps={{
           readOnly: true,
-          style: { textAlign: "center" },
-          sx: { fontSize: { xs: "85%", sm: "100%" } },
         }}
         onClick={handleClick}
         ref={ref}
@@ -70,7 +71,7 @@ const OccupantSelector: FC<Props> = ({
         }}
         sx={{ ".MuiPopover-paper": { width } }}
       >
-        <Stack sx={{ p: 3 }} spacing={1}>
+        <Stack sx={{ px: 2, pt: 2 }} spacing={1}>
           <Stack
             direction="row"
             alignItems="center"
@@ -108,7 +109,9 @@ const OccupantSelector: FC<Props> = ({
               onChange={(dogs) => onChange({ ...value, dogs })}
             />
           </Stack>
-          <Button onClick={handleClose}>Done</Button>
+          <Button sx={{ py: 1.5 }} onClick={handleClose}>
+            Done
+          </Button>
         </Stack>
       </Popover>
     </>

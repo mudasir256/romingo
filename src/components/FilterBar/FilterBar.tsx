@@ -24,15 +24,16 @@ import OccupantSelector, {
 
 interface Props {
   sx?: CSSObject;
+  zoomed?: boolean;
 }
 
-const FilterBar: FC<Props> = ({ sx }) => {
-  const [zoomIn, setZoomIn] = useState(false);
+const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
+  const [zoomIn, setZoomIn] = useState(zoomed);
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     null,
     null,
   ]);
-  const [location, setLocation] = useState("Tucson, AZ");
+  const [location, setLocation] = useState();
 
   const [occupants, setOccupants] = useState({
     adults: 2,
@@ -53,11 +54,11 @@ const FilterBar: FC<Props> = ({ sx }) => {
     setLocation(event.target.value);
   };
 
-  const handleFilterInClick: MouseEventHandler<Element> = (e) => {
+  const handleFilterInClick: MouseEventHandler<Element> = () => {
     setZoomIn(true);
   };
 
-  const handleFilterOutClick: MouseEventHandler<Element> = (e) => {
+  const handleFilterOutClick: MouseEventHandler<Element> = () => {
     setZoomIn(false);
   };
 
@@ -79,13 +80,11 @@ const FilterBar: FC<Props> = ({ sx }) => {
               display: "inline-flex",
               alignItems: "center",
               border: "1px solid #DDDDDD",
-              borderRadius: "19px",
+              borderRadius: 1,
               backgroundColor: "white",
-              py: 0.125,
-              px: 0.5,
             }}
           >
-            <Button onClick={handleFilterInClick}>
+            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
               <Typography
                 sx={{
                   textTransform: "none",
@@ -94,7 +93,7 @@ const FilterBar: FC<Props> = ({ sx }) => {
                   },
                 }}
               >
-                Map Area
+                San Francisco, CA
               </Typography>
             </Button>
             <Box
@@ -105,7 +104,7 @@ const FilterBar: FC<Props> = ({ sx }) => {
                 width: "1px",
               }}
             ></Box>
-            <Button onClick={handleFilterInClick}>
+            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
               <Typography
                 sx={{
                   fontSize: {
@@ -125,7 +124,7 @@ const FilterBar: FC<Props> = ({ sx }) => {
                 width: "1px",
               }}
             ></Box>
-            <Button onClick={handleFilterInClick}>
+            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
               <Typography
                 sx={{
                   textTransform: "none",
@@ -146,10 +145,8 @@ const FilterBar: FC<Props> = ({ sx }) => {
       {zoomIn && (
         <Box
           sx={{
-            backgroundColor: "white",
             borderRadius: 1,
-            boxShadow: { xs: 4, md: 0 },
-            p: { xs: 2, md: 0 },
+            backgroundColor: { xs: "rgba(255,255,255,.95)", md: "transparent" },
           }}
         >
           <Zoom
@@ -160,8 +157,9 @@ const FilterBar: FC<Props> = ({ sx }) => {
           >
             <Box
               sx={{
-                py: { xs: 0.5, sm: 0.25 },
-                px: 0.5,
+                py: { xs: 0.5, sm: 0 },
+                px: 1,
+                my: { xs: 0, md: -0.35 },
               }}
             >
               <Box
@@ -173,8 +171,8 @@ const FilterBar: FC<Props> = ({ sx }) => {
                   alignItems: "center",
                 }}
               >
-                <Box sx={{ minWidth: "230px" }}>
-                  <FormControl fullWidth>
+                <Box sx={{ minWidth: "180px" }}>
+                  <FormControl fullWidth variant="standard">
                     <InputLabel id="demo-simple-select-label">
                       Location
                     </InputLabel>
@@ -185,6 +183,9 @@ const FilterBar: FC<Props> = ({ sx }) => {
                       value={location}
                       label="Location"
                       onChange={handleSelect}
+                      sx={{
+                        color: "primary.main",
+                      }}
                     >
                       <MenuItem value={"Tucson, AZ"}>Tucson, AZ</MenuItem>
                       <MenuItem value={"San Francisco, CA"}>
@@ -217,11 +218,13 @@ const FilterBar: FC<Props> = ({ sx }) => {
                             {...startProps}
                             fullWidth={true}
                             size="small"
+                            color="primary"
+                            variant="standard"
                             sx={{
-                              width: { xs: "100%", md: "120px" },
-                              mt: {
-                                xs: 2,
-                                md: 0,
+                              width: { xs: "50%", md: "105px" },
+                              input: {
+                                color: "primary.main",
+                                border: "none",
                               },
                             }}
                           />
@@ -229,11 +232,12 @@ const FilterBar: FC<Props> = ({ sx }) => {
                             {...endProps}
                             fullWidth={true}
                             size="small"
+                            color="primary"
+                            variant="standard"
                             sx={{
-                              width: { xs: "100%", md: "120px" },
-                              mt: {
-                                xs: 2,
-                                md: 0,
+                              width: { xs: "50%", md: "105px" },
+                              input: {
+                                color: "primary.main",
                               },
                             }}
                           />
@@ -246,19 +250,29 @@ const FilterBar: FC<Props> = ({ sx }) => {
                   <OccupantSelector
                     value={occupants}
                     onChange={onOccupantChange}
+                    variant="standard"
                     fullWidth={true}
                     size="small"
                     sx={{
-                      mt: {
-                        xs: 2,
-                        md: 0,
+                      minWidth: "240px",
+                      input: {
+                        color: "primary.main",
                       },
-                      minWidth: "300px",
                     }}
                   />
                 </Box>
-                <Box sx={{ textAlign: "center", mt: { xs: 2, md: 0 } }}>
-                  <Button onClick={handleFilterOutClick}>
+                <Box sx={{ textAlign: "center" }}>
+                  <Button
+                    onClick={handleFilterOutClick}
+                    color="primary"
+                    sx={{
+                      py: 1.5,
+                      px: 2,
+                      my: { xs: 0.5, md: 0 },
+                      width: { xs: "100%" },
+                      fontWeight: "bold",
+                    }}
+                  >
                     <SearchIcon /> Search
                   </Button>
                 </Box>
