@@ -3,6 +3,7 @@ import { FC } from "react";
 import { CSSObject } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
+import HeaderBar from "../../components/HeaderBar";
 import FilterBar from "../../components/FilterBar";
 
 interface Props {
@@ -27,6 +28,7 @@ const Header: FC<Props> = ({ sx }) => {
         left: 0,
       }}
     >
+      <HeaderBar />
       <Box
         sx={{
           position: "absolute",
