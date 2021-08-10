@@ -161,6 +161,8 @@ const ListingPage: FC<Props> = ({ cards }) => {
         <Hidden mdDown>
           <Box
             sx={{
+              m: 3,
+              mb: 0,
               width: "55%",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
@@ -176,7 +178,11 @@ const ListingPage: FC<Props> = ({ cards }) => {
               },
             }}
           >
-            <CardList cards={cards} />
+            <Stack spacing={3} divider={<Divider variant="middle" />}>
+              {cards.map((card, index) => (
+                <ListingCard key={index} {...card} boxShadow={0} />
+              ))}
+            </Stack>{" "}
           </Box>
         </Hidden>
       </Box>
