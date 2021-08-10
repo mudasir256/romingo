@@ -54,7 +54,7 @@ const OccupantSelector: FC<Props> = ({
         sx={sx}
         size={size}
         variant={variant}
-        value={`Adults: ${value.adults}  Children: ${value.children}  Dogs: ${value.dogs}`}
+        value={`Dogs: ${value.dogs}  Adults: ${value.adults}  Children: ${value.children}  `}
         inputProps={{
           readOnly: true,
         }}
@@ -80,6 +80,18 @@ const OccupantSelector: FC<Props> = ({
             direction="row"
             alignItems="center"
             justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="body1">Dogs</Typography>
+            <NumberInput
+              value={value.dogs}
+              onChange={(dogs) => onChange({ ...value, dogs })}
+            />
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
           >
             <Typography variant="body1">Adults</Typography>
             <NumberInput
@@ -87,7 +99,6 @@ const OccupantSelector: FC<Props> = ({
               onChange={(adults) => onChange({ ...value, adults })}
             />
           </Stack>
-
           <Stack
             direction="row"
             alignItems="center"
@@ -98,19 +109,6 @@ const OccupantSelector: FC<Props> = ({
             <NumberInput
               value={value.children}
               onChange={(children) => onChange({ ...value, children })}
-            />
-          </Stack>
-
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            sx={{ width: "100%" }}
-          >
-            <Typography variant="body1">Dogs</Typography>
-            <NumberInput
-              value={value.dogs}
-              onChange={(dogs) => onChange({ ...value, dogs })}
             />
           </Stack>
           <Button sx={{ py: 1.5 }} onClick={handleClose}>
