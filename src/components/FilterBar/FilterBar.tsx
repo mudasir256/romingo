@@ -275,7 +275,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                     color="primary"
                     size="large"
                     sx={{
-                      pb: { xs: 1.4, md: 0.4 },
+                      pb: { xs: 1.5, md: 0.46 },
                       pt: { xs: 1.5, md: 1.8 },
                       px: 2,
                       borderRadius: "0px",
