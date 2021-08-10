@@ -65,7 +65,7 @@ const Header: FC<Props> = ({ sx }) => {
             borderRadius: 1,
             boxShadow: 6,
             zIndex: 100,
-            pt: 6,
+            pt: { xs: 2, md: 6 },
             pb: { xs: 0, md: 6 },
             px: 1,
             mx: 1,
