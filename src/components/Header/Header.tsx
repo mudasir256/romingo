@@ -61,11 +61,12 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            backgroundColor: "rgba(250, 250, 250, 0.95)",
             borderRadius: 1,
+            boxShadow: 6,
             zIndex: 100,
-            pt: 4,
-            pb: { xs: 0, md: 4 },
+            pt: 6,
+            pb: { xs: 0, md: 6 },
             px: 1,
             mx: 1,
           }}

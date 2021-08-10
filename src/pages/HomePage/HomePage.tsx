@@ -133,14 +133,15 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                     draggable="false"
                     sx={{
                       width: "100%",
-                      borderRadius: "20px",
+                      borderRadius: 1,
+                      boxShadow: 4,
                       margin: "auto 0",
                     }}
                   ></Box>
                 </Box>
               </Grid>
             </Grid>
-            <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 3 }}>
+            <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 6 }}>
               <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
                 <Box
                   sx={{
@@ -157,7 +158,8 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                     draggable="false"
                     sx={{
                       width: "100%",
-                      borderRadius: "20px",
+                      borderRadius: 1,
+                      boxShadow: 4,
                       margin: "auto 0",
                     }}
                   ></Box>
@@ -299,6 +301,7 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                             sx={{
                               border: "1px solid #DDDDDD",
                               borderRadius: 1,
+                              boxShadow: 2,
                               backgroundColor: "white",
                             }}
                           >

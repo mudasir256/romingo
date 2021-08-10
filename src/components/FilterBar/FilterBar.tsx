@@ -33,7 +33,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     null,
     null,
   ]);
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState("");
 
   const [occupants, setOccupants] = useState({
     adults: 2,
