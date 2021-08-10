@@ -146,7 +146,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
         <Box
           sx={{
             borderRadius: 1,
-            backgroundColor: { xs: "rgba(255,255,255,.95)", md: "transparent" },
+            backgroundColor: {
+              xs: "rgba(255,255,255,.95)",
+              md: "transparent",
+            },
           }}
         >
           <Zoom
@@ -157,7 +160,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
           >
             <Box
               sx={{
-                py: { xs: 0.5, sm: 0 },
+                pt: { xs: 1, md: 0 },
+                pb: 0,
                 px: 1,
                 my: { xs: 0, md: -0.35 },
               }}
@@ -185,6 +189,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                       onChange={handleSelect}
                       sx={{
                         color: "primary.main",
+                        my: { xs: 0.5, md: 0 },
                       }}
                     >
                       <MenuItem value={"Tucson, AZ"}>Tucson, AZ</MenuItem>
@@ -222,6 +227,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                             variant="standard"
                             sx={{
                               width: { xs: "50%", md: "105px" },
+                              my: { xs: 0.5, md: 0 },
                               input: {
                                 color: "primary.main",
                                 border: "none",
@@ -236,6 +242,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                             variant="standard"
                             sx={{
                               width: { xs: "50%", md: "105px" },
+                              my: { xs: 0.5, md: 0 },
                               input: {
                                 color: "primary.main",
                               },
@@ -258,6 +265,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                       input: {
                         color: "primary.main",
                       },
+                      my: { xs: 0.5, md: 0 },
                     }}
                   />
                 </Box>

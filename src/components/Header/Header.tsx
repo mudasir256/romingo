@@ -64,7 +64,10 @@ const Header: FC<Props> = ({ sx }) => {
             backgroundColor: "rgba(255, 255, 255, 0.9)",
             borderRadius: 1,
             zIndex: 100,
-            py: 4,
+            pt: 4,
+            pb: { xs: 0, md: 4 },
+            px: 1,
+            mx: 1,
           }}
         >
           <Typography
