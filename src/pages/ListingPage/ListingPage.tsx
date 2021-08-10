@@ -61,11 +61,23 @@ const ListingPage: FC<Props> = ({ cards }) => {
           margin: "0 auto",
           boxShadow: { xs: 0, md: 2 },
           display: "flex",
-          justifyContent: "center",
+          justifyContent: { xs: "center", md: "flex-start" },
           zIndex: 1000,
           py: { xs: 0, md: 1 },
         }}
       >
+        <Box
+          component="img"
+          src={"/images/romingo_logo_yellow.svg"}
+          alt="Logo"
+          draggable="false"
+          sx={{
+            display: { xs: "none", md: "block" },
+            ml: { xs: 0, md: 4 },
+            mr: { xs: 0, md: 8 },
+            height: { xs: "0px", md: "42px" },
+          }}
+        />
         <FilterBar />
       </Box>
       <Box

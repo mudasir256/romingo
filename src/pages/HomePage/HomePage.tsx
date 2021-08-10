@@ -48,7 +48,7 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                   sm: "1.5rem",
                 },
                 textAlign: "center",
-                mb: 5,
+                mb: { xs: 2, md: 5 },
               }}
             >
               {"Here's how..."}
@@ -140,7 +140,11 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 </Box>
               </Grid>
             </Grid>
-            <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 6 }}>
+            <Grid
+              container
+              spacing={{ sm: 3, md: 5 }}
+              sx={{ pt: { xs: 2, md: 6 } }}
+            >
               <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
                 <Box
                   sx={{

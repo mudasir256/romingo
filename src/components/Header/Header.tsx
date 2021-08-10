@@ -41,13 +41,14 @@ const Header: FC<Props> = ({ sx }) => {
         <Box>
           <Box
             component="img"
-            src="/images/couple-dog-background.webp"
+            src="/images/people-2589544_1920.jpeg"
             alt="background"
             draggable="false"
             sx={{
               objectFit: "cover",
               width: "100%",
               height: { xs: 600, sm: 640, md: "100vh" },
+              "& > img": { boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)" },
             }}
           />
         </Box>
@@ -63,9 +64,7 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.95)",
             borderRadius: 5,
-            boxShadow: 6,
             zIndex: 100,
             pt: { xs: 2, md: 6 },
             pb: { xs: 0, md: 6 },
@@ -76,7 +75,7 @@ const Header: FC<Props> = ({ sx }) => {
           <Typography
             variant="h2"
             sx={{
-              color: "primary.main",
+              color: "white",
               fontWeight: "bold",
               textAlign: "center",
               fontSize: {
@@ -91,7 +90,7 @@ const Header: FC<Props> = ({ sx }) => {
           <Typography
             variant="h5"
             sx={{
-              color: "text.secondary",
+              color: "primary.light",
               textAlign: "center",
               fontSize: {
                 xs: "1rem",
@@ -99,22 +98,32 @@ const Header: FC<Props> = ({ sx }) => {
               },
               maxWidth: { xs: "100%", sm: "60%" },
               margin: "0 auto",
+              mt: 1,
             }}
           >
-            Book with Romingo and pay $0 on pet fees at the most dog-friendly
-            hotels in the world
+            Book with Romingo and pay $0 pet fees at dog-friendly hotels
           </Typography>
-          <FilterBar
+          <Box
             sx={{
-              width: "100%",
-              margin: "0 auto",
-              mb: 2,
-              mt: { xs: 2, md: 4 },
-              display: "flex",
-              justifyContent: "center",
+              backgroundColor: "rgba(255, 255, 255, 0.95)",
+              p: 2,
+              pt: 2,
+              mt: 2,
+              borderRadius: 5,
             }}
-            zoomed
-          />
+          >
+            <FilterBar
+              sx={{
+                width: "100%",
+                margin: "0 auto",
+                mb: 2,
+                mt: { xs: 2, md: 0 },
+                display: "flex",
+                justifyContent: "center",
+              }}
+              zoomed
+            />
+          </Box>
         </Box>
       </Box>
     </Box>
