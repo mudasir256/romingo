@@ -60,7 +60,14 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
                 return (
                   <ListItem key={key} sx={{pl: 0}}>
                     <Link href={menu.link}>
-                      {menu.text}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "primary.main"
+                        }}
+                      >
+                        {menu.text}
+                      </Typography>
                     </Link>
                   </ListItem>
                 )
@@ -82,7 +89,14 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
                 return (
                   <ListItem key={key} sx={{pl: 0}}>
                     <Link href={menu.link}>
-                      {menu.text}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "primary.main"
+                        }}
+                      >
+                        {menu.text}
+                      </Typography>
                     </Link>
                   </ListItem>
                 )
@@ -104,7 +118,14 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
                 return (
                   <ListItem key={key} sx={{pl: 0}}>
                     <Link href={menu.link}>
-                      {menu.text}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "primary.main"
+                        }}
+                      >
+                        {menu.text}
+                      </Typography>
                     </Link>
                   </ListItem>
                 )
@@ -126,7 +147,14 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
                 return (
                   <ListItem key={key} sx={{pl: 0}}>
                     <Link href={menu.link}>
-                      {menu.text}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "primary.main"
+                        }}
+                      >
+                        {menu.text}
+                      </Typography>
                     </Link>
                   </ListItem>
                 )
@@ -158,10 +186,24 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
               mr: 1
             }}
           >
-            Privacy
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.main"
+              }}
+            >
+              Privacy
+            </Typography>
           </Link>
           <Link href="#">
-            Terms
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.main"
+              }}
+            >
+              Terms
+            </Typography>
           </Link>
         </Box>
         <Hidden smUp>
