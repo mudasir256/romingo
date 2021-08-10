@@ -36,7 +36,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
   const [occupants, setOccupants] = useState({
     adults: 2,
     children: 0,
-    dogs: 0,
+    dogs: 1,
   });
 
   const cities = [
@@ -184,8 +184,14 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                 <Box sx={{ minWidth: "180px" }}>
                   <Autocomplete
                     disablePortal
+                    color="primary"
                     size="small"
                     options={cities}
+                    sx={{
+                      input: {
+                        color: "primary.main",
+                      },
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}

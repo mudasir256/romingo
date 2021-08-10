@@ -39,7 +39,7 @@ const Header: FC<Props> = ({ sx }) => {
         <Box>
           <Box
             component="img"
-            src="/images/background.webp"
+            src="/images/couple-dog-background.webp"
             alt="background"
             draggable="false"
             sx={{
@@ -61,8 +61,8 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.96)",
-            borderRadius: 1,
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
+            borderRadius: 5,
             boxShadow: 6,
             zIndex: 100,
             pt: { xs: 2, md: 6 },

@@ -125,13 +125,13 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 >
                   <Box
                     component="img"
-                    src={
-                      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium"
-                    }
-                    alt="background"
+                    src="/images/coffee-frenchy.webp"
+                    alt="french bulldog w/ coffee"
                     draggable="false"
                     sx={{
                       width: "100%",
+                      maxHeight: "320px",
+                      objectFit: "cover",
                       borderRadius: 1,
                       boxShadow: 4,
                       margin: "auto 0",
@@ -150,13 +150,13 @@ const HomePage: FC<Props> = ({ sx, nearCities }) => {
                 >
                   <Box
                     component="img"
-                    src={
-                      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium"
-                    }
-                    alt="background"
+                    src="/images/window-dog.webp"
+                    alt="dog head out window"
                     draggable="false"
                     sx={{
                       width: "100%",
+                      maxHeight: "320px",
+                      objectFit: "cover",
                       borderRadius: 1,
                       boxShadow: 4,
                       margin: "auto 0",

@@ -27,7 +27,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const [occupants, setOccupants] = useState({
     adults: 2,
     children: 0,
-    dogs: 0,
+    dogs: 1,
   });
 
   const [showPopup, setShowPopup] = useState(false);
