@@ -97,7 +97,12 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
             / night
           </Typography>
         </Box>
-        <Button variant="contained" size="large" color="primary" sx={{ mt: 2 }}>
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          sx={{ mt: 2, py: 1.5, px: 3.5, fontWeight: "bold", fontSize: "100%" }}
+        >
           Book Now
         </Button>
       </Box>

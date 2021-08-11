@@ -1,5 +1,6 @@
 import { FC, useState, MouseEventHandler } from "react";
 import Container from "@material-ui/core/Container";
+import Fab from "@material-ui/core/Fab";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -16,6 +17,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CloseIcon from "@material-ui/icons/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
@@ -231,7 +233,7 @@ const DetailsPage: FC<Props> = ({
             <Typography
               variant="h6"
               sx={{
-                fontSize: { xs: "95%", sm: "125%" },
+                fontSize: "125%",
                 color: "primary.main",
                 fontWeight: "bold",
                 overflow: "hidden",
@@ -307,6 +309,22 @@ const DetailsPage: FC<Props> = ({
               />
             </Hidden>
             <Hidden mdUp>
+              <Fab
+                color="default"
+                size="small"
+                aria-label="back"
+                sx={{
+                  backgroundColor: "white",
+                  color: "text.secondary",
+                  position: "absolute",
+                  width: 35,
+                  height: 35,
+                  top: 15,
+                  left: 15,
+                }}
+              >
+                <ArrowBackIcon sx={{ fontSize: 16 }} />
+              </Fab>
               <MobileBookingBar roomList={roomList} />
             </Hidden>
           </Grid>
@@ -325,7 +343,14 @@ const DetailsPage: FC<Props> = ({
             <DialogTitle
               id="photo-dialog-slide-title"
               sx={{
-                textAlign: "center",
+                position: "sticky",
+                backgroundColor: "white",
+                display: "flex",
+                height: "30px",
+                justifyContent: "space-between",
+                alignItems: "bottom",
+                top: 0,
+                zIndex: 10000,
               }}
             >
               <Typography
@@ -339,9 +364,6 @@ const DetailsPage: FC<Props> = ({
                 aria-label="close"
                 onClick={handleClose}
                 sx={{
-                  position: "absolute",
-                  right: 8,
-                  top: 8,
                   color: (theme) => theme.palette.grey[500],
                 }}
               >

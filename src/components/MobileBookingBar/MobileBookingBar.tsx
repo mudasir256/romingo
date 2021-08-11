@@ -97,6 +97,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
               <Typography
                 sx={{
                   fontSize: "80%",
+                  color: "text.secondary",
                   textDecoration: "underline",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
@@ -114,6 +115,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
             >
               <Typography
                 sx={{
+                  color: "text.secondary",
                   fontSize: "85%",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
@@ -133,7 +135,11 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                 whiteSpace: "nowrap",
                 minWidth: "150px",
                 py: 0,
-                borderRadius: 1,
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
+                boxShadow: 6,
                 lineHeight: 1.35,
               }}
             >
@@ -142,8 +148,9 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                   variant="body1"
                   sx={{
                     display: "inline-block",
+                    fontWeight: "bold",
                     my: 0,
-                    fontSize: "120%",
+                    fontSize: "125%",
                   }}
                 >
                   Book Now
