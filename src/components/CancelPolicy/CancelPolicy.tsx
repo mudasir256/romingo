@@ -21,7 +21,6 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
           pt: 2,
           pb: 2.5,
           px: 2,
-          mt: 1,
         }}
       >
         <Typography

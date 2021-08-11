@@ -1,4 +1,4 @@
-import React, { FC, useState, MouseEventHandler } from "react";
+import React, { FC } from "react";
 import Box from "@material-ui/core/Box";
 import { CSSObject } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
