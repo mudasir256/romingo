@@ -1,37 +1,37 @@
 interface ISearch {
-	city: string;
-	checkIn: string;
-	checkOut: string;
-	occupants: {
-		adults: number;
-		children: number;
-		dogs: number;
-	}
+  city: string;
+  checkIn: string;
+  checkOut: string;
+  occupants: {
+    adults: number;
+    children: number;
+    dogs: number;
+  }
 }
 
 interface IUser {
-	id: string;
-	token: string;
-	email: string;
+  id: string;
+  token: string;
+  email: string;
 }
 
 type SearchState = {
-	search: ISearch
+  search: ISearch
 }
 
 type SearchAction = {
-	type: string
-	search: ISearch
+  type: string
+  search: ISearch
 }
 
 type UserState = {
-	user: IUser,
-	authenticated: boolean;
+  user: IUser,
+  authenticated: boolean;
 }
 
 type UserAction = {
-	type: string
-	user: IUser
+  type: string
+  user: IUser
 }
 
 type SearchDispatchType = (args: SearchAction) => SearchAction
