@@ -15,60 +15,20 @@ import DescriptionCard from "../../components/DescriptionCard";
 import CheckoutInformation from "../../components/CheckoutInformation";
 
 interface Props {
-  footerMenus: {
-    about: {
-      text: string;
-      link: string;
-    }[];
-    contact: {
-      text: string;
-      link: string;
-    }[];
-    blog: {
-      text: string;
-      link: string;
-    }[];
-    sitemap: {
-      text: string;
-      link: string;
-    }[];
-  };
-  hotel: {
-    image: string;
-    name: string;
-    location: string;
-    score: number;
-    price: number;
-    currency?: string;
-    amenities?: string[];
-  };
-  bookingDetails: {
-    checkin: string;
-    checkout: string;
-    guests: {
-      adults: number;
-      dogs: number;
-      children: number;
-    },
-    roomType: string;
-  },
-  priceDetails: {
-    price: number;
-    stateTax: number;
-    cityTax: number;
-    total: number;
-  },
-  checkinDescription: {
-    title: string;
-    description: string;
-  },
-  finePrint: {
-    title: string;
-    description: string;
-  }
+  hotel: any;
+  bookingDetails: any;
+  priceDetails: any;
+  checkinDescription: any;
+  finePrint: any;
 }
 
-const CheckoutPage: FC<Props> = ({ footerMenus, hotel, bookingDetails, priceDetails, checkinDescription, finePrint }) => {
+const CheckoutPage: FC<Props> = ({
+  hotel,
+  bookingDetails,
+  priceDetails,
+  checkinDescription,
+  finePrint,
+}) => {
   return (
     <>
       <Navbar />
@@ -76,13 +36,14 @@ const CheckoutPage: FC<Props> = ({ footerMenus, hotel, bookingDetails, priceDeta
         sx={{
           pt: {
             sm: "64px",
-            xs: "56px"
-          }
+            xs: "56px",
+          },
         }}
       >
-        <Container maxWidth="lg"
+        <Container
+          maxWidth="lg"
           sx={{
-            py: 3
+            py: 3,
           }}
         >
           <Grid container spacing={2}>
@@ -97,28 +58,28 @@ const CheckoutPage: FC<Props> = ({ footerMenus, hotel, bookingDetails, priceDeta
             <Grid item xs={12} sm={4}>
               <BookingDetailCard details={bookingDetails} />
             </Grid>
-            <Grid item xs={12} sm={8} order={{xs: 4, sm: 3}}>
+            <Grid item xs={12} sm={8} order={{ xs: 4, sm: 3 }}>
               <CancelPolicy />
-              <DescriptionCard 
-                {...checkinDescription} 
+              <DescriptionCard
+                {...checkinDescription}
                 sx={{
-                  mt: 2
+                  mt: 2,
                 }}
               />
-              <CheckoutInformation 
+              <CheckoutInformation
                 sx={{
-                  mt: 2
+                  mt: 2,
                 }}
                 finePrint={finePrint}
               />
             </Grid>
-            <Grid item xs={12} sm={4} order={{xs: 3, sm: 4}}>
+            <Grid item xs={12} sm={4} order={{ xs: 3, sm: 4 }}>
               <PriceDetailCard details={priceDetails} />
               <Hidden smDown>
-                <DescriptionCard 
-                  {...finePrint} 
+                <DescriptionCard
+                  {...finePrint}
                   sx={{
-                    mt: 2
+                    mt: 2,
                   }}
                 />
               </Hidden>
@@ -126,9 +87,7 @@ const CheckoutPage: FC<Props> = ({ footerMenus, hotel, bookingDetails, priceDeta
           </Grid>
         </Container>
       </Box>
-      <Footer 
-        footerMenus={footerMenus}
-      />
+      <Footer />
     </>
   );
 };

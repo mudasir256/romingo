@@ -116,94 +116,10 @@ const FeatureHotels = [
   },
 ];
 
-const FooterMenus = {
-  about: [
-    {
-      text: "How Romingo Works",
-      link: "#",
-    },
-    {
-      text: "Newsroom",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
-  contact: [
-    {
-      text: "Contact Us",
-      link: "#",
-    },
-    {
-      text: "Schedule a Meeting",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
-  blog: [
-    {
-      text: "Overview",
-      link: "#",
-    },
-    {
-      text: "Romingo Blog",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-  ],
-  sitemap: [
-    {
-      text: "How Romingo Works",
-      link: "#",
-    },
-    {
-      text: "Newsroom",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
-};
-
 const HomePage: FC<Props> = ({
   sx,
   nearCities = NearCities,
   featureHotels = FeatureHotels,
-  footerMenus = FooterMenus,
 }) => {
   return (
     <>
@@ -647,7 +563,7 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Box>
       </Container>
-      <Footer footerMenus={footerMenus} />
+      <Footer />
     </>
   );
 };

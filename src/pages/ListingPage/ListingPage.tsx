@@ -16,112 +16,12 @@ import { Button } from "@material-ui/core";
 import Footer from "../../components/Footer";
 
 const MotionBox = motion(Box);
-const FooterMenus = {
-  about: [
-    {
-      text: "How Romingo Works",
-      link: "#",
-    },
-    {
-      text: "Newsroom",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
-  contact: [
-    {
-      text: "Contact Us",
-      link: "#",
-    },
-    {
-      text: "Schedule a Meeting",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
-  blog: [
-    {
-      text: "Overview",
-      link: "#",
-    },
-    {
-      text: "Romingo Blog",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-  ],
-  sitemap: [
-    {
-      text: "How Romingo Works",
-      link: "#",
-    },
-    {
-      text: "Newsroom",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
-};
 
 interface Props {
   cards: ListingCardProps[];
-  footerMenus: {
-    about: {
-      text: string;
-      link: string;
-    }[];
-    contact: {
-      text: string;
-      link: string;
-    }[];
-    blog: {
-      text: string;
-      link: string;
-    }[];
-    sitemap: {
-      text: string;
-      link: string;
-    }[];
-  };
 }
 
-const ListingPage: FC<Props> = ({ cards, footerMenus = FooterMenus }) => {
+const ListingPage: FC<Props> = ({ cards }) => {
   const y = useMotionValue(0);
   const { height } = useWindowSize();
   const variants = {
@@ -186,7 +86,7 @@ const ListingPage: FC<Props> = ({ cards, footerMenus = FooterMenus }) => {
           display: {
             md: "flex",
           },
-          height: { md: "calc(100vh - 60px)" },
+          height: { md: "calc(100vh - 59px)" },
         }}
       >
         <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
@@ -303,7 +203,7 @@ const ListingPage: FC<Props> = ({ cards, footerMenus = FooterMenus }) => {
         </Hidden>
       </Box>
       <Box display={{ xs: "none", sm: "block" }}>
-        <Footer footerMenus={footerMenus} />
+        <Footer />
       </Box>
     </>
   );
