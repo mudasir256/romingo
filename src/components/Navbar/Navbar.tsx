@@ -1,6 +1,7 @@
 import React, { FC, useState, MouseEventHandler } from "react";
 import Box from "@material-ui/core/Box";
 import { CSSObject } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,7 +17,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Typography from "@material-ui/core/Typography";
-
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
@@ -27,7 +28,8 @@ interface Props {
 }
 
 const Navbar: FC<Props> = ({ sx }) => {
-
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [showLogin, setShowLogin] = useState(false);
 
   const LOGIN = "Login";
@@ -45,7 +47,7 @@ const Navbar: FC<Props> = ({ sx }) => {
   const handleClose = () => {
     setShowLogin(false);
     setSelectDialog(LOGIN);
-  }
+  };
 
   return (
     <>
@@ -127,7 +129,12 @@ const Navbar: FC<Props> = ({ sx }) => {
                 }}
               />
             </Hidden>
-            <Button variant="outlined" size="small" color="primary" onClick={handleLogin}>
+            <Button
+              variant="outlined"
+              size="small"
+              color="primary"
+              onClick={handleLogin}
+            >
               Login
             </Button>
           </Box>
@@ -161,12 +168,12 @@ const Navbar: FC<Props> = ({ sx }) => {
         open={showLogin}
         keepMounted
         fullWidth
-        maxWidth={"sm"}
+        fullScreen={fullScreen}
+        maxWidth={"xs"}
         onClose={handleClose}
         scroll="body"
         aria-labelledby="amenities-dialog-slide-title"
         aria-describedby="amenities-dialog-slide-description"
-        sx={{ maxWidth: "xl" }}
       >
         <DialogTitle
           id="amenities-dialog-slide-title"
@@ -174,12 +181,12 @@ const Navbar: FC<Props> = ({ sx }) => {
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="h6"
-            color="primary"
-            sx={{ fontWeight: "bold" }}
-          >
-            {(selectDialog === LOGIN) ? "Input Login Info" : ((selectDialog === REGISTER) ? "Input Register Info" : "Reset Your Password")}
+          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+            {selectDialog === LOGIN
+              ? "Login"
+              : selectDialog === REGISTER
+              ? "Register"
+              : "Reset Your Password"}
           </Typography>
           <IconButton
             aria-label="close"
@@ -198,76 +205,82 @@ const Navbar: FC<Props> = ({ sx }) => {
           sx={{
             px: {
               xs: 1,
-              sm: 2.5
-            }
+              sm: 2.5,
+            },
           }}
         >
           <DialogContentText id="amenities-dialog-slide-description">
-            {(selectDialog === LOGIN) &&
-              (<LoginCard 
+            {selectDialog === LOGIN && (
+              <LoginCard
                 sx={{
                   mt: 1,
-                  py: 1
+                  py: 1,
                 }}
               />
             )}
-            {(selectDialog === REGISTER) &&
-              (<RegisterCard 
+            {selectDialog === REGISTER && (
+              <RegisterCard
                 sx={{
                   mt: 1,
-                  py: 1
+                  py: 1,
                 }}
               />
             )}
-            {(selectDialog === FORGOT_PASSWORD) &&
-              (<ResetPassword 
+            {selectDialog === FORGOT_PASSWORD && (
+              <ResetPassword
                 sx={{
                   mt: 1,
-                  py: 1
+                  py: 1,
                 }}
               />
             )}
-            <Typography 
+            <Typography
               variant="body2"
               sx={{
                 color: "text.secondary",
                 mt: 1,
-                textAlign: "center"
+                textAlign: "center",
               }}
             >
-              {(selectDialog === LOGIN) ? "Not a member?" : "Already a memeber?"}
+              {selectDialog === LOGIN ? "Not a member?" : "Already a memeber?"}
             </Typography>
-            <Link href="#" onClick={e => {
-              e.preventDefault();
-              e.stopPropagation();
-              // setSelectDialog(FORGOT_PASSWORD);
-              if (selectDialog === LOGIN) {
-                setSelectDialog(REGISTER)
-              } else {
-                setSelectDialog(LOGIN);
-              }
-            }}>
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // setSelectDialog(FORGOT_PASSWORD);
+                if (selectDialog === LOGIN) {
+                  setSelectDialog(REGISTER);
+                } else {
+                  setSelectDialog(LOGIN);
+                }
+              }}
+            >
               <Typography
                 variant="body2"
                 sx={{
                   mt: 1,
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
-                {(selectDialog === LOGIN) ? "Create Your Account" : "Log In"}
+                {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
               </Typography>
             </Link>
-            {(selectDialog === LOGIN) && (
-              <Link href="#" onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setSelectDialog(FORGOT_PASSWORD);
-              }}>
+            {selectDialog === LOGIN && (
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setSelectDialog(FORGOT_PASSWORD);
+                }}
+              >
                 <Typography
                   variant="body2"
                   sx={{
                     mt: 1,
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
                 >
                   Forgot Password?

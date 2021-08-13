@@ -3,7 +3,7 @@ import { CSSObject } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Check from "@material-ui/icons/Check";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from "@material-ui/icons/Close";
 
 interface Props {
   sx?: CSSObject;

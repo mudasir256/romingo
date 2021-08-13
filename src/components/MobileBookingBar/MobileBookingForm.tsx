@@ -61,12 +61,6 @@ const MobileBookingForm: FC<Props> = ({
     setOccupants(value);
   };
 
-  const handleClick: MouseEventHandler<Element> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    handleChange(roomType, value, occupants);
-  };
-
   return (
     <Box sx={{ ...sx, borderRadius: 1, boxShadow: 3, px: 3, pt: 1, pb: 2 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

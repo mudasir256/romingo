@@ -1,9 +1,7 @@
 import Box from "@material-ui/core/Box";
-import { FC, useState, MouseEventHandler, useRef } from "react";
+import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Autocomplete from "@material-ui/core/Autocomplete";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";

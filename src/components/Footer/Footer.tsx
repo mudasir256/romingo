@@ -15,7 +15,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 
 interface Props {
   sx?: CSSObject;
-  footerMenus: {
+  footerMenus?: {
     about: {
       text: string;
       link: string;
@@ -35,10 +35,94 @@ interface Props {
   };
 }
 
-const Footer: FC<Props> = ({ sx, footerMenus }) => {
+const FooterMenus = {
+  about: [
+    {
+      text: "How Romingo Works",
+      link: "#",
+    },
+    {
+      text: "Newsroom",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+    {
+      text: "Investors",
+      link: "#",
+    },
+    {
+      text: "Romingo Plus",
+      link: "#",
+    },
+  ],
+  contact: [
+    {
+      text: "Contact Us",
+      link: "#",
+    },
+    {
+      text: "Schedule a Meeting",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+    {
+      text: "Investors",
+      link: "#",
+    },
+    {
+      text: "Romingo Plus",
+      link: "#",
+    },
+  ],
+  blog: [
+    {
+      text: "Overview",
+      link: "#",
+    },
+    {
+      text: "Romingo Blog",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+  ],
+  sitemap: [
+    {
+      text: "How Romingo Works",
+      link: "#",
+    },
+    {
+      text: "Newsroom",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+    {
+      text: "Investors",
+      link: "#",
+    },
+    {
+      text: "Romingo Plus",
+      link: "#",
+    },
+  ],
+};
+
+const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
   return (
     <Box
       sx={{
+        ...sx,
         pt: 3,
         backgroundColor: "#F7F7F7",
       }}

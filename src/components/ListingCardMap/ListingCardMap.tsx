@@ -1,7 +1,7 @@
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
-import RomingoScore from "../UI/RomingoScore/RomingoScore";
+import RomingoScore from "../RomingoScore/RomingoScore";
 
 interface Props {
   image: string;

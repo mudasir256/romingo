@@ -1,145 +1,117 @@
 import Box from "@material-ui/core/Box";
 import React, { FC, useState } from "react";
 import { CSSObject } from "@material-ui/core";
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from "@material-ui/core/Button";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 interface Props {
   sx?: CSSObject;
 }
 
 const RegisterCard: FC<Props> = ({ sx }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   React.useEffect(() => {
-    ValidatorForm.addValidationRule('isPasswordMatch', (value:string) => {
-      if (value !== password) {
-          return false;
+    ValidatorForm.addValidationRule("isPasswordMatch", () => {
+      if (confirmPassword !== password) {
+        return false;
       }
       return true;
     });
 
     return () => {
-      ValidatorForm.removeValidationRule('isPasswordMatch');
-    }
-  })
+      ValidatorForm.removeValidationRule("isPasswordMatch");
+    };
+  }, [confirmPassword]);
 
   return (
-    <Box
-      sx={{...sx}}
-    >
+    <Box sx={{ ...sx }}>
       <ValidatorForm
         onSubmit={(e: React.SyntheticEvent) => {
           e.preventDefault();
-        }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between"
-          }}>
-          <TextValidator
-            fullWidth={true}
-            name="firstName"
-            label="First Name"
-            variant="outlined"
-            value={firstName}
-            validators={['required']}
-            errorMessages={['This field is required']}
-            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-              setFirstName(e.currentTarget.value);
-            }}
-            sx={{
-            }}
-            FormHelperTextProps={{
-
-            }}
-          />
-          <TextValidator
-            fullWidth={true}
-            name="lastName"
-            label="Last Name"
-            variant="outlined"
-            value={lastName}
-            validators={['required']}
-            errorMessages={['This field is required']}
-            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-              setLastName(e.currentTarget.value);
-            }}
-            sx={{
-            }}
-            FormHelperTextProps={{
-
-            }}
-          />
-        </Box>
+        }}
+      >
+        <TextValidator
+          fullWidth={true}
+          name="name"
+          label="Full Name"
+          variant="outlined"
+          value={name}
+          validators={["required"]}
+          errorMessages={["This field is required"]}
+          onChange={(e: React.FormEvent<HTMLInputElement>) => {
+            setName(e.currentTarget.value);
+          }}
+          sx={{}}
+          FormHelperTextProps={{}}
+        />
         <TextValidator
           fullWidth={true}
           name="email"
           label="Email Address"
           variant="outlined"
           value={email}
-          validators={['required', 'isEmail']}
-          errorMessages={['This field is required', 'Email is not valid']}
+          validators={["required", "isEmail"]}
+          errorMessages={["This field is required", "Email is not valid"]}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             setEmail(e.currentTarget.value);
           }}
           sx={{
-            mt: 1
+            mt: 1,
           }}
-          FormHelperTextProps={{
-
-          }}
+          FormHelperTextProps={{}}
         />
         <TextValidator
           fullWidth={true}
           name="password"
+          type="password"
           label="Password"
           variant="outlined"
           value={password}
-          validators={['required']}
-          errorMessages={['This field is required']}
+          validators={["required", "minStringLength:8", "maxStringLength:52"]}
+          errorMessages={[
+            "This field is required",
+            "Minimum 8 characters",
+            "Maxium 52 characters",
+          ]}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             setPassword(e.currentTarget.value);
           }}
           sx={{
-            mt: 1
+            mt: 1,
           }}
-          FormHelperTextProps={{
-
-          }}
+          FormHelperTextProps={{}}
         />
         <TextValidator
           fullWidth={true}
           name="confirmPassword"
           label="Confirm Password"
+          type="password"
           variant="outlined"
           value={confirmPassword}
-          validators={['required', 'isPasswordMatch']}
-          errorMessages={['This field is required', 'password mismatch']}
+          validators={["required", "isPasswordMatch"]}
+          errorMessages={["This field is required", "Password mismatch"]}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             setConfirmPassword(e.currentTarget.value);
           }}
           sx={{
-            mt: 1
+            mt: 1,
           }}
-          FormHelperTextProps={{
-
-          }}
+          FormHelperTextProps={{}}
         />
         <Box
           sx={{
             mt: 1,
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
-          <Button 
+          <Button
             variant="contained"
             size="large"
-            color="primary" 
+            color="primary"
             type="submit"
           >
             Register

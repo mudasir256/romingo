@@ -7,12 +7,13 @@ import { motion, useMotionValue } from "framer-motion";
 import { FC, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
 
-import CardList from "../../components/CardList/CardList";
+import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
 import { Button } from "@material-ui/core";
+import Footer from "../../components/Footer";
 
 const MotionBox = motion(Box);
 
@@ -48,7 +49,6 @@ const ListingPage: FC<Props> = ({ cards }) => {
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  console.log(animate);
   return (
     <>
       <Box
@@ -86,7 +86,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
           display: {
             md: "flex",
           },
-          height: { md: "calc(100vh - 60px)" },
+          height: { md: "calc(100vh - 59px)" },
         }}
       >
         <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
@@ -142,6 +142,8 @@ const ListingPage: FC<Props> = ({ cards }) => {
               />
             </Box>
             <Stack spacing={3} divider={<Divider variant="middle" />}>
+              <RomingoGuarantee sx={{ mb: 0 }} />
+
               {cards.map((card, index) => (
                 <ListingCard key={index} {...card} boxShadow={0} />
               ))}
@@ -173,8 +175,9 @@ const ListingPage: FC<Props> = ({ cards }) => {
         <Hidden mdDown>
           <Box
             sx={{
-              m: 3,
-              mb: 0,
+              px: 3,
+              pt: 2,
+              pb: 3,
               width: "55%",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
@@ -190,13 +193,17 @@ const ListingPage: FC<Props> = ({ cards }) => {
               },
             }}
           >
+            <RomingoGuarantee sx={{ mb: 3 }} />
             <Stack spacing={3} divider={<Divider variant="middle" />}>
               {cards.map((card, index) => (
                 <ListingCard key={index} {...card} boxShadow={0} />
               ))}
-            </Stack>{" "}
+            </Stack>
           </Box>
         </Hidden>
+      </Box>
+      <Box display={{ xs: "none", sm: "block" }}>
+        <Footer />
       </Box>
     </>
   );

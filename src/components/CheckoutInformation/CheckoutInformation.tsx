@@ -7,17 +7,17 @@ import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
-import Checkbox from '@material-ui/core/Checkbox';
+import Checkbox from "@material-ui/core/Checkbox";
 
 interface Props {
   sx?: CSSObject;
   finePrint?: {
     title: string;
     description: string;
-  }
+  };
 }
 
-const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
+const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
   const [checkState, setCheckState] = useState(false);
 
   const handleCheck = () => {
@@ -48,7 +48,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
         >
           Traveller Information
         </Typography>
-        <Grid container spacing={2} sx={{py: 2}}>
+        <Grid container spacing={2} sx={{ py: 2 }}>
           <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
@@ -58,7 +58,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               fullWidth={true}
             />
           </Grid>
-          <Grid item xs={12} sm={6} order={{xs: 3, sm: 2}}>
+          <Grid item xs={12} sm={6} order={{ xs: 3, sm: 2 }}>
             <TextField
               variant="outlined"
               type="text"
@@ -68,12 +68,12 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               sx={{
                 mt: {
                   sm: 0,
-                  xs: 1
-                }
+                  xs: 1,
+                },
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} order={{xs: 2, sm: 3}}>
+          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 3 }}>
             <TextField
               variant="outlined"
               type="text"
@@ -83,12 +83,12 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               sx={{
                 mt: {
                   sm: 0,
-                  xs: 1
-                }
+                  xs: 1,
+                },
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} order={{xs: 4, sm: 4}}>
+          <Grid item xs={12} sm={6} order={{ xs: 4, sm: 4 }}>
             <TextField
               variant="outlined"
               type="date"
@@ -96,13 +96,13 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               defaultValue=""
               fullWidth={true}
               InputLabelProps={{
-                shrink: true
+                shrink: true,
               }}
               sx={{
                 mt: {
                   sm: 0,
-                  xs: 1
-                }
+                  xs: 1,
+                },
               }}
             />
           </Grid>
@@ -118,7 +118,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
         >
           Payment Information
         </Typography>
-        <Grid container spacing={2} sx={{py: 2}}>
+        <Grid container spacing={2} sx={{ py: 2 }}>
           <Grid item xs={12}>
             <TextField
               variant="outlined"
@@ -145,13 +145,13 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               defaultValue={""}
               fullWidth={true}
               InputLabelProps={{
-                shrink: true
+                shrink: true,
               }}
               sx={{
                 mt: {
                   sm: 0,
-                  xs: 1
-                }
+                  xs: 1,
+                },
               }}
             />
           </Grid>
@@ -164,8 +164,8 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               sx={{
                 mt: {
                   sm: 0,
-                  xs: 1
-                }
+                  xs: 1,
+                },
               }}
             />
           </Grid>
@@ -174,7 +174,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               <Checkbox
@@ -182,14 +182,13 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
                 color="primary"
                 onChange={handleCheck}
               />
-              <Typography
-                variant="body2"
-              >
-                I agree to the booking <Link href="#">terms of service</Link> and cancellation policy.
+              <Typography variant="body2">
+                I agree to the booking <Link href="#">terms of service</Link>{" "}
+                and cancellation policy.
               </Typography>
             </Box>
             <Hidden smUp>
-              {(finePrint !== null) && (
+              {finePrint !== null && (
                 <Box>
                   <Typography
                     variant="body1"
@@ -199,7 +198,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
                       textAlign: "center",
                       fontSize: { xs: "85%", sm: "100%" },
                       textTransform: "capitalize",
-                      mt: 0.5
+                      mt: 0.5,
                     }}
                   >
                     {finePrint.title}
@@ -207,7 +206,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
                   <Typography
                     variant="body2"
                     sx={{
-                      mt: 0.5
+                      mt: 0.5,
                     }}
                   >
                     {finePrint.description}
@@ -217,10 +216,10 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
             </Hidden>
           </Grid>
           <Grid item xs={12}>
-            <Button 
-              variant="contained" 
-              fullWidth={true} 
-              size="large" 
+            <Button
+              variant="contained"
+              fullWidth={true}
+              size="large"
               color="primary"
             >
               Book It
@@ -233,14 +232,15 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint=null }) => {
                 sx={{
                   fontSize: "90%",
                   color: "text.primary",
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
-                Your card will be authorized for $470.3, but you will not be charged until you check-in.
+                Your card will be authorized for $470.30, but you will not be
+                charged until you check-in.
               </Typography>
             </Grid>
           </Hidden>
-        </Grid>       
+        </Grid>
       </Box>
     </Box>
   );
