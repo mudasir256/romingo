@@ -22,7 +22,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
 import RomingoGuarantee from "../../components/RomingoGuarantee";
-import RomingoScore from "../../components/UI/RomingoScore";
+import RomingoScore from "../../components/RomingoScore";
 import AmenitiesCard from "../../components/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";

@@ -41,14 +41,13 @@ const Header: FC<Props> = ({ sx }) => {
         <Box>
           <Box
             component="img"
-            src="/images/Adobe_6.jpeg"
+            src="/images/Adobe_6_torn.jpeg"
             alt="background"
             draggable="false"
             sx={{
               objectFit: "cover",
               width: "100%",
               height: { xs: 600, sm: 640, md: "100vh" },
-              "& > img": { boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.3)" },
             }}
           />
         </Box>

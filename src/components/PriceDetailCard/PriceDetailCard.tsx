@@ -4,20 +4,16 @@ import { CSSObject } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 interface Props {
-  sx?: CSSObject,
+  sx?: CSSObject;
   details: {
     price: number;
     stateTax: number;
     cityTax: number;
     total: number;
-  }
+  };
 }
 
-const PriceDetailCard: FC<Props> = ({
-  sx,
-  details
-}) => {
-  
+const PriceDetailCard: FC<Props> = ({ sx, details }) => {
   return (
     <Box
       sx={{
@@ -46,7 +42,8 @@ const PriceDetailCard: FC<Props> = ({
           justifyContent: "space-between",
           alignItems: "flex-end",
           mt: 1,
-        }}>
+        }}
+      >
         <Typography
           variant="body2"
           sx={{
@@ -71,7 +68,7 @@ const PriceDetailCard: FC<Props> = ({
             paddingLeft: "8px",
           }}
         >
-          {`$${details.price}`}
+          {`$${details.price.toFixed(2)}`}
         </Typography>
       </Box>
       <Box
@@ -80,7 +77,8 @@ const PriceDetailCard: FC<Props> = ({
           justifyContent: "space-between",
           alignItems: "flex-end",
           mt: 1,
-        }}>
+        }}
+      >
         <Typography
           variant="body2"
           sx={{
@@ -105,7 +103,7 @@ const PriceDetailCard: FC<Props> = ({
             paddingLeft: "8px",
           }}
         >
-          {`$${details.stateTax}`}
+          {`$${details.stateTax.toFixed(2)}`}
         </Typography>
       </Box>
       <Box
@@ -115,8 +113,9 @@ const PriceDetailCard: FC<Props> = ({
           alignItems: "flex-end",
           mt: 1,
           pb: 1,
-          borderBottom: "1px solid #DDD"
-        }}>
+          borderBottom: "1px solid #DDD",
+        }}
+      >
         <Typography
           variant="body2"
           sx={{
@@ -141,7 +140,7 @@ const PriceDetailCard: FC<Props> = ({
             paddingLeft: "8px",
           }}
         >
-          {`$${details.cityTax}`}
+          {`$${details.cityTax.toFixed(2)}`}
         </Typography>
       </Box>
       <Box
@@ -150,7 +149,8 @@ const PriceDetailCard: FC<Props> = ({
           justifyContent: "space-between",
           alignItems: "flex-end",
           mt: 1,
-        }}>
+        }}
+      >
         <Typography
           variant="body2"
           sx={{
@@ -175,7 +175,7 @@ const PriceDetailCard: FC<Props> = ({
             paddingLeft: "8px",
           }}
         >
-          {`$${details.total}`}
+          {`$${details.total.toFixed(2)}`}
         </Typography>
       </Box>
     </Box>

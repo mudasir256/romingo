@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import Check from "@material-ui/icons/Check";
 import Chip from "@material-ui/core/Chip";
 import { FC } from "react";
-import RomingoScore from "../UI/RomingoScore/RomingoScore";
+import RomingoScore from "../RomingoScore/RomingoScore";
 
 export interface ListingCardProps {
   image: string;
