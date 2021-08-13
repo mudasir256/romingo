@@ -41,7 +41,7 @@ const Header: FC<Props> = ({ sx }) => {
         <Box>
           <Box
             component="img"
-            src="/images/dog-background.webp"
+            src="/images/Adobe_6.jpeg"
             alt="background"
             draggable="false"
             sx={{
@@ -64,11 +64,12 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box
           sx={{
-            borderRadius: 5,
+            borderRadius: { xs: 0, md: 10 },
             zIndex: 100,
-            pt: { xs: 2, md: 6 },
-            pb: { xs: 0, md: 6 },
-            px: 1,
+            backgroundColor: "#eceff1D9",
+            pt: { xs: 2, md: 3.5 },
+            pb: { xs: 0, md: 0 },
+            px: 0,
             mx: 1,
           }}
         >
@@ -80,8 +81,7 @@ const Header: FC<Props> = ({ sx }) => {
               textAlign: "center",
               fontSize: {
                 xs: "2rem",
-                sm: "3rem",
-                md: "3.75rem",
+                md: "4rem",
               },
             }}
           >
@@ -94,9 +94,9 @@ const Header: FC<Props> = ({ sx }) => {
               textAlign: "center",
               fontSize: {
                 xs: "1rem",
-                sm: "1.25rem",
+                md: "1.5rem",
               },
-              maxWidth: { xs: "100%", sm: "60%" },
+              maxWidth: { xs: "80%", md: "95%" },
               margin: "0 auto",
               mt: 1,
             }}
@@ -105,11 +105,12 @@ const Header: FC<Props> = ({ sx }) => {
           </Typography>
           <Box
             sx={{
-              backgroundColor: "rgba(255, 255, 255, 0.95)",
+              backgroundColor: "white",
               p: 1.5,
               pb: 0.5,
-              mt: { xs: 2, md: 8 },
+              mt: { xs: 2, md: 4 },
               borderRadius: { xs: 1, md: 25 },
+              boxShadow: 5,
             }}
           >
             <FilterBar
