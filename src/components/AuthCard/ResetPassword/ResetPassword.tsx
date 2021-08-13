@@ -2,7 +2,6 @@ import Box from "@material-ui/core/Box";
 import React, { FC, useState } from "react";
 import { CSSObject } from "@material-ui/core";
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
