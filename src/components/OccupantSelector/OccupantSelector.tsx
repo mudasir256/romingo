@@ -21,7 +21,6 @@ interface Props {
   fullWidth?: boolean;
   size?: "small" | "medium" | undefined;
   variant?: "filled" | "outlined" | "standard" | undefined;
-  inputRef?: any;
 }
 
 const OccupantSelector: FC<Props> = ({
@@ -31,9 +30,7 @@ const OccupantSelector: FC<Props> = ({
   fullWidth = true,
   size = "medium",
   variant = "outlined",
-  inputRef,
 }) => {
-  const occupantRef = useRef(inputRef);
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
 
@@ -50,7 +47,6 @@ const OccupantSelector: FC<Props> = ({
       <TextField
         fullWidth={fullWidth}
         label="Occupants"
-        inputRef={occupantRef}
         sx={sx}
         size={size}
         variant={variant}

@@ -36,6 +36,7 @@ const LoginCard: FC<Props> = ({ sx }) => {
           fullWidth={true}
           name="password"
           label="Password"
+          type="password"
           variant="outlined"
           value={password}
           validators={["required"]}

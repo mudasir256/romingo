@@ -1,8 +1,7 @@
 import Box from "@material-ui/core/Box";
 import React, { FC, useState } from "react";
 import { CSSObject } from "@material-ui/core";
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import Grid from "@material-ui/core/Grid";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
@@ -22,68 +21,68 @@ const ResetPassword: FC<Props> = ({ sx }) => {
   const Check_6_Digit_Regx = /^(\s*\d{6}\s*)(,\s*\d{6}\s*)*,?\s*$/;
 
   React.useEffect(() => {
-    ValidatorForm.addValidationRule('isPasswordMatch', (value:string) => {
+    ValidatorForm.addValidationRule("isPasswordMatch", (value: string) => {
       if (value !== password) {
-          return false;
+        return false;
       }
       return true;
     });
 
     return () => {
-      ValidatorForm.removeValidationRule('isPasswordMatch');
-    }
-  })
+      ValidatorForm.removeValidationRule("isPasswordMatch");
+    };
+  });
 
   React.useEffect(() => {
     if (Check_6_Digit_Regx.test(resetCode)) {
-      console.log('here'); // Call endpoint to verify reset code
+      console.log("here"); // Call endpoint to verify reset code
 
       /*if success, go to next step*/
       setStep(3);
     }
-  }, [resetCode])
+  }, [resetCode]);
 
   return (
-    <Box
-      sx={{...sx}}
-    >
-      {(step === 1) && 
-        (<ValidatorForm
+    <Box sx={{ ...sx }}>
+      {step === 1 && (
+        <ValidatorForm
           onSubmit={(e: React.SyntheticEvent) => {
             e.preventDefault();
             setStep(step + 1);
-          }}>
+          }}
+        >
           <TextValidator
             fullWidth={true}
             name="email"
             label="Email Address"
             variant="outlined"
             value={email}
-            validators={['required', 'isEmail']}
-            errorMessages={['This field is required', 'Email is not valid']}
+            validators={["required", "isEmail"]}
+            errorMessages={["This field is required", "Email is not valid"]}
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
               setEmail(e.currentTarget.value);
             }}
-            FormHelperTextProps={{
-
-            }}
+            FormHelperTextProps={{}}
           />
           <Box
             sx={{
               mt: 1,
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
-            <Link href="#" onClick={e => {
-              e.preventDefault();
-              e.stopPropagation();
-              setStep(2);
-            }}>
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setStep(2);
+              }}
+            >
               <Typography
                 variant="body2"
                 sx={{
                   mt: 1,
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
                 Already have a reset code?
@@ -93,13 +92,13 @@ const ResetPassword: FC<Props> = ({ sx }) => {
           <Box
             sx={{
               mt: 1,
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
-            <Button 
+            <Button
               variant="contained"
               size="large"
-              color="primary" 
+              color="primary"
               type="submit"
             >
               Reset Password
@@ -107,12 +106,13 @@ const ResetPassword: FC<Props> = ({ sx }) => {
           </Box>
         </ValidatorForm>
       )}
-      {(step === 2) && 
-        (<ValidatorForm
+      {step === 2 && (
+        <ValidatorForm
           onSubmit={(e: React.SyntheticEvent) => {
             e.preventDefault();
             setStep(step + 1);
-          }}>
+          }}
+        >
           <TextValidator
             fullWidth={true}
             name="reset code"
@@ -120,23 +120,21 @@ const ResetPassword: FC<Props> = ({ sx }) => {
             variant="outlined"
             placeholder="6 digits number"
             value={resetCode}
-            validators={['required']}
-            errorMessages={['This field is required']}
+            validators={["required"]}
+            errorMessages={["This field is required"]}
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
               setResetCode(e.currentTarget.value);
-
             }}
-            FormHelperTextProps={{
-
-            }}
+            FormHelperTextProps={{}}
           />
         </ValidatorForm>
       )}
-      {(step === 3) && 
-        (<ValidatorForm
+      {step === 3 && (
+        <ValidatorForm
           onSubmit={(e: React.SyntheticEvent) => {
             e.preventDefault();
-          }}>
+          }}
+        >
           <TextValidator
             fullWidth={true}
             name="password"
@@ -144,14 +142,12 @@ const ResetPassword: FC<Props> = ({ sx }) => {
             variant="outlined"
             type="password"
             value={password}
-            validators={['required']}
-            errorMessages={['This field is required']}
+            validators={["required"]}
+            errorMessages={["This field is required"]}
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
               setPassword(e.currentTarget.value);
             }}
-            FormHelperTextProps={{
-
-            }}
+            FormHelperTextProps={{}}
           />
           <TextValidator
             fullWidth={true}
@@ -160,28 +156,26 @@ const ResetPassword: FC<Props> = ({ sx }) => {
             variant="outlined"
             type="password"
             value={confirmPassword}
-            validators={['required', 'isPasswordMatch']}
-            errorMessages={['This field is required', 'password mismatch']}
+            validators={["required", "isPasswordMatch"]}
+            errorMessages={["This field is required", "password mismatch"]}
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
               setConfirmPassword(e.currentTarget.value);
             }}
-            FormHelperTextProps={{
-
-            }}
+            FormHelperTextProps={{}}
             sx={{
-              mt: 1
+              mt: 1,
             }}
           />
           <Box
             sx={{
               mt: 1,
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
-            <Button 
+            <Button
               variant="contained"
               size="large"
-              color="primary" 
+              color="primary"
               type="submit"
             >
               Reset Password

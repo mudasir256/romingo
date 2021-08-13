@@ -3383,6 +3383,14 @@
   dependencies:
     "@types/react" "*"
 
+"@types/material-ui@*":
+  "integrity" "sha512-YhZzW7rRqT2VpNTDYdXAB4Qgy1oBK2YDL1QSeL8t2ALmFTv141a5KW1buTobkc840QN+GGvon/u814jOxsvZLw=="
+  "resolved" "https://registry.npmjs.org/@types/material-ui/-/material-ui-0.21.9.tgz"
+  "version" "0.21.9"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-addons-linked-state-mixin" "*"
+
 "@types/mdast@^3.0.0":
   "integrity" "sha512-YwR7OK8aPmaBvMMUi+pZXBNoW2unbVbfok4YRqGMJBe1dpDlzpRkJrYEYmvjxgs5JhuQmKfDexrN98u941Zasg=="
   "resolved" "https://registry.npmjs.org/@types/mdast/-/mdast-3.0.7.tgz"
@@ -3482,6 +3490,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-addons-linked-state-mixin@*":
+  "integrity" "sha512-DF9utM6VjuIaY388R6XWWDs7CIDTH7on1k1yR+hqaL/T4/OqSCW5uij28APq9KI82CZf0/qtBJI+pjvXcOh0kQ=="
+  "resolved" "https://registry.npmjs.org/@types/react-addons-linked-state-mixin/-/react-addons-linked-state-mixin-0.14.22.tgz"
+  "version" "0.14.22"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^17.0.9":
   "integrity" "sha512-wIvGxLfgpVDSAMH5utdL9Ngm5Owu0VsGmldro3ORLXV8CShrL8awVj06NuEXFQ5xyaYfdca7Sgbk/50Ri1GdPg=="
   "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-17.0.9.tgz"
@@ -3494,6 +3509,14 @@
   "resolved" "https://registry.npmjs.org/@types/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
   dependencies:
+    "@types/react" "*"
+
+"@types/react-material-ui-form-validator@^2.1.1":
+  "integrity" "sha512-76ldksssD8lTLd+TAhQh9rz1MBgdm17M07GlYH3H56f6Us30RW/8tfaus528GAmH6/ePPJrWNt41yC9V27aLbQ=="
+  "resolved" "https://registry.npmjs.org/@types/react-material-ui-form-validator/-/react-material-ui-form-validator-2.1.1.tgz"
+  "version" "2.1.1"
+  dependencies:
+    "@types/material-ui" "*"
     "@types/react" "*"
 
 "@types/react-redux@^7.1.16":

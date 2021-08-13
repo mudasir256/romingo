@@ -1,11 +1,8 @@
 import Box from "@material-ui/core/Box";
 import React, { FC, useState } from "react";
 import { CSSObject } from "@material-ui/core";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 interface Props {
   sx?: CSSObject;
@@ -18,8 +15,8 @@ const RegisterCard: FC<Props> = ({ sx }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   React.useEffect(() => {
-    ValidatorForm.addValidationRule("isPasswordMatch", (value: string) => {
-      if (value !== password) {
+    ValidatorForm.addValidationRule("isPasswordMatch", () => {
+      if (confirmPassword !== password) {
         return false;
       }
       return true;
@@ -28,7 +25,7 @@ const RegisterCard: FC<Props> = ({ sx }) => {
     return () => {
       ValidatorForm.removeValidationRule("isPasswordMatch");
     };
-  });
+  }, [confirmPassword]);
 
   return (
     <Box sx={{ ...sx }}>
@@ -70,11 +67,16 @@ const RegisterCard: FC<Props> = ({ sx }) => {
         <TextValidator
           fullWidth={true}
           name="password"
+          type="password"
           label="Password"
           variant="outlined"
           value={password}
-          validators={["required"]}
-          errorMessages={["This field is required"]}
+          validators={["required", "minStringLength:8", "maxStringLength:52"]}
+          errorMessages={[
+            "This field is required",
+            "Minimum 8 characters",
+            "Maxium 52 characters",
+          ]}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             setPassword(e.currentTarget.value);
           }}
@@ -87,10 +89,11 @@ const RegisterCard: FC<Props> = ({ sx }) => {
           fullWidth={true}
           name="confirmPassword"
           label="Confirm Password"
+          type="password"
           variant="outlined"
           value={confirmPassword}
           validators={["required", "isPasswordMatch"]}
-          errorMessages={["This field is required", "password mismatch"]}
+          errorMessages={["This field is required", "Password mismatch"]}
           onChange={(e: React.FormEvent<HTMLInputElement>) => {
             setConfirmPassword(e.currentTarget.value);
           }}
