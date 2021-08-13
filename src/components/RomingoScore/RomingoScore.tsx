@@ -2,7 +2,6 @@ import { FC, useState, MouseEvent } from "react";
 import Typography from "@material-ui/core/Typography";
 import Star from "@material-ui/icons/Star";
 import Box from "@material-ui/core/Box";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import Popover from "@material-ui/core/Popover";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
@@ -136,7 +135,6 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
         alignItems: "center",
       }}
     >
-      <Star sx={{ color: "primary.main", fontSize: "130%", mt: -0.1 }} />
       <Typography
         variant="h6"
         sx={{
@@ -145,16 +143,20 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       >
         {score}
       </Typography>
-      <Typography variant="body1" sx={{ ml: 0.75, mt: 0.2 }}>
-        Romingo Score
-      </Typography>
+      <Star sx={{ color: "primary.main", fontSize: "130%", mt: -0.1 }} />
+
       <Typography
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
+        variant="body1"
+        sx={{
+          ml: 0.75,
+          mt: 0.2,
+          textDecoration: "underline",
+          color: "text.secondary",
+        }}
       >
-        <InfoOutlinedIcon
-          sx={{ color: "text.secondary", ml: 0.3, mt: 0.8, fontSize: "130%" }}
-        />
+        Romingo Score
       </Typography>
       <Popover
         id="mouse-over-popover"
@@ -186,7 +188,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
             How is the Romingo Score calculated?
           </Typography>
           <Divider />
-          <Typography sx={{ fontSize: "80%", mt: 0.5 }}>
+          <Typography sx={{ fontSize: "80%", mt: 0.3 }}>
             <List>
               <ListItem disablePadding>
                 <ListItemIcon>

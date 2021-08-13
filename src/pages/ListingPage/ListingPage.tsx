@@ -7,7 +7,7 @@ import { motion, useMotionValue } from "framer-motion";
 import { FC, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
 
-import CardList from "../../components/CardList/CardList";
+import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
@@ -48,7 +48,6 @@ const ListingPage: FC<Props> = ({ cards }) => {
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  console.log(animate);
   return (
     <>
       <Box
@@ -142,6 +141,8 @@ const ListingPage: FC<Props> = ({ cards }) => {
               />
             </Box>
             <Stack spacing={3} divider={<Divider variant="middle" />}>
+              <RomingoGuarantee sx={{ mb: 0 }} />
+
               {cards.map((card, index) => (
                 <ListingCard key={index} {...card} boxShadow={0} />
               ))}
@@ -173,7 +174,8 @@ const ListingPage: FC<Props> = ({ cards }) => {
         <Hidden mdDown>
           <Box
             sx={{
-              m: 3,
+              mx: 3,
+              mt: 1,
               mb: 0,
               width: "55%",
               overflowY: "auto",
@@ -190,6 +192,7 @@ const ListingPage: FC<Props> = ({ cards }) => {
               },
             }}
           >
+            <RomingoGuarantee sx={{ mb: 2 }} />
             <Stack spacing={3} divider={<Divider variant="middle" />}>
               {cards.map((card, index) => (
                 <ListingCard key={index} {...card} boxShadow={0} />
