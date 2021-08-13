@@ -13,14 +13,115 @@ import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
 import { Button } from "@material-ui/core";
+import Footer from "../../components/Footer";
 
 const MotionBox = motion(Box);
+const FooterMenus = {
+  about: [
+    {
+      text: "How Romingo Works",
+      link: "#",
+    },
+    {
+      text: "Newsroom",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+    {
+      text: "Investors",
+      link: "#",
+    },
+    {
+      text: "Romingo Plus",
+      link: "#",
+    },
+  ],
+  contact: [
+    {
+      text: "Contact Us",
+      link: "#",
+    },
+    {
+      text: "Schedule a Meeting",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+    {
+      text: "Investors",
+      link: "#",
+    },
+    {
+      text: "Romingo Plus",
+      link: "#",
+    },
+  ],
+  blog: [
+    {
+      text: "Overview",
+      link: "#",
+    },
+    {
+      text: "Romingo Blog",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+  ],
+  sitemap: [
+    {
+      text: "How Romingo Works",
+      link: "#",
+    },
+    {
+      text: "Newsroom",
+      link: "#",
+    },
+    {
+      text: "Romingo 2021",
+      link: "#",
+    },
+    {
+      text: "Investors",
+      link: "#",
+    },
+    {
+      text: "Romingo Plus",
+      link: "#",
+    },
+  ],
+};
 
 interface Props {
   cards: ListingCardProps[];
+  footerMenus: {
+    about: {
+      text: string;
+      link: string;
+    }[];
+    contact: {
+      text: string;
+      link: string;
+    }[];
+    blog: {
+      text: string;
+      link: string;
+    }[];
+    sitemap: {
+      text: string;
+      link: string;
+    }[];
+  };
 }
 
-const ListingPage: FC<Props> = ({ cards }) => {
+const ListingPage: FC<Props> = ({ cards, footerMenus = FooterMenus }) => {
   const y = useMotionValue(0);
   const { height } = useWindowSize();
   const variants = {
@@ -174,9 +275,9 @@ const ListingPage: FC<Props> = ({ cards }) => {
         <Hidden mdDown>
           <Box
             sx={{
-              mx: 3,
-              mt: 1,
-              mb: 0,
+              px: 3,
+              pt: 2,
+              pb: 3,
               width: "55%",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
@@ -192,14 +293,17 @@ const ListingPage: FC<Props> = ({ cards }) => {
               },
             }}
           >
-            <RomingoGuarantee sx={{ mb: 2 }} />
+            <RomingoGuarantee sx={{ mb: 3 }} />
             <Stack spacing={3} divider={<Divider variant="middle" />}>
               {cards.map((card, index) => (
                 <ListingCard key={index} {...card} boxShadow={0} />
               ))}
-            </Stack>{" "}
+            </Stack>
           </Box>
         </Hidden>
+      </Box>
+      <Box display={{ xs: "none", sm: "block" }}>
+        <Footer footerMenus={footerMenus} />
       </Box>
     </>
   );

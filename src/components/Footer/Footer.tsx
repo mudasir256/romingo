@@ -39,6 +39,7 @@ const Footer: FC<Props> = ({ sx, footerMenus }) => {
   return (
     <Box
       sx={{
+        ...sx,
         pt: 3,
         backgroundColor: "#F7F7F7",
       }}

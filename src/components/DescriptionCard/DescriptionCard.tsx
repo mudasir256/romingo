@@ -30,7 +30,7 @@ const DescriptionCard: FC<Props> = ({ sx, title, description }) => {
             fontWeight: "bold",
             textAlign: "center",
             fontSize: { xs: "85%", sm: "100%" },
-            textTransform: "capitalize"
+            textTransform: "capitalize",
           }}
         >
           {title}
@@ -38,7 +38,7 @@ const DescriptionCard: FC<Props> = ({ sx, title, description }) => {
         <Typography
           variant="body2"
           sx={{
-            mt: 0.5
+            mt: 0.5,
           }}
         >
           {description}

@@ -10,15 +10,12 @@ interface Props {
       adults: number;
       dogs: number;
       children: number;
-    },
+    };
     roomType: string;
-  }
+  };
 }
 
-const BookingDetailCard: FC<Props> = ({
-  details
-}) => {
-  
+const BookingDetailCard: FC<Props> = ({ details }) => {
   return (
     <Box
       sx={{
@@ -43,12 +40,12 @@ const BookingDetailCard: FC<Props> = ({
       </Typography>
       <Box
         sx={{
-          display: "flex"
+          display: "flex",
         }}
       >
         <Box
           sx={{
-            width: "50%"
+            width: "50%",
           }}
         >
           <Typography
@@ -109,7 +106,7 @@ const BookingDetailCard: FC<Props> = ({
       </Box>
       <Box
         sx={{
-          mt: 1
+          mt: 1,
         }}
       >
         <Typography
@@ -141,7 +138,7 @@ const BookingDetailCard: FC<Props> = ({
       </Box>
       <Box
         sx={{
-          mt: 1
+          mt: 1,
         }}
       >
         <Typography
