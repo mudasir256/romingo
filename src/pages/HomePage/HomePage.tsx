@@ -128,10 +128,9 @@ const HomePage: FC<Props> = ({
         <Grid container sx={{ py: 6 }}>
           <Grid item xs={12}>
             <Typography
-              variant="body1"
+              variant="h2"
               sx={{
                 color: "primary.main",
-                fontWeight: "bold",
                 textAlign: "center",
                 fontSize: {
                   xs: "1.5rem",
@@ -142,7 +141,7 @@ const HomePage: FC<Props> = ({
               Seriously, No Pet Fees?
             </Typography>
             <Typography
-              variant="body2"
+              variant="h3"
               sx={{
                 color: "text.secondary",
                 fontSize: {
@@ -181,9 +180,8 @@ const HomePage: FC<Props> = ({
                     }}
                   >
                     <Typography
-                      variant="body1"
+                      variant="h4"
                       sx={{
-                        fontWeight: "bold",
                         color: "secondary.main",
                         textAlign: "center",
                         fontSize: {
@@ -286,9 +284,8 @@ const HomePage: FC<Props> = ({
                     }}
                   >
                     <Typography
-                      variant="body1"
+                      variant="h4"
                       sx={{
-                        fontWeight: "bold",
                         color: "secondary.main",
                         textAlign: "center",
                         fontSize: {
@@ -342,10 +339,9 @@ const HomePage: FC<Props> = ({
           <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
             <Grid item xs={12}>
               <Typography
-                variant="body1"
+                variant="h2"
                 sx={{
                   color: "primary.main",
-                  fontWeight: "bold",
                   textAlign: "center",
                   fontSize: {
                     xs: "1.5rem",
@@ -356,7 +352,7 @@ const HomePage: FC<Props> = ({
                 Explore a Romingo City
               </Typography>
               <Typography
-                variant="body2"
+                variant="h3"
                 sx={{
                   color: "text.secondary",
                   fontSize: {
@@ -420,18 +416,17 @@ const HomePage: FC<Props> = ({
                               }}
                             />
                             <Typography
-                              variant="body1"
+                              variant="h6"
                               sx={{
                                 mt: 2,
                                 textAlign: "center",
                                 textDecoration: "underline",
-                                fontWeight: "bold",
                               }}
                             >
                               {nearCity.city}
                             </Typography>
                             <Typography
-                              variant="body2"
+                              variant="body1"
                               sx={{
                                 textAlign: "center",
                                 mb: 2,
@@ -464,7 +459,7 @@ const HomePage: FC<Props> = ({
           <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
             <Grid item xs={12}>
               <Typography
-                variant="body1"
+                variant="h2"
                 sx={{
                   color: "primary.main",
                   fontWeight: "bold",
@@ -534,7 +529,6 @@ const HomePage: FC<Props> = ({
                               sx={{
                                 py: 1,
                                 textAlign: "center",
-                                fontWeight: "bold",
                                 color: "text.secondary",
                                 fontSize: "125%",
                                 width: "100%",

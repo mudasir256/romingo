@@ -17,6 +17,39 @@ export const theme = {
     },
   },
   typography: {
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontFamily: `"Sansita", "Overpass", sans-serif`,
+    h1: {
+      fontFamily: "Sansita",
+      fontWeight: 900,
+    },
+    h2: {
+      fontFamily: "Sansita",
+      fontWeight: 900,
+    },
+    h3: {
+      fontFamily: "Sansita",
+      fontWeight: 400,
+    },
+    h4: {
+      fontFamily: "Sansita",
+      fontWeight: 400,
+    },
+    h5: {
+      fontFamily: "Sansita",
+      fontWeight: 400,
+    },
+    h6: {
+      fontFamily: "Sansita",
+      fontWeight: 400,
+    },
+    body1: {
+      fontFamily: "Overpass",
+    },
+    body2: {
+      fontFamily: "Overpass",
+    },
+    button: {
+      fontFamily: "Overpass",
+    },
   },
 };

@@ -56,7 +56,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
           textDecoration: "underline",
         }}
       >
-        What is this?
+        Info
       </Typography>
       <Popover
         open={open}

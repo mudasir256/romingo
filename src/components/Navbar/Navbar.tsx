@@ -121,11 +121,11 @@ const Navbar: FC<Props> = ({ sx }) => {
             <Hidden smUp>
               <Box
                 component="img"
-                src={"/images/romingo_logo_yellow.svg"}
+                src={"/images/Romingo_Logo_Black.svg"}
                 alt="Logo"
                 draggable="false"
                 sx={{
-                  maxHeight: { xs: "35px", md: "50px" },
+                  maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
             </Hidden>
@@ -145,18 +145,18 @@ const Navbar: FC<Props> = ({ sx }) => {
                 top: 0,
                 left: "calc(50% - 62.5px)",
                 height: "100%",
-                width: "125px",
+                width: "180px",
                 textAlign: "center",
                 display: "flex",
               }}
             >
               <Box
                 component="img"
-                src={"/images/romingo_logo_yellow.svg"}
+                src={"/images/Romingo_Logo_Black.svg"}
                 alt="Logo"
                 draggable="false"
                 sx={{
-                  maxWidth: "125px",
+                  maxWidth: "180px",
                   margin: "auto auto",
                 }}
               />

@@ -73,10 +73,9 @@ const Header: FC<Props> = ({ sx }) => {
           }}
         >
           <Typography
-            variant="h2"
+            variant="h1"
             sx={{
               color: "primary.main",
-              fontWeight: "bold",
               textAlign: "center",
               fontSize: {
                 xs: "2rem",
@@ -87,7 +86,7 @@ const Header: FC<Props> = ({ sx }) => {
             Goodbye Pet Fees
           </Typography>
           <Typography
-            variant="h5"
+            variant="h3"
             sx={{
               color: "text.secondary",
               textAlign: "center",

@@ -47,7 +47,7 @@ const CheckoutPage: FC<Props> = ({
           }}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} md={8}>
               <Hidden smDown>
                 <ListingCard {...hotel} />
               </Hidden>
@@ -55,10 +55,10 @@ const CheckoutPage: FC<Props> = ({
                 <ListingCardMap {...hotel} />
               </Hidden>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} md={4}>
               <BookingDetailCard details={bookingDetails} />
             </Grid>
-            <Grid item xs={12} sm={8} order={{ xs: 4, sm: 3 }}>
+            <Grid item xs={12} md={8} order={{ xs: 4, md: 3 }}>
               <CancelPolicy />
               <DescriptionCard
                 {...checkinDescription}
@@ -73,9 +73,9 @@ const CheckoutPage: FC<Props> = ({
                 finePrint={finePrint}
               />
             </Grid>
-            <Grid item xs={12} sm={4} order={{ xs: 3, sm: 4 }}>
+            <Grid item xs={12} md={4} order={{ xs: 3, md: 4 }}>
               <PriceDetailCard details={priceDetails} />
-              <Hidden smDown>
+              <Hidden mdDown>
                 <DescriptionCard
                   {...finePrint}
                   sx={{

@@ -68,14 +68,14 @@ const ListingPage: FC<Props> = ({ cards }) => {
       >
         <Box
           component="img"
-          src={"/images/romingo_logo_yellow.svg"}
+          src={"/images/Romingo_Logo_Black.svg"}
           alt="Logo"
           draggable="false"
           sx={{
             display: { xs: "none", md: "block" },
             ml: { xs: 0, md: 4 },
             mr: { xs: 0, md: 8 },
-            height: { xs: "0px", md: "42px" },
+            height: { xs: "0px", md: "45px" },
           }}
         />
         <FilterBar />

@@ -118,7 +118,7 @@ const ResetPassword: FC<Props> = ({ sx }) => {
             name="reset code"
             label="Reset Code"
             variant="outlined"
-            placeholder="6 digits number"
+            placeholder="6 character reset code from your email"
             value={resetCode}
             validators={["required"]}
             errorMessages={["This field is required"]}
