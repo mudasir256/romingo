@@ -1,5 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { FC, useState, MouseEventHandler } from "react";
+import { connect, useStore, useDispatch } from 'react-redux';
+import { Dispatch } from "redux"
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import Autocomplete from "@material-ui/core/Autocomplete";
@@ -19,6 +21,8 @@ import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
 
+import { saveSearch } from "../../store/searchReducer"
+
 interface Props {
   sx?: CSSObject;
   zoomed?: boolean;
@@ -36,6 +40,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     children: 0,
     dogs: 1,
   });
+
+  const [selectedCity, setSelectedCity] = useState("");
 
   const cities = [
     { label: "San Francisco, CA", id: 1 },
@@ -62,8 +68,17 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     setZoomIn(true);
   };
 
+  const dispatch: Dispatch<any> = useDispatch();
+
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     setZoomIn(false);
+    if (selectedCity && checkDate[0] && checkDate[1])
+      dispatch(saveSearch({
+        city: selectedCity,
+        checkIn: dateToString(checkDate[0]),
+        checkOut: dateToString(checkDate[1]),
+        occupants
+      }))
   };
 
   return (
@@ -189,6 +204,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                       input: {
                         color: "primary.main",
                       },
+                    }}
+                    onChange={(e, values) => {
+                      if (values)
+                        setSelectedCity(values.label)
                     }}
                     renderInput={(params) => (
                       <TextField

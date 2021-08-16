@@ -4,9 +4,12 @@ import Stack from "@material-ui/core/Stack";
 import Divider from "@material-ui/core/Divider";
 import MapIcon from "@material-ui/icons/Map";
 import { motion, useMotionValue } from "framer-motion";
-import { FC, useRef, useState } from "react";
+import { FC, useRef, useState, MouseEventHandler } from "react";
+import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
+import Link from "@material-ui/core/Link";
 
+import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 import ListingCard from "../../components/ListingCard";
@@ -21,7 +24,9 @@ interface Props {
   cards: ListingCardProps[];
 }
 
-const ListingPage: FC<Props> = ({ cards }) => {
+const ListingPage: FC<Props> = ({ ...props }) => {
+  const cards = useSelector((state: any) => state.hotelListReducer.hotels);
+
   const y = useMotionValue(0);
   const { height } = useWindowSize();
   const variants = {
@@ -48,6 +53,14 @@ const ListingPage: FC<Props> = ({ cards }) => {
   };
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
   const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const history = useHistory();
+
+  const handleClick: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push("/details/1");
+  };
 
   return (
     <>
@@ -144,8 +157,10 @@ const ListingPage: FC<Props> = ({ cards }) => {
             <Stack spacing={3} divider={<Divider variant="middle" />}>
               <RomingoGuarantee sx={{ mb: 0 }} />
 
-              {cards.map((card, index) => (
-                <ListingCard key={index} {...card} boxShadow={0} />
+              {cards.map((card: any, index: number) => (
+                <Link href="#" key={index} onClick={handleClick}>
+                  <ListingCard {...card} boxShadow={0} />
+                </Link>
               ))}
             </Stack>
           </motion.div>
@@ -195,8 +210,10 @@ const ListingPage: FC<Props> = ({ cards }) => {
           >
             <RomingoGuarantee sx={{ mb: 3 }} />
             <Stack spacing={3} divider={<Divider variant="middle" />}>
-              {cards.map((card, index) => (
-                <ListingCard key={index} {...card} boxShadow={0} />
+              {cards.map((card: any, index: number) => (
+                <Link href="#" key={index} onClick={handleClick}>
+                  <ListingCard {...card} boxShadow={0} />
+                </Link>
               ))}
             </Stack>
           </Box>
