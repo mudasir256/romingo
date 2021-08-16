@@ -1,6 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { FC, useState, MouseEventHandler } from "react";
 import { connect, useStore, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux"
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
@@ -29,6 +30,8 @@ interface Props {
 }
 
 const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
+  const history = useHistory();
+
   const [zoomIn, setZoomIn] = useState(zoomed);
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     null,
@@ -72,13 +75,16 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     setZoomIn(false);
-    if (selectedCity && checkDate[0] && checkDate[1])
+    if (selectedCity && checkDate[0] && checkDate[1]) {
       dispatch(saveSearch({
         city: selectedCity,
         checkIn: dateToString(checkDate[0]),
         checkOut: dateToString(checkDate[1]),
         occupants
-      }))
+      }));
+
+      history.push("/listings");
+    }
   };
 
   return (

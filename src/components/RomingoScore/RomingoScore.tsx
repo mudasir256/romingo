@@ -84,7 +84,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
             How is the Romingo Score calculated?
           </Typography>
           <Divider />
-          <Typography sx={{ fontSize: "80%", mt: 0.5 }}>
+          <Box sx={{ fontSize: "80%", mt: 0.5 }}>
             <List>
               <ListItem disablePadding>
                 <ListItemIcon>
@@ -123,7 +123,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
                 </ListItemIcon>
               </ListItem>
             </List>
-          </Typography>
+          </Box>
         </Box>
       </Popover>
     </Box>
@@ -188,7 +188,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
             How is the Romingo Score calculated?
           </Typography>
           <Divider />
-          <Typography sx={{ fontSize: "80%", mt: 0.3 }}>
+          <Box sx={{ fontSize: "80%", mt: 0.3 }}>
             <List>
               <ListItem disablePadding>
                 <ListItemIcon>
@@ -227,7 +227,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
                 </ListItemIcon>
               </ListItem>
             </List>
-          </Typography>
+          </Box>
         </Box>
       </Popover>
     </Box>

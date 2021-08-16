@@ -181,7 +181,7 @@ const Navbar: FC<Props> = ({ sx }) => {
             textAlign: "center",
           }}
         >
-          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+          <Typography variant="body1" color="primary" sx={{ fontWeight: "bold" }}>
             {selectDialog === LOGIN
               ? "Login"
               : selectDialog === REGISTER

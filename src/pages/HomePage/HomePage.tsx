@@ -124,13 +124,7 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
-  const history = useHistory();
-
-  useSelector((state: any) => {
-    if (state.searchReducer.search !== initialState.search) {
-      history.push("/listings");
-    }
-  })
+  
   return (
     <>
       <Header />
