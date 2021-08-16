@@ -1,6 +1,7 @@
 import { FC } from "react";
 import HomePage from "./pages/HomePage";
 import ListingPage from "./pages/ListingPage";
+import DetailsPage from "./pages/DetailsPage";
 
 interface Routes {
   path: string;
@@ -19,6 +20,11 @@ const routes: Routes[] = [
     component: ListingPage,
     requireAuth: false,
   },
+  {
+    path: "/details/:id",
+    component: DetailsPage,
+    requireAuth: false,
+  }
 ];
 
 export default routes;

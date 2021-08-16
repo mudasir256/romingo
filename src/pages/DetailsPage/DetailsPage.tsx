@@ -1,4 +1,6 @@
 import { FC, useState, MouseEventHandler } from "react";
+import { connect, useStore, useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Fab from "@material-ui/core/Fab";
 import Box from "@material-ui/core/Box";
@@ -18,6 +20,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Link from "@material-ui/core/Link";
 
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
@@ -28,6 +31,7 @@ import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import ActivitiesNearby from "../../components/ActivitiesNearby";
 import CancelPolicy from "../../components/CancelPolicy";
+import FilterBar from "../../components/FilterBar";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -74,18 +78,9 @@ interface Props {
 }
 
 const DetailsPage: FC<Props> = ({
-  name,
-  location,
-  mainImg,
-  gallery,
-  score,
-  defaultDescription = "",
-  dogAmenitiesTitle,
-  amenitiesTitle,
-  amenities = [],
-  roomList,
-  nearby,
+  ...props
 }) => {
+  const {name, location, mainImg, gallery, score, defaultDescription, cancellation, cancelPenalty, dogAmenitiesTitle, roomList, amenitiesTitle, amenities, nearby} = useSelector((state: any) => state.hotelDetailReducer.detail);
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
     buttons: {
@@ -133,8 +128,44 @@ const DetailsPage: FC<Props> = ({
     return 3;
   };
 
+  const history = useHistory();
+
   return (
     <>
+      <Box
+        sx={{
+          position: { xs: "fixed", md: "relative" },
+          top: 0,
+          left: 0,
+          right: 0,
+          width: "100%",
+          margin: "0 auto",
+          boxShadow: { xs: 0, md: 2 },
+          display: "flex",
+          justifyContent: { xs: "center", md: "flex-start" },
+          zIndex: 1000,
+          py: { xs: 0, md: 1 },
+        }}
+      >
+        <Link href="#" onClick={e => {
+          e.preventDefault();
+          history.push("/");
+        }}>
+          <Box
+            component="img"
+            src={"/images/romingo_logo_yellow.svg"}
+            alt="Logo"
+            draggable="false"
+            sx={{
+              display: { xs: "none", md: "block" },
+              ml: { xs: 0, md: 4 },
+              mr: { xs: 0, md: 8 },
+              height: { xs: "0px", md: "42px" },
+            }}
+          />
+        </Link>
+        <FilterBar />
+      </Box>
       <Box
         component="img"
         src={mainImg}
@@ -180,7 +211,7 @@ const DetailsPage: FC<Props> = ({
           <Hidden mdDown>
             <Grid item xs={12} sm={6}>
               <Grid container spacing={2}>
-                {gallery.slice(0, 4).map((img) => {
+                {gallery.slice(0, 4).map((img: any) => {
                   return (
                     <Grid item sm={6} key={img}>
                       <Box
@@ -374,7 +405,7 @@ const DetailsPage: FC<Props> = ({
               <Container sx={{ mt: { xs: 0, md: 2 } }}>
                 <SRLWrapper options={lightBoxOptions}>
                   <ImageList variant="masonry" cols={getImageCols()} gap={8}>
-                    {gallery.map((item) => (
+                    {gallery.map((item: any) => (
                       <ImageListItem key={item} cols={1} rows={1}>
                         <img
                           srcSet={`${item}?w=161&fit=crop&auto=format 1x,

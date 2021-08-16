@@ -6,13 +6,14 @@ interface LoginInfo {
   password: string;
 }
 
-export const loginUser = (userData: LoginInfo, history: any) => (dispatch: UserDispatchType) => {
+export const loginUser = (userData: LoginInfo) => (dispatch: UserDispatchType) => {
   // call api to login
   const res = {
     token: "test token",
     id: "123412341224",
-    email: "test@email.com"
+    email: userData.email
   };
+  console.log(res);
 
   authService.setCredentials(res, res.token);
   dispatch({

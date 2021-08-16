@@ -1,22 +1,38 @@
 import Box from "@material-ui/core/Box";
 import { FC, useState } from "react";
+import { connect, useStore, useDispatch } from 'react-redux';
+import { Dispatch } from "redux"
 import { CSSObject } from "@material-ui/core";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Button from "@material-ui/core/Button";
 
+import { authService } from "../../../services/authService";
+import { loginUser } from "../../../store/userReducer"
+
 interface Props {
   sx?: CSSObject;
+}
+
+interface LoginInfo {
+  email: string;
+  password: string;
 }
 
 const LoginCard: FC<Props> = ({ sx }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const dispatch: Dispatch<any> = useDispatch();
+
   return (
     <Box sx={{ ...sx }}>
       <ValidatorForm
         onSubmit={(e: React.SyntheticEvent) => {
           e.preventDefault();
+          dispatch(loginUser({
+            email,
+            password
+          }))
         }}
       >
         <TextValidator

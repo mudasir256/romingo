@@ -21,11 +21,11 @@ export const simulateHttpRequest = (action: SearchAction) => {
   return (dispatch: SearchDispatchType) => {
     setTimeout(() => {
       dispatch(action);
-    }, 500);
+    }, 100);
   };
 };
 
-const initialState: SearchState = {
+export const initialState: SearchState = {
   search: {
     city: "San Francisco",
     checkIn: "8/1/2021",

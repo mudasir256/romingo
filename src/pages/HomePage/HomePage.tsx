@@ -1,5 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
+import { connect, useStore, useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { CSSObject } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -8,6 +10,7 @@ import Link from "@material-ui/core/Link";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { initialState } from "../../store/searchReducer";
 
 interface Props {
   sx?: CSSObject;
@@ -121,6 +124,13 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
+  const history = useHistory();
+
+  useSelector((state: any) => {
+    if (state.searchReducer.search !== initialState.search) {
+      history.push("/listings");
+    }
+  })
   return (
     <>
       <Header />
