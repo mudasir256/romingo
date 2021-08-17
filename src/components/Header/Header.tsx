@@ -16,8 +16,7 @@ const Header: FC<Props> = ({ sx }) => {
       sx={{
         width: "100%",
         minHeight: {
-          xs: 600,
-          sm: 640,
+          xs: 620,
           md: "100vh",
         },
         position: "relative",
@@ -38,19 +37,17 @@ const Header: FC<Props> = ({ sx }) => {
           width: "100%",
         }}
       >
-        <Box>
-          <Box
-            component="img"
-            src="/images/Adobe_6_torn.jpeg"
-            alt="background"
-            draggable="false"
-            sx={{
-              objectFit: "cover",
-              width: "100%",
-              height: { xs: 600, sm: 640, md: "100vh" },
-            }}
-          />
-        </Box>
+        <Box
+          component="img"
+          src="/images/Adobe_6.jpeg"
+          alt="background"
+          draggable="false"
+          sx={{
+            objectFit: "cover",
+            width: "100%",
+            height: { xs: 620, md: "100vh" },
+          }}
+        />
       </Box>
       <Box
         sx={{
@@ -66,9 +63,10 @@ const Header: FC<Props> = ({ sx }) => {
             borderRadius: { xs: 0, md: 10 },
             zIndex: 100,
             backgroundColor: "#eceff1D9",
+            maxWidth: { xs: "100%", md: "90%", xl: "80%" },
             pt: { xs: 2, md: 3.5 },
-            pb: { xs: 0, md: 0 },
-            px: 0,
+            pb: { xs: 0, md: 3.5 },
+            px: { xs: 0, md: 5 },
             mx: 1,
           }}
         >
@@ -77,25 +75,19 @@ const Header: FC<Props> = ({ sx }) => {
             sx={{
               color: "primary.main",
               textAlign: "center",
-              fontSize: {
-                xs: "2rem",
-                md: "4rem",
-              },
+              fontSize: { xs: "3rem", md: "6rem" },
             }}
           >
             Goodbye Pet Fees
           </Typography>
           <Typography
-            variant="h3"
+            variant="h4"
             sx={{
               color: "text.secondary",
               textAlign: "center",
-              fontSize: {
-                xs: "1rem",
-                md: "1.5rem",
-              },
-              maxWidth: { xs: "80%", md: "95%" },
+              fontSize: { xs: "1.5rem", md: "3rem" },
               margin: "0 auto",
+              px: 2,
               mt: 1,
             }}
           >
@@ -103,9 +95,10 @@ const Header: FC<Props> = ({ sx }) => {
           </Typography>
           <Box
             sx={{
+              maxWidth: "830px",
+              margin: "0 auto",
               backgroundColor: "white",
-              p: 1.5,
-              pb: 0.5,
+              py: { xs: 0, md: 1.75 },
               mt: { xs: 2, md: 4 },
               borderRadius: { xs: 1, md: 25 },
               boxShadow: 5,
@@ -115,7 +108,6 @@ const Header: FC<Props> = ({ sx }) => {
               sx={{
                 width: "100%",
                 margin: "0 auto",
-                mb: 2,
                 mt: { xs: 2, md: 0 },
                 display: "flex",
                 justifyContent: "center",

@@ -32,7 +32,7 @@ export const theme = {
     },
     h3: {
       fontFamily: "Work Sans",
-      fontWeight: 600,
+      fontWeight: 900,
     },
     h4: {
       fontFamily: "Work Sans",

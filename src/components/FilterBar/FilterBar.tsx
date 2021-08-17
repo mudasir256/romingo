@@ -1,7 +1,7 @@
 import Box from "@material-ui/core/Box";
 import { FC, useState, MouseEventHandler } from "react";
-import { connect, useStore, useDispatch } from 'react-redux';
-import { Dispatch } from "redux"
+import { connect, useStore, useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import Autocomplete from "@material-ui/core/Autocomplete";
@@ -21,7 +21,7 @@ import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
 
-import { saveSearch } from "../../store/searchReducer"
+import { saveSearch } from "../../store/searchReducer";
 
 interface Props {
   sx?: CSSObject;
@@ -73,12 +73,14 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     setZoomIn(false);
     if (selectedCity && checkDate[0] && checkDate[1])
-      dispatch(saveSearch({
-        city: selectedCity,
-        checkIn: dateToString(checkDate[0]),
-        checkOut: dateToString(checkDate[1]),
-        occupants
-      }))
+      dispatch(
+        saveSearch({
+          city: selectedCity,
+          checkIn: dateToString(checkDate[0]),
+          checkOut: dateToString(checkDate[1]),
+          occupants,
+        })
+      );
   };
 
   return (
@@ -99,7 +101,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
               display: "inline-flex",
               alignItems: "center",
               border: "1px solid #DDDDDD",
-              borderRadius: 1,
+              borderRadius: 5,
               backgroundColor: "white",
             }}
           >
@@ -164,9 +166,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
       {zoomIn && (
         <Box
           sx={{
-            borderRadius: 1,
+            borderRadius: 5,
             backgroundColor: {
-              xs: "rgba(255,255,255,.95)",
+              xs: "white",
               md: "transparent",
             },
           }}
@@ -206,8 +208,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                       },
                     }}
                     onChange={(e, values) => {
-                      if (values)
-                        setSelectedCity(values.label)
+                      if (values) setSelectedCity(values.label);
                     }}
                     renderInput={(params) => (
                       <TextField

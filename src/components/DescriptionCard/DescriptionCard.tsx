@@ -16,7 +16,7 @@ const DescriptionCard: FC<Props> = ({ sx, title, description }) => {
         sx={{
           backgroundColor: "white",
           color: "text.primary",
-          borderRadius: 1,
+          borderRadius: 5,
           border: "1px solid #DDD",
           pt: 2,
           pb: 2.5,

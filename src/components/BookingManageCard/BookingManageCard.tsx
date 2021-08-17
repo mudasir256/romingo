@@ -43,7 +43,7 @@ const BookingManageCard: FC<ListingCardProps> = ({
       sx={{
         color: "text.primary",
         display: "flex",
-        borderRadius: 1,
+        borderRadius: 5,
         boxShadow,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
@@ -66,7 +66,7 @@ const BookingManageCard: FC<ListingCardProps> = ({
             objectFit: "cover",
             maxWidth: { sm: 280, xs: 100 },
             maxHeight: { xs: 180, sm: "100%" },
-            borderRadius: 1,
+            borderRadius: 5,
             boxShadow: 0,
           }}
         />

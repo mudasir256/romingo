@@ -192,7 +192,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           width: "100%",
           height: { xs: "200px", sm: "300px" },
           objectFit: "cover",
-          borderRadius: 1,
+          borderRadius: 5,
           mx: 0,
           cursor: "pointer",
         }}
@@ -218,7 +218,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 width: "100%",
                 height: { xs: "150px", sm: "375px" },
                 objectFit: "cover",
-                borderRadius: 1,
+                borderRadius: 5,
                 cursor: "pointer",
               }}
             />
@@ -239,7 +239,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           width: "100%",
                           height: "178px",
                           objectFit: "cover",
-                          borderRadius: 1,
+                          borderRadius: 5,
                           cursor: "pointer",
                         }}
                       ></Box>

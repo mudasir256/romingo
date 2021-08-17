@@ -62,7 +62,7 @@ const MobileBookingForm: FC<Props> = ({
   };
 
   return (
-    <Box sx={{ ...sx, borderRadius: 1, boxShadow: 3, px: 3, pt: 1, pb: 2 }}>
+    <Box sx={{ ...sx, borderRadius: 5, boxShadow: 3, px: 3, pt: 1, pb: 2 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <MobileDateRangePicker
           startText="Check-in"

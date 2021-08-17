@@ -28,7 +28,7 @@ const ListingCardMap: FC<Props> = ({
         backgroundColor: "white",
         color: "text.primary",
         display: "flex",
-        borderRadius: 1,
+        borderRadius: 3,
         boxShadow: 4,
         maxWidth: "350px",
       }}
@@ -41,7 +41,8 @@ const ListingCardMap: FC<Props> = ({
           objectFit: "cover",
           width: 75,
           minHeight: "100%",
-          borderRadius: 1,
+          borderTopLeftRadius: 12,
+          borderBottomLeftRadius: 12,
           boxShadow: 0,
         }}
       />

@@ -51,7 +51,7 @@ const AmenitiesCard: FC<Props> = ({
       sx={{
         backgroundColor: "white",
         color: "text.primary",
-        borderRadius: 1,
+        borderRadius: 5,
         boxShadow: 4,
         py: 2,
         px: 2,

@@ -17,7 +17,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
       sx={{
         backgroundColor: "white",
         color: "text.primary",
-        borderRadius: 1,
+        borderRadius: 5,
         py: 0,
       }}
     >

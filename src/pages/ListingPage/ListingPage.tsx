@@ -149,7 +149,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 animate={animate}
                 sx={{
                   width: 40,
-                  borderRadius: 1,
+                  borderRadius: 5,
                   backgroundColor: "grey.200",
                 }}
               />
@@ -184,7 +184,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 transform: "translateX(-50%)",
                 zIndex: 100,
                 boxShadow: 10,
-                borderRadius: 1,
+                borderRadius: 5,
               }}
             >
               <MapIcon sx={{ fontSize: 15, mr: 0.5 }} />

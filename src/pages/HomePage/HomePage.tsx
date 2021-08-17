@@ -138,26 +138,18 @@ const HomePage: FC<Props> = ({
         <Grid container sx={{ py: 6 }}>
           <Grid item xs={12}>
             <Typography
-              variant="h2"
+              variant="h3"
               sx={{
                 color: "primary.main",
                 textAlign: "center",
-                fontSize: {
-                  xs: "1.5rem",
-                  md: "4rem",
-                },
               }}
             >
               Seriously, No Pet Fees?
             </Typography>
             <Typography
-              variant="h3"
+              variant="h4"
               sx={{
                 color: "text.secondary",
-                fontSize: {
-                  xs: "1rem",
-                  sm: "1.5rem",
-                },
                 textAlign: "center",
                 mb: { xs: 2, md: 5 },
               }}
@@ -190,14 +182,10 @@ const HomePage: FC<Props> = ({
                     }}
                   >
                     <Typography
-                      variant="h4"
+                      variant="h5"
                       sx={{
-                        color: "secondary.main",
+                        color: "text.secondary",
                         textAlign: "center",
-                        fontSize: {
-                          md: "1.2rem",
-                          sm: "1rem",
-                        },
                       }}
                     >
                       We partner with dog friendly hotels
@@ -206,10 +194,6 @@ const HomePage: FC<Props> = ({
                       variant="body2"
                       sx={{
                         mt: 1,
-                        fontSize: {
-                          xs: "0.875rem",
-                          md: "1rem",
-                        },
                       }}
                     >
                       Lorem ipsum dolor sit amet et delectus accommodare his
@@ -242,7 +226,7 @@ const HomePage: FC<Props> = ({
                       width: "100%",
                       maxHeight: "320px",
                       objectFit: "cover",
-                      borderRadius: 1,
+                      borderRadius: 5,
                       boxShadow: 4,
                       margin: "auto 0",
                     }}
@@ -271,7 +255,7 @@ const HomePage: FC<Props> = ({
                       width: "100%",
                       maxHeight: "320px",
                       objectFit: "cover",
-                      borderRadius: 1,
+                      borderRadius: 5,
                       boxShadow: 4,
                       margin: "auto 0",
                     }}
@@ -294,14 +278,10 @@ const HomePage: FC<Props> = ({
                     }}
                   >
                     <Typography
-                      variant="h4"
+                      variant="h5"
                       sx={{
-                        color: "secondary.main",
+                        color: "text.secondary",
                         textAlign: "center",
-                        fontSize: {
-                          md: "1.2rem",
-                          sm: "1rem",
-                        },
                       }}
                     >
                       And pass the savings onto you
@@ -310,10 +290,6 @@ const HomePage: FC<Props> = ({
                       variant="body2"
                       sx={{
                         mt: 1,
-                        fontSize: {
-                          md: "1rem",
-                          sm: "0.875rem",
-                        },
                       }}
                     >
                       Lorem ipsum dolor sit amet et delectus accommodare his
@@ -335,7 +311,7 @@ const HomePage: FC<Props> = ({
         </Grid>
         <Box
           sx={{
-            backgroundColor: "#fafafa",
+            backgroundColor: "info.main",
             py: 6,
             backgroundPosition: "center center",
             backgroundSize: "cover",
@@ -349,26 +325,18 @@ const HomePage: FC<Props> = ({
           <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
             <Grid item xs={12}>
               <Typography
-                variant="h2"
+                variant="h3"
                 sx={{
                   color: "primary.main",
                   textAlign: "center",
-                  fontSize: {
-                    xs: "1.5rem",
-                    md: "4rem",
-                  },
                 }}
               >
                 Explore a Romingo City
               </Typography>
               <Typography
-                variant="h3"
+                variant="h4"
                 sx={{
                   color: "text.secondary",
-                  fontSize: {
-                    xs: "1rem",
-                    sm: "1.5rem",
-                  },
                   textAlign: "center",
                   mb: 5,
                 }}
@@ -408,7 +376,7 @@ const HomePage: FC<Props> = ({
                           <Box
                             sx={{
                               border: "1px solid #DDDDDD",
-                              borderRadius: 1,
+                              borderRadius: 5,
                               boxShadow: 2,
                               backgroundColor: "white",
                             }}
@@ -422,7 +390,8 @@ const HomePage: FC<Props> = ({
                                 objectFit: "cover",
                                 width: "100%",
                                 height: "240px",
-                                borderRadius: 1,
+                                borderTopLeftRadius: 20,
+                                borderTopRightRadius: 20,
                               }}
                             />
                             <Typography
@@ -468,16 +437,11 @@ const HomePage: FC<Props> = ({
           <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
             <Grid item xs={12}>
               <Typography
-                variant="h2"
+                variant="h3"
                 sx={{
                   color: "primary.main",
-                  fontWeight: "bold",
                   textAlign: "center",
                   mb: 4,
-                  fontSize: {
-                    xs: "1.5rem",
-                    md: "4rem",
-                  },
                 }}
               >
                 Stay at a Romingo Favorite
@@ -516,7 +480,7 @@ const HomePage: FC<Props> = ({
                           <Box
                             sx={{
                               border: "1px solid #DDDDDD",
-                              borderRadius: 1,
+                              borderRadius: 5,
                               boxShadow: 2,
                               backgroundColor: "white",
                             }}
@@ -530,7 +494,8 @@ const HomePage: FC<Props> = ({
                                 objectFit: "cover",
                                 width: "100%",
                                 height: "200px",
-                                borderRadius: 1,
+                                borderTopLeftRadius: 20,
+                                borderTopRightRadius: 20,
                               }}
                             />
                             <Typography
