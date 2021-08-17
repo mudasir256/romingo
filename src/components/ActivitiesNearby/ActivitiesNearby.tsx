@@ -52,7 +52,6 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "light",
                 mt: 0,
                 color: "text.primary",
                 textIndent: "-8px",

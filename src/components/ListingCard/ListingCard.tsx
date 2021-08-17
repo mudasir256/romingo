@@ -75,9 +75,7 @@ const ListingCard: FC<ListingCardProps> = ({
         <Typography
           variant="h6"
           sx={{
-            fontSize: { xs: "95%", sm: "100%" },
-            color: "primary.main",
-            fontWeight: "bold",
+            color: "text.secondary",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
@@ -91,7 +89,6 @@ const ListingCard: FC<ListingCardProps> = ({
             variant="body1"
             sx={{
               fontSize: { xs: "95%", sm: "100%" },
-              fontWeight: "light",
               mt: 0,
               overflow: "hidden",
               whiteSpace: "nowrap",
@@ -109,14 +106,9 @@ const ListingCard: FC<ListingCardProps> = ({
             {cancellation && (
               <Chip
                 sx={{ mr: 1 }}
-                color="secondary"
+                color="info"
                 label={
-                  <Typography
-                    variant="body2"
-                    sx={{ fontSize: "90%", color: "white" }}
-                  >
-                    Free Cancellation
-                  </Typography>
+                  <Typography variant="body1">Free Cancellation</Typography>
                 }
               />
             )}
@@ -149,12 +141,11 @@ const ListingCard: FC<ListingCardProps> = ({
                       }}
                     >
                       <Check
-                        sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
+                        sx={{ fontSize: 15, color: "success.main", mt: 0.4 }}
                       />
                       <Typography
                         variant="body2"
                         sx={{
-                          fontStyle: "italic",
                           pr: 0.15,
                           overflow: "hidden",
                           whiteSpace: "nowrap",

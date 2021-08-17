@@ -50,8 +50,7 @@ const ListingCardMap: FC<Props> = ({
           <Typography
             variant="h6"
             sx={{
-              color: "primary.main",
-              fontWeight: "bold",
+              color: "text.secondary",
               fontSize: "85%",
               overflow: "hidden",
               whiteSpace: "nowrap",
@@ -63,8 +62,7 @@ const ListingCardMap: FC<Props> = ({
           <Typography
             variant="body1"
             sx={{
-              fontSize: "80%",
-              fontWeight: "light",
+              fontSize: "75%",
               mt: 0,
               overflow: "hidden",
               whiteSpace: "nowrap",
@@ -98,9 +96,8 @@ const ListingCardMap: FC<Props> = ({
                 sx={{
                   mr: 0.25,
                   letterSpacing: 1,
-                  fontWeight: "bold",
                   color: "text.secondary",
-                  fontSize: "85%",
+                  fontSize: "95%",
                 }}
               >
                 {currency}

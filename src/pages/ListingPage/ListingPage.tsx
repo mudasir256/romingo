@@ -158,7 +158,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               <RomingoGuarantee sx={{ mb: 0 }} />
 
               {cards.map((card: any, index: number) => (
-                <Link href="#" key={index} onClick={handleClick}>
+                <Link
+                  href="#"
+                  key={index}
+                  onClick={handleClick}
+                  underline="none"
+                >
                   <ListingCard {...card} boxShadow={0} />
                 </Link>
               ))}
@@ -211,7 +216,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             <RomingoGuarantee sx={{ mb: 3 }} />
             <Stack spacing={3} divider={<Divider variant="middle" />}>
               {cards.map((card: any, index: number) => (
-                <Link href="#" key={index} onClick={handleClick}>
+                <Link
+                  href="#"
+                  key={index}
+                  onClick={handleClick}
+                  underline="none"
+                >
                   <ListingCard {...card} boxShadow={0} />
                 </Link>
               ))}

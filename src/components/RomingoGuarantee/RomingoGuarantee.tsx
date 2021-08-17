@@ -16,10 +16,9 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
     <Box sx={sx}>
       <Box
         sx={{
-          backgroundColor: "white",
+          backgroundColor: "info.main",
           color: "text.primary",
           borderRadius: 1,
-          border: "1px solid #DDD",
           pt: 2,
           pb: 2.5,
           px: 2,
@@ -29,31 +28,16 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
         <Typography
           variant="h6"
           sx={{
-            color: "secondary.main",
-            fontWeight: "bold",
-            textAlign: "center",
-            fontSize: { xs: "85%", sm: "100%" },
-          }}
-        >
-          The Romingo Guarantee
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            fontWeight: "light",
-            fontSize: "80%",
-            mt: 0.3,
             color: "text.primary",
             textAlign: "center",
           }}
         >
-          Rooms booked through Romingo always include:
+          The Romingo Guarantee
         </Typography>
         <Box
           sx={{
             mt: 0.5,
             px: 0.5,
-            width: "260px",
             mx: "auto",
           }}
         >
@@ -61,7 +45,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
             sx={{
               display: "flex",
               alignItems: "bottom",
-              justifyContent: "start",
+              justifyContent: { xs: "start", md: "center" },
               mt: 1,
             }}
           >
@@ -70,26 +54,24 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontSize: 20,
                 mr: 0.75,
                 mt: 0.125,
-                color: "secondary.main",
+                color: "text.primary",
               }}
             />
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "light",
                 mt: 0,
-                color: "text.light",
-                fontSize: { xs: "85%", sm: "100%" },
+                color: "text.primary",
               }}
             >
-              Zero pet fees for up to 2 dogs
+              Waived pet fees
             </Typography>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "bottom",
-              justifyContent: "start",
+              justifyContent: { xs: "start", md: "center" },
               mt: 1,
             }}
           >
@@ -98,55 +80,25 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontSize: 18,
                 mr: 0.75,
                 mt: 0.125,
-                color: "secondary.main",
+                color: "text.primary",
               }}
             />
 
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "light",
                 mt: 0,
-                color: "text.light",
-                fontSize: { xs: "85%", sm: "100%" },
+                color: "text.primary",
               }}
             >
-              75 lb weight limit per dog
+              All dogs up to 75lbs. welcomed
             </Typography>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "bottom",
-              justifyContent: "start",
-              mt: 1,
-            }}
-          >
-            <SingleBedIcon
-              sx={{
-                fontSize: 20,
-                mr: 0.75,
-                mt: 0.125,
-                color: "secondary.main",
-              }}
-            />
-
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: "light",
-                mt: 0,
-                color: "text.light",
-                fontSize: { xs: "85%", sm: "100%" },
-              }}
-            >
-              Pet bedding in your room
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "bottom",
+              justifyContent: { xs: "start", md: "center" },
               mt: 1,
             }}
           >
@@ -155,20 +107,17 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                 fontSize: 20,
                 mr: 0.75,
                 mt: 0.125,
-                color: "secondary.main",
+                color: "text.primary",
               }}
             />
-
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "light",
                 mt: 0,
-                color: "text.light",
-                fontSize: { xs: "85%", sm: "100%" },
+                color: "text.primary",
               }}
             >
-              Food &amp; water bowls provided
+              Beds, bowls, and treats provided
             </Typography>
           </Box>
         </Box>

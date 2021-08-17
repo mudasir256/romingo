@@ -258,7 +258,6 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
           <Typography
             variant="body2"
             sx={{
-              fontWeight: "light",
               mr: 1,
             }}
           >

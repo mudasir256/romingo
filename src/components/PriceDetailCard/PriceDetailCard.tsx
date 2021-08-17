@@ -29,7 +29,6 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
         variant="h6"
         sx={{
           color: "primary.main",
-          fontWeight: "bold",
           textAlign: "center",
           mb: 1,
         }}
@@ -47,7 +46,6 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "light",
             mt: 0,
             textTransform: "capitalize",
             color: "text.primary",
@@ -82,7 +80,6 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "light",
             mt: 0,
             textTransform: "capitalize",
             color: "text.primary",
@@ -119,7 +116,6 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "light",
             mt: 0,
             textTransform: "capitalize",
             color: "text.primary",
@@ -154,7 +150,6 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "light",
             mt: 0,
             textTransform: "capitalize",
             color: "text.primary",

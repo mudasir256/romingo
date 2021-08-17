@@ -51,7 +51,6 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
           <Typography
             variant="body2"
             sx={{
-              fontWeight: "light",
               mt: 0,
               textTransform: "capitalize",
               color: "text.primary",
@@ -79,7 +78,6 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
           <Typography
             variant="body2"
             sx={{
-              fontWeight: "light",
               mt: 0,
               textTransform: "capitalize",
               color: "text.primary",
@@ -112,7 +110,6 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "light",
             mt: 0,
             textTransform: "capitalize",
             color: "text.primary",
@@ -144,7 +141,6 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "light",
             mt: 0,
             textTransform: "capitalize",
             color: "text.primary",

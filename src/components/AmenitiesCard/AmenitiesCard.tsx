@@ -84,7 +84,6 @@ const AmenitiesCard: FC<Props> = ({
             <Typography
               variant="body2"
               sx={{
-                fontWeight: "light",
                 mt: 0,
                 textTransform: "capitalize",
                 color: "text.primary",
@@ -106,14 +105,7 @@ const AmenitiesCard: FC<Props> = ({
             }}
           >
             <Link href="#" onClick={handleOpen}>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: "light",
-                }}
-              >
-                View All
-              </Typography>
+              <Typography variant="body2">View All</Typography>
             </Link>
           </Box>
           <Dialog
@@ -176,7 +168,6 @@ const AmenitiesCard: FC<Props> = ({
                       <Typography
                         variant="body2"
                         sx={{
-                          fontWeight: "light",
                           mt: 0,
                           color: "text.light",
                           textIndent: "-8px",

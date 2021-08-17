@@ -17,7 +17,7 @@ export interface ListingCardProps {
   confirmId: string;
   status: string;
   boxShadow?: number;
-  sx?: CSSObject
+  sx?: CSSObject;
 }
 
 const BookingManageCard: FC<ListingCardProps> = ({
@@ -47,14 +47,14 @@ const BookingManageCard: FC<ListingCardProps> = ({
         boxShadow,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
-        ...sx
+        ...sx,
       }}
       {...props}
     >
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <Box
@@ -75,17 +75,10 @@ const BookingManageCard: FC<ListingCardProps> = ({
             sx={{
               mt: 1,
               px: 1,
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "light",
-              }}
-            >
-              Status
-            </Typography>
+            <Typography variant="body2">Status</Typography>
             <Typography
               variant="body2"
               sx={{
@@ -99,17 +92,10 @@ const BookingManageCard: FC<ListingCardProps> = ({
             sx={{
               mt: 1,
               px: 1,
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "light",
-              }}
-            >
-              Confirmation #
-            </Typography>
+            <Typography variant="body2">Confirmation #</Typography>
             <Typography
               variant="body2"
               sx={{
@@ -133,13 +119,10 @@ const BookingManageCard: FC<ListingCardProps> = ({
         <Typography
           variant="h6"
           sx={{
-            fontSize: { xs: "95%", sm: "100%" },
             color: "primary.main",
-            fontWeight: "bold",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            textDecoration: "underline"
           }}
         >
           {name}
@@ -150,7 +133,6 @@ const BookingManageCard: FC<ListingCardProps> = ({
             variant="body1"
             sx={{
               fontSize: { xs: "95%", sm: "100%" },
-              fontWeight: "light",
               mt: 0,
               overflow: "hidden",
               whiteSpace: "nowrap",
@@ -165,8 +147,8 @@ const BookingManageCard: FC<ListingCardProps> = ({
               mt: 1,
               px: {
                 sm: 1,
-                xs: 0
-              }
+                xs: 0,
+              },
             }}
           >
             <Box
@@ -174,15 +156,7 @@ const BookingManageCard: FC<ListingCardProps> = ({
                 mr: 1,
               }}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: "light",
-                  mt: 0,
-                }}
-              >
-                Check In
-              </Typography>
+              <Typography variant="body2">Check In</Typography>
               <Typography
                 variant="body2"
                 sx={{
@@ -197,7 +171,6 @@ const BookingManageCard: FC<ListingCardProps> = ({
               <Typography
                 variant="body2"
                 sx={{
-                  fontWeight: "light",
                   mt: 0,
                 }}
               >
@@ -219,18 +192,11 @@ const BookingManageCard: FC<ListingCardProps> = ({
               mt: 1,
               px: {
                 sm: 1,
-                xs: 0
-              }
+                xs: 0,
+              },
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "light",
-              }}
-            >
-              Guests
-            </Typography>
+            <Typography variant="body2">Guests</Typography>
             <Typography
               variant="body2"
               sx={{
@@ -245,18 +211,11 @@ const BookingManageCard: FC<ListingCardProps> = ({
               mt: 1,
               px: {
                 sm: 1,
-                xs: 0
-              }
+                xs: 0,
+              },
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "light",
-              }}
-            >
-              Room Type
-            </Typography>
+            <Typography variant="body2">Room Type</Typography>
             <Typography
               variant="body2"
               sx={{
@@ -273,7 +232,7 @@ const BookingManageCard: FC<ListingCardProps> = ({
           pt: 1.8,
           px: { xs: mobileCardPadding, sm: 1.8 },
           pb: { xs: mobileCardPadding, sm: 1.8 },
-          display: "grid"
+          display: "grid",
         }}
       >
         <Hidden smDown>
@@ -281,19 +240,12 @@ const BookingManageCard: FC<ListingCardProps> = ({
             sx={{
               px: {
                 sm: 1,
-                xs: 0
+                xs: 0,
               },
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "light",
-              }}
-            >
-              Confirmation #
-            </Typography>
+            <Typography variant="body2">Confirmation #</Typography>
             <Typography
               variant="body2"
               sx={{
@@ -308,19 +260,12 @@ const BookingManageCard: FC<ListingCardProps> = ({
               mt: 1,
               px: {
                 sm: 1,
-                xs: 0
+                xs: 0,
               },
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "light",
-              }}
-            >
-              Status
-            </Typography>
+            <Typography variant="body2">Status</Typography>
             <Typography
               variant="body2"
               sx={{
@@ -334,16 +279,16 @@ const BookingManageCard: FC<ListingCardProps> = ({
         <Box
           sx={{
             px: 1,
-            margin: "auto"
+            margin: "auto",
           }}
         >
-          <Button 
+          <Button
             variant="contained"
             size="large"
-            color="primary" 
+            color="primary"
             type="submit"
           >
-            Manage Booking
+            <Typography variant="h6">Manage Booking</Typography>
           </Button>
         </Box>
       </Box>

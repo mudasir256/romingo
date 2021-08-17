@@ -1,6 +1,8 @@
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { addDecorator } from "@storybook/react";
 import { theme } from "../src/theme";
+import { Provider } from "react-redux";
+import store from "../src/redux/store";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -15,5 +17,7 @@ export const parameters = {
 const muTheme = createTheme(theme);
 
 addDecorator((story) => (
-  <ThemeProvider theme={muTheme}>{story()}</ThemeProvider>
+  <Provider store={store}>
+    <ThemeProvider theme={muTheme}>{story()}</ThemeProvider>
+  </Provider>
 ));

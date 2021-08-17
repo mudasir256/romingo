@@ -145,10 +145,9 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
             >
               <Box>
                 <Typography
-                  variant="body1"
+                  variant="h5"
                   sx={{
                     display: "inline-block",
-                    fontWeight: "bold",
                     my: 0,
                     fontSize: "125%",
                   }}
@@ -161,7 +160,6 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                     sx={{
                       display: "inline-block",
                       my: 0,
-                      fontWeight: "light",
                       lineHeight: 0,
                     }}
                   >
@@ -174,7 +172,6 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                       fontSize: "75%",
                       display: "inline-block",
                       textTransform: "none",
-                      fontWeight: "light",
                     }}
                   >
                     / night
@@ -209,7 +206,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
             textAlign: "center",
           }}
         >
-          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+          <Typography variant="h5" color="primary">
             Edit Your Booking
           </Typography>
           <IconButton

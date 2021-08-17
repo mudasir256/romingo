@@ -59,7 +59,6 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "light",
                 mt: 0,
                 color: "text.light",
                 fontSize: { xs: "85%", sm: "100%" },
@@ -88,7 +87,6 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "light",
                 mt: 0,
                 color: "text.light",
                 fontSize: { xs: "85%", sm: "100%" },

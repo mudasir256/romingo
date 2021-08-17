@@ -1,6 +1,6 @@
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
-import { connect, useStore, useDispatch, useSelector } from 'react-redux';
+import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CSSObject } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
@@ -130,7 +130,7 @@ const HomePage: FC<Props> = ({
     if (state.searchReducer.search !== initialState.search) {
       history.push("/listings");
     }
-  })
+  });
   return (
     <>
       <Header />
@@ -430,7 +430,6 @@ const HomePage: FC<Props> = ({
                               sx={{
                                 mt: 2,
                                 textAlign: "center",
-                                textDecoration: "underline",
                               }}
                             >
                               {nearCity.city}

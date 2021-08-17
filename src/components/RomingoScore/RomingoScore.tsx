@@ -37,23 +37,22 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
         alignItems: "center",
       }}
     >
-      <Star sx={{ color: "primary.main", fontSize: "100%" }} />
       <Typography
         variant="h6"
         sx={{
-          color: "primary.main",
+          color: "info.main",
           fontSize: "100%",
         }}
       >
         {score}
       </Typography>
+      <Star sx={{ color: "info.main", fontSize: "90%" }} />
       <Typography
         onClick={handlePopoverOpen}
         sx={{
           color: "text.secondary",
-          fontSize: "65%",
-          ml: 0.8,
-          textDecoration: "underline",
+          fontSize: "75%",
+          ml: 0.5,
         }}
       >
         Info
@@ -138,13 +137,12 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       <Typography
         variant="h6"
         sx={{
-          color: "primary.main",
+          color: "info.main",
         }}
       >
         {score}
       </Typography>
-      <Star sx={{ color: "primary.main", fontSize: "130%", mt: -0.1 }} />
-
+      <Star sx={{ color: "info.main", fontSize: "130%", mt: -0.1 }} />
       <Typography
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
@@ -152,8 +150,8 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
         sx={{
           ml: 0.75,
           mt: 0.2,
-          textDecoration: "underline",
           color: "text.secondary",
+          textDecoration: "underline",
         }}
       >
         Romingo Score

@@ -1,5 +1,5 @@
 import { FC, useState, MouseEventHandler } from "react";
-import { connect, useStore, useDispatch, useSelector } from 'react-redux';
+import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Fab from "@material-ui/core/Fab";
@@ -77,10 +77,22 @@ interface Props {
   nearby: { text: string; distance: number }[];
 }
 
-const DetailsPage: FC<Props> = ({
-  ...props
-}) => {
-  const {name, location, mainImg, gallery, score, defaultDescription, cancellation, cancelPenalty, dogAmenitiesTitle, roomList, amenitiesTitle, amenities, nearby} = useSelector((state: any) => state.hotelDetailReducer.detail);
+const DetailsPage: FC<Props> = ({ ...props }) => {
+  const {
+    name,
+    location,
+    mainImg,
+    gallery,
+    score,
+    defaultDescription,
+    cancellation,
+    cancelPenalty,
+    dogAmenitiesTitle,
+    roomList,
+    amenitiesTitle,
+    amenities,
+    nearby,
+  } = useSelector((state: any) => state.hotelDetailReducer.detail);
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
     buttons: {
@@ -147,10 +159,13 @@ const DetailsPage: FC<Props> = ({
           py: { xs: 0, md: 1 },
         }}
       >
-        <Link href="#" onClick={e => {
-          e.preventDefault();
-          history.push("/");
-        }}>
+        <Link
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            history.push("/");
+          }}
+        >
           <Box
             component="img"
             src={"/images/romingo_logo_yellow.svg"}
@@ -262,11 +277,9 @@ const DetailsPage: FC<Props> = ({
         <Grid container spacing={2} sx={{ mt: 0 }}>
           <Grid item xs={12} md={7} lg={8}>
             <Typography
-              variant="h6"
+              variant="h5"
               sx={{
-                fontSize: "125%",
-                color: "primary.main",
-                fontWeight: "bold",
+                color: "text.secondary",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
@@ -278,7 +291,6 @@ const DetailsPage: FC<Props> = ({
               variant="body1"
               sx={{
                 fontSize: { xs: "90%", sm: "125%" },
-                fontWeight: "light",
                 mt: 0,
               }}
             >
@@ -384,11 +396,7 @@ const DetailsPage: FC<Props> = ({
                 zIndex: 10000,
               }}
             >
-              <Typography
-                variant="h6"
-                color="primary"
-                sx={{ fontWeight: "bold" }}
-              >
+              <Typography variant="h6" color="primary">
                 Photos
               </Typography>
               <IconButton

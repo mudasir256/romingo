@@ -1,5 +1,6 @@
 import Box from "@material-ui/core/Box";
 import React, { FC, useState, MouseEventHandler } from "react";
+import { useTheme } from "@material-ui/core/styles";
 import { CSSObject } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -10,13 +11,14 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import AddIcon from '@material-ui/icons/Add';
-import Switch from '@material-ui/core/Switch';
+import AddIcon from "@material-ui/icons/Add";
+import Switch from "@material-ui/core/Switch";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import Navbar from "../../components/Navbar";
 
@@ -35,12 +37,13 @@ interface Props {
     email: string;
     phone: string;
   };
-  pups: DogInfo[],
-  sx?: CSSObject
+  pups: DogInfo[];
+  sx?: CSSObject;
 }
 
 const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
-
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [phone, setPhone] = useState(userInfo.phone);
@@ -61,16 +64,15 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
     setName(userInfo.name);
     setEmail(userInfo.email);
     setPhone(userInfo.phone);
-  }
+  };
 
   const handleClose = () => {
     setEditProfile(false);
-  }
+  };
 
-  const handleEditDogClick = (index=-1) => {
+  const handleEditDogClick = (index = -1) => {
     setEditDog(true);
-    if (index !== -1)
-      setEditDogInfo(pups[index]);
+    if (index !== -1) setEditDogInfo(pups[index]);
     else {
       setEditDogInfo({});
     }
@@ -78,19 +80,18 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
 
   const handleDogClose = () => {
     setEditDog(false);
-  }
+  };
 
   React.useEffect(() => {
-    ValidatorForm.addValidationRule('isPhone', (value: string) => {
+    ValidatorForm.addValidationRule("isPhone", (value: string) => {
       const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
-      if (phonePattern.test(value))
-        return true;
+      if (phonePattern.test(value)) return true;
       return false;
     });
 
     return () => {
-      ValidatorForm.removeValidationRule('isPhone');
-    }
+      ValidatorForm.removeValidationRule("isPhone");
+    };
   });
 
   const EditDogModal = (props: DogInfo) => {
@@ -101,13 +102,13 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
         }}
       >
         <Grid container>
-          <Grid item xs={3}>
+          <Grid item xs={4} sm={3}>
             <Box
               sx={{
                 display: "grid",
                 alignItems: "center",
                 height: "100%",
-                px: 2
+                px: 2,
               }}
             >
               <Typography
@@ -116,14 +117,14 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   color: "text.secondary",
                   mr: 0.5,
                   fontWeight: "bold",
-                  textAlign: "right"
+                  textAlign: "right",
                 }}
               >
                 Name:
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={7} sm={9}>
             <TextField
               variant="outlined"
               type="text"
@@ -132,24 +133,25 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               size="medium"
               inputProps={{
                 sx: {
-                  padding: "10px 10px"
-                }
+                  padding: "10px 10px",
+                },
               }}
             />
           </Grid>
         </Grid>
-        <Grid container
+        <Grid
+          container
           sx={{
-            mt: 1
+            mt: 1,
           }}
         >
-          <Grid item xs={3}>
+          <Grid item xs={4} sm={3}>
             <Box
               sx={{
                 display: "grid",
                 alignItems: "center",
                 height: "100%",
-                px: 2
+                px: 2,
               }}
             >
               <Typography
@@ -158,18 +160,18 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   color: "text.secondary",
                   mr: 0.5,
                   fontWeight: "bold",
-                  textAlign: "right"
+                  textAlign: "right",
                 }}
               >
                 Gender:
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={7} sm={9}>
             <Box
               sx={{
                 display: "flex",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <Typography
@@ -185,8 +187,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               <Switch
                 defaultChecked={props.gender !== "male"}
                 color="primary"
-                inputProps={{ 'aria-label': 'secondary checkbox' }}
-
+                inputProps={{ "aria-label": "secondary checkbox" }}
               />
               <Typography
                 variant="body2"
@@ -202,13 +203,13 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           </Grid>
         </Grid>
         <Grid container>
-          <Grid item xs={3}>
+          <Grid item xs={4} sm={3}>
             <Box
               sx={{
                 display: "grid",
                 alignItems: "center",
                 height: "100%",
-                px: 2
+                px: 2,
               }}
             >
               <Typography
@@ -217,14 +218,14 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   color: "text.secondary",
                   mr: 0.5,
                   fontWeight: "bold",
-                  textAlign: "right"
+                  textAlign: "right",
                 }}
               >
                 Birthday:
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={7} sm={9}>
             <TextField
               variant="outlined"
               type="date"
@@ -235,24 +236,25 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               }}
               inputProps={{
                 sx: {
-                  padding: "10px 10px"
-                }
+                  padding: "10px 10px",
+                },
               }}
             />
           </Grid>
         </Grid>
-        <Grid container
+        <Grid
+          container
           sx={{
-            mt: 1
+            mt: 1,
           }}
         >
-          <Grid item xs={3}>
+          <Grid item xs={4} sm={3}>
             <Box
               sx={{
                 display: "grid",
                 alignItems: "center",
                 height: "100%",
-                px: 2
+                px: 2,
               }}
             >
               <Typography
@@ -261,14 +263,14 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   color: "text.secondary",
                   mr: 0.5,
                   fontWeight: "bold",
-                  textAlign: "right"
+                  textAlign: "right",
                 }}
               >
                 Weight:
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={7} sm={9}>
             <TextField
               variant="outlined"
               type="text"
@@ -278,28 +280,31 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 shrink: true,
               }}
               InputProps={{
-                endAdornment: <InputAdornment position="end">lbs</InputAdornment>,
+                endAdornment: (
+                  <InputAdornment position="end">lbs</InputAdornment>
+                ),
               }}
               inputProps={{
                 sx: {
-                  padding: "10px 10px"
-                }
+                  padding: "10px 10px",
+                },
               }}
             />
           </Grid>
         </Grid>
-        <Grid container
+        <Grid
+          container
           sx={{
-            mt: 1
+            mt: 1,
           }}
         >
-          <Grid item xs={3}>
+          <Grid item xs={4} sm={3}>
             <Box
               sx={{
                 display: "grid",
                 alignItems: "center",
                 height: "100%",
-                px: 2
+                px: 2,
               }}
             >
               <Typography
@@ -308,14 +313,14 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   color: "text.secondary",
                   mr: 0.5,
                   fontWeight: "bold",
-                  textAlign: "right"
+                  textAlign: "right",
                 }}
               >
                 Breed:
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={7} sm={9}>
             <TextField
               variant="outlined"
               type="text"
@@ -329,39 +334,39 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
         </Grid>
         <Box
           sx={{
-            mt: 1,
+            mt: 3,
             textAlign: "center",
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
-          <Button 
+          <Button
             variant="contained"
             size="large"
-            color="primary" 
+            color="primary"
             type="submit"
             sx={{
               mr: 2,
-              minWidth: "120px"
+              minWidth: "120px",
             }}
           >
             Cancel
           </Button>
-          <Button 
+          <Button
             variant="contained"
             size="large"
-            color="primary" 
+            color="primary"
             type="submit"
             sx={{
-              minWidth: "120px"
+              minWidth: "120px",
             }}
           >
             Save
           </Button>
         </Box>
       </ValidatorForm>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -370,28 +375,29 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
         sx={{
           pt: {
             sm: "64px",
-            xs: "56px"
-          }
+            xs: "56px",
+          },
         }}
       >
-        <Container maxWidth="lg"
+        <Container
+          maxWidth="lg"
           sx={{
-            pt: 3
+            pt: 3,
           }}
         >
           <Box
             sx={{
               px: {
                 sm: 2,
-                xs: 0.5
+                xs: 0.5,
               },
-              borderBottom: "1px solid #DDD"
+              borderBottom: "1px solid #DDD",
             }}
           >
             <Box
               sx={{
                 display: "flex",
-                mb: 2
+                mb: 2,
               }}
             >
               <Typography
@@ -400,21 +406,24 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   fontSize: "120%",
                   mr: {
                     xs: 1,
-                    sm: 2
-                  }
+                    sm: 2,
+                  },
                 }}
               >
                 Pups
               </Typography>
-              <Button size="medium" variant="outlined"
+              <Button
+                size="medium"
+                variant="outlined"
                 sx={{
-                  borderRadius: "20px"
+                  borderRadius: "20px",
                 }}
                 onClick={(e) => {
                   handleEditDogClick();
                 }}
               >
-                <AddIcon />Dog
+                <AddIcon />
+                Dog
               </Button>
             </Box>
             <Box
@@ -426,16 +435,17 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 overflow: "auto hidden",
                 pb: 4,
                 scrollSnapType: "x",
-                justifyContent: "start"
+                justifyContent: "start",
               }}
             >
               {pups.map((pup, key) => {
                 return (
-                  <Box key={key}
+                  <Box
+                    key={key}
                     sx={{
                       width: "250px",
                       mr: 2,
-                      position: "relative"
+                      position: "relative",
                     }}
                   >
                     <Box
@@ -462,7 +472,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                         sx={{
                           mt: -2,
                           px: 2,
-                          position: "relative"
+                          position: "relative",
                         }}
                       >
                         <Typography
@@ -477,131 +487,133 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                             border: "1px solid #DDD",
                             borderRadius: "10px",
                             zIndex: 999,
-                            background: "white"
+                            background: "white",
                           }}
                         >
                           {pup.name}
                         </Typography>
                       </Box>
-                      <Box
-                        sx={{
-                          mb: 1,
-                          display: "flex",
-                          px: 1
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
+                      <Box sx={{ pt: 1 }}>
+                        <Box
                           sx={{
-                            color: "text.secondary",
-                            mr: 0.5,
-                            fontWeight: "bold",
+                            mb: 1,
+                            display: "flex",
+                            px: 1,
                           }}
                         >
-                          Gender:
-                        </Typography>
-                        <Typography
-                          variant="body2"
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              mr: 0.5,
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Gender:
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {pup.gender}
+                          </Typography>
+                        </Box>
+                        <Box
                           sx={{
-                            color: "text.secondary",
-                            textTransform: "capitalize"
+                            mb: 1,
+                            display: "flex",
+                            px: 1,
                           }}
                         >
-                          {pup.gender}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          mb: 1,
-                          display: "flex",
-                          px: 1
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              mr: 0.5,
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Birthday:
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {pup.birthday}
+                          </Typography>
+                        </Box>
+                        <Box
                           sx={{
-                            color: "text.secondary",
-                            mr: 0.5,
-                            fontWeight: "bold",
+                            mb: 1,
+                            display: "flex",
+                            px: 1,
                           }}
                         >
-                          Birthday:
-                        </Typography>
-                        <Typography
-                          variant="body2"
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              mr: 0.5,
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Weight:
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {pup.weight}lbs
+                          </Typography>
+                        </Box>
+                        <Box
                           sx={{
-                            color: "text.secondary",
-                            textTransform: "capitalize"
+                            mb: 1,
+                            display: "flex",
+                            px: 1,
                           }}
                         >
-                          {pup.birthday}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          mb: 1,
-                          display: "flex",
-                          px: 1
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            color: "text.secondary",
-                            mr: 0.5,
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Weight:
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            color: "text.secondary",
-                            textTransform: "capitalize"
-                          }}
-                        >
-                          {pup.weight}lbs
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          mb: 1,
-                          display: "flex",
-                          px: 1
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            color: "text.secondary",
-                            mr: 0.5,
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Breed:
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            color: "text.secondary",
-                            textTransform: "capitalize"
-                          }}
-                        >
-                          {pup.breed}
-                        </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              mr: 0.5,
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Breed:
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {pup.breed}
+                          </Typography>
+                        </Box>
                       </Box>
                     </Box>
                     <Box
                       sx={{
                         position: "absolute",
                         top: "15px",
-                        left: "15px"
+                        left: "15px",
                       }}
                     >
-                      <Button 
-                        variant="outlined" 
-                        size="medium" 
+                      <Button
+                        variant="outlined"
+                        size="medium"
                         sx={{
                           borderRadius: "10px",
                           background: "white",
@@ -612,29 +624,30 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                       </Button>
                     </Box>
                   </Box>
-                )
+                );
               })}
             </Box>
           </Box>
         </Container>
-        <Container maxWidth="lg"
+        <Container
+          maxWidth="lg"
           sx={{
-            pt: 2
+            pt: 2,
           }}
         >
           <Box
             sx={{
               px: {
                 sm: 2,
-                xs: 0.5
-              }
+                xs: 0.5,
+              },
             }}
           >
             <Typography
               variant="body1"
               sx={{
                 fontSize: "120%",
-                mb: 2
+                mb: 2,
               }}
             >
               Person
@@ -643,7 +656,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Name
@@ -651,7 +664,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               <Typography
                 variant="body1"
                 sx={{
-                  mt: 0.5
+                  mt: 0.5,
                 }}
               >
                 {userInfo.name}
@@ -660,7 +673,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 variant="body1"
                 sx={{
                   fontWeight: "bold",
-                  mt: 1.5
+                  mt: 1.5,
                 }}
               >
                 Email
@@ -668,7 +681,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               <Typography
                 variant="body1"
                 sx={{
-                  mt: 0.5
+                  mt: 0.5,
                 }}
               >
                 {userInfo.email}
@@ -677,7 +690,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 variant="body1"
                 sx={{
                   fontWeight: "bold",
-                  mt: 1.5
+                  mt: 1.5,
                 }}
               >
                 Phone
@@ -685,18 +698,18 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               <Typography
                 variant="body1"
                 sx={{
-                  mt: 0.5
+                  mt: 0.5,
                 }}
               >
                 {userInfo.phone}
               </Typography>
-              <Button 
+              <Button
                 variant="contained"
                 size="medium"
-                color="primary" 
+                color="primary"
                 type="submit"
                 sx={{
-                  mt: 1.5
+                  my: 1.5,
                 }}
                 onClick={handleEditClick}
               >
@@ -710,6 +723,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
         open={editProfile}
         keepMounted
         fullWidth
+        fullScreen={fullScreen}
         maxWidth={"sm"}
         onClose={handleClose}
         scroll="body"
@@ -723,11 +737,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="h6"
-            color="primary"
-            sx={{ fontWeight: "bold" }}
-          >
+          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
             Edit Your Account
           </Typography>
           <IconButton
@@ -747,11 +757,11 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           sx={{
             px: {
               xs: 1,
-              sm: 2.5
+              sm: 2.5,
             },
           }}
         >
-          <DialogContentText id="edit-dialog-slide-description" sx={{py: 1}}>
+          <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
             <ValidatorForm
               onSubmit={(e) => {
                 e.preventDefault();
@@ -764,14 +774,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 label="Name"
                 variant="outlined"
                 value={name}
-                validators={['required']}
-                errorMessages={['This field is required']}
+                validators={["required"]}
+                errorMessages={["This field is required"]}
                 onChange={(e: React.FormEvent<HTMLInputElement>) => {
                   setName(e.currentTarget.value);
                 }}
-                FormHelperTextProps={{
-
-                }}
+                FormHelperTextProps={{}}
               />
               <TextValidator
                 fullWidth={true}
@@ -779,16 +787,14 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 label="Email Address"
                 variant="outlined"
                 value={email}
-                validators={['required', 'isEmail']}
-                errorMessages={['This field is required', 'Email is not valid']}
+                validators={["required", "isEmail"]}
+                errorMessages={["This field is required", "Email is not valid"]}
                 onChange={(e: React.FormEvent<HTMLInputElement>) => {
                   setEmail(e.currentTarget.value);
                 }}
-                FormHelperTextProps={{
-
-                }}
+                FormHelperTextProps={{}}
                 sx={{
-                  mt: 1
+                  mt: 1,
                 }}
               />
               <TextValidator
@@ -797,28 +803,29 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 label="Phone Number"
                 variant="outlined"
                 value={phone}
-                validators={['required', 'isPhone']}
-                errorMessages={['This field is required', 'Phone number is not valid(xxx-xxx-xxxx)']}
+                validators={["required", "isPhone"]}
+                errorMessages={[
+                  "This field is required",
+                  "Phone number is not valid(xxx-xxx-xxxx)",
+                ]}
                 onChange={(e: React.FormEvent<HTMLInputElement>) => {
                   setPhone(e.currentTarget.value);
                 }}
-                FormHelperTextProps={{
-
-                }}
+                FormHelperTextProps={{}}
                 sx={{
-                  mt: 1
+                  mt: 1,
                 }}
               />
               <Box
                 sx={{
-                  mt: 1,
-                  textAlign: "center"
+                  mt: 3,
+                  textAlign: "center",
                 }}
               >
-                <Button 
+                <Button
                   variant="contained"
                   size="large"
-                  color="primary" 
+                  color="primary"
                   type="submit"
                 >
                   Edit Account
@@ -832,6 +839,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
         open={editDog}
         keepMounted
         fullWidth
+        fullScreen={fullScreen}
         maxWidth={"xs"}
         onClose={handleDogClose}
         scroll="body"
@@ -845,11 +853,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="h6"
-            color="primary"
-            sx={{ fontWeight: "bold" }}
-          >
+          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
             {editDogInfo.name ? "Edit Dog" : "Add Dog"}
           </Typography>
           <IconButton
@@ -869,14 +873,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           sx={{
             px: {
               xs: 1,
-              sm: 2.5
+              sm: 2.5,
             },
           }}
         >
-          <DialogContentText id="edit-dialog-slide-description" sx={{py: 1}}>
-            <EditDogModal
-              {...editDogInfo}
-            />
+          <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
+            <EditDogModal {...editDogInfo} />
           </DialogContentText>
         </DialogContent>
       </Dialog>

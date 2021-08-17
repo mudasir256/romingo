@@ -11,35 +11,39 @@ const muTheme = createTheme(theme);
 const hist = createBrowserHistory();
 
 const AuthGuards = (props: any) => {
-  
   const token = authService.getToken();
   if (token && props.children) {
     return props.children;
   }
 
-  return <Redirect to={"/login"} />
-}
+  return <Redirect to={"/login"} />;
+};
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={muTheme}>
-      <Router history={hist}>
+    <Router history={hist}>
+      <ThemeProvider theme={muTheme}>
         <Switch>
           {routes.map((route, key) => {
             if (!route.requireAuth)
               return (
-                <Route exact path={route.path} component={route.component} key={key} />
-              )
+                <Route
+                  exact
+                  path={route.path}
+                  component={route.component}
+                  key={key}
+                />
+              );
             else
               return (
                 <AuthGuards key={key}>
                   <Route exact path={route.path} component={route.component} />
                 </AuthGuards>
-              )
+              );
           })}
         </Switch>
-      </Router>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Router>
   );
 };
 

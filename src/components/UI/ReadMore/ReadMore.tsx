@@ -23,7 +23,6 @@ const ReadMore: FC<Props> = ({ text, length }) => {
         }}
         sx={{
           fontSize: { xs: "85%", sm: "100%" },
-          fontWeight: "light",
           lineHeight: 2,
           display: "inline",
           my: 0,
@@ -36,7 +35,6 @@ const ReadMore: FC<Props> = ({ text, length }) => {
         <Typography
           sx={{
             fontSize: { xs: "85%", sm: "100%" },
-            fontWeight: "light",
             lineHeight: 2,
             display: "inline",
             color: "primary.main",
