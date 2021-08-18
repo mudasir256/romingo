@@ -60,7 +60,7 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box
           sx={{
-            borderRadius: { xs: 0, md: 10 },
+            borderRadius: { xs: 0, md: 3 },
             zIndex: 100,
             backgroundColor: "#eceff1D9",
             maxWidth: { xs: "100%", md: "90%", xl: "80%" },
@@ -85,7 +85,7 @@ const Header: FC<Props> = ({ sx }) => {
             sx={{
               color: "text.secondary",
               textAlign: "center",
-              fontSize: { xs: "1.5rem", md: "3rem" },
+              fontSize: { xs: "1.25rem", md: "2rem" },
               margin: "0 auto",
               px: 2,
               mt: 1,

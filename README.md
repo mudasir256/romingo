@@ -24,6 +24,25 @@
 
     (note: --force is required until a fix for 17.0.2 compatibility)
 
+1.  **Install and start JSON Server to set up a test backend**
+
+    ```shell
+    # Install globally
+    npm install -g json-server
+    json-server --watch db.json
+    ```
+
+    -Available endpoints
+    /hotels - lists all hotels
+    /details - gets details for a specific hotel
+    /hotelImages - list of images for a certain hotel
+    /rate - gets hotel rate info
+    /create_reservation- example response for a successful hotel reservation
+    /cancel_reservation - example response for successfully cancelling an existing reservation
+    /get_reservation - example response for looking up a past hotel reservation
+    /list_reservation - get a list of reservations matching a lookup
+    /create_pnr - response from successfully creating a passenger name record
+
 1.  **Open the source code and start editing!**
 
     Open the `romingo` directory in your code editor of choice and building your first component!
