@@ -14,6 +14,7 @@ interface Props {
 }
 
 const PriceDetailCard: FC<Props> = ({ sx, details }) => {
+  const detailsLen = details.length;
   return (
     <Box
       sx={{
@@ -35,42 +36,89 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
       >
         Price Details
       </Typography>
-      {details.map((detail) => {
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            mt: 1,
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 0,
-              textTransform: "capitalize",
-              color: "text.primary",
-              textIndent: "-8px",
-              paddingLeft: "8px",
-              maxWidth: "70%",
-            }}
-          >
-            {detail.label}
-          </Typography>
+      {details.map((detail, i) => {
+        if (i === detailsLen - 1) {
+          return (
+            <Box
+              key={i}
+              sx={{
+                borderTop: "1px solid grey",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+                pt: 1,
+              }}
+            >
+              <Typography
+                variant="body1"
+                sx={{
+                  mt: 0,
+                  textTransform: "capitalize",
+                  fontWeight: "bold",
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                }}
+              >
+                {detail.label}
+              </Typography>
 
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: "bold",
-              mt: 0,
-              color: "text.primary",
-              textIndent: "-8px",
-              paddingLeft: "8px",
-            }}
-          >
-            {`$${detail.amount.toFixed(2)}`}
-          </Typography>
-        </Box>;
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold",
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`$${detail.amount.toFixed(2)}`}
+              </Typography>
+            </Box>
+          );
+        } else {
+          return (
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0,
+                  textTransform: "capitalize",
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                }}
+              >
+                {detail.label}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: "bold",
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`$${detail.amount.toFixed(2)}`}
+              </Typography>
+            </Box>
+          );
+        }
       })}
     </Box>
   );
