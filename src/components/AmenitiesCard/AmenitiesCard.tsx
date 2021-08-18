@@ -62,8 +62,6 @@ const AmenitiesCard: FC<Props> = ({
         variant="h6"
         sx={{
           color: "primary.main",
-          fontWeight: "bold",
-          fontSize: "85%",
           textAlign: "center",
           mb: 1,
         }}
@@ -125,11 +123,7 @@ const AmenitiesCard: FC<Props> = ({
                 textAlign: "center",
               }}
             >
-              <Typography
-                variant="h6"
-                color="primary"
-                sx={{ fontWeight: "bold" }}
-              >
+              <Typography variant="h6" color="primary">
                 Amenities
               </Typography>
               <IconButton

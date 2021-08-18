@@ -38,12 +38,10 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
         }}
       >
         <Typography
-          variant="body1"
+          variant="h6"
           sx={{
             color: "secondary.main",
-            fontWeight: "bold",
             textAlign: "center",
-            fontSize: { xs: "85%", sm: "100%" },
           }}
         >
           Traveller Information
@@ -108,12 +106,10 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
           </Grid>
         </Grid>
         <Typography
-          variant="body1"
+          variant="h6"
           sx={{
             color: "secondary.main",
-            fontWeight: "bold",
             textAlign: "center",
-            fontSize: { xs: "85%", sm: "100%" },
           }}
         >
           Payment Information
@@ -222,7 +218,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
               size="large"
               color="primary"
             >
-              Book It
+              <Typography variant="h6">Book It</Typography>
             </Button>
           </Grid>
           <Hidden smDown>

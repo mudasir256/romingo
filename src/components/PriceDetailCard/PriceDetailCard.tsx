@@ -28,7 +28,7 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
       <Typography
         variant="h6"
         sx={{
-          color: "primary.main",
+          color: "secondary.main",
           textAlign: "center",
           mb: 1,
         }}

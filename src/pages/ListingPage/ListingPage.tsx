@@ -49,7 +49,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   const triggerVariants = {
     collapsed: { height: 4, marginBottom: "24px" },
     preview: { height: 4, marginBottom: "24px" },
-    expanded: { height: 0, marginBottom: "0px" },
+    expanded: { height: 0, marginBottom: "35px" },
   };
   const [animate, setAnimate] = useState<keyof typeof variants>("preview");
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -171,7 +171,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           </motion.div>
           {animate === "expanded" && (
             <Button
-              size="small"
+              size="large"
+              color="secondary"
               variant="contained"
               onClick={() => {
                 scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });

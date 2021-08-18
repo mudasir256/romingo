@@ -26,7 +26,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
         }}
       >
         <Typography
-          variant="h6"
+          variant="h5"
           sx={{
             color: "text.primary",
             textAlign: "center",

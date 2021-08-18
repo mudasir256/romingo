@@ -40,6 +40,7 @@ const ListingCard: FC<ListingCardProps> = ({
     <Box
       sx={{
         color: "text.primary",
+        backgroundColor: "white",
         display: "flex",
         borderRadius: 5,
         boxShadow,

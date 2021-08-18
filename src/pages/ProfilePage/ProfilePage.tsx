@@ -383,27 +383,21 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           maxWidth="lg"
           sx={{
             pt: 3,
+            px: 0,
+            backgroundColor: "info.main",
           }}
         >
-          <Box
-            sx={{
-              px: {
-                sm: 2,
-                xs: 0.5,
-              },
-              borderBottom: "1px solid #DDD",
-            }}
-          >
+          <Box>
             <Box
               sx={{
                 display: "flex",
                 mb: 2,
+                px: 2,
               }}
             >
               <Typography
-                variant="body1"
+                variant="h4"
                 sx={{
-                  fontSize: "120%",
                   mr: {
                     xs: 1,
                     sm: 2,
@@ -417,12 +411,13 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 variant="outlined"
                 sx={{
                   borderRadius: 5,
+                  backgroundColor: "white",
                 }}
                 onClick={(e) => {
                   handleEditDogClick();
                 }}
               >
-                <AddIcon />
+                <AddIcon sx={{ fontSize: 16, mr: 0.5 }} />
                 Dog
               </Button>
             </Box>
@@ -432,7 +427,9 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 gridAutoFlow: {
                   xs: "column",
                 },
+                width: "100%",
                 overflow: "auto hidden",
+                pt: 1,
                 pb: 4,
                 scrollSnapType: "x",
                 justifyContent: "start",
@@ -444,13 +441,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                     key={key}
                     sx={{
                       width: "250px",
-                      mr: 2,
+                      mx: 1.5,
                       position: "relative",
                     }}
                   >
                     <Box
                       sx={{
-                        border: "1px solid #DDDDDD",
                         borderRadius: 5,
                         boxShadow: 2,
                         backgroundColor: "white",
@@ -471,22 +467,21 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                       />
                       <Box
                         sx={{
-                          mt: -2,
+                          mt: -2.5,
                           px: 2,
                           position: "relative",
                         }}
                       >
                         <Typography
-                          variant="body1"
+                          variant="h6"
                           sx={{
                             textAlign: "center",
-                            fontWeight: "bold",
                             color: "text.secondary",
                             fontSize: "125%",
                             width: "100%",
                             textTransform: "uppercase",
-                            border: "1px solid #DDD",
                             borderRadius: "10px",
+                            boxShadow: 2,
                             zIndex: 999,
                             background: "white",
                           }}
@@ -494,7 +489,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                           {pup.name}
                         </Typography>
                       </Box>
-                      <Box sx={{ pt: 1 }}>
+                      <Box sx={{ pt: 1, pb: 0.5, px: 0.5 }}>
                         <Box
                           sx={{
                             mb: 1,
@@ -633,90 +628,91 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
         <Container
           maxWidth="lg"
           sx={{
-            pt: 2,
+            py: 3,
           }}
         >
-          <Box
-            sx={{
-              px: {
-                sm: 2,
-                xs: 0.5,
-              },
-            }}
-          >
-            <Typography
-              variant="body1"
+          <Box>
+            <Box
               sx={{
-                fontSize: "120%",
+                display: "flex",
                 mb: 2,
               }}
             >
-              Person
-            </Typography>
-            <Box>
               <Typography
-                variant="body1"
+                variant="h4"
                 sx={{
-                  fontWeight: "bold",
+                  mr: {
+                    xs: 1,
+                    sm: 2,
+                  },
                 }}
               >
-                Name
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0.5,
-                }}
-              >
-                {userInfo.name}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  mt: 1.5,
-                }}
-              >
-                Email
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0.5,
-                }}
-              >
-                {userInfo.email}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  mt: 1.5,
-                }}
-              >
-                Phone
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0.5,
-                }}
-              >
-                {userInfo.phone}
+                Person
               </Typography>
               <Button
-                variant="contained"
-                size="medium"
-                color="primary"
-                type="submit"
+                size="small"
+                variant="outlined"
                 sx={{
-                  my: 1.5,
+                  borderRadius: 5,
+                  backgroundColor: "white",
                 }}
                 onClick={handleEditClick}
               >
-                Edit My Account
+                Edit My Info
               </Button>
             </Box>
+          </Box>
+          <Box>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+              }}
+            >
+              Name
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mt: 0.5,
+              }}
+            >
+              {userInfo.name}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                mt: 1.5,
+              }}
+            >
+              Email
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mt: 0.5,
+              }}
+            >
+              {userInfo.email}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                mt: 1.5,
+              }}
+            >
+              Phone
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mt: 0.5,
+              }}
+            >
+              {userInfo.phone}
+            </Typography>
           </Box>
         </Container>
       </Box>

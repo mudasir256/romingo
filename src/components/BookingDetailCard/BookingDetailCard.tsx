@@ -30,8 +30,7 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
       <Typography
         variant="h6"
         sx={{
-          color: "primary.main",
-          fontWeight: "bold",
+          color: "secondary.main",
           textAlign: "center",
           mb: 1,
         }}

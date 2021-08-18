@@ -40,13 +40,13 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       <Typography
         variant="h6"
         sx={{
-          color: "info.main",
+          color: "warning.main",
           fontSize: "100%",
         }}
       >
         {score}
       </Typography>
-      <Star sx={{ color: "info.main", fontSize: "90%" }} />
+      <Star sx={{ color: "warning.main", fontSize: "90%" }} />
       <Typography
         onClick={handlePopoverOpen}
         sx={{
@@ -137,12 +137,12 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       <Typography
         variant="h6"
         sx={{
-          color: "info.main",
+          color: "warning.main",
         }}
       >
         {score}
       </Typography>
-      <Star sx={{ color: "info.main", fontSize: "130%", mt: -0.1 }} />
+      <Star sx={{ color: "warning.main", fontSize: "130%", mt: -0.1 }} />
       <Typography
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}

@@ -119,7 +119,7 @@ const BookingManageCard: FC<ListingCardProps> = ({
         <Typography
           variant="h6"
           sx={{
-            color: "primary.main",
+            color: "text.secondary",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",

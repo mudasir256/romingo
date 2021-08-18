@@ -34,6 +34,7 @@ const CheckoutPage: FC<Props> = ({
       <Navbar />
       <Box
         sx={{
+          backgroundColor: "info.main",
           pt: {
             sm: "64px",
             xs: "56px",

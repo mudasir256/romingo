@@ -24,12 +24,10 @@ const DescriptionCard: FC<Props> = ({ sx, title, description }) => {
         }}
       >
         <Typography
-          variant="body1"
+          variant="h6"
           sx={{
             color: "secondary.main",
-            fontWeight: "bold",
             textAlign: "center",
-            fontSize: { xs: "85%", sm: "100%" },
             textTransform: "capitalize",
           }}
         >

@@ -22,7 +22,6 @@ const ReadMore: FC<Props> = ({ text, length }) => {
           __html: showLess ? `${text.slice(0, length)}... ` : text + " ",
         }}
         sx={{
-          fontSize: { xs: "85%", sm: "100%" },
           lineHeight: 2,
           display: "inline",
           my: 0,

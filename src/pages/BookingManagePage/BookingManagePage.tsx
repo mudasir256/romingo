@@ -1,8 +1,8 @@
 import Box from "@material-ui/core/Box";
 import React, { FC, useState } from "react";
 import Container from "@material-ui/core/Container";
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
@@ -27,17 +27,19 @@ interface Props {
 }
 
 const BookingManagePage: FC<Props> = ({ upcoming, past, cancelled }) => {
-
   const [selectedTab, setSelectedTab] = useState(0);
 
   const a11yProps = (index: number) => {
     return {
       id: `full-width-tab-${index}`,
-      'aria-controls': `full-width-tabpanel-${index}`,
+      "aria-controls": `full-width-tabpanel-${index}`,
     };
-  }
+  };
 
-  const handleChange = (event: React.SyntheticEvent<Element>, newValue: number) => {
+  const handleChange = (
+    event: React.SyntheticEvent<Element>,
+    newValue: number
+  ) => {
     setSelectedTab(newValue);
   };
 
@@ -48,13 +50,14 @@ const BookingManagePage: FC<Props> = ({ upcoming, past, cancelled }) => {
         sx={{
           pt: {
             sm: "64px",
-            xs: "56px"
-          }
+            xs: "56px",
+          },
         }}
       >
-        <Container maxWidth="lg"
+        <Container
+          maxWidth="lg"
           sx={{
-            py: 3
+            py: 3,
           }}
         >
           <Tabs
@@ -75,18 +78,20 @@ const BookingManagePage: FC<Props> = ({ upcoming, past, cancelled }) => {
             id="simple-tabpanel-0"
             aria-labelledby={`simple-tab-0`}
             sx={{
-              py: 2,
-              px: 1
+              py: 3,
+              px: 1,
             }}
           >
             {upcoming.map((item, key) => {
-              return <BookingManageCard 
-                {...item}
-                key={key}
-                sx={{
-                  mb: 1
-                }}
-              />
+              return (
+                <BookingManageCard
+                  {...item}
+                  key={key}
+                  sx={{
+                    mb: 3,
+                  }}
+                />
+              );
             })}
           </Box>
           <Box
@@ -95,18 +100,20 @@ const BookingManagePage: FC<Props> = ({ upcoming, past, cancelled }) => {
             id="simple-tabpanel-1"
             aria-labelledby={`simple-tab-1`}
             sx={{
-              py: 2,
-              px: 1
+              py: 3,
+              px: 1,
             }}
           >
             {past.map((item, key) => {
-              return <BookingManageCard 
-                {...item}
-                key={key}
-                sx={{
-                  mb: 1
-                }}
-              />
+              return (
+                <BookingManageCard
+                  {...item}
+                  key={key}
+                  sx={{
+                    mb: 3,
+                  }}
+                />
+              );
             })}
           </Box>
           <Box
@@ -115,18 +122,20 @@ const BookingManagePage: FC<Props> = ({ upcoming, past, cancelled }) => {
             id="simple-tabpanel-2"
             aria-labelledby={`simple-tab-2`}
             sx={{
-              py: 2,
-              px: 1
+              py: 3,
+              px: 1,
             }}
           >
             {cancelled.map((item, key) => {
-              return <BookingManageCard 
-                {...item}
-                key={key}
-                sx={{
-                  mb: 1
-                }}
-              />
+              return (
+                <BookingManageCard
+                  {...item}
+                  key={key}
+                  sx={{
+                    mb: 3,
+                  }}
+                />
+              );
             })}
           </Box>
         </Container>

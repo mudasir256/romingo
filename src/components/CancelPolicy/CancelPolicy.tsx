@@ -27,9 +27,7 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
           variant="h6"
           sx={{
             color: "secondary.main",
-            fontWeight: "bold",
             textAlign: "center",
-            fontSize: { xs: "85%", sm: "100%" },
           }}
         >
           Cancellation & Refund Policy
@@ -52,8 +50,8 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
               sx={{
                 fontSize: { xs: 15, sm: 18 },
                 mr: 0.75,
-                mt: 0.125,
-                color: "primary.main",
+                mt: 0.25,
+                color: "success.main",
               }}
             />
             <Typography
@@ -61,7 +59,6 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
               sx={{
                 mt: 0,
                 color: "text.light",
-                fontSize: { xs: "85%", sm: "100%" },
               }}
             >
               Cancel before 7/7/2021 for a full refund
@@ -79,8 +76,8 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
               sx={{
                 fontSize: { xs: 15, sm: 18 },
                 mr: 0.75,
-                mt: 0.125,
-                color: "primary.main",
+                mt: 0.25,
+                color: "error.main",
               }}
             />
 
@@ -89,7 +86,6 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
               sx={{
                 mt: 0,
                 color: "text.light",
-                fontSize: { xs: "85%", sm: "100%" },
               }}
             >
               Cancelations after 7/7/2021 are non-refundable
