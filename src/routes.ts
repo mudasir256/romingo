@@ -2,6 +2,7 @@ import { FC } from "react";
 import HomePage from "./pages/HomePage";
 import ListingPage from "./pages/ListingPage";
 import DetailsPage from "./pages/DetailsPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 interface Routes {
   path: string;
@@ -24,7 +25,12 @@ const routes: Routes[] = [
     path: "/details/:id",
     component: DetailsPage,
     requireAuth: false,
-  }
+  },
+  {
+    path: "/checkout",
+    component: CheckoutPage,
+    requireAuth: false,
+  },
 ];
 
 export default routes;

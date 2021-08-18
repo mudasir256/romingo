@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://www.chromatic.com/">
-    <img alt="Chromatic" src="https://avatars2.githubusercontent.com/u/24584319?s=200&v=4" width="60" />
+  <a href="https://romingo.com">
+    <img alt="Romingo" src="https://romingo.com/wp-content/uploads/2021/08/Copy-of-Copy-of-Romingo_yellow.svg" width="160" />
   </a>
 </p>
 
