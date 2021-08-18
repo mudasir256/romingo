@@ -18,7 +18,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
         sx={{
           backgroundColor: "info.main",
           color: "text.primary",
-          borderRadius: 5,
+          borderRadius: 3,
           pt: 2,
           pb: 2.5,
           px: 2,

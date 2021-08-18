@@ -124,7 +124,6 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
-  
   return (
     <>
       <Header />
@@ -220,7 +219,7 @@ const HomePage: FC<Props> = ({
                       width: "100%",
                       maxHeight: "320px",
                       objectFit: "cover",
-                      borderRadius: 5,
+                      borderRadius: 3,
                       boxShadow: 4,
                       margin: "auto 0",
                     }}
@@ -249,7 +248,7 @@ const HomePage: FC<Props> = ({
                       width: "100%",
                       maxHeight: "320px",
                       objectFit: "cover",
-                      borderRadius: 5,
+                      borderRadius: 3,
                       boxShadow: 4,
                       margin: "auto 0",
                     }}
@@ -370,7 +369,7 @@ const HomePage: FC<Props> = ({
                           <Box
                             sx={{
                               border: "1px solid #DDDDDD",
-                              borderRadius: 5,
+                              borderRadius: 3,
                               boxShadow: 2,
                               backgroundColor: "white",
                             }}
@@ -384,8 +383,8 @@ const HomePage: FC<Props> = ({
                                 objectFit: "cover",
                                 width: "100%",
                                 height: "240px",
-                                borderTopLeftRadius: 20,
-                                borderTopRightRadius: 20,
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 12,
                               }}
                             />
                             <Typography
@@ -474,7 +473,7 @@ const HomePage: FC<Props> = ({
                           <Box
                             sx={{
                               border: "1px solid #DDDDDD",
-                              borderRadius: 5,
+                              borderRadius: 3,
                               boxShadow: 2,
                               backgroundColor: "white",
                             }}
@@ -488,8 +487,8 @@ const HomePage: FC<Props> = ({
                                 objectFit: "cover",
                                 width: "100%",
                                 height: "200px",
-                                borderTopLeftRadius: 20,
-                                borderTopRightRadius: 20,
+                                borderTopLeftRadius: 12,
+                                borderTopRightRadius: 12,
                               }}
                             />
                             <Typography

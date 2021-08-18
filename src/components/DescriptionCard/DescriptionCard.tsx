@@ -16,7 +16,7 @@ const DescriptionCard: FC<Props> = ({ sx, title, description }) => {
         sx={{
           backgroundColor: "white",
           color: "text.primary",
-          borderRadius: 5,
+          borderRadius: 3,
           border: "1px solid #DDD",
           pt: 2,
           pb: 2.5,
@@ -34,7 +34,7 @@ const DescriptionCard: FC<Props> = ({ sx, title, description }) => {
           {title}
         </Typography>
         <Typography
-          variant="body2"
+          variant="body1"
           sx={{
             mt: 0.5,
           }}

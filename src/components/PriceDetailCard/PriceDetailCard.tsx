@@ -19,7 +19,7 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
       sx={{
         backgroundColor: "white",
         color: "text.primary",
-        borderRadius: 5,
+        borderRadius: 3,
         boxShadow: 4,
         py: 2,
         px: 2,

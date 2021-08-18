@@ -16,7 +16,7 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
         sx={{
           backgroundColor: "white",
           color: "text.primary",
-          borderRadius: 5,
+          borderRadius: 3,
           border: "1px solid #DDD",
           pt: 2,
           pb: 2.5,

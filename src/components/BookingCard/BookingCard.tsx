@@ -39,7 +39,7 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
   };
 
   return (
-    <Box sx={{ ...sx, borderRadius: 5, boxShadow: 3, p: 3 }}>
+    <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, p: 3 }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker
           startText="Check-in"

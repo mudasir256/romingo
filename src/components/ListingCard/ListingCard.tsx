@@ -42,7 +42,7 @@ const ListingCard: FC<ListingCardProps> = ({
         color: "text.primary",
         backgroundColor: "white",
         display: "flex",
-        borderRadius: 5,
+        borderRadius: 3,
         boxShadow,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
@@ -60,7 +60,7 @@ const ListingCard: FC<ListingCardProps> = ({
           maxWidth: { sm: 280 },
           maxHeight: { xs: 180, sm: "100%" },
           minHeight: { xs: 180, sm: "100%" },
-          borderRadius: 5,
+          borderRadius: 3,
           boxShadow: 0,
         }}
       />
@@ -145,7 +145,7 @@ const ListingCard: FC<ListingCardProps> = ({
                         sx={{ fontSize: 15, color: "success.main", mt: 0.4 }}
                       />
                       <Typography
-                        variant="body2"
+                        variant="body1"
                         sx={{
                           pr: 0.15,
                           overflow: "hidden",

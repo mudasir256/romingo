@@ -1,8 +1,8 @@
 import Box from "@material-ui/core/Box";
 import { FC, useState, MouseEventHandler } from "react";
-import { connect, useStore, useDispatch } from 'react-redux';
+import { connect, useStore, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Dispatch } from "redux"
+import { Dispatch } from "redux";
 import { CSSObject } from "@material-ui/core";
 import Zoom from "@material-ui/core/Zoom";
 import Autocomplete from "@material-ui/core/Autocomplete";
@@ -76,12 +76,14 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     setZoomIn(false);
     if (selectedCity && checkDate[0] && checkDate[1]) {
-      dispatch(saveSearch({
-        city: selectedCity,
-        checkIn: dateToString(checkDate[0]),
-        checkOut: dateToString(checkDate[1]),
-        occupants
-      }));
+      dispatch(
+        saveSearch({
+          city: selectedCity,
+          checkIn: dateToString(checkDate[0]),
+          checkOut: dateToString(checkDate[1]),
+          occupants,
+        })
+      );
 
       history.push("/listings");
     }
@@ -105,7 +107,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
               display: "inline-flex",
               alignItems: "center",
               border: "1px solid #DDDDDD",
-              borderRadius: 5,
+              borderRadius: 3,
               backgroundColor: "white",
             }}
           >
@@ -170,7 +172,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
       {zoomIn && (
         <Box
           sx={{
-            borderRadius: 5,
+            borderRadius: 3,
             backgroundColor: {
               xs: "white",
               md: "transparent",

@@ -51,7 +51,7 @@ const AmenitiesCard: FC<Props> = ({
       sx={{
         backgroundColor: "white",
         color: "text.primary",
-        borderRadius: 5,
+        borderRadius: 3,
         boxShadow: 4,
         py: 2,
         px: 2,
@@ -80,7 +80,7 @@ const AmenitiesCard: FC<Props> = ({
           >
             <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
             <Typography
-              variant="body2"
+              variant="body1"
               sx={{
                 mt: 0,
                 textTransform: "capitalize",
@@ -160,7 +160,7 @@ const AmenitiesCard: FC<Props> = ({
                         }}
                       />
                       <Typography
-                        variant="body2"
+                        variant="body1"
                         sx={{
                           mt: 0,
                           color: "text.light",

@@ -410,7 +410,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 size="small"
                 variant="outlined"
                 sx={{
-                  borderRadius: 5,
+                  borderRadius: 3,
                   backgroundColor: "white",
                 }}
                 onClick={(e) => {
@@ -447,7 +447,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                   >
                     <Box
                       sx={{
-                        borderRadius: 5,
+                        borderRadius: 3,
                         boxShadow: 2,
                         backgroundColor: "white",
                       }}
@@ -461,8 +461,8 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                           objectFit: "cover",
                           width: "100%",
                           height: "150px",
-                          borderTopLeftRadius: 20,
-                          borderTopRightRadius: 20,
+                          borderTopLeftRadius: 12,
+                          borderTopRightRadius: 12,
                         }}
                       />
                       <Box
@@ -611,7 +611,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                         variant="outlined"
                         size="small"
                         sx={{
-                          borderRadius: 5,
+                          borderRadius: 3,
                           background: "white",
                         }}
                         onClick={(e) => handleEditDogClick(key)}
@@ -653,7 +653,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 size="small"
                 variant="outlined"
                 sx={{
-                  borderRadius: 5,
+                  borderRadius: 3,
                   backgroundColor: "white",
                 }}
                 onClick={handleEditClick}

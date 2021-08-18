@@ -17,7 +17,7 @@ const ReadMore: FC<Props> = ({ text, length }) => {
   return (
     <Box>
       <Typography
-        variant="body2"
+        variant="body1"
         dangerouslySetInnerHTML={{
           __html: showLess ? `${text.slice(0, length)}... ` : text + " ",
         }}

@@ -144,43 +144,45 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   return (
     <>
-      <Box
-        sx={{
-          position: { xs: "fixed", md: "relative" },
-          top: 0,
-          left: 0,
-          right: 0,
-          width: "100%",
-          margin: "0 auto",
-          boxShadow: { xs: 0, md: 2 },
-          display: "flex",
-          justifyContent: { xs: "center", md: "flex-start" },
-          zIndex: 1000,
-          py: { xs: 0, md: 1 },
-        }}
-      >
-        <Link
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            history.push("/");
+      <Hidden mdDown>
+        <Box
+          sx={{
+            position: { xs: "fixed", md: "relative" },
+            top: 0,
+            left: 0,
+            right: 0,
+            width: "100%",
+            margin: "0 auto",
+            boxShadow: { xs: 0, md: 2 },
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-start" },
+            zIndex: 1000,
+            py: { xs: 0, md: 1 },
           }}
         >
-          <Box
-            component="img"
-            src={"/images/romingo_logo_yellow.svg"}
-            alt="Logo"
-            draggable="false"
-            sx={{
-              display: { xs: "none", md: "block" },
-              ml: { xs: 0, md: 4 },
-              mr: { xs: 0, md: 8 },
-              height: { xs: "0px", md: "42px" },
+          <Link
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              history.push("/");
             }}
-          />
-        </Link>
-        <FilterBar />
-      </Box>
+          >
+            <Box
+              component="img"
+              src={"/images/romingo_logo_yellow.svg"}
+              alt="Logo"
+              draggable="false"
+              sx={{
+                display: { xs: "none", md: "block" },
+                ml: { xs: 0, md: 4 },
+                mr: { xs: 0, md: 8 },
+                height: { xs: "0px", md: "42px" },
+              }}
+            />
+          </Link>
+          <FilterBar />
+        </Box>
+      </Hidden>
       <Box
         component="img"
         src={mainImg}
@@ -192,7 +194,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           width: "100%",
           height: { xs: "200px", sm: "300px" },
           objectFit: "cover",
-          borderRadius: 5,
+          borderRadius: 0,
           mx: 0,
           cursor: "pointer",
         }}
@@ -218,7 +220,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 width: "100%",
                 height: { xs: "150px", sm: "375px" },
                 objectFit: "cover",
-                borderRadius: 5,
+                borderRadius: 3,
                 cursor: "pointer",
               }}
             />
@@ -239,7 +241,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           width: "100%",
                           height: "178px",
                           objectFit: "cover",
-                          borderRadius: 5,
+                          borderRadius: 3,
                           cursor: "pointer",
                         }}
                       ></Box>
