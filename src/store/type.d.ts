@@ -53,6 +53,122 @@ interface IHotelDetails {
     value: string;
   }[];
   nearby: { text: string; distance: number }[];
+  rooms: {
+    RoomIndex: number;
+    BedTypes: {
+      BedType: {
+        Code: number;
+        Count: number;
+      }[]
+    };
+    RoomDescription: {
+      Name: string;
+      Text: string[];
+    };
+    Amenities: {
+      Amenity: {
+        Code: number;
+        Description: string;
+      }[]
+    };
+    Occupancy: {
+      Max: number
+    };
+    RatePlans: {
+      RatePlan: {
+        RatePlanName: string;
+        RatePlanType?: string;
+        PrepaidIndicator: boolean;
+        AvailableQuantity: number;
+        RateSource: string;
+        RateKey: string;
+        RatePlanDescription: {
+          Text: string;
+        };
+        RatePlanInclusions: {
+          RatePlanInclusionDescription: {
+            Name: string;
+            Code: number
+          }[]
+        };
+        RateInfo: {
+          StartDate: string;
+          EndDate: string;
+          AmountBeforeTax: number;
+          AmountAfterTax: number;
+          AverageNightlyRate: number;
+          CurrencyCode: string;
+          AdditionalFeesInclusive: boolean;
+          TaxInclusive: boolean;
+          Rates?: {
+            Rate: {
+              StartDate: string;
+              EndDate: string;
+              AmountBeforeTax: number;
+              AmountAfterTax: number;
+              CurrencyCode: string;
+            }[]
+          },
+          Taxes: {
+            Amount: number;
+            CurrencyCode: string;
+            Tax?: {
+              StartDate: string;
+              EndDate: string;
+              Amount: number;
+              CurrencyCode: string
+            }[];
+            TaxGroups: {
+              TaxGroup: {
+                Code: number;
+                Amount: number;
+                CurrencyCode: string;
+                TaxDescription: {
+                  Text: string[]
+                }
+              }[]
+            };
+          }
+          CancelPenalties: {
+            CancelPenalty: {
+              Refundable: boolean;
+              Deadline: {
+                AbsoluteDeadline: string;
+              };
+              AmountPercent: {
+                NmbrOfNights?: number;
+                Amount?: number;
+                CurrencyCode?: string;
+              }
+            }[]
+          };
+          Guarantee: {
+            GuaranteeType: string;
+            GuaranteesAccepted: {
+              GuaranteeAccepted: {
+                GuaranteeTypeCode: number;
+                PaymentCards?: {
+                  PaymentCard: {
+                    CardCode: string;
+                    value: string;
+                  }[]
+                }
+              }[]
+            };
+            GuaranteeDescription?: {
+              Text: string[];
+            };
+          }
+          AdditionalDetails: {
+            AdditionalDetail: {
+              Code: number;
+              Text: string[];
+            }[]
+          }
+        }
+      }[]
+    }
+  }[]
 }
 
 type SearchState = {

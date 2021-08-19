@@ -32,6 +32,8 @@ import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import ActivitiesNearby from "../../components/ActivitiesNearby";
 import CancelPolicy from "../../components/CancelPolicy";
 import FilterBar from "../../components/FilterBar";
+import RoomCard from "../../components/RoomCard";
+import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -75,24 +77,42 @@ interface Props {
     Value: string;
   }[];
   nearby: { text: string; distance: number }[];
+  rooms: RoomInfo[]
 }
 
-const DetailsPage: FC<Props> = ({ ...props }) => {
-  const {
-    name,
-    location,
-    mainImg,
-    gallery,
-    score,
-    defaultDescription,
-    cancellation,
-    cancelPenalty,
-    dogAmenitiesTitle,
-    roomList,
-    amenitiesTitle,
-    amenities,
-    nearby,
-  } = useSelector((state: any) => state.hotelDetailReducer.detail);
+// const DetailsPage: FC<Props> = ({ ...props }) => {
+//   const {
+    // name,
+    // location,
+    // mainImg,
+    // gallery,
+    // score,
+    // defaultDescription,
+    // cancellation,
+    // cancelPenalty,
+    // dogAmenitiesTitle,
+    // roomList,
+    // amenitiesTitle,
+    // amenities,
+    // nearby,
+    // rooms,
+//   } = useSelector((state: any) => state.hotelDetailReducer.detail);
+const DetailsPage: FC<Props> = ({
+  name,
+  location,
+  mainImg,
+  gallery,
+  score,
+  defaultDescription,
+  cancellation,
+  cancelPenalty,
+  dogAmenitiesTitle,
+  roomList,
+  amenitiesTitle,
+  amenities,
+  nearby,
+  rooms,
+}) => {
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
     buttons: {
@@ -374,6 +394,34 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </Hidden>
           </Grid>
         </Grid>
+        <Box
+          sx={{
+            mt: 2,
+            display: "grid",
+            gridAutoFlow: "column",
+            overflow: "auto",
+            py: 1
+          }}
+        >
+          {rooms.map((room, key) => {
+            return (
+              <RoomCard 
+                key={key}
+                HotelName={name}
+                sx={{
+                  minWidth: "250px",
+                  marginRight: "10px",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  boxShadow: 2,
+                  px: 1,
+                  py: 1
+                }}
+                {...room}
+              />
+            )
+          })}
+        </Box>
         <SimpleReactLightbox>
           <Dialog
             open={showGallery}

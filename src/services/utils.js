@@ -1,0 +1,47 @@
+const getDateTime = function(isoString) {
+  var date = new Date(isoString);
+  var year = date.getFullYear();
+  var monthArray = ['Jan', 'Feb', "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var month = monthArray[date.getMonth()];
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  if (minute < 10) {
+    minute = "0" + minute;
+  }
+  var am = "am";
+
+  if (hour > 12) {
+    hour = hour - 12;
+    am = "pm";
+  }
+
+  return `${month} ${day}, ${year} ${hour}:${minute} ${am}`;
+
+}
+
+const getFormatDate = function(str) {
+  const date = new Date(str);
+  return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`
+}
+
+const getDateNow = function() {
+  const date = new Date();
+  return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`
+}
+
+const getOnlyDate = function(isoString) {
+  var date = new Date(isoString);
+  var monthArray = ['JAN', 'FEB', "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  var month = monthArray[date.getMonth()];
+  var day = date.getDate();
+
+  return `${month} ${day}`;
+}
+
+export const utils = {
+  getDateTime,
+  getOnlyDate,
+  getDateNow,
+  getFormatDate,
+}

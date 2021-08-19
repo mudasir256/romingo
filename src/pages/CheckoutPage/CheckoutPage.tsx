@@ -13,6 +13,8 @@ import CancelPolicy from "../../components/CancelPolicy";
 import PriceDetailCard from "../../components/PriceDetailCard";
 import DescriptionCard from "../../components/DescriptionCard";
 import CheckoutInformation from "../../components/CheckoutInformation";
+import RoomCard from "../../components/RoomCard";
+import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 interface Props {
   hotel: any;
@@ -20,6 +22,7 @@ interface Props {
   priceDetails: any;
   checkinDescription: any;
   finePrint: any;
+  room: RoomInfo;
 }
 
 const CheckoutPage: FC<Props> = ({
@@ -28,6 +31,7 @@ const CheckoutPage: FC<Props> = ({
   priceDetails,
   checkinDescription,
   finePrint,
+  room
 }) => {
   return (
     <>
@@ -84,6 +88,17 @@ const CheckoutPage: FC<Props> = ({
                   }}
                 />
               </Hidden>
+              <RoomCard
+                HotelName={hotel.name}
+                {...room}
+                sx={{
+                  background: "white",
+                  borderRadius: 3,
+                  boxShadow: 4,
+                  p: 2,
+                  mt: 2
+                }}
+              />
             </Grid>
           </Grid>
         </Container>
