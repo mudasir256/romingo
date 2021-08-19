@@ -42,12 +42,12 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
             <Box
               key={i}
               sx={{
-                borderTop: "1px solid grey",
+                borderTop: "1px solid #DDD",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
-                mt: 1,
-                pt: 1,
+                mt: 1.5,
+                pt: 1.5,
               }}
             >
               <Typography
