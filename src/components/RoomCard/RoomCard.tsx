@@ -283,7 +283,6 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
 
   const open = Boolean(anchorEl);
   const id = open ? 'transitions-popper' : undefined;
-  console.log(open);
 
   return (
     <Box
@@ -317,6 +316,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
               sx={{
                 mb: 0.5
               }}
+              key={key}
             >
               {description}
             </Typography>
