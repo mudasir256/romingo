@@ -6,7 +6,7 @@ interface ISearch {
     adults: number;
     children: number;
     dogs: number;
-  }
+  };
 }
 
 interface IUser {
@@ -171,47 +171,75 @@ interface IHotelDetails {
   }[]
 }
 
-type SearchState = {
-  search: ISearch
+interface ICheckout {
+  hotel: IHotel;
+  bookingDetails: {
+    checkIn: string;
+    checkOut: string;
+    guests: {
+      adults: number;
+      children: number;
+      dogs: number;
+    };
+    roomType: string;
+  };
+  priceDetails: { label: string; amount: number }[];
+  checkinDescription: { title: string; description: string };
+  finePrint: { title: string; description: string };
 }
+
+type SearchState = {
+  search: ISearch;
+};
 
 type SearchAction = {
-  type: string
-  search: ISearch
-}
+  type: string;
+  search: ISearch;
+};
 
 type UserState = {
-  user: IUser,
+  user: IUser;
   authenticated: boolean;
-}
+};
 
 type UserAction = {
-  type: string
-  user: IUser
-}
+  type: string;
+  user: IUser;
+};
 
 type HotelListState = {
-  hotels: IHotel[]
-}
+  hotels: IHotel[];
+};
 
 type HotelAction = {
   type: string;
-  hotels: IHotel[]
-}
+  hotels: IHotel[];
+};
 
 type DetailState = {
-  detail: IHotelDetails
+  detail: IHotelDetails;
 };
 
 type DetailAction = {
-  type: string
-  detail: IHotelDetails
-}
+  type: string;
+  detail: IHotelDetails;
+};
 
-type SearchDispatchType = (args: SearchAction) => SearchAction
+type CheckoutState = {
+  checkout: ICheckout;
+};
 
-type UserDispatchType = (args: UserAction) => UserAction
+type CheckoutAction = {
+  type: string;
+  checkout: ICheckout;
+};
 
-type HotelListDispatchType = (args: HotelAction) => HotelAction
+type SearchDispatchType = (args: SearchAction) => SearchAction;
 
-type HotelDetailDispatchType = (args: DetailAction) => DetailAction
+type UserDispatchType = (args: UserAction) => UserAction;
+
+type HotelListDispatchType = (args: HotelAction) => HotelAction;
+
+type HotelDetailDispatchType = (args: DetailAction) => DetailAction;
+
+type CheckoutDispatchType = (args: CheckoutAction) => CheckoutAction;

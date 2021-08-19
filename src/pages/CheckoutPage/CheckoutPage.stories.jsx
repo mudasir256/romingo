@@ -20,8 +20,8 @@ Default.args = {
     amenities: ["dog park nearby", "pet friendly rooftop"],
   },
   bookingDetails: {
-    checkin: "8/1/2021",
-    checkout: "8/9/2021",
+    checkIn: "8/1/2021",
+    checkOut: "8/9/2021",
     guests: {
       adults: 2,
       dogs: 1,

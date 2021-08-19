@@ -1,5 +1,6 @@
 import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { RangeInput } from "@material-ui/lab/DateRangePicker/RangeTypes";
@@ -22,6 +23,7 @@ interface Props {
 }
 
 const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
+  const history = useHistory();
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
   const [roomType, setRoomType] = useState("0");
   const [occupants, setOccupants] = useState({
@@ -40,6 +42,12 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
 
   const handleClose = () => {
     setShowPopup(false);
+  };
+
+  const handleBook: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push("/checkout");
   };
 
   const handleChange = (
@@ -143,7 +151,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                 lineHeight: 1.35,
               }}
             >
-              <Box>
+              <Box onClick={handleBook}>
                 <Typography
                   variant="h5"
                   sx={{

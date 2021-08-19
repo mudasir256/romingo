@@ -1,5 +1,6 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEventHandler } from "react";
 import { CSSObject } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -26,6 +27,7 @@ interface Props {
 }
 
 const BookingCard: FC<Props> = ({ sx, roomList }) => {
+  const history = useHistory();
   const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
   const [roomType, setRoomType] = useState("0");
   const [occupants, setOccupants] = useState({
@@ -36,6 +38,12 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
 
   const onOccupantChange = (value: Occupant) => {
     setOccupants(value);
+  };
+
+  const handleBook: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push("/checkout");
   };
 
   return (
@@ -98,6 +106,7 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
           </Typography>
         </Box>
         <Button
+          onClick={handleBook}
           variant="contained"
           size="large"
           color="primary"

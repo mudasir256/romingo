@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import { authService } from "../services/authService.js";
 import data from "../static/hotelDetail.js";
 
 export const setHotel = (detail: IHotelDetails) => (dispatch: HotelDetailDispatchType) => {

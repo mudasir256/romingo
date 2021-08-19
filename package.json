@@ -87,6 +87,7 @@
     "@storybook/react": "^6.3.0",
     "@storybook/testing-react": "^0.0.17",
     "@types/google.maps": "^3.45.6",
+    "@types/history": "^4.7.9",
     "@types/react-router-dom": "^5.1.8",
     "@types/simple-react-lightbox": "^3.6.1",
     "@typescript-eslint/eslint-plugin": "^4.28.4",

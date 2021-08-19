@@ -4,8 +4,8 @@ import Typography from "@material-ui/core/Typography";
 
 interface Props {
   details: {
-    checkin: string;
-    checkout: string;
+    checkIn: string;
+    checkOut: string;
     guests: {
       adults: number;
       dogs: number;
@@ -70,7 +70,7 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
               paddingLeft: "8px",
             }}
           >
-            {details.checkin}
+            {details.checkIn}
           </Typography>
         </Box>
         <Box>
@@ -97,7 +97,7 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
               paddingLeft: "8px",
             }}
           >
-            {details.checkout}
+            {details.checkOut}
           </Typography>
         </Box>
       </Box>

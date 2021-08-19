@@ -3,6 +3,7 @@ import { FC } from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
+import { connect, useStore, useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -25,14 +26,15 @@ interface Props {
   room: RoomInfo;
 }
 
-const CheckoutPage: FC<Props> = ({
-  hotel,
-  bookingDetails,
-  priceDetails,
-  checkinDescription,
-  finePrint,
-  room
-}) => {
+const CheckoutPage: FC<Props> = () => {
+  const {
+    hotel,
+    bookingDetails,
+    priceDetails,
+    checkinDescription,
+    finePrint,
+    room
+  } = useSelector((state: any) => state.hotelCheckoutReducer.checkout);
   return (
     <>
       <Navbar />
