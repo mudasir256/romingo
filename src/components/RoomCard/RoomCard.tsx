@@ -19,7 +19,6 @@ import { utils } from "../../services/utils";
 
 interface Props {
   sx?: CSSObject;
-  HotelName: string;
   RoomIndex: number;
   BedTypes: {
     BedType: {
@@ -253,7 +252,7 @@ export interface RoomInfo {
   }
 }
 
-const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescription, Amenities, Occupancy, RatePlans, ...props }) => {
+const RoomCard: FC<Props> = ({ sx, RoomIndex, BedTypes, RoomDescription, Amenities, Occupancy, RatePlans, ...props }) => {
 
   const [showDialog, setShowDialog] = useState(false);
   const length = 30;
@@ -291,19 +290,12 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
       }}
     >
       <Typography
-        variant="h6"
-        sx={{
-          fontWeight: "bold",
-          mb: 0.5,
-          color: "primary.main",
-        }}
-      >
-        {HotelName}
-      </Typography>
-      <Typography
         variant="body1"
         sx={{
-          mb: 1.5
+          mb: 1.5,
+          fontWeight: "bold",
+          color: "primary.main",
+          textAlign: "center"
         }}
       >
         {RoomDescription.Name}
@@ -342,6 +334,16 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
           Before {utils.getOnlyDate(RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Deadline.AbsoluteDeadline)}
         </Typography>
       )}
+      <Typography
+        variant="body2"
+        sx={{
+          fontWeight: "bold",
+          color: "secondary.main",
+          mt: 1.5
+        }}
+      >
+        Price: ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)} / night
+      </Typography>
       <Link href="#" onClick={handleClick}>
         <Typography
           variant="body2"
@@ -371,7 +373,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
           }}
         >
           <Typography variant="h6" color="primary">
-            {HotelName}
+            {RoomDescription.Name}
           </Typography>
           <IconButton
             aria-label="close"
@@ -493,7 +495,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
                   fontSize: "125%"
                 }}
               >
-                ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate}
+                ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)}
               </Typography>
               <Typography
                 variant="body2"
@@ -511,7 +513,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
                   fontWeight: "bold"
                 }}
               >
-                Total: ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax}
+                Total: ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax.toFixed(2)}
               </Typography>
               <Link href="#" onClick={handleOpenPrice} aria-describedby={id} sx={{display: "inline-flex"}}>
                 <Typography
@@ -577,7 +579,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
                             textAlign: "right"
                           }}
                         >
-                          ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate}
+                          ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)}
                         </Typography>
                       </Box>
                       <Box
@@ -602,7 +604,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
                             textAlign: "right"
                           }}
                         >
-                          ${RatePlans.RatePlan[0].RateInfo.AmountAfterTax}
+                          ${RatePlans.RatePlan[0].RateInfo.AmountAfterTax.toFixed(2)}
                         </Typography>
                       </Box>
                       <Box
@@ -627,7 +629,7 @@ const RoomCard: FC<Props> = ({ sx, HotelName, RoomIndex, BedTypes, RoomDescripti
                             textAlign: "right"
                           }}
                         >
-                          ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax}
+                          ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax.toFixed(2)}
                         </Typography>
                       </Box>
                     </Box>

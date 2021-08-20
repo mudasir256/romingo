@@ -340,6 +340,43 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </Grid>
             </Grid>
             <RomingoGuarantee sx={{ mt: 2 }} />
+            <Typography
+              variant="h6"
+              sx={{
+                color: "secondary.main",
+                mt: 2,
+              }}
+            >
+              Room Types
+            </Typography>
+            <Box
+              sx={{
+                mt: 1,
+                display: "grid",
+                gridAutoFlow: "column",
+                overflow: "auto",
+                py: 1
+              }}
+            >
+              {rooms.map((room:any, key:number) => {
+                return (
+                  <RoomCard 
+                    key={key}
+                    HotelName={name}
+                    sx={{
+                      minWidth: "250px",
+                      marginRight: "10px",
+                      border: "1px solid #ddd",
+                      borderRadius: "5px",
+                      boxShadow: 2,
+                      px: 1,
+                      py: 1
+                    }}
+                    {...room}
+                  />
+                )
+              })}
+            </Box>
             <Grid container>
               <Box
                 sx={{
@@ -394,34 +431,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </Hidden>
           </Grid>
         </Grid>
-        <Box
-          sx={{
-            mt: 2,
-            display: "grid",
-            gridAutoFlow: "column",
-            overflow: "auto",
-            py: 1
-          }}
-        >
-          {rooms.map((room:any, key:number) => {
-            return (
-              <RoomCard 
-                key={key}
-                HotelName={name}
-                sx={{
-                  minWidth: "250px",
-                  marginRight: "10px",
-                  border: "1px solid #ddd",
-                  borderRadius: "5px",
-                  boxShadow: 2,
-                  px: 1,
-                  py: 1
-                }}
-                {...room}
-              />
-            )
-          })}
-        </Box>
         <SimpleReactLightbox>
           <Dialog
             open={showGallery}
