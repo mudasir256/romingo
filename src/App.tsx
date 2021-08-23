@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./theme";
 import routes from "./routes";
 import { authService } from "./services/authService.js";
+import ErrorPage from "./pages/ErrorPage"
 
 const muTheme = createTheme(theme);
 
@@ -41,6 +42,7 @@ const App: FC = () => {
                 </AuthGuards>
               );
           })}
+          <Route component={ErrorPage} />
         </Switch>
       </ThemeProvider>
     </Router>

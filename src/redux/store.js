@@ -1,7 +1,19 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import rootReducer from '../store';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const persistConfig = {
+  key: "romingo",
+  storage,
+  whitelist: ['searchReducer']
+}
 
-export default store;
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+// const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(persistedReducer, applyMiddleware(thunk));
+const persistor = persistStore(store);
+
+export { persistor, store };
