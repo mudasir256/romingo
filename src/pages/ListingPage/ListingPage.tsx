@@ -8,9 +8,8 @@ import React, { FC, useRef, useState, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@material-ui/core/Link";
-import { useGoogleMap } from '@react-google-maps/api'
-
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
+
 import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
@@ -40,10 +39,12 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
 
   // const [mapCenter, setMapCenter] = useState<MapLocation>(cards[0].mapLocation ? {...cards[0].mapLocation} : { lat: 32.221, lng: -110.969 });
 
-  const markers: MapLocation[] = cards.map((card: ListingCardProps, key: number) => {
-    refArray.push(React.createRef<HTMLElement>())
-    return card.mapLocation;
-  });
+  const markers: MapLocation[] = cards.map(
+    (card: ListingCardProps, key: number) => {
+      refArray.push(React.createRef<HTMLElement>());
+      return card.mapLocation;
+    }
+  );
 
   const y = useMotionValue(0);
   const { height } = useWindowSize();
@@ -87,10 +88,13 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
       if (refArray[index]?.current?.offsetTop !== undefined) {
         const top = refArray[index]?.current?.offsetTop;
         if (top !== null && top !== undefined)
-          ScrollBarRef.current.scrollTo(0, top - ScrollBarRef?.current?.offsetTop);
+          ScrollBarRef.current.scrollTo(
+            0,
+            top - ScrollBarRef?.current?.offsetTop
+          );
       }
     }
-  }
+  };
 
   return (
     <>
@@ -132,9 +136,9 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
           height: { xs: "100vh", md: "calc(100vh - 59px)" },
         }}
       >
-        <ListingMap 
-          loading={loading} 
-          center={cards[hotelIndex].mapLocation} 
+        <ListingMap
+          loading={loading}
+          center={cards[hotelIndex].mapLocation}
           markers={markers}
           name={cards[hotelIndex].name}
           location={cards[hotelIndex].locaiton}
@@ -213,7 +217,12 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                     onClick={handleClick}
                     underline="none"
                   >
-                    <ListingCard {...card} boxShadow={hotelIndex === index ? 4 : 0} />
+                    <ListingCard
+                      {...card}
+                      backgroundColor={
+                        hotelIndex === index ? "#F4DAC9" : "white"
+                      }
+                    />
                   </Link>
                 ))}
               </Stack>
@@ -282,7 +291,10 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                     underline="none"
                     ref={refArray[index]}
                   >
-                    <ListingCard {...card} boxShadow={hotelIndex === index ? 4 : 0} />
+                    <ListingCard
+                      {...card}
+                      backgroundColor={hotelIndex === index ? "#ddd" : "white"}
+                    />
                   </Link>
                 ))}
               </Stack>

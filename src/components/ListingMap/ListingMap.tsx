@@ -6,8 +6,6 @@ import Link from "@material-ui/core/Link";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
 import Map from "../UI/Map/Map";
 import Skeleton from "@material-ui/core/Skeleton";
-import { FormatListNumberedTwoTone } from "@material-ui/icons";
-import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 
 interface Props {
   center: { lat: number; lng: number };
@@ -27,8 +25,20 @@ interface Props {
   selectedMarker?: number;
 }
 
-const ListingMap: FC<Props> = ({ center, loading = false, sx, markers, name, location, score, price, image, amenities, markerClickCallBack, selectedMarker }) => {
-  
+const ListingMap: FC<Props> = ({
+  center,
+  loading = false,
+  sx,
+  markers,
+  name,
+  location,
+  score,
+  price,
+  image,
+  amenities,
+  markerClickCallBack,
+  selectedMarker,
+}) => {
   const history = useHistory();
 
   return (
@@ -55,7 +65,13 @@ const ListingMap: FC<Props> = ({ center, loading = false, sx, markers, name, loc
         />
       ) : (
         <>
-          <Map center={center} width={"100%"} markers={markers} markerClickCallBack={markerClickCallBack} selectedMarker={selectedMarker}/>
+          <Map
+            center={center}
+            width={"100%"}
+            markers={markers}
+            markerClickCallBack={markerClickCallBack}
+            selectedMarker={selectedMarker}
+          />
           <Box
             sx={{
               position: "absolute",
@@ -65,10 +81,10 @@ const ListingMap: FC<Props> = ({ center, loading = false, sx, markers, name, loc
               zIndex: 100,
             }}
           >
-            <Link 
+            <Link
               href="#"
               sx={{
-                textDecoration: "none"
+                textDecoration: "none",
               }}
               onClick={(e) => {
                 e.preventDefault();
