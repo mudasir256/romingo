@@ -17,6 +17,7 @@ export interface ListingCardProps {
   amenities?: string[];
   showAmenities?: boolean;
   boxShadow?: number;
+  backgroundColor?: string;
   mapLocation: { lat: number; lng: number };
 }
 
@@ -30,21 +31,18 @@ const ListingCard: FC<ListingCardProps> = ({
   currency = "$",
   amenities = [],
   showAmenities = true,
-  boxShadow = 4,
+  backgroundColor = "white",
+  boxShadow = 0,
   ...props
 }) => {
-  let mobileCardPadding = 1.8;
-  if (boxShadow === 0) {
-    mobileCardPadding = 0;
-  }
+  const mobileCardPadding = 1.8;
   return (
     <Box
       sx={{
         color: "text.primary",
-        backgroundColor: "white",
+        boxShadow: `5px 5px 25px ${backgroundColor}, -5px -5px 25px ${backgroundColor}`,
         display: "flex",
         borderRadius: 3,
-        boxShadow,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
       }}
