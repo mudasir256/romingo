@@ -88,12 +88,18 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
     setHoverIndex(index);
     if (ScrollBarRef.current) {
       if (refArray[index]?.current?.offsetTop !== undefined) {
+        const viewHeight = ScrollBarRef?.current?.offsetHeight;
+        const cardHeight = refArray[index]?.current?.offsetHeight;
         const top = refArray[index]?.current?.offsetTop;
-        if (top !== null && top !== undefined)
+        if (top !== null && top !== undefined && cardHeight !== null && cardHeight !== undefined) {
+          
+          const finalPos = top + (viewHeight - cardHeight) / 2;
+          if (finalPos)
           ScrollBarRef.current.scrollTo(
             0,
-            top - ScrollBarRef?.current?.offsetTop
+            ((finalPos > top + cardHeight / 2) ? top - (viewHeight - cardHeight) / 2 : finalPos) - ScrollBarRef?.current?.offsetTop
           );
+        }
       }
     }
   };
@@ -140,7 +146,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
       >
         <ListingMap
           loading={loading}
-          center={cards[hotelIndex].mapLocation}
+          center={cards[0].mapLocation}
           markers={markers}
           name={cards[hotelIndex].name}
           location={cards[hotelIndex].locaiton}
