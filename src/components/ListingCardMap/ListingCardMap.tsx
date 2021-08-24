@@ -46,7 +46,7 @@ const ListingCardMap: FC<Props> = ({
           boxShadow: 0,
         }}
       />
-      <Box sx={{ py: 0.7, px: 1, flex: 1, minWidth: 0 }}>
+      <Box sx={{ py: 0.7, px: 1, flex: 1, minWidth: "200px" }}>
         <Box>
           <Typography
             variant="h6"

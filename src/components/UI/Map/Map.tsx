@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
 
@@ -7,6 +7,12 @@ interface Props {
   center: { lat: number; lng: number };
   height?: string | number | undefined;
   width?: string | number | undefined;
+  markers?: {
+    lat: number;
+    lng: number;
+  }[];
+  markerClickCallBack?: (index: number) => void;
+  selectedMarker?: number;
 }
 
 interface Size {
@@ -14,7 +20,7 @@ interface Size {
   height: string | number | undefined;
 }
 
-const Map: FC<Props> = ({ center, height, width }) => {
+const Map: FC<Props> = ({ center, height, width, markers, markerClickCallBack, selectedMarker }) => {
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -55,14 +61,28 @@ const Map: FC<Props> = ({ center, height, width }) => {
   }, [size]);
 
   return (
-    <LoadScript googleMapsApiKey={"AIzaSyDiSsCLyFLprO-__v94Ix0XihG4hUVRz5w"}>
+    <LoadScript googleMapsApiKey={"AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA"}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         options={mapOptions}
         zoom={11}
       >
-        <></>
+        {(markers !== undefined) && markers.map((marker, key) => {
+          return <Marker 
+            position={marker}
+            animation={2}
+            key={key}
+            onClick={(e: google.maps.MapMouseEvent) => {
+              if (markerClickCallBack)
+                return markerClickCallBack(key);
+              else
+                return null;
+            }}
+            opacity={(selectedMarker !== undefined && selectedMarker === key) ? 1 : 0.5}
+          />
+        })}
+        
       </GoogleMap>
     </LoadScript>
   );

@@ -19,6 +19,10 @@ Default.args = {
       score: 5,
       price: 139.99,
       amenities: ["dog park nearby", "pet friendly rooftop"],
+      mapLocation: {
+        lat: 32.22045,
+        lng: -110.96874
+      }
     },
     {
       image:
@@ -29,6 +33,10 @@ Default.args = {
       cancellation: false,
       price: 112,
       amenities: ["dog friendly patio", "on-site pet sitting"],
+      mapLocation: {
+        lat: 42.22045,
+        lng: -110.96874
+      }
     },
     {
       image:
@@ -39,6 +47,10 @@ Default.args = {
       cancellation: true,
       price: 160,
       amenities: ["off-leash run area", "doggie room service"],
+      mapLocation: {
+        lat: 42.22045,
+        lng: -120.96874
+      }
     },
     {
       image:
@@ -49,6 +61,10 @@ Default.args = {
       cancellation: false,
       price: 140,
       amenities: ["dog park nearby", "on-site pet grooming"],
+      mapLocation: {
+        lat: 32.22045,
+        lng: -110.26874
+      }
     },
     {
       image:
@@ -59,6 +75,10 @@ Default.args = {
       cancellation: false,
       price: 140,
       amenities: ["dog friendly pool area", "on-site petsitting"],
+      mapLocation: {
+        lat: 33.22045,
+        lng: -110.96874
+      }
     },
   ],
 };

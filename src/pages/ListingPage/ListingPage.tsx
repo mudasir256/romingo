@@ -4,10 +4,11 @@ import Stack from "@material-ui/core/Stack";
 import Divider from "@material-ui/core/Divider";
 import MapIcon from "@material-ui/icons/Map";
 import { motion, useMotionValue } from "framer-motion";
-import { FC, useRef, useState, MouseEventHandler } from "react";
+import React, { FC, useRef, useState, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@material-ui/core/Link";
+import { useGoogleMap } from '@react-google-maps/api'
 
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import RomingoGuarantee from "../../components/RomingoGuarantee";
@@ -26,8 +27,23 @@ interface Props {
   loading: boolean;
 }
 
+interface MapLocation {
+  lat: number;
+  lng: number;
+}
+
+const ScrollBarRef = React.createRef<HTMLDivElement>();
+const refArray: React.RefObject<HTMLElement>[] = [];
+
 const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
   const cards = useSelector((state: any) => state.hotelListReducer.hotels);
+
+  // const [mapCenter, setMapCenter] = useState<MapLocation>(cards[0].mapLocation ? {...cards[0].mapLocation} : { lat: 32.221, lng: -110.969 });
+
+  const markers: MapLocation[] = cards.map((card: ListingCardProps, key: number) => {
+    refArray.push(React.createRef<HTMLElement>())
+    return card.mapLocation;
+  });
 
   const y = useMotionValue(0);
   const { height } = useWindowSize();
@@ -57,12 +73,24 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const history = useHistory();
+  const [hotelIndex, setHotelIndex] = useState(0);
 
   const handleClick: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
     history.push("/details/1");
   };
+
+  const markerClick = (index: number) => {
+    setHotelIndex(index);
+    if (ScrollBarRef.current) {
+      if (refArray[index]?.current?.offsetTop !== undefined) {
+        const top = refArray[index]?.current?.offsetTop;
+        if (top !== null && top !== undefined)
+          ScrollBarRef.current.scrollTo(0, top - ScrollBarRef?.current?.offsetTop);
+      }
+    }
+  }
 
   return (
     <>
@@ -104,7 +132,19 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
           height: { xs: "100vh", md: "calc(100vh - 59px)" },
         }}
       >
-        <ListingMap loading={loading} center={{ lat: 32.221, lng: -110.969 }} />
+        <ListingMap 
+          loading={loading} 
+          center={cards[hotelIndex].mapLocation} 
+          markers={markers}
+          name={cards[hotelIndex].name}
+          location={cards[hotelIndex].locaiton}
+          score={cards[hotelIndex].score}
+          price={cards[hotelIndex].price}
+          image={cards[hotelIndex].image}
+          amenities={cards[hotelIndex].amenities}
+          markerClickCallBack={markerClick}
+          selectedMarker={hotelIndex}
+        />
         <Hidden mdUp>
           <motion.div
             drag={animate !== "expanded" && "y"}
@@ -173,7 +213,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                     onClick={handleClick}
                     underline="none"
                   >
-                    <ListingCard {...card} boxShadow={0} />
+                    <ListingCard {...card} boxShadow={hotelIndex === index ? 4 : 0} />
                   </Link>
                 ))}
               </Stack>
@@ -223,6 +263,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                 borderRadius: "0.3em",
               },
             }}
+            ref={ScrollBarRef}
           >
             <RomingoGuarantee sx={{ mb: 3 }} />
             {loading ? (
@@ -239,8 +280,9 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                     key={index}
                     onClick={handleClick}
                     underline="none"
+                    ref={refArray[index]}
                   >
-                    <ListingCard {...card} boxShadow={0} />
+                    <ListingCard {...card} boxShadow={hotelIndex === index ? 4 : 0} />
                   </Link>
                 ))}
               </Stack>

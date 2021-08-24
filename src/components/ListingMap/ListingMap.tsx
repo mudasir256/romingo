@@ -1,18 +1,36 @@
 import Box from "@material-ui/core/Box";
 import { FC } from "react";
+import { useHistory } from "react-router-dom";
 import { CSSObject } from "@material-ui/core";
+import Link from "@material-ui/core/Link";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
 import Map from "../UI/Map/Map";
 import Skeleton from "@material-ui/core/Skeleton";
 import { FormatListNumberedTwoTone } from "@material-ui/icons";
+import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 
 interface Props {
   center: { lat: number; lng: number };
   sx?: CSSObject;
   loading?: boolean;
+  markers?: {
+    lat: number;
+    lng: number;
+  }[];
+  name: string;
+  location: string;
+  score: number;
+  price: number;
+  image: string;
+  amenities?: string[];
+  markerClickCallBack: (index: number) => void;
+  selectedMarker?: number;
 }
 
-const ListingMap: FC<Props> = ({ center, loading = false, sx }) => {
+const ListingMap: FC<Props> = ({ center, loading = false, sx, markers, name, location, score, price, image, amenities, markerClickCallBack, selectedMarker }) => {
+  
+  const history = useHistory();
+
   return (
     <Box
       sx={{
@@ -37,7 +55,7 @@ const ListingMap: FC<Props> = ({ center, loading = false, sx }) => {
         />
       ) : (
         <>
-          <Map center={center} width={"100%"} />
+          <Map center={center} width={"100%"} markers={markers} markerClickCallBack={markerClickCallBack} selectedMarker={selectedMarker}/>
           <Box
             sx={{
               position: "absolute",
@@ -47,14 +65,26 @@ const ListingMap: FC<Props> = ({ center, loading = false, sx }) => {
               zIndex: 100,
             }}
           >
-            <ListingCardMap
-              image="http://vcmp-hotels.cert.sabre.com/image/upload/f_auto,q_auto:best,t_vcmp_medium/hotel/i/48961/kaoe46zlotylxgsevuxe.jpg"
-              name="Staybridge Suites Las Colinas"
-              location="1201 Executive Circle, Irving, TX"
-              score={5}
-              price={140}
-              amenities={["dog park nearby", "pet friendly rooftop"]}
-            />
+            <Link 
+              href="#"
+              sx={{
+                textDecoration: "none"
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                history.push("/details/1");
+              }}
+            >
+              <ListingCardMap
+                image={image}
+                name={name}
+                location={location}
+                score={score}
+                price={price}
+                amenities={amenities}
+              />
+            </Link>
           </Box>
         </>
       )}

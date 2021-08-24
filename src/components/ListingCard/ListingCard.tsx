@@ -17,6 +17,7 @@ export interface ListingCardProps {
   amenities?: string[];
   showAmenities?: boolean;
   boxShadow?: number;
+  mapLocation: { lat: number; lng: number };
 }
 
 const ListingCard: FC<ListingCardProps> = ({
