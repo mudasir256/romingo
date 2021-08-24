@@ -2,7 +2,9 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { addDecorator } from "@storybook/react";
 import { theme } from "../src/theme";
 import { Provider } from "react-redux";
-import store from "../src/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { store, persistor } from "../src/redux/store";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -18,6 +20,8 @@ const muTheme = createTheme(theme);
 
 addDecorator((story) => (
   <Provider store={store}>
-    <ThemeProvider theme={muTheme}>{story()}</ThemeProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <ThemeProvider theme={muTheme}>{story()}</ThemeProvider>
+    </PersistGate>
   </Provider>
 ));

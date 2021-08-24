@@ -1,7 +1,5 @@
-import Typography from "@material-ui/core/Typography";
-import Stack from "@material-ui/core/Stack";
 import Box from "@material-ui/core/Box";
-import Skeleton from "@material-ui/core/Skeleton"
+import Skeleton from "@material-ui/core/Skeleton";
 import { FC } from "react";
 import { CSSObject } from "@material-ui/core";
 
@@ -10,7 +8,7 @@ export interface Props {
 }
 
 const ListingCardSkeleton: FC<Props> = ({ sx }) => {
-  const mobileCardPadding = 1.8;
+  const mobileCardPadding = 0;
 
   return (
     <Box
@@ -19,7 +17,6 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
         backgroundColor: "white",
         display: "flex",
         borderRadius: 3,
-        boxShadow: 4,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
       }}
@@ -32,7 +29,7 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
           minHeight: { xs: 180, sm: "100%" },
           borderRadius: 3,
           boxShadow: 0,
-          height: "auto"
+          height: "auto",
         }}
         animation="wave"
         variant="rectangular"
@@ -46,19 +43,19 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
           minWidth: 0,
         }}
       >
-        <Skeleton 
-          animation="wave"
-          width="90%"
-        />
+        <Skeleton animation="wave" width="90%" height={35} />
 
         <Box>
-          <Skeleton 
-            animation="wave"
-            width="70%"
-          />
+          <Skeleton animation="wave" width="70%" height={30} />
 
-          <Box sx={{ mt: 3, mb: 3 }}>
+          <Box sx={{ mt: 3, mb: 1 }}>
             <Skeleton animation="wave" width="60%" />
+            <Skeleton
+              animation="wave"
+              width={160}
+              height={60}
+              sx={{ mt: -1, borderRadius: 0 }}
+            />
           </Box>
           <Box
             sx={{
@@ -75,16 +72,16 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
                 overflow: "hidden",
               }}
             >
-              <Skeleton 
+              <Skeleton
                 animation="wave"
                 sx={{
-                  minWidth: "100px"
+                  minWidth: "100px",
                 }}
               />
-              <Skeleton 
+              <Skeleton
                 animation="wave"
                 sx={{
-                  minWidth: "100px"
+                  minWidth: "100px",
                 }}
               />
             </Box>
@@ -95,11 +92,14 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
                 textAlign: "right",
               }}
             >
-              <Skeleton 
+              <Skeleton
                 animation="wave"
                 sx={{
-                  minWidth: "80px"
+                  minWidth: "80px",
+                  mt: 1,
                 }}
+                width={100}
+                height={38}
               />
             </Box>
           </Box>

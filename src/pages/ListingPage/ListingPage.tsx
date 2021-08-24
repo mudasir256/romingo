@@ -12,6 +12,7 @@ import Link from "@material-ui/core/Link";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
@@ -22,9 +23,10 @@ const MotionBox = motion(Box);
 
 interface Props {
   cards: ListingCardProps[];
+  loading: boolean;
 }
 
-const ListingPage: FC<Props> = ({ ...props }) => {
+const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
   const cards = useSelector((state: any) => state.hotelListReducer.hotels);
 
   const y = useMotionValue(0);
@@ -99,10 +101,10 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           display: {
             md: "flex",
           },
-          height: { md: "calc(100vh - 59px)" },
+          height: { xs: "100vh", md: "calc(100vh - 59px)" },
         }}
       >
-        <ListingMap center={{ lat: 32.221, lng: -110.969 }} />
+        <ListingMap loading={loading} center={{ lat: 32.221, lng: -110.969 }} />
         <Hidden mdUp>
           <motion.div
             drag={animate !== "expanded" && "y"}
@@ -154,20 +156,28 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 }}
               />
             </Box>
-            <Stack spacing={3} divider={<Divider variant="middle" />}>
-              <RomingoGuarantee sx={{ mb: 0 }} />
-
-              {cards.map((card: any, index: number) => (
-                <Link
-                  href="#"
-                  key={index}
-                  onClick={handleClick}
-                  underline="none"
-                >
-                  <ListingCard {...card} boxShadow={0} />
-                </Link>
-              ))}
-            </Stack>
+            {loading ? (
+              <Stack spacing={3} divider={<Divider variant="middle" />}>
+                <RomingoGuarantee sx={{ mb: 0 }} />
+                {Array.from({ length: 6 }, (_, i: number) => (
+                  <ListingCardSkeleton key={i} />
+                ))}
+              </Stack>
+            ) : (
+              <Stack spacing={3} divider={<Divider variant="middle" />}>
+                <RomingoGuarantee sx={{ mb: 0 }} />
+                {cards.map((card: any, index: number) => (
+                  <Link
+                    href="#"
+                    key={index}
+                    onClick={handleClick}
+                    underline="none"
+                  >
+                    <ListingCard {...card} boxShadow={0} />
+                  </Link>
+                ))}
+              </Stack>
+            )}
           </motion.div>
           {animate === "expanded" && (
             <Button
@@ -215,18 +225,26 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             }}
           >
             <RomingoGuarantee sx={{ mb: 3 }} />
-            <Stack spacing={3} divider={<Divider variant="middle" />}>
-              {cards.map((card: any, index: number) => (
-                <Link
-                  href="#"
-                  key={index}
-                  onClick={handleClick}
-                  underline="none"
-                >
-                  <ListingCard {...card} boxShadow={0} />
-                </Link>
-              ))}
-            </Stack>
+            {loading ? (
+              <Stack spacing={3} divider={<Divider variant="middle" />}>
+                {Array.from({ length: 6 }, (_, i: number) => (
+                  <ListingCardSkeleton key={i} />
+                ))}
+              </Stack>
+            ) : (
+              <Stack spacing={3} divider={<Divider variant="middle" />}>
+                {cards.map((card: any, index: number) => (
+                  <Link
+                    href="#"
+                    key={index}
+                    onClick={handleClick}
+                    underline="none"
+                  >
+                    <ListingCard {...card} boxShadow={0} />
+                  </Link>
+                ))}
+              </Stack>
+            )}
           </Box>
         </Hidden>
       </Box>

@@ -102,7 +102,7 @@ const ListingCard: FC<ListingCardProps> = ({
             <RomingoScore score={score} />
           </Box>
           <Box
-            sx={{ display: "flex", flexDirection: "row", minHeight: "20px" }}
+            sx={{ display: "flex", flexDirection: "row", minHeight: "25px" }}
           >
             {cancellation && (
               <Chip
@@ -168,18 +168,20 @@ const ListingCard: FC<ListingCardProps> = ({
               }}
             >
               <Typography
-                variant="body1"
+                variant="h6"
                 sx={{
                   mr: { xs: 0, sm: 0.45 },
+                  mb: 0,
                   letterSpacing: 1,
-                  fontWeight: "bold",
                   color: "text.secondary",
                 }}
               >
                 {currency}
                 {price}
               </Typography>
-              <Typography variant="body2">/ night</Typography>
+              <Typography variant="body2" sx={{ mb: 0.25 }}>
+                / night
+              </Typography>
             </Box>
           </Box>
         </Box>

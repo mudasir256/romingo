@@ -9,6 +9,7 @@ const Template = (args) => <ListingPage {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+  loading: false,
   cards: [
     {
       image:
