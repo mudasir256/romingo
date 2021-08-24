@@ -74,6 +74,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
 
   const history = useHistory();
   const [hotelIndex, setHotelIndex] = useState(0);
+  const [hoverIndex, setHoverIndex] = useState(0);
 
   const handleClick: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -83,6 +84,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
 
   const markerClick = (index: number) => {
     setHotelIndex(index);
+    setHoverIndex(index);
     if (ScrollBarRef.current) {
       if (refArray[index]?.current?.offsetTop !== undefined) {
         const top = refArray[index]?.current?.offsetTop;
@@ -143,7 +145,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
           image={cards[hotelIndex].image}
           amenities={cards[hotelIndex].amenities}
           markerClickCallBack={markerClick}
-          selectedMarker={hotelIndex}
+          selectedMarker={hoverIndex}
         />
         <Hidden mdUp>
           <motion.div
@@ -281,6 +283,9 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                     onClick={handleClick}
                     underline="none"
                     ref={refArray[index]}
+                    onMouseOver={(e) => {
+                      setHoverIndex(index);
+                    }}
                   >
                     <ListingCard {...card} boxShadow={hotelIndex === index ? 4 : 0} />
                   </Link>
