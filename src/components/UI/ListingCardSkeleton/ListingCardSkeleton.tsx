@@ -48,12 +48,12 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
         <Box>
           <Skeleton animation="wave" width="70%" height={30} />
 
-          <Box sx={{ mt: 3, mb: 1 }}>
+          <Box sx={{ mt: 3, mb: 1.85 }}>
             <Skeleton animation="wave" width="60%" />
             <Skeleton
               animation="wave"
               width={160}
-              height={60}
+              height={58}
               sx={{ mt: -1, borderRadius: 0 }}
             />
           </Box>

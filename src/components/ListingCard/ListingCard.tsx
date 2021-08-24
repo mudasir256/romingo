@@ -102,7 +102,7 @@ const ListingCard: FC<ListingCardProps> = ({
             <RomingoScore score={score} />
           </Box>
           <Box
-            sx={{ display: "flex", flexDirection: "row", minHeight: "25px" }}
+            sx={{ display: "flex", flexDirection: "row", minHeight: "28px" }}
           >
             {cancellation && (
               <Chip
