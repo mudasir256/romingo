@@ -38,14 +38,22 @@ const Header: FC<Props> = ({ sx }) => {
         }}
       >
         <Box
-          component="img"
-          src="/images/Adobe_6.jpeg"
-          alt="background"
-          draggable="false"
           sx={{
             objectFit: "cover",
             width: "100%",
             height: { xs: 620, md: "100vh" },
+            position: "relative",
+            "&::before": {
+              content: '""',
+              backgroundImage: `url("/images/Adobe_6.jpeg")`,
+              opacity: 0.85,
+              backgroundSize: "cover",
+              position: "absolute",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+            },
           }}
         />
       </Box>
@@ -56,13 +64,14 @@ const Header: FC<Props> = ({ sx }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
         }}
       >
         <Box
           sx={{
             borderRadius: { xs: 0, md: 3 },
             zIndex: 100,
-            backgroundColor: "#eceff1D9",
+            backgroundColor: "rgba(255,255,255, .8)",
             maxWidth: { xs: "100%", md: "90%", xl: "80%" },
             pt: { xs: 2, md: 3.5 },
             pb: { xs: 0, md: 3.5 },

@@ -255,6 +255,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
         <Hidden mdDown>
           <Box
             sx={{
+              position: "relative",
               px: 3,
               pt: 2,
               pb: 3,
@@ -274,31 +275,35 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
             }}
             ref={ScrollBarRef}
           >
-            <RomingoGuarantee sx={{ mb: 3 }} />
-            {loading ? (
-              <Stack spacing={3} divider={<Divider variant="middle" />}>
-                {Array.from({ length: 6 }, (_, i: number) => (
-                  <ListingCardSkeleton key={i} />
-                ))}
-              </Stack>
-            ) : (
-              <Stack spacing={3} divider={<Divider variant="middle" />}>
-                {cards.map((card: any, index: number) => (
-                  <Link
-                    href="#"
-                    key={index}
-                    onClick={handleClick}
-                    underline="none"
-                    ref={refArray[index]}
-                  >
-                    <ListingCard
-                      {...card}
-                      backgroundColor={hotelIndex === index ? "#ddd" : "white"}
-                    />
-                  </Link>
-                ))}
-              </Stack>
-            )}
+            <Box>
+              <RomingoGuarantee sx={{ mb: 3 }} />
+              {loading ? (
+                <Stack spacing={3} divider={<Divider variant="middle" />}>
+                  {Array.from({ length: 6 }, (_, i: number) => (
+                    <ListingCardSkeleton key={i} />
+                  ))}
+                </Stack>
+              ) : (
+                <Stack spacing={3} divider={<Divider variant="middle" />}>
+                  {cards.map((card: any, index: number) => (
+                    <Link
+                      href="#"
+                      key={index}
+                      onClick={handleClick}
+                      underline="none"
+                      ref={refArray[index]}
+                    >
+                      <ListingCard
+                        {...card}
+                        backgroundColor={
+                          hotelIndex === index ? "white" : "white"
+                        }
+                      />
+                    </Link>
+                  ))}
+                </Stack>
+              )}
+            </Box>
           </Box>
         </Hidden>
       </Box>

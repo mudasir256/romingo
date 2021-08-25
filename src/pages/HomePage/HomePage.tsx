@@ -2,7 +2,7 @@ import Box from "@material-ui/core/Box";
 import { FC } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { CSSObject } from "@material-ui/core";
+import { CSSObject, Paper } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -127,184 +127,208 @@ const HomePage: FC<Props> = ({
   return (
     <>
       <Header />
-      <Container maxWidth="lg">
-        <Grid container sx={{ py: 6 }}>
-          <Grid item xs={12}>
-            <Typography
-              variant="h3"
-              sx={{
-                color: "primary.main",
-                textAlign: "center",
-              }}
-            >
-              Seriously, No Pet Fees?
-            </Typography>
-            <Typography
-              variant="h4"
-              sx={{
-                color: "text.secondary",
-                textAlign: "center",
-                mb: { xs: 2, md: 5 },
-              }}
-            >
-              {"Here's how..."}
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sx={{
-              px: {
-                md: 8,
-                sm: 0,
-              },
-            }}
-          >
-            <Grid container spacing={{ sm: 3, md: 5 }}>
-              <Grid item xs={12} sm={6}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      margin: "auto 0",
-                      padding: "10px",
-                    }}
-                  >
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        color: "text.secondary",
-                        textAlign: "center",
-                      }}
-                    >
-                      We partner with dog friendly hotels
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mt: 1,
-                      }}
-                    >
-                      Lorem ipsum dolor sit amet et delectus accommodare his
-                      consul copiosae legendos at vix ad putent delectus
-                      delicata usu. Vidit dissentiet eos cu eum an brute
-                      copiosae hendrerit. Eos erant dolorum an. Per facer affert
-                      ut.
-                      <br />
-                      Dicat falli consulatu at vis. Te facilisis mnesarchum qui
-                      posse omnium mediocritatem est cu. Modus argumentum ne qui
-                      tation efficiendi in eos. Ei orem ipsum dolor sit amet et
-                      delectus accommodare his consul copiosae legendos at
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src="/images/coffee-frenchy.webp"
-                    alt="french bulldog w/ coffee"
-                    draggable="false"
-                    sx={{
-                      width: "100%",
-                      maxHeight: "320px",
-                      objectFit: "cover",
-                      borderRadius: 3,
-                      boxShadow: 4,
-                      margin: "auto 0",
-                    }}
-                  ></Box>
-                </Box>
-              </Grid>
+      <Box
+        sx={{
+          position: "relative",
+          "&::before": {
+            content: '""',
+            backgroundImage: `url("/images/4049458.jpg")`,
+            opacity: 0.1,
+            backgroundSize: "cover",
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+        }}
+      >
+        <Container maxWidth="lg" sx={{ position: "relative" }}>
+          <Grid container sx={{ py: 6 }}>
+            <Grid item xs={12}>
+              <Typography
+                variant="h3"
+                sx={{
+                  color: "primary.main",
+                  textAlign: "center",
+                }}
+              >
+                Seriously, No Pet Fees?
+              </Typography>
+              <Typography
+                variant="h4"
+                sx={{
+                  color: "text.secondary",
+                  textAlign: "center",
+                  mb: { xs: 2, md: 5 },
+                }}
+              >
+                {"Here's how..."}
+              </Typography>
             </Grid>
             <Grid
-              container
-              spacing={{ sm: 3, md: 5 }}
-              sx={{ pt: { xs: 2, md: 6 } }}
+              item
+              xs={12}
+              sx={{
+                px: {
+                  md: 8,
+                  sm: 0,
+                },
+              }}
             >
-              <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src="/images/window-dog.webp"
-                    alt="dog head out window"
-                    draggable="false"
-                    sx={{
-                      width: "100%",
-                      maxHeight: "320px",
-                      objectFit: "cover",
-                      borderRadius: 3,
-                      boxShadow: 4,
-                      margin: "auto 0",
-                    }}
-                  ></Box>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                  }}
-                >
+              <Grid container spacing={{ sm: 3, md: 5 }}>
+                <Grid item xs={12} sm={6}>
                   <Box
                     sx={{
-                      margin: {
-                        sm: "auto 0",
-                      },
-                      padding: "10px",
+                      height: "100%",
+                      display: "flex",
                     }}
                   >
-                    <Typography
-                      variant="h5"
+                    <Box
                       sx={{
-                        color: "text.secondary",
-                        textAlign: "center",
+                        margin: "auto 0",
+                        padding: "10px",
                       }}
                     >
-                      And pass the savings onto you
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mt: 1,
-                      }}
-                    >
-                      Lorem ipsum dolor sit amet et delectus accommodare his
-                      consul copiosae legendos at vix ad putent delectus
-                      delicata usu. Vidit dissentiet eos cu eum an brute
-                      copiosae hendrerit. Eos erant dolorum an. Per facer affert
-                      ut.
-                      <br />
-                      Dicat falli consulatu at vis. Te facilisis mnesarchum qui
-                      posse omnium mediocritatem est cu. Modus argumentum ne qui
-                      tation efficiendi in eos. Ei orem ipsum dolor sit amet et
-                      delectus accommodare his consul copiosae legendos at
-                    </Typography>
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          color: "text.secondary",
+                          textAlign: "center",
+                        }}
+                      >
+                        We partner with dog friendly hotels
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          mt: 1,
+                        }}
+                      >
+                        Lorem ipsum dolor sit amet et delectus accommodare his
+                        consul copiosae legendos at vix ad putent delectus
+                        delicata usu. Vidit dissentiet eos cu eum an brute
+                        copiosae hendrerit. Eos erant dolorum an. Per facer
+                        affert ut.
+                        <br />
+                        Dicat falli consulatu at vis. Te facilisis mnesarchum
+                        qui posse omnium mediocritatem est cu. Modus argumentum
+                        ne qui tation efficiendi in eos. Ei orem ipsum dolor sit
+                        amet et delectus accommodare his consul copiosae
+                        legendos at
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src="/images/frenchy_tape.png"
+                      alt="french bulldog w/ coffee"
+                      draggable="false"
+                      sx={{
+                        width: "100%",
+                        transform: "rotate(6deg)",
+                        maxHeight: "320px",
+                        objectFit: "cover",
+                        borderRadius: 0,
+                        margin: "auto 0",
+                        position: "relative",
+                        textAlign: "center",
+                        display: "inline-block",
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                spacing={{ sm: 3, md: 5 }}
+                sx={{ pt: { xs: 2, md: 6 } }}
+              >
+                <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
+                  <Box
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src="/images/window_dog_tape.png"
+                      alt="dog head out window"
+                      draggable="false"
+                      sx={{
+                        transform: "rotate(-3deg)",
+                        width: "100%",
+                        maxHeight: "320px",
+                        objectFit: "cover",
+                        borderRadius: 0,
+                        margin: "auto 0",
+                      }}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
+                  <Box
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        margin: {
+                          sm: "auto 0",
+                        },
+                        padding: "10px",
+                      }}
+                    >
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          color: "text.secondary",
+                          textAlign: "center",
+                        }}
+                      >
+                        And pass the savings onto you
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          mt: 1,
+                        }}
+                      >
+                        Lorem ipsum dolor sit amet et delectus accommodare his
+                        consul copiosae legendos at vix ad putent delectus
+                        delicata usu. Vidit dissentiet eos cu eum an brute
+                        copiosae hendrerit. Eos erant dolorum an. Per facer
+                        affert ut.
+                        <br />
+                        Dicat falli consulatu at vis. Te facilisis mnesarchum
+                        qui posse omnium mediocritatem est cu. Modus argumentum
+                        ne qui tation efficiendi in eos. Ei orem ipsum dolor sit
+                        amet et delectus accommodare his consul copiosae
+                        legendos at
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Container>
+      </Box>
+      <Container>
         <Box
           sx={{
-            backgroundColor: "info.main",
+            backgroundColor: "warning.main",
             py: 6,
             backgroundPosition: "center center",
             backgroundSize: "cover",
@@ -368,7 +392,6 @@ const HomePage: FC<Props> = ({
                         >
                           <Box
                             sx={{
-                              border: "1px solid #DDDDDD",
                               borderRadius: 3,
                               boxShadow: 2,
                               backgroundColor: "white",
@@ -400,6 +423,7 @@ const HomePage: FC<Props> = ({
                               variant="body1"
                               sx={{
                                 textAlign: "center",
+                                pb: 2,
                                 mb: 2,
                               }}
                             >
