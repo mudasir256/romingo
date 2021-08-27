@@ -91,14 +91,20 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
         const viewHeight = ScrollBarRef?.current?.offsetHeight;
         const cardHeight = refArray[index]?.current?.offsetHeight;
         const top = refArray[index]?.current?.offsetTop;
-        if (top !== null && top !== undefined && cardHeight !== null && cardHeight !== undefined) {
-          
+        if (
+          top !== null &&
+          top !== undefined &&
+          cardHeight !== null &&
+          cardHeight !== undefined
+        ) {
           const finalPos = top + (viewHeight - cardHeight) / 2;
           if (finalPos)
-          ScrollBarRef.current.scrollTo(
-            0,
-            ((finalPos > top + cardHeight / 2) ? top - (viewHeight - cardHeight) / 2 : finalPos) - ScrollBarRef?.current?.offsetTop
-          );
+            ScrollBarRef.current.scrollTo(
+              0,
+              (finalPos > top + cardHeight / 2
+                ? top - (viewHeight - cardHeight) / 2
+                : finalPos) - ScrollBarRef?.current?.offsetTop
+            );
         }
       }
     }
@@ -227,9 +233,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                   >
                     <ListingCard
                       {...card}
-                      backgroundColor={
-                        hotelIndex === index ? "#F4DAC9" : "white"
-                      }
+                      highlighted={hotelIndex === index ? false : true}
                     />
                   </Link>
                 ))}
@@ -305,7 +309,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                   >
                     <ListingCard
                       {...card}
-                      backgroundColor={hotelIndex === index ? "#ddd" : "white"}
+                      highlighted={hotelIndex === index ? false : true}
                     />
                   </Link>
                 ))}
