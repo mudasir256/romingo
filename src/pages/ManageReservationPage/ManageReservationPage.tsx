@@ -172,7 +172,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                         color="primary"
                         type="submit"
                       >
-                        Continue
+                        Retrieve Reservation
                       </Button>
                     </Box>
                   </ValidatorForm>
