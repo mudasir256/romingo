@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import ListingPage from "./pages/ListingPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import ManageReservationPage from "./pages/ManageReservationPage";
 
 interface Routes {
   path: string;
@@ -31,6 +32,11 @@ const routes: Routes[] = [
     component: CheckoutPage,
     requireAuth: false,
   },
+  {
+    path: "/reservation/manage",
+    component: ManageReservationPage,
+    requireAuth: false
+  }
 ];
 
 export default routes;

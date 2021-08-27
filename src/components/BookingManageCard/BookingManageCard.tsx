@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import { Occupant } from "../OccupantSelector/OccupantSelector";
 
-export interface ListingCardProps {
+export interface BookingCardProps {
   image: string;
   name: string;
   location: string;
@@ -20,7 +20,7 @@ export interface ListingCardProps {
   sx?: CSSObject;
 }
 
-const BookingManageCard: FC<ListingCardProps> = ({
+const BookingManageCard: FC<BookingCardProps> = ({
   image,
   name,
   location,

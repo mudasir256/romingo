@@ -16,6 +16,10 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 interface Props {
   sx?: CSSObject;
   footerMenus?: {
+    reservation: {
+      text: string;
+      link: string;
+    }[]
     about: {
       text: string;
       link: string;
@@ -36,6 +40,16 @@ interface Props {
 }
 
 const FooterMenus = {
+  reservation: [
+    {
+      text: "Manage Reservation",
+      link: "/reservation/manage",
+    },
+    {
+      text: "Cancel an existing reservation",
+      link: "/reservation/cancel"
+    }
+  ],
   about: [
     {
       text: "How Romingo Works",
@@ -129,7 +143,36 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
     >
       <Container maxWidth="lg">
         <Grid container sx={{ borderBottom: "1px solid #DDDDDD" }}>
-          <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={2}>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: "bold",
+                color: "text.primary",
+              }}
+            >
+              Reservation
+            </Typography>
+            <List>
+              {footerMenus.reservation.map((menu, key) => {
+                return (
+                  <ListItem key={key} sx={{ pl: 0 }}>
+                    <Link href={menu.link}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "primary.main",
+                        }}
+                      >
+                        {menu.text}
+                      </Typography>
+                    </Link>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2}>
             <Typography
               variant="body2"
               sx={{
@@ -158,7 +201,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={2}>
             <Typography
               variant="body2"
               sx={{
@@ -187,7 +230,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={2}>
             <Typography
               variant="body2"
               sx={{
@@ -216,7 +259,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={2}>
             <Typography
               variant="body2"
               sx={{
