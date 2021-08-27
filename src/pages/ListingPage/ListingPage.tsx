@@ -233,7 +233,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                   >
                     <ListingCard
                       {...card}
-                      highlighted={hotelIndex === index ? false : true}
+                      highlighted={hotelIndex === index ? true : false}
                     />
                   </Link>
                 ))}
@@ -309,7 +309,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
                   >
                     <ListingCard
                       {...card}
-                      highlighted={hotelIndex === index ? false : true}
+                      highlighted={hotelIndex === index ? true : false}
                     />
                   </Link>
                 ))}
