@@ -6,6 +6,7 @@ import Link from "@material-ui/core/Link";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
 import Map from "../UI/Map/Map";
 import Skeleton from "@material-ui/core/Skeleton";
+import Hidden from "@material-ui/core/Hidden";
 
 interface Props {
   center: { lat: number; lng: number };
@@ -92,14 +93,16 @@ const ListingMap: FC<Props> = ({
                 history.push("/details/1");
               }}
             >
-              <ListingCardMap
-                image={image}
-                name={name}
-                location={location}
-                score={score}
-                price={price}
-                amenities={amenities}
-              />
+              <Hidden mdUp>
+                <ListingCardMap
+                  image={image}
+                  name={name}
+                  location={location}
+                  score={score}
+                  price={price}
+                  amenities={amenities}
+                />
+              </Hidden>
             </Link>
           </Box>
         </>

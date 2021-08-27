@@ -75,6 +75,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
 
   const history = useHistory();
   const [hotelIndex, setHotelIndex] = useState(0);
+  const [hoverIndex, setHoverIndex] = useState(0);
 
   const handleClick: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -84,14 +85,21 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
 
   const markerClick = (index: number) => {
     setHotelIndex(index);
+    setHoverIndex(index);
     if (ScrollBarRef.current) {
       if (refArray[index]?.current?.offsetTop !== undefined) {
+        const viewHeight = ScrollBarRef?.current?.offsetHeight;
+        const cardHeight = refArray[index]?.current?.offsetHeight;
         const top = refArray[index]?.current?.offsetTop;
-        if (top !== null && top !== undefined)
+        if (top !== null && top !== undefined && cardHeight !== null && cardHeight !== undefined) {
+          
+          const finalPos = top + (viewHeight - cardHeight) / 2;
+          if (finalPos)
           ScrollBarRef.current.scrollTo(
             0,
-            top - ScrollBarRef?.current?.offsetTop
+            ((finalPos > top + cardHeight / 2) ? top - (viewHeight - cardHeight) / 2 : finalPos) - ScrollBarRef?.current?.offsetTop
           );
+        }
       }
     }
   };
@@ -138,7 +146,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
       >
         <ListingMap
           loading={loading}
-          center={cards[hotelIndex].mapLocation}
+          center={cards[0].mapLocation}
           markers={markers}
           name={cards[hotelIndex].name}
           location={cards[hotelIndex].locaiton}
@@ -147,7 +155,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
           image={cards[hotelIndex].image}
           amenities={cards[hotelIndex].amenities}
           markerClickCallBack={markerClick}
-          selectedMarker={hotelIndex}
+          selectedMarker={hoverIndex}
         />
         <Hidden mdUp>
           <motion.div
@@ -275,35 +283,34 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
             }}
             ref={ScrollBarRef}
           >
-            <Box>
-              <RomingoGuarantee sx={{ mb: 3 }} />
-              {loading ? (
-                <Stack spacing={3} divider={<Divider variant="middle" />}>
-                  {Array.from({ length: 6 }, (_, i: number) => (
-                    <ListingCardSkeleton key={i} />
-                  ))}
-                </Stack>
-              ) : (
-                <Stack spacing={3} divider={<Divider variant="middle" />}>
-                  {cards.map((card: any, index: number) => (
-                    <Link
-                      href="#"
-                      key={index}
-                      onClick={handleClick}
-                      underline="none"
-                      ref={refArray[index]}
-                    >
-                      <ListingCard
-                        {...card}
-                        backgroundColor={
-                          hotelIndex === index ? "white" : "white"
-                        }
-                      />
-                    </Link>
-                  ))}
-                </Stack>
-              )}
-            </Box>
+            <RomingoGuarantee sx={{ mb: 3 }} />
+            {loading ? (
+              <Stack spacing={3} divider={<Divider variant="middle" />}>
+                {Array.from({ length: 6 }, (_, i: number) => (
+                  <ListingCardSkeleton key={i} />
+                ))}
+              </Stack>
+            ) : (
+              <Stack spacing={3} divider={<Divider variant="middle" />}>
+                {cards.map((card: any, index: number) => (
+                  <Link
+                    href="#"
+                    key={index}
+                    onClick={handleClick}
+                    underline="none"
+                    ref={refArray[index]}
+                    onMouseOver={(e) => {
+                      setHoverIndex(index);
+                    }}
+                  >
+                    <ListingCard
+                      {...card}
+                      backgroundColor={hotelIndex === index ? "#ddd" : "white"}
+                    />
+                  </Link>
+                ))}
+              </Stack>
+            )}
           </Box>
         </Hidden>
       </Box>
