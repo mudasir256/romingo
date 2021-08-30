@@ -22,7 +22,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4 }) => {
           key={card.name}
           sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
         >
-          <ListingCard {...card} boxShadow={boxShadow} />
+          <ListingCard {...card} />
         </Box>
       ))}
     </Box>
