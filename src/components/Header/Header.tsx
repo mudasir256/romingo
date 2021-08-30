@@ -49,6 +49,7 @@ const Header: FC<Props> = ({ sx }) => {
               opacity: 0.85,
               backgroundSize: "cover",
               position: "absolute",
+              backgroundPosition: "center",
               top: 0,
               right: 0,
               bottom: 0,
