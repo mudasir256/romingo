@@ -60,7 +60,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
   };
 
   const onOccupantChange = (value: Occupant) => {

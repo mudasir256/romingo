@@ -42,7 +42,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   // const [mapCenter, setMapCenter] = useState<MapLocation>(cards[0].mapLocation ? {...cards[0].mapLocation} : { lat: 32.221, lng: -110.969 });
 
   const search = useSelector((state: any) => state.searchReducer.search);
-  // console.log(search);
 
   const SEARCH_QUERY = gql `
     query PropertiesInput {
@@ -52,8 +51,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           children: ${search?.occupants.children},
           dogs: ${search.occupants.dogs},
           cityId: "",
-          checkIn: "2021-09-03",
-          checkOut: "2021-09-09",
+          checkIn: ${'"' + search.checkIn + '"'},
+          checkOut: ${'"' + search.checkOut + '"'},
         }
       ) {
         id
