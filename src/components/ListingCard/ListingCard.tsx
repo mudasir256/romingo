@@ -7,28 +7,29 @@ import { FC } from "react";
 import RomingoScore from "../RomingoScore/RomingoScore";
 
 export interface ListingCardProps {
-  image: string;
+  featuredImageURL: string;
   name: string;
-  location: string;
-  score: number;
+  addressLine1: string;
+  romingoScore: number;
   cancellation?: boolean;
-  price: number;
+  lowestPrice: number;
   currency?: string;
-  amenities?: string[];
+  dogAmenities?: string[];
   showAmenities?: boolean;
   highlighted?: boolean;
-  mapLocation: { lat: number; lng: number };
+  latitude: number;
+  longitude: number;
 }
 
 const ListingCard: FC<ListingCardProps> = ({
-  image,
+  featuredImageURL,
   name,
-  location,
-  score,
+  addressLine1,
+  romingoScore,
   cancellation = false,
-  price,
+  lowestPrice,
   currency = "$",
-  amenities = [],
+  dogAmenities = [],
   showAmenities = true,
   highlighted = false,
   ...props
@@ -48,7 +49,7 @@ const ListingCard: FC<ListingCardProps> = ({
     >
       <Box
         component="img"
-        src={image}
+        src={featuredImageURL}
         alt={name}
         draggable="false"
         sx={{
@@ -93,10 +94,10 @@ const ListingCard: FC<ListingCardProps> = ({
               textOverflow: "ellipsis",
             }}
           >
-            {location}
+            {addressLine1}
           </Typography>
           <Box sx={{ mt: 3 }}>
-            <RomingoScore score={score} />
+            <RomingoScore score={romingoScore} />
           </Box>
           <Box
             sx={{ display: "flex", flexDirection: "row", minHeight: "28px" }}
@@ -131,7 +132,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   sx={{ mt: 3, mr: 0.5, minWidth: 0, overflow: "hidden" }}
                   spacing={0.5}
                 >
-                  {amenities.map((amenity) => (
+                  {dogAmenities.map((amenity) => (
                     <Box
                       key={amenity}
                       sx={{
@@ -174,7 +175,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 }}
               >
                 {currency}
-                {price}
+                {lowestPrice}
               </Typography>
               <Typography variant="body2" sx={{ mb: 0.25 }}>
                 / night

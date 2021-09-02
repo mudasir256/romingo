@@ -60,7 +60,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   };
 
   const onOccupantChange = (value: Occupant) => {
@@ -139,8 +139,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                   },
                 }}
               >
-                {checkDate[0] ? dateToString(checkDate[0]) : "8/6/2021"} -{" "}
-                {checkDate[1] ? dateToString(checkDate[1]) : "8/10/2021"}
+                {checkDate[0] ? dateToString(checkDate[0]) : "2021-08-06"} -{" "}
+                {checkDate[1] ? dateToString(checkDate[1]) : "2021-08-10"}
               </Typography>
             </Button>
             <Box

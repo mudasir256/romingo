@@ -6,14 +6,22 @@ import {store, persistor} from './redux/store'
 // import persistor from './redux/store'
 import reportWebVitals from "./reportWebVitals";
 import { PersistGate } from 'redux-persist/integration/react'
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
+
+const client = new ApolloClient({
+  uri: "https://graphql-dot-eminent-helix-324520.ue.r.appspot.com/graphql",
+  cache: new InMemoryCache()
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

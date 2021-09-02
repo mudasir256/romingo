@@ -19,6 +19,8 @@ import FilterBar from "../../components/FilterBar";
 import { Button } from "@material-ui/core";
 import Footer from "../../components/Footer";
 
+import { gql, useQuery } from "@apollo/client";
+
 const MotionBox = motion(Box);
 
 interface Props {
@@ -34,15 +36,65 @@ interface MapLocation {
 const ScrollBarRef = React.createRef<HTMLDivElement>();
 const refArray: React.RefObject<HTMLElement>[] = [];
 
-const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
-  const cards = useSelector((state: any) => state.hotelListReducer.hotels);
+const ListingPage: FC<Props> = ({ ...props }) => {
+  // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
 
   // const [mapCenter, setMapCenter] = useState<MapLocation>(cards[0].mapLocation ? {...cards[0].mapLocation} : { lat: 32.221, lng: -110.969 });
 
+  const search = useSelector((state: any) => state.searchReducer.search);
+  // console.log(search);
+
+  const SEARCH_QUERY = gql `
+    query PropertiesInput {
+      properties(
+        input: {
+          adults: ${search?.occupants.adults},
+          children: ${search?.occupants.children},
+          dogs: ${search.occupants.dogs},
+          cityId: "",
+          checkIn: "2021-09-03",
+          checkOut: "2021-09-09",
+        }
+      ) {
+        id
+        sabreId
+        featuredImageURL
+        name
+        addressLine1
+        city {
+          id
+          name
+          state {
+            id
+            code
+            name
+            country {
+              id
+              name
+            }
+          }
+        }
+        zipCode
+        latitude
+        longitude
+        romingoScore
+        dogAmenities
+        lowestPrice
+      }
+    }
+  `;
+
+  const { loading, error, data } = useQuery(SEARCH_QUERY);
+  
+  const cards = data ? data.properties : [];
+  
   const markers: MapLocation[] = cards.map(
     (card: ListingCardProps, key: number) => {
       refArray.push(React.createRef<HTMLElement>());
-      return card.mapLocation;
+      return {
+        lat: card.latitude,
+        lng: card.longitude
+      };
     }
   );
 
@@ -150,7 +202,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
           height: { xs: "100vh", md: "calc(100vh - 59px)" },
         }}
       >
-        <ListingMap
+        {cards.length !== 0 && <ListingMap
           loading={loading}
           center={cards[0].mapLocation}
           markers={markers}
@@ -162,7 +214,7 @@ const ListingPage: FC<Props> = ({ loading = false, ...props }) => {
           amenities={cards[hotelIndex].amenities}
           markerClickCallBack={markerClick}
           selectedMarker={hoverIndex}
-        />
+        />}
         <Hidden mdUp>
           <motion.div
             drag={animate !== "expanded" && "y"}
