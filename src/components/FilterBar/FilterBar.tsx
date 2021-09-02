@@ -27,9 +27,10 @@ import { saveSearch } from "../../store/searchReducer";
 interface Props {
   sx?: CSSObject;
   zoomed?: boolean;
+  home?: boolean;
 }
 
-const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
+const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   const history = useHistory();
 
   const [zoomIn, setZoomIn] = useState(zoomed);
@@ -85,7 +86,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
         })
       );
 
-      history.push("/listings");
+      if (home)
+        history.push("/listings");
     }
   };
 

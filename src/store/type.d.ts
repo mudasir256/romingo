@@ -16,12 +16,14 @@ interface IUser {
 }
 
 interface IHotel {
-  image: string;
+  featuredImageURL: string;
   name: string;
-  location: string;
+  addressLine1: string;
   score: number;
   price: number;
   amenities: string[];
+  latitude?: number;
+  longitude?: number;
 }
 
 interface IRoom {

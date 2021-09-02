@@ -11,7 +11,7 @@ export const setList = (listHotels: IHotel[]) => (dispatch: HotelListDispatchTyp
 }
 
 const initialState: HotelListState = {
-  hotels: data
+  hotels: []
 }
 
 const hotelListReducer = (state: HotelListState = initialState, action: HotelAction) : HotelListState => {

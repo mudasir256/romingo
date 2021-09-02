@@ -8,7 +8,8 @@ import React, { FC, useRef, useState, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@material-ui/core/Link";
-import { connect, useStore, useDispatch, useSelector } from "react-redux";
+import { connect, useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
+import { Dispatch } from "redux";
 
 import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
@@ -20,6 +21,7 @@ import { Button } from "@material-ui/core";
 import Footer from "../../components/Footer";
 
 import { gql, useQuery } from "@apollo/client";
+import { setList } from "../../store/hotelListReducer";
 
 const MotionBox = motion(Box);
 
@@ -37,11 +39,8 @@ const ScrollBarRef = React.createRef<HTMLDivElement>();
 const refArray: React.RefObject<HTMLElement>[] = [];
 
 const ListingPage: FC<Props> = ({ ...props }) => {
-  // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
 
-  // const [mapCenter, setMapCenter] = useState<MapLocation>(cards[0].mapLocation ? {...cards[0].mapLocation} : { lat: 32.221, lng: -110.969 });
-
-  const search = useSelector((state: any) => state.searchReducer.search);
+  const search = useSelector((state: any) => state.searchReducer.search, shallowEqual);
 
   const SEARCH_QUERY = gql `
     query PropertiesInput {
@@ -84,8 +83,14 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   `;
 
   const { loading, error, data } = useQuery(SEARCH_QUERY);
+  const dispatch: Dispatch<any> = useDispatch();
   
   const cards = data ? data.properties : [];
+  dispatch(
+    setList(cards)
+  );
+
+  // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
   
   const markers: MapLocation[] = cards.map(
     (card: ListingCardProps, key: number) => {

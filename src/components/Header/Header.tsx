@@ -123,6 +123,7 @@ const Header: FC<Props> = ({ sx }) => {
                 justifyContent: "center",
               }}
               zoomed
+              home
             />
           </Box>
         </Box>
