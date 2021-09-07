@@ -131,17 +131,20 @@ const OccupantSelector: FC<Props> = ({
               return (
                 <Box
                   sx={{
-                    m: "5px",
+                    mx: "5px",
+                    my: "10px",
                     width: "calc(50% - 10px)",
                     display: "inline-block",
                   }}
                 >
                   <FormControl variant="standard" fullWidth>
-                    <InputLabel>Child {i + 1} Age</InputLabel>
+                    <InputLabel sx={{ textAlign: "center" }}>
+                      Child {i + 1} Age
+                    </InputLabel>
                     <Select
                       key={i}
                       color="primary"
-                      size="small"
+                      sx={{ textAlign: "center" }}
                       value={
                         value.childrenAge && value.childrenAge[i]
                           ? value.childrenAge[i].toString()
