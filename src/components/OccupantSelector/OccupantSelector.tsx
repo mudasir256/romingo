@@ -4,6 +4,8 @@ import Popover from "@material-ui/core/Popover";
 import Stack from "@material-ui/core/Stack";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import Select, { SelectChangeEvent } from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import { FC, MouseEventHandler, useState, useRef } from "react";
 import { useMeasure } from "react-use";
 import NumberInput from "../NumberInput";
@@ -12,6 +14,7 @@ export interface Occupant {
   adults: number;
   children: number;
   dogs: number;
+  childrenAge?: number[];
 }
 
 interface Props {
@@ -81,7 +84,11 @@ const OccupantSelector: FC<Props> = ({
             <Typography variant="body1">Dogs</Typography>
             <NumberInput
               value={value.dogs}
-              onChange={(dogs) => onChange({ ...value, dogs })}
+              onChange={(dogs) => {
+                if (dogs > 2)
+                  return;
+                onChange({ ...value, dogs })
+              }}
             />
           </Stack>
           <Stack
@@ -92,7 +99,11 @@ const OccupantSelector: FC<Props> = ({
             <Typography variant="body1">Adults</Typography>
             <NumberInput
               value={value.adults}
-              onChange={(adults) => onChange({ ...value, adults })}
+              onChange={(adults) => {
+                if (adults > 5)
+                  return;
+                onChange({ ...value, adults })
+              }}
             />
           </Stack>
           <Stack
@@ -104,9 +115,44 @@ const OccupantSelector: FC<Props> = ({
             <Typography variant="body1">Children</Typography>
             <NumberInput
               value={value.children}
-              onChange={(children) => onChange({ ...value, children })}
+              onChange={(children) => {
+                if (children > 6)
+                  return;
+                onChange({ ...value, children })
+              }}
             />
           </Stack>
+          {(Array.from({length: value.children}, (_, i: number) => {
+            return (
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ width: "100%" }}
+                key={i}
+              >
+                <Typography variant="body1">Age of Child {(i + 1)}</Typography>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={(value.childrenAge && value.childrenAge[i]) ? value.childrenAge[i].toString() : "0"}
+                  label="Age"
+                  onChange={(e: SelectChangeEvent) => {
+                    if (value.childrenAge === undefined) {
+                      value.childrenAge = [];
+                    }
+                    value.childrenAge[i] = parseInt(e.target.value);
+
+                    onChange({...value});
+                  }}
+                >
+                  {Array.from({ length: 18 }, (_, k: number) => {
+                    return <MenuItem value={k} key={k}>{k}</MenuItem>
+                  })}
+                </Select>
+              </Stack>
+            )
+          })) }
           <Button sx={{ py: 1.5 }} onClick={handleClose}>
             Done
           </Button>

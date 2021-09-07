@@ -38,6 +38,7 @@ const GetHotelBySearch = `
         zipCode
         latitude
         longitude
+        neighborhood
         romingoScore
         dogAmenities
         lowestPrice

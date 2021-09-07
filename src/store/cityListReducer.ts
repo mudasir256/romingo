@@ -10,7 +10,7 @@ export const setList = (listCities: ICity[]) => (dispatch: CityListDispatchType)
 }
 
 const initialState: CityListState = {
-  cities: data
+  cities: []
 }
 
 const cityListReducer = (state: CityListState = initialState, action: CityAction) : CityListState => {

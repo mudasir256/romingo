@@ -6,6 +6,7 @@ interface ISearch {
     adults: number;
     children: number;
     dogs: number;
+    childrenAge?: number[];
   };
 }
 
