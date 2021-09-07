@@ -1,6 +1,7 @@
 import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
 import Stack from "@material-ui/core/Stack";
+import Skeleton from "@material-ui/core/Skeleton";
 import Divider from "@material-ui/core/Divider";
 import MapIcon from "@material-ui/icons/Map";
 import { motion, useMotionValue } from "framer-motion";
@@ -8,7 +9,13 @@ import React, { FC, useRef, useState, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@material-ui/core/Link";
-import { connect, useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
+import {
+  connect,
+  useStore,
+  useDispatch,
+  useSelector,
+  shallowEqual,
+} from "react-redux";
 import { Dispatch } from "redux";
 
 import RomingoGuarantee from "../../components/RomingoGuarantee";
@@ -41,35 +48,40 @@ const ScrollBarRef = React.createRef<HTMLDivElement>();
 const refArray: React.RefObject<HTMLElement>[] = [];
 
 const ListingPage: FC<Props> = ({ ...props }) => {
-
-  const search = useSelector((state: any) => state.searchReducer.search, shallowEqual);
-
-  const { loading, error, data } = useQuery(gql `${GetHotelBySearch}`, {
-    variables: {
-      adults: search.occupants.adults, 
-      children: search.occupants.children, 
-      dogs: search.occupants.dogs, 
-      cityId: search.city,
-      checkIn: search.checkIn, 
-      checkOut: search.checkOut
-    }
-  });
-
-  const dispatch: Dispatch<any> = useDispatch();
-  
-  const cards = data ? data.properties : [];
-  dispatch(
-    setList(cards)
+  const search = useSelector(
+    (state: any) => state.searchReducer.search,
+    shallowEqual
   );
 
+  const { loading, error, data } = useQuery(
+    gql`
+      ${GetHotelBySearch}
+    `,
+    {
+      variables: {
+        adults: search.occupants.adults,
+        children: search.occupants.children,
+        dogs: search.occupants.dogs,
+        cityId: search.city,
+        checkIn: search.checkIn,
+        checkOut: search.checkOut,
+      },
+    }
+  );
+
+  const dispatch: Dispatch<any> = useDispatch();
+
+  const cards = data ? data.properties : [];
+  dispatch(setList(cards));
+
   // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
-  
+
   const markers: MapLocation[] = cards.map(
     (card: ListingCardProps, key: number) => {
       refArray.push(React.createRef<HTMLElement>());
       return {
         lat: card.latitude,
-        lng: card.longitude
+        lng: card.longitude,
       };
     }
   );
@@ -155,14 +167,16 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           py: { xs: 0, md: 1 },
         }}
       >
-        {error && 
-          <CustomToast 
+        {error && (
+          <CustomToast
             open={true}
-            message={"Something went wrong, please refresh the page and try again"}
+            message={
+              "Something went wrong, please refresh the page and try again"
+            }
             type="error"
             duration={5000}
           />
-        }
+        )}
         <Box
           component="img"
           src={"/images/Romingo_Logo_Black.svg"}
@@ -186,19 +200,44 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           height: { xs: "100vh", md: "calc(100vh - 59px)" },
         }}
       >
-        {cards.length !== 0 && <ListingMap
-          loading={loading}
-          center={cards[0].mapLocation}
-          markers={markers}
-          name={cards[hotelIndex].name}
-          location={cards[hotelIndex].locaiton}
-          score={cards[hotelIndex].score}
-          price={cards[hotelIndex].price}
-          image={cards[hotelIndex].image}
-          amenities={cards[hotelIndex].amenities}
-          markerClickCallBack={markerClick}
-          selectedMarker={hoverIndex}
-        />}
+        {loading ? (
+          <Box
+            sx={{
+              color: "text.primary",
+              borderRadius: 0,
+              p: 0,
+              m: 0,
+              boxShadow: 4,
+              width: { xs: "100%", md: "45%" },
+              height: "100%",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              height="100%"
+              width="100%"
+            />
+          </Box>
+        ) : (
+          cards.length !== 0 && (
+            <ListingMap
+              loading={loading}
+              center={cards[0].mapLocation}
+              markers={markers}
+              name={cards[hotelIndex].name}
+              location={cards[hotelIndex].locaiton}
+              score={cards[hotelIndex].score}
+              price={cards[hotelIndex].price}
+              image={cards[hotelIndex].image}
+              amenities={cards[hotelIndex].amenities}
+              markerClickCallBack={markerClick}
+              selectedMarker={hoverIndex}
+            />
+          )
+        )}
         <Hidden mdUp>
           <motion.div
             drag={animate !== "expanded" && "y"}
