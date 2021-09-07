@@ -1,6 +1,6 @@
 import Box from "@material-ui/core/Box";
-import { FC, useState, MouseEventHandler } from "react";
-import { connect, useStore, useDispatch } from "react-redux";
+import { FC, useState, MouseEventHandler, useEffect } from "react";
+import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import { CSSObject } from "@material-ui/core";
@@ -34,18 +34,16 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   const history = useHistory();
 
   const [zoomIn, setZoomIn] = useState(zoomed);
+  const search = useSelector((state: any) => state.searchReducer.search);
+
+  const [selectedCity, setSelectedCity] = useState(search.city ? search.city : "");
+
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
-    null,
-    null,
+    search.checkIn ? search.checkIn : null,
+    search.checkOut ? search.checkOut : null,
   ]);
 
-  const [occupants, setOccupants] = useState({
-    adults: 2,
-    children: 0,
-    dogs: 1,
-  });
-
-  const [selectedCity, setSelectedCity] = useState("");
+  const [occupants, setOccupants] = useState(search.occupants);
 
   const cities = [
     { label: "San Francisco, CA", id: 1 },
@@ -58,6 +56,17 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
     { label: "Portland, OR", id: 8 },
     { label: "Seattle, WA", id: 9 },
   ];
+
+  const [cityObject, setCityObject] = useState({
+    label: "",
+    id: 0
+  });
+  useEffect(() => {
+    for (let i = 0; i < cities.length; i ++) {
+      if (cities[i].label === selectedCity)
+        setCityObject({...cities[i]});
+    }
+  }, [])
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
@@ -122,7 +131,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   },
                 }}
               >
-                San Francisco, CA
+                {selectedCity}
               </Typography>
             </Button>
             <Box
@@ -216,7 +225,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                       },
                     }}
                     onChange={(e, values) => {
-                      if (values) setSelectedCity(values.label);
+                      if (values) {
+                        setSelectedCity(values.label);
+                        setCityObject(values);
+                      }
                     }}
                     renderInput={(params) => (
                       <TextField
@@ -225,6 +237,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         variant="standard"
                       />
                     )}
+                    value={cityObject}
                   />
                 </Box>
                 <Box>

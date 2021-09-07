@@ -19,9 +19,9 @@ export const removeArticle = (search: ISearch) => {
 
 export const simulateHttpRequest = (action: SearchAction) => {
   return (dispatch: SearchDispatchType) => {
-    setTimeout(() => {
+    // setTimeout(() => {
       dispatch(action);
-    }, 100);
+    // }, 100);
   };
 };
 

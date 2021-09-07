@@ -19,9 +19,11 @@ import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
 import { Button } from "@material-ui/core";
 import Footer from "../../components/Footer";
+import CustomToast from "../../components/UI/CustomToast";
 
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
+import { GetHotelBySearch } from "../../constants/constants";
 
 const MotionBox = motion(Box);
 
@@ -42,47 +44,15 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const search = useSelector((state: any) => state.searchReducer.search, shallowEqual);
 
-  const SEARCH_QUERY = gql `
-    query PropertiesInput {
-      properties(
-        input: {
-          adults: ${search?.occupants.adults},
-          children: ${search?.occupants.children},
-          dogs: ${search.occupants.dogs},
-          cityId: "",
-          checkIn: ${'"' + search.checkIn + '"'},
-          checkOut: ${'"' + search.checkOut + '"'},
-        }
-      ) {
-        id
-        sabreId
-        featuredImageURL
-        name
-        addressLine1
-        city {
-          id
-          name
-          state {
-            id
-            code
-            name
-            country {
-              id
-              name
-            }
-          }
-        }
-        zipCode
-        latitude
-        longitude
-        romingoScore
-        dogAmenities
-        lowestPrice
-      }
+  const { loading, error, data } = useQuery(gql `${GetHotelBySearch}`, {
+    variables: {
+      adults: search.occupants.adults, 
+      children: search.occupants.children, 
+      dogs: search.occupants.dogs, 
+      checkIn: search.checkIn, 
+      checkOut: search.checkOut
     }
-  `;
-
-  const { loading, error, data } = useQuery(SEARCH_QUERY);
+  })
   const dispatch: Dispatch<any> = useDispatch();
   
   const cards = data ? data.properties : [];
@@ -183,6 +153,14 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           py: { xs: 0, md: 1 },
         }}
       >
+        {error && 
+          <CustomToast 
+            open={true}
+            message={"Something went wrong, please refresh the page and try again"}
+            type="error"
+            duration={5000}
+          />
+        }
         <Box
           component="img"
           src={"/images/Romingo_Logo_Black.svg"}
