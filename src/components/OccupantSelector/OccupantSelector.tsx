@@ -132,7 +132,8 @@ const OccupantSelector: FC<Props> = ({
                 <Box
                   sx={{
                     mx: "5px",
-                    my: "10px",
+                    mt: "0px",
+                    mb: "15px",
                     width: "calc(50% - 10px)",
                     display: "inline-block",
                   }}
