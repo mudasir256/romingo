@@ -20,7 +20,14 @@ interface Size {
   height: string | number | undefined;
 }
 
-const Map: FC<Props> = ({ center, height, width, markers, markerClickCallBack, selectedMarker }) => {
+const Map: FC<Props> = ({
+  center,
+  height,
+  width,
+  markers,
+  markerClickCallBack,
+  selectedMarker,
+}) => {
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -68,21 +75,25 @@ const Map: FC<Props> = ({ center, height, width, markers, markerClickCallBack, s
         options={mapOptions}
         zoom={11}
       >
-        {(markers !== undefined) && markers.map((marker, key) => {
-          return <Marker 
-            position={marker}
-            animation={2}
-            key={key}
-            onClick={(e: google.maps.MapMouseEvent) => {
-              if (markerClickCallBack)
-                return markerClickCallBack(key);
-              else
-                return null;
-            }}
-            opacity={(selectedMarker !== undefined && selectedMarker === key) ? 1 : 0.5}
-          />
-        })}
-        
+        {markers !== undefined &&
+          markers.map((marker, key) => {
+            return (
+              <Marker
+                position={marker}
+                animation={2}
+                key={key}
+                onClick={(e: google.maps.MapMouseEvent) => {
+                  if (markerClickCallBack) return markerClickCallBack(key);
+                  else return null;
+                }}
+                opacity={
+                  selectedMarker !== undefined && selectedMarker === key
+                    ? 1
+                    : 0.5
+                }
+              />
+            );
+          })}
       </GoogleMap>
     </LoadScript>
   );

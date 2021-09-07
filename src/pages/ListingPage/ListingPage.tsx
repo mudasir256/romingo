@@ -225,10 +225,10 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           cards.length !== 0 && (
             <ListingMap
               loading={loading}
-              center={cards[0].mapLocation}
+              center={markers[0]}
               markers={markers}
               name={cards[hotelIndex].name}
-              location={cards[hotelIndex].locaiton}
+              location={cards[hotelIndex].location}
               score={cards[hotelIndex].score}
               price={cards[hotelIndex].price}
               image={cards[hotelIndex].image}
