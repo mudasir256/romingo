@@ -44,6 +44,7 @@ const ListingCard: FC<ListingCardProps> = ({
         borderRadius: 3,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
+        backgroundColor: highlighted ? "lightBackground.main" : "white",
       }}
       {...props}
     >
@@ -132,7 +133,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   sx={{ mt: 3, mr: 0.5, minWidth: 0, overflow: "hidden" }}
                   spacing={0.5}
                 >
-                  {dogAmenities.map((amenity) => (
+                  {dogAmenities.slice(0, 2).map((amenity) => (
                     <Box
                       key={amenity}
                       sx={{

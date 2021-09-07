@@ -16,6 +16,9 @@ export const theme = {
     error: {
       main: "#BC4749",
     },
+    lightBackground: {
+      main: "#fcf5f0",
+    },
     text: {
       primary: "rgba(0, 0, 0, 0.78)",
     },
