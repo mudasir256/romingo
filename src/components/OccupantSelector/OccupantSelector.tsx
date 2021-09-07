@@ -118,6 +118,13 @@ const OccupantSelector: FC<Props> = ({
               value={value.children}
               onChange={(children) => {
                 if (children > 6) return;
+                if (value.childrenAge && value.childrenAge.length > children) {
+                  value.childrenAge = value.childrenAge.slice(0, children);
+                } else if (value.childrenAge && value.childrenAge.length <= children) {
+                  while (value.childrenAge.length !== children) {
+                    value.childrenAge.push(0)
+                  }
+                }
                 onChange({ ...value, children });
               }}
             />
