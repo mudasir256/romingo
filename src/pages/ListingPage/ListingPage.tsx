@@ -73,6 +73,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const cards = data ? data.properties : [];
   dispatch(setList(cards));
+  console.log(cards);
 
   // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
 
@@ -228,11 +229,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               center={markers[0]}
               markers={markers}
               name={cards[hotelIndex].name}
-              location={cards[hotelIndex].location}
-              score={cards[hotelIndex].score}
-              price={cards[hotelIndex].price}
-              image={cards[hotelIndex].image}
-              amenities={cards[hotelIndex].amenities}
+              location={cards[hotelIndex].addressLine1}
+              score={cards[hotelIndex].romingoScore}
+              price={cards[hotelIndex].lowestPrice}
+              image={cards[hotelIndex].featuredImageURL}
+              amenities={cards[hotelIndex].dogAmenities}
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
             />
