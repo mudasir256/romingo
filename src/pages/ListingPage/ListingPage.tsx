@@ -73,7 +73,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const cards = data ? data.properties : [];
   dispatch(setList(cards));
-  console.log(cards);
 
   // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
 

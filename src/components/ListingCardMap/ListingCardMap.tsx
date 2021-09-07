@@ -30,6 +30,7 @@ const ListingCardMap: FC<Props> = ({
         display: "flex",
         borderRadius: 3,
         boxShadow: 4,
+        width: "350px",
         maxWidth: "350px",
       }}
     >
