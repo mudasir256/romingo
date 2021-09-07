@@ -46,85 +46,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       >
         {score}
       </Typography>
-      <Star sx={{ color: "warning.main", fontSize: "90%" }} />
-      <Typography
-        onClick={handlePopoverOpen}
-        sx={{
-          color: "text.secondary",
-          fontSize: "75%",
-          ml: 0.5,
-        }}
-      >
-        Info
-      </Typography>
-      <Popover
-        open={open}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
-      >
-        <Box sx={{ p: 1, pb: 0, maxWidth: "320px" }}>
-          <Typography
-            sx={{
-              fontSize: "80%",
-              color: "text.secondary",
-              textAlign: "center",
-              mb: 0.2,
-            }}
-          >
-            How is the Romingo Score calculated?
-          </Typography>
-          <Divider />
-          <Box sx={{ fontSize: "80%", mt: 0.5 }}>
-            <List>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <PetsIcon sx={{ fontSize: "100%", mr: 0.5, mt: 0.8 }} />
-                  <ListItemText
-                    primaryTypographyProps={{ fontSize: "100%" }}
-                    primary="In-house pet amenities"
-                  />
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <PetsIcon sx={{ fontSize: "100%", mr: 0.5, mt: 0.8 }} />
-                  <ListItemText
-                    primaryTypographyProps={{ fontSize: "100%" }}
-                    primary="Dog-friendly city score"
-                  />
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <PetsIcon sx={{ fontSize: "100%", mr: 0.5, mt: 0.8 }} />
-                  <ListItemText
-                    primaryTypographyProps={{ fontSize: "100%" }}
-                    primary="Nearby dog parks or beaches"
-                  />
-                </ListItemIcon>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemIcon>
-                  <PetsIcon sx={{ fontSize: "100%", mr: 0.5, mt: 0.8 }} />
-                  <ListItemText
-                    primaryTypographyProps={{ fontSize: "100%" }}
-                    primary="Nearby dog-friendly restaurants"
-                  />
-                </ListItemIcon>
-              </ListItem>
-            </List>
-          </Box>
-        </Box>
-      </Popover>
+      <PetsIcon sx={{ color: "warning.main", fontSize: "90%", mt: -0.3 }} />
     </Box>
   ) : (
     <Box
@@ -142,7 +64,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       >
         {score}
       </Typography>
-      <Star sx={{ color: "warning.main", fontSize: "130%", mt: -0.1 }} />
+      <PetsIcon sx={{ color: "warning.main", fontSize: "110%", mt: -0.2 }} />
       <Typography
         onMouseEnter={handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
