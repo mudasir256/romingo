@@ -1,5 +1,8 @@
 import { CSSObject } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 import Popover from "@material-ui/core/Popover";
 import Stack from "@material-ui/core/Stack";
 import TextField from "@material-ui/core/TextField";
@@ -85,9 +88,8 @@ const OccupantSelector: FC<Props> = ({
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
-                if (dogs > 2)
-                  return;
-                onChange({ ...value, dogs })
+                if (dogs > 2) return;
+                onChange({ ...value, dogs });
               }}
             />
           </Stack>
@@ -100,9 +102,8 @@ const OccupantSelector: FC<Props> = ({
             <NumberInput
               value={value.adults}
               onChange={(adults) => {
-                if (adults > 5)
-                  return;
-                onChange({ ...value, adults })
+                if (adults > 5) return;
+                onChange({ ...value, adults });
               }}
             />
           </Stack>
@@ -116,43 +117,57 @@ const OccupantSelector: FC<Props> = ({
             <NumberInput
               value={value.children}
               onChange={(children) => {
-                if (children > 6)
-                  return;
-                onChange({ ...value, children })
+                if (children > 6) return;
+                onChange({ ...value, children });
               }}
             />
           </Stack>
-          {(Array.from({length: value.children}, (_, i: number) => {
-            return (
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                sx={{ width: "100%" }}
-                key={i}
-              >
-                <Typography variant="body1">Age of Child {(i + 1)}</Typography>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={(value.childrenAge && value.childrenAge[i]) ? value.childrenAge[i].toString() : "0"}
-                  label="Age"
-                  onChange={(e: SelectChangeEvent) => {
-                    if (value.childrenAge === undefined) {
-                      value.childrenAge = [];
-                    }
-                    value.childrenAge[i] = parseInt(e.target.value);
-
-                    onChange({...value});
+          <Box
+            alignItems="center"
+            justifyContent="center"
+            sx={{ width: "100%" }}
+          >
+            {Array.from({ length: value.children }, (_, i: number) => {
+              return (
+                <Box
+                  sx={{
+                    m: "5px",
+                    width: "calc(50% - 10px)",
+                    display: "inline-block",
                   }}
                 >
-                  {Array.from({ length: 18 }, (_, k: number) => {
-                    return <MenuItem value={k} key={k}>{k}</MenuItem>
-                  })}
-                </Select>
-              </Stack>
-            )
-          })) }
+                  <FormControl variant="standard" fullWidth>
+                    <InputLabel>Child {i + 1} Age</InputLabel>
+                    <Select
+                      key={i}
+                      color="primary"
+                      size="small"
+                      value={
+                        value.childrenAge && value.childrenAge[i]
+                          ? value.childrenAge[i].toString()
+                          : "0"
+                      }
+                      onChange={(e: SelectChangeEvent) => {
+                        if (value.childrenAge === undefined) {
+                          value.childrenAge = [];
+                        }
+                        value.childrenAge[i] = parseInt(e.target.value);
+                        onChange({ ...value });
+                      }}
+                    >
+                      {Array.from({ length: 18 }, (_, k: number) => {
+                        return (
+                          <MenuItem value={k} key={k}>
+                            {k}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Box>
+              );
+            })}
+          </Box>
           <Button sx={{ py: 1.5 }} onClick={handleClose}>
             Done
           </Button>
