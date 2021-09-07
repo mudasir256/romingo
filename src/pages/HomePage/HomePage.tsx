@@ -1,6 +1,7 @@
 import Box from "@material-ui/core/Box";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
 import { CSSObject, Paper } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
@@ -8,9 +9,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
+import { gql, useQuery } from "@apollo/client";
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { initialState } from "../../store/searchReducer";
+import { GetCities } from "../../constants/constants";
+import { setList } from "../../store/cityListReducer";
 
 interface Props {
   sx?: CSSObject;
@@ -124,6 +129,17 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
+
+  const { loading, error, data } = useQuery(gql `${GetCities}`);
+
+  if (data) {
+    const dispatch: Dispatch<any> = useDispatch();
+
+    dispatch(
+      setList([...data.cities])
+    );
+  }
+
   return (
     <>
       <Header />

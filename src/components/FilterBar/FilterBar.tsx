@@ -35,6 +35,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
 
   const [zoomIn, setZoomIn] = useState(zoomed);
   const search = useSelector((state: any) => state.searchReducer.search);
+  const cities = useSelector((state: any) => state.cityListReducer.cities);
 
   const [selectedCity, setSelectedCity] = useState(search.city ? search.city : "");
 
@@ -45,28 +46,24 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
 
   const [occupants, setOccupants] = useState(search.occupants);
 
-  const cities = [
-    { label: "San Francisco, CA", id: 1 },
-    { label: "Los Angeles, CA", id: 2 },
-    { label: "Sacramento, CA", id: 3 },
-    { label: "Oceanside, CA", id: 4 },
-    { label: "San Diego, CA", id: 5 },
-    { label: "Tucson, AZ", id: 6 },
-    { label: "Phoenix, AZ", id: 7 },
-    { label: "Portland, OR", id: 8 },
-    { label: "Seattle, WA", id: 9 },
-  ];
-
   const [cityObject, setCityObject] = useState({
-    label: "",
-    id: 0
+    name: "",
+    id: "0"
   });
-  useEffect(() => {
+
+  const getCityName = (cityId: string) => {
     for (let i = 0; i < cities.length; i ++) {
-      if (cities[i].label === selectedCity)
-        setCityObject({...cities[i]});
+      if (cities[i].id === selectedCity)
+        return cities[i].name
     }
-  }, [])
+  }
+
+  const getCity = (cityId: string) => {
+    for (let i = 0; i < cities.length; i ++) {
+      if (cities[i].id === selectedCity)
+        return cities[i];
+    }
+  }
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
@@ -131,7 +128,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   },
                 }}
               >
-                {selectedCity}
+                {getCityName(selectedCity)}
               </Typography>
             </Button>
             <Box
@@ -224,10 +221,11 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         color: "primary.main",
                       },
                     }}
-                    onChange={(e, values) => {
+                    getOptionLabel={(option: any) => {
+                      return option.name}}
+                    onChange={(e, values: any) => {
                       if (values) {
-                        setSelectedCity(values.label);
-                        setCityObject(values);
+                        setSelectedCity(values.id);
                       }
                     }}
                     renderInput={(params) => (
@@ -237,7 +235,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         variant="standard"
                       />
                     )}
-                    value={cityObject}
+                    value={getCity(selectedCity)}
                   />
                 </Box>
                 <Box>

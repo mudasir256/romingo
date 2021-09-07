@@ -5,13 +5,14 @@ const GetHotelBySearch = `
       $dogs: Int!,
       $checkIn: Date!,
       $checkOut: Date!,
+      $cityId: String!,
     ) {
       properties(
         input: {
           adults: $adults,
           children: $children,
           dogs: $dogs,
-          cityId: "",
+          cityId: $cityId,
           checkIn: $checkIn,
           checkOut: $checkOut,
         }
@@ -43,4 +44,22 @@ const GetHotelBySearch = `
       }
     }
   `
-export { GetHotelBySearch }
+
+const GetCities = `
+    query{
+      cities {
+        id
+        name
+        state {
+          id
+          code
+          name
+          country {
+            id
+            name
+          }
+        }
+      }
+    }
+  `
+export { GetHotelBySearch, GetCities }

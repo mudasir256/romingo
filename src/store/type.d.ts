@@ -193,6 +193,11 @@ interface ICheckout {
   room: IRoom
 }
 
+interface ICity {
+  name: string;
+  id: string;
+}
+
 type SearchState = {
   search: ISearch;
 };
@@ -239,6 +244,15 @@ type CheckoutAction = {
   checkout: ICheckout;
 };
 
+type CityListState = {
+  cities: ICity[];
+}
+
+type CityAction = {
+  type: string;
+  cities: ICity[];
+}
+
 type SearchDispatchType = (args: SearchAction) => SearchAction;
 
 type UserDispatchType = (args: UserAction) => UserAction;
@@ -248,3 +262,5 @@ type HotelListDispatchType = (args: HotelAction) => HotelAction;
 type HotelDetailDispatchType = (args: DetailAction) => DetailAction;
 
 type CheckoutDispatchType = (args: CheckoutAction) => CheckoutAction;
+
+type CityListDispatchType = (args: CityAction) => CityAction;

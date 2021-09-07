@@ -49,10 +49,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       adults: search.occupants.adults, 
       children: search.occupants.children, 
       dogs: search.occupants.dogs, 
+      cityId: search.city,
       checkIn: search.checkIn, 
       checkOut: search.checkOut
     }
-  })
+  });
+
   const dispatch: Dispatch<any> = useDispatch();
   
   const cards = data ? data.properties : [];

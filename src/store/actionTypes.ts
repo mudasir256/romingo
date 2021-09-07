@@ -6,3 +6,4 @@ export const SET_USER = "SET_USER";
 export const SET_LIST = "SET_LIST";
 export const SET_DETAILS = "SET_DETAILS";
 export const SET_CHECKOUT = "SET_CHECKOUT";
+export const SET_CITIES = "SET_CITIES";

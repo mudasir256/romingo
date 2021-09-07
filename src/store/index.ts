@@ -4,6 +4,7 @@ import userReducer from "./userReducer";
 import hotelListReducer from "./hotelListReducer";
 import hotelDetailReducer from "./hotelDetailReducer";
 import hotelCheckoutReducer from "./hotelCheckoutReducer";
+import cityListReducer from "./cityListReducer";
 
 export default combineReducers({
   searchReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   hotelListReducer,
   hotelDetailReducer,
   hotelCheckoutReducer,
+  cityListReducer
 });
