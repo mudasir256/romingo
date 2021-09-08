@@ -425,7 +425,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   left: 15,
                 }}
               >
-                <ArrowBackIcon sx={{ fontSize: 16 }} />
+                <ArrowBackIcon
+                  onClick={() => history.goBack()}
+                  sx={{ fontSize: 16 }}
+                />
               </Fab>
               <MobileBookingBar roomList={roomList} />
             </Hidden>
