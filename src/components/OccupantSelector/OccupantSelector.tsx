@@ -105,6 +105,7 @@ const OccupantSelector: FC<Props> = ({
                 if (adults > 5) return;
                 onChange({ ...value, adults });
               }}
+              minimum={1}
             />
           </Stack>
           <Stack

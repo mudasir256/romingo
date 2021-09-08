@@ -8,12 +8,13 @@ import { FC } from "react";
 interface Props {
   value: number;
   onChange: (value: number) => void;
+  minimum?: number;
 }
 
-const NumberInput: FC<Props> = ({ value, onChange }) => {
+const NumberInput: FC<Props> = ({ value, onChange, minimum = 0 }) => {
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <IconButton onClick={() => onChange(Math.max(value - 1, 0))}>
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
         <RemoveCircleOutline />
       </IconButton>
       <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
