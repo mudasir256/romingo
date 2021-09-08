@@ -414,6 +414,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <Fab
                 color="default"
                 size="small"
+                onClick={() => history.goBack()}
                 aria-label="back"
                 sx={{
                   backgroundColor: "white",
@@ -425,10 +426,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   left: 15,
                 }}
               >
-                <ArrowBackIcon
-                  onClick={() => history.goBack()}
-                  sx={{ fontSize: 16 }}
-                />
+                <ArrowBackIcon sx={{ fontSize: 16 }} />
               </Fab>
               <MobileBookingBar roomList={roomList} />
             </Hidden>
