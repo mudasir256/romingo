@@ -77,7 +77,7 @@ interface Props {
     Value: string;
   }[];
   nearby: { text: string; distance: number }[];
-  rooms: RoomInfo[]
+  rooms: RoomInfo[];
 }
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
@@ -97,22 +97,22 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     nearby,
     rooms,
   } = useSelector((state: any) => state.hotelDetailReducer.detail);
-// const DetailsPage: FC<Props> = ({
-//   name,
-//   location,
-//   mainImg,
-//   gallery,
-//   score,
-//   defaultDescription,
-//   cancellation,
-//   cancelPenalty,
-//   dogAmenitiesTitle,
-//   roomList,
-//   amenitiesTitle,
-//   amenities,
-//   nearby,
-//   rooms,
-// }) => {
+  // const DetailsPage: FC<Props> = ({
+  //   name,
+  //   location,
+  //   mainImg,
+  //   gallery,
+  //   score,
+  //   defaultDescription,
+  //   cancellation,
+  //   cancelPenalty,
+  //   dogAmenitiesTitle,
+  //   roomList,
+  //   amenitiesTitle,
+  //   amenities,
+  //   nearby,
+  //   rooms,
+  // }) => {
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
     buttons: {
@@ -189,7 +189,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           >
             <Box
               component="img"
-              src={"/images/romingo_logo_yellow.svg"}
+              src={"/images/Romingo_Logo_Black.svg"}
               alt="Logo"
               draggable="false"
               sx={{
@@ -355,12 +355,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 display: "grid",
                 gridAutoFlow: "column",
                 overflow: "auto",
-                py: 1
+                py: 1,
               }}
             >
-              {rooms.map((room:any, key:number) => {
+              {rooms.map((room: any, key: number) => {
                 return (
-                  <RoomCard 
+                  <RoomCard
                     key={key}
                     HotelName={name}
                     sx={{
@@ -370,11 +370,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       borderRadius: "5px",
                       boxShadow: 2,
                       px: 1,
-                      py: 1
+                      py: 1,
                     }}
                     {...room}
                   />
-                )
+                );
               })}
             </Box>
             <Grid container>

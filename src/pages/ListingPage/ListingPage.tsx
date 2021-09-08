@@ -53,12 +53,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     shallowEqual
   );
 
-  const ageParam =
-    search.occupants.childrenAge.map((x: number) => {
-      return {
-        age: x,
-      };
-    });
+  const ageParam = search.occupants.childrenAge.map((x: number) => {
+    return {
+      age: x,
+    };
+  });
 
   const { loading, error, data } = useQuery(
     gql`
@@ -184,18 +183,26 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             duration={5000}
           />
         )}
-        <Box
-          component="img"
-          src={"/images/Romingo_Logo_Black.svg"}
-          alt="Logo"
-          draggable="false"
-          sx={{
-            display: { xs: "none", md: "block" },
-            ml: { xs: 0, md: 4 },
-            mr: { xs: 0, md: 8 },
-            height: { xs: "0px", md: "45px" },
+        <Link
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            history.push("/");
           }}
-        />
+        >
+          <Box
+            component="img"
+            src={"/images/Romingo_Logo_Black.svg"}
+            alt="Logo"
+            draggable="false"
+            sx={{
+              display: { xs: "none", md: "block" },
+              ml: { xs: 0, md: 4 },
+              mr: { xs: 0, md: 8 },
+              height: { xs: "0px", md: "42px" },
+            }}
+          />
+        </Link>
         <FilterBar />
       </Box>
       <Box

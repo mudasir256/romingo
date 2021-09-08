@@ -2,6 +2,7 @@ import React, { FC, useState, MouseEventHandler } from "react";
 import Box from "@material-ui/core/Box";
 import { CSSObject } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -28,6 +29,7 @@ interface Props {
 }
 
 const Navbar: FC<Props> = ({ sx }) => {
+  const history = useHistory();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [showLogin, setShowLogin] = useState(false);
@@ -123,6 +125,9 @@ const Navbar: FC<Props> = ({ sx }) => {
                 component="img"
                 src={"/images/Romingo_Logo_Black.svg"}
                 alt="Logo"
+                onClick={() => {
+                  history.push("/");
+                }}
                 draggable="false"
                 sx={{
                   maxHeight: { xs: "35px", md: "45px" },
@@ -155,9 +160,13 @@ const Navbar: FC<Props> = ({ sx }) => {
                 src={"/images/Romingo_Logo_Black.svg"}
                 alt="Logo"
                 draggable="false"
+                onClick={() => {
+                  history.push("/");
+                }}
                 sx={{
                   maxWidth: "180px",
                   margin: "auto auto",
+                  cursor: "pointer",
                 }}
               />
             </Box>
@@ -181,7 +190,11 @@ const Navbar: FC<Props> = ({ sx }) => {
             textAlign: "center",
           }}
         >
-          <Typography variant="body1" color="primary" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="body1"
+            color="primary"
+            sx={{ fontWeight: "bold" }}
+          >
             {selectDialog === LOGIN
               ? "Login"
               : selectDialog === REGISTER
