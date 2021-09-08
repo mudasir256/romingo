@@ -37,7 +37,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
 
-  const [selectedCity, setSelectedCity] = useState(search.city ? search.city : "");
+  const [selectedCity, setSelectedCity] = useState(
+    search.city ? search.city : ""
+  );
+  const [formError, setFormError] = useState("");
 
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     search.checkIn ? search.checkIn : null,
@@ -48,26 +51,26 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
 
   const [cityObject, setCityObject] = useState({
     name: "",
-    id: "0"
+    id: "0",
   });
 
   const getCityName = (cityId: string) => {
-    for (let i = 0; i < cities.length; i ++) {
-      if (cities[i].id === selectedCity)
-        return cities[i].name
+    for (let i = 0; i < cities.length; i++) {
+      if (cities[i].id === selectedCity) return cities[i].name;
     }
-  }
+  };
 
   const getCity = (cityId: string) => {
-    for (let i = 0; i < cities.length; i ++) {
-      if (cities[i].id === selectedCity)
-        return cities[i];
+    for (let i = 0; i < cities.length; i++) {
+      if (cities[i].id === selectedCity) return cities[i];
     }
-  }
+  };
 
   const dateToString = (isoString: string | Date | number) => {
     const date = new Date(isoString);
-    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
+    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
+      "0" + date.getDate()
+    ).slice(-2)}`;
   };
 
   const onOccupantChange = (value: Occupant) => {
@@ -75,14 +78,16 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   };
 
   const handleFilterInClick: MouseEventHandler<Element> = () => {
+    setFormError("");
     setZoomIn(true);
   };
 
   const dispatch: Dispatch<any> = useDispatch();
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
-    setZoomIn(false);
     if (selectedCity && checkDate[0] && checkDate[1]) {
+      setFormError("");
+      setZoomIn(false);
       dispatch(
         saveSearch({
           city: selectedCity,
@@ -92,8 +97,17 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
         })
       );
 
-      if (home)
-        history.push("/listings");
+      if (home) history.push("/listings");
+    } else {
+      if (!selectedCity) {
+        setFormError("Location required");
+      }
+      if (!checkDate[0]) {
+        setFormError("Check-in date required");
+      }
+      if (!checkDate[1]) {
+        setFormError("Check-out date required");
+      }
     }
   };
 
@@ -147,8 +161,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   },
                 }}
               >
-                {checkDate[0] ? dateToString(checkDate[0]) : "2021-08-06"} -{" "}
-                {checkDate[1] ? dateToString(checkDate[1]) : "2021-08-10"}
+                {checkDate[0] ? dateToString(checkDate[0]) : ""} -{" "}
+                {checkDate[1] ? dateToString(checkDate[1]) : ""}
               </Typography>
             </Button>
             <Box
@@ -222,9 +236,11 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                       },
                     }}
                     getOptionLabel={(option: any) => {
-                      return option.name}}
+                      return option.name;
+                    }}
                     onChange={(e, values: any) => {
                       if (values) {
+                        setFormError("");
                         setSelectedCity(values.id);
                       }
                     }}
@@ -247,6 +263,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                       allowSameDateSelection={false}
                       value={checkDate}
                       onChange={(newValue) => {
+                        setFormError("");
                         setCheckDate(newValue);
                       }}
                       renderInput={(startProps, endProps) => (
@@ -264,6 +281,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
+                            required
                             ref={
                               startProps.inputRef as React.Ref<HTMLInputElement>
                             }
@@ -282,6 +300,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
+                            required
                             ref={
                               endProps.inputRef as React.Ref<HTMLInputElement>
                             }
@@ -317,6 +336,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                 <Box sx={{ textAlign: "center" }}>
                   <Button
                     onClick={handleFilterOutClick}
+                    type="submit"
                     color="primary"
                     size="large"
                     sx={{
@@ -337,6 +357,15 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   </Button>
                 </Box>
               </Box>
+              {formError.length > 0 && (
+                <Typography
+                  variant="body2"
+                  color="error"
+                  sx={{ textAlign: "center", mt: 1 }}
+                >
+                  {formError}
+                </Typography>
+              )}
             </Box>
           </Zoom>
         </Box>

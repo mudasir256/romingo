@@ -20,19 +20,19 @@ export const removeArticle = (search: ISearch) => {
 export const simulateHttpRequest = (action: SearchAction) => {
   return (dispatch: SearchDispatchType) => {
     // setTimeout(() => {
-      dispatch(action);
+    dispatch(action);
     // }, 100);
   };
 };
 
 export const initialState: SearchState = {
   search: {
-    city: "San Francisco",
-    checkIn: "8/1/2021",
-    checkOut: "8/11/2021",
+    city: "",
+    checkIn: "",
+    checkOut: "",
     occupants: {
       adults: 1,
-      children: 1,
+      children: 0,
       dogs: 1,
     },
   },
