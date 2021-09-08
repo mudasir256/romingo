@@ -54,7 +54,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   );
 
   const ageParam =
-    search.occupants.children > 0 &&
     search.occupants.childrenAge.map((x: number) => {
       return {
         age: x,
@@ -72,7 +71,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         cityId: search.city,
         checkIn: search.checkIn,
         checkOut: search.checkOut,
-        childrenAge: ageParam,
+        children: ageParam,
       },
     }
   );

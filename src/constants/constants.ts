@@ -5,12 +5,12 @@ const GetHotelBySearch = `
       $checkIn: Date!,
       $checkOut: Date!,
       $cityId: String!,
-      $childrenAge: [ChildInput!]!,
+      $children: [ChildInput!]!,
     ) {
       properties(
         input: {
           adults: $adults,
-          children: $childrenAge,
+          children: $children,
           dogs: $dogs,
           cityId: $cityId,
           checkIn: $checkIn,
