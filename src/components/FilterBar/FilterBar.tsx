@@ -261,9 +261,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                       endText="Check-out"
                       calendars={2}
                       allowSameDateSelection={false}
-                      disableCloseOnSelect={true}
-                      mask="__/__/____"
+                      clearable={true}
                       value={checkDate}
+                      minDate={new Date()}
                       onChange={(newValue) => {
                         setFormError("");
                         setCheckDate(newValue);
