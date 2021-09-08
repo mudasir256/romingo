@@ -53,6 +53,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     shallowEqual
   );
 
+  const ageParam = search.occupants.childrenAge.map((x: number) => {
+    return {
+      age: x
+    }
+  });
+
   const { loading, error, data } = useQuery(
     gql`
       ${GetHotelBySearch}
@@ -60,11 +66,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     {
       variables: {
         adults: search.occupants.adults,
-        children: search.occupants.children,
         dogs: search.occupants.dogs,
         cityId: search.city,
         checkIn: search.checkIn,
         checkOut: search.checkOut,
+        childrenAge: ageParam
       },
     }
   );

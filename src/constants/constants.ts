@@ -1,16 +1,16 @@
 const GetHotelBySearch = `
     query PropertiesInput(
       $adults: Int!,
-      $children: Int!,
       $dogs: Int!,
       $checkIn: Date!,
       $checkOut: Date!,
       $cityId: String!,
+      $childrenAge: [ChildInput!]!,
     ) {
       properties(
         input: {
           adults: $adults,
-          children: $children,
+          children: $childrenAge,
           dogs: $dogs,
           cityId: $cityId,
           checkIn: $checkIn,
