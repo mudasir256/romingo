@@ -53,11 +53,17 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     shallowEqual
   );
 
-  const ageParam = search.occupants.childrenAge.map((x: number) => {
-    return {
-      age: x,
-    };
-  });
+  const ageParam =
+    search.occupants.childrenAge.map((x: number) => {
+      if (x === 0) {
+        return {
+          age: 1
+        }
+      }
+      return {
+        age: x,
+      };
+    });
 
   const { loading, error, data } = useQuery(
     gql`
