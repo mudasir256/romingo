@@ -259,7 +259,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     <DateRangePicker
                       startText="Check-in"
                       endText="Check-out"
-                      calendars={2}
+                      calendars={1}
                       allowSameDateSelection={false}
                       clearable={true}
                       value={checkDate}
