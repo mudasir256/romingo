@@ -176,7 +176,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 }}
               >
                 {currency}
-                {lowestPrice}
+                {Math.round(lowestPrice)}
               </Typography>
               <Typography variant="body2" sx={{ mb: 0.25 }}>
                 / night
