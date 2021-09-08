@@ -55,6 +55,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const ageParam =
     search.occupants.childrenAge.map((x: number) => {
+      if (x === 0) {
+        return {
+          age: 1
+        }
+      }
       return {
         age: x,
       };

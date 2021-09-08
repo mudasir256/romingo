@@ -144,6 +144,7 @@ const OccupantSelector: FC<Props> = ({
                     width: "calc(50% - 10px)",
                     display: "inline-block",
                   }}
+                  key={i}
                 >
                   <FormControl variant="standard" fullWidth>
                     <InputLabel sx={{ textAlign: "center" }}>
