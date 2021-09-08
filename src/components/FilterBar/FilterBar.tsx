@@ -259,8 +259,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     <DateRangePicker
                       startText="Check-in"
                       endText="Check-out"
-                      calendars={1}
+                      calendars={2}
                       allowSameDateSelection={false}
+                      disableCloseOnSelect={true}
+                      mask="__/__/____"
                       value={checkDate}
                       onChange={(newValue) => {
                         setFormError("");
