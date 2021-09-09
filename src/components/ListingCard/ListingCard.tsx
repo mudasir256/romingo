@@ -17,8 +17,10 @@ export interface ListingCardProps {
   dogAmenities?: string[];
   showAmenities?: boolean;
   highlighted?: boolean;
-  latitude: number;
-  longitude: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  }
 }
 
 const ListingCard: FC<ListingCardProps> = ({

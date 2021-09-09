@@ -197,6 +197,10 @@ interface ICheckout {
 interface ICity {
   name: string;
   id: string;
+  center: {
+    latitude: number;
+    longitude: number;
+  }
 }
 
 type SearchState = {

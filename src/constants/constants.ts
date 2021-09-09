@@ -36,8 +36,10 @@ const GetHotelBySearch = `
           }
         }
         zipCode
-        latitude
-        longitude
+        location {
+          latitude
+          longitude
+        }
         neighborhood
         romingoScore
         dogAmenities
@@ -51,6 +53,10 @@ const GetCities = `
       cities {
         id
         name
+        center {
+          latitude
+          longitude
+        }
         state {
           id
           code

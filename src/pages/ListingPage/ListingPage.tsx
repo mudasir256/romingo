@@ -53,6 +53,10 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     shallowEqual
   );
 
+  const cityList = useSelector((state: any) => state.cityListReducer.cities);
+
+  const selectedCity = cityList.filter((city: any) => city.id === search.city)[0];
+
   const ageParam = search.occupants.childrenAge ?
     search.occupants.childrenAge.map((x: number) => {
       if (x === 0) {
@@ -92,8 +96,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     (card: ListingCardProps, key: number) => {
       refArray.push(React.createRef<HTMLElement>());
       return {
-        lat: card.latitude,
-        lng: card.longitude,
+        lat: card.location.latitude,
+        lng: card.location.longitude,
       };
     }
   );
@@ -245,7 +249,10 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           cards.length !== 0 && (
             <ListingMap
               loading={loading}
-              center={markers[0]}
+              center={{
+                lat: selectedCity.center.latitude,
+                lng: selectedCity.center.longitude
+              }}
               markers={markers}
               name={cards[hotelIndex].name}
               location={cards[hotelIndex].addressLine1}
