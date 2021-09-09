@@ -73,7 +73,7 @@ const Map: FC<Props> = ({
         mapContainerStyle={containerStyle}
         center={center}
         options={mapOptions}
-        zoom={11}
+        zoom={(size.width > 720) ? 10 : 9}
       >
         {markers !== undefined &&
           markers.map((marker, key) => {
