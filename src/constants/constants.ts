@@ -69,4 +69,68 @@ const GetCities = `
       }
     }
   `
-export { GetHotelBySearch, GetCities }
+
+const GetHotelDetail = `
+    query (
+      $id: String!,
+      $checkIn: Date!,
+      $checkOut: Date!,
+      $adults: Int!,
+      $children: [ChildInput!]!
+    ) {
+      property(input: {
+        id: $id,
+        checkIn: $checkIn,
+        checkOut: $checkOut,
+        adults: $adults,
+        children: $children
+      })
+      {
+        id
+        sabreId
+        name
+        desc
+        addressLine1
+        city {
+          id
+          name
+          center {
+            latitude
+            longitude
+          }
+          state {
+            id
+            code
+            name
+            country {
+              id
+              name
+            }
+          }
+        }
+        zipCode
+        location {
+          latitude
+          longitude
+        }
+        neighborhood
+        romingoScore
+        dogAmenities
+        amenities {
+          code
+          desc
+          value
+          free
+        }
+        featuredImageURL
+        imageURLs
+        sabreImageURLs
+        lowestPrice
+      }
+    }
+  `
+export { 
+  GetHotelBySearch, 
+  GetCities,
+  GetHotelDetail 
+}

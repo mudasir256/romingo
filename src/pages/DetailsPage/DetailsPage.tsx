@@ -1,4 +1,4 @@
-import { FC, useState, MouseEventHandler } from "react";
+import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
@@ -21,6 +21,7 @@ import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Link from "@material-ui/core/Link";
+import Skeleton from "@material-ui/core/Skeleton";
 
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
@@ -34,6 +35,10 @@ import CancelPolicy from "../../components/CancelPolicy";
 import FilterBar from "../../components/FilterBar";
 import RoomCard from "../../components/RoomCard";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
+
+import { gql, useQuery } from "@apollo/client";
+import { setList } from "../../store/hotelListReducer";
+import { GetHotelDetail } from "../../constants/constants";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -71,48 +76,100 @@ interface Props {
     description: string;
   }[];
   amenitiesTitle: string;
-  amenities?: {
-    Code: number;
-    Description: string;
-    Value: string;
-  }[];
+  amenities: string[];
   nearby: { text: string; distance: number }[];
   rooms: RoomInfo[];
+  match: any;
 }
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
+
+  const hotelId = props.match.params.id;
+  // console.log(props);
+
+  const search = useSelector((state: any) => state.searchReducer.search);
+
+  const ageParam = search.occupants.childrenAge ?
+    search.occupants.childrenAge.map((x: number) => {
+      if (x === 0) {
+        return {
+          age: 1
+        }
+      }
+      return {
+        age: x,
+      };
+    }) : [];
+
+  const { loading, error, data } = useQuery(
+    gql `${GetHotelDetail}`, {
+      variables: {
+        id: hotelId,
+        checkIn: search?.checkIn,
+        checkOut: search?.checkOut,
+        adults: search?.occupants?.adults,
+        children: ageParam
+      }
+    }
+  );
+
   const {
-    name,
-    location,
-    mainImg,
-    gallery,
-    score,
-    defaultDescription,
     cancellation,
     cancelPenalty,
-    dogAmenitiesTitle,
     roomList,
-    amenitiesTitle,
-    amenities,
     nearby,
     rooms,
   } = useSelector((state: any) => state.hotelDetailReducer.detail);
-  // const DetailsPage: FC<Props> = ({
-  //   name,
-  //   location,
-  //   mainImg,
-  //   gallery,
-  //   score,
-  //   defaultDescription,
-  //   cancellation,
-  //   cancelPenalty,
-  //   dogAmenitiesTitle,
-  //   roomList,
-  //   amenitiesTitle,
-  //   amenities,
-  //   nearby,
-  //   rooms,
-  // }) => {
+
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState({
+    address: "",
+    lat: "",
+    lon: ""
+  });
+  const [mainImg, setMainImg] = useState("");
+  const [gallery, setGallery] = useState<string[]>([]);
+  const [score, setScore] = useState(0);
+  const [defaultDescription, setDefaultDescription] = useState("");
+  const [amenities, setAmenities] = useState<string[]>([]);
+  const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (data && data.property) {
+      setName(data.property.name);
+      setLocation({
+        address: data.property.addressLine1,
+        lat: data.property.location.latitude,
+        lon: data.property.location.longitude
+      });
+      setMainImg(data.property.featuredImageURL);
+
+      const tmp: any[] = [];
+      data.property.imageURLs.map((image: string) => {
+        tmp.push(image);
+      });
+      data.property.sabreImageURLs.map((image: string) => {
+        tmp.push(image);
+      });
+
+      setGallery([...tmp]);
+
+      setDefaultDescription(data.property.desc);
+
+      // setCancelPenalty([])
+      // console.log(data.property.dogAmenities);
+      setAmenities(data.property.dogAmenities);
+      setScore(data.property.romingoScore);
+
+      const tmpAmenities: string[] = [];
+      data.property.amenities.map((amenity: any) => {
+        tmpAmenities.push(amenity.desc);
+      });
+
+      setOtherAmenities([...tmpAmenities]);
+    }
+  }, [data])
+
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
     buttons: {
@@ -203,9 +260,17 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           <FilterBar />
         </Box>
       </Hidden>
-      <Box
+      {
+        loading && <Skeleton
+          variant="rectangular"
+          animation="wave"
+          height="100%"
+          width="100%"
+        />
+      }
+      {!loading && (<Box
         component="img"
-        src={mainImg}
+        src={data.property.featuredImageURL}
         alt={name}
         boxShadow={2}
         onClick={handleOpen}
@@ -218,7 +283,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           mx: 0,
           cursor: "pointer",
         }}
-      />
+      />)}
       <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
         <Grid
           container
@@ -228,7 +293,15 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           }}
         >
           <Grid item xs={12} sm={6}>
-            <Box
+            {
+              loading && <Skeleton
+                variant="rectangular"
+                animation="wave"
+                height="100%"
+                width="100%"
+              />
+            }
+            {!loading && (<Box
               onClick={handleOpen}
               component="img"
               src={mainImg}
@@ -243,12 +316,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 borderRadius: 3,
                 cursor: "pointer",
               }}
-            />
+            />)}
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} sm={6}>
               <Grid container spacing={2}>
-                {gallery.slice(0, 4).map((img: any) => {
+                {!loading && gallery.slice(0, 4).map((img: any) => {
                   return (
                     <Grid item sm={6} key={img}>
                       <Box
@@ -268,6 +341,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     </Grid>
                   );
                 })}
+                {loading && Array.from({ length: 4 }, (_, i: number) => (
+                  (
+                    <Grid item sm={6} key={i}>
+                      <Skeleton
+                        variant="rectangular"
+                        animation="wave"
+                        height="178px"
+                        width="100%"
+                      />
+                    </Grid>
+                  )
+                ))}
               </Grid>
             </Grid>
           </Hidden>
@@ -296,7 +381,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </Button>
           </Box>
         </Grid>
-        <Grid container spacing={2} sx={{ mt: 0 }}>
+        {loading && <Skeleton
+          variant="rectangular"
+          animation="wave"
+          height="100%"
+          width="100%"
+        />}
+        {!loading && <Grid container spacing={2} sx={{ mt: 0 }}>
           <Grid item xs={12} md={7} lg={8}>
             <Typography
               variant="h5"
@@ -324,7 +415,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
                   <AmenitiesCard
-                    title={dogAmenitiesTitle}
+                    title={"Dog Friendly Amenities"}
                     amenities={amenities}
                   />
                 </Box>
@@ -332,8 +423,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <Grid item xs={12} sm={6} md={6} lg={6}>
                 <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
                   <AmenitiesCard
-                    title={amenitiesTitle}
-                    amenities={amenities}
+                    title={"Other Amenities"}
+                    amenities={otherAmenities}
                     viewAll
                   />
                 </Box>
@@ -391,6 +482,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     lng: parseFloat(location.lon),
                   }}
                   height={300}
+                  markers={[
+                    {
+                      lat: parseFloat(location.lat),
+                      lng: parseFloat(location.lon)
+                    }
+                  ]}
+                  selectedMarker={0}
                 />
               </Box>
             </Grid>
@@ -431,7 +529,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <MobileBookingBar roomList={roomList} />
             </Hidden>
           </Grid>
-        </Grid>
+        </Grid>}
         <SimpleReactLightbox>
           <Dialog
             open={showGallery}

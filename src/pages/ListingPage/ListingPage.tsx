@@ -133,11 +133,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   const [hotelIndex, setHotelIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(0);
 
-  const handleClick: MouseEventHandler<Element> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    history.push("/details/1");
-  };
+  // const handleClick: MouseEventHandler<Element> = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   history.push("/details/" + );
+  // };
 
   const markerClick = (index: number) => {
     setHotelIndex(index);
@@ -330,7 +330,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                   <Link
                     href="#"
                     key={index}
-                    onClick={handleClick}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      history.push("/details/" + card.id);
+                    }}
                     underline="none"
                   >
                     <ListingCard
@@ -402,7 +406,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                   <Link
                     href="#"
                     key={index}
-                    onClick={handleClick}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      history.push("/details/" + card.id);
+                    }}
                     underline="none"
                     ref={refArray[index]}
                     onMouseOver={(e) => {

@@ -14,11 +14,7 @@ import { useTheme } from "@material-ui/core/styles";
 
 interface Props {
   title: string;
-  amenities: {
-    Code: number;
-    Description: string;
-    Value: string;
-  }[];
+  amenities: string[];
   rowNumber?: number;
   viewAll?: boolean;
 }
@@ -89,7 +85,7 @@ const AmenitiesCard: FC<Props> = ({
                 paddingLeft: "8px",
               }}
             >
-              {amenity.Description}
+              {amenity}
             </Typography>
           </Box>
         );
@@ -168,7 +164,7 @@ const AmenitiesCard: FC<Props> = ({
                           paddingLeft: "8px",
                         }}
                       >
-                        {amenity.Description}
+                        {amenity}
                       </Typography>
                     </Box>
                   );
