@@ -1,8 +1,8 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import React, { FC, useState } from "react";
-import Container from "@material-ui/core/Container";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import Container from "@mui/material/Container";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";

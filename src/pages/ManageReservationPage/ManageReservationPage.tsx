@@ -1,14 +1,14 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import React, { FC, useState } from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import Button from "@material-ui/core/Button";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Button from "@mui/material/Button";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";

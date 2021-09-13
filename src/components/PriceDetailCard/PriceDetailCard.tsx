@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import Box from "@material-ui/core/Box";
-import { CSSObject } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import { CSSObject } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 interface Props {
   sx?: CSSObject;

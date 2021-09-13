@@ -1,22 +1,22 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
-import { CSSObject } from "@material-ui/core";
-import Zoom from "@material-ui/core/Zoom";
-import Autocomplete from "@material-ui/core/Autocomplete";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/icons/Search";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import { CSSObject } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
+import Autocomplete from "@mui/material/Autocomplete";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
-import DateRangePicker from "@material-ui/lab/DateRangePicker";
-import AdapterDateFns from "@material-ui/lab/AdapterDateFns";
-import LocalizationProvider from "@material-ui/lab/LocalizationProvider";
-import { RangeInput } from "@material-ui/lab/DateRangePicker/RangeTypes";
+import DateRangePicker from "@mui/lab/DateRangePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 
 import OccupantSelector, {
   Occupant,

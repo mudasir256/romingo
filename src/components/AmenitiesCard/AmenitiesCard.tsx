@@ -1,16 +1,16 @@
 import React, { FC, useState, MouseEventHandler } from "react";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Check from "@material-ui/icons/Check";
-import Link from "@material-ui/core/Link";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { useTheme } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Check from "@mui/icons-material/Check";
+import Link from "@mui/material/Link";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { useTheme } from "@mui/material/styles";
 
 interface Props {
   title: string;

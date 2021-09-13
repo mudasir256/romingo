@@ -1,13 +1,13 @@
 import { FC, useState } from "react";
-import { CSSObject } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Button from "@material-ui/core/Button";
-import Hidden from "@material-ui/core/Hidden";
-import Typography from "@material-ui/core/Typography";
-import Checkbox from "@material-ui/core/Checkbox";
+import { CSSObject } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
+import Hidden from "@mui/material/Hidden";
+import Typography from "@mui/material/Typography";
+import Checkbox from "@mui/material/Checkbox";
 
 interface Props {
   sx?: CSSObject;

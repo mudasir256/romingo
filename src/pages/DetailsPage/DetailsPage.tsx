@@ -1,27 +1,29 @@
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Fab from "@material-ui/core/Fab";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import Typography from "@material-ui/core/Typography";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import IconButton from "@material-ui/core/IconButton";
-import { Breakpoint, Theme, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import CloseIcon from "@material-ui/icons/Close";
+import Container from "@mui/material/Container";
+import Fab from "@mui/material/Fab";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Hidden from "@mui/material/Hidden";
+import Typography from "@mui/material/Typography";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import IconButton from "@mui/material/IconButton";
+import { Breakpoint, Theme, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import CloseIcon from "@mui/icons-material/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
-import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import Link from "@material-ui/core/Link";
-import Skeleton from "@material-ui/core/Skeleton";
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Link from "@mui/material/Link";
+import Skeleton from "@mui/material/Skeleton";
+import Chip from "@mui/material/Chip";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
@@ -133,6 +135,16 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [defaultDescription, setDefaultDescription] = useState("");
   const [amenities, setAmenities] = useState<string[]>([]);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
+  const [neighborhood, setNeighborhood] = useState("");
+
+  const [city, setCity] = useState({
+    center: {
+      latitude: "",
+      longitude: ""
+    },
+    id: "",
+    name: ""
+  })
 
   useEffect(() => {
     if (data && data.property) {
@@ -143,6 +155,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         lon: data.property.location.longitude
       });
       setMainImg(data.property.featuredImageURL);
+
+      setCity({...data.property.city});
+      setNeighborhood(data.property.neighborhood);
 
       const tmp: any[] = [];
       data.property.imageURLs.map((image: string) => {
@@ -407,8 +422,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 mt: 0,
               }}
             >
-              {location.address}
+              {location.address}, {city.name}
             </Typography>
+            <Chip icon={<LocationCityIcon />} label={neighborhood} />
             <RomingoScore score={score} />
             <ReadMore text={defaultDescription} length={200} />
             <Grid container spacing={2} sx={{ mt: 0 }}>

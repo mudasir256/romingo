@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { CSSObject } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import PetsIcon from "@material-ui/icons/Pets";
-import SingleBedIcon from "@material-ui/icons/SingleBed";
-import MoneyOffIcon from "@material-ui/icons/MoneyOff";
-import RoomServiceIcon from "@material-ui/icons/RoomService";
+import { CSSObject } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import PetsIcon from "@mui/icons-material/Pets";
+import SingleBedIcon from "@mui/icons-material/SingleBed";
+import MoneyOffIcon from "@mui/icons-material/MoneyOff";
+import RoomServiceIcon from "@mui/icons-material/RoomService";
 
 interface Props {
   sx?: CSSObject;

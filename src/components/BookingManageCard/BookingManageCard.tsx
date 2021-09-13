@@ -1,9 +1,9 @@
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import { FC } from "react";
-import { CSSObject } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Hidden from "@material-ui/core/Hidden";
+import { CSSObject } from "@mui/material";
+import Button from "@mui/material/Button";
+import Hidden from "@mui/material/Hidden";
 import { Occupant } from "../OccupantSelector/OccupantSelector";
 
 export interface BookingCardProps {

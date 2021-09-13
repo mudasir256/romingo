@@ -1,10 +1,10 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC, useState } from "react";
 import { connect, useStore, useDispatch } from 'react-redux';
 import { Dispatch } from "redux"
-import { CSSObject } from "@material-ui/core";
+import { CSSObject } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 
 import { authService } from "../../../services/authService";
 import { loginUser } from "../../../store/userReducer"

@@ -1,14 +1,14 @@
 import { FC, useState, MouseEvent } from "react";
-import Typography from "@material-ui/core/Typography";
-import Star from "@material-ui/icons/Star";
-import Box from "@material-ui/core/Box";
-import Popover from "@material-ui/core/Popover";
-import Divider from "@material-ui/core/Divider";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import PetsIcon from "@material-ui/icons/Pets";
+import Typography from "@mui/material/Typography";
+import Star from "@mui/icons-material/Star";
+import Box from "@mui/material/Box";
+import Popover from "@mui/material/Popover";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import PetsIcon from "@mui/icons-material/Pets";
 
 interface Props {
   score: number;

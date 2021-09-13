@@ -1,8 +1,8 @@
-import IconButton from "@material-ui/core/IconButton";
-import Stack from "@material-ui/core/Stack";
-import Typography from "@material-ui/core/Typography";
-import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
-import RemoveCircleOutline from "@material-ui/icons/RemoveCircleOutline";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import AddCircleOutline from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutline from "@mui/icons-material/RemoveCircleOutline";
 import { FC } from "react";
 
 interface Props {

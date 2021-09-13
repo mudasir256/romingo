@@ -1,12 +1,12 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC } from "react";
 import { useHistory } from "react-router-dom";
-import { CSSObject } from "@material-ui/core";
-import Link from "@material-ui/core/Link";
+import { CSSObject } from "@mui/material";
+import Link from "@mui/material/Link";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
 import Map from "../UI/Map/Map";
-import Skeleton from "@material-ui/core/Skeleton";
-import Hidden from "@material-ui/core/Hidden";
+import Skeleton from "@mui/material/Skeleton";
+import Hidden from "@mui/material/Hidden";
 
 interface Props {
   center: { lat: number; lng: number };

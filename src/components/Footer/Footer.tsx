@@ -1,17 +1,17 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC } from "react";
-import { CSSObject } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Link from "@material-ui/core/Link";
-import Container from "@material-ui/core/Container";
-import IconButton from "@material-ui/core/IconButton";
-import Hidden from "@material-ui/core/Hidden";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import TwitterIcon from "@material-ui/icons/Twitter";
+import { CSSObject } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Link from "@mui/material/Link";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Hidden from "@mui/material/Hidden";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 interface Props {
   sx?: CSSObject;

@@ -1,16 +1,16 @@
 import { FC, useState, MouseEventHandler } from "react";
-import { CSSObject } from "@material-ui/core";
+import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import { RangeInput } from "@material-ui/lab/DateRangePicker/RangeTypes";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import MobileBookingForm from "./MobileBookingForm";
 

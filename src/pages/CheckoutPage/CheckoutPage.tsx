@@ -1,8 +1,8 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC } from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Hidden from "@mui/material/Hidden";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../../components/Navbar";

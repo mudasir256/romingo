@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { CSSObject } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Check from "@material-ui/icons/Check";
-import CloseIcon from "@material-ui/icons/Close";
+import { CSSObject } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Check from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
   sx?: CSSObject;

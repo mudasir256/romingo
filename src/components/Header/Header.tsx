@@ -1,7 +1,7 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC } from "react";
-import { CSSObject } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { CSSObject } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 import Navbar from "../Navbar";
 import FilterBar from "../../components/FilterBar";

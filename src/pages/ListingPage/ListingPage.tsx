@@ -1,14 +1,14 @@
-import Box from "@material-ui/core/Box";
-import Hidden from "@material-ui/core/Hidden";
-import Stack from "@material-ui/core/Stack";
-import Skeleton from "@material-ui/core/Skeleton";
-import Divider from "@material-ui/core/Divider";
-import MapIcon from "@material-ui/icons/Map";
+import Box from "@mui/material/Box";
+import Hidden from "@mui/material/Hidden";
+import Stack from "@mui/material/Stack";
+import Skeleton from "@mui/material/Skeleton";
+import Divider from "@mui/material/Divider";
+import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
 import React, { FC, useRef, useState, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
-import Link from "@material-ui/core/Link";
+import Link from "@mui/material/Link";
 import {
   connect,
   useStore,
@@ -24,7 +24,7 @@ import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import Footer from "../../components/Footer";
 import CustomToast from "../../components/UI/CustomToast";
 
@@ -45,7 +45,7 @@ interface MapLocation {
 }
 
 const ScrollBarRef = React.createRef<HTMLDivElement>();
-const refArray: React.RefObject<HTMLElement>[] = [];
+const refArray: React.RefObject<HTMLAnchorElement>[] = [];
 
 const ListingPage: FC<Props> = ({ ...props }) => {
   const search = useSelector(
@@ -93,7 +93,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const markers: MapLocation[] = cards.map(
     (card: ListingCardProps, key: number) => {
-      refArray.push(React.createRef<HTMLElement>());
+      refArray.push(React.createRef<HTMLAnchorElement>());
       return {
         lat: card.location.latitude,
         lng: card.location.longitude,

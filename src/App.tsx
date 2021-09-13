@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
 import routes from "./routes";
 import { authService } from "./services/authService.js";

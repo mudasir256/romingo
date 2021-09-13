@@ -1,19 +1,19 @@
 import React, { FC, useState, MouseEventHandler } from "react";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { CSSObject } from "@material-ui/core";
-import Link from "@material-ui/core/Link";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Check from "@material-ui/icons/Check";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Popper from "@material-ui/core/Popper";
-import Fade from "@material-ui/core/Fade";
-import Button from "@material-ui/core/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { CSSObject } from "@mui/material";
+import Link from "@mui/material/Link";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Check from "@mui/icons-material/Check";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Popper from "@mui/material/Popper";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
 
 import { utils } from "../../services/utils";
 

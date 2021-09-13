@@ -1,7 +1,7 @@
-import Box from "@material-ui/core/Box";
-import Skeleton from "@material-ui/core/Skeleton";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 import { FC } from "react";
-import { CSSObject } from "@material-ui/core";
+import { CSSObject } from "@mui/material";
 
 export interface Props {
   sx?: CSSObject;

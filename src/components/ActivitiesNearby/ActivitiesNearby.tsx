@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Check from "@material-ui/icons/Check";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Check from "@mui/icons-material/Check";
 
 interface Props {
   title: string;

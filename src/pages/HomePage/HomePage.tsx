@@ -1,13 +1,13 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { FC, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
-import { CSSObject, Paper } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
+import { CSSObject, Paper } from "@mui/material";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 
 import { gql, useQuery } from "@apollo/client";
 

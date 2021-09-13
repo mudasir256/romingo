@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert, { AlertColor } from "@material-ui/core/Alert";
-import Typography from "@material-ui/core/Typography";
+import Snackbar from "@mui/material/Snackbar";
+import Alert, { AlertColor } from "@mui/material/Alert";
+import Typography from "@mui/material/Typography";
 
 interface Props {
   open: boolean;

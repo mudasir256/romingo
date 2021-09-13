@@ -1,10 +1,11 @@
-import Typography from "@material-ui/core/Typography";
-import Stack from "@material-ui/core/Stack";
-import Box from "@material-ui/core/Box";
-import Check from "@material-ui/icons/Check";
-import Chip from "@material-ui/core/Chip";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Check from "@mui/icons-material/Check";
 import { FC } from "react";
 import RomingoScore from "../RomingoScore/RomingoScore";
+import Chip from "@mui/material/Chip";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 export interface ListingCardProps {
   featuredImageURL: string;
@@ -20,7 +21,12 @@ export interface ListingCardProps {
   location: {
     latitude: number;
     longitude: number;
-  }
+  },
+  city: {
+    id: string;
+    name: string;
+  },
+  neighborhood: string;
 }
 
 const ListingCard: FC<ListingCardProps> = ({
@@ -28,6 +34,8 @@ const ListingCard: FC<ListingCardProps> = ({
   name,
   addressLine1,
   romingoScore,
+  city,
+  neighborhood,
   cancellation = false,
   lowestPrice,
   currency = "$",
@@ -97,8 +105,9 @@ const ListingCard: FC<ListingCardProps> = ({
               textOverflow: "ellipsis",
             }}
           >
-            {addressLine1}
+            {addressLine1}, {city.name}
           </Typography>
+          <Chip icon={<LocationCityIcon />} label={neighborhood} />
           <Box sx={{ mt: 3 }}>
             <RomingoScore score={romingoScore} />
           </Box>

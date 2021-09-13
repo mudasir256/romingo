@@ -1,10 +1,10 @@
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import React, { FC, useState } from "react";
-import { CSSObject } from "@material-ui/core";
+import { CSSObject } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
-import Typography from "@material-ui/core/Typography";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 interface Props {
   sx?: CSSObject;
