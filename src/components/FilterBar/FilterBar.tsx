@@ -85,7 +85,13 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   const dispatch: Dispatch<any> = useDispatch();
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
-    if (selectedCity && checkDate[0] && checkDate[1]) {
+    if (
+      selectedCity &&
+      checkDate[0] &&
+      checkDate[0] >= new Date() &&
+      checkDate[1] &&
+      checkDate[1] >= new Date()
+    ) {
       setFormError("");
       setZoomIn(false);
       dispatch(
@@ -105,8 +111,20 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
       if (!checkDate[0]) {
         setFormError("Check-in date required");
       }
+      if (
+        checkDate[0] &&
+        new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
+      ) {
+        setFormError("Check-in date must be after today");
+      }
       if (!checkDate[1]) {
         setFormError("Check-out date required");
+      }
+      if (
+        checkDate[1] &&
+        new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
+      ) {
+        setFormError("Check-out date must be after today");
       }
     }
   };
