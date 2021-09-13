@@ -51,51 +51,28 @@ interface Props {
 
 const NearCities = [
   {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
+    img: "/images/sanfrancisco.jpg",
     city: "San Francisco",
     state: "California",
   },
   {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/d3e668fe_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    city: "Phoenix",
-    state: "Arizona",
-  },
-  {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/262404e1_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    city: "Portland",
-    state: "Oregon",
-  },
-  {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
+    img: "/images/losangeles.jpg",
     city: "Los Angeles",
     state: "California",
   },
   {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    city: "Seattle",
-    state: "Washington",
-  },
-  {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    city: "Tucson",
-    state: "Arizona",
-  },
-  {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/62ea6b9c_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    city: "San Diego",
+    img: "/images/orangecounty.jpg",
+    city: "Orange County",
     state: "California",
   },
   {
-    img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/7a2f4e7a_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    city: "Sacramento",
+    img: "/images/palmsprings.jpg",
+    city: "Palm Springs",
+    state: "California",
+  },
+  {
+    img: "/images/santabarbara.jpg",
+    city: "Santa Barbara",
     state: "California",
   },
 ];
@@ -379,11 +356,12 @@ const HomePage: FC<Props> = ({
             <Grid item xs={12}>
               <Grid
                 container
-                spacing={2}
+                spacing={3}
                 sx={{
-                  display: { xs: "grid", lg: "flex" },
+                  display: { xs: "grid", lg: "grid" },
                   gridAutoFlow: {
                     xs: "column",
+                    lg: "column",
                   },
                   overflow: "auto hidden",
                   pb: 4,
@@ -393,7 +371,7 @@ const HomePage: FC<Props> = ({
               >
                 {nearCities.map((nearCity, key) => {
                   return (
-                    <Grid item xs={12} sm={6} lg={3} key={key}>
+                    <Grid item xs={12} sm={6} lg={4} key={key}>
                       <Box
                         sx={{
                           minWidth: "250px",
