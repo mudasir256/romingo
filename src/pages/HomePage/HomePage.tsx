@@ -129,15 +129,16 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
-
-  const { loading, error, data } = useQuery(gql `${GetCities}`);
+  const { loading, error, data } = useQuery(
+    gql`
+      ${GetCities}
+    `
+  );
 
   if (data) {
     const dispatch: Dispatch<any> = useDispatch();
 
-    dispatch(
-      setList([...data.cities])
-    );
+    dispatch(setList([...data.cities]));
   }
 
   return (
@@ -250,7 +251,6 @@ const HomePage: FC<Props> = ({
                       draggable="false"
                       sx={{
                         width: "100%",
-                        transform: "rotate(6deg)",
                         maxHeight: "320px",
                         objectFit: "cover",
                         borderRadius: 0,
@@ -281,7 +281,6 @@ const HomePage: FC<Props> = ({
                       alt="dog head out window"
                       draggable="false"
                       sx={{
-                        transform: "rotate(-3deg)",
                         width: "100%",
                         maxHeight: "320px",
                         objectFit: "cover",
