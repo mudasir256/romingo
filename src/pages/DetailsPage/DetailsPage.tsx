@@ -568,11 +568,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 alignItems: "bottom",
                 top: 0,
                 zIndex: 10000,
+                color: "primary.main"
               }}
             >
-              <Typography variant="h6" color="primary">
-                Photos
-              </Typography>
+              Photos
               <IconButton
                 aria-label="close"
                 onClick={handleClose}

@@ -88,9 +88,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
     if (
       selectedCity &&
       checkDate[0] &&
-      checkDate[0] >= new Date() &&
+      new Date(checkDate[0]) >= new Date() &&
       checkDate[1] &&
-      checkDate[1] >= new Date()
+      new Date(checkDate[1]) >= new Date()
     ) {
       setFormError("");
       setZoomIn(false);

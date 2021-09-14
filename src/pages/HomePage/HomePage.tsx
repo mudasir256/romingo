@@ -199,17 +199,7 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        Lorem ipsum dolor sit amet et delectus accommodare his
-                        consul copiosae legendos at vix ad putent delectus
-                        delicata usu. Vidit dissentiet eos cu eum an brute
-                        copiosae hendrerit. Eos erant dolorum an. Per facer
-                        affert ut.
-                        <br />
-                        Dicat falli consulatu at vis. Te facilisis mnesarchum
-                        qui posse omnium mediocritatem est cu. Modus argumentum
-                        ne qui tation efficiendi in eos. Ei orem ipsum dolor sit
-                        amet et delectus accommodare his consul copiosae
-                        legendos at
+                        Say hello to your new best friend for dog-friendly travel! When you book with us, you’re strolling into the top dog-friendly hotels that will truly welcome you and your pup with open arms. Thanks to the Romingo Guarantee (yes, the one that waives all pet fees!), we’re redefining what “pet-friendly” actually means so that you can finally have a stress-free adventure with your canine companions. We’re excited to announce our launch in California’s most popular travel destinations: Los Angeles, San Diego, San Francisco, Orange County, Santa Barbara, and Palm Springs!
                       </Typography>
                     </Box>
                   </Box>
@@ -223,7 +213,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/frenchy_tape.png"
+                      src="/images/Young_Couple_Driving_Dog.jpg"
                       alt="french bulldog w/ coffee"
                       draggable="false"
                       sx={{
@@ -254,7 +244,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/window_dog_tape.png"
+                      src="/images/Kayak_Dog.jpg"
                       alt="dog head out window"
                       draggable="false"
                       sx={{
@@ -297,17 +287,7 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        Lorem ipsum dolor sit amet et delectus accommodare his
-                        consul copiosae legendos at vix ad putent delectus
-                        delicata usu. Vidit dissentiet eos cu eum an brute
-                        copiosae hendrerit. Eos erant dolorum an. Per facer
-                        affert ut.
-                        <br />
-                        Dicat falli consulatu at vis. Te facilisis mnesarchum
-                        qui posse omnium mediocritatem est cu. Modus argumentum
-                        ne qui tation efficiendi in eos. Ei orem ipsum dolor sit
-                        amet et delectus accommodare his consul copiosae
-                        legendos at
+                        You can trust in the quality of the dog-friendly hotels with Romingo. Each hotel we offer you is hand-selected, vetted, and approved by our team of dog-travel experts. With all the millions of dogs that were adopted and/or fostered during the pandemic, we wanted to create a future where people never have to leave their pets alone again. We believe traveling with our beloved pets should not have to be inconvenient, which is why our goal is to offer a pleasant, pet-friendly solution for your travel experiences. In the future, we will be expanding across the United States to a destination near you. Romingo is revolutionizing dog-friendly travel, and we would love to bring you along for the ride!
                       </Typography>
                     </Box>
                   </Box>
@@ -319,7 +299,7 @@ const HomePage: FC<Props> = ({
       </Box>
         <Box
           sx={{
-            backgroundColor: "warning.main",
+            backgroundColor: "lightBackground.main",
             py: 6,
             backgroundPosition: "center center",
             backgroundSize: "cover",
