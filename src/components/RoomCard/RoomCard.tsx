@@ -370,11 +370,10 @@ const RoomCard: FC<Props> = ({ sx, RoomIndex, BedTypes, RoomDescription, Ameniti
           id="amenities-dialog-slide-title"
           sx={{
             textAlign: "center",
+            color: "primary.main"
           }}
         >
-          <Typography variant="h6" color="primary">
-            {RoomDescription.Name}
-          </Typography>
+          {RoomDescription.Name}
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -389,255 +388,253 @@ const RoomCard: FC<Props> = ({ sx, RoomIndex, BedTypes, RoomDescription, Ameniti
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="room-dialog-slide-description">
-            <Box>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  color: "secondary.main"
-                }}
-              >
-                Description
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  mt: 0.4
-                }}
-              >
-                {RoomDescription.Text[0]}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  color: "secondary.main",
-                  mt: 2
-                }}
-              >
-                Amenities
-              </Typography>
-              {Amenities.Amenity.map((amenity, key) => {
-                return (
-                  <Box
+          <Box>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                color: "secondary.main"
+              }}
+            >
+              Description
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                textIndent: "-8px",
+                paddingLeft: "8px",
+                mt: 0.4
+              }}
+            >
+              {RoomDescription.Text[0]}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                color: "secondary.main",
+                mt: 2
+              }}
+            >
+              Amenities
+            </Typography>
+            {Amenities.Amenity.map((amenity, key) => {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "bottom",
+                    mt: 0.4,
+                  }}
+                  key={key}
+                >
+                  <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
+                  <Typography
+                    variant="body2"
                     sx={{
-                      display: "flex",
-                      alignItems: "bottom",
-                      mt: 0.4,
+                      mt: 0,
+                      textTransform: "capitalize",
+                      color: "text.primary",
+                      textIndent: "-8px",
+                      paddingLeft: "8px",
                     }}
-                    key={key}
                   >
-                    <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mt: 0,
-                        textTransform: "capitalize",
-                        color: "text.primary",
-                        textIndent: "-8px",
-                        paddingLeft: "8px",
-                      }}
-                    >
-                      {amenity.Description}
-                    </Typography>
-                  </Box>
-                );
-              })}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  color: "secondary.main",
-                  mt: 2
-                }}
-              >
-                Room Options
-              </Typography>
+                    {amenity.Description}
+                  </Typography>
+                </Box>
+              );
+            })}
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                color: "secondary.main",
+                mt: 2
+              }}
+            >
+              Room Options
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                mt: 0.4,
+                paddingLeft: "8px"
+              }}
+            >
+              {RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Refundable ? "Fully Refundable" : "Non Refundable"}
+            </Typography>
+            {RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Refundable && (
               <Typography
                 variant="body2"
                 sx={{
-                  mt: 0.4,
+                  mt: 0.5,
+                  color: "info.main",
                   paddingLeft: "8px"
                 }}
               >
-                {RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Refundable ? "Fully Refundable" : "Non Refundable"}
+                Before {utils.getOnlyDate(RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Deadline.AbsoluteDeadline)}
               </Typography>
-              {RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Refundable && (
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 0.5,
-                    color: "info.main",
-                    paddingLeft: "8px"
-                  }}
-                >
-                  Before {utils.getOnlyDate(RatePlans.RatePlan[0].RateInfo.CancelPenalties.CancelPenalty[0].Deadline.AbsoluteDeadline)}
-                </Typography>
-              )}
+            )}
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                color: "secondary.main",
+                mt: 2
+              }}
+            >
+              Price
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                mt: 0.4,
+                paddingLeft: "8px",
+                fontSize: "125%"
+              }}
+            >
+              ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                paddingLeft: "8px",
+              }}
+            >
+              per night
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                paddingLeft: "8px",
+                mt: 0.4,
+                fontWeight: "bold"
+              }}
+            >
+              Total: ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax.toFixed(2)}
+            </Typography>
+            <Link href="#" onClick={handleOpenPrice} aria-describedby={id} sx={{display: "inline-flex"}}>
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold",
-                  color: "secondary.main",
-                  mt: 2
-                }}
-              >
-                Price
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 0.4,
-                  paddingLeft: "8px",
-                  fontSize: "125%"
-                }}
-              >
-                ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  paddingLeft: "8px",
-                }}
-              >
-                per night
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  paddingLeft: "8px",
-                  mt: 0.4,
+                  mt: 2,
                   fontWeight: "bold"
                 }}
               >
-                Total: ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax.toFixed(2)}
+                Price details
               </Typography>
-              <Link href="#" onClick={handleOpenPrice} aria-describedby={id} sx={{display: "inline-flex"}}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    mt: 2,
-                    fontWeight: "bold"
-                  }}
-                >
-                  Price details
-                </Typography>
-              </Link>
-              <Popper 
-                id={id} 
-                open={open} 
-                anchorEl={anchorEl} 
-                transition
-                style={{
-                  zIndex: 9999
-                }}
-              >
-                {({ TransitionProps }) => (
-                  <Fade {...TransitionProps} timeout={350}>
-                    <Box
+            </Link>
+            <Popper 
+              id={id} 
+              open={open} 
+              anchorEl={anchorEl} 
+              transition
+              style={{
+                zIndex: 9999
+              }}
+            >
+              {({ TransitionProps }) => (
+                <Fade {...TransitionProps} timeout={350}>
+                  <Box
+                    sx={{
+                      border: "1px solid #DDD",
+                      borderRadius: "5px",
+                      boxShadow: 2,
+                      padding: "8px",
+                      backgroundColor: "white",
+                      minWidth: "250px"
+                    }}
+                  >
+                    <Typography 
+                      variant="body1"
                       sx={{
-                        border: "1px solid #DDD",
-                        borderRadius: "5px",
-                        boxShadow: 2,
-                        padding: "8px",
-                        backgroundColor: "white",
-                        minWidth: "250px"
+                        fontWeight: "bold",
+                        mb: 2,
+                        px: 2
                       }}
                     >
-                      <Typography 
-                        variant="body1"
+                      Price Details
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        px: 2,
+                        mb: 0.5
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
                         sx={{
-                          fontWeight: "bold",
-                          mb: 2,
-                          px: 2
+                          textAlign: "left"
                         }}
                       >
-                        Price Details
+                        Average per night:
                       </Typography>
-                      <Box
+                      <Typography
+                        variant="body2"
                         sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          px: 2,
-                          mb: 0.5
+                          textAlign: "right"
                         }}
                       >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "left"
-                          }}
-                        >
-                          Average per night:
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "right"
-                          }}
-                        >
-                          ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          px: 2,
-                          mb: 0.5
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "left"
-                          }}
-                        >
-                          After Tax
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "right"
-                          }}
-                        >
-                          ${RatePlans.RatePlan[0].RateInfo.AmountAfterTax.toFixed(2)}
-                        </Typography>
-                      </Box>
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          px: 2,
-                          mb: 0.5
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "left"
-                          }}
-                        >
-                          Before Tax
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "right"
-                          }}
-                        >
-                          ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax.toFixed(2)}
-                        </Typography>
-                      </Box>
+                        ${RatePlans.RatePlan[0].RateInfo.AverageNightlyRate.toFixed(2)}
+                      </Typography>
                     </Box>
-                  </Fade>
-                )}
-              </Popper>
-            </Box>
-          </DialogContentText>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        px: 2,
+                        mb: 0.5
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "left"
+                        }}
+                      >
+                        After Tax
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "right"
+                        }}
+                      >
+                        ${RatePlans.RatePlan[0].RateInfo.AmountAfterTax.toFixed(2)}
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        px: 2,
+                        mb: 0.5
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "left"
+                        }}
+                      >
+                        Before Tax
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "right"
+                        }}
+                      >
+                        ${RatePlans.RatePlan[0].RateInfo.AmountBeforeTax.toFixed(2)}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Fade>
+              )}
+            </Popper>
+          </Box>
         </DialogContent>
       </Dialog>
     </Box>

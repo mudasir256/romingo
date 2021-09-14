@@ -222,52 +222,70 @@ const Navbar: FC<Props> = ({ sx }) => {
             },
           }}
         >
-          <DialogContentText id="amenities-dialog-slide-description">
-            {selectDialog === LOGIN && (
-              <LoginCard
-                sx={{
-                  mt: 1,
-                  py: 1,
-                }}
-              />
-            )}
-            {selectDialog === REGISTER && (
-              <RegisterCard
-                sx={{
-                  mt: 1,
-                  py: 1,
-                }}
-              />
-            )}
-            {selectDialog === FORGOT_PASSWORD && (
-              <ResetPassword
-                sx={{
-                  mt: 1,
-                  py: 1,
-                }}
-              />
-            )}
+          {selectDialog === LOGIN && (
+            <LoginCard
+              sx={{
+                mt: 1,
+                py: 1,
+              }}
+            />
+          )}
+          {selectDialog === REGISTER && (
+            <RegisterCard
+              sx={{
+                mt: 1,
+                py: 1,
+              }}
+            />
+          )}
+          {selectDialog === FORGOT_PASSWORD && (
+            <ResetPassword
+              sx={{
+                mt: 1,
+                py: 1,
+              }}
+            />
+          )}
+          <Typography
+            variant="body2"
+            sx={{
+              color: "text.secondary",
+              mt: 1,
+              textAlign: "center",
+            }}
+          >
+            {selectDialog === LOGIN ? "Not a member?" : "Already a memeber?"}
+          </Typography>
+          <Link
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              // setSelectDialog(FORGOT_PASSWORD);
+              if (selectDialog === LOGIN) {
+                setSelectDialog(REGISTER);
+              } else {
+                setSelectDialog(LOGIN);
+              }
+            }}
+          >
             <Typography
               variant="body2"
               sx={{
-                color: "text.secondary",
                 mt: 1,
                 textAlign: "center",
               }}
             >
-              {selectDialog === LOGIN ? "Not a member?" : "Already a memeber?"}
+              {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
             </Typography>
+          </Link>
+          {selectDialog === LOGIN && (
             <Link
               href="#"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                // setSelectDialog(FORGOT_PASSWORD);
-                if (selectDialog === LOGIN) {
-                  setSelectDialog(REGISTER);
-                } else {
-                  setSelectDialog(LOGIN);
-                }
+                setSelectDialog(FORGOT_PASSWORD);
               }}
             >
               <Typography
@@ -277,30 +295,10 @@ const Navbar: FC<Props> = ({ sx }) => {
                   textAlign: "center",
                 }}
               >
-                {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
+                Forgot Password?
               </Typography>
             </Link>
-            {selectDialog === LOGIN && (
-              <Link
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setSelectDialog(FORGOT_PASSWORD);
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 1,
-                    textAlign: "center",
-                  }}
-                >
-                  Forgot Password?
-                </Typography>
-              </Link>
-            )}
-          </DialogContentText>
+          )}
         </DialogContent>
       </Dialog>
     </>
