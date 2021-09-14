@@ -1,13 +1,11 @@
 import { FC } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { theme } from "./theme";
+
 import routes from "./routes";
 import { authService } from "./services/authService.js";
-import ErrorPage from "./pages/ErrorPage"
+import ErrorPage from "./pages/ErrorPage";
 
-const muTheme = createTheme(theme);
 
 const hist = createBrowserHistory();
 
@@ -22,8 +20,7 @@ const AuthGuards = (props: any) => {
 
 const App: FC = () => {
   return (
-    <Router history={hist}>
-      <ThemeProvider theme={muTheme}>
+      <Router history={hist}>
         <Switch>
           {routes.map((route, key) => {
             if (!route.requireAuth)
@@ -44,8 +41,7 @@ const App: FC = () => {
           })}
           <Route component={ErrorPage} />
         </Switch>
-      </ThemeProvider>
-    </Router>
+      </Router>
   );
 };
 

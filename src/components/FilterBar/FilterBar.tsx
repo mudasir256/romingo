@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
-import { FC, useState, MouseEventHandler, useEffect } from "react";
-import { connect, useStore, useDispatch, useSelector } from "react-redux";
+import { FC, useState, MouseEventHandler } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import { CSSObject } from "@mui/material";
@@ -48,11 +48,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   ]);
 
   const [occupants, setOccupants] = useState(search.occupants);
-
-  const [cityObject, setCityObject] = useState({
-    name: "",
-    id: "0",
-  });
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cities.length; i++) {
@@ -230,7 +225,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                 pt: { xs: 1, md: 0 },
                 pb: 0,
                 px: 2.5,
-                my: { xs: 0, md: -0.35 },
+                my: { xs: 0 },
               }}
             >
               <Box
@@ -239,7 +234,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     md: "flex",
                     xs: "block",
                   },
-                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <Box sx={{ minWidth: "150px", mb: { xs: 1, md: 0 } }}>
@@ -266,14 +261,15 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                           input: {
                             color: "primary.main",
                             border: "none",
-                            my: 0.4,
+                            mt: "4px",
+                            mb: "3px",
                           },
                         }}
                       />
                     )}
                   />
                 </Box>
-                <Box>
+                <Box sx={{ fontFamily: "Roboto", fontWeight: 400 }}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateRangePicker
                       startText="Check-in"
@@ -354,8 +350,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     color="primary"
                     size="large"
                     sx={{
-                      pb: { xs: 1.5, md: 0.9 },
-                      pt: { xs: 1.5, md: 1.7 },
+                      pb: { xs: 1.5, md: "5px" },
+                      pt: { xs: 1.5, md: "16px" },
                       px: 2,
                       borderRadius: "0px",
                       my: { xs: 0.5, md: 0 },

@@ -102,7 +102,6 @@ const FeatureHotels = [
 ];
 
 const HomePage: FC<Props> = ({
-  sx,
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
@@ -112,11 +111,13 @@ const HomePage: FC<Props> = ({
     `
   );
 
-  if (data) {
-    const dispatch: Dispatch<any> = useDispatch();
+  useEffect(() => {
+    if (data) {
+      const dispatch: Dispatch<any> = useDispatch();
 
-    dispatch(setList([...data.cities]));
-  }
+      dispatch(setList([...data.cities]));
+    }
+  }, []);
 
   return (
     <>
@@ -199,7 +200,17 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        Say hello to your new best friend for dog-friendly travel! When you book with us, you’re strolling into the top dog-friendly hotels that will truly welcome you and your pup with open arms. Thanks to the Romingo Guarantee (yes, the one that waives all pet fees!), we’re redefining what “pet-friendly” actually means so that you can finally have a stress-free adventure with your canine companions. We’re excited to announce our launch in California’s most popular travel destinations: Los Angeles, San Diego, San Francisco, Orange County, Santa Barbara, and Palm Springs!
+                        Say hello to your new best friend for dog-friendly
+                        travel! When you book with us, you’re strolling into the
+                        top dog-friendly hotels that will truly welcome you and
+                        your pup with open arms. Thanks to the Romingo Guarantee
+                        (yes, the one that waives all pet fees!), we’re
+                        redefining what “pet-friendly” actually means so that
+                        you can finally have a stress-free adventure with your
+                        canine companions. We’re excited to announce our launch
+                        in California’s most popular travel destinations: Los
+                        Angeles, San Diego, San Francisco, Orange County, Santa
+                        Barbara, and Palm Springs!
                       </Typography>
                     </Box>
                   </Box>
@@ -287,7 +298,19 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        You can trust in the quality of the dog-friendly hotels with Romingo. Each hotel we offer you is hand-selected, vetted, and approved by our team of dog-travel experts. With all the millions of dogs that were adopted and/or fostered during the pandemic, we wanted to create a future where people never have to leave their pets alone again. We believe traveling with our beloved pets should not have to be inconvenient, which is why our goal is to offer a pleasant, pet-friendly solution for your travel experiences. In the future, we will be expanding across the United States to a destination near you. Romingo is revolutionizing dog-friendly travel, and we would love to bring you along for the ride!
+                        You can trust in the quality of the dog-friendly hotels
+                        with Romingo. Each hotel we offer you is hand-selected,
+                        vetted, and approved by our team of dog-travel experts.
+                        With all the millions of dogs that were adopted and/or
+                        fostered during the pandemic, we wanted to create a
+                        future where people never have to leave their pets alone
+                        again. We believe traveling with our beloved pets should
+                        not have to be inconvenient, which is why our goal is to
+                        offer a pleasant, pet-friendly solution for your travel
+                        experiences. In the future, we will be expanding across
+                        the United States to a destination near you. Romingo is
+                        revolutionizing dog-friendly travel, and we would love
+                        to bring you along for the ride!
                       </Typography>
                     </Box>
                   </Box>
@@ -297,222 +320,222 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Container>
       </Box>
-        <Box
-          sx={{
-            backgroundColor: "lightBackground.main",
-            py: 6,
-            backgroundPosition: "center center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            width: "100%"
-          }}
-        >
-          <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
-            <Grid item xs={12}>
-              <Typography
-                variant="h3"
-                sx={{
-                  color: "primary.main",
-                  textAlign: "center",
-                }}
-              >
-                Explore a Romingo City
-              </Typography>
-              <Typography
-                variant="h4"
-                sx={{
-                  color: "text.secondary",
-                  textAlign: "center",
-                  mb: 5,
-                }}
-              >
-                Near (or far) from you
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid
-                container
-                spacing={3}
-                sx={{
-                  display: { xs: "grid", lg: "grid" },
-                  gridAutoFlow: {
-                    xs: "column",
-                    lg: "column",
-                  },
-                  overflow: "auto hidden",
-                  pb: 4,
-                  px: 4,
-                  scrollSnapType: "x",
-                }}
-              >
-                {nearCities.map((nearCity, key) => {
-                  return (
-                    <Grid item xs={12} sm={6} lg={4} key={key}>
-                      <Box
+      <Box
+        sx={{
+          backgroundColor: "lightBackground.main",
+          py: 6,
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          width: "100%",
+        }}
+      >
+        <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
+          <Grid item xs={12}>
+            <Typography
+              variant="h3"
+              sx={{
+                color: "primary.main",
+                textAlign: "center",
+              }}
+            >
+              Explore a Romingo City
+            </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                color: "text.secondary",
+                textAlign: "center",
+                mb: 5,
+              }}
+            >
+              Near (or far) from you
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid
+              container
+              spacing={3}
+              sx={{
+                display: { xs: "grid", lg: "grid" },
+                gridAutoFlow: {
+                  xs: "column",
+                  lg: "column",
+                },
+                overflow: "auto hidden",
+                pb: 4,
+                px: 4,
+                scrollSnapType: "x",
+              }}
+            >
+              {nearCities.map((nearCity, key) => {
+                return (
+                  <Grid item xs={12} sm={6} lg={4} key={key}>
+                    <Box
+                      sx={{
+                        minWidth: "250px",
+                      }}
+                    >
+                      <Link
+                        href="#"
                         sx={{
-                          minWidth: "250px",
+                          textDecoration: "none",
                         }}
                       >
-                        <Link
-                          href="#"
+                        <Box
                           sx={{
-                            textDecoration: "none",
+                            borderRadius: 3,
+                            boxShadow: 2,
+                            backgroundColor: "white",
                           }}
                         >
                           <Box
+                            component="img"
+                            src={nearCity.img}
+                            alt="background"
+                            draggable="false"
                             sx={{
-                              borderRadius: 3,
-                              boxShadow: 2,
-                              backgroundColor: "white",
+                              objectFit: "cover",
+                              width: "100%",
+                              height: "240px",
+                              borderTopLeftRadius: 12,
+                              borderTopRightRadius: 12,
+                            }}
+                          />
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              mt: 2,
+                              textAlign: "center",
                             }}
                           >
-                            <Box
-                              component="img"
-                              src={nearCity.img}
-                              alt="background"
-                              draggable="false"
-                              sx={{
-                                objectFit: "cover",
-                                width: "100%",
-                                height: "240px",
-                                borderTopLeftRadius: 12,
-                                borderTopRightRadius: 12,
-                              }}
-                            />
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                mt: 2,
-                                textAlign: "center",
-                              }}
-                            >
-                              {nearCity.city}
-                            </Typography>
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                textAlign: "center",
-                                pb: 2,
-                                mb: 2,
-                              }}
-                            >
-                              {nearCity.state}
-                            </Typography>
-                          </Box>
-                        </Link>
-                      </Box>
-                    </Grid>
-                  );
-                })}
-              </Grid>
+                            {nearCity.city}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              textAlign: "center",
+                              pb: 2,
+                              mb: 2,
+                            }}
+                          >
+                            {nearCity.state}
+                          </Typography>
+                        </Box>
+                      </Link>
+                    </Box>
+                  </Grid>
+                );
+              })}
             </Grid>
           </Grid>
-        </Box>
-        <Box
-          sx={{
-            py: 6,
-            backgroundPosition: "center center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            width: "100%"
-          }}
-        >
-          <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
-            <Grid item xs={12}>
-              <Typography
-                variant="h3"
-                sx={{
-                  color: "primary.main",
-                  textAlign: "center",
-                  mb: 4,
-                }}
-              >
-                Stay at a Romingo Favorite
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid
-                container
-                spacing={2}
-                sx={{
-                  display: { xs: "grid", lg: "flex" },
-                  gridAutoFlow: {
-                    xs: "column",
-                  },
-                  overflow: "auto hidden",
-                  pb: 4,
-                  px: 4,
-                  scrollSnapType: "x",
-                }}
-              >
-                {featureHotels.map((hotel, key) => {
-                  return (
-                    <Grid item xs={12} lg={4} key={key}>
-                      <Box
+        </Grid>
+      </Box>
+      <Box
+        sx={{
+          py: 6,
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          width: "100%",
+        }}
+      >
+        <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
+          <Grid item xs={12}>
+            <Typography
+              variant="h3"
+              sx={{
+                color: "primary.main",
+                textAlign: "center",
+                mb: 4,
+              }}
+            >
+              Stay at a Romingo Favorite
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                display: { xs: "grid", lg: "flex" },
+                gridAutoFlow: {
+                  xs: "column",
+                },
+                overflow: "auto hidden",
+                pb: 4,
+                px: 4,
+                scrollSnapType: "x",
+              }}
+            >
+              {featureHotels.map((hotel, key) => {
+                return (
+                  <Grid item xs={12} lg={4} key={key}>
+                    <Box
+                      sx={{
+                        minWidth: "250px",
+                        px: 3,
+                      }}
+                    >
+                      <Link
+                        href="#"
                         sx={{
-                          minWidth: "250px",
-                          px: 3,
+                          textDecoration: "none",
                         }}
                       >
-                        <Link
-                          href="#"
+                        <Box
                           sx={{
-                            textDecoration: "none",
+                            border: "1px solid #DDDDDD",
+                            borderRadius: 3,
+                            boxShadow: 2,
+                            backgroundColor: "white",
                           }}
                         >
                           <Box
+                            component="img"
+                            src={hotel.img}
+                            alt="background"
+                            draggable="false"
                             sx={{
-                              border: "1px solid #DDDDDD",
-                              borderRadius: 3,
-                              boxShadow: 2,
-                              backgroundColor: "white",
+                              objectFit: "cover",
+                              width: "100%",
+                              height: "200px",
+                              borderTopLeftRadius: 12,
+                              borderTopRightRadius: 12,
+                            }}
+                          />
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              py: 1,
+                              textAlign: "center",
+                              color: "text.secondary",
+                              fontSize: "125%",
+                              width: "100%",
                             }}
                           >
-                            <Box
-                              component="img"
-                              src={hotel.img}
-                              alt="background"
-                              draggable="false"
-                              sx={{
-                                objectFit: "cover",
-                                width: "100%",
-                                height: "200px",
-                                borderTopLeftRadius: 12,
-                                borderTopRightRadius: 12,
-                              }}
-                            />
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                py: 1,
-                                textAlign: "center",
-                                color: "text.secondary",
-                                fontSize: "125%",
-                                width: "100%",
-                              }}
-                            >
-                              {hotel.name}
-                            </Typography>
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                color: "text.secondary",
-                                px: 2.5,
-                                pb: 2,
-                              }}
-                            >
-                              {hotel.description}
-                            </Typography>
-                          </Box>
-                        </Link>
-                      </Box>
-                    </Grid>
-                  );
-                })}
-              </Grid>
+                            {hotel.name}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: "text.secondary",
+                              px: 2.5,
+                              pb: 2,
+                            }}
+                          >
+                            {hotel.description}
+                          </Typography>
+                        </Box>
+                      </Link>
+                    </Box>
+                  </Grid>
+                );
+              })}
             </Grid>
           </Grid>
-        </Box>
+        </Grid>
+      </Box>
       <Footer />
     </>
   );

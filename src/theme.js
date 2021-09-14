@@ -58,7 +58,23 @@ export const theme = {
       fontFamily: "Montserrat",
       fontWeight: 300,
     },
+    subtitle1: {
+      fontFamily: "Montserrat",
+      fontWeight: 300,
+    },
+    subtitle2: {
+      fontFamily: "Montserrat",
+      fontWeight: 300,
+    },
     button: {
+      fontFamily: "Montserrat",
+      fontWeight: 300,
+    },
+    caption: {
+      fontFamily: "Montserrat",
+      fontWeight: 300,
+    },
+    overline: {
       fontFamily: "Montserrat",
       fontWeight: 300,
     },
