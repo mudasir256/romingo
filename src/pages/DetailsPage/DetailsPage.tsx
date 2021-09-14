@@ -422,7 +422,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 mt: 0,
               }}
             >
-              {location.address}, {city.name}
+              {location.address}, {city?.name}
             </Typography>
             <Chip icon={<LocationCityIcon />} label={neighborhood} />
             <RomingoScore score={score} />

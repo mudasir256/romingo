@@ -105,7 +105,7 @@ const ListingCard: FC<ListingCardProps> = ({
               textOverflow: "ellipsis",
             }}
           >
-            {addressLine1}, {city.name}
+            {addressLine1}, {city?.name}
           </Typography>
           <Chip icon={<LocationCityIcon />} label={neighborhood} />
           <Box sx={{ mt: 3 }}>
