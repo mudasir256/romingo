@@ -242,17 +242,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   alignItems: "center",
                 }}
               >
-                <Box sx={{ minWidth: "180px" }}>
+                <Box sx={{ minWidth: "150px", mb: { xs: 1, md: 0 } }}>
                   <Autocomplete
-                    disablePortal
-                    color="primary"
-                    size="small"
                     options={cities}
-                    sx={{
-                      input: {
-                        color: "primary.main",
-                      },
-                    }}
+                    value={getCity(selectedCity)}
                     getOptionLabel={(option: any) => {
                       return option.name;
                     }}
@@ -265,11 +258,20 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Location"
+                        color="primary"
                         variant="standard"
+                        required
+                        label="Location"
+                        size="small"
+                        sx={{
+                          input: {
+                            color: "primary.main",
+                            border: "none",
+                            my: 0.4,
+                          },
+                        }}
                       />
                     )}
-                    value={getCity(selectedCity)}
                   />
                 </Box>
                 <Box>
@@ -297,7 +299,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         >
                           <TextField
                             {...startProps}
-                            fullWidth={true}
                             size="small"
                             color="primary"
                             variant="standard"
@@ -306,7 +307,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                               startProps.inputRef as React.Ref<HTMLInputElement>
                             }
                             sx={{
-                              width: { xs: "50%", md: "105px" },
+                              width: { xs: "50%", md: "115px" },
                               my: { xs: 0.5, md: 0 },
                               input: {
                                 color: "primary.main",
@@ -316,7 +317,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                           />
                           <TextField
                             {...endProps}
-                            fullWidth={true}
                             size="small"
                             color="primary"
                             variant="standard"
@@ -325,7 +325,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                               endProps.inputRef as React.Ref<HTMLInputElement>
                             }
                             sx={{
-                              width: { xs: "50%", md: "105px" },
+                              width: { xs: "50%", md: "115px" },
                               my: { xs: 0.5, md: 0 },
                               input: {
                                 color: "primary.main",
@@ -337,19 +337,16 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     />
                   </LocalizationProvider>
                 </Box>
-                <Box>
+                <Box sx={{ minWidth: "240px", mt: { xs: 1, md: 0 } }}>
                   <OccupantSelector
                     value={occupants}
                     onChange={onOccupantChange}
                     variant="standard"
-                    fullWidth={true}
                     size="small"
                     sx={{
-                      minWidth: "240px",
                       input: {
                         color: "primary.main",
                       },
-                      my: { xs: 0.5, md: 0 },
                     }}
                   />
                 </Box>
@@ -360,7 +357,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     color="primary"
                     size="large"
                     sx={{
-                      pb: { xs: 1.5, md: 0.46 },
+                      pb: { xs: 1.5, md: 0.75 },
                       pt: { xs: 1.5, md: 1.8 },
                       px: 2,
                       borderRadius: "0px",
