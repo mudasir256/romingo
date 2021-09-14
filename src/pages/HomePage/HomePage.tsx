@@ -105,6 +105,7 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
+  const dispatch: Dispatch<any> = useDispatch();
   const { loading, error, data } = useQuery(
     gql`
       ${GetCities}
@@ -113,11 +114,9 @@ const HomePage: FC<Props> = ({
 
   useEffect(() => {
     if (data) {
-      const dispatch: Dispatch<any> = useDispatch();
-
-      dispatch(setList([...data.cities]));
+      dispatch(setList([...data?.cities]));
     }
-  }, []);
+  }, [data]);
 
   return (
     <>
