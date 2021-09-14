@@ -237,7 +237,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   justifyContent: "center",
                 }}
               >
-                <Box sx={{ minWidth: "150px", mb: { xs: 1, md: 0 } }}>
+                <Box sx={{ minWidth: "170px", mb: { xs: 1, md: 0 } }}>
                   <Autocomplete
                     options={cities}
                     value={getCity(selectedCity)}
@@ -260,9 +260,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         sx={{
                           input: {
                             color: "primary.main",
-                            border: "none",
-                            mt: "4px",
-                            mb: "3px",
                           },
                         }}
                       />
@@ -351,7 +348,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     size="large"
                     sx={{
                       pb: { xs: 1.5, md: "5px" },
-                      pt: { xs: 1.5, md: "16px" },
+                      pt: { xs: 1.5, md: "13px" },
                       px: 2,
                       borderRadius: "0px",
                       my: { xs: 0.5, md: 0 },

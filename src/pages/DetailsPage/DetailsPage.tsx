@@ -23,7 +23,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import Chip from "@mui/material/Chip";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
@@ -85,49 +85,48 @@ interface Props {
 }
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
-
   const hotelId = props.match.params.id;
   // console.log(props);
 
   const search = useSelector((state: any) => state.searchReducer.search);
 
-  const ageParam = search.occupants.childrenAge ?
-    search.occupants.childrenAge.map((x: number) => {
-      if (x === 0) {
-        return {
-          age: 1
+  const ageParam = search.occupants.childrenAge
+    ? search.occupants.childrenAge.map((x: number) => {
+        if (x === 0) {
+          return {
+            age: 1,
+          };
         }
-      }
-      return {
-        age: x,
-      };
-    }) : [];
+        return {
+          age: x,
+        };
+      })
+    : [];
 
   const { loading, error, data } = useQuery(
-    gql `${GetHotelDetail}`, {
+    gql`
+      ${GetHotelDetail}
+    `,
+    {
       variables: {
         id: hotelId,
         checkIn: search?.checkIn,
         checkOut: search?.checkOut,
         adults: search?.occupants?.adults,
-        children: ageParam
-      }
+        children: ageParam,
+      },
     }
   );
 
-  const {
-    cancellation,
-    cancelPenalty,
-    roomList,
-    nearby,
-    rooms,
-  } = useSelector((state: any) => state.hotelDetailReducer.detail);
+  const { cancellation, cancelPenalty, roomList, nearby, rooms } = useSelector(
+    (state: any) => state.hotelDetailReducer.detail
+  );
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState({
     address: "",
     lat: "",
-    lon: ""
+    lon: "",
   });
   const [mainImg, setMainImg] = useState("");
   const [gallery, setGallery] = useState<string[]>([]);
@@ -140,11 +139,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [city, setCity] = useState({
     center: {
       latitude: "",
-      longitude: ""
+      longitude: "",
     },
     id: "",
-    name: ""
-  })
+    name: "",
+  });
 
   useEffect(() => {
     if (data && data.property) {
@@ -152,21 +151,20 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setLocation({
         address: data.property.addressLine1,
         lat: data.property.location.latitude,
-        lon: data.property.location.longitude
+        lon: data.property.location.longitude,
       });
       setMainImg(data.property.featuredImageURL);
 
-      setCity({...data.property.city});
+      setCity({ ...data.property.city });
       setNeighborhood(data.property.neighborhood);
 
       const tmp: any[] = [];
-      data.property.imageURLs.map((image: string) => {
-        tmp.push(image);
-      });
       data.property.sabreImageURLs.map((image: string) => {
         tmp.push(image);
       });
-
+      data.property.imageURLs.map((image: string) => {
+        tmp.push(image);
+      });
       setGallery([...tmp]);
 
       setDefaultDescription(data.property.desc);
@@ -183,7 +181,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
       setOtherAmenities([...tmpAmenities]);
     }
-  }, [data])
+  }, [data]);
 
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
@@ -275,30 +273,32 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           <FilterBar />
         </Box>
       </Hidden>
-      {
-        loading && <Skeleton
+      {loading && (
+        <Skeleton
           variant="rectangular"
           animation="wave"
           height="100%"
           width="100%"
         />
-      }
-      {!loading && (<Box
-        component="img"
-        src={data.property.featuredImageURL}
-        alt={name}
-        boxShadow={2}
-        onClick={handleOpen}
-        display={{ xs: "block", md: "none" }}
-        sx={{
-          width: "100%",
-          height: { xs: "200px", sm: "300px" },
-          objectFit: "cover",
-          borderRadius: 0,
-          mx: 0,
-          cursor: "pointer",
-        }}
-      />)}
+      )}
+      {!loading && (
+        <Box
+          component="img"
+          src={data.property.featuredImageURL}
+          alt={name}
+          boxShadow={2}
+          onClick={handleOpen}
+          display={{ xs: "block", md: "none" }}
+          sx={{
+            width: "100%",
+            height: { xs: "200px", sm: "300px" },
+            objectFit: "cover",
+            borderRadius: 0,
+            mx: 0,
+            cursor: "pointer",
+          }}
+        />
+      )}
       <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
         <Grid
           container
@@ -308,56 +308,59 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           }}
         >
           <Grid item xs={12} sm={6}>
-            {
-              loading && <Skeleton
+            {loading && (
+              <Skeleton
                 variant="rectangular"
                 animation="wave"
                 height="100%"
                 width="100%"
               />
-            }
-            {!loading && (<Box
-              onClick={handleOpen}
-              component="img"
-              src={mainImg}
-              alt={name}
-              draggable="false"
-              boxShadow={2}
-              display={{ xs: "none", md: "block" }}
-              sx={{
-                width: "100%",
-                height: { xs: "150px", sm: "375px" },
-                objectFit: "cover",
-                borderRadius: 3,
-                cursor: "pointer",
-              }}
-            />)}
+            )}
+            {!loading && (
+              <Box
+                onClick={handleOpen}
+                component="img"
+                src={mainImg}
+                alt={name}
+                draggable="false"
+                boxShadow={2}
+                display={{ xs: "none", md: "block" }}
+                sx={{
+                  width: "100%",
+                  height: { xs: "150px", sm: "375px" },
+                  objectFit: "cover",
+                  borderRadius: 3,
+                  cursor: "pointer",
+                }}
+              />
+            )}
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} sm={6}>
               <Grid container spacing={2}>
-                {!loading && gallery.slice(0, 4).map((img: any) => {
-                  return (
-                    <Grid item sm={6} key={img}>
-                      <Box
-                        onClick={handleOpen}
-                        boxShadow={2}
-                        component="img"
-                        src={img}
-                        alt={name}
-                        sx={{
-                          width: "100%",
-                          height: "178px",
-                          objectFit: "cover",
-                          borderRadius: 3,
-                          cursor: "pointer",
-                        }}
-                      ></Box>
-                    </Grid>
-                  );
-                })}
-                {loading && Array.from({ length: 4 }, (_, i: number) => (
-                  (
+                {!loading &&
+                  gallery.slice(0, 4).map((img: any) => {
+                    return (
+                      <Grid item sm={6} key={img}>
+                        <Box
+                          onClick={handleOpen}
+                          boxShadow={2}
+                          component="img"
+                          src={img}
+                          alt={name}
+                          sx={{
+                            width: "100%",
+                            height: "178px",
+                            objectFit: "cover",
+                            borderRadius: 3,
+                            cursor: "pointer",
+                          }}
+                        ></Box>
+                      </Grid>
+                    );
+                  })}
+                {loading &&
+                  Array.from({ length: 4 }, (_, i: number) => (
                     <Grid item sm={6} key={i}>
                       <Skeleton
                         variant="rectangular"
@@ -366,8 +369,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                         width="100%"
                       />
                     </Grid>
-                  )
-                ))}
+                  ))}
               </Grid>
             </Grid>
           </Hidden>
@@ -396,156 +398,160 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </Button>
           </Box>
         </Grid>
-        {loading && <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height="100%"
-          width="100%"
-        />}
-        {!loading && <Grid container spacing={2} sx={{ mt: 0 }}>
-          <Grid item xs={12} md={7} lg={8}>
-            <Typography
-              variant="h5"
-              sx={{
-                color: "text.secondary",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {name}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "90%", sm: "125%" },
-                mt: 0,
-              }}
-            >
-              {location.address}, {city?.name}
-            </Typography>
-            <Chip icon={<LocationCityIcon />} label={neighborhood} />
-            <RomingoScore score={score} />
-            <ReadMore text={defaultDescription} length={200} />
-            <Grid container spacing={2} sx={{ mt: 0 }}>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
-                  <AmenitiesCard
-                    title={"Dog Friendly Amenities"}
-                    amenities={amenities}
-                  />
-                </Box>
+        {loading && (
+          <Skeleton
+            variant="rectangular"
+            animation="wave"
+            height="100%"
+            width="100%"
+          />
+        )}
+        {!loading && (
+          <Grid container spacing={2} sx={{ mt: 0 }}>
+            <Grid item xs={12} md={7} lg={8}>
+              <Typography
+                variant="h5"
+                sx={{
+                  color: "text.secondary",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {name}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "90%", sm: "125%" },
+                  mt: 0,
+                }}
+              >
+                {location.address}, {city?.name}
+              </Typography>
+              <Chip icon={<LocationCityIcon />} label={neighborhood} />
+              <RomingoScore score={score} />
+              <ReadMore text={defaultDescription} length={200} />
+              <Grid container spacing={2} sx={{ mt: 0 }}>
+                <Grid item xs={12} sm={6} md={6} lg={6}>
+                  <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                    <AmenitiesCard
+                      title={"Dog Friendly Amenities"}
+                      amenities={amenities}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6}>
+                  <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                    <AmenitiesCard
+                      title={"Other Amenities"}
+                      amenities={otherAmenities}
+                      viewAll
+                    />
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6}>
-                <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
-                  <AmenitiesCard
-                    title={"Other Amenities"}
-                    amenities={otherAmenities}
-                    viewAll
-                  />
-                </Box>
-              </Grid>
-            </Grid>
-            <RomingoGuarantee sx={{ mt: 2 }} />
-            <Typography
-              variant="h6"
-              sx={{
-                color: "secondary.main",
-                mt: 2,
-              }}
-            >
-              Room Types
-            </Typography>
-            <Box
-              sx={{
-                mt: 1,
-                display: "grid",
-                gridAutoFlow: "column",
-                overflow: "auto",
-                py: 1,
-              }}
-            >
-              {rooms.map((room: any, key: number) => {
-                return (
-                  <RoomCard
-                    key={key}
-                    HotelName={name}
-                    sx={{
-                      minWidth: "250px",
-                      marginRight: "10px",
-                      border: "1px solid #ddd",
-                      borderRadius: "5px",
-                      boxShadow: 2,
-                      px: 1,
-                      py: 1,
-                    }}
-                    {...room}
-                  />
-                );
-              })}
-            </Box>
-            <Grid container>
+              <RomingoGuarantee sx={{ mt: 2 }} />
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "secondary.main",
+                  mt: 2,
+                }}
+              >
+                Room Types
+              </Typography>
               <Box
                 sx={{
-                  display: "flex",
-                  my: 2,
-                  width: "100%",
+                  mt: 1,
+                  display: "grid",
+                  gridAutoFlow: "column",
+                  overflow: "auto",
+                  py: 1,
                 }}
               >
-                <Map
-                  center={{
-                    lat: parseFloat(location.lat),
-                    lng: parseFloat(location.lon),
-                  }}
-                  height={300}
-                  markers={[
-                    {
-                      lat: parseFloat(location.lat),
-                      lng: parseFloat(location.lon)
-                    }
-                  ]}
-                  selectedMarker={0}
-                />
+                {rooms.map((room: any, key: number) => {
+                  return (
+                    <RoomCard
+                      key={key}
+                      HotelName={name}
+                      sx={{
+                        minWidth: "250px",
+                        marginRight: "10px",
+                        border: "1px solid #ddd",
+                        borderRadius: "5px",
+                        boxShadow: 2,
+                        px: 1,
+                        py: 1,
+                      }}
+                      {...room}
+                    />
+                  );
+                })}
               </Box>
-            </Grid>
-            <ActivitiesNearby
-              nearby={nearby}
-              title={"Dog-Friendly Activities Nearby"}
-            />
-            <CancelPolicy sx={{ mt: 2 }} />
-          </Grid>
-          <Grid item xs={12} md={5} lg={4}>
-            <Hidden mdDown>
-              <BookingCard
-                sx={{
-                  position: "sticky",
-                  top: "1rem",
-                }}
-                roomList={roomList}
+              <Grid container>
+                <Box
+                  sx={{
+                    display: "flex",
+                    my: 2,
+                    width: "100%",
+                  }}
+                >
+                  <Map
+                    center={{
+                      lat: parseFloat(location.lat),
+                      lng: parseFloat(location.lon),
+                    }}
+                    height={300}
+                    markers={[
+                      {
+                        lat: parseFloat(location.lat),
+                        lng: parseFloat(location.lon),
+                      },
+                    ]}
+                    selectedMarker={0}
+                  />
+                </Box>
+              </Grid>
+              <ActivitiesNearby
+                nearby={nearby}
+                title={"Dog-Friendly Activities Nearby"}
               />
-            </Hidden>
-            <Hidden mdUp>
-              <Fab
-                color="default"
-                size="small"
-                onClick={() => history.goBack()}
-                aria-label="back"
-                sx={{
-                  backgroundColor: "white",
-                  color: "text.secondary",
-                  position: "absolute",
-                  width: 35,
-                  height: 35,
-                  top: 15,
-                  left: 15,
-                }}
-              >
-                <ArrowBackIcon sx={{ fontSize: 16 }} />
-              </Fab>
-              <MobileBookingBar roomList={roomList} />
-            </Hidden>
+              <CancelPolicy sx={{ mt: 2 }} />
+            </Grid>
+            <Grid item xs={12} md={5} lg={4}>
+              <Hidden mdDown>
+                <BookingCard
+                  sx={{
+                    position: "sticky",
+                    top: "1rem",
+                  }}
+                  roomList={roomList}
+                />
+              </Hidden>
+              <Hidden mdUp>
+                <Fab
+                  color="default"
+                  size="small"
+                  onClick={() => history.goBack()}
+                  aria-label="back"
+                  sx={{
+                    backgroundColor: "white",
+                    color: "text.secondary",
+                    position: "absolute",
+                    width: 35,
+                    height: 35,
+                    top: 15,
+                    left: 15,
+                  }}
+                >
+                  <ArrowBackIcon sx={{ fontSize: 16 }} />
+                </Fab>
+                <MobileBookingBar roomList={roomList} />
+              </Hidden>
+            </Grid>
           </Grid>
-        </Grid>}
+        )}
         <SimpleReactLightbox>
           <Dialog
             open={showGallery}
@@ -568,7 +574,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 alignItems: "bottom",
                 top: 0,
                 zIndex: 10000,
-                color: "primary.main"
+                color: "primary.main",
               }}
             >
               Photos
