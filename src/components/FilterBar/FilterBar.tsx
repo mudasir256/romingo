@@ -260,7 +260,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         {...params}
                         color="primary"
                         variant="standard"
-                        required
                         label="Location"
                         size="small"
                         sx={{
@@ -302,7 +301,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
-                            required
                             ref={
                               startProps.inputRef as React.Ref<HTMLInputElement>
                             }
@@ -320,7 +318,6 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                             size="small"
                             color="primary"
                             variant="standard"
-                            required
                             ref={
                               endProps.inputRef as React.Ref<HTMLInputElement>
                             }

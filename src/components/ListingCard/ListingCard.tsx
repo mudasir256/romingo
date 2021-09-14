@@ -5,7 +5,7 @@ import Check from "@mui/icons-material/Check";
 import { FC } from "react";
 import RomingoScore from "../RomingoScore/RomingoScore";
 import Chip from "@mui/material/Chip";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 export interface ListingCardProps {
   featuredImageURL: string;
@@ -21,11 +21,11 @@ export interface ListingCardProps {
   location: {
     latitude: number;
     longitude: number;
-  },
+  };
   city: {
     id: string;
     name: string;
-  },
+  };
   neighborhood: string;
 }
 
@@ -105,7 +105,7 @@ const ListingCard: FC<ListingCardProps> = ({
               textOverflow: "ellipsis",
             }}
           >
-            {addressLine1}, {city.name}
+            {addressLine1}, {city?.name}
           </Typography>
           <Chip icon={<LocationCityIcon />} label={neighborhood} />
           <Box sx={{ mt: 3 }}>
