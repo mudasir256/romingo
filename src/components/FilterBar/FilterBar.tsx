@@ -266,7 +266,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                           input: {
                             color: "primary.main",
                             border: "none",
-                            my: 0.4,
+                            my: 0.5,
                           },
                         }}
                       />
@@ -354,7 +354,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     color="primary"
                     size="large"
                     sx={{
-                      pb: { xs: 1.5, md: 0.75 },
+                      pb: { xs: 1.5, md: 0.9 },
                       pt: { xs: 1.5, md: 1.8 },
                       px: 2,
                       borderRadius: "0px",
