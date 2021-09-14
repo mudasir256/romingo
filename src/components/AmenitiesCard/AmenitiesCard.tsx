@@ -117,11 +117,10 @@ const AmenitiesCard: FC<Props> = ({
               id="amenities-dialog-slide-title"
               sx={{
                 textAlign: "center",
+                color: "primary.main"
               }}
             >
-              <Typography variant="h6" color="primary">
-                Amenities
-              </Typography>
+              Amenities
               <IconButton
                 aria-label="close"
                 onClick={handleClose}
@@ -136,40 +135,38 @@ const AmenitiesCard: FC<Props> = ({
               </IconButton>
             </DialogTitle>
             <DialogContent>
-              <DialogContentText id="amenities-dialog-slide-description">
-                {amenities.map((amenity, key) => {
-                  return (
-                    <Box
+              {amenities.map((amenity, key) => {
+                return (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      py: 1.25,
+                    }}
+                    key={key}
+                  >
+                    <Check
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        py: 1.25,
+                        fontSize: 15,
+                        color: "primary.main",
+                        mt: 0.3,
+                        mr: 0.5,
                       }}
-                      key={key}
+                    />
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        mt: 0,
+                        color: "text.light",
+                        textIndent: "-8px",
+                        paddingLeft: "8px",
+                      }}
                     >
-                      <Check
-                        sx={{
-                          fontSize: 15,
-                          color: "primary.main",
-                          mt: 0.3,
-                          mr: 0.5,
-                        }}
-                      />
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          mt: 0,
-                          color: "text.light",
-                          textIndent: "-8px",
-                          paddingLeft: "8px",
-                        }}
-                      >
-                        {amenity}
-                      </Typography>
-                    </Box>
-                  );
-                })}
-              </DialogContentText>
+                      {amenity}
+                    </Typography>
+                  </Box>
+                );
+              })}
             </DialogContent>
           </Dialog>
         </>
