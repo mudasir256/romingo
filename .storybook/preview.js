@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { addDecorator } from "@storybook/react";
 import { theme } from "../src/theme";
 import { Provider } from "react-redux";
