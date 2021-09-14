@@ -266,7 +266,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                           input: {
                             color: "primary.main",
                             border: "none",
-                            my: 0.5,
+                            my: 0.45,
                           },
                         }}
                       />
