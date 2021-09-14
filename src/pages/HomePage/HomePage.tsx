@@ -317,7 +317,6 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Container>
       </Box>
-      <Container>
         <Box
           sx={{
             backgroundColor: "warning.main",
@@ -325,10 +324,7 @@ const HomePage: FC<Props> = ({
             backgroundPosition: "center center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            width: "100vw",
-            position: "relative",
-            marginLeft: "-50vw",
-            left: "50%",
+            width: "100%"
           }}
         >
           <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
@@ -438,10 +434,7 @@ const HomePage: FC<Props> = ({
             backgroundPosition: "center center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            width: "100vw",
-            position: "relative",
-            marginLeft: "-50vw",
-            left: "50%",
+            width: "100%"
           }}
         >
           <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
@@ -540,7 +533,6 @@ const HomePage: FC<Props> = ({
             </Grid>
           </Grid>
         </Box>
-      </Container>
       <Footer />
     </>
   );
