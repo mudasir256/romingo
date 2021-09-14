@@ -48,49 +48,51 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
 
   return (
     <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, p: 3 }}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateRangePicker
-          startText="Check-in"
-          endText="Check-out"
-          calendars={1}
-          allowSameDateSelection={false}
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(startProps, endProps) => (
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <TextField {...startProps} fullWidth={true} />
+      <Grid>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DateRangePicker
+            startText="Check-in"
+            endText="Check-out"
+            calendars={1}
+            allowSameDateSelection={false}
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+            }}
+            renderInput={(startProps, endProps) => (
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={6}>
+                  <TextField {...startProps} fullWidth={true} />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField {...endProps} fullWidth={true} />
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField {...endProps} fullWidth={true} />
-              </Grid>
-            </Grid>
-          )}
+            )}
+          />
+        </LocalizationProvider>
+        <OccupantSelector
+          value={occupants}
+          onChange={onOccupantChange}
+          sx={{ mt: 3 }}
         />
-      </LocalizationProvider>
-      <OccupantSelector
-        value={occupants}
-        onChange={onOccupantChange}
-        sx={{ mt: 3 }}
-      />
-      <FormControl fullWidth sx={{ mt: 3 }}>
-        <InputLabel>Room Type</InputLabel>
-        <Select
-          value={roomType}
-          onChange={(e) => setRoomType(e.target.value)}
-          label="Room Type"
-        >
-          {roomList.map((room, key) => {
-            return (
-              <MenuItem value={room.value} key={key}>
-                {room.description}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+        <FormControl fullWidth sx={{ mt: 3 }}>
+          <InputLabel>Room Type</InputLabel>
+          <Select
+            value={roomType}
+            onChange={(e) => setRoomType(e.target.value)}
+            label="Room Type"
+          >
+            {roomList.map((room, key) => {
+              return (
+                <MenuItem value={room.value} key={key}>
+                  {room.description}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </Grid>
       <Box sx={{ my: 3, borderTop: 1, borderColor: "primary.main" }} />
       <Box
         sx={{
