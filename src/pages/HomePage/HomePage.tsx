@@ -51,27 +51,27 @@ interface Props {
 
 const NearCities = [
   {
-    img: "/images/sanfrancisco.jpg",
+    img: "/images/sanfrancisco.webp",
     city: "San Francisco",
     state: "California",
   },
   {
-    img: "/images/losangeles.jpg",
+    img: "/images/losangeles.webp",
     city: "Los Angeles",
     state: "California",
   },
   {
-    img: "/images/orangecounty.jpg",
+    img: "/images/orangecounty.webp",
     city: "Orange County",
     state: "California",
   },
   {
-    img: "/images/palmsprings.jpg",
+    img: "/images/palmsprings.webp",
     city: "Palm Springs",
     state: "California",
   },
   {
-    img: "/images/santabarbara.jpg",
+    img: "/images/santabarbara.webp",
     city: "Santa Barbara",
     state: "California",
   },
@@ -223,7 +223,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Young_Couple_Driving_Dog.jpg"
+                      src="/images/Young_Couple_Driving_Dog.webp"
                       alt="french bulldog w/ coffee"
                       draggable="false"
                       sx={{
@@ -254,7 +254,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Kayak_Dog.jpg"
+                      src="/images/Kayak_Dog.webp"
                       alt="dog head out window"
                       draggable="false"
                       sx={{
