@@ -381,7 +381,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     size="large"
                     sx={{
                       pb: { xs: 1.5, md: 0.5 },
-                      pt: { xs: 1.5, md: 2.2 },
+                      pt: { xs: 1.5, md: 2.5 },
                       px: 2,
                       borderRadius: "0px",
                       my: { xs: 0.5, md: 0 },
