@@ -55,19 +55,22 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
 
-  const selectedCity = cityList.filter((city: any) => city.id === search.city)[0];
+  const selectedCity = cityList.filter(
+    (city: any) => city.id === search.city
+  )[0];
 
-  const ageParam = search.occupants.childrenAge ?
-    search.occupants.childrenAge.map((x: number) => {
-      if (x === 0) {
-        return {
-          age: 1
+  const ageParam = search.occupants.childrenAge
+    ? search.occupants.childrenAge.map((x: number) => {
+        if (x === 0) {
+          return {
+            age: 1,
+          };
         }
-      }
-      return {
-        age: x,
-      };
-    }) : [];
+        return {
+          age: x,
+        };
+      })
+    : [];
 
   const { loading, error, data } = useQuery(
     gql`
@@ -249,16 +252,16 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             <ListingMap
               loading={loading}
               center={{
-                lat: selectedCity.center.latitude,
-                lng: selectedCity.center.longitude
+                lat: selectedCity?.center?.latitude,
+                lng: selectedCity?.center?.longitude,
               }}
               markers={markers}
-              name={cards[hotelIndex].name}
-              location={cards[hotelIndex].addressLine1}
-              score={cards[hotelIndex].romingoScore}
-              price={cards[hotelIndex].lowestPrice}
-              image={cards[hotelIndex].featuredImageURL}
-              amenities={cards[hotelIndex].dogAmenities}
+              name={cards[hotelIndex]?.name}
+              location={cards[hotelIndex]?.addressLine1}
+              score={cards[hotelIndex]?.romingoScore}
+              price={cards[hotelIndex]?.lowestAveragePrice}
+              image={cards[hotelIndex]?.featuredImageURL}
+              amenities={cards[hotelIndex]?.dogAmenities}
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
             />

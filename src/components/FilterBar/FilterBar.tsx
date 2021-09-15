@@ -237,16 +237,17 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   justifyContent: "center",
                 }}
               >
-                <Box sx={
-                  { 
-                    minWidth: "150px", 
-                    mb: { 
-                      xs: 1, md: 0 
+                <Box
+                  sx={{
+                    minWidth: "150px",
+                    mb: {
+                      xs: 1,
+                      md: 0,
                     },
                     display: "flex",
-                    alignItems: "end"
-                  }
-                }>
+                    alignItems: "end",
+                  }}
+                >
                   <Autocomplete
                     options={cities}
                     value={getCity(selectedCity)}
@@ -260,7 +261,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                       }
                     }}
                     sx={{
-                      width: "100%"
+                      width: "100%",
                     }}
                     renderInput={(params) => (
                       <TextField
@@ -272,21 +273,23 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         sx={{
                           input: {
                             color: "primary.main",
-                            border: "none"
+                            border: "none",
+                            mt: 0.55,
+                            mb: 0.25,
                           },
                         }}
                       />
                     )}
                   />
                 </Box>
-                <Box sx={
-                  { 
-                    fontFamily: "Roboto", 
+                <Box
+                  sx={{
+                    fontFamily: "Roboto",
                     fontWeight: 400,
                     display: "flex",
-                    alignItems: "end"
-                  }
-                }>
+                    alignItems: "end",
+                  }}
+                >
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateRangePicker
                       startText="Check-in"
@@ -306,7 +309,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                             display: {
                               xs: "block",
                               md: "flex",
-                            }
+                            },
                           }}
                         >
                           <TextField
@@ -347,17 +350,17 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     />
                   </LocalizationProvider>
                 </Box>
-                <Box sx={
-                  { 
+                <Box
+                  sx={{
                     minWidth: "240px",
                     mt: {
                       xs: 1,
-                      md: 0
+                      md: 0,
                     },
                     display: "flex",
-                    alignItems: "end"
-                  }
-                }>
+                    alignItems: "end",
+                  }}
+                >
                   <OccupantSelector
                     value={occupants}
                     onChange={onOccupantChange}
@@ -377,8 +380,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                     color="primary"
                     size="large"
                     sx={{
-                      pb: { xs: 1.5, md: "5px" },
-                      pt: { xs: 1.5, md: "13px" },
+                      pb: { xs: 1.5, md: 0.5 },
+                      pt: { xs: 1.5, md: 2.2 },
                       px: 2,
                       borderRadius: "0px",
                       my: { xs: 0.5, md: 0 },

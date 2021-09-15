@@ -41,10 +41,10 @@ const GetHotelBySearch = `
         neighborhood
         romingoScore
         dogAmenities
-        lowestPrice
+        lowestAveragePrice
       }
     }
-  `
+  `;
 
 const GetCities = `
     query{
@@ -66,7 +66,7 @@ const GetCities = `
         }
       }
     }
-  `
+  `;
 
 const GetHotelDetail = `
     query (
@@ -123,12 +123,8 @@ const GetHotelDetail = `
         featuredImageURL
         imageURLs
         sabreImageURLs
-        lowestPrice
+        lowestAveragePrice
       }
     }
-  `
-export { 
-  GetHotelBySearch, 
-  GetCities,
-  GetHotelDetail 
-}
+  `;
+export { GetHotelBySearch, GetCities, GetHotelDetail };

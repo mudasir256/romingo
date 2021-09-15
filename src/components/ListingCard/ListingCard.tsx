@@ -13,7 +13,7 @@ export interface ListingCardProps {
   addressLine1: string;
   romingoScore: number;
   cancellation?: boolean;
-  lowestPrice: number;
+  lowestAveragePrice: number;
   currency?: string;
   dogAmenities?: string[];
   showAmenities?: boolean;
@@ -37,7 +37,7 @@ const ListingCard: FC<ListingCardProps> = ({
   city,
   neighborhood,
   cancellation = false,
-  lowestPrice,
+  lowestAveragePrice,
   currency = "$",
   dogAmenities = [],
   showAmenities = true,
@@ -187,7 +187,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 }}
               >
                 {currency}
-                {Math.round(lowestPrice)}
+                {Math.round(lowestAveragePrice)}
               </Typography>
               <Typography variant="body2" sx={{ mb: 0.25 }}>
                 / night
