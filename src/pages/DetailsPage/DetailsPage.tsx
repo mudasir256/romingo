@@ -118,7 +118,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  const { cancellation, cancelPenalty, roomList, nearby, rooms } = useSelector(
+  const { cancellation, cancelPenalty, roomList, nearby } = useSelector(
     (state: any) => state.hotelDetailReducer.detail
   );
 
@@ -135,6 +135,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [amenities, setAmenities] = useState<string[]>([]);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [neighborhood, setNeighborhood] = useState("");
+
+  const [rooms, setRooms] = useState<RoomInfo[]>([]);
 
   const [city, setCity] = useState({
     center: {
@@ -178,6 +180,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       data.property.amenities.map((amenity: any) => {
         tmpAmenities.push(amenity.desc);
       });
+
+      setRooms(data.property.rooms.slice(0, 8));
 
       setOtherAmenities([...tmpAmenities]);
     }
@@ -461,34 +465,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               >
                 Room Types
               </Typography>
-              <Box
-                sx={{
-                  mt: 1,
-                  display: "grid",
-                  gridAutoFlow: "column",
-                  overflow: "auto",
-                  py: 1,
-                }}
-              >
-                {rooms.map((room: any, key: number) => {
-                  return (
-                    <RoomCard
-                      key={key}
-                      HotelName={name}
-                      sx={{
-                        minWidth: "250px",
-                        marginRight: "10px",
-                        border: "1px solid #ddd",
-                        borderRadius: "5px",
-                        boxShadow: 2,
-                        px: 1,
-                        py: 1,
-                      }}
-                      {...room}
-                    />
-                  );
-                })}
-              </Box>
               <Grid container>
                 <Box
                   sx={{
@@ -517,7 +493,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 nearby={nearby}
                 title={"Dog-Friendly Activities Nearby"}
               />
-              <CancelPolicy sx={{ mt: 2 }} />
+              
             </Grid>
             <Grid item xs={12} md={5} lg={4}>
               <Hidden mdDown>
@@ -549,6 +525,45 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 </Fab>
                 <MobileBookingBar roomList={roomList} />
               </Hidden>
+            </Grid>
+          </Grid>
+        )}
+        {!loading && (
+          <Grid container spacing={2} sx={{ mt: 0}}>
+            <Grid item xs={12}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "primary.main",
+                  mt: 2,
+                  textAlign: "center"
+                }}
+              >
+                Book Now
+              </Typography>
+              <Grid container>
+                {rooms.map((room: any, key: number) => {
+                  return (
+                    <Grid item md={6} sm={12} key={key}>
+                      <RoomCard
+                        key={key}
+                        HotelName={name}
+                        sx={{
+                          minWidth: "250px",
+                          marginRight: "10px",
+                          border: "1px solid #ddd",
+                          borderRadius: "5px",
+                          boxShadow: 2,
+                          px: 1,
+                          py: 1,
+                          my: 1
+                        }}
+                        {...room}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
             </Grid>
           </Grid>
         )}

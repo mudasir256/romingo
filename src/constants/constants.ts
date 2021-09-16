@@ -123,7 +123,40 @@ const GetHotelDetail = `
         featuredImageURL
         imageURLs
         sabreImageURLs
-        lowestAveragePrice
+        lowestAveragePrice,
+        rooms {
+          type
+          nonSmoking
+          beds {
+            code
+            desc
+            count
+          }
+          desc
+          amenities {
+            code
+            desc
+            value
+            accessible
+            free
+          }
+          maxOccupants
+          priceKey
+          breakfastIncluded
+          lunchIncluded
+          dinnerIncluded
+          averagePrice
+          totalPrice
+          averagePriceAfterTax
+          totalPriceAfterTax
+          fees {
+            total
+            fees {
+              amount
+              desc
+            }
+          }
+        }
       }
     }
   `;
