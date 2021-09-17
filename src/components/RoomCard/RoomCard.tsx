@@ -181,7 +181,7 @@ const RoomCard: FC<Props> = ({
           variant="body1"
           sx={{
             color: "white",
-            backgroundColor: "secondary.main",
+            backgroundColor: bestRate ? "info.main" : "secondary.main",
             fontWeight: 800,
             borderRadius: 1,
             p: 0.75,
@@ -342,11 +342,26 @@ const RoomCard: FC<Props> = ({
             }}
           >
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              Per Night
+              Per Night:
             </Typography>
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
               ${averagePrice.toFixed(2)}
             </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            <Typography variant="body2" sx={{ fontSize: "80%" }}>
+              Nights:
+            </Typography>
+            {/* <Typography variant="body2" sx={{ fontSize: "80%" }}>
+              {"x" + 2}
+            </Typography> */}
           </Box>
           <Box
             sx={{
@@ -357,7 +372,7 @@ const RoomCard: FC<Props> = ({
             }}
           >
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              Taxes/Fees
+              Taxes/Fees:
             </Typography>
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
               ${averagePriceAfterTax.toFixed(2)}
@@ -376,7 +391,7 @@ const RoomCard: FC<Props> = ({
               variant="body2"
               sx={{ fontSize: "80%", fontWeight: "bold" }}
             >
-              Due Now
+              Due Now:
             </Typography>
             <Typography
               variant="body2"
