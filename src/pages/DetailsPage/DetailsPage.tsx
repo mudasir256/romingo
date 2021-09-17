@@ -532,19 +532,19 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Grid>
         )}
         {!loading && (
-          <Grid container spacing={2} sx={{ mt: 0, maxWidth: "100%" }}>
+          <Grid container sx={{ mt: 0, maxWidth: "100%" }}>
             <Grid item xs={12}>
               <Typography
-                variant="h3"
+                variant="h4"
                 sx={{
                   color: "warning.main",
-                  my: 2,
+                  my: 3,
                   textAlign: "center",
                 }}
               >
-                Book Now
+                Available Rooms
               </Typography>
-              <Grid container columnSpacing={1.5} rowSpacing={1}>
+              <Grid container columnSpacing={2} rowSpacing={2}>
                 {rooms.map((room: any, key: number) => {
                   return (
                     <Grid
@@ -559,10 +559,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                         HotelName={name}
                         sx={{
                           minWidth: "300px",
-                          border: "1px solid #ddd",
                           borderRadius: "5px",
-                          boxShadow: 0,
-                          p: 1.5,
+                          p: 1.75,
+                          boxShadow: 3,
                           height: "calc(100% - 32px)",
                         }}
                         {...room}

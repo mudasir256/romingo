@@ -152,6 +152,7 @@ const RoomCard: FC<Props> = ({
         display: "flex",
         minHeight: "150px",
         flex: 1,
+        backgroundColor: "lightBackground.main",
       }}
     >
       <Box
@@ -169,8 +170,8 @@ const RoomCard: FC<Props> = ({
             fontWeight: 800,
             borderRadius: 1,
             p: 0.75,
-            ml: -1.5,
-            mt: -1.5,
+            ml: -2.8,
+            mt: -2.8,
             boxShadow: 2,
             textAlign: "center",
           }}
