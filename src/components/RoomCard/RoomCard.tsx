@@ -36,7 +36,13 @@ interface Props {
   averagePriceAfterTax: number;
   breakfastIncluded: boolean;
   dinnerIncluded: boolean;
-  fees: number | null;
+  fees?: {
+    totalAmount: number;
+    fees: {
+      amount: number;
+      desc: string;
+    }[]
+  };
   lunchIncluded: boolean;
   maxOccupants: number;
   nonSmoking: boolean;
@@ -49,6 +55,7 @@ interface Props {
     cutOffAt: string | null;
     refundable: boolean;
   };
+  feesIncluded: boolean;
 }
 
 export interface RoomInfo {
@@ -68,7 +75,13 @@ export interface RoomInfo {
   averagePriceAfterTax: number;
   breakfastIncluded: boolean;
   dinnerIncluded: boolean;
-  fees: number | null;
+  fees?: {
+    totalAmount: number;
+    fees: {
+      amount: number;
+      desc: string;
+    }[]
+  };
   lunchIncluded: boolean;
   maxOccupants: number;
   nonSmoking: boolean;
@@ -81,6 +94,7 @@ export interface RoomInfo {
     cutOffAt: string | null;
     refundable: boolean;
   };
+  feesIncluded: boolean;
 }
 
 const RoomCard: FC<Props> = ({
@@ -95,6 +109,7 @@ const RoomCard: FC<Props> = ({
   totalPriceAfterTax,
   bestRate = false,
   cancellationPolicy,
+  feesIncluded,
   ...props
 }) => {
   const [showDialog, setShowDialog] = useState(false);
@@ -344,7 +359,7 @@ const RoomCard: FC<Props> = ({
               Taxes/Fees
             </Typography>
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              ${averagePriceAfterTax.toFixed(2)}
+              ${averagePriceAfterTax.toFixed(2)}{feesIncluded ? ("/$" + fees?.totalAmount) : ""}
             </Typography>
           </Box>
           <Box

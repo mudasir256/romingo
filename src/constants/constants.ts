@@ -149,8 +149,9 @@ const GetHotelDetail = `
           totalPrice
           averagePriceAfterTax
           totalPriceAfterTax
+          feesIncluded
           fees {
-            total
+            totalAmount
             fees {
               amount
               desc
