@@ -232,12 +232,13 @@ const RoomCard: FC<Props> = ({
           sx={{
             color: "text.secondary",
             textAlign: "center",
-            mt: -1,
           }}
         >
           {roomTitle}
         </Typography>
-        <Typography variant="body2">Room Amenities</Typography>
+        <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
+          Room Amenities
+        </Typography>
         {amenities.slice(0, 4).map((amenity, key) => {
           return (
             <Box
@@ -310,24 +311,83 @@ const RoomCard: FC<Props> = ({
             </Typography>
           )}
         </div>
-        <Button
-          variant="contained"
-          size="small"
-          color="primary"
+        <Box
           sx={{
+            textAlign: "center",
             mt: 2,
-            py: 1,
-            px: 1,
-            textTransform: "inherit",
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{ textTransform: "uppercase", fontSize: { xs: "16px" } }}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              fontVariantNumeric: "tabular-nums",
+            }}
           >
-            Book Now
-          </Typography>
-        </Button>
+            <Typography variant="body2" sx={{ fontSize: "80%" }}>
+              Per Night
+            </Typography>
+            <Typography variant="body2" sx={{ fontSize: "80%" }}>
+              ${averagePrice.toFixed(2)}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            <Typography variant="body2" sx={{ fontSize: "80%" }}>
+              Taxes/Fees
+            </Typography>
+            <Typography variant="body2" sx={{ fontSize: "80%" }}>
+              ${averagePriceAfterTax.toFixed(2)}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ fontSize: "80%", fontWeight: "bold" }}
+            >
+              Due Now
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ fontSize: "80%", fontWeight: "bold" }}
+            >
+              ${totalPrice.toFixed(2)}
+            </Typography>
+          </Box>
+          <Button
+            variant="contained"
+            size="small"
+            color="primary"
+            sx={{
+              mt: 2,
+              py: 1,
+              px: 1,
+              textTransform: "inherit",
+              width: "100%",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{ textTransform: "uppercase", fontSize: { xs: "16px" } }}
+            >
+              Book Now
+            </Typography>
+          </Button>
+        </Box>
       </Box>
 
       <Dialog
