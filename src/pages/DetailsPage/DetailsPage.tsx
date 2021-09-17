@@ -103,10 +103,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       })
     : [];
 
-  const removeHttpLink = function(str: string) {
-    
+  const removeHttpLink = function (str: string) {
     return str.replace("http:", "");
-  }
+  };
 
   const { loading, error, data } = useQuery(
     gql`
@@ -533,13 +532,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Grid>
         )}
         {!loading && (
-          <Grid container spacing={2} sx={{ mt: 0 }}>
+          <Grid container spacing={2} sx={{ mt: 0, maxWidth: "100%" }}>
             <Grid item xs={12}>
               <Typography
-                variant="h6"
+                variant="h3"
                 sx={{
-                  color: "primary.main",
-                  mt: 2,
+                  color: "warning.main",
+                  my: 2,
                   textAlign: "center",
                 }}
               >
@@ -548,20 +547,24 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <Grid container>
                 {rooms.map((room: any, key: number) => {
                   return (
-                    <Grid item md={6} sm={12} key={key}>
+                    <Grid
+                      item
+                      md={6}
+                      sm={12}
+                      key={key}
+                      sx={{ minWidth: "300px" }}
+                    >
                       <RoomCard
                         key={key}
                         HotelName={name}
                         sx={{
-                          minWidth: "250px",
-                          marginRight: "10px",
+                          minWidth: "300px",
                           border: "1px solid #ddd",
                           borderRadius: "5px",
-                          boxShadow: 2,
-                          px: 1,
-                          py: 1,
-                          my: 1,
-                          height: "calc(100% - 32px)"
+                          boxShadow: 0,
+                          mx: 1,
+                          p: 1.5,
+                          height: "calc(100% - 32px)",
                         }}
                         {...room}
                       />
