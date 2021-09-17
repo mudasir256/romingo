@@ -41,7 +41,7 @@ interface Props {
     fees: {
       amount: number;
       desc: string;
-    }[]
+    }[];
   };
   lunchIncluded: boolean;
   maxOccupants: number;
@@ -80,7 +80,7 @@ export interface RoomInfo {
     fees: {
       amount: number;
       desc: string;
-    }[]
+    }[];
   };
   lunchIncluded: boolean;
   maxOccupants: number;
@@ -322,7 +322,7 @@ const RoomCard: FC<Props> = ({
                 mt: 1,
               }}
             >
-              Cancel by {getFormatDate(cancellationPolicy.cutOffAt)} for a
+              Cancel before {getFormatDate(cancellationPolicy.cutOffAt)} for a
               refund
             </Typography>
           )}
@@ -360,7 +360,8 @@ const RoomCard: FC<Props> = ({
               Taxes/Fees
             </Typography>
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              ${averagePriceAfterTax.toFixed(2)}{feesIncluded ? ("/$" + fees?.totalAmount) : ""}
+              ${averagePriceAfterTax.toFixed(2)}
+              {/* {feesIncluded ? ("/$" + fees?.totalAmount) : ""} */}
             </Typography>
           </Box>
           <Box
