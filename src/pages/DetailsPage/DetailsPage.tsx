@@ -544,7 +544,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               >
                 Book Now
               </Typography>
-              <Grid container>
+              <Grid container columnSpacing={1.5} rowSpacing={1}>
                 {rooms.map((room: any, key: number) => {
                   return (
                     <Grid
@@ -552,7 +552,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       md={6}
                       sm={12}
                       key={key}
-                      sx={{ minWidth: "300px" }}
+                      sx={{ minWidth: "300px", display: "flex", flex: 1 }}
                     >
                       <RoomCard
                         key={key}
@@ -562,7 +562,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           border: "1px solid #ddd",
                           borderRadius: "5px",
                           boxShadow: 0,
-                          mx: 1,
                           p: 1.5,
                           height: "calc(100% - 32px)",
                         }}

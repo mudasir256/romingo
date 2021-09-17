@@ -150,7 +150,7 @@ const RoomCard: FC<Props> = ({
       sx={{
         ...sx,
         display: "flex",
-        minHeight: "100px",
+        minHeight: "150px",
         flex: 1,
       }}
     >
@@ -373,9 +373,9 @@ const RoomCard: FC<Props> = ({
             size="small"
             color="primary"
             sx={{
-              mt: 2,
               py: 1,
               px: 1,
+              mb: 0.5,
               textTransform: "inherit",
               width: "100%",
             }}
