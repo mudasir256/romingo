@@ -609,8 +609,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     {gallery.map((item: any) => (
                       <ImageListItem key={item} cols={1} rows={1}>
                         <img
-                          srcSet={`${item}?w=161&fit=crop&auto=format 1x,
-${item}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                          srcSet={`${item.replace(
+                            /^http(s?):/i,
+                            ""
+                          )}?w=161&fit=crop&auto=format 1x,
+${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
                           alt={name}
                           loading="lazy"
                         />
