@@ -194,6 +194,7 @@ const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averageP
         <Box
           sx={{
             width: "50%",
+            display: "inline-grid"
           }}
         >
           <Typography
@@ -284,6 +285,63 @@ const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averageP
               textAlign: "center"
             }}
           >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                py: 0.5
+              }}
+            >
+              <Typography
+                variant="body2"
+              >
+                Per Night
+              </Typography>
+              <Typography
+                variant="body2"
+              >
+                ${averagePrice.toFixed(2)}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                py: 0.5
+              }}
+            >
+              <Typography
+                variant="body2"
+              >
+                Taxes/Fees
+              </Typography>
+              <Typography
+                variant="body2"
+              >
+                ${averagePriceAfterTax.toFixed(2)}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                py: 0.5
+              }}
+            >
+              <Typography
+                variant="body2"
+              >
+                Due Now
+              </Typography>
+              <Typography
+                variant="body2"
+              >
+                ${totalPrice.toFixed(2)}
+              </Typography>
+            </Box>
             <Button
               variant="contained"
               size="small"
