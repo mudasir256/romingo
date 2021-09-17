@@ -103,6 +103,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       })
     : [];
 
+  const removeHttpLink = function(str: string) {
+    
+    return str.replace("http:", "");
+  }
+
   const { loading, error, data } = useQuery(
     gql`
       ${GetHotelDetail}
@@ -288,7 +293,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       {!loading && (
         <Box
           component="img"
-          src={data.property.featuredImageURL}
+          src={removeHttpLink(data.property.featuredImageURL)}
           alt={name}
           boxShadow={2}
           onClick={handleOpen}
@@ -324,7 +329,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <Box
                 onClick={handleOpen}
                 component="img"
-                src={mainImg}
+                src={removeHttpLink(mainImg)}
                 alt={name}
                 draggable="false"
                 boxShadow={2}
@@ -350,7 +355,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           onClick={handleOpen}
                           boxShadow={2}
                           component="img"
-                          src={img}
+                          src={removeHttpLink(img)}
                           alt={name}
                           sx={{
                             width: "100%",
@@ -556,7 +561,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           boxShadow: 2,
                           px: 1,
                           py: 1,
-                          my: 1
+                          my: 1,
+                          height: "calc(100% - 32px)"
                         }}
                         {...room}
                       />
@@ -610,8 +616,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     {gallery.map((item: any) => (
                       <ImageListItem key={item} cols={1} rows={1}>
                         <img
-                          srcSet={`${item}?w=161&fit=crop&auto=format 1x,
-${item}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                          srcSet={`${removeHttpLink(item)}?w=161&fit=crop&auto=format 1x,
+${removeHttpLink(item)}?w=161&fit=crop&auto=format&dpr=2 2x`}
                           alt={name}
                           loading="lazy"
                         />

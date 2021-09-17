@@ -156,6 +156,14 @@ const GetHotelDetail = `
               desc
             }
           }
+          cancellationPolicy {
+            refundable
+            cutOffAt
+            cutOffUnit
+            cutOffMultiplier
+            cutOffReference
+            desc
+          }
         }
       }
     }

@@ -46,6 +46,10 @@ interface Props {
   totalPriceAfterTax: number;
   type: string;
   bestRate?: boolean;
+  cancellationPolicy: {
+    cutOffAt: string | null;
+    refundable: boolean;
+  }
 }
 
 export interface RoomInfo {
@@ -74,9 +78,13 @@ export interface RoomInfo {
   totalPriceAfterTax: number;
   type: string;
   bestRate?: boolean;
+  cancellationPolicy: {
+    cutOffAt: string | null;
+    refundable: boolean;
+  }
 }
 
-const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averagePriceAfterTax, fees, totalPrice, totalPriceAfterTax, bestRate=false, ...props }) => {
+const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averagePriceAfterTax, fees, totalPrice, totalPriceAfterTax, bestRate=false, cancellationPolicy, ...props }) => {
 
   const [showDialog, setShowDialog] = useState(false);
   const length = 30;
@@ -106,6 +114,15 @@ const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averageP
   const [roomTitle, setRoomTitle] = useState("");
 
   let roomDescription = "";
+
+  const getFormatDate = function(str: string|null) {
+    let date;
+    if (str)
+      date = new Date(str);
+    else
+      date = new Date();
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+  }
 
   useEffect(() => {
     beds.map(bed => {
@@ -150,7 +167,6 @@ const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averageP
                     {(bed.desc === "Queen") && (
                       <KingBedOutlinedIcon 
                         sx={{
-                          transform: "scale(1.25, 1)",
                           px: 1
                         }}
                       />
@@ -158,6 +174,7 @@ const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averageP
                     {(bed.desc === "King") && (
                       <KingBedOutlinedIcon 
                         sx={{
+                          transform: "scale(1.25, 1)",
                           px: 1
                         }}
                       />
@@ -235,6 +252,52 @@ const RoomCard: FC<Props> = ({ sx, beds, desc, amenities, averagePrice, averageP
               More Details
             </Typography>
           </Link>
+        </Box>
+        <Box
+          sx={{
+            width: "30%"
+          }}
+        >
+          <Typography
+            variant="body1"
+            sx={{
+              color: "secondary.main",
+              textAlign: "center",
+              mb: 0.5
+            }}
+          >
+            {cancellationPolicy.refundable ? "Refundable" : "Non-Refundable"}
+          </Typography>
+          {cancellationPolicy.refundable && (
+            <Typography
+              variant="body2"
+              sx={{
+                fontSize: "80%",
+                textAlign: "center"
+              }}
+            >
+              Cancel by {getFormatDate(cancellationPolicy.cutOffAt)} for a full refund
+            </Typography>
+          )}
+          <Box
+            sx={{
+              textAlign: "center"
+            }}
+          >
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              sx={{ 
+                mt: 2, 
+                py: 1, 
+                px: 1,
+                textTransform: "inherit"
+              }}
+            >
+              <Typography variant="body1">Book Now</Typography>
+            </Button>
+          </Box>
         </Box>
       </Box>
 
