@@ -582,7 +582,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             scroll="body"
             aria-labelledby="photo-dialog-slide-title"
             aria-describedby="photo-dialog-slide-description"
-            sx={{ maxWidth: "xl" }}
           >
             <DialogTitle
               id="photo-dialog-slide-title"
@@ -611,8 +610,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </DialogTitle>
             <DialogContent sx={{ px: 0 }}>
               <Container sx={{ mt: { xs: 0, md: 2 } }}>
-                <SRLWrapper options={lightBoxOptions}>
-                  <ImageList variant="masonry" cols={getImageCols()} gap={8}>
+                <ImageList variant="masonry" cols={getImageCols()} gap={8}>
+                  <SRLWrapper options={lightBoxOptions}>
                     {gallery.map((item: any) => (
                       <ImageListItem key={item} cols={1} rows={1}>
                         <img
@@ -622,12 +621,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           )}?w=161&fit=crop&auto=format 1x,
 ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
                           alt={name}
-                          loading="lazy"
                         />
                       </ImageListItem>
                     ))}
-                  </ImageList>
-                </SRLWrapper>
+                  </SRLWrapper>
+                </ImageList>
               </Container>
             </DialogContent>
           </Dialog>
