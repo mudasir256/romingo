@@ -355,7 +355,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           onClick={handleOpen}
                           boxShadow={2}
                           component="img"
-                          src={removeHttpLink(img)}
+                          src={img.replace(/^http(s?):/i, "")}
                           alt={name}
                           sx={{
                             width: "100%",
@@ -498,7 +498,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 nearby={nearby}
                 title={"Dog-Friendly Activities Nearby"}
               />
-              
             </Grid>
             <Grid item xs={12} md={5} lg={4}>
               <Hidden mdDown>
@@ -534,14 +533,14 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Grid>
         )}
         {!loading && (
-          <Grid container spacing={2} sx={{ mt: 0}}>
+          <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12}>
               <Typography
                 variant="h6"
                 sx={{
                   color: "primary.main",
                   mt: 2,
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
                 Book Now
@@ -616,8 +615,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     {gallery.map((item: any) => (
                       <ImageListItem key={item} cols={1} rows={1}>
                         <img
-                          srcSet={`${removeHttpLink(item)}?w=161&fit=crop&auto=format 1x,
-${removeHttpLink(item)}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                          srcSet={`${item.replace(
+                            /^http(s?):/i,
+                            ""
+                          )}?w=161&fit=crop&auto=format 1x,
+${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
                           alt={name}
                           loading="lazy"
                         />
