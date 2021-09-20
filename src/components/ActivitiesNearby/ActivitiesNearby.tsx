@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Check from "@mui/icons-material/Check";
 
+import { utils } from "../../services/utils";
+
 interface Props {
   title: string;
   nearby: {
@@ -56,7 +58,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
                 paddingLeft: "8px",
               }}
             >
-              {item.name}({item.distance.toFixed(2)} mi)
+              {item.name}({utils.meterToMile(item.distance)} mi)
             </Typography>
           </Box>
         );
