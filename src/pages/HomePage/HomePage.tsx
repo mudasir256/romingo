@@ -254,7 +254,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Kayak_Dog.webp"
+                      src="/images/Cafe_Dog.jpg"
                       alt="dog head out window"
                       draggable="false"
                       sx={{
