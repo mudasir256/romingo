@@ -127,11 +127,11 @@ const GetHotelDetail = `
         nearbyActivities {
           id
           name
+          distanceInMeters
           location {
             latitude
             longitude
           }
-          distanceInMeters
         }
         rooms {
           type

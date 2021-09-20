@@ -107,7 +107,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     : [];
 
   const removeHttpLink = function (str: string) {
-    return str.replace("http:", "");
+    return str?.replace("http:", "");
   };
 
   const { loading, error, data } = useQuery(
@@ -298,7 +298,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       {!loading && (
         <Box
           component="img"
-          src={removeHttpLink(data.property.featuredImageURL)}
+          src={removeHttpLink(data?.property?.featuredImageURL)}
           alt={name}
           boxShadow={2}
           onClick={handleOpen}

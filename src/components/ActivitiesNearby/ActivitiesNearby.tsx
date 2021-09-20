@@ -58,7 +58,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
                 paddingLeft: "8px",
               }}
             >
-              {item.name}({utils.meterToMile(item.distanceInMeters)} mi)
+              {item.name}({utils.meterToMile(item?.distanceInMeters)} mi)
             </Typography>
           </Box>
         );
