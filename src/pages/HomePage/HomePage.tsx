@@ -223,7 +223,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Young_Couple_Driving_Dog.webp"
+                      src="/images/Man_Travel_Dog_Car.jpg"
                       alt="french bulldog w/ coffee"
                       draggable="false"
                       sx={{
