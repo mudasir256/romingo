@@ -79,7 +79,10 @@ interface Props {
   }[];
   amenitiesTitle: string;
   amenities: string[];
-  nearby: { name: string; distance: number }[];
+  nearby: { 
+    name: string; 
+    distanceInMeters: number 
+  }[];
   rooms: RoomInfo[];
   match: any;
 }

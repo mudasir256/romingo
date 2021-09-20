@@ -317,6 +317,128 @@ const HomePage: FC<Props> = ({
               </Grid>
             </Grid>
           </Grid>
+          <Grid 
+            container
+            spacing={{ sm: 3, md: 5 }}
+            sx={{ py: 2 }}
+          >
+            <Grid item xs={12} sm={6} md={3}
+              sx={{
+                textAlign: "center"
+              }}>
+              <Box
+                component="img"
+                src={"./images/icons/bestAvailableRate.svg"}
+                draggable="false"
+                sx={{
+                  width: "50%",
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold"
+                }}
+              >
+                Best Available Rates
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 1
+                }}
+              >
+                Romingo works closely with our hotel partners to provide you with the best available room rates on the market.  You will get the best deal with Romingo!
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}
+              sx={{
+                textAlign: "center"
+              }}>
+              <Box
+                component="img"
+                src={"./images/icons/noPetFees.svg"}
+                draggable="false"
+                sx={{
+                  width: "50%",
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold"
+                }}
+              >
+                No Hidden Pet Fees
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 1
+                }}
+              >
+                Unlike other booking sites that charge you costly pet fees, you will never pay for hotel pet fees when you book on Romingo!
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}
+              sx={{
+                textAlign: "center"
+              }}>
+              <Box
+                component="img"
+                src={"./images/icons/customService.svg"}
+                draggable="false"
+                sx={{
+                  width: "50%",
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold"
+                }}
+              >
+                Customer Service
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 1
+                }}
+              >
+                Our responsive and kind guest support teams are here for you and your canine companion. We are accessible via chat, email, and social media if you ever need to get ahold of us!
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}
+              sx={{
+                textAlign: "center"
+              }}>
+              <Box
+                component="img"
+                src={"./images/icons/romingoScore.svg"}
+                draggable="false"
+                sx={{
+                  width: "50%",
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold"
+                }}
+              >
+                Romingo Score
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 1
+                }}
+              >
+                Every hotel listed on Romingo features a unique and proprietary Romingo Score. Our algorithms generate this score based on guest reviews, pet amenities, and proximity to dog-friendly parks and restaurants.
+              </Typography>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
       <Box
