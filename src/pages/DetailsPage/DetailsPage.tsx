@@ -79,7 +79,7 @@ interface Props {
   }[];
   amenitiesTitle: string;
   amenities: string[];
-  nearby: { text: string; distance: number }[];
+  nearby: { name: string; distance: number }[];
   rooms: RoomInfo[];
   match: any;
 }
@@ -122,7 +122,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  const { cancellation, cancelPenalty, roomList, nearby } = useSelector(
+  const { cancellation, cancelPenalty, roomList } = useSelector(
     (state: any) => state.hotelDetailReducer.detail
   );
 
@@ -139,6 +139,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [amenities, setAmenities] = useState<string[]>([]);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [neighborhood, setNeighborhood] = useState("");
+  const [nearby, setNearby] = useState([]);
 
   const [rooms, setRooms] = useState<RoomInfo[]>([]);
 
@@ -188,6 +189,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setRooms(data.property.rooms.slice(0, 8));
 
       setOtherAmenities([...tmpAmenities]);
+
+      setNearby(data.property.nearbyActivities);
     }
   }, [data]);
 

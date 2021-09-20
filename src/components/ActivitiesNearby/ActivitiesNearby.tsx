@@ -6,7 +6,7 @@ import Check from "@mui/icons-material/Check";
 interface Props {
   title: string;
   nearby: {
-    text: string;
+    name: string;
     distance: number;
   }[];
 }
@@ -56,7 +56,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
                 paddingLeft: "8px",
               }}
             >
-              {item.text}({item.distance} mi)
+              {item.name}({item.distance.toFixed(2)} mi)
             </Typography>
           </Box>
         );

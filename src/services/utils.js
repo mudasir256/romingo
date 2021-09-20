@@ -1,14 +1,12 @@
 const getDateTime = function(isoString) {
   var date = new Date(isoString);
   var year = date.getFullYear();
-  var monthArray = ['Jan', 'Feb', "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var month = monthArray[date.getMonth()];
+  // var monthArray = ['Jan', 'Feb', "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  // var month = monthArray[date.getMonth()];
+  var month = date.getMonth() + 1;
   var day = date.getDate();
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  if (minute < 10) {
-    minute = "0" + minute;
-  }
+  var hour = ('0' + date.getHours()).slice(-2);
+  var minute = ('0' + date.getMinutes()).slice(-2);
   var am = "am";
 
   if (hour > 12) {
@@ -16,7 +14,7 @@ const getDateTime = function(isoString) {
     am = "pm";
   }
 
-  return `${month} ${day}, ${year} ${hour}:${minute} ${am}`;
+  return `${month}/${day}/${year} ${hour}:${minute} ${am}`;
 
 }
 

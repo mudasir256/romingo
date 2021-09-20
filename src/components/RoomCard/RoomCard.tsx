@@ -141,13 +141,6 @@ const RoomCard: FC<Props> = ({
 
   let roomDescription = "";
 
-  const getFormatDate = function (str: string | null) {
-    let date;
-    if (str) date = new Date(str);
-    else date = new Date();
-    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  };
-
   useEffect(() => {
     beds.map((bed) => {
       if (roomDescription !== "") roomDescription += " + ";
@@ -322,7 +315,7 @@ const RoomCard: FC<Props> = ({
                 mt: 1,
               }}
             >
-              Cancel before {getFormatDate(cancellationPolicy.cutOffAt)} for a
+              Cancel before {utils.getDateTime(cancellationPolicy.cutOffAt)} for a
               refund
             </Typography>
           )}

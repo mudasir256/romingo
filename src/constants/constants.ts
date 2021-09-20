@@ -124,6 +124,11 @@ const GetHotelDetail = `
         imageURLs
         sabreImageURLs
         lowestAveragePrice,
+        nearbyActivities {
+          id
+          name
+          distance
+        }
         rooms {
           type
           nonSmoking
