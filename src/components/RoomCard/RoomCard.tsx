@@ -152,7 +152,6 @@ const RoomCard: FC<Props> = ({
 
     setRoomTitle(roomDescription);
   }, []);
-
   return (
     <Box
       sx={{
@@ -315,8 +314,8 @@ const RoomCard: FC<Props> = ({
                 mt: 1,
               }}
             >
-              Cancel before {utils.getDateTime(cancellationPolicy.cutOffAt)} for a
-              refund
+              Cancel before {utils.getDateTime(cancellationPolicy.cutOffAt)} for
+              a refund
             </Typography>
           )}
         </div>
@@ -345,31 +344,15 @@ const RoomCard: FC<Props> = ({
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "flex-end",
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
-            <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              Nights:
-            </Typography>
-            {/* <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              {"x" + 2}
-            </Typography> */}
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
               alignItems: "center",
               fontVariantNumeric: "tabular-nums",
             }}
           >
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              Taxes/Fees:
+              Taxes:
             </Typography>
             <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              ${averagePriceAfterTax.toFixed(2)}
-              {/* {feesIncluded ? ("/$" + fees?.totalAmount) : ""} */}
+              ${(totalPriceAfterTax - totalPrice).toFixed(2)}
             </Typography>
           </Box>
           <Box
@@ -378,19 +361,175 @@ const RoomCard: FC<Props> = ({
               justifyContent: "space-between",
               alignItems: "center",
               fontVariantNumeric: "tabular-nums",
+              my: 0.5,
             }}
           >
             <Typography
               variant="body2"
-              sx={{ fontSize: "80%", fontWeight: "bold" }}
+              sx={{
+                fontSize: "80%",
+                fontWeight: "bold",
+                textDecoration: "underline",
+                cursor: "pointer",
+              }}
+              onClick={handleOpenPrice}
             >
-              Due Now:
+              Due Now*:
             </Typography>
             <Typography
               variant="body2"
               sx={{ fontSize: "80%", fontWeight: "bold" }}
             >
-              ${totalPrice.toFixed(2)}
+              ${totalPriceAfterTax.toFixed(2)}
+            </Typography>
+          </Box>
+          <Popper
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            transition
+            style={{
+              zIndex: 9999,
+            }}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Box
+                  sx={{
+                    border: "1px solid #DDD",
+                    borderRadius: "5px",
+                    boxShadow: 2,
+                    padding: "8px",
+                    backgroundColor: "white",
+                    minWidth: "250px",
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "80%",
+                      textAlign: "center",
+                    }}
+                  >
+                    Price Details
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      px: 2,
+                      mb: 0.5,
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: "80%",
+                      }}
+                    >
+                      Per Night:
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        textAlign: "right",
+                        fontSize: "80%",
+                      }}
+                    >
+                      ${averagePrice.toFixed(2)}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      px: 2,
+                      mb: 0.5,
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        textAlign: "left",
+                        fontSize: "80%",
+                      }}
+                    >
+                      Taxes:
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        textAlign: "right",
+                        fontSize: "80%",
+                      }}
+                    >
+                      ${(totalPriceAfterTax - totalPrice).toFixed(2)}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      px: 2,
+                      mb: 0.5,
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        textAlign: "center",
+                        fontSize: "80%",
+                      }}
+                    >
+                      Fees:
+                    </Typography>
+                  </Box>
+                  {fees?.fees.map((fee) => {
+                    return (
+                      <Box
+                        key={fee.desc}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          px: 2,
+                          mb: 0.5,
+                        }}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "left",
+                            fontSize: "80%",
+                          }}
+                        >
+                          {fee?.desc}:
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "right",
+                            fontSize: "80%",
+                          }}
+                        >
+                          ${fee?.amount.toFixed(2)}
+                        </Typography>
+                      </Box>
+                    );
+                  })}
+                </Box>
+              </Fade>
+            )}
+          </Popper>
+          <Box
+            sx={{
+              textAlign: "left",
+              mb: 0.5,
+            }}
+          >
+            <Typography variant="body2" sx={{ fontSize: "70%", lineHeight: 1 }}>
+              {feesIncluded
+                ? "*Includes all taxes and fees"
+                : "*Some fees due at property"}
             </Typography>
           </Box>
           <Button
@@ -486,107 +625,6 @@ const RoomCard: FC<Props> = ({
                 </Box>
               );
             })}
-            <Link
-              href="#"
-              onClick={handleOpenPrice}
-              aria-describedby={id}
-              sx={{ display: "inline-flex" }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 2,
-                  fontWeight: "bold",
-                }}
-              >
-                Price details
-              </Typography>
-            </Link>
-            <Popper
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              transition
-              style={{
-                zIndex: 9999,
-              }}
-            >
-              {({ TransitionProps }) => (
-                <Fade {...TransitionProps} timeout={350}>
-                  <Box
-                    sx={{
-                      border: "1px solid #DDD",
-                      borderRadius: "5px",
-                      boxShadow: 2,
-                      padding: "8px",
-                      backgroundColor: "white",
-                      minWidth: "250px",
-                    }}
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontWeight: "bold",
-                        mb: 2,
-                        px: 2,
-                      }}
-                    >
-                      Price Details
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        px: 2,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "left",
-                        }}
-                      >
-                        Average per night:
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "right",
-                        }}
-                      >
-                        ${averagePrice.toFixed(2)}
-                      </Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        px: 2,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "left",
-                        }}
-                      >
-                        After Tax
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "right",
-                        }}
-                      >
-                        ${averagePriceAfterTax.toFixed(2)}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Fade>
-              )}
-            </Popper>
           </Box>
         </DialogContent>
       </Dialog>
