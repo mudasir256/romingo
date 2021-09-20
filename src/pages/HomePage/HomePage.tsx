@@ -317,6 +317,10 @@ const HomePage: FC<Props> = ({
               </Grid>
             </Grid>
           </Grid>
+        </Container>
+      </Box>
+      <Box>
+        <Container>
           <Grid 
             container
             spacing={{ sm: 3, md: 5 }}
