@@ -126,7 +126,7 @@ const HomePage: FC<Props> = ({
           position: "relative",
           "&::before": {
             content: '""',
-            backgroundImage: `url("/images/4049458.jpg")`,
+            background: "white",
             opacity: 0.1,
             backgroundSize: "cover",
             position: "absolute",
