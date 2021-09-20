@@ -37,9 +37,16 @@ const getOnlyDate = function(isoString) {
   return `${month} ${day}`;
 }
 
+const meterToMile = function(meters) {
+  let mile = meters / 1609;
+
+  return mile.toFixed(2);
+}
+
 export const utils = {
   getDateTime,
   getOnlyDate,
   getDateNow,
   getFormatDate,
+  meterToMile
 }
