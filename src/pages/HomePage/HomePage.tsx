@@ -126,8 +126,8 @@ const HomePage: FC<Props> = ({
           position: "relative",
           "&::before": {
             content: '""',
-            background: "white",
-            opacity: 0.1,
+            background: "#fcf5f0",
+            opacity: 1,
             backgroundSize: "cover",
             position: "absolute",
             top: 0,
