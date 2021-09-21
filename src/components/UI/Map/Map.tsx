@@ -1,9 +1,10 @@
 /*global google*/
 import { FC, useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
-import Typography from "@mui/material/Typography"
+import Typography from "@mui/material/Typography";
+import Skeleton from "@mui/material/Skeleton";
 
 interface Props {
   center: { lat: number; lng: number };
@@ -47,6 +48,10 @@ const Map: FC<Props> = ({
     styles: stylesArray,
   });
 
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA"
+  });
+
   const size = useWindowSize();
 
   useEffect(() => {
@@ -80,63 +85,72 @@ const Map: FC<Props> = ({
 
   const [showInfoContents, setShowInfoContents] = useState("");
 
-  return (
-    <LoadScript googleMapsApiKey={"AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA"}>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        options={mapOptions}
-        zoom={(size.width > 720) ? zoom : (zoom - 1)}
-      >
-        {markers !== undefined &&
-          markers.map((marker, key) => {
-            return (
-              <Marker
-                position={marker}
-                animation={2}
-                key={key}
-                icon={{
-                  url: "/images/icons/hotel_marker.svg",
-                  scaledSize: new google.maps.Size(18, 18)
-                }}
-                onClick={(e: google.maps.MapMouseEvent) => {
-                  if (markerClickCallBack) return markerClickCallBack(key);
-                  else if (marker.label) {
-                    setShowInfoPostion({
-                      lat: marker.lat,
-                      lng: marker.lng
-                    });
-                    setShowInfo(true);
-                    setShowInfoContents(marker.label);
-                  }
-                  else return null;
-                }}
-                opacity={
-                  selectedMarker !== undefined && selectedMarker === key
-                    ? 1
-                    : 0.5
+  const renderMap = () => (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      options={mapOptions}
+      zoom={(size.width > 720) ? zoom : (zoom - 1)}
+    >
+      {markers !== undefined &&
+        markers.map((marker, key) => {
+          return (
+            <Marker
+              position={marker}
+              animation={2}
+              key={key}
+              icon={{
+                url: "/images/icons/hotel_marker.svg",
+                scaledSize: new google.maps.Size(35, 35)
+              }}
+              onClick={(e: google.maps.MapMouseEvent) => {
+                if (markerClickCallBack) return markerClickCallBack(key);
+                else if (marker.label) {
+                  setShowInfoPostion({
+                    lat: marker.lat,
+                    lng: marker.lng
+                  });
+                  setShowInfo(true);
+                  setShowInfoContents(marker.label);
                 }
-              />
-            );
-          })}
-          {showInfo && (<InfoWindow
-            position={showInfoPosition}
-            onCloseClick={() => {
-              setShowInfo(false);
+                else return null;
+              }}
+              opacity={
+                selectedMarker !== undefined && selectedMarker === key
+                  ? 1
+                  : 0.5
+              }
+            />
+          );
+        })}
+        {showInfo && (<InfoWindow
+          position={showInfoPosition}
+          onCloseClick={() => {
+            setShowInfo(false);
+          }}
+        >
+          <Typography
+            variant="body1"
+            sx={{
+              color: "secondary.main"
             }}
           >
-            <Typography
-              variant="body1"
-              sx={{
-                color: "secondary.main"
-              }}
-            >
-              {showInfoContents}
-            </Typography>
-          </InfoWindow>)}
-      </GoogleMap>
-    </LoadScript>
+            {showInfoContents}
+          </Typography>
+        </InfoWindow>)}
+    </GoogleMap>
   );
+
+  if (loadError) {
+    return <div>Map cannot be loaded right now, sorry.</div>
+  }
+
+  return isLoaded ? renderMap() : <Skeleton
+          variant="rectangular"
+          animation="wave"
+          height="100%"
+          width="100%"
+        />
 };
 
 export default Map;
