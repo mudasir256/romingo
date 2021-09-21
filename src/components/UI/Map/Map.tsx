@@ -1,7 +1,9 @@
+/*global google*/
 import { FC, useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
+import Typography from "@mui/material/Typography"
 
 interface Props {
   center: { lat: number; lng: number };
@@ -10,9 +12,11 @@ interface Props {
   markers?: {
     lat: number;
     lng: number;
+    label?: string;
   }[];
   markerClickCallBack?: (index: number) => void;
   selectedMarker?: number;
+  zoom?: number;
 }
 
 interface Size {
@@ -27,6 +31,7 @@ const Map: FC<Props> = ({
   markers,
   markerClickCallBack,
   selectedMarker,
+  zoom = 10
 }) => {
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
@@ -67,13 +72,21 @@ const Map: FC<Props> = ({
     }
   }, [size]);
 
+  const [showInfo, setShowInfo] = useState(false);
+  const [showInfoPosition, setShowInfoPostion] = useState({
+    lat: 0,
+    lng: 0
+  });
+
+  const [showInfoContents, setShowInfoContents] = useState("");
+
   return (
     <LoadScript googleMapsApiKey={"AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA"}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         options={mapOptions}
-        zoom={(size.width > 720) ? 10 : 9}
+        zoom={(size.width > 720) ? zoom : (zoom - 1)}
       >
         {markers !== undefined &&
           markers.map((marker, key) => {
@@ -82,8 +95,20 @@ const Map: FC<Props> = ({
                 position={marker}
                 animation={2}
                 key={key}
+                icon={{
+                  url: "/images/icons/hotel_marker.svg",
+                  scaledSize: new google.maps.Size(18, 18)
+                }}
                 onClick={(e: google.maps.MapMouseEvent) => {
                   if (markerClickCallBack) return markerClickCallBack(key);
+                  else if (marker.label) {
+                    setShowInfoPostion({
+                      lat: marker.lat,
+                      lng: marker.lng
+                    });
+                    setShowInfo(true);
+                    setShowInfoContents(marker.label);
+                  }
                   else return null;
                 }}
                 opacity={
@@ -94,6 +119,21 @@ const Map: FC<Props> = ({
               />
             );
           })}
+          {showInfo && (<InfoWindow
+            position={showInfoPosition}
+            onCloseClick={() => {
+              setShowInfo(false);
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                color: "secondary.main"
+              }}
+            >
+              {showInfoContents}
+            </Typography>
+          </InfoWindow>)}
       </GoogleMap>
     </LoadScript>
   );

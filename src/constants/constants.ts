@@ -126,12 +126,20 @@ const GetHotelDetail = `
         lowestAveragePrice,
         nearbyActivities {
           id
+          activityType {
+            id
+            name
+          }
           name
-          distanceInMeters
+          overview
+          desc
+          addressLine1
           location {
             latitude
             longitude
           }
+          price
+          distanceInMeters
         }
         rooms {
           type

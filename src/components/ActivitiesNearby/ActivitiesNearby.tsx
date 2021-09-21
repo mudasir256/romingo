@@ -1,19 +1,65 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Check from "@mui/icons-material/Check";
-
+import Link from "@mui/material/Link";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import Chip from "@mui/material/Chip";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import { utils } from "../../services/utils";
+
+interface Activity {
+  name: string;
+  overview: string;
+  activityType: {
+    id: number;
+    name: string;
+  };
+  addressLine1: string;
+  desc: string;
+  distanceInMeters: number;
+  id: string;
+  location: {
+    latitude: number;
+    longitude: number
+  },
+  price: number
+}
 
 interface Props {
   title: string;
-  nearby: {
-    name: string;
-    distanceInMeters: number;
-  }[];
+  nearby: Activity[];
 }
 
 const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
+
+  const [showDialog, setShowDialog] = useState(false);
+
+  const [popActivity, setPopActivity] = useState<Activity>({
+    name: "string",
+    overview: "",
+    activityType: {
+      id: 0,
+      name: ""
+    },
+    addressLine1: "",
+    desc: "",
+    distanceInMeters: 0,
+    id: "",
+    location: {
+      latitude: 0,
+      longitude: 0
+    },
+    price: 0
+  });
+
+  const handleClose = () => {
+    setShowDialog(false);
+  }
+
   return (
     <Box
       sx={{
@@ -58,11 +104,95 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
                 paddingLeft: "8px",
               }}
             >
-              {item.name}({utils.meterToMile(item?.distanceInMeters)} mi)
+              {item.name}({utils.meterToMile(item?.distanceInMeters)} mi)  
+              <Link href="#" onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPopActivity({...nearby[key]});
+                setShowDialog(true);
+              }}>
+                more details
+              </Link>
             </Typography>
           </Box>
         );
       })}
+      <Dialog
+        open={showDialog}
+        keepMounted
+        fullWidth
+        onClose={handleClose}
+        scroll="body"
+        aria-labelledby="amenities-dialog-slide-title"
+        aria-describedby="amenities-dialog-slide-description"
+        sx={{ maxWidth: "xl" }}
+      >
+        <DialogTitle
+          id="amenities-dialog-slide-title"
+          sx={{
+            textAlign: "center",
+            color: "primary.main",
+            py: 1
+          }}
+        >
+          {popActivity["name"]}
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <Box>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "text.secondary",
+                textAlign: "center"
+              }}
+            >
+              {popActivity["overview"]}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "text.secondary",
+                py: 0.5,
+                textAlign: "center"
+              }}
+            >
+              {popActivity["addressLine1"]}
+            </Typography>
+          </Box>
+          <Box py={1}>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "text.secondary",
+                textAlign: "left"
+              }}
+            >
+              {popActivity["desc"]}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "secondary.main",
+                textAlign: "left"
+              }}
+            >
+              Cost: ${popActivity["price"]}
+            </Typography>
+          </Box>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

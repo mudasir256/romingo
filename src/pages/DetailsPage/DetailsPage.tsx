@@ -155,6 +155,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     name: "",
   });
 
+  const [markers, setMarkers] = useState<{lat: number; lng: number, label: string}[]>([]);
+
   useEffect(() => {
     if (data && data.property) {
       setName(data.property.name);
@@ -194,6 +196,22 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setOtherAmenities([...tmpAmenities]);
 
       setNearby(data.property.nearbyActivities);
+
+      markers.push({
+        lat: data.property.location.latitude,
+        lng: data.property.location.longitude,
+        label: data.property.name
+      });
+
+      data.property.nearbyActivities.map((activity: any) => {
+        markers.push({
+          lat: activity.location.latitude,
+          lng: activity.location.longitude,
+          label: activity.name
+        })
+      });
+
+      setMarkers([...markers]);
     }
   }, [data]);
 
@@ -466,15 +484,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 </Grid>
               </Grid>
               <RomingoGuarantee sx={{ mt: 2 }} />
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "secondary.main",
-                  mt: 2,
-                }}
-              >
-                Room Types
-              </Typography>
               <Grid container>
                 <Box
                   sx={{
@@ -489,12 +498,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       lng: parseFloat(location.lon),
                     }}
                     height={300}
-                    markers={[
-                      {
-                        lat: parseFloat(location.lat),
-                        lng: parseFloat(location.lon),
-                      },
-                    ]}
+                    markers={markers}
+                    zoom={14}
                     selectedMarker={0}
                   />
                 </Box>
