@@ -61,6 +61,11 @@ const NearCities = [
     state: "California",
   },
   {
+    img: "/images/sandiego.webp",
+    city: "San Diego",
+    state: "California",
+  },
+  {
     img: "/images/orangecounty.webp",
     city: "Orange County",
     state: "California",
@@ -199,7 +204,13 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        Welcome to dog friendly travel with Romingo! When you book your next dog friendly hotel with Romingo, you and your canine companion will experience top-notch service and luxury hotel accommodations. All reservations made on Romingo include waived pet fees, up to 2 dogs weighing 75 lbs. each, and dog beds, bowls, and treats upon arrival.
+                        Welcome to dog friendly travel with Romingo! When you
+                        book your next dog friendly hotel with Romingo, you and
+                        your canine companion will experience top-notch service
+                        and luxury hotel accommodations. All reservations made
+                        on Romingo include waived pet fees, up to 2 dogs
+                        weighing 75 lbs. each, and dog beds, bowls, and treats
+                        upon arrival.
                       </Typography>
                     </Box>
                   </Box>
@@ -287,7 +298,15 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        Romingo partners with hand-selected, luxury hotels that ensure you will have a pleasant and memorable experience while visiting with your pup. We’re committed to creating a future where you never have to leave your canine companion alone again, which is why we offer the highest quality dog friendly solution for your travel needs. Romingo is revolutionizing dog friendly travel, and we invite you to book your next dog friendly trip with Romingo today!
+                        Romingo partners with hand-selected, luxury hotels that
+                        ensure you will have a pleasant and memorable experience
+                        while visiting with your pup. We’re committed to
+                        creating a future where you never have to leave your
+                        canine companion alone again, which is why we offer the
+                        highest quality dog friendly solution for your travel
+                        needs. Romingo is revolutionizing dog friendly travel,
+                        and we invite you to book your next dog friendly trip
+                        with Romingo today!
                       </Typography>
                     </Box>
                   </Box>
@@ -299,15 +318,16 @@ const HomePage: FC<Props> = ({
       </Box>
       <Box>
         <Container>
-          <Grid 
-            container
-            spacing={{ sm: 3, md: 5 }}
-            sx={{ py: 2 }}
-          >
-            <Grid item xs={12} sm={6} md={3}
+          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ py: 2 }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
               sx={{
-                textAlign: "center"
-              }}>
+                textAlign: "center",
+              }}
+            >
               <Box
                 component="img"
                 src={"./images/icons/bestAvailableRate.svg"}
@@ -319,7 +339,7 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Best Available Rates
@@ -327,16 +347,23 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body2"
                 sx={{
-                  mt: 1
+                  mt: 1,
                 }}
               >
-                Romingo works closely with our hotel partners to provide you with the best available room rates on the market.  You will get the best deal with Romingo!
+                Romingo works closely with our hotel partners to provide you
+                with the best available room rates on the market. You will get
+                the best deal with Romingo!
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
               sx={{
-                textAlign: "center"
-              }}>
+                textAlign: "center",
+              }}
+            >
               <Box
                 component="img"
                 src={"./images/icons/noPetFees.svg"}
@@ -348,7 +375,7 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 No Hidden Pet Fees
@@ -356,16 +383,22 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body2"
                 sx={{
-                  mt: 1
+                  mt: 1,
                 }}
               >
-                Unlike other booking sites that charge you costly pet fees, you will never pay for hotel pet fees when you book on Romingo!
+                Unlike other booking sites that charge you costly pet fees, you
+                will never pay for hotel pet fees when you book on Romingo!
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
               sx={{
-                textAlign: "center"
-              }}>
+                textAlign: "center",
+              }}
+            >
               <Box
                 component="img"
                 src={"./images/icons/customService.svg"}
@@ -377,7 +410,7 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Customer Service
@@ -385,16 +418,23 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body2"
                 sx={{
-                  mt: 1
+                  mt: 1,
                 }}
               >
-                Our responsive and kind guest support teams are here for you and your canine companion. We are accessible via chat, email, and social media if you ever need to get ahold of us!
+                Our responsive and kind guest support teams are here for you and
+                your canine companion. We are accessible via chat, email, and
+                social media if you ever need to get ahold of us!
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={3}
               sx={{
-                textAlign: "center"
-              }}>
+                textAlign: "center",
+              }}
+            >
               <Box
                 component="img"
                 src={"./images/icons/romingoScore.svg"}
@@ -406,7 +446,7 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 Romingo Score
@@ -414,10 +454,13 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="body2"
                 sx={{
-                  mt: 1
+                  mt: 1,
                 }}
               >
-                Every hotel listed on Romingo features a unique and proprietary Romingo Score. Our algorithms generate this score based on guest reviews, pet amenities, and proximity to dog-friendly parks and restaurants.
+                Every hotel listed on Romingo features a unique and proprietary
+                Romingo Score. Our algorithms generate this score based on guest
+                reviews, pet amenities, and proximity to dog-friendly parks and
+                restaurants.
               </Typography>
             </Grid>
           </Grid>
