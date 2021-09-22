@@ -5,7 +5,6 @@ import Check from "@mui/icons-material/Check";
 import Link from "@mui/material/Link";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import Chip from "@mui/material/Chip";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -24,9 +23,9 @@ interface Activity {
   id: string;
   location: {
     latitude: number;
-    longitude: number
-  },
-  price: number
+    longitude: number;
+  };
+  price: number;
 }
 
 interface Props {
@@ -35,7 +34,6 @@ interface Props {
 }
 
 const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
-
   const [showDialog, setShowDialog] = useState(false);
 
   const [popActivity, setPopActivity] = useState<Activity>({
@@ -43,7 +41,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
     overview: "",
     activityType: {
       id: 0,
-      name: ""
+      name: "",
     },
     addressLine1: "",
     desc: "",
@@ -51,14 +49,14 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
     id: "",
     location: {
       latitude: 0,
-      longitude: 0
+      longitude: 0,
     },
-    price: 0
+    price: 0,
   });
 
   const handleClose = () => {
     setShowDialog(false);
-  }
+  };
 
   return (
     <Box
@@ -104,14 +102,21 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
                 paddingLeft: "8px",
               }}
             >
-              {item.name}({utils.meterToMile(item?.distanceInMeters)} mi)  
-              <Link href="#" onClick={e => {
-                e.preventDefault();
-                e.stopPropagation();
-                setPopActivity({...nearby[key]});
-                setShowDialog(true);
-              }}>
-                more details
+              {item.name}
+              <span style={{ fontWeight: "bold" }}>
+                {" "}
+                {utils.meterToMile(item?.distanceInMeters)}mi{" "}
+              </span>
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setPopActivity({ ...nearby[key] });
+                  setShowDialog(true);
+                }}
+              >
+                details
               </Link>
             </Typography>
           </Box>
@@ -132,7 +137,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
           sx={{
             textAlign: "center",
             color: "primary.main",
-            py: 1
+            py: 1,
           }}
         >
           {popActivity["name"]}
@@ -155,28 +160,33 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
               variant="body1"
               sx={{
                 color: "text.secondary",
-                textAlign: "center"
+                textAlign: "center",
               }}
             >
               {popActivity["overview"]}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "text.secondary",
-                py: 0.5,
-                textAlign: "center"
-              }}
+            <Link
+              href={`https://maps.google.com/?q=${popActivity["addressLine1"]}`}
+              target="_blank"
             >
-              {popActivity["addressLine1"]}
-            </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "text.secondary",
+                  py: 0.5,
+                  textAlign: "center",
+                }}
+              >
+                {popActivity["addressLine1"]}
+              </Typography>
+            </Link>
           </Box>
           <Box py={1}>
             <Typography
               variant="body1"
               sx={{
                 color: "text.secondary",
-                textAlign: "left"
+                textAlign: "left",
               }}
             >
               {popActivity["desc"]}
@@ -185,7 +195,7 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
               variant="body1"
               sx={{
                 color: "secondary.main",
-                textAlign: "left"
+                textAlign: "left",
               }}
             >
               Cost: ${popActivity["price"]}
