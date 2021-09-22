@@ -1,8 +1,15 @@
 /*global google*/
 import { FC, useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
+import Box from "@mui/material/Typography";
 import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 
@@ -13,6 +20,7 @@ interface Props {
   markers?: {
     lat: number;
     lng: number;
+    type: string;
     label?: string;
   }[];
   markerClickCallBack?: (index: number) => void;
@@ -32,7 +40,7 @@ const Map: FC<Props> = ({
   markers,
   markerClickCallBack,
   selectedMarker,
-  zoom = 10
+  zoom = 10,
 }) => {
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
@@ -49,7 +57,7 @@ const Map: FC<Props> = ({
   });
 
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA"
+    googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
   });
 
   const size = useWindowSize();
@@ -80,7 +88,7 @@ const Map: FC<Props> = ({
   const [showInfo, setShowInfo] = useState(false);
   const [showInfoPosition, setShowInfoPostion] = useState({
     lat: 0,
-    lng: 0
+    lng: 0,
   });
 
   const [showInfoContents, setShowInfoContents] = useState("");
@@ -90,67 +98,100 @@ const Map: FC<Props> = ({
       mapContainerStyle={containerStyle}
       center={center}
       options={mapOptions}
-      zoom={(size.width > 720) ? zoom : (zoom - 1)}
+      zoom={size.width > 720 ? zoom : zoom - 1}
     >
       {markers !== undefined &&
         markers.map((marker, key) => {
-          return (
-            <Marker
-              position={marker}
-              animation={2}
-              key={key}
-              icon={{
-                url: "/images/icons/hotel_marker.svg",
-                scaledSize: new google.maps.Size(35, 35)
-              }}
-              onClick={(e: google.maps.MapMouseEvent) => {
-                if (markerClickCallBack) return markerClickCallBack(key);
-                else if (marker.label) {
-                  setShowInfoPostion({
-                    lat: marker.lat,
-                    lng: marker.lng
-                  });
-                  setShowInfo(true);
-                  setShowInfoContents(marker.label);
+          if (marker.type === "hotel") {
+            return (
+              <Marker
+                position={marker}
+                animation={2}
+                key={key}
+                icon={{
+                  url: "/images/icons/hotel_marker.svg",
+                  scaledSize: new google.maps.Size(35, 35),
+                }}
+                onClick={(e: google.maps.MapMouseEvent) => {
+                  if (markerClickCallBack) return markerClickCallBack(key);
+                  else if (marker.label) {
+                    setShowInfoPostion({
+                      lat: marker.lat,
+                      lng: marker.lng,
+                    });
+                    setShowInfo(true);
+                    setShowInfoContents(marker.label);
+                  } else return null;
+                }}
+                opacity={
+                  selectedMarker !== undefined && selectedMarker === key
+                    ? 1
+                    : 0.5
                 }
-                else return null;
-              }}
-              opacity={
-                selectedMarker !== undefined && selectedMarker === key
-                  ? 1
-                  : 0.5
-              }
-            />
-          );
+              />
+            );
+          } else {
+            return (
+              <Marker
+                position={marker}
+                animation={2}
+                key={key}
+                icon={{
+                  url: "/images/icons/google-map-potty-park.svg",
+                  scaledSize: new google.maps.Size(30, 30),
+                }}
+                onClick={(e: google.maps.MapMouseEvent) => {
+                  if (markerClickCallBack) return markerClickCallBack(key);
+                  else if (marker.label) {
+                    setShowInfoPostion({
+                      lat: marker.lat,
+                      lng: marker.lng,
+                    });
+                    setShowInfo(true);
+                    setShowInfoContents(marker.label);
+                  } else return null;
+                }}
+              />
+            );
+          }
         })}
-        {showInfo && (<InfoWindow
+      {showInfo && (
+        <InfoWindow
           position={showInfoPosition}
           onCloseClick={() => {
             setShowInfo(false);
           }}
         >
-          <Typography
-            variant="body1"
-            sx={{
-              color: "secondary.main"
-            }}
-          >
-            {showInfoContents}
-          </Typography>
-        </InfoWindow>)}
+          <Box sx={{ px: 1, py: 0 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "primary.main",
+                fontSize: "80%",
+              }}
+            >
+              {showInfoContents}
+            </Typography>
+          </Box>
+        </InfoWindow>
+      )}
     </GoogleMap>
   );
 
   if (loadError) {
-    return <div>Map cannot be loaded right now, sorry.</div>
+    return <div>Map cannot be loaded right now, sorry.</div>;
   }
 
-  return isLoaded ? renderMap() : <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height="100%"
-          width="100%"
-        />
+  return isLoaded ? (
+    renderMap()
+  ) : (
+    <Skeleton
+      variant="rectangular"
+      animation="wave"
+      height="100%"
+      width="100%"
+    />
+  );
 };
 
 export default Map;

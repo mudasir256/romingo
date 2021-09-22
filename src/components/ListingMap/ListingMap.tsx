@@ -15,6 +15,7 @@ interface Props {
   markers?: {
     lat: number;
     lng: number;
+    type: string;
   }[];
   name: string;
   location: string;

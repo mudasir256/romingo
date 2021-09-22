@@ -79,9 +79,9 @@ interface Props {
   }[];
   amenitiesTitle: string;
   amenities: string[];
-  nearby: { 
-    name: string; 
-    distanceInMeters: number 
+  nearby: {
+    name: string;
+    distanceInMeters: number;
   }[];
   rooms: RoomInfo[];
   match: any;
@@ -155,7 +155,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     name: "",
   });
 
-  const [markers, setMarkers] = useState<{lat: number; lng: number, label: string}[]>([]);
+  const [markers, setMarkers] = useState<
+    { lat: number; lng: number; type: string; label: string }[]
+  >([]);
 
   useEffect(() => {
     if (data && data.property) {
@@ -200,15 +202,17 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       markers.push({
         lat: data.property.location.latitude,
         lng: data.property.location.longitude,
-        label: data.property.name
+        type: "hotel",
+        label: data.property.name,
       });
 
       data.property.nearbyActivities.map((activity: any) => {
         markers.push({
           lat: activity.location.latitude,
           lng: activity.location.longitude,
-          label: activity.name
-        })
+          type: activity?.activityType?.name,
+          label: activity.name,
+        });
       });
 
       setMarkers([...markers]);
