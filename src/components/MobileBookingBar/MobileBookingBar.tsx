@@ -19,6 +19,7 @@ interface Props {
   roomList: {
     value: number;
     description: string;
+    price: number;
   }[];
 }
 

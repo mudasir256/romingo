@@ -43,6 +43,7 @@ interface MapLocation {
   lat: number;
   lng: number;
   type: string;
+  price: number;
 }
 
 const ScrollBarRef = React.createRef<HTMLDivElement>();
@@ -102,6 +103,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         lat: card.location.latitude,
         lng: card.location.longitude,
         type: "hotel",
+        price: card.lowestAveragePrice
       };
     }
   );

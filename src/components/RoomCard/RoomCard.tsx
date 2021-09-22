@@ -110,6 +110,7 @@ const RoomCard: FC<Props> = ({
   bestRate = false,
   cancellationPolicy,
   feesIncluded,
+  type,
   ...props
 }) => {
   const [showDialog, setShowDialog] = useState(false);
@@ -139,9 +140,10 @@ const RoomCard: FC<Props> = ({
 
   const [roomTitle, setRoomTitle] = useState("");
 
-  let roomDescription = "";
-
   useEffect(() => {
+
+    let roomDescription = "";
+
     beds.map((bed) => {
       if (roomDescription !== "") roomDescription += " + ";
 
@@ -149,6 +151,8 @@ const RoomCard: FC<Props> = ({
         bed.count > 1 ? "s" : ""
       }`;
     });
+
+    roomDescription = (type ? (type + " - ") : "") + roomDescription;
 
     setRoomTitle(roomDescription);
   }, []);
@@ -240,6 +244,8 @@ const RoomCard: FC<Props> = ({
           sx={{
             color: "text.secondary",
             textAlign: "center",
+            fontSize: "1.1rem",
+            letterSpacing: 0
           }}
         >
           {roomTitle}

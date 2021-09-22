@@ -1,4 +1,4 @@
-import { FC, useState, MouseEventHandler, useEffect } from "react";
+import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Container from "@mui/material/Container";
@@ -125,7 +125,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  const { cancellation, cancelPenalty, roomList } = useSelector(
+  const { cancellation, cancelPenalty } = useSelector(
     (state: any) => state.hotelDetailReducer.detail
   );
 
@@ -145,6 +145,14 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [nearby, setNearby] = useState([]);
 
   const [rooms, setRooms] = useState<RoomInfo[]>([]);
+
+  const [roomDropDown, setRoomDropDown] = useState<
+    {
+      value: number;
+      description: string;
+      price: number
+    }[]
+  >([]);
 
   const [city, setCity] = useState({
     center: {
@@ -172,7 +180,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setCity({ ...data.property.city });
       setNeighborhood(data.property.neighborhood);
 
-      const tmp: any[] = [];
+      let tmp: any[] = [];
       data.property.sabreImageURLs.map((image: string) => {
         tmp.push(image);
       });
@@ -214,6 +222,31 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           label: activity.name,
         });
       });
+
+      tmp = [];
+
+      data.property.rooms.map((room: any, key: number) => {
+
+        let roomDescription = "";
+
+        room.beds.map((bed: any) => {
+          if (roomDescription !== "") roomDescription += " + ";
+
+          roomDescription += `${bed.count} ${bed.desc} ${bed.__typename}${
+            bed.count > 1 ? "s" : ""
+          }`;
+        });
+
+        roomDescription = (room.type ? (room.type + " - ") : "") + roomDescription;
+
+        tmp.push({
+          value: key,
+          description: roomDescription,
+          price: room.averagePrice
+        });
+      });
+
+      setRoomDropDown([...tmp]);
 
       setMarkers([...markers]);
     }
@@ -267,6 +300,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   };
 
   const history = useHistory();
+
+  const RateCardRef = React.createRef<HTMLDivElement>();
+
+  const goToRateScroll = () => {
+    const top = RateCardRef?.current?.offsetTop || 0;
+    window.scrollTo(0, top);
+  }
 
   return (
     <>
@@ -520,7 +560,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     position: "sticky",
                     top: "1rem",
                   }}
-                  roomList={roomList}
+                  roomList={roomDropDown}
+                  goToRate={goToRateScroll}
                 />
               </Hidden>
               <Hidden mdUp>
@@ -541,13 +582,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >
                   <ArrowBackIcon sx={{ fontSize: 16 }} />
                 </Fab>
-                <MobileBookingBar roomList={roomList} />
+                <MobileBookingBar roomList={roomDropDown} />
               </Hidden>
             </Grid>
           </Grid>
         )}
         {!loading && (
-          <Grid container sx={{ mt: 0, maxWidth: "100%" }}>
+          <Grid container sx={{ mt: 0, maxWidth: "100%" }} ref={RateCardRef}>
             <Grid item xs={12}>
               <Typography
                 variant="h4"

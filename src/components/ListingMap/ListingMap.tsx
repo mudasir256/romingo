@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { CSSObject } from "@mui/material";
 import Link from "@mui/material/Link";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
-import Map from "../UI/Map/Map";
+import ListingPageMap from "../UI/Map/ListingPageMap";
 import Skeleton from "@mui/material/Skeleton";
 import Hidden from "@mui/material/Hidden";
 
@@ -16,6 +16,7 @@ interface Props {
     lat: number;
     lng: number;
     type: string;
+    price: number;
   }[];
   name: string;
   location: string;
@@ -67,7 +68,7 @@ const ListingMap: FC<Props> = ({
         />
       ) : (
         <>
-          <Map
+          <ListingPageMap
             center={center}
             width={"100%"}
             markers={markers}

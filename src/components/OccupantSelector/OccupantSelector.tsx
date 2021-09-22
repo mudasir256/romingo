@@ -18,6 +18,7 @@ export interface Occupant {
   children: number;
   dogs: number;
   childrenAge?: number[];
+  disabled?: boolean;
 }
 
 interface Props {
@@ -27,6 +28,7 @@ interface Props {
   fullWidth?: boolean;
   size?: "small" | "medium" | undefined;
   variant?: "filled" | "outlined" | "standard" | undefined;
+  disabled?: boolean;
 }
 
 const OccupantSelector: FC<Props> = ({
@@ -36,11 +38,14 @@ const OccupantSelector: FC<Props> = ({
   fullWidth = true,
   size = "medium",
   variant = "outlined",
+  disabled=false
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
 
   const handleClick: MouseEventHandler<Element> = (event) => {
+    if (disabled)
+      return;
     setAnchorEl(event.currentTarget);
   };
 
@@ -62,6 +67,7 @@ const OccupantSelector: FC<Props> = ({
         }}
         onClick={handleClick}
         ref={ref}
+        disabled={disabled}
       />
       <Popover
         open={Boolean(anchorEl)}

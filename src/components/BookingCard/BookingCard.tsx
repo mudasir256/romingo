@@ -1,4 +1,4 @@
-import { FC, useState, MouseEventHandler } from "react";
+import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -17,34 +17,54 @@ import Typography from "@mui/material/Typography";
 import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
+import Link from "@mui/material/Link";
+
+import {
+  useSelector,
+  shallowEqual,
+} from "react-redux";
+import { Dispatch } from "redux";
 
 interface Props {
   sx?: CSSObject;
   roomList: {
     value: number;
     description: string;
+    price: number;
   }[];
+  goToRate?: () => void;
 }
 
-const BookingCard: FC<Props> = ({ sx, roomList }) => {
+const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   const history = useHistory();
-  const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
   const [roomType, setRoomType] = useState("0");
-  const [occupants, setOccupants] = useState({
-    adults: 2,
-    children: 0,
-    dogs: 1,
-  });
-
-  const onOccupantChange = (value: Occupant) => {
-    setOccupants(value);
-  };
+  const [pricePerNight, setPricePerNight] = useState(roomList[0].price);
 
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
     history.push("/checkout");
   };
+
+  const search = useSelector(
+    (state: any) => state.searchReducer.search,
+    shallowEqual
+  );
+
+  const [value, setValue] = useState<RangeInput<Date | null>>([
+    search.checkIn ? search.checkIn : null,
+    search.checkOut ? search.checkOut : null,
+  ]);
+
+  const occupants = {...search.occupants};
+
+  useEffect(() => {
+    for (let i = 0; i < roomList.length; i ++) {
+      if (roomList[i].value === parseInt(roomType)) {
+        setPricePerNight(roomList[i].price);
+      }
+    }
+  }, [roomType])
 
   return (
     <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, p: 2 }}>
@@ -57,9 +77,6 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
               calendars={1}
               allowSameDateSelection={false}
               value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
               renderInput={(startProps, endProps) => (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
@@ -70,18 +87,26 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
                   </Grid>
                 </Grid>
               )}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              disabled
             />
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
-          <OccupantSelector value={occupants} onChange={onOccupantChange} />
+          <OccupantSelector value={occupants} onChange={() => {
+            return;
+          }} disabled={true} />
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel>Room Type</InputLabel>
             <Select
               value={roomType}
-              onChange={(e) => setRoomType(e.target.value)}
+              onChange={(e) => {
+                setRoomType(e.target.value);
+              }}
               label="Room Type"
             >
               {roomList.map((room, key) => {
@@ -104,7 +129,7 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h5">$139.99</Typography>
+          <Typography variant="h5">${pricePerNight}</Typography>
           <Typography variant="body1" sx={{ ml: 1 }}>
             / night
           </Typography>
@@ -118,6 +143,21 @@ const BookingCard: FC<Props> = ({ sx, roomList }) => {
         >
           <Typography variant="h6">Book Now</Typography>
         </Button>
+        <Link href="#" onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (goToRate)
+            goToRate();
+        }}>
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 1
+            }}
+          >
+            View All Rates
+          </Typography>
+        </Link>
       </Box>
     </Box>
   );

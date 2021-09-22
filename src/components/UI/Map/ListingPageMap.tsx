@@ -21,8 +21,7 @@ interface Props {
     lat: number;
     lng: number;
     type: string;
-    label?: string;
-    price?: number;
+    price: number;
   }[];
   markerClickCallBack?: (index: number) => void;
   selectedMarker?: number;
@@ -34,7 +33,7 @@ interface Size {
   height: string | number | undefined;
 }
 
-const Map: FC<Props> = ({
+const ListingPageMap: FC<Props> = ({
   center,
   height,
   width,
@@ -62,6 +61,8 @@ const Map: FC<Props> = ({
   });
 
   const size = useWindowSize();
+
+  const minimumPrice = markers?.reduce((a, b) => a.price < b.price ? a : b);
 
   useEffect(() => {
     if (!height && !width) {
@@ -103,59 +104,25 @@ const Map: FC<Props> = ({
     >
       {markers !== undefined &&
         markers.map((marker, key) => {
-          if (marker.type === "hotel") {
-            return (
-              <Marker
-                position={marker}
-                animation={2}
-                key={key}
-                icon={{
-                  url: "/images/icons/hotel_marker.svg",
-                  scaledSize: new google.maps.Size(35, 35),
-                }}
-                onClick={(e: google.maps.MapMouseEvent) => {
-                  if (markerClickCallBack) return markerClickCallBack(key);
-                  else if (marker.label) {
-                    setShowInfoPostion({
-                      lat: marker.lat,
-                      lng: marker.lng,
-                    });
-                    setShowInfo(true);
-                    setShowInfoContents(marker.label);
-                  } else return null;
-                }}
-                opacity={
-                  selectedMarker !== undefined && selectedMarker === key
-                    ? 1
-                    : 0.5
-                }
-                label={marker.price ? Math.round(marker.price).toString() : ""}
-              />
-            );
-          } else {
-            return (
-              <Marker
-                position={marker}
-                animation={2}
-                key={key}
-                icon={{
-                  url: "/images/icons/google-map-potty-park.svg",
-                  scaledSize: new google.maps.Size(30, 30),
-                }}
-                onClick={(e: google.maps.MapMouseEvent) => {
-                  if (markerClickCallBack) return markerClickCallBack(key);
-                  else if (marker.label) {
-                    setShowInfoPostion({
-                      lat: marker.lat,
-                      lng: marker.lng,
-                    });
-                    setShowInfo(true);
-                    setShowInfoContents(marker.label);
-                  } else return null;
-                }}
-              />
-            );
-          }
+          return (
+            <Marker
+              position={marker}
+              animation={2}
+              key={key}
+              icon={{
+                url: (minimumPrice?.price === marker.price) ? "/images/icons/black_marker.svg" : ((selectedMarker !== undefined && selectedMarker === key) ? "/images/icons/white_marker.svg" : "/images/icons/gray_marker.svg"),
+                scaledSize: new google.maps.Size(35, 35),
+              }}
+              onClick={(e: google.maps.MapMouseEvent) => {
+                if (markerClickCallBack) return markerClickCallBack(key);
+                else return null;
+              }}
+              label={(marker.price === minimumPrice?.price) ? {
+                text: "$" + Math.round(marker.price).toString(),
+                color: "white"
+              } : "$" + Math.round(marker.price).toString()}
+            />
+          )
         })}
       {showInfo && (
         <InfoWindow
@@ -196,4 +163,4 @@ const Map: FC<Props> = ({
   );
 };
 
-export default Map;
+export default ListingPageMap;
