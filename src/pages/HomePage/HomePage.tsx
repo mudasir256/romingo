@@ -199,17 +199,7 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        Say hello to your new best friend for dog-friendly
-                        travel! When you book with us, you’re strolling into the
-                        top dog-friendly hotels that will truly welcome you and
-                        your pup with open arms. Thanks to the Romingo Guarantee
-                        (yes, the one that waives all pet fees!), we’re
-                        redefining what “pet-friendly” actually means so that
-                        you can finally have a stress-free adventure with your
-                        canine companions. We’re excited to announce our launch
-                        in California’s most popular travel destinations: Los
-                        Angeles, San Diego, San Francisco, Orange County, Santa
-                        Barbara, and Palm Springs!
+                        Welcome to dog friendly travel with Romingo! When you book your next dog friendly hotel with Romingo, you and your canine companion will experience top-notch service and luxury hotel accommodations. All reservations made on Romingo include waived pet fees, up to 2 dogs weighing 75 lbs. each, and dog beds, bowls, and treats upon arrival.
                       </Typography>
                     </Box>
                   </Box>
@@ -297,19 +287,7 @@ const HomePage: FC<Props> = ({
                           mt: 1,
                         }}
                       >
-                        You can trust in the quality of the dog-friendly hotels
-                        with Romingo. Each hotel we offer you is hand-selected,
-                        vetted, and approved by our team of dog-travel experts.
-                        With all the millions of dogs that were adopted and/or
-                        fostered during the pandemic, we wanted to create a
-                        future where people never have to leave their pets alone
-                        again. We believe traveling with our beloved pets should
-                        not have to be inconvenient, which is why our goal is to
-                        offer a pleasant, pet-friendly solution for your travel
-                        experiences. In the future, we will be expanding across
-                        the United States to a destination near you. Romingo is
-                        revolutionizing dog-friendly travel, and we would love
-                        to bring you along for the ride!
+                        Romingo partners with hand-selected, luxury hotels that ensure you will have a pleasant and memorable experience while visiting with your pup. We’re committed to creating a future where you never have to leave your canine companion alone again, which is why we offer the highest quality dog friendly solution for your travel needs. Romingo is revolutionizing dog friendly travel, and we invite you to book your next dog friendly trip with Romingo today!
                       </Typography>
                     </Box>
                   </Box>
