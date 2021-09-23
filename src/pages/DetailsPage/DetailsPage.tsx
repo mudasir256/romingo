@@ -33,7 +33,6 @@ import AmenitiesCard from "../../components/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import ActivitiesNearby from "../../components/ActivitiesNearby";
-import CancelPolicy from "../../components/CancelPolicy";
 import FilterBar from "../../components/FilterBar";
 import RoomCard from "../../components/RoomCard";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
@@ -349,14 +348,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           <FilterBar />
         </Box>
       </Hidden>
-      {loading && (
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          height="100%"
-          width="100%"
-        />
-      )}
       {!loading && (
         <Box
           component="img"
@@ -375,6 +366,21 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           }}
         />
       )}
+      {loading && (
+        <Hidden mdUp>
+          <Skeleton
+            variant="rectangular"
+            animation="wave"
+            sx={{
+              height: { xs: "200px", sm: "300px" },
+              objectFit: "cover",
+              mx: "0px",
+              px: 0,
+              width: "100%",
+            }}
+          />
+        </Hidden>
+      )}
       <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
         <Grid
           container
@@ -385,12 +391,17 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         >
           <Grid item xs={12} sm={6}>
             {loading && (
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                height="100%"
-                width="100%"
-              />
+              <Hidden mdDown>
+                <Skeleton
+                  variant="rectangular"
+                  animation="wave"
+                  sx={{
+                    height: { xs: "150px", sm: "375px" },
+                    objectFit: "cover",
+                    width: "100%",
+                  }}
+                />
+              </Hidden>
             )}
             {!loading && (
               <Box
@@ -475,12 +486,20 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Box>
         </Grid>
         {loading && (
-          <Skeleton
-            variant="rectangular"
-            animation="wave"
-            height="100%"
-            width="100%"
-          />
+          <>
+            <Skeleton
+              animation="wave"
+              width={250}
+              height={55}
+              sx={{ mt: 2, mb: 0 }}
+            />
+            <Skeleton
+              animation="wave"
+              width={330}
+              height={80}
+              sx={{ mt: -2 }}
+            />
+          </>
         )}
         {!loading && (
           <Grid container spacing={2} sx={{ mt: 0 }}>
