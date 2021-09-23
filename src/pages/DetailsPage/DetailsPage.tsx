@@ -150,7 +150,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     {
       value: number;
       description: string;
-      price: number
+      price: number;
     }[]
   >([]);
 
@@ -226,7 +226,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       tmp = [];
 
       data.property.rooms.map((room: any, key: number) => {
-
         let roomDescription = "";
 
         room.beds.map((bed: any) => {
@@ -237,12 +236,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           }`;
         });
 
-        roomDescription = (room.type ? (room.type + " - ") : "") + roomDescription;
+        roomDescription =
+          (room.type ? room.type + " - " : "") + roomDescription;
 
         tmp.push({
           value: key,
           description: roomDescription,
-          price: room.averagePrice
+          price: room.averagePrice,
         });
       });
 
@@ -306,7 +306,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const goToRateScroll = () => {
     const top = RateCardRef?.current?.offsetTop || 0;
     window.scrollTo(0, top);
-  }
+  };
 
   return (
     <>
@@ -612,6 +612,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     >
                       <RoomCard
                         key={key}
+                        bestRate={key === 0 ? true : false}
                         HotelName={name}
                         sx={{
                           minWidth: "300px",

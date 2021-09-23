@@ -38,6 +38,12 @@ const ListingPageMap: FC<Props> = ({
   });
   const [localCenter, setLocalCenter] = useState(center);
 
+  useEffect(() => {
+    if (center.lat !== localCenter.lat) {
+      setLocalCenter(center);
+    }
+  }, [center]);
+
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
     height: window.innerHeight,

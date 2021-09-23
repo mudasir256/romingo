@@ -141,7 +141,6 @@ const RoomCard: FC<Props> = ({
   const [roomTitle, setRoomTitle] = useState("");
 
   useEffect(() => {
-
     let roomDescription = "";
 
     beds.map((bed) => {
@@ -152,7 +151,7 @@ const RoomCard: FC<Props> = ({
       }`;
     });
 
-    roomDescription = (type ? (type + " - ") : "") + roomDescription;
+    roomDescription = (type ? type + " - " : "") + roomDescription;
 
     setRoomTitle(roomDescription);
   }, []);
@@ -164,6 +163,7 @@ const RoomCard: FC<Props> = ({
         minHeight: "150px",
         flex: 1,
         backgroundColor: "lightBackground.main",
+        boxShadow: bestRate ? 4 : 2,
       }}
     >
       <Box
@@ -177,7 +177,7 @@ const RoomCard: FC<Props> = ({
           variant="body1"
           sx={{
             color: "white",
-            backgroundColor: bestRate ? "info.main" : "secondary.main",
+            backgroundColor: bestRate ? "primary.main" : "secondary.main",
             fontWeight: 800,
             borderRadius: 1,
             p: 0.75,
@@ -254,7 +254,7 @@ const RoomCard: FC<Props> = ({
             color: "text.secondary",
             textAlign: "center",
             fontSize: "1.1rem",
-            letterSpacing: 0
+            letterSpacing: 0,
           }}
         >
           {roomTitle}
