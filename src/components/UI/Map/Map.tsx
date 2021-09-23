@@ -154,7 +154,7 @@ const Map: FC<Props> = ({
         })}
       {showInfo && (
         <InfoWindow
-          position={center}
+          position={showInfoPosition}
           onCloseClick={() => {
             setShowInfo(false);
           }}
