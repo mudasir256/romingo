@@ -36,7 +36,7 @@ const ListingPageMap: FC<Props> = ({
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
   });
-  const [updated, setUpdated] = useState(false);
+  const [localCenter, setLocalCenter] = useState(center);
 
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
@@ -80,9 +80,8 @@ const ListingPageMap: FC<Props> = ({
   const renderMap = () => (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={updated ? null : center}
-      onCenterChanged={() => setUpdated(true)}
-      onZoomChanged={() => setUpdated(true)}
+      center={localCenter}
+      onCenterChanged={() => setLocalCenter(localCenter)}
       options={mapOptions}
       zoom={size.width > 720 ? zoom : zoom - 1}
     >
@@ -96,7 +95,7 @@ const ListingPageMap: FC<Props> = ({
               zIndex={
                 selectedMarker !== undefined && selectedMarker === key
                   ? 1000
-                  : 999
+                  : Math.random() * 100
               }
               icon={{
                 url:
