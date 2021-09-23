@@ -226,6 +226,15 @@ const RoomCard: FC<Props> = ({
                     }}
                   />
                 )}
+                {bed.desc === "Double" && (
+                  <KingBedOutlinedIcon
+                    sx={{
+                      fontSize: { xs: "25px", md: "28px" },
+                      transform: "scale(0.85, 0.9)",
+                      p: 0.5,
+                    }}
+                  />
+                )}
               </React.Fragment>
             ));
           })}
@@ -575,16 +584,17 @@ const RoomCard: FC<Props> = ({
           sx={{
             textAlign: "center",
             color: "primary.main",
+            py: 0.5
           }}
         >
-          {desc}
+          {roomTitle}
           <IconButton
             aria-label="close"
             onClick={handleClose}
             sx={{
               position: "absolute",
+              top: 0,
               right: 8,
-              top: 8,
               color: (theme) => theme.palette.grey[500],
             }}
           >
@@ -593,6 +603,17 @@ const RoomCard: FC<Props> = ({
         </DialogTitle>
         <DialogContent>
           <Box>
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: "bold",
+                color: "secondary.main",
+                mt: 1,
+                textAlign: "justify"
+              }}
+            >
+              {desc}
+            </Typography>
             <Typography
               variant="body1"
               sx={{
