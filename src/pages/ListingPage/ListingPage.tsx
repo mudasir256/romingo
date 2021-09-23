@@ -268,6 +268,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               amenities={cards[hotelIndex]?.dogAmenities}
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
+              id={cards[hotelIndex]?.id}
             />
           )
         )}

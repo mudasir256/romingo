@@ -1,6 +1,10 @@
-import { FC, useState, MouseEventHandler } from "react";
+import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import {
+  useSelector,
+  shallowEqual,
+} from "react-redux";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
@@ -25,13 +29,26 @@ interface Props {
 
 const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const history = useHistory();
-  const [value, setValue] = useState<RangeInput<Date | null>>([null, null]);
   const [roomType, setRoomType] = useState("0");
-  const [occupants, setOccupants] = useState({
-    adults: 2,
-    children: 0,
-    dogs: 1,
-  });
+  // const [occupants, setOccupants] = useState({
+  //   adults: 2,
+  //   children: 0,
+  //   dogs: 1,
+  // });
+
+  const search = useSelector(
+    (state: any) => state.searchReducer.search,
+    shallowEqual
+  );
+
+  const [value, setValue] = useState<RangeInput<Date | null>>([
+    search.checkIn ? search.checkIn : null,
+    search.checkOut ? search.checkOut : null,
+  ]);
+
+  const occupants = {...search.occupants};
+
+  const [pricePerNight, setPricePerNight] = useState(roomList[0].price);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -44,6 +61,14 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const handleClose = () => {
     setShowPopup(false);
   };
+
+  useEffect(() => {
+    for (let i = 0; i < roomList.length; i ++) {
+      if (roomList[i].value === parseInt(roomType)) {
+        setPricePerNight(roomList[i].price);
+      }
+    }
+  }, [roomType])
 
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -62,8 +87,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   ) => {
     setValue(dateRange);
     setRoomType(roomValue);
-    setOccupants(occupantsValue);
-    setShowPopup(false);
+    // setShowPopup(false);
   };
 
   const dateToString = (isoString: string | Date | number) => {
@@ -172,7 +196,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                       lineHeight: 0,
                     }}
                   >
-                    $139.99
+                    ${pricePerNight}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -244,6 +268,8 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
               roomType,
               occupants,
             }}
+            pricePerNight={pricePerNight}
+            handleClose={handleClose}
           ></MobileBookingForm>
         </DialogContent>
       </Dialog>

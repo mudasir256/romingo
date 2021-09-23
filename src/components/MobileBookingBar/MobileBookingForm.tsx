@@ -45,6 +45,8 @@ interface Props {
       dogs: number;
     };
   };
+  pricePerNight: number;
+  handleClose: () => void;
 }
 
 const MobileBookingForm: FC<Props> = ({
@@ -52,6 +54,8 @@ const MobileBookingForm: FC<Props> = ({
   roomList,
   initialValue,
   handleChange,
+  pricePerNight,
+  handleClose
 }) => {
   const [value, setValue] = useState(initialValue.value);
   const [roomType, setRoomType] = useState(initialValue.roomType);
@@ -83,18 +87,27 @@ const MobileBookingForm: FC<Props> = ({
               </Grid>
             </Grid>
           )}
+          disabled
         />
       </LocalizationProvider>
       <OccupantSelector
         value={occupants}
-        onChange={onOccupantChange}
+        onChange={() => {
+          return;
+        }}
         sx={{ mt: 3 }}
+        disabled
       />
       <FormControl fullWidth sx={{ mt: 3 }}>
         <InputLabel>Room Type</InputLabel>
         <Select
           value={roomType}
-          onChange={(e) => setRoomType(e.target.value)}
+          onChange={(e) => {
+            setRoomType(e.target.value);
+            handleChange(
+              e.target.value, value, occupants
+            );
+          }}
           label="Room Type"
         >
           {roomList.map((room, key) => {
@@ -125,7 +138,7 @@ const MobileBookingForm: FC<Props> = ({
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h6">$139.99</Typography>
+          <Typography variant="h6">${pricePerNight}</Typography>
           <Typography variant="body1" sx={{ ml: 0.5, fontSize: "90%" }}>
             / night
           </Typography>
@@ -142,6 +155,9 @@ const MobileBookingForm: FC<Props> = ({
             right: 0,
             height: "62px",
             boxShadow: 2,
+          }}
+          onClick={() => {
+            handleClose();
           }}
         >
           Save

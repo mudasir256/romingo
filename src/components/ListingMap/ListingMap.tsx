@@ -26,6 +26,7 @@ interface Props {
   amenities?: string[];
   markerClickCallBack: (index: number) => void;
   selectedMarker?: number;
+  id: string;
 }
 
 const ListingMap: FC<Props> = ({
@@ -41,6 +42,7 @@ const ListingMap: FC<Props> = ({
   amenities,
   markerClickCallBack,
   selectedMarker,
+  id
 }) => {
   const history = useHistory();
 
@@ -92,7 +94,7 @@ const ListingMap: FC<Props> = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                history.push("/details/1");
+                history.push("/details/" + id);
               }}
             >
               <Hidden mdUp>
