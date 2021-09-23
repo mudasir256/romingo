@@ -584,7 +584,8 @@ const RoomCard: FC<Props> = ({
           sx={{
             textAlign: "center",
             color: "primary.main",
-            py: 0.5
+            pt: 1.5,
+            pb: 0.5
           }}
         >
           {roomTitle}
@@ -593,7 +594,7 @@ const RoomCard: FC<Props> = ({
             onClick={handleClose}
             sx={{
               position: "absolute",
-              top: 0,
+              top: 8,
               right: 8,
               color: (theme) => theme.palette.grey[500],
             }}
