@@ -163,6 +163,7 @@ const RoomCard: FC<Props> = ({
         minHeight: "150px",
         flex: 1,
         backgroundColor: "lightBackground.main",
+        boxShadow: bestRate ? 4 : 2,
       }}
     >
       <Box
