@@ -124,11 +124,6 @@ const Map: FC<Props> = ({
                     setShowInfoContents(marker.label);
                   } else return null;
                 }}
-                opacity={
-                  selectedMarker !== undefined && selectedMarker === key
-                    ? 1
-                    : 0.5
-                }
                 label={marker.price ? Math.round(marker.price).toString() : ""}
               />
             );

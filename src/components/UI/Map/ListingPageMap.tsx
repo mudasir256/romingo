@@ -1,16 +1,7 @@
-/*global google*/
-import { FC, useState, useEffect } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  Marker,
-  InfoWindow,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import { FC, useState, useEffect, memo } from "react";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
-import Box from "@mui/material/Typography";
-import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 
 interface Props {
@@ -42,6 +33,11 @@ const ListingPageMap: FC<Props> = ({
   selectedMarker,
   zoom = 10,
 }) => {
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
+  });
+  const [updated, setUpdated] = useState(false);
+
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -56,13 +52,7 @@ const ListingPageMap: FC<Props> = ({
     styles: stylesArray,
   });
 
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
-  });
-
   const size = useWindowSize();
-
-  const minimumPrice = markers?.reduce((a, b) => a.price < b.price ? a : b);
 
   useEffect(() => {
     if (!height && !width) {
@@ -87,18 +77,12 @@ const ListingPageMap: FC<Props> = ({
     }
   }, [size]);
 
-  const [showInfo, setShowInfo] = useState(false);
-  const [showInfoPosition, setShowInfoPostion] = useState({
-    lat: 0,
-    lng: 0,
-  });
-
-  const [showInfoContents, setShowInfoContents] = useState("");
-
   const renderMap = () => (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
+      center={updated ? null : center}
+      onCenterChanged={() => setUpdated(true)}
+      onZoomChanged={() => setUpdated(true)}
       options={mapOptions}
       zoom={size.width > 720 ? zoom : zoom - 1}
     >
@@ -109,41 +93,42 @@ const ListingPageMap: FC<Props> = ({
               position={marker}
               animation={2}
               key={key}
+              zIndex={
+                selectedMarker !== undefined && selectedMarker === key
+                  ? 1000
+                  : 999
+              }
               icon={{
-                url: (minimumPrice?.price === marker.price) ? "/images/icons/black_marker.svg" : ((selectedMarker !== undefined && selectedMarker === key) ? "/images/icons/white_marker.svg" : "/images/icons/gray_marker.svg"),
-                scaledSize: new google.maps.Size(35, 35),
+                url:
+                  selectedMarker !== undefined && selectedMarker === key
+                    ? "/images/icons/black_marker.svg"
+                    : "/images/icons/white_marker.svg",
+                scaledSize:
+                  Math.round(marker.price).toString().length === 2
+                    ? new google.maps.Size(37, 37)
+                    : Math.round(marker.price).toString().length === 3
+                    ? new google.maps.Size(40, 40)
+                    : new google.maps.Size(45, 45),
               }}
               onClick={(e: google.maps.MapMouseEvent) => {
                 if (markerClickCallBack) return markerClickCallBack(key);
                 else return null;
               }}
-              label={(marker.price === minimumPrice?.price) ? {
-                text: "$" + Math.round(marker.price).toString(),
-                color: "white"
-              } : "$" + Math.round(marker.price).toString()}
+              label={
+                selectedMarker !== undefined && selectedMarker === key
+                  ? {
+                      text: "$" + Math.round(marker.price).toString(),
+                      fontSize: "13px",
+                      color: "white",
+                    }
+                  : {
+                      text: "$" + Math.round(marker.price).toString(),
+                      fontSize: "13px",
+                    }
+              }
             />
-          )
+          );
         })}
-      {showInfo && (
-        <InfoWindow
-          position={center}
-          onCloseClick={() => {
-            setShowInfo(false);
-          }}
-        >
-          <Box sx={{ px: 1, py: 0 }}>
-            <Typography
-              variant="h6"
-              sx={{
-                color: "primary.main",
-                fontSize: "80%",
-              }}
-            >
-              {showInfoContents}
-            </Typography>
-          </Box>
-        </InfoWindow>
-      )}
     </GoogleMap>
   );
 
@@ -163,4 +148,4 @@ const ListingPageMap: FC<Props> = ({
   );
 };
 
-export default ListingPageMap;
+export default memo(ListingPageMap);
