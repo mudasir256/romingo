@@ -411,13 +411,9 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               <Stack spacing={3} divider={<Divider variant="middle" />}>
                 {cards.map((card: any, index: number) => (
                   <Link
-                    href="#"
+                    href={"/details/" + card.id}
                     key={index}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      history.push("/details/" + card.id);
-                    }}
+                    target="_blank"
                     underline="none"
                     ref={refArray[index]}
                     onMouseOver={(e) => {

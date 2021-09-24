@@ -13,7 +13,6 @@ export const loginUser = (userData: LoginInfo) => (dispatch: UserDispatchType) =
     id: "123412341224",
     email: userData.email
   };
-  console.log(res);
 
   authService.setCredentials(res, res.token);
   dispatch({

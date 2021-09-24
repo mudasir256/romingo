@@ -22,9 +22,7 @@ interface Props {
     lng: number;
     type: string;
     label?: string;
-    price?: number;
   }[];
-  markerClickCallBack?: (index: number) => void;
   selectedMarker?: number;
   zoom?: number;
 }
@@ -39,7 +37,6 @@ const Map: FC<Props> = ({
   height,
   width,
   markers,
-  markerClickCallBack,
   selectedMarker,
   zoom = 10,
 }) => {
@@ -114,17 +111,15 @@ const Map: FC<Props> = ({
                   scaledSize: new google.maps.Size(35, 35),
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {
-                  if (markerClickCallBack) return markerClickCallBack(key);
-                  else if (marker.label) {
+                  if (marker.label) {
                     setShowInfoPostion({
                       lat: marker.lat,
                       lng: marker.lng,
                     });
                     setShowInfo(true);
                     setShowInfoContents(marker.label);
-                  } else return null;
+                  }
                 }}
-                label={marker.price ? Math.round(marker.price).toString() : ""}
               />
             );
           } else {
@@ -138,15 +133,14 @@ const Map: FC<Props> = ({
                   scaledSize: new google.maps.Size(30, 30),
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {
-                  if (markerClickCallBack) return markerClickCallBack(key);
-                  else if (marker.label) {
+                  if (marker.label) {
                     setShowInfoPostion({
                       lat: marker.lat,
                       lng: marker.lng,
                     });
                     setShowInfo(true);
                     setShowInfoContents(marker.label);
-                  } else return null;
+                  }
                 }}
               />
             );

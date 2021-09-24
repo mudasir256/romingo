@@ -13,6 +13,7 @@ import Check from "@mui/icons-material/Check";
 import Popper from "@mui/material/Popper";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
+import Backdrop from "@mui/material/Backdrop";
 import SingleBedOutlinedIcon from "@mui/icons-material/SingleBedOutlined";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 
@@ -398,143 +399,151 @@ const RoomCard: FC<Props> = ({
               ${totalPriceAfterTax.toFixed(2)}
             </Typography>
           </Box>
-          <Popper
-            id={id}
+          <Backdrop
             open={open}
-            anchorEl={anchorEl}
-            transition
-            style={{
-              zIndex: 9999,
+            onClick={() => {
+              setAnchorEl(null);
             }}
+            invisible={true}
           >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
-                <Box
-                  sx={{
-                    border: "1px solid #DDD",
-                    borderRadius: "5px",
-                    boxShadow: 2,
-                    padding: "8px",
-                    backgroundColor: "white",
-                    minWidth: "250px",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      fontWeight: "bold",
-                      fontSize: "80%",
-                      textAlign: "center",
-                    }}
-                  >
-                    Price Details
-                  </Typography>
+            <Popper
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              transition
+              style={{
+                zIndex: 9999,
+              }}
+            >
+              {({ TransitionProps }) => (
+                <Fade {...TransitionProps} timeout={350}>
                   <Box
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      px: 2,
-                      mb: 0.5,
+                      border: "1px solid #DDD",
+                      borderRadius: "5px",
+                      boxShadow: 2,
+                      padding: "8px",
+                      backgroundColor: "white",
+                      minWidth: "250px",
                     }}
                   >
                     <Typography
                       variant="body2"
                       sx={{
-                        textAlign: "left",
+                        fontWeight: "bold",
                         fontSize: "80%",
-                      }}
-                    >
-                      Per Night:
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        textAlign: "right",
-                        fontSize: "80%",
-                      }}
-                    >
-                      ${averagePrice.toFixed(2)}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      px: 2,
-                      mb: 0.5,
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        textAlign: "left",
-                        fontSize: "80%",
-                      }}
-                    >
-                      Taxes:
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        textAlign: "right",
-                        fontSize: "80%",
-                      }}
-                    >
-                      ${(totalPriceAfterTax - totalPrice).toFixed(2)}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      px: 2,
-                      mb: 0.5,
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      sx={{
                         textAlign: "center",
-                        fontSize: "80%",
                       }}
                     >
-                      Fees:
+                      Price Details
                     </Typography>
-                  </Box>
-                  {fees?.fees.map((fee) => {
-                    return (
-                      <Box
-                        key={fee.desc}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        px: 2,
+                        mb: 0.5,
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
                         sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          px: 2,
-                          mb: 0.5,
+                          textAlign: "left",
+                          fontSize: "80%",
                         }}
                       >
-                        <Typography
-                          variant="body2"
+                        Per Night:
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "right",
+                          fontSize: "80%",
+                        }}
+                      >
+                        ${averagePrice.toFixed(2)}
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        px: 2,
+                        mb: 0.5,
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "left",
+                          fontSize: "80%",
+                        }}
+                      >
+                        Taxes:
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "right",
+                          fontSize: "80%",
+                        }}
+                      >
+                        ${(totalPriceAfterTax - totalPrice).toFixed(2)}
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        px: 2,
+                        mb: 0.5,
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textAlign: "center",
+                          fontSize: "80%",
+                        }}
+                      >
+                        Fees:
+                      </Typography>
+                    </Box>
+                    {fees?.fees.map((fee) => {
+                      return (
+                        <Box
+                          key={fee.desc}
                           sx={{
-                            textAlign: "left",
-                            fontSize: "80%",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            px: 2,
+                            mb: 0.5,
                           }}
                         >
-                          {fee?.desc}:
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "right",
-                            fontSize: "80%",
-                          }}
-                        >
-                          ${fee?.amount.toFixed(2)}
-                        </Typography>
-                      </Box>
-                    );
-                  })}
-                </Box>
-              </Fade>
-            )}
-          </Popper>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              textAlign: "left",
+                              fontSize: "80%",
+                            }}
+                          >
+                            {fee?.desc}:
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              textAlign: "right",
+                              fontSize: "80%",
+                            }}
+                          >
+                            ${fee?.amount.toFixed(2)}
+                          </Typography>
+                        </Box>
+                      );
+                    })}
+                  </Box>
+                </Fade>
+              )}
+            </Popper>
+          </Backdrop>
           <Box
             sx={{
               textAlign: "left",
