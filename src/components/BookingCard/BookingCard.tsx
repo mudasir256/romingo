@@ -1,6 +1,7 @@
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import { Dispatch } from "redux";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
@@ -18,19 +19,21 @@ import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
 import Link from "@mui/material/Link";
+import { RoomInfo } from "../../components/RoomCard/RoomCard";
+import { setCheckout } from "../../store/hotelCheckoutReducer";
 
 import {
+  useDispatch,
   useSelector,
   shallowEqual,
 } from "react-redux";
-import { Dispatch } from "redux";
 
 interface Props {
   sx?: CSSObject;
   roomList: {
     value: number;
     description: string;
-    price: number;
+    room: RoomInfo
   }[];
   goToRate?: () => void;
 }
@@ -38,11 +41,16 @@ interface Props {
 const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   const history = useHistory();
   const [roomType, setRoomType] = useState("0");
-  const [pricePerNight, setPricePerNight] = useState(roomList[0].price);
+  const dispatch: Dispatch<any> = useDispatch();
 
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    dispatch(
+      setCheckout({
+        room: selectedRoom
+      })
+    );
     history.push("/checkout");
   };
 
@@ -58,10 +66,16 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
 
   const occupants = {...search.occupants};
 
+  const [selectedRoom, setSelectedRoom] = useState<{
+    value: number;
+    description: string;
+    room: RoomInfo;
+  }>(roomList[0]);
+
   useEffect(() => {
     for (let i = 0; i < roomList.length; i ++) {
       if (roomList[i].value === parseInt(roomType)) {
-        setPricePerNight(roomList[i].price);
+        setSelectedRoom(roomList[i]);
       }
     }
   }, [roomType])
@@ -129,7 +143,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h5">${pricePerNight}</Typography>
+          <Typography variant="h5">${selectedRoom?.room.averagePrice}</Typography>
           <Typography variant="body1" sx={{ ml: 1 }}>
             / night
           </Typography>

@@ -186,4 +186,13 @@ const GetHotelDetail = `
       }
     }
   `;
-export { GetHotelBySearch, GetCities, GetHotelDetail };
+
+const GetStripeClientSecret = `
+  query(
+    $amount: Float!
+  ){
+    stripePaymentIntentClientSecret(input: {amount: $amount})
+  }
+`;
+
+export { GetHotelBySearch, GetCities, GetHotelDetail, GetStripeClientSecret };

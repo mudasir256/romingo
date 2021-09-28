@@ -4,7 +4,9 @@ import { useHistory } from "react-router-dom";
 import {
   useSelector,
   shallowEqual,
+  useDispatch
 } from "react-redux";
+import { Dispatch } from "redux";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
@@ -17,24 +19,22 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import MobileBookingForm from "./MobileBookingForm";
+import { RoomInfo } from "../../components/RoomCard/RoomCard";
+import { setCheckout } from "../../store/hotelCheckoutReducer";
 
 interface Props {
   sx?: CSSObject;
   roomList: {
     value: number;
     description: string;
-    price: number;
+    room: RoomInfo;
   }[];
 }
 
 const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const history = useHistory();
   const [roomType, setRoomType] = useState("0");
-  // const [occupants, setOccupants] = useState({
-  //   adults: 2,
-  //   children: 0,
-  //   dogs: 1,
-  // });
+  
 
   const search = useSelector(
     (state: any) => state.searchReducer.search,
@@ -48,7 +48,13 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
 
   const occupants = {...search.occupants};
 
-  const [pricePerNight, setPricePerNight] = useState(roomList[0].price);
+  const dispatch: Dispatch<any> = useDispatch();
+
+  const [selectedRoom, setSelectedRoom] = useState<{
+    value: number;
+    description: string;
+    room: RoomInfo;
+  }>(roomList[0]);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -65,7 +71,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   useEffect(() => {
     for (let i = 0; i < roomList.length; i ++) {
       if (roomList[i].value === parseInt(roomType)) {
-        setPricePerNight(roomList[i].price);
+        setSelectedRoom(roomList[i]);
       }
     }
   }, [roomType])
@@ -73,6 +79,11 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    dispatch(
+      setCheckout({
+        room: selectedRoom
+      })
+    );
     history.push("/checkout");
   };
 
@@ -196,7 +207,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                       lineHeight: 0,
                     }}
                   >
-                    ${pricePerNight}
+                    ${selectedRoom.room.averagePrice}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -268,7 +279,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
               roomType,
               occupants,
             }}
-            pricePerNight={pricePerNight}
+            pricePerNight={selectedRoom.room.averagePrice}
             handleClose={handleClose}
           ></MobileBookingForm>
         </DialogContent>

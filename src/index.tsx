@@ -9,6 +9,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
 const muTheme = createTheme(theme);
 
@@ -17,13 +19,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_CLIENT_KEY as string);
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={muTheme}>
       <ApolloProvider client={client}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <App />
+            <Elements stripe={stripePromise}>
+              <App />
+            </Elements>
           </PersistGate>
         </Provider>
       </ApolloProvider>

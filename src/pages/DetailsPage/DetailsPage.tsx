@@ -1,6 +1,7 @@
 import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { connect, useStore, useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Dispatch } from "redux";
 import Container from "@mui/material/Container";
 import Fab from "@mui/material/Fab";
 import Box from "@mui/material/Box";
@@ -38,8 +39,9 @@ import RoomCard from "../../components/RoomCard";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
-import { setList } from "../../store/hotelListReducer";
 import { GetHotelDetail } from "../../constants/constants";
+
+import { setHotel } from "../../store/hotelDetailReducer";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -91,6 +93,20 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   // console.log(props);
 
   const search = useSelector((state: any) => state.searchReducer.search);
+
+  const hotelList = useSelector((state: any) => state.hotelListReducer.hotels);
+
+  const dispatch: Dispatch<any> = useDispatch();
+
+  useEffect(() => {
+    for (let i = 0; i < hotelList.length; i ++) {
+      if (hotelList[i].id === hotelId) {
+        dispatch(setHotel({
+          ...hotelList[i]
+        }))
+      }
+    }
+  }, [hotelList])
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
@@ -149,7 +165,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     {
       value: number;
       description: string;
-      price: number;
+      room: RoomInfo;
     }[]
   >([]);
 
@@ -241,7 +257,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         tmp.push({
           value: key,
           description: roomDescription,
-          price: room.averagePrice,
+          room: room
         });
       });
 

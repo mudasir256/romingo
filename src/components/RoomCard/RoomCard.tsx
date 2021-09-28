@@ -199,7 +199,7 @@ const RoomCard: FC<Props> = ({
             fontSize: "50px",
           }}
         >
-          {beds.map((bed, key) => {
+          {beds?.map((bed, key) => {
             return Array.from({ length: bed.count }, (_, i: number) => (
               <React.Fragment key={key + "_" + i}>
                 {bed.desc === "Queen" && (

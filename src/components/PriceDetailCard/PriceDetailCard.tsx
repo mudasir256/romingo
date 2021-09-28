@@ -1,20 +1,56 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { CSSObject } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 interface Props {
   sx?: CSSObject;
-  details: [
-    {
-      label: string;
-      amount: number;
-    }
-  ];
 }
 
-const PriceDetailCard: FC<Props> = ({ sx, details }) => {
-  const detailsLen = details.length;
+const PriceDetailCard: FC<Props> = ({ sx }) => {
+
+  const detail = useSelector((state: any) => state.hotelCheckoutReducer.checkout);
+
+  const [priceArr, setPriceArr] = useState<{
+    label: string;
+    price: number
+  }[]>([]);
+
+  useEffect(() => {
+    console.log(detail);
+
+    const tmp = [];
+
+    tmp.push({
+      label: "Average Price Per Night",
+      price: detail?.room.room.averagePrice
+    });
+
+    tmp.push({
+      label: "Average Price After Tax",
+      price: detail?.room.room.averagePriceAfterTax
+    });
+
+    // if (detail?.room.room.feesIncluded)
+    //   tmp.push({
+    //     label: 
+    //   })
+    tmp.push({
+      label: "Total Price",
+      price: detail?.room.room.totalPrice
+    });
+
+    tmp.push({
+      label: "Total Price After Tax",
+      price: detail?.room.room.totalPriceAfterTax
+    })
+
+    setPriceArr([...tmp]);
+  }, [detail])
+
+  const detailsLen = priceArr.length;
+
   return (
     <Box
       sx={{
@@ -36,7 +72,7 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
       >
         Price Details
       </Typography>
-      {details.map((detail, i) => {
+      {priceArr.map((detail, i) => {
         if (i === detailsLen - 1) {
           return (
             <Box
@@ -75,7 +111,7 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
                   paddingLeft: "8px",
                 }}
               >
-                {`$${detail.amount.toFixed(2)}`}
+                {`$${detail.price?.toFixed(2)}`}
               </Typography>
             </Box>
           );
@@ -114,7 +150,7 @@ const PriceDetailCard: FC<Props> = ({ sx, details }) => {
                   paddingLeft: "8px",
                 }}
               >
-                {`$${detail.amount.toFixed(2)}`}
+                {`$${detail.price?.toFixed(2)}`}
               </Typography>
             </Box>
           );

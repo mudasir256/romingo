@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Hidden from "@mui/material/Hidden";
@@ -17,6 +17,9 @@ import CheckoutInformation from "../../components/CheckoutInformation";
 import RoomCard from "../../components/RoomCard";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
+import { gql, useQuery } from "@apollo/client";
+import { GetStripeClientSecret } from "../../constants/constants";
+
 interface Props {
   hotel: any;
   bookingDetails: any;
@@ -28,13 +31,41 @@ interface Props {
 
 const CheckoutPage: FC<Props> = () => {
   const {
-    hotel,
-    bookingDetails,
-    priceDetails,
+    // hotel,
     checkinDescription,
     finePrint,
     room
   } = useSelector((state: any) => state.hotelCheckoutReducer.checkout);
+
+  const detail = useSelector((state: any) => state.hotelCheckoutReducer.checkout);
+
+  const hotel = useSelector((state: any) => {
+    return state.hotelDetailReducer.detail
+  });
+
+  const { data, error, loading } = useQuery(
+    gql`
+      ${GetStripeClientSecret}
+    `,
+    {
+      variables: {
+        amount: detail?.room.room.totalPrice
+      }
+    }
+  );
+
+  const [clientSecret, setClientSecret] = useState("");
+
+  if (!loading) {
+    console.log(data);
+  }
+
+  useEffect(() => {
+    if (data?.stripePaymentIntentClientSecret) {
+      setClientSecret(data.stripePaymentIntentClientSecret);
+    }
+  }, [data])
+
   return (
     <>
       <Navbar />
@@ -63,7 +94,7 @@ const CheckoutPage: FC<Props> = () => {
               </Hidden>
             </Grid>
             <Grid item xs={12} md={4}>
-              <BookingDetailCard details={bookingDetails} />
+              <BookingDetailCard />
             </Grid>
             <Grid item xs={12} md={8} order={{ xs: 4, md: 3 }}>
               <CancelPolicy />
@@ -78,10 +109,11 @@ const CheckoutPage: FC<Props> = () => {
                   mt: 2,
                 }}
                 finePrint={finePrint}
+                clientSecret={clientSecret}
               />
             </Grid>
             <Grid item xs={12} md={4} order={{ xs: 3, md: 4 }}>
-              <PriceDetailCard details={priceDetails} />
+              <PriceDetailCard />
               <Hidden mdDown>
                 <DescriptionCard
                   {...finePrint}
@@ -90,17 +122,6 @@ const CheckoutPage: FC<Props> = () => {
                   }}
                 />
               </Hidden>
-              <RoomCard
-                HotelName={hotel.name}
-                {...room}
-                sx={{
-                  background: "white",
-                  borderRadius: 3,
-                  boxShadow: 4,
-                  p: 2,
-                  mt: 2
-                }}
-              />
             </Grid>
           </Grid>
         </Container>

@@ -7,7 +7,7 @@ import rootReducer from '../store';
 const persistConfig = {
   key: "romingo",
   storage,
-  whitelist: ['searchReducer', 'cityListReducer']
+  whitelist: ['searchReducer', 'cityListReducer', 'hotelCheckoutReducer', 'hotelListReducer', 'hotelDetailReducer']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

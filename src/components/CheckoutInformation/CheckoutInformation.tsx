@@ -8,6 +8,9 @@ import Button from "@mui/material/Button";
 import Hidden from "@mui/material/Hidden";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
+// import { makeStyles } from "@mui/styles"
+
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 interface Props {
   sx?: CSSObject;
@@ -15,14 +18,54 @@ interface Props {
     title: string;
     description: string;
   };
+  clientSecret: string;
 }
 
-const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
+const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, clientSecret }) => {
   const [checkState, setCheckState] = useState(false);
+
+  const stripe = useStripe();
+  const elements = useElements();
 
   const handleCheck = () => {
     setCheckState(!checkState);
   };
+
+  // const useStyles = makeStyles({
+  //   cardElement: {
+      // padding: "18.5px 14px",
+      // border: `#BBC0D4 1px solid`,
+      // borderRadius: "6px",
+  //   }
+  // });
+  // const styles = useStyles();
+
+  // const CARD_ELEMENT_OPTIONS = {
+  //   classes: {
+  //     base: styles.cardElement,
+  //   }
+  // };
+
+  const handleSubmit = async() => {
+    if (!stripe || !elements) {
+      return;
+    }
+
+    const cardElement = elements.getElement(CardElement);
+
+    if (!cardElement) {
+      return;
+    }
+    console.log(clientSecret);
+
+    const {error, paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement
+      }
+    });
+
+    console.log(paymentIntent);
+  }
 
   return (
     <Box sx={sx}>
@@ -125,12 +168,14 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              type="text"
-              label={"Credit Card Number"}
-              placeholder="#### #### #### ####"
-              fullWidth={true}
+            <CardElement 
+              options={{
+                style: {
+                  base: {
+                    padding: "18.5px 14px",
+                  }
+                }
+              }} 
             />
           </Grid>
           <Grid item xs={7} sm={6} md={4}>
@@ -217,6 +262,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null }) => {
               fullWidth={true}
               size="large"
               color="primary"
+              onClick={handleSubmit}
             >
               <Typography variant="h6">Book It</Typography>
             </Button>

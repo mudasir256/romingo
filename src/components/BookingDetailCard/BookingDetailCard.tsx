@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { useSelector } from "react-redux";
 
 interface Props {
   details: {
     checkIn: string;
     checkOut: string;
-    guests: {
+    occupants: {
       adults: number;
       dogs: number;
       children: number;
@@ -15,7 +16,12 @@ interface Props {
   };
 }
 
-const BookingDetailCard: FC<Props> = ({ details }) => {
+const BookingDetailCard: FC = () => {
+
+  const details = useSelector((state: any) => state.searchReducer.search);
+
+  const roomType = useSelector((state: any) => state.hotelCheckoutReducer.checkout.room.room.type);
+
   return (
     <Box
       sx={{
@@ -129,7 +135,7 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
             paddingLeft: "8px",
           }}
         >
-          {`${details.guests.adults} Adults - ${details.guests.children} Children - ${details.guests.dogs} Dogs`}
+          {`${details.occupants.adults} Adults - ${details.occupants.children} Children - ${details.occupants.dogs} Dogs`}
         </Typography>
       </Box>
       <Box
@@ -160,7 +166,7 @@ const BookingDetailCard: FC<Props> = ({ details }) => {
             paddingLeft: "8px",
           }}
         >
-          {details.roomType}
+          {roomType}
         </Typography>
       </Box>
     </Box>

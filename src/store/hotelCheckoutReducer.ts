@@ -11,14 +11,10 @@ export const setCheckout = (checkout: ICheckout) => (
   });
 };
 
-const initialState: CheckoutState = {
-  checkout: data,
-};
-
 const hotelCheckoutReducer = (
-  state: CheckoutState = initialState,
+  state: CheckoutState | null = null,
   action: CheckoutAction
-): CheckoutState => {
+): CheckoutState | null => {
   switch (action.type) {
     case actionTypes.SET_CHECKOUT:
       return {
