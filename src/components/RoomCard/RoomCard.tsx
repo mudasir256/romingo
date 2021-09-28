@@ -170,7 +170,7 @@ const RoomCard: FC<Props> = ({
     >
       <Box
         sx={{
-          width: { xs: "50%", sm: "20%" },
+          width: { xs: "40%", sm: "20%" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -244,8 +244,7 @@ const RoomCard: FC<Props> = ({
       </Box>
       <Box
         sx={{
-          width: { xs: "50%", sm: "40%" },
-          px: { xs: 0, sm: 2 },
+          width: { xs: "60%", sm: "40%" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -262,48 +261,50 @@ const RoomCard: FC<Props> = ({
         >
           {roomTitle}
         </Typography>
-        <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
-          Room Amenities
-        </Typography>
-        {amenities.slice(0, 4).map((amenity, key) => {
-          return (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "bottom",
-                mt: 0.4,
-              }}
-              key={key}
-            >
-              <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 0,
-                  textTransform: "capitalize",
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {amenity.desc}
-              </Typography>
-            </Box>
-          );
-        })}
-        <Link href="#" onClick={handleClick}>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 1,
-            }}
-          >
-            Details
+        <Box sx={{ mx: 2 }}>
+          <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
+            Room Amenities
           </Typography>
-        </Link>
+          {amenities.slice(0, 4).map((amenity, key) => {
+            return (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "bottom",
+                  mt: 0.4,
+                }}
+                key={key}
+              >
+                <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 0,
+                    textTransform: "capitalize",
+                    color: "text.primary",
+                    textIndent: "-8px",
+                    paddingLeft: "8px",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {amenity.desc}
+                </Typography>
+              </Box>
+            );
+          })}
+          <Link href="#" onClick={handleClick}>
+            <Typography
+              variant="body2"
+              sx={{
+                mt: 1,
+              }}
+            >
+              Details
+            </Typography>
+          </Link>
+        </Box>
       </Box>
       <Box
         sx={{

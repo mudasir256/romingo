@@ -99,14 +99,16 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    for (let i = 0; i < hotelList.length; i ++) {
+    for (let i = 0; i < hotelList.length; i++) {
       if (hotelList[i].id === hotelId) {
-        dispatch(setHotel({
-          ...hotelList[i]
-        }))
+        dispatch(
+          setHotel({
+            ...hotelList[i],
+          })
+        );
       }
     }
-  }, [hotelList])
+  }, [hotelList]);
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
@@ -257,7 +259,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         tmp.push({
           value: key,
           description: roomDescription,
-          room: room
+          room: room,
         });
       });
 
@@ -650,7 +652,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                         bestRate={key === 0 ? true : false}
                         HotelName={name}
                         sx={{
-                          minWidth: "300px",
+                          minWidth: "260px",
                           borderRadius: "5px",
                           p: 1.75,
                           boxShadow: 3,
