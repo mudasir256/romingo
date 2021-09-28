@@ -1,11 +1,7 @@
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import {
-  useSelector,
-  shallowEqual,
-  useDispatch
-} from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -34,7 +30,6 @@ interface Props {
 const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const history = useHistory();
   const [roomType, setRoomType] = useState("0");
-  
 
   const search = useSelector(
     (state: any) => state.searchReducer.search,
@@ -46,7 +41,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
     search.checkOut ? search.checkOut : null,
   ]);
 
-  const occupants = {...search.occupants};
+  const occupants = { ...search.occupants };
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -69,19 +64,19 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   };
 
   useEffect(() => {
-    for (let i = 0; i < roomList.length; i ++) {
+    for (let i = 0; i < roomList.length; i++) {
       if (roomList[i].value === parseInt(roomType)) {
         setSelectedRoom(roomList[i]);
       }
     }
-  }, [roomType])
+  }, [roomType]);
 
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(
       setCheckout({
-        room: selectedRoom
+        room: selectedRoom,
       })
     );
     history.push("/checkout");
@@ -207,7 +202,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
                       lineHeight: 0,
                     }}
                   >
-                    ${selectedRoom.room.averagePrice}
+                    ${selectedRoom.room.averagePrice.toFixed(2)}
                   </Typography>
                   <Typography
                     variant="body1"

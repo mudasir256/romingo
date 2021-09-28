@@ -245,7 +245,7 @@ const RoomCard: FC<Props> = ({
       <Box
         sx={{
           width: { xs: "50%", sm: "40%" },
-          px: 2,
+          px: { xs: 0, sm: 2 },
           display: "flex",
           flexDirection: "column",
         }}
@@ -320,27 +320,30 @@ const RoomCard: FC<Props> = ({
               textAlign: "center",
               width: "100%",
               maxWidth: "200px",
-              mt: { xs: "20px" },
+              height: "40px",
+              mt: { xs: "20px", sm: "0px" },
             }}
             variant="outlined"
             label={
-              cancellationPolicy.refundable ? "Refundable" : "Non-Refundable"
+              <Typography
+                variant="body2"
+                sx={{
+                  overflow: "visible",
+                  textAlign: "center",
+                  whiteSpace: "pre-line",
+                  fontSize: "12px",
+                  lineHeight: 1,
+                  marginTop: 1,
+                  marginBottom: 1,
+                }}
+              >
+                {cancellationPolicy.refundable
+                  ? `Refundable before
+                ${utils.getFormatDate(cancellationPolicy.cutOffAt)}`
+                  : "Non-Refundable"}
+              </Typography>
             }
           />
-
-          {cancellationPolicy.refundable && (
-            <Typography
-              variant="body2"
-              sx={{
-                fontSize: "75%",
-                textAlign: "center",
-                mt: 1,
-              }}
-            >
-              Cancel before {utils.getDateTime(cancellationPolicy.cutOffAt)} for
-              a refund
-            </Typography>
-          )}
         </div>
         <Box
           sx={{
@@ -498,22 +501,24 @@ const RoomCard: FC<Props> = ({
                         ${(totalPriceAfterTax - totalPrice).toFixed(2)}
                       </Typography>
                     </Box>
-                    <Box
-                      sx={{
-                        px: 2,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
+                    {fees?.totalAmount && fees.totalAmount > 0 && (
+                      <Box
                         sx={{
-                          textAlign: "center",
-                          fontSize: "80%",
+                          px: 2,
+                          mb: 0.5,
                         }}
                       >
-                        Fees:
-                      </Typography>
-                    </Box>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "center",
+                            fontSize: "80%",
+                          }}
+                        >
+                          Fees:
+                        </Typography>
+                      </Box>
+                    )}
                     {fees?.fees.map((fee) => {
                       return (
                         <Box
@@ -560,7 +565,7 @@ const RoomCard: FC<Props> = ({
             <Typography variant="body2" sx={{ fontSize: "70%", lineHeight: 1 }}>
               {feesIncluded
                 ? "*Includes all taxes and fees"
-                : "*Some fees may be due at property"}
+                : "*Some fees due at property"}
             </Typography>
           </Box>
           <Button
