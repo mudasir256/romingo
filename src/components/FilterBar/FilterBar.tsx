@@ -93,8 +93,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
       dispatch(
         saveSearch({
           city: selectedCity,
-          checkIn: dateToString(checkDate[0]),
-          checkOut: dateToString(checkDate[1]),
+          checkIn: new Date(checkDate[0]).toISOString(),
+          checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
         })
       );

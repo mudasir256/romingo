@@ -17,7 +17,7 @@ import CheckoutInformation from "../../components/CheckoutInformation";
 import RoomCard from "../../components/RoomCard";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import { GetStripeClientSecret } from "../../constants/constants";
 
 interface Props {
@@ -42,29 +42,6 @@ const CheckoutPage: FC<Props> = () => {
   const hotel = useSelector((state: any) => {
     return state.hotelDetailReducer.detail
   });
-
-  const { data, error, loading } = useQuery(
-    gql`
-      ${GetStripeClientSecret}
-    `,
-    {
-      variables: {
-        amount: detail?.room.room.totalPrice
-      }
-    }
-  );
-
-  const [clientSecret, setClientSecret] = useState("");
-
-  if (!loading) {
-    console.log(data);
-  }
-
-  useEffect(() => {
-    if (data?.stripePaymentIntentClientSecret) {
-      setClientSecret(data.stripePaymentIntentClientSecret);
-    }
-  }, [data])
 
   return (
     <>
@@ -109,7 +86,7 @@ const CheckoutPage: FC<Props> = () => {
                   mt: 2,
                 }}
                 finePrint={finePrint}
-                clientSecret={clientSecret}
+                price={detail?.room.room.totalPrice}
               />
             </Grid>
             <Grid item xs={12} md={4} order={{ xs: 3, md: 4 }}>

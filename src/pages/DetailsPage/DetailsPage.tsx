@@ -134,8 +134,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     {
       variables: {
         id: hotelId,
-        checkIn: search?.checkIn,
-        checkOut: search?.checkOut,
+        checkIn: search?.checkIn.substring(0, 10),
+        checkOut: search?.checkOut.substring(0, 10),
         adults: search?.occupants?.adults,
         children: ageParam,
       },

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { CSSObject } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -9,6 +9,8 @@ import Hidden from "@mui/material/Hidden";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
 // import { makeStyles } from "@mui/styles"
+import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { GetStripeClientSecret } from "../../constants/constants";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
@@ -18,45 +20,39 @@ interface Props {
     title: string;
     description: string;
   };
-  clientSecret: string;
+  price?: number;
 }
 
-const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, clientSecret }) => {
+const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
   const [checkState, setCheckState] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
 
+  const [getClientSecret, { data, error, loading }] = useLazyQuery(gql`${GetStripeClientSecret}`);
+
+  const [clientSecret, setClientSecret] = useState("");
+
   const handleCheck = () => {
     setCheckState(!checkState);
   };
 
-  // const useStyles = makeStyles({
-  //   cardElement: {
-      // padding: "18.5px 14px",
-      // border: `#BBC0D4 1px solid`,
-      // borderRadius: "6px",
-  //   }
-  // });
-  // const styles = useStyles();
+  React.useEffect(() => {
+    if (data && data.stripePaymentIntentClientSecret) {
+      setClientSecret(data.stripePaymentIntentClientSecret);
+    }
+  }, [getClientSecret, data, loading]);
 
-  // const CARD_ELEMENT_OPTIONS = {
-  //   classes: {
-  //     base: styles.cardElement,
-  //   }
-  // };
+  const submitStripe = async() => {
 
-  const handleSubmit = async() => {
     if (!stripe || !elements) {
       return;
     }
 
     const cardElement = elements.getElement(CardElement);
-
     if (!cardElement) {
       return;
     }
-    console.log(clientSecret);
 
     const {error, paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
@@ -65,6 +61,29 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, clientSecret }) 
     });
 
     console.log(paymentIntent);
+  }
+
+  React.useEffect(() => {
+    if (clientSecret) {
+      submitStripe();
+    }
+  }, [clientSecret])
+
+  const handleSubmit = async() => {
+    getClientSecret({variables: {amount: price}});
+    // if (!stripe || !elements) {
+    //   return;
+    // }
+
+    // const cardElement = elements.getElement(CardElement);
+
+    // if (!cardElement) {
+    //   return;
+    // }
+
+    
+
+    // console.log(paymentIntent);
   }
 
   return (

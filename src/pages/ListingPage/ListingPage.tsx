@@ -82,8 +82,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       variables: {
         adults: search.occupants.adults,
         cityId: search.city,
-        checkIn: search.checkIn,
-        checkOut: search.checkOut,
+        checkIn: search.checkIn.substring(0, 10),
+        checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
       },
     }

@@ -76,7 +76,7 @@ const BookingDetailCard: FC = () => {
               paddingLeft: "8px",
             }}
           >
-            {details.checkIn}
+            {details.checkIn.substring(0, 10)}
           </Typography>
         </Box>
         <Box>
@@ -103,7 +103,7 @@ const BookingDetailCard: FC = () => {
               paddingLeft: "8px",
             }}
           >
-            {details.checkOut}
+            {details.checkOut.substring(0, 10)}
           </Typography>
         </Box>
       </Box>
