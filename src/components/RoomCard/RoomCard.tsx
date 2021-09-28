@@ -152,7 +152,7 @@ const RoomCard: FC<Props> = ({
       }`;
     });
 
-    roomDescription = (type ? type + " - " : "") + roomDescription;
+    roomDescription = (type ? type + "\n" : "") + roomDescription;
 
     setRoomTitle(roomDescription);
   }, []);
@@ -161,6 +161,7 @@ const RoomCard: FC<Props> = ({
       sx={{
         ...sx,
         display: "flex",
+        flexWrap: "wrap",
         minHeight: "150px",
         flex: 1,
         backgroundColor: "lightBackground.main",
@@ -169,7 +170,7 @@ const RoomCard: FC<Props> = ({
     >
       <Box
         sx={{
-          width: "20%",
+          width: { xs: "40%", sm: "20%" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -243,8 +244,7 @@ const RoomCard: FC<Props> = ({
       </Box>
       <Box
         sx={{
-          width: { xs: "40%", md: "50%" },
-          px: 2,
+          width: { xs: "60%", sm: "40%" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -256,84 +256,95 @@ const RoomCard: FC<Props> = ({
             textAlign: "center",
             fontSize: "1.1rem",
             letterSpacing: 0,
+            whiteSpace: "pre-line",
           }}
         >
           {roomTitle}
         </Typography>
-        <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
-          Room Amenities
-        </Typography>
-        {amenities.slice(0, 4).map((amenity, key) => {
-          return (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "bottom",
-                mt: 0.4,
-              }}
-              key={key}
-            >
-              <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 0,
-                  textTransform: "capitalize",
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {amenity.desc}
-              </Typography>
-            </Box>
-          );
-        })}
-        <Link href="#" onClick={handleClick}>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 1,
-            }}
-          >
-            Details
+        <Box sx={{ mx: 2 }}>
+          <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
+            Room Amenities
           </Typography>
-        </Link>
+          {amenities.slice(0, 4).map((amenity, key) => {
+            return (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "bottom",
+                  mt: 0.4,
+                }}
+                key={key}
+              >
+                <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 0,
+                    textTransform: "capitalize",
+                    color: "text.primary",
+                    textIndent: "-8px",
+                    paddingLeft: "8px",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {amenity.desc}
+                </Typography>
+              </Box>
+            );
+          })}
+          <Link href="#" onClick={handleClick}>
+            <Typography
+              variant="body2"
+              sx={{
+                mt: 1,
+              }}
+            >
+              Details
+            </Typography>
+          </Link>
+        </Box>
       </Box>
       <Box
         sx={{
-          width: { xs: "40%", md: "30%" },
-          display: "flex",
+          width: { xs: "100%", sm: "30%" },
+          display: { xs: "block", md: "flex" },
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <div>
+        <div style={{ textAlign: "center" }}>
           <Chip
             color={cancellationPolicy.refundable ? "primary" : "warning"}
-            sx={{ textAlign: "center", width: "100%" }}
+            sx={{
+              textAlign: "center",
+              width: "100%",
+              maxWidth: "200px",
+              height: "40px",
+              mt: { xs: "20px", sm: "0px" },
+            }}
             variant="outlined"
             label={
-              cancellationPolicy.refundable ? "Refundable" : "Non-Refundable"
+              <Typography
+                variant="body2"
+                sx={{
+                  overflow: "visible",
+                  textAlign: "center",
+                  whiteSpace: "pre-line",
+                  fontSize: "12px",
+                  lineHeight: 1,
+                  marginTop: 1,
+                  marginBottom: 1,
+                }}
+              >
+                {cancellationPolicy.refundable
+                  ? `Refundable before
+                ${utils.getFormatDate(cancellationPolicy.cutOffAt)}`
+                  : "Non-Refundable"}
+              </Typography>
             }
           />
-
-          {cancellationPolicy.refundable && (
-            <Typography
-              variant="body2"
-              sx={{
-                fontSize: "75%",
-                textAlign: "center",
-                mt: 1,
-              }}
-            >
-              Cancel before {utils.getDateTime(cancellationPolicy.cutOffAt)} for
-              a refund
-            </Typography>
-          )}
         </div>
         <Box
           sx={{
@@ -491,22 +502,24 @@ const RoomCard: FC<Props> = ({
                         ${(totalPriceAfterTax - totalPrice).toFixed(2)}
                       </Typography>
                     </Box>
-                    <Box
-                      sx={{
-                        px: 2,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
+                    {fees?.totalAmount && fees.totalAmount > 0 && (
+                      <Box
                         sx={{
-                          textAlign: "center",
-                          fontSize: "80%",
+                          px: 2,
+                          mb: 0.5,
                         }}
                       >
-                        Fees:
-                      </Typography>
-                    </Box>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "center",
+                            fontSize: "80%",
+                          }}
+                        >
+                          Fees:
+                        </Typography>
+                      </Box>
+                    )}
                     {fees?.fees.map((fee) => {
                       return (
                         <Box
@@ -594,7 +607,7 @@ const RoomCard: FC<Props> = ({
             textAlign: "center",
             color: "primary.main",
             pt: 1.5,
-            pb: 0.5
+            pb: 0.5,
           }}
         >
           {roomTitle}
@@ -619,7 +632,7 @@ const RoomCard: FC<Props> = ({
                 fontWeight: "bold",
                 color: "secondary.main",
                 mt: 1,
-                textAlign: "justify"
+                textAlign: "justify",
               }}
             >
               {desc}

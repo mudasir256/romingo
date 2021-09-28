@@ -83,7 +83,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
     if (
       selectedCity &&
       checkDate[0] &&
-      new Date(checkDate[0]) >= new Date() &&
+      new Date(checkDate[0]) >=
+        new Date(new Date().setDate(new Date().getDate() - 1)) &&
       checkDate[1] &&
       new Date(checkDate[1]) >= new Date()
     ) {
@@ -110,7 +111,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
         checkDate[0] &&
         new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
       ) {
-        setFormError("Check-in date must be after today");
+        setFormError("Check-in date must be today at the earliest");
       }
       if (!checkDate[1]) {
         setFormError("Check-out date required");

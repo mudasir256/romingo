@@ -22,18 +22,14 @@ import Link from "@mui/material/Link";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
 
-import {
-  useDispatch,
-  useSelector,
-  shallowEqual,
-} from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 interface Props {
   sx?: CSSObject;
   roomList: {
     value: number;
     description: string;
-    room: RoomInfo
+    room: RoomInfo;
   }[];
   goToRate?: () => void;
 }
@@ -48,7 +44,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     e.stopPropagation();
     dispatch(
       setCheckout({
-        room: selectedRoom
+        room: selectedRoom,
       })
     );
     history.push("/checkout");
@@ -64,7 +60,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     search.checkOut ? search.checkOut : null,
   ]);
 
-  const occupants = {...search.occupants};
+  const occupants = { ...search.occupants };
 
   const [selectedRoom, setSelectedRoom] = useState<{
     value: number;
@@ -73,12 +69,12 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   }>(roomList[0]);
 
   useEffect(() => {
-    for (let i = 0; i < roomList.length; i ++) {
+    for (let i = 0; i < roomList.length; i++) {
       if (roomList[i].value === parseInt(roomType)) {
         setSelectedRoom(roomList[i]);
       }
     }
-  }, [roomType])
+  }, [roomType]);
 
   return (
     <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, p: 2 }}>
@@ -109,9 +105,13 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
-          <OccupantSelector value={occupants} onChange={() => {
-            return;
-          }} disabled={true} />
+          <OccupantSelector
+            value={occupants}
+            onChange={() => {
+              return;
+            }}
+            disabled={true}
+          />
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth>
@@ -143,7 +143,9 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h5">${selectedRoom?.room.averagePrice}</Typography>
+          <Typography variant="h5">
+            ${selectedRoom?.room.averagePrice.toFixed(2)}
+          </Typography>
           <Typography variant="body1" sx={{ ml: 1 }}>
             / night
           </Typography>
@@ -157,16 +159,18 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
         >
           <Typography variant="h6">Book Now</Typography>
         </Button>
-        <Link href="#" onClick={e => {
-          e.preventDefault();
-          e.stopPropagation();
-          if (goToRate)
-            goToRate();
-        }}>
+        <Link
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (goToRate) goToRate();
+          }}
+        >
           <Typography
             variant="body1"
             sx={{
-              mt: 1
+              mt: 1,
             }}
           >
             View All Rates

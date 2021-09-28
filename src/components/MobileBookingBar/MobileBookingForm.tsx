@@ -55,7 +55,7 @@ const MobileBookingForm: FC<Props> = ({
   initialValue,
   handleChange,
   pricePerNight,
-  handleClose
+  handleClose,
 }) => {
   const [value, setValue] = useState(initialValue.value);
   const [roomType, setRoomType] = useState(initialValue.roomType);
@@ -104,9 +104,7 @@ const MobileBookingForm: FC<Props> = ({
           value={roomType}
           onChange={(e) => {
             setRoomType(e.target.value);
-            handleChange(
-              e.target.value, value, occupants
-            );
+            handleChange(e.target.value, value, occupants);
           }}
           label="Room Type"
         >
@@ -138,7 +136,7 @@ const MobileBookingForm: FC<Props> = ({
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h6">${pricePerNight}</Typography>
+          <Typography variant="h6">${pricePerNight.toFixed(2)}</Typography>
           <Typography variant="body1" sx={{ ml: 0.5, fontSize: "90%" }}>
             / night
           </Typography>

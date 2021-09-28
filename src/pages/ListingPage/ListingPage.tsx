@@ -112,7 +112,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         lat: card.location.latitude,
         lng: card.location.longitude,
         type: "hotel",
-        price: card.lowestAveragePrice
+        price: card.lowestAveragePrice,
       };
     }
   );
@@ -340,7 +340,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 ))}
               </Stack>
             ) : (
-              <Stack spacing={3} divider={<Divider variant="middle" />}>
+              <Stack
+                spacing={3}
+                divider={<Divider variant="middle" />}
+                sx={{ pb: 7 }}
+              >
                 <RomingoGuarantee sx={{ mb: 0 }} />
                 {cards.map((card: any, index: number) => (
                   <Link
@@ -373,7 +377,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               }}
               sx={{
                 position: "absolute",
-                bottom: 30,
+                bottom: 25,
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 100,
