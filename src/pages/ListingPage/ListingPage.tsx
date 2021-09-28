@@ -5,7 +5,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Divider from "@mui/material/Divider";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
-import React, { FC, useRef, useState, MouseEventHandler } from "react";
+import React, { FC, useRef, useState, MouseEventHandler, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
@@ -91,10 +91,19 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   const dispatch: Dispatch<any> = useDispatch();
 
-  const cards = data ? data.properties : [];
-  dispatch(setList(cards));
+  useEffect(() => {
+    if (data && data.properties) {
+      if (error) {
+        return;
+      } else {
+        dispatch(setList(data.properties))
+      }
+    }
+  }, [data])
 
-  // const cards = useSelector((state: any) => state.hotelListReducer.hotels);
+  const cards = useSelector((state: any) => {
+    return state.hotelListReducer.hotels;
+  });
 
   const markers: MapLocation[] = cards.map(
     (card: ListingCardProps, key: number) => {

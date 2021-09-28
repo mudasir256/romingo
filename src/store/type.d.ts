@@ -25,6 +25,7 @@ interface IHotel {
   amenities: string[];
   latitude?: number;
   longitude?: number;
+  lowestAveragePrice?: number;
 }
 
 interface IRoom {

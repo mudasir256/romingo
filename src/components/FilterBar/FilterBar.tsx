@@ -98,7 +98,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
         })
       );
 
-      if (home) history.push("/listings");
+      history.push("/listings");
     } else {
       if (!selectedCity) {
         setFormError("Location required");
