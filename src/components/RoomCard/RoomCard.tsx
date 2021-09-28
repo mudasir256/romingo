@@ -152,7 +152,7 @@ const RoomCard: FC<Props> = ({
       }`;
     });
 
-    roomDescription = (type ? type + " - " : "") + roomDescription;
+    roomDescription = (type ? type + "\n" : "") + roomDescription;
 
     setRoomTitle(roomDescription);
   }, []);
@@ -161,6 +161,7 @@ const RoomCard: FC<Props> = ({
       sx={{
         ...sx,
         display: "flex",
+        flexWrap: "wrap",
         minHeight: "150px",
         flex: 1,
         backgroundColor: "lightBackground.main",
@@ -169,7 +170,7 @@ const RoomCard: FC<Props> = ({
     >
       <Box
         sx={{
-          width: "20%",
+          width: { xs: "50%", sm: "20%" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -243,7 +244,7 @@ const RoomCard: FC<Props> = ({
       </Box>
       <Box
         sx={{
-          width: { xs: "40%", md: "50%" },
+          width: { xs: "50%", sm: "40%" },
           px: 2,
           display: "flex",
           flexDirection: "column",
@@ -256,6 +257,7 @@ const RoomCard: FC<Props> = ({
             textAlign: "center",
             fontSize: "1.1rem",
             letterSpacing: 0,
+            whiteSpace: "pre-line",
           }}
         >
           {roomTitle}
@@ -305,16 +307,21 @@ const RoomCard: FC<Props> = ({
       </Box>
       <Box
         sx={{
-          width: { xs: "40%", md: "30%" },
-          display: "flex",
+          width: { xs: "100%", sm: "30%" },
+          display: { xs: "block", md: "flex" },
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <div>
+        <div style={{ textAlign: "center" }}>
           <Chip
             color={cancellationPolicy.refundable ? "primary" : "warning"}
-            sx={{ textAlign: "center", width: "100%" }}
+            sx={{
+              textAlign: "center",
+              width: "100%",
+              maxWidth: "200px",
+              mt: { xs: "20px" },
+            }}
             variant="outlined"
             label={
               cancellationPolicy.refundable ? "Refundable" : "Non-Refundable"
@@ -553,7 +560,7 @@ const RoomCard: FC<Props> = ({
             <Typography variant="body2" sx={{ fontSize: "70%", lineHeight: 1 }}>
               {feesIncluded
                 ? "*Includes all taxes and fees"
-                : "*Some fees due at property"}
+                : "*Some fees may be due at property"}
             </Typography>
           </Box>
           <Button
@@ -594,7 +601,7 @@ const RoomCard: FC<Props> = ({
             textAlign: "center",
             color: "primary.main",
             pt: 1.5,
-            pb: 0.5
+            pb: 0.5,
           }}
         >
           {roomTitle}
@@ -619,7 +626,7 @@ const RoomCard: FC<Props> = ({
                 fontWeight: "bold",
                 color: "secondary.main",
                 mt: 1,
-                textAlign: "justify"
+                textAlign: "justify",
               }}
             >
               {desc}
