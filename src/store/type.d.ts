@@ -231,6 +231,10 @@ interface ICity {
   }
 }
 
+interface IViewStatus {
+  status: string;
+}
+
 type SearchState = {
   search: ISearch;
 };
@@ -286,6 +290,11 @@ type CityAction = {
   cities: ICity[];
 }
 
+type ViewStatusAction = {
+  type: string;
+  status: IViewStatus;
+}
+
 type SearchDispatchType = (args: SearchAction) => SearchAction;
 
 type UserDispatchType = (args: UserAction) => UserAction;
@@ -297,3 +306,5 @@ type HotelDetailDispatchType = (args: DetailAction) => DetailAction;
 type CheckoutDispatchType = (args: CheckoutAction) => CheckoutAction;
 
 type CityListDispatchType = (args: CityAction) => CityAction;
+
+type ViewStatusDispatchType = (args: ViewStatusAction) => ViewStatusAction;

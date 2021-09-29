@@ -27,6 +27,7 @@ interface Props {
   markerClickCallBack: (index: number) => void;
   selectedMarker?: number;
   id: string;
+  onClick?: (event: any) => void;
 }
 
 const ListingMap: FC<Props> = ({
@@ -42,7 +43,8 @@ const ListingMap: FC<Props> = ({
   amenities,
   markerClickCallBack,
   selectedMarker,
-  id
+  id,
+  onClick
 }) => {
   const history = useHistory();
 
@@ -60,6 +62,7 @@ const ListingMap: FC<Props> = ({
         overflow: "hidden",
         ...sx,
       }}
+      onClick={onClick?onClick:undefined}
     >
       {loading ? (
         <Skeleton

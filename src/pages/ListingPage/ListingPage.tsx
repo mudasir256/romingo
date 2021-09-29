@@ -30,7 +30,9 @@ import CustomToast from "../../components/UI/CustomToast";
 
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
+import { setViewStatus } from "../../store/viewStatusReducer";
 import { GetHotelBySearch } from "../../constants/constants";
+import ScrollToTop from "../../components/ScrollToTop";
 
 const MotionBox = motion(Box);
 
@@ -141,18 +143,22 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     preview: { height: 4, marginBottom: "24px" },
     expanded: { height: 0, marginBottom: "35px" },
   };
-  const [animate, setAnimate] = useState<keyof typeof variants>("preview");
+
+  const viewStatus = useStore().getState().viewStatusReducer.status;
+
+  const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const history = useHistory();
   const [hotelIndex, setHotelIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(0);
 
-  // const handleClick: MouseEventHandler<Element> = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   history.push("/details/" + );
-  // };
+  useEffect(() => {
+    // console.log(animate);
+    dispatch(setViewStatus({
+      status: animate
+    }));
+  }, [animate])
 
   const markerClick = (index: number) => {
     setHotelIndex(index);
@@ -183,6 +189,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   return (
     <>
+      <ScrollToTop />
       <Box
         sx={{
           position: { xs: "fixed", md: "relative" },
@@ -278,6 +285,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
               id={cards[hotelIndex]?.id}
+              onClick={(e: any) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setAnimate("collapsed")
+              }}
             />
           )
         )}

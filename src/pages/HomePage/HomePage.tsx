@@ -16,6 +16,7 @@ import Footer from "../../components/Footer";
 import { initialState } from "../../store/searchReducer";
 import { GetCities } from "../../constants/constants";
 import { setList } from "../../store/cityListReducer";
+import ScrollToTop from "../../components/ScrollToTop";
 
 interface Props {
   sx?: CSSObject;
@@ -125,6 +126,7 @@ const HomePage: FC<Props> = ({
 
   return (
     <>
+      <ScrollToTop />
       <Header />
       <Box
         sx={{
