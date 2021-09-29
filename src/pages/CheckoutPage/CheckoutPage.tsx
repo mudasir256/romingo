@@ -19,6 +19,7 @@ import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 import { GetStripeClientSecret } from "../../constants/constants";
+import ScrollToTop from "../../components/ScrollToTop";
 
 interface Props {
   hotel: any;
@@ -45,6 +46,7 @@ const CheckoutPage: FC<Props> = () => {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Box
         sx={{

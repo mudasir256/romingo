@@ -43,6 +43,8 @@ import { GetHotelDetail } from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
 
+import ScrollToTop from "../../components/ScrollToTop";
+
 type BreakpointOrNull = Breakpoint | null;
 
 const useWidth = () => {
@@ -327,6 +329,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   return (
     <>
+      <ScrollToTop />
       <Hidden mdDown>
         <Box
           sx={{
