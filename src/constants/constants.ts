@@ -123,7 +123,6 @@ const GetHotelDetail = `
         featuredImageURL
         imageURLs
         sabreImageURLs
-        lowestAveragePrice,
         nearbyActivities {
           id
           activityType {
