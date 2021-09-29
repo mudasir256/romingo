@@ -44,7 +44,7 @@ const ListingMap: FC<Props> = ({
   markerClickCallBack,
   selectedMarker,
   id,
-  onClick
+  onClick,
 }) => {
   const history = useHistory();
 
@@ -62,7 +62,7 @@ const ListingMap: FC<Props> = ({
         overflow: "hidden",
         ...sx,
       }}
-      onClick={onClick?onClick:undefined}
+      onPointerDown={onClick ? onClick : undefined}
     >
       {loading ? (
         <Skeleton
