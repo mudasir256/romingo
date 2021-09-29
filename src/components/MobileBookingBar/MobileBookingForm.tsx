@@ -67,56 +67,63 @@ const MobileBookingForm: FC<Props> = ({
 
   return (
     <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, px: 3, pt: 1, pb: 2 }}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <MobileDateRangePicker
-          startText="Check-in"
-          endText="Check-out"
-          calendars={1}
-          allowSameDateSelection={false}
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(startProps, endProps) => (
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <TextField {...startProps} fullWidth={true} />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField {...endProps} fullWidth={true} />
-              </Grid>
-            </Grid>
-          )}
-          disabled
-        />
-      </LocalizationProvider>
-      <OccupantSelector
-        value={occupants}
-        onChange={() => {
-          return;
-        }}
-        sx={{ mt: 3 }}
-        disabled
-      />
-      <FormControl fullWidth sx={{ mt: 3 }}>
-        <InputLabel>Room Type</InputLabel>
-        <Select
-          value={roomType}
-          onChange={(e) => {
-            setRoomType(e.target.value);
-            handleChange(e.target.value, value, occupants);
-          }}
-          label="Room Type"
-        >
-          {roomList.map((room, key) => {
-            return (
-              <MenuItem value={room.value} key={key}>
-                {room.description}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MobileDateRangePicker
+              startText="Check-in"
+              endText="Check-out"
+              calendars={1}
+              allowSameDateSelection={false}
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(startProps, endProps) => (
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField {...startProps} fullWidth={true} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField {...endProps} fullWidth={true} />
+                  </Grid>
+                </Grid>
+              )}
+              disabled
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12}>
+          <OccupantSelector
+            value={occupants}
+            onChange={() => {
+              return;
+            }}
+            disabled
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl fullWidth>
+            <InputLabel>Room Type</InputLabel>
+            <Select
+              value={roomType}
+              onChange={(e) => {
+                setRoomType(e.target.value);
+                handleChange(e.target.value, value, occupants);
+              }}
+              label="Room Type"
+            >
+              {roomList.map((room, key) => {
+                return (
+                  <MenuItem value={room.value} key={key}>
+                    {room.description}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
       <Box
         sx={{
           position: "fixed",
@@ -135,9 +142,14 @@ const MobileBookingForm: FC<Props> = ({
           mt: 5,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <Typography variant="h6">${pricePerNight.toFixed(2)}</Typography>
-          <Typography variant="body1" sx={{ ml: 0.5, fontSize: "90%" }}>
+          <Typography variant="body1" sx={{ ml: 0.75, fontSize: "90%" }}>
             / night
           </Typography>
         </Box>

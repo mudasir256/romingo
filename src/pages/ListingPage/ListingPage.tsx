@@ -5,7 +5,13 @@ import Skeleton from "@mui/material/Skeleton";
 import Divider from "@mui/material/Divider";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
-import React, { FC, useRef, useState, MouseEventHandler, useEffect } from "react";
+import React, {
+  FC,
+  useRef,
+  useState,
+  MouseEventHandler,
+  useEffect,
+} from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
@@ -96,10 +102,10 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       if (error) {
         return;
       } else {
-        dispatch(setList(data.properties))
+        dispatch(setList(data.properties));
       }
     }
-  }, [data])
+  }, [data]);
 
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;
@@ -147,12 +153,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   const history = useHistory();
   const [hotelIndex, setHotelIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(0);
-
-  // const handleClick: MouseEventHandler<Element> = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   history.push("/details/" + );
-  // };
 
   const markerClick = (index: number) => {
     setHotelIndex(index);
