@@ -37,6 +37,9 @@ interface Props {
 const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   const history = useHistory();
   const [roomType, setRoomType] = useState("0");
+  const [open, setOpen] = useState(false);
+  const [isAccept, setIsAccept] = useState(false);
+  const [isTextField, setIsTextField] = useState(false);
   const dispatch: Dispatch<any> = useDispatch();
 
   const handleBook: MouseEventHandler<Element> = (e) => {
@@ -82,18 +85,58 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
+              open={open}
               startText="Check-in"
               endText="Check-out"
               calendars={1}
+              onAccept={() => {
+                setIsAccept(true);
+              }}
+              onClose={() => {
+                setIsAccept(false);
+                if (!isTextField) {
+                  setOpen(false);
+                  setIsTextField(false);
+                }
+              }}
+              onOpen={() => {
+                if (!isAccept) {
+                  setOpen(true);
+                }
+              }}
               allowSameDateSelection={false}
               value={value}
               renderInput={(startProps, endProps) => (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <TextField {...startProps} fullWidth={true} />
+                    <TextField
+                      {...startProps}
+                      onFocus={() => {
+                        setIsTextField(true);
+                      }}
+                      onBlur={() => {
+                        setIsTextField(false);
+                      }}
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                      fullWidth={true}
+                    />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField {...endProps} fullWidth={true} />
+                    <TextField
+                      onFocus={() => {
+                        setIsTextField(true);
+                      }}
+                      onBlur={() => {
+                        setIsTextField(false);
+                      }}
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                      {...endProps}
+                      fullWidth={true}
+                    />
                   </Grid>
                 </Grid>
               )}

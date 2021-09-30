@@ -32,6 +32,9 @@ interface Props {
 
 const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
   const history = useHistory();
+  const [open, setOpen] = useState(false);
+  const [isAccept, setIsAccept] = useState(false);
+  const [isTextField, setIsTextField] = useState(false);
 
   const [zoomIn, setZoomIn] = useState(zoomed);
   const search = useSelector((state: any) => state.searchReducer.search);
@@ -293,6 +296,22 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                 >
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateRangePicker
+                      open={open}
+                      onAccept={() => {
+                        setIsAccept(true);
+                      }}
+                      onClose={() => {
+                        setIsAccept(false);
+                        if (!isTextField) {
+                          setOpen(false);
+                          setIsTextField(false);
+                        }
+                      }}
+                      onOpen={() => {
+                        if (!isAccept) {
+                          setOpen(true);
+                        }
+                      }}
                       startText="Check-in"
                       endText="Check-out"
                       calendars={1}
@@ -315,6 +334,15 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                         >
                           <TextField
                             {...startProps}
+                            onFocus={() => {
+                              setIsTextField(true);
+                            }}
+                            onBlur={() => {
+                              setIsTextField(false);
+                            }}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
                             size="small"
                             color="primary"
                             variant="standard"
@@ -332,6 +360,15 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                           />
                           <TextField
                             {...endProps}
+                            onFocus={() => {
+                              setIsTextField(true);
+                            }}
+                            onBlur={() => {
+                              setIsTextField(false);
+                            }}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
                             size="small"
                             color="primary"
                             variant="standard"
