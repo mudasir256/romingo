@@ -23,7 +23,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
           pt: 2.5,
           pb: 2.5,
           px: 2,
-          boxShadow: 4,
+          // boxShadow: 4,
         }}
       >
         <Typography
@@ -39,7 +39,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
           sx={{
             mt: 0.5,
             px: 0.5,
-            maxWidth: "1200px",
+            maxWidth: { xs: "600px", xl: "1200px" },
             mx: "auto",
           }}
         >
@@ -161,7 +161,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
                     mt: 0,
                     fontSize: "100%",
                     color: "text.primary",
-                    maxWidth: "400px",
+                    maxWidth: { xs: "150px", md: "400px" },
                   }}
                 >
                   Bed, Bowl &amp; Treats Provided
