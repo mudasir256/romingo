@@ -23,7 +23,6 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
           pt: 2.5,
           pb: 2.5,
           px: 2,
-          mt: 1,
           boxShadow: 4,
         }}
       >
