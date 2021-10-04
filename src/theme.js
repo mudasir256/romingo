@@ -4,7 +4,8 @@ export const theme = {
       main: "#03989E",
     },
     secondary: {
-      main: "#A6DBE5",
+      lighter: "#d9f7fc",
+      main: "#a6dbe5",
     },
     success: {
       main: "#ACC966",

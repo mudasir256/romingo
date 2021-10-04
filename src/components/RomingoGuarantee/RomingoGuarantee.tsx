@@ -2,7 +2,7 @@ import { FC } from "react";
 import { CSSObject } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid"
+import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import PetsIcon from "@mui/icons-material/Pets";
 import MoneyOffIcon from "@mui/icons-material/MoneyOff";
@@ -18,19 +18,20 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
       <Box
         sx={{
           color: "text.primary",
-          border: "1px solid #F9C171",
-          borderRadius: 5,
-          pt: 2,
+          backgroundColor: "#f2fdff",
+          borderRadius: 3,
+          pt: 2.5,
           pb: 2.5,
           px: 2,
           mt: 1,
+          boxShadow: 4,
         }}
       >
         <Typography
           variant="h5"
           sx={{
-            color: "text.primary",
             textAlign: "center",
+            color: "primary.main",
           }}
         >
           The Romingo Guarantee
@@ -39,119 +40,136 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
           sx={{
             mt: 0.5,
             px: 0.5,
+            maxWidth: "1200px",
             mx: "auto",
           }}
         >
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "bottom",
-                justifyContent: "start",
-                mt: 1,
-              }}
-            >
-              <Icon
+          <Grid container spacing={2} sx={{ alignItems: "baseline" }}>
+            <Grid item xs={12} sm={6} lg={3}>
+              <Box
                 sx={{
-                  marginRight: "10px"
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: { xs: "center", md: "start", lg: "center" },
+                  mt: 0.5,
+                  mx: { xs: 0, md: 2, lg: 1 },
                 }}
               >
-                <img src="/images/icons/guarantee/no_pet_fees.svg" />
-              </Icon>
-              <Typography
-                variant="body1"
+                <Icon
+                  sx={{
+                    marginRight: "15px",
+                  }}
+                  fontSize="large"
+                >
+                  <img src="/images/icons/guarantee/no_pet_fees.svg" />
+                </Icon>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mt: 0,
+                    fontSize: "100%",
+                    maxWidth: "400px",
+                    color: "text.primary",
+                  }}
+                >
+                  Zero Pet Fees
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={3}>
+              <Box
                 sx={{
-                  mt: 0,
-                  color: "text.primary",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: { xs: "center", md: "start", lg: "center" },
+                  mt: 0.5,
+                  mx: { xs: 0, md: 2, lg: 0 },
                 }}
-              > 
-                Zero pet fees
-              </Typography>
-            </Box>
+              >
+                <Icon
+                  sx={{
+                    marginRight: "15px",
+                  }}
+                  fontSize="large"
+                >
+                  <img src="/images/icons/guarantee/upto_2_dogs.svg" />
+                </Icon>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mt: 0,
+                    fontSize: "100%",
+                    color: "text.primary",
+                    maxWidth: "400px",
+                  }}
+                >
+                  Up to 2 Dogs
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={3}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: { xs: "center", md: "start", lg: "center" },
+                  mt: 0.5,
+                  mx: { xs: 0, md: 2, lg: 1 },
+                }}
+              >
+                <Icon
+                  sx={{
+                    marginRight: "15px",
+                  }}
+                  fontSize="large"
+                >
+                  <img src="/images/icons/guarantee/75_lbs.svg" />
+                </Icon>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mt: 0,
+                    fontSize: "100%",
+                    color: "text.primary",
+                    maxWidth: "400px",
+                  }}
+                >
+                  75 Lbs. Each
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={3}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: { xs: "center", md: "start", lg: "center" },
+                  mt: 0.5,
+                  mx: { xs: 0, md: 2, lg: 1 },
+                }}
+              >
+                <Icon
+                  sx={{
+                    marginRight: "15px",
+                  }}
+                  fontSize="large"
+                >
+                  <img src="/images/icons/guarantee/beds_bowls_treats.svg" />
+                </Icon>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mt: 0,
+                    fontSize: "100%",
+                    color: "text.primary",
+                    maxWidth: "400px",
+                  }}
+                >
+                  Bed, Bowl &amp; Treats Provided
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "bottom",
-                justifyContent: "start",
-                mt: 1,
-              }}
-            >
-              <Icon
-                sx={{
-                  marginRight: "10px"
-                }}
-              >
-                <img src="/images/icons/guarantee/upto_2_dogs.svg" />
-              </Icon>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0,
-                  color: "text.primary",
-                }}
-              >
-                Up to 2 dogs
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "bottom",
-                justifyContent: "start",
-                mt: 1,
-              }}
-            >
-              <Icon
-                sx={{
-                  marginRight: "10px"
-                }}
-              >
-                <img src="/images/icons/guarantee/75_lbs.svg" />
-              </Icon>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0,
-                  color: "text.primary",
-                }}
-              >
-                75 lbs. each
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "bottom",
-                justifyContent: "start",
-                mt: 1,
-              }}
-            >
-              <Icon
-                sx={{
-                  marginRight: "10px"
-                }}
-              >
-                <img src="/images/icons/guarantee/beds_bowls_treats.svg" />
-              </Icon>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0,
-                  color: "text.primary",
-                }}
-              >
-                Bed, bowl and treats included
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
         </Box>
       </Box>
     </Box>
