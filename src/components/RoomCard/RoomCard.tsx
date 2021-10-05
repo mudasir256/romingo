@@ -37,13 +37,11 @@ interface Props {
   averagePriceAfterTax: number;
   breakfastIncluded: boolean;
   dinnerIncluded: boolean;
+  totalFees?: number;
   fees?: {
-    totalAmount: number;
-    fees: {
-      amount: number;
-      desc: string;
-    }[];
-  };
+    amount: number;
+    desc: string;
+  }[];
   lunchIncluded: boolean;
   maxOccupants: number;
   nonSmoking: boolean;
@@ -76,13 +74,11 @@ export interface RoomInfo {
   averagePriceAfterTax: number;
   breakfastIncluded: boolean;
   dinnerIncluded: boolean;
+  totalFees?: number;
   fees?: {
-    totalAmount: number;
-    fees: {
-      amount: number;
-      desc: string;
-    }[];
-  };
+    amount: number;
+    desc: string;
+  }[];
   lunchIncluded: boolean;
   maxOccupants: number;
   nonSmoking: boolean;
@@ -106,6 +102,7 @@ const RoomCard: FC<Props> = ({
   averagePrice,
   averagePriceAfterTax,
   fees,
+  totalFees,
   totalPrice,
   totalPriceAfterTax,
   bestRate = false,
@@ -502,7 +499,7 @@ const RoomCard: FC<Props> = ({
                         ${(totalPriceAfterTax - totalPrice).toFixed(2)}
                       </Typography>
                     </Box>
-                    {fees?.totalAmount && fees.totalAmount > 0 && (
+                    {totalFees && totalFees > 0 && (
                       <Box
                         sx={{
                           px: 2,
@@ -520,7 +517,7 @@ const RoomCard: FC<Props> = ({
                         </Typography>
                       </Box>
                     )}
-                    {fees?.fees.map((fee) => {
+                    {fees?.map((fee) => {
                       return (
                         <Box
                           key={fee.desc}

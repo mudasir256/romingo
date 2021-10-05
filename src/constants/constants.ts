@@ -167,12 +167,10 @@ const GetHotelDetail = `
           totalPriceAfterTax
           feesIncluded
           fees {
-            totalAmount
-            fees {
-              amount
-              desc
-            }
+            amount
+            desc
           }
+          totalFees
           cancellationPolicy {
             refundable
             cutOffAt

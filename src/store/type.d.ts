@@ -198,13 +198,11 @@ interface ICheckout {
       averagePriceAfterTax: number;
       breakfastIncluded: boolean;
       dinnerIncluded: boolean;
+      totalFees?: number;
       fees?: {
-        totalAmount: number;
-        fees: {
-          amount: number;
-          desc: string;
-        }[];
-      };
+        amount: number;
+        desc: string;
+      }[];
       lunchIncluded: boolean;
       maxOccupants: number;
       nonSmoking: boolean;
