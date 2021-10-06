@@ -221,7 +221,7 @@ Default.args = {
           "CancelPenalties": {
             "CancelPenalty": [
               {
-                "Refundable": true,
+                "Cancelable": true,
                 "Deadline": {
                   "AbsoluteDeadline": "2021-09-15T23:59:00.000-05:00"
                 },

@@ -106,7 +106,7 @@ interface IRoom {
         }
         CancelPenalties: {
           CancelPenalty: {
-            Refundable: boolean;
+            cancelable: boolean;
             Deadline: {
               AbsoluteDeadline: string;
             };
@@ -158,7 +158,7 @@ interface IHotelDetails {
   defaultDescription?: string;
   cancellation?: boolean;
   cancelPenalty?: {
-    refundable: boolean;
+    cancelable: boolean;
     deadline: { absoluteDeadline: string };
     amountPercent: { amount: number; currencyCode: string };
   }[];
@@ -211,9 +211,9 @@ interface ICheckout {
       totalPriceAfterTax: number;
       type: string;
       bestRate?: boolean;
-      cancellationPolicy: {
+      cancelationPolicy: {
         cutOffAt: string | null;
-        refundable: boolean;
+        cancelable: boolean;
       };
       feesIncluded: boolean;
     }

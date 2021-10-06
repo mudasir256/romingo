@@ -50,9 +50,9 @@ interface Props {
   totalPriceAfterTax: number;
   type: string;
   bestRate?: boolean;
-  cancellationPolicy: {
+  cancelationPolicy: {
     cutOffAt: string | null;
-    refundable: boolean;
+    cancelable: boolean;
   };
   feesIncluded: boolean;
 }
@@ -87,9 +87,9 @@ export interface RoomInfo {
   totalPriceAfterTax: number;
   type: string;
   bestRate?: boolean;
-  cancellationPolicy: {
+  cancelationPolicy: {
     cutOffAt: string | null;
-    refundable: boolean;
+    cancelable: boolean;
   };
   feesIncluded: boolean;
 }
@@ -106,7 +106,7 @@ const RoomCard: FC<Props> = ({
   totalPrice,
   totalPriceAfterTax,
   bestRate = false,
-  cancellationPolicy,
+  cancelationPolicy,
   feesIncluded,
   type,
   ...props
@@ -313,7 +313,7 @@ const RoomCard: FC<Props> = ({
       >
         <div style={{ textAlign: "center" }}>
           <Chip
-            color={cancellationPolicy.refundable ? "primary" : "warning"}
+            color={cancelationPolicy.cancelable ? "primary" : "warning"}
             sx={{
               textAlign: "center",
               width: "100%",
@@ -335,9 +335,9 @@ const RoomCard: FC<Props> = ({
                   marginBottom: 1,
                 }}
               >
-                {cancellationPolicy.refundable
+                {cancelationPolicy.cancelable
                   ? `Refundable before
-                ${utils.getFormatDate(cancellationPolicy.cutOffAt)}`
+                ${utils.getFormatDate(cancelationPolicy.cutOffAt)}`
                   : "Non-Refundable"}
               </Typography>
             }

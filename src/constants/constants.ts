@@ -171,8 +171,8 @@ const GetHotelDetail = `
             desc
           }
           totalFees
-          cancellationPolicy {
-            refundable
+          cancelationPolicy {
+            cancelable
             cutOffAt
             cutOffUnit
             cutOffMultiplier

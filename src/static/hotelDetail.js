@@ -47,7 +47,7 @@ const data = {
   ],
   cancelPenalty: [
     {
-      refundable: true,
+      cancelable: true,
       deadline: {
         absoluteDeadline: "2021-08-14T23:59:00-05:00",
       },
@@ -57,7 +57,7 @@ const data = {
       },
     },
     {
-      refundable: true,
+      cancelable: true,
       deadline: {
         absoluteDeadline: "2021-08-19T23:59:00-05:00",
       },
@@ -411,7 +411,7 @@ const data = {
               "CancelPenalties": {
                 "CancelPenalty": [
                   {
-                    "Refundable": true,
+                    "cancelable": true,
                     "Deadline": {
                       "AbsoluteDeadline": "2021-09-15T23:59:00.000-05:00"
                     },
@@ -696,7 +696,7 @@ const data = {
               "CancelPenalties": {
                 "CancelPenalty": [
                   {
-                    "Refundable": true,
+                    "cancelable": true,
                     "Deadline": {
                       "AbsoluteDeadline": "2021-09-16T00:00:00"
                     },
@@ -966,7 +966,7 @@ const data = {
               "CancelPenalties": {
                 "CancelPenalty": [
                   {
-                    "Refundable": true,
+                    "cancelable": true,
                     "Deadline": {
                       "AbsoluteDeadline": "2021-09-16T00:00:00"
                     },
@@ -1236,7 +1236,7 @@ const data = {
               "CancelPenalties": {
                 "CancelPenalty": [
                   {
-                    "Refundable": true,
+                    "cancelable": true,
                     "Deadline": {
                       "AbsoluteDeadline": "2021-09-16T00:00:00"
                     },
@@ -1466,7 +1466,7 @@ const data = {
               "CancelPenalties": {
                 "CancelPenalty": [
                   {
-                    "Refundable": true,
+                    "cancelable": true,
                     "Deadline": {
                       "AbsoluteDeadline": "2021-09-15T23:59:00.000-05:00"
                     },
@@ -1698,7 +1698,7 @@ const data = {
               "CancelPenalties": {
                 "CancelPenalty": [
                   {
-                    "Refundable": true,
+                    "cancelable": true,
                     "Deadline": {
                       "AbsoluteDeadline": "2021-09-15T23:59:00.000-05:00"
                     },
