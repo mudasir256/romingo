@@ -145,16 +145,17 @@ const HomePage: FC<Props> = ({
           },
         }}
       >
-        <Container maxWidth="lg" sx={{ position: "relative" }}>
-          <RomingoGuarantee
-            sx={{
-              width: "100vw",
-              position: "relative",
-              left: "50%",
-              right: "50%",
-              mx: "-50vw",
-            }}
-          />
+        <Container
+          maxWidth="lg"
+          sx={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <RomingoGuarantee />
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
               <Typography
