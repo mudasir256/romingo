@@ -173,10 +173,10 @@ const GetHotelDetail = `
           totalFees
           cancelationPolicy {
             cancelable
-            cutOffAt
-            cutOffUnit
-            cutOffMultiplier
-            cutOffReference
+            deadlineLocal
+            deadlineUnit
+            deadlineMultiplier
+            deadlineReference
             desc
           }
         }

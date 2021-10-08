@@ -34,7 +34,7 @@ interface IRoom {
     BedType: {
       Code: number;
       Count: number;
-    }[]
+    }[];
   };
   RoomDescription: {
     Name: string;
@@ -44,10 +44,10 @@ interface IRoom {
     Amenity: {
       Code: number;
       Description: string;
-    }[]
+    }[];
   };
   Occupancy: {
-    Max: number
+    Max: number;
   };
   RatePlans: {
     RatePlan: {
@@ -63,8 +63,8 @@ interface IRoom {
       RatePlanInclusions: {
         RatePlanInclusionDescription: {
           Name: string;
-          Code: number
-        }[]
+          Code: number;
+        }[];
       };
       RateInfo: {
         StartDate: string;
@@ -82,8 +82,8 @@ interface IRoom {
             AmountBeforeTax: number;
             AmountAfterTax: number;
             CurrencyCode: string;
-          }[]
-        },
+          }[];
+        };
         Taxes: {
           Amount: number;
           CurrencyCode: string;
@@ -91,7 +91,7 @@ interface IRoom {
             StartDate: string;
             EndDate: string;
             Amount: number;
-            CurrencyCode: string
+            CurrencyCode: string;
           }[];
           TaxGroups: {
             TaxGroup: {
@@ -99,11 +99,11 @@ interface IRoom {
               Amount: number;
               CurrencyCode: string;
               TaxDescription: {
-                Text: string[]
-              }
-            }[]
+                Text: string[];
+              };
+            }[];
           };
-        }
+        };
         CancelPenalties: {
           CancelPenalty: {
             cancelable: boolean;
@@ -114,8 +114,8 @@ interface IRoom {
               NmbrOfNights?: number;
               Amount?: number;
               CurrencyCode?: string;
-            }
-          }[]
+            };
+          }[];
         };
         Guarantee: {
           GuaranteeType: string;
@@ -126,23 +126,23 @@ interface IRoom {
                 PaymentCard: {
                   CardCode: string;
                   value: string;
-                }[]
-              }
-            }[]
+                }[];
+              };
+            }[];
           };
           GuaranteeDescription?: {
             Text: string[];
           };
-        }
+        };
         AdditionalDetails: {
           AdditionalDetail: {
             Code: number;
             Text: string[];
-          }[]
-        }
-      }
-    }[]
-  }
+          }[];
+        };
+      };
+    }[];
+  };
 }
 
 interface IHotelDetails {
@@ -174,7 +174,7 @@ interface IHotelDetails {
     value: string;
   }[];
   nearby: { text: string; distance: number }[];
-  rooms: IRoom[]
+  rooms: IRoom[];
 }
 
 interface ICheckout {
@@ -212,12 +212,12 @@ interface ICheckout {
       type: string;
       bestRate?: boolean;
       cancelationPolicy: {
-        cutOffAt: string | null;
+        deadlineLocal: string | null;
         cancelable: boolean;
       };
       feesIncluded: boolean;
-    }
-  }
+    };
+  };
 }
 
 interface ICity {
@@ -226,7 +226,7 @@ interface ICity {
   center: {
     latitude: number;
     longitude: number;
-  }
+  };
 }
 
 interface IViewStatus {
@@ -281,17 +281,17 @@ type CheckoutAction = {
 
 type CityListState = {
   cities: ICity[];
-}
+};
 
 type CityAction = {
   type: string;
   cities: ICity[];
-}
+};
 
 type ViewStatusAction = {
   type: string;
   status: IViewStatus;
-}
+};
 
 type SearchDispatchType = (args: SearchAction) => SearchAction;
 

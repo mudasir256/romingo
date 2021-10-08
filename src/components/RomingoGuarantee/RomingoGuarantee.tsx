@@ -10,7 +10,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
   return (
     <Box
       component="img"
-      src={"/images/RomingoGuarantee2.svg"}
+      src={"/images/RomingoGuarantee1.svg"}
       alt="Logo"
       draggable="false"
       sx={{
@@ -19,7 +19,6 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
         width: { xs: "200%", md: "100%" },
         maxWidth: { xs: "200%", md: "1050px" },
         ml: { xs: "-50%", md: 0 },
-        mt: -0.9,
         ...sx,
       }}
     />

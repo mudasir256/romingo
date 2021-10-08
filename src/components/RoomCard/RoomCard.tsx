@@ -51,7 +51,7 @@ interface Props {
   type: string;
   bestRate?: boolean;
   cancelationPolicy: {
-    cutOffAt: string | null;
+    deadlineLocal: string | null;
     cancelable: boolean;
   };
   feesIncluded: boolean;
@@ -88,7 +88,7 @@ export interface RoomInfo {
   type: string;
   bestRate?: boolean;
   cancelationPolicy: {
-    cutOffAt: string | null;
+    deadlineLocal: string | null;
     cancelable: boolean;
   };
   feesIncluded: boolean;
@@ -337,7 +337,7 @@ const RoomCard: FC<Props> = ({
               >
                 {cancelationPolicy.cancelable
                   ? `Refundable before
-                ${utils.getFormatDate(cancelationPolicy.cutOffAt)}`
+                ${utils.getFormatDate(cancelationPolicy.deadlineLocal)}`
                   : "Non-Refundable"}
               </Typography>
             }
