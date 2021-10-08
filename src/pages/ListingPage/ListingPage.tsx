@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
 import Stack from "@mui/material/Stack";
 import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
@@ -120,17 +121,19 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       y: 0,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
+      height: "20px",
     },
     preview: {
       y: (-2 * height) / 5,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
+      height: "800px",
     },
     expanded: {
       y: -height + 52,
       borderTopLeftRadius: "0px",
       borderTopRightRadius: "0px",
-      minHeight: "100vh",
+      minHeight: "94vh",
     },
   };
   const triggerVariants = {
@@ -198,6 +201,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           boxShadow: { xs: 0, md: 2 },
           display: "flex",
           justifyContent: { xs: "center", md: "flex-start" },
+          maxHeight: { xs: "100vh", md: "100%" },
+          overflow: "hidden",
           zIndex: 1000,
           py: { xs: 0, md: 1 },
         }}
@@ -265,7 +270,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             />
           </Box>
         ) : (
-          cards.length !== 0 && (
+          cards.length >= 0 && (
             <ListingMap
               loading={loading}
               center={{
@@ -359,23 +364,29 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 sx={{ pb: 7, overflow: "hidden" }}
               >
                 <RomingoGuarantee sx={{ mb: 0 }} />
-                {cards.map((card: any, index: number) => (
-                  <Link
-                    href="#"
-                    key={index}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      history.push("/details/" + card.id);
-                    }}
-                    underline="none"
-                  >
-                    <ListingCard
-                      {...card}
-                      highlighted={hotelIndex === index ? true : false}
-                    />
-                  </Link>
-                ))}
+                {cards.length === 0 ? (
+                  <Typography variant="h6" sx={{ textAlign: "center" }}>
+                    No listing found for this search...
+                  </Typography>
+                ) : (
+                  cards.map((card: any, index: number) => (
+                    <Link
+                      href="#"
+                      key={index}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        history.push("/details/" + card.id);
+                      }}
+                      underline="none"
+                    >
+                      <ListingCard
+                        {...card}
+                        highlighted={hotelIndex === index ? true : false}
+                      />
+                    </Link>
+                  ))
+                )}
               </Stack>
             )}
           </motion.div>

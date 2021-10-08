@@ -101,14 +101,18 @@ const ListingMap: FC<Props> = ({
               }}
             >
               <Hidden mdUp>
-                <ListingCardMap
-                  image={image}
-                  name={name}
-                  location={location}
-                  score={score}
-                  price={price}
-                  amenities={amenities}
-                />
+                <>
+                  {image && (
+                    <ListingCardMap
+                      image={image}
+                      name={name}
+                      location={location}
+                      score={score}
+                      price={price}
+                      amenities={amenities}
+                    />
+                  )}
+                </>
               </Hidden>
             </Link>
           </Box>
