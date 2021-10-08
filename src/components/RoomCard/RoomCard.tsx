@@ -175,8 +175,8 @@ const RoomCard: FC<Props> = ({
         <Typography
           variant="body1"
           sx={{
-            color: "white",
-            backgroundColor: bestRate ? "primary.main" : "secondary.main",
+            color: bestRate ? "white" : "secondary.main",
+            backgroundColor: bestRate ? "primary.main" : "white",
             fontWeight: 800,
             borderRadius: 1,
             p: 0.75,
@@ -184,9 +184,10 @@ const RoomCard: FC<Props> = ({
             mt: -2.8,
             boxShadow: 2,
             textAlign: "center",
+            transform: "rotate(-7deg)",
           }}
         >
-          {bestRate ? "Best Rate" : "Good Rate"}
+          {bestRate ? "Best Rate!" : "Good Rate"}
         </Typography>
         <Box
           sx={{

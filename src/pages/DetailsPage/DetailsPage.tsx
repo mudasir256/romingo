@@ -638,13 +638,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 variant="h4"
                 sx={{
                   color: "warning.main",
-                  my: 3,
+                  my: 5,
                   textAlign: "center",
                 }}
               >
                 Available Rooms
               </Typography>
-              <Grid container columnSpacing={2} rowSpacing={2}>
+              <Grid container columnSpacing={4} rowSpacing={4}>
                 {rooms.map((room: any, key: number) => {
                   return (
                     <Grid
