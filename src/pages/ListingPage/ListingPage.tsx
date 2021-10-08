@@ -121,19 +121,16 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       y: 0,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
-      height: "20px",
     },
     preview: {
       y: (-2 * height) / 5,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
-      height: "800px",
     },
     expanded: {
       y: -height + 52,
       borderTopLeftRadius: "0px",
       borderTopRightRadius: "0px",
-      minHeight: "94vh",
     },
   };
   const triggerVariants = {
