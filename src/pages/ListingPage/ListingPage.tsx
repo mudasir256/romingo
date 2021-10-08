@@ -5,23 +5,11 @@ import Skeleton from "@mui/material/Skeleton";
 import Divider from "@mui/material/Divider";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
-import React, {
-  FC,
-  useRef,
-  useState,
-  MouseEventHandler,
-  useEffect,
-} from "react";
+import React, { FC, useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
-import {
-  connect,
-  useStore,
-  useDispatch,
-  useSelector,
-  shallowEqual,
-} from "react-redux";
+import { useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Dispatch } from "redux";
 
 import RomingoGuarantee from "../../components/RomingoGuarantee";
@@ -142,6 +130,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       y: -height + 52,
       borderTopLeftRadius: "0px",
       borderTopRightRadius: "0px",
+      minHeight: "100vh",
     },
   };
   const triggerVariants = {
@@ -353,7 +342,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               />
             </Box>
             {loading ? (
-              <Stack spacing={3} divider={<Divider variant="middle" />}>
+              <Stack
+                spacing={3}
+                sx={{ overflow: "hidden" }}
+                divider={<Divider variant="middle" />}
+              >
                 <RomingoGuarantee sx={{ mb: 0 }} />
                 {Array.from({ length: 6 }, (_, i: number) => (
                   <ListingCardSkeleton key={i} />
@@ -363,7 +356,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               <Stack
                 spacing={3}
                 divider={<Divider variant="middle" />}
-                sx={{ pb: 7 }}
+                sx={{ pb: 7, overflow: "hidden" }}
               >
                 <RomingoGuarantee sx={{ mb: 0 }} />
                 {cards.map((card: any, index: number) => (

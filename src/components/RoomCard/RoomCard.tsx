@@ -309,6 +309,7 @@ const RoomCard: FC<Props> = ({
           display: { xs: "block", md: "flex" },
           flexDirection: "column",
           justifyContent: "space-between",
+          flex: 1,
         }}
       >
         <div style={{ textAlign: "center" }}>
@@ -317,8 +318,8 @@ const RoomCard: FC<Props> = ({
             sx={{
               textAlign: "center",
               width: "100%",
-              maxWidth: "200px",
               height: "40px",
+              backgroundColor: "white",
               mt: { xs: "20px", sm: "0px" },
             }}
             variant="outlined"

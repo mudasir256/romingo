@@ -523,7 +523,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </>
         )}
         {!loading && (
-          <Grid container spacing={2} sx={{ mt: 0 }}>
+          <Grid container spacing={2} sx={{ mt: 0, overflow: "hidden" }}>
             <Grid item xs={12} md={7} lg={8}>
               <Typography
                 variant="h5"
@@ -550,7 +550,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <ReadMore text={defaultDescription} length={200} />
               <Grid container spacing={2} sx={{ mt: 0 }}>
                 <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                  <Box
+                    sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
+                  >
                     <AmenitiesCard
                       title={"Dog Friendly Amenities"}
                       amenities={amenities}
@@ -558,7 +560,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                  <Box
+                    sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
+                  >
                     <AmenitiesCard
                       title={"Other Amenities"}
                       amenities={otherAmenities}
