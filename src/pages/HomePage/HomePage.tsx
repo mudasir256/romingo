@@ -155,7 +155,9 @@ const HomePage: FC<Props> = ({
             alignItems: "center",
           }}
         >
-          <RomingoGuarantee sx={{ maxWidth: "100vw", ml: 0, mt: 0 }} />
+          <RomingoGuarantee
+            sx={{ maxWidth: "100vw", ml: 0, mt: { xs: "-30px", md: "-85px" } }}
+          />
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
               <Typography

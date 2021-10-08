@@ -332,6 +332,7 @@ const RoomCard: FC<Props> = ({
                   whiteSpace: "pre-line",
                   fontSize: "12px",
                   lineHeight: 1,
+                  fontWeight: 800,
                   marginTop: 1,
                   marginBottom: 1,
                 }}
