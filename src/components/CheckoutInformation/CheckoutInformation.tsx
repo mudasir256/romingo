@@ -8,8 +8,7 @@ import Button from "@mui/material/Button";
 import Hidden from "@mui/material/Hidden";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
-// import { makeStyles } from "@mui/styles"
-import { gql, useQuery, useLazyQuery } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 import { GetStripeClientSecret } from "../../constants/constants";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
@@ -29,7 +28,11 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [getClientSecret, { data, error, loading }] = useLazyQuery(gql`${GetStripeClientSecret}`);
+  const [getClientSecret, { data, loading }] = useLazyQuery(
+    gql`
+      ${GetStripeClientSecret}
+    `
+  );
 
   const [clientSecret, setClientSecret] = useState("");
 
@@ -43,8 +46,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
     }
   }, [getClientSecret, data, loading]);
 
-  const submitStripe = async() => {
-
+  const submitStripe = async () => {
     if (!stripe || !elements) {
       return;
     }
@@ -54,23 +56,26 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
       return;
     }
 
-    const {error, paymentIntent} = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: cardElement
+    const { error, paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card: cardElement,
+        },
       }
-    });
+    );
 
     console.log(paymentIntent);
-  }
+  };
 
   React.useEffect(() => {
     if (clientSecret) {
       submitStripe();
     }
-  }, [clientSecret])
+  }, [clientSecret]);
 
-  const handleSubmit = async() => {
-    getClientSecret({variables: {amount: price}});
+  const handleSubmit = async () => {
+    getClientSecret({ variables: { amount: price } });
     // if (!stripe || !elements) {
     //   return;
     // }
@@ -81,10 +86,8 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
     //   return;
     // }
 
-    
-
     // console.log(paymentIntent);
-  }
+  };
 
   return (
     <Box sx={sx}>
@@ -187,14 +190,14 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
             />
           </Grid>
           <Grid item xs={12}>
-            <CardElement 
+            <CardElement
               options={{
                 style: {
                   base: {
                     padding: "18.5px 14px",
-                  }
-                }
-              }} 
+                  },
+                },
+              }}
             />
           </Grid>
           <Grid item xs={7} sm={6} md={4}>

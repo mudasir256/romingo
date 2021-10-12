@@ -8,7 +8,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useTheme } from "@mui/material/styles";
 
@@ -117,7 +116,7 @@ const AmenitiesCard: FC<Props> = ({
               id="amenities-dialog-slide-title"
               sx={{
                 textAlign: "center",
-                color: "primary.main"
+                color: "primary.main",
               }}
             >
               Amenities

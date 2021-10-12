@@ -80,6 +80,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
     setZoomIn(true);
   };
 
+  // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {

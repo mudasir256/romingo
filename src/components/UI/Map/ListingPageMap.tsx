@@ -37,7 +37,6 @@ const ListingPageMap: FC<Props> = ({
     googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
   });
   const [localCenter, setLocalCenter] = useState(center);
-
   useEffect(() => {
     if (center.lat !== localCenter.lat) {
       setLocalCenter(center);

@@ -121,11 +121,13 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       y: 0,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
+      height: 5,
     },
     preview: {
       y: (-2 * height) / 5,
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
+      height: (2 * height) / 5,
     },
     expanded: {
       y: -height + 52,
@@ -198,7 +200,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           boxShadow: { xs: 0, md: 2 },
           display: "flex",
           justifyContent: { xs: "center", md: "flex-start" },
-          maxHeight: { xs: "100vh", md: "100%" },
+          maxHeight: { xs: height, md: "100%" },
           overflow: "hidden",
           zIndex: 1000,
           py: { xs: 0, md: 1 },
@@ -242,7 +244,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           display: {
             md: "flex",
           },
-          height: { xs: "100vh", md: "calc(100vh - 59px)" },
+          height: { xs: height, md: "calc(100vh - 59px)" },
         }}
       >
         {loading ? (
@@ -309,8 +311,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               right: 0,
               padding: 24,
               backgroundColor: "white",
-              overflow: animate === "expanded" ? "auto" : "hidden",
               maxHeight: height - 48,
+              overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,
             }}
             variants={variants}

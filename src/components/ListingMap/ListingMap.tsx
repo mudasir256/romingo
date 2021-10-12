@@ -47,6 +47,7 @@ const ListingMap: FC<Props> = ({
   onClick,
 }) => {
   const history = useHistory();
+  const moreProps = onClick ? { onPointerDown: onClick } : null;
 
   return (
     <Box
@@ -62,7 +63,7 @@ const ListingMap: FC<Props> = ({
         overflow: "hidden",
         ...sx,
       }}
-      onPointerDown={onClick ? onClick : undefined}
+      {...moreProps}
     >
       {loading ? (
         <Skeleton

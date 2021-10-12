@@ -15,9 +15,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import OccupantSelector, {
-  Occupant,
-} from "../OccupantSelector/OccupantSelector";
+import OccupantSelector from "../OccupantSelector/OccupantSelector";
 import Link from "@mui/material/Link";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
@@ -40,6 +38,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
+  // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
   const handleBook: MouseEventHandler<Element> = (e) => {
@@ -54,6 +53,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   };
 
   const search = useSelector(
+    // eslint-disable-next-line
     (state: any) => state.searchReducer.search,
     shallowEqual
   );

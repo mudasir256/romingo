@@ -3,24 +3,27 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 
-interface Props {
-  details: {
-    checkIn: string;
-    checkOut: string;
-    occupants: {
-      adults: number;
-      dogs: number;
-      children: number;
-    };
-    roomType: string;
-  };
-}
+// interface Props {
+//   details: {
+//     checkIn: string;
+//     checkOut: string;
+//     occupants: {
+//       adults: number;
+//       dogs: number;
+//       children: number;
+//     };
+//     roomType: string;
+//   };
+// }
 
 const BookingDetailCard: FC = () => {
-
+  // eslint-disable-next-line
   const details = useSelector((state: any) => state.searchReducer.search);
 
-  const roomType = useSelector((state: any) => state.hotelCheckoutReducer.checkout.room.room.type);
+  const roomType = useSelector(
+    // eslint-disable-next-line
+    (state: any) => state.hotelCheckoutReducer.checkout.room.room.type
+  );
 
   return (
     <Box

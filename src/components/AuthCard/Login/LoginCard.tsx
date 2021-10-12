@@ -1,27 +1,22 @@
 import Box from "@mui/material/Box";
 import { FC, useState } from "react";
-import { connect, useStore, useDispatch } from 'react-redux';
-import { Dispatch } from "redux"
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 import { CSSObject } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Button from "@mui/material/Button";
 
-import { authService } from "../../../services/authService";
-import { loginUser } from "../../../store/userReducer"
+import { loginUser } from "../../../store/userReducer";
 
 interface Props {
   sx?: CSSObject;
-}
-
-interface LoginInfo {
-  email: string;
-  password: string;
 }
 
 const LoginCard: FC<Props> = ({ sx }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
   return (
@@ -29,10 +24,12 @@ const LoginCard: FC<Props> = ({ sx }) => {
       <ValidatorForm
         onSubmit={(e: React.SyntheticEvent) => {
           e.preventDefault();
-          dispatch(loginUser({
-            email,
-            password
-          }))
+          dispatch(
+            loginUser({
+              email,
+              password,
+            })
+          );
         }}
       >
         <TextValidator
