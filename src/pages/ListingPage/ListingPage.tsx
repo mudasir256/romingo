@@ -287,8 +287,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               selectedMarker={hoverIndex}
               id={cards[hotelIndex]?.id}
               onClick={(e: any) => {
-                e.preventDefault();
-                e.stopPropagation();
                 setAnimate("collapsed");
               }}
             />
