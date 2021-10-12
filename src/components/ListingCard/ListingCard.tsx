@@ -67,8 +67,7 @@ const ListingCard: FC<ListingCardProps> = ({
           objectFit: "cover",
           width: "100%",
           maxWidth: { sm: 300 },
-          maxHeight: { xs: 180, sm: 240 },
-          minHeight: { xs: 180, sm: "100%" },
+          height: { xs: 180, sm: 232 },
           borderRadius: 3,
           boxShadow: 0,
         }}

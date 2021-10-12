@@ -154,7 +154,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     lat: "",
     lon: "",
   });
-  const [mainImg, setMainImg] = useState("");
   const [gallery, setGallery] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [defaultDescription, setDefaultDescription] = useState("");
@@ -194,12 +193,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         lat: data.property.location.latitude,
         lon: data.property.location.longitude,
       });
-      setMainImg(data.property.featuredImageURL);
 
       setCity({ ...data.property.city });
       setNeighborhood(data.property.neighborhood);
 
       let tmp: any[] = [];
+      tmp.push(data.property.featuredImageURL);
       data.property.sabreImageURLs.map((image: string) => {
         tmp.push(image);
       });
@@ -428,7 +427,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               <Box
                 onClick={handleOpen}
                 component="img"
-                src={removeHttpLink(mainImg)}
+                src={removeHttpLink(gallery[0])}
                 alt={name}
                 draggable="false"
                 boxShadow={2}
@@ -447,7 +446,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             <Grid item xs={12} sm={6}>
               <Grid container spacing={2}>
                 {!loading &&
-                  gallery.slice(0, 4).map((img: any) => {
+                  gallery.slice(1, 5).map((img: any) => {
                     return (
                       <Grid item sm={6} key={img}>
                         <Box

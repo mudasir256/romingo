@@ -396,7 +396,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
                 setTimeout(() => {
                   setAnimate("collapsed");
-                }, 200);
+                }, 500);
               }}
               sx={{
                 position: "absolute",
