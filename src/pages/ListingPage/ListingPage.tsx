@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
 import Stack from "@mui/material/Stack";
-import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import MapIcon from "@mui/icons-material/Map";

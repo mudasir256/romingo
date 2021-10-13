@@ -30,8 +30,8 @@ const ListingCardMap: FC<Props> = ({
         display: "flex",
         borderRadius: 3,
         boxShadow: 4,
-        width: "350px",
-        maxWidth: "350px",
+        width: "95vw",
+        maxWidth: "420px",
       }}
     >
       <Box
@@ -40,14 +40,14 @@ const ListingCardMap: FC<Props> = ({
         alt={name}
         sx={{
           objectFit: "cover",
-          width: 75,
-          minHeight: "100%",
+          width: 100,
+          height: 85,
           borderTopLeftRadius: 12,
           borderBottomLeftRadius: 12,
           boxShadow: 0,
         }}
       />
-      <Box sx={{ py: 0.7, px: 1, flex: 1, minWidth: "200px" }}>
+      <Box sx={{ py: 1, px: 1, flex: 1, minWidth: "130px" }}>
         <Box>
           <Typography
             variant="h6"
@@ -81,7 +81,7 @@ const ListingCardMap: FC<Props> = ({
               overflow: "hidden",
               whiteSpace: "nowrap",
               textOverflow: "ellipsis",
-              minWidth: 0,
+              minWidth: "0px",
               mt: 0.5,
             }}
           >
@@ -90,7 +90,8 @@ const ListingCardMap: FC<Props> = ({
               sx={{
                 alignItems: "center",
                 display: "flex",
-                textAlign: "right",
+                flex: 1,
+                justifyContent: "end",
               }}
             >
               <Typography
@@ -103,7 +104,7 @@ const ListingCardMap: FC<Props> = ({
                 }}
               >
                 {currency}
-                {price}
+                {Math.round(price)}
               </Typography>
               <Typography variant="body2" sx={{ fontSize: "70%" }}>
                 / night

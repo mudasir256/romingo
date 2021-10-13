@@ -6,14 +6,14 @@ interface Props {
   text: string;
   length: number;
   small?: boolean;
-  capitalize?: boolean;
+  justify?: boolean;
 }
 
 const ReadMore: FC<Props> = ({
   text,
   length,
   small = false,
-  capitalize = false,
+  justify = false,
 }) => {
   const [showLess, setShowLess] = useState(true);
 
@@ -26,7 +26,7 @@ const ReadMore: FC<Props> = ({
           display: "inline",
           my: 0,
           fontSize: small ? "80%" : "100%",
-          textTransform: capitalize ? "uppercase" : "none",
+          textAlign: justify ? "justify" : "left",
         }}
       >
         {text}
@@ -44,19 +44,20 @@ const ReadMore: FC<Props> = ({
         sx={{
           lineHeight: small ? 1 : 2,
           display: "inline",
-          textTransform: capitalize ? "uppercase" : "none",
           my: 0,
           fontSize: small ? "80%" : "100%",
+          textAlign: justify ? "justify" : "left",
         }}
       />
       <Box
-        sx={{ display: "inline", py: small ? 0 : 2 }}
+        sx={{ display: "inline", p: small ? 0 : 2 }}
         onClick={() => setShowLess(!showLess)}
       >
         <Typography
+          variant="body2"
           sx={{
             fontSize: small ? "80%" : { xs: "85%", sm: "100%" },
-            lineHeight: 2,
+            lineHeight: small ? 1 : 2,
             display: "inline",
             color: "primary.main",
             cursor: "pointer",
