@@ -681,7 +681,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             keepMounted
             fullScreen
             onClose={handleClose}
-            scroll="body"
+            scroll="paper"
             aria-labelledby="photo-dialog-slide-title"
             aria-describedby="photo-dialog-slide-description"
           >
@@ -710,7 +710,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 <CloseIcon />
               </IconButton>
             </DialogTitle>
-            <DialogContent sx={{ px: 0 }} onClick={handleClose}>
+            <DialogContent sx={{ px: 0 }}>
               <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
                 <ImageList variant="masonry" cols={getImageCols()} gap={8}>
                   <SRLWrapper options={lightBoxOptions}>
