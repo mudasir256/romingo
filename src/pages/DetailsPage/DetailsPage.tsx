@@ -256,7 +256,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         });
 
         roomDescription =
-          (room.type ? room.type + " - " : "") + roomDescription;
+          (room.type ? room.type : "") +
+          (room.type && roomDescription && " - ") +
+          roomDescription;
 
         tmp.push({
           value: key,

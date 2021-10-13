@@ -145,9 +145,7 @@ const RoomCard: FC<Props> = ({
     beds.map((bed) => {
       if (roomDescription !== "") roomDescription += " + ";
 
-      roomDescription += `${bed.count} ${bed.desc} ${bed.__typename}${
-        bed.count > 1 ? "s" : ""
-      }`;
+      roomDescription += `${bed.count} ${bed.desc}${bed.count > 1 ? "s" : ""}`;
     });
 
     roomDescription = (type ? type + "\n" : "") + roomDescription;
@@ -236,7 +234,7 @@ const RoomCard: FC<Props> = ({
                     }}
                   />
                 )}
-                {bed.code === 7 && (
+                {bed.code === 6 && (
                   <WeekendOutlinedIcon
                     sx={{
                       fontSize: { xs: "25px", md: "28px" },
