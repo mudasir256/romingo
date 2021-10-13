@@ -16,6 +16,8 @@ import Button from "@mui/material/Button";
 import Backdrop from "@mui/material/Backdrop";
 import SingleBedOutlinedIcon from "@mui/icons-material/SingleBedOutlined";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
+import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
+import RoomPreferencesOutlinedIcon from "@mui/icons-material/RoomPreferencesOutlined";
 
 import { utils } from "../../services/utils";
 
@@ -112,7 +114,6 @@ const RoomCard: FC<Props> = ({
   ...props
 }) => {
   const [showDialog, setShowDialog] = useState(false);
-  const length = 30;
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
 
@@ -201,7 +202,7 @@ const RoomCard: FC<Props> = ({
           {beds?.map((bed, key) => {
             return Array.from({ length: bed.count }, (_, i: number) => (
               <React.Fragment key={key + "_" + i}>
-                {bed.desc === "Queen" && (
+                {bed.code === 5 && (
                   <KingBedOutlinedIcon
                     sx={{
                       fontSize: { xs: "25px", md: "28px" },
@@ -209,7 +210,7 @@ const RoomCard: FC<Props> = ({
                     }}
                   />
                 )}
-                {bed.desc === "King" && (
+                {bed.code === 3 && (
                   <KingBedOutlinedIcon
                     sx={{
                       fontSize: { xs: "25px", md: "28px" },
@@ -218,7 +219,7 @@ const RoomCard: FC<Props> = ({
                     }}
                   />
                 )}
-                {bed.desc === "Single" && (
+                {bed.code === 9 && (
                   <SingleBedOutlinedIcon
                     sx={{
                       fontSize: { xs: "25px", md: "28px" },
@@ -226,7 +227,7 @@ const RoomCard: FC<Props> = ({
                     }}
                   />
                 )}
-                {bed.desc === "Double" && (
+                {bed.code === 1 && (
                   <KingBedOutlinedIcon
                     sx={{
                       fontSize: { xs: "25px", md: "28px" },
@@ -235,9 +236,27 @@ const RoomCard: FC<Props> = ({
                     }}
                   />
                 )}
+                {bed.code === 7 && (
+                  <WeekendOutlinedIcon
+                    sx={{
+                      fontSize: { xs: "25px", md: "28px" },
+                      p: 0.5,
+                    }}
+                  />
+                )}
               </React.Fragment>
             ));
           })}
+          {(!beds || beds.length == 0) && (
+            <React.Fragment>
+              <RoomPreferencesOutlinedIcon
+                sx={{
+                  fontSize: { xs: "25px", md: "28px" },
+                  p: 0.5,
+                }}
+              />
+            </React.Fragment>
+          )}
         </Box>
       </Box>
       <Box

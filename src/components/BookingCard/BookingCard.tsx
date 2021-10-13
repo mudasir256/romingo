@@ -117,9 +117,6 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
                       onBlur={() => {
                         setIsTextField(false);
                       }}
-                      onClick={() => {
-                        setOpen(true);
-                      }}
                       fullWidth={true}
                     />
                   </Grid>
@@ -130,9 +127,6 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
                       }}
                       onBlur={() => {
                         setIsTextField(false);
-                      }}
-                      onClick={() => {
-                        setOpen(true);
                       }}
                       {...endProps}
                       fullWidth={true}
@@ -166,7 +160,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               }}
               label="Room Type"
             >
-              {roomList.map((room, key) => {
+              {roomList.slice(0, 8).map((room, key) => {
                 return (
                   <MenuItem value={room.value} key={key}>
                     {room.description}
