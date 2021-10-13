@@ -20,6 +20,7 @@ import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
 import RoomPreferencesOutlinedIcon from "@mui/icons-material/RoomPreferencesOutlined";
 
 import { utils } from "../../services/utils";
+import ReadMore from "../UI/ReadMore";
 
 interface Props {
   sx?: CSSObject;
@@ -277,6 +278,12 @@ const RoomCard: FC<Props> = ({
           {roomTitle}
         </Typography>
         <Box sx={{ mx: 2 }}>
+          <ReadMore
+            text={desc && desc.toLowerCase()}
+            length={70}
+            small
+            capitalize
+          />
           <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
             Room Amenities
           </Typography>

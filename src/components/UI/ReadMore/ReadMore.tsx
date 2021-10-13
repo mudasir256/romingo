@@ -5,35 +5,57 @@ import Box from "@mui/material/Box";
 interface Props {
   text: string;
   length: number;
+  small?: boolean;
+  capitalize?: boolean;
 }
 
-const ReadMore: FC<Props> = ({ text, length }) => {
+const ReadMore: FC<Props> = ({
+  text,
+  length,
+  small = false,
+  capitalize = false,
+}) => {
   const [showLess, setShowLess] = useState(true);
 
   if (text.length < length) {
-    return <p>{text}</p>;
+    return (
+      <Typography
+        variant="body2"
+        sx={{
+          lineHeight: small ? 1 : 2,
+          display: "inline",
+          my: 0,
+          fontSize: small ? "80%" : "100%",
+          textTransform: capitalize ? "uppercase" : "none",
+        }}
+      >
+        {text}
+      </Typography>
+    );
   }
 
   return (
     <Box>
       <Typography
-        variant="body1"
+        variant="body2"
         dangerouslySetInnerHTML={{
           __html: showLess ? `${text.slice(0, length)}... ` : text + " ",
         }}
         sx={{
-          lineHeight: 2,
+          lineHeight: small ? 1 : 2,
           display: "inline",
+          textTransform: capitalize ? "uppercase" : "none",
           my: 0,
+          fontSize: small ? "80%" : "100%",
         }}
       />
       <Box
-        sx={{ display: "inline", py: 2 }}
+        sx={{ display: "inline", py: small ? 0 : 2 }}
         onClick={() => setShowLess(!showLess)}
       >
         <Typography
           sx={{
-            fontSize: { xs: "85%", sm: "100%" },
+            fontSize: small ? "80%" : { xs: "85%", sm: "100%" },
             lineHeight: 2,
             display: "inline",
             color: "primary.main",
