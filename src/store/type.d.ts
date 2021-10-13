@@ -18,6 +18,7 @@ interface IUser {
 
 interface IHotel {
   featuredImageURL: string;
+  imageURLs: string[];
   name: string;
   addressLine1: string;
   score: number;

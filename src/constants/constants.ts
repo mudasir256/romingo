@@ -18,6 +18,7 @@ const GetHotelBySearch = `
         id
         sabreId
         featuredImageURL
+        imageURLs
         name
         addressLine1
         city {

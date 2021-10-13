@@ -371,21 +371,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                   </Typography>
                 ) : (
                   cards.map((card: any, index: number) => (
-                    <Link
-                      href="#"
+                    <ListingCard
                       key={index}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        history.push("/details/" + card.id);
-                      }}
-                      underline="none"
-                    >
-                      <ListingCard
-                        {...card}
-                        highlighted={hotelIndex === index ? true : false}
-                      />
-                    </Link>
+                      {...card}
+                      highlighted={hotelIndex === index ? true : false}
+                    />
                   ))
                 )}
               </Stack>
@@ -451,21 +441,19 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             ) : (
               <Stack spacing={3} divider={<Divider variant="middle" />}>
                 {cards.map((card: any, index: number) => (
-                  <Link
-                    href={"/details/" + card.id}
+                  <Box
                     key={index}
-                    target="_blank"
-                    underline="none"
                     ref={refArray[index]}
                     onMouseOver={(e) => {
                       setHoverIndex(index);
                     }}
                   >
                     <ListingCard
+                      key={index}
                       {...card}
                       highlighted={hotelIndex === index ? true : false}
                     />
-                  </Link>
+                  </Box>
                 ))}
               </Stack>
             )}
