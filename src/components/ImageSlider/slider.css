@@ -19,4 +19,12 @@
 .carousel .control-arrow,
 .carousel.carousel-slider .control-arrow {
   opacity: 0.6;
+  padding: 10px;
+}
+.carousel .control-prev.control-arrow {
+  padding-right: 50px;
+}
+
+.carousel .control-next.control-arrow {
+  padding-left: 50px;
 }

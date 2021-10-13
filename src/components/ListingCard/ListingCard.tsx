@@ -73,7 +73,7 @@ const ListingCard: FC<ListingCardProps> = ({
         }}
       >
         <ImageSlider
-          images={imageURLs?.slice(0, 4)}
+          images={imageURLs}
           name={name}
           sx={{
             width: { sm: 300 },

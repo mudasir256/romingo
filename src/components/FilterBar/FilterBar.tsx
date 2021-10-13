@@ -162,7 +162,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
                   },
                 }}
               >
-                {getCityName}
+                {getCityName(selectedCity)}
               </Typography>
             </Button>
             <Box

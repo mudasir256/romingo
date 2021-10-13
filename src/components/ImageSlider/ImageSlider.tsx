@@ -18,13 +18,17 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   useEffect(() => {
     if (images.length > 0) {
       setItems(
-        images.map((img, i) => {
+        images.slice(0, 10).map((img, i) => {
           if (i === 0) {
             return (
               <Box
                 key={img}
                 component="img"
-                src={img}
+                srcSet={`${img.replace(
+                  /^http(s?):/i,
+                  ""
+                )}?w=161&fit=crop&auto=format 1x,
+${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 alt={name}
                 sx={{
                   ...sx,
@@ -34,7 +38,6 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
           } else {
             return (
               <Box
-                component="img"
                 sx={{
                   ...sx,
                 }}
