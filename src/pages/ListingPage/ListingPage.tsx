@@ -310,6 +310,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               maxHeight: height - 48,
               overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,
+              overscrollBehavior: "none",
             }}
             variants={variants}
             animate={animate}

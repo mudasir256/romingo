@@ -524,7 +524,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </>
         )}
         {!loading && (
-          <Grid container spacing={2} sx={{ mt: 0, overflow: "hidden" }}>
+          <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12} md={7} lg={8}>
               <Typography
                 variant="h5"
@@ -572,7 +572,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   </Box>
                 </Grid>
               </Grid>
-              <RomingoGuarantee sx={{ mt: 2 }} />
+              <Box sx={{ width: "100%", overflow: "hidden" }}>
+                <RomingoGuarantee sx={{ mt: 2 }} />
+              </Box>
               <Grid container>
                 <Box
                   sx={{
