@@ -31,7 +31,7 @@ const ListingPageMap: FC<Props> = ({
   markers,
   markerClickCallBack,
   selectedMarker,
-  zoom = 10,
+  zoom = 11,
 }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",

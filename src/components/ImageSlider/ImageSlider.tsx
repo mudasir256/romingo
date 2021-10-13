@@ -16,7 +16,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   const [item, setItem] = useState(0);
 
   useEffect(() => {
-    if (images.length > 0) {
+    if (images && images.length > 0) {
       setItems(
         images.slice(0, 10).map((img, i) => {
           if (i === 0) {
@@ -68,10 +68,10 @@ ${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
     }
   }, [item]);
 
-  console.log(items);
   return (
     <Carousel
       infiniteLoop
+      autoPlay={false}
       showStatus={false}
       onChange={(i) => setItem(i)}
       showThumbs={false}

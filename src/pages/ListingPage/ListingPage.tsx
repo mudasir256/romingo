@@ -372,7 +372,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 ) : (
                   cards.map((card: any, index: number) => (
                     <ListingCard
-                      key={index}
+                      key={card.id}
                       {...card}
                       highlighted={hotelIndex === index ? true : false}
                     />
@@ -442,14 +442,13 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               <Stack spacing={3} divider={<Divider variant="middle" />}>
                 {cards.map((card: any, index: number) => (
                   <Box
-                    key={index}
+                    key={card.id}
                     ref={refArray[index]}
                     onMouseOver={() => {
                       setHoverIndex(index);
                     }}
                   >
                     <ListingCard
-                      key={index}
                       {...card}
                       highlighted={hotelIndex === index ? true : false}
                     />

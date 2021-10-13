@@ -61,7 +61,6 @@ const ListingCard: FC<ListingCardProps> = ({
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
         justifyContent: "center",
-        alignItems: "center",
         backgroundColor: highlighted ? "lightBackground.main" : "white",
       }}
       {...props}
@@ -91,7 +90,7 @@ const ListingCard: FC<ListingCardProps> = ({
           history.push("/details/" + id);
         }}
         underline="none"
-        sx={{ flex: 1, minWidth: 0 }}
+        sx={{ flex: 1, minWidth: 0, maxWidth: "100%" }}
       >
         <Box
           sx={{
