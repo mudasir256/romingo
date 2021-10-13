@@ -38,6 +38,7 @@ ${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
           } else {
             return (
               <Box
+                key={img + "lazy"}
                 sx={{
                   ...sx,
                 }}
