@@ -16,7 +16,7 @@ interface Props {
   }[];
   markerClickCallBack?: (index: number) => void;
   selectedMarker?: number;
-  zoom: number;
+  zoom?: number;
 }
 
 interface Size {
@@ -31,7 +31,7 @@ const ListingPageMap: FC<Props> = ({
   markers,
   markerClickCallBack,
   selectedMarker,
-  zoom,
+  zoom = 10,
 }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
