@@ -614,7 +614,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                           borderRadius: 3,
                           background: "white",
                         }}
-                        onClick={(e) => handleEditDogClick(key)}
+                        onClick={() => handleEditDogClick(key)}
                       >
                         Edit
                       </Button>

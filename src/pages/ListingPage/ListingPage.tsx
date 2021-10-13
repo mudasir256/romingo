@@ -284,7 +284,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
               id={cards[hotelIndex]?.id}
-              onClick={(e: any) => {
+              onClick={(e) => {
                 setAnimate("collapsed");
               }}
             />
@@ -313,7 +313,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             }}
             variants={variants}
             animate={animate}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
+            onScroll={(e: any) => {
+              if (e.target?.scrollTop === 0) {
+                setAnimate("collapsed");
+              }
+            }}
             onDragEnd={(_, { offset }) => {
               if (offset.y < -30) {
                 if (animate === "collapsed") {
@@ -390,15 +395,16 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               size="large"
               color="secondary"
               variant="contained"
-              onClick={() => {
-                scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
-                setTimeout(() => {
+              onClick={(e: any) => {
+                if (e.target?.scrollTop === 0) {
                   setAnimate("collapsed");
-                }, 500);
+                } else {
+                  scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
+                }
               }}
               sx={{
                 position: "absolute",
-                bottom: 25,
+                bottom: 15,
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 100,
