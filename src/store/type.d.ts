@@ -224,6 +224,7 @@ interface ICheckout {
 interface ICity {
   name: string;
   id: string;
+  zoom: number;
   center: {
     latitude: number;
     longitude: number;

@@ -71,8 +71,9 @@ ${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
   return (
     <Carousel
       infiniteLoop
-      autoPlay={false}
       showStatus={false}
+      showIndicators={true}
+      showArrows={true}
       onChange={(i) => setItem(i)}
       showThumbs={false}
     >

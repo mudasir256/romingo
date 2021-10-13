@@ -10,6 +10,7 @@ import Hidden from "@mui/material/Hidden";
 
 interface Props {
   center: { lat: number; lng: number };
+  zoom?: number;
   sx?: CSSObject;
   loading?: boolean;
   markers?: {
@@ -33,6 +34,7 @@ interface Props {
 
 const ListingMap: FC<Props> = ({
   center,
+  zoom = 10,
   loading = false,
   sx,
   markers,
@@ -77,6 +79,7 @@ const ListingMap: FC<Props> = ({
         <>
           <ListingPageMap
             center={center}
+            zoom={zoom}
             width={"100%"}
             markers={markers}
             markerClickCallBack={markerClickCallBack}

@@ -21,10 +21,7 @@
   opacity: 0.6;
   padding: 10px;
 }
-.carousel .control-prev.control-arrow {
-  padding-right: 50px;
-}
 
-.carousel .control-next.control-arrow {
-  padding-left: 50px;
+.carousel .control-dots {
+  z-index: 100000000;
 }
