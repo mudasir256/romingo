@@ -13,29 +13,66 @@ interface Props {
 
 const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
+  const [item, setItem] = useState(0);
 
   useEffect(() => {
     if (images.length > 0) {
       setItems(
-        images.map((img) => {
-          return (
-            <Box
-              key={img}
-              component="img"
-              src={img}
-              alt={name}
-              sx={{
-                ...sx,
-              }}
-            />
-          );
+        images.map((img, i) => {
+          if (i === 0) {
+            return (
+              <Box
+                key={img}
+                component="img"
+                src={img}
+                alt={name}
+                sx={{
+                  ...sx,
+                }}
+              />
+            );
+          } else {
+            return (
+              <Box
+                component="img"
+                sx={{
+                  ...sx,
+                }}
+              />
+            );
+          }
         })
       );
     }
   }, []);
 
+  useEffect(() => {
+    if (item !== 0) {
+      const addItems = [...items];
+      const addItem = (
+        <Box
+          key={images[item]}
+          component="img"
+          src={images[item]}
+          alt={name}
+          sx={{
+            ...sx,
+          }}
+        />
+      );
+      addItems[item] = addItem;
+      setItems(addItems);
+    }
+  }, [item]);
+
+  console.log(items);
   return (
-    <Carousel infiniteLoop showStatus={false}>
+    <Carousel
+      infiniteLoop
+      showStatus={false}
+      onChange={(i) => setItem(i)}
+      showThumbs={false}
+    >
       {items}
     </Carousel>
   );

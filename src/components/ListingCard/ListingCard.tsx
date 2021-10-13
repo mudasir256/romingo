@@ -51,7 +51,6 @@ const ListingCard: FC<ListingCardProps> = ({
   highlighted = false,
   ...props
 }) => {
-  console.log(imageURLs);
   const history = useHistory();
   const mobileCardPadding = 1.8;
   return (
@@ -74,7 +73,7 @@ const ListingCard: FC<ListingCardProps> = ({
         }}
       >
         <ImageSlider
-          images={imageURLs.slice(0, 3)}
+          images={imageURLs.slice(0, 4)}
           name={name}
           sx={{
             maxWidth: { sm: 300 },
