@@ -274,6 +274,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 lat: selectedCity?.center?.latitude,
                 lng: selectedCity?.center?.longitude,
               }}
+              zoom={selectedCity?.zoom}
               markers={markers}
               name={cards[hotelIndex]?.name}
               location={cards[hotelIndex]?.addressLine1}

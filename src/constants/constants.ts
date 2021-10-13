@@ -52,6 +52,7 @@ const GetCities = `
       cities {
         id
         name
+        zoom
         center {
           latitude
           longitude
