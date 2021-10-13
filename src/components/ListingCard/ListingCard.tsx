@@ -13,7 +13,6 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 export interface ListingCardProps {
   id: string;
-  featuredImageURL: string;
   imageURLs: string[];
   name: string;
   addressLine1: string;
@@ -36,7 +35,6 @@ export interface ListingCardProps {
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
-  featuredImageURL,
   imageURLs,
   name,
   addressLine1,
@@ -62,22 +60,24 @@ const ListingCard: FC<ListingCardProps> = ({
         borderRadius: 3,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: highlighted ? "lightBackground.main" : "white",
       }}
       {...props}
     >
       <Box
         sx={{
-          maxWidth: { sm: 300 },
-          height: { xs: 180, sm: 232 },
+          width: { sm: 300 },
+          height: { xs: 200, sm: 232 },
         }}
       >
         <ImageSlider
-          images={imageURLs.slice(0, 4)}
+          images={imageURLs?.slice(0, 4)}
           name={name}
           sx={{
-            maxWidth: { sm: 300 },
-            height: { xs: 180, sm: 232 },
+            width: { sm: 300 },
+            height: { xs: 200, sm: 232 },
             borderRadius: 3,
             boxShadow: 0,
           }}
@@ -91,15 +91,13 @@ const ListingCard: FC<ListingCardProps> = ({
           history.push("/details/" + id);
         }}
         underline="none"
-        sx={{ width: "100%" }}
+        sx={{ flex: 1, minWidth: 0 }}
       >
         <Box
           sx={{
             pt: 1.8,
             px: { xs: mobileCardPadding, sm: 1.8 },
             pb: { xs: mobileCardPadding, sm: 1.8 },
-            flex: 1,
-            minWidth: 0,
           }}
         >
           <Typography

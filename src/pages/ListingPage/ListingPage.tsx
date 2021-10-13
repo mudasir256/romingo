@@ -444,7 +444,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                   <Box
                     key={index}
                     ref={refArray[index]}
-                    onMouseOver={(e) => {
+                    onMouseOver={() => {
                       setHoverIndex(index);
                     }}
                   >
