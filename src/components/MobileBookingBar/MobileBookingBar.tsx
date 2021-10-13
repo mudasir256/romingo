@@ -32,6 +32,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   const [roomType, setRoomType] = useState("0");
 
   const search = useSelector(
+    // eslint-disable-next-line
     (state: any) => state.searchReducer.search,
     shallowEqual
   );
@@ -43,6 +44,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
 
   const occupants = { ...search.occupants };
 
+  // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
   const [selectedRoom, setSelectedRoom] = useState<{

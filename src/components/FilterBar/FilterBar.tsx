@@ -30,14 +30,16 @@ interface Props {
   home?: boolean;
 }
 
-const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
+const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
 
   const [zoomIn, setZoomIn] = useState(zoomed);
+  // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
+  // eslint-disable-next-line
   const cities = useSelector((state: any) => state.cityListReducer.cities);
 
   const [selectedCity, setSelectedCity] = useState(
@@ -54,13 +56,13 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cities.length; i++) {
-      if (cities[i].id === selectedCity) return cities[i].name;
+      if (cities[i].id === cityId) return cities[i].name;
     }
   };
 
   const getCity = (cityId: string) => {
     for (let i = 0; i < cities.length; i++) {
-      if (cities[i].id === selectedCity) return cities[i];
+      if (cities[i].id === cityId) return cities[i];
     }
   };
 
@@ -160,7 +162,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   },
                 }}
               >
-                {getCityName(selectedCity)}
+                {getCityName}
               </Typography>
             </Button>
             <Box
@@ -256,9 +258,11 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, home = false }) => {
                   <Autocomplete
                     options={cities}
                     value={getCity(selectedCity)}
+                    // eslint-disable-next-line
                     getOptionLabel={(option: any) => {
                       return option.name;
                     }}
+                    // eslint-disable-next-line
                     onChange={(e, values: any) => {
                       if (values) {
                         setFormError("");

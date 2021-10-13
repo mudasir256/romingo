@@ -284,7 +284,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
               id={cards[hotelIndex]?.id}
-              onClick={(e) => {
+              onClick={() => {
                 setAnimate("collapsed");
               }}
             />

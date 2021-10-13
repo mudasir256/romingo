@@ -27,6 +27,7 @@ interface Props {
   markerClickCallBack: (index: number) => void;
   selectedMarker?: number;
   id: string;
+  // eslint-disable-next-line
   onClick?: (event: any) => void;
 }
 

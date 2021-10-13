@@ -56,6 +56,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
       return;
     }
 
+    // eslint-disable-next-line
     const { error, paymentIntent } = await stripe.confirmCardPayment(
       clientSecret,
       {

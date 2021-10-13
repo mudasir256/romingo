@@ -25,6 +25,7 @@ const Header: FC<Props> = ({ sx }) => {
         justifyContent: "center",
         top: 0,
         left: 0,
+        ...sx,
       }}
     >
       <Navbar />
