@@ -28,6 +28,7 @@ import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
 import { GetHotelBySearch } from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
+import Loader from "../../components/UI/Loader";
 
 const MotionBox = motion(Box);
 
@@ -259,14 +260,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               height: "100%",
               position: "relative",
               overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <Skeleton
-              variant="rectangular"
-              animation="wave"
-              height="100%"
-              width="100%"
-            />
+            <Loader size="300px" />
           </Box>
         ) : (
           cards.length >= 0 && (

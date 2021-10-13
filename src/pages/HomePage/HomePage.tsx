@@ -17,7 +17,6 @@ import { initialState } from "../../store/searchReducer";
 import { GetCities } from "../../constants/constants";
 import { setList } from "../../store/cityListReducer";
 import ScrollToTop from "../../components/ScrollToTop";
-import RomingoGuarantee from "../../components/RomingoGuarantee";
 
 interface Props {
   sx?: CSSObject;
@@ -155,9 +154,6 @@ const HomePage: FC<Props> = ({
             alignItems: "center",
           }}
         >
-          <RomingoGuarantee
-            sx={{ maxWidth: "100vw", ml: 0, mt: { xs: "-30px", md: "-85px" } }}
-          />
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
               <Typography

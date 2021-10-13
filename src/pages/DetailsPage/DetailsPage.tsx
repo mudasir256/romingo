@@ -44,6 +44,7 @@ import { GetHotelDetail } from "../../constants/constants";
 import { setHotel } from "../../store/hotelDetailReducer";
 
 import ScrollToTop from "../../components/ScrollToTop";
+import Loader from "../../components/UI/Loader";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -519,6 +520,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               height={80}
               sx={{ mt: -2 }}
             />
+            <Loader size="200px" />
           </>
         )}
         {!loading && (
@@ -708,8 +710,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 <CloseIcon />
               </IconButton>
             </DialogTitle>
-            <DialogContent sx={{ px: 0 }}>
-              <Container sx={{ mt: { xs: 0, md: 2 } }}>
+            <DialogContent sx={{ px: 0 }} onClick={handleClose}>
+              <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
                 <ImageList variant="masonry" cols={getImageCols()} gap={8}>
                   <SRLWrapper options={lightBoxOptions}>
                     {gallery.map((item: any) => (
