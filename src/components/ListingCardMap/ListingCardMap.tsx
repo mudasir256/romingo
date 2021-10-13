@@ -31,7 +31,7 @@ const ListingCardMap: FC<Props> = ({
         borderRadius: 3,
         boxShadow: 4,
         width: "95vw",
-        maxWidth: "420px",
+        maxWidth: "400px",
       }}
     >
       <Box
@@ -47,7 +47,7 @@ const ListingCardMap: FC<Props> = ({
           boxShadow: 0,
         }}
       />
-      <Box sx={{ py: 1, px: 1, flex: 1, minWidth: "130px" }}>
+      <Box sx={{ py: 1, px: 1, flex: 1, minWidth: "200px" }}>
         <Box>
           <Typography
             variant="h6"
@@ -91,6 +91,7 @@ const ListingCardMap: FC<Props> = ({
                 alignItems: "center",
                 display: "flex",
                 flex: 1,
+                textAlign: "right",
                 justifyContent: "end",
               }}
             >

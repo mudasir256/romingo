@@ -520,7 +520,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               height={80}
               sx={{ mt: -2 }}
             />
-            <Loader size="200px" />
+            <Loader size="300px" />
           </>
         )}
         {!loading && (
