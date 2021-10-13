@@ -244,20 +244,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
       tmp = [];
 
-      data.property.rooms.map((room: any, key: number) => {
+      data.property.rooms.slice(0, 9).map((room: any, key: number) => {
         let roomDescription = "";
 
         room.beds.map((bed: any) => {
-          if (roomDescription !== "") roomDescription += " + ";
-
-          roomDescription += `${bed.count} ${bed.desc} ${bed.__typename}${
+          roomDescription += `${bed.count} ${bed.desc}${
             bed.count > 1 ? "s" : ""
           }`;
         });
 
         roomDescription =
-          (room.type ? room.type : "") +
-          (room.type && roomDescription && " - ") +
+          (room.type && room.type !== null ? room.type : "") +
+          (roomDescription && room.type !== null && room.type ? " - " : "") +
           roomDescription;
 
         tmp.push({

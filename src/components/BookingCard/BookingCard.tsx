@@ -160,7 +160,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               }}
               label="Room Type"
             >
-              {roomList.slice(0, 8).map((room, key) => {
+              {roomList.map((room, key) => {
                 return (
                   <MenuItem value={room.value} key={key}>
                     {room.description}
