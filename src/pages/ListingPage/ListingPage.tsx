@@ -317,7 +317,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             animate={animate}
             transition={{ duration: 0.4 }}
             onScroll={(e: any) => {
-              if (e.target?.scrollTop === 0) {
+              if (e.target?.scrollTop <= 0) {
                 setAnimate("collapsed");
               }
             }}
@@ -391,6 +391,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                 if (scrollRef?.current?.scrollTop === 0) {
                   setAnimate("collapsed");
                 } else {
+                  setAnimate("collapsed");
                   scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
                 }
               }}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { FC } from "react";
+import useWindowSize from "../../hooks/UseWindowSize";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import "./slider.css";
 import { Carousel } from "react-responsive-carousel";
@@ -8,12 +9,14 @@ import { Carousel } from "react-responsive-carousel";
 interface Props {
   images: string[];
   name: string;
+  indicators?: boolean;
   sx?: any;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, name }) => {
+const ImageSlider: FC<Props> = ({ sx, images, name, indicators = false }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
+  const size = useWindowSize();
 
   useEffect(() => {
     if (images && images.length > 0) {
@@ -73,7 +76,7 @@ ${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
     <Carousel
       infiniteLoop
       showStatus={false}
-      showIndicators={true}
+      showIndicators={size?.width < 600 ? false : true}
       showArrows={true}
       onChange={(i) => setItem(i)}
       showThumbs={false}
