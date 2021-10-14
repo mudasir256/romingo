@@ -90,7 +90,6 @@ const ListingCardMap: FC<Props> = ({
               sx={{
                 alignItems: "center",
                 display: "flex",
-                flex: 1,
                 textAlign: "right",
                 justifyContent: "end",
               }}
