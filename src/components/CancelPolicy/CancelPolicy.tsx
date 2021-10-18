@@ -5,11 +5,18 @@ import Typography from "@mui/material/Typography";
 import Check from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 
+import { utils } from "../../services/utils";
+
 interface Props {
   sx?: CSSObject;
+  policy: {
+    cancelable: boolean;
+    deadlineLocal: string | null;
+  };
 }
 
-const CancelPolicy: FC<Props> = ({ sx }) => {
+const CancelPolicy: FC<Props> = ({ sx, policy }) => {
+  console.log(policy);
   return (
     <Box sx={sx}>
       <Box
@@ -30,7 +37,7 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
             textAlign: "center",
           }}
         >
-          Cancellation & Refund Policy
+          Cancellation &amp; Refund Policy
         </Typography>
         <Box
           sx={{
@@ -38,59 +45,109 @@ const CancelPolicy: FC<Props> = ({ sx }) => {
             px: 0.5,
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "bottom",
-              justifyContent: "start",
-              mt: 1,
-            }}
-          >
-            <Check
-              sx={{
-                fontSize: { xs: 15, sm: 18 },
-                mr: 0.75,
-                mt: 0.25,
-                color: "success.main",
-              }}
-            />
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 0,
-                color: "text.light",
-              }}
-            >
-              Cancel before 7/7/2021 for a full refund
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "bottom",
-              justifyContent: "start",
-              mt: 1,
-            }}
-          >
-            <CloseIcon
-              sx={{
-                fontSize: { xs: 15, sm: 18 },
-                mr: 0.75,
-                mt: 0.25,
-                color: "error.main",
-              }}
-            />
+          {policy?.cancelable ? (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "bottom",
+                  justifyContent: "start",
+                  mt: 1,
+                }}
+              >
+                <Check
+                  sx={{
+                    fontSize: { xs: 15, sm: 18 },
+                    mr: 0.75,
+                    mt: 0.25,
+                    color: "success.main",
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 0,
+                    color: "text.light",
+                  }}
+                >
+                  Cancel on or before{" "}
+                  <span style={{ fontWeight: "bold" }}>
+                    {utils.getDateFull(policy?.deadlineLocal)}*
+                  </span>{" "}
+                  for a full refund
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "bottom",
+                  justifyContent: "start",
+                  mt: 1,
+                }}
+              >
+                <CloseIcon
+                  sx={{
+                    fontSize: { xs: 15, sm: 18 },
+                    mr: 0.75,
+                    mt: 0.25,
+                    color: "error.main",
+                  }}
+                />
 
-            <Typography
-              variant="body1"
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 0,
+                    color: "text.light",
+                  }}
+                >
+                  Cancellations after{" "}
+                  <span style={{ fontWeight: "bold" }}>
+                    {utils.getDateFull(policy?.deadlineLocal)}*
+                  </span>{" "}
+                  are non-refundable
+                </Typography>
+              </Box>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 2,
+                  textAlign: "center",
+                  color: "text.light",
+                }}
+              >
+                *Hotel timezone.
+              </Typography>
+            </>
+          ) : (
+            <Box
               sx={{
-                mt: 0,
-                color: "text.light",
+                display: "flex",
+                alignItems: "bottom",
+                justifyContent: "start",
+                mt: 1,
               }}
             >
-              Cancelations after 7/7/2021 are non-refundable
-            </Typography>
-          </Box>
+              <CloseIcon
+                sx={{
+                  fontSize: { xs: 15, sm: 18 },
+                  mr: 0.75,
+                  mt: 0.25,
+                  color: "error.main",
+                }}
+              />
+
+              <Typography
+                variant="body1"
+                sx={{
+                  mt: 0,
+                  color: "text.light",
+                }}
+              >
+                The rate is non-refundable.
+              </Typography>
+            </Box>
+          )}
         </Box>
       </Box>
     </Box>

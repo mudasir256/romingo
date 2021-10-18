@@ -2,6 +2,8 @@ import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { CSSObject } from "@mui/material";
+import { Dispatch } from "redux";
+import { useHistory } from "react-router-dom";
 import Link from "@mui/material/Link";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -18,12 +20,15 @@ import SingleBedOutlinedIcon from "@mui/icons-material/SingleBedOutlined";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
 import RoomPreferencesOutlinedIcon from "@mui/icons-material/RoomPreferencesOutlined";
+import { useDispatch } from "react-redux";
 
 import { utils } from "../../services/utils";
+import { setCheckout } from "../../store/hotelCheckoutReducer";
 import ReadMore from "../UI/ReadMore";
 
 interface Props {
   sx?: CSSObject;
+  room: any;
   beds: {
     code: number;
     count: number;
@@ -99,6 +104,7 @@ export interface RoomInfo {
 
 const RoomCard: FC<Props> = ({
   sx,
+  room,
   beds,
   desc,
   amenities,
@@ -114,7 +120,9 @@ const RoomCard: FC<Props> = ({
   type,
   ...props
 }) => {
+  const history = useHistory();
   const [showDialog, setShowDialog] = useState(false);
+  const dispatch: Dispatch<any> = useDispatch();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
 
@@ -133,6 +141,19 @@ const RoomCard: FC<Props> = ({
   const handleClose = () => {
     setShowDialog(false);
     setAnchorEl(null);
+  };
+
+  console.log(room);
+
+  const handleBook: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(
+      setCheckout({
+        room: { value: 1, room: room, description: room.desc },
+      })
+    );
+    history.push("/checkout");
   };
 
   const open = Boolean(anchorEl);
@@ -615,6 +636,7 @@ const RoomCard: FC<Props> = ({
               textTransform: "inherit",
               width: "100%",
             }}
+            onClick={handleBook}
           >
             <Typography
               variant="h6"

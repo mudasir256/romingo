@@ -181,7 +181,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography variant="h5">
-            ${selectedRoom?.room.averagePrice.toFixed(2)}
+            ${selectedRoom?.room?.averagePrice.toFixed(2)}
           </Typography>
           <Typography variant="body1" sx={{ ml: 1 }}>
             / night

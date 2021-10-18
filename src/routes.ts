@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import ListingPage from "./pages/ListingPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import LosAngeles from "./pages/Cities/LosAngeles";
 import ManageReservationPage from "./pages/ManageReservationPage";
 
 interface Routes {
@@ -35,8 +36,13 @@ const routes: Routes[] = [
   {
     path: "/reservation/manage",
     component: ManageReservationPage,
-    requireAuth: false
-  }
+    requireAuth: false,
+  },
+  {
+    path: "/los-angeles",
+    component: LosAngeles,
+    requireAuth: false,
+  },
 ];
 
 export default routes;

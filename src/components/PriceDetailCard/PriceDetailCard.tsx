@@ -9,45 +9,38 @@ interface Props {
 }
 
 const PriceDetailCard: FC<Props> = ({ sx }) => {
+  const detail = useSelector(
+    (state: any) => state.hotelCheckoutReducer.checkout
+  );
 
-  const detail = useSelector((state: any) => state.hotelCheckoutReducer.checkout);
-
-  const [priceArr, setPriceArr] = useState<{
-    label: string;
-    price: number
-  }[]>([]);
+  const [priceArr, setPriceArr] = useState<
+    {
+      label: string;
+      price: number;
+    }[]
+  >([]);
 
   useEffect(() => {
-    console.log(detail);
-
     const tmp = [];
 
     tmp.push({
       label: "Average Price Per Night",
-      price: detail?.room.room.averagePrice
+      price: detail?.room?.room?.averagePrice,
     });
 
     tmp.push({
-      label: "Average Price After Tax",
-      price: detail?.room.room.averagePriceAfterTax
-    });
-
-    // if (detail?.room.room.feesIncluded)
-    //   tmp.push({
-    //     label: 
-    //   })
-    tmp.push({
-      label: "Total Price",
-      price: detail?.room.room.totalPrice
+      label: "Taxes & Fees",
+      price:
+        detail?.room?.room?.totalPriceAfterTax - detail?.room?.room?.totalPrice,
     });
 
     tmp.push({
-      label: "Total Price After Tax",
-      price: detail?.room.room.totalPriceAfterTax
-    })
+      label: "Total Due Now",
+      price: detail?.room?.room?.totalPriceAfterTax,
+    });
 
     setPriceArr([...tmp]);
-  }, [detail])
+  }, [detail]);
 
   const detailsLen = priceArr.length;
 
@@ -57,7 +50,6 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
         backgroundColor: "white",
         color: "text.primary",
         borderRadius: 3,
-        boxShadow: 4,
         py: 2,
         px: 2,
       }}

@@ -22,7 +22,7 @@ const BookingDetailCard: FC = () => {
 
   const roomType = useSelector(
     // eslint-disable-next-line
-    (state: any) => state.hotelCheckoutReducer.checkout.room.room.type
+    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room?.type
   );
 
   return (
@@ -31,7 +31,6 @@ const BookingDetailCard: FC = () => {
         backgroundColor: "white",
         color: "text.primary",
         borderRadius: 3,
-        boxShadow: 4,
         py: 2,
         px: 2,
       }}

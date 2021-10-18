@@ -1,6 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import { authService } from "../services/authService.js";
-import data from "../static/hotelCheckout";
 
 export const setCheckout = (checkout: ICheckout) => (
   dispatch: CheckoutDispatchType

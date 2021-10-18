@@ -53,6 +53,29 @@ const getOnlyDate = function (isoString) {
   return `${month} ${day}`;
 };
 
+const getDateFull = function (isoString) {
+  var date = new Date(isoString);
+  var monthArray = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var month = monthArray[date.getMonth()];
+  var day = date.getDate();
+  var year = date.getFullYear();
+
+  return `${month} ${day}, ${year}`;
+};
+
 const meterToMile = function (meters) {
   let mile = meters / 1609;
 
@@ -64,5 +87,6 @@ export const utils = {
   getOnlyDate,
   getDateNow,
   getFormatDate,
+  getDateFull,
   meterToMile,
 };

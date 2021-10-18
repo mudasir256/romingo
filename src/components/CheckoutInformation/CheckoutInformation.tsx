@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Hidden from "@mui/material/Hidden";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
+import MuiPhoneNumber from "material-ui-phone-number";
 import { gql, useLazyQuery } from "@apollo/client";
 import { GetStripeClientSecret } from "../../constants/constants";
 
@@ -118,16 +119,16 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
               variant="outlined"
               type="text"
               label={"Traveller's Full Name"}
-              placeholder="John Doe"
+              placeholder="Full Name"
               fullWidth={true}
             />
           </Grid>
-          <Grid item xs={12} sm={6} order={{ xs: 3, sm: 2 }}>
+          <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
-              type="text"
+              type="email"
               label={"Email Address"}
-              placeholder="John@email.com"
+              placeholder="Email"
               fullWidth={true}
               sx={{
                 mt: {
@@ -137,31 +138,14 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} order={{ xs: 2, sm: 3 }}>
-            <TextField
+          <Grid item xs={12} sm={6}>
+            <MuiPhoneNumber
+              defaultCountry={"us"}
+              // onChange={handleOnChange}
               variant="outlined"
-              type="text"
               label={"Phone Number"}
-              placeholder="xxx-xxx-xxxx"
               fullWidth={true}
-              sx={{
-                mt: {
-                  sm: 0,
-                  xs: 1,
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} order={{ xs: 4, sm: 4 }}>
-            <TextField
-              variant="outlined"
-              type="date"
-              label={"Estimated Check In Time"}
-              defaultValue=""
-              fullWidth={true}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              disableAreaCodes
               sx={{
                 mt: {
                   sm: 0,
@@ -176,135 +160,84 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
           sx={{
             color: "secondary.main",
             textAlign: "center",
+            mb: 2,
           }}
         >
           Payment Information
         </Typography>
-        <Grid container spacing={2} sx={{ py: 2 }}>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              type="text"
-              label={"Name on Credit Card"}
-              placeholder="John Doe"
-              fullWidth={true}
-            />
-          </Grid>
-          <Grid item xs={12}>
+        <Grid item xs={12}>
+          <Box
+            className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
+            sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
+          >
             <CardElement
               options={{
+                iconStyle: "solid",
+                classes: {
+                  base:
+                    "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
+                },
                 style: {
                   base: {
-                    padding: "18.5px 14px",
+                    fontFamily: `"Work Sans", "Montserrat", sans-serif`,
+                    iconColor: "#03989E",
+                    fontSize: "16px",
+                    color: "rgba(0, 0, 0, 0.78)",
+                    "::placeholder": {
+                      color: "rgba(0, 0, 0, 0.58)",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
                   },
                 },
               }}
             />
-          </Grid>
-          <Grid item xs={7} sm={6} md={4}>
-            <TextField
-              variant="outlined"
-              type="date"
-              label={"Expiration Date"}
-              defaultValue={""}
-              fullWidth={true}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              sx={{
-                mt: {
-                  sm: 0,
-                  xs: 1,
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={5} sm={4} md={3}>
-            <TextField
-              variant="outlined"
-              type="text"
-              label={"CVV"}
-              fullWidth={true}
-              sx={{
-                mt: {
-                  sm: 0,
-                  xs: 1,
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
+          </Box>
+          <Box sx={{ textAlign: "center" }}>
             <Box
+              component="img"
+              src="/images/safe-checkout.jpeg"
+              draggable="false"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                width: "400px",
+                maxWidth: "100%",
+                mt: 2,
+                mb: 1,
               }}
-            >
-              <Checkbox
-                checked={checkState}
-                color="primary"
-                onChange={handleCheck}
-              />
-              <Typography variant="body2">
-                I agree to the booking <Link href="#">terms of service</Link>{" "}
-                and cancellation policy.
-              </Typography>
-            </Box>
-            <Hidden smUp>
-              {finePrint !== null && (
-                <Box>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "secondary.main",
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      fontSize: { xs: "85%", sm: "100%" },
-                      textTransform: "capitalize",
-                      mt: 0.5,
-                    }}
-                  >
-                    {finePrint.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      mt: 0.5,
-                    }}
-                  >
-                    {finePrint.description}
-                  </Typography>
-                </Box>
-              )}
-            </Hidden>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              fullWidth={true}
-              size="large"
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+              mb: 2,
+            }}
+          >
+            <Checkbox
+              checked={checkState}
               color="primary"
-              onClick={handleSubmit}
-            >
-              <Typography variant="h6">Book It</Typography>
-            </Button>
-          </Grid>
-          <Hidden smDown>
-            <Grid item xs={12}>
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: "90%",
-                  color: "text.primary",
-                  textAlign: "center",
-                }}
-              >
-                Your card will be authorized for $470.30, but you will not be
-                charged until you check-in.
-              </Typography>
-            </Grid>
-          </Hidden>
+              onChange={handleCheck}
+            />
+            <Typography variant="body2">
+              I agree to the booking <Link href="#">terms of service</Link> and
+              cancellation policy.
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            variant="contained"
+            fullWidth={true}
+            size="large"
+            color="primary"
+            onClick={handleSubmit}
+          >
+            <Typography variant="h6">Book It</Typography>
+          </Button>
         </Grid>
       </Box>
     </Box>

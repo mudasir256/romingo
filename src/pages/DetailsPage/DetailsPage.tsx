@@ -661,6 +661,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                         key={key}
                         bestRate={key === 0 ? true : false}
                         HotelName={name}
+                        room={room}
                         sx={{
                           minWidth: "260px",
                           borderRadius: "5px",

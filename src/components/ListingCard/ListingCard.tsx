@@ -199,15 +199,15 @@ const ListingCard: FC<ListingCardProps> = ({
               <Box
                 sx={{
                   alignItems: "center",
-                  display: { xs: "inline-block", lg: "flex" },
+                  display: "flex",
                   textAlign: "right",
+                  justifyContent: "end",
                 }}
               >
                 <Typography
                   variant="h6"
                   sx={{
-                    mr: { xs: 0, sm: 0.45 },
-                    mb: 0,
+                    mr: 0.45,
                     letterSpacing: 1,
                     color: "text.secondary",
                   }}
@@ -215,10 +215,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   {currency}
                   {Math.round(lowestAveragePrice)}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ mb: 0.25, color: "text.secondary" }}
-                >
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   / night
                 </Typography>
               </Box>
