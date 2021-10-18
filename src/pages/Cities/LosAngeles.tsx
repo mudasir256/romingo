@@ -1,4 +1,6 @@
 import Box from "@mui/material/Box";
+import Hidden from "@mui/material/Hidden";
+import Link from "@mui/material/Link";
 import { FC } from "react";
 
 import Map from "../../components/UI/Map/Map";
@@ -20,7 +22,7 @@ const LosAngeles: FC<Props> = () => {
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: "550px",
+          height: "500px",
           boxShadow: 0,
         }}
       />
@@ -31,7 +33,9 @@ const LosAngeles: FC<Props> = () => {
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
-          California
+          <Typography variant="body1" color="text.secondary">
+            California
+          </Typography>
         </Divider>
         <Grid
           container
@@ -105,21 +109,37 @@ const LosAngeles: FC<Props> = () => {
               />
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
-              component="img"
-              src="/images/la-3.jpeg"
-              alt={"Sunny Los Angeles"}
-              sx={{
-                objectFit: "cover",
-                width: "100%",
-                height: "250px",
-                boxShadow: 4,
-                borderRadius: 3,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
+          <Hidden mdDown>
+            <Grid item xs={12} md={4}>
+              <Box
+                component="img"
+                src="/images/la-1.jpeg"
+                alt={"Sunny Los Angeles"}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "250px",
+                  boxShadow: 4,
+                  borderRadius: 3,
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                component="img"
+                src="/images/la-3.jpeg"
+                alt={"Sunny Los Angeles"}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "250px",
+                  boxShadow: 4,
+                  borderRadius: 3,
+                }}
+              />
+            </Grid>
+          </Hidden>
+          <Grid item xs={12} md={4}>
             <Box
               component="img"
               src="/images/la-4.jpeg"
@@ -134,6 +154,11 @@ const LosAngeles: FC<Props> = () => {
             />
           </Grid>
           <Grid item xs={12}>
+            <Divider sx={{ my: 2 }}>
+              <Typography variant="h4" color="primary">
+                LA With Your Dog
+              </Typography>
+            </Divider>
             <Typography
               variant="body1"
               color="text.secondary"
@@ -146,8 +171,14 @@ const LosAngeles: FC<Props> = () => {
               Getty Center. For some fun in the sun, make a stop at the Santa
               Monica Beach then grab a meal at Third Street Promenade or take a
               hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here:
-              https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/
+              best attractions here:{" "}
+              <Link
+                href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
+                target="_blank"
+                rel="noopener noreffer"
+              >
+                https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/
+              </Link>
             </Typography>
           </Grid>
         </Grid>

@@ -57,9 +57,10 @@ const NearCities = [
     state: "California",
   },
   {
-    img: "/images/losangeles.webp",
+    img: "/images/la-hero.jpeg",
     city: "Los Angeles",
     state: "California",
+    route: "/los-angeles",
   },
   {
     img: "/images/sandiego.webp",
@@ -111,6 +112,7 @@ const HomePage: FC<Props> = ({
   nearCities = NearCities,
   featureHotels = FeatureHotels,
 }) => {
+  const history = useHistory();
   const dispatch: Dispatch<any> = useDispatch();
   const { loading, error, data } = useQuery(
     gql`
@@ -508,6 +510,7 @@ const HomePage: FC<Props> = ({
                     >
                       <Link
                         href="#"
+                        onClick={() => history.push(nearCity.route)}
                         sx={{
                           textDecoration: "none",
                         }}
