@@ -91,6 +91,10 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
     // console.log(paymentIntent);
   };
 
+  const handleOnChange = () => {
+    console.log("Phone changed");
+  };
+
   return (
     <Box sx={sx}>
       <Box
@@ -141,7 +145,7 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
           <Grid item xs={12} sm={6}>
             <MuiPhoneNumber
               defaultCountry={"us"}
-              // onChange={handleOnChange}
+              onChange={handleOnChange}
               variant="outlined"
               label={"Phone Number"}
               fullWidth={true}

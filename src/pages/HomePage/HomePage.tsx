@@ -24,6 +24,7 @@ interface Props {
     img: string;
     city: string;
     state: string;
+    route: string;
   }[];
   featureHotels: {
     img: string;
@@ -55,6 +56,7 @@ const NearCities = [
     img: "/images/sanfrancisco.webp",
     city: "San Francisco",
     state: "California",
+    route: "/san-francisco",
   },
   {
     img: "/images/la-hero.jpeg",
@@ -509,7 +511,7 @@ const HomePage: FC<Props> = ({
                       }}
                     >
                       <Link
-                        href="#"
+                        href=""
                         onClick={() => history.push(nearCity.route)}
                         sx={{
                           textDecoration: "none",
