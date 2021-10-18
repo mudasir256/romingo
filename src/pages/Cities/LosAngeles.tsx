@@ -10,7 +10,7 @@ import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
 import { Container, Divider, Grid, Typography } from "@mui/material";
 
-const LosAngeles: FC<Props> = () => {
+const LosAngeles: FC = () => {
   return (
     <>
       <ScrollToTop />

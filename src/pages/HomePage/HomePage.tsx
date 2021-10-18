@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import { FC, useEffect } from "react";
-import { connect, useStore, useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
-import { CSSObject, Paper } from "@mui/material";
+import { CSSObject } from "@mui/material";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -13,7 +13,6 @@ import { gql, useQuery } from "@apollo/client";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { initialState } from "../../store/searchReducer";
 import { GetCities } from "../../constants/constants";
 import { setList } from "../../store/cityListReducer";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -68,21 +67,25 @@ const NearCities = [
     img: "/images/sandiego.webp",
     city: "San Diego",
     state: "California",
+    route: "/san-diego",
   },
   {
     img: "/images/orangecounty.webp",
     city: "Orange County",
     state: "California",
+    route: "/orange-county",
   },
   {
     img: "/images/palmsprings.webp",
     city: "Palm Springs",
     state: "California",
+    route: "/palm-springs",
   },
   {
     img: "/images/santabarbara.webp",
     city: "Santa Barbara",
     state: "California",
+    route: "/santa-barbara",
   },
 ];
 
