@@ -22,7 +22,7 @@ const LosAngeles: FC = () => {
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: "500px",
+          height: { xs: "40vh", md: "55vh" },
           boxShadow: 0,
         }}
       />
@@ -44,7 +44,7 @@ const LosAngeles: FC = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            mb: 4,
+            mb: 6,
           }}
         >
           <Grid item xs={12}>
@@ -64,20 +64,6 @@ const LosAngeles: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Box
-              component="img"
-              src="/images/la-2.jpeg"
-              alt={"Sunny Los Angeles"}
-              sx={{
-                objectFit: "cover",
-                width: "100%",
-                height: "250px",
-                boxShadow: 4,
-                borderRadius: 3,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
             <Typography
               variant="body1"
               color="text.secondary"
@@ -91,25 +77,21 @@ const LosAngeles: FC = () => {
               recreational opportunities, and attractions.
             </Typography>
           </Grid>
-          <Grid item xs={12} sx={{ width: "100px" }}>
-            <Box
-              sx={{
-                display: "flex",
-                width: "100%",
-              }}
-            >
-              <Map
-                center={{
-                  lat: 34.07351043341975,
-                  lng: -118.36388928440947,
-                }}
-                height={300}
-                zoom={9}
-                selectedMarker={0}
-              />
-            </Box>
-          </Grid>
           <Hidden mdDown>
+            <Grid item xs={12} md={6}>
+              <Box
+                component="img"
+                src="/images/la-2.jpeg"
+                alt={"Sunny Los Angeles"}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "250px",
+                  boxShadow: 4,
+                  borderRadius: 3,
+                }}
+              />
+            </Grid>
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
@@ -171,16 +153,34 @@ const LosAngeles: FC = () => {
               Getty Center. For some fun in the sun, make a stop at the Santa
               Monica Beach then grab a meal at Third Street Promenade or take a
               hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here: <br />
+              best attractions here:{" "}
               <Link
                 href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
                 target="_blank"
                 rel="noopener noreffer"
                 sx={{ fontWeight: "bold" }}
               >
-                https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/
+                Things to do in LA
               </Link>
             </Typography>
+          </Grid>
+          <Grid item xs={12} sx={{ width: "100px" }}>
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+              }}
+            >
+              <Map
+                center={{
+                  lat: 34.07351043341975,
+                  lng: -118.36388928440947,
+                }}
+                height={300}
+                zoom={9}
+                selectedMarker={0}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Container>
