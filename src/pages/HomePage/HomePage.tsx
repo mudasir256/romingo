@@ -467,7 +467,7 @@ const HomePage: FC<Props> = ({
           width: "100%",
         }}
       >
-        <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
+        <Grid container sx={{ ml: "calc(50% - 50vw)", mr: "calc(50% - 50vw)" }}>
           <Grid item xs={12}>
             <Typography
               variant="h3"
