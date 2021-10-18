@@ -4,6 +4,7 @@ import ListingPage from "./pages/ListingPage";
 import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import LosAngeles from "./pages/Cities/LosAngeles";
+import SanDiego from "./pages/Cities/SanDiego";
 import ManageReservationPage from "./pages/ManageReservationPage";
 
 interface Routes {
@@ -41,6 +42,11 @@ const routes: Routes[] = [
   {
     path: "/los-angeles",
     component: LosAngeles,
+    requireAuth: false,
+  },
+  {
+    path: "/san-diego",
+    component: SanDiego,
     requireAuth: false,
   },
 ];

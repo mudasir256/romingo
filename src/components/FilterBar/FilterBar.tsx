@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { FC, useState, MouseEventHandler } from "react";
+import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
@@ -28,9 +28,10 @@ interface Props {
   sx?: CSSObject;
   zoomed?: boolean;
   home?: boolean;
+  city?: string;
 }
 
-const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
+const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
@@ -81,6 +82,12 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false }) => {
     setFormError("");
     setZoomIn(true);
   };
+
+  useEffect(() => {
+    if (city && city.length > 0 && cities.length > 0) {
+      setSelectedCity(city);
+    }
+  }, [cities]);
 
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();

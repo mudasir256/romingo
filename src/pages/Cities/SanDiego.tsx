@@ -7,19 +7,19 @@ import { Container, Divider, Grid, Typography } from "@mui/material";
 import Map from "../../components/UI/Map/Map";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import FilterBar from "../../components/FilterBar";
 
 import ScrollToTop from "../../components/ScrollToTop";
+import FilterBar from "../../components/FilterBar";
 
-const LosAngeles: FC = () => {
+const SanDiego: FC = () => {
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Box
         component="img"
-        src="/images/la-hero.jpeg"
-        alt={"Sunny Los Angeles"}
+        src="/images/sd-hero.jpeg"
+        alt={"San Diego"}
         sx={{
           objectFit: "cover",
           width: "100%",
@@ -30,7 +30,7 @@ const LosAngeles: FC = () => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography variant="h2" color="text.primary">
-            Los Angeles
+            San Diego
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -54,23 +54,24 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Los Angeles is regarded as one of the most renowned cities in the
-              whole world. This dazzling city is known as the entertainment
-              capital and sits in close proximity to a number of world famous
-              beaches. You can also find amusement parks, countless museums, a
-              variety of dog-friendly tourist attractions, great hikes, and so
-              much more! When you visit Los Angeles, there is never a shortage
-              of things to see, try, and eat -- which is why there are roughly
-              50 million visitors in Los Angeles every year.
+              For a change of pace in sunny California, head on over to the
+              state’s second largest city, San Diego. San Diego is renowned for
+              its relaxed culture, idyllic weather, miles of white-sand beaches,
+              and a variety of things to see and do for adventurers (and dogs)
+              of all ages. San Diego is a family-friendly city that’s especially
+              a must visit for those who love the beach. Sitting at the most
+              Southern part of California and by the border of Mexico, this
+              charming city carries an abundance of Spanish influences in their
+              culture, cuisine, and attractions.
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR LOS ANGELES GETAWAY
+                BOOK YOUR SAN DIEGO GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="6f2cf61f-c769-47d9-9e46-90c5664b60b1" />
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography
@@ -78,20 +79,19 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              The diverse, multiethnic population of Los Angeles today
-              distinguishes the city as the cultural hub of the Pacific Rim.
-              Furthermore, Los Angeles’ development makes it one of the most
-              coveted cities for dog owners and dog-friendly travel. The area
-              boasts a wide selection of dog-friendly accommodations,
-              recreational opportunities, and attractions.
+              San Diego is often considered the most dog-friendly city in
+              California with many dog-friendly spaces to enjoy throughout the
+              city. Those who seek dog-friendly travel will find their hearts
+              filled with what San Diego has to offer thanks to the city’s arts
+              and culture, diverse culinary experiences, and the great outdoors.
             </Typography>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/la-2.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sd-2.jpeg"
+                alt={"Sunny San Diego"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -104,8 +104,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-1.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sd-1.jpeg"
+                alt={"Sunny San Diego"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -118,8 +118,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-3.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sd-3.jpeg"
+                alt={"Sunny San Diego"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -133,8 +133,8 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/la-4.jpeg"
-              alt={"Sunny Los Angeles"}
+              src="/images/sd-4.jpeg"
+              alt={"Sunny San Diego"}
               sx={{
                 objectFit: "cover",
                 width: "100%",
@@ -155,21 +155,26 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ lineHeight: 2, textAlign: "justify" }}
             >
-              Go on a shopping spree with your pup at the famous Rodeo Drive or
-              plan a few hours to discover exciting art exhibits at The Broad in
-              Downtown LA. For impressive architectural views, works of art, and
-              unbeatable photo ops, head on over to the Griffith Observatory and
-              Getty Center. For some fun in the sun, make a stop at the Santa
-              Monica Beach then grab a meal at Third Street Promenade or take a
-              hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here:{" "}
+              When you’re in San Diego, be sure to allocate time to visit Balboa
+              Park where you can explore its museums, theaters, and gardens.
+              Next, plan some time to lounge and dine at Mission Beach and
+              Pacific Beach and its surrounding neighborhoods. The vast
+              shoreline is an ideal spot for dog owners because of the
+              pet-friendly restaurants and cafes. Additionally, you can rent a
+              bike, have a picnic, and stroll the boardwalk. Gaslamp Quarter is
+              known for its nightlife where you can find unique Victorian-style
+              buildings, shops, pubs, and trendy restaurants. To appreciate San
+              Diego in all its natural glory, pay a visit to Torrey Pines State
+              Natural Reserve which features plenty of hiking opportunities,
+              dramatic oceanfront views, and stunning flora and fauna. Discover
+              more of San Diego’s best attractions here:{" "}
               <Link
-                href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
+                href=" https://www.tripadvisor.com/Attractions-g60750-Activities-San_Diego_California.html"
                 target="_blank"
                 rel="noopener noreffer"
                 sx={{ fontWeight: "bold" }}
               >
-                Things to do in LA
+                Things to do in San Diego
               </Link>
             </Typography>
           </Grid>
@@ -182,11 +187,11 @@ const LosAngeles: FC = () => {
             >
               <Map
                 center={{
-                  lat: 34.07351043341975,
-                  lng: -118.36388928440947,
+                  lat: 32.743646786327545,
+                  lng: -117.19080348404489,
                 }}
                 height={300}
-                zoom={9}
+                zoom={11}
                 selectedMarker={0}
               />
             </Box>
@@ -197,7 +202,7 @@ const LosAngeles: FC = () => {
                 ALWAYS $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="6f2cf61f-c769-47d9-9e46-90c5664b60b1" />
           </Grid>
         </Grid>
       </Container>
@@ -206,4 +211,4 @@ const LosAngeles: FC = () => {
   );
 };
 
-export default LosAngeles;
+export default SanDiego;
