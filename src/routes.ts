@@ -5,6 +5,9 @@ import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import LosAngeles from "./pages/Cities/LosAngeles";
 import SanDiego from "./pages/Cities/SanDiego";
+import OrangeCounty from "./pages/Cities/OrangeCounty";
+import SanFrancisco from "./pages/Cities/SanFran";
+import SantaBarbara from "./pages/Cities/SantaBarbara";
 import ManageReservationPage from "./pages/ManageReservationPage";
 
 interface Routes {
@@ -47,6 +50,21 @@ const routes: Routes[] = [
   {
     path: "/san-diego",
     component: SanDiego,
+    requireAuth: false,
+  },
+  {
+    path: "/orange-county",
+    component: OrangeCounty,
+    requireAuth: false,
+  },
+  {
+    path: "/san-francisco",
+    component: SanFrancisco,
+    requireAuth: false,
+  },
+  {
+    path: "/santa-barbara",
+    component: SantaBarbara,
     requireAuth: false,
   },
 ];

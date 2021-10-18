@@ -11,15 +11,15 @@ import FilterBar from "../../components/FilterBar";
 
 import ScrollToTop from "../../components/ScrollToTop";
 
-const LosAngeles: FC = () => {
+const SantaBarbara: FC = () => {
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Box
         component="img"
-        src="/images/la-hero.jpeg"
-        alt={"Sunny Los Angeles"}
+        src="/images/sb-hero.jpeg"
+        alt={"Santa Barbara"}
         sx={{
           objectFit: "cover",
           width: "100%",
@@ -30,7 +30,7 @@ const LosAngeles: FC = () => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography variant="h2" color="text.primary">
-            Los Angeles
+            Santa Barbara
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -54,23 +54,20 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Los Angeles is regarded as one of the most renowned cities in the
-              whole world. This dazzling city is known as the entertainment
-              capital and sits in close proximity to a number of world famous
-              beaches. You can also find amusement parks, countless museums, a
-              variety of dog-friendly tourist attractions, great hikes, and so
-              much more! When you visit Los Angeles, there is never a shortage
-              of things to see, try, and eat -- which is why there are roughly
-              50 million visitors in Los Angeles every year.
+              Located on the central coast of California, the laid-back city of
+              Santa Barbara offers the perfect getaway from the hustle and
+              bustle of everyday life. The lovely city features Mediterranean
+              style buildings that reflect its Spanish heritage, along with
+              breathtaking mountain and beach views, and surrounding vineyards.
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR LOS ANGELES GETAWAY
+                BOOK YOUR SANTA BARBARA GETAWAY
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="58b23325-2016-44ef-886f-67e962dab17f" />
             <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -79,20 +76,18 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              The diverse, multiethnic population of Los Angeles today
-              distinguishes the city as the cultural hub of the Pacific Rim.
-              Furthermore, Los Angeles’ development makes it one of the most
-              coveted cities for dog owners and dog-friendly travel. The area
-              boasts a wide selection of dog-friendly accommodations,
-              recreational opportunities, and attractions.
+              The breeze swept in from the ocean and its mild sunny climate
+              makes this city an enjoyable destination for outdoor, dog-friendly
+              activities. The city also hosts a number of impressive luxury
+              stays anyone will fall in love with.
             </Typography>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/la-2.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sb-2.jpeg"
+                alt={"Sunny Santa Barbara"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -105,8 +100,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-1.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sb-1.jpeg"
+                alt={"Sunny Santa Barbara"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -119,8 +114,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-3.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sb-3.jpeg"
+                alt={"Sunny Santa Barbara"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -134,8 +129,8 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/la-4.jpeg"
-              alt={"Sunny Los Angeles"}
+              src="/images/sb-4.jpeg"
+              alt={"Sunny Santa Barbara"}
               sx={{
                 objectFit: "cover",
                 width: "100%",
@@ -156,21 +151,24 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ lineHeight: 2, textAlign: "justify" }}
             >
-              Go on a shopping spree with your pup at the famous Rodeo Drive or
-              plan a few hours to discover exciting art exhibits at The Broad in
-              Downtown LA. For impressive architectural views, works of art, and
-              unbeatable photo ops, head on over to the Griffith Observatory and
-              Getty Center. For some fun in the sun, make a stop at the Santa
-              Monica Beach then grab a meal at Third Street Promenade or take a
-              hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here:{" "}
+              First and foremost, you’ll want to spend at least a few hours
+              enjoying Santa Barbara’s pristine beaches. You can rent a yacht or
+              a sunset cruise, or just lounge on the sand for some well deserved
+              quality time with your pup, friends and family. Discover seven of
+              Santa Barbara’s finest beaches here! Santa Barbara’s wine
+              reputation guarantees a positive experience at any vineyard you
+              decide to visit. Having trouble deciding which winery is the best
+              for you and your pup? Read this. Don’t miss out on the fresh
+              seafood and lively outdoor shopping at Downtown Santa Barbara’s
+              State Street Promenade, which boasts rows of popular shops and
+              outdoor dining experiences. For more Santa Barbara attractions:{" "}
               <Link
-                href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
+                href="https://www.tripadvisor.com/Attractions-g33045-Activities-Santa_Barbara_California.html"
                 target="_blank"
                 rel="noopener noreffer"
                 sx={{ fontWeight: "bold" }}
               >
-                Things to do in LA
+                Things to do in Santa Barbara
               </Link>
             </Typography>
           </Grid>
@@ -183,8 +181,8 @@ const LosAngeles: FC = () => {
             >
               <Map
                 center={{
-                  lat: 34.07351043341975,
-                  lng: -118.36388928440947,
+                  lat: 34.422513844337736,
+                  lng: -119.70634260640723,
                 }}
                 height={300}
                 zoom={9}
@@ -198,7 +196,7 @@ const LosAngeles: FC = () => {
                 ALWAYS $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="58b23325-2016-44ef-886f-67e962dab17f" />
             <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
@@ -208,4 +206,4 @@ const LosAngeles: FC = () => {
   );
 };
 
-export default LosAngeles;
+export default SantaBarbara;

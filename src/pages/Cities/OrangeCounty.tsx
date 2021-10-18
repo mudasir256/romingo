@@ -7,19 +7,19 @@ import { Container, Divider, Grid, Typography } from "@mui/material";
 import Map from "../../components/UI/Map/Map";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import FilterBar from "../../components/FilterBar";
 
 import ScrollToTop from "../../components/ScrollToTop";
+import FilterBar from "../../components/FilterBar";
 
-const LosAngeles: FC = () => {
+const OrangeCounty: FC = () => {
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Box
         component="img"
-        src="/images/la-hero.jpeg"
-        alt={"Sunny Los Angeles"}
+        src="/images/oc-hero.jpeg"
+        alt={"Orange County"}
         sx={{
           objectFit: "cover",
           width: "100%",
@@ -30,7 +30,7 @@ const LosAngeles: FC = () => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography variant="h2" color="text.primary">
-            Los Angeles
+            Orange County
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -54,23 +54,23 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Los Angeles is regarded as one of the most renowned cities in the
-              whole world. This dazzling city is known as the entertainment
-              capital and sits in close proximity to a number of world famous
-              beaches. You can also find amusement parks, countless museums, a
-              variety of dog-friendly tourist attractions, great hikes, and so
-              much more! When you visit Los Angeles, there is never a shortage
-              of things to see, try, and eat -- which is why there are roughly
-              50 million visitors in Los Angeles every year.
+              Orange County is nestled between Los Angeles and Orange County,
+              home to many popular cities like Newport Beach, Anaheim, and
+              Irvine. The county strikes a perfect balance between suburban life
+              and tourist attractions, boosting its popularity in recent decades
+              and making it an inviting destination for California travelers.
+              One major reason for Orange County’s popularity is its
+              accessibility to a variety of indoor and outdoor experiences,
+              delivering a memorable and well-rounded travel experience.
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR LOS ANGELES GETAWAY
+                BOOK YOUR ORANGE COUNTY GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="2714faad-9ea8-4851-9506-274710cdd51b" />
             <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -79,20 +79,20 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              The diverse, multiethnic population of Los Angeles today
-              distinguishes the city as the cultural hub of the Pacific Rim.
-              Furthermore, Los Angeles’ development makes it one of the most
-              coveted cities for dog owners and dog-friendly travel. The area
-              boasts a wide selection of dog-friendly accommodations,
-              recreational opportunities, and attractions.
+              Not only is Orange County a melting pot of cuisines and cultures,
+              you can also discover stellar beaches, luxury shopping
+              experiences, and plenty of outdoor recreational activities.
+              Finally, the county is a desirable place to settle and visit for
+              dog owners and families because of how accommodating its
+              neighborhoods are.
             </Typography>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/la-2.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/oc-2.jpeg"
+                alt={"Sunny Orange County"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -105,8 +105,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-1.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/oc-1.jpeg"
+                alt={"Sunny Orange County"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -119,8 +119,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-3.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/oc-3.jpeg"
+                alt={"Sunny Orange County"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -134,8 +134,8 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/la-4.jpeg"
-              alt={"Sunny Los Angeles"}
+              src="/images/oc-4.jpeg"
+              alt={"Sunny Orange County"}
               sx={{
                 objectFit: "cover",
                 width: "100%",
@@ -156,21 +156,31 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ lineHeight: 2, textAlign: "justify" }}
             >
-              Go on a shopping spree with your pup at the famous Rodeo Drive or
-              plan a few hours to discover exciting art exhibits at The Broad in
-              Downtown LA. For impressive architectural views, works of art, and
-              unbeatable photo ops, head on over to the Griffith Observatory and
-              Getty Center. For some fun in the sun, make a stop at the Santa
-              Monica Beach then grab a meal at Third Street Promenade or take a
-              hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here:{" "}
+              Many of Orange County’s cities sit by the coast so you can easily
+              find yourself on a paddleboard or kayak at the scenic Laguna
+              Beach, Newport Beach, or Huntington Beach. Huntington Beach also
+              features plenty of dog-friendly space, making it one of the most
+              popular dog-friendly beaches in California. Furthermore, all the
+              neighborhoods in Orange County are never too far from a
+              beginner-friendly hike you and your pup can enjoy. While you’re
+              visiting, you can’t skip Costa Mesa’s upscale South Coast Plaza or
+              Newport Beach’s Fashion Island, or the dog-friendly,
+              family-friendly outdoor shopping center The Irvine Spectrum. You
+              can find amazing Asian, Mexican, and Mediterranean culinary
+              experiences anywhere in Orange County, along with many up and
+              coming contemporary restaurants. For thrill-seekers and
+              Instagram-worthy photos, head over to the world famous Disneyland
+              or Knott’s Berry Farm. Whether you’re a lover of Disney, surf
+              culture, or luxury experiences, there is something for everyone
+              (and every dog) in Orange County! For more Orange County
+              attractions:{" "}
               <Link
-                href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
+                href=" https://www.tripadvisor.com/Attractions-g659482-Activities-Orange_County_California.html"
                 target="_blank"
                 rel="noopener noreffer"
                 sx={{ fontWeight: "bold" }}
               >
-                Things to do in LA
+                Things to do in Orange County
               </Link>
             </Typography>
           </Grid>
@@ -183,11 +193,11 @@ const LosAngeles: FC = () => {
             >
               <Map
                 center={{
-                  lat: 34.07351043341975,
-                  lng: -118.36388928440947,
+                  lat: 33.74717389132867,
+                  lng: -117.9549653275616,
                 }}
                 height={300}
-                zoom={9}
+                zoom={11}
                 selectedMarker={0}
               />
             </Box>
@@ -198,7 +208,7 @@ const LosAngeles: FC = () => {
                 ALWAYS $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="2714faad-9ea8-4851-9506-274710cdd51b" />
             <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
@@ -208,4 +218,4 @@ const LosAngeles: FC = () => {
   );
 };
 
-export default LosAngeles;
+export default OrangeCounty;

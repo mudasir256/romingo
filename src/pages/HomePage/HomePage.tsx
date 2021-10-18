@@ -52,7 +52,7 @@ interface Props {
 
 const NearCities = [
   {
-    img: "/images/sanfrancisco.webp",
+    img: "/images/sf-hero.jpeg",
     city: "San Francisco",
     state: "California",
     route: "/san-francisco",
@@ -64,13 +64,13 @@ const NearCities = [
     route: "/los-angeles",
   },
   {
-    img: "/images/sandiego.webp",
+    img: "/images/sd-hero.jpeg",
     city: "San Diego",
     state: "California",
     route: "/san-diego",
   },
   {
-    img: "/images/orangecounty.webp",
+    img: "/images/oc-hero.jpeg",
     city: "Orange County",
     state: "California",
     route: "/orange-county",
@@ -82,7 +82,7 @@ const NearCities = [
     route: "/palm-springs",
   },
   {
-    img: "/images/santabarbara.webp",
+    img: "/images/sb-hero.jpeg",
     city: "Santa Barbara",
     state: "California",
     route: "/santa-barbara",

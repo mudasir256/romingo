@@ -7,19 +7,19 @@ import { Container, Divider, Grid, Typography } from "@mui/material";
 import Map from "../../components/UI/Map/Map";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import FilterBar from "../../components/FilterBar";
 
 import ScrollToTop from "../../components/ScrollToTop";
+import FilterBar from "../../components/FilterBar";
 
-const LosAngeles: FC = () => {
+const PalmSprings: FC = () => {
   return (
     <>
       <ScrollToTop />
       <Navbar />
       <Box
         component="img"
-        src="/images/la-hero.jpeg"
-        alt={"Sunny Los Angeles"}
+        src="/images/sf-hero.jpeg"
+        alt={"San Francisco"}
         sx={{
           objectFit: "cover",
           width: "100%",
@@ -30,7 +30,7 @@ const LosAngeles: FC = () => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography variant="h2" color="text.primary">
-            Los Angeles
+            San Francisco
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -54,23 +54,26 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Los Angeles is regarded as one of the most renowned cities in the
-              whole world. This dazzling city is known as the entertainment
-              capital and sits in close proximity to a number of world famous
-              beaches. You can also find amusement parks, countless museums, a
-              variety of dog-friendly tourist attractions, great hikes, and so
-              much more! When you visit Los Angeles, there is never a shortage
-              of things to see, try, and eat -- which is why there are roughly
-              50 million visitors in Los Angeles every year.
+              San Francisco is a lively cultural hub home to grand architectural
+              buildings, world-class cuisine, cable cars, a dynamic waterfront,
+              and plenty of outdoor adventures. The walkable city is adorned
+              with iconic landmarks which is what truly sets San Francisco
+              apart. Taking a stroll through the city’s streets is an exciting
+              experience that will bring you from one unique neighborhood to
+              another. San Francisco is a haven for lovers of performing arts
+              and is also considered one of the United State’s greatest dining
+              cities because of its rich diverse cultural influences, fresh
+              ingredients, and creative chefs who come from all around the
+              world.
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR LOS ANGELES GETAWAY
+                BOOK YOUR PALM SPRINGS GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="d4c10666-addf-47a6-9870-767518d9ebad" />
             <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -79,20 +82,18 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              The diverse, multiethnic population of Los Angeles today
-              distinguishes the city as the cultural hub of the Pacific Rim.
-              Furthermore, Los Angeles’ development makes it one of the most
-              coveted cities for dog owners and dog-friendly travel. The area
-              boasts a wide selection of dog-friendly accommodations,
-              recreational opportunities, and attractions.
+              Many of San Francisco’s attractions are outdoors, making it an
+              ideal city for dog-friendly travel. Your dog will be intrigued by
+              all the different landscapes and scenic views, and will be
+              welcomed in many restaurants and hotels as well!
             </Typography>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/la-2.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sf-2.jpeg"
+                alt={"San Francisco"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -105,8 +106,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-1.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sf-1.jpeg"
+                alt={"San Francisco"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -119,8 +120,8 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-3.jpeg"
-                alt={"Sunny Los Angeles"}
+                src="/images/sf-3.jpeg"
+                alt={"San Francisco"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -134,8 +135,8 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/la-4.jpeg"
-              alt={"Sunny Los Angeles"}
+              src="/images/sf-4.jpeg"
+              alt={"San Francisco"}
               sx={{
                 objectFit: "cover",
                 width: "100%",
@@ -156,21 +157,27 @@ const LosAngeles: FC = () => {
               color="text.secondary"
               sx={{ lineHeight: 2, textAlign: "justify" }}
             >
-              Go on a shopping spree with your pup at the famous Rodeo Drive or
-              plan a few hours to discover exciting art exhibits at The Broad in
-              Downtown LA. For impressive architectural views, works of art, and
-              unbeatable photo ops, head on over to the Griffith Observatory and
-              Getty Center. For some fun in the sun, make a stop at the Santa
-              Monica Beach then grab a meal at Third Street Promenade or take a
-              hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here:{" "}
+              When visiting San Francisco, you can’t miss the grand Golden Gate
+              Bridge, considered to be one of the world’s most famous bridges.
+              Fisherman’s Wharf is a dog-friendly waterfront marketplace where
+              you can view sea lions and indulge in seafood and cocktails. For a
+              relaxing afternoon, have a picnic at the beautiful Dolores Park
+              which boasts nearly 16 acres of grass where you and your pup can
+              lounge and play. A visit to the Golden Gate Park is another great
+              option for a picnic and will bring you close to attractions like
+              the Japanese Tea Garden and many others. If you’re looking to shop
+              at every store imaginable, you can head on over to Union Square
+              (which is especially festive during the Thanksgiving and Christmas
+              season). Finally, explore the great outdoors and unbeatable views
+              with a visit to Land’s End and Twin Peaks. Discover more of San
+              Francisco:{" "}
               <Link
-                href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
+                href="https://travel.usnews.com/San_Francisco_CA/Things_To_Do/"
                 target="_blank"
                 rel="noopener noreffer"
                 sx={{ fontWeight: "bold" }}
               >
-                Things to do in LA
+                Things to do in San Francisco
               </Link>
             </Typography>
           </Grid>
@@ -183,11 +190,11 @@ const LosAngeles: FC = () => {
             >
               <Map
                 center={{
-                  lat: 34.07351043341975,
-                  lng: -118.36388928440947,
+                  lat: 37.79057588458158,
+                  lng: -122.41495830286681,
                 }}
                 height={300}
-                zoom={9}
+                zoom={11}
                 selectedMarker={0}
               />
             </Box>
@@ -198,7 +205,7 @@ const LosAngeles: FC = () => {
                 ALWAYS $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
+            <FilterBar zoomed city="d4c10666-addf-47a6-9870-767518d9ebad" />
             <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
@@ -208,4 +215,4 @@ const LosAngeles: FC = () => {
   );
 };
 
-export default LosAngeles;
+export default PalmSprings;
