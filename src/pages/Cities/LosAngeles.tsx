@@ -34,7 +34,7 @@ const LosAngeles: FC<Props> = () => {
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
           <Typography variant="body1" color="text.secondary">
-            California
+            CALIFORNIA
           </Typography>
         </Divider>
         <Grid
@@ -83,8 +83,8 @@ const LosAngeles: FC<Props> = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              “The diverse, multiethnic population of Los Angeles today
-              distinguishes the city as the cultural hub of the Pacific Rim.”
+              The diverse, multiethnic population of Los Angeles today
+              distinguishes the city as the cultural hub of the Pacific Rim.
               Furthermore, Los Angeles’ development makes it one of the most
               coveted cities for dog owners and dog-friendly travel. The area
               boasts a wide selection of dog-friendly accommodations,
@@ -104,7 +104,7 @@ const LosAngeles: FC<Props> = () => {
                   lng: -118.36388928440947,
                 }}
                 height={300}
-                zoom={10}
+                zoom={9}
                 selectedMarker={0}
               />
             </Box>
@@ -154,15 +154,15 @@ const LosAngeles: FC<Props> = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Divider sx={{ my: 2 }}>
-              <Typography variant="h4" color="primary">
-                LA With Your Dog
+            <Divider light variant="middle" sx={{ mb: 2 }}>
+              <Typography variant="body1" color="text.secondary">
+                DOG-FRIENDLY ACTIVITIES
               </Typography>
             </Divider>
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ lineHeight: 2 }}
+              sx={{ lineHeight: 2, textAlign: "justify" }}
             >
               Go on a shopping spree with your pup at the famous Rodeo Drive or
               plan a few hours to discover exciting art exhibits at The Broad in
@@ -171,11 +171,12 @@ const LosAngeles: FC<Props> = () => {
               Getty Center. For some fun in the sun, make a stop at the Santa
               Monica Beach then grab a meal at Third Street Promenade or take a
               hike at the Angeles National Forest. Discover more of Los Angeles’
-              best attractions here:{" "}
+              best attractions here: <br />
               <Link
                 href="https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/"
                 target="_blank"
                 rel="noopener noreffer"
+                sx={{ fontWeight: "bold" }}
               >
                 https://travel.usnews.com/Los_Angeles_CA/Things_To_Do/
               </Link>
