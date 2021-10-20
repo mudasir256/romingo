@@ -37,10 +37,6 @@ const CheckoutPage: FC<Props> = () => {
     return state.hotelDetailReducer.detail;
   });
 
-  console.log(room);
-
-  console.log(room?.room?.cancelationPolicy);
-
   return (
     <>
       <ScrollToTop />
@@ -66,7 +62,8 @@ const CheckoutPage: FC<Props> = () => {
               <CheckoutInformation
                 sx={{ mt: 2 }}
                 finePrint={finePrint}
-                price={detail?.room?.room?.totalPrice}
+                price={detail?.room?.room?.totalPriceAfterTax}
+                priceKey={detail?.room?.room?.priceKey}
               />
             </Grid>
             <Grid item xs={12} md={4}>

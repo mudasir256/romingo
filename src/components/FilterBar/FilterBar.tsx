@@ -3,7 +3,7 @@ import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
-import { CSSObject } from "@mui/material";
+import { CSSObject, Divider } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
@@ -17,6 +17,8 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
+import PersonIcon from "@mui/icons-material/Person";
+import PetsIcon from "@mui/icons-material/Pets";
 
 import OccupantSelector, {
   Occupant,
@@ -200,7 +202,12 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                 width: "1px",
               }}
             ></Box>
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
+            <Button
+              onClick={handleFilterInClick}
+              sx={{
+                px: { xs: 1, md: 3 },
+              }}
+            >
               <Typography
                 sx={{
                   textTransform: "none",
@@ -209,8 +216,35 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                   },
                 }}
               >
-                {occupants.adults} guests
+                {occupants.dogs}
               </Typography>
+              <PetsIcon
+                sx={{
+                  color: "primary.main",
+                  fontSize: "75%",
+                  mb: -0.15,
+                  ml: 0.3,
+                }}
+              />
+              <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+              <Typography
+                sx={{
+                  textTransform: "none",
+                  fontSize: {
+                    xs: "85%",
+                  },
+                }}
+              >
+                {occupants.adults + occupants.children}
+              </Typography>
+              <PersonIcon
+                sx={{
+                  color: "primary.main",
+                  fontSize: "85%",
+                  mb: -0.23,
+                  ml: 0,
+                }}
+              />
             </Button>
             <IconButton onClick={handleFilterInClick}>
               <SearchOutlinedIcon />

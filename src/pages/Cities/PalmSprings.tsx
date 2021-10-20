@@ -18,8 +18,8 @@ const PalmSprings: FC = () => {
       <Navbar />
       <Box
         component="img"
-        src="/images/sf-hero.jpeg"
-        alt={"San Francisco"}
+        src="/images/ps-hero.jpeg"
+        alt={"Palm Springs"}
         sx={{
           objectFit: "cover",
           width: "100%",
@@ -30,7 +30,7 @@ const PalmSprings: FC = () => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography variant="h2" color="text.primary">
-            San Francisco
+            Palm Springs
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -54,23 +54,19 @@ const PalmSprings: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              San Francisco is a lively cultural hub home to grand architectural
-              buildings, world-class cuisine, cable cars, a dynamic waterfront,
-              and plenty of outdoor adventures. The walkable city is adorned
-              with iconic landmarks which is what truly sets San Francisco
-              apart. Taking a stroll through the city’s streets is an exciting
-              experience that will bring you from one unique neighborhood to
-              another. San Francisco is a haven for lovers of performing arts
-              and is also considered one of the United State’s greatest dining
-              cities because of its rich diverse cultural influences, fresh
-              ingredients, and creative chefs who come from all around the
-              world.
+              Palm Springs offers something unique and different from many of
+              the famous coastal cities in California. Located in the Sonoran
+              Desert, this city is most known for its golf courses, mountainous
+              views, mid-century architecture, and first-class spa resorts. For
+              those who enjoy warm weather and discovering the charm of locally
+              owned and operated businesses, Palm Springs has more than enough
+              to offer.
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR PALM SPRINGS GETAWAY!
+                BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
             <FilterBar zoomed city="d4c10666-addf-47a6-9870-767518d9ebad" />
@@ -82,18 +78,19 @@ const PalmSprings: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Many of San Francisco’s attractions are outdoors, making it an
-              ideal city for dog-friendly travel. Your dog will be intrigued by
-              all the different landscapes and scenic views, and will be
-              welcomed in many restaurants and hotels as well!
+              Some of the city&apos;s main highlights include its art and
+              culture scene and outdoor adventures where you can find miles of
+              dog-friendly trails, canyons, mountain streams, and beautiful
+              waterfalls. Finally, the cherry on top getting pampered at one of
+              Palm Spring’s luxury stays!
             </Typography>
           </Grid>
           <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/sf-2.jpeg"
-                alt={"San Francisco"}
+                src="/images/ps-2.jpg"
+                alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -106,8 +103,8 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/sf-1.jpeg"
-                alt={"San Francisco"}
+                src="/images/ps-1.jpg"
+                alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -120,8 +117,8 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/sf-3.jpeg"
-                alt={"San Francisco"}
+                src="/images/ps-3.jpg"
+                alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
                   width: "100%",
@@ -135,8 +132,8 @@ const PalmSprings: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/sf-4.jpeg"
-              alt={"San Francisco"}
+              src="/images/ps-4.jpg"
+              alt={"Palm Springs"}
               sx={{
                 objectFit: "cover",
                 width: "100%",
@@ -149,7 +146,7 @@ const PalmSprings: FC = () => {
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
-                DOG-FRIENDLY ACTIVITIES
+                PALM SPRINGS ACTIVITIES
               </Typography>
             </Divider>
             <Typography
@@ -157,27 +154,26 @@ const PalmSprings: FC = () => {
               color="text.secondary"
               sx={{ lineHeight: 2, textAlign: "justify" }}
             >
-              When visiting San Francisco, you can’t miss the grand Golden Gate
-              Bridge, considered to be one of the world’s most famous bridges.
-              Fisherman’s Wharf is a dog-friendly waterfront marketplace where
-              you can view sea lions and indulge in seafood and cocktails. For a
-              relaxing afternoon, have a picnic at the beautiful Dolores Park
-              which boasts nearly 16 acres of grass where you and your pup can
-              lounge and play. A visit to the Golden Gate Park is another great
-              option for a picnic and will bring you close to attractions like
-              the Japanese Tea Garden and many others. If you’re looking to shop
-              at every store imaginable, you can head on over to Union Square
-              (which is especially festive during the Thanksgiving and Christmas
-              season). Finally, explore the great outdoors and unbeatable views
-              with a visit to Land’s End and Twin Peaks. Discover more of San
-              Francisco:{" "}
+              To start, visit Palm Spring’s Downtown district which is a compact
+              hub filled with one-of-a-kind boutiques, gardens, coffee shops,
+              and classic Italian restaurants. On Palm Canyon drive, you’ll also
+              find a nice range of chain stores and if you go further north,
+              you’ll land in the Uptown Design District that features retail
+              stores selling mid-century modern pieces. To discover the
+              outdoors, plan a day to visit the city’s reserves with your pup.
+              We recommend Whitewater Preserve which boasts remote trails and
+              top-of-the-world views. For another dog-friendly destination, head
+              over to Moorten Botanical Garden to appreciate all the cacti and
+              desert plants. If you’re willing to travel a little further, you
+              can find unbeatable desert landscape and wildlife in Coachella
+              Valley and Joshua Tree.{" "}
               <Link
-                href="https://travel.usnews.com/San_Francisco_CA/Things_To_Do/"
+                href="https://www.planetware.com/california/visitors-guide-to-exploring-downtown-palm-springs-ca-us-ca-558.htm"
                 target="_blank"
                 rel="noopener noreffer"
                 sx={{ fontWeight: "bold" }}
               >
-                Things to do in San Francisco
+                More things to do in Palm Springs
               </Link>
             </Typography>
           </Grid>
@@ -190,8 +186,8 @@ const PalmSprings: FC = () => {
             >
               <Map
                 center={{
-                  lat: 37.79057588458158,
-                  lng: -122.41495830286681,
+                  lat: 33.826291140277625,
+                  lng: -116.52769996292206,
                 }}
                 height={300}
                 zoom={11}
@@ -202,7 +198,7 @@ const PalmSprings: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                ALWAYS $0 PET FEES ON ROMINGO
+                $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
             <FilterBar zoomed city="d4c10666-addf-47a6-9870-767518d9ebad" />

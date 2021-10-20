@@ -70,7 +70,7 @@ const SanFrancisco: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR SAN FRANCISCO GETAWAY!
+                BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
             <FilterBar zoomed city="82145909-13b4-4aab-be20-e0db474021c1" />
@@ -149,7 +149,7 @@ const SanFrancisco: FC = () => {
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
-                DOG-FRIENDLY ACTIVITIES
+                SAN FRANCISCO ACTIVITIES
               </Typography>
             </Divider>
             <Typography
@@ -202,7 +202,7 @@ const SanFrancisco: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                ALWAYS $0 PET FEES ON ROMINGO
+                $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
             <FilterBar zoomed city="82145909-13b4-4aab-be20-e0db474021c1" />

@@ -64,7 +64,7 @@ const SantaBarbara: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR SANTA BARBARA GETAWAY
+                BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
             <FilterBar zoomed city="58b23325-2016-44ef-886f-67e962dab17f" />
@@ -143,7 +143,7 @@ const SantaBarbara: FC = () => {
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
-                DOG-FRIENDLY ACTIVITIES
+                SANTA BARBARA ACTIVITIES
               </Typography>
             </Divider>
             <Typography
@@ -193,7 +193,7 @@ const SantaBarbara: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                ALWAYS $0 PET FEES ON ROMINGO
+                $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
             <FilterBar zoomed city="58b23325-2016-44ef-886f-67e962dab17f" />

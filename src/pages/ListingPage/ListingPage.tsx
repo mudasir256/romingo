@@ -151,7 +151,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   const [hoverIndex, setHoverIndex] = useState(0);
 
   useEffect(() => {
-    // console.log(animate);
     dispatch(
       setViewStatus({
         status: animate,

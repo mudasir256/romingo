@@ -46,7 +46,7 @@ const Header: FC<Props> = ({ sx }) => {
             position: "relative",
             "&::before": {
               content: '""',
-              backgroundImage: `url("/images/Frenchie_running_beach.jpg")`,
+              backgroundImage: `url("/images/test3.jpeg")`,
               opacity: 0.85,
               backgroundSize: "cover",
               position: "absolute",

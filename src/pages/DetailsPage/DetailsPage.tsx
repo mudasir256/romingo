@@ -93,12 +93,8 @@ interface Props {
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelId = props.match.params.id;
-  // console.log(props);
-
   const search = useSelector((state: any) => state.searchReducer.search);
-
   const hotelList = useSelector((state: any) => state.hotelListReducer.hotels);
-
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
@@ -207,11 +203,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         tmp.push(image);
       });
       setGallery([...tmp]);
-
       setDefaultDescription(data.property.desc);
-
-      // setCancelPenalty([])
-      // console.log(data.property.dogAmenities);
       setAmenities(data.property.dogAmenities);
       setScore(data.property.romingoScore);
 

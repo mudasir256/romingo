@@ -16,7 +16,6 @@ interface Props {
 }
 
 const CancelPolicy: FC<Props> = ({ sx, policy }) => {
-  console.log(policy);
   return (
     <Box sx={sx}>
       <Box

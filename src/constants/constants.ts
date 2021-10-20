@@ -186,6 +186,37 @@ const GetHotelDetail = `
     }
   `;
 
+const CreatePaymentIntent = `
+mutation CreatePaymentIntentMutation(
+  $createPaymentIntentInput: CreatePaymentIntentInput!
+) {
+  createPaymentIntent(input: $createPaymentIntentInput) {
+    paymentIntent {
+      amount
+      clientSecret
+    }
+    totalPriceAfterTax
+    priceDifference
+    priceChanged
+  }
+}
+`;
+
+const CreateBooking = `
+mutation CreateBookingMutation($createBookingInput: CreateBookingInput!) {
+  createBooking(input: $createBookingInput) {
+    totalPriceAfterTax
+    priceDifference
+    priceChanged
+    booking {
+      id
+      sabreConfirmationId
+      propertyConfirmationId
+    }
+  }
+}
+`;
+
 const GetStripeClientSecret = `
   query(
     $amount: Float!
@@ -194,4 +225,11 @@ const GetStripeClientSecret = `
   }
 `;
 
-export { GetHotelBySearch, GetCities, GetHotelDetail, GetStripeClientSecret };
+export {
+  GetHotelBySearch,
+  GetCities,
+  GetHotelDetail,
+  CreatePaymentIntent,
+  CreateBooking,
+  GetStripeClientSecret,
+};

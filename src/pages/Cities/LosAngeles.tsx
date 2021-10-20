@@ -67,7 +67,7 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR LOS ANGELES GETAWAY
+                BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
             <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />
@@ -148,7 +148,7 @@ const LosAngeles: FC = () => {
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
-                DOG-FRIENDLY ACTIVITIES
+                LOS ANGELES ACTIVITIES
               </Typography>
             </Divider>
             <Typography
@@ -195,7 +195,7 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                ALWAYS $0 PET FEES ON ROMINGO
+                $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
             <FilterBar zoomed city="ba12d364-9b1f-48c5-9ddc-7e68b40df076" />

@@ -67,7 +67,7 @@ const OrangeCounty: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR ORANGE COUNTY GETAWAY!
+                BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
             <FilterBar zoomed city="2714faad-9ea8-4851-9506-274710cdd51b" />
@@ -148,7 +148,7 @@ const OrangeCounty: FC = () => {
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
-                DOG-FRIENDLY ACTIVITIES
+                ORANGE COUNTY ACTIVITIES
               </Typography>
             </Divider>
             <Typography
@@ -205,7 +205,7 @@ const OrangeCounty: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                ALWAYS $0 PET FEES ON ROMINGO
+                $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
             <FilterBar zoomed city="2714faad-9ea8-4851-9506-274710cdd51b" />

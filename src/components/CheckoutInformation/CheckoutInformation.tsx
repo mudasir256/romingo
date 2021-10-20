@@ -1,16 +1,16 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
-import Hidden from "@mui/material/Hidden";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
 import MuiPhoneNumber from "material-ui-phone-number";
-import { gql, useLazyQuery } from "@apollo/client";
-import { GetStripeClientSecret } from "../../constants/constants";
+import { gql, useMutation } from "@apollo/client";
+import { CreateBooking, CreatePaymentIntent } from "../../constants/constants";
+import { useSelector } from "react-redux";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
@@ -20,34 +20,63 @@ interface Props {
     title: string;
     description: string;
   };
-  price?: number;
+  priceKey: string;
+  price: number;
 }
 
-const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
-  const [checkState, setCheckState] = useState(false);
-
+const CheckoutInformation: FC<Props> = ({
+  sx,
+  finePrint = null,
+  price,
+  priceKey,
+}) => {
   const stripe = useStripe();
   const elements = useElements();
+  const [clientSecret, setClientSecret] = useState("");
+  const [formError, setFormError] = useState("");
+  const [checkState, setCheckState] = useState(false);
+  const { occupants } = useSelector((state: any) => state.searchReducer.search);
+  const [checkoutForm, setCheckoutForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    countryCode: 1,
+    phone: "",
+  });
 
-  const [getClientSecret, { data, loading }] = useLazyQuery(
+  const [
+    createPI,
+    { data: piData, error: piError, loading: piLoading },
+  ] = useMutation(
     gql`
-      ${GetStripeClientSecret}
+      ${CreatePaymentIntent}
     `
   );
 
-  const [clientSecret, setClientSecret] = useState("");
+  const [
+    createBooking,
+    { data: createData, error: createError, loading: createLoading },
+  ] = useMutation(
+    gql`
+      ${CreateBooking}
+    `
+  );
 
   const handleCheck = () => {
     setCheckState(!checkState);
   };
 
-  React.useEffect(() => {
-    if (data && data.stripePaymentIntentClientSecret) {
-      setClientSecret(data.stripePaymentIntentClientSecret);
-    }
-  }, [getClientSecret, data, loading]);
+  const updateForm = (e: any) => {
+    setCheckoutForm({
+      ...checkoutForm,
+      [e?.target?.name]: e?.target?.value,
+    });
+  };
+
+  console.log(occupants);
 
   const submitStripe = async () => {
+    setFormError("");
     if (!stripe || !elements) {
       return;
     }
@@ -56,44 +85,106 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
     if (!cardElement) {
       return;
     }
-
-    // eslint-disable-next-line
-    const { error, paymentIntent } = await stripe.confirmCardPayment(
-      clientSecret,
-      {
-        payment_method: {
-          card: cardElement,
-        },
-      }
-    );
-
-    console.log(paymentIntent);
-  };
-
-  React.useEffect(() => {
-    if (clientSecret) {
-      submitStripe();
+    if (checkoutForm.firstName.length === 0) {
+      setFormError("*Primary traveller first name is required");
+      return;
     }
-  }, [clientSecret]);
+    if (checkoutForm.lastName.length === 0) {
+      setFormError("*Primary traveller last name is required");
+      return;
+    }
+    if (checkoutForm.email.length === 0) {
+      setFormError("*Primary traveller email is required");
+      return;
+    }
+    if (checkoutForm.phone.length === 0) {
+      setFormError("*Primary traveller phone is required");
+      return;
+    }
+    if (!checkState) {
+      setFormError(
+        "*Agreement to the terms of service and cancellation policy is required for booking"
+      );
+      return;
+    }
 
-  const handleSubmit = async () => {
-    getClientSecret({ variables: { amount: price } });
-    // if (!stripe || !elements) {
-    //   return;
-    // }
+    try {
+      const { error, paymentIntent } = await stripe.confirmCardPayment(
+        clientSecret,
+        {
+          payment_method: {
+            card: cardElement,
+          },
+        }
+      );
+      if (error) {
+        console.log(error);
+        return;
+      }
+      const adults: { firstName: string; lastName: string }[] = [];
+      const children: {
+        firstName: string;
+        lastName: string;
+        age: number;
+      }[] = [];
 
-    // const cardElement = elements.getElement(CardElement);
+      Array.from(Array(occupants.adults)).forEach(() => {
+        adults.push({
+          firstName: checkoutForm.firstName,
+          lastName: checkoutForm.lastName,
+        });
+      });
 
-    // if (!cardElement) {
-    //   return;
-    // }
+      Array.from(Array(occupants.childrenAge.length)).forEach((x_, i) => {
+        children.push({
+          firstName: checkoutForm.firstName,
+          lastName: checkoutForm.lastName,
+          age: occupants.childrenAge[i],
+        });
+      });
 
-    // console.log(paymentIntent);
+      if (paymentIntent) {
+        createBooking({
+          variables: {
+            createBookingInput: {
+              paymentIntentId: paymentIntent.id,
+              email: checkoutForm.email,
+              mobile: {
+                countryCallingCode: 1,
+                number: checkoutForm.phone,
+              },
+              adults,
+              children,
+              noOfDogs: occupants.dogs,
+            },
+          },
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleOnChange = () => {
-    console.log("Phone changed");
+  console.log(createError);
+
+  const updatePhone = (e: any) => {
+    setCheckoutForm({
+      ...checkoutForm,
+      phone: e.replace(/\s+/g, "-").replace(/[{()}]/g, ""),
+    });
   };
+
+  useEffect(() => {
+    createPI({
+      variables: { createPaymentIntentInput: { priceKey } },
+    });
+  }, []);
+
+  useEffect(() => {
+    if (piData?.createPaymentIntent) {
+      setClientSecret(piData?.createPaymentIntent?.paymentIntent?.clientSecret);
+    }
+  }, [piData]);
 
   return (
     <Box sx={sx}>
@@ -115,47 +206,56 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
             textAlign: "center",
           }}
         >
-          Traveller Information
+          Primary Traveller Information
         </Typography>
         <Grid container spacing={2} sx={{ py: 2 }}>
           <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               type="text"
-              label={"Traveller's Full Name"}
-              placeholder="Full Name"
+              name="firstName"
+              label={"Traveller's First Name"}
+              placeholder="First Name"
+              onChange={updateForm}
               fullWidth={true}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              variant="outlined"
+              type="text"
+              name="lastName"
+              label={"Traveller's Last Name"}
+              placeholder="Last Name"
+              onChange={updateForm}
+              fullWidth={true}
+              required
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               variant="outlined"
               type="email"
+              name="email"
               label={"Email Address"}
               placeholder="Email"
               fullWidth={true}
-              sx={{
-                mt: {
-                  sm: 0,
-                  xs: 1,
-                },
-              }}
+              onChange={updateForm}
+              required
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <MuiPhoneNumber
               defaultCountry={"us"}
-              onChange={handleOnChange}
+              name="phone"
+              onChange={updatePhone}
               variant="outlined"
               label={"Phone Number"}
               fullWidth={true}
               disableAreaCodes
-              sx={{
-                mt: {
-                  sm: 0,
-                  xs: 1,
-                },
-              }}
+              autoFormat={true}
+              required
             />
           </Grid>
         </Grid>
@@ -232,16 +332,28 @@ const CheckoutInformation: FC<Props> = ({ sx, finePrint = null, price }) => {
             </Typography>
           </Box>
         </Grid>
+        <Typography variant="body2" color="error" sx={{ fontWeight: "bold" }}>
+          {formError}
+        </Typography>
+
         <Grid item xs={12}>
           <Button
             variant="contained"
             fullWidth={true}
             size="large"
             color="primary"
-            onClick={handleSubmit}
+            onClick={submitStripe}
           >
             <Typography variant="h6">Book It</Typography>
           </Button>
+          <Typography
+            variant="body2"
+            color="text.primary"
+            sx={{ mt: 2, textAlign: "center" }}
+          >
+            Your card will be charged{" "}
+            <span style={{ fontWeight: "bold" }}>${price.toFixed(2)}</span>
+          </Typography>
         </Grid>
       </Box>
     </Box>

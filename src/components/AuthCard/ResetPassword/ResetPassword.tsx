@@ -35,8 +35,6 @@ const ResetPassword: FC<Props> = ({ sx }) => {
 
   React.useEffect(() => {
     if (Check_6_Digit_Regx.test(resetCode)) {
-      console.log("here"); // Call endpoint to verify reset code
-
       /*if success, go to next step*/
       setStep(3);
     }

@@ -68,7 +68,7 @@ const SanDiego: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                BOOK YOUR SAN DIEGO GETAWAY!
+                BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
             <FilterBar zoomed city="6f2cf61f-c769-47d9-9e46-90c5664b60b1" />
@@ -148,7 +148,7 @@ const SanDiego: FC = () => {
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
-                DOG-FRIENDLY ACTIVITIES
+                SAN DIEGO ACTIVITIES
               </Typography>
             </Divider>
             <Typography
@@ -200,7 +200,7 @@ const SanDiego: FC = () => {
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
-                ALWAYS $0 PET FEES ON ROMINGO
+                $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
             <FilterBar zoomed city="6f2cf61f-c769-47d9-9e46-90c5664b60b1" />

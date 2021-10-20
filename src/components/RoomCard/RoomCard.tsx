@@ -143,8 +143,6 @@ const RoomCard: FC<Props> = ({
     setAnchorEl(null);
   };
 
-  console.log(room);
-
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();

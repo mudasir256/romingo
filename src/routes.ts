@@ -5,6 +5,7 @@ import DetailsPage from "./pages/DetailsPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import LosAngeles from "./pages/Cities/LosAngeles";
 import SanDiego from "./pages/Cities/SanDiego";
+import PalmSprings from "./pages/Cities/PalmSprings";
 import OrangeCounty from "./pages/Cities/OrangeCounty";
 import SanFrancisco from "./pages/Cities/SanFran";
 import SantaBarbara from "./pages/Cities/SantaBarbara";
@@ -65,6 +66,11 @@ const routes: Routes[] = [
   {
     path: "/santa-barbara",
     component: SantaBarbara,
+    requireAuth: false,
+  },
+  {
+    path: "/palm-springs",
+    component: PalmSprings,
     requireAuth: false,
   },
 ];

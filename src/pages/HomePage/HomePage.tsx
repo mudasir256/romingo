@@ -76,7 +76,7 @@ const NearCities = [
     route: "/orange-county",
   },
   {
-    img: "/images/palmsprings.webp",
+    img: "/images/ps-hero.jpeg",
     city: "Palm Springs",
     state: "California",
     route: "/palm-springs",
