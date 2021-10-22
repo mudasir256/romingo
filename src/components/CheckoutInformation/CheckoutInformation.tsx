@@ -13,6 +13,7 @@ import { CreateBooking, CreatePaymentIntent } from "../../constants/constants";
 import { useSelector } from "react-redux";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import Loader from "../UI/Loader";
 
 interface Props {
   sx?: CSSObject;
@@ -33,7 +34,14 @@ const CheckoutInformation: FC<Props> = ({
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
-  const [formError, setFormError] = useState("");
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [formError, setFormError] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    check: "",
+  });
   const [checkState, setCheckState] = useState(false);
   const { occupants } = useSelector((state: any) => state.searchReducer.search);
   const [checkoutForm, setCheckoutForm] = useState({
@@ -73,38 +81,58 @@ const CheckoutInformation: FC<Props> = ({
     });
   };
 
-  console.log(occupants);
-
+  console.log(formError);
   const submitStripe = async () => {
-    setFormError("");
+    setPaymentLoading(true);
+    setFormError({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      check: "",
+    });
+
+    const errors = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      check: "",
+    };
+
+    if (checkoutForm.firstName.length === 0) {
+      errors.firstName = "*Primary traveller first name is required";
+    }
+    if (checkoutForm.lastName.length === 0) {
+      errors.lastName = "*Primary traveller last name is required";
+    }
+    if (checkoutForm.email.length === 0) {
+      errors.email = "*Primary traveller email is required";
+    }
+    if (checkoutForm.phone.length === 0) {
+      errors.phone = "*Primary traveller phone is required";
+    }
+    if (!checkState) {
+      errors.check = "*Required for booking";
+    }
+
+    setFormError(errors);
+
+    Object.keys(formError).forEach((err) => {
+      if (err.length > 0) {
+        setPaymentLoading(false);
+        return;
+      }
+    });
+
     if (!stripe || !elements) {
+      setPaymentLoading(false);
       return;
     }
 
     const cardElement = elements.getElement(CardElement);
     if (!cardElement) {
-      return;
-    }
-    if (checkoutForm.firstName.length === 0) {
-      setFormError("*Primary traveller first name is required");
-      return;
-    }
-    if (checkoutForm.lastName.length === 0) {
-      setFormError("*Primary traveller last name is required");
-      return;
-    }
-    if (checkoutForm.email.length === 0) {
-      setFormError("*Primary traveller email is required");
-      return;
-    }
-    if (checkoutForm.phone.length === 0) {
-      setFormError("*Primary traveller phone is required");
-      return;
-    }
-    if (!checkState) {
-      setFormError(
-        "*Agreement to the terms of service and cancellation policy is required for booking"
-      );
+      setPaymentLoading(false);
       return;
     }
 
@@ -119,6 +147,7 @@ const CheckoutInformation: FC<Props> = ({
       );
       if (error) {
         console.log(error);
+        setPaymentLoading(false);
         return;
       }
       const adults: { firstName: string; lastName: string }[] = [];
@@ -135,13 +164,15 @@ const CheckoutInformation: FC<Props> = ({
         });
       });
 
-      Array.from(Array(occupants.childrenAge.length)).forEach((x_, i) => {
-        children.push({
-          firstName: checkoutForm.firstName,
-          lastName: checkoutForm.lastName,
-          age: occupants.childrenAge[i],
+      if (occupants.children > 0) {
+        Array.from(Array(occupants?.childrenAge?.length)).forEach((x_, i) => {
+          children.push({
+            firstName: checkoutForm.firstName,
+            lastName: checkoutForm.lastName,
+            age: occupants.childrenAge[i],
+          });
         });
-      });
+      }
 
       if (paymentIntent) {
         createBooking({
@@ -162,10 +193,10 @@ const CheckoutInformation: FC<Props> = ({
       }
     } catch (err) {
       console.log(err);
+      setPaymentLoading(false);
     }
+    setPaymentLoading(false);
   };
-
-  console.log(createError);
 
   const updatePhone = (e: any) => {
     setCheckoutForm({
@@ -194,167 +225,186 @@ const CheckoutInformation: FC<Props> = ({
           color: "text.primary",
           borderRadius: 3,
           border: "1px solid #DDD",
+          minHeight: "550px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           pt: 2,
           pb: 2.5,
           px: 2,
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            color: "secondary.main",
-            textAlign: "center",
-          }}
-        >
-          Primary Traveller Information
-        </Typography>
-        <Grid container spacing={2} sx={{ py: 2 }}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              type="text"
-              name="firstName"
-              label={"Traveller's First Name"}
-              placeholder="First Name"
-              onChange={updateForm}
-              fullWidth={true}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              type="text"
-              name="lastName"
-              label={"Traveller's Last Name"}
-              placeholder="Last Name"
-              onChange={updateForm}
-              fullWidth={true}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              variant="outlined"
-              type="email"
-              name="email"
-              label={"Email Address"}
-              placeholder="Email"
-              fullWidth={true}
-              onChange={updateForm}
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <MuiPhoneNumber
-              defaultCountry={"us"}
-              name="phone"
-              onChange={updatePhone}
-              variant="outlined"
-              label={"Phone Number"}
-              fullWidth={true}
-              disableAreaCodes
-              autoFormat={true}
-              required
-            />
-          </Grid>
-        </Grid>
-        <Typography
-          variant="h6"
-          sx={{
-            color: "secondary.main",
-            textAlign: "center",
-            mb: 2,
-          }}
-        >
-          Payment Information
-        </Typography>
-        <Grid item xs={12}>
-          <Box
-            className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
-            sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
-          >
-            <CardElement
-              options={{
-                iconStyle: "solid",
-                classes: {
-                  base:
-                    "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
-                },
-                style: {
-                  base: {
-                    fontFamily: `"Work Sans", "Montserrat", sans-serif`,
-                    iconColor: "#03989E",
-                    fontSize: "16px",
-                    color: "rgba(0, 0, 0, 0.78)",
-                    "::placeholder": {
-                      color: "rgba(0, 0, 0, 0.58)",
-                    },
-                  },
-                  invalid: {
-                    color: "#9e2146",
-                  },
-                },
-              }}
-            />
-          </Box>
-          <Box sx={{ textAlign: "center" }}>
-            <Box
-              component="img"
-              src="/images/safe-checkout.jpeg"
-              draggable="false"
+        {createLoading || piLoading || paymentLoading ? (
+          <Loader size="200px" />
+        ) : (
+          <>
+            <Typography
+              variant="h6"
               sx={{
-                width: "400px",
-                maxWidth: "100%",
-                mt: 2,
-                mb: 1,
+                color: "secondary.main",
+                textAlign: "center",
               }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-              mb: 2,
-            }}
-          >
-            <Checkbox
-              checked={checkState}
-              color="primary"
-              onChange={handleCheck}
-            />
-            <Typography variant="body2">
-              I agree to the booking <Link href="#">terms of service</Link> and
-              cancellation policy.
+            >
+              Primary Traveller Information
             </Typography>
-          </Box>
-        </Grid>
-        <Typography variant="body2" color="error" sx={{ fontWeight: "bold" }}>
-          {formError}
-        </Typography>
+            <Grid container spacing={2} sx={{ py: 2 }}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  type="text"
+                  name="firstName"
+                  label={"Traveller's First Name"}
+                  placeholder="First Name"
+                  onChange={updateForm}
+                  fullWidth={true}
+                  error={formError.firstName.length > 0}
+                  helperText={formError.firstName}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  type="text"
+                  name="lastName"
+                  label={"Traveller's Last Name"}
+                  placeholder="Last Name"
+                  onChange={updateForm}
+                  fullWidth={true}
+                  error={formError.lastName.length > 0}
+                  helperText={formError.lastName}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  type="email"
+                  name="email"
+                  label={"Email Address"}
+                  placeholder="Email"
+                  fullWidth={true}
+                  onChange={updateForm}
+                  error={formError.email.length > 0}
+                  required
+                  helperText={formError.email}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <MuiPhoneNumber
+                  defaultCountry={"us"}
+                  name="phone"
+                  onChange={updatePhone}
+                  variant="outlined"
+                  label={"Phone Number"}
+                  fullWidth={true}
+                  disableAreaCodes
+                  autoFormat={true}
+                  error={formError.phone.length > 0}
+                  helperText={formError.phone}
+                  required
+                />
+              </Grid>
+            </Grid>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "secondary.main",
+                textAlign: "center",
+                mb: 2,
+              }}
+            >
+              Payment Information
+            </Typography>
+            <Grid item xs={12}>
+              <Box
+                className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
+                sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
+              >
+                <CardElement
+                  options={{
+                    iconStyle: "solid",
+                    classes: {
+                      base:
+                        "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
+                    },
+                    style: {
+                      base: {
+                        fontFamily: `"Work Sans", "Montserrat", sans-serif`,
+                        iconColor: "#03989E",
+                        fontSize: "16px",
+                        color: "rgba(0, 0, 0, 0.78)",
+                        "::placeholder": {
+                          color: "rgba(0, 0, 0, 0.58)",
+                        },
+                      },
+                      invalid: {
+                        color: "#9e2146",
+                      },
+                    },
+                  }}
+                />
+              </Box>
+              <Box sx={{ textAlign: "center" }}>
+                <Box
+                  component="img"
+                  src="/images/safe-checkout.jpeg"
+                  draggable="false"
+                  sx={{
+                    width: "400px",
+                    maxWidth: "100%",
+                    mt: 2,
+                    mb: 1,
+                  }}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "start",
+                }}
+              >
+                <Checkbox
+                  checked={checkState}
+                  color="primary"
+                  onChange={handleCheck}
+                />
+                <Typography variant="body2">
+                  I agree to the booking <Link href="#">terms of service</Link>{" "}
+                  and cancellation policy.
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="error">
+                {formError.check}
+              </Typography>
+            </Grid>
 
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            fullWidth={true}
-            size="large"
-            color="primary"
-            onClick={submitStripe}
-          >
-            <Typography variant="h6">Book It</Typography>
-          </Button>
-          <Typography
-            variant="body2"
-            color="text.primary"
-            sx={{ mt: 2, textAlign: "center" }}
-          >
-            Your card will be charged{" "}
-            <span style={{ fontWeight: "bold" }}>${price.toFixed(2)}</span>
-          </Typography>
-        </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                fullWidth={true}
+                size="large"
+                color="primary"
+                onClick={submitStripe}
+                sx={{ mt: 3 }}
+              >
+                <Typography variant="h6">Book It</Typography>
+              </Button>
+              <Typography
+                variant="body2"
+                color="text.primary"
+                sx={{ mt: 2, textAlign: "center" }}
+              >
+                Your card will be charged{" "}
+                <span style={{ fontWeight: "bold" }}>${price.toFixed(2)}</span>
+              </Typography>
+            </Grid>
+          </>
+        )}
       </Box>
     </Box>
   );
