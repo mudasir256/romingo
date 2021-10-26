@@ -49,7 +49,6 @@ const ListingCard: FC<ListingCardProps> = ({
   highlighted = false,
   ...props
 }) => {
-  console.log(cancellation);
   const history = useHistory();
   const mobileCardPadding = 1.8;
   return (

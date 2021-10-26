@@ -235,7 +235,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             }}
           />
         </Link>
-        <FilterBar />
+        <Hidden mdDown>
+          {!loading && (error || cards.length !== 0) && <FilterBar />}
+        </Hidden>
+        <Hidden mdUp>
+          <FilterBar />
+        </Hidden>
       </Box>
       <Box
         sx={{
@@ -372,9 +377,8 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                       sx={{ textAlign: "center" }}
                       color="text.secondary"
                     >
-                      No listings found for this search...
+                      No rooms found for this search...
                     </Typography>
-                    <FilterBar zoomed />
                   </>
                 ) : (
                   cards.map((card: any, index: number) => (
@@ -455,7 +459,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                       sx={{ textAlign: "center" }}
                       color="text.secondary"
                     >
-                      No listings found for this search...
+                      No rooms found for this search...
                     </Typography>
                     <FilterBar zoomed />
                   </>

@@ -147,8 +147,6 @@ const HomePage: FC<Props> = ({
     }
   }, [data]);
 
-  console.log(search);
-
   const toFeatured = (id: string, cityId: string) => {
     let city = search.city;
     let checkIn = search.checkIn;

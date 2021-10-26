@@ -73,7 +73,6 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   };
 
   const handleOccupantsClose = () => {
-    console.log("Occupants Closed");
     dispatch(saveSearch({ ...search, occupants }));
   };
 
@@ -92,7 +91,6 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   }, [roomType]);
 
   useEffect(() => {
-    console.log(checkDate);
     if (
       checkDate[0] &&
       new Date(checkDate[0]) >=
