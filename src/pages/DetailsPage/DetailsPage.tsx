@@ -522,8 +522,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               This property does not have any rooms available that meet your
               search criteria
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-              Search other great Romingo properties below
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mt: 1, mb: 3 }}
+            >
+              Search other great Romingo rooms below
             </Typography>
 
             <FilterBar zoomed />
