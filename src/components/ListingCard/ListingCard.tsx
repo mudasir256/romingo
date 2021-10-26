@@ -32,6 +32,7 @@ export interface ListingCardProps {
     name: string;
   };
   neighborhood: string;
+  showPrice?: boolean;
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
@@ -47,6 +48,7 @@ const ListingCard: FC<ListingCardProps> = ({
   dogAmenities = [],
   showAmenities = true,
   highlighted = false,
+  showPrice = true,
   ...props
 }) => {
   const history = useHistory();
@@ -91,7 +93,7 @@ const ListingCard: FC<ListingCardProps> = ({
           history.push("/details/" + id);
         }}
         underline="none"
-        sx={{ flex: 1, minWidth: 0, maxWidth: "100%" }}
+        sx={{ flex: 1, minWidth: { xs: "100%", md: 0 }, maxWidth: "100%" }}
       >
         <Box
           sx={{
@@ -160,12 +162,13 @@ const ListingCard: FC<ListingCardProps> = ({
                         <Check
                           sx={{
                             fontSize: 15,
-                            color: "primary.main",
+                            color: "primary",
                             mt: 0.4,
                           }}
                         />
                         <Typography
                           variant="body1"
+                          color="primary"
                           sx={{
                             pr: 0.15,
                             overflow: "hidden",
@@ -186,22 +189,31 @@ const ListingCard: FC<ListingCardProps> = ({
                   display: "flex",
                   textAlign: "right",
                   justifyContent: "end",
+                  flexDirection: "column",
                 }}
               >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    mr: 0.45,
-                    letterSpacing: 1,
-                    color: "text.secondary",
-                  }}
-                >
-                  {currency}
-                  {Math.round(lowestAveragePrice)}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                  / night
-                </Typography>
+                {showPrice && (
+                  <>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        mr: 0.45,
+                        letterSpacing: 1,
+                        color: "text.secondary",
+                        fontSize: "190%",
+                      }}
+                    >
+                      {currency}
+                      {Math.round(lowestAveragePrice)}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "text.secondary" }}
+                    >
+                      / night
+                    </Typography>
+                  </>
+                )}
               </Box>
             </Box>
           </Box>

@@ -100,7 +100,7 @@ const ListingCardMap: FC<Props> = ({
                   mr: 0.25,
                   letterSpacing: 1,
                   color: "text.secondary",
-                  fontSize: "95%",
+                  fontSize: "115%",
                 }}
               >
                 {currency}

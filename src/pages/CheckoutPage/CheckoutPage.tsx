@@ -58,7 +58,7 @@ const CheckoutPage: FC<Props> = () => {
         >
           <Grid container spacing={2}>
             <Grid item xs={12} md={8}>
-              <ListingCard {...hotel} />
+              <ListingCard {...hotel} showPrice={false} />
               <CheckoutInformation
                 sx={{ mt: 2 }}
                 finePrint={finePrint}
