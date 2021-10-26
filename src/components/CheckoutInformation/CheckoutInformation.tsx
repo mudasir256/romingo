@@ -81,7 +81,6 @@ const CheckoutInformation: FC<Props> = ({
     });
   };
 
-  console.log(formError);
   const submitStripe = async () => {
     setPaymentLoading(true);
     setFormError({

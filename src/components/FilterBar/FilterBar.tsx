@@ -96,6 +96,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     if (
+      occupants.adults !== 0 &&
       selectedCity &&
       checkDate[0] &&
       new Date(checkDate[0]) >=
@@ -136,6 +137,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
         new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
       ) {
         setFormError("Check-out date must be after today");
+      }
+      if (occupants.adults === 0) {
+        setFormError("Search must include at least 1 adult guest");
       }
     }
   };
@@ -260,6 +264,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
               xs: "white",
               md: "transparent",
             },
+            py: { xs: 1.5, md: 0 },
           }}
         >
           <Zoom
@@ -311,7 +316,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                       }
                     }}
                     sx={{
-                      width: "100%",
+                      width: { xs: "100%", md: "180px" },
+                      minWidth: "180px",
+                      ml: { xs: 0, md: 2 },
                     }}
                     renderInput={(params) => (
                       <TextField
@@ -321,7 +328,11 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                         label="Location"
                         size="small"
                         sx={{
+                          label: {
+                            fontWeight: "bold",
+                          },
                           input: {
+                            cursor: "pointer",
                             color: "primary.main",
                             border: "none",
                             mt: 0.55,
@@ -396,9 +407,13 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                               startProps.inputRef as React.Ref<HTMLInputElement>
                             }
                             sx={{
-                              width: { xs: "50%", md: "115px" },
+                              width: { xs: "50%", md: "100px" },
                               my: { xs: 0.5, md: 0 },
+                              label: {
+                                fontWeight: "bold",
+                              },
                               input: {
+                                cursor: "pointer",
                                 color: "primary.main",
                                 border: "none",
                               },
@@ -422,10 +437,14 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                               endProps.inputRef as React.Ref<HTMLInputElement>
                             }
                             sx={{
-                              width: { xs: "50%", md: "115px" },
+                              width: { xs: "50%", md: "100px" },
                               my: { xs: 0.5, md: 0 },
+                              label: {
+                                fontWeight: "bold",
+                              },
                               input: {
                                 color: "primary.main",
+                                cursor: "pointer",
                               },
                             }}
                           />
@@ -451,8 +470,12 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                     variant="standard"
                     size="small"
                     sx={{
+                      label: {
+                        fontWeight: "bold",
+                      },
                       input: {
                         color: "primary.main",
+                        cursor: "pointer",
                       },
                     }}
                   />
@@ -461,20 +484,21 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                   <Button
                     onClick={handleFilterOutClick}
                     type="submit"
+                    variant="contained"
                     color="primary"
                     size="large"
                     sx={{
-                      pb: { xs: 1.5, md: 0.5 },
-                      pt: { xs: 1.5, md: 2.5 },
-                      px: 2,
-                      borderRadius: "0px",
+                      pb: { xs: 1.5, md: 1.5 },
+                      pt: { xs: 1.5, md: 1.5 },
+                      pr: 6,
+                      mx: 0,
+                      borderBottomRightRadius: { xs: 0, md: "30px" },
+                      borderTopRightRadius: { xs: 0, md: "30px" },
+                      borderBottomLeftRadius: "0px",
+                      borderTopLeftRadius: "0px",
                       my: { xs: 0.5, md: 0 },
                       width: { xs: "100%" },
                       fontWeight: "bold",
-                      borderBottom: {
-                        xs: "none",
-                        md: "1px solid rgba(0, 0, 0, 0.42)",
-                      },
                     }}
                   >
                     <SearchIcon /> Search

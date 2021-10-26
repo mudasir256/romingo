@@ -89,7 +89,6 @@ const MobileBookingForm: FC<Props> = ({
                   </Grid>
                 </Grid>
               )}
-              disabled
             />
           </LocalizationProvider>
         </Grid>
@@ -99,7 +98,6 @@ const MobileBookingForm: FC<Props> = ({
             onChange={() => {
               return;
             }}
-            disabled
           />
         </Grid>
         <Grid item xs={12}>

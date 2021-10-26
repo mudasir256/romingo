@@ -366,9 +366,16 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               >
                 <RomingoGuarantee sx={{ mb: 0 }} />
                 {cards.length === 0 ? (
-                  <Typography variant="h6" sx={{ textAlign: "center" }}>
-                    No listing found for this search...
-                  </Typography>
+                  <>
+                    <Typography
+                      variant="h6"
+                      sx={{ textAlign: "center" }}
+                      color="text.secondary"
+                    >
+                      No listings found for this search...
+                    </Typography>
+                    <FilterBar zoomed />
+                  </>
                 ) : (
                   cards.map((card: any, index: number) => (
                     <ListingCard
@@ -441,20 +448,33 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               </Stack>
             ) : (
               <Stack spacing={3} divider={<Divider variant="middle" />}>
-                {cards.map((card: any, index: number) => (
-                  <Box
-                    key={card.id}
-                    ref={refArray[index]}
-                    onMouseOver={() => {
-                      setHoverIndex(index);
-                    }}
-                  >
-                    <ListingCard
-                      {...card}
-                      highlighted={hotelIndex === index ? true : false}
-                    />
-                  </Box>
-                ))}
+                {cards.length === 0 ? (
+                  <>
+                    <Typography
+                      variant="h6"
+                      sx={{ textAlign: "center" }}
+                      color="text.secondary"
+                    >
+                      No listings found for this search...
+                    </Typography>
+                    <FilterBar zoomed />
+                  </>
+                ) : (
+                  cards.map((card: any, index: number) => (
+                    <Box
+                      key={card.id}
+                      ref={refArray[index]}
+                      onMouseOver={() => {
+                        setHoverIndex(index);
+                      }}
+                    >
+                      <ListingCard
+                        {...card}
+                        highlighted={hotelIndex === index ? true : false}
+                      />
+                    </Box>
+                  ))
+                )}
               </Stack>
             )}
           </Box>

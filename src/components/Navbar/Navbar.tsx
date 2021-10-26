@@ -135,12 +135,12 @@ const Navbar: FC<Props> = ({ sx }) => {
               />
             </Hidden>
             <Button
-              variant="outlined"
+              variant="text"
               size="small"
               color="primary"
-              onClick={handleLogin}
+              onClick={() => history.push("/reservation/manage")}
             >
-              Login
+              Manage Reservation
             </Button>
           </Box>
           <Hidden smDown>

@@ -87,10 +87,10 @@ const Header: FC<Props> = ({ sx }) => {
             sx={{
               color: "primary.main",
               textAlign: "center",
-              fontSize: { xs: "3rem", md: "6rem" },
+              fontSize: { xs: "2.5rem", md: "4rem" },
             }}
           >
-            Goodbye Pet Fees
+            Welcome to Dog Friendly Travel
           </Typography>
           <Typography
             variant="h4"
@@ -103,7 +103,7 @@ const Header: FC<Props> = ({ sx }) => {
               mt: 1,
             }}
           >
-            Book with Romingo and pay $0 pet fees at dog-friendly hotels
+            Book dog friendly hotels with Romingo and pay $0 in pet fees
           </Typography>
           <Box
             sx={{

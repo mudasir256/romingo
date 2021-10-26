@@ -31,9 +31,9 @@ export const initialState: SearchState = {
     checkIn: "",
     checkOut: "",
     occupants: {
-      adults: 1,
+      adults: 0,
       children: 0,
-      dogs: 1,
+      dogs: 0,
     },
   },
 };

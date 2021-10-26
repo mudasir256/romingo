@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
 import { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
 import { CSSObject } from "@mui/material";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 
 import { gql, useQuery } from "@apollo/client";
@@ -16,6 +17,8 @@ import Footer from "../../components/Footer";
 import { GetCities } from "../../constants/constants";
 import { setList } from "../../store/cityListReducer";
 import ScrollToTop from "../../components/ScrollToTop";
+
+import { saveSearch } from "../../store/searchReducer";
 
 interface Props {
   sx?: CSSObject;
@@ -29,6 +32,9 @@ interface Props {
     img: string;
     name: string;
     description: string;
+    city: string;
+    cityId: string;
+    id: string;
   }[];
   footerMenus: {
     about: {
@@ -92,24 +98,33 @@ const NearCities = [
 const FeatureHotels = [
   {
     img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    name: "Hotel 1",
+      "https://storage.googleapis.com/romingo-development-public/images/Intercon%20San%20Diego/Intercontinental-san-diego-gallery-31-5c0831a0e6ed6.jpg",
+    name: "Intercontinental San Diego",
+    city: "San Diego, CA",
+    cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
     description:
-      "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata",
+      "Sophistication has arrived on the downtown waterfront, bringing together the best of the city and the bay.",
+    id: "8f17db8f-b07a-430c-91a0-0221204e53e7",
   },
   {
     img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    name: "Hotel 2",
+      "https://storage.googleapis.com/romingo-development-public/images/Kimpton%20La%20Peer/la-peer-terrace-king-room-view-9037a986.jpg",
+    name: "Kimpton La Peer",
+    city: "Los Angeles, CA",
+    cityId: "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
     description:
-      "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata",
+      "A West Hollywood Hotel Hideaway just steps from the vibrant intersection of Melrose Avenue and Santa Monica Boulevard",
+    id: "fd37e867-8164-4a9c-8240-ac3cedbbb774",
   },
   {
     img:
-      "https://exp.cdn-hotels.com/hotels/1000000/190000/188400/188379/abf88bf7_z.jpg?impolicy=fcrop&w=1000&h=666&q=medium",
-    name: "Hotel 3",
+      "https://storage.googleapis.com/romingo-development-public/images/Marriott%20Fisherman's%20Wharf/sfofw-cochere-0073-hor-clsc.jpeg",
+    name: "Marriott Fisherman’s Wharf",
+    city: "San Francisco, CA",
+    cityId: "82145909-13b4-4aab-be20-e0db474021c1",
     description:
-      "Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent delectus delicata",
+      "A truly dog friendly experience at San Francisco Marriott Fisherman's Wharf near the Golden Gate Bridge, Oracle Park and Pier 39.",
+    id: "3440f807-f383-437c-8923-71b7e45853bd",
   },
 ];
 
@@ -118,6 +133,7 @@ const HomePage: FC<Props> = ({
   featureHotels = FeatureHotels,
 }) => {
   const history = useHistory();
+  const search = useSelector((state: any) => state.searchReducer.search);
   const dispatch: Dispatch<any> = useDispatch();
   const { loading, error, data } = useQuery(
     gql`
@@ -130,6 +146,45 @@ const HomePage: FC<Props> = ({
       dispatch(setList([...data?.cities]));
     }
   }, [data]);
+
+  console.log(search);
+
+  const toFeatured = (id: string, cityId: string) => {
+    let city = search.city;
+    let checkIn = search.checkIn;
+    let checkOut = search.checkOut;
+    let occupants = search.occupants;
+    const today = new Date();
+    if (!search.city) {
+      city = cityId;
+    }
+    if (~checkIn) {
+      checkIn = checkOut = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() + 7
+      ).toISOString();
+    }
+    if (!checkOut) {
+      checkOut = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() + 9
+      ).toISOString();
+    }
+    if (occupants.adults === 0) {
+      occupants = { adults: 2, dogs: 1, children: 0 };
+    }
+    dispatch(
+      saveSearch({
+        city,
+        checkIn,
+        checkOut,
+        occupants,
+      })
+    );
+    history.push(`/details/${id}`);
+  };
 
   return (
     <>
@@ -170,17 +225,17 @@ const HomePage: FC<Props> = ({
                   textAlign: "center",
                 }}
               >
-                Seriously, No Pet Fees?
+                Book the lowest room rates
               </Typography>
               <Typography
                 variant="h4"
                 sx={{
                   color: "text.secondary",
                   textAlign: "center",
-                  mb: { xs: 2, md: 5 },
+                  mb: 5,
                 }}
               >
-                {"Here's how..."}
+                And never pay another pet fee again
               </Typography>
             </Grid>
             <Grid
@@ -208,29 +263,23 @@ const HomePage: FC<Props> = ({
                       }}
                     >
                       <Typography
-                        variant="h5"
+                        variant="h4"
                         sx={{
                           color: "text.secondary",
                           textAlign: "center",
                         }}
                       >
-                        We partner with dog friendly hotels
+                        Romingo hotels allow two dogs, up to 75 pounds each
                       </Typography>
                       <Typography
                         variant="body1"
-                        sx={{
-                          mt: 1,
-                        }}
+                        color="text.secondary"
+                        sx={{ mt: 3, fontSize: "115%", textAlign: "justify" }}
                       >
-                        Welcome to dog friendly travel with Romingo! When you
-                        book your next dog friendly hotel with Romingo, you and
-                        your canine companion will experience top-notch service
-                        and luxury hotel accommodations.
-                        <br />
-                        <br />
-                        All reservations made on Romingo include waived pet
-                        fees, up to 2 dogs weighing 75 lbs. each, and dog beds,
-                        bowls, and treats upon arrival.
+                        Don&apos;t leave your dogs at home. When you book with
+                        Romingo, your dogs are included for free and you will
+                        never be asked to pay a non-refundable pet fee during
+                        booking or at the hotel.
                       </Typography>
                     </Box>
                   </Box>
@@ -244,14 +293,15 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Man_Travel_Dog_Car.jpg"
+                      src="/images/Young_Couple_Driving_Dog.webp"
                       alt="french bulldog w/ coffee"
                       draggable="false"
                       sx={{
                         width: "100%",
-                        maxHeight: "320px",
+                        maxHeight: "275px",
+                        borderRadius: 3,
+                        boxShadow: 5,
                         objectFit: "cover",
-                        borderRadius: 0,
                         margin: "auto 0",
                         position: "relative",
                         textAlign: "center",
@@ -275,14 +325,15 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Cafe_Dog.jpg"
+                      src="/images/balcony-dog.jpeg"
                       alt="dog head out window"
                       draggable="false"
                       sx={{
                         width: "100%",
-                        maxHeight: "320px",
+                        maxHeight: "275px",
                         objectFit: "cover",
-                        borderRadius: 0,
+                        borderRadius: 3,
+                        boxShadow: 5,
                         margin: "auto 0",
                       }}
                     />
@@ -304,32 +355,23 @@ const HomePage: FC<Props> = ({
                       }}
                     >
                       <Typography
-                        variant="h5"
+                        variant="h4"
                         sx={{
                           color: "text.secondary",
                           textAlign: "center",
                         }}
                       >
-                        And pass the savings onto you
+                        Romingo hotels provide beds &amp; bowls for your pup
                       </Typography>
                       <Typography
                         variant="body1"
-                        sx={{
-                          mt: 1,
-                        }}
+                        color="text.secondary"
+                        sx={{ mt: 3, fontSize: "115%", textAlign: "justify" }}
                       >
-                        Romingo partners with hand-selected, luxury hotels that
-                        ensure you will have a pleasant and memorable experience
-                        while visiting with your pup. We’re committed to
-                        creating a future where you never have to leave your
-                        canine companion alone again, which is why we offer the
-                        highest quality dog friendly solution for your travel
-                        needs.
-                        <br />
-                        <br />
-                        Romingo is revolutionizing dog friendly travel, and we
-                        invite you to book your next dog friendly trip with
-                        Romingo today!
+                        Romingo partners with hotels to make travelling with
+                        dogs more comfortable. Romingo bookings include the
+                        amenities they need for a comfortable and exciting trip,
+                        at no extra cost.
                       </Typography>
                     </Box>
                   </Box>
@@ -359,9 +401,12 @@ const HomePage: FC<Props> = ({
                   width: "50%",
                 }}
               />
-              <Typography variant="h6">Best Available Rates</Typography>
+              <Typography variant="h6" color="text.secondary">
+                Best Available Rates
+              </Typography>
               <Typography
                 variant="body1"
+                color="text.secondary"
                 sx={{
                   mt: 1,
                 }}
@@ -387,9 +432,12 @@ const HomePage: FC<Props> = ({
                   width: "50%",
                 }}
               />
-              <Typography variant="h6">No Hidden Pet Fees</Typography>
+              <Typography variant="h6" color="text.secondary">
+                No Hidden Pet Fees
+              </Typography>
               <Typography
                 variant="body1"
+                color="text.secondary"
                 sx={{
                   mt: 1,
                 }}
@@ -415,9 +463,12 @@ const HomePage: FC<Props> = ({
                   width: "50%",
                 }}
               />
-              <Typography variant="h6">Happy Customer Service</Typography>
+              <Typography variant="h6" color="text.secondary">
+                Happy Customer Service
+              </Typography>
               <Typography
                 variant="body1"
+                color="text.secondary"
                 sx={{
                   mt: 1,
                 }}
@@ -443,9 +494,12 @@ const HomePage: FC<Props> = ({
                   width: "50%",
                 }}
               />
-              <Typography variant="h6">Helpful Romingo Scores</Typography>
+              <Typography variant="h6" color="text.secondary">
+                Helpful Romingo Scores
+              </Typography>
               <Typography
                 variant="body1"
+                color="text.secondary"
                 sx={{
                   mt: 1,
                 }}
@@ -616,6 +670,7 @@ const HomePage: FC<Props> = ({
                       }}
                     >
                       <Link
+                        onClick={() => toFeatured(hotel.id, hotel.cityId)}
                         href="#"
                         sx={{
                           textDecoration: "none",
@@ -626,6 +681,7 @@ const HomePage: FC<Props> = ({
                             border: "1px solid #DDDDDD",
                             borderRadius: 3,
                             boxShadow: 2,
+                            pb: 3,
                             backgroundColor: "white",
                           }}
                         >
@@ -643,9 +699,9 @@ const HomePage: FC<Props> = ({
                             }}
                           />
                           <Typography
-                            variant="body1"
+                            variant="h6"
                             sx={{
-                              py: 1,
+                              pt: 1,
                               textAlign: "center",
                               color: "text.secondary",
                               fontSize: "125%",
@@ -657,13 +713,30 @@ const HomePage: FC<Props> = ({
                           <Typography
                             variant="body2"
                             sx={{
+                              pb: 1,
+                              textAlign: "center",
                               color: "text.secondary",
+                              width: "100%",
+                            }}
+                          >
+                            {hotel.city}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              color: "text.secondary",
+                              textAlign: "left",
                               px: 2.5,
                               pb: 2,
                             }}
                           >
                             {hotel.description}
                           </Typography>
+                          <Box sx={{ textAlign: "center" }}>
+                            <Button color="primary" variant="contained">
+                              Book Now
+                            </Button>
+                          </Box>
                         </Box>
                       </Link>
                     </Box>

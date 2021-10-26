@@ -24,6 +24,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "@mui/material/Link";
 import Skeleton from "@mui/material/Skeleton";
 import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 import BookingCard from "../../components/BookingCard";
@@ -34,8 +35,8 @@ import AmenitiesCard from "../../components/AmenitiesCard";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import ActivitiesNearby from "../../components/ActivitiesNearby";
-import FilterBar from "../../components/FilterBar";
 import RoomCard from "../../components/RoomCard";
+import FilterBar from "../../components/FilterBar";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
@@ -358,10 +359,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               }}
             />
           </Link>
-          <FilterBar />
         </Box>
       </Hidden>
-      {!loading && (
+      {!loading && data && (
         <Box
           component="img"
           src={removeHttpLink(data?.property?.featuredImageURL)}
@@ -416,7 +416,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 />
               </Hidden>
             )}
-            {!loading && (
+            {!loading && data && (
               <Box
                 onClick={handleOpen}
                 component="img"
@@ -439,6 +439,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             <Grid item xs={12} sm={6}>
               <Grid container spacing={2}>
                 {!loading &&
+                  data &&
                   gallery.slice(1, 5).map((img: any) => {
                     return (
                       <Grid item sm={6} key={img}>
@@ -515,7 +516,34 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             <Loader size="300px" />
           </>
         )}
-        {!loading && (
+        {!loading && !data && (
+          <Box sx={{ textAlign: "center", mt: 10 }}>
+            <Typography variant="h5" color="primary">
+              This property does not have any rooms available that meet your
+              search criteria
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+              Search other great Romingo properties below
+            </Typography>
+
+            <FilterBar zoomed />
+            <Box
+              component="img"
+              src="/images/balcony-dog.jpeg"
+              alt={"No Properties Found"}
+              sx={{
+                objectFit: "cover",
+                height: 400,
+                width: 900,
+                maxWidth: "100%",
+                boxShadow: 5,
+                borderRadius: 5,
+                mt: 4,
+              }}
+            />
+          </Box>
+        )}
+        {!loading && data && (
           <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12} md={7} lg={8}>
               <Typography
@@ -626,7 +654,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </Grid>
           </Grid>
         )}
-        {!loading && (
+        {!loading && data && (
           <Grid container sx={{ mt: 0, maxWidth: "100%" }} ref={RateCardRef}>
             <Grid item xs={12}>
               <Typography

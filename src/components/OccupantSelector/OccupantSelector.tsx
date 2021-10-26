@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FC, MouseEventHandler, useState, useRef } from "react";
+import { FC, MouseEventHandler, useState } from "react";
 import { useMeasure } from "react-use";
 import NumberInput from "../NumberInput";
 
@@ -24,6 +24,7 @@ export interface Occupant {
 interface Props {
   value: Occupant;
   onChange: (value: Occupant) => void;
+  onClose?: () => void;
   sx?: CSSObject;
   fullWidth?: boolean;
   size?: "small" | "medium" | undefined;
@@ -34,22 +35,31 @@ interface Props {
 const OccupantSelector: FC<Props> = ({
   value,
   onChange,
+  onClose,
   sx,
   fullWidth = true,
   size = "medium",
   variant = "outlined",
-  disabled=false
+  disabled = false,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
+  const [error, setError] = useState("");
 
   const handleClick: MouseEventHandler<Element> = (event) => {
-    if (disabled)
-      return;
+    if (disabled) return;
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
+    setError("");
+    if (value.adults === 0) {
+      setError("At least 1 adult is required");
+      return;
+    }
+    if (onClose) {
+      onClose();
+    }
     setAnchorEl(null);
   };
 
@@ -57,11 +67,15 @@ const OccupantSelector: FC<Props> = ({
     <>
       <TextField
         fullWidth={fullWidth}
-        label="Occupants"
+        label="Guests"
         sx={sx}
         size={size}
         variant={variant}
-        value={`Dogs: ${value.dogs}  Adults: ${value.adults}  Children: ${value.children}  `}
+        value={
+          value.adults === 0 && value.dogs === 0 && value.children === 0
+            ? ""
+            : `Dogs: ${value.dogs}  Adults: ${value.adults}  Children: ${value.children}  `
+        }
         inputProps={{
           readOnly: true,
         }}
@@ -127,15 +141,27 @@ const OccupantSelector: FC<Props> = ({
                 if (children > 6) return;
                 if (value.childrenAge && value.childrenAge.length > children) {
                   value.childrenAge = value.childrenAge.slice(0, children);
-                } else if (value.childrenAge && value.childrenAge.length <= children) {
+                } else if (
+                  value.childrenAge &&
+                  value.childrenAge.length <= children
+                ) {
                   while (value.childrenAge.length !== children) {
-                    value.childrenAge.push(0)
+                    value.childrenAge.push(0);
                   }
                 }
                 onChange({ ...value, children });
               }}
             />
           </Stack>
+          {error.length > 0 && (
+            <Typography
+              variant="body2"
+              color="error"
+              sx={{ textAlign: "center", fontSize: "80%" }}
+            >
+              {error}
+            </Typography>
+          )}
           <Box
             alignItems="center"
             justifyContent="center"
@@ -187,10 +213,13 @@ const OccupantSelector: FC<Props> = ({
               );
             })}
           </Box>
-          <Button sx={{ py: 1.5 }} onClick={handleClose}>
-            Done
-          </Button>
         </Stack>
+        <Button
+          sx={{ pt: 1.5, pb: 1.5, width: "100%", mt: -1.25 }}
+          onClick={handleClose}
+        >
+          Done
+        </Button>
       </Popover>
     </>
   );

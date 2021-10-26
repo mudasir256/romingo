@@ -49,6 +49,7 @@ const ListingCard: FC<ListingCardProps> = ({
   highlighted = false,
   ...props
 }) => {
+  console.log(cancellation);
   const history = useHistory();
   const mobileCardPadding = 1.8;
   return (
@@ -61,6 +62,7 @@ const ListingCard: FC<ListingCardProps> = ({
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
         justifyContent: "center",
+        alignItems: "center",
         backgroundColor: highlighted ? "lightBackground.main" : "white",
       }}
       {...props}
@@ -68,7 +70,7 @@ const ListingCard: FC<ListingCardProps> = ({
       <Box
         sx={{
           width: { sm: 300 },
-          height: { xs: 200, sm: 232 },
+          height: { xs: 200, sm: 242 },
         }}
       >
         <ImageSlider
@@ -76,7 +78,7 @@ const ListingCard: FC<ListingCardProps> = ({
           name={name}
           sx={{
             width: { sm: 300 },
-            height: { xs: 200, sm: 232 },
+            height: { xs: 200, sm: 242 },
             borderRadius: 3,
             boxShadow: 0,
           }}
@@ -94,7 +96,7 @@ const ListingCard: FC<ListingCardProps> = ({
       >
         <Box
           sx={{
-            pt: 1.8,
+            pt: 1,
             px: { xs: mobileCardPadding, sm: 1.8 },
             pb: { xs: mobileCardPadding, sm: 1.8 },
           }}
@@ -132,23 +134,6 @@ const ListingCard: FC<ListingCardProps> = ({
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                minHeight: "28px",
-              }}
-            >
-              {cancellation && (
-                <Chip
-                  sx={{ mr: 1 }}
-                  color="info"
-                  label={
-                    <Typography variant="body1">Free Cancellation</Typography>
-                  }
-                />
-              )}
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
                 width: "100%",
@@ -176,7 +161,7 @@ const ListingCard: FC<ListingCardProps> = ({
                         <Check
                           sx={{
                             fontSize: 15,
-                            color: "success.main",
+                            color: "primary.main",
                             mt: 0.4,
                           }}
                         />

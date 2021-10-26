@@ -15,12 +15,15 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import OccupantSelector from "../OccupantSelector/OccupantSelector";
+import OccupantSelector, {
+  Occupant,
+} from "../OccupantSelector/OccupantSelector";
 import Link from "@mui/material/Link";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
 
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { saveSearch } from "../../store/searchReducer";
 
 interface Props {
   sx?: CSSObject;
@@ -58,12 +61,21 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     shallowEqual
   );
 
-  const [value, setValue] = useState<RangeInput<Date | null>>([
+  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     search.checkIn ? search.checkIn : null,
     search.checkOut ? search.checkOut : null,
   ]);
 
-  const occupants = { ...search.occupants };
+  const [occupants, setOccupants] = useState(search.occupants);
+
+  const onOccupantChange = (value: Occupant) => {
+    setOccupants(value);
+  };
+
+  const handleOccupantsClose = () => {
+    console.log("Occupants Closed");
+    dispatch(saveSearch({ ...search, occupants }));
+  };
 
   const [selectedRoom, setSelectedRoom] = useState<{
     value: number;
@@ -79,6 +91,25 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     }
   }, [roomType]);
 
+  useEffect(() => {
+    console.log(checkDate);
+    if (
+      checkDate[0] &&
+      new Date(checkDate[0]) >=
+        new Date(new Date().setDate(new Date().getDate() - 1)) &&
+      checkDate[1] &&
+      new Date(checkDate[1]) >= new Date()
+    ) {
+      dispatch(
+        saveSearch({
+          ...search,
+          checkIn: checkDate[0] && new Date(checkDate[0]).toISOString(),
+          checkOut: checkDate[1] && new Date(checkDate[1]).toISOString(),
+        })
+      );
+    }
+  }, [checkDate]);
+
   return (
     <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, p: 2 }}>
       <Grid container spacing={2}>
@@ -91,6 +122,9 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               calendars={1}
               onAccept={() => {
                 setIsAccept(true);
+              }}
+              onChange={(newValue) => {
+                setCheckDate(newValue);
               }}
               onClose={() => {
                 setIsAccept(false);
@@ -105,7 +139,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
                 }
               }}
               allowSameDateSelection={false}
-              value={value}
+              value={checkDate}
               renderInput={(startProps, endProps) => (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
@@ -122,32 +156,28 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                      {...endProps}
                       onFocus={() => {
                         setIsTextField(true);
                       }}
                       onBlur={() => {
                         setIsTextField(false);
                       }}
-                      {...endProps}
                       fullWidth={true}
                     />
                   </Grid>
                 </Grid>
               )}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              disabled
             />
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
           <OccupantSelector
             value={occupants}
-            onChange={() => {
-              return;
+            onChange={(value) => {
+              onOccupantChange(value);
             }}
-            disabled={true}
+            onClose={handleOccupantsClose}
           />
         </Grid>
         <Grid item xs={12}>
@@ -207,10 +237,10 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
           <Typography
             variant="body1"
             sx={{
-              mt: 1,
+              mt: 2,
             }}
           >
-            View All Rates
+            View All Rooms &amp; Rates
           </Typography>
         </Link>
       </Box>
