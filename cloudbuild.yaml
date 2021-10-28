@@ -1,8 +1,16 @@
 # om namah shivaya
 
 steps:
+  # npm install
+  - name: node:16.13.0
+    entrypoint: npm
+    args: ['install']
+
+  # npm run build
+  - name: node:16.13.0
+    entrypoint: npm
+    args: ['run', 'build']
+
   # deploy the service
   - name: gcr.io/cloud-builders/gcloud
-    args:
-      - app
-      - deploy
+    args: ['app', 'deploy']
