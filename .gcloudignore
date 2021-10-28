@@ -1,0 +1,8 @@
+# om namah shivaya
+
+# ignore everything
+/[!.]*
+/.?*
+
+# except
+!/build/
