@@ -139,11 +139,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         adults: search?.occupants?.adults,
         children: ageParam,
       },
+      fetchPolicy: "no-cache",
     }
-  );
-
-  const { cancellation, cancelPenalty } = useSelector(
-    (state: any) => state.hotelDetailReducer.detail
   );
 
   const [name, setName] = useState("");

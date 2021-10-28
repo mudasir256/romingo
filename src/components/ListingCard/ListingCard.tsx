@@ -103,12 +103,14 @@ const ListingCard: FC<ListingCardProps> = ({
           }}
         >
           <Typography
-            variant="h6"
+            variant="body2"
             sx={{
               color: "text.secondary",
               overflow: "hidden",
               whiteSpace: "nowrap",
               textOverflow: "ellipsis",
+              fontSize: "140%",
+              fontWeight: 800,
             }}
           >
             {name}

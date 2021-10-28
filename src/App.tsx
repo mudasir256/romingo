@@ -1,12 +1,10 @@
 import { FC } from "react";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import routes from "./routes";
 import { authService } from "./services/authService.js";
 import ErrorPage from "./pages/ErrorPage";
 
-const hist = createBrowserHistory();
 
 // eslint-disable-next-line
 const AuthGuards = (props: any) => {
@@ -20,7 +18,6 @@ const AuthGuards = (props: any) => {
 
 const App: FC = () => {
   return (
-    <Router history={hist}>
       <Switch>
         {routes.map((route, key) => {
           if (!route.requireAuth)
@@ -41,7 +38,6 @@ const App: FC = () => {
         })}
         <Route component={ErrorPage} />
       </Switch>
-    </Router>
   );
 };
 

@@ -3,12 +3,16 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
+import { createBrowserHistory } from "history";
 import { PersistGate } from "redux-persist/integration/react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Router } from "react-router-dom";
 import { theme } from "./theme";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+
+const hist = createBrowserHistory();
 
 const muTheme = createTheme(theme);
 
@@ -28,7 +32,9 @@ ReactDOM.render(
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <Elements stripe={stripePromise}>
-              <App />
+              <Router history={hist}>
+                <App />
+              </Router>
             </Elements>
           </PersistGate>
         </Provider>
