@@ -8,13 +8,27 @@ automatic_scaling:
   max_instances: 1
   target_cpu_utilization: 0.90
 handlers:
-  - url: /static
-    static_dir: build/static
-  - url: /(.*\.(json|ico|js))$
-    static_files: build/\1
-    upload: build/.*\.(json|ico|js)$
-  - url: .*
-    static_files: build/index.html
-    upload: build/index.html
+  - url: /
+     static_files: build/index.html
+     upload: build/index.html
+     secure: always
+   - url: /static
+     static_dir: build/static
+   - url: /manifest.json
+     static_files: build/manifest.json
+     upload: build/manifest.json
+   - url: /asset-manifest.json
+     static_files: build/asset-manifest.json
+     upload: build/asset-manifest.json
+   - url: /service-worker.json
+     static_files: build/service-worker.json
+     upload: build/service-worker.json
+   - url: /pageIcon.png
+     static_files: build/pageIcon.png
+     upload: build/pageIcon.png
+   - url: /.*
+     static_files: build/index.html
+     upload: build/index.html
+     secure: always
 env_variables:
   NODE_ENV: "development"
