@@ -51,7 +51,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "serve -s build",
+    "dev": "craco start",
     "build": "craco build --force",
     "test": "craco test",
     "eject": "craco eject",

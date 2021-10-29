@@ -11,6 +11,6 @@ handlers:
   - url: /
     static_files: build/index.html
     upload: build/index.html
-  - url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg|html))$
+  - url: /(.*)$
     static_files: build/\1
-    upload: build/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg|html)$
+    upload: build/(.*)
