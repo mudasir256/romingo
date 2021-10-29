@@ -139,6 +139,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         adults: search?.occupants?.adults,
         children: ageParam,
       },
+      fetchPolicy: "no-cache",
     }
   );
   const [name, setName] = useState("");

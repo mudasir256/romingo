@@ -95,6 +95,7 @@ const GetHotelDetail = `
           name
           desc
           addressLine1
+          lowestAveragePrice
           city {
             id
             name

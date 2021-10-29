@@ -18,7 +18,13 @@ const muTheme = createTheme(theme);
 
 const client = new ApolloClient({
   uri: "https://graphql-dot-eminent-helix-324520.ue.r.appspot.com/graphql",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Property: {
+        keyFields: ["id", "lowestAveragePrice"],
+      },
+    },
+  }),
   connectToDevTools: true,
 });
 

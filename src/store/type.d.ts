@@ -176,6 +176,7 @@ interface IHotelDetails {
   }[];
   nearby: { text: string; distance: number }[];
   rooms: IRoom[];
+  lowestAveragePrice?: number;
 }
 
 interface ICheckout {
