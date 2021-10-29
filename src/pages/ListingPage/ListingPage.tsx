@@ -83,20 +83,24 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
       },
+      fetchPolicy: "cache-and-network",
     }
   );
 
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    if (data && data.properties) {
+    console.log(data);
+    if (data && data?.properties?.properties) {
       if (error) {
         return;
       } else {
-        dispatch(setList(data.properties));
+        dispatch(setList(data.properties.properties));
       }
     }
   }, [data]);
+
+  console.log(data);
 
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;
