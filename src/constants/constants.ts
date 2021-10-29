@@ -16,33 +16,35 @@ const GetHotelBySearch = `
         }
       ) {
         id
-        sabreId
-        featuredImageURL
-        imageURLs
-        name
-        addressLine1
-        city {
+        properties {
           id
+          featuredImageURL
+          imageURLs
           name
-          state {
+          addressLine1
+          city {
             id
-            code
             name
-            country {
+            state {
               id
+              code
               name
+              country {
+                id
+                name
+              }
             }
           }
+          zipCode
+          location {
+            latitude
+            longitude
+          }
+          neighborhood
+          romingoScore
+          dogAmenities
+          lowestAveragePrice
         }
-        zipCode
-        location {
-          latitude
-          longitude
-        }
-        neighborhood
-        romingoScore
-        dogAmenities
-        lowestAveragePrice
       }
     }
   `;
@@ -87,102 +89,105 @@ const GetHotelDetail = `
       })
       {
         id
-        sabreId
-        name
-        desc
-        addressLine1
-        city {
+        property {
           id
+          sabreId
           name
-          center {
-            latitude
-            longitude
-          }
-          state {
-            id
-            code
-            name
-            country {
-              id
-              name
-            }
-          }
-        }
-        zipCode
-        location {
-          latitude
-          longitude
-        }
-        neighborhood
-        romingoScore
-        dogAmenities
-        amenities {
-          code
-          desc
-          value
-          free
-        }
-        featuredImageURL
-        imageURLs
-        sabreImageURLs
-        nearbyActivities {
-          id
-          activityType {
-            id
-            name
-          }
-          name
-          overview
           desc
           addressLine1
+          city {
+            id
+            name
+            center {
+              latitude
+              longitude
+            }
+            state {
+              id
+              code
+              name
+              country {
+                id
+                name
+              }
+            }
+          }
+          zipCode
           location {
             latitude
             longitude
           }
-          price
-          distanceInMeters
-        }
-        rooms {
-          type
-          nonSmoking
-          beds {
-            code
-            desc
-            count
-          }
-          desc
+          neighborhood
+          romingoScore
+          dogAmenities
           amenities {
             code
             desc
             value
-            accessible
             free
           }
-          maxOccupants
-          priceKey
-          breakfastIncluded
-          lunchIncluded
-          dinnerIncluded
-          averagePrice
-          totalPrice
-          averagePriceAfterTax
-          totalPriceAfterTax
-          feesIncluded
-          fees {
-            amount
+          featuredImageURL
+          imageURLs
+          sabreImageURLs
+          nearbyActivities {
+            id
+            activityType {
+              id
+              name
+            }
+            name
+            overview
             desc
+            addressLine1
+            location {
+              latitude
+              longitude
+            }
+            price
+            distanceInMeters
           }
-          totalFees
-          cancelationPolicy {
-            cancelable
-            deadlineLocal
-            deadlineUnit
-            deadlineMultiplier
-            deadlineReference
+          rooms {
+            type
+            nonSmoking
+            beds {
+              code
+              desc
+              count
+            }
             desc
+            amenities {
+              code
+              desc
+              value
+              accessible
+              free
+            }
+            maxOccupants
+            priceKey
+            breakfastIncluded
+            lunchIncluded
+            dinnerIncluded
+            averagePrice
+            totalPrice
+            averagePriceAfterTax
+            totalPriceAfterTax
+            feesIncluded
+            fees {
+              amount
+              desc
+            }
+            totalFees
+            cancelationPolicy {
+              cancelable
+              deadlineLocal
+              deadlineUnit
+              deadlineMultiplier
+              deadlineReference
+              desc
+            }
           }
         }
-      }
+      }  
     }
   `;
 
