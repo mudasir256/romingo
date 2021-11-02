@@ -180,61 +180,6 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               </Grid>
             </Grid>
           )}
-          <Grid container>
-            <Grid
-              item
-              xs={12}
-              sm={8}
-              sx={{
-                mx: "auto",
-                mt: 3,
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  my: 2,
-                  fontSize: "125%",
-                  textAlign: "center",
-                }}
-              >
-                MANAGE YOUR RESERVATION FREQUENTLY ASKED QUESTIONS
-              </Typography>
-              {faq.map((item, key) => {
-                return (
-                  <Box
-                    key={key}
-                    sx={{
-                      mb: 2,
-                    }}
-                  >
-                    <Accordion>
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            fontWeight: "bold",
-                          }}
-                        >
-                          Q: {item.question}
-                        </Typography>
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography variant="body2">
-                          A: {item.answer}
-                        </Typography>
-                      </AccordionDetails>
-                    </Accordion>
-                  </Box>
-                );
-              })}
-            </Grid>
-          </Grid>
         </Container>
       </Box>
     </>

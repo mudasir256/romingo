@@ -12,29 +12,34 @@ import Hidden from "@mui/material/Hidden";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-
+import PetsIcon from "@mui/icons-material/Pets";
 interface Props {
   sx?: CSSObject;
   footerMenus?: {
     reservation: {
       text: string;
       link: string;
-    }[]
+      target: string;
+    }[];
     about: {
       text: string;
       link: string;
+      target: string;
     }[];
     contact: {
       text: string;
       link: string;
+      target: string;
     }[];
     blog: {
       text: string;
       link: string;
+      target: string;
     }[];
     sitemap: {
       text: string;
       link: string;
+      target: string;
     }[];
   };
 }
@@ -44,92 +49,71 @@ const FooterMenus = {
     {
       text: "Manage Reservation",
       link: "/reservation/manage",
+      target: "",
     },
     {
-      text: "Cancel an existing reservation",
-      link: "/reservation/cancel"
-    }
+      text: "Cancel Reservation",
+      link: "/reservation/manage",
+      target: "",
+    },
   ],
   about: [
     {
-      text: "How Romingo Works",
-      link: "#",
+      text: "Our Story",
+      link: "/about",
+      target: "",
     },
     {
-      text: "Newsroom",
-      link: "#",
+      text: "FAQ",
+      link: "/faq",
+      target: "",
     },
     {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
+      text: "Romingo Score",
+      link: "/romingo-score",
+      target: "",
     },
   ],
   contact: [
     {
       text: "Contact Us",
-      link: "#",
+      link: "/contact",
+      target: "",
     },
     {
-      text: "Schedule a Meeting",
-      link: "#",
+      text: "Partner Inquiry",
+      link: "https://form.typeform.com/to/zdVrRtxT",
+      target: "_blank",
     },
     {
-      text: "Romingo 2021",
-      link: "#",
+      text: "On Facebook",
+      link: "https://www.facebook.com/RomingoTravel",
+      target: "_blank",
     },
     {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
+      text: "On Instagram",
+      link: "https://www.instagram.com/romingotravel/",
+      target: "_blank",
     },
   ],
   blog: [
     {
-      text: "Overview",
-      link: "#",
-    },
-    {
       text: "Romingo Blog",
-      link: "#",
+      link: "https://romingo.com/blog",
+      target: "_blank",
     },
     {
-      text: "Romingo 2021",
-      link: "#",
+      text: "California Tavel Tips",
+      link: "https://romingo.com/tag/californiatravel/",
+      target: "_blank",
+    },
+    {
+      text: "Top Travel Tips",
+      link: "https://romingo.com/tag/traveltips/",
+      target: "_blank",
     },
   ],
-  sitemap: [
-    {
-      text: "How Romingo Works",
-      link: "#",
-    },
-    {
-      text: "Newsroom",
-      link: "#",
-    },
-    {
-      text: "Romingo 2021",
-      link: "#",
-    },
-    {
-      text: "Investors",
-      link: "#",
-    },
-    {
-      text: "Romingo Plus",
-      link: "#",
-    },
-  ],
+  sitemap: [],
 };
 
 const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
@@ -143,7 +127,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
     >
       <Container maxWidth="lg">
         <Grid container sx={{ borderBottom: "1px solid #DDDDDD" }}>
-        <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               sx={{
@@ -172,7 +156,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               sx={{
@@ -201,7 +185,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               sx={{
@@ -215,7 +199,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.contact.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link}>
+                    <Link href={menu.link} target={menu.target}>
                       <Typography
                         variant="body2"
                         sx={{
@@ -230,7 +214,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               sx={{
@@ -259,78 +243,57 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               })}
             </List>
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "bold",
-                color: "text.primary",
-              }}
-            >
-              Sitemap
-            </Typography>
-            <List>
-              {footerMenus.sitemap.map((menu, key) => {
-                return (
-                  <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link}>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "primary.main",
-                        }}
-                      >
-                        {menu.text}
-                      </Typography>
-                    </Link>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
         </Grid>
       </Container>
       <Container maxWidth="lg">
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
+            flexDirection: "row",
+            alignItems: "space-between",
+            justifyContent: "space-between",
             py: 1,
           }}
         >
-          <Typography
-            variant="body2"
-            sx={{
-              mr: 1,
-            }}
-          >
-            © {new Date().getFullYear()} Romingo, Inc.
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                mr: 1,
+              }}
+            >
+              © {new Date().getFullYear()} Romingo, Inc.
+            </Typography>
+            <Link
+              href="#"
+              sx={{
+                mr: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "primary.main",
+                }}
+              >
+                Privacy
+              </Typography>
+            </Link>
+            <Link href="#">
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "primary.main",
+                }}
+              >
+                Terms
+              </Typography>
+            </Link>
+          </Box>
+          <Typography variant="body2" color="primary">
+            Made with <PetsIcon sx={{ fontSize: "13px", mb: -0.25 }} /> by
+            Romingo
           </Typography>
-          <Link
-            href="#"
-            sx={{
-              mr: 1,
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                color: "primary.main",
-              }}
-            >
-              Privacy
-            </Typography>
-          </Link>
-          <Link href="#">
-            <Typography
-              variant="body2"
-              sx={{
-                color: "primary.main",
-              }}
-            >
-              Terms
-            </Typography>
-          </Link>
         </Box>
         <Hidden smUp>
           <Box

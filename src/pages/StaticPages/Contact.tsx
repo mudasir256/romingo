@@ -86,7 +86,7 @@ const Contact: FC = () => {
                   color="primary"
                   sx={{ textAlign: "center" }}
                 >
-                  Partnership Form
+                  Partner Inquiry
                 </Typography>
               </Link>
               <Typography
