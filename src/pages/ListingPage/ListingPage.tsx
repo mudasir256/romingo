@@ -90,11 +90,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
   useEffect(() => {
     console.log(data);
-    if (data?.properties?.properties) {
+    if (data?.properties) {
       if (error) {
         return;
       } else {
-        dispatch(setList(data.properties.properties));
+        dispatch(setList(data.properties));
       }
     }
   }, [data]);

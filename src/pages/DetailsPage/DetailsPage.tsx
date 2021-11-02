@@ -180,49 +180,49 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   >([]);
 
   useEffect(() => {
-    if (data && data?.property?.property) {
-      setName(data.property.property.name);
+    if (data && data?.property) {
+      setName(data.property.name);
       setLocation({
-        address: data.property.property.addressLine1,
-        lat: data.property.property.location.latitude,
-        lon: data.property.property.location.longitude,
+        address: data.property.addressLine1,
+        lat: data.property.location.latitude,
+        lon: data.property.location.longitude,
       });
 
-      setCity({ ...data.property.property.city });
-      setNeighborhood(data.property.property.neighborhood);
+      setCity({ ...data.property.city });
+      setNeighborhood(data.property.neighborhood);
 
       let tmp: any[] = [];
-      tmp.push(data.property.property.featuredImageURL);
-      data.property.property.sabreImageURLs.map((image: string) => {
+      tmp.push(data.property.featuredImageURL);
+      data.property.sabreImageURLs.map((image: string) => {
         tmp.push(image);
       });
-      data.property.property.imageURLs.map((image: string) => {
+      data.property.imageURLs.map((image: string) => {
         tmp.push(image);
       });
       setGallery([...tmp]);
-      setDefaultDescription(data.property.property.desc);
-      setAmenities(data.property.property.dogAmenities);
-      setScore(data.property.property.romingoScore);
+      setDefaultDescription(data.property.desc);
+      setAmenities(data.property.dogAmenities);
+      setScore(data.property.romingoScore);
 
       const tmpAmenities: string[] = [];
-      data.property.property.amenities.map((amenity: any) => {
+      data.property.amenities.map((amenity: any) => {
         tmpAmenities.push(amenity.desc);
       });
 
-      setRooms(data.property.property.rooms.slice(0, 9));
+      setRooms(data.property.rooms.slice(0, 9));
 
       setOtherAmenities([...tmpAmenities]);
 
-      setNearby(data.property.property.nearbyActivities);
+      setNearby(data.property.nearbyActivities);
 
       markers.push({
-        lat: data.property.property.location.latitude,
-        lng: data.property.property.location.longitude,
+        lat: data.property.location.latitude,
+        lng: data.property.location.longitude,
         type: "hotel",
-        label: data.property.property.name,
+        label: data.property.name,
       });
 
-      data.property.property.nearbyActivities.map((activity: any) => {
+      data.property.nearbyActivities.map((activity: any) => {
         markers.push({
           lat: activity.location.latitude,
           lng: activity.location.longitude,
@@ -233,7 +233,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
       tmp = [];
 
-      data.property.property.rooms.slice(0, 9).map((room: any, key: number) => {
+      data.property.rooms.slice(0, 9).map((room: any, key: number) => {
         let roomDescription = "";
 
         room.beds.map((bed: any) => {

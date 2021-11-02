@@ -10,6 +10,10 @@ import OrangeCounty from "./pages/Cities/OrangeCounty";
 import SanFrancisco from "./pages/Cities/SanFran";
 import SantaBarbara from "./pages/Cities/SantaBarbara";
 import ManageReservationPage from "./pages/ManageReservationPage";
+import About from "./pages/StaticPages/About";
+import FAQ from "./pages/StaticPages/FAQ";
+import Contact from "./pages/StaticPages/Contact";
+import RomingoScorePage from "./pages/StaticPages/RomingoScorePage";
 
 interface Routes {
   path: string;
@@ -71,6 +75,26 @@ const routes: Routes[] = [
   {
     path: "/palm-springs",
     component: PalmSprings,
+    requireAuth: false,
+  },
+  {
+    path: "/about",
+    component: About,
+    requireAuth: false,
+  },
+  {
+    path: "/faq",
+    component: FAQ,
+    requireAuth: false,
+  },
+  {
+    path: "/contact",
+    component: Contact,
+    requireAuth: false,
+  },
+  {
+    path: "/romingo-score",
+    component: RomingoScorePage,
     requireAuth: false,
   },
 ];

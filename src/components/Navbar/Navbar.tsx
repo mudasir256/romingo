@@ -109,7 +109,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   <TwitterIcon />
                 </IconButton>
                 <Link
-                  href="https://romingo.com/contact"
+                  href="https://form.typeform.com/to/zdVrRtxT"
                   target="_blank"
                   variant="body2"
                   sx={{
