@@ -13,6 +13,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import PetsIcon from "@mui/icons-material/Pets";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import HotelIcon from "@mui/icons-material/Hotel";
+
 interface Props {
   sx?: CSSObject;
   footerMenus?: {
@@ -291,9 +294,10 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
             </Link>
           </Box>
           <Hidden smDown>
-            <Typography variant="body2" color="primary">
-              Made with <PetsIcon sx={{ fontSize: "13px", mb: -0.25 }} /> by
-              Romingo
+            <Typography variant="body2" color="#ccc">
+              <PetsIcon sx={{ fontSize: "13px", mx: 0.2, mb: -0.1 }} />+
+              <HotelIcon sx={{ fontSize: "15px", mx: 0.2, mb: -0.3 }} />=
+              <FavoriteIcon sx={{ fontSize: "15px", mx: 0.2, mb: -0.3 }} />
             </Typography>
           </Hidden>
         </Box>

@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { FC } from "react";
+import { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
@@ -10,7 +10,18 @@ interface Props {
   sx?: CSSObject;
 }
 
+const bgImages = [
+  'url("/images/Labrador_Beach.jpg")',
+  'url("/images/Happy_Lab.jpg")',
+  'url("/images/Running_Dog_Beach.jpg")',
+];
+
 const Header: FC<Props> = ({ sx }) => {
+  const [bgImage, setBgImage] = useState("");
+
+  useEffect(() => {
+    setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
+  }, []);
   return (
     <Box
       sx={{
@@ -46,7 +57,7 @@ const Header: FC<Props> = ({ sx }) => {
             position: "relative",
             "&::before": {
               content: '""',
-              backgroundImage: `url("/images/balcony-dog.jpeg")`,
+              backgroundImage: bgImage,
               opacity: 0.85,
               backgroundSize: "cover",
               position: "absolute",
