@@ -290,10 +290,12 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               </Typography>
             </Link>
           </Box>
-          <Typography variant="body2" color="primary">
-            Made with <PetsIcon sx={{ fontSize: "13px", mb: -0.25 }} /> by
-            Romingo
-          </Typography>
+          <Hidden smDown>
+            <Typography variant="body2" color="primary">
+              Made with <PetsIcon sx={{ fontSize: "13px", mb: -0.25 }} /> by
+              Romingo
+            </Typography>
+          </Hidden>
         </Box>
         <Hidden smUp>
           <Box
