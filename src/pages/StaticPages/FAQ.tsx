@@ -193,7 +193,7 @@ const FAQ: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Romingo love cats too, but at this time we are focusing on
+              Romingo loves cats too, but at this time we are focusing on
               spreading the message about dog-friendly travel.
             </Typography>
           </Grid>
@@ -206,8 +206,9 @@ const FAQ: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Simple, check out our homepage at www.romingo.com and search
-              through our dog-friendly hotel listings!
+              Simple, check out our homepage at{" "}
+              <Link href="/">romingo.com</Link> and search through our
+              dog-friendly hotel listings!
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -276,7 +277,7 @@ const FAQ: FC = () => {
               Concerns
             </Typography>
             <Typography variant="h6" color="text.secondary">
-              What if I arrive to a hotel and they do not allow my dogs?
+              What if I arrive at a hotel and they do not allow my dogs?
             </Typography>
             <Typography
               variant="body1"
@@ -289,7 +290,7 @@ const FAQ: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6" color="text.secondary">
-              What if I arrive to a hotel and they charge me a non-refundable
+              What if I arrive at a hotel and they charge me a non-refundable
               pet fee?
             </Typography>
             <Typography
@@ -304,7 +305,7 @@ const FAQ: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6" color="text.secondary">
-              What if I arrive to a hotel and they charge me a pet deposit?
+              What if I arrive at a hotel and they charge me a pet deposit?
             </Typography>
             <Typography
               variant="body1"
@@ -312,7 +313,7 @@ const FAQ: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Although Romingo and our partners do waive non-refundable pet
-              fees, ome of our hotel partners do require a refundable pet
+              fees, some of our hotel partners do require a refundable pet
               deposit upon check-in. Pet deposits are a way for our hotel
               partners to ensure that their hotel pet policies are followed. Any
               damage to the guest room, additional deep cleaning, and/or
@@ -349,7 +350,7 @@ const FAQ: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               You can reach our Romingo Support team anytime from our{" "}
-              <Link href="contact">Contact Us Page</Link>
+              <Link href="contact">Contact Us</Link> Page
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -371,8 +372,9 @@ const FAQ: FC = () => {
                 href="https://form.typeform.com/to/zdVrRtxT"
                 target="_blank"
               >
-                click here to get started.
-              </Link>
+                click here
+              </Link>{" "}
+              to get started.
             </Typography>
           </Grid>
           <Grid item xs={12}>

@@ -373,8 +373,9 @@ const CheckoutInformation: FC<Props> = ({
                   onChange={handleCheck}
                 />
                 <Typography variant="body2">
-                  I agree to the booking <Link href="#">terms of service</Link>{" "}
-                  and cancellation policy.
+                  I agree to the booking{" "}
+                  <Link href="/terms-of-use">terms of use</Link> and
+                  cancellation policy.
                 </Typography>
               </Box>
               <Typography variant="body2" color="error">

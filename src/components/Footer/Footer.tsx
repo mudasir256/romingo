@@ -106,7 +106,7 @@ const FooterMenus = {
       target: "_blank",
     },
     {
-      text: "California Tavel Tips",
+      text: "California Specific",
       link: "https://romingo.com/tag/californiatravel/",
       target: "_blank",
     },
@@ -282,7 +282,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                 Privacy
               </Typography>
             </Link>
-            <Link href="#">
+            <Link href="/terms-of-use">
               <Typography
                 variant="body2"
                 sx={{
