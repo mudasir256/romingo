@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
+import ErrorDog from "../UI/ErrorDog";
 
 interface Props {
   sx?: CSSObject;
@@ -69,6 +70,22 @@ const CheckoutInformation: FC<Props> = ({
       ${CreateBooking}
     `
   );
+
+  const createBookingTest = {
+    createBooking: {
+      booking: {
+        id: "1054a9f9-b355-4fbf-b44c-3156db81f1e7",
+        sabreConfirmationId: null,
+        propertyConfirmationId: null,
+        __typename: "Booking",
+      },
+      priceChanged: null,
+      priceDifference: null,
+      totalPriceAfterTax: null,
+    },
+  };
+
+  console.log(createData);
 
   const handleCheck = () => {
     setCheckState(!checkState);
@@ -223,12 +240,13 @@ const CheckoutInformation: FC<Props> = ({
           backgroundColor: "white",
           color: "text.primary",
           borderRadius: 3,
-          border: "1px solid #DDD",
+          border: "none",
           minHeight: "550px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          boxShadow: 3,
           pt: 2,
           pb: 2.5,
           px: 2,
@@ -236,6 +254,49 @@ const CheckoutInformation: FC<Props> = ({
       >
         {createLoading || piLoading || paymentLoading ? (
           <Loader size="200px" />
+        ) : createData ? (
+          <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
+            {!createData?.createBooking?.booking?.sabreConfirmationId &&
+            !createData?.createBooking?.booking?.propertyConfirmationId ? (
+              <Box sx={{ mt: -5 }}>
+                <ErrorDog size="150px" />
+                <Typography
+                  variant="h5"
+                  color="primary"
+                  sx={{ textAlign: "center", mb: 2 }}
+                >
+                  Whoops! We caught our own tail while booking
+                </Typography>
+                <Typography variant="body1">
+                  This could happen for one or more of the following reasons:
+                  <ul>
+                    <li>
+                      The room you were trying to book is no longer available
+                    </li>
+                    <li>The hotel&apos;s booking server is down</li>
+                    <li>Our payment processor is down</li>
+                  </ul>
+                </Typography>
+                <Typography variant="body1">
+                  If this behavior continues, please contact support with the
+                  following reference #:
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
+                >
+                  {createData?.createBooking?.booking?.id}
+                </Typography>
+                <Typography variant="body2" sx={{ textAlign: "center" }}>
+                  Note: your credit card may have been authorized, but not
+                  charged. If your card was authorized, authorization should
+                  automatically fall off in a few days.
+                </Typography>
+              </Box>
+            ) : (
+              <Typography></Typography>
+            )}
+          </Box>
         ) : (
           <>
             <Typography
@@ -374,8 +435,14 @@ const CheckoutInformation: FC<Props> = ({
                 />
                 <Typography variant="body2">
                   I agree to the booking{" "}
-                  <Link href="/terms-of-use">terms of use</Link> and
-                  cancellation policy.
+                  <Link
+                    target="_blank"
+                    rel="noopener noreffer"
+                    href="/terms-of-use"
+                  >
+                    terms of use
+                  </Link>{" "}
+                  and cancellation policy.
                 </Typography>
               </Box>
               <Typography variant="body2" color="error">

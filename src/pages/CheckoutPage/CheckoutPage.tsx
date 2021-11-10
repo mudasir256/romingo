@@ -1,8 +1,11 @@
-import Box from "@mui/material/Box";
 import { FC } from "react";
+
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { connect, useStore, useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -43,7 +46,7 @@ const CheckoutPage: FC<Props> = () => {
       <Navbar />
       <Box
         sx={{
-          backgroundColor: "info.main",
+          backgroundColor: "lightBackground.main",
           pt: {
             sm: "64px",
             xs: "56px",
@@ -58,7 +61,7 @@ const CheckoutPage: FC<Props> = () => {
         >
           <Grid container spacing={2}>
             <Grid item xs={12} md={8}>
-              <ListingCard {...hotel} showPrice={false} />
+              <ListingCard {...hotel} showPrice={false} noLink small />
               <CheckoutInformation
                 sx={{ mt: 2 }}
                 finePrint={finePrint}
@@ -76,6 +79,108 @@ const CheckoutPage: FC<Props> = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <CancelPolicy policy={room?.room?.cancelationPolicy} />
+                </Grid>
+                <Grid item xs={12}>
+                  <Box>
+                    <Box
+                      sx={{
+                        backgroundColor: "white",
+                        color: "text.primary",
+                        borderRadius: 3,
+                        border: "none",
+                        pt: 2,
+                        pb: 2.5,
+                        px: 2,
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: "secondary.main",
+                          textAlign: "center",
+                        }}
+                      >
+                        Useful Links
+                      </Typography>
+                      <Box
+                        sx={{
+                          mt: 0.5,
+                          px: 0.5,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "bottom",
+                            justifyContent: "start",
+                            mt: 1.5,
+                          }}
+                        >
+                          <Link
+                            href="/faq"
+                            target="_blank"
+                            rel="noopener noreffer"
+                          >
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                color: "text.secondary",
+                                lineHeight: 2,
+                              }}
+                            >
+                              Frequently Asked Questions
+                            </Typography>
+                          </Link>
+                          <Link
+                            href="/contact"
+                            target="_blank"
+                            rel="noopener noreffer"
+                          >
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                color: "text.secondary",
+                                lineHeight: 2,
+                              }}
+                            >
+                              Contact Support
+                            </Typography>
+                          </Link>
+                          <Link
+                            href="/terms-of-use"
+                            target="_blank"
+                            rel="noopener noreffer"
+                          >
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                color: "text.secondary",
+                                lineHeight: 2,
+                              }}
+                            >
+                              Booking Terms of Use
+                            </Typography>
+                          </Link>
+                          <Link
+                            href="/reservation/manage"
+                            target="_blank"
+                            rel="noopener noreffer"
+                          >
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                color: "text.secondary",
+                                lineHeight: 2,
+                              }}
+                            >
+                              Manage Booking
+                            </Typography>
+                          </Link>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
                 </Grid>
               </Grid>
             </Grid>

@@ -23,7 +23,7 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
           backgroundColor: "white",
           color: "text.primary",
           borderRadius: 3,
-          border: "1px solid #DDD",
+          border: "none",
           pt: 2,
           pb: 2.5,
           px: 2,
@@ -111,7 +111,8 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 variant="body2"
                 sx={{
                   mt: 2,
-                  textAlign: "center",
+                  textAlign: "right",
+                  fontSize: "80%",
                   color: "text.light",
                 }}
               >

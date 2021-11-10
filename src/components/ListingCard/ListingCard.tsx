@@ -33,6 +33,7 @@ export interface ListingCardProps {
   };
   neighborhood: string;
   showPrice?: boolean;
+  noLink?: boolean;
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
@@ -49,6 +50,7 @@ const ListingCard: FC<ListingCardProps> = ({
   showAmenities = true,
   highlighted = false,
   showPrice = true,
+  noLink = false,
   ...props
 }) => {
   const history = useHistory();
@@ -90,7 +92,7 @@ const ListingCard: FC<ListingCardProps> = ({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          history.push("/details/" + id);
+          !noLink && history.push("/details/" + id);
         }}
         underline="none"
         sx={{ flex: 1, minWidth: { xs: "100%", md: 0 }, maxWidth: "100%" }}
