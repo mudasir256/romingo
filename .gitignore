@@ -11,6 +11,8 @@
 # production
 /build
 
+.env
+
 # dev logs
 
 # misc

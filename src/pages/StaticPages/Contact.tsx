@@ -8,6 +8,13 @@ import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
 
 const Contact: FC = () => {
+  const startChat = () => {
+    window.Intercom("boot", {
+      app_id: "qa6datd3",
+    });
+    window.Intercom("update");
+    window.Intercom("show");
+  };
   return (
     <>
       <ScrollToTop />
@@ -98,7 +105,7 @@ const Contact: FC = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8 }}>
-              <Link href="">
+              <Link href="#" onClick={startChat}>
                 <Typography
                   variant="h5"
                   color="primary"

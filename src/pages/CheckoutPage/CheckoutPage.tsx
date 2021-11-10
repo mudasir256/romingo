@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -18,6 +18,12 @@ import CheckoutInformation from "../../components/CheckoutInformation";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import ScrollToTop from "../../components/ScrollToTop";
+
+declare global {
+  interface Window {
+    Intercom: any;
+  }
+}
 
 interface Props {
   hotel: any;
@@ -41,6 +47,12 @@ const CheckoutPage: FC<Props> = () => {
     return state.hotelDetailReducer.detail;
   });
 
+  useEffect(() => {
+    window.Intercom("boot", {
+      app_id: "qa6datd3",
+    });
+    window.Intercom("update");
+  }, []);
   return (
     <>
       <ScrollToTop />

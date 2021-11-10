@@ -64,7 +64,7 @@ const FAQ: FC = () => {
               is welcoming, warm, and 100% enjoyable. You can finally roam the
               world free with your pup and Romingo. Romingo does this by
               providing one, simple pet policy across all hotel partners. We
-              call our streamlined policy the &quote;Romingo Guarantee&quote;.
+              call our streamlined policy the &quot;Romingo Guarantee&quot;.
             </Typography>
           </Grid>
           <Grid item xs={12}>

@@ -321,7 +321,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               edge="start"
               sx={{ mr: 1, color: "black" }}
               aria-label="menu"
-              href="https://www.instagram.com/romingotravel"
+              href="https://www.instagram.com/romingotravel/"
               target="_blank"
             >
               <InstagramIcon />
