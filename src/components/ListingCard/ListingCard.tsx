@@ -95,7 +95,7 @@ const ListingCard: FC<ListingCardProps> = ({
           !noLink && history.push("/details/" + id);
         }}
         underline="none"
-        sx={{ flex: 1, minWidth: { xs: "100%", md: 0 }, maxWidth: "100%" }}
+        sx={{ flex: 1, minWidth: { xs: "100%", sm: 0 }, maxWidth: "100%" }}
       >
         <Box
           sx={{

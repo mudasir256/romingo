@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
+import Hidden from "@mui/material/Hidden";
 import Grid from "@mui/material/Grid";
 import { useSelector } from "react-redux";
 
@@ -60,7 +61,7 @@ const CheckoutPage: FC<Props> = () => {
           }}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={8} order={{ xs: 2, md: 1 }}>
               <ListingCard {...hotel} showPrice={false} noLink small />
               <CheckoutInformation
                 sx={{ mt: 2 }}
@@ -69,119 +70,121 @@ const CheckoutPage: FC<Props> = () => {
                 priceKey={detail?.room?.room?.priceKey}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={12} order={{ xs: 1, md: 1 }}>
                   <BookingDetailCard />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} order={{ xs: 2, md: 2 }}>
                   <PriceDetailCard />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} order={{ xs: 3, md: 3 }}>
                   <CancelPolicy policy={room?.room?.cancelationPolicy} />
                 </Grid>
-                <Grid item xs={12}>
-                  <Box>
-                    <Box
-                      sx={{
-                        backgroundColor: "white",
-                        color: "text.primary",
-                        borderRadius: 3,
-                        border: "none",
-                        pt: 2,
-                        pb: 2.5,
-                        px: 2,
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: "secondary.main",
-                          textAlign: "center",
-                        }}
-                      >
-                        Useful Links
-                      </Typography>
+                <Hidden mdDown>
+                  <Grid item xs={12} order={{ xs: 4, md: 4 }}>
+                    <Box>
                       <Box
                         sx={{
-                          mt: 0.5,
-                          px: 0.5,
+                          backgroundColor: "white",
+                          color: "text.primary",
+                          borderRadius: 3,
+                          border: "none",
+                          pt: 2,
+                          pb: 2.5,
+                          px: 2,
                         }}
                       >
-                        <Box
+                        <Typography
+                          variant="h6"
                           sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "bottom",
-                            justifyContent: "start",
-                            mt: 1.5,
+                            color: "secondary.main",
+                            textAlign: "center",
                           }}
                         >
-                          <Link
-                            href="/faq"
-                            target="_blank"
-                            rel="noopener noreffer"
+                          Useful Links
+                        </Typography>
+                        <Box
+                          sx={{
+                            mt: 0.5,
+                            px: 0.5,
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "bottom",
+                              justifyContent: "start",
+                              mt: 1.5,
+                            }}
                           >
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                color: "text.secondary",
-                                lineHeight: 2,
-                              }}
+                            <Link
+                              href="/faq"
+                              target="_blank"
+                              rel="noopener noreffer"
                             >
-                              Frequently Asked Questions
-                            </Typography>
-                          </Link>
-                          <Link
-                            href="/contact"
-                            target="_blank"
-                            rel="noopener noreffer"
-                          >
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                color: "text.secondary",
-                                lineHeight: 2,
-                              }}
+                              <Typography
+                                variant="body1"
+                                sx={{
+                                  color: "text.secondary",
+                                  lineHeight: 2,
+                                }}
+                              >
+                                Frequently Asked Questions
+                              </Typography>
+                            </Link>
+                            <Link
+                              href="/contact"
+                              target="_blank"
+                              rel="noopener noreffer"
                             >
-                              Contact Support
-                            </Typography>
-                          </Link>
-                          <Link
-                            href="/terms-of-use"
-                            target="_blank"
-                            rel="noopener noreffer"
-                          >
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                color: "text.secondary",
-                                lineHeight: 2,
-                              }}
+                              <Typography
+                                variant="body1"
+                                sx={{
+                                  color: "text.secondary",
+                                  lineHeight: 2,
+                                }}
+                              >
+                                Contact Support
+                              </Typography>
+                            </Link>
+                            <Link
+                              href="/terms-of-use"
+                              target="_blank"
+                              rel="noopener noreffer"
                             >
-                              Booking Terms of Use
-                            </Typography>
-                          </Link>
-                          <Link
-                            href="/reservation/manage"
-                            target="_blank"
-                            rel="noopener noreffer"
-                          >
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                color: "text.secondary",
-                                lineHeight: 2,
-                              }}
+                              <Typography
+                                variant="body1"
+                                sx={{
+                                  color: "text.secondary",
+                                  lineHeight: 2,
+                                }}
+                              >
+                                Booking Terms of Use
+                              </Typography>
+                            </Link>
+                            <Link
+                              href="/reservation/manage"
+                              target="_blank"
+                              rel="noopener noreffer"
                             >
-                              Manage Booking
-                            </Typography>
-                          </Link>
+                              <Typography
+                                variant="body1"
+                                sx={{
+                                  color: "text.secondary",
+                                  lineHeight: 2,
+                                }}
+                              >
+                                Manage Booking
+                              </Typography>
+                            </Link>
+                          </Box>
                         </Box>
                       </Box>
                     </Box>
-                  </Box>
-                </Grid>
+                  </Grid>
+                </Hidden>
               </Grid>
             </Grid>
           </Grid>
