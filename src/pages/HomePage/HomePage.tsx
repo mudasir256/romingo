@@ -98,23 +98,23 @@ const NearCities = [
 const FeatureHotels = [
   {
     img:
-      "https://storage.googleapis.com/romingo-development-public/images/Intercon%20San%20Diego/Intercontinental-san-diego-gallery-31-5c0831a0e6ed6.jpg",
-    name: "Intercontinental San Diego",
-    city: "San Diego, CA",
-    cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
-    description:
-      "Sophistication has arrived on the downtown waterfront, bringing together the best of the city and the bay.",
-    id: "8f17db8f-b07a-430c-91a0-0221204e53e7",
-  },
-  {
-    img:
-      "https://storage.googleapis.com/romingo-development-public/images/Kimpton%20La%20Peer/la-peer-terrace-king-room-view-9037a986.jpg",
-    name: "Kimpton La Peer",
+      "https://storage.googleapis.com/romingo-development-public/images/Mondrian%20Los%20Angeles/mla_deluxestudio_bedroom_0.webp",
+    name: "Mondrian Los Angeles",
     city: "Los Angeles, CA",
     cityId: "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
     description:
-      "A West Hollywood Hotel Hideaway just steps from the vibrant intersection of Melrose Avenue and Santa Monica Boulevard",
-    id: "fd37e867-8164-4a9c-8240-ac3cedbbb774",
+      "A parallel universe of perpetual possibility in the heart of West Hollywood that captures the excitement of the Strip.",
+    id: "e7742fb4-6154-4cd7-b0c6-6b35c0939140",
+  },
+  {
+    img:
+      "https://storage.googleapis.com/romingo-development-public/images/Hyatt%20Regency%20Mission%20Bay/Hyatt-Regency-Mission-Bay-P283-Aerial-Pool.16x9.webp",
+    name: "Hyatt Regency Mission Bay",
+    city: "San Diego, CA",
+    cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
+    description:
+      "Panoramic views of the Pacific Ocean, Mission Bay, and downtown San Diego frame an relaxing getaway for your and your pup.",
+    id: "18b37d9f-1b3b-49d0-9d87-4c76bfb431af",
   },
   {
     img:
@@ -123,7 +123,7 @@ const FeatureHotels = [
     city: "San Francisco, CA",
     cityId: "82145909-13b4-4aab-be20-e0db474021c1",
     description:
-      "A truly dog friendly experience at San Francisco Marriott Fisherman's Wharf near the Golden Gate Bridge, Oracle Park and Pier 39.",
+      "A truly dog friendly experience in the center of it all. Near the Golden Gate Bridge, Oracle Park, Pier 39, and endless activies.",
     id: "3440f807-f383-437c-8923-71b7e45853bd",
   },
 ];
@@ -677,8 +677,10 @@ const HomePage: FC<Props> = ({
                             border: "1px solid #DDDDDD",
                             borderRadius: 3,
                             boxShadow: 2,
-                            pb: 3,
+                            pb: 10,
+                            minHeight: "400px",
                             backgroundColor: "white",
+                            position: "relative",
                           }}
                         >
                           <Box
@@ -689,7 +691,7 @@ const HomePage: FC<Props> = ({
                             sx={{
                               objectFit: "cover",
                               width: "100%",
-                              height: "200px",
+                              minHeight: "220px",
                               borderTopLeftRadius: 12,
                               borderTopRightRadius: 12,
                             }}
@@ -721,14 +723,23 @@ const HomePage: FC<Props> = ({
                             variant="body1"
                             sx={{
                               color: "text.secondary",
-                              textAlign: "left",
-                              px: 2.5,
+                              textAlign: "center",
+                              px: 2,
                               pb: 2,
                             }}
                           >
                             {hotel.description}
                           </Typography>
-                          <Box sx={{ textAlign: "center" }}>
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              bottom: 20,
+                              left: 0,
+                              right: 0,
+                              mx: "auto",
+                              textAlign: "center",
+                            }}
+                          >
                             <Button color="primary" variant="contained">
                               Book Now
                             </Button>
