@@ -113,7 +113,7 @@ const FeatureHotels = [
     city: "San Diego, CA",
     cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
     description:
-      "Panoramic views of the Pacific Ocean, Mission Bay, and downtown San Diego frame an relaxing getaway for your and your pup.",
+      "Panoramic views of the Pacific Ocean, Mission Bay, and downtown San Diego frame a relaxing getaway for your and your pup.",
     id: "18b37d9f-1b3b-49d0-9d87-4c76bfb431af",
   },
   {

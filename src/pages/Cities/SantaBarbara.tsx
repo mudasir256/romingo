@@ -23,7 +23,7 @@ const SantaBarbara: FC = () => {
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: { xs: "40vh", md: "55vh" },
+          height: { xs: "40vh", md: "70vh" },
           boxShadow: 0,
         }}
       />
