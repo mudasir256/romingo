@@ -17,6 +17,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import MobileBookingForm from "./MobileBookingForm";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
+import { saveSearch } from "../../store/searchReducer";
 
 interface Props {
   sx?: CSSObject;
@@ -95,6 +96,14 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
   ) => {
     setValue(dateRange);
     setRoomType(roomValue);
+    dispatch(
+      saveSearch({
+        ...search,
+        occupants: occupantsValue,
+        checkIn: dateRange[0] && new Date(dateRange[0]).toISOString(),
+        checkOut: dateRange[1] && new Date(dateRange[1]).toISOString(),
+      })
+    );
     // setShowPopup(false);
   };
 

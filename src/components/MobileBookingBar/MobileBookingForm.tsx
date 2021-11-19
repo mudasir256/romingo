@@ -65,6 +65,10 @@ const MobileBookingForm: FC<Props> = ({
     setOccupants(value);
   };
 
+  const updateSearch = () => {
+    handleChange(roomType, value, occupants);
+  };
+
   return (
     <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, px: 3, pt: 1, pb: 2 }}>
       <Grid container spacing={2}>
@@ -95,8 +99,8 @@ const MobileBookingForm: FC<Props> = ({
         <Grid item xs={12}>
           <OccupantSelector
             value={occupants}
-            onChange={() => {
-              return;
+            onChange={(value) => {
+              onOccupantChange(value);
             }}
           />
         </Grid>
@@ -107,7 +111,6 @@ const MobileBookingForm: FC<Props> = ({
               value={roomType}
               onChange={(e) => {
                 setRoomType(e.target.value);
-                handleChange(e.target.value, value, occupants);
               }}
               label="Room Type"
             >
@@ -165,6 +168,7 @@ const MobileBookingForm: FC<Props> = ({
             boxShadow: 2,
           }}
           onClick={() => {
+            updateSearch();
             handleClose();
           }}
         >
