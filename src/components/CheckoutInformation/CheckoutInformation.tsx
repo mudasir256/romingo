@@ -71,6 +71,8 @@ const CheckoutInformation: FC<Props> = ({
     `
   );
 
+  console.log(createData);
+
   const handleCheck = () => {
     setCheckState(!checkState);
   };
@@ -243,27 +245,48 @@ const CheckoutInformation: FC<Props> = ({
             {!createData?.createBooking?.booking?.sabreConfirmationId &&
             !createData?.createBooking?.booking?.propertyConfirmationId ? (
               <Box sx={{ mt: -5 }}>
+                <ErrorDog size="150px" />
                 <Typography
                   variant="h5"
                   color="primary"
                   sx={{ textAlign: "center", mb: 2 }}
                 >
-                  You&apos;re booked!
+                  Whoops! We caught our own tail while booking
                 </Typography>
-                <Typography variant="body1" sx={{ textAlign: "center" }}>
-                  Your confirmation number is:
+                <Typography variant="body1">
+                  This could happen for one or more of the following reasons:
+                </Typography>
+                <ul>
+                  <li>
+                    <Typography variant="body1">
+                      The room you were trying to book is no longer available
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body1">
+                      The hotel&apos;s booking server is down{" "}
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body1">
+                      Our payment processor is down{" "}
+                    </Typography>
+                  </li>
+                </ul>
+                <Typography variant="body1">
+                  If this behavior continues, please contact support with the
+                  following reference #:
                 </Typography>
                 <Typography
                   variant="body1"
                   sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
                 >
-                  {createData?.createBooking?.booking?.propertyConfirmationId
-                    ? createData?.createBooking?.booking?.propertyConfirmationId
-                    : createData?.createBooking?.booking?.sabreConfirmationId}
+                  {createData?.createBooking?.booking?.faunaDocId}
                 </Typography>
-                <Typography variant="body1">
-                  We&apos;ve sent you an email with all of the details of your
-                  booking.
+                <Typography variant="body2" sx={{ textAlign: "center" }}>
+                  Note: your credit card may have been authorized, but not
+                  charged. If your card was authorized, authorization should
+                  automatically fall off in a few days.
                 </Typography>
               </Box>
             ) : (
@@ -273,10 +296,10 @@ const CheckoutInformation: FC<Props> = ({
                   color="primary"
                   sx={{ textAlign: "center", mb: 2 }}
                 >
-                  You&aos;re booked!
+                  You&apos;re booked!
                 </Typography>
 
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ textAlign: "center" }}>
                   Your confirmation number is:
                 </Typography>
                 <Typography
