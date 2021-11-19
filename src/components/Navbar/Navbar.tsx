@@ -134,14 +134,14 @@ const Navbar: FC<Props> = ({ sx }) => {
                 }}
               />
             </Hidden>
-            <Button
+            {/* <Button
               variant="text"
               size="small"
               color="primary"
               onClick={() => history.push("/reservation/manage")}
             >
               Manage Reservation
-            </Button>
+            </Button> */}
           </Box>
           <Hidden smDown>
             <Box

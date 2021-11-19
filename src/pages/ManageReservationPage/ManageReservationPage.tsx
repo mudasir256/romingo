@@ -1,5 +1,8 @@
-import Box from "@mui/material/Box";
 import React, { FC, useState } from "react";
+
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Hidden from "@mui/material/Hidden";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
@@ -37,19 +40,85 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
   const [email, setEmail] = useState("");
   const [reservationNumber, setReservationNumber] = useState("");
 
+  const startChat = () => {
+    window.Intercom("boot", {
+      app_id: "qa6datd3",
+    });
+    window.Intercom("update");
+    window.Intercom("show");
+  };
+
   return (
     <>
       <ScrollToTop />
       <Navbar />
+
+      <Container
+        maxWidth="md"
+        sx={{ mt: 10, minHeight: "calc(100vh - 290px)" }}
+      >
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid item xs={12}>
+            <Typography
+              variant="h2"
+              color="text.primary"
+              sx={{ mt: 2, textAlign: "center" }}
+            >
+              Change or Cancel a Booking
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
+            <Button
+              onClick={startChat}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              Chat With Booking Support
+            </Button>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ textAlign: "center", mt: 1 }}
+            >
+              during business hours
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ textAlign: "justify", lineHeight: 2 }}
+            >
+              Please reach out to our booking support team if you would like to
+              modify or cancel your booking. To manage a booking made through
+              Romingo, you will need the original email address used to make the
+              reservation and the confirmation number from your confirmation
+              email. Please review the cancellation policy for your reservation
+              prior to cancelling your reservation. The policy was provided on
+              the reservation checkout page as well as your confirmation email.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+      {/* 
+        
       <Box
         sx={{
           pt: {
-            md: "100px",
-            xs: "76px",
+            md: "40px",
+            xs: "70px",
           },
         }}
-      >
-        <Container
+      ><Container
           maxWidth="lg"
           sx={{
             py: 3,
@@ -170,9 +239,8 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               </ValidatorForm>
             </Box>
           )}
-        </Container>
-        <Footer />
-      </Box>
+        </Container> */}
+      <Footer />
     </>
   );
 };
