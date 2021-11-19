@@ -371,8 +371,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                       }}
                       startText="Check-in"
                       endText="Check-out"
+                      allowSameDateSelection
                       calendars={1}
-                      allowSameDateSelection={false}
                       clearable={true}
                       value={checkDate}
                       minDate={new Date()}

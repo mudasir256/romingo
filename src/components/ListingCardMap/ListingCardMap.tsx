@@ -32,6 +32,7 @@ const ListingCardMap: FC<Props> = ({
         boxShadow: 4,
         width: "95vw",
         maxWidth: "400px",
+        height: "85px",
       }}
     >
       <Box
@@ -41,7 +42,7 @@ const ListingCardMap: FC<Props> = ({
         sx={{
           objectFit: "cover",
           width: 100,
-          height: 85,
+          height: "100%",
           borderTopLeftRadius: 12,
           borderBottomLeftRadius: 12,
           boxShadow: 0,

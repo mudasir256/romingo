@@ -136,8 +136,8 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
                   setOpen(true);
                 }
               }}
-              allowSameDateSelection={false}
               value={checkDate}
+              minDate={new Date()}
               renderInput={(startProps, endProps) => (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
