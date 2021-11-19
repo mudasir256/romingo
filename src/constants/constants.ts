@@ -212,6 +212,7 @@ mutation CreateBookingMutation($createBookingInput: CreateBookingInput!) {
       id
       sabreConfirmationId
       propertyConfirmationId
+      faunaDocId
     }
   }
 }
