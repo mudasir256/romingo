@@ -29,7 +29,7 @@ const About: FC = () => {
         <Typography variant="body1" color="text.primary">
           Accessing the Romingo website (“Site”) constitutes your agreement to
           the following Terms or Use (“Terms”). You should read these Terms and
-          our <Link href="privacy">privacy policy</Link> in their entirety
+          our <Link href="/privacy">privacy policy</Link> in their entirety
           before accessing, using, or obtaining information or services from the
           Site. Our terms include important legal obligations and waivers
           INCLUDING AN ARBITRATION CLAUSE AND WAIVER OF CLASS ACTION that you

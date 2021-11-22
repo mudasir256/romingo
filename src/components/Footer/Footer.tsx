@@ -299,7 +299,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               © {new Date().getFullYear()} Romingo, Inc.
             </Typography>
             <Link
-              href="#"
+              href="/privacy"
               sx={{
                 mr: 1,
               }}

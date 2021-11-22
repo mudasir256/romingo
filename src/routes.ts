@@ -13,6 +13,7 @@ import ManageReservationPage from "./pages/ManageReservationPage";
 import About from "./pages/StaticPages/About";
 import FAQ from "./pages/StaticPages/FAQ";
 import Contact from "./pages/StaticPages/Contact";
+import Privacy from "./pages/StaticPages/Privacy";
 import Terms from "./pages/StaticPages/Terms";
 import RomingoScorePage from "./pages/StaticPages/RomingoScorePage";
 
@@ -96,6 +97,11 @@ const routes: Routes[] = [
   {
     path: "/romingo-score",
     component: RomingoScorePage,
+    requireAuth: false,
+  },
+  {
+    path: "/privacy",
+    component: Privacy,
     requireAuth: false,
   },
   {
