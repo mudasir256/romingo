@@ -71,8 +71,6 @@ const CheckoutInformation: FC<Props> = ({
     `
   );
 
-  console.log(createData);
-
   const handleCheck = () => {
     setCheckState(!checkState);
   };
@@ -148,7 +146,6 @@ const CheckoutInformation: FC<Props> = ({
         }
       );
       if (error) {
-        console.log(error);
         setPaymentLoading(false);
         return;
       }
@@ -194,7 +191,6 @@ const CheckoutInformation: FC<Props> = ({
         });
       }
     } catch (err) {
-      console.log(err);
       setPaymentLoading(false);
     }
     setPaymentLoading(false);

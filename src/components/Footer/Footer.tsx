@@ -102,11 +102,6 @@ const FooterMenus = {
       target: "_blank",
     },
     {
-      text: "California Specific",
-      link: "https://romingo.com/tag/californiatravel/",
-      target: "_blank",
-    },
-    {
       text: "Top Travel Tips",
       link: "https://romingo.com/tag/traveltips/",
       target: "_blank",
@@ -221,7 +216,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                 color: "text.primary",
               }}
             >
-              Content
+              Content &amp; Blog
             </Typography>
             <List>
               <ListItem key={"definitive-guide"} sx={{ pl: 0 }}>
@@ -244,10 +239,25 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                         color: "primary.main",
                       }}
                     >
-                      The Definitive Guide to Dog-Friendly Travel
+                      Guide to Dog-Friendly Travel
                     </Typography>
                   </Link>
                 </PopupButton>
+              </ListItem>
+              <ListItem sx={{ pl: 0 }}>
+                <Link
+                  href="https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf"
+                  target="_blank"
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "primary.main",
+                    }}
+                  >
+                    Guide to Air Travel With Your Dog
+                  </Typography>
+                </Link>
               </ListItem>
               {footerMenus.blog.map((menu, key) => {
                 return (
