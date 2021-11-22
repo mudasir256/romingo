@@ -58,7 +58,7 @@ const LosAngeles: FC = () => {
               whole world. This dazzling city is known as the entertainment
               capital and sits in close proximity to a number of world famous
               beaches. You can also find amusement parks, countless museums, a
-              variety of dog-friendly tourist attractions, great hikes, and so
+              variety of pet-friendly tourist attractions, great hikes, and so
               much more! When you visit Los Angeles, there is never a shortage
               of things to see, try, and eat -- which is why there are roughly
               50 million visitors in Los Angeles every year.
@@ -82,8 +82,8 @@ const LosAngeles: FC = () => {
               The diverse, multiethnic population of Los Angeles today
               distinguishes the city as the cultural hub of the Pacific Rim.
               Furthermore, Los Angeles’ development makes it one of the most
-              coveted cities for dog owners and dog-friendly travel. The area
-              boasts a wide selection of dog-friendly accommodations,
+              coveted cities for dog owners and pet-friendly travel. The area
+              boasts a wide selection of pet-friendly accommodations,
               recreational opportunities, and attractions.
             </Typography>
           </Grid>

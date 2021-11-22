@@ -80,7 +80,7 @@ const PalmSprings: FC = () => {
             >
               Some of the city&apos;s main highlights include its art and
               culture scene and outdoor adventures where you can find miles of
-              dog-friendly trails, canyons, mountain streams, and beautiful
+              pet-friendly trails, canyons, mountain streams, and beautiful
               waterfalls. Finally, the cherry on top getting pampered at one of
               Palm Spring’s luxury stays!
             </Typography>
@@ -89,7 +89,7 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/ps-2.jpg"
+                src="/images/ps-2.jpeg"
                 alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
@@ -103,7 +103,7 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/ps-1.jpg"
+                src="/images/ps-1.jpeg"
                 alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
@@ -117,7 +117,7 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/ps-3.jpg"
+                src="/images/ps-3.jpeg"
                 alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
@@ -132,7 +132,7 @@ const PalmSprings: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/ps-4.jpg"
+              src="/images/ps-4.jpeg"
               alt={"Palm Springs"}
               sx={{
                 objectFit: "cover",
@@ -162,7 +162,7 @@ const PalmSprings: FC = () => {
               stores selling mid-century modern pieces. To discover the
               outdoors, plan a day to visit the city’s reserves with your pup.
               We recommend Whitewater Preserve which boasts remote trails and
-              top-of-the-world views. For another dog-friendly destination, head
+              top-of-the-world views. For another pet-friendly destination, head
               over to Moorten Botanical Garden to appreciate all the cacti and
               desert plants. If you’re willing to travel a little further, you
               can find unbeatable desert landscape and wildlife in Coachella

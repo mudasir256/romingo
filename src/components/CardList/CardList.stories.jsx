@@ -28,7 +28,7 @@ Default.args = {
       score: 3,
       cancellation: false,
       price: 112,
-      amenities: ["dog friendly patio", "on-site pet sitting"],
+      amenities: ["pet-friendly patio", "on-site pet sitting"],
     },
     {
       image:

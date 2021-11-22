@@ -78,7 +78,7 @@ const About: FC = () => {
                   lineHeight: 1.5,
                 }}
               >
-                &quot;I love traveling with our Maddie, but finding dog friendly
+                &quot;I love traveling with our Maddie, but finding pet-friendly
                 hotels has always been a challenge&quot;
               </Typography>
             </Box>
@@ -130,7 +130,7 @@ const About: FC = () => {
             >
               One thing has always stood in our way when planning those restful
               getaways; finding places that will allow Maddie. I spent countless
-              hours searching for travel solutions to support dog friendly
+              hours searching for travel solutions to support pet-friendly
               hotels that would not charge expensive pet fees, and they simply
               do not exist. When it comes to hotels, there has never been a “one
               stop shop” that allows travelers to book hotels that provide a
@@ -153,7 +153,7 @@ const About: FC = () => {
                   lineHeight: 2,
                 }}
               >
-                &quot;So, we started asking ourselves: What does dog friendly
+                &quot;So, we started asking ourselves: What does pet-friendly
                 travel mean?&quot;
               </Typography>
             </Box>
@@ -164,7 +164,7 @@ const About: FC = () => {
             >
               Most hotels have weight and/or breed restrictions, or they charge
               expensive pet fees. Many do not even provide dog beds and bowls! I
-              always thought dog friendly meant not paying expensive pet fees,
+              always thought pet-friendly meant not paying expensive pet fees,
               allowing any and all dogs, plus providing customer service that
               made me feel welcomed with my pup.
             </Typography>
@@ -202,7 +202,7 @@ const About: FC = () => {
               platform that we always wanted. Romingo partners with dozens of
               hand-selected, beautiful, and pet forward hotels that allow you to
               finally roam free and rest easy with your pup. And by partnering
-              with Romingo, hotels agree to provide truly dog friendly
+              with Romingo, hotels agree to provide truly pet-friendly
               accomodations to our users. Your Romingo reservation will always
               include:
               <Typography variant="h6" color="text.secondary">
@@ -215,7 +215,7 @@ const About: FC = () => {
               </Typography>
               Team Romingo is committed to a future where we may finally roam
               free with our beloved canine companions, and our pups will never
-              be left at home again. Welcome to dog friendly travel with
+              be left at home again. Welcome to pet-friendly travel with
               Romingo!
             </Typography>
             <Typography

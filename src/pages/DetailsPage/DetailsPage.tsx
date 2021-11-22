@@ -574,7 +574,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
                   >
                     <AmenitiesCard
-                      title={"Dog Friendly Amenities"}
+                      title={"Pet-Friendly Amenities"}
                       amenities={amenities}
                     />
                   </Box>
@@ -616,7 +616,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </Grid>
               <ActivitiesNearby
                 nearby={nearby}
-                title={"Dog-Friendly Activities Nearby"}
+                title={"Pet-Friendly Activities Nearby"}
               />
             </Grid>
             <Grid item xs={12} md={5} lg={4}>

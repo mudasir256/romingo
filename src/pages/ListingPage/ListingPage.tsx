@@ -25,7 +25,10 @@ import CustomToast from "../../components/UI/CustomToast";
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
-import { GetHotelBySearch } from "../../constants/constants";
+import {
+  GetHotelBySearch,
+  GetHotelRackBySearch,
+} from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 
@@ -86,10 +89,26 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+  const { data: rack_data } = useQuery(
+    gql`
+      ${GetHotelRackBySearch}
+    `,
+    {
+      variables: {
+        adults: search.occupants.adults,
+        cityId: search.city,
+        checkIn: search.checkIn.substring(0, 10),
+        checkOut: search.checkOut.substring(0, 10),
+        children: ageParam,
+      },
+    }
+  );
+  console.log(data);
+  console.log(rack_data);
+
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    console.log(data);
     if (data?.properties) {
       if (error) {
         return;

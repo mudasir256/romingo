@@ -83,7 +83,7 @@ const SanFrancisco: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Many of San Francisco’s attractions are outdoors, making it an
-              ideal city for dog-friendly travel. Your dog will be intrigued by
+              ideal city for pet-friendly travel. Your dog will be intrigued by
               all the different landscapes and scenic views, and will be
               welcomed in many restaurants and hotels as well!
             </Typography>
@@ -159,7 +159,7 @@ const SanFrancisco: FC = () => {
             >
               When visiting San Francisco, you can’t miss the grand Golden Gate
               Bridge, considered to be one of the world’s most famous bridges.
-              Fisherman’s Wharf is a dog-friendly waterfront marketplace where
+              Fisherman’s Wharf is a pet-friendly waterfront marketplace where
               you can view sea lions and indulge in seafood and cocktails. For a
               relaxing afternoon, have a picnic at the beautiful Dolores Park
               which boasts nearly 16 acres of grass where you and your pup can

@@ -124,7 +124,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
                   <PetsIcon sx={{ fontSize: "100%", mr: 0.5, mt: 0.8 }} />
                   <ListItemText
                     primaryTypographyProps={{ fontSize: "100%" }}
-                    primary="Dog-friendly city score"
+                    primary="Pet-friendly city score"
                   />
                 </ListItemIcon>
               </ListItem>
@@ -142,7 +142,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
                   <PetsIcon sx={{ fontSize: "100%", mr: 0.5, mt: 0.8 }} />
                   <ListItemText
                     primaryTypographyProps={{ fontSize: "100%" }}
-                    primary="Nearby dog-friendly restaurants"
+                    primary="Nearby pet-friendly restaurants"
                   />
                 </ListItemIcon>
               </ListItem>

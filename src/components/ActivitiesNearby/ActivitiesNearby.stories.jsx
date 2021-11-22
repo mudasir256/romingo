@@ -9,7 +9,7 @@ const Template = (args) => <ActivitiesNearby {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-	title: "Dog-Friendly Activities Nearby",
+	title: "Pet-Friendly Activities Nearby",
 	nearby: [
     { text: "Lorem ipsum dolor sit amet accomodare his consul", distance: 0.2 },
     { text: "Accomodare his consul", distance: 0.37 },

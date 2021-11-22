@@ -80,9 +80,9 @@ const SanDiego: FC = () => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              San Diego is often considered the most dog-friendly city in
-              California with many dog-friendly spaces to enjoy throughout the
-              city. Those who seek dog-friendly travel will find their hearts
+              San Diego is often considered the most pet-friendly city in
+              California with many pet-friendly spaces to enjoy throughout the
+              city. Those who seek pet-friendly travel will find their hearts
               filled with what San Diego has to offer thanks to the city’s arts
               and culture, diverse culinary experiences, and the great outdoors.
             </Typography>

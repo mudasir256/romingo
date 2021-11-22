@@ -34,7 +34,7 @@ const ListingPageMap: FC<Props> = ({
   zoom = 10,
 }) => {
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAkA-fv2SsT1QiUyIVW7HBhxe-J1QcxKSA",
+    googleMapsApiKey: "AIzaSyDZAHqC_b5YOl00aj2LRivjvm0tNyxkZcI",
   });
   const [localCenter, setLocalCenter] = useState(center);
   useEffect(() => {

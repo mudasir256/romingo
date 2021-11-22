@@ -120,7 +120,7 @@ const FAQ: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Our team here at Romingo is working tirelessly to bring
-              dog-friendly travel to even more destinations across the US. Be
+              pet-friendly travel to even more destinations across the US. Be
               sure to drop us a line if you&apos;d like to see Romingo in your
               city!
             </Typography>
@@ -145,7 +145,7 @@ const FAQ: FC = () => {
               Booking Hotels
             </Typography>
             <Typography variant="h6" color="text.secondary">
-              Are all hotels listed on Romingo dog friendly?
+              Are all hotels listed on Romingo pet-friendly?
             </Typography>
             <Typography
               variant="body1"
@@ -194,7 +194,7 @@ const FAQ: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo loves cats too, but at this time we are focusing on
-              spreading the message about dog-friendly travel.
+              spreading the message about pet-friendly travel.
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -208,7 +208,7 @@ const FAQ: FC = () => {
             >
               Simple, check out our homepage at{" "}
               <Link href="/">romingo.com</Link> and search through our
-              dog-friendly hotel listings!
+              pet-friendly hotel listings!
             </Typography>
           </Grid>
           <Grid item xs={12}>

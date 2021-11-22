@@ -159,12 +159,12 @@ const OrangeCounty: FC = () => {
               Many of Orange County’s cities sit by the coast so you can easily
               find yourself on a paddleboard or kayak at the scenic Laguna
               Beach, Newport Beach, or Huntington Beach. Huntington Beach also
-              features plenty of dog-friendly space, making it one of the most
-              popular dog-friendly beaches in California. Furthermore, all the
+              features plenty of pet-friendly space, making it one of the most
+              popular pet-friendly beaches in California. Furthermore, all the
               neighborhoods in Orange County are never too far from a
               beginner-friendly hike you and your pup can enjoy. While you’re
               visiting, you can’t skip Costa Mesa’s upscale South Coast Plaza or
-              Newport Beach’s Fashion Island, or the dog-friendly,
+              Newport Beach’s Fashion Island, or the pet-friendly,
               family-friendly outdoor shopping center The Irvine Spectrum. You
               can find amazing Asian, Mexican, and Mediterranean culinary
               experiences anywhere in Orange County, along with many up and

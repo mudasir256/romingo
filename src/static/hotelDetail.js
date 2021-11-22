@@ -67,7 +67,7 @@ const data = {
       },
     },
   ],
-  dogAmenitiesTitle: "Dog Friendly Amenities",
+  dogAmenitiesTitle: "Pet-Friendly Amenities",
   amenitiesTitle: "Other Amenities",
   amenities: [
     {

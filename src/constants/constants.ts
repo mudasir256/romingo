@@ -46,6 +46,54 @@ const GetHotelBySearch = `
     }
   `;
 
+const GetHotelRackBySearch = `
+    query PropertiesInput(
+      $adults: Int!,
+      $checkIn: Date!,
+      $checkOut: Date!,
+      $cityId: String!,
+      $children: [ChildInput!]!,
+    ) {
+      propertiesByCorporateDiscount(
+        input: {
+          adults: $adults,
+          children: $children,
+          cityId: $cityId,
+          checkIn: $checkIn,
+          checkOut: $checkOut,
+        }
+      ) {
+        id
+        featuredImageURL
+        imageURLs
+        name
+        addressLine1
+        city {
+          id
+          name
+          state {
+            id
+            code
+            name
+            country {
+              id
+              name
+            }
+          }
+        }
+        zipCode
+        location {
+          latitude
+          longitude
+        }
+        neighborhood
+        romingoScore
+        dogAmenities
+        lowestAveragePrice
+      }
+    }
+  `;
+
 const GetCities = `
     query{
       cities {
@@ -228,6 +276,7 @@ const GetStripeClientSecret = `
 
 export {
   GetHotelBySearch,
+  GetHotelRackBySearch,
   GetCities,
   GetHotelDetail,
   CreatePaymentIntent,

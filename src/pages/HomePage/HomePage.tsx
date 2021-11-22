@@ -123,7 +123,7 @@ const FeatureHotels = [
     city: "San Francisco, CA",
     cityId: "82145909-13b4-4aab-be20-e0db474021c1",
     description:
-      "A truly dog friendly experience in the center of it all. Near the Golden Gate Bridge, Oracle Park, Pier 39, and endless activies.",
+      "A truly pet-friendly experience in the center of it all. Near the Golden Gate Bridge, Oracle Park, Pier 39, and endless activies.",
     id: "3440f807-f383-437c-8923-71b7e45853bd",
   },
 ];

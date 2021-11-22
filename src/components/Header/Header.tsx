@@ -11,9 +11,9 @@ interface Props {
 }
 
 const bgImages = [
-  'url("/images/Labrador_Beach.jpg")',
-  'url("/images/Happy_Lab.jpg")',
-  'url("/images/Running_Dog_Beach.jpg")',
+  'url("/images/background-frenchie.jpeg")',
+  'url("/images/background-lab.jpeg")',
+  'url("/images/background-jackrussel.jpeg")',
 ];
 
 const Header: FC<Props> = ({ sx }) => {
@@ -101,7 +101,7 @@ const Header: FC<Props> = ({ sx }) => {
               fontSize: { xs: "2.5rem", md: "4rem" },
             }}
           >
-            Welcome to Dog Friendly Travel
+            Welcome to Pet-Friendly Travel
           </Typography>
           <Typography
             variant="h4"
@@ -114,7 +114,7 @@ const Header: FC<Props> = ({ sx }) => {
               mt: 1,
             }}
           >
-            Book dog friendly hotels with Romingo and pay $0 in pet fees
+            Book pet-friendly hotels with Romingo and pay $0 in pet fees
           </Typography>
           <Box
             sx={{

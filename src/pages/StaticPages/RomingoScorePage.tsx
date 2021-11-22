@@ -58,7 +58,7 @@ const RomingoScorePage: FC = () => {
               waived pet fees on all reservations, and beds, bowls, and treats
               for your canine companion upon arrival. Our dog-loving,
               pet-friendly experts developed the Romingo Score to redefine what
-              dog-friendly truly means. With Romingo, dogs aren’t just allowed
+              pet-friendly truly means. With Romingo, dogs aren’t just allowed
               or permitted. They are welcomed, loved, and cared for!
             </Typography>
             <Box
@@ -87,7 +87,7 @@ const RomingoScorePage: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2, mb: 4 }}
             >
               Our dog-loving, pet-friendly experts developed the Romingo Score
-              to redefine what dog-friendly truly means. With Romingo, dogs
+              to redefine what pet-friendly truly means. With Romingo, dogs
               aren’t just allowed or permitted. They are welcomed, loved, and
               cared for!
             </Typography>
@@ -140,7 +140,7 @@ const RomingoScorePage: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               In a nutshell, the Romingo Score algorithm rates a hotel on its
-              level of dog-friendliness based on a wide array of factors. But
+              level of pet-friendliness based on a wide array of factors. But
               don’t worry, we haven’t forgotten about you either! Here’s our
               criteria:
               <ul>
@@ -148,7 +148,7 @@ const RomingoScorePage: FC = () => {
                   <span style={{ fontWeight: "bold" }}>
                     Location and walkability:
                   </span>{" "}
-                  proximity to dog-friendly shopping centers, restaurants,
+                  proximity to pet-friendly shopping centers, restaurants,
                   cafés, patios, bars, breweries, transportation, and other
                   activities
                 </li>
@@ -192,7 +192,7 @@ const RomingoScorePage: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Our goal with the Romingo Score is to help you navigate which
-              dog-friendly accommodation is the most suitable for you and your
+              pet-friendly accommodation is the most suitable for you and your
               pup. We encourage you to explore all of our partnered hotels and
               their offerings when selecting the best stay for you.
             </Typography>

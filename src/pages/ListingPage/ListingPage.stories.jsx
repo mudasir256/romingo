@@ -32,7 +32,7 @@ Default.args = {
       score: 3,
       cancellation: false,
       price: 112,
-      amenities: ["dog friendly patio", "on-site pet sitting"],
+      amenities: ["pet-friendly patio", "on-site pet sitting"],
       mapLocation: {
         lat: 42.22045,
         lng: -110.96874
@@ -74,7 +74,7 @@ Default.args = {
       score: 4,
       cancellation: false,
       price: 140,
-      amenities: ["dog friendly pool area", "on-site petsitting"],
+      amenities: ["pet-friendly pool area", "on-site petsitting"],
       mapLocation: {
         lat: 33.22045,
         lng: -110.96874

@@ -77,7 +77,7 @@ const SantaBarbara: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               The breeze swept in from the ocean and its mild sunny climate
-              makes this city an enjoyable destination for outdoor, dog-friendly
+              makes this city an enjoyable destination for outdoor, pet-friendly
               activities. The city also hosts a number of impressive luxury
               stays anyone will fall in love with.
             </Typography>

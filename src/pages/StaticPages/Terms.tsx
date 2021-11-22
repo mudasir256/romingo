@@ -73,14 +73,14 @@ const About: FC = () => {
         <Typography variant="body1" color="text.primary">
           With the leisure, drive-market travel on the rise, Romingo aims to
           answer the question that many households are posed with, “where can I
-          find a hotel that is truly dog friendly for my next trip”? Romingo
+          find a hotel that is truly pet-friendly for my next trip”? Romingo
           accomplishes this by partnering with hotels to make the guest
           experience while traveling with their dogs more enjoyable and
           worry-free. We are an online travel community platform that creates
-          awareness around an exclusive collection of truly dog friendly hotels.
+          awareness around an exclusive collection of truly pet-friendly hotels.
           Our travel agency utilizes its extensive digital marketing expertise
-          to reach this niche group of dog friendly travelers, and to spread the
-          word that dog friendly travel is finally here!
+          to reach this niche group of pet-friendly travelers, and to spread the
+          word that pet-friendly travel is finally here!
         </Typography>
         <Typography variant="h5" color="text.primary" sx={{ mt: 2 }}>
           We do not own or otherwise control the Hotel Products
@@ -116,7 +116,7 @@ const About: FC = () => {
         </Typography>
         <Typography variant="body1" color="text.primary">
           We have worked hard to find Accommodation Suppliers who want to be as
-          dog friendly as possible. Our Accommodation Suppliers have agreed to
+          pet-friendly as possible. Our Accommodation Suppliers have agreed to
           accept 2 dogs up to 75 pounds each. Should your dog not meet the
           weight limit, or should you have more than two dogs, the Accommodation
           Supplier may cancel your reservation for which you will not be
