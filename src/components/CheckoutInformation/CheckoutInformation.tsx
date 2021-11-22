@@ -42,6 +42,7 @@ const CheckoutInformation: FC<Props> = ({
     email: "",
     phone: "",
     check: "",
+    card: "",
   });
   const [checkState, setCheckState] = useState(false);
   const { occupants } = useSelector((state: any) => state.searchReducer.search);
@@ -90,6 +91,7 @@ const CheckoutInformation: FC<Props> = ({
       email: "",
       phone: "",
       check: "",
+      card: "",
     });
 
     const errors = {
@@ -98,6 +100,7 @@ const CheckoutInformation: FC<Props> = ({
       email: "",
       phone: "",
       check: "",
+      card: "",
     };
 
     if (checkoutForm.firstName.length === 0) {
@@ -146,6 +149,17 @@ const CheckoutInformation: FC<Props> = ({
         }
       );
       if (error) {
+        setFormError({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          check: "",
+          card: error?.message
+            ? error.message
+            : "We were unable to process this transaction. Please try again.",
+        });
+        console.log(error);
         setPaymentLoading(false);
         return;
       }
@@ -191,6 +205,10 @@ const CheckoutInformation: FC<Props> = ({
         });
       }
     } catch (err) {
+      console.log(err);
+      errors.card =
+        "*We were unable to process this transaction. Please try again.";
+      setFormError(errors);
       setPaymentLoading(false);
     }
     setPaymentLoading(false);
@@ -422,6 +440,9 @@ const CheckoutInformation: FC<Props> = ({
                   }}
                 />
               </Box>
+              <Typography variant="caption" color="error">
+                {formError.card}
+              </Typography>
               <Box sx={{ textAlign: "center" }}>
                 <Box
                   component="img"
@@ -461,7 +482,7 @@ const CheckoutInformation: FC<Props> = ({
                   and cancellation policy.
                 </Typography>
               </Box>
-              <Typography variant="body2" color="error">
+              <Typography variant="caption" color="error">
                 {formError.check}
               </Typography>
             </Grid>
