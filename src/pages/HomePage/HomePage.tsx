@@ -108,23 +108,23 @@ const FeatureHotels = [
   },
   {
     img:
-      "https://storage.googleapis.com/romingo-development-public/images/Hyatt%20Regency%20Mission%20Bay/Hyatt-Regency-Mission-Bay-P283-Aerial-Pool.16x9.webp",
-    name: "Hyatt Regency Mission Bay",
+      "https://storage.googleapis.com/romingo-development-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P508-Exterior-Marina.4x3.webp",
+    name: "Manchester Grand Hyatt",
     city: "San Diego, CA",
     cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
     description:
-      "Panoramic views of the Pacific Ocean, Mission Bay, and downtown San Diego frame a relaxing getaway for your and your pup.",
-    id: "18b37d9f-1b3b-49d0-9d87-4c76bfb431af",
+      "Explore Southern California’s vibrant culture and natural beauty from this pet-friendly waterfront hotel in downtown San Diego.",
+    id: "fe1300a4-a06f-4347-8d7f-f271b3657ba9",
   },
   {
     img:
-      "https://storage.googleapis.com/romingo-development-public/images/Marriott%20Fisherman's%20Wharf/sfofw-cochere-0073-hor-clsc.jpeg",
-    name: "Marriott Fisherman’s Wharf",
+      "https://storage.googleapis.com/romingo-development-public/images/Argonaut%20Hotel/Exterior%203.jpeg",
+    name: "Argonaut Hotel",
     city: "San Francisco, CA",
     cityId: "82145909-13b4-4aab-be20-e0db474021c1",
     description:
-      "A truly pet-friendly experience in the center of it all. Near the Golden Gate Bridge, Oracle Park, Pier 39, and endless activies.",
-    id: "3440f807-f383-437c-8923-71b7e45853bd",
+      "This truly pet-friendly hotel is a dog’s dream, adjacent to parks and the pier. Take your four-legged best friend on vacation with you!",
+    id: "4a32cf83-1f85-458d-a2aa-b6d21c4ec304",
   },
 ];
 
@@ -289,7 +289,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Young_Couple_Driving_Dog.webp"
+                      src="/images/Young_Couple_Driving_Dog.jpeg"
                       alt="french bulldog w/ coffee"
                       draggable="false"
                       sx={{
@@ -691,7 +691,7 @@ const HomePage: FC<Props> = ({
                             sx={{
                               objectFit: "cover",
                               width: "100%",
-                              minHeight: "220px",
+                              height: "240px",
                               borderTopLeftRadius: 12,
                               borderTopRightRadius: 12,
                             }}
