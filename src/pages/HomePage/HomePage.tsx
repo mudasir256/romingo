@@ -661,7 +661,7 @@ const HomePage: FC<Props> = ({
                   <Grid item xs={12} lg={4} key={key}>
                     <Box
                       sx={{
-                        minWidth: "250px",
+                        minWidth: "300px",
                         px: 3,
                       }}
                     >
@@ -678,7 +678,7 @@ const HomePage: FC<Props> = ({
                             borderRadius: 3,
                             boxShadow: 2,
                             pb: 10,
-                            minHeight: "400px",
+                            minHeight: "320px",
                             backgroundColor: "white",
                             position: "relative",
                           }}
