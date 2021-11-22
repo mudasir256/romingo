@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import Link from "@mui/material/Link";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
+import { PopupButton } from "@typeform/embed-react";
 import IconButton from "@mui/material/IconButton";
 import Hidden from "@mui/material/Hidden";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -15,7 +15,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import CloseIcon from "@mui/icons-material/Close";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -108,15 +107,24 @@ const Navbar: FC<Props> = ({ sx }) => {
                 >
                   <TwitterIcon />
                 </IconButton>
-                <Link
-                  href="https://form.typeform.com/to/zdVrRtxT"
-                  target="_blank"
-                  variant="body2"
-                  sx={{
-                    color: "text.primary",
-                  }}
-                >
-                  Partner With Us
+                <Link>
+                  <PopupButton
+                    id="zdVrRtxT"
+                    style={{
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                      margin: 0,
+                      marginBottom: -5,
+                    }}
+                  >
+                    <Link>
+                      <Typography variant="body2" color="primary">
+                        List Your Property
+                      </Typography>
+                    </Link>
+                  </PopupButton>
                 </Link>
               </Box>
             </Hidden>

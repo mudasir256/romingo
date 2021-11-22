@@ -84,11 +84,6 @@ const FooterMenus = {
       target: "",
     },
     {
-      text: "Partner Inquiry",
-      link: "https://form.typeform.com/to/zdVrRtxT",
-      target: "_blank",
-    },
-    {
       text: "On Facebook",
       link: "https://www.facebook.com/RomingoTravel",
       target: "_blank",

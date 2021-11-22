@@ -216,7 +216,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                 sx={{
                   textTransform: "none",
                   fontSize: {
-                    xs: "85%",
+                    xs: "87%",
                   },
                 }}
               >
@@ -225,8 +225,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
               <PetsIcon
                 sx={{
                   color: "primary.main",
-                  fontSize: "75%",
-                  mb: -0.15,
+                  fontSize: "90%",
+                  mb: 0.2,
                   ml: 0.3,
                 }}
               />
@@ -234,9 +234,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
               <Typography
                 sx={{
                   textTransform: "none",
-                  fontSize: {
-                    xs: "85%",
-                  },
+                  fontSize: "87%",
                 }}
               >
                 {occupants.adults + occupants.children}
@@ -244,9 +242,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
               <PersonIcon
                 sx={{
                   color: "primary.main",
-                  fontSize: "85%",
-                  mb: -0.23,
-                  ml: 0,
+                  fontSize: "100%",
+                  mb: 0,
+                  ml: 0.1,
                 }}
               />
             </Button>

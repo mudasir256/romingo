@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
 import { FC } from "react";
 import { Container, Divider, Grid, Typography, Link } from "@mui/material";
+import { PopupButton } from "@typeform/embed-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -83,19 +84,33 @@ const Contact: FC = () => {
                 hello@romingo.com
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8 }}>
-              <Link
-                href="https://form.typeform.com/to/zdVrRtxT"
-                target="_blank"
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{ mt: 4, mb: 8, textAlign: "center" }}
+            >
+              <PopupButton
+                id="zdVrRtxT"
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: "0",
+                  cursor: "pointer",
+                }}
               >
-                <Typography
-                  variant="h5"
-                  color="primary"
-                  sx={{ textAlign: "center" }}
-                >
-                  Partner Inquiry
-                </Typography>
-              </Link>
+                <Link>
+                  <Typography
+                    variant="h5"
+                    color="primary"
+                    sx={{
+                      textAlign: "center",
+                    }}
+                  >
+                    List Your Property
+                  </Typography>
+                </Link>
+              </PopupButton>
               <Typography
                 variant="body1"
                 color="text.secondary"

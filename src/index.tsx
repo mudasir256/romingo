@@ -17,7 +17,7 @@ const hist = createBrowserHistory();
 const muTheme = createTheme(theme);
 
 const client = new ApolloClient({
-  uri: "https://graphql-dot-eminent-helix-324520.ue.r.appspot.com/graphql",
+  uri: process.env.REACT_APP_ENDPOINT,
   cache: new InMemoryCache({
     typePolicies: {
       Property: {

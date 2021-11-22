@@ -103,8 +103,6 @@ const ListingPage: FC<Props> = ({ ...props }) => {
       },
     }
   );
-  console.log(data);
-  console.log(rack_data);
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -116,7 +114,15 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         dispatch(setList(data.properties));
       }
     }
-  }, [data]);
+    if (data?.properties && rack_data?.propertiesByCorporateDiscount) {
+      dispatch(
+        setList([
+          ...data.properties,
+          ...rack_data?.propertiesByCorporateDiscount,
+        ])
+      );
+    }
+  }, [data, rack_data]);
 
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;

@@ -1,28 +1,43 @@
 import * as actionTypes from "./actionTypes";
-import data from "../static/hotelDetail.js";
 
-export const setHotel = (detail: IHotelDetails) => (dispatch: HotelDetailDispatchType) => {
+export const setHotel = (detail: IHotelDetails) => (
+  dispatch: HotelDetailDispatchType
+) => {
   // call api to login
   dispatch({
     type: actionTypes.SET_DETAILS,
-    detail
-  })
-}
+    detail,
+  });
+};
 
 const initialState: DetailState = {
-  detail: data
-}
+  detail: {
+    name: "",
+    mainImg: "",
+    location: { lat: "", lon: "", address: "" },
+    gallery: [],
+    score: 0,
+    dogAmenitiesTitle: "",
+    roomList: [],
+    amenitiesTitle: "",
+    nearby: [],
+    rooms: [],
+  },
+};
 
-const hotelDetailReducer = (state: DetailState = initialState, action: DetailAction) : DetailState => {
+const hotelDetailReducer = (
+  state: DetailState = initialState,
+  action: DetailAction
+): DetailState => {
   switch (action.type) {
     case actionTypes.SET_DETAILS:
       return {
-        detail: action.detail
-      }
-    break;
+        detail: action.detail,
+      };
+      break;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default hotelDetailReducer;
