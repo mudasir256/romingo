@@ -11,7 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import Hidden from "@mui/material/Hidden";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import CloseIcon from "@mui/icons-material/Close";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -97,15 +96,6 @@ const Navbar: FC<Props> = ({ sx }) => {
                   target="_blank"
                 >
                   <InstagramIcon />
-                </IconButton>
-                <IconButton
-                  edge="start"
-                  sx={{ mr: 1, color: "black" }}
-                  aria-label="menu"
-                  href="https://twitter.com/RomingoTravel"
-                  target="_blank"
-                >
-                  <TwitterIcon />
                 </IconButton>
                 <Link>
                   <PopupButton

@@ -12,7 +12,6 @@ import IconButton from "@mui/material/IconButton";
 import Hidden from "@mui/material/Hidden";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import PetsIcon from "@mui/icons-material/Pets";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HotelIcon from "@mui/icons-material/Hotel";
@@ -356,15 +355,6 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               target="_blank"
             >
               <InstagramIcon />
-            </IconButton>
-            <IconButton
-              edge="start"
-              sx={{ mr: 1, color: "black" }}
-              aria-label="menu"
-              href="https://twitter.com/RomingoTravel"
-              target="_blank"
-            >
-              <TwitterIcon />
             </IconButton>
           </Box>
         </Hidden>
