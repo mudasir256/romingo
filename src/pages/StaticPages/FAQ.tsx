@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import { FC } from "react";
 import { Container, Divider, Grid, Typography } from "@mui/material";
 import Link from "@mui/material/Link";
+import { PopupButton } from "@typeform/embed-react";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -368,12 +369,26 @@ const FAQ: FC = () => {
             >
               We love partnering with new accommodations providers, and welcome
               any inquiries. Please{" "}
-              <Link
-                href="https://form.typeform.com/to/zdVrRtxT"
-                target="_blank"
+              <PopupButton
+                id="zdVrRtxT"
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: "0",
+                  cursor: "pointer",
+                }}
               >
-                click here
-              </Link>{" "}
+                <Link>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      textAlign: "center",
+                    }}
+                  >
+                    click here
+                  </Typography>
+                </Link>
+              </PopupButton>{" "}
               to get started.
             </Typography>
           </Grid>

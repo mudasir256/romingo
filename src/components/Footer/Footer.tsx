@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import { FC } from "react";
 import { CSSObject } from "@mui/material";
+import { PopupButton } from "@typeform/embed-react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -220,9 +221,34 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                 color: "text.primary",
               }}
             >
-              Blog
+              Content
             </Typography>
             <List>
+              <ListItem key={"definitive-guide"} sx={{ pl: 0 }}>
+                <PopupButton
+                  id="SYpKecCU"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    textAlign: "left",
+                    padding: 0,
+                    cursor: "pointer",
+                    margin: 0,
+                    marginBottom: -5,
+                  }}
+                >
+                  <Link>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "primary.main",
+                      }}
+                    >
+                      The Definitive Guide to Dog-Friendly Travel
+                    </Typography>
+                  </Link>
+                </PopupButton>
+              </ListItem>
               {footerMenus.blog.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
