@@ -55,7 +55,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
 
       <Container
         maxWidth="md"
-        sx={{ mt: 10, minHeight: "calc(100vh - 290px)" }}
+        sx={{ mt: 10, mb: 5, minHeight: "calc(100vh - 290px)" }}
       >
         <Grid
           container
@@ -96,7 +96,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: "justify", lineHeight: 2, mb: 3 }}
             >
               Please reach out to our booking support team if you would like to
               modify or cancel your booking. To manage a booking made through
@@ -106,6 +106,17 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               prior to cancelling your reservation. The policy was provided on
               the reservation checkout page as well as your confirmation email.
             </Typography>
+            <Box
+              component="img"
+              src="/images/romingo_ball.jpeg"
+              alt={"Romingo Tennis Ball"}
+              sx={{
+                objectFit: "cover",
+                width: "100%",
+                height: "260px",
+                borderRadius: 5,
+              }}
+            />
           </Grid>
         </Grid>
       </Container>

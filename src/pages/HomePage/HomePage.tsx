@@ -100,23 +100,23 @@ const NearCities = [
 const FeatureHotels = [
   {
     img:
-      "https://storage.googleapis.com/romingo-development-public/images/Mondrian%20Los%20Angeles/mla_deluxestudio_bedroom_0.webp",
-    name: "Mondrian Los Angeles",
-    city: "Los Angeles, CA",
-    cityId: "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
+      "https://storage.googleapis.com/romingo-production-public/images/Mar%20Monte%20Santa%20Barbara/Mar-Monte-Hotel-P206-Aerial-View-Beach.16x9.webp",
+    name: "Mar Monte",
+    city: "Santa Barbara, CA",
+    cityId: "58b23325-2016-44ef-886f-67e962dab17f",
     description:
-      "A parallel universe of perpetual possibility in the heart of West Hollywood that captures the excitement of the Strip.",
-    id: "e7742fb4-6154-4cd7-b0c6-6b35c0939140",
+      "Steps from the beach, this boutique hotel is your home away from home, impeccably crafted for modern pet-friendly travel.",
+    id: "451908c0-87c7-4039-94ed-df57e7586d31",
   },
   {
     img:
-      "https://storage.googleapis.com/romingo-development-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P508-Exterior-Marina.4x3.webp",
-    name: "Manchester Grand Hyatt",
+      "https://storage.googleapis.com/romingo-production-public/images/Pendry%20San%20Diego/Tamara%20Shelton%20-%20Pendry%20Exterior.jpg",
+    name: "Pendry San Diego",
     city: "San Diego, CA",
     cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
     description:
-      "Explore Southern California’s vibrant culture and natural beauty from this pet-friendly waterfront hotel in downtown San Diego.",
-    id: "fe1300a4-a06f-4347-8d7f-f271b3657ba9",
+      "From coffee to cocktails, from poolside to basement, and from casual to luxe, Pendry has everything under one roof.",
+    id: "391f28f7-42b8-4be7-966a-25ed136371d2",
   },
   {
     img:
@@ -269,7 +269,7 @@ const HomePage: FC<Props> = ({
                           textAlign: "center",
                         }}
                       >
-                        Romingo hotels allow two dogs, up to 75 pounds each
+                        Romingo hotels include two dogs, up to 75 pounds each
                       </Typography>
                       <Typography
                         variant="body1"
@@ -293,8 +293,8 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/Young_Couple_Driving_Dog.jpeg"
-                      alt="french bulldog w/ coffee"
+                      src="/images/golden-under-bed.jpeg"
+                      alt="Golden Retriever Under Covers"
                       draggable="false"
                       sx={{
                         width: "100%",
@@ -325,8 +325,8 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       component="img"
-                      src="/images/balcony-dog.jpeg"
-                      alt="dog head out window"
+                      src="/images/romingo-welcome.jpeg"
+                      alt="Jack Russel Breakfast In Bed"
                       draggable="false"
                       sx={{
                         width: "100%",
@@ -793,7 +793,7 @@ const HomePage: FC<Props> = ({
                   textAlign: "center",
                 }}
               >
-                Save Time, Save Money
+                Save Money &amp; Travel More
               </Typography>
               <Typography
                 variant="h5"

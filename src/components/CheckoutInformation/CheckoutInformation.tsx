@@ -112,11 +112,25 @@ const CheckoutInformation: FC<Props> = ({
     if (checkoutForm.firstName.length === 0) {
       errors.firstName = "*Primary traveller first name is required";
     }
+    if (/[^a-z A-Z]/.test(checkoutForm.firstName)) {
+      errors.firstName = "*Numbers and/or special characters are not allowed";
+    }
     if (checkoutForm.lastName.length === 0) {
       errors.lastName = "*Primary traveller last name is required";
     }
+    if (/[^a-z A-Z]/.test(checkoutForm.lastName)) {
+      errors.lastName = "*Numbers and/or special characters are not allowed";
+    }
     if (checkoutForm.email.length === 0) {
       errors.email = "*Primary traveller email is required";
+    }
+    //validate email
+    if (
+      /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/.test(
+        checkoutForm.email
+      )
+    ) {
+      errors.email = "*Please enter a valid email";
     }
     if (checkoutForm.phone.length === 0 || !checkoutForm.countryCode) {
       errors.phone = "*Primary traveller phone is required";
@@ -172,17 +186,19 @@ const CheckoutInformation: FC<Props> = ({
         age: number;
       }[] = [];
 
-      Array.from(Array(occupants.adults)).forEach(() => {
+      Array.from(Array(occupants.adults)).forEach((_, i) => {
+        const guestId = String.fromCharCode(65 + i);
         adults.push({
-          firstName: checkoutForm.firstName,
+          firstName: `Adult${guestId}`,
           lastName: checkoutForm.lastName,
         });
       });
 
       if (occupants.children > 0) {
         Array.from(Array(occupants?.childrenAge?.length)).forEach((x_, i) => {
+          const childId = String.fromCharCode(65 + i);
           children.push({
-            firstName: checkoutForm.firstName,
+            firstName: `Child${childId}`,
             lastName: checkoutForm.lastName,
             age: occupants.childrenAge[i],
           });
@@ -310,7 +326,12 @@ const CheckoutInformation: FC<Props> = ({
           }}
         >
           {createLoading || piLoading || paymentLoading ? (
-            <Loader size="200px" />
+            <>
+              <Loader size="200px" />
+              <Typography variant="body2" color="text.secondary">
+                Loading...please don&apos;t refresh or close the page
+              </Typography>
+            </>
           ) : createData ? (
             <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
               {!createData?.createBooking?.booking?.sabreConfirmationId &&
@@ -440,6 +461,8 @@ const CheckoutInformation: FC<Props> = ({
                     onChange={updateForm}
                     error={formError.email.length > 0}
                     required
+                    autoCapitalize="off"
+                    autoCorrect="off"
                     helperText={formError.email}
                   />
                 </Grid>
