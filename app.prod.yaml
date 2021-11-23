@@ -15,6 +15,7 @@ handlers:
     static_files: build/index.html
     upload: build/index.html
 env_variables:
-  NODE_ENV: 'production'
-  REACT_APP_STRIPE_CLIENT_KEY: 'pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW'
-  REACT_APP_ENDPOINT: 'https://graphql.romingo.com/graphql'
+  SKIP_PREFLIGHT_CHECK: true
+  NODE_ENV: "production"
+  REACT_APP_STRIPE_CLIENT_KEY: "pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW"
+  REACT_APP_ENDPOINT: "https://graphql.romingo.com/graphql"
