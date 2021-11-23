@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
+import { useHistory } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -11,6 +12,9 @@ import MuiPhoneNumber from "material-ui-phone-number";
 import { gql, useMutation } from "@apollo/client";
 import { CreateBooking, CreatePaymentIntent } from "../../constants/constants";
 import { useSelector } from "react-redux";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
@@ -32,6 +36,7 @@ const CheckoutInformation: FC<Props> = ({
   price,
   priceKey,
 }) => {
+  const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
@@ -44,6 +49,7 @@ const CheckoutInformation: FC<Props> = ({
     check: "",
     card: "",
   });
+  const [priceChanged, setPriceChanged] = useState(false);
   const [checkState, setCheckState] = useState(false);
   const { occupants } = useSelector((state: any) => state.searchReducer.search);
   const [checkoutForm, setCheckoutForm] = useState({
@@ -112,7 +118,7 @@ const CheckoutInformation: FC<Props> = ({
     if (checkoutForm.email.length === 0) {
       errors.email = "*Primary traveller email is required";
     }
-    if (checkoutForm.phone.length === 0) {
+    if (checkoutForm.phone.length === 0 || !checkoutForm.countryCode) {
       errors.phone = "*Primary traveller phone is required";
     }
     if (!checkState) {
@@ -150,11 +156,7 @@ const CheckoutInformation: FC<Props> = ({
       );
       if (error) {
         setFormError({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          check: "",
+          ...errors,
           card: error?.message
             ? error.message
             : "We were unable to process this transaction. Please try again.",
@@ -194,7 +196,7 @@ const CheckoutInformation: FC<Props> = ({
               paymentIntentId: paymentIntent.id,
               email: checkoutForm.email,
               mobile: {
-                countryCallingCode: 1,
+                countryCallingCode: checkoutForm.countryCode,
                 number: checkoutForm.phone,
               },
               adults,
@@ -215,9 +217,12 @@ const CheckoutInformation: FC<Props> = ({
   };
 
   const updatePhone = (e: any) => {
+    const numeric = e.replace(/\D/g, "");
+    const countryCodeLength = numeric.length - 10;
     setCheckoutForm({
       ...checkoutForm,
-      phone: e.replace(/\s+/g, "-").replace(/[{()}]/g, ""),
+      countryCode: parseInt(numeric.substr(0, countryCodeLength)),
+      phone: numeric.substr(countryCodeLength, numeric.length),
     });
   };
 
@@ -228,289 +233,345 @@ const CheckoutInformation: FC<Props> = ({
   }, []);
 
   useEffect(() => {
+    if (piData?.priceChanged) {
+      setPriceChanged(true);
+    }
     if (piData?.createPaymentIntent) {
       setClientSecret(piData?.createPaymentIntent?.paymentIntent?.clientSecret);
     }
   }, [piData]);
 
-  return (
-    <Box sx={sx}>
-      <Box
-        sx={{
-          backgroundColor: "white",
-          color: "text.primary",
-          borderRadius: 3,
-          border: "none",
-          minHeight: "550px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: 3,
-          pt: 2,
-          pb: 2.5,
-          px: 2,
-        }}
-      >
-        {createLoading || piLoading || paymentLoading ? (
-          <Loader size="200px" />
-        ) : createData ? (
-          <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
-            {!createData?.createBooking?.booking?.sabreConfirmationId &&
-            !createData?.createBooking?.booking?.propertyConfirmationId ? (
-              <Box sx={{ mt: -5 }}>
-                <ErrorDog size="150px" />
-                <Typography
-                  variant="h5"
-                  color="primary"
-                  sx={{ textAlign: "center", mb: 2 }}
-                >
-                  Whoops! We caught our own tail while booking
-                </Typography>
-                <Typography variant="body1">
-                  This could happen for one or more of the following reasons:
-                </Typography>
-                <ul>
-                  <li>
-                    <Typography variant="body1">
-                      The room you were trying to book is no longer available
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body1">
-                      The hotel&apos;s booking server is down{" "}
-                    </Typography>
-                  </li>
-                  <li>
-                    <Typography variant="body1">
-                      Our payment processor is down{" "}
-                    </Typography>
-                  </li>
-                </ul>
-                <Typography variant="body1">
-                  If this behavior continues, please contact support with the
-                  following reference #:
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
-                >
-                  {createData?.createBooking?.booking?.faunaDocId}
-                </Typography>
-                <Typography variant="body2" sx={{ textAlign: "center" }}>
-                  Note: your credit card may have been authorized, but not
-                  charged. If your card was authorized, authorization should
-                  automatically fall off in a few days.
-                </Typography>
-              </Box>
-            ) : (
-              <Box sx={{ mt: -5 }}>
-                <Typography
-                  variant="h5"
-                  color="primary"
-                  sx={{ textAlign: "center", mb: 2 }}
-                >
-                  You&apos;re booked!
-                </Typography>
+  useEffect(() => {
+    if (createData?.priceChanged) {
+      setPriceChanged(true);
+    }
+  }, [createData]);
 
-                <Typography variant="body1" sx={{ textAlign: "center" }}>
-                  Your confirmation number is:
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
-                >
-                  {createData?.createBooking?.booking?.propertyConfirmationId
-                    ? createData?.createBooking?.booking?.propertyConfirmationId
-                    : createData?.createBooking?.booking?.sabreConfirmationId}
-                </Typography>
-                <Typography variant="body1">
-                  We&apos;ve sent you an email with all of the details of your
-                  booking.
-                </Typography>
-              </Box>
-            )}
+  return (
+    <>
+      <Dialog
+        open={priceChanged}
+        keepMounted
+        fullWidth
+        scroll="body"
+        aria-labelledby="amenities-dialog-slide-title"
+        aria-describedby="amenities-dialog-slide-description"
+        sx={{ maxWidth: "xl" }}
+      >
+        <DialogTitle
+          id="amenities-dialog-slide-title"
+          sx={{
+            textAlign: "center",
+            color: "primary.main",
+            py: 1,
+          }}
+        >
+          Whoops, this price isn&apos;t available anymore
+        </DialogTitle>
+        <DialogContent>
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.secondary",
+              textAlign: "justify",
+            }}
+          >
+            Romingo has access to real-time pricing, which means sometimes rates
+            are available one moment and gone the next. But we have many other
+            great rates available for you and your pup!
+          </Typography>
+          <Box sx={{ textAlign: "center", pt: 2 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => history.push("/listings")}
+            >
+              Back to Search
+            </Button>
           </Box>
-        ) : (
-          <>
-            <Typography
-              variant="h6"
-              sx={{
-                color: "secondary.main",
-                textAlign: "center",
-              }}
-            >
-              Primary Traveller Information
-            </Typography>
-            <Grid container spacing={2} sx={{ py: 2 }}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  type="text"
-                  name="firstName"
-                  label={"Traveller's First Name"}
-                  placeholder="First Name"
-                  onChange={updateForm}
-                  fullWidth={true}
-                  error={formError.firstName.length > 0}
-                  helperText={formError.firstName}
-                  required
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  type="text"
-                  name="lastName"
-                  label={"Traveller's Last Name"}
-                  placeholder="Last Name"
-                  onChange={updateForm}
-                  fullWidth={true}
-                  error={formError.lastName.length > 0}
-                  helperText={formError.lastName}
-                  required
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  type="email"
-                  name="email"
-                  label={"Email Address"}
-                  placeholder="Email"
-                  fullWidth={true}
-                  onChange={updateForm}
-                  error={formError.email.length > 0}
-                  required
-                  helperText={formError.email}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <MuiPhoneNumber
-                  defaultCountry={"us"}
-                  name="phone"
-                  onChange={updatePhone}
-                  variant="outlined"
-                  label={"Phone Number"}
-                  fullWidth={true}
-                  disableAreaCodes
-                  autoFormat={true}
-                  error={formError.phone.length > 0}
-                  helperText={formError.phone}
-                  required
-                />
-              </Grid>
-            </Grid>
-            <Typography
-              variant="h6"
-              sx={{
-                color: "secondary.main",
-                textAlign: "center",
-                mb: 2,
-              }}
-            >
-              Payment Information
-            </Typography>
-            <Grid item xs={12}>
-              <Box
-                className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
-                sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
-              >
-                <CardElement
-                  options={{
-                    iconStyle: "solid",
-                    classes: {
-                      base:
-                        "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
-                    },
-                    style: {
-                      base: {
-                        fontFamily: `"Work Sans", "Montserrat", sans-serif`,
-                        iconColor: "#03989E",
-                        fontSize: "16px",
-                        color: "rgba(0, 0, 0, 0.78)",
-                        "::placeholder": {
-                          color: "rgba(0, 0, 0, 0.58)",
-                        },
-                      },
-                      invalid: {
-                        color: "#9e2146",
-                      },
-                    },
-                  }}
-                />
-              </Box>
-              <Typography variant="caption" color="error">
-                {formError.card}
-              </Typography>
-              <Box sx={{ textAlign: "center" }}>
-                <Box
-                  component="img"
-                  src="/images/safe-checkout.jpeg"
-                  draggable="false"
-                  sx={{
-                    width: "400px",
-                    maxWidth: "100%",
-                    mt: 2,
-                    mb: 1,
-                  }}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Box
+        </DialogContent>
+      </Dialog>
+      <Box sx={sx}>
+        <Box
+          sx={{
+            backgroundColor: "white",
+            color: "text.primary",
+            borderRadius: 3,
+            border: "none",
+            minHeight: "550px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: 3,
+            pt: 2,
+            pb: 2.5,
+            px: 2,
+          }}
+        >
+          {createLoading || piLoading || paymentLoading ? (
+            <Loader size="200px" />
+          ) : createData ? (
+            <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
+              {!createData?.createBooking?.booking?.sabreConfirmationId &&
+              !createData?.createBooking?.booking?.propertyConfirmationId ? (
+                <Box sx={{ mt: -5 }}>
+                  <ErrorDog size="150px" />
+                  <Typography
+                    variant="h5"
+                    color="primary"
+                    sx={{ textAlign: "center", mb: 2 }}
+                  >
+                    Whoops! We caught our own tail while booking
+                  </Typography>
+                  <Typography variant="body1">
+                    This could happen for one or more of the following reasons:
+                  </Typography>
+                  <ul>
+                    <li>
+                      <Typography variant="body1">
+                        The room you were trying to book is no longer available
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography variant="body1">
+                        The hotel&apos;s booking server is down{" "}
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography variant="body1">
+                        Our payment processor is down{" "}
+                      </Typography>
+                    </li>
+                  </ul>
+                  <Typography variant="body1">
+                    If this behavior continues, please contact support with the
+                    following reference #:
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
+                  >
+                    {createData?.createBooking?.booking?.faunaDocId}
+                  </Typography>
+                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                    Note: your credit card may have been authorized, but not
+                    charged. If your card was authorized, authorization should
+                    automatically fall off in a few days.
+                  </Typography>
+                </Box>
+              ) : (
+                <Box sx={{ mt: -5 }}>
+                  <Typography
+                    variant="h5"
+                    color="primary"
+                    sx={{ textAlign: "center", mb: 2 }}
+                  >
+                    You&apos;re booked!
+                  </Typography>
+
+                  <Typography variant="body1" sx={{ textAlign: "center" }}>
+                    Your confirmation number is:
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
+                  >
+                    {createData?.createBooking?.booking?.propertyConfirmationId
+                      ? createData?.createBooking?.booking
+                          ?.propertyConfirmationId
+                      : createData?.createBooking?.booking?.sabreConfirmationId}
+                  </Typography>
+                  <Typography variant="body1">
+                    We&apos;ve sent you an email with all of the details of your
+                    booking.
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+          ) : (
+            <>
+              <Typography
+                variant="h6"
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "start",
+                  color: "secondary.main",
+                  textAlign: "center",
                 }}
               >
-                <Checkbox
-                  checked={checkState}
-                  color="primary"
-                  onChange={handleCheck}
-                />
-                <Typography variant="body2">
-                  I agree to the booking{" "}
-                  <Link
-                    target="_blank"
-                    rel="noopener noreffer"
-                    href="/terms-of-use"
-                  >
-                    terms of use
-                  </Link>{" "}
-                  and cancellation policy.
-                </Typography>
-              </Box>
-              <Typography variant="caption" color="error">
-                {formError.check}
+                Primary Traveller Information
               </Typography>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                fullWidth={true}
-                size="large"
-                color="primary"
-                onClick={submitStripe}
-                sx={{ mt: 3 }}
-              >
-                <Typography variant="h6">Book It</Typography>
-              </Button>
+              <Grid container spacing={2} sx={{ py: 2 }}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    name="firstName"
+                    label={"Traveller's First Name"}
+                    placeholder="First Name"
+                    onChange={updateForm}
+                    fullWidth={true}
+                    error={formError.firstName.length > 0}
+                    helperText={formError.firstName}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    type="text"
+                    name="lastName"
+                    label={"Traveller's Last Name"}
+                    placeholder="Last Name"
+                    onChange={updateForm}
+                    fullWidth={true}
+                    error={formError.lastName.length > 0}
+                    helperText={formError.lastName}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    type="email"
+                    name="email"
+                    label={"Email Address"}
+                    placeholder="Email"
+                    fullWidth={true}
+                    onChange={updateForm}
+                    error={formError.email.length > 0}
+                    required
+                    helperText={formError.email}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <MuiPhoneNumber
+                    defaultCountry={"us"}
+                    name="phone"
+                    onChange={updatePhone}
+                    variant="outlined"
+                    label={"Phone Number"}
+                    fullWidth={true}
+                    disableAreaCodes
+                    autoFormat={true}
+                    error={formError.phone.length > 0}
+                    helperText={formError.phone}
+                    required
+                  />
+                </Grid>
+              </Grid>
               <Typography
-                variant="body2"
-                color="text.primary"
-                sx={{ mt: 2, textAlign: "center" }}
+                variant="h6"
+                sx={{
+                  color: "secondary.main",
+                  textAlign: "center",
+                  mb: 2,
+                }}
               >
-                Your card will be charged{" "}
-                <span style={{ fontWeight: "bold" }}>${price.toFixed(2)}</span>
+                Payment Information
               </Typography>
-            </Grid>
-          </>
-        )}
+              <Grid item xs={12}>
+                <Box
+                  className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
+                  sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
+                >
+                  <CardElement
+                    options={{
+                      iconStyle: "solid",
+                      classes: {
+                        base:
+                          "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
+                      },
+                      style: {
+                        base: {
+                          fontFamily: `"Work Sans", "Montserrat", sans-serif`,
+                          iconColor: "#03989E",
+                          fontSize: "16px",
+                          color: "rgba(0, 0, 0, 0.78)",
+                          "::placeholder": {
+                            color: "rgba(0, 0, 0, 0.58)",
+                          },
+                        },
+                        invalid: {
+                          color: "#9e2146",
+                        },
+                      },
+                    }}
+                  />
+                </Box>
+                <Typography variant="caption" color="error">
+                  {formError.card}
+                </Typography>
+                <Box sx={{ textAlign: "center" }}>
+                  <Box
+                    component="img"
+                    src="/images/safe-checkout.jpeg"
+                    draggable="false"
+                    sx={{
+                      width: "400px",
+                      maxWidth: "100%",
+                      mt: 2,
+                      mb: 1,
+                    }}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "start",
+                  }}
+                >
+                  <Checkbox
+                    checked={checkState}
+                    color="primary"
+                    onChange={handleCheck}
+                  />
+                  <Typography variant="body2">
+                    I agree to the booking{" "}
+                    <Link
+                      target="_blank"
+                      rel="noopener noreffer"
+                      href="/terms-of-use"
+                    >
+                      terms of use
+                    </Link>{" "}
+                    and cancellation policy.
+                  </Typography>
+                </Box>
+                <Typography variant="caption" color="error">
+                  {formError.check}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Button
+                  variant="contained"
+                  fullWidth={true}
+                  size="large"
+                  color="primary"
+                  onClick={submitStripe}
+                  sx={{ mt: 3 }}
+                >
+                  <Typography variant="h6">Book It</Typography>
+                </Button>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  sx={{ mt: 2, textAlign: "center" }}
+                >
+                  Your card will be charged{" "}
+                  <span style={{ fontWeight: "bold" }}>
+                    ${price.toFixed(2)}
+                  </span>
+                </Typography>
+              </Grid>
+            </>
+          )}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

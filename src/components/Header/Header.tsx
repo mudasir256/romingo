@@ -12,7 +12,6 @@ interface Props {
 
 const bgImages = [
   'url("/images/background-frenchie.jpeg")',
-  'url("/images/background-lab.jpeg")',
   'url("/images/background-jackrussel.jpeg")',
 ];
 
@@ -40,6 +39,7 @@ const Header: FC<Props> = ({ sx }) => {
       }}
     >
       <Navbar />
+
       <Box
         sx={{
           position: "absolute",

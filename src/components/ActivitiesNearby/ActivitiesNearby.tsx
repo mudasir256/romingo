@@ -76,6 +76,15 @@ const ActivitiesNeary: FC<Props> = ({ title, nearby }) => {
       >
         {title}
       </Typography>
+      {nearby.length === 0 && (
+        <>
+          <Typography variant="body2">Coming soon...</Typography>
+          <Typography variant="body2">
+            We are hard at work compiling a list of the best pet-friendly
+            activities, restaurants, and shops nearby this hotel.
+          </Typography>
+        </>
+      )}
       {nearby.map((item, key) => {
         return (
           <Box
