@@ -15,7 +15,6 @@ handlers:
     static_files: build/index.html
     upload: build/index.html
 env_variables:
-  SKIP_PREFLIGHT_CHECK: true
   NODE_ENV: "development"
   REACT_APP_STRIPE_CLIENT_KEY: "pk_test_51JcD2bBdk22npNeJQBWoPOP8JMvOlhYFkCr9KB5YlxU9vtV7Amdkl3lVLxX0qWxXy3YmghTewaILVISoURTfY8YJ00VvhyCojd"
   REACT_APP_ENDPOINT: "https://dev.graphql.romingo.com/graphql"
