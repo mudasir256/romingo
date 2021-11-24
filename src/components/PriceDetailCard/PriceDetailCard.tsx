@@ -53,7 +53,6 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   }, [detail]);
 
   const detailsLen = priceArr.length;
-  console.log(detail);
 
   return (
     <Box
