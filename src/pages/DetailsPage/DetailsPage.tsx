@@ -192,10 +192,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setNeighborhood(data.property.neighborhood);
 
       let tmp: any[] = [];
-      data.property.sabreImageURLs.map((image: string) => {
+      data.property.imageURLs.map((image: string) => {
         tmp.push(image);
       });
-      data.property.imageURLs.map((image: string) => {
+      data.property.sabreImageURLs.map((image: string) => {
         tmp.push(image);
       });
       setGallery([...tmp]);

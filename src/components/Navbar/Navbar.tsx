@@ -83,7 +83,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   edge="start"
                   sx={{ mr: 1, color: "black" }}
                   aria-label="menu"
-                  href="https://www.facebook.com/RomingoTravel"
+                  href="https://www.facebook.com/RomingoTravel/"
                   target="_blank"
                 >
                   <FacebookIcon />
@@ -92,7 +92,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   edge="start"
                   sx={{ mr: 1, color: "black" }}
                   aria-label="menu"
-                  href="https://www.instagram.com/romingotravel"
+                  href="https://www.instagram.com/romingotravel/"
                   target="_blank"
                 >
                   <InstagramIcon />

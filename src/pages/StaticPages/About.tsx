@@ -94,7 +94,7 @@ const About: FC = () => {
               <Grid item xs={12} md={6}>
                 <Box
                   component="img"
-                  src="/images/zach_jonathan_maddie.jpeg"
+                  src="/images/jonathan_zach_maddie.jpeg"
                   alt={"Zach, Jonathan, and Maddie"}
                   sx={{
                     objectFit: "cover",
@@ -205,7 +205,11 @@ const About: FC = () => {
               with Romingo, hotels agree to provide truly pet-friendly
               accomodations to our users. Your Romingo reservation will always
               include:
-              <Typography variant="h6" color="text.secondary">
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ textAlign: "left" }}
+              >
                 <ul>
                   <li>Competitive guestroom rates</li>
                   <li>Waived non-refundable pet fees</li>
@@ -221,7 +225,7 @@ const About: FC = () => {
             <Typography
               variant="h5"
               color="text.secondary"
-              sx={{ mt: 2, ml: 4 }}
+              sx={{ mt: 2, ml: 4, textAlign: "left" }}
             >
               - Romingo&apos;s CEO, Zach Somers
             </Typography>

@@ -143,48 +143,54 @@ const RomingoScorePage: FC = () => {
               level of pet-friendliness based on a wide array of factors. But
               don’t worry, we haven’t forgotten about you either! Here’s our
               criteria:
-              <ul>
-                <li>
-                  <span style={{ fontWeight: "bold" }}>
-                    Location and walkability:
-                  </span>{" "}
-                  proximity to pet-friendly shopping centers, restaurants,
-                  cafés, patios, bars, breweries, transportation, and other
-                  activities
-                </li>
-                <li>
-                  <span style={{ fontWeight: "bold" }}>Proximity:</span> to dog
-                  parks, dog restaurants and cafés, hikes, and potty relief
-                  areas
-                </li>
-                <li>
-                  <span style={{ fontWeight: "bold" }}>
-                    Hotel amenities and features for you:
-                  </span>{" "}
-                  In-room dining, pool and jacuzzi, fitness center, spa, and
-                  more!
-                </li>
-                <li>
-                  <span style={{ fontWeight: "bold" }}>
-                    Hotel amenities and features for your pup:{" "}
-                  </span>
-                  On-site dog run, dog park, pet welcome programs, towels/robes,
-                  dog room service, etc.
-                </li>
-                <li>
-                  <span style={{ fontWeight: "bold" }}>Guest reviews:</span>{" "}
-                  Compiled and ranked from previous stays
-                </li>
-                <li>
-                  <span style={{ fontWeight: "bold" }}>
-                    The destination’s pet-friendliness:
-                  </span>{" "}
-                  Some cities offer more pet-friendly offerings compared to
-                  others. For instance, San Diego is considered one of the most
-                  pet-friendly cities in California, so San Diego hotels get a
-                  bump in Romingo Score.
-                </li>
-              </ul>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ textAlign: "left", lineHeight: 2 }}
+              >
+                <ul>
+                  <li>
+                    <span style={{ fontWeight: "bold" }}>
+                      Location and walkability:
+                    </span>{" "}
+                    proximity to pet-friendly shopping centers, restaurants,
+                    cafés, patios, bars, breweries, transportation, and other
+                    activities
+                  </li>
+                  <li>
+                    <span style={{ fontWeight: "bold" }}>Proximity:</span> to
+                    dog parks, dog restaurants and cafés, hikes, and potty
+                    relief areas
+                  </li>
+                  <li>
+                    <span style={{ fontWeight: "bold" }}>
+                      Hotel amenities and features for you:
+                    </span>{" "}
+                    In-room dining, pool and jacuzzi, fitness center, spa, and
+                    more!
+                  </li>
+                  <li>
+                    <span style={{ fontWeight: "bold" }}>
+                      Hotel amenities and features for your pup:{" "}
+                    </span>
+                    On-site dog run, dog park, pet welcome programs,
+                    towels/robes, dog room service, etc.
+                  </li>
+                  <li>
+                    <span style={{ fontWeight: "bold" }}>Guest reviews:</span>{" "}
+                    Compiled and ranked from previous stays
+                  </li>
+                  <li>
+                    <span style={{ fontWeight: "bold" }}>
+                      The destination’s pet-friendliness:
+                    </span>{" "}
+                    Some cities offer more pet-friendly offerings compared to
+                    others. For instance, San Diego is considered one of the
+                    most pet-friendly cities in California, so San Diego hotels
+                    get a bump in Romingo Score.
+                  </li>
+                </ul>
+              </Typography>
             </Typography>
             <Typography
               variant="body1"

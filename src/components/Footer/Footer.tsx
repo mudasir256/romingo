@@ -342,7 +342,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               edge="start"
               sx={{ mr: 1, color: "black" }}
               aria-label="menu"
-              href="https://www.facebook.com/RomingoTravel"
+              href="https://www.facebook.com/RomingoTravel/"
               target="_blank"
             >
               <FacebookIcon />
