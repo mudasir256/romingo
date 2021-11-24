@@ -12,16 +12,24 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
-
   const [priceArr, setPriceArr] = useState<
     {
       label: string;
       price: number;
     }[]
   >([]);
+  const [feesIncluded, setFeesIncluded] = useState("");
 
   useEffect(() => {
     const tmp = [];
+
+    if (detail?.room?.room?.feesIncluded) {
+      setFeesIncluded("*Includes all taxes and fees");
+    } else {
+      setFeesIncluded(
+        "*Some mandatory fees (ex. resort fee or amenity fee) are due at the property. Contact the hotel for more details."
+      );
+    }
 
     tmp.push({
       label: "Average Price Per Night",
@@ -43,6 +51,7 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   }, [detail]);
 
   const detailsLen = priceArr.length;
+  console.log(detail);
 
   return (
     <Box
@@ -148,6 +157,9 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
           );
         }
       })}
+      <Typography variant="caption" sx={{ lineHeight: 1 }}>
+        {feesIncluded}
+      </Typography>
     </Box>
   );
 };

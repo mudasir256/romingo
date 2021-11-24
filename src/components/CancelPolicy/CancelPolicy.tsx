@@ -108,11 +108,10 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 </Typography>
               </Box>
               <Typography
-                variant="body2"
+                variant="caption"
                 sx={{
-                  mt: 2,
-                  textAlign: "right",
-                  fontSize: "80%",
+                  mt: 1,
+                  textAlign: "left",
                   color: "text.light",
                 }}
               >
