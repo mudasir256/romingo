@@ -97,12 +97,12 @@ const FooterMenus = {
   blog: [
     {
       text: "Romingo Blog",
-      link: "https://romingo.com/blog",
+      link: "https://blog.romingo.com",
       target: "_blank",
     },
     {
       text: "Top Travel Tips",
-      link: "https://romingo.com/tag/traveltips/",
+      link: "https://blog.romingo.com/tag/traveltips/",
       target: "_blank",
     },
   ],
