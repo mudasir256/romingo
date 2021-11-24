@@ -53,6 +53,7 @@ const CheckoutPage: FC<Props> = () => {
     });
     window.Intercom("update");
   }, []);
+
   return (
     <>
       <ScrollToTop />

@@ -95,20 +95,8 @@ interface Props {
 const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelId = props.match.params.id;
   const search = useSelector((state: any) => state.searchReducer.search);
-  const hotelList = useSelector((state: any) => state.hotelListReducer.hotels);
-  const dispatch: Dispatch<any> = useDispatch();
 
-  useEffect(() => {
-    for (let i = 0; i < hotelList.length; i++) {
-      if (hotelList[i].id === hotelId) {
-        dispatch(
-          setHotel({
-            ...hotelList[i],
-          })
-        );
-      }
-    }
-  }, [hotelList]);
+  const dispatch: Dispatch<any> = useDispatch();
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
@@ -181,6 +169,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   useEffect(() => {
     if (data && data?.property) {
+      dispatch(setHotel(data.property));
       setName(data.property.name);
       setLocation({
         address: data.property.addressLine1,
