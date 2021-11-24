@@ -191,7 +191,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               {roomList.map((room, key) => {
                 return (
                   <MenuItem value={room.value} key={key}>
-                    {room.description}
+                    {room?.description.length > 0 ? room.description : "Room"}
                   </MenuItem>
                 );
               })}

@@ -169,7 +169,9 @@ const RoomCard: FC<Props> = ({
     });
 
     roomDescription = (type ? type + "\n" : "") + roomDescription;
-
+    if (roomDescription.length === 0) {
+      roomDescription = "Room";
+    }
     setRoomTitle(roomDescription);
   }, []);
   return (

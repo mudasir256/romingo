@@ -222,7 +222,7 @@ const BookingManageCard: FC<BookingCardProps> = ({
                 fontWeight: "bold",
               }}
             >
-              {roomType}
+              {roomType ? roomType : "Room"}
             </Typography>
           </Box>
         </Box>

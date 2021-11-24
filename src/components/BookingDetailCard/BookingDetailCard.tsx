@@ -168,7 +168,7 @@ const BookingDetailCard: FC = () => {
             paddingLeft: "8px",
           }}
         >
-          {roomType}
+          {roomType ? roomType : "Room"}
         </Typography>
       </Box>
     </Box>
