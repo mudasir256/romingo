@@ -49,7 +49,7 @@ const RomingoScorePage: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               Before you book with Romingo, or if you’re contemplating whether
               Romingo may be the right online travel platform for you, let’s get
@@ -84,7 +84,11 @@ const RomingoScorePage: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2, mb: 4 }}
+              sx={{
+                textAlign: { xs: "left", md: "justify" },
+                lineHeight: 2,
+                mb: 4,
+              }}
             >
               Our dog-loving, pet-friendly experts developed the Romingo Score
               to redefine what pet-friendly truly means. With Romingo, dogs
@@ -137,7 +141,7 @@ const RomingoScorePage: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               In a nutshell, the Romingo Score algorithm rates a hotel on its
               level of pet-friendliness based on a wide array of factors. But
@@ -195,7 +199,7 @@ const RomingoScorePage: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               Our goal with the Romingo Score is to help you navigate which
               pet-friendly accommodation is the most suitable for you and your
@@ -207,7 +211,7 @@ const RomingoScorePage: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               With the Romingo Score and Romingo Guarantee, we hope to make your
               travel experience hassle-free, pleasant, and luxurious. Not every

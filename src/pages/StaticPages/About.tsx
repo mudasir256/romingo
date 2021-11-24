@@ -50,7 +50,7 @@ const About: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               As a California native, there is nothing as relaxing and
               refreshing as driving up and down the California Coastline. Travel
@@ -126,7 +126,7 @@ const About: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               One thing has always stood in our way when planning those restful
               getaways; finding places that will allow Maddie. I spent countless
@@ -160,7 +160,7 @@ const About: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               Most hotels have weight and/or breed restrictions, or they charge
               expensive pet fees. Many do not even provide dog beds and bowls! I
@@ -176,7 +176,7 @@ const About: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               I have spent a long career in the hospitality industry, working
               for, and with, small and large hotels for nearly two decades. I
@@ -193,7 +193,7 @@ const About: FC = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               So I set out to change the reality of travelling with dogs, for
               myself and for dog owners across the world. We reached out to pet
