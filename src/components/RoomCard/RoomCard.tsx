@@ -294,6 +294,7 @@ const RoomCard: FC<Props> = ({
             fontSize: "1.1rem",
             letterSpacing: 0,
             whiteSpace: "pre-line",
+            textTransform: "capitalize",
           }}
         >
           {roomTitle}
@@ -304,12 +305,7 @@ const RoomCard: FC<Props> = ({
             height: "100%",
           }}
         >
-          <ReadMore
-            text={desc && desc.toLowerCase()}
-            length={100}
-            small
-            justify
-          />
+          <ReadMore text={desc} length={100} small justify />
           {amenities.length > 0 && (
             <>
               <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
