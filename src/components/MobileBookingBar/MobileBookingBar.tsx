@@ -85,6 +85,10 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
     history.push("/checkout");
   };
 
+  const handleRoomChange = (roomValue: string) => {
+    setRoomType(roomValue);
+  };
+
   const handleChange = (
     roomValue: string,
     dateRange: RangeInput<Date | null>,
@@ -257,7 +261,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
           }}
         >
           <Typography variant="h5" color="primary">
-            Edit Your Booking
+            Edit Booking Variables
           </Typography>
           <IconButton
             aria-label="close"
@@ -285,8 +289,9 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
               roomType,
               occupants,
             }}
-            pricePerNight={selectedRoom.room.averagePrice}
+            pricePerNight={selectedRoom?.room?.averagePrice}
             handleClose={handleClose}
+            handleRoomChange={handleRoomChange}
           ></MobileBookingForm>
         </DialogContent>
       </Dialog>

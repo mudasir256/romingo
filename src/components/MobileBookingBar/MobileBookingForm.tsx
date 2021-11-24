@@ -29,12 +29,17 @@ interface ChangeFunc {
   ): void;
 }
 
+interface ChangeRoom {
+  (roomType: string): void;
+}
+
 interface Props {
   sx?: CSSObject;
   roomList: {
     value: number;
     description: string;
   }[];
+  handleRoomChange: ChangeRoom;
   handleChange: ChangeFunc;
   initialValue: {
     value: RangeInput<Date | null>;
@@ -54,6 +59,7 @@ const MobileBookingForm: FC<Props> = ({
   roomList,
   initialValue,
   handleChange,
+  handleRoomChange,
   pricePerNight,
   handleClose,
 }) => {
@@ -111,6 +117,7 @@ const MobileBookingForm: FC<Props> = ({
               value={roomType}
               onChange={(e) => {
                 setRoomType(e.target.value);
+                handleRoomChange(e.target.value);
               }}
               label="Room Type"
             >
