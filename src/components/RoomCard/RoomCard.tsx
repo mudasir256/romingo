@@ -617,8 +617,8 @@ const RoomCard: FC<Props> = ({
           >
             <Typography variant="body2" sx={{ fontSize: "70%", lineHeight: 1 }}>
               {feesIncluded
-                ? "*Includes all taxes and fees"
-                : "*Some fees due at property"}
+                ? "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
+                : "*Includes all taxes. This Hotel may charge a resort or amenity fee at check-in."}
             </Typography>
           </Box>
           <Button

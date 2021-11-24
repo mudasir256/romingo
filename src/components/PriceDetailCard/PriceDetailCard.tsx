@@ -24,10 +24,12 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
     const tmp = [];
 
     if (detail?.room?.room?.feesIncluded) {
-      setFeesIncluded("*Includes all taxes and fees");
+      setFeesIncluded(
+        "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
+      );
     } else {
       setFeesIncluded(
-        "*Some mandatory fees (ex. resort fee or amenity fee) are due at the property. Contact the hotel for more details."
+        "*Includes all taxes. This Hotel may charge a resort or amenity fee, which you pay to the Hotel at check-in. These fees are not included in the amount above."
       );
     }
 
