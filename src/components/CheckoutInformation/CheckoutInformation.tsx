@@ -189,14 +189,14 @@ const CheckoutInformation: FC<Props> = ({
       Array.from(Array(occupants.adults)).forEach((_, i) => {
         if (i === 0) {
           adults.push({
-            firstName: checkoutForm.firstName,
-            lastName: checkoutForm.lastName,
+            firstName: checkoutForm.firstName.trim(),
+            lastName: checkoutForm.lastName.trim(),
           });
         } else {
           const guestId = String.fromCharCode(64 + i);
           adults.push({
             firstName: `Adult${guestId}`,
-            lastName: checkoutForm.lastName,
+            lastName: checkoutForm.lastName.trim(),
           });
         }
       });
@@ -206,7 +206,7 @@ const CheckoutInformation: FC<Props> = ({
           const childId = String.fromCharCode(65 + i);
           children.push({
             firstName: `Child${childId}`,
-            lastName: checkoutForm.lastName,
+            lastName: checkoutForm.lastName.trim(),
             age: occupants.childrenAge[i],
           });
         });
