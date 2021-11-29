@@ -5,7 +5,6 @@ import routes from "./routes";
 import { authService } from "./services/authService.js";
 import ErrorPage from "./pages/ErrorPage";
 
-
 // eslint-disable-next-line
 const AuthGuards = (props: any) => {
   const token = authService.getToken();
@@ -18,26 +17,33 @@ const AuthGuards = (props: any) => {
 
 const App: FC = () => {
   return (
-      <Switch>
-        {routes.map((route, key) => {
-          if (!route.requireAuth)
-            return (
-              <Route
-                exact
-                path={route.path}
-                component={route.component}
-                key={key}
-              />
-            );
-          else
-            return (
-              <AuthGuards key={key}>
-                <Route exact path={route.path} component={route.component} />
-              </AuthGuards>
-            );
-        })}
-        <Route component={ErrorPage} />
-      </Switch>
+    <Switch>
+      {routes.map((route, key) => {
+        if (!route.requireAuth)
+          return (
+            <Route
+              exact
+              path={route.path}
+              component={route.component}
+              key={key}
+            />
+          );
+        else
+          return (
+            <AuthGuards key={key}>
+              <Route exact path={route.path} component={route.component} />
+            </AuthGuards>
+          );
+      })}
+      <Route
+        path="/blog"
+        component={() => {
+          window.location.replace("https://blog.romingo.com/");
+          return null;
+        }}
+      />
+      <Route component={ErrorPage} />
+    </Switch>
   );
 };
 
