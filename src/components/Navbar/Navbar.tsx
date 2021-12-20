@@ -1,23 +1,10 @@
-import React, { FC, useState, MouseEventHandler } from "react";
-import Box from "@mui/material/Box";
-import { CSSObject } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import React, { FC, useState, useEffect, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
-import Link from "@mui/material/Link";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import { PopupButton } from "@typeform/embed-react";
-import IconButton from "@mui/material/IconButton";
-import Hidden from "@mui/material/Hidden";
+import { CircularProgress, Box, CSSObject, useTheme, Link, AppBar, Popover, Grid, Toolbar, IconButton, Hidden, Dialog, DialogContent, DialogTitle, Typography, useMediaQuery, TextField, Button } from '@mui/material'
+import { Cancel } from '@mui/icons-material'
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import CloseIcon from "@mui/icons-material/Close";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
-
 import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
@@ -47,77 +34,35 @@ const Navbar: FC<Props> = ({ sx }) => {
   const handleClose = () => {
     setShowLogin(false);
     setSelectDialog(LOGIN);
-  };
+  }
 
   return (
     <>
-      <AppBar
-        position="fixed"
-        sx={{
-          backgroundColor: "white",
-          boxShadow: 2,
-        }}
-      >
-        <Toolbar
-          sx={{
-            display: "block",
-            position: "relative",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              minHeight: { xs: "56px", sm: "64px" },
-            }}
-          >
+      <AppBar position="fixed" sx={{ backgroundColor: "white", boxShadow: 2 }}>
+        <Toolbar sx={{ display: "block", position: "relative" }}>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: { xs: "56px", sm: "64px" }}}>
             <Hidden smDown>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <IconButton
-                  edge="start"
-                  sx={{ mr: 1, color: "black" }}
-                  aria-label="menu"
-                  href="https://www.facebook.com/RomingoTravel/"
-                  target="_blank"
-                >
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <IconButton edge="start" sx={{ mr: 1, color: "black" }} aria-label="menu" href="https://www.facebook.com/RomingoTravel/" target="_blank">
                   <FacebookIcon />
                 </IconButton>
-                <IconButton
-                  edge="start"
-                  sx={{ mr: 1, color: "black" }}
-                  aria-label="menu"
-                  href="https://www.instagram.com/romingotravel/"
-                  target="_blank"
-                >
+                <IconButton edge="start" sx={{ mr: 1, color: "black" }} aria-label="menu" href="https://www.instagram.com/romingotravel/" target="_blank">
                   <InstagramIcon />
                 </IconButton>
-                <Link>
-                  <PopupButton
-                    id="zdVrRtxT"
-                    style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
-                      margin: 0,
-                      marginBottom: -5,
-                    }}
-                  >
-                    <Link>
-                      <Typography variant="body2" color="primary">
-                        List Your Property
-                      </Typography>
-                    </Link>
-                  </PopupButton>
+                <Link href='/list-your-property'>
+                  <Typography variant="body2" color="primary">
+                    List Your Property
+                  </Typography>
                 </Link>
+
               </Box>
+              <Box sx={{ top: 0, left: "calc(50% - 62.5px)", height: "100%", width: "180px", textAlign: "center", display: "flex" }}>
+                <Box component="img" src={"/images/Romingo_Logo_Black.svg"} alt="Logo" draggable="false" onClick={() => history.push("/")} sx={{maxWidth: "180px", margin: "auto auto", cursor: "pointer" }}/>
+              </Box>
+              <RomingoDeals />
             </Hidden>
+
+
             <Hidden smUp>
               <Box
                 component="img"
@@ -141,34 +86,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               Manage Reservation
             </Button> */}
           </Box>
-          <Hidden smDown>
-            <Box
-              sx={{
-                position: "absolute",
-                top: 0,
-                left: "calc(50% - 62.5px)",
-                height: "100%",
-                width: "180px",
-                textAlign: "center",
-                display: "flex",
-              }}
-            >
-              <Box
-                component="img"
-                src={"/images/Romingo_Logo_Black.svg"}
-                alt="Logo"
-                draggable="false"
-                onClick={() => {
-                  history.push("/");
-                }}
-                sx={{
-                  maxWidth: "180px",
-                  margin: "auto auto",
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
-          </Hidden>
+
         </Toolbar>
       </AppBar>
       <Dialog
@@ -302,5 +220,94 @@ const Navbar: FC<Props> = ({ sx }) => {
     </>
   );
 };
+
+
+const RomingoDeals = () => {
+  const [showDealsPopup, setShowDealsPopup] = useState(false)
+  const [email, setEmail] = useState('')
+  const [emailIsValid, setEmailIsValid] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [emailSubmitted, setEmailSubmitted] = useState(false)
+
+  useEffect(() => {
+    setEmailIsValid(/^\S+@\S+\.\S+$/.test(email))
+  }, [email])
+
+  useEffect(() => {
+    emailSubmitted && setIsSubmitting(false)
+    !emailSubmitted && setEmail('')
+  }, [emailSubmitted])
+
+  useEffect(() => {
+    if (!showDealsPopup) setTimeout(() => {
+      setEmailSubmitted(false)
+    }, 250)
+
+  }, [showDealsPopup])
+
+  const submitEmail = () => {
+    setIsSubmitting(true)
+    setTimeout(() => {
+      fetch(`https://romingo.us6.list-manage.com/subscribe/post-json?u=585083137c3540a7371e3a74f&id=d4d3932414&EMAIL=${encodeURIComponent(email)}&c=?`,{ mode: "no-cors", method: "POST",}).then((res) => {
+        setEmailSubmitted(true)
+      })
+    }, 500)
+  }
+
+  return <>
+    <Popover
+      onClose={() => setShowDealsPopup(false)}
+      open={showDealsPopup}
+      PaperProps={{sx: { borderRadius: '12px' }}}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    >
+      <Grid container sx={{width: '393px', minHeight: '130px', display: 'flex', overflow: 'hidden'}}>
+
+        <Grid item xs={12}
+          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#00000099', background: '#D9F7FC', borderBottom: '3px solid #CAE9EE', p: '.5rem .5rem', pb: '.25rem', fontFamily: 'Montserrat', fontWeight: 900, fontSize: '.9rem' }}
+        >
+          Romingo Deals: Exlusive Rates and More!
+          <Cancel onClick={() => setShowDealsPopup(false)} sx={{ cursor: 'pointer', transition: 'all .15s linear', '&:hover': { color: '#03989E' } }} />
+        </Grid>
+        {emailSubmitted ?
+          <Grid item xs={12} sx={{ p: '.5rem .5rem .5rem .5rem', fontFamily: 'Work Sans', color: '#03989E', textAlign: 'center'}}>
+          Awesome! You&lsquo;re subscribed to deals, tips, guides, and all the other great content from Romingo Insiders!
+          </Grid>
+          :
+          <>
+            <Grid item xs={12} sx={{ p: '.5rem .5rem .5rem .5rem', fontFamily: 'Work Sans', color: '#03989E'  }}>
+            Sign up with your email for flash sales, last-minute deals, and Romingo exclusives!
+            </Grid>
+            { isSubmitting && <Grid sx={{ position: 'absolute', zIndex: 9,  display: 'flex', alignItems: 'center', justifyContent: 'center', top: '0px', right: '0', left: '0', bottom: '0px', background: '#ffffff80', backdropFilter: 'blur(1px)' }}>
+              <CircularProgress />
+            </Grid>}
+            <Grid item xs={12} sx={{ p: '.25rem .5rem .5rem .5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+              <TextField
+                variant='outlined'
+                color='primary'
+                placeholder='Email Address'
+                size='small'
+                value={email}
+                sx={{ outline: 'none', fontSize: '.8rem' }}
+                InputProps={{sx: { fontSize: '.5rem', maxHeight: '30px', width: '290px', outline: 'none' }}}
+                onChange={e => setEmail(e.target.value)}
+
+              />
+              <Button onClick={submitEmail} disabled={(!emailIsValid) || isSubmitting} size='small' variant='contained' sx={{ fontWeight: 600 }}>
+                Sign up!
+              </Button>
+            </Grid>
+          </>
+        }
+      </Grid>
+    </Popover>
+    <Link onClick={() => setShowDealsPopup(true)} sx={{ cursor: 'pointer'}}>
+    <Typography variant="body2" color="primary">
+      Romingo Deals
+    </Typography>
+  </Link>
+  </>
+}
+
 
 export default Navbar;

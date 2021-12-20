@@ -76,6 +76,11 @@ const FooterMenus = {
       link: "/romingo-score",
       target: "",
     },
+    {
+      text: "RedRover Partnership",
+      link: "/romingo-partners",
+      target: "",
+    },
   ],
   contact: [
     {
@@ -327,7 +332,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
             <Typography variant="body2" color="#ccc">
               <PetsIcon sx={{ fontSize: "13px", mx: 0.2, mb: -0.1 }} />+
               <HotelIcon sx={{ fontSize: "15px", mx: 0.2, mb: -0.3 }} />=
-              <FavoriteIcon sx={{ fontSize: "15px", mx: 0.2, mb: -0.3 }} />
+              <FavoriteIcon onClick={() => window.location.href = '/romingo-partners'} sx={{ fontSize: "15px", mx: 0.2, mb: -0.3, '& :hover': { color: '#03989E', cursor: 'pointer'} }} />
             </Typography>
           </Hidden>
         </Box>

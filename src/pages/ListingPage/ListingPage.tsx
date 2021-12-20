@@ -25,10 +25,7 @@ import CustomToast from "../../components/UI/CustomToast";
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
-import {
-  GetHotelBySearch,
-  GetHotelRackBySearch,
-} from "../../constants/constants";
+import { GetHotelBySearch, GetHotelRackBySearch } from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 

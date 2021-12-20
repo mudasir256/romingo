@@ -12,7 +12,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -351,6 +350,8 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                 >
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateRangePicker
+                      inputFormat="MMM dd, yyyy"
+                      disableMaskedInput={true}
                       open={open}
                       onAccept={() => {
                         setIsAccept(true);
@@ -372,7 +373,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                       allowSameDateSelection
                       calendars={1}
                       clearable={true}
-                      value={checkDate}
+                      value={checkDate || null}
                       minDate={new Date()}
                       onChange={(newValue) => {
                         setFormError("");

@@ -1,11 +1,10 @@
-import { FC } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { FC, useEffect, useState } from "react"
+import { Route, Switch, Redirect } from "react-router-dom"
+import routes from "./routes"
+import { authService } from "./services/authService.js"
+import ErrorPage from "./pages/ErrorPage"
+import TagManager from 'react-gtm-module'
 
-import routes from "./routes";
-import { authService } from "./services/authService.js";
-import ErrorPage from "./pages/ErrorPage";
-
-// eslint-disable-next-line
 const AuthGuards = (props: any) => {
   const token = authService.getToken();
   if (token && props.children) {
@@ -15,7 +14,16 @@ const AuthGuards = (props: any) => {
   return <Redirect to={"/login"} />;
 };
 
+const randomNumber = (max: number) => Math.floor(Math.random() * max)
+
 const App: FC = () => {
+  const [variant] = useState((localStorage.getItem('ROMINGO_EXPERIMENT_VAR') || randomNumber(5) ))
+
+  useEffect(() => {
+    localStorage.setItem('ROMINGO_EXPERIMENT_VAR', variant.toString())
+    TagManager.initialize({ gtmId: 'GTM-MQC9J5B', dataLayer: { experimentVar: variant } })
+  }, [])
+
   return (
     <Switch>
       {routes.map((route, key) => {
@@ -35,9 +43,7 @@ const App: FC = () => {
             </AuthGuards>
           );
       })}
-      <Route
-        path="/blog"
-        component={() => {
+      <Route path="/blog" component={() => {
           window.location.replace("https://blog.romingo.com/");
           return null;
         }}
