@@ -8,7 +8,6 @@ import { Box, CSSObject, Container, Link, Button, TextField, Paper, Grid, Typogr
 import { ChevronLeft, ChevronRight } from "@mui/icons-material"
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
-import TagManager from 'react-gtm-module'
 import { gql, useQuery } from "@apollo/client";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -202,15 +201,15 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gridAutoFlow: { xs: "column", lg: "column", }, overflow: "auto hidden", pb: 4, px: 4, scrollSnapType: "x",}}>
+            <Grid container spacing={3} sx={{ display: { xs: "grid", xl: "flex" }, gridAutoFlow: { xs: "column", lg: "column", }, overflow: "auto hidden", pb: 4, px: 4, scrollSnapType: "x",}}>
               {nearCities.map((nearCity, key) => {
                 return (
-                  <Grid item xs={12} sm={6} lg={2} key={key}>
-                    <Box sx={{ minWidth: "250px", }}>
+                  <Grid item xs={12} sm={6} lg={4} xl={2} key={key} >
+                    <Box sx={{ minWidth: {xs: "250px", xl: '200px'  }, }}>
                       <Link href="" onClick={() => history.push(nearCity.route)} sx={{ textDecoration: "none", }}>
                         <Box sx={{ borderRadius: 3, boxShadow: 2, backgroundColor: "white", }}>
                           <Box component="img" src={nearCity.img} alt="background" draggable="false" sx={{ objectFit: "cover", width: "100%", height: "240px", borderTopLeftRadius: 12, borderTopRightRadius: 12, }}/>
-                          <Typography variant="h6" sx={{ mt: 2, textAlign: "center", }}>
+                          <Typography variant="h6" sx={{ mt: 2, textAlign: "center" }}>
                             {nearCity.city}
                           </Typography>
                           <Typography variant="body1" sx={{ textAlign: "center", pb: 2, mb: 2, }}>
