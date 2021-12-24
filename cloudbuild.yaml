@@ -16,4 +16,4 @@ steps:
       - "REACT_APP_ENDPOINT=https://dev.graphql.romingo.com/graphql"
   # deploy the service
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
-    args: ["app", "deploy", "--appyaml", "app.dev.yaml"]
+    args: ["run", "deploy", "--appyaml", "app.dev.yaml"]
