@@ -107,7 +107,7 @@ const Map: FC<Props> = ({
                 animation={2}
                 key={key}
                 icon={{
-                  url: "/images/icons/hotel_marker.svg",
+                  url: "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/hotel_marker.svg",
                   scaledSize: new google.maps.Size(35, 35),
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {
@@ -129,7 +129,7 @@ const Map: FC<Props> = ({
                 animation={2}
                 key={key}
                 icon={{
-                  url: "/images/icons/google-map-potty-park.svg",
+                  url: "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/google-map-potty-park.svg",
                   scaledSize: new google.maps.Size(30, 30),
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {

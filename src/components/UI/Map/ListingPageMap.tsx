@@ -105,8 +105,8 @@ const ListingPageMap: FC<Props> = ({
               icon={{
                 url:
                   selectedMarker !== undefined && selectedMarker === key
-                    ? "/images/icons/black_marker.svg"
-                    : "/images/icons/white_marker.svg",
+                    ? "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/black_marker.svg"
+                    : "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/white_marker.svg",
                 scaledSize:
                   Math.round(marker.price).toString().length === 2
                     ? new google.maps.Size(37, 37)

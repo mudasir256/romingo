@@ -57,7 +57,7 @@ const Navbar: FC<Props> = ({ sx }) => {
 
               </Box>
               <Box sx={{ top: 0, left: "calc(50% - 62.5px)", height: "100%", width: "180px", textAlign: "center", display: "flex" }}>
-                <Box component="img" src={"/images/Romingo_Logo_Black.svg"} alt="Logo" draggable="false" onClick={() => history.push("/")} sx={{maxWidth: "180px", margin: "auto auto", cursor: "pointer" }}/>
+                <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"} alt="Logo" draggable="false" onClick={() => history.push("/")} sx={{maxWidth: "180px", margin: "auto auto", cursor: "pointer" }}/>
               </Box>
               <RomingoDeals />
             </Hidden>
@@ -66,7 +66,7 @@ const Navbar: FC<Props> = ({ sx }) => {
             <Hidden smUp>
               <Box
                 component="img"
-                src={"/images/Romingo_Logo_Black.svg"}
+                src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
                 alt="Logo"
                 onClick={() => {
                   history.push("/");

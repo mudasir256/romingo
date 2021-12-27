@@ -332,7 +332,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           >
             <Box
               component="img"
-              src={"/images/Romingo_Logo_Black.svg"}
+              src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
               alt="Logo"
               draggable="false"
               sx={{
@@ -517,7 +517,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             <FilterBar zoomed />
             <Box
               component="img"
-              src="/images/balcony-dog.jpeg"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
               alt={"No Properties Found"}
               sx={{
                 objectFit: "cover",

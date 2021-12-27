@@ -18,7 +18,7 @@ const SantaBarbara: FC = () => {
       <Navbar />
       <Box
         component="img"
-        src="/images/sb-hero.jpeg"
+        src="https://storage.googleapis.com/romingo-development-public/images/front-end/sb-hero.jpeg"
         alt={"Santa Barbara"}
         sx={{
           objectFit: "cover",
@@ -86,7 +86,7 @@ const SantaBarbara: FC = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/sb-2.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/sb-2.jpeg"
                 alt={"Sunny Santa Barbara"}
                 sx={{
                   objectFit: "cover",
@@ -100,7 +100,7 @@ const SantaBarbara: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/sb-1.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/sb-1.jpeg"
                 alt={"Sunny Santa Barbara"}
                 sx={{
                   objectFit: "cover",
@@ -114,7 +114,7 @@ const SantaBarbara: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/sb-3.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/sb-3.jpeg"
                 alt={"Sunny Santa Barbara"}
                 sx={{
                   objectFit: "cover",
@@ -129,7 +129,7 @@ const SantaBarbara: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/sb-4.jpeg"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/sb-4.jpeg"
               alt={"Sunny Santa Barbara"}
               sx={{
                 objectFit: "cover",

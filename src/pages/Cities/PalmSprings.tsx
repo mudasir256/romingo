@@ -18,7 +18,7 @@ const PalmSprings: FC = () => {
       <Navbar />
       <Box
         component="img"
-        src="/images/ps-hero.jpeg"
+        src="https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg"
         alt={"Palm Springs"}
         sx={{
           objectFit: "cover",
@@ -89,7 +89,7 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/ps-2.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/ps-2.jpeg"
                 alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
@@ -103,7 +103,7 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/ps-1.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/ps-1.jpeg"
                 alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
@@ -117,7 +117,7 @@ const PalmSprings: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/ps-3.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/ps-3.jpeg"
                 alt={"Palm Springs"}
                 sx={{
                   objectFit: "cover",
@@ -132,7 +132,7 @@ const PalmSprings: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/ps-4.jpeg"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/ps-4.jpeg"
               alt={"Palm Springs"}
               sx={{
                 objectFit: "cover",

@@ -1,11 +1,8 @@
-import Box from "@mui/material/Box";
-import Hidden from "@mui/material/Hidden";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
+import { Box, Hidden, Stack, Typography, Divider, Grid, Select, MenuItem } from "@mui/material"
+import { FilterList } from '@mui/icons-material'
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
-import React, { FC, useRef, useState, useEffect } from "react";
+import React, { SetStateAction, Dispatch as Dispatcher, FC, useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
@@ -229,25 +226,12 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         }}
       >
         {error && (
-          <CustomToast
-            open={true}
-            message={
-              "Something went wrong, please refresh the page and try again"
-            }
-            type="error"
-            duration={5000}
-          />
+          <CustomToast open={true} message={ "Something went wrong, please refresh the page and try again" } type="error" duration={5000} />
         )}
-        <Link
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            history.push("/");
-          }}
-        >
+        <Link href="#" onClick={(e) => { e.preventDefault(); history.push("/"); }} >
           <Box
             component="img"
-            src={"/images/Romingo_Logo_Black.svg"}
+            src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
             alt="Logo"
             draggable="false"
             sx={{
@@ -265,15 +249,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
           <FilterBar />
         </Hidden>
       </Box>
-      <Box
-        sx={{
-          backgroundColor: "white",
-          display: {
-            md: "flex",
-          },
-          height: { xs: height, md: "calc(100vh - 59px)" },
-        }}
-      >
+      <Box sx={{ backgroundColor: "white", display: { md: "flex", }, height: { xs: height, md: "calc(100vh - 59px)" }, }}>
         {loading ? (
           <Box
             sx={{

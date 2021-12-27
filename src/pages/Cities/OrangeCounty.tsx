@@ -18,7 +18,7 @@ const OrangeCounty: FC = () => {
       <Navbar />
       <Box
         component="img"
-        src="/images/oc-hero.jpeg"
+        src="https://storage.googleapis.com/romingo-development-public/images/front-end/oc-hero.jpeg"
         alt={"Orange County"}
         sx={{
           objectFit: "cover",
@@ -91,7 +91,7 @@ const OrangeCounty: FC = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/oc-2.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/oc-2.jpeg"
                 alt={"Sunny Orange County"}
                 sx={{
                   objectFit: "cover",
@@ -105,7 +105,7 @@ const OrangeCounty: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/oc-1.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/oc-1.jpeg"
                 alt={"Sunny Orange County"}
                 sx={{
                   objectFit: "cover",
@@ -119,7 +119,7 @@ const OrangeCounty: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/oc-3.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/oc-3.jpeg"
                 alt={"Sunny Orange County"}
                 sx={{
                   objectFit: "cover",
@@ -134,7 +134,7 @@ const OrangeCounty: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/oc-4.jpeg"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/oc-4.jpeg"
               alt={"Sunny Orange County"}
               sx={{
                 objectFit: "cover",

@@ -17,7 +17,7 @@ const RomingoScorePage: FC = () => {
         <Box sx={{ textAlign: "center" }}>
           <Box
             component="img"
-            src="/images/dog_boating.jpeg"
+            src="https://storage.googleapis.com/romingo-development-public/images/front-end/dog_boating.jpeg"
             alt={"Dog Boat Vibes"}
             sx={{
               objectFit: "cover",
@@ -107,7 +107,7 @@ const RomingoScorePage: FC = () => {
               <Grid item xs={12} md={6}>
                 <Box
                   component="img"
-                  src="/images/dog-glasses.jpeg"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/dog-glasses.jpeg"
                   alt={"Our Romingo Scorer"}
                   sx={{
                     objectFit: "cover",
@@ -121,7 +121,7 @@ const RomingoScorePage: FC = () => {
                 <Grid item xs={12} md={6}>
                   <Box
                     component="img"
-                    src="/images/dogs-beach.jpeg"
+                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/dogs-beach.jpeg"
                     alt={"Dog Beach"}
                     sx={{
                       objectFit: "cover",

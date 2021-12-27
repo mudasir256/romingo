@@ -18,7 +18,7 @@ const LosAngeles: FC = () => {
       <Navbar />
       <Box
         component="img"
-        src="/images/la-hero.jpeg"
+        src="https://storage.googleapis.com/romingo-development-public/images/front-end/la-hero.jpeg"
         alt={"Sunny Los Angeles"}
         sx={{
           objectFit: "cover",
@@ -91,7 +91,7 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/images/la-2.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/la-2.jpeg"
                 alt={"Sunny Los Angeles"}
                 sx={{
                   objectFit: "cover",
@@ -105,7 +105,7 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-1.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/la-1.jpeg"
                 alt={"Sunny Los Angeles"}
                 sx={{
                   objectFit: "cover",
@@ -119,7 +119,7 @@ const LosAngeles: FC = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src="/images/la-3.jpeg"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/la-3.jpeg"
                 alt={"Sunny Los Angeles"}
                 sx={{
                   objectFit: "cover",
@@ -134,7 +134,7 @@ const LosAngeles: FC = () => {
           <Grid item xs={12} md={4}>
             <Box
               component="img"
-              src="/images/la-4.jpeg"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg"
               alt={"Sunny Los Angeles"}
               sx={{
                 objectFit: "cover",

@@ -18,7 +18,7 @@ const About: FC = () => {
         <Box sx={{ textAlign: "center" }}>
           <Box
             component="img"
-            src="/images/maddie4.jpeg"
+            src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie4.jpeg"
             alt={"Maddie, The French Bulldog"}
             sx={{
               objectFit: "cover",
@@ -94,7 +94,7 @@ const About: FC = () => {
               <Grid item xs={12} md={6}>
                 <Box
                   component="img"
-                  src="/images/jonathan_zach_maddie.jpeg"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/jonathan_zach_maddie.jpeg"
                   alt={"Zach, Jonathan, and Maddie"}
                   sx={{
                     objectFit: "cover",
@@ -107,7 +107,7 @@ const About: FC = () => {
                 <Grid item xs={12} md={6}>
                   <Box
                     component="img"
-                    src="/images/maddie8.jpeg"
+                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie8.jpeg"
                     alt={"Maddie, Beach Bulldog"}
                     sx={{
                       objectFit: "cover",

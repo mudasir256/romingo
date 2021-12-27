@@ -14,7 +14,7 @@ const RedRoverPartner: FC = () => {
       <Navbar />
       <Container maxWidth="md" sx={{ mt: 10 }}>
         <Box sx={{ textAlign: "center" }}>
-          <Box component="img" src="/images/red-rover-logo.png" alt={"Red Rover - Bringing Animals from Crisis to Care"} sx={{ width: "100%", borderRadius: 5, }}/>
+          <Box component="img" src="https://storage.googleapis.com/romingo-development-public/images/front-end/red-rover-logo.png" alt={"Red Rover - Bringing Animals from Crisis to Care"} sx={{ width: "100%", borderRadius: 5, }}/>
             <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
               Romingo’s Partners
             </Typography>
@@ -40,11 +40,11 @@ const RedRoverPartner: FC = () => {
             </Box>
             <Grid container spacing={2} sx={{ textAlign: "center", display: "flex", alignItems: "center" }}>
               <Grid item xs={12} md={6}>
-                <Box component="img" src="/images/red-rover-dog.jpg" alt={"Sage, a rescued German Shepherd and also a psychiatric assistance dog."} sx={{ objectFit: "cover", width: "100%", height: '400px',  borderRadius: 5,  }} />
+                <Box component="img" src="https://storage.googleapis.com/romingo-development-public/images/front-end/red-rover-dog.jpg" alt={"Sage, a rescued German Shepherd and also a psychiatric assistance dog."} sx={{ objectFit: "cover", width: "100%", height: '400px',  borderRadius: 5,  }} />
               </Grid>
               <Hidden mdDown>
                 <Grid item xs={12} md={6}>
-                  <Box component="img" src="/images/red-rover-dog-in-cone.jpg" alt={"Sage, a rescued German Shepherd after her surgery."} sx={{ objectFit: "cover", width: "100%", height: '400px',borderRadius: 5,}}/>
+                  <Box component="img" src="https://storage.googleapis.com/romingo-development-public/images/front-end/red-rover-dog-in-cone.jpg" alt={"Sage, a rescued German Shepherd after her surgery."} sx={{ objectFit: "cover", width: "100%", height: '400px',borderRadius: 5,}}/>
                 </Grid>
               </Hidden>
             </Grid>

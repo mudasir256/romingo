@@ -41,12 +41,12 @@ const locationIds = [
 ]
 
 const bgImages = [
-  'url("/images/background-frenchie.jpeg")',
-  'url("/images/background-jackrussel.jpeg")',
-  'url("/images/woman-with-dog-in-snow.jpg")',
-  'url("/images/hotel-pool.jpeg")',
-  'url("/images/couple-pointing-with-dog.jpg")',
-  'url("/images/open-road.jpeg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/background-frenchie.jpeg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/background-jackrussel.jpeg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/woman-with-dog-in-snow.jpg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/hotel-pool.jpeg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/couple-pointing-with-dog.jpg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/open-road.jpeg")',
 ];
 
 const Header: FC<Props> = ({ sx }) => {

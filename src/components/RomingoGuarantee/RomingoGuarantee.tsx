@@ -10,7 +10,7 @@ const RomingoGuarantee: FC<Props> = ({ sx }) => {
   return (
     <Box
       component="img"
-      src={"/images/RomingoGuarantee1.svg"}
+      src={"https://storage.googleapis.com/romingo-development-public/images/front-end/RomingoGuarantee1.svg"}
       alt="Logo"
       draggable="false"
       sx={{

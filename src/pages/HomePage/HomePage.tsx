@@ -55,37 +55,37 @@ interface Props {
 
 const NearCities = [
   {
-    img: "/images/sf-hero.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/sf-hero.jpeg",
     city: "San Francisco",
     state: "California",
     route: "/san-francisco",
   },
   {
-    img: "/images/la-hero.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/la-hero.jpeg",
     city: "Los Angeles",
     state: "California",
     route: "/los-angeles",
   },
   {
-    img: "/images/sd-hero.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/sd-hero.jpeg",
     city: "San Diego",
     state: "California",
     route: "/san-diego",
   },
   {
-    img: "/images/oc-hero.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/oc-hero.jpeg",
     city: "Orange County",
     state: "California",
     route: "/orange-county",
   },
   {
-    img: "/images/ps-hero.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg",
     city: "Palm Springs",
     state: "California",
     route: "/palm-springs",
   },
   {
-    img: "/images/sb-hero.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/sb-hero.jpeg",
     city: "Santa Barbara",
     state: "California",
     route: "/santa-barbara",
@@ -95,7 +95,7 @@ const NearCities = [
 const FeatureHotels = [
   {
     img:
-      "https://storage.googleapis.com/romingo-production-public/images/Mar%20Monte%20Santa%20Barbara/Mar-Monte-Hotel-P206-Aerial-View-Beach.16x9.webp",
+      "https://storage.googleapis.com/romingo-development-public/images/Mar%20Monte%20Santa%20Barbara/Mar-Monte-Hotel-P206-Aerial-View-Beach.16x9.webp",
     name: "Mar Monte",
     city: "Santa Barbara, CA",
     cityId: "58b23325-2016-44ef-886f-67e962dab17f",
@@ -105,7 +105,7 @@ const FeatureHotels = [
   },
   {
     img:
-      "https://storage.googleapis.com/romingo-production-public/images/Pendry%20San%20Diego/Tamara%20Shelton%20-%20Pendry%20Exterior.jpg",
+      "https://storage.googleapis.com/romingo-development-public/images/Pendry%20San%20Diego/Tamara%20Shelton%20-%20Pendry%20Exterior.jpg",
     name: "Pendry San Diego",
     city: "San Diego, CA",
     cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
@@ -231,7 +231,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
         <Container>
           <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 4, pb: 6 }}>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }}>
-              <Box component="img" src={"./images/icons/bestAvailableRate.svg"} draggable="false" sx={{ width: "50%", }}/>
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bestAvailableRate.svg"} draggable="false" sx={{ width: "50%", }}/>
               <Typography variant="h6" color="text.secondary">
                 Best Available Rates
               </Typography>
@@ -241,7 +241,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }}>
-              <Box component="img" src={"./images/icons/noPetFees.svg"} draggable="false" sx={{ width: "50%", }} />
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/noPetFees.svg"} draggable="false" sx={{ width: "50%", }} />
               <Typography variant="h6" color="text.secondary">
                 No Hidden Pet Fees
               </Typography>
@@ -251,7 +251,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }}>
-              <Box component="img" src={"./images/icons/customService.svg"} draggable="false" sx={{ width: "50%", }} />
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/customService.svg"} draggable="false" sx={{ width: "50%", }} />
               <Typography variant="h6" color="text.secondary">
                 Happy Customer Service
               </Typography>
@@ -261,7 +261,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }} >
-              <Box component="img" src={"./images/icons/romingoScore.svg"} draggable="false" sx={{ width: "50%", }} />
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/romingoScore.svg"} draggable="false" sx={{ width: "50%", }} />
               <Typography variant="h6" color="text.secondary">
                 Helpful Romingo Scores
               </Typography>
@@ -346,7 +346,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
                   <Box sx={{ height: "100%", display: "flex", }}>
                     <Box
                       component="img"
-                      src="/images/golden-under-bed.jpeg"
+                      src="https://storage.googleapis.com/romingo-development-public/images/front-end/golden-under-bed.jpeg"
                       alt="Golden Retriever Under Covers"
                       draggable="false"
                       sx={{
@@ -749,7 +749,7 @@ const CustomerTestimonials = () => {
 const HotelCarousel = () => {
   const hotelLogos = [ "ace.jpg", "doubletree.png", "grand-hyatt.jpg", "hilton.png", "hotel-indigo.png", "hyatt-regency.png", "kimpton.png", "loews.jpg", "mondrian.png", "montage.png", "noble-house.png", "phg.jpg", "saguaro.jpg", "sofitel.png", "sonesta.png", "viceroy.jpg", "wyndham.png"].map((picture, index) => {
     return <Grid key={index} sx={{overflow: 'hidden', height: '60px',  m: '0rem 1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-     <img alt='hotel logo' style={{display: 'block', maxWidth: '100%', maxHeight: '60px' }} src={`/images/hotel-logos/${picture}`} />
+     <img alt='hotel logo' style={{display: 'block', maxWidth: '100%', maxHeight: '60px' }} src={`https://storage.googleapis.com/romingo-development-public/images/front-end/hotel-logos/${picture}`} />
    </Grid>
   })
 

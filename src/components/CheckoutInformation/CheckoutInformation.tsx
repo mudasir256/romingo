@@ -534,7 +534,7 @@ const CheckoutInformation: FC<Props> = ({
                 <Box sx={{ textAlign: "center" }}>
                   <Box
                     component="img"
-                    src="/images/safe-checkout.jpeg"
+                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/safe-checkout.jpeg"
                     draggable="false"
                     sx={{
                       width: "400px",

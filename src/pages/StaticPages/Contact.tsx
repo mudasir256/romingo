@@ -25,7 +25,7 @@ const Contact: FC = () => {
         <Box sx={{ textAlign: "center" }}>
           <Box
             component="img"
-            src="/images/romingo_ball.jpeg"
+            src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
             alt={"Romingo Tennis Ball"}
             sx={{
               objectFit: "cover",
@@ -141,7 +141,7 @@ const Contact: FC = () => {
               <Grid item xs={12} md={6}>
                 <Box
                   component="img"
-                  src="/images/lake-dog.jpeg"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/lake-dog.jpeg"
                   alt={"Dog on Lake"}
                   sx={{
                     objectFit: "cover",
@@ -155,7 +155,7 @@ const Contact: FC = () => {
               <Grid item xs={12} md={6}>
                 <Box
                   component="img"
-                  src="/images/kayak-dog.jpeg"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/kayak-dog.jpeg"
                   alt={"Kayak Dog"}
                   sx={{
                     objectFit: "cover",

@@ -108,7 +108,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
             </Typography>
             <Box
               component="img"
-              src="/images/romingo_ball.jpeg"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
               alt={"Romingo Tennis Ball"}
               sx={{
                 objectFit: "cover",
@@ -120,8 +120,8 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
           </Grid>
         </Grid>
       </Container>
-      {/* 
-        
+      {/*
+
       <Box
         sx={{
           pt: {

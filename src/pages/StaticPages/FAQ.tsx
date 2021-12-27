@@ -19,7 +19,7 @@ const FAQ: FC = () => {
         <Box sx={{ textAlign: "center" }}>
           <Box
             component="img"
-            src="/images/dog-car-window.jpeg"
+            src="https://storage.googleapis.com/romingo-development-public/images/front-end/dog-car-window.jpeg"
             alt={"Dog Window Down"}
             sx={{
               objectFit: "cover",
