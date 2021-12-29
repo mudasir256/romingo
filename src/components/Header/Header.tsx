@@ -124,8 +124,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
   const cities = useSelector((state: any) => state.cityListReducer.cities)
   const [selectedCity, setSelectedCity] = useState( search.city ? search.city : null)
   const [formError, setFormError] = useState("")
-  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([ search.checkIn ? search.checkIn : null, search.checkOut ? search.checkOut : null ])
-  const [occupants, setOccupants] = useState(search.occupants);
+  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([ search.checkIn ? search.checkIn : new Date(), search.checkOut ? search.checkOut : DateTime.local().plus({ days: 1 }).toJSDate() ])
+  const [occupants, setOccupants] = useState(search.occupants.dogs > 0 ? search.occupants : { adults: 2, children: 0, dogs: 1  });
   const matches = useMediaQuery('(max-width:800px)')
   const history = useHistory();
 

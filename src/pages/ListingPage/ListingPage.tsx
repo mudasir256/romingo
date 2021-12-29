@@ -50,6 +50,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   );
 
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
+  const [sortBy, setSortBy] = useState<string>('score')
 
   const selectedCity = cityList.filter(
     (city: any) => city.id === search.city
@@ -380,7 +381,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                     </Typography>
                   </>
                 ) : (
-                  cards.map((card: any, index: number) => (
+                  cards.sort((a:any, b:any) => a.romingoScore > b.romingoScore ? 1 : -1 ).map((card: any, index: number) => (
                     <ListingCard
                       key={card.id}
                       {...card}
@@ -442,7 +443,18 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             }}
             ref={ScrollBarRef}
           >
+
+
+
+
             <RomingoGuarantee sx={{ mb: 3 }} />
+            <SortBar sortBy={sortBy} setSortBy={setSortBy} />
+
+
+
+
+
+
             {loading ? (
               <Stack spacing={3} divider={<Divider variant="middle" />}>
                 {Array.from({ length: 6 }, (_, i: number) => (
@@ -463,7 +475,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
                     <FilterBar zoomed />
                   </>
                 ) : (
-                  cards.map((card: any, index: number) => (
+                  cards.sort((a:any, b:any) => (sortBy === 'score' ? a.romingoScore < b.romingoScore : sortBy === 'high' ? a.lowestAveragePrice < b.lowestAveragePrice : a.lowestAveragePrice > b.lowestAveragePrice) ? 1 : -1 ).map((card: any, index: number) => (
                     <Box
                       key={card.id}
                       ref={refArray[index]}
@@ -489,5 +501,31 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     </>
   );
 };
+
+interface SortBarProps {
+  sortBy: string;
+  setSortBy: Dispatcher<SetStateAction<string>>
+}
+
+
+const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
+
+  const { sortBy, setSortBy } = props
+
+  return <Grid sx={{ pb: '1rem', textAlign: 'right', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+    <Typography variant='body1' sx={{ mr: '1rem' }}>
+      FILTER:
+    </Typography>
+    <Select color='primary' value={sortBy} onChange={(e:any) => setSortBy(e.target.value)} style={{ textAlign: 'left', minWidth: '290px', maxHeight: '40px', borderRadius: '30px'}} startAdornment={<FilterList />}>
+      <MenuItem value="">
+        <em>None</em>
+      </MenuItem>
+      <MenuItem value='score'>&nbsp;&nbsp;Highest Romingo Score</MenuItem>
+      <MenuItem value='low'>&nbsp;&nbsp;Price: Low to High</MenuItem>
+      <MenuItem value='high'>&nbsp;&nbsp;Price: High to Low</MenuItem>
+    </Select>
+  </Grid>
+}
+
 
 export default ListingPage;

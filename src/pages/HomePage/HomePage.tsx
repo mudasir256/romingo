@@ -131,6 +131,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
+  const matches = useMediaQuery('(max-width:800px)')
   const { loading, error, data } = useQuery(
     gql`
       ${GetCities}
@@ -193,10 +194,10 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
       <Box sx={{ backgroundColor: "lightBackground.main", py: 6, backgroundPosition: "center center", backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100%"}}>
         <Grid container sx={{ ml: "calc(50% - 50vw)", mr: "calc(50% - 50vw)" }}>
           <Grid item xs={12}>
-            <Typography variant="h3" sx={{ color: "primary.main", textAlign: "center", }}>
+            <Typography variant={ matches? 'h4':'h3' } sx={{ color: "primary.main", textAlign: "center", maxWidth: '90%', margin: '0px auto' }}>
               Explore a Romingo City
             </Typography>
-            <Typography variant="h4" sx={{ color: "text.secondary", textAlign: "center", mb: 5, }}>
+            <Typography variant={ matches? 'h5': 'h4' } sx={{ color: "text.secondary", textAlign: "center", mb: 5 }}>
               Near (or far) from you
             </Typography>
           </Grid>
@@ -231,7 +232,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
         <Container>
           <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 4, pb: 6 }}>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }}>
-              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bestAvailableRate.svg"} draggable="false" sx={{ width: "50%", }}/>
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bestAvailableRate.svg"} draggable="false" sx={{ width: { xs: '35%', sm: "50%" }}}/>
               <Typography variant="h6" color="text.secondary">
                 Best Available Rates
               </Typography>
@@ -241,7 +242,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }}>
-              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/noPetFees.svg"} draggable="false" sx={{ width: "50%", }} />
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/noPetFees.svg"} draggable="false" sx={{ width: { xs: '35%', sm: "50%" }}} />
               <Typography variant="h6" color="text.secondary">
                 No Hidden Pet Fees
               </Typography>
@@ -251,7 +252,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }}>
-              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/customService.svg"} draggable="false" sx={{ width: "50%", }} />
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/customService.svg"} draggable="false" sx={{ width: { xs: '35%', sm: "50%" }}} />
               <Typography variant="h6" color="text.secondary">
                 Happy Customer Service
               </Typography>
@@ -261,7 +262,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center", }} >
-              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/romingoScore.svg"} draggable="false" sx={{ width: "50%", }} />
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/icons/romingoScore.svg"} draggable="false" sx={{ width: { xs: '35%', sm: "50%" }}} />
               <Typography variant="h6" color="text.secondary">
                 Helpful Romingo Scores
               </Typography>
@@ -275,44 +276,14 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
       </Box>
 
 
-      <Box
-        sx={{
-          position: "relative",
-          "&::before": {
-            content: '""',
-            background: "#fcf5f0",
-            opacity: 1,
-            backgroundSize: "cover",
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-          },
-        }}
-      >
-        <Container
-          maxWidth="lg"
-          sx={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+      <Box sx={{ position: "relative", "&::before": { content: '""', background: "#fcf5f0", opacity: 1, backgroundSize: "cover", position: "absolute", top: 0, right: 0, bottom: 0, left: 0, }, }}>
+        <Container maxWidth="lg" sx={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", }}>
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
-              <Typography
-                variant="h3"
-                sx={{
-                  color: "primary.main",
-                  textAlign: "center",
-                }}
-              >
+              <Typography variant={ matches? 'h4':'h3' } sx={{ color: "primary.main", textAlign: "center", }}>
                 Welcome to Romingo
               </Typography>
-              <Typography variant="h4" sx={{ color: "text.secondary", textAlign: "center", mb: 5, }}>
+              <Typography variant={ matches? 'h5':'h4' } sx={{ color: "text.secondary", textAlign: "center", mb: { xs: 0, sm: 5,  }}}>
                 Redefining pet-friendly travel
               </Typography>
             </Grid>
@@ -321,7 +292,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
                 <Grid item xs={12} sm={6}>
                   <Box sx={{ height: "100%", display: "flex", }}>
                     <Box sx={{ margin: "auto 0", padding: "10px", }}>
-                      <Typography variant="body1" color="text.secondary" sx={{ mt: 3, fontSize: "115%", textAlign: "justify" }}>
+                      <Typography variant="body1" color="text.secondary" sx={{ mb: { xs: 3 }, mt: 3, fontSize: "115%", textAlign: "justify" }}>
                         When you book your next trip with Romingo, you will receive:
                         <ul>
                           <li>
@@ -379,7 +350,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
       <Box sx={{ py: 6, backgroundPosition: "center center", backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100%", }}>
         <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
           <Grid item xs={12}>
-            <Typography variant="h3" sx={{ color: "primary.main", textAlign: "center", mb: 4, }}>
+            <Typography variant={ matches? 'h4':'h3' } sx={{ color: "primary.main", textAlign: "center", mb: 4, }}>
               Stay at a Romingo Favorite
             </Typography>
           </Grid>
@@ -500,38 +471,15 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
         >
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
-              <Typography
-                variant="h3"
-                sx={{
-                  color: "primary.main",
-                  textAlign: "center",
-                }}
-              >
+              <Typography variant={ matches ? 'h4' : 'h3'} sx={{ color: "primary.main", textAlign: "center", maxWidth: '95%', margin: '0px auto' }}>
                 Save Money &amp; Travel More
               </Typography>
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "text.secondary",
-                  textAlign: "center",
-                  mb: 2,
-                }}
-              >
+              <Typography variant={ matches ? 'h5' : 'h4'} sx={{ color: "text.secondary", textAlign: "center", mb: 2, }}>
                 Sign up for Romingo Insiders and get access to exclusive rates
                 and deals
               </Typography>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                maxWidth: "350px",
-                mx: "auto",
-              }}
-            >
+            <Grid item xs={12} sx={{ display: "flex", alignItems: "center", justifyContent: "center", maxWidth: "350px", mx: "auto", }}>
               {subscribed ? (
                 <Typography variant="body1" color="text.secondary">
                   Awesome! You&apos;re subscribed to deals, tips, guides, and
@@ -632,10 +580,7 @@ const CustomerTestimonials = () => {
   return <Box sx={{ backgroundColor: "secondary.lighter", py: 6, backgroundPosition: "center center", backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100%" }}>
     <Container maxWidth='md' sx={{ '& .carousel .control-dots': { display: 'flex', justifyContent: 'center', }}}>
       <Grid item xs={12}>
-        <Typography
-          variant="h3"
-          sx={{  color: "primary.main", textAlign: "center", mb: matches ? '3rem' : lg? '3rem' : '9rem' }}
-        >
+        <Typography variant={ matches? 'h4':'h3' } sx={{  color: "primary.main", textAlign: "center", mb: matches ? '3rem' : lg? '3rem' : '9rem' }}>
           Our Customer Reviews
         </Typography>
       </Grid>
@@ -649,6 +594,7 @@ const CustomerTestimonials = () => {
       </Grid>}
      <Carousel showThumbs={false} interval={2000} showArrows={false} showStatus={false} infiniteLoop={true}
         onChange={e => setCurrentCard(e)}
+        autoPlay
         selectedItem={currentCard}
         renderIndicator={(
           onClickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
@@ -669,75 +615,75 @@ const CustomerTestimonials = () => {
        </li>}
      >
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 5rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
             “My partner and I stayed at the Hyatt after we booked on
             Romingo. We brought our pup Lilly with us, and she loved the
             tennis ball that was waiting for her in our room. We will keep
             booking on Romingo in the future!”
           </Typography>
-          <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 600 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 600 }}>
             Hannah S., Sacramento, C
           </Typography>
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 2rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
               “We will definitely use Romingo again because their customer
               service is amazing. We had to cancel our plans very last minute,
               and their representative Stacy was so responsive and polite.”
             </Typography>
-            <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
+            <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Stephanie & Nate W., Denver, CO
             </Typography>
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
               “I love travelling with my golden retriever, Milo, but a lot of
               hotels have weight restrictions and expensive fees. I booked on
               Romingo and found amazing hotels in San Diego that allowed
               Milo, and I saved $100 in pet fees with Romingo.”
             </Typography>
-            <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
+            <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Jason L., Los Angeles, CA
             </Typography>
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 2rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
               “We don’t have a dog, but we still used Romingo because it had
               the lowest hotel rates out there. We stayed in a luxury 4-star San
               Francisco hotel for under $150/night!”
             </Typography>
-            <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
+            <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Jim & Patty N., Fresno, CA
             </Typography>
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
               “Romingo was so easy to use in planning my beach trip to Santa
               Barbara. Their helpful team of agents even sent me
               recommendations of places to eat and things to do.
             </Typography>
-            <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
+            <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Kendall M., San Diego, CA
             </Typography>
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
               “Other booking sites tack on extra fees such as “cleaning fees”
               and “service charges”. With Romingo, there were no hidden fees,
               and everyone at the Pendry Hotel in San Diego were extremely
               friendly and welcoming”
             </Typography>
-            <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
+            <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Mindy N., San Francisco, CA
             </Typography>
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
-          <Typography variant='h5' sx={{ fontWeight: 500, color: '#11111199',  mb: '1.5rem',  lineHeight: 1.4 }}>
+          <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199',  mb: '1.5rem',  lineHeight: 1.4 }}>
               “We road-tripped between SF and LA with our French bulldog,
               Mason. Romingo made it very convenient to book pet-friendly
               hotels”
             </Typography>
-            <Typography variant='h5' sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
+            <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Lynn M., Las Vegas, NV
             </Typography>
         </Paper>
@@ -747,6 +693,7 @@ const CustomerTestimonials = () => {
 }
 
 const HotelCarousel = () => {
+  const matches = useMediaQuery('(max-width:800px)')
   const hotelLogos = [ "ace.jpg", "doubletree.png", "grand-hyatt.jpg", "hilton.png", "hotel-indigo.png", "hyatt-regency.png", "kimpton.png", "loews.jpg", "mondrian.png", "montage.png", "noble-house.png", "phg.jpg", "saguaro.jpg", "sofitel.png", "sonesta.png", "viceroy.jpg", "wyndham.png"].map((picture, index) => {
     return <Grid key={index} sx={{overflow: 'hidden', height: '60px',  m: '0rem 1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
      <img alt='hotel logo' style={{display: 'block', maxWidth: '100%', maxHeight: '60px' }} src={`https://storage.googleapis.com/romingo-development-public/images/front-end/hotel-logos/${picture}`} />
@@ -762,18 +709,10 @@ const HotelCarousel = () => {
 
   return <Box sx={{ backgroundColor: "white", py: 6, backgroundPosition: "center center", backgroundSize: "cover", backgroundRepeat: "no-repeat", width: "100%", '& .carousel .slide': { minWidth: '15%'} , '& .carousel .control-dots': { display: 'flex', justifyContent: 'center', } }}>
     <Grid item xs={12}>
-      <Typography variant="h3"
-        sx={{  color: "primary.main", textAlign: "center", m: '0rem auto 1rem auto', maxWidth: '90%'}}
-      >
+      <Typography variant={ matches? 'h4':'h3' } sx={{  color: "primary.main", textAlign: "center", m: '0rem auto 1rem auto', maxWidth: '90%'}}>
         Proudly Partnered With
       </Typography>
-      <Typography variant="h4"
-        sx={{
-          color: "text.secondary",
-          textAlign: "center",
-          mb: 5,
-        }}
-      >
+      <Typography variant={ matches? 'h5':'h4' } sx={{ color: "text.secondary", textAlign: "center", mb: 5, }}>
       Your Favorite Hotels
       </Typography>
     </Grid>

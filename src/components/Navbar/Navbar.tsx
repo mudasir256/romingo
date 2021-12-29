@@ -76,6 +76,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
+              <RomingoDeals />
             </Hidden>
             {/* <Button
               variant="text"
@@ -261,7 +262,7 @@ const RomingoDeals = () => {
       PaperProps={{sx: { borderRadius: '12px' }}}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
-      <Grid container sx={{width: '393px', minHeight: '130px', display: 'flex', overflow: 'hidden'}}>
+      <Grid container sx={{width: { xs: '100%', sm: '393px' }, minHeight: '130px', display: 'flex', overflow: 'hidden'}}>
 
         <Grid item xs={12}
           sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#00000099', background: '#D9F7FC', borderBottom: '3px solid #CAE9EE', p: '.5rem .5rem', pb: '.25rem', fontFamily: 'Montserrat', fontWeight: 900, fontSize: '.9rem' }}
@@ -275,13 +276,13 @@ const RomingoDeals = () => {
           </Grid>
           :
           <>
-            <Grid item xs={12} sx={{ p: '.5rem .5rem .5rem .5rem', fontFamily: 'Work Sans', color: '#03989E'  }}>
-            Sign up with your email for flash sales, last-minute deals, and Romingo exclusives!
+            <Grid item xs={12} sx={{ p: '.5rem .5rem .125rem .5rem', textAlign: 'center', fontFamily: 'Work Sans', color: '#03989E'  }}>
+            Sign up with your email below:
             </Grid>
             { isSubmitting && <Grid sx={{ position: 'absolute', zIndex: 9,  display: 'flex', alignItems: 'center', justifyContent: 'center', top: '0px', right: '0', left: '0', bottom: '0px', background: '#ffffff80', backdropFilter: 'blur(1px)' }}>
               <CircularProgress />
             </Grid>}
-            <Grid item xs={12} sx={{ p: '.25rem .5rem .5rem .5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+            <Grid item xs={12} sm={12} sx={{ p: '.25rem .5rem .5rem .5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
               <TextField
                 variant='outlined'
                 color='primary'
@@ -289,7 +290,7 @@ const RomingoDeals = () => {
                 size='small'
                 value={email}
                 sx={{ outline: 'none', fontSize: '.8rem' }}
-                InputProps={{sx: { fontSize: '.5rem', maxHeight: '30px', width: '290px', outline: 'none' }}}
+                InputProps={{sx: { fontSize: '.5rem', maxHeight: '30px', width: { xs: 'calc(100vw - 140px)', sm: '290px'  }, outline: 'none' }}}
                 onChange={e => setEmail(e.target.value)}
 
               />
