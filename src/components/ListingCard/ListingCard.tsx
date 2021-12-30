@@ -89,7 +89,7 @@ const ListingCard: FC<ListingCardProps> = ({
       </Box>
       <Link
         href="#"
-        onClick={(e) => {
+        onClick={(e: any) => {
           e.preventDefault();
           e.stopPropagation();
           !noLink && history.push("/details/" + id);
@@ -101,7 +101,7 @@ const ListingCard: FC<ListingCardProps> = ({
           sx={{
             pt: 1,
             px: { xs: mobileCardPadding, sm: 1.8 },
-            pb: { xs: mobileCardPadding, sm: 1.8 },
+            pb: { xs: mobileCardPadding, sm: '0rem' },
           }}
         >
           <Typography
@@ -133,59 +133,15 @@ const ListingCard: FC<ListingCardProps> = ({
               {addressLine1}, {city?.name}
             </Typography>
             <Chip icon={<LocationCityIcon />} label={neighborhood} />
-            <Box sx={{ mt: 3 }}>
-              <RomingoScore score={romingoScore} />
+            <Box sx={{ mt: 8, mb: -4, display: 'flex' }}>
+              <Check sx={{ fontSize: 15, color: "primary", mr: '.5rem', }}/>
+              <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
+                Free Cancellation
+              </Typography>
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                width: "100%",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  minWidth: 0,
-                  overflow: "hidden",
-                }}
-              >
-                {!!showAmenities && (
-                  <Stack
-                    sx={{ mt: 3, mr: 0.5, minWidth: 0, overflow: "hidden" }}
-                    spacing={0.5}
-                  >
-                    {dogAmenities.slice(0, 2).map((amenity) => (
-                      <Box
-                        key={amenity}
-                        sx={{
-                          display: "flex",
-                        }}
-                      >
-                        <Check
-                          sx={{
-                            fontSize: 15,
-                            color: "primary",
-                            mt: 0.4,
-                          }}
-                        />
-                        <Typography
-                          variant="body1"
-                          color="primary"
-                          sx={{
-                            pr: 0.15,
-                            overflow: "hidden",
-                            whiteSpace: "nowrap",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {amenity}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Stack>
-                )}
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", width: "100%", }}>
+              <Box sx={{ mt: '1rem', mb: '0px' }}>
+                <RomingoScore score={romingoScore} />
               </Box>
               <Box
                 sx={{

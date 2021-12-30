@@ -514,7 +514,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
 
   return <Grid sx={{ pb: '1rem', textAlign: 'right', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
     <Typography variant='body1' sx={{ mr: '1rem' }}>
-      FILTER:
+      Sort By:
     </Typography>
     <Select color='primary' value={sortBy} onChange={(e:any) => setSortBy(e.target.value)} style={{ textAlign: 'left', minWidth: '290px', maxHeight: '40px', borderRadius: '30px'}} startAdornment={<FilterList />}>
       <MenuItem value="">
