@@ -133,8 +133,8 @@ const ListingCard: FC<ListingCardProps> = ({
               {addressLine1}, {city?.name}
             </Typography>
             <Chip icon={<LocationCityIcon />} label={neighborhood} />
-            <Box sx={{ mt: 8, mb: -4, display: 'flex' }}>
-              <Check sx={{ fontSize: 15, color: "primary", mr: '.5rem', }}/>
+            <Box sx={{ mt: 8, mb: -3, display: 'flex' }}>
+              <Check sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
               <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
                 Free Cancellation
               </Typography>
