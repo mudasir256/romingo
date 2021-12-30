@@ -133,10 +133,16 @@ const ListingCard: FC<ListingCardProps> = ({
               {addressLine1}, {city?.name}
             </Typography>
             <Chip icon={<LocationCityIcon />} label={neighborhood} />
-            <Box sx={{ mt: 8, mb: -3, display: 'flex' }}>
+              <Box sx={{ mt: 3, mb: 1, display: 'flex' }}>
               <Check sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
               <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
-                Free Cancellation
+                No hidden fees
+              </Typography>
+            </Box>
+            <Box sx={{ mt: 1, mb: -2, display: 'flex' }}>
+              <Check sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
+              <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
+                Free cancellation
               </Typography>
             </Box>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", width: "100%", }}>
