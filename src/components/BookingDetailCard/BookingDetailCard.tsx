@@ -26,20 +26,19 @@ const BookingDetailCard: FC = () => {
   );
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "white",
+    <Box sx={{
         color: "text.primary",
-        borderRadius: 3,
         py: 2,
-        px: 2,
+        pb: { xs: '2rem', sm: '2rem' },
+        px: { xs: '0rem', sm: '1rem' },
+        borderBottom: '1px solid #ddd'
       }}
     >
-      <Typography
-        variant="h6"
+      <Typography variant="h6"
         sx={{
-          color: "secondary.main",
-          textAlign: "center",
+          color: "#222",
+          fontFamily: 'Montserrat',
+          textAlign: "left",
           mb: 1,
         }}
       >
@@ -60,9 +59,11 @@ const BookingDetailCard: FC = () => {
             sx={{
               mt: 0,
               textTransform: "capitalize",
-              color: "text.primary",
+              color: "#222",
               textIndent: "-8px",
               paddingLeft: "8px",
+              fontFamily: "Montserrat",
+              fontWeight: 600,
             }}
           >
             Check In
@@ -70,12 +71,14 @@ const BookingDetailCard: FC = () => {
           <Typography
             variant="body2"
             sx={{
-              fontWeight: "bold",
+              fontWeight: 500,
               mt: 0.5,
               textTransform: "capitalize",
               color: "text.primary",
+              opacity: .75,
               textIndent: "-8px",
               paddingLeft: "8px",
+              fontFamily: "Roboto",
             }}
           >
             {details.checkIn.substring(0, 10)}
@@ -87,9 +90,11 @@ const BookingDetailCard: FC = () => {
             sx={{
               mt: 0,
               textTransform: "capitalize",
-              color: "text.primary",
+              color: "#222",
               textIndent: "-8px",
               paddingLeft: "8px",
+              fontFamily: "Montserrat",
+              fontWeight: 600,
             }}
           >
             Check Out
@@ -97,11 +102,13 @@ const BookingDetailCard: FC = () => {
           <Typography
             variant="body2"
             sx={{
-              fontWeight: "bold",
+              fontWeight: 500,
               mt: 0.5,
               textTransform: "capitalize",
               color: "text.primary",
+              opacity: .75,
               textIndent: "-8px",
+              fontFamily: "Roboto",
               paddingLeft: "8px",
             }}
           >
@@ -119,9 +126,11 @@ const BookingDetailCard: FC = () => {
           sx={{
             mt: 0,
             textTransform: "capitalize",
-            color: "text.primary",
+            color: "#222",
             textIndent: "-8px",
             paddingLeft: "8px",
+            fontFamily: "Montserrat",
+            fontWeight: 600,
           }}
         >
           Guests
@@ -129,12 +138,14 @@ const BookingDetailCard: FC = () => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "bold",
+            fontWeight: 500,
             mt: 0.5,
             textTransform: "capitalize",
+            opacity: .75,
             color: "text.primary",
             textIndent: "-8px",
             paddingLeft: "8px",
+            fontFamily: "Roboto",
           }}
         >
           {`${details.occupants.adults} Adults - ${details.occupants.children} Children - ${details.occupants.dogs} Dogs`}
@@ -150,8 +161,10 @@ const BookingDetailCard: FC = () => {
           sx={{
             mt: 0,
             textTransform: "capitalize",
-            color: "text.primary",
+            color: "#222",
             textIndent: "-8px",
+            fontFamily: "Montserrat",
+            fontWeight: 600,
             paddingLeft: "8px",
           }}
         >
@@ -160,12 +173,14 @@ const BookingDetailCard: FC = () => {
         <Typography
           variant="body2"
           sx={{
-            fontWeight: "bold",
+            fontWeight: 500,
             mt: 0.5,
             textTransform: "capitalize",
             color: "text.primary",
+            opacity: .75,
             textIndent: "-8px",
             paddingLeft: "8px",
+            fontFamily: "Roboto",
           }}
         >
           {roomType ? roomType : "Room"}

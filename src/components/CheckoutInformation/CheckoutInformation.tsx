@@ -284,7 +284,7 @@ const CheckoutInformation: FC<Props> = ({
         <DialogTitle
           id="amenities-dialog-slide-title"
           sx={{
-            textAlign: "center",
+            textAlign: "left",
             color: "primary.main",
             py: 1,
           }}
@@ -303,7 +303,7 @@ const CheckoutInformation: FC<Props> = ({
             are available one moment and gone the next. But we have many other
             great rates available for you and your pup!
           </Typography>
-          <Box sx={{ textAlign: "center", pt: 2 }}>
+          <Box sx={{ textAlign: "left", pt: 2 }}>
             <Button
               variant="contained"
               color="primary"
@@ -327,7 +327,7 @@ const CheckoutInformation: FC<Props> = ({
             alignItems: "center",
             justifyContent: "center",
             boxShadow: 3,
-            pt: 2,
+            pt: 3,
             pb: 2.5,
             px: 2,
           }}
@@ -348,7 +348,7 @@ const CheckoutInformation: FC<Props> = ({
                   <Typography
                     variant="h5"
                     color="primary"
-                    sx={{ textAlign: "center", mb: 2 }}
+                    sx={{ textAlign: "left", mb: 2 }}
                   >
                     Whoops! We caught our own tail while booking
                   </Typography>
@@ -378,11 +378,11 @@ const CheckoutInformation: FC<Props> = ({
                   </Typography>
                   <Typography
                     variant="body1"
-                    sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
+                    sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
                   >
                     {createData?.createBooking?.booking?.faunaDocId}
                   </Typography>
-                  <Typography variant="body2" sx={{ textAlign: "center" }}>
+                  <Typography variant="body2" sx={{ textAlign: "left" }}>
                     Note: your credit card may have been authorized, but not
                     charged. If your card was authorized, authorization should
                     automatically fall off in a few days.
@@ -393,17 +393,17 @@ const CheckoutInformation: FC<Props> = ({
                   <Typography
                     variant="h5"
                     color="primary"
-                    sx={{ textAlign: "center", mb: 2 }}
+                    sx={{ textAlign: "left", mb: 2 }}
                   >
                     You&apos;re booked!
                   </Typography>
 
-                  <Typography variant="body1" sx={{ textAlign: "center" }}>
+                  <Typography variant="body1" sx={{ textAlign: "left" }}>
                     Your confirmation number is:
                   </Typography>
                   <Typography
                     variant="body1"
-                    sx={{ textAlign: "center", my: 2, fontWeight: "bold" }}
+                    sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
                   >
                     {createData?.createBooking?.booking?.propertyConfirmationId
                       ? createData?.createBooking?.booking
@@ -422,8 +422,10 @@ const CheckoutInformation: FC<Props> = ({
               <Typography
                 variant="h6"
                 sx={{
-                  color: "secondary.main",
-                  textAlign: "center",
+                  color: "#222",
+                  textAlign: "left",
+                  fontWeight: 600,
+                  fontFamily: "Montserrat"
                 }}
               >
                 Primary Traveller Information
@@ -492,8 +494,9 @@ const CheckoutInformation: FC<Props> = ({
               <Typography
                 variant="h6"
                 sx={{
-                  color: "secondary.main",
-                  textAlign: "center",
+                  color: "#222",
+                  fontFamily: "Montserrat",
+                  textAlign: "left",
                   mb: 2,
                 }}
               >
@@ -531,7 +534,7 @@ const CheckoutInformation: FC<Props> = ({
                 <Typography variant="caption" color="error">
                   {formError.card}
                 </Typography>
-                <Box sx={{ textAlign: "center" }}>
+                <Box sx={{ textAlign: "left" }}>
                   <Box
                     component="img"
                     src="https://storage.googleapis.com/romingo-development-public/images/front-end/safe-checkout.jpeg"
@@ -589,7 +592,7 @@ const CheckoutInformation: FC<Props> = ({
                 <Typography
                   variant="body2"
                   color="text.primary"
-                  sx={{ mt: 2, textAlign: "center" }}
+                  sx={{ mt: 2, textAlign: "left" }}
                 >
                   Your card will be charged{" "}
                   <span style={{ fontWeight: "bold" }}>

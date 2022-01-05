@@ -30,52 +30,21 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
   const open = Boolean(anchorEl);
 
   return sm ? (
-    <Box
-      sx={{
-        display: "flex",
-        minWidth: 0,
-        alignItems: "center",
-      }}
-    >
-      <Typography
-        variant="h6"
-        sx={{
-          color: "warning.main",
-          fontSize: "100%",
-        }}
-      >
+    <Box sx={{ display: "flex", minWidth: 0, alignItems: "center", }}>
+      <Typography variant="h6" sx={{ color: "warning.main", fontSize: "100%", }}>
         {score}
       </Typography>
       <PetsIcon sx={{ color: "warning.main", fontSize: "90%", mt: -0.3 }} />
     </Box>
   ) : (
-    <Box
-      sx={{
-        display: "flex",
-        minWidth: 0,
-        alignItems: "center",
-      }}
-    >
-      <Typography
-        variant="h6"
-        sx={{
-          color: "warning.main",
-        }}
-      >
+    <Box sx={{ display: "flex", minWidth: 0, alignItems: "center", }}>
+
+      <PetsIcon sx={{ color: "warning.main", fontSize: '1rem', mt: -0.2, mr: '.5rem' }} />
+      <Typography variant="h6" sx={{ color: "warning.main", }}>
         {score}
       </Typography>
-      <PetsIcon sx={{ color: "warning.main", fontSize: "110%", mt: -0.2 }} />
-      <Typography
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-        variant="body1"
-        sx={{
-          ml: 0.75,
-          mt: 0.2,
-          color: "text.secondary",
-          textDecoration: "underline",
-        }}
-      >
+      <br />
+      <Typography onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose} variant="body1" sx={{ ml: 0.75, mt: 0.2, color: "text.secondary", textDecoration: "underline", fontSize: '.9rem', cursor: 'pointer'}}>
         Romingo Score
       </Typography>
       <Popover

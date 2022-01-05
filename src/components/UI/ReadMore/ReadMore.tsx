@@ -9,26 +9,12 @@ interface Props {
   justify?: boolean;
 }
 
-const ReadMore: FC<Props> = ({
-  text,
-  length,
-  small = false,
-  justify = false,
-}) => {
+const ReadMore: FC<Props> = ({ text, length, small = false, justify = false, }) => {
   const [showLess, setShowLess] = useState(true);
 
   if (text.length < length) {
     return (
-      <Typography
-        variant="body2"
-        sx={{
-          lineHeight: small ? 1 : 2,
-          display: "inline",
-          my: 0,
-          fontSize: small ? "80%" : "100%",
-          textAlign: justify ? "justify" : "left",
-        }}
-      >
+      <Typography variant="body2" sx={{ lineHeight: small ? 1 : 2, display: "inline", my: 0, fontSize: small ? ".9rem" : "100%", textAlign: justify ? "justify" : "left", }}>
         {text}
       </Typography>
     );
@@ -42,10 +28,12 @@ const ReadMore: FC<Props> = ({
           __html: showLess ? `${text.slice(0, length)}... ` : text + " ",
         }}
         sx={{
-          lineHeight: small ? 1 : 2,
+          lineHeight: small ? 1.75 : 2,
           display: "inline",
           my: 0,
-          fontSize: small ? "80%" : "100%",
+          fontWeight: 500,
+          color: '#000000c7',
+          fontSize: small ? ".9rem" : "100%",
           textAlign: justify ? "justify" : "left",
         }}
       />

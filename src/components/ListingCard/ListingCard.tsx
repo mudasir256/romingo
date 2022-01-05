@@ -107,7 +107,8 @@ const ListingCard: FC<ListingCardProps> = ({
           <Typography
             variant="body2"
             sx={{
-              color: "text.secondary",
+              color: "#222",
+              fontFamily: "Montserrat",
               overflow: "hidden",
               whiteSpace: "nowrap",
               textOverflow: "ellipsis",
@@ -126,14 +127,15 @@ const ListingCard: FC<ListingCardProps> = ({
                 mt: 0,
                 overflow: "hidden",
                 whiteSpace: "nowrap",
+                fontFamily: "Roboto",
                 textOverflow: "ellipsis",
-                color: "text.secondary",
+                color: "#999",
               }}
             >
               {addressLine1}, {city?.name}
             </Typography>
-            <Chip icon={<LocationCityIcon />} label={neighborhood} />
-              <Box sx={{ mt: 3, mb: 1, display: 'flex' }}>
+            <Chip sx={{ mt: '.5rem'}} icon={<LocationCityIcon />} label={neighborhood} />
+              <Box sx={{ mt: '1rem', mb: 1, display: 'flex' }}>
               <Check sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
               <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
                 No hidden fees

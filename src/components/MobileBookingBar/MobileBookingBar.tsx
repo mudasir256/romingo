@@ -126,6 +126,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
         width: "100%",
         zIndex: 100,
         boxShadow: 6,
+        borderTop: '1px solid #ddd',
         backgroundColor: "white",
       }}
     >
@@ -136,101 +137,29 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
             justifyContent: "space-between",
           }}
         >
-          <Box
-            onClick={handleClick}
-            sx={{
-              py: 1.25,
-              px: 1.25,
-              display: "flex",
-              flexDirection: "column",
-              minWidth: "100px",
-              cursor: "pointer",
-            }}
-          >
+          <Box onClick={handleClick} sx={{ py: 1.5, px: 1.25, display: "flex", flexDirection: "column", minWidth: "100px", cursor: "pointer", }}>
             <Box>
-              <Typography
-                sx={{
-                  fontSize: "80%",
-                  color: "text.secondary",
-                  textDecoration: "underline",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
+              <Typography sx={{ fontSize: "80%", fontWeight: 600, color: "text.secondary", textDecoration: "underline", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
                 {value[0] ? dateToString(value[0]) : "07/22/2021"} -{" "}
                 {value[1] ? dateToString(value[1]) : "07/24/2021"}
               </Typography>
             </Box>
-            <Box
-              sx={{
-                mt: 0.5,
-              }}
-            >
-              <Typography
-                sx={{
-                  color: "text.secondary",
-                  fontSize: "85%",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {roomList[parseInt(roomType)].description}
+            <Box sx={{ mt: 0.5, }}>
+              <Typography sx={{ color: "text.secondary", fontSize: '1rem', overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontWeight: 600 }}>
+              ${selectedRoom.room.averagePrice.toFixed(2)}
+              <Typography variant="body1" sx={{ ml: 0.25, fontSize: ".9rem", fontWeight: 500, display: "inline-block", textTransform: "none",}}>
+                / night
+                </Typography>
               </Typography>
+
             </Box>
           </Box>
-          <Box sx={{ display: "flex", flex: 1, justifyContent: "flex-end" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{
-                height: "100%",
-                whiteSpace: "nowrap",
-                minWidth: "150px",
-                py: 0,
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
-                boxShadow: 6,
-                lineHeight: 1.35,
-              }}
-            >
+          <Box sx={{ display: "flex", flex: 1, justifyContent: "flex-end", alignItems: 'center' }}>
+            <Button disableElevation variant="contained" color="primary" sx={{mr: '.5rem', height: "3rem", whiteSpace: "nowrap", minWidth: "150px", py: '1rem', }}>
               <Box onClick={handleBook}>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    display: "inline-block",
-                    my: 0,
-                    fontSize: "125%",
-                  }}
-                >
+                <Typography variant="h5" sx={{ display: "inline-block", my: 0, fontSize: "115%", fontWeight: 600 }}>
                   Book Now
                 </Typography>
-                <Box>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      display: "inline-block",
-                      my: 0,
-                      lineHeight: 0,
-                    }}
-                  >
-                    ${selectedRoom.room.averagePrice.toFixed(2)}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      ml: 0.25,
-                      fontSize: "75%",
-                      display: "inline-block",
-                      textTransform: "none",
-                    }}
-                  >
-                    / night
-                  </Typography>
-                </Box>
               </Box>
             </Button>
           </Box>

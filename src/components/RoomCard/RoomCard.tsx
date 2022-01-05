@@ -4,16 +4,10 @@ import Typography from "@mui/material/Typography";
 import { CSSObject } from "@mui/material";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
-import Link from "@mui/material/Link";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import Chip from "@mui/material/Chip";
-import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Check from "@mui/icons-material/Check";
 import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
+import Grow from "@mui/material/Grow";
 import Button from "@mui/material/Button";
 import Backdrop from "@mui/material/Backdrop";
 import SingleBedOutlinedIcon from "@mui/icons-material/SingleBedOutlined";
@@ -21,10 +15,12 @@ import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
 import RoomPreferencesOutlinedIcon from "@mui/icons-material/RoomPreferencesOutlined";
 import { useDispatch } from "react-redux";
-
+import { DateTime } from 'luxon'
 import { utils } from "../../services/utils";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
-import ReadMore from "../UI/ReadMore";
+import { Link, Dialog, DialogContent, DialogTitle, Chip, IconButton, Grid } from '@mui/material'
+import { InfoOutlined } from '@mui/icons-material';
+import { useMediaQuery } from '@mui/material'
 
 interface Props {
   sx?: CSSObject;
@@ -125,6 +121,9 @@ const RoomCard: FC<Props> = ({
   const dispatch: Dispatch<any> = useDispatch();
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
+  const [refundAnchorEl, setRefundAnchorEl] = useState<null | Element>(null);
+
+  const mobile = useMediaQuery('(max-width: 900px)')
 
   const handleClick: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -136,6 +135,12 @@ const RoomCard: FC<Props> = ({
     e.preventDefault();
     e.stopPropagation();
     setAnchorEl(anchorEl ? null : e.currentTarget);
+  };
+
+  const handleOpenRefundData: MouseEventHandler<Element> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setRefundAnchorEl(refundAnchorEl ? null : e.currentTarget);
   };
 
   const handleClose = () => {
@@ -157,6 +162,9 @@ const RoomCard: FC<Props> = ({
   const open = Boolean(anchorEl);
   const id = open ? "transitions-popper" : undefined;
 
+  const refundOpen = Boolean(refundAnchorEl);
+  const refundId = refundOpen ? "transitions-popper" : undefined;
+
   const [roomTitle, setRoomTitle] = useState("");
 
   useEffect(() => {
@@ -174,51 +182,12 @@ const RoomCard: FC<Props> = ({
     }
     setRoomTitle(roomDescription);
   }, []);
+
   return (
-    <Box
-      sx={{
-        ...sx,
-        display: "flex",
-        flexWrap: "wrap",
-        minHeight: "150px",
-        flex: 1,
-        backgroundColor: "lightBackground.main",
-        boxShadow: bestRate ? 4 : 2,
-      }}
-    >
-      <Box
-        sx={{
-          width: { xs: "40%", sm: "20%" },
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Typography
-          variant="body1"
-          sx={{
-            color: bestRate ? "white" : "secondary.main",
-            backgroundColor: bestRate ? "primary.main" : "white",
-            fontWeight: 800,
-            borderRadius: 1,
-            p: 0.75,
-            ml: -2.8,
-            mt: -2.8,
-            boxShadow: 2,
-            textAlign: "center",
-            transform: "rotate(-7deg)",
-          }}
-        >
-          {bestRate ? "Best Rate!" : "Good Rate"}
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "50px",
-          }}
-        >
+    <Box sx={{ ...sx, display: "flex", flexWrap: "wrap", minHeight: "150px", flex: 1, backgroundColor: "#fff", }}>
+      <Grid container>
+        <Grid item xs={12} sm={12} md={12} lg={9} sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", fontSize: "50px", border: '1px solid #ddd', margin: { xs: '.5rem 0rem', sm: '0rem 0rem .5rem 0rem'  }, borderRadius: '6px', minHeight: '125px', background: '#f3f5f6', color: '#03989e' }}>
           {beds?.map((bed, key) => {
             return Array.from({ length: bed.count }, (_, i: number) => (
               <React.Fragment key={key + "_" + i}>
@@ -278,415 +247,171 @@ const RoomCard: FC<Props> = ({
             </React.Fragment>
           )}
         </Box>
-      </Box>
-      <Box
-        sx={{
-          width: { xs: "60%", sm: "45%" },
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{
-            color: "text.secondary",
-            textAlign: "center",
-            fontSize: "1.1rem",
-            letterSpacing: 0,
-            whiteSpace: "pre-line",
-            textTransform: "capitalize",
-          }}
-        >
-          {roomTitle}
-        </Typography>
-        <Box
-          sx={{
-            mx: 2,
-            height: "100%",
-          }}
-        >
+
+
+          {mobile && <Grid container >
+            <Grid item xs={12}>
+              <Typography variant="h6" sx={{ display: 'flex', fontWeight: 700, fontFamily: 'Montserrat',color: "#111111bf", textAlign: "left", fontSize: { xs: '18px', sm: "18px", md: '20px'}, mt: '.25rem', letterSpacing: 0, textTransform: "capitalize", }}>
+              {roomTitle} &nbsp;
+            </Typography>
+            <Typography style={{ fontSize: '14px', textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}>
+              {desc.toLowerCase()}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sx={{ marginTop: '.5rem', marginBottom: '.5rem', justifyContent: 'space-between', alignItems: 'center', display: 'flex'}}>
+            <b style={{ color: '#222',  marginRight: 'auto', fontSize: '1.95rem', fontFamily: 'Montserrat', fontWeight: 600  }}>${room.totalPrice.toString().split('.')[0]}</b>
+            </Grid>
+
+            <Grid item xs={12} sx={{ marginTop: '.25rem', marginBottom: '.25rem', fontFamily: 'Roboto', justifyContent: 'space-between', alignItems: 'center', display: 'flex'}}>
+            <Typography variant="body2" sx={{fontFamily: 'Roboto', display: 'inline-block', textAlign: { xs: 'left', sm: 'left', md: 'left', lg: 'right' }, fontSize: "90%", fontWeight: "bold", color: '#11111199', }}>
+              ${totalPriceAfterTax.toFixed(2)} TOTAL <u onClick={handleOpenPrice} style={{ cursor: 'pointer', display: 'block', color: '#11111180' }}>
+              See Details</u>
+            </Typography>
+
+            <Typography variant="body2" sx={{fontFamily: 'Roboto', opacity: .75, overflow: "visible", textAlign: "right", fontSize: "90%", lineHeight: 1, fontWeight: 500, marginTop: '.5rem', marginBottom: '.25rem'}}>
+              {cancelationPolicy.cancelable &&  <>  <b style={{ fontWeight: 600, color: '#5B8D3E', marginBottom: '.5rem', display: 'inline-flex', alignItems: 'center' }}> Fully refundable <InfoOutlined onClick={handleOpenRefundData} sx={{ cursor: 'pointer',fontSize: '12px', ml: '.125rem' }} /> </b> <br />
+              Before {DateTime.fromISO(cancelationPolicy.deadlineLocal || new Date().toISOString()).toFormat('DD')} </>}
+
+
+              { ! cancelationPolicy.cancelable && "Non-Refundable"}
+            </Typography>
+
+
+            </Grid>
+          </Grid>
+         }
+
+          {!mobile && <> <Typography variant="h6" sx={{mt: '.25rem',  display: 'flex', fontWeight: 700, fontFamily: 'Montserrat', alignItems: 'center', color: "#111111bf", textAlign: "left", fontSize: { xs: '16px', sm: "18px", md: '20px'}, letterSpacing: 0, textTransform: "capitalize", }}>
+            {roomTitle} &nbsp;
+          </Typography>
           <ReadMore text={desc} length={100} small justify />
-          {amenities.length > 0 && (
-            <>
-              <Typography variant="body2" sx={{ mt: 1, fontWeight: "bold" }}>
-                Room Amenities
-              </Typography>
-              {amenities.slice(0, 4).map((amenity, key) => {
-                return (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "bottom",
-                      mt: 0.4,
-                    }}
-                    key={key}
-                  >
-                    <Check
-                      sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
-                    />
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        mt: 0,
-                        textTransform: "capitalize",
-                        color: "text.primary",
-                        textIndent: "-8px",
-                        paddingLeft: "8px",
-                        overflow: "hidden",
-                        whiteSpace: "nowrap",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {amenity.desc}
-                    </Typography>
-                  </Box>
-                );
-              })}
-              <Link href="#" onClick={handleClick}>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 1,
-                  }}
-                >
-                  View All
-                </Typography>
-              </Link>
-            </>
-          )}
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          width: { xs: "100%", sm: "30%" },
-          display: { xs: "block", md: "flex" },
-          flexDirection: "column",
-          justifyContent: "space-between",
-          flex: 1,
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <Chip
-            color={cancelationPolicy.cancelable ? "primary" : "warning"}
-            sx={{
-              textAlign: "center",
-              width: "100%",
-              height: "40px",
-              backgroundColor: "white",
-              mt: { xs: "20px", sm: "0px" },
-            }}
-            variant="outlined"
-            label={
-              <Typography
-                variant="body2"
-                sx={{
-                  overflow: "visible",
-                  textAlign: "center",
-                  whiteSpace: "pre-line",
-                  fontSize: "12px",
-                  lineHeight: 1,
-                  fontWeight: 800,
-                  marginTop: 1,
-                  marginBottom: 1,
-                }}
-              >
-                {cancelationPolicy.cancelable
-                  ? `Refundable before
-                ${utils.getFormatDate(cancelationPolicy.deadlineLocal)}`
-                  : "Non-Refundable"}
-              </Typography>
-            }
-          />
-        </div>
-        <Box
-          sx={{
-            textAlign: "center",
-            mt: 2,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
-            <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              Per Night:
-            </Typography>
-            <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              ${averagePrice.toFixed(2)}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
-            <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              Taxes:
-            </Typography>
-            <Typography variant="body2" sx={{ fontSize: "80%" }}>
-              ${(totalPriceAfterTax - totalPrice).toFixed(2)}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontVariantNumeric: "tabular-nums",
-              my: 0.5,
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                fontSize: "80%",
-                fontWeight: "bold",
-                textDecoration: "underline",
-                cursor: "pointer",
-              }}
-              onClick={handleOpenPrice}
-            >
-              Due Now*:
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{ fontSize: "80%", fontWeight: "bold" }}
-            >
-              ${totalPriceAfterTax.toFixed(2)}
-            </Typography>
-          </Box>
-          <Backdrop
-            open={open}
-            onClick={() => {
-              setAnchorEl(null);
-            }}
-            invisible={true}
-          >
-            <Popper
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              transition
-              style={{
-                zIndex: 9999,
-              }}
-            >
+          </>}
+
+
+          <Backdrop open={open} onClick={() => { setAnchorEl(null); }} invisible={true} >
+            <Popper id={id} open={open} placement='bottom' anchorEl={anchorEl} transition style={{ zIndex: 9999, }}>
               {({ TransitionProps }) => (
-                <Fade {...TransitionProps} timeout={350}>
-                  <Box
-                    sx={{
-                      border: "1px solid #DDD",
-                      borderRadius: "5px",
-                      boxShadow: 2,
-                      padding: "8px",
-                      backgroundColor: "white",
-                      minWidth: "250px",
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontWeight: "bold",
-                        fontSize: "80%",
-                        textAlign: "center",
-                      }}
-                    >
+                <Grow {...TransitionProps} timeout={350}>
+                  <Box sx={{ border: "1px solid #DDD", borderRadius: "5px", mt: '.5rem', boxShadow: 2, padding: "8px", backgroundColor: "#fff", minWidth: "250px", }}>
+                    <Typography variant="body2" sx={{ fontWeight: "bold", mb: '.5rem', fontSize: "80%", textAlign: "center", }}>
                       Price Details
                     </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        px: 2,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "left",
-                          fontSize: "80%",
-                        }}
-                      >
+                    <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, mb: 0.5, }}>
+                      <Typography variant="body2" sx={{ textAlign: "left", fontSize: "80%", }}>
                         Per Night:
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "right",
-                          fontSize: "80%",
-                        }}
-                      >
+                      <Typography variant="body2" sx={{ textAlign: "right", fontSize: "80%", }}>
                         ${averagePrice.toFixed(2)}
                       </Typography>
                     </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        px: 2,
-                        mb: 0.5,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "left",
-                          fontSize: "80%",
-                        }}
-                      >
+                    <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, mb: 0.5, }}>
+                      <Typography variant="body2" sx={{ textAlign: "left", fontSize: "80%", }}>
                         Taxes:
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          textAlign: "right",
-                          fontSize: "80%",
-                        }}
-                      >
+                      <Typography variant="body2" sx={{ textAlign: "right", fontSize: "80%", }}>
                         ${(totalPriceAfterTax - totalPrice).toFixed(2)}
                       </Typography>
                     </Box>
                     {totalFees && totalFees > 0 && (
-                      <Box
-                        sx={{
-                          px: 2,
-                          mb: 0.5,
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            textAlign: "center",
-                            fontSize: "80%",
-                          }}
-                        >
+                      <Box sx={{ px: 2, mb: 0.5, }} >
+                        <Typography variant="body2" sx={{ textAlign: "center", fontSize: "80%", }}>
                           Fees:
                         </Typography>
                       </Box>
                     )}
                     {fees?.map((fee) => {
                       return (
-                        <Box
-                          key={fee.desc}
-                          sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            px: 2,
-                            mb: 0.5,
-                          }}
-                        >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              textAlign: "left",
-                              fontSize: "80%",
-                            }}
-                          >
+                        <Box key={fee.desc} sx={{ display: "flex", justifyContent: "space-between", px: 2, mb: 0.5, }}>
+                          <Typography variant="body2" sx={{textAlign: "left", fontSize: "80%" }}>
                             {fee?.desc}:
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              textAlign: "right",
-                              fontSize: "80%",
-                            }}
-                          >
+                          <Typography variant="body2" sx={{ textAlign: "right", fontSize: "80%" }}>
                             ${fee?.amount.toFixed(2)}
                           </Typography>
                         </Box>
                       );
                     })}
                   </Box>
-                </Fade>
+                </Grow>
               )}
             </Popper>
           </Backdrop>
-          <Box
-            sx={{
-              textAlign: "left",
-              mb: 0.5,
-            }}
-          >
-            <Typography variant="body2" sx={{ fontSize: "70%", lineHeight: 1 }}>
-              {feesIncluded
-                ? "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
-                : "*Includes all taxes. This Hotel may charge a resort or amenity fee at check-in."}
+
+
+
+
+
+
+
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={3} sx={{ display: 'flex', textAlign: { md: 'left', lg: 'right', }, flexDirection: 'column', mt: { xs: '0rem', sm: '0' } }}>
+        <Box sx={{ display: "flex", flexDirection: "column", margin: '0px', }}>
+          <Box sx={{ height: "100%", textAlign: { md: 'left', lg: 'right', }, display: 'flex', flexDirection: 'column', mt: { xs: '.25rem', sm: '0'}}}>
+            {!mobile && <> <b style={{ color: '#222',  marginBottom: 'auto', fontSize: '2rem', fontFamily: 'Work Sans', fontWeight: 600  }}>${room.totalPrice.toString().split('.')[0]}</b>
+
+            <Typography variant="body2" sx={{ display: 'inline-block', mt: '.5rem', textAlign: { md: 'left', lg: 'right', }, fontSize: "80%", fontWeight: "bold", color: '#11111199', }}>
+              ${totalPriceAfterTax.toFixed(2)} TOTAL <u onClick={handleOpenPrice} style={{ cursor: 'pointer', display: 'block', color: '#11111180' }}>
+              See Details</u>
             </Typography>
+
+            <Typography variant="body2" sx={{fontFamily: 'Roboto', opacity: .75, overflow: "visible", textAlign: { md: 'left', lg: 'right', }, fontSize: "80%", lineHeight: 1, fontWeight: 500, marginTop: '1rem', mb: { md: '1rem'}}}>
+              {cancelationPolicy.cancelable &&  <>  <b style={{ fontWeight: 600, color: '#5B8D3E', marginBottom: '.5rem', display: 'inline-flex', alignItems: 'center' }}> Fully refundable <InfoOutlined onClick={handleOpenRefundData} sx={{ cursor: 'pointer',fontSize: '12px', ml: '.125rem' }} /> </b> <br />
+              Before {DateTime.fromISO(cancelationPolicy.deadlineLocal || new Date().toISOString()).toFormat('DD')} </>}
+
+
+              { ! cancelationPolicy.cancelable && "Non-Refundable"}
+            </Typography>
+
+            </>}
+
+
+
           </Box>
-          <Button
-            variant="contained"
-            size="small"
-            color="primary"
-            sx={{
-              py: 1,
-              px: 1,
-              mb: 0.5,
-              textTransform: "inherit",
-              width: "100%",
-            }}
-            onClick={handleBook}
-          >
-            <Typography
-              variant="h6"
-              sx={{ textTransform: "uppercase", fontSize: { xs: "16px" } }}
-            >
-              Book Now
+        </Box>
+
+
+        <Backdrop open={refundOpen} onClick={() => { setRefundAnchorEl(null); }} invisible={true} >
+            <Popper id={refundId} open={refundOpen} placement='bottom' anchorEl={refundAnchorEl} transition style={{ zIndex: 9999, }}>
+              {({ TransitionProps }) => (
+                <Grow {...TransitionProps} timeout={350}>
+                  <Box sx={{ border: "1px solid #DDD", maxWidth: '350px', borderRadius: "5px", mt: '.5rem', boxShadow: 2, padding: "8px", backgroundColor: "#fff", minWidth: "250px", paddingTop: '1rem' }}>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, mb: 0.5, }}>
+                      <Typography variant="body2" sx={{ textAlign: "left", fontSize: "80%", }}>
+                        By booking on Romingo, you may cancel your reservation with a full refund on or before the date listed. <br /> <br />  Your reservation must be cancelled by the check-in time of the property&lsquo;s local time.  <br />  <br /> All cancellations after this date and time are subject to cancellation fee(s) in accordance with hotel policy and Romingo&lsquo;s terms.
+                      </Typography>
+                    </Box>
+
+                  </Box>
+                </Grow>
+              )}
+            </Popper>
+          </Backdrop>
+
+
+          <Button disableElevation variant="contained" size="small" color="primary" sx={{ ml: 'auto', py: 1, px: 1, mb: 0.5, textTransform: "inherit", width: { sm: "100%", md: '100%', lg: '90%', xs: '100%'}, mt: { xs: '.5rem', sm: 'auto'} }} onClick={handleBook}>
+            <Typography variant="h6" sx={{ fontWeight: 600, textTransform: "uppercase", fontSize: { xs: "16px" } }}>
+              Reserve
             </Typography>
           </Button>
-        </Box>
-      </Box>
-
+        </Grid>
+      </Grid>
       <Dialog
         open={showDialog}
         keepMounted
         fullWidth
         onClose={handleClose}
         scroll="body"
-        aria-labelledby="amenities-dialog-slide-title"
-        aria-describedby="amenities-dialog-slide-description"
         sx={{ maxWidth: "xl" }}
       >
-        <DialogTitle
-          id="amenities-dialog-slide-title"
-          sx={{
-            textAlign: "center",
-            color: "primary.main",
-            pt: 1.5,
-            pb: 0.5,
-          }}
-        >
+        <DialogTitle sx={{ textAlign: "center", color: "primary.main", pt: 1.5, pb: 0.5, }}>
           {roomTitle}
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: "absolute",
-              top: 8,
-              right: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
+          <IconButton aria-label="close" onClick={handleClose} sx={{ position: "absolute", top: 8, right: 8, color: (theme) => theme.palette.grey[500], }}>
             <CloseIcon />
           </IconButton>
         </DialogTitle>
         <DialogContent>
           <Box>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
-                color: "secondary.main",
-                mt: 2,
-              }}
-            >
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "secondary.main", mt: 2, }}>
               Amenities
             </Typography>
             {amenities.map((amenity, key) => {
@@ -699,9 +424,7 @@ const RoomCard: FC<Props> = ({
                   }}
                   key={key}
                 >
-                  <Check
-                    sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
-                  />
+                  <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
                   <Typography
                     variant="body2"
                     sx={{
@@ -722,6 +445,35 @@ const RoomCard: FC<Props> = ({
       </Dialog>
     </Box>
   );
+};
+
+
+
+interface ReadMoreProps {
+  text: string;
+  length: number;
+  small?: boolean;
+  justify?: boolean;
+}
+
+const ReadMore: FC<ReadMoreProps> = ({ text, length, small = false, justify = false, }) => {
+  const [showLess, setShowLess] = useState(true);
+
+  if (text.length < length) {
+    return  <Typography variant="body2" sx={{ lineHeight: small ? 1 : 2, mt: '.25rem', mb: '.5rem', fontWeight: 600, opacity: .75, fontSize: '12px', textAlign: justify ? "justify" : "left", textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical",WebkitLineClamp: 1}}>
+      {text.toLowerCase()}
+    </Typography>
+  }
+
+  return  <Box>
+    <Typography variant="body2" dangerouslySetInnerHTML={{ __html: showLess ? `${text.slice(0, length)}... ` : text + " ", }} sx={{ lineHeight: small ? 1 : 2, display: "inline", my: 0, fontSize: "8px", textAlign: justify ? "justify" : "left", }} />
+    <Box sx={{ display: "inline", p: small ? 0 : 2 }} onClick={() => setShowLess(!showLess)}>
+      <Typography variant="body2" sx={{fontSize: '9px', lineHeight: small ? 1 : 2, display: "inline", color: "primary.main",cursor: "pointer", textDecoration: "underline",
+        }}>
+        {showLess ? "Read More" : "Show Less"}
+      </Typography>
+    </Box>
+  </Box>
 };
 
 export default RoomCard;

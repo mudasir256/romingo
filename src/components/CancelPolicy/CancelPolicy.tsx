@@ -20,20 +20,19 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
     <Box sx={sx}>
       <Box
         sx={{
-          backgroundColor: "white",
-          color: "text.primary",
-          borderRadius: 3,
-          border: "none",
-          pt: 2,
+          color: "#222",
+          borderTop: '1px solid #ddd',
+          pt: { xs: 3, sm: 2 },
           pb: 2.5,
-          px: 2,
+          px: { xs: '0rem', sm: '1rem' },
         }}
       >
         <Typography
           variant="h6"
           sx={{
-            color: "secondary.main",
-            textAlign: "center",
+            fontFamily: "Montserrat",
+            color: "#222",
+            textAlign: "left",
           }}
         >
           Cancellation &amp; Refund Policy
@@ -41,7 +40,7 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
         <Box
           sx={{
             mt: 0.5,
-            px: 0.5,
+            px: 0,
           }}
         >
           {policy?.cancelable ? (
@@ -52,6 +51,7 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   alignItems: "bottom",
                   justifyContent: "start",
                   mt: 1,
+                  fontFamily: "Lato"
                 }}
               >
                 <Check
@@ -66,6 +66,8 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   variant="body2"
                   sx={{
                     mt: 0,
+                    fontWeight: 500,
+                    fontFamily: "Roboto",
                     color: "text.light",
                   }}
                 >
@@ -97,6 +99,8 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   variant="body2"
                   sx={{
                     mt: 0,
+                    fontFamily: "Roboto",
+                    fontWeight: 500,
                     color: "text.light",
                   }}
                 >
@@ -110,12 +114,14 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
               <Typography
                 variant="caption"
                 sx={{
-                  mt: 1,
+                  mt: '1rem',
+                  display: 'block',
                   textAlign: "left",
+                  fontFamily: "Roboto",
                   color: "text.light",
                 }}
               >
-                *Hotel timezone.
+                *Dates effective in the hotel timezone.
               </Typography>
             </>
           ) : (

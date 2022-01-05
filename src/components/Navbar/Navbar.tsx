@@ -38,8 +38,8 @@ const Navbar: FC<Props> = ({ sx }) => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ backgroundColor: "white", boxShadow: 2 }}>
-        <Toolbar sx={{ display: "block", position: "relative" }}>
+      <AppBar position="fixed" style={{background: '#fff', backgroundColor: '#fff',}} sx={{ backgroundColor: '#fff', boxShadow: 2 }}>
+        <Toolbar style={{background: '#fff'}} sx={{ display: "block", position: "relative" }}>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: { xs: "56px", sm: "64px" }}}>
             <Hidden smDown>
               <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -64,8 +64,7 @@ const Navbar: FC<Props> = ({ sx }) => {
 
 
             <Hidden smUp>
-              <Box
-                component="img"
+              <Box component="img"
                 src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
                 alt="Logo"
                 onClick={() => {
@@ -186,13 +185,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               }
             }}
           >
-            <Typography
-              variant="body2"
-              sx={{
-                mt: 1,
-                textAlign: "center",
-              }}
-            >
+            <Typography variant="body2" sx={{ mt: 1, textAlign: "center", }}>
               {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
             </Typography>
           </Link>

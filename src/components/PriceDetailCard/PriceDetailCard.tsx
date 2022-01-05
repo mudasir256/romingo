@@ -57,18 +57,17 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   return (
     <Box
       sx={{
-        backgroundColor: "white",
         color: "text.primary",
-        borderRadius: 3,
-        py: 2,
-        px: 2,
+        paddingTop: { xs: '1rem', sm: '0rem' }, paddingBottom: { xs : '2rem', sm: '1.5rem'},
+        px: { xs: '0rem', sm: '1rem' },
       }}
     >
       <Typography
         variant="h6"
         sx={{
-          color: "secondary.main",
-          textAlign: "center",
+          fontFamily: 'Montserrat',
+          color: "#222",
+          textAlign: "left",
           mb: 1,
         }}
       >
@@ -93,11 +92,11 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
                 sx={{
                   mt: 0,
                   textTransform: "capitalize",
-                  fontWeight: "bold",
-                  color: "text.primary",
+                  color: "#222",
                   textIndent: "-8px",
                   paddingLeft: "8px",
                   maxWidth: "70%",
+                  fontWeight: 600,
                 }}
               >
                 {detail.label}
@@ -137,6 +136,7 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
                   textIndent: "-8px",
                   paddingLeft: "8px",
                   maxWidth: "70%",
+                  fontWeight: 600,
                 }}
               >
                 {detail.label}
@@ -145,8 +145,9 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
               <Typography
                 variant="body2"
                 sx={{
-                  fontWeight: "bold",
+                  fontWeight: 500,
                   mt: 0,
+                  fontFamily: "Roboto",
                   color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
@@ -158,7 +159,7 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
           );
         }
       })}
-      <Typography variant="caption" sx={{ lineHeight: 1 }}>
+      <Typography variant="caption" sx={{ lineHeight: '1rem', fontWeight: 500, mt: '.5rem', display: 'block' }}>
         {feesIncluded}
       </Typography>
     </Box>

@@ -1,119 +1,104 @@
-import React, { FC, useState, MouseEventHandler, useEffect } from "react";
-import { connect, useStore, useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { Dispatch } from "redux";
-import Container from "@mui/material/Container";
-import Fab from "@mui/material/Fab";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Hidden from "@mui/material/Hidden";
-import Typography from "@mui/material/Typography";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import IconButton from "@mui/material/IconButton";
-import { Breakpoint, Theme, useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import CloseIcon from "@mui/icons-material/Close";
-import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
-import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Link from "@mui/material/Link";
-import Skeleton from "@mui/material/Skeleton";
-import Chip from "@mui/material/Chip";
-import Divider from "@mui/material/Divider";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
+import React, { FC, useState, MouseEventHandler, useEffect, ReactComponentElement } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { Dispatch } from "redux"
+import { SvgIcon, Link, Divider, Skeleton, Chip, Container, Fab, Box, Button, Grid, Hidden, Typography, Dialog, DialogContent, DialogTitle, ImageList, ImageListItem, IconButton } from '@mui/material'
+import { Breakpoint, Theme, useTheme } from "@mui/material/styles"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import CloseIcon from "@mui/icons-material/Close"
+import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox"
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+import Check from "@mui/icons-material/Check"
+import LocationCityIcon from "@mui/icons-material/LocationCity"
+import { Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib } from '@mui/icons-material'
 
-import BookingCard from "../../components/BookingCard";
-import MobileBookingBar from "../../components/MobileBookingBar";
-import RomingoGuarantee from "../../components/RomingoGuarantee";
-import RomingoScore from "../../components/RomingoScore";
-import AmenitiesCard from "../../components/AmenitiesCard";
-import Map from "../../components/UI/Map/Map";
-import ReadMore from "../../components/UI/ReadMore/ReadMore";
-import ActivitiesNearby from "../../components/ActivitiesNearby";
-import RoomCard from "../../components/RoomCard";
-import FilterBar from "../../components/FilterBar";
-import { RoomInfo } from "../../components/RoomCard/RoomCard";
+import BookingCard from "../../components/BookingCard"
+import MobileBookingBar from "../../components/MobileBookingBar"
+import RomingoScore from "../../components/RomingoScore"
+import Map from "../../components/UI/Map/Map"
+import ReadMore from "../../components/UI/ReadMore/ReadMore"
+import ActivitiesNearby from "../../components/ActivitiesNearby"
+import RoomCard from "../../components/RoomCard"
+import FilterBar from "../../components/FilterBar"
+import { RoomInfo } from "../../components/RoomCard/RoomCard"
 
-import { gql, useQuery } from "@apollo/client";
-import { GetHotelDetail } from "../../constants/constants";
 
-import { setHotel } from "../../store/hotelDetailReducer";
+import { gql, useQuery } from "@apollo/client"
+import { GetHotelDetail } from "../../constants/constants"
 
-import ScrollToTop from "../../components/ScrollToTop";
-import Loader from "../../components/UI/Loader";
+import { setHotel } from "../../store/hotelDetailReducer"
 
-type BreakpointOrNull = Breakpoint | null;
+import ScrollToTop from "../../components/ScrollToTop"
+import Loader from "../../components/UI/Loader"
+
+type BreakpointOrNull = Breakpoint | null
 
 const useWidth = () => {
-  const theme: Theme = useTheme();
-  const keys: readonly Breakpoint[] = [...theme.breakpoints.keys].reverse();
+  const theme: Theme = useTheme()
+  const keys: readonly Breakpoint[] = [...theme.breakpoints.keys].reverse()
   return (
     keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
-      const matches = useMediaQuery(theme.breakpoints.up(key));
-      return !output && matches ? key : output;
+      const matches = useMediaQuery(theme.breakpoints.up(key))
+      return !output && matches ? key : output
     }, null) || "xs"
-  );
-};
+  )
+}
 
 interface Props {
-  name: string;
+  name: string
   location: {
-    lat: string;
-    lon: string;
-    address: string;
-  };
-  mainImg: string;
-  gallery: string[];
-  score: number;
-  defaultDescription: string;
-  cancellation?: boolean;
+    lat: string
+    lon: string
+    address: string
+  }
+  mainImg: string
+  gallery: string[]
+  score: number
+  defaultDescription: string
+  cancellation?: boolean
   cancelPenalty?: {
-    refundable: boolean;
-    deadline: { absoluteDeadline: Date };
-    amountPercent: { amount: number; currencyCode: string };
-  }[];
-  dogAmenitiesTitle: string;
+    refundable: boolean
+    deadline: { absoluteDeadline: Date }
+    amountPercent: { amount: number, currencyCode: string }
+  }[]
+  dogAmenitiesTitle: string
   roomList: {
-    value: number;
-    description: string;
-  }[];
-  amenitiesTitle: string;
-  amenities: string[];
+    value: number
+    description: string
+  }[]
+  amenitiesTitle: string
+  amenities: string[]
   nearby: {
-    name: string;
-    distanceInMeters: number;
-  }[];
-  rooms: RoomInfo[];
-  match: any;
+    name: string
+    distanceInMeters: number
+  }[]
+  rooms: RoomInfo[]
+  match: any
 }
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
-  const hotelId = props.match.params.id;
-  const search = useSelector((state: any) => state.searchReducer.search);
+  const hotelId = props.match.params.id
+  const search = useSelector((state: any) => state.searchReducer.search)
 
-  const dispatch: Dispatch<any> = useDispatch();
+  const dispatch: Dispatch<any> = useDispatch()
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
         if (x === 0) {
           return {
             age: 1,
-          };
+          }
         }
         return {
           age: x,
-        };
+        }
       })
-    : [];
+    : []
 
   const removeHttpLink = function (str: string) {
-    return str?.replace("http:", "");
-  };
+    return str?.replace("http:", "")
+  }
 
   const { loading, error, data } = useQuery(
     gql`
@@ -129,86 +114,65 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       },
       fetchPolicy: "no-cache",
     }
-  );
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState({
-    address: "",
-    lat: "",
-    lon: "",
-  });
-  const [gallery, setGallery] = useState<string[]>([]);
-  const [score, setScore] = useState(0);
-  const [defaultDescription, setDefaultDescription] = useState("");
-  const [amenities, setAmenities] = useState<string[]>([]);
-  const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
-  const [neighborhood, setNeighborhood] = useState("");
-  const [nearby, setNearby] = useState([]);
+  )
 
-  const [rooms, setRooms] = useState<RoomInfo[]>([]);
+  const [name, setName] = useState("")
+  const [location, setLocation] = useState({ address: "", lat: "", lon: ""  })
+  const [gallery, setGallery] = useState<string[]>([])
+  const [score, setScore] = useState(0)
+  const [defaultDescription, setDefaultDescription] = useState("")
+  const [amenities, setAmenities] = useState<string[]>([])
+  const [otherAmenities, setOtherAmenities] = useState<string[]>([])
+  const [neighborhood, setNeighborhood] = useState("")
+  const [nearby, setNearby] = useState([])
 
-  const [roomDropDown, setRoomDropDown] = useState<
-    {
-      value: number;
-      description: string;
-      room: RoomInfo;
-    }[]
-  >([]);
+  const [rooms, setRooms] = useState<RoomInfo[]>([])
 
-  const [city, setCity] = useState({
-    center: {
-      latitude: "",
-      longitude: "",
-    },
-    id: "",
-    name: "",
-  });
+  const [roomDropDown, setRoomDropDown] = useState<{ value: number, description: string, room: RoomInfo }[]>([])
+
+  const [city, setCity] = useState({ center: { latitude: "", longitude: "", }, id: "", name: "" })
 
   const [markers, setMarkers] = useState<
-    { lat: number; lng: number; type: string; label: string }[]
-  >([]);
+    { lat: number, lng: number, type: string, label: string }[]
+  >([])
 
   useEffect(() => {
     if (data && data?.property) {
-      dispatch(setHotel(data.property));
-      setName(data.property.name);
+      dispatch(setHotel(data.property))
+      setName(data.property.name)
       setLocation({
         address: data.property.addressLine1,
         lat: data.property.location.latitude,
         lon: data.property.location.longitude,
-      });
+      })
 
-      setCity({ ...data.property.city });
-      setNeighborhood(data.property.neighborhood);
+      setCity({ ...data.property.city })
+      setNeighborhood(data.property.neighborhood)
 
-      let tmp: any[] = [];
+      let tmp: any[] = []
       data.property.imageURLs.map((image: string) => {
-        tmp.push(image);
-      });
+        tmp.push(image)
+      })
       data.property.sabreImageURLs.map((image: string) => {
-        tmp.push(image);
-      });
-      setGallery([...tmp]);
-      setDefaultDescription(data.property.desc);
-      setAmenities(data.property.dogAmenities);
-      setScore(data.property.romingoScore);
+        tmp.push(image)
+      })
+      setGallery([...tmp])
+      setDefaultDescription(data.property.desc)
+      setAmenities(data.property.dogAmenities)
+      setScore(data.property.romingoScore)
 
-      const tmpAmenities: string[] = [];
+      const tmpAmenities: string[] = []
       data.property.amenities.map((amenity: any) => {
-        tmpAmenities.push(amenity.desc);
-      });
+        tmpAmenities.push(amenity.desc)
+      })
 
-      setRooms(data.property.rooms.slice(0, 9));
+      setRooms(data.property.rooms.slice(0, 9))
 
-      setOtherAmenities([...tmpAmenities]);
+      setOtherAmenities([...tmpAmenities])
 
-      setNearby(data.property.nearbyActivities);
+      setNearby(data.property.nearbyActivities)
 
-      markers.push({
-        lat: data.property.location.latitude,
-        lng: data.property.location.longitude,
-        type: "hotel",
-        label: data.property.name,
-      });
+      markers.push({ lat: data.property.location.latitude, lng: data.property.location.longitude, type: "hotel", label: data.property.name, })
 
       data.property.nearbyActivities.map((activity: any) => {
         markers.push({
@@ -216,39 +180,43 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           lng: activity.location.longitude,
           type: activity?.activityType?.name,
           label: activity.name,
-        });
-      });
+        })
+      })
 
-      tmp = [];
+      tmp = []
 
       data.property.rooms.slice(0, 9).map((room: any, key: number) => {
-        let roomDescription = "";
+        let roomDescription = ""
 
         room.beds.map((bed: any) => {
           roomDescription += `${bed.count} ${bed.desc}${
             bed.count > 1 ? "s" : ""
-          }`;
-        });
+          }`
+        })
 
         roomDescription =
           (room.type && room.type !== null ? room.type : "") +
           (roomDescription && room.type !== null && room.type ? " - " : "") +
-          roomDescription;
+          roomDescription
 
         tmp.push({
           value: key,
           description: roomDescription,
           room: room,
-        });
-      });
+        })
+      })
 
-      setRoomDropDown([...tmp]);
+      setRoomDropDown([...tmp])
 
-      setMarkers([...markers]);
+      setMarkers([...markers])
     }
-  }, [data]);
+  }, [data])
 
-  const [showGallery, setShowGallery] = useState(false);
+  useEffect(() => {
+    window.Intercom('shutdown')
+  }, []);
+
+  const [showGallery, setShowGallery] = useState(false)
   const lightBoxOptions = {
     buttons: {
       showAutoplayButton: false,
@@ -272,66 +240,45 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     progressBar: {
       backgroundColor: "#03989E",
     },
-  };
+  }
 
   const handleOpen: MouseEventHandler<Element> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowGallery(true);
-  };
+    e.preventDefault()
+    e.stopPropagation()
+    setShowGallery(true)
+  }
 
   const handleClose = () => {
-    setShowGallery(false);
-  };
+    setShowGallery(false)
+  }
 
   const getImageCols = () => {
-    const width = useWidth();
+    const width = useWidth()
     if (width === "xs") {
-      return 1;
+      return 1
     }
     if (width === "md" || width === "sm") {
-      return 2;
+      return 2
     }
-    return 3;
-  };
+    return 3
+  }
 
-  const history = useHistory();
+  const history = useHistory()
 
-  const RateCardRef = React.createRef<HTMLDivElement>();
+  const RateCardRef = React.createRef<HTMLDivElement>()
 
   const goToRateScroll = () => {
-    const top = RateCardRef?.current?.offsetTop || 0;
-    window.scrollTo(0, top);
-  };
+    const top = RateCardRef?.current?.offsetTop || 0
+    window.scrollTo(0, top)
+  }
 
   return (
-    <>
+    <Grid sx={{ background: '#feffff', scrollBehavior: 'smooth' }}> {/* fcf5f0 */}
       <ScrollToTop />
       <Hidden mdDown>
-        <Box
-          sx={{
-            position: { xs: "fixed", md: "relative" },
-            top: 0,
-            left: 0,
-            right: 0,
-            width: "100%",
-            margin: "0 auto",
-            boxShadow: { xs: 0, md: 2 },
-            display: "flex",
-            justifyContent: { xs: "center", md: "flex-start" },
-            zIndex: 1000,
-            py: { xs: 0, md: 1 },
-          }}
-        >
-          <Link
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              history.push("/");
-            }}
-          >
-            <Box
-              component="img"
+        <Box sx={{ background: '#fff', position: { xs: "fixed", md: "relative" }, top: 0, left: 0, right: 0, width: "100%", margin: "0 auto",boxShadow: { xs: 0, md: 2 }, display: "flex", justifyContent: { xs: "center", md: "flex-start" }, zIndex: 1000, py: { xs: 0, md: 1 }, }}>
+          <Link href="#" onClick={(e) => { e.preventDefault(); history.push("/") }}>
+            <Box component="img"
               src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
               alt="Logo"
               draggable="false"
@@ -353,7 +300,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           boxShadow={2}
           onClick={handleOpen}
           display={{ xs: "block", md: "none" }}
-          sx={{
+          sx={{ background: '#fff',
             width: "100%",
             height: { xs: "200px", sm: "300px" },
             objectFit: "cover",
@@ -379,13 +326,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         </Hidden>
       )}
       <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
-        <Grid
-          container
-          spacing={2}
-          sx={{
-            position: "relative",
-          }}
-        >
+        <Grid container spacing={2} sx={{ position: "relative", }}>
           <Grid item xs={12} sm={6}>
             {loading && (
               <Hidden mdDown>
@@ -409,14 +350,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 draggable="false"
                 boxShadow={2}
                 display={{ xs: "none", md: "block" }}
-                sx={{
-                  width: "100%",
-                  height: { xs: "150px", sm: "375px" },
-                  objectFit: "cover",
-                  borderRadius: 3,
-                  cursor: "pointer",
-                }}
-              />
+                sx={{ width: "100%", height: { xs: "150px", sm: "375px" }, objectFit: "cover", borderRadius: 1, cursor: "pointer", }}/>
             )}
           </Grid>
           <Hidden mdDown>
@@ -427,22 +361,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   gallery.slice(1, 5).map((img: any) => {
                     return (
                       <Grid item sm={6} key={img}>
-                        <Box
-                          onClick={handleOpen}
-                          boxShadow={2}
-                          component="img"
-                          src={img.replace(/^http(s?):/i, "")}
-                          alt={name}
-                          sx={{
-                            width: "100%",
-                            height: "178px",
-                            objectFit: "cover",
-                            borderRadius: 3,
-                            cursor: "pointer",
-                          }}
-                        ></Box>
+                        <Box onClick={handleOpen} boxShadow={2} component="img" src={img.replace(/^http(s?):/i, "")} alt={name} sx={{ width: "100%", height: "178px", objectFit: "cover", borderRadius: 1, cursor: "pointer", }} />
                       </Grid>
-                    );
+                    )
                   })}
                 {loading &&
                   Array.from({ length: 4 }, (_, i: number) => (
@@ -458,26 +379,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </Grid>
             </Grid>
           </Hidden>
-          <Box
-            sx={{
-              position: "absolute",
-              right: { xs: "-10px", md: "20px" },
-              bottom: { xs: "8px", md: "20px" },
-              textAlign: "right",
-            }}
-          >
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{
-                textTransform: "none",
-                backgroundColor: "white",
-                "&:hover": {
-                  backgroundColor: "#fff",
-                },
-              }}
-              onClick={handleOpen}
-            >
+          <Box sx={{ position: "absolute", right: { xs: "-10px", md: "20px" }, bottom: { xs: "8px", md: "20px" }, textAlign: "right", }}>
+            <Button variant="outlined" size="small" sx={{ textTransform: "none", backgroundColor: "white", "&:hover": { backgroundColor: "#fff", }, }}onClick={handleOpen}>
               <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
               View Photos
             </Button>
@@ -506,17 +409,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               This property does not have any rooms available that meet your
               search criteria
             </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ mt: 1, mb: 3 }}
-            >
+            <Typography variant="body1" color="text.secondary" sx={{ mt: 1, mb: 3 }}>
               Search other great Romingo rooms below
             </Typography>
 
             <FilterBar zoomed />
-            <Box
-              component="img"
+            <Box component="img"
               src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
               alt={"No Properties Found"}
               sx={{
@@ -534,90 +432,51 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {!loading && data && (
           <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12} md={7} lg={8}>
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "text.secondary",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                }}
-              >
+              <Typography variant="h5" sx={{ color: "#222", flexDirection: { xs: 'column', sm: 'row'}, display: 'flex', justifyContent: 'space-between', fontFamily: 'Montserrat'}}>
                 {name}
+                <RomingoScore score={score} />
               </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "90%", sm: "125%" },
-                  mt: 0,
-                }}
-              >
+              <Typography variant="body1" sx={{letterSpacing: '.015rem', fontSize: '1rem',  fontFamily: "Roboto", fontWeight: 400, color: '#999', mt: '.5rem', }}>
                 {location.address}, {city?.name}
               </Typography>
-              <Chip icon={<LocationCityIcon />} label={neighborhood} />
-              <RomingoScore score={score} />
-              <ReadMore text={defaultDescription} length={200} />
+              <Chip sx={{ my: '1rem'}} icon={<LocationCityIcon />} label={neighborhood} />
+
+              <ReadMore small text={defaultDescription} length={200} />
               <Grid container spacing={2} sx={{ mt: 0 }}>
-                <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <Box
-                    sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
-                  >
-                    <AmenitiesCard
-                      title={"Pet-Friendly Amenities"}
-                      amenities={amenities}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <Box
-                    sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
-                  >
-                    <AmenitiesCard
-                      title={"Other Amenities"}
-                      amenities={otherAmenities}
-                      viewAll
-                    />
+                <Grid item xs={12} sm={12} md={12} lg={12}>
+                  <Box sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}>
+                    <AmenitiesCard title={"Hotel Amenities"} amenities={otherAmenities} viewAll />
                   </Box>
                 </Grid>
               </Grid>
-              <Box sx={{ width: "100%", overflow: "hidden" }}>
-                <RomingoGuarantee sx={{ mt: 2 }} />
-              </Box>
-              <Grid container>
-                <Box
-                  sx={{
-                    display: "flex",
-                    my: 2,
-                    width: "100%",
-                  }}
-                >
-                  <Map
-                    center={{
-                      lat: parseFloat(location.lat),
-                      lng: parseFloat(location.lon),
-                    }}
-                    height={300}
-                    markers={markers}
-                    zoom={14}
-                    selectedMarker={0}
-                  />
+              <Grid sx={{ pb: '.5rem' }}>
+                <Typography variant="h6" sx={{ mt: '1rem', color: "#222222", fontWeight: 600, fontFamily: 'Montserrat', display: 'block' }}>
+                  Where You&lsquo;ll Be
+                </Typography>
+                <Typography variant="h5" sx={{ letterSpacing: '.015rem',  mt: '.5rem', fontSize: '1rem', color: "#999", fontWeight: 400, fontFamily: 'Roboto', }}>
+                  {location.address}, {city?.name}, CA, United States
+                </Typography>
+                <Box sx={{ display: "flex", my: 2, width: "100%", }}>
+                  <Map center={{ lat: parseFloat(location.lat), lng: parseFloat(location.lon), }} height={300} markers={markers} zoom={14} selectedMarker={0} />
                 </Box>
               </Grid>
-              <ActivitiesNearby
-                nearby={nearby}
-                title={"Pet-Friendly Activities Nearby"}
-              />
+              <Grid container sx={{ borderTop: '1px solid #ddd', borderBottom: '1px solid #ddd', pb: '2rem', mt: '1rem' }}>
+
+                <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: '1.5rem' }}>
+                  <ActivitiesNearby nearby={nearby} title={"Nearby Activities"} />
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: '1.5rem' }}>
+                  <Box sx={{ display: "flex", flex: 1, height: "100%",}}>
+                    <PetAmmenities title={"Pet Amenities"} amenities={amenities} />
+                  </Box>
+                </Grid>
+
+              </Grid>
             </Grid>
             <Grid item xs={12} md={5} lg={4}>
               <Hidden mdDown>
-                <BookingCard
-                  sx={{
-                    position: "sticky",
-                    top: "1rem",
-                  }}
-                  roomList={roomDropDown}
-                  goToRate={goToRateScroll}
-                />
+                <BookingCard sx={{ background: '#fff' }} roomList={roomDropDown} goToRate={goToRateScroll} />
               </Hidden>
               <Hidden mdUp>
                 <Fab
@@ -643,49 +502,25 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Grid>
         )}
         {!loading && data && (
-          <Grid container sx={{ mt: 0, maxWidth: "100%" }} ref={RateCardRef}>
+          <Grid container sx={{  mt: 0, maxWidth: "100%" }} ref={RateCardRef}>
             <Grid item xs={12}>
-              <Typography
-                variant="h4"
-                sx={{
-                  color: "warning.main",
-                  my: 5,
-                  textAlign: "center",
-                }}
-              >
+              <Typography variant="h6" sx={{ color: "#222", fontFamily: 'Montserrat', mt: { xs: 1, sm: 5 }, mb: '1rem', textAlign: "left", }}>
                 Available Rooms
               </Typography>
               <Grid container columnSpacing={4} rowSpacing={4}>
                 {rooms.map((room: any, key: number) => {
                   return (
-                    <Grid
-                      item
-                      md={6}
-                      sm={12}
-                      key={key}
-                      sx={{ minWidth: "300px", display: "flex", flex: 1 }}
-                    >
-                      <RoomCard
-                        key={key}
-                        bestRate={key === 0 ? true : false}
-                        HotelName={name}
-                        room={room}
-                        sx={{
-                          minWidth: "260px",
-                          borderRadius: "5px",
-                          p: 1.75,
-                          boxShadow: 3,
-                          height: "calc(100% - 32px)",
-                        }}
-                        {...room}
-                      />
+                    <Grid item md={6} sm={12} key={key} sx={{ minWidth: "300px", display: "flex", flex: 1 }} >
+                      <RoomCard key={key} bestRate={key === 0 ? true : false} HotelName={name} room={room} sx={{ minWidth: "260px", borderRadius: "5px", p: 1.75, border: '1px solid #ddd', transition: 'all .15s ease-in-out', boxShadow: 1, '&:hover': { boxShadow: 7 }, height: "calc(100% - 32px)",}} {...room} />
                     </Grid>
-                  );
+                  )
                 })}
               </Grid>
             </Grid>
           </Grid>
         )}
+
+
         <SimpleReactLightbox>
           <Dialog
             open={showGallery}
@@ -711,13 +546,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               }}
             >
               Photos
-              <IconButton
-                aria-label="close"
-                onClick={handleClose}
-                sx={{
-                  color: (theme) => theme.palette.grey[500],
-                }}
-              >
+              <IconButton aria-label="close" onClick={handleClose} sx={{ color: (theme) => theme.palette.grey[500],}}>
                 <CloseIcon />
               </IconButton>
             </DialogTitle>
@@ -744,8 +573,145 @@ ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
           </Dialog>
         </SimpleReactLightbox>
       </Container>
-    </>
-  );
-};
+    </Grid>
+  )
+}
 
-export default DetailsPage;
+
+
+interface PetAmenitiesProps {
+  title: string,
+  amenities: string[],
+}
+
+const PetAmmenities: FC<PetAmenitiesProps> = ({ amenities, title }) => {
+
+  return <Box sx={{ color: "text.primary", width: "100%", pl: { sm: '1rem' },  }}>
+  <Typography variant="h6" sx={{ color: "#222222", fontWeight: 600, fontFamily: 'Montserrat'}}>
+    {title}
+  </Typography>
+  <Grid container sx={{display: 'flex', justifyContent: 'center'}}>
+    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
+      {amenities.map((amenity, key) => {
+        if (key < 6) {
+          return (
+            <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: '0.9rem', }} key={key}>
+              <Pets sx={{ fontSize: '20px', color: "#888", mr: '1rem' }} />
+              <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
+                {amenity}
+              </Typography>
+            </Box>
+          )
+        }
+      })}
+    </Grid>
+  </Grid>
+ </Box>
+}
+
+
+interface AmenitiesProps {
+  title: string
+  amenities: string[]
+  rowNumber?: number
+  viewAll?: boolean
+}
+
+const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, viewAll, }) => {
+  const [showDialog, setShowDialog] = useState(false)
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"))
+  const popularAmenities = [ { text: ['pool'], icon: Pool }, { icon: SportsGolf, text: ['golf'] }, { icon: SportsTennis, text: ['tennis'] }, { icon: DryCleaning, text: ['dry cleaning'] }, { icon: RoomService, text: ['room service'] }, { icon: FitnessCenter, text: ['gym', 'fitness center', 'health club'] }, { icon: Wifi, text: ['high speed internet', 'wifi', 'internet'] }, { icon: Pets, text: ['pets allowed', 'pets'] }, { icon: SmokeFree, text: ['non-smoking'] }, { icon: BusinessCenter, text: ['business center'] }, { icon: Accessible, text: ['wheelchair access', 'wheelchair accessible'] }, { icon: CarRental, text: ['car rental', 'rental'] }, { icon: Crib, text: ['crib', 'crib rental'] } ]
+
+  const includedPopular = amenities.reduce((acc: Array<any>, item: string) => {
+    if ( popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
+      return [...acc, { ...(popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')), receivedText: item }]
+    }
+    else {
+      return [...acc]
+    }
+  }, []).sort((a, b) => a.receivedText > b.receivedText ? 1 : -1)
+
+  const handleClose = () => {
+    setShowDialog(false)
+  }
+
+  const handleOpen: MouseEventHandler<Element> = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setShowDialog(true)
+  }
+
+  return (
+    <Box sx={{ color: "text.primary",  py: 2, pb: 3, width: "100%", borderBottom: '1px solid #ddd', borderTop: '1px solid #ddd'  }}>
+      <Typography variant="h6" sx={{ color: "#222222", fontWeight: 600, fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
+        {title}
+
+        {viewAll && amenities.length > 13 && (
+        <>
+          <Box sx={{textAlign: "right", }}>
+            <Link href="#" sx={{ color: 'rgba(0, 0, 0, 0.6)',  }} onClick={handleOpen}>
+              <Typography variant="body2" sx={{ ml: '1rem', fontWeight: 500}}>See All </Typography>
+            </Link>
+          </Box>
+          <Dialog open={showDialog} keepMounted fullWidth fullScreen={fullScreen} onClose={handleClose} >
+            <DialogTitle sx={{ textAlign: "center", color: "primary.main", }}>
+              Amenities
+              <IconButton aria-label="close" onClick={handleClose} sx={{ position: "absolute", right: 8, top: 8, color: (theme) => theme.palette.grey[500], }}>
+                <CloseIcon />
+              </IconButton>
+            </DialogTitle>
+            <DialogContent sx={{overflowY: 'auto'}}>
+              {amenities.map((amenity, key) => {
+                return (
+                  <Box sx={{ display: "flex", alignItems: "center", py: 1.25, width: '100%'}} key={key}>
+                    <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.3, mr: 0.5, }}/>
+                    <Typography variant="body1" sx={{ mt: 0, color: "text.light", textIndent: "-8px", paddingLeft: "8px", }}>
+                      {amenity}
+                    </Typography>
+                  </Box>
+                )
+              })}
+            </DialogContent>
+          </Dialog>
+        </>
+      )}
+
+      </Typography>
+      <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column' }}>
+            {includedPopular.map((amenity, index) => {
+              if (index < 6) {
+                 const AmenityIcon = amenity.icon
+                return (
+                  <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: '.9rem', }} key={index}>
+                    <SvgIcon sx={{ color: '#999', mr: '1rem' }} component={AmenityIcon} />
+                    <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
+                      {amenity.receivedText}
+                    </Typography>
+                  </Box>
+                )
+              }
+            })}
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column' }}>
+            {includedPopular.map((amenity, index) => {
+              if ((index > 5) && (index < 12)) {
+                 const AmenityIcon = amenity.icon
+                return (
+                  <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: '.9rem', }} key={index}>
+                    <SvgIcon sx={{ color: '#999', mr: '1rem' }} component={AmenityIcon} />
+                    <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
+                      {amenity.receivedText}
+                    </Typography>
+                  </Box>
+                )
+              }
+            })}
+        </Grid>
+     </Grid>
+    </Box>
+  )
+}
+
+export default DetailsPage

@@ -1,31 +1,19 @@
-import React, { FC, useState, MouseEventHandler } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { FC, useState, MouseEventHandler } from "react";
 import Check from "@mui/icons-material/Check";
-import Link from "@mui/material/Link";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import { useTheme } from "@mui/material/styles";
+import { Dialog, DialogContent, DialogTitle, Link, Box, IconButton, Typography, Grid } from '@mui/material'
 
-interface Props {
+interface AmenitiesProps {
   title: string;
   amenities: string[];
   rowNumber?: number;
   viewAll?: boolean;
 }
 
-const AmenitiesCard: FC<Props> = ({
-  title,
-  amenities,
-  rowNumber = 5,
-  viewAll,
-}) => {
-  const subAmenities =
-    amenities.length > rowNumber ? amenities.slice(0, rowNumber) : amenities;
+const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, viewAll, }) => {
+  const subAmenities = amenities.length > rowNumber ? amenities.slice(0, rowNumber) : amenities;
 
   const [showDialog, setShowDialog] = useState(false);
   const theme = useTheme();
@@ -42,54 +30,41 @@ const AmenitiesCard: FC<Props> = ({
   };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "white",
-        color: "text.primary",
-        borderRadius: 3,
-        boxShadow: 4,
-        py: 2,
-        px: 2,
-        width: "100%",
-      }}
-    >
-      <Typography
-        variant="h6"
-        sx={{
-          color: "primary.main",
-          textAlign: "center",
-          mb: 1,
-        }}
-      >
+    <Box sx={{ backgroundColor: "white", color: "text.primary", borderRadius: 3, boxShadow: 4, py: 2, px: 2, width: "100%", }}>
+      <Typography variant="h6" sx={{ color: "primary.main", textAlign: "center", mb: 1, }}>
         {title}
       </Typography>
-      {subAmenities.map((amenity, key) => {
-        return (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "bottom",
-              mt: 0.4,
-            }}
-            key={key}
-          >
-            <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }} />
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 0,
-                textTransform: "capitalize",
-                color: "text.primary",
-                textIndent: "-8px",
-                paddingLeft: "8px",
-              }}
-            >
-              {amenity}
-            </Typography>
-          </Box>
-        );
-      })}
-      {viewAll && (
+      <Grid container sx={{display: 'flex', justifyContent: 'center'}}>
+        <Grid item xs={12} sm={4} md={4} lg={5} sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
+            {amenities.map((amenity, key) => {
+              if (key < 6) {
+                return (
+                  <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: 0.4, }} key={key}>
+                    <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4, mr: '.25rem' }} />
+                    <Typography variant="body1" sx={{ mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px" }}>
+                      {amenity}
+                    </Typography>
+                  </Box>
+                );
+              }
+            })}
+          </Grid>
+          {!fullScreen && <Grid item sm={4} md={4} lg={5}>
+            {amenities.map((amenity, key) => {
+              if ((key > 6) && (key < 13)) {
+                return (
+                  <Box sx={{ display: "flex", pl: { sx: '0', sm: '1rem', md: '2rem', lg: '3rem', xl: '4rem'}, alignItems: "bottom", mt: 0.4, }} key={key}>
+                    <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.4, mr: '.25rem' }} />
+                    <Typography variant="body1" sx={{ mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", }}>
+                      {amenity}
+                    </Typography>
+                  </Box>
+                );
+              }
+            })}
+        </Grid>}
+     </Grid>
+      {viewAll && amenities.length > 13 && (
         <>
           <Box
             sx={{

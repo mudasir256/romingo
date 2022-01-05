@@ -15,15 +15,14 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
-import OccupantSelector, {
-  Occupant,
-} from "../OccupantSelector/OccupantSelector";
+import OccupantSelector, { Occupant, } from "../OccupantSelector/OccupantSelector";
 import Link from "@mui/material/Link";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
-
+import { ArrowDownward } from '@mui/icons-material'
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { saveSearch } from "../../store/searchReducer";
+import RomingoGuarantee from "../../components/RomingoGuarantee"
 
 interface Props {
   sx?: CSSObject;
@@ -108,8 +107,17 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     }
   }, [checkDate]);
 
-  return (
-    <Box sx={{ ...sx, borderRadius: 3, boxShadow: 3, p: 2 }}>
+  return <Grid sx={{ position: 'sticky', top: '2rem', width: '95%', ml: 'auto'}}>
+    <Box sx={{ ...sx, borderRadius: 2, boxShadow: 3, p: '1em' }}>
+      <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
+        <Typography variant="h5" sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+          ${selectedRoom?.room?.averagePrice.toFixed(2)}  <span style={{fontSize: '16px', fontWeight: 500}}>/ night</span>
+        </Typography>
+        <Button disableElevation onClick={handleBook} variant="contained" size="small" color="primary" sx={{ ml: 'auto', py: '.75rem', px: '2rem' }}>
+          <Typography variant="body2" sx={{ fontFamily: 'Montserrat', fontWeight: 600 }}>Book Now</Typography>
+        </Button>
+      </Box>
+
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -141,28 +149,10 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               renderInput={(startProps, endProps) => (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      {...startProps}
-                      onFocus={() => {
-                        setIsTextField(true);
-                      }}
-                      onBlur={() => {
-                        setIsTextField(false);
-                      }}
-                      fullWidth={true}
-                    />
+                    <TextField size='small'{...startProps} InputLabelProps={{ style: { fontWeight: 500 }}} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      {...endProps}
-                      onFocus={() => {
-                        setIsTextField(true);
-                      }}
-                      onBlur={() => {
-                        setIsTextField(false);
-                      }}
-                      fullWidth={true}
-                    />
+                    <TextField size='small' {...endProps} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
                   </Grid>
                 </Grid>
               )}
@@ -170,24 +160,12 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
-          <OccupantSelector
-            value={occupants}
-            onChange={(value) => {
-              onOccupantChange(value);
-            }}
-            onClose={handleOccupantsClose}
-          />
+          <OccupantSelector size="small" value={occupants} onChange={(value) => { onOccupantChange(value); }} onClose={handleOccupantsClose} />
         </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel>Room Type</InputLabel>
-            <Select
-              value={roomType}
-              onChange={(e) => {
-                setRoomType(e.target.value);
-              }}
-              label="Room Type"
-            >
+            <Select size="small" value={roomType} onChange={(e) => { setRoomType(e.target.value); }} label="Room Type">
               {roomList.map((room, key) => {
                 return (
                   <MenuItem value={room.value} key={key}>
@@ -199,51 +177,22 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
           </FormControl>
         </Grid>
       </Grid>
-      <Box sx={{ my: 3, borderTop: 1, borderColor: "primary.main" }} />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography variant="h5">
-            ${selectedRoom?.room?.averagePrice.toFixed(2)}
-          </Typography>
-          <Typography variant="body1" sx={{ ml: 1 }}>
-            / night
-          </Typography>
-        </Box>
-        <Button
-          onClick={handleBook}
-          variant="contained"
-          size="large"
-          color="primary"
-          sx={{ mt: 2, py: 1.5, px: 3.5 }}
-        >
-          <Typography variant="h6">Book Now</Typography>
-        </Button>
-        <Link
-          href="#"
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
+        <Link href="#"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             if (goToRate) goToRate();
           }}
         >
-          <Typography
-            variant="body1"
-            sx={{
-              mt: 2,
-            }}
-          >
-            View All Rooms &amp; Rates
+          <Typography variant="body1" sx={{ fontSize: '1rem', mt: 2, display: 'flex', alignItems: 'center' }}>
+            Go To Rooms &amp; Rates <ArrowDownward sx={{ ml: '.5rem', fontSize: '1rem' }} />
           </Typography>
         </Link>
       </Box>
     </Box>
-  );
+    {/* <RomingoGuarantee sx={{ mt: 5 }} /> */}
+  </Grid>
 };
 
 export default BookingCard;
