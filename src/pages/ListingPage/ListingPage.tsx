@@ -206,6 +206,11 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     }
   };
 
+  useEffect(() => {
+    setHoverIndex(0)
+    setHotelIndex(0)
+  }, [sortBy])
+
   return (
     <>
       <ScrollToTop />

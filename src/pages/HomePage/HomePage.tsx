@@ -694,7 +694,7 @@ const CustomerTestimonials = () => {
 
 const HotelCarousel = () => {
   const matches = useMediaQuery('(max-width:800px)')
-  const hotelLogos = [ "ace.jpg", "doubletree.png", "grand-hyatt.jpg", "hilton.png", "hotel-indigo.png", "hyatt-regency.png", "kimpton.png", "loews.jpg", "mondrian.png", "montage.png", "noble-house.png", "phg.jpg", "saguaro.jpg", "sofitel.png", "sonesta.png", "viceroy.jpg", "wyndham.png"].map((picture, index) => {
+  const hotelLogos = [ "Argo%20Logo.jpg", "Black.jpg", "Black%20HSFUS%20Logo%20RGB_CS3%202013.jpg", "Full%20Logo.jpg", "HROC%20Property%20Logo%20Left%20Aligned%20Aubergine.jpg", "HotelZetta-logotype_horiz_black_rgb.jpg", "Hyatt-Regency-Mission-Bay-Logo.png", "Mondrian%20Logo.jpg.jpg", "New%20Maya%20Logo%20Black-001%20(1).jpg", "SANRS_L005b-hrz-WG11U-CMYK_28124.jpg", "Sofitel_PNG.png", "Zeppelin_Logo_BLK.jpg", "curator.png", "new%20pendry%20logo.JPG", "SANRS_L005b-hrz-WG11U-CMYK_28124.jpg", "urbanRetreats_logo_fnl-01.jpg"].map((picture, index) => {
     return <Grid key={index} sx={{overflow: 'hidden', height: '60px',  m: '0rem 1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
      <img alt='hotel logo' style={{display: 'block', maxWidth: '100%', maxHeight: '60px' }} src={`https://storage.googleapis.com/romingo-development-public/images/front-end/hotel-logos/${picture}`} />
    </Grid>
