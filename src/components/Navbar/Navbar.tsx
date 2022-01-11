@@ -38,8 +38,8 @@ const Navbar: FC<Props> = ({ sx }) => {
 
   return (
     <>
-      <AppBar position="fixed" style={{background: '#fff', backgroundColor: '#fff',}} sx={{ backgroundColor: '#fff', boxShadow: 2 }}>
-        <Toolbar style={{background: '#fff'}} sx={{ display: "block", position: "relative" }}>
+      <AppBar position="fixed" style={{background: '#ffffffed', WebkitBackdropFilter: 'blur(6px)', backdropFilter: 'blur(6px)', backgroundColor: '#ffffffed',}} sx={{  boxShadow: 2 }}>
+        <Toolbar sx={{ display: "block", position: "relative" }}>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: { xs: "56px", sm: "64px" }}}>
             <Hidden smDown>
               <Box sx={{ display: "flex", alignItems: "center" }}>

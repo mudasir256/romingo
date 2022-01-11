@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
+import { DateTime } from 'luxon'
 
 // interface Props {
 //   details: {
@@ -81,7 +82,7 @@ const BookingDetailCard: FC = () => {
               fontFamily: "Roboto",
             }}
           >
-            {details.checkIn.substring(0, 10)}
+            {DateTime.fromISO(details.checkIn).toFormat('MMM dd, yyyy')}
           </Typography>
         </Box>
         <Box>
@@ -112,7 +113,7 @@ const BookingDetailCard: FC = () => {
               paddingLeft: "8px",
             }}
           >
-            {details.checkOut.substring(0, 10)}
+            {DateTime.fromISO(details.checkOut).toFormat('MMM dd, yyyy')}
           </Typography>
         </Box>
       </Box>

@@ -17,7 +17,7 @@ const AuthGuards = (props: any) => {
 const randomNumber = (max: number) => Math.floor(Math.random() * max)
 
 const App: FC = () => {
-  const [variant] = useState((localStorage.getItem('ROMINGO_EXPERIMENT_VAR') || randomNumber(5) ))
+  const [variant] = useState((localStorage.getItem('ROMINGO_EXPERIMENT_VAR') || randomNumber(3) ))
 
   useEffect(() => {
     localStorage.setItem('ROMINGO_EXPERIMENT_VAR', variant.toString())

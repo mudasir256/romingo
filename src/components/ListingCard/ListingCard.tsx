@@ -8,7 +8,7 @@ import Chip from "@mui/material/Chip";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import RomingoScore from "../RomingoScore/RomingoScore";
-
+import { MoneyOff, VerifiedUser } from '@mui/icons-material'
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 export interface ListingCardProps {
@@ -66,7 +66,7 @@ const ListingCard: FC<ListingCardProps> = ({
         maxWidth: "100%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: highlighted ? "lightBackground.main" : "white",
+        backgroundColor:  "white",
       }}
       {...props}
     >
@@ -136,13 +136,13 @@ const ListingCard: FC<ListingCardProps> = ({
             </Typography>
             <Chip sx={{ mt: '.5rem'}} icon={<LocationCityIcon />} label={neighborhood} />
               <Box sx={{ mt: '1rem', mb: 1, display: 'flex' }}>
-              <Check sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
+              <MoneyOff sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
               <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
                 No hidden fees
               </Typography>
             </Box>
             <Box sx={{ mt: 1, mb: -2, display: 'flex' }}>
-              <Check sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
+              <VerifiedUser sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
               <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
                 Free cancellation
               </Typography>

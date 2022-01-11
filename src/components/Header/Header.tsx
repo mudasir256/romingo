@@ -18,17 +18,16 @@ import OccupantSelector, { Occupant, } from "../OccupantSelector/OccupantSelecto
 import { saveSearch } from "../../store/searchReducer"
 import { OverlappingFieldsCanBeMergedRule } from "graphql"
 import { DateTime } from 'luxon'
+import { Shuffle } from "@mui/icons-material"
 
 interface Props {
   sx?: CSSObject
 }
 
 const variants = [
-  "Book pet-friendly hotels with Romingo and pay $0 in pet fees",
-  "Book the lowest hotel rates with Romingo",
-  "The only booking site that waives hotel pet fees",
-  "Discover the best rates at luxury hotels",
-  "Never pay pet fees again with Romingo"
+  "Explore the world without the fees",
+  "Discover your next getaway the easy way",
+  "Resolve to travel in 2022",
 ]
 
 const locationIds = [
@@ -42,10 +41,9 @@ const locationIds = [
 
 const bgImages = [
   'url("https://storage.googleapis.com/romingo-development-public/images/front-end/background-frenchie.jpeg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/background-jackrussel.jpeg")',
   'url("https://storage.googleapis.com/romingo-development-public/images/front-end/woman-with-dog-in-snow.jpg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/hotel-pool.jpeg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/couple-pointing-with-dog.jpg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/trees-background.jpeg")',
+  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/bridge-background.jpeg")',
   'url("https://storage.googleapis.com/romingo-development-public/images/front-end/open-road.jpeg")',
 ];
 
@@ -58,14 +56,15 @@ const Header: FC<Props> = ({ sx }) => {
   }, [])
 
   return (
-    <Box sx={{ width: "100%", minHeight: { xs: 620, md: "100vh", }, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", top: 0, left: 0, ...sx,}}>
+    <Box sx={{ width: "100%", minHeight: { xs: '100vh', md: "100vh", }, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", top: 0, left: 0, ...sx,}}>
       <Navbar />
 
       <Box sx={{ position: "absolute", top: 0, left: 0, zIndex: 0, width: "100%", }}>
         <Box sx={{
             objectFit: "cover",
             width: "100%",
-            height: { xs: 620, md: "100vh" },
+            borderRadius:'12px',
+            height: { xs: '100vh', md: "100vh" },
             position: "relative",
             "&::before": {
               content: '""',
@@ -84,9 +83,11 @@ const Header: FC<Props> = ({ sx }) => {
       </Box>
       <Box sx={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", }} >
         <Box sx={{
-            borderRadius: { xs: 0, md: 3 },
+            borderRadius: { xs: 4.5, md: 3 },
             zIndex: 100,
             backgroundColor: "rgba(255,255,255, .8)",
+            backdropFilter: 'blur(3px)',
+            boxShadow: '1px 2px 3px rgba(0, 0, 0, 0.25)',
             maxWidth: { xs: "100%", md: "90%", xl: "80%" },
             pt: { xs: 2, md: 3.5 },
             pb: { xs: 0, md: 3.5 },
@@ -94,11 +95,11 @@ const Header: FC<Props> = ({ sx }) => {
             mx: 1,
           }}
         >
-          <Typography variant="h1" sx={{ color: "primary.main", textAlign: "center", fontSize: { xs: "2.5rem", md: "4rem" }, }}>
-            Welcome to Pet-Friendly Travel
-          </Typography>
-          <Typography variant="h4" sx={{ color: "text.secondary", textAlign: "center", fontSize: { xs: "1.25rem", md: "2rem" }, margin: "0 auto", px: 2, mt: 1, }} >
+          <Typography variant="h1" sx={{ color: "primary.main", maxWidth:{ xs: '92%', sm: '100%'}, margin: { xs: '1rem auto', sm: '0rem auto .75rem auto' }, fontFamily: 'Montserrat', textAlign: "center", fontSize: { xs: "2.25rem", md: "3rem" }, }}>
             {variants[variant ? parseFloat(variant) : 0]}
+          </Typography>
+          <Typography variant="h4" sx={{ color: "text.secondary", fontWeight: 500, fontFamily: 'Roboto', textAlign: "center", fontSize: { xs: "1.25rem", md: "1.5rem" }, margin: { xs: ".5rem auto", sm: '0 auto' }, px: 2, mt: 1, }} >
+            Romingo provides the best hotel deals, and your pets will always travel for free!
           </Typography>
 
           <FilterBar sx={{ width: "100%", margin: "0 auto", mt: { xs: 2, md: 0 }, display: "flex", justifyContent: "center", }} zoomed home={true}/>
@@ -126,7 +127,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
   const [formError, setFormError] = useState("")
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([ search.checkIn ? search.checkIn : new Date(), search.checkOut ? search.checkOut : DateTime.local().plus({ days: 1 }).toJSDate() ])
   const [occupants, setOccupants] = useState(search.occupants.dogs > 0 ? search.occupants : { adults: 2, children: 0, dogs: 1  });
-  const matches = useMediaQuery('(max-width:800px)')
   const history = useHistory();
 
   const dispatch: Dispatch<any> = useDispatch()
@@ -231,10 +231,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
   return <>
 
-    <Box sx={{ maxWidth: "830px",margin: "0 auto", backgroundColor: "white", py: { xs: 0, md: 1.75 }, mt: { xs: 2, md: 4 }, borderRadius: { xs: 1, md: 25 }, boxShadow: 5, }}>
+    <Box sx={{ maxWidth: { xs: '90%', sm:"830px" }, margin: "0 auto", backgroundColor: "white", py: { xs: 0, md: 1.75 }, mt: { xs: 2, md: 4 }, borderRadius: { xs: 1, md: 25 }, border: '2px solid #ddd' }}>
 
 
-    <Box sx={{ ...sx, }}>
+    <Box sx={{ ...sx, mt: '0px', pt: '0px'}}>
       {!zoomIn && (
         <Box sx={{ display: "inline-block", minWidth: "300px", }} >
           <Box sx={{ display: "inline-flex", alignItems: "center", border: "1px solid #DDDDDD", borderRadius: 3, backgroundColor: "white", }}>
@@ -262,7 +262,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               </Typography>
               <PersonIcon sx={{ color: "primary.main", fontSize: "100%",mb: 0,ml: 0.1, }}/>
             </Button>
-            <IconButton onClick={handleFilterInClick}>
+            <IconButton onClick={handleFilterInClick} sx={{ mt: { xs: '1rem' }}}>
               <SearchOutlinedIcon />
             </IconButton>
           </Box>
@@ -272,9 +272,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
 
       {zoomIn && (
-        <Box sx={{ borderRadius: 3, backgroundColor: { xs: "white", md: "transparent", }, py: { xs: 1.5, md: 0 }, }}>
+        <Box sx={{ borderRadius: 6, backgroundColor: { xs: "white", md: "transparent", }, py: { xs: 1.5, md: 0 }, pt: '0px'}}>
           <Zoom in={zoomIn} timeout={{ enter: 200, }} >
-            <Box sx={{ pt: { xs: 1, md: 0 }, pb: 0, px: 2.5, my: { xs: 0 }, }}>
+            <Box sx={{ borderRadius: '12px', pt: { xs: 0, md: 0 }, pb: 0, px: 2.5, my: { xs: 0 }, }}>
               <Box sx={{display: { md: "flex", xs: "block", }, justifyContent: "center",}}>
                 <Box sx={{ minWidth: "150px",mb: { xs: 1, md: 0, }, display: "flex", alignItems: "end", }} >
                   <Autocomplete options={cities} value={getCity(selectedCity) || null}
@@ -385,6 +385,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 <Box sx={{ textAlign: "center" }}>
                   <Button
                     onClick={handleFilterOutClick}
+                    disableElevation
                     type="submit"
                     variant="contained"
                     color="primary"
@@ -394,11 +395,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       pt: { xs: 1.5, md: 1.5 },
                       pr: 6,
                       mx: 0,
-                      borderBottomRightRadius: { xs: 0, md: "30px" },
-                      borderTopRightRadius: { xs: 0, md: "30px" },
-                      borderBottomLeftRadius: "0px",
-                      borderTopLeftRadius: "0px",
+                      borderBottomRightRadius: { xs: 24, md: "30px" },
+                      borderTopRightRadius: { xs: 24, md: "30px" },
+                      borderBottomLeftRadius: { xs: 24, md: "0px" },
+                      borderTopLeftRadius: { xs: 24, md: "00px" },
                       my: { xs: 0.5, md: 0 },
+                      mt: { xs: '1rem', },
                       width: { xs: "100%" },
                       fontWeight: "bold",
                     }}
@@ -418,8 +420,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       )}
     </Box>
   </Box>
-    <Typography sx={{ textAlign: 'center', m: matches ? '1rem auto' : '2rem auto 0rem auto', userSelect: 'none'}}>
-      Need some inspiration? <Link onClick={handleImFlexibleClick} sx={{cursor: 'pointer'}}> I&lsquo;m Flexible </Link>
+    <Typography sx={{ textAlign: 'center', m: { xs: '1.5rem auto', sm: '2rem auto 0rem auto' }, userSelect: 'none'}}>
+      Need some inspiration? <br /> <Button disableElevation variant='contained' onClick={handleImFlexibleClick} sx={{ mt: { xs: '1rem', sm: '.5rem' }, background: 'rgba(250, 250, 250, 0.9)', border: '2px solid #03989E80', color: '#03989E', borderRadius: '24px',fontWeight: 600, cursor: 'pointer', '&:hover': { background: '#fff' }}}> I&lsquo;m Flexible <Shuffle sx={{ fontSize: '20px', ml: '1rem' }} />
+      </Button>
     </Typography>
   </>
 };

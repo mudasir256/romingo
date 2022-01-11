@@ -248,11 +248,9 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             }}
           />
         </Link>
-        <Hidden mdDown>
-          {!loading && (error || cards.length !== 0) && <FilterBar />}
-        </Hidden>
+
         <Hidden mdUp>
-          <FilterBar />
+          <FilterBar sx={{ mt: '1rem', }} />
         </Hidden>
       </Box>
       <Box sx={{ backgroundColor: "white", display: { md: "flex", }, height: { xs: height, md: "calc(100vh - 59px)" }, }}>
@@ -453,8 +451,14 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
 
             <RomingoGuarantee sx={{ mb: 3 }} />
-            <SortBar sortBy={sortBy} setSortBy={setSortBy} />
 
+            <Grid sx={{ display: 'flex', mb: '1rem', justifyContent: 'space-between'}}>
+              <Hidden mdDown>
+                {!loading && (error || cards.length !== 0) && <FilterBar />}
+              </Hidden>
+
+              <SortBar sortBy={sortBy} setSortBy={setSortBy} />
+            </Grid>
 
 
 

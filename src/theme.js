@@ -80,14 +80,4 @@ export const theme = {
       fontWeight: 300,
     },
   },
-  components: {
-     MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backdropFilter: 'blur(18px)',
-          background: 'linear-gradient(88.85deg, #4295E0 0.2%, rgba(13, 51, 147, 0.75) 100%)'
-        }
-      }
-    },
-  }
 };

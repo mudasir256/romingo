@@ -3,7 +3,7 @@ import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
-import { CSSObject, Divider } from "@mui/material";
+import { Slide, CSSObject, Divider, useMediaQuery } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
@@ -18,10 +18,9 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
+import { DateTime } from 'luxon'
 
-import OccupantSelector, {
-  Occupant,
-} from "../OccupantSelector/OccupantSelector";
+import OccupantSelector, { Occupant, } from "../OccupantSelector/OccupantSelector";
 
 import { saveSearch } from "../../store/searchReducer";
 
@@ -37,6 +36,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
+  const mobile = useMediaQuery('(max-width:800px)')
 
   const [zoomIn, setZoomIn] = useState(zoomed);
   // eslint-disable-next-line
@@ -144,36 +144,12 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
   };
 
   return (
-    <Box
-      sx={{
-        ...sx,
-      }}
-    >
-      {!zoomIn && (
-        <Box
-          sx={{
-            display: "inline-block",
-            minWidth: "300px",
-          }}
-        >
-          <Box
-            sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              border: "1px solid #DDDDDD",
-              borderRadius: 3,
-              backgroundColor: "white",
-            }}
-          >
+    <Box sx={{ mt: { xs: '.75rem',}, width: { xs: '100%', sm: 'auto'}, justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
+      <Slide in={!zoomIn}>
+        <Box sx={{ display: "inline-block", pb: '1rem', minWidth: { xs: '95%', }, margin: '0px auto' }}>
+          <Box sx={{ display: "flex", minHeight: '45px', boxShadow: { xs: '1px 2px 2px rgba(0, 0, 0, 0.15)', sm: '0'}, justifyContent: 'space-evenly', alignItems: "center", border: "1px solid #DDDDDD", borderRadius: 3, backgroundColor: "white", pr: {xs: '0', sm: '.5rem'} }}>
             <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography
-                sx={{
-                  textTransform: "none",
-                  fontSize: {
-                    xs: "85%",
-                  },
-                }}
-              >
+            <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none', fontWeight: 600, fontSize: { xs: '13px' }}}>
                 {getCityName(selectedCity)}
               </Typography>
             </Button>
@@ -186,31 +162,14 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
               }}
             ></Box>
             <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography
-                sx={{
-                  fontSize: {
-                    xs: "85%",
-                  },
-                }}
-              >
-                {checkDate[0] ? dateToString(checkDate[0]) : ""} -{" "}
-                {checkDate[1] ? dateToString(checkDate[1]) : ""}
+              <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none',fontWeight: 600, fontSize: { xs: '13px' }}}>
+                { checkDate[0] ? DateTime.fromISO(checkDate[0].toString()).toFormat('MMM dd') : ''}
+                &nbsp;&#8212;&nbsp;
+                { checkDate[1] ? DateTime.fromISO(checkDate[1].toString()).toFormat('MMM dd') : ''}
               </Typography>
             </Button>
-            <Box
-              sx={{
-                backgroundColor: "#DDDDDD",
-                flex: "0 0 1px",
-                height: "24px",
-                width: "1px",
-              }}
-            ></Box>
-            <Button
-              onClick={handleFilterInClick}
-              sx={{
-                px: { xs: 1, md: 3 },
-              }}
-            >
+            <Box sx={{ backgroundColor: "#DDDDDD", flex: "0 0 1px", height: "24px", width: "1px", }}></Box>
+            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 }, }}>
               <Typography
                 sx={{
                   textTransform: "none",
@@ -252,41 +211,20 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
             </IconButton>
           </Box>
         </Box>
-      )}
-      {zoomIn && (
-        <Box
-          sx={{
-            borderRadius: 3,
-            backgroundColor: {
-              xs: "white",
-              md: "transparent",
-            },
+      </Slide>
+      {zoomIn && <Slide in={zoomIn}>
+        <Box onClick={mobile ? handleFilterOutClick : () => null} sx={{ maxHeight: zoomIn ? 'auto':'0px',  transitionDelay: '0.5s', transitionProperty: 'background-color', transitionTimingFunction: 'ease-in-out', height: { xs: '100vh', sm: '0px' }, backdropFilter: { xs: 'blur(3px)', sm: '0' }, WebkitBackdropFilter: { xs: 'blur(3px)', sm: '0'  }, backgroundColor: { xs: zoomIn ? 'rgba(0, 0, 0, 0.2)': 'rgba(0, 0, 0, 0.0)', sm: '0' },
+          mt: { xs: zoomIn? '-5.75rem': '0', sm: '-9rem'  }, pt: { xs: '2.75rem', sm: '0'  }}}>
+        <Box sx={{ borderRadius: 3, backgroundColor: { xs: "#ffffffEB", md: "transparent", }, maxWidth: '95%', margin: '0px auto',
+            WebkitBackdropFilter: 'blur(6px)',
             py: { xs: 1.5, md: 0 },
+            pb: '1rem',
+            boxShadow: { xs: '1px 2px 2px rgba(0, 0, 0, 0.15)', sm: '0'},
+            border: { xs:  '1px solid #ddd', sm: '0'}
           }}
         >
-          <Zoom
-            in={zoomIn}
-            timeout={{
-              enter: 200,
-            }}
-          >
-            <Box
-              sx={{
-                pt: { xs: 1, md: 0 },
-                pb: 0,
-                px: 2.5,
-                my: { xs: 0 },
-              }}
-            >
-              <Box
-                sx={{
-                  display: {
-                    md: "flex",
-                    xs: "block",
-                  },
-                  justifyContent: "center",
-                }}
-              >
+            <Box sx={{ pt: { xs: 1, md: 0 }, pb: 1, px: 2.5, my: { xs: 0 }, }} >
+              <Box sx={{ display: { md: "flex", xs: "block", }, justifyContent: "center", }}>
                 <Box
                   sx={{
                     minWidth: "150px",
@@ -314,7 +252,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                     }}
                     sx={{
                       width: { xs: "100%", md: "180px" },
-                      minWidth: "180px",
+                      minWidth: "180px", fontWeight: 600,
                       ml: { xs: 0, md: 2 },
                     }}
                     renderInput={(params) => (
@@ -326,10 +264,11 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                         size="small"
                         sx={{
                           label: {
-                            fontWeight: "bold",
+                            fontWeight: 600,
                           },
                           input: {
                             cursor: "pointer",
+                            fontWeight: 600,
                             color: "primary.main",
                             border: "none",
                             mt: 0.55,
@@ -343,9 +282,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                 <Box
                   sx={{
                     fontFamily: "Roboto",
-                    fontWeight: 400,
                     display: "flex",
                     alignItems: "end",
+                    fontWeight: 600
                   }}
                 >
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -409,9 +348,10 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                               width: { xs: "50%", md: "100px" },
                               my: { xs: 0.5, md: 0 },
                               label: {
-                                fontWeight: "bold",
+                                fontWeight: "600",
                               },
                               input: {
+                                fontWeight: 600,
                                 cursor: "pointer",
                                 color: "primary.main",
                                 border: "none",
@@ -442,6 +382,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                                 fontWeight: "bold",
                               },
                               input: {
+                                fontWeight: 600,
                                 color: "primary.main",
                                 cursor: "pointer",
                               },
@@ -473,6 +414,7 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                         fontWeight: "bold",
                       },
                       input: {
+                        fontWeight: 600,
                         color: "primary.main",
                         cursor: "pointer",
                       },
@@ -514,9 +456,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
                 </Typography>
               )}
             </Box>
-          </Zoom>
+          </Box>
         </Box>
-      )}
+        </Slide>}
     </Box>
   );
 };

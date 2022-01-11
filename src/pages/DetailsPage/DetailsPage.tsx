@@ -11,7 +11,7 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import Check from "@mui/icons-material/Check"
 import LocationCityIcon from "@mui/icons-material/LocationCity"
-import { Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib } from '@mui/icons-material'
+import { Deck, Nightlife, Soap, DirectionsRun, Bed, ShoppingBasket, LocalCafe, MoneyOff, Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib, Restaurant } from '@mui/icons-material'
 
 import BookingCard from "../../components/BookingCard"
 import MobileBookingBar from "../../components/MobileBookingBar"
@@ -586,19 +586,32 @@ interface PetAmenitiesProps {
 
 const PetAmmenities: FC<PetAmenitiesProps> = ({ amenities, title }) => {
 
+  const petAmenities = [ { text: ['potty'], icon: Pets }, { icon: Bed, text: ['bed'] }, { icon: ShoppingBasket, text: ['shop'] }, { icon: LocalCafe, text: ['cafe'] }, { icon: MoneyOff, text: ['deposit'] }, { icon: RoomService, text: ['concierge'] }, { icon: DirectionsRun, text: ['run']}, { icon: Soap, text: ['grooming']}, { icon: Restaurant, text: ['food']}, { icon: Deck, text: ['patio', 'deck']}, { icon: Nightlife, text: ['happy hour']}]
+
+  const includedPet = amenities.reduce((acc: Array<any>, item: string) => {
+    if ( petAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
+      return [...acc, { ...(petAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')), receivedText: item }]
+    }
+    else {
+      return [...acc]
+    }
+  }, []).sort((a, b) => a.receivedText > b.receivedText ? 1 : -1)
+
+
   return <Box sx={{ color: "text.primary", width: "100%", pl: { sm: '1rem' },  }}>
   <Typography variant="h6" sx={{ color: "#222222", fontWeight: 600, fontFamily: 'Montserrat'}}>
     {title}
   </Typography>
   <Grid container sx={{display: 'flex', justifyContent: 'center'}}>
     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column' }}>
-      {amenities.map((amenity, key) => {
-        if (key < 6) {
+      {includedPet.map((amenity, key) => {
+         const AmenityIcon = amenity.icon
+        if (key < 7) {
           return (
             <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: '0.9rem', }} key={key}>
-              <Pets sx={{ fontSize: '20px', color: "#888", mr: '1rem' }} />
+              <SvgIcon sx={{ color: '#999', mr: '1rem' }} component={AmenityIcon} />
               <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
-                {amenity}
+                {amenity.receivedText}
               </Typography>
             </Box>
           )

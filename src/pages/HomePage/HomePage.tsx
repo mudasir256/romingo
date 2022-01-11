@@ -281,10 +281,10 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
               <Typography variant={ matches? 'h4':'h3' } sx={{ color: "primary.main", textAlign: "center", }}>
-                Welcome to Romingo
+                Your travel experts
               </Typography>
               <Typography variant={ matches? 'h5':'h4' } sx={{ color: "text.secondary", textAlign: "center", mb: { xs: 0, sm: 5,  }}}>
-                Redefining pet-friendly travel
+                Reinventing pet-friendly travel
               </Typography>
             </Grid>
             <Grid item xs={12} sx={{ px: { md: 8, sm: 0, }, }}>
@@ -293,22 +293,19 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
                   <Box sx={{ height: "100%", display: "flex", }}>
                     <Box sx={{ margin: "auto 0", padding: "10px", }}>
                       <Typography variant="body1" color="text.secondary" sx={{ mb: { xs: 3 }, mt: 3, fontSize: "115%", textAlign: "justify" }}>
-                        When you book your next trip with Romingo, you will receive:
+                        Ready to getaway? When you plan your next trip with Romingo you&lsquo;ll receive...
                         <ul>
                           <li>
-                            Lowest available room rates
+                          The best deals on rates
                           </li>
                           <li>
-                            Waived pet fees
+                          Zero pet fees for up to 2 pets, weighing 75 lbs. each
                           </li>
                           <li>
-                            Up to 2 pets permitted weighing 75 lbs. each
-                          </li>
-                          <li>
-                            Pet beds, bowls, and treats upon arrival
+                          Pet beds, bowls, and treats upon arrival
                           </li>
                         </ul>
-                        Romingo hotels provide beds &amp; bowls for your pup
+                        Plus, your reservations are backed by the Romingo Guarantee. Meaning if you aren&lsquo;t completely satisfied with your Romingo experience, our dedicated customer support team will do what it takes to make it right.
                       </Typography>
                     </Box>
                   </Box>
@@ -317,7 +314,7 @@ const HomePage: FC<Props> = ({ nearCities = NearCities, featureHotels = FeatureH
                   <Box sx={{ height: "100%", display: "flex", }}>
                     <Box
                       component="img"
-                      src="https://storage.googleapis.com/romingo-development-public/images/front-end/golden-under-bed.jpeg"
+                      src="https://storage.googleapis.com/romingo-development-public/images/front-end/Relaxing_pup_windows%20(1).jpg"
                       alt="Golden Retriever Under Covers"
                       draggable="false"
                       sx={{
@@ -616,10 +613,7 @@ const CustomerTestimonials = () => {
      >
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 5rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
-            “My partner and I stayed at the Hyatt after we booked on
-            Romingo. We brought our pup Lilly with us, and she loved the
-            tennis ball that was waiting for her in our room. We will keep
-            booking on Romingo in the future!”
+            “My husband and I stayed at the Hilton San Francisco and booked our room through Romingo. We brought our pup Lilly with us, and she loved the tennis ball that was waiting for her in our room. We will definitely use Romingo in the future!”
           </Typography>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 600 }}>
             Hannah S., Sacramento, C
@@ -627,9 +621,7 @@ const CustomerTestimonials = () => {
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 2rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
-              “We will definitely use Romingo again because their customer
-              service is amazing. We had to cancel our plans very last minute,
-              and their representative Stacy was so responsive and polite.”
+              “Their customer service team was so helpful. We had to cancel our plans very last minute, and the person who helped us (I think her name was Amanda) was so responsive and polite.”
             </Typography>
             <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Stephanie & Nate W., Denver, CO
@@ -637,10 +629,7 @@ const CustomerTestimonials = () => {
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
-              “I love travelling with my golden retriever, Milo, but a lot of
-              hotels have weight restrictions and expensive fees. I booked on
-              Romingo and found amazing hotels in San Diego that allowed
-              Milo, and I saved $100 in pet fees with Romingo.”
+              “I love bringing my golden retriever, Milo, with me on road trips. I booked on Romingo and reserved the Grand Hyatt San Diego and they were very welcoming. I ended up saving like $100 in pet fees by using Romingo.”
             </Typography>
             <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Jason L., Los Angeles, CA
@@ -648,9 +637,7 @@ const CustomerTestimonials = () => {
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 2rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
-              “We don’t have a dog, but we still used Romingo because it had
-              the lowest hotel rates out there. We stayed in a luxury 4-star San
-              Francisco hotel for under $150/night!”
+              “We took a trip to LA recently, and even though we do not have a pet, we still booked on Romingo because they had the best deal compared to other sites. We stayed in West Hollywood for only $190/night.”
             </Typography>
             <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Jim & Patty N., Fresno, CA
@@ -658,9 +645,7 @@ const CustomerTestimonials = () => {
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
-              “Romingo was so easy to use in planning my beach trip to Santa
-              Barbara. Their helpful team of agents even sent me
-              recommendations of places to eat and things to do.
+              “My family and I took a trip to Santa Barbara, and we didnt want to leave our Golden Doodle, Chickpea, back home. We reserved an oceanfront room at the Mar Monte Hotel, and Romingo even sent me recommendations of places to eat and things to do. We ended up just ordering room service and lounging on the beach, but it was a great trip!”
             </Typography>
             <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Kendall M., San Diego, CA
@@ -668,10 +653,7 @@ const CustomerTestimonials = () => {
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199', mb: '1.5rem',  lineHeight: 1.4 }}>
-              “Other booking sites tack on extra fees such as “cleaning fees”
-              and “service charges”. With Romingo, there were no hidden fees,
-              and everyone at the Pendry Hotel in San Diego were extremely
-              friendly and welcoming”
+              “Romingo is easy to use, their hotels do not have hidden fees, and I found their customer service to be very accessible. We will use Romingo again for our trips this next Summer.”
             </Typography>
             <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Mindy N., San Francisco, CA
@@ -679,9 +661,7 @@ const CustomerTestimonials = () => {
         </Paper>
         <Paper elevation={3} sx={{padding: matches? '1.5rem 1rem': '1.5rem', minHeight: '210px', display: 'flex', flexDirection: 'column', width: '95%', margin: '0px auto 4rem auto', borderRadius: '12px', fontFamily: 'Montserrat', fontSize: '1.5rem'}}>
           <Typography variant={ matches ? 'h6' : 'h5'} sx={{ fontWeight: 500, color: '#11111199',  mb: '1.5rem',  lineHeight: 1.4 }}>
-              “We road-tripped between SF and LA with our French bulldog,
-              Mason. Romingo made it very convenient to book pet-friendly
-              hotels”
+              “We road-tripped between SF and LA with our French bulldog, Mason. Romingo made it easy to find and book pet-friendly hotels”
             </Typography>
             <Typography variant={ matches ? 'h6' : 'h5'} sx={{ mt: 'auto', color: '#11111199', fontSize: '1rem', fontFamily: 'Montserrat', fontWeight: 700 }}>
               Lynn M., Las Vegas, NV
@@ -694,7 +674,7 @@ const CustomerTestimonials = () => {
 
 const HotelCarousel = () => {
   const matches = useMediaQuery('(max-width:800px)')
-  const hotelLogos = [ "Argo%20Logo.jpg", "Black.jpg", "Black%20HSFUS%20Logo%20RGB_CS3%202013.jpg", "Full%20Logo.jpg", "HROC%20Property%20Logo%20Left%20Aligned%20Aubergine.jpg", "HotelZetta-logotype_horiz_black_rgb.jpg", "Hyatt-Regency-Mission-Bay-Logo.png", "Mondrian%20Logo.jpg.jpg", "New%20Maya%20Logo%20Black-001%20(1).jpg", "SANRS_L005b-hrz-WG11U-CMYK_28124.jpg", "Sofitel_PNG.png", "Zeppelin_Logo_BLK.jpg", "curator.png", "new%20pendry%20logo.JPG", "SANRS_L005b-hrz-WG11U-CMYK_28124.jpg", "urbanRetreats_logo_fnl-01.jpg"].map((picture, index) => {
+  const hotelLogos = [ "Ace%20Hotel.jpg", "Curator.png", "Double%20Tree.jpg", "Grand%20Hyatt.png", "Hilton.png", "Hyatt%20Regency.png", "Mondrian.png", "Noble%20House.png", "Pendry.png", "Sonesta.png", "Trademark.png", "Viceroy.jpg", "Virgin.png"].map((picture, index) => {
     return <Grid key={index} sx={{overflow: 'hidden', height: '60px',  m: '0rem 1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
      <img alt='hotel logo' style={{display: 'block', maxWidth: '100%', maxHeight: '60px' }} src={`https://storage.googleapis.com/romingo-development-public/images/front-end/hotel-logos/${picture}`} />
    </Grid>
