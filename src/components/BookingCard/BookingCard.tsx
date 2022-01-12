@@ -108,18 +108,19 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   }, [checkDate]);
 
   return <Grid sx={{ position: 'sticky', top: '2rem', width: '95%', ml: 'auto'}}>
-    <Box sx={{ ...sx, borderRadius: 2, boxShadow: 3, p: '1em' }}>
-      <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
+    <Box sx={{ ...sx, borderRadius: 2, boxShadow: 3, p: '1rem',}}>
+      {/* <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
         <Typography variant="h5" sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
           ${selectedRoom?.room?.averagePrice.toFixed(2)}  <span style={{fontSize: '16px', fontWeight: 500}}>/ night</span>
         </Typography>
         <Button disableElevation onClick={handleBook} variant="contained" size="small" color="primary" sx={{ ml: 'auto', py: '.75rem', px: '2rem' }}>
           <Typography variant="body2" sx={{ fontFamily: 'Montserrat', fontWeight: 600 }}>Book Now</Typography>
         </Button>
-      </Box>
+      </Box> */}
 
       <Grid container spacing={2}>
         <Grid item xs={12}>
+
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
               open={open}
@@ -149,10 +150,10 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               renderInput={(startProps, endProps) => (
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small'{...startProps} InputLabelProps={{ style: { fontWeight: 500 }}} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
+                    <TextField sx={{ input: { fontWeight: 500 } }} size='small'{...startProps} InputLabelProps={{ style: { fontWeight: 500 }}} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField size='small' {...endProps} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
+                    <TextField sx={{ input: { fontWeight: 500 } }} InputLabelProps={{ style: { fontWeight: 500 }}} size='small' {...endProps} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
                   </Grid>
                 </Grid>
               )}
@@ -163,6 +164,11 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
           <OccupantSelector size="small" value={occupants} onChange={(value) => { onOccupantChange(value); }} onClose={handleOccupantsClose} />
         </Grid>
         <Grid item xs={12}>
+          <Link href='#rooms' sx={{ textDecoration: 'none' }}>
+            <Button disableElevation fullWidth  variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mb: '0rem', display: { md: 'flex', xs: 'none' }}}> Reserve a Room </Button>
+          </Link>
+        </Grid>
+        {/* <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel>Room Type</InputLabel>
             <Select size="small" value={roomType} onChange={(e) => { setRoomType(e.target.value); }} label="Room Type">
@@ -175,21 +181,15 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               })}
             </Select>
           </FormControl>
-        </Grid>
+        </Grid> */}
       </Grid>
-      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
-        <Link href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (goToRate) goToRate();
-          }}
-        >
+      {/* <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
+        <Link href="#rooms" >
           <Typography variant="body1" sx={{ fontSize: '1rem', mt: 2, display: 'flex', alignItems: 'center' }}>
             Go To Rooms &amp; Rates <ArrowDownward sx={{ ml: '.5rem', fontSize: '1rem' }} />
           </Typography>
         </Link>
-      </Box>
+      </Box> */}
     </Box>
     {/* <RomingoGuarantee sx={{ mt: 5 }} /> */}
   </Grid>

@@ -1,192 +1,149 @@
-import { FC } from "react";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Check from "@mui/icons-material/Check";
-import Link from "@mui/material/Link";
-import Chip from "@mui/material/Chip";
-import { useHistory } from "react-router-dom";
-import ImageSlider from "../ImageSlider";
-import RomingoScore from "../RomingoScore/RomingoScore";
-import { MoneyOff, VerifiedUser } from '@mui/icons-material'
-import LocationCityIcon from "@mui/icons-material/LocationCity";
+import { FC } from "react"
+import Check from "@mui/icons-material/Check"
+import { Star } from '@mui/icons-material'
+import { Grid, Chip, Link, Box, Stack, Typography } from '@mui/material'
+import { useHistory } from "react-router-dom"
+import ImageSlider from "../ImageSlider"
+import RomingoScore from "../RomingoScore/RomingoScore"
+import { MoneyOffRounded, VerifiedUser } from '@mui/icons-material'
+import LocationCityIcon from "@mui/icons-material/LocationCity"
 
 export interface ListingCardProps {
-  id: string;
-  imageURLs: string[];
-  name: string;
-  addressLine1: string;
-  romingoScore: number;
-  cancellation?: boolean;
-  lowestAveragePrice: number;
-  currency?: string;
-  dogAmenities?: string[];
-  showAmenities?: boolean;
-  highlighted?: boolean;
+  id: string,
+  imageURLs: string[],
+  name: string,
+  addressLine1: string,
+  romingoScore: number,
+  cancellation?: boolean,
+  lowestAveragePrice: number,
+  currency?: string,
+  dogAmenities?: string[],
+  showAmenities?: boolean,
+  highlighted?: boolean,
+  duration?: number,
   location: {
-    latitude: number;
-    longitude: number;
-  };
+    latitude: number,
+    longitude: number,
+  },
   city: {
-    id: string;
-    name: string;
-  };
-  neighborhood: string;
-  showPrice?: boolean;
-  noLink?: boolean;
+    id: string,
+    name: string,
+  },
+  neighborhood: string,
+  showPrice?: boolean,
+  noLink?: boolean,
 }
-const ListingCard: FC<ListingCardProps> = ({
-  id,
-  imageURLs,
-  name,
-  addressLine1,
-  romingoScore,
-  city,
-  neighborhood,
-  cancellation = false,
-  lowestAveragePrice,
-  currency = "$",
-  dogAmenities = [],
-  showAmenities = true,
-  highlighted = false,
-  showPrice = true,
-  noLink = false,
-  ...props
-}) => {
+const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addressLine1, romingoScore, city, neighborhood, cancellation = false, lowestAveragePrice, currency = "$",
+  dogAmenities = [], showAmenities = true, highlighted = false, showPrice = true, noLink = false, ...props }) => {
   const history = useHistory();
   const mobileCardPadding = 1.8;
   return (
-    <Box
-      sx={{
-        color: "text.primary",
-        boxShadow: 0,
+    <Box sx={{ color: "text.primary",
+        boxShadow: 1,
         display: "flex",
         borderRadius: 3,
         flexDirection: { xs: "column", sm: "row" },
         maxWidth: "100%",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor:  "white",
+        background: '#fff',
+        transition: 'all .25s ease-in-out',
+        border: '1px solid #ddd',
+        '&:hover': { boxShadow: 7 },
+        paddingBottom: '0px'
       }}
       {...props}
     >
-      <Box
-        sx={{
-          width: { sm: 300 },
-          height: { xs: 200, sm: 242 },
-        }}
-      >
-        <ImageSlider
-          images={imageURLs}
-          name={name}
+      <Box sx={{ width: { xs: '100%', sm: 250, md: 200, lg: 250 }, height: { xs: 'calc(20vh)', sm: 211, md: 186 }, }}>
+        <ImageSlider images={imageURLs} name={name}
           sx={{
-            width: { sm: 300 },
-            height: { xs: 200, sm: 242 },
-            borderRadius: 3,
+            width: { xs: '100%', sm: 250, md: 200, lg: 200 },
+            height: { xs: 'calc(20vh)', sm: 212, md: 187 },
+            borderTopRightRadius: { xs: '6px', sm: 0  },
+            borderBottomRightRadius: { xs: 0, sm: 0,  },
+            borderBottomLeftRadius: { xs: 0, sm: '6px'  },
+            borderTopLeftRadius: { xs: '6px', sm: '6px' },
             boxShadow: 0,
           }}
         />
       </Box>
-      <Link
-        href="#"
-        onClick={(e: any) => {
-          e.preventDefault();
-          e.stopPropagation();
-          !noLink && history.push("/details/" + id);
-        }}
-        underline="none"
-        sx={{ flex: 1, minWidth: { xs: "100%", sm: 0 }, maxWidth: "100%" }}
-      >
-        <Box
-          sx={{
-            pt: 1,
-            px: { xs: mobileCardPadding, sm: 1.8 },
-            pb: { xs: mobileCardPadding, sm: '0rem' },
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#222",
-              fontFamily: "Montserrat",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-              fontSize: "140%",
-              fontWeight: 800,
-            }}
-          >
-            {name}
-          </Typography>
 
-          <Box>
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: { xs: "95%", sm: "100%" },
-                mt: 0,
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                fontFamily: "Roboto",
-                textOverflow: "ellipsis",
-                color: "#999",
-              }}
-            >
-              {addressLine1}, {city?.name}
-            </Typography>
-            <Chip sx={{ mt: '.5rem'}} icon={<LocationCityIcon />} label={neighborhood} />
-              <Box sx={{ mt: '1rem', mb: 1, display: 'flex' }}>
-              <MoneyOff sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
-              <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
-                No hidden fees
-              </Typography>
-            </Box>
-            <Box sx={{ mt: 1, mb: -2, display: 'flex' }}>
-              <VerifiedUser sx={{ fontSize: 15, color: "primary", mt: '.25rem', mr: '.5rem', }}/>
-              <Typography variant="body1" color="primary" sx={{ pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
-                Free cancellation
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", width: "100%", }}>
-              <Box sx={{ mt: '1rem', mb: '0px' }}>
-                <RomingoScore score={romingoScore} />
-              </Box>
-              <Box
-                sx={{
-                  alignItems: "center",
-                  display: "flex",
-                  textAlign: "right",
-                  justifyContent: "end",
-                  flexDirection: "column",
+        <Box onClick={() => history.push("/details/" + id)} sx={{ cursor: 'pointer', px: { xs: mobileCardPadding, sm: 0 }, pb: { xs: mobileCardPadding, sm: '0',}, width: '100%'}}>
+          <Grid container sx={{ minHeight: { xs: 200, sm: 162 }, p: { xs: '.5rem .75rem 0rem .75rem', sm: '.5rem .5rem .5rem 1rem', md: '0rem 1rem'}}}>
+            <Grid item xs={12} sm={7} md={7} lg={8} xl={9} sx={{ display: 'flex', flexDirection: 'column', p: { xs: '.5rem', sm: '.5rem .5rem .5rem 1rem', md: '.75rem 0rem'} }}>
+
+              <Typography variant="body2" sx={{
+                  color: "#222",
+                  fontFamily: "Montserrat",
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  fontSize: "120%",
+                  fontWeight: 800,
                 }}
               >
-                {showPrice && (
-                  <>
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        mr: 0.45,
-                        letterSpacing: 1,
-                        color: "text.secondary",
-                        fontSize: "190%",
-                      }}
-                    >
+                {name}
+              </Typography>
+
+                <Typography variant="body2"
+                  sx={{
+                    fontSize: { xs: "95%", sm: "90%" },
+                    mt: { xs: '.25rem', sm: '.125rem'},
+                    overflow: "hidden",
+                    fontWeight: 500,
+                    whiteSpace: "nowrap",
+                    fontFamily: "Roboto",
+                    textOverflow: "ellipsis",
+                    color: "#999",
+                    mb: { xs: '.5rem', md: '0'}
+                  }}
+                >
+                  {addressLine1}, {city?.name}
+                </Typography>
+
+
+                <Chip sx={{ fontSize: '12px', mt:{ xs: '.125rem', md: '.5rem'}, mb:{ xs: '.125rem', md: 'auto'}, mr: 'auto'}} icon={<LocationCityIcon />} label={neighborhood} />
+
+                  <Box sx={{ pb: { xs: '0rem', sm: '0rem'} , pt: { xs: '.5rem', sm: '1rem'}, mt: { md: '0px', sm: '1rem'}, ml: { sm: '0px', xs: '0px'} }}>
+                    <Box sx={{ mb: 1, display: 'flex' }}>
+                      <MoneyOffRounded sx={{ fontSize: 15, color: "#03989E", mt: '.25rem', mr: '.5rem', }}/>
+                      <Typography variant="body1" color="primary" sx={{fontWeight: 400, pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
+                        No hidden fees
+                      </Typography>
+                    </Box>
+                    <Box sx={{ mt: 1, mb: 'auto', display: 'flex' }}>
+                      <VerifiedUser sx={{ fontSize: 15, color: "#03989E", mt: '.25rem', mr: '.5rem', }}/>
+                      <Typography variant="body1" color="primary" sx={{ fontWeight: 400, pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
+                      Free cancellation
+                      </Typography>
+                    </Box>
+
+                  </Box>
+
+
+              </Grid>
+              <Grid item xs={12} sm={5} md={5} lg={4} xl={3} sx={{ display: 'flex', flexDirection: { sm:'column', xs: 'row'}, minHeight: { xs: 60, sm: 162 },  p: { xs: '0rem .5rem', sm: '.5rem .5rem 0rem 1rem', md: '.75rem 0rem'} , justifyContent: { xs: 'space-between', sm: 'center'}}}>
+
+                <RomingoScore score={romingoScore} />
+
+                  <Box sx={{ mt: { xs: '0px', sm:'auto' }, ml: { sm: 'auto', xs: '0px' }, mb: '0px', alignItems: "center", display: "flex", textAlign: { sm: "right", xs: 'left'}, justifyContent: { xs: "start", sm: 'end'}, flexDirection: { sm: "row", xs: 'column'} }}>
+                    <Typography variant="h5" sx={{ mr: 0.45, letterSpacing: 1, color: "text.secondary", fontSize: "165%", }}>
                       {currency}
                       {Math.round(lowestAveragePrice)}
+
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "text.secondary" }}
-                    >
-                      / night
+                    <Typography variant="body2" sx={{ color: "text.secondary",  opacity: .8, fontWeight: 500 }}>
+                      per night
                     </Typography>
-                  </>
-                )}
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      </Link>
+                  </Box>
+                  {/* <Typography variant="h5" sx={{ fontWeight: 500, mt: '.5rem', mr: 0.45, ml: 'auto',  color: "text.secondary", fontSize: "85%", }}>
+                      { duration ? `$${lowestAveragePrice*duration} for ${duration} nights` : 'duration'}
+                  </Typography> */}
+              </Grid>
+            </Grid>
+
+
+      </Box>
     </Box>
   );
 };

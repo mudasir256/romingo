@@ -96,7 +96,7 @@ const CheckoutPage: FC<Props> = () => {
                     mb: 1,
                   }}
                 >
-                  Finish Your Booking
+                  Finish Your Reservation
                 </Typography>
                 <CheckoutInformation
                   sx={{ mt: 2, mb: '1rem' }}

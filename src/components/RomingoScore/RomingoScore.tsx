@@ -1,14 +1,7 @@
 import { FC, useState, MouseEvent } from "react";
-import Typography from "@mui/material/Typography";
 import Star from "@mui/icons-material/Star";
-import Box from "@mui/material/Box";
-import Popover from "@mui/material/Popover";
-import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import PetsIcon from "@mui/icons-material/Pets";
+import { ListItemText, ListItemIcon, ListItem, List, Divider, Popover, Box, Typography, Grid } from '@mui/material'
 
 interface Props {
   score: number;
@@ -34,19 +27,24 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       <Typography variant="h6" sx={{ color: "warning.main", fontSize: "100%", }}>
         {score}
       </Typography>
-      <PetsIcon sx={{ color: "warning.main", fontSize: "90%", mt: -0.3 }} />
+      <Star sx={{ color: "warning.main", fontSize: "90%", mt: -0.3 }} />
     </Box>
   ) : (
-    <Box sx={{ display: "flex", minWidth: 0, alignItems: "center", }}>
+    <Box sx={{ display: "flex", minWidth: 0, alignItems: "center", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' } }}>
+      <Grid container>
+        <Grid item xs={12} sx={{ textAlign: { sm: 'right', xs: 'left' } }}>
+          <Typography variant="h6" sx={{ color: "warning.main", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' }}}>
+            {score} {new Array(Math.round(score)).fill(undefined).map((item) => <Star key={item} sx={{ color: "warning.main", fontSize: '1rem', mt: -0.2, mr: '.25rem' }} />)}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sx={{ ml: 'auto', textAlign: { sm: 'right', xs: 'left' }}}>
+          <Typography onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose} variant="body1" sx={{ mt: 0.1, color: "text.secondary", textDecoration: "underline", fontSize: '.9rem', cursor: 'pointer'}}>
+          Romingo Score
+          </Typography>
+        </Grid>
+      </Grid>
 
-      <PetsIcon sx={{ color: "warning.main", fontSize: '1rem', mt: -0.2, mr: '.5rem' }} />
-      <Typography variant="h6" sx={{ color: "warning.main", }}>
-        {score}
-      </Typography>
-      <br />
-      <Typography onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose} variant="body1" sx={{ ml: 0.75, mt: 0.2, color: "text.secondary", textDecoration: "underline", fontSize: '.9rem', cursor: 'pointer'}}>
-        Romingo Score
-      </Typography>
+
       <Popover
         id="mouse-over-popover"
         sx={{

@@ -377,7 +377,7 @@ const RoomCard: FC<Props> = ({
                   <Box sx={{ border: "1px solid #DDD", maxWidth: '350px', borderRadius: "5px", mt: '.5rem', boxShadow: 2, padding: "8px", backgroundColor: "#fff", minWidth: "250px", paddingTop: '1rem' }}>
                     <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, mb: 0.5, }}>
                       <Typography variant="body2" sx={{ textAlign: "left", fontSize: "80%", }}>
-                        By booking on Romingo, you may cancel your reservation with a full refund on or before the date listed. <br /> <br />  Your reservation must be cancelled by the check-in time of the property&lsquo;s local time.  <br />  <br /> All cancellations after this date and time are subject to cancellation fee(s) in accordance with hotel policy and Romingo&lsquo;s terms.
+                        By reserving on Romingo, you may cancel your reservation with a full refund on or before the date listed. <br /> <br />  Your reservation must be cancelled by the check-in time of the property&lsquo;s local time.  <br />  <br /> All cancellations after this date and time are subject to cancellation fee(s) in accordance with hotel policy and Romingo&lsquo;s terms.
                       </Typography>
                     </Box>
 
@@ -389,7 +389,7 @@ const RoomCard: FC<Props> = ({
 
 
           <Button disableElevation variant="contained" size="small" color="primary" sx={{ ml: 'auto', py: 1, px: 1, mb: 0.5, textTransform: "inherit", width: { sm: "100%", md: '100%', lg: '90%', xs: '100%'}, mt: { xs: '.5rem', sm: 'auto'} }} onClick={handleBook}>
-            <Typography variant="h6" sx={{ fontWeight: 600, textTransform: "uppercase", fontSize: { xs: "16px" } }}>
+            <Typography variant="h6" sx={{ fontWeight: 600, textTransform: "uppercase", fontSize: { xs: "14px" } }}>
               Reserve
             </Typography>
           </Button>

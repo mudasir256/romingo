@@ -3,8 +3,7 @@ import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
-import { Slide, CSSObject, Divider, useMediaQuery } from "@mui/material";
-import Zoom from "@mui/material/Zoom";
+import { Dialog, CSSObject, Divider, useMediaQuery } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -143,324 +142,262 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
     }
   };
 
-  return (
+  return <>
     <Box sx={{ mt: { xs: '.75rem',}, width: { xs: '100%', sm: 'auto'}, justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
-      <Slide in={!zoomIn}>
-        <Box sx={{ display: "inline-block", pb: '1rem', minWidth: { xs: '95%', }, margin: '0px auto' }}>
-          <Box sx={{ display: "flex", minHeight: '45px', boxShadow: { xs: '1px 2px 2px rgba(0, 0, 0, 0.15)', sm: '0'}, justifyContent: 'space-evenly', alignItems: "center", border: "1px solid #DDDDDD", borderRadius: 3, backgroundColor: "white", pr: {xs: '0', sm: '.5rem'} }}>
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-            <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none', fontWeight: 600, fontSize: { xs: '13px' }}}>
-                {getCityName(selectedCity)}
-              </Typography>
-            </Button>
-            <Box
-              sx={{
-                backgroundColor: "#DDDDDD",
-                flex: "0 0 1px",
-                height: "24px",
-                width: "1px",
-              }}
-            ></Box>
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none',fontWeight: 600, fontSize: { xs: '13px' }}}>
-                { checkDate[0] ? DateTime.fromISO(checkDate[0].toString()).toFormat('MMM dd') : ''}
-                &nbsp;&#8212;&nbsp;
-                { checkDate[1] ? DateTime.fromISO(checkDate[1].toString()).toFormat('MMM dd') : ''}
-              </Typography>
-            </Button>
-            <Box sx={{ backgroundColor: "#DDDDDD", flex: "0 0 1px", height: "24px", width: "1px", }}></Box>
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 }, }}>
-              <Typography
-                sx={{
-                  textTransform: "none",
-                  fontSize: {
-                    xs: "87%",
-                  },
-                }}
-              >
-                {occupants.dogs}
-              </Typography>
-              <PetsIcon
-                sx={{
-                  color: "primary.main",
-                  fontSize: "90%",
-                  mb: 0.2,
-                  ml: 0.3,
-                }}
-              />
-              <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
-              <Typography
-                sx={{
-                  textTransform: "none",
-                  fontSize: "87%",
-                }}
-              >
-                {occupants.adults + occupants.children}
-              </Typography>
-              <PersonIcon
-                sx={{
-                  color: "primary.main",
-                  fontSize: "100%",
-                  mb: 0,
-                  ml: 0.1,
-                }}
-              />
-            </Button>
-            <IconButton onClick={handleFilterInClick}>
-              <SearchOutlinedIcon />
-            </IconButton>
-          </Box>
+      <Box sx={{ display: "inline-block", pb: '1rem', minWidth: { xs: '95%', }, margin: '0px auto' }}>
+        <Box sx={{ display: "flex", minHeight: '45px', boxShadow: { xs: '1px 2px 2px rgba(0, 0, 0, 0.15)', sm: '0'}, justifyContent: 'space-evenly', alignItems: "center", border: "1px solid #DDDDDD", borderRadius: 3, backgroundColor: "white", pr: {xs: '0', sm: '.5rem'} }}>
+          <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
+          <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none', fontWeight: 600, fontSize: { xs: '13px' }}}>
+              {getCityName(selectedCity)}
+            </Typography>
+          </Button>
+          <Box sx={{ backgroundColor: "#DDDDDD", flex: "0 0 1px", height: "24px", width: "1px", }}></Box>
+          <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
+            <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none',fontWeight: 600, fontSize: { xs: '13px' }}}>
+              { checkDate[0] ? DateTime.fromISO(checkDate[0].toString()).toFormat('MMM dd') : ''}
+              &nbsp;&#8212;&nbsp;
+              { checkDate[1] ? DateTime.fromISO(checkDate[1].toString()).toFormat('MMM dd') : ''}
+            </Typography>
+          </Button>
+          <Box sx={{ backgroundColor: "#DDDDDD", flex: "0 0 1px", height: "24px", width: "1px", }}></Box>
+          <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 }, }}>
+            <Typography sx={{ textTransform: "none", fontSize: "87%"}}>
+              {occupants.adults + occupants.children}
+            </Typography>
+            <PersonIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1, }}/>
+            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+
+            <Typography sx={{ textTransform: "none", fontSize: { xs: "87%", }, }}>
+              {occupants.dogs}
+            </Typography>
+            <PetsIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0.2, ml: 0.3, }}/>
+
+          </Button>
+          <IconButton onClick={handleFilterInClick}>
+            <SearchOutlinedIcon />
+          </IconButton>
         </Box>
-      </Slide>
-      {zoomIn && <Slide in={zoomIn}>
-        <Box onClick={mobile ? handleFilterOutClick : () => null} sx={{ maxHeight: zoomIn ? 'auto':'0px',  transitionDelay: '0.5s', transitionProperty: 'background-color', transitionTimingFunction: 'ease-in-out', height: { xs: '100vh', sm: '0px' }, backdropFilter: { xs: 'blur(3px)', sm: '0' }, WebkitBackdropFilter: { xs: 'blur(3px)', sm: '0'  }, backgroundColor: { xs: zoomIn ? 'rgba(0, 0, 0, 0.2)': 'rgba(0, 0, 0, 0.0)', sm: '0' },
-          mt: { xs: zoomIn? '-5.75rem': '0', sm: '-9rem'  }, pt: { xs: '2.75rem', sm: '0'  }}}>
-        <Box sx={{ borderRadius: 3, backgroundColor: { xs: "#ffffffEB", md: "transparent", }, maxWidth: '95%', margin: '0px auto',
-            WebkitBackdropFilter: 'blur(6px)',
-            py: { xs: 1.5, md: 0 },
-            pb: '1rem',
-            boxShadow: { xs: '1px 2px 2px rgba(0, 0, 0, 0.15)', sm: '0'},
-            border: { xs:  '1px solid #ddd', sm: '0'}
-          }}
-        >
-            <Box sx={{ pt: { xs: 1, md: 0 }, pb: 1, px: 2.5, my: { xs: 0 }, }} >
-              <Box sx={{ display: { md: "flex", xs: "block", }, justifyContent: "center", }}>
-                <Box
-                  sx={{
-                    minWidth: "150px",
-                    mb: {
-                      xs: 1,
-                      md: 0,
-                    },
-                    display: "flex",
-                    alignItems: "end",
+      </Box>
+    </Box>
+    <Dialog open={zoomIn} onClose={handleFilterOutClick} BackdropProps={{ style: { backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}}>
+      <Box sx={{ borderRadius: 3, backgroundColor: { xs: "#ffffffEB", md: "transparent", }, maxWidth: { xs: '95%', sm: '100%'}, margin: '0px auto',
+          WebkitBackdropFilter: 'blur(6px)', py: { xs: 1.5, md: 0 }, pb: '1rem' }}>
+          <Box sx={{ pt: { xs: 1, md: 0 }, pb: 1, px: 2.5, my: { xs: 0 }, }} >
+            <Box sx={{ display: { md: "flex", xs: "block", }, justifyContent: "center", }}>
+              <Box
+                sx={{
+                  minWidth: "150px",
+                  mb: {
+                    xs: 1,
+                    md: 0,
+                  },
+                  display: "flex",
+                  alignItems: "end",
+                }}
+              >
+                <Autocomplete
+                  options={cities}
+                  value={getCity(selectedCity)}
+                  // eslint-disable-next-line
+                  getOptionLabel={(option: any) => {
+                    return option.name;
                   }}
-                >
-                  <Autocomplete
-                    options={cities}
-                    value={getCity(selectedCity)}
-                    // eslint-disable-next-line
-                    getOptionLabel={(option: any) => {
-                      return option.name;
+                  // eslint-disable-next-line
+                  onChange={(e, values: any) => {
+                    if (values) {
+                      setFormError("");
+                      setSelectedCity(values.id);
+                    }
+                  }}
+                  sx={{
+                    width: { xs: "100%", md: "180px" },
+                    minWidth: "180px", fontWeight: 600,
+                    ml: { xs: 0, md: 2 },
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      color="primary"
+                      variant="standard"
+                      label="Location"
+                      size="small"
+                      sx={{
+                        label: {
+                          fontWeight: 600,
+                        },
+                        input: {
+                          cursor: "pointer",
+                          fontWeight: 600,
+                          color: "primary.main",
+                          border: "none",
+                          mt: 0.55,
+                          mb: 0.25,
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </Box>
+              <Box sx={{ fontFamily: "Roboto", display: "flex", alignItems: "end", fontWeight: 600 }}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DateRangePicker
+                    inputFormat="MMM dd, yyyy"
+                    disableMaskedInput={true}
+                    open={open}
+                    onAccept={() => {
+                      setIsAccept(true);
                     }}
-                    // eslint-disable-next-line
-                    onChange={(e, values: any) => {
-                      if (values) {
-                        setFormError("");
-                        setSelectedCity(values.id);
+                    onClose={() => {
+                      setIsAccept(false);
+                      if (!isTextField) {
+                        setOpen(false);
+                        setIsTextField(false);
                       }
                     }}
-                    sx={{
-                      width: { xs: "100%", md: "180px" },
-                      minWidth: "180px", fontWeight: 600,
-                      ml: { xs: 0, md: 2 },
+                    onOpen={() => {
+                      if (!isAccept) {
+                        setOpen(true);
+                      }
                     }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        color="primary"
-                        variant="standard"
-                        label="Location"
-                        size="small"
-                        sx={{
-                          label: {
-                            fontWeight: 600,
-                          },
-                          input: {
-                            cursor: "pointer",
-                            fontWeight: 600,
-                            color: "primary.main",
-                            border: "none",
-                            mt: 0.55,
-                            mb: 0.25,
-                          },
-                        }}
-                      />
-                    )}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    fontFamily: "Roboto",
-                    display: "flex",
-                    alignItems: "end",
-                    fontWeight: 600
-                  }}
-                >
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DateRangePicker
-                      inputFormat="MMM dd, yyyy"
-                      disableMaskedInput={true}
-                      open={open}
-                      onAccept={() => {
-                        setIsAccept(true);
-                      }}
-                      onClose={() => {
-                        setIsAccept(false);
-                        if (!isTextField) {
-                          setOpen(false);
-                          setIsTextField(false);
-                        }
-                      }}
-                      onOpen={() => {
-                        if (!isAccept) {
-                          setOpen(true);
-                        }
-                      }}
-                      startText="Check-in"
-                      endText="Check-out"
-                      allowSameDateSelection
-                      calendars={1}
-                      clearable={true}
-                      value={checkDate || null}
-                      minDate={new Date()}
-                      onChange={(newValue) => {
-                        setFormError("");
-                        setCheckDate(newValue);
-                      }}
-                      renderInput={(startProps, endProps) => (
-                        <Box
+                    startText="Check-in"
+                    endText="Check-out"
+                    allowSameDateSelection
+                    calendars={1}
+                    clearable={true}
+                    value={checkDate || null}
+                    minDate={new Date()}
+                    onChange={(newValue) => {
+                      setFormError("");
+                      setCheckDate(newValue);
+                    }}
+                    renderInput={(startProps, endProps) => (
+                      <Box sx={{ display: { xs: "block", md: "flex", }, }}>
+                        <TextField
+                          {...startProps}
+                          onFocus={() => {
+                            setIsTextField(true);
+                          }}
+                          onBlur={() => {
+                            setIsTextField(false);
+                          }}
+                          onClick={() => {
+                            setOpen(true);
+                          }}
+                          size="small"
+                          color="primary"
+                          variant="standard"
+                          ref={
+                            startProps.inputRef as React.Ref<HTMLInputElement>
+                          }
                           sx={{
-                            display: {
-                              xs: "block",
-                              md: "flex",
+                            width: { xs: "50%", md: "100px" },
+                            my: { xs: 0.5, md: 0 },
+                            label: {
+                              fontWeight: "600",
+                            },
+                            input: {
+                              fontWeight: 600,
+                              cursor: "pointer",
+                              color: "primary.main",
+                              border: "none",
                             },
                           }}
-                        >
-                          <TextField
-                            {...startProps}
-                            onFocus={() => {
-                              setIsTextField(true);
-                            }}
-                            onBlur={() => {
-                              setIsTextField(false);
-                            }}
-                            onClick={() => {
-                              setOpen(true);
-                            }}
-                            size="small"
-                            color="primary"
-                            variant="standard"
-                            ref={
-                              startProps.inputRef as React.Ref<HTMLInputElement>
-                            }
-                            sx={{
-                              width: { xs: "50%", md: "100px" },
-                              my: { xs: 0.5, md: 0 },
-                              label: {
-                                fontWeight: "600",
-                              },
-                              input: {
-                                fontWeight: 600,
-                                cursor: "pointer",
-                                color: "primary.main",
-                                border: "none",
-                              },
-                            }}
-                          />
-                          <TextField
-                            {...endProps}
-                            onFocus={() => {
-                              setIsTextField(true);
-                            }}
-                            onBlur={() => {
-                              setIsTextField(false);
-                            }}
-                            onClick={() => {
-                              setOpen(true);
-                            }}
-                            size="small"
-                            color="primary"
-                            variant="standard"
-                            ref={
-                              endProps.inputRef as React.Ref<HTMLInputElement>
-                            }
-                            sx={{
-                              width: { xs: "50%", md: "100px" },
-                              my: { xs: 0.5, md: 0 },
-                              label: {
-                                fontWeight: "bold",
-                              },
-                              input: {
-                                fontWeight: 600,
-                                color: "primary.main",
-                                cursor: "pointer",
-                              },
-                            }}
-                          />
-                        </Box>
-                      )}
-                    />
-                  </LocalizationProvider>
-                </Box>
-                <Box
+                        />
+                        <TextField
+                          {...endProps}
+                          onFocus={() => {
+                            setIsTextField(true);
+                          }}
+                          onBlur={() => {
+                            setIsTextField(false);
+                          }}
+                          onClick={() => {
+                            setOpen(true);
+                          }}
+                          size="small"
+                          color="primary"
+                          variant="standard"
+                          ref={
+                            endProps.inputRef as React.Ref<HTMLInputElement>
+                          }
+                          sx={{
+                            width: { xs: "50%", md: "100px" },
+                            my: { xs: 0.5, md: 0 },
+                            label: {
+                              fontWeight: "bold",
+                            },
+                            input: {
+                              fontWeight: 600,
+                              color: "primary.main",
+                              cursor: "pointer",
+                            },
+                          }}
+                        />
+                      </Box>
+                    )}
+                  />
+                </LocalizationProvider>
+              </Box>
+              <Box
+                sx={{
+                  minWidth: "240px",
+                  mt: {
+                    xs: 1,
+                    md: 0,
+                  },
+                  display: "flex",
+                  alignItems: "end",
+                }}
+              >
+                <OccupantSelector
+                  value={occupants}
+                  onChange={onOccupantChange}
+                  variant="standard"
+                  size="small"
                   sx={{
-                    minWidth: "240px",
-                    mt: {
-                      xs: 1,
-                      md: 0,
+                    label: {
+                      fontWeight: "bold",
                     },
-                    display: "flex",
-                    alignItems: "end",
+                    input: {
+                      fontWeight: 600,
+                      color: "primary.main",
+                      cursor: "pointer",
+                    },
+                  }}
+                />
+              </Box>
+              <Box sx={{ textAlign: "center" }}>
+                <Button
+                  onClick={handleFilterOutClick}
+                  disableElevation
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  sx={{
+                    pb: { xs: 1.5, md: 1.5 },
+                    pt: { xs: 1.5, md: 1.5 },
+                    mx: 'auto',
+                    mt: '1rem',
+                    width: '65%',
+                    borderRadius: '12px',
+                    fontWeight: "bold",
+                    display: 'flex', justifyContent: 'space-between'
                   }}
                 >
-                  <OccupantSelector
-                    value={occupants}
-                    onChange={onOccupantChange}
-                    variant="standard"
-                    size="small"
-                    sx={{
-                      label: {
-                        fontWeight: "bold",
-                      },
-                      input: {
-                        fontWeight: 600,
-                        color: "primary.main",
-                        cursor: "pointer",
-                      },
-                    }}
-                  />
-                </Box>
-                <Box sx={{ textAlign: "center" }}>
-                  <Button
-                    onClick={handleFilterOutClick}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    sx={{
-                      pb: { xs: 1.5, md: 1.5 },
-                      pt: { xs: 1.5, md: 1.5 },
-                      pr: 6,
-                      mx: 0,
-                      borderBottomRightRadius: { xs: 0, md: "30px" },
-                      borderTopRightRadius: { xs: 0, md: "30px" },
-                      borderBottomLeftRadius: "0px",
-                      borderTopLeftRadius: "0px",
-                      my: { xs: 0.5, md: 0 },
-                      width: { xs: "100%" },
-                      fontWeight: "bold",
-                    }}
-                  >
-                    <SearchIcon /> Search
-                  </Button>
-                </Box>
+                  Search <SearchIcon sx={{ ml: '1rem' }} />
+                </Button>
               </Box>
-              {formError.length > 0 && (
-                <Typography
-                  variant="body2"
-                  color="error"
-                  sx={{ textAlign: "center", mt: 1 }}
-                >
-                  {formError}
-                </Typography>
-              )}
             </Box>
+            {formError.length > 0 && (
+              <Typography variant="body2" color="error" sx={{ textAlign: "center", mt: 1 }}>
+                {formError}
+              </Typography>
+            )}
           </Box>
         </Box>
-        </Slide>}
-    </Box>
-  );
+    </Dialog>
+  </>
 };
 
 export default FilterBar;

@@ -30,6 +30,7 @@ interface Props {
   size?: "small" | "medium" | undefined;
   variant?: "filled" | "outlined" | "standard" | undefined;
   disabled?: boolean;
+  label?: string
 }
 
 const OccupantSelector: FC<Props> = ({
@@ -41,7 +42,8 @@ const OccupantSelector: FC<Props> = ({
   size = "medium",
   variant = "outlined",
   disabled = false,
-}) => {
+  label
+  }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [error, setError] = useState("");
@@ -67,14 +69,14 @@ const OccupantSelector: FC<Props> = ({
     <>
       <TextField
         fullWidth={fullWidth}
-        label="Guests"
+        label={ label? label: "Guests"}
         sx={sx}
         size={size}
         variant={variant}
         value={
           value.adults === 0 && value.dogs === 0 && value.children === 0
             ? ""
-            : `Dogs: ${value.dogs}  Adults: ${value.adults}  Children: ${value.children}  `
+            : `${value.adults} ${(value.adults === 1) ? 'Adult' : 'Adults'}, ${value.children} ${(value.children == 1 ) ? 'Child' : 'Children'}, ${value.dogs} ${(value.dogs === 1) ? 'Pet' : 'Pets'}  `
         }
         inputProps={{
           readOnly: true,

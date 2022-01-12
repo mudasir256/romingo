@@ -31,7 +31,7 @@ const ReadMore: FC<Props> = ({ text, length, small = false, justify = false, }) 
           lineHeight: small ? 1.75 : 2,
           display: "inline",
           my: 0,
-          fontWeight: 500,
+          fontWeight: 400,
           color: '#000000c7',
           fontSize: small ? ".9rem" : "100%",
           textAlign: justify ? "justify" : "left",

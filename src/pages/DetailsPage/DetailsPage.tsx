@@ -11,7 +11,7 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import Check from "@mui/icons-material/Check"
 import LocationCityIcon from "@mui/icons-material/LocationCity"
-import { Deck, Nightlife, Soap, DirectionsRun, Bed, ShoppingBasket, LocalCafe, MoneyOff, Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib, Restaurant } from '@mui/icons-material'
+import { AccountBalanceWallet, FiberManualRecord, MeetingRoom, HotTub, Work, ChildCare, Weekend, PersonAddAlt, Star, ArrowDownward, Deck, Nightlife, Soap, DirectionsRun, Bed, ShoppingBasket, LocalCafe, MoneyOff, Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib, Restaurant } from '@mui/icons-material'
 
 import BookingCard from "../../components/BookingCard"
 import MobileBookingBar from "../../components/MobileBookingBar"
@@ -135,6 +135,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [markers, setMarkers] = useState<
     { lat: number, lng: number, type: string, label: string }[]
   >([])
+
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"))
 
   useEffect(() => {
     if (data && data?.property) {
@@ -302,6 +305,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           display={{ xs: "block", md: "none" }}
           sx={{ background: '#fff',
             width: "100%",
+            boxShadow: 0,
+            borderBottom: '2px solid #ddd',
             height: { xs: "200px", sm: "300px" },
             objectFit: "cover",
             borderRadius: 0,
@@ -432,16 +437,24 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {!loading && data && (
           <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12} md={7} lg={8}>
-              <Typography variant="h5" sx={{ color: "#222", flexDirection: { xs: 'column', sm: 'row'}, display: 'flex', justifyContent: 'space-between', fontFamily: 'Montserrat'}}>
-                {name}
-                <RomingoScore score={score} />
-              </Typography>
-              <Typography variant="body1" sx={{letterSpacing: '.015rem', fontSize: '1rem',  fontFamily: "Roboto", fontWeight: 400, color: '#999', mt: '.5rem', }}>
+              <Grid container>
+                <Typography variant="h5" sx={{ color: "#222", display: { sm: 'block', md: 'flex'}, justifyContent: 'space-between', fontFamily: 'Montserrat'}}>
+                  {name}
+                </Typography>
+                <Typography variant="h6" sx={{ color: "warning.main", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' }}}>
+                  {score} {new Array(Math.round(score)).fill(undefined).map((item) => <Star key={item} sx={{ color: "warning.main", fontSize: '1rem', mt: -0.2, mr: '.25rem' }} />)}
+                </Typography>
+              </Grid>
+
+              <Typography variant="body1" sx={{letterSpacing: '.015rem', fontSize: '1rem',  fontFamily: "Roboto", fontWeight: 400, color: '#999', mt: '.25rem', }}>
                 {location.address}, {city?.name}
               </Typography>
               <Chip sx={{ my: '1rem'}} icon={<LocationCityIcon />} label={neighborhood} />
 
               <ReadMore small text={defaultDescription} length={200} />
+              <Link href='#rooms'>
+                <Button fullWidth disableElevation variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mt: '1rem', display: { xs: 'flex', md: 'none' }}}> Reserve a Room  </Button>
+              </Link>
               <Grid container spacing={2} sx={{ mt: 0 }}>
                 <Grid item xs={12} sm={12} md={12} lg={12}>
                   <Box sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}>
@@ -457,7 +470,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   {location.address}, {city?.name}, CA, United States
                 </Typography>
                 <Box sx={{ display: "flex", my: 2, width: "100%", }}>
-                  <Map center={{ lat: parseFloat(location.lat), lng: parseFloat(location.lon), }} height={300} markers={markers} zoom={14} selectedMarker={0} />
+                  <Map center={{ lat: parseFloat(location.lat), lng: parseFloat(location.lon), }} height={fullScreen ? 200 : 300} markers={markers} zoom={14} selectedMarker={0} />
                 </Box>
               </Grid>
               <Grid container sx={{ borderTop: '1px solid #ddd', borderBottom: '1px solid #ddd', pb: '2rem', mt: '1rem' }}>
@@ -502,7 +515,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Grid>
         )}
         {!loading && data && (
-          <Grid container sx={{  mt: 0, maxWidth: "100%" }} ref={RateCardRef}>
+          <Grid container sx={{  mt: 0, maxWidth: "100%" }} id="rooms" ref={RateCardRef}>
             <Grid item xs={12}>
               <Typography variant="h6" sx={{ color: "#222", fontFamily: 'Montserrat', mt: { xs: 1, sm: 5 }, mb: '1rem', textAlign: "left", }}>
                 Available Rooms
@@ -545,7 +558,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 color: "primary.main",
               }}
             >
-              Photos
+              <Typography variant="h6" sx={{ color: "#222222", fontWeight: 700, fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', justifyContent: 'flex-start',}}>
+                Photos
+              </Typography>
               <IconButton aria-label="close" onClick={handleClose} sx={{ color: (theme) => theme.palette.grey[500],}}>
                 <CloseIcon />
               </IconButton>
@@ -634,7 +649,17 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, vi
   const [showDialog, setShowDialog] = useState(false)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"))
-  const popularAmenities = [ { text: ['pool'], icon: Pool }, { icon: SportsGolf, text: ['golf'] }, { icon: SportsTennis, text: ['tennis'] }, { icon: DryCleaning, text: ['dry cleaning'] }, { icon: RoomService, text: ['room service'] }, { icon: FitnessCenter, text: ['gym', 'fitness center', 'health club'] }, { icon: Wifi, text: ['high speed internet', 'wifi', 'internet'] }, { icon: Pets, text: ['pets allowed', 'pets'] }, { icon: SmokeFree, text: ['non-smoking'] }, { icon: BusinessCenter, text: ['business center'] }, { icon: Accessible, text: ['wheelchair access', 'wheelchair accessible'] }, { icon: CarRental, text: ['car rental', 'rental'] }, { icon: Crib, text: ['crib', 'crib rental'] } ]
+  const popularAmenities = [ { text: ['pool'], icon: Pool },
+    { icon: FitnessCenter, text: ['gym', 'fitness center', 'health club'] },
+    { icon: Wifi, text: ['high speed internet', 'wifi', 'internet'] },
+    { icon: Pets, text: ['pets allowed', 'pets'] },
+    { icon: PersonAddAlt, text: ['extra person']},
+    { icon: HotTub, text: ['hot tub']},
+    { icon: DryCleaning, text: ['dry cleaning'] },
+    { icon: BusinessCenter, text: ['business center'] },
+    { icon: RoomService, text: ['room service'] },
+  ]
+  const otherAmenities = [{ icon: MeetingRoom, text: ['meeting', 'convention']}, { icon: Crib, text: ['crib', 'crib rental'] }, { icon: Accessible, text: ['wheelchair access', 'wheelchair accessible'] }, { icon: SportsGolf, text: ['golf'] }, { icon: SportsTennis, text: ['tennis'] }, { icon: CarRental, text: ['car rental', 'rental'] }, { icon: Weekend, text: ['family room']}, { icon: SmokeFree, text: ['non-smoking'] }, { icon: ChildCare, text: ['children programs']}, { icon: Work, text: ['executive']}, { icon: AccountBalanceWallet, text: ['in room safe']}  ]
 
   const includedPopular = amenities.reduce((acc: Array<any>, item: string) => {
     if ( popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
@@ -644,6 +669,31 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, vi
       return [...acc]
     }
   }, []).sort((a, b) => a.receivedText > b.receivedText ? 1 : -1)
+
+  const includedOther = amenities.reduce((acc: Array<any>, item: string) => {
+    if ( otherAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
+      return [...acc, { ...(otherAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')), receivedText: item }]
+    }
+    else {
+      return [...acc]
+    }
+  }, []).sort((a, b) => a.receivedText > b.receivedText ? 1 : -1)
+
+  const noIconAmenities = amenities.reduce((acc: Array<any>, item: string) => {
+    if (!popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
+      return [...acc, item]
+    }
+    else {
+      return [...acc]
+    }
+  }, []).reduce((acc: Array<any>, item: string) => {
+    if (!otherAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
+      return [...acc, item ]
+    }
+    else {
+      return [...acc]
+    }
+  }, []).sort((a:string, b:string) => a > b ? 1 : -1)
 
   const handleClose = () => {
     setShowDialog(false)
@@ -667,24 +717,39 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, vi
               <Typography variant="body2" sx={{ ml: '1rem', fontWeight: 500}}>See All </Typography>
             </Link>
           </Box>
-          <Dialog open={showDialog} keepMounted fullWidth fullScreen={fullScreen} onClose={handleClose} >
-            <DialogTitle sx={{ textAlign: "center", color: "primary.main", }}>
-              Amenities
+          <Dialog PaperProps={{ sx: { borderRadius: '8px' }}} open={showDialog} keepMounted fullWidth fullScreen={fullScreen} onClose={handleClose} >
+            <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: "primary.main", }}>
+              <Typography variant="h6" sx={{ color: "#222222", fontWeight: 700, fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', justifyContent: 'flex-start',}}>
+                All Amenities
+              </Typography>
               <IconButton aria-label="close" onClick={handleClose} sx={{ position: "absolute", right: 8, top: 8, color: (theme) => theme.palette.grey[500], }}>
                 <CloseIcon />
               </IconButton>
             </DialogTitle>
             <DialogContent sx={{overflowY: 'auto'}}>
-              {amenities.map((amenity, key) => {
-                return (
-                  <Box sx={{ display: "flex", alignItems: "center", py: 1.25, width: '100%'}} key={key}>
-                    <Check sx={{ fontSize: 15, color: "primary.main", mt: 0.3, mr: 0.5, }}/>
-                    <Typography variant="body1" sx={{ mt: 0, color: "text.light", textIndent: "-8px", paddingLeft: "8px", }}>
-                      {amenity}
-                    </Typography>
-                  </Box>
-                )
-              })}
+            <Typography variant="h6" sx={{ fontSize: '90%', color: "#222222", fontWeight: 600, fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', justifyContent: 'flex-start'}}>
+              Most Popular
+            </Typography>
+            {includedPopular.concat(includedOther).map((amenity, index) => {
+              const AmenityIcon = amenity.icon
+              return (
+                <Box sx={{ display: 'flex', flexDirection: 'row',  mt: '.9rem', }} key={index}>
+                  <SvgIcon sx={{ color: '#999', mr: '1rem' }} component={AmenityIcon} />
+                  <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
+                    {amenity.receivedText}
+                  </Typography>
+                </Box>
+              )
+            })}
+            <Typography variant="h6" sx={{ fontSize: '90%', color: "#222222", fontWeight: 600, fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', mt: '1rem'}}>
+              Other Amenities
+            </Typography>
+            {noIconAmenities.map((item: string) => <Box key={item} sx={{ display: 'flex', flexDirection: 'row',  mt: '.9rem', alignItems: 'center' }}>
+                  <SvgIcon sx={{ color: '#999', mr: '1rem', fontSize: '12px' }} component={FiberManualRecord} />
+                  <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
+                    {item}
+                  </Typography>
+                </Box>)}
             </DialogContent>
           </Dialog>
         </>
@@ -708,8 +773,20 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, vi
             })}
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'column' }}>
-            {includedPopular.map((amenity, index) => {
-              if ((index > 5) && (index < 12)) {
+            {(includedPopular.length < 6) ? includedOther.map((amenity, index) => {
+              if (index < 6) {
+                 const AmenityIcon = amenity.icon
+                return (
+                  <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: '.9rem', }} key={index}>
+                    <SvgIcon sx={{ color: '#999', mr: '1rem' }} component={AmenityIcon} />
+                    <Typography variant="body1" sx={{ fontSize: '.9rem', fontWeight: 400, mt: 0, textTransform: "capitalize", color: "text.primary", textIndent: "-8px", paddingLeft: "8px", letterSpacing: '.015rem', fontFamily: "Roboto" }}>
+                      {amenity.receivedText}
+                    </Typography>
+                  </Box>
+                )
+              }
+            }) : includedPopular.map((amenity, index) => {
+              if ((index > 5) && (index < 13)) {
                  const AmenityIcon = amenity.icon
                 return (
                   <Box sx={{ display: 'inline-flex', flexDirection: 'row',  mt: '.9rem', }} key={index}>

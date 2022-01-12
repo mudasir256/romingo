@@ -25,58 +25,58 @@ export const theme = {
     },
   },
   typography: {
-    fontFamily: `"Work Sans", "Montserrat", sans-serif`,
+    fontFamily: `"Roboto", "Montserrat", sans-serif`,
     h1: {
-      fontFamily: "Work Sans",
+      fontFamily: "Montserrat",
       fontWeight: 900,
     },
     h2: {
-      fontFamily: "Work Sans",
+      fontFamily: "Montserrat",
       fontWeight: 900,
     },
     h3: {
-      fontFamily: "Work Sans",
+      fontFamily: "Montserrat",
       fontWeight: 900,
     },
     h4: {
-      fontFamily: "Work Sans",
+      fontFamily: "Montserrat",
       fontWeight: 900,
     },
     h5: {
-      fontFamily: "Work Sans",
+      fontFamily: "Montserrat",
       fontWeight: 900,
     },
     h6: {
-      fontFamily: "Work Sans",
+      fontFamily: "Montserrat",
       fontWeight: 700,
       letterSpacing: 0.5,
     },
     body1: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
     body2: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
     subtitle1: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
     subtitle2: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
     button: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
     caption: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
     overline: {
-      fontFamily: "Montserrat",
+      fontFamily: "Roboto",
       fontWeight: 300,
     },
   },

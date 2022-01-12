@@ -98,8 +98,8 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2, mb: 3 }}
             >
-              Please reach out to our booking support team if you would like to
-              modify or cancel your booking. To manage a booking made through
+              Please reach out to our reservation support team if you would like to
+              modify or cancel your reservation. To manage a reservation made through
               Romingo, you will need the original email address used to make the
               reservation and the confirmation number from your confirmation
               email. Please review the cancellation policy for your reservation

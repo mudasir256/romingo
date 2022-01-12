@@ -60,7 +60,7 @@ const ListingMap: FC<Props> = ({
         p: 0,
         m: 0,
         boxShadow: 4,
-        width: { xs: "100%", md: "45%" },
+        width: { xs: "100%", md: "40%", lg: '40%', xl: '45%' },
         height: "100%",
         position: "relative",
         overflow: "hidden",

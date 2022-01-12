@@ -157,8 +157,8 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
           <Box sx={{ display: "flex", flex: 1, justifyContent: "flex-end", alignItems: 'center' }}>
             <Button disableElevation variant="contained" color="primary" sx={{mr: '.5rem', height: "3rem", whiteSpace: "nowrap", minWidth: "150px", py: '1rem', }}>
               <Box onClick={handleBook}>
-                <Typography variant="h5" sx={{ display: "inline-block", my: 0, fontSize: "115%", fontWeight: 600 }}>
-                  Book Now
+                <Typography variant="h5" sx={{ display: "inline-block", my: 0, fontSize: "100%", fontWeight: 600 }}>
+                Reserve Now
                 </Typography>
               </Box>
             </Button>
