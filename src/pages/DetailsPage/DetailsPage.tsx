@@ -11,7 +11,7 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import Check from "@mui/icons-material/Check"
 import LocationCityIcon from "@mui/icons-material/LocationCity"
-import { AccountBalanceWallet, FiberManualRecord, MeetingRoom, HotTub, Work, ChildCare, Weekend, PersonAddAlt, Star, ArrowDownward, Deck, Nightlife, Soap, DirectionsRun, Bed, ShoppingBasket, LocalCafe, MoneyOff, Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib, Restaurant } from '@mui/icons-material'
+import { Casino, AccountBalanceWallet, FiberManualRecord, MeetingRoom, HotTub, Work, ChildCare, Weekend, PersonAddAlt, Star, ArrowDownward, Deck, Nightlife, Soap, DirectionsRun, Bed, ShoppingBasket, LocalCafe, MoneyOff, Label, Pool, SportsGolf, SportsTennis, DryCleaning, RoomService, FitnessCenter, Wifi, Pets, SmokeFree, BusinessCenter, Accessible, SvgIconComponent, CarRental, Crib, Restaurant } from '@mui/icons-material'
 
 import BookingCard from "../../components/BookingCard"
 import MobileBookingBar from "../../components/MobileBookingBar"
@@ -437,7 +437,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {!loading && data && (
           <Grid container spacing={2} sx={{ mt: 0 }}>
             <Grid item xs={12} md={7} lg={8}>
-              <Grid container>
+              <Grid container sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row'}}}>
                 <Typography variant="h5" sx={{ color: "#222", display: { sm: 'block', md: 'flex'}, justifyContent: 'space-between', fontFamily: 'Montserrat'}}>
                   {name}
                 </Typography>
@@ -649,21 +649,29 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, rowNumber = 5, vi
   const [showDialog, setShowDialog] = useState(false)
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"))
-  const popularAmenities = [ { text: ['pool'], icon: Pool },
-    { icon: FitnessCenter, text: ['gym', 'fitness center', 'health club'] },
-    { icon: Wifi, text: ['high speed internet', 'wifi', 'internet'] },
-    { icon: Pets, text: ['pets allowed', 'pets'] },
-    { icon: PersonAddAlt, text: ['extra person']},
-    { icon: HotTub, text: ['hot tub']},
-    { icon: DryCleaning, text: ['dry cleaning'] },
-    { icon: BusinessCenter, text: ['business center'] },
-    { icon: RoomService, text: ['room service'] },
+  const popularAmenities = [
+    {  icon: Pool, text: ['pool'], not: ['meeting rooms'] },
+    { icon: FitnessCenter, text: ['gym', 'fitness center', 'health club'], not: ['meeting rooms'] },
+    { icon: Wifi, text: ['high speed internet', 'high speed wireless', 'wifi', 'internet'], not: ['meeting rooms', 'public area']},
+    { icon: Pets, text: ['pets allowed', 'pets'], not: ['meeting rooms'] },
+    { icon: PersonAddAlt, text: ['extra person'], not: ['meeting rooms']},
+    { icon: HotTub, text: ['hot tub'], not: ['meeting rooms']},
+    { icon: DryCleaning, text: ['dry cleaning'], not: ['meeting rooms'] },
+    { icon: BusinessCenter, text: ['business center'], not: ['meeting rooms'] },
+    { icon: RoomService, text: ['room service'], not: ['meeting rooms'] },
+    { icon: Restaurant, text: ['restaurant'], not: ['meeting rooms']},
+    { icon: LocalCafe, text: ['coffee'], not: ['meeting rooms'] },
   ]
-  const otherAmenities = [{ icon: MeetingRoom, text: ['meeting', 'convention']}, { icon: Crib, text: ['crib', 'crib rental'] }, { icon: Accessible, text: ['wheelchair access', 'wheelchair accessible'] }, { icon: SportsGolf, text: ['golf'] }, { icon: SportsTennis, text: ['tennis'] }, { icon: CarRental, text: ['car rental', 'rental'] }, { icon: Weekend, text: ['family room']}, { icon: SmokeFree, text: ['non-smoking'] }, { icon: ChildCare, text: ['children programs']}, { icon: Work, text: ['executive']}, { icon: AccountBalanceWallet, text: ['in room safe']}  ]
+  const otherAmenities = [{icon: Casino, text: ['game room']}, { icon: MeetingRoom, text: ['meeting', 'convention']}, { icon: Crib, text: ['crib', 'crib rental'] }, { icon: Accessible, text: ['wheelchair access', 'wheelchair accessible'] }, { icon: SportsGolf, text: ['golf'] }, { icon: SportsTennis, text: ['tennis'] }, { icon: CarRental, text: ['car rental', 'rental'] }, { icon: Weekend, text: ['family room']}, { icon: SmokeFree, text: ['non-smoking'] }, { icon: ChildCare, text: ['children programs']}, { icon: Work, text: ['executive']}, { icon: AccountBalanceWallet, text: ['in room safe']}  ]
 
   const includedPopular = amenities.reduce((acc: Array<any>, item: string) => {
     if ( popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
-      return [...acc, { ...(popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')), receivedText: item }]
+      if (popularAmenities.find(pop => (pop.not.some(i => item.toLowerCase().includes(i))) ? pop : '')) {
+        return [...acc]
+      }
+      else {
+        return [...acc, { ...(popularAmenities.find(pop => (pop.text.some(i => item.toLowerCase().includes(i))) ? pop : '')), receivedText: item }]
+      }
     }
     else {
       return [...acc]

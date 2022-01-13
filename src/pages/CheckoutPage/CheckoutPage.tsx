@@ -280,7 +280,7 @@ const CheckoutPageListingCard: FC<ListingCardProps>  = ({
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: highlighted ? "lightBackground.main" : "white",
-      borderBottom: '1px solid #ddd', pb: '2rem'
+      borderBottom: '1px solid #ddd', pb: '1rem'
     }}
     {...props}
   >
@@ -333,9 +333,6 @@ const CheckoutPageListingCard: FC<ListingCardProps>  = ({
           </Typography>
           {/* <Chip sx={{ mt: '.5rem'}} icon={<LocationCityIcon />} label={neighborhood} /> */}
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", width: "100%", }}>
-            <Box sx={{ mt: '0rem', mb: '0px' }}>
-              <RomingoScore score={romingoScore} />
-            </Box>
             <Box
               sx={{
                 alignItems: "center",

@@ -54,11 +54,11 @@ const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addr
       }}
       {...props}
     >
-      <Box sx={{ width: { xs: '100%', sm: 250, md: 200, lg: 250 }, height: { xs: 'calc(20vh)', sm: 211, md: 186 }, }}>
+      <Box sx={{ width: { xs: '100%', sm: 250, md: 200, lg: 250 }, height: { xs: 'auto', sm: 211, md: 186 }, }}>
         <ImageSlider images={imageURLs} name={name}
           sx={{
             width: { xs: '100%', sm: 250, md: 200, lg: 200 },
-            height: { xs: 'calc(20vh)', sm: 212, md: 187 },
+            height: { xs: 'auto', sm: 212, md: 187 },
             borderTopRightRadius: { xs: '6px', sm: 0  },
             borderBottomRightRadius: { xs: 0, sm: 0,  },
             borderBottomLeftRadius: { xs: 0, sm: '6px'  },

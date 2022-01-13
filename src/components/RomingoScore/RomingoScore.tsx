@@ -30,7 +30,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       <Star sx={{ color: "warning.main", fontSize: "90%", mt: -0.3 }} />
     </Box>
   ) : (
-    <Box sx={{ display: "flex", minWidth: 0, alignItems: "center", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' } }}>
+    <Box onClick={e => e.stopPropagation()} sx={{ display: "flex", minWidth: 0, alignItems: "center", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' } }}>
       <Grid container>
         <Grid item xs={12} sx={{ textAlign: { sm: 'right', xs: 'left' } }}>
           <Typography variant="h6" sx={{ color: "warning.main", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' }}}>

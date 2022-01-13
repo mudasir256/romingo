@@ -10,6 +10,7 @@ import Footer from "../../components/Footer";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import FilterBar from "../../components/FilterBar";
+import { DesktopFilterBar } from "./DesktopFilterBar"
 
 const OrangeCounty: FC = () => {
   return (
@@ -70,8 +71,12 @@ const OrangeCounty: FC = () => {
                 BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="2714faad-9ea8-4851-9506-274710cdd51b" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography
@@ -208,8 +213,12 @@ const OrangeCounty: FC = () => {
                 $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="2714faad-9ea8-4851-9506-274710cdd51b" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
       </Container>

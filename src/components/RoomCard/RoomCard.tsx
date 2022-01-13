@@ -254,7 +254,7 @@ const RoomCard: FC<Props> = ({
               <Typography variant="h6" sx={{ display: 'flex', fontWeight: 700, fontFamily: 'Montserrat',color: "#111111bf", textAlign: "left", fontSize: { xs: '18px', sm: "18px", md: '20px'}, mt: '.25rem', letterSpacing: 0, textTransform: "capitalize", }}>
               {roomTitle} &nbsp;
             </Typography>
-            <Typography style={{ fontSize: '14px', textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}>
+            <Typography variant='body1' style={{ fontSize: '14px', textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}>
               {desc.toLowerCase()}
             </Typography>
           </Grid>
@@ -284,7 +284,9 @@ const RoomCard: FC<Props> = ({
           {!mobile && <> <Typography variant="h6" sx={{mt: '.25rem',  display: 'flex', fontWeight: 700, fontFamily: 'Montserrat', alignItems: 'center', color: "#111111bf", textAlign: "left", fontSize: { xs: '16px', sm: "18px", md: '20px'}, letterSpacing: 0, textTransform: "capitalize", }}>
             {roomTitle} &nbsp;
           </Typography>
-          <ReadMore text={desc} length={100} small justify />
+          <Typography variant='body1' style={{ fontSize: '14px', textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}>
+              {desc.toLowerCase()}
+            </Typography>
           </>}
 
 
@@ -460,15 +462,15 @@ const ReadMore: FC<ReadMoreProps> = ({ text, length, small = false, justify = fa
   const [showLess, setShowLess] = useState(true);
 
   if (text.length < length) {
-    return  <Typography variant="body2" sx={{ lineHeight: small ? 1 : 2, mt: '.25rem', mb: '.5rem', fontWeight: 600, opacity: .75, fontSize: '12px', textAlign: justify ? "justify" : "left", textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical",WebkitLineClamp: 1}}>
+    return  <Typography variant="body2" sx={{ lineHeight: small ? 1 : 2, mt: '.25rem', mb: '.5rem', fontWeight: 600, opacity: .75, fontSize: '12px', textAlign: justify ? "justify" : "left", textTransform: 'lowercase', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical",WebkitLineClamp: 1}}>
       {text.toLowerCase()}
     </Typography>
   }
 
   return  <Box>
-    <Typography variant="body2" dangerouslySetInnerHTML={{ __html: showLess ? `${text.slice(0, length)}... ` : text + " ", }} sx={{ lineHeight: small ? 1 : 2, display: "inline", my: 0, fontSize: "8px", textAlign: justify ? "justify" : "left", }} />
+    <Typography variant="body2" dangerouslySetInnerHTML={{ __html: showLess ? `${text.slice(0, length)}... ` : text + " ", }} sx={{ textTransform: 'none', lineHeight: small ? 1 : 2, display: "inline", my: 0, fontSize: "12px", textAlign: justify ? "justify" : "left", }} />
     <Box sx={{ display: "inline", p: small ? 0 : 2 }} onClick={() => setShowLess(!showLess)}>
-      <Typography variant="body2" sx={{fontSize: '9px', lineHeight: small ? 1 : 2, display: "inline", color: "primary.main",cursor: "pointer", textDecoration: "underline",
+      <Typography variant="body2" sx={{fontSize: '12px', lineHeight: small ? 1 : 2, display: "inline", color: "primary.main",cursor: "pointer", textDecoration: "underline",
         }}>
         {showLess ? "Read More" : "Show Less"}
       </Typography>

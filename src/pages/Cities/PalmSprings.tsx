@@ -10,6 +10,7 @@ import Footer from "../../components/Footer";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import FilterBar from "../../components/FilterBar";
+import { DesktopFilterBar } from "./DesktopFilterBar"
 
 const PalmSprings: FC = () => {
   return (
@@ -69,8 +70,12 @@ const PalmSprings: FC = () => {
                 BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="d4c10666-addf-47a6-9870-767518d9ebad" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography
@@ -201,8 +206,12 @@ const PalmSprings: FC = () => {
                 $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="d4c10666-addf-47a6-9870-767518d9ebad" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
       </Container>

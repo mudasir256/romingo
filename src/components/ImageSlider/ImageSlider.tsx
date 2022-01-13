@@ -71,7 +71,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   useEffect(() => {
     if (item !== 0) {
       const addItems = [...items];
-      const addItem =  <Box key={images[item]} component="img" src={images[item]} alt={name} sx={{ ...sx, backgroundSize: 'cover' }} />
+      const addItem =  <Box key={images[item]} component="img" src={images[item]} alt={name} sx={{ ...sx, backgroundSize: '100%' }} />
       addItems[item] = addItem;
       setItems(addItems);
     }

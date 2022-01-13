@@ -423,8 +423,8 @@ const CheckoutInformation: FC<Props> = ({
                 variant="h6"
                 sx={{
                   color: "#222",
-                  textAlign: "left",
-                  fontWeight: 600,
+                  textAlign: "center",
+                  fontWeight: 700,
                   fontFamily: "Montserrat"
                 }}
               >
@@ -496,7 +496,7 @@ const CheckoutInformation: FC<Props> = ({
                 sx={{
                   color: "#222",
                   fontFamily: "Montserrat",
-                  textAlign: "left",
+                  textAlign: "center",
                   mb: 2,
                 }}
               >

@@ -50,13 +50,14 @@ const bgImages = [
 const Header: FC<Props> = ({ sx }) => {
   const [bgImage, setBgImage] = useState("");
   const [variant] = useState(localStorage.getItem('ROMINGO_EXPERIMENT_VAR'))
+  const tinyScreen = useMediaQuery('(max-height:725px')
 
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
   }, [])
 
   return (
-    <Box sx={{ width: "100%", minHeight: { xs: '100vh', md: "100vh", }, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", top: 0, left: 0, ...sx,}}>
+    <Box sx={{ width: "100%", minHeight: { xs: '100vh', md: "100vh", }, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", top: 0, left: 0, ...sx }}>
       <Navbar />
 
       <Box sx={{ position: "absolute", top: 0, left: 0, zIndex: 0, width: "100%", }}>
@@ -64,8 +65,7 @@ const Header: FC<Props> = ({ sx }) => {
             objectFit: "cover",
             width: "100%",
             borderRadius:'12px',
-            height: { xs: '100vh', md: "100vh" },
-            position: "relative",
+            minHeight: { xs: '100vh', md: "100vh" },
             "&::before": {
               content: '""',
               backgroundImage: bgImage,
@@ -81,7 +81,7 @@ const Header: FC<Props> = ({ sx }) => {
           }}
         />
       </Box>
-      <Box sx={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", }} >
+      <Box sx={{ marginTop: '64px', marginBottom: '24px', width: "100%", minHeight: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", }} >
         <Box sx={{
             borderRadius: { xs: 4.5, md: 3 },
             zIndex: 100,
@@ -89,9 +89,9 @@ const Header: FC<Props> = ({ sx }) => {
             backdropFilter: 'blur(3px)',
             boxShadow: '1px 2px 3px rgba(0, 0, 0, 0.25)',
             maxWidth: { xs: "100%", md: "90%", xl: "80%" },
-            pt: { xs: 2, md: 3.5 },
-            pb: { xs: 0, md: 3.5 },
-            px: { xs: 0, md: 5 },
+            pt: { xs: 2, sm: 3.5 },
+            pb: { xs: '0', sm: 3.5 },
+            px: { xs: 0, sm: 5 },
             mx: 1,
           }}
         >

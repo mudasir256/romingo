@@ -10,6 +10,7 @@ import Footer from "../../components/Footer";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import FilterBar from "../../components/FilterBar";
+import { DesktopFilterBar } from "./DesktopFilterBar"
 
 const SanFrancisco: FC = () => {
   return (
@@ -73,8 +74,12 @@ const SanFrancisco: FC = () => {
                 BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="82145909-13b4-4aab-be20-e0db474021c1" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography
@@ -205,8 +210,12 @@ const SanFrancisco: FC = () => {
                 $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="82145909-13b4-4aab-be20-e0db474021c1" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
       </Container>

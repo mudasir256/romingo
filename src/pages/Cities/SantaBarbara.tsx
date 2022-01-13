@@ -10,6 +10,7 @@ import Footer from "../../components/Footer";
 import FilterBar from "../../components/FilterBar";
 
 import ScrollToTop from "../../components/ScrollToTop";
+import { DesktopFilterBar } from "./DesktopFilterBar"
 
 const SantaBarbara: FC = () => {
   return (
@@ -67,8 +68,12 @@ const SantaBarbara: FC = () => {
                 BOOK YOUR GETAWAY!
               </Typography>
             </Divider>
-            <FilterBar zoomed city="58b23325-2016-44ef-886f-67e962dab17f" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography
@@ -196,8 +201,12 @@ const SantaBarbara: FC = () => {
                 $0 PET FEES ON ROMINGO
               </Typography>
             </Divider>
-            <FilterBar zoomed city="58b23325-2016-44ef-886f-67e962dab17f" />
-            <Divider light variant="middle" sx={{ mt: 3 }} />
+            <Hidden mdDown>
+              <DesktopFilterBar />
+            </Hidden>
+            <Hidden mdUp>
+              <FilterBar />
+            </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>
       </Container>
