@@ -250,6 +250,8 @@ mutation CreatePaymentIntentMutation(
 }
 `;
 
+
+
 const CreateBooking = `
 mutation CreateBookingMutation($createBookingInput: CreateBookingInput!) {
   createBooking(input: $createBookingInput) {

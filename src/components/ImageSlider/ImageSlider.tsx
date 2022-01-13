@@ -25,15 +25,25 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
     if (images && images.length > 0) {
       setItems( images.slice(0, 10).map((img, i) => {
           if (i === 0) {
-            return <Box key={img} component="img" srcSet={`https:${initialSrcSet[i]},https:${secondSrcSet[i]}`} alt={name} sx={{ ...sx, }} />
+            return <Box
+                      key={img}
+                      sx={{ ...sx,
+                        display: 'block',
+                        backgroundSize: 'cover',
+                        width: '100%',
+                        objectFit: 'cover',
+                        backgroundImage: `url(${img})`
+                      }}
+                    />
+
+
           } else {
-            return <Box key={img + "lazy"} sx={{ ...sx, }} />
+            return <Box key={img + "lazy"} sx={{ ...sx, objectFit: 'cover', background: `url(${img})` }} />
           }
         })
       )
     }
   }, [])
-
 
 
 //   useEffect(() => {
@@ -77,7 +87,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
     }
   }, [item]);
 
-  return items.length > 0 && <Carousel infiniteLoop selectedItem={item || 0} showStatus={false} showIndicators={size?.width < 600 ? false : true} showArrows={true} onChange={(i) => setItem(i)} showThumbs={false} >
+  return items.length > 0 && <Carousel infiniteLoop selectedItem={item || 0} showStatus={false} showIndicators={false} showArrows={true} onChange={(i) => setItem(i)} showThumbs={false} >
     {items}
   </Carousel> || <Grid></Grid>
 }

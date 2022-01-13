@@ -151,7 +151,7 @@ export const DesktopFilterBar: FC = () => {
   };
 
   return  <Box>
-    <Box sx={{display: 'flex', background: '#fff', alignItems: 'center', border: '1px solid #ccc', mb: '1rem', padding: '.25rem .5rem .25rem .5rem', borderRadius: '12px', margin: '0px auto', maxWidth: '500px'}}>
+    <Box sx={{display: 'flex', background: '#fff', alignItems: 'center', border: '1px solid #ccc', mb: '1rem', padding: '.25rem .5rem .25rem .5rem', borderRadius: '12px', margin: '0px auto', mt: '1rem', maxWidth: '500px'}}>
       <Box sx={{  display: "flex", alignItems: "center", }} >
         <Autocomplete options={cities} value={getCity(selectedCity) || null}
           getOptionLabel={(option: any) => {
@@ -223,13 +223,8 @@ export const DesktopFilterBar: FC = () => {
       <Box sx={{  mt: { xs: 1, md: 0, }, display: "flex", alignItems: "top", }}>
         <OccupantSelector value={occupants} onChange={onOccupantChange} variant="standard" size="small" />
       </Box>
-      <Box sx={{ textAlign: "center" }}>
-        <Button onClick={handleFilterOutClick}
-          disableElevation
-          type="submit"
-          variant="text"
-          sx={{ ml: '.25rem', display: 'flex', minWidth: '30px', alignItems: 'center', padding: '.25rem 0rem', justifyContent: 'center',}}
-        >
+      <Box sx={{ textAlign: "right", ml: 'auto' }}>
+        <Button onClick={handleFilterOutClick} disableElevation type="submit" variant="contained" sx={{ ml: 'auto', minWidth: '80px', display: 'flex', width: '100%', alignItems: 'center', padding: '.25rem 0rem', justifyContent: 'center',}}>
           <SearchIcon sx={{ height: '20px' }} />
         </Button>
       </Box>

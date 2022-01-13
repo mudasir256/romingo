@@ -58,7 +58,7 @@ const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addr
         <ImageSlider images={imageURLs} name={name}
           sx={{
             width: { xs: '100%', sm: 250, md: 200, lg: 200 },
-            height: { xs: 'auto', sm: 212, md: 187 },
+            height: { xs: 200, sm: 212, md: 187 },
             borderTopRightRadius: { xs: '6px', sm: 0  },
             borderBottomRightRadius: { xs: 0, sm: 0,  },
             borderBottomLeftRadius: { xs: 0, sm: '6px'  },
