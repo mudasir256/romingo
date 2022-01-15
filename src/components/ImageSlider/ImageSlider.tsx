@@ -38,8 +38,15 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
 
 
           } else {
-            return <Box key={img + "lazy"} sx={{ ...sx, objectFit: 'cover', background: `url(${img})` }} />
-          }
+            return <Box key={img + "lazy"}
+                      sx={{ ...sx,
+                        width: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                        backgroundImage: `url(${img})`
+                      }}
+                    />
+}
         })
       )
     }
