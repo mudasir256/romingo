@@ -42,6 +42,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
                       sx={{ ...sx,
                         width: '100%',
                         objectFit: 'cover',
+                        backgroundSize: 'cover',
                         display: 'block',
                         backgroundImage: `url(${img})`
                       }}
