@@ -23,33 +23,17 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
 
   useEffect(() => {
     if (images && images.length > 0) {
-      setItems( images.slice(0, 10).map((img, i) => {
-          if (i === 0) {
-            return <Box
-                      key={img}
-                      sx={{ ...sx,
-                        display: 'block',
-                        backgroundSize: 'cover',
-                        width: '100%',
-                        objectFit: 'cover',
-                        backgroundImage: `url(${img})`
-                      }}
-                    />
-
-
-          } else {
-            return <Box key={img + "lazy"}
-                      sx={{ ...sx,
-                        width: '100%',
-                        objectFit: 'cover',
-                        backgroundSize: 'cover',
-                        display: 'block',
-                        backgroundImage: `url(${img})`
-                      }}
-                    />
-}
-        })
-      )
+      setItems( images.slice(0, 10).map((img, i) =>  <Box
+      component="div"
+      key={img}
+      sx={{ ...sx,
+        display: 'block',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        width: '100%',
+        backgroundImage: `url(${img})`
+      }}
+    />   ))
     }
   }, [])
 
@@ -89,7 +73,13 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   useEffect(() => {
     if (item !== 0) {
       const addItems = [...items];
-      const addItem =  <Box key={images[item]} component="img" src={images[item]} alt={name} sx={{ ...sx, backgroundSize: '100%' }} />
+      const addItem =  <Box key={images[item]} sx={{ ...sx,
+        display: 'block',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        width: '100%',
+        backgroundImage: `url(${images[item]})`
+      }} />
       addItems[item] = addItem;
       setItems(addItems);
     }

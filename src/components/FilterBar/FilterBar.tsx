@@ -154,9 +154,9 @@ const FilterBar: FC<Props> = ({ sx, zoomed = false, city = "" }) => {
           <Box sx={{ backgroundColor: "#DDDDDD", flex: "0 0 1px", height: "24px", width: "1px", }}></Box>
           <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
             <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none',fontWeight: 600, fontSize: { xs: '13px' }}}>
-              { checkDate[0] ? DateTime.fromISO(checkDate[0].toString()).toFormat('MMM dd') : ''}
+              { checkDate[0] ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat('MMM dd') : ''}
               &nbsp;&#8212;&nbsp;
-              { checkDate[1] ? DateTime.fromISO(checkDate[1].toString()).toFormat('MMM dd') : ''}
+              { checkDate[1] ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat('MMM dd') : ''}
             </Typography>
           </Button>
           <Box sx={{ backgroundColor: "#DDDDDD", flex: "0 0 1px", height: "24px", width: "1px", }}></Box>
