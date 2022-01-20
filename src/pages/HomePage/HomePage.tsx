@@ -152,6 +152,7 @@ const HomePage: FC<Props> = ({
   useEffect(() => {
     window.Intercom("boot", {
       app_id: "qa6datd3",
+      alignment: "left",
     });
     window.Intercom("update");
   }, []);
