@@ -91,6 +91,7 @@ import { setHotel } from "../../store/hotelDetailReducer";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
+import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -543,35 +544,41 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </>
         )}
         {!loading && !data && (
-          <Box sx={{ textAlign: "center", mt: 10 }}>
-            <Typography variant="h5" color="primary">
-              This property does not have any rooms available that meet your
-              search criteria
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ mt: 1, mb: 3 }}
-            >
-              Search other great Romingo rooms below
-            </Typography>
-
-            <FilterBar zoomed home />
-            <Box
-              component="img"
-              src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
-              alt={"No Properties Found"}
-              sx={{
-                objectFit: "cover",
-                height: 400,
-                width: 900,
-                maxWidth: "100%",
-                boxShadow: 5,
-                borderRadius: 5,
-                mt: 4,
-              }}
-            />
-          </Box>
+          <Container maxWidth="md">
+            <Box sx={{ textAlign: "center", mt: 10 }}>
+              <Typography variant="h5" color="primary">
+                This property does not have any rooms available that meet your
+                search criteria
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ mt: 1, mb: 3 }}
+              >
+                Search other great Romingo rooms below
+              </Typography>
+              <Hidden mdDown>
+                <DesktopFilterBar />
+              </Hidden>
+              <Hidden mdUp>
+                <FilterBar />
+              </Hidden>
+              <Box
+                component="img"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
+                alt={"No Properties Found"}
+                sx={{
+                  objectFit: "cover",
+                  height: 400,
+                  width: 900,
+                  maxWidth: "100%",
+                  boxShadow: 5,
+                  borderRadius: 5,
+                  mt: 4,
+                }}
+              />
+            </Box>
+          </Container>
         )}
         {!loading && data && (
           <Grid container spacing={2} sx={{ mt: 0 }}>
