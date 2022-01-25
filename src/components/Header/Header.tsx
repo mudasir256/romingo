@@ -168,14 +168,14 @@ const Header: FC<Props> = ({ sx }) => {
             }}
           >
             Easy to use.
-            <Typography sx={{display: { xs: 'block', sm: landscapeSE ? 'inline' : 'block', md: 'inline'}, color: "#222",
+            <Typography sx={{display: { xs: 'inline', sm: landscapeSE ? 'inline' : 'block', md: 'inline'}, color: "#222",
               fontWeight: 500,
               fontFamily: "Montserrat",
               textAlign: 'left',
               fontSize: { xs: "1.25rem", md: "2.25rem" },
               margin: { xs: "0rem auto", sm: "0rem" },
               textShadow: '0px 0px 2px rgba(0, 0, 0, .15)'}}> Exclusive rates. </Typography>
-            <Typography sx={{ display: { xs: 'block', sm: landscapeSE ? 'inline' : 'block', md: 'inline'}, color: "#222",
+            <Typography sx={{ display: { xs: 'inline', sm: landscapeSE ? 'inline' : 'block', md: 'inline'}, color: "#222",
               fontWeight: 500,
               fontFamily: "Montserrat",
               textAlign: 'left',
@@ -356,7 +356,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   setSelectedCity(values.id);
                 }
               }}
-              sx={{ fontFamily: 'Montserrat', width: '90%', margin: '0px auto'}}
+              sx={{ fontFamily: 'Montserrat', width: '90%', margin: '0px auto', fontSize: '14px'}}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -375,7 +375,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     '&.Mui-focused fieldset': {
                       borderColor: 'transparent',
                     },
-                  }, input: { padding: '0px', fontSize: '12px', fontWeight: 600, fontFamily: 'Montserrat', cursor: "pointer", color: "#666", border: "none",  },}}
+                  }, input: { padding: '0px', fontSize: '14px', fontWeight: 600, fontFamily: 'Montserrat', cursor: "pointer", color: "#666", border: "none",  },}}
                 />
               )}
             />
