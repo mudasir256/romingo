@@ -1,9 +1,10 @@
 import React, { FC, useState, useEffect, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
-import { CircularProgress, Box, CSSObject, useTheme, Link, AppBar, Popover, Grid, Toolbar, IconButton, Hidden, Dialog, DialogContent, DialogTitle, Typography, useMediaQuery, TextField, Button } from '@mui/material'
-import { Cancel } from '@mui/icons-material'
+import { Menu, MenuItem, Divider, CircularProgress, Box, CSSObject, useTheme, Link, AppBar, Popover, Grid, Toolbar, IconButton, Hidden, Dialog, DialogContent, DialogTitle, Typography, useMediaQuery, TextField, Button } from '@mui/material'
+import { KeyboardArrowDown, Cancel, HomeWork, CalendarToday, ViewDay, Work } from '@mui/icons-material'
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from "@mui/icons-material/Close";
 import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
@@ -18,6 +19,8 @@ const Navbar: FC<Props> = ({ sx }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [showLogin, setShowLogin] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [anchorEl, setAnchorEl] = useState<any>(null)
 
   const LOGIN = "Login";
   const REGISTER = "Register";
@@ -41,29 +44,79 @@ const Navbar: FC<Props> = ({ sx }) => {
       <AppBar position="fixed" style={{background: '#ffffffed', WebkitBackdropFilter: 'blur(6px)', backdropFilter: 'blur(6px)', backgroundColor: '#ffffffed',}} sx={{  boxShadow: 2 }}>
         <Toolbar sx={{ display: "block", position: "relative" }}>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: { xs: "56px", sm: "64px" }}}>
-            <Hidden smDown>
+            <Hidden lgDown>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <IconButton edge="start" sx={{ mr: 1, color: "black" }} aria-label="menu" href="https://www.facebook.com/RomingoTravel/" target="_blank">
-                  <FacebookIcon />
-                </IconButton>
-                <IconButton edge="start" sx={{ mr: 1, color: "black" }} aria-label="menu" href="https://www.instagram.com/romingotravel/" target="_blank">
-                  <InstagramIcon />
-                </IconButton>
-                <Link href='/list-your-property'>
-                  <Typography variant="body2" color="primary">
-                    List Your Property
-                  </Typography>
-                </Link>
+              <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"} alt="Logo" draggable="false" onClick={() => history.push("/")} sx={{ maxWidth: "140px", margin: "auto auto", cursor: "pointer" }}/>
+              </Box>
+              <Link href='/reservation/manage' sx={{ ml: 'auto', padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { color: '#03989E'  }, color: '#666'}}>
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                  My trips
+                </Typography>
+              </Link>
+              <Link href='/about' sx={{padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { color: '#03989E'  }, color: '#666'}}>
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                  About us
+                </Typography>
+              </Link>
+              <Link href='/romingo-partners' sx={{ padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { color: '#03989E'  }, color: '#666'}}>
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                  Philanthropy
+                </Typography>
+              </Link>
+              <Link href='https://blog.romingo.com' sx={{ padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { color: '#03989E'  }, color: '#666'}}>
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                  Blog
+                </Typography>
+              </Link>
+              <Link href='/contact' sx={{ padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { color: '#03989E'  }, color: '#666'}}>
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                Support
+                </Typography>
+              </Link>
+              <Link sx={{ padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { color: '#03989E'  }, color: '#666'}}>
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                  <RomingoDeals />
+                </Typography>
+              </Link>
+              <Link href='/list-your-property' sx={{ border: '2px solid #03989E', padding: '.5rem 1rem', borderRadius: '6px', mr: '.75rem', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', '&:hover': { background: '#03989E', color: '#fff' }, color: '#03989E'}}>
+                <HomeWork sx={{ mr: '1rem', fontSize: '20px', }} />
+                <Typography variant="body2"  sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
+                  List Your Property
+                </Typography>
+              </Link>
+              {/* <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{cursor: 'pointer', padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': '#fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' }, color: menuOpen ? '#fff':'#03989E'}}>
+                <MenuIcon sx={{ margin: '0px auto'}} />
+              </Link> */}
 
-              </Box>
-              <Box sx={{ top: 0, left: "calc(50% - 62.5px)", height: "100%", width: "180px", textAlign: "center", display: "flex" }}>
-                <Box component="img" src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"} alt="Logo" draggable="false" onClick={() => history.push("/")} sx={{maxWidth: "180px", margin: "auto auto", cursor: "pointer" }}/>
-              </Box>
-              <RomingoDeals />
             </Hidden>
 
+            <Menu anchorEl={anchorEl} transformOrigin={{ vertical: 'top', horizontal: 'right' }}  open={menuOpen}  onClose={() => setMenuOpen(!menuOpen)} sx={{ fontWeight: 600, minWidth: '300px', marginTop: '50px', ml: '-1rem' }} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+              <MenuItem onClick={() => history.push('/about')} component='button' sx={{ fontWeight: 500, minWidth: '200px' }}>
+                About us
+              </MenuItem>
+              <MenuItem onClick={() => history.push('/faq')} component='button' sx={{ fontWeight: 500, minWidth: '200px' }}>
+                Philanthropy
+              </MenuItem>
+              <MenuItem onClick={() => window.open('https://blog.romingo.com')} component='button' sx={{ fontWeight: 500, minWidth: '200px' }}>
+                Blog
+              </MenuItem>
+              <MenuItem onClick={() => history.push('/contact')} component='button' sx={{ fontWeight: 500, minWidth: '200px' }}>
+                Support
+              </MenuItem>
+              <Divider />
+              <MenuItem sx={{ fontWeight: 500, minWidth: '200px' }}>
+                <RomingoDeals />
+              </MenuItem>
+              <MenuItem component='button' onClick={() => history.push('/list-your-property')} sx={{ fontWeight: 500, minWidth: '200px' }}>
+                List your property
+              </MenuItem>
+              {/* <Divider /> */}
+              {/* <MenuItem sx={{ fontWeight: 500, minWidth: '200px' }}>
+                Login
+              </MenuItem> */}
+              </Menu>
 
-            <Hidden smUp>
+            <Hidden lgUp>
               <Box component="img"
                 src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
                 alt="Logo"
@@ -75,7 +128,14 @@ const Navbar: FC<Props> = ({ sx }) => {
                   maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
-              <RomingoDeals />
+              <Typography onClick={() => history.push('/reservation/manage')} variant="body2"  sx={{ ml: 'auto', mr: '1rem', color: '#888', fontWeight: 600, fontFamily: 'Montserrat' }}>
+                <span style={{ display: 'flex', alignItems: 'center', border: '2px solid #888 ', borderRadius: '6px', padding: ' .25rem .5rem' }}>
+                <Work sx={{ fontSize: '14px', mr: '.25rem'}} />
+                My trips</span>
+              </Typography>
+              <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{ padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': 'transparent', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' },  fontFamily: 'Montserrat', fontWeight: 500, fontSize: '14px' }}>
+                <MenuIcon sx={{ margin: '0px auto', color: menuOpen ? '#fff':'#222' }} />
+              </Link>
             </Hidden>
             {/* <Button
               variant="text"
@@ -222,6 +282,7 @@ const RomingoDeals = () => {
   const [emailIsValid, setEmailIsValid] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [emailSubmitted, setEmailSubmitted] = useState(false)
+  const [anchorEl, setAnchorEl] = useState<any>(null)
 
   useEffect(() => {
     setEmailIsValid(/^\S+@\S+\.\S+$/.test(email))
@@ -252,16 +313,15 @@ const RomingoDeals = () => {
     <Popover
       onClose={() => setShowDealsPopup(false)}
       open={showDealsPopup}
-      PaperProps={{sx: { borderRadius: '12px' }}}
+      anchorEl={anchorEl}
+      PaperProps={{sx: { borderRadius: '12px', marginTop: '48px', border: '1px solid #ddd' }}}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
-      <Grid container sx={{width: { xs: '100%', sm: '393px' }, minHeight: '130px', display: 'flex', overflow: 'hidden'}}>
+      <Grid container sx={{width: { xs: '100%', sm: '393px' }, minHeight: '100px', display: 'flex', overflow: 'hidden'}}>
 
-        <Grid item xs={12}
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#00000099', background: '#D9F7FC', borderBottom: '3px solid #CAE9EE', p: '.5rem .5rem', pb: '.25rem', fontFamily: 'Montserrat', fontWeight: 900, fontSize: '.9rem' }}
-        >
-          Romingo Deals: Exlusive Rates and More!
-          <Cancel onClick={() => setShowDealsPopup(false)} sx={{ cursor: 'pointer', transition: 'all .15s linear', '&:hover': { color: '#03989E' } }} />
+        <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#00000099', p: '.5rem .5rem', pb: '.125rem', fontFamily: 'Montserrat', fontWeight: 900, fontSize: '.9rem' }}>
+          Sign up with your email below to access exclusive deals and more:
+          <Cancel onClick={() => setShowDealsPopup(false)} sx={{ cursor: 'pointer', transition: 'all .15s linear', marginBottom: 'auto', '&:hover': { color: '#03989E' } }} />
         </Grid>
         {emailSubmitted ?
           <Grid item xs={12} sx={{ p: '.5rem .5rem .5rem .5rem', fontFamily: 'Work Sans', color: '#03989E', textAlign: 'center'}}>
@@ -269,9 +329,6 @@ const RomingoDeals = () => {
           </Grid>
           :
           <>
-            <Grid item xs={12} sx={{ p: '.5rem .5rem .125rem .5rem', textAlign: 'center', fontFamily: 'Work Sans', color: '#03989E'  }}>
-            Sign up with your email below:
-            </Grid>
             { isSubmitting && <Grid sx={{ position: 'absolute', zIndex: 9,  display: 'flex', alignItems: 'center', justifyContent: 'center', top: '0px', right: '0', left: '0', bottom: '0px', background: '#ffffff80', backdropFilter: 'blur(1px)' }}>
               <CircularProgress />
             </Grid>}
@@ -279,15 +336,15 @@ const RomingoDeals = () => {
               <TextField
                 variant='outlined'
                 color='primary'
-                placeholder='Email Address'
+                placeholder='enter email'
                 size='small'
                 value={email}
-                sx={{ outline: 'none', fontSize: '.8rem' }}
-                InputProps={{sx: { fontSize: '.5rem', maxHeight: '30px', width: { xs: 'calc(100vw - 140px)', sm: '290px'  }, outline: 'none' }}}
+                sx={{ outline: 'none', fontSize: '.8rem', input: { fontFamily: "Montserrat", } }}
+                InputProps={{sx: { fontSize: '.5rem', maxHeight: '30px', fontFamily: "Montserrat", width: { xs: 'calc(100vw - 140px)', sm: '290px'  }, outline: 'none' }}}
                 onChange={e => setEmail(e.target.value)}
 
               />
-              <Button onClick={submitEmail} disabled={(!emailIsValid) || isSubmitting} size='small' variant='contained' sx={{ fontWeight: 600 }}>
+              <Button onClick={submitEmail} disabled={(!emailIsValid) || isSubmitting} size='small' variant='contained' sx={{ fontWeight: 600, textTransform: 'none', fontFamily: "Montserrat", }}>
                 Sign up!
               </Button>
             </Grid>
@@ -295,11 +352,9 @@ const RomingoDeals = () => {
         }
       </Grid>
     </Popover>
-    <Link onClick={() => setShowDealsPopup(true)} sx={{ cursor: 'pointer'}}>
-    <Typography variant="body2" color="primary">
-      Romingo Deals
-    </Typography>
-  </Link>
+    <span style={{ cursor: 'pointer' }} onClick={e => { setShowDealsPopup(true); setAnchorEl(e.currentTarget) }}>
+      Deals
+  </span>
   </>
 }
 
