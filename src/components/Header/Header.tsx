@@ -106,6 +106,7 @@ const Header: FC<Props> = ({ sx }) => {
               content: '""',
               backgroundImage: 'url("https://storage.googleapis.com/romingo-development-public/images/front-end/compressed-hero.jpeg")',
               opacity: .9,
+              filter: 'brightness(107%)',
               backgroundSize: 'cover',
               position: "absolute",
               backgroundPosition: { sm: landscapeSE ? 'right 0px top 10px' : 'right -145px top 10px', md: 'center', xs: 'right -145px top 10px' },
