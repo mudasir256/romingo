@@ -72,6 +72,7 @@ const Header: FC<Props> = ({ sx }) => {
   const [variant] = useState(localStorage.getItem("ROMINGO_EXPERIMENT_VAR"));
   const under900 = useMediaQuery("(max-width:900px");
   const smallHeight = useMediaQuery("(max-height:700px");
+  const landscapeSE = useMediaQuery("(max-height: 414px) and (max-width: 940px)")
 
   useEffect(() => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
@@ -104,10 +105,10 @@ const Header: FC<Props> = ({ sx }) => {
             "&::before": {
               content: '""',
               backgroundImage: 'url("https://storage.googleapis.com/romingo-development-public/images/front-end/compressed-hero.jpeg")',
-              opacity: 1,
+              opacity: .9,
               backgroundSize: 'cover',
               position: "absolute",
-              backgroundPosition: { sm: 'right -145px top 10px', md: 'center', xs: 'right -145px top 10px' },
+              backgroundPosition: { sm: landscapeSE ? 'right 0px top 10px' : 'right -145px top 10px', md: 'center', xs: 'right -145px top 10px' },
               top: { xs: 0, md: 270 },
               right: 0,
               bottom: 0,
@@ -143,11 +144,11 @@ const Header: FC<Props> = ({ sx }) => {
         <Typography
             variant="h1"
             sx={{
-              color: "#222",
+              color: "#333",
               maxWidth: { xs: "92%", sm: "100%" },
-              margin: { xs: "auto 1rem 1rem 1rem", sm: "auto 1rem 1rem 1rem", lg: "-5rem auto .75rem 8rem", xl: "-5rem auto .75rem 16rem" },
-              fontFamily: "Sansita", fontWeight: 600,
-              fontSize: { xs: "2.25rem", md: "5.225rem" },
+              margin: { xs: "auto 1rem 1rem 1rem", sm: landscapeSE ? '15rem 0rem 0rem 0rem' : "auto 1rem 1rem 1rem", lg: "-5rem auto .75rem 8rem", xl: "-2rem auto 0rem 10rem" },
+              fontFamily: "Montserrat", fontWeight: 700,
+              fontSize: { xs: "2.25rem", md: "5.025rem" },
               textShadow: '0px 0px 2px rgba(0, 0, 0, .15)',
             }}
           >
@@ -157,24 +158,24 @@ const Header: FC<Props> = ({ sx }) => {
             variant="h4"
             sx={{
               color: "#222",
-              fontWeight: 600,
+              fontWeight: 500,
               fontFamily: "Montserrat",
               textAlign: 'left',
               fontSize: { xs: "1.25rem", md: "2.25rem" },
-              margin: { xs: smallHeight ? '0rem 1rem 0rem 1rem' : "0rem 1rem 4rem 1rem", sm: "0rem 1rem 4rem 1rem", lg: ".5rem auto .75rem 8rem", xl: ".5rem auto .75rem 16rem" },
+              margin: { xs: smallHeight ? '0rem 1rem 0rem 1rem' : "0rem 1rem 4rem 1rem", sm: landscapeSE ? '0rem 0rem 0rem 0rem' : "0rem 1rem 4rem 1rem", lg: ".5rem auto .75rem 8rem", xl: ".5rem auto .75rem 10rem" },
               textShadow: '0px 0px 2px rgba(0, 0, 0, .15)'
             }}
           >
             Easy to use.
-            <Typography sx={{display: { xs: 'block', sml: 'block', md: 'inline'}, color: "#222",
-              fontWeight: 600,
+            <Typography sx={{display: { xs: 'block', sm: landscapeSE ? 'inline' : 'block', md: 'inline'}, color: "#222",
+              fontWeight: 500,
               fontFamily: "Montserrat",
               textAlign: 'left',
               fontSize: { xs: "1.25rem", md: "2.25rem" },
               margin: { xs: "0rem auto", sm: "0rem" },
               textShadow: '0px 0px 2px rgba(0, 0, 0, .15)'}}> Exclusive rates. </Typography>
-            <Typography sx={{display: { xs: 'block', smL: 'block', md: 'inline'}, color: "#222",
-              fontWeight: 600,
+            <Typography sx={{ display: { xs: 'block', sm: landscapeSE ? 'inline' : 'block', md: 'inline'}, color: "#222",
+              fontWeight: 500,
               fontFamily: "Montserrat",
               textAlign: 'left',
               fontSize: { xs: "1.25rem", md: "2.25rem" },
@@ -262,17 +263,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
 
-    if (
-      occupants.adults !== 0 &&
+    if ( occupants.adults !== 0 &&
       selectedCity &&
       checkDate[0] &&
-      new Date(checkDate[0]) >=
-        new Date(new Date().setDate(new Date().getDate() - 1)) &&
-      checkDate[1] &&
-      new Date(checkDate[1]) >= new Date()
+      checkDate[1]
     ) {
       setFormError("");
-      setZoomIn(false);
       dispatch(
         saveSearch({
           city: selectedCity,
@@ -284,6 +280,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
       history.push("/listings");
     } else {
+      alert('error')
       if (!selectedCity) {
         setFormError("Location required");
       }
@@ -384,7 +381,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             </Grid>
           </Grid>
         </Box>
-        <Box sx={{ display: "flex", cursor: 'pointer', width: '100%', transition: 'all .15s ease-in-out', alignItems: "center", maxHeight: '47px', borderTop: '2px solid #ddd', '&:hover': { background: '#efefef' }, }} >
+        <Box sx={{ display: "flex", width: '100%', transition: 'all .15s ease-in-out', alignItems: "center", maxHeight: '47px', borderTop: '2px solid #ddd', }} >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
             inputFormat="MMM dd"
@@ -406,10 +403,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 setFormError("");
                 setCheckDate(newValue);
               }}
-              renderInput={() => <Grid></Grid>}
+              renderInput={() => <Grid sx={{ display: 'none' }}></Grid>}
             />
           </LocalizationProvider>
-          <Grid container onClick={() => setOpen(true)} sx={{ width: '100%', pt: '1rem', pl: '.25rem' }}>
+          <Grid container onClick={() => setOpen(true)} sx={{ width: '100%', pt: '1rem', pl: '.25rem', pointerEvents: 'auto' }}>
             <Grid item xs={2} sx={{ pr: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Event sx={{ height: '20px', color: '#666' }} />
             </Grid>
@@ -440,8 +437,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               <ExpandMore sx={{ height: '20px', color: '#666',  }} />
             </Grid>
           </Grid>
-          <Button fullWidth onClick={handleFilterOutClick} disableElevation type="submit" variant="contained" sx={{ height: '47px', width: '47px', display: 'flex', alignItems: 'center', padding: '.25rem 0rem', justifyContent: 'center', mt: '.75rem', fontFamily: 'Montserrat', fontWeight: 600, borderRadius: '6px', textTransform: 'none' }}>
-            <SearchIcon sx={{ height: '32px', fontSize: '28px'  }} />
+          <Button fullWidth onClick={handleFilterOutClick} disableElevation type="submit" variant="contained" sx={{ height: '47px', width: '47px', display: 'flex', alignItems: 'center', padding: '.25rem 0rem', justifyContent: 'center', mt: '.75rem', fontFamily: 'Montserrat', fontWeight: 600, borderRadius: '6px', textTransform: 'none', pointerEvents: 'auto' }}>
+            <SearchIcon sx={{ height: '32px', fontSize: '28px', pointerEvents: 'auto' }} />
           </Button>
         </Box>
       </Box>

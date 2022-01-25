@@ -128,13 +128,13 @@ const Navbar: FC<Props> = ({ sx }) => {
                   maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
-              <Typography onClick={() => history.push('/reservation/manage')} variant="body2"  sx={{ ml: 'auto', mr: '1rem', color: '#888', fontWeight: 600, fontFamily: 'Montserrat' }}>
+              <Typography onClick={() => history.push('/reservation/manage')} variant="body2"  sx={{ cursor: 'pointer', ml: 'auto', mr: '1rem', color: '#888', fontWeight: 600, fontFamily: 'Montserrat' }}>
                 <span style={{ display: 'flex', alignItems: 'center', border: '2px solid #888 ', borderRadius: '6px', padding: ' .25rem .5rem' }}>
                 <Work sx={{ fontSize: '14px', mr: '.25rem'}} />
                 My trips</span>
               </Typography>
-              <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{ padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': 'transparent', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' },  fontFamily: 'Montserrat', fontWeight: 500, fontSize: '14px' }}>
-                <MenuIcon sx={{ margin: '0px auto', color: menuOpen ? '#fff':'#222' }} />
+              <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{ padding: '.5rem 1rem', minWidth: '20px', background: 'transparent', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { color: '#999' }, cursor: 'pointer', color: menuOpen ? '#999' : '#222', fontFamily: 'Montserrat', fontWeight: 500, fontSize: '14px' }}>
+                <MenuIcon sx={{ margin: '0px auto',  }} />
               </Link>
             </Hidden>
             {/* <Button
