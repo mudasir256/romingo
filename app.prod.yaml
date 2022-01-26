@@ -2,7 +2,7 @@
 
 service: site
 runtime: nodejs14
-instance_class: F4
+instance_class: F1
 automatic_scaling:
   min_instances: 1
   max_instances: 2
@@ -19,6 +19,6 @@ handlers:
     secure: always
     redirect_http_response_code: 301
 env_variables:
-  NODE_ENV: "production"
-  REACT_APP_STRIPE_CLIENT_KEY: "pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW"
-  REACT_APP_ENDPOINT: "https://graphql.romingo.com/graphql"
+  NODE_ENV: 'production'
+  REACT_APP_STRIPE_CLIENT_KEY: 'pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW'
+  REACT_APP_ENDPOINT: 'https://graphql.romingo.com/graphql'
