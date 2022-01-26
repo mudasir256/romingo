@@ -86,9 +86,12 @@ const Header: FC<Props> = ({ sx }) => {
     setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
   }, []);
 
-  return <Box sx={{ width: "100%",
-        minHeight: { xs: "100vh", md: 'calc(100vh - 270px)' },
-        paddingTop: '270px',
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        minHeight: { xs: "100vh", md: "calc(100vh - 270px)" },
+        paddingTop: "270px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -122,8 +125,14 @@ const Header: FC<Props> = ({ sx }) => {
               filter: "brightness(107%)",
               backgroundSize: "cover",
               position: "absolute",
-              backgroundPosition: { sm: landscapeSE ? 'right 0px top 10px' : 'right -145px top 10px', md: 'center', xs: 'right -145px top 10px' },
-              top: { xs: 0, md: '270px' },
+              backgroundPosition: {
+                sm: landscapeSE
+                  ? "right 0px top 10px"
+                  : "right -145px top 10px",
+                md: "center",
+                xs: "right -145px top 10px",
+              },
+              top: { xs: 0, md: "270px" },
               right: 0,
               bottom: 0,
               left: 0,
@@ -134,7 +143,8 @@ const Header: FC<Props> = ({ sx }) => {
       </Box>
       <Box
         sx={{
-          marginTop: under900 ? 0 : "0px", bottom: '0px',
+          marginTop: under900 ? 0 : "0px",
+          bottom: "0px",
           zIndex: 1,
           paddingBottom: { xs: "0px", sm: "0px", md: "0px" },
           width: "100%",
@@ -151,9 +161,12 @@ const Header: FC<Props> = ({ sx }) => {
             zIndex: 100,
             height: "100%",
             maxWidth: { xs: "100%", md: "90%", xl: "100%" },
-            mt: 'auto', mb: { xs: '15%', sm: '0%' },
-            display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
-            padding: { xs: '0 .5rem', sm: '0' },
+            mt: "auto",
+            mb: { xs: "15%", sm: "0%" },
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            padding: { xs: "0 .5rem", sm: "0" },
           }}
         >
           <Typography
@@ -161,10 +174,18 @@ const Header: FC<Props> = ({ sx }) => {
             sx={{
               color: "#333",
               maxWidth: { xs: "92%", sm: "100%" },
-              margin: { xs: "auto 1rem 1rem 1rem", sm: landscapeSE ? '15rem 0rem 0rem 0rem' : "auto 1rem 1rem 1rem", lg: "-5rem auto .75rem 8rem", xl: "0rem auto 0rem 10rem" },
-              fontFamily: "Montserrat", fontWeight: 700,
+              margin: {
+                xs: "auto 1rem 1rem 1rem",
+                sm: landscapeSE
+                  ? "15rem 0rem 0rem 0rem"
+                  : "auto 1rem 1rem 1rem",
+                lg: "-5rem auto .75rem 8rem",
+                xl: "0rem auto 0rem 10rem",
+              },
+              fontFamily: "Montserrat",
+              fontWeight: 700,
               fontSize: { xs: "2.25rem", md: "4.425rem" },
-              textShadow: '0px 0px 2px rgba(0, 0, 0, .15)',
+              textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
             }}
           >
             Book pet-friendly hotels
@@ -175,10 +196,15 @@ const Header: FC<Props> = ({ sx }) => {
               color: "#222",
               fontWeight: 500,
               fontFamily: "Montserrat",
-              textAlign: 'left',
+              textAlign: "left",
               fontSize: { xs: "1.25rem", md: "2.05rem" },
-              margin: { xs: smallHeight ? '0rem 1rem 0rem 1rem' : "0rem 1rem 4rem 1rem", sm: landscapeSE ? '0rem 0rem 0rem 0rem' : "0rem 1rem 4rem 1rem", lg: ".5rem auto .75rem 8rem", xl: ".5rem auto .75rem 10rem" },
-              textShadow: '0px 0px 2px rgba(0, 0, 0, .15)'
+              margin: {
+                xs: smallHeight ? "0rem 1rem 0rem 1rem" : "0rem 1rem 4rem 1rem",
+                sm: landscapeSE ? "0rem 0rem 0rem 0rem" : "0rem 1rem 4rem 1rem",
+                lg: ".5rem auto .75rem 8rem",
+                xl: ".5rem auto .75rem 10rem",
+              },
+              textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
             }}
           >
             Easy to use.
@@ -224,6 +250,7 @@ const Header: FC<Props> = ({ sx }) => {
         </Box>
       </Box>
     </Box>
+  );
 };
 
 interface FilterBarProps {
@@ -595,7 +622,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           fontSize: { xs: "12px" },
                         }}
                       >
-                        Check-in
+                        Check-out
                       </Typography>
                       <Typography
                         sx={{
@@ -779,7 +806,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       container
                       onClick={() => setOpen(true)}
                       sx={{
-                        minWidth: "230px",
+                        minWidth: "235px",
                         display: "flex",
                         alignItems: "center",
                       }}
@@ -856,7 +883,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 fontSize: { xs: "12px" },
                               }}
                             >
-                              Check-in
+                              Check-out
                             </Typography>
                             <Typography
                               sx={{
