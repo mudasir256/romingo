@@ -598,7 +598,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     </Grid>
                     <Grid
                       item
-                      xs={4}
+                      xs={3}
                       sx={{
                         alignItems: "center",
                         fontWeight: 800,
@@ -611,7 +611,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     >
                       &#8212;
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={5}>
                       <Typography
                         sx={{
                           color: "#666",
