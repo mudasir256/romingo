@@ -293,7 +293,7 @@ const HomePage: FC<Props> = ({
               sx={{
                 color: "primary.main",
                 textAlign: "center",
-                maxWidth: "90%",
+                maxWidth: "80%",
                 margin: "0px auto",
               }}
             >
@@ -306,6 +306,8 @@ const HomePage: FC<Props> = ({
                 textAlign: "center",
                 mb: 5,
                 mt: "1rem",
+                ml: 'auto', mr: 'auto',
+                maxWidth: '80%'
               }}
             >
               Romingo currently features pet-friendly hotels across 6 beautiful California destinations

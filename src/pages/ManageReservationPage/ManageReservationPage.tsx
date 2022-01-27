@@ -127,7 +127,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
           <Grid item xs={12}>
             <hr style={{ margin: '1rem auto 0rem auto', display: 'block', border: '0px', height: '1px', width: '50%', background: '#ddd' }} />
           </Grid>
-          <Grid item xs={6} sx={{ margin: '0px auto 2rem auto' }} justifyContent='center'>
+          <Grid item xs={12} sm={12} md={6} sx={{ margin: '0px auto 2rem auto' }} justifyContent='center'>
 
             {loading &&
               <Grid>

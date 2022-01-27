@@ -91,7 +91,7 @@ const Header: FC<Props> = ({ sx }) => {
       sx={{
         width: "100%",
         minHeight: { xs: "100vh", md: "calc(100vh - 270px)" },
-        paddingTop: "270px",
+        paddingTop: {xs: '0px', sm: '0px', md: "270px"},
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
