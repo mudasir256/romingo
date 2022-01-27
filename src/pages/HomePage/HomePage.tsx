@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Carousel } from "react-responsive-carousel";
 import {
+  Popover,
   Box,
   CSSObject,
   Container,
@@ -14,9 +15,10 @@ import {
   Paper,
   Grid,
   Typography,
+  CircularProgress,
   useMediaQuery,
 } from "@mui/material";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Cancel } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { gql, useQuery } from "@apollo/client";
@@ -105,31 +107,31 @@ const NearCities = [
 
 const FeatureHotels = [
   {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Mar%20Monte%20Santa%20Barbara/Mar-Monte-Hotel-P206-Aerial-View-Beach.16x9.webp",
-    name: "Mar Monte",
-    city: "Santa Barbara, CA",
-    cityId: "58b23325-2016-44ef-886f-67e962dab17f",
-    description:
-      "Steps from the beach, this boutique hotel is your home away from home, impeccably crafted for modern pet-friendly travel.",
-    id: "451908c0-87c7-4039-94ed-df57e7586d31",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Pendry%20San%20Diego/Tamara%20Shelton%20-%20Pendry%20Exterior.jpg",
-    name: "Pendry San Diego",
+    img: "https://storage.googleapis.com/romingo-development-public/images/Marina%20del%20Rey/marinadelrey-gallery-02-5ee3cef09b03e.jpeg",
+    name: "Manchester Grand Hyatt",
     city: "San Diego, CA",
     cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
     description:
-      "From coffee to cocktails, from poolside to basement, and from casual to luxe, Pendry has everything under one roof.",
-    id: "391f28f7-42b8-4be7-966a-25ed136371d2",
+      "Explore Southern California’s vibrant culture and natural beauty from our waterfront hotel in downtown San Diego. ",
+    id: "fe1300a4-a06f-4347-8d7f-f271b3657ba9",
   },
   {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Argonaut%20Hotel/Exterior%203.jpeg",
-    name: "Argonaut Hotel",
-    city: "San Francisco, CA",
+    img: "https://storage.googleapis.com/romingo-development-public/images/Hilton%20Union%20Square/Exterior%201.jpg",
+    name: "Hilton Union Square",
+    city: "San Franciso, CA",
     cityId: "82145909-13b4-4aab-be20-e0db474021c1",
     description:
-      "This truly pet-friendly hotel is a dog’s dream, adjacent to parks and the pier. Take your four-legged best friend on vacation with you!",
-    id: "4a32cf83-1f85-458d-a2aa-b6d21c4ec304",
+      "Our hotel is steps from the Curran and ACT theaters and just two blocks from Union Square and Westfield shopping center.",
+    id: "ba772c6c-7fae-492a-85c0-6232eff50852",
+  },
+  {
+    img: "https://storage.googleapis.com/romingo-development-public/images/Marina%20del%20Rey/marinadelrey-gallery-02-5ee3cef09b03e.jpeg",
+    name: "Marina Del Rey Hotel",
+    city: "Los Angeles, CA",
+    cityId: "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
+    description:
+      "Welcome to picturesque Marina del Rey—Enjoy a dip in the pool, then dine over calming waterfront views—front and center for that West Coast sunset. ",
+    id: "862ad750-83c0-4260-8f20-91db6d8b6db3",
   },
 ];
 
@@ -203,6 +205,77 @@ const HomePage: FC<Props> = ({
       <ScrollToTop />
       <Header />
 
+      <Box>
+        <Container>
+          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 4, pb: 6 }}>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bestAvailableRate.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                Lowest rates
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Romingo negotiates the lowest rates and pass the savings onto you.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/noPetFees.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                No pet fees
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                You will always pay $0 in pet fees by booking on Romingo.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog_paws_tall.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                All pets welcome
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Romingo hotels welcome (2) pets, 75 lbs. each, no breed restrictions, ever.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/colored_dog_bowl_tall.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                Beds & bowls provided
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Every Romingo reservation includes free pet beds & bowls in your room!
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
       <Box
         sx={{
           backgroundColor: "lightBackground.main",
@@ -235,7 +308,7 @@ const HomePage: FC<Props> = ({
                 mt: "1rem",
               }}
             >
-              Near (or far) from you
+              Romingo currently features pet-friendly hotels across 6 beautiful California destinations
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -300,83 +373,25 @@ const HomePage: FC<Props> = ({
               })}
             </Grid>
           </Grid>
+          <Grid item xs={12}>
+          <Typography
+              variant="h5"
+              sx={{
+                color: "text.secondary",
+                textAlign: "center",
+                mb: 5,
+                mt: "1rem",
+                maxWidth: '90%',
+                ml: 'auto', mr: 'auto'
+              }}
+            >
+            <Link sx={{ cursor: 'pointer' }}><EmailSignup /></Link> to be the first to experience our 15 new destinations arriving in Spring 2022
+            </Typography>
+          </Grid>
         </Grid>
       </Box>
 
-      <Box>
-        <Container>
-          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 4, pb: 6 }}>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bestAvailableRate.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Best Available Rates
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                We work hard to bring you the best room rates from our hotel
-                partners
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/noPetFees.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                No Hidden Pet Fees
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Unlike other sites, Romingo has no pet fees, online or at the
-                front desk
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/customService.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Happy Customer Service
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                We’re here for you and your canine companion via chat, email,
-                and social
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/romingoScore.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Helpful Romingo Scores
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Based on “paw-forward” pet amenities and nearby pet-friendly
-                activities
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+      <HotelCarousel />
 
       <Box
         sx={{
@@ -486,7 +501,6 @@ const HomePage: FC<Props> = ({
         </Container>
       </Box>
 
-      <HotelCarousel />
 
       <CustomerTestimonials />
 
@@ -1311,5 +1325,200 @@ const HotelCarousel = () => {
     </Box>
   );
 };
+
+const EmailSignup = () => {
+  const [showDealsPopup, setShowDealsPopup] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<any>(null);
+
+  useEffect(() => {
+    setEmailIsValid(/^\S+@\S+\.\S+$/.test(email));
+  }, [email]);
+
+  useEffect(() => {
+    emailSubmitted && setIsSubmitting(false);
+    !emailSubmitted && setEmail("");
+  }, [emailSubmitted]);
+
+  useEffect(() => {
+    if (!showDealsPopup)
+      setTimeout(() => {
+        setEmailSubmitted(false);
+      }, 250);
+  }, [showDealsPopup]);
+
+  const submitEmail = () => {
+    setIsSubmitting(true);
+    setTimeout(() => {
+      fetch(
+        `https://romingo.us6.list-manage.com/subscribe/post-json?u=585083137c3540a7371e3a74f&id=d4d3932414&EMAIL=${encodeURIComponent(
+          email
+        )}&c=?`,
+        { mode: "no-cors", method: "POST" }
+      ).then((res) => {
+        setEmailSubmitted(true);
+      });
+    }, 500);
+  };
+
+  return (
+    <>
+      <Popover
+        onClose={() => setShowDealsPopup(false)}
+        open={showDealsPopup}
+        anchorEl={anchorEl}
+        PaperProps={{
+          sx: {
+            borderRadius: "12px",
+            marginTop: "48px",
+            border: "1px solid #ddd",
+          },
+        }}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+      >
+        <Grid
+          container
+          sx={{
+            width: { xs: "100%", sm: "393px" },
+            minHeight: "100px",
+            display: "flex",
+            overflow: "hidden",
+          }}
+        >
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              color: "#00000099",
+              p: ".5rem .5rem",
+              pb: ".125rem",
+              fontFamily: "Montserrat",
+              fontWeight: 900,
+              fontSize: ".9rem",
+            }}
+          >
+            Sign up with your email below to access exclusive deals and more:
+            <Cancel
+              onClick={() => setShowDealsPopup(false)}
+              sx={{
+                cursor: "pointer",
+                transition: "all .15s linear",
+                marginBottom: "auto",
+                "&:hover": { color: "#03989E" },
+              }}
+            />
+          </Grid>
+          {emailSubmitted ? (
+            <Grid
+              item
+              xs={12}
+              sx={{
+                p: ".5rem .5rem .5rem .5rem",
+                fontFamily: "Work Sans",
+                color: "#03989E",
+                textAlign: "center",
+              }}
+            >
+              Awesome! You&lsquo;re subscribed to deals, tips, guides, and all
+              the other great content from Romingo Insiders!
+            </Grid>
+          ) : (
+            <>
+              {isSubmitting && (
+                <Grid
+                  sx={{
+                    position: "absolute",
+                    zIndex: 9,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    top: "0px",
+                    right: "0",
+                    left: "0",
+                    bottom: "0px",
+                    background: "#ffffff80",
+                    backdropFilter: "blur(1px)",
+                  }}
+                >
+                  <CircularProgress />
+                </Grid>
+              )}
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                sx={{
+                  p: ".25rem .5rem .5rem .5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <TextField
+                  variant="outlined"
+                  color="primary"
+                  placeholder="enter email"
+                  size="small"
+                  value={email}
+                  sx={{
+                    outline: "none",
+                    fontSize: ".8rem",
+                    input: { fontFamily: "Montserrat" },
+                  }}
+                  InputProps={{
+                    sx: {
+                      fontSize: ".5rem",
+                      maxHeight: "30px",
+                      fontFamily: "Montserrat",
+                      width: { xs: "calc(100vw - 140px)", sm: "290px" },
+                      outline: "none",
+                    },
+                  }}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Button
+                  onClick={submitEmail}
+                  disabled={!emailIsValid || isSubmitting}
+                  size="small"
+                  variant="contained"
+                  sx={{
+                    fontWeight: 600,
+                    textTransform: "none",
+                    fontFamily: "Montserrat",
+                  }}
+                >
+                  Sign up!
+                </Button>
+              </Grid>
+            </>
+          )}
+        </Grid>
+      </Popover>
+      <span
+        style={{ cursor: "pointer" }}
+        onClick={(e) => {
+          setShowDealsPopup(true);
+          setAnchorEl(e.currentTarget);
+        }}
+      >
+        Sign up for our email
+      </span>
+    </>
+  );
+};
+
 
 export default HomePage;

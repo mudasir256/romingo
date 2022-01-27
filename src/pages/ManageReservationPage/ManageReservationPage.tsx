@@ -1,19 +1,19 @@
-import React, { FC, useState } from "react";
-
-import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import Hidden from "@mui/material/Hidden";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import React, { FC, useEffect, useState } from "react";
+import { alpha, styled } from '@mui/material/styles';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-
+import { FormControl, CircularProgress, InputLabel, InputBase, Typography, Button, Grid, Container, Box, TextField, Divider } from '@mui/material'
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
 import BookingManageCard from "../../components/BookingManageCard";
 import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateRangePicker from "@mui/lab/DateRangePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import { DateTime } from "luxon";
+import { Error } from "@mui/icons-material";
 
 interface BookingManage {
   image: string;
@@ -36,9 +36,59 @@ interface Props {
 }
 
 const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
-  const [confirmedReservation, setConfirmedReservation] = useState(false);
-  const [email, setEmail] = useState("");
-  const [reservationNumber, setReservationNumber] = useState("");
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [confirmationNumber, setConfirmationNumber] = useState('')
+  const [dateRangeOpen, setDateRangeOpen] = useState(false)
+  const [checkinDate, setCheckinDate] = useState<any>(new Date())
+  const [anchorEl, setAnchorEl] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  const buttonEnabled = ((firstName.length > 2) && (lastName.length > 2) && (confirmationNumber.length > 10))
+
+  const BootstrapInput = styled(InputBase)(({ theme }) => ({
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+    '& .MuiInputBase-input': {
+      borderRadius: 4,
+      position: 'relative',
+      backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
+      border: '1px solid #ced4da',
+      fontSize: 16,
+      width: '100%',
+      padding: '10px 12px',
+      transition: theme.transitions.create([
+        'border-color',
+        'background-color',
+        'box-shadow',
+      ]),
+      // Use the system font instead of the default Roboto font.
+      '&:focus': {
+        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+        borderColor: theme.palette.primary.main,
+      },
+    },
+  }));
+
+  useEffect(() => {
+    if (!anchorEl)
+      setDateRangeOpen(false);
+    else
+      setDateRangeOpen(true);
+  }, [anchorEl])
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setSuccess(true)
+      }, 2500)
+    }
+    else {
+      setSuccess(false)
+    }
+  }, [loading])
 
   const startChat = () => {
     window.Intercom("boot", {
@@ -57,55 +107,107 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
         maxWidth="md"
         sx={{ mt: 10, mb: 5, minHeight: "calc(100vh - 290px)" }}
       >
-        <Grid
-          container
-          spacing={2}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography
-              variant="h2"
+              variant="h4"
               color="text.primary"
               sx={{ mt: 2, textAlign: "center" }}
             >
-              Change or Cancel a Booking
+              Manage your reservation
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
-            <Button
-              onClick={startChat}
-              variant="contained"
-              color="primary"
-              size="large"
-            >
-              Chat With Booking Support
-            </Button>
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "center", mt: 1 }}
+              sx={{ mt: 2, textAlign: "center", fontWeight: 500 }}
             >
-              during business hours
+              Modify, cancel, or rebook your reservation below
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography
+            <hr style={{ margin: '1rem auto 0rem auto', display: 'block', border: '0px', height: '1px', width: '50%', background: '#ddd' }} />
+          </Grid>
+          <Grid item xs={6} sx={{ margin: '0px auto 2rem auto' }} justifyContent='center'>
+
+            {loading &&
+              <Grid>
+                <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 6rem 2rem 2rem', minWidth: '100%' }}>
+                  {success ? <>
+                    <Error sx={{ fontSize: '32px', color: '#9e0303' }} />
+                    <Typography variant="body1" color="#9e0303" sx={{ ml: '1rem', fontWeight: 500 }}>
+                      Reservation not found
+                    </Typography>
+                    </> :
+                    <>
+                    <CircularProgress sx={{ fontSize: '16px', maxWidth: '32px', maxHeight: '32px' }} />
+                    <Typography variant="body1" color="text.secondary" sx={{ ml: '1rem', fontWeight: 500 }}>
+                      Finding your reservation...
+                    </Typography>
+                    </>
+                  }
+              </Grid>
+            </Grid>
+          }
+
+
+          {!loading && <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2, mb: 3 }}
+              sx={{ mt: '1rem', textAlign: "center", fontWeight: 500, mb: '2rem' }}
             >
-              Please reach out to our reservation support team if you would like to
-              modify or cancel your reservation. To manage a reservation made through
-              Romingo, you will need the original email address used to make the
-              reservation and the confirmation number from your confirmation
-              email. Please review the cancellation policy for your reservation
-              prior to cancelling your reservation. The policy was provided on
-              the reservation checkout page as well as your confirmation email.
-            </Typography>
+              Have an existing reservation?
+            </Typography>}
+            <Grid container>
+              <Grid item xs={12} sx={{ mb: '1rem'}}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink htmlFor="bootstrap-input">
+                    First Name / Given Name
+                  </InputLabel>
+                  <BootstrapInput defaultValue="" onChange={e => setFirstName(e.target.value)} value={firstName} />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sx={{ mb: '1rem'}}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink htmlFor="bootstrap-input">
+                    Last Name / Surname
+                  </InputLabel>
+                  <BootstrapInput defaultValue="" onChange={e => setLastName(e.target.value)} value={lastName} />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sx={{ mb: '1rem'}}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink htmlFor="bootstrap-input">
+                    Confirmation Number
+                  </InputLabel>
+                  <BootstrapInput defaultValue="" onChange={e => setConfirmationNumber(e.target.value)} value={confirmationNumber} />
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sx={{ mb: '1rem'}}>
+                <FormControl onClick={(e) => anchorEl ? setAnchorEl(null) : setAnchorEl(e.currentTarget) }  variant="standard" fullWidth sx={{ cursor: 'pointer' }}>
+                  <InputLabel shrink htmlFor="bootstrap-input">
+                    Check-in date
+                  </InputLabel>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DesktopDatePicker
+                      open={dateRangeOpen}
+                      onClose={() => setDateRangeOpen(false)}
+                      inputFormat="MMM dd"
+                      disableMaskedInput={true}
+                      PopperProps={{ anchorEl: anchorEl, placement: 'bottom' }}
+                      value={checkinDate || new Date()}
+                      onChange={(e:any) => setCheckinDate(e)}
+                      renderInput={() => <BootstrapInput value={DateTime.fromJSDate(checkinDate).toFormat('MMM dd, yyyy')} />}
+                    />
+                  </LocalizationProvider>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                <Button disabled={!buttonEnabled || loading} onClick={() => setLoading(true)} variant='contained'  sx={{ margin: '0px auto', fontWeight: 500, textTransform: 'none' }}> Find Reservation </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
             <Box
               component="img"
               src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
@@ -117,6 +219,16 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                 borderRadius: 5,
               }}
             />
+          </Grid>
+          <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
+            <Button
+              onClick={startChat}
+              variant="contained"
+              color="primary"
+              sx={{ fontWeight: 500, textTransform: 'none' }}
+            >
+              Chat with Booking Support
+            </Button>
           </Grid>
         </Grid>
       </Container>

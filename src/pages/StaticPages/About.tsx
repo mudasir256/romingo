@@ -16,19 +16,8 @@ const About: FC = () => {
 
       <Container maxWidth="md" sx={{ mt: 10 }}>
         <Box sx={{ textAlign: "center" }}>
-          <Box
-            component="img"
-            src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie4.jpeg"
-            alt={"Maddie, The French Bulldog"}
-            sx={{
-              objectFit: "cover",
-              width: "100%",
-              height: "550px",
-              borderRadius: 5,
-            }}
-          />
           <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
-            About Us
+            Our Story
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -92,19 +81,6 @@ const About: FC = () => {
               }}
             >
               <Grid item xs={12} md={6}>
-                <Box
-                  component="img"
-                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/jonathan_zach_maddie.jpeg"
-                  alt={"Zach, Jonathan, and Maddie"}
-                  sx={{
-                    objectFit: "cover",
-                    width: "100%",
-                    borderRadius: 5,
-                  }}
-                />
-              </Grid>
-              <Hidden mdDown>
-                <Grid item xs={12} md={6}>
                   <Box
                     component="img"
                     src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie8.jpeg"
@@ -115,6 +91,21 @@ const About: FC = () => {
                       borderRadius: 5,
                     }}
                   />
+              </Grid>
+              <Hidden mdDown>
+                <Grid item xs={12} md={6}>
+
+                <Box
+                  component="img"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/jonathan_zach_maddie.jpeg"
+                  alt={"Zach, Jonathan, and Maddie"}
+                  sx={{
+                    objectFit: "cover",
+                    width: "100%",
+                    borderRadius: 5,
+                  }}
+                />
+
                 </Grid>
               </Hidden>
             </Grid>
@@ -230,6 +221,45 @@ const About: FC = () => {
               - Romingo&apos;s CEO, Zach Somers
             </Typography>
           </Grid>
+        </Grid>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            textAlign: "center",
+            display: "flex",
+            alignItems: "center",
+            mb: '2rem'
+          }}
+        >
+          <Grid item xs={12} md={6}>
+            <Box
+              component="img"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/IMG_0074%20(1).JPG"
+              alt={"Maddie, Beach Bulldog"}
+              sx={{
+                objectFit: "cover",
+                width: "100%",
+                borderRadius: 5,
+              }}
+            />
+          </Grid>
+          <Hidden mdDown>
+            <Grid item xs={12} md={6}>
+
+            <Box
+              component="img"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/Maddie_Cream%20(1).jpeg"
+              alt={"Zach, Jonathan, and Maddie"}
+              sx={{
+                objectFit: "cover",
+                width: "100%",
+                borderRadius: 5,
+              }}
+            />
+
+            </Grid>
+          </Hidden>
         </Grid>
       </Container>
       <Footer />

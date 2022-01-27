@@ -184,7 +184,7 @@ const Header: FC<Props> = ({ sx }) => {
               },
               fontFamily: "Montserrat",
               fontWeight: 700,
-              fontSize: { xs: "2.25rem", md: "4.425rem" },
+              fontSize: { xs: "2.25rem", md: "4.125rem" },
               textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
             }}
           >
@@ -197,7 +197,7 @@ const Header: FC<Props> = ({ sx }) => {
               fontWeight: 500,
               fontFamily: "Montserrat",
               textAlign: "left",
-              fontSize: { xs: "1.25rem", md: "2.05rem" },
+              fontSize: { xs: "1.25rem", md: "1.65rem" },
               margin: {
                 xs: smallHeight ? "0rem 1rem 0rem 1rem" : "0rem 1rem 4rem 1rem",
                 sm: landscapeSE ? "0rem 0rem 0rem 0rem" : "0rem 1rem 4rem 1rem",
@@ -219,7 +219,7 @@ const Header: FC<Props> = ({ sx }) => {
                 fontWeight: 500,
                 fontFamily: "Montserrat",
                 textAlign: "left",
-                fontSize: { xs: "1.25rem", md: "2.25rem" },
+                fontSize: { xs: "1.25rem", md: "1.65rem" },
                 margin: { xs: "0rem auto", sm: "0rem" },
                 textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
               }}
@@ -238,7 +238,7 @@ const Header: FC<Props> = ({ sx }) => {
                 fontWeight: 500,
                 fontFamily: "Montserrat",
                 textAlign: "left",
-                fontSize: { xs: "1.25rem", md: "2.25rem" },
+                fontSize: { xs: "1.25rem", md: "1.65rem" },
                 margin: { xs: "0rem auto", sm: "0rem" },
                 textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
               }}
@@ -706,7 +706,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 display: "flex",
                 alignItems: "center",
                 minWidth: "356px",
-                minHeight: "39px",
+                minHeight: "34px",
                 maxHeight: "47px",
                 border: "2px solid #ddd",
                 padding: ".25rem .5rem",
@@ -836,7 +836,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 mb: "-.125rem",
                                 textTransform: "none",
                                 fontWeight: 600,
-                                fontSize: { xs: "12px" },
+                                fontSize: { xs: "10px" },
                               }}
                             >
                               Check-in
@@ -880,7 +880,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 mb: "-.125rem",
                                 textTransform: "none",
                                 fontWeight: 600,
-                                fontSize: { xs: "12px" },
+                                fontSize: { xs: "10px" },
                               }}
                             >
                               Check-out
@@ -1132,7 +1132,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                   mb: "-.125rem",
                   textTransform: "none",
                   fontWeight: 600,
-                  fontSize: { xs: "12px" },
+                  fontSize: { xs: "10px" },
                 }}
               >
                 Guests

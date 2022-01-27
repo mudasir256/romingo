@@ -167,7 +167,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   variant="body2"
                   sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
                 >
-                  Philanthropy
+                  Community
                 </Typography>
               </Link>
               <Link
@@ -285,7 +285,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
-                Philanthropy
+                Community
               </MenuItem>
               <MenuItem
                 onClick={() => window.open("https://blog.romingo.com")}
@@ -301,7 +301,6 @@ const Navbar: FC<Props> = ({ sx }) => {
               >
                 Support
               </MenuItem>
-              <Divider />
               <MenuItem sx={{ fontWeight: 500, minWidth: "200px" }}>
                 <RomingoDeals />
               </MenuItem>
