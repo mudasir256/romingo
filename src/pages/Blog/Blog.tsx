@@ -1,3 +1,6 @@
+import { useHistory } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
+import { FC, useState, useEffect, useMemo } from "react";
 import {
   Container,
   Chip,
@@ -7,10 +10,7 @@ import {
   Pagination,
   Divider,
 } from "@mui/material";
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import Link from "@mui/material/Link";
-import { FC, useState, useEffect } from "react";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import Footer from "../../components/Footer";
@@ -19,6 +19,10 @@ import Loader from "../../components/UI/Loader";
 
 interface BlogParams {
   tag: string | undefined;
+}
+
+interface Search {
+  page?: string | undefined;
 }
 
 interface Post {
@@ -53,8 +57,11 @@ interface Tag {
 const Blog: FC = () => {
   const history = useHistory();
   const { tag } = useParams<BlogParams>();
+  const { search } = useLocation<string | null>();
+  const params = useMemo(() => new URLSearchParams(search), [search]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState<any>(0);
+  const [page, setPage] = useState<number>(parseInt(params.get("page") || "1"));
   const [posts, setPosts] = useState<[Post] | undefined>(undefined);
   const [tagNames, setTagNames] = useState<[Tag] | undefined>(undefined);
   const [tagName, setTagName] = useState<[Tag] | undefined>(undefined);
@@ -67,7 +74,7 @@ const Blog: FC = () => {
     setTagNames(tagsRes);
   };
 
-  const loadPosts = async (p = 1) => {
+  const loadPosts = async (p = page) => {
     let url = `https://blog.romingo.com/wp-json/wp/v2/posts?page=${p}&_embed&_fields=id,excerpt,title,_links,_embedded`;
     if (tag) {
       url += `&tags=${tag}`;
@@ -91,10 +98,14 @@ const Blog: FC = () => {
 
   useEffect(() => {
     loadTags();
-    loadPosts(1);
+    loadPosts();
   }, [tag]);
 
   const changePage = (page: number) => {
+    history.push({
+      search: `?page=${page}`,
+    });
+    setPage(page);
     loadPosts(page);
     window.scrollTo(0, 0);
   };
@@ -174,6 +185,9 @@ const Blog: FC = () => {
                       }}
                     >
                       <Link
+                        onClick={() =>
+                          history.push(`/blog/post/${post.id}`, { prev: page })
+                        }
                         href={`/blog/post/${post.id}`}
                         color="text.primary"
                         sx={{ textDecoration: "none" }}
@@ -258,6 +272,7 @@ const Blog: FC = () => {
           }}
         >
           <Pagination
+            page={page}
             count={Math.ceil(count / 10)}
             onChange={(_, p) => changePage(p)}
             showFirstButton

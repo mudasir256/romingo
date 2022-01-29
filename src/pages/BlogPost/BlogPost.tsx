@@ -9,7 +9,7 @@ import {
   Divider,
   Hidden,
 } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FC, useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -58,8 +58,13 @@ interface Tag {
   name: string;
 }
 
+interface Location {
+  prev?: string;
+}
+
 const BlogPost: FC = () => {
   const history = useHistory();
+  const { state } = useLocation<Location>();
   const { id } = useParams<PostParams>();
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
@@ -128,9 +133,19 @@ const BlogPost: FC = () => {
         ) : (
           post && (
             <>
-              <Link sx={{ cursor: "pointer" }} href="/blog">
-                <Typography variant="h6">&#8592; More Blog Posts</Typography>
-              </Link>
+              {state?.prev ? (
+                <Link
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => history.goBack()}
+                >
+                  <Typography variant="h6">&#8592; More Blog Posts</Typography>
+                </Link>
+              ) : (
+                <Link sx={{ cursor: "pointer" }} href={`/blog`}>
+                  <Typography variant="h6">&#8592; More Blog Posts</Typography>
+                </Link>
+              )}
+
               <Typography
                 variant="h3"
                 color="text.primary"
