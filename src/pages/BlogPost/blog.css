@@ -16,11 +16,19 @@
 .custom-blog-post .lazyloaded {
   max-width: 100% !important;
   height: auto;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .custom-blog-post .alignright {
   float: right;
   margin: 16px 0 16px 16px;
+}
+
+.custom-blog-post .aligncenter {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .custom-blog-post p {
