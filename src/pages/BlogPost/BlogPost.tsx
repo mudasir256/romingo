@@ -185,7 +185,7 @@ const BlogPost: FC = () => {
                     mb: 0.25,
                     mx: 0.25,
                   }}
-                  label={tag.name}
+                  label={`#${tag.name}`}
                   onClick={() => history.push(`/blog/${tag.id}`)}
                 />
               ))}

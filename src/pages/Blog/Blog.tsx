@@ -61,7 +61,7 @@ const Blog: FC = () => {
 
   const loadTags = async () => {
     const response = await fetch(
-      `https://blog.romingo.com/wp-json/wp/v2/tags?per_page=23&order=desc&orderby=count&_fields=id,name`
+      `https://blog.romingo.com/wp-json/wp/v2/tags?per_page=20&order=desc&orderby=count&_fields=id,name`
     );
     const tagsRes = await response.json();
     setTagNames(tagsRes);
@@ -126,7 +126,7 @@ const Blog: FC = () => {
                   mb: 0.25,
                   mx: 0.25,
                 }}
-                label={tag.name}
+                label={`#${tag.name}`}
                 onClick={() => history.push(`/blog/${tag.id}`)}
               />
             ))}
@@ -149,7 +149,7 @@ const Blog: FC = () => {
               <Chip
                 size="medium"
                 sx={{ fontSize: "12px", mb: 2 }}
-                label={`${tagName[0].name}`}
+                label={`#${tagName[0].name}`}
                 onDelete={() => {
                   setTagName(undefined);
                   history.push("/blog");
