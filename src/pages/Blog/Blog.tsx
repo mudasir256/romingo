@@ -88,9 +88,6 @@ const Blog: FC = () => {
     loadPosts(page);
   };
 
-  console.log(tag);
-  console.log(tagName);
-
   return (
     <>
       <ScrollToTop />

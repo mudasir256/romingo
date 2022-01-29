@@ -105,8 +105,6 @@ const BlogPost: FC = () => {
     window.instgrm && loaded && window.instgrm.Embeds.process();
   }, [window, loaded]);
 
-  console.log(post);
-
   return (
     <>
       <Navbar />
