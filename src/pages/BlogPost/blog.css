@@ -35,6 +35,7 @@
 }
 
 .custom-blog-post a {
+  color: #03989e;
   font-family: "Roboto", "Montserrat", sans-serif;
 }
 
@@ -74,8 +75,11 @@
   border-bottom: none;
 }
 
-.custom-blog-post a {
-  color: #03989e;
+.custom-blog-post li {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.75;
+  font-family: "Roboto", "Montserrat", sans-serif;
 }
 
 @media only screen and (max-width: 720px) {
