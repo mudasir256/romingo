@@ -1,0 +1,59 @@
+figure.wp-block-image img.lazyloading {
+  min-width: 150px;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+p {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0px;
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+h1 {
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+h2 {
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+li {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+h4 {
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+h5 {
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+h6 {
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+a {
+  color: #03989e;
+}

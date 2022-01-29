@@ -1,0 +1,24 @@
+.custom-blog-post .lazyload,
+.lazyloading {
+  opacity: 0;
+}
+
+.custom-blog-post .lazyloaded {
+  opacity: 1;
+  transition: opacity 400ms;
+  transition-delay: 0ms;
+}
+
+.custom-blog-post .wp-block-embed__wrapper {
+  max-width: 100% !important;
+}
+
+.custom-blog-post .lazyloaded {
+  max-width: 100% !important;
+  height: auto;
+}
+
+.custom-blog-post .alignright {
+  float: right;
+  margin: 16px 0 16px 16px;
+}

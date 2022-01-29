@@ -1,28 +1,30 @@
-import { FC } from "react"
-import HomePage from "./pages/HomePage"
-import ListingPage from "./pages/ListingPage"
-import DetailsPage from "./pages/DetailsPage"
-import CheckoutPage from "./pages/CheckoutPage"
-import LosAngeles from "./pages/Cities/LosAngeles"
-import SanDiego from "./pages/Cities/SanDiego"
-import PalmSprings from "./pages/Cities/PalmSprings"
-import OrangeCounty from "./pages/Cities/OrangeCounty"
-import SanFrancisco from "./pages/Cities/SanFran"
-import SantaBarbara from "./pages/Cities/SantaBarbara"
-import ManageReservationPage from "./pages/ManageReservationPage"
-import About from "./pages/StaticPages/About"
-import FAQ from "./pages/StaticPages/FAQ"
-import Contact from "./pages/StaticPages/Contact"
-import Privacy from "./pages/StaticPages/Privacy"
-import Terms from "./pages/StaticPages/Terms"
-import RomingoScorePage from "./pages/StaticPages/RomingoScorePage"
-import ListYourProperty from './pages/StaticPages/ListYourProperty'
-import RedRoverPartner from './pages/StaticPages/RedRoverPartner'
+import { FC } from "react";
+import HomePage from "./pages/HomePage";
+import ListingPage from "./pages/ListingPage";
+import DetailsPage from "./pages/DetailsPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import LosAngeles from "./pages/Cities/LosAngeles";
+import SanDiego from "./pages/Cities/SanDiego";
+import PalmSprings from "./pages/Cities/PalmSprings";
+import OrangeCounty from "./pages/Cities/OrangeCounty";
+import SanFrancisco from "./pages/Cities/SanFran";
+import SantaBarbara from "./pages/Cities/SantaBarbara";
+import ManageReservationPage from "./pages/ManageReservationPage";
+import About from "./pages/StaticPages/About";
+import FAQ from "./pages/StaticPages/FAQ";
+import Contact from "./pages/StaticPages/Contact";
+import Privacy from "./pages/StaticPages/Privacy";
+import Terms from "./pages/StaticPages/Terms";
+import RomingoScorePage from "./pages/StaticPages/RomingoScorePage";
+import ListYourProperty from "./pages/StaticPages/ListYourProperty";
+import RedRoverPartner from "./pages/StaticPages/RedRoverPartner";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 interface Routes {
-  path: string
-  component: FC<any>
-  requireAuth: boolean
+  path: string;
+  component: FC<any>;
+  requireAuth: boolean;
 }
 
 const routes: Routes[] = [
@@ -121,6 +123,16 @@ const routes: Routes[] = [
     component: ListYourProperty,
     requireAuth: false,
   },
-]
+  {
+    path: "/blog/:tag?",
+    component: Blog,
+    requireAuth: false,
+  },
+  {
+    path: "/blog/post/:id",
+    component: BlogPost,
+    requireAuth: false,
+  },
+];
 
-export default routes
+export default routes;
