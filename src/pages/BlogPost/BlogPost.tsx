@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FC, useState, useEffect } from "react";
 import Footer from "../../components/Footer";
+import Link from "@mui/material/Link";
 
 import Navbar from "../../components/Navbar";
 import Loader from "../../components/UI/Loader";
@@ -123,13 +124,16 @@ const BlogPost: FC = () => {
         ) : (
           post && (
             <>
+              <Link sx={{ cursor: "pointer" }} href="/blog">
+                &#8592; More Blog Posts
+              </Link>
               <Typography
-                variant="h2"
+                variant="h3"
                 color="text.primary"
                 dangerouslySetInnerHTML={{
                   __html: post.title.rendered,
                 }}
-                sx={{ mb: 3, textAlign: "center" }}
+                sx={{ mt: 2, mb: 3, textAlign: "center" }}
               />
               <Divider variant="middle" light sx={{ mt: 2, mb: 4 }} />
               <Box
@@ -140,6 +144,7 @@ const BlogPost: FC = () => {
                 sx={{
                   objectFit: "cover",
                   width: "100%",
+                  maxHeight: "450px",
                   borderRadius: "15px",
                   mb: 2,
                 }}
