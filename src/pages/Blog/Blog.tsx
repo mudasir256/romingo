@@ -219,7 +219,7 @@ const Blog: FC = () => {
                           </Link>
                         </Box>
                       </Box>
-                      <Divider />
+                      <Divider light />
                     </Box>
                   </Grid>
                 ))}
