@@ -827,7 +827,7 @@ const CustomerTestimonials = () => {
       sx={{
         background: { xs: '#fff', sm: '#fff', md: '#efefef'},
         py: 6,
-        pb: '6rem',
+        pb: { xs: '0rem', sm: '2rem', md: '4rem', lg: '4rem'},
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
