@@ -107,7 +107,7 @@ const Blog: FC = () => {
         <Typography
           variant="h2"
           color="text.primary"
-          sx={{ mb: 3, textAlign: "center" }}
+          sx={{ mb: 2, textAlign: "center" }}
         >
           The Romingo Blog
         </Typography>
