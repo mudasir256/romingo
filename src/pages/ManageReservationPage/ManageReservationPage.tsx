@@ -35,6 +35,31 @@ interface Props {
   }[];
 }
 
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    width: '100%',
+    padding: '10px 12px',
+    transition: theme.transitions.create([
+      'border-color',
+      'background-color',
+      'box-shadow',
+    ]),
+    // Use the system font instead of the default Roboto font.
+    '&:focus': {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
+
 const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -44,33 +69,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
   const [anchorEl, setAnchorEl] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
-
   const buttonEnabled = ((firstName.length > 2) && (lastName.length > 2) && (confirmationNumber.length > 10))
-
-  const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
-    '& .MuiInputBase-input': {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      width: '100%',
-      padding: '10px 12px',
-      transition: theme.transitions.create([
-        'border-color',
-        'background-color',
-        'box-shadow',
-      ]),
-      // Use the system font instead of the default Roboto font.
-      '&:focus': {
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  }));
 
   useEffect(() => {
     if (!anchorEl)

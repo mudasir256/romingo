@@ -18,7 +18,7 @@ import {
   CircularProgress,
   useMediaQuery,
 } from "@mui/material";
-import { ChevronLeft, ChevronRight, Cancel } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Cancel, Star } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { gql, useQuery } from "@apollo/client";
@@ -107,7 +107,7 @@ const NearCities = [
 
 const FeatureHotels = [
   {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Marina%20del%20Rey/marinadelrey-gallery-02-5ee3cef09b03e.jpeg",
+    img: "https://storage.googleapis.com/romingo-development-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P508-Exterior-Marina.4x3.webp",
     name: "Manchester Grand Hyatt",
     city: "San Diego, CA",
     cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
@@ -513,13 +513,14 @@ const HomePage: FC<Props> = ({
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
+          background: '#fcf5f0'
         }}
       >
         <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ display: 'flex' }}>
             <Typography
               variant="h4"
-              sx={{ color: "primary.main", textAlign: "center", mb: 4 }}
+              sx={{ color: "primary.main", maxWidth: '90%', textAlign: "center", mb: 4, ml: 'auto', mr: 'auto' }}
             >
               Stay at a Romingo Favorite
             </Typography>
@@ -824,408 +825,227 @@ const CustomerTestimonials = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "secondary.lighter",
+        background: { xs: '#fff', sm: '#fff', md: '#efefef'},
         py: 6,
+        pb: '6rem',
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         width: "100%",
+        borderBottom: '1px solid #ddd',
+        borderTop: '1px solid #ddd',
+        overflow: 'hidden'
       }}
     >
       <Container
-        maxWidth="md"
+        maxWidth="lg"
         sx={{
           "& .carousel .control-dots": {
             display: "flex",
             justifyContent: "center",
           },
+          background: { xs: '#fff', sm: '#fff', md: '#efefef'},
+          padding: '2rem 0rem 4rem 0rem ', borderRadius: '6px',
         }}
       >
-        <Grid item xs={12}>
-          <Typography
-            variant="h4"
-            sx={{
-              color: "primary.main",
-              textAlign: "center",
-              mb: matches ? "3rem" : lg ? "3rem" : "9rem",
-            }}
-          >
-            Our Customer Reviews
-          </Typography>
-        </Grid>
-        {!lg && (
-          <Grid
-            item
-            xs={12}
-            sx={{
-              display: "flex",
-              cursor: "pointer",
-              justifyContent: "space-between",
-              minWidth: "125%",
-              mb: "-15%",
-              ml: "-12.5%",
-              zIndex: 1400,
-            }}
-          >
-            <Grid
-              onClick={() => setCurrentCard((prev) => prev - 1)}
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography
+              variant="h4"
               sx={{
-                color: "#fff",
-                cursor: "pointer",
-                background: "#03989E",
-                width: "42px",
-                height: "42px",
-                borderRadius: "42px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                "&:hover": { background: "#086f73" },
+                color: "primary.main",
+                textAlign: "center",
+                mb: matches ? "3rem" : lg ? "3rem" : "3rem",
               }}
             >
-              <ChevronLeft sx={{ fontSize: "30px", zIndex: 1111 }} />
-            </Grid>
-            <Grid
-              onClick={() => setCurrentCard((prev) => prev + 1)}
-              sx={{
-                color: "#fff",
-                cursor: "pointer",
-                background: "#03989E",
-                width: "42px",
-                height: "42px",
-                borderRadius: "42px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                "&:hover": { background: "#086f73" },
-              }}
-            >
-              <ChevronRight sx={{ fontSize: "30px" }} />
-            </Grid>
+              What our travelers are saying...
+            </Typography>
           </Grid>
-        )}
-        <Carousel
-          showThumbs={false}
-          interval={2000}
-          showArrows={false}
-          showStatus={false}
-          infiniteLoop={true}
-          onChange={(e) => setCurrentCard(e)}
-          autoPlay
-          selectedItem={currentCard}
-          renderIndicator={(
-            onClickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
-            isSelected: boolean,
-            index: number,
-            label: string
-          ) => (
-            <li
-              style={{
-                cursor: "pointer",
-                opacity: isSelected ? "1" : "0.27",
-                margin: "0rem .5rem",
-                background: "#333",
-                display: "flex",
-                width: "15px",
-                height: "15px",
-                borderRadius: "25px",
-              }}
-              onClick={onClickHandler}
-              onKeyDown={onClickHandler}
-              value={index}
-              key={index}
-              role="button"
-              tabIndex={0}
+            <Grid item xs={3} sx={{ borderRight: '1px solid #ccc', pr: '0rem', pt: '0', display: { xs: 'none', sm: 'none', md: 'flex'}, flexDirection: 'column', cursor: "pointer",  }}>
+              {[{name: 'Kendall M.', loc: 'Austin, TX'}, {name: 'Mindy S.', loc: 'San Francisco, CA'},  {name: 'Jamie J.', loc: 'Los Angeles, CA'}, {name: 'Kara C.', loc: 'San Diego, CA'}].map((item, index) => {
+                  return <Grid container key={item.name} onClick={() => setCurrentCard((prev) => index)} sx={{  transition: 'all .25s ease-in-out', border: index === currentCard ? '1px solid #ccc' : '1px solid transparent',  color: "#fff", cursor: "pointer", background: index === currentCard ? "#ffffff" : '#efefef', padding: '1rem .5rem', borderRadius: index === currentCard ? "6px" : '0px', display: "flex", alignItems: "center", justifyContent: "center", "&:hover": { background: "#efefef", border: '1px solid #ddd', }, borderRight: '0px', borderTopRightRadius: 0, borderBottomRightRadius: 0, zIndex: index === currentCard ? 2 : 1, boxShadow: index === currentCard ? '0px 0px 4px rgba(0, 0, 0, 0.25)' : '1px solid transparent',  }}>
+                 <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: '.25rem'}}>
+                    <img style={{ borderRadius: '6px', maxHeight: '100%', maxWidth: '100%'}} src={ index%2 === 0 ? 'https://previews.123rf.com/images/lar01joka/lar01joka1804/lar01joka180400019/100152648-cute-shiba-inu-dog-avatar.jpg' : "https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg"} />
+                  </Grid>
+                  <Grid item xs={10} sx={{ pl: '1rem'}}>
+                    <Typography variant="h6" sx={{ color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                      {item.name}
+                    </Typography>
+                    <Typography sx={{ textAlign: 'left', color: "#11111199", mt: '-.25rem', fontWeight: 500, fontSize: '13px'  }}>
+                      {item.loc}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                })}
+            </Grid>
+
+         <Grid item xs={12} sm={12} md={9} sx={{ '& .slider-wrapper': { maxWidth: { xs: '100%', sm: '100%', md: 'calc(100vw - 293px)', lg: 'calc(100vw - 500px)', xl: 'calc(100vw - 700px)'}, minHeight: { xs: '400px', sm: '450px', md: '300px' }, overflow: 'hidden' }, '& .slide': { display: { xs: 'flex', sm: 'flex', md: 'flex' } }, pl: { xs: 0, sm: 0, md: '1rem' }, mt: 'auto', mb: 'auto', display: { xs: 'block', sm: 'block', md: 'flex'}, alignItems: 'center' }}>
+          <Carousel
+              showThumbs={false}
+              interval={matches ? 3000 : 6000 }
+              showArrows={false}
+              showIndicators={matches ? true : false}
+              showStatus={false}
+              infiniteLoop={true}
+              onChange={(e) => setCurrentCard(e)}
+              autoPlay
+              selectedItem={currentCard}
+              renderIndicator={(
+                onClickHandler: (e: React.MouseEvent | React.KeyboardEvent) => void,
+                isSelected: boolean,
+                index: number,
+                label: string
+              ) => (
+                <li
+                  style={{
+                    cursor: "pointer",
+                    opacity: isSelected ? "1" : "0.27",
+                    margin: "1rem .5rem 0rem .5rem",
+                    background: "#333",
+                    display: "flex",
+                    width: "15px",
+                    height: "15px",
+                    borderRadius: "25px",
+                  }}
+                  onClick={onClickHandler}
+                  onKeyDown={onClickHandler}
+                  value={index}
+                  key={index}
+                  role="button"
+                  tabIndex={0}
+                >
+                  {/* render the number instead of a box*/}
+                </li>
+              )}
             >
-              {/* render the number instead of a box*/}
-            </li>
-          )}
-        >
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 5rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant={matches ? "h6" : "h6"}
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “My husband and I stayed at the Hilton San Francisco and booked
-              our room through Romingo. We brought our pup Lilly with us, and
-              she loved the tennis ball that was waiting for her in our room. We
-              will definitely use Romingo in the future!”
-            </Typography>
-            <Typography
-              variant={matches ? "h6" : "h6"}
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 600,
-              }}
-            >
-              Hannah S., Sacramento, C
-            </Typography>
-          </Paper>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 2rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “Their customer service team was so helpful. We had to cancel our
-              plans very last minute, and the person who helped us (I think her
-              name was Amanda) was so responsive and polite.”
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 700,
-              }}
-            >
-              Stephanie & Nate W., Denver, CO
-            </Typography>
-          </Paper>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 4rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “I love bringing my golden retriever, Milo, with me on road trips.
-              I booked on Romingo and reserved the Grand Hyatt San Diego and
-              they were very welcoming. I ended up saving like $100 in pet fees
-              by using Romingo.”
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 700,
-              }}
-            >
-              Jason L., Los Angeles, CA
-            </Typography>
-          </Paper>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 2rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “We took a trip to LA recently, and even though we do not have a
-              pet, we still booked on Romingo because they had the best deal
-              compared to other sites. We stayed in West Hollywood for only
-              $190/night.”
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 700,
-              }}
-            >
-              Jim & Patty N., Fresno, CA
-            </Typography>
-          </Paper>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 4rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “My family and I took a trip to Santa Barbara, and we didnt want
-              to leave our Golden Doodle, Chickpea, back home. We reserved an
-              oceanfront room at the Mar Monte Hotel, and Romingo even sent me
-              recommendations of places to eat and things to do. We ended up
-              just ordering room service and lounging on the beach, but it was a
-              great trip!”
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 700,
-              }}
-            >
-              Kendall M., San Diego, CA
-            </Typography>
-          </Paper>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 4rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “Romingo is easy to use, their hotels do not have hidden fees, and
-              I found their customer service to be very accessible. We will use
-              Romingo again for our trips this next Summer.”
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 700,
-              }}
-            >
-              Mindy N., San Francisco, CA
-            </Typography>
-          </Paper>
-          <Paper
-            elevation={3}
-            sx={{
-              padding: matches ? "1.5rem 1rem" : "1.5rem",
-              minHeight: "210px",
-              display: "flex",
-              flexDirection: "column",
-              width: "95%",
-              margin: "0px auto 4rem auto",
-              borderRadius: "12px",
-              fontFamily: "Montserrat",
-              fontSize: "1.5rem",
-            }}
-          >
-            <Typography
-              variant={matches ? "h6" : "h6"}
-              sx={{
-                fontWeight: 500,
-                color: "#11111199",
-                mb: "1.5rem",
-                lineHeight: 1.4,
-              }}
-            >
-              “We road-tripped between SF and LA with our French bulldog, Mason.
-              Romingo made it easy to find and book pet-friendly hotels”
-            </Typography>
-            <Typography
-              variant={matches ? "h6" : "h6"}
-              sx={{
-                mt: "auto",
-                color: "#11111199",
-                fontSize: "1rem",
-                fontFamily: "Montserrat",
-                fontWeight: 700,
-              }}
-            >
-              Lynn M., Las Vegas, NV
-            </Typography>
-          </Paper>
-        </Carousel>
+              <Paper elevation={3} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+                  <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                    <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+                  </Grid>
+                  <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                    <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                      Kendall M.
+                    </Typography>
+                    <Typography sx={{ textAlign: 'left' }}>
+                      Austin, TX
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                    <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                      “So easy to use and they have beautiful pet-friendly hotels” <br />
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                    5 / 5 stars verified user
+                  </Grid>
+                </Grid>
+              </Paper>
+
+              <Paper elevation={3} sx={{ border: '1px solid #ddd',  maxWidth: '90%', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+                  <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                    <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+                  </Grid>
+                  <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                    <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                      Mindy S.
+                    </Typography>
+                    <Typography sx={{ textAlign: 'left' }}>
+                      San Francisco, CA
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                    <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                      “I saved $250 by booking through Romingo. Their rates were actually lower than the brand websites, plus there were no pet fees”
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                    5 / 5 stars verified user
+                  </Grid>
+                </Grid>
+              </Paper>
+
+              <Paper elevation={3} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+                <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+                  <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                    <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+                  </Grid>
+                  <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                    <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                      Jamie J
+                    </Typography>
+                    <Typography sx={{ textAlign: 'left' }}>
+                      Los Angeles, CA
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                    <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                      “Romingo had a dog bed, water bowls, and a cute tennis ball for my pup Midas when we arrived at our hotel”
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                    5 / 5 stars verified user
+                  </Grid>
+                </Grid>
+              </Paper>
+
+              <Paper elevation={3} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+                <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+                  <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                    <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+                  </Grid>
+                  <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                    <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                      Kara C.
+                    </Typography>
+                    <Typography sx={{ textAlign: 'left' }}>
+                      San Diego, CA
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                    <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                      “My pup Archie had the time of his life when we visited Santa Monica. Life&#39;s a breeze with Romingo, and we paid ZERO pet fees”
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                  </Grid>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                    5 / 5 stars verified user
+                  </Grid>
+                </Grid>
+              </Paper>
+
+
+            </Carousel>
+         </Grid>
+        </Grid>
       </Container>
     </Box>
   );
