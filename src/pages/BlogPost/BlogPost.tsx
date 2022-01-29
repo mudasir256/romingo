@@ -16,8 +16,7 @@ import Navbar from "../../components/Navbar";
 import Loader from "../../components/UI/Loader";
 import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
-import "./post.module.css";
-import "./lazyloaded.css";
+import "./blog.css";
 
 interface instaWindow extends Window {
   instgrm: { Embeds: any };

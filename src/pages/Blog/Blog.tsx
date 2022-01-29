@@ -94,15 +94,15 @@ const Blog: FC = () => {
       <Navbar />
       <Container maxWidth="lg" sx={{ mt: 11, mb: 6, minHeight: "100vh" }}>
         <Typography
-          variant="h1"
+          variant="h2"
           color="text.primary"
           sx={{ mb: 3, textAlign: "center" }}
         >
-          The Romingo Lingo
+          The Romingo Blog
         </Typography>
         <Divider variant="middle" light sx={{ mt: 2, mb: 4 }}>
           <Typography variant="body1" color="text.secondary">
-            Tips, Tricks, and Plenty of Treats For Your Dog-Friendly Travel
+            Treats For Dog-Friendly Travel
           </Typography>
         </Divider>{" "}
         {loading ? (
@@ -200,10 +200,11 @@ const Blog: FC = () => {
                             variant="body1"
                             dangerouslySetInnerHTML={{
                               __html:
-                                post.excerpt.rendered.slice(0, 150) + "...",
+                                post.excerpt.rendered.slice(0, 200) + "...",
                             }}
                             sx={{
                               my: 0,
+                              fontSize: "22px",
                             }}
                             color="text.primary"
                           />
@@ -213,7 +214,7 @@ const Blog: FC = () => {
                               color="primary"
                               sx={{ fontWeight: "bold" }}
                             >
-                              Read More
+                              Keep Reading
                             </Typography>
                           </Link>
                         </Box>
