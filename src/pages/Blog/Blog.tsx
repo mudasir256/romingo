@@ -204,7 +204,7 @@ const Blog: FC = () => {
                             }}
                             sx={{
                               my: 0,
-                              fontSize: "22px",
+                              fontSize: "20px",
                             }}
                             color="text.primary"
                           />

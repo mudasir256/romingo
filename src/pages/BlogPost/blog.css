@@ -24,10 +24,9 @@
 }
 
 .custom-blog-post p {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 300;
-  line-height: 1.6;
-  letter-spacing: 0px;
+  line-height: 1.75;
   font-family: "Roboto", "Montserrat", sans-serif;
 }
 
@@ -35,9 +34,6 @@
   font-family: "Roboto", "Montserrat", sans-serif;
 }
 
-.custom-blog-post p {
-  font-family: "Roboto", "Montserrat", sans-serif;
-}
 .custom-blog-post a {
   font-family: "Roboto", "Montserrat", sans-serif;
 }
@@ -51,6 +47,7 @@
 }
 
 .custom-blog-post h3 {
+  font-size: 25px;
   font-family: "Roboto", "Montserrat", sans-serif;
 }
 
