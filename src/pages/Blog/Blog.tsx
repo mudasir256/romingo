@@ -56,7 +56,16 @@ const Blog: FC = () => {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState<any>(0);
   const [posts, setPosts] = useState<[Post] | undefined>(undefined);
+  const [tagNames, setTagNames] = useState<[Tag] | undefined>(undefined);
   const [tagName, setTagName] = useState<[Tag] | undefined>(undefined);
+
+  const loadTags = async () => {
+    const response = await fetch(
+      `https://blog.romingo.com/wp-json/wp/v2/tags?per_page=23&_fields=id,name`
+    );
+    const tagsRes = await response.json();
+    setTagNames(tagsRes);
+  };
 
   const loadPosts = async (p = 1) => {
     let url = `https://blog.romingo.com/wp-json/wp/v2/posts?page=${p}&_embed&_fields=id,excerpt,title,_links,_embedded`;
@@ -81,6 +90,7 @@ const Blog: FC = () => {
   };
 
   useEffect(() => {
+    loadTags();
     loadPosts(1);
   }, [tag]);
 
@@ -101,11 +111,27 @@ const Blog: FC = () => {
         >
           The Romingo Blog
         </Typography>
-        <Divider variant="middle" light sx={{ mt: 2, mb: 4 }}>
+        <Divider variant="middle" light sx={{ mt: 2, mb: 2 }}>
           <Typography variant="body1" color="text.secondary">
             Treats For Dog-Friendly Travel
           </Typography>
-        </Divider>{" "}
+        </Divider>
+        {tagNames && (
+          <Box sx={{ textAlign: "center", mb: 2 }}>
+            {tagNames?.map((tag) => (
+              <Chip
+                key={tag.id}
+                sx={{
+                  fontSize: "12px",
+                  mb: 0.25,
+                  mx: 0.25,
+                }}
+                label={tag.name}
+                onClick={() => history.push(`/blog/${tag.id}`)}
+              />
+            ))}
+          </Box>
+        )}
         {loading ? (
           <Box
             sx={{
@@ -122,7 +148,7 @@ const Blog: FC = () => {
             {tagName && (
               <Chip
                 size="medium"
-                sx={{ mb: 2 }}
+                sx={{ fontSize: "12px", mb: 2 }}
                 label={tagName[0].name}
                 onDelete={() => {
                   setTagName(undefined);
