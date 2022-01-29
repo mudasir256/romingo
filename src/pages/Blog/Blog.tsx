@@ -86,6 +86,7 @@ const Blog: FC = () => {
 
   const changePage = (page: number) => {
     loadPosts(page);
+    window.scrollTo(0, 0);
   };
 
   return (
