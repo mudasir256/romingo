@@ -23,6 +23,38 @@ import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import "./blog.css";
 
+const categoryMap = [
+  {
+    category: 87,
+    city: "Los Angeles",
+    id: "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
+  },
+  {
+    category: 90,
+    city: "Palm Springs",
+    id: "d4c10666-addf-47a6-9870-767518d9ebad",
+  },
+  {
+    category: 91,
+    city: "San Diego",
+    id: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
+  },
+  {
+    category: 92,
+    city: "San Francisco",
+    id: "82145909-13b4-4aab-be20-e0db474021c1",
+  },
+  {
+    category: 93,
+    city: "Orange County",
+    id: "2714faad-9ea8-4851-9506-274710cdd51b",
+  },
+  {
+    category: 94,
+    city: "Santa Barbara",
+    id: "58b23325-2016-44ef-886f-67e962dab17f",
+  },
+];
 interface instaWindow extends Window {
   instgrm: { Embeds: any };
 }
@@ -39,6 +71,7 @@ interface Post {
     rendered: string;
     protected: boolean;
   };
+  categories: [number];
   title: {
     rendered: string;
     protected: boolean;
@@ -59,7 +92,7 @@ interface Tag {
 }
 
 interface Location {
-  prev?: string;
+  fromBlog?: boolean;
 }
 
 const BlogPost: FC = () => {
@@ -67,6 +100,7 @@ const BlogPost: FC = () => {
   const { state } = useLocation<Location>();
   const { id } = useParams<PostParams>();
   const [subscribed, setSubscribed] = useState(false);
+  const [cityId, setCityId] = useState<string>("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -76,13 +110,25 @@ const BlogPost: FC = () => {
   const loadPost = async () => {
     setLoading(true);
     const response = await fetch(
-      `https://blog.romingo.com/wp-json/wp/v2/posts/${id}?_embed&_fields=id,title,content,tags,_links,_embedded`
+      `https://blog.romingo.com/wp-json/wp/v2/posts/${id}?_embed&_fields=id,title,categories,content,tags,_links,_embedded`
     );
     const posts = await response.json();
     setPost(posts);
     loadTags(posts.tags);
+    setCity(posts.categories);
     setLoading(false);
     setLoaded(true);
+  };
+
+  const setCity = (cats: number[]) => {
+    cats.every((cat) => {
+      const found = categoryMap.find((el) => el.category === cat);
+      if (found) {
+        setCityId(found.id);
+        return false;
+      }
+      return true;
+    });
   };
 
   const loadTags = async (tagArr: number[] | undefined) => {
@@ -133,7 +179,7 @@ const BlogPost: FC = () => {
         ) : (
           post && (
             <>
-              {state?.prev ? (
+              {state?.fromBlog ? (
                 <Link
                   sx={{ cursor: "pointer" }}
                   onClick={() => history.goBack()}
@@ -174,10 +220,10 @@ const BlogPost: FC = () => {
                 </Typography>
               </Divider>
               <Hidden mdDown>
-                <DesktopFilterBar />
+                <DesktopFilterBar city={cityId} />
               </Hidden>
               <Hidden mdUp>
-                <FilterBar />
+                <FilterBar searchOnClose={false} city={cityId} />
               </Hidden>
               <div className="custom-blog-post">
                 <div className="post-template-default single single-post postid-1568 single-format-standard wp-custom-logo  nv-sidebar-full-width menu_sidebar_slide_right">

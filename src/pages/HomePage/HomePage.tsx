@@ -21,13 +21,9 @@ import {
 import { ChevronLeft, ChevronRight, Cancel } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { gql, useQuery } from "@apollo/client";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { GetCities } from "../../constants/constants";
-import { setList } from "../../store/cityListReducer";
 import ScrollToTop from "../../components/ScrollToTop";
-
 import { saveSearch } from "../../store/searchReducer";
 
 interface Props {
@@ -145,11 +141,6 @@ const HomePage: FC<Props> = ({
   const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
   const matches = useMediaQuery("(max-width:800px)");
-  const { loading, error, data } = useQuery(
-    gql`
-      ${GetCities}
-    `
-  );
 
   useEffect(() => {
     window.Intercom("boot", {
@@ -158,12 +149,6 @@ const HomePage: FC<Props> = ({
     });
     window.Intercom("update");
   }, []);
-
-  useEffect(() => {
-    if (data) {
-      dispatch(setList([...data?.cities]));
-    }
-  }, [data]);
 
   const toFeatured = (id: string, cityId: string) => {
     let city = search.city;
@@ -221,7 +206,8 @@ const HomePage: FC<Props> = ({
                 Lowest rates
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo negotiates the lowest rates and pass the savings onto you.
+                Romingo negotiates the lowest rates and pass the savings onto
+                you.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
@@ -253,7 +239,8 @@ const HomePage: FC<Props> = ({
                 All pets welcome
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo hotels welcome (2) pets, 75 lbs. each, no breed restrictions, ever.
+                Romingo hotels welcome (2) pets, 75 lbs. each, no breed
+                restrictions, ever.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
@@ -269,7 +256,8 @@ const HomePage: FC<Props> = ({
                 Beds & bowls provided
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Every Romingo reservation includes free pet beds & bowls in your room!
+                Every Romingo reservation includes free pet beds & bowls in your
+                room!
               </Typography>
             </Grid>
           </Grid>
@@ -306,11 +294,13 @@ const HomePage: FC<Props> = ({
                 textAlign: "center",
                 mb: 5,
                 mt: "1rem",
-                ml: 'auto', mr: 'auto',
-                maxWidth: '80%'
+                ml: "auto",
+                mr: "auto",
+                maxWidth: "80%",
               }}
             >
-              Romingo currently features pet-friendly hotels across 6 beautiful California destinations
+              Romingo currently features pet-friendly hotels across 6 beautiful
+              California destinations
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -376,18 +366,23 @@ const HomePage: FC<Props> = ({
             </Grid>
           </Grid>
           <Grid item xs={12}>
-          <Typography
+            <Typography
               variant="h5"
               sx={{
                 color: "text.secondary",
                 textAlign: "center",
                 mb: 5,
                 mt: "1rem",
-                maxWidth: '90%',
-                ml: 'auto', mr: 'auto'
+                maxWidth: "90%",
+                ml: "auto",
+                mr: "auto",
               }}
             >
-            <Link sx={{ cursor: 'pointer' }}><EmailSignup /></Link> to be the first to experience our 15 new destinations arriving in Spring 2022
+              <Link sx={{ cursor: "pointer" }}>
+                <EmailSignup />
+              </Link>{" "}
+              to be the first to experience our 15 new destinations arriving in
+              Spring 2022
             </Typography>
           </Grid>
         </Grid>
@@ -502,7 +497,6 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Container>
       </Box>
-
 
       <CustomerTestimonials />
 
@@ -1380,12 +1374,12 @@ const EmailSignup = () => {
           },
         }}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
+          vertical: "bottom",
+          horizontal: "center",
         }}
       >
         <Grid
@@ -1521,6 +1515,5 @@ const EmailSignup = () => {
     </>
   );
 };
-
 
 export default HomePage;

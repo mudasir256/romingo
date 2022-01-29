@@ -28,13 +28,16 @@ import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
 
-export const DesktopFilterBar: FC = () => {
+interface Props {
+  city?: string;
+}
+
+export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
   const mobile = useMediaQuery("(max-width:800px)");
-  const city = "";
   // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
   // eslint-disable-next-line
@@ -50,6 +53,7 @@ export const DesktopFilterBar: FC = () => {
     search.checkOut ? search.checkOut : null,
   ]);
 
+  console.log(city);
   const [occupants, setOccupants] = useState(search.occupants);
 
   const getCityName = (cityId: string) => {
@@ -163,7 +167,7 @@ export const DesktopFilterBar: FC = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
             options={cities}
-            value={getCity(selectedCity) || null}
+            value={getCity(selectedCity) || { id: null, name: "Choose City" }}
             getOptionLabel={(option: any) => {
               return option.name;
             }}
@@ -247,20 +251,21 @@ export const DesktopFilterBar: FC = () => {
                       fontFamily: "Montserrat",
                       textTransform: "none",
                       fontWeight: 600,
-                      fontSize: { xs: "13px" },
+                      fontSize: { xs: "12px" },
+                      minWidth: "140px",
                     }}
                   >
                     {checkDate[0]
                       ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
                           "MMM dd"
                         )
-                      : ""}
+                      : "Check In"}
                     &nbsp;&#8212;&nbsp;
                     {checkDate[1]
                       ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
                           "MMM dd"
                         )
-                      : ""}
+                      : "Check Out"}
                   </Typography>
                 </Button>
               )}
@@ -283,7 +288,7 @@ export const DesktopFilterBar: FC = () => {
             variant="contained"
             sx={{
               ml: "auto",
-              minWidth: "80px",
+              minWidth: "70px",
               display: "flex",
               width: "100%",
               alignItems: "center",

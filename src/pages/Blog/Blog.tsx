@@ -186,7 +186,9 @@ const Blog: FC = () => {
                     >
                       <Link
                         onClick={() =>
-                          history.push(`/blog/post/${post.id}`, { prev: page })
+                          history.push(`/blog/post/${post.id}`, {
+                            fromBlog: true,
+                          })
                         }
                         href={`/blog/post/${post.id}`}
                         color="text.primary"
