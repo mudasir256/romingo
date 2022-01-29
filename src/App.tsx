@@ -70,13 +70,6 @@ const App: FC = () => {
             </AuthGuards>
           );
       })}
-      <Route
-        path="/blog"
-        component={() => {
-          window.location.replace("https://blog.romingo.com/");
-          return null;
-        }}
-      />
       <Route component={ErrorPage} />
     </Switch>
   );

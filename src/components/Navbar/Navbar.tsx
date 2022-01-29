@@ -171,7 +171,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 </Typography>
               </Link>
               <Link
-                href="https://blog.romingo.com"
+                href="/blog"
                 sx={{
                   padding: ".5rem 1rem",
                   borderRadius: "6px",
@@ -288,7 +288,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 Community
               </MenuItem>
               <MenuItem
-                onClick={() => window.open("https://blog.romingo.com")}
+                onClick={() => history.push("/blog")}
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
