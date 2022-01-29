@@ -81,9 +81,3 @@
   line-height: 1.75;
   font-family: "Roboto", "Montserrat", sans-serif;
 }
-
-@media only screen and (max-width: 720px) {
-  .custom-blog-post h1 {
-    font-size: 30px;
-  }
-}

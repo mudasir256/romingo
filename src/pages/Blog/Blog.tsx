@@ -156,19 +156,15 @@ const Blog: FC = () => {
                 }}
               />
             )}
-            <Grid container spacing={8} sx={{ mb: 5 }}>
+            <Grid container spacing={4} columnSpacing={8} sx={{ mb: 5 }}>
               {posts &&
                 posts.map((post, index) => (
                   <Grid
                     xs={12}
                     md={6}
                     item
+                    sx={{ display: "flex", flex: 1 }}
                     key={index}
-                    sx={{
-                      display: "flex",
-                      flex: 1,
-                      justifyContent: "space-between",
-                    }}
                   >
                     <Box
                       sx={{
@@ -199,30 +195,31 @@ const Blog: FC = () => {
                       <Box
                         sx={{
                           pt: 1,
-                          pb: 3,
+                          pb: 2,
                           display: "flex",
                           flexDirection: "column",
+                          justifyContent: "space-between",
                           flex: 1,
                         }}
                       >
-                        <Link
-                          href={`/blog/post/${post.id}`}
-                          color="text.primary"
-                          sx={{ textDecoration: "none" }}
-                        >
-                          <Typography
-                            variant="h3"
-                            dangerouslySetInnerHTML={{
-                              __html: post.title.rendered,
-                            }}
+                        <Box>
+                          <Link
+                            href={`/blog/post/${post.id}`}
                             color="text.primary"
-                          />
-                        </Link>
-                        <Box
-                          sx={{
-                            mt: 0,
-                          }}
-                        >
+                            sx={{ textDecoration: "none" }}
+                          >
+                            <Typography
+                              variant="h3"
+                              dangerouslySetInnerHTML={{
+                                __html: post.title.rendered,
+                              }}
+                              color="text.primary"
+                              sx={{
+                                fontSize: { xs: "35px", md: "40px" },
+                                textAlign: { xs: "center", md: "left" },
+                              }}
+                            />
+                          </Link>
                           <Typography
                             variant="body1"
                             dangerouslySetInnerHTML={{
@@ -235,16 +232,16 @@ const Blog: FC = () => {
                             }}
                             color="text.primary"
                           />
-                          <Link href={`/blog/post/${post.id}`}>
-                            <Typography
-                              variant="body1"
-                              color="primary"
-                              sx={{ fontWeight: "bold" }}
-                            >
-                              Keep Reading
-                            </Typography>
-                          </Link>
                         </Box>
+                        <Link href={`/blog/post/${post.id}`}>
+                          <Typography
+                            variant="body1"
+                            color="primary"
+                            sx={{ fontWeight: "bold" }}
+                          >
+                            Keep Reading
+                          </Typography>
+                        </Link>
                       </Box>
                       <Divider light />
                     </Box>
