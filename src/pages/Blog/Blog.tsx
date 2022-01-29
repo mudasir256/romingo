@@ -163,7 +163,7 @@ const Blog: FC = () => {
                     xs={12}
                     md={6}
                     item
-                    sx={{ display: "flex", flex: 1 }}
+                    sx={{ display: "flex", flexGrow: 1 }}
                     key={index}
                   >
                     <Box

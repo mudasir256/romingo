@@ -75,7 +75,6 @@ const BlogPost: FC = () => {
     );
     const posts = await response.json();
     setPost(posts);
-    console.log(posts);
     loadTags(posts.tags);
     setLoading(false);
     setLoaded(true);
@@ -83,7 +82,6 @@ const BlogPost: FC = () => {
 
   const loadTags = async (tagArr: number[] | undefined) => {
     const tagStr = tagArr ? tagArr.join(",") : "";
-    console.log(tagStr);
     const response = await fetch(
       `https://blog.romingo.com/wp-json/wp/v2/tags?include=${tagStr}&_fields=id,name`
     );
