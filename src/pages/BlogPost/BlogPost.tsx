@@ -143,7 +143,7 @@ const BlogPost: FC = () => {
   useEffect(() => {
     loadPost();
     const instaEmbed = document.createElement("script");
-    instaEmbed.src = "http://www.instagram.com/embed.js";
+    instaEmbed.src = "https://www.instagram.com/embed.js";
     instaEmbed.async = true;
     const script = document.createElement("script");
     script.src =
