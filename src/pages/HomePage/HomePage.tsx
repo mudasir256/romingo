@@ -819,15 +819,13 @@ const CustomerTestimonials = () => {
   return (
     <Box
       sx={{
-        background: { xs: '#fff', sm: '#fff', md: '#efefef'},
+        background: { xs: '#fff', sm: '#fff', md: '#fff'},
         py: 6,
         pb: { xs: '0rem', sm: '2rem', md: '4rem', lg: '4rem'},
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         width: "100%",
-        borderBottom: '1px solid #ddd',
-        borderTop: '1px solid #ddd',
         overflow: 'hidden'
       }}
     >
@@ -838,7 +836,7 @@ const CustomerTestimonials = () => {
             display: "flex",
             justifyContent: "center",
           },
-          background: { xs: '#fff', sm: '#fff', md: '#efefef'},
+          background: { xs: '#fff', sm: '#fff', md: '#fff'},
           padding: '2rem 0rem 4rem 0rem ', borderRadius: '6px',
         }}
       >
@@ -857,7 +855,7 @@ const CustomerTestimonials = () => {
           </Grid>
             <Grid item xs={3} sx={{ borderRight: '1px solid #ccc', pr: '0rem', pt: '0', display: { xs: 'none', sm: 'none', md: 'flex'}, flexDirection: 'column', cursor: "pointer",  }}>
               {[{name: 'Kendall M.', loc: 'Austin, TX'}, {name: 'Mindy S.', loc: 'San Francisco, CA'},  {name: 'Jamie J.', loc: 'Los Angeles, CA'}, {name: 'Kara C.', loc: 'San Diego, CA'}].map((item, index) => {
-                  return <Grid container key={item.name} onClick={() => setCurrentCard((prev) => index)} sx={{  transition: 'all .25s ease-in-out', border: index === currentCard ? '1px solid #ccc' : '1px solid transparent',  color: "#fff", cursor: "pointer", background: index === currentCard ? "#ffffff" : '#efefef', padding: '1rem .5rem', borderRadius: index === currentCard ? "6px" : '0px', display: "flex", alignItems: "center", justifyContent: "center", "&:hover": { background: "#efefef", border: '1px solid #ddd', }, borderRight: '0px', borderTopRightRadius: 0, borderBottomRightRadius: 0, zIndex: index === currentCard ? 2 : 1, boxShadow: index === currentCard ? '0px 0px 4px rgba(0, 0, 0, 0.25)' : '1px solid transparent',  }}>
+                  return <Grid container key={item.name} onClick={() => setCurrentCard((prev) => index)} sx={{  transition: 'all .25s ease-in-out', border: index === currentCard ? '1px solid #ccc' : '1px solid transparent',  color: "#fff", cursor: "pointer", background: index === currentCard ? "#efefef" : '#fff', padding: '1rem .5rem', borderRadius: index === currentCard ? "6px" : '0px', display: "flex", alignItems: "center", justifyContent: "center", "&:hover": { background: "#efefef", border: '1px solid #ddd', }, borderRight: '0px', borderTopRightRadius: 0, borderBottomRightRadius: 0, zIndex: index === currentCard ? 2 : 1, }}>
                  <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: '.25rem'}}>
                     <img style={{ borderRadius: '6px', maxHeight: '100%', maxWidth: '100%'}} src={ index%2 === 0 ? 'https://previews.123rf.com/images/lar01joka/lar01joka1804/lar01joka180400019/100152648-cute-shiba-inu-dog-avatar.jpg' : "https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg"} />
                   </Grid>
@@ -912,7 +910,7 @@ const CustomerTestimonials = () => {
                 </li>
               )}
             >
-              <Paper elevation={3} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
               <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
@@ -943,7 +941,7 @@ const CustomerTestimonials = () => {
                 </Grid>
               </Paper>
 
-              <Paper elevation={3} sx={{ border: '1px solid #ddd',  maxWidth: '90%', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd',  maxWidth: '90%', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
               <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
@@ -974,7 +972,7 @@ const CustomerTestimonials = () => {
                 </Grid>
               </Paper>
 
-              <Paper elevation={3} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
                 <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
@@ -1005,7 +1003,7 @@ const CustomerTestimonials = () => {
                 </Grid>
               </Paper>
 
-              <Paper elevation={3} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
                 <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
