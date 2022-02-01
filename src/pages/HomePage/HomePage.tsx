@@ -816,6 +816,16 @@ const CustomerTestimonials = () => {
   const lg = useMediaQuery("(max-width:1160px)");
   const [currentCard, setCurrentCard] = useState(0);
 
+  useEffect(() => {
+    if (currentCard === 0) {
+      document.getElementById('scroll-container')!.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
+    }
+    else {
+     document.getElementById('scroll-container')!.scrollTo({ left: 0, top: currentCard*75, behavior: 'smooth' })
+    }
+  }, [currentCard])
+
+
   return (
     <Box
       sx={{
@@ -853,8 +863,32 @@ const CustomerTestimonials = () => {
               What our travelers are saying...
             </Typography>
           </Grid>
-            <Grid item xs={3} sx={{ borderRight: '1px solid #ccc', pr: '0rem', pt: '0', display: { xs: 'none', sm: 'none', md: 'flex'}, flexDirection: 'column', cursor: "pointer",  }}>
-              {[{name: 'Kendall M.', loc: 'Austin, TX'}, {name: 'Mindy S.', loc: 'San Francisco, CA'},  {name: 'Jamie J.', loc: 'Los Angeles, CA'}, {name: 'Kara C.', loc: 'San Diego, CA'}].map((item, index) => {
+            <Grid id="scroll-container" item xs={3} sx={{
+               "&::-webkit-scrollbar": {
+                width: "0.4em",
+              },
+              "&::-webkit-scrollbar-track": {
+                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                borderRadius: "0.3em",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "rgba(0,0,0,.1)",
+                borderRadius: "0.3em",
+              },
+              maxHeight: '300px', overflowY: 'auto', borderRight: '1px solid #ccc', pr: '0rem', pt: '0', display: { xs: 'none', sm: 'none', md: 'flex'}, flexDirection: 'column', cursor: "pointer",  }}>
+              {[
+                 {name: 'Hannah S.', loc: 'Sacramento CA'},
+                 {name: 'Kendall M.', loc: 'Austin, TX'},
+                 {name: 'Mindy S.', loc: 'San Francisco, CA'},
+                 {name: 'Jamie J.', loc: 'Los Angeles, CA'},
+                 {name: 'Kara C.', loc: 'San Diego, CA'},
+                 {name: 'Cedric C.', loc: 'Seattle, WA'},
+                 {name: 'Eric S.', loc: 'Portland, OR'},
+                 {name: 'Jake B.', loc: 'Olympia, WA'},
+                 {name: 'Alex W.', loc: 'Lodi, CA'},
+                  {name: 'Luke W.', loc: 'San Franciso, CA'},
+                 ]
+                .map((item, index) => {
                   return <Grid container key={item.name} onClick={() => setCurrentCard((prev) => index)} sx={{  transition: 'all .25s ease-in-out', border: index === currentCard ? '1px solid #ccc' : '1px solid transparent',  color: "#fff", cursor: "pointer", background: index === currentCard ? "#efefef" : '#fff', padding: '1rem .5rem', borderRadius: index === currentCard ? "6px" : '0px', display: "flex", alignItems: "center", justifyContent: "center", "&:hover": { background: "#efefef", border: '1px solid #ddd', }, borderRight: '0px', borderTopRightRadius: 0, borderBottomRightRadius: 0, zIndex: index === currentCard ? 2 : 1, }}>
                  <Grid item xs={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pl: '.25rem'}}>
                     <img style={{ borderRadius: '6px', maxHeight: '100%', maxWidth: '100%'}} src={ index%2 === 0 ? 'https://previews.123rf.com/images/lar01joka/lar01joka1804/lar01joka180400019/100152648-cute-shiba-inu-dog-avatar.jpg' : "https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg"} />
@@ -871,7 +905,7 @@ const CustomerTestimonials = () => {
                 })}
             </Grid>
 
-         <Grid item xs={12} sm={12} md={9} sx={{ '& .slider-wrapper': { maxWidth: { xs: '100%', sm: '100%', md: 'calc(100vw - 293px)', lg: 'calc(100vw - 500px)', xl: 'calc(100vw - 700px)'}, minHeight: { xs: '400px', sm: '450px', md: '300px' }, overflow: 'hidden' }, '& .slide': { display: { xs: 'flex', sm: 'flex', md: 'flex' } }, pl: { xs: 0, sm: 0, md: '1rem' }, mt: 'auto', mb: 'auto', display: { xs: 'block', sm: 'block', md: 'flex'}, alignItems: 'center' }}>
+         <Grid item xs={12} sm={12} md={9} sx={{ '& .slider-wrapper': { maxWidth: { xs: '100%', sm: '100%', md: 'calc(100vw - 293px)', lg: 'calc(100vw - 500px)', xl: 'calc(100vw - 1000px)'}, minHeight: { xs: '400px', sm: '450px', md: '300px' }, overflow: 'hidden' }, '& .slide': { display: { xs: 'flex', sm: 'flex', md: 'flex' } }, pl: { xs: 0, sm: 0, md: '1rem' }, mt: 'auto', mb: 'auto', display: { xs: 'block', sm: 'block', md: 'flex'}, alignItems: 'center' }}>
           <Carousel
               showThumbs={false}
               interval={matches ? 3000 : 6000 }
@@ -910,22 +944,203 @@ const CustomerTestimonials = () => {
                 </li>
               )}
             >
-              <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+
+          <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+            <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+              </Grid>
+              <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                  Hannah S.
+                </Typography>
+                <Typography sx={{ textAlign: 'left' }}>
+                  Sacramento, CA
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  “Their customer service exceeded my expectations” <br />
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                5 / 5 stars verified user
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+          <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+              </Grid>
+              <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                  Kendall M.
+                </Typography>
+                <Typography sx={{ textAlign: 'left' }}>
+                  Austin, TX
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  “So easy to use and they have beautiful pet-friendly hotels” <br />
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                5 / 5 stars verified user
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper elevation={1} sx={{ border: '1px solid #ddd',  maxWidth: '90%', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+          <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+              </Grid>
+              <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                  Mindy S.
+                </Typography>
+                <Typography sx={{ textAlign: 'left' }}>
+                  San Francisco, CA
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  “I saved $250 by booking through Romingo. Their rates were actually lower than the brand websites, plus there were no pet fees”
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                5 / 5 stars verified user
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper elevation={1} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+            <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+              </Grid>
+              <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                  Jamie J
+                </Typography>
+                <Typography sx={{ textAlign: 'left' }}>
+                  Los Angeles, CA
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  “Romingo had a dog bed, water bowls, and a cute tennis ball for my pup Midas when we arrived at our hotel”
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                5 / 5 stars verified user
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper elevation={1} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+            <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+              </Grid>
+              <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                  Kara C.
+                </Typography>
+                <Typography sx={{ textAlign: 'left' }}>
+                  San Diego, CA
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  “My pup Archie had the time of his life when we visited Santa Monica. Life&#39;s a breeze with Romingo, and we paid ZERO pet fees”
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+              </Grid>
+              <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                5 / 5 stars verified user
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+            <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+                <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
+                  <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
+                </Grid>
+                <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
+                  <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
+                    Cedric C.
+                  </Typography>
+                  <Typography sx={{ textAlign: 'left' }}>
+                    Seattle, WA
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ pt: '.5rem' }}>
+                  <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    “The UI was extremely user friendly and easy to navigate” <br />
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
+                  <Star />
+                  <Star />
+                  <Star />
+                  <Star />
+                  <Star />
+                </Grid>
+                <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontSize: '14px', fontWeight: 500 }}>
+                  5 / 5 stars verified user
+                </Grid>
+              </Grid>
+            </Paper>
+            <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
               <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
                   </Grid>
                   <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
                     <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
-                      Kendall M.
+                      Eric S.
                     </Typography>
                     <Typography sx={{ textAlign: 'left' }}>
-                      Austin, TX
+                      Portland, OR
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ pt: '.5rem' }}>
                     <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                      “So easy to use and they have beautiful pet-friendly hotels” <br />
+                      “Saved over $200 in hotel pet fees by booking on Romingo” <br />
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
@@ -940,26 +1155,25 @@ const CustomerTestimonials = () => {
                   </Grid>
                 </Grid>
               </Paper>
-
-              <Paper elevation={1} sx={{ border: '1px solid #ddd',  maxWidth: '90%', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
               <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
                   </Grid>
                   <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
                     <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
-                      Mindy S.
+                      Jake B.
                     </Typography>
                     <Typography sx={{ textAlign: 'left' }}>
-                      San Francisco, CA
+                      Olympia, WA
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ pt: '.5rem' }}>
                     <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                      “I saved $250 by booking through Romingo. Their rates were actually lower than the brand websites, plus there were no pet fees”
+                      “No pet fees, and they even had  a little welcome basket for our golden retriever, Max. Romingo is the only way to go!” <br />
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
                     <Star />
                     <Star />
                     <Star />
@@ -971,26 +1185,25 @@ const CustomerTestimonials = () => {
                   </Grid>
                 </Grid>
               </Paper>
-
-              <Paper elevation={1} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%",  margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
-                <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
                   </Grid>
                   <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
                     <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
-                      Jamie J
+                      Alex W.
                     </Typography>
                     <Typography sx={{ textAlign: 'left' }}>
-                      Los Angeles, CA
+                      Lodi, CA
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ pt: '.5rem' }}>
                     <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                      “Romingo had a dog bed, water bowls, and a cute tennis ball for my pup Midas when we arrived at our hotel”
+                      “I saved a lot of money and time by booking my trip to San Diego with Romingo” <br />
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
                     <Star />
                     <Star />
                     <Star />
@@ -1002,26 +1215,25 @@ const CustomerTestimonials = () => {
                   </Grid>
                 </Grid>
               </Paper>
-
-              <Paper elevation={1} sx={{ border: '1px solid #ddd',  padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "210px", sm: "210px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
-                <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
+              <Paper elevation={1} sx={{ border: '1px solid #ddd', padding: matches ? "1rem 1rem" : "1rem", minHeight: { xs: "0px", sm: "0px", md: "215px"}, display: "flex", flexDirection: "column", width: "95%", margin: "auto auto auto auto", borderRadius: "12px", fontFamily: "Montserrat", fontSize: "1.5rem",}}>
+              <Grid container sx={{ display: 'flex', flexDirection: 'row'}}>
                   <Grid item xs={2} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd' }}>
                     <img style={{ borderRadius: '6px', maxHeight: '90%', maxWidth: '90%'}} src="https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg" />
                   </Grid>
                   <Grid item xs={10} sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, borderBottom: '1px solid #ddd', pl: '.5rem', pb: '.5rem' }}>
                     <Typography variant="h6" sx={{ mt: "auto", color: "#11111199", fontSize: "1rem", fontFamily: "Montserrat", fontWeight: 700, textAlign: 'left' }}>
-                      Kara C.
+                      Luke W.
                     </Typography>
                     <Typography sx={{ textAlign: 'left' }}>
-                      San Diego, CA
+                      San Franciso, CA
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sx={{ pt: '.5rem' }}>
                     <Typography variant="h6" sx={{ fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.5rem'},  pb: { xs: '0rem', sm: '0rem', md: '1rem' }, pt: { xs: '0rem', sm: '0rem', md: '1rem' }, borderTop: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, borderBottom: { xs: 'none', sm: 'none', md: '1px solid #ddd' }, mt: { xs: '0', sm: '0', md: '.75rem' }, fontFamily: 'Montserrat', letterSpacing: '0px', textAlign: { xs: 'left', sm: 'left', md: 'center'}, fontWeight: 500, color: "#11111199", mb: { xs: ".25rem", sm: ".25rem", md: '1rem' }, lineHeight: 1.64, minHeight: { xs: '100px', sm: '100px', md: '175px'}, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                      “My pup Archie had the time of his life when we visited Santa Monica. Life&#39;s a breeze with Romingo, and we paid ZERO pet fees”
+                      “Finding hotels that will take our friendly pitbull Zoey has always been difficult. When we booked with Romingo, Zoey was welcomed and we had a great time” <br />
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'},  color: '#f9c171' }}>
+                  <Grid item xs={12} sx={{ textAlign: { xs: 'left', sm: 'left', md: 'center'}, mt: 'auto', color: '#f9c171' }}>
                     <Star />
                     <Star />
                     <Star />
@@ -1033,8 +1245,6 @@ const CustomerTestimonials = () => {
                   </Grid>
                 </Grid>
               </Paper>
-
-
             </Carousel>
          </Grid>
         </Grid>
