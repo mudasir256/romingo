@@ -75,6 +75,12 @@ const StepsContainer: FC = () => {
     }
   }, [success])
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://paperform.co/__embed.min.js"
+    document.body.appendChild(script)
+
+  }, [])
 
     return <Grid container spacing={2}>
     <Grid item xs={12}>
@@ -99,7 +105,7 @@ const StepsContainer: FC = () => {
     </Grid>
     <Grid item xs={12} sm={12} md={6} sx={{ margin: '0px auto 2rem auto' }} justifyContent='center'>
       <Grid container>
-        <Grid item xs={12} sx={{ padding: { xs: '0rem', sm: '0rem', md: '1rem'}}}>
+        <Grid item xs={12} sx={{ padding: { xs: '0rem', sm: '0rem', md: '0rem 1rem'}}}>
             {loading &&
               <Grid sx={{ zIndex: 1401, display: 'flex', position: 'fixed', justifyContent: 'center', alignItems: 'center', background: '#11111140', backdropFilter:'blur(12px)', top: '0px', bottom: '0px', left:'0px', right: '0px'}}>
                 <Grid sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', background: '#fff', justifyContent: 'center',  maxWidth: '300px', height: '200px', border: '1px solid #ccc', textAlign: 'center', borderRadius: '8px', boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.15', padding: '0rem 2rem',}}>
@@ -119,16 +125,7 @@ const StepsContainer: FC = () => {
               </Grid>
             </Grid>
             }
-
-
-          {!loading && <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ mt: '1rem', textAlign: "center", fontWeight: 500, mb: '2rem' }}
-            >
-              Please start by selecting from the below options for your property...
-            </Typography>}
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs={12} sx={{ mb: '1rem'}}>
                 <FormControl color='primary' fullWidth size='small' sx={{ maxHeight: '40px', padding: '0rem' }}>
                   <InputLabel>Select property</InputLabel>
@@ -203,9 +200,12 @@ const StepsContainer: FC = () => {
               <Grid item xs={12} sx={{ textAlign: 'center' }}>
                 <Button disabled={!buttonEnabled || loading} onClick={() => setLoading(true)} variant='contained'  sx={{ margin: '0px auto', fontWeight: 500, textTransform: 'none' }}> Submit </Button>
               </Grid>
-            </Grid>
+            </Grid>*/}
           </Grid>
         </Grid>
+
+
+        <div style={{ marginTop: '-1rem' }} data-paperform-id="i5uth4bp"></div>
 
       </Grid>
       <Grid item xs={12} sm={12} md={6}>
@@ -215,7 +215,8 @@ const StepsContainer: FC = () => {
         sx={{
           objectFit: "cover",
           width: "100%",
-          height: "80%",
+          height: "90%",
+          mt: { xs: 0, sm: 0, md: '.5rem' },
           borderRadius: 5,
         }}
       />
