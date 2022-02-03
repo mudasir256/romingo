@@ -25,65 +25,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
 import { saveSearch } from "../../store/searchReducer";
-
-const reviews = [
-  {
-    name: "Hannah S.",
-    location: "Sacramento, CA",
-    review: "Their customer service exceeded my expectations",
-  },
-  {
-    name: "Kendall M.",
-    location: "Austin, TX",
-    review: "So easy to use and they have beautiful pet-friendly hotels",
-  },
-  {
-    name: "Mindy S.",
-    location: "San Francisco, CA",
-    review:
-      "I saved $250 by booking through Romingo. Their rates were actually lower than the brand websites, plus there were no pet fees",
-  },
-  {
-    name: "Jamie J.",
-    location: "Los Angeles, CA",
-    review:
-      "Romingo had a dog bed, water bowls, and a cute tennis ball for my pup Midas when we arrived at our hotel",
-  },
-  {
-    name: "Kara C.",
-    location: "San Diego, CA",
-    review:
-      "My pup Archie had the time of his life when we visited Santa Monica. Life's a breeze with Romingo, and we paid ZERO pet fees",
-  },
-  {
-    name: "Cedric C.",
-    location: "Seattle, WS",
-    review: "The UI was extremely user friendly and easy to navigate",
-  },
-  {
-    name: "Eric S.",
-    location: "Portland, OR",
-    review: "Saved over $200 in hotel pet fees by booking on Romingo",
-  },
-  {
-    name: "Jake B.",
-    location: "Olympia, WA",
-    review:
-      "No pet fees, and they even had a little welcome basket for our golden retriever, Max. Romingo is the only way to go!",
-  },
-  {
-    name: "Alex W.",
-    location: "Lodi, CA",
-    review:
-      "I saved a lot of money and time by booking my trip to San Diego with Romingo",
-  },
-  {
-    name: "Luke W.",
-    location: "San Francisco, CA",
-    review:
-      "Finding hotels that will take our friendly pitbull Zoey has always been difficult. When we booked with Romingo, Zoey was welcomed and we had a great time",
-  },
-];
+import reviews from "./reviews";
+import nearby from "./cities";
+import featured from "./featured";
 
 interface Props {
   sx?: CSSObject;
@@ -121,85 +65,15 @@ interface Props {
   };
 }
 
-const NearCities = [
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/sf-hero-sm.jpeg",
-    city: "San Francisco",
-    state: "California",
-    route: "/san-francisco",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/la-hero-sm.jpeg",
-    city: "Los Angeles",
-    state: "California",
-    route: "/los-angeles",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/sd-hero-sm.jpeg",
-    city: "San Diego",
-    state: "California",
-    route: "/san-diego",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/oc-hero-sm.jpeg",
-    city: "Orange County",
-    state: "California",
-    route: "/orange-county",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero-sm.jpeg",
-    city: "Palm Springs",
-    state: "California",
-    route: "/palm-springs",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/front-end/sb-hero-sm.jpeg",
-    city: "Santa Barbara",
-    state: "California",
-    route: "/santa-barbara",
-  },
-];
-
-const FeatureHotels = [
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P508-Exterior-Marina.4x3.webp",
-    name: "Manchester Grand Hyatt",
-    city: "San Diego, CA",
-    cityId: "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
-    description:
-      "Explore Southern California’s vibrant culture and natural beauty from our waterfront hotel in downtown San Diego. ",
-    id: "fe1300a4-a06f-4347-8d7f-f271b3657ba9",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Hilton%20Union%20Square/Exterior%201.jpg",
-    name: "Hilton Union Square",
-    city: "San Franciso, CA",
-    cityId: "82145909-13b4-4aab-be20-e0db474021c1",
-    description:
-      "Our hotel is steps from the Curran and ACT theaters and just two blocks from Union Square and Westfield shopping center.",
-    id: "ba772c6c-7fae-492a-85c0-6232eff50852",
-  },
-  {
-    img: "https://storage.googleapis.com/romingo-development-public/images/Marina%20del%20Rey/marinadelrey-gallery-02-5ee3cef09b03e.jpeg",
-    name: "Marina Del Rey Hotel",
-    city: "Los Angeles, CA",
-    cityId: "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
-    description:
-      "Welcome to picturesque Marina del Rey—Enjoy a dip in the pool, then dine over calming waterfront views—front and center for that West Coast sunset. ",
-    id: "862ad750-83c0-4260-8f20-91db6d8b6db3",
-  },
-];
-
 const HomePage: FC<Props> = ({
-  nearCities = NearCities,
-  featureHotels = FeatureHotels,
+  nearCities = nearby,
+  featureHotels = featured,
 }) => {
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
-  const matches = useMediaQuery("(max-width:800px)");
 
   useEffect(() => {
     window.Intercom("boot", {
