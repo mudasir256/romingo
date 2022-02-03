@@ -271,7 +271,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                         placement: "bottom-end",
                       }}
                       value={checkinDate || new Date()}
-                      onChange={(e: Date | null) => setCheckinDate(e)}
+                      onChange={(e: any) => setCheckinDate(e)}
                       renderInput={() => (
                         <BootstrapInput
                           onClick={(e) =>
