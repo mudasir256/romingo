@@ -1,7 +1,19 @@
 import React, { FC, useEffect, useState } from "react";
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled } from "@mui/material/styles";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { FormControl, CircularProgress, InputLabel, InputBase, Typography, Button, Grid, Container, Box, TextField, Divider } from '@mui/material'
+import {
+  FormControl,
+  CircularProgress,
+  InputLabel,
+  InputBase,
+  Typography,
+  Button,
+  Grid,
+  Container,
+  Box,
+  TextField,
+  Divider,
+} from "@mui/material";
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
 import BookingManageCard from "../../components/BookingManageCard";
@@ -10,8 +22,8 @@ import ScrollToTop from "../../components/ScrollToTop";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import { DateTime } from "luxon";
 import { Error } from "@mui/icons-material";
 
@@ -36,24 +48,24 @@ interface Props {
 }
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
+  "label + &": {
     marginTop: theme.spacing(3),
   },
-  '& .MuiInputBase-input': {
+  "& .MuiInputBase-input": {
     borderRadius: 4,
-    position: 'relative',
-    backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    border: '1px solid #ced4da',
+    position: "relative",
+    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+    border: "1px solid #ced4da",
     fontSize: 16,
-    width: '100%',
-    padding: '10px 12px',
+    width: "100%",
+    padding: "10px 12px",
     transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
+      "border-color",
+      "background-color",
+      "box-shadow",
     ]),
     // Use the system font instead of the default Roboto font.
-    '&:focus': {
+    "&:focus": {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
@@ -61,33 +73,33 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [confirmationNumber, setConfirmationNumber] = useState('')
-  const [dateRangeOpen, setDateRangeOpen] = useState(false)
-  const [checkinDate, setCheckinDate] = useState<any>(new Date())
-  const [anchorEl, setAnchorEl] = useState<any>(null)
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const buttonEnabled = ((firstName.length > 2) && (lastName.length > 2) && (confirmationNumber.length > 10))
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [confirmationNumber, setConfirmationNumber] = useState("");
+  const [dateRangeOpen, setDateRangeOpen] = useState(false);
+  const [checkinDate, setCheckinDate] = useState<any>(new Date());
+  const [anchorEl, setAnchorEl] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const buttonEnabled =
+    firstName.length > 2 &&
+    lastName.length > 2 &&
+    confirmationNumber.length > 10;
 
   useEffect(() => {
-    if (!anchorEl)
-      setDateRangeOpen(false);
-    else
-      setDateRangeOpen(true);
-  }, [anchorEl])
+    if (!anchorEl) setDateRangeOpen(false);
+    else setDateRangeOpen(true);
+  }, [anchorEl]);
 
   useEffect(() => {
     if (loading) {
       setTimeout(() => {
-        setSuccess(true)
-      }, 2500)
+        setSuccess(true);
+      }, 2500);
+    } else {
+      setSuccess(false);
     }
-    else {
-      setSuccess(false)
-    }
-  }, [loading])
+  }, [loading]);
 
   const startChat = () => {
     window.Intercom("boot", {
@@ -124,66 +136,127 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <hr style={{ margin: '1rem auto 0rem auto', display: 'block', border: '0px', height: '1px', width: '50%', background: '#ddd' }} />
+            <hr
+              style={{
+                margin: "1rem auto 0rem auto",
+                display: "block",
+                border: "0px",
+                height: "1px",
+                width: "50%",
+                background: "#ddd",
+              }}
+            />
           </Grid>
-          <Grid item xs={12} sm={12} md={6} sx={{ margin: '0px auto 2rem auto' }} justifyContent='center'>
-
-            {loading &&
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            sx={{ margin: "0px auto 2rem auto" }}
+            justifyContent="center"
+          >
+            {loading && (
               <Grid>
-                <Grid sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem 6rem 2rem 2rem', minWidth: '100%' }}>
-                  {success ? <>
-                    <Error sx={{ fontSize: '32px', color: '#9e0303' }} />
-                    <Typography variant="body1" color="#9e0303" sx={{ ml: '1rem', fontWeight: 500 }}>
-                      Reservation not found
-                    </Typography>
-                    </> :
+                <Grid
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "1rem 6rem 2rem 2rem",
+                    minWidth: "100%",
+                  }}
+                >
+                  {success ? (
                     <>
-                    <CircularProgress sx={{ fontSize: '16px', maxWidth: '32px', maxHeight: '32px' }} />
-                    <Typography variant="body1" color="text.secondary" sx={{ ml: '1rem', fontWeight: 500 }}>
-                      Finding your reservation...
-                    </Typography>
+                      <Error sx={{ fontSize: "32px", color: "#9e0303" }} />
+                      <Typography
+                        variant="body1"
+                        color="#9e0303"
+                        sx={{ ml: "1rem", fontWeight: 500 }}
+                      >
+                        Reservation not found
+                      </Typography>
                     </>
-                  }
+                  ) : (
+                    <>
+                      <CircularProgress
+                        sx={{
+                          fontSize: "16px",
+                          maxWidth: "32px",
+                          maxHeight: "32px",
+                        }}
+                      />
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ ml: "1rem", fontWeight: 500 }}
+                      >
+                        Finding your reservation...
+                      </Typography>
+                    </>
+                  )}
+                </Grid>
               </Grid>
-            </Grid>
-          }
+            )}
 
-
-          {!loading && <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ mt: '1rem', textAlign: "center", fontWeight: 500, mb: '2rem' }}
-            >
-              Have an existing reservation?
-            </Typography>}
+            {!loading && (
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{
+                  mt: "1rem",
+                  textAlign: "center",
+                  fontWeight: 500,
+                  mb: "2rem",
+                }}
+              >
+                Have an existing reservation?
+              </Typography>
+            )}
             <Grid container>
-              <Grid item xs={12} sx={{ mb: '1rem'}}>
+              <Grid item xs={12} sx={{ mb: "1rem" }}>
                 <FormControl variant="standard" fullWidth>
                   <InputLabel shrink htmlFor="bootstrap-input">
                     First Name / Given Name
                   </InputLabel>
-                  <BootstrapInput defaultValue="" onChange={e => setFirstName(e.target.value)} value={firstName} />
+                  <BootstrapInput
+                    defaultValue=""
+                    onChange={(e) => setFirstName(e.target.value)}
+                    value={firstName}
+                  />
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sx={{ mb: '1rem'}}>
+              <Grid item xs={12} sx={{ mb: "1rem" }}>
                 <FormControl variant="standard" fullWidth>
                   <InputLabel shrink htmlFor="bootstrap-input">
                     Last Name / Surname
                   </InputLabel>
-                  <BootstrapInput defaultValue="" onChange={e => setLastName(e.target.value)} value={lastName} />
+                  <BootstrapInput
+                    defaultValue=""
+                    onChange={(e) => setLastName(e.target.value)}
+                    value={lastName}
+                  />
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sx={{ mb: '1rem'}}>
+              <Grid item xs={12} sx={{ mb: "1rem" }}>
                 <FormControl variant="standard" fullWidth>
                   <InputLabel shrink htmlFor="bootstrap-input">
                     Confirmation Number
                   </InputLabel>
-                  <BootstrapInput defaultValue="" onChange={e => setConfirmationNumber(e.target.value)} value={confirmationNumber} />
+                  <BootstrapInput
+                    defaultValue=""
+                    onChange={(e) => setConfirmationNumber(e.target.value)}
+                    value={confirmationNumber}
+                  />
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} sx={{ mb: '1rem'}}>
-                <FormControl onClick={(e) => anchorEl ? setAnchorEl(null) : setAnchorEl(e.currentTarget) }  variant="standard" fullWidth sx={{ cursor: 'pointer' }}>
+              <Grid item xs={12} sx={{ mb: "1rem" }}>
+                <FormControl
+                  variant="standard"
+                  fullWidth
+                  sx={{ cursor: "pointer" }}
+                >
                   <InputLabel shrink htmlFor="bootstrap-input">
                     Check-in date
                   </InputLabel>
@@ -193,16 +266,41 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                       onClose={() => setDateRangeOpen(false)}
                       inputFormat="MMM dd"
                       disableMaskedInput={true}
-                      PopperProps={{ anchorEl: anchorEl, placement: 'bottom' }}
+                      PopperProps={{
+                        anchorEl: anchorEl,
+                        placement: "bottom-end",
+                      }}
                       value={checkinDate || new Date()}
-                      onChange={(e:any) => setCheckinDate(e)}
-                      renderInput={() => <BootstrapInput value={DateTime.fromJSDate(checkinDate).toFormat('MMM dd, yyyy')} />}
+                      onChange={(e: Date | null) => setCheckinDate(e)}
+                      renderInput={() => (
+                        <BootstrapInput
+                          onClick={(e) =>
+                            anchorEl
+                              ? setAnchorEl(null)
+                              : setAnchorEl(e.currentTarget)
+                          }
+                          value={DateTime.fromJSDate(checkinDate).toFormat(
+                            "MMM dd, yyyy"
+                          )}
+                        />
+                      )}
                     />
                   </LocalizationProvider>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                <Button disabled={!buttonEnabled || loading} onClick={() => setLoading(true)} variant='contained'  sx={{ margin: '0px auto', fontWeight: 500, textTransform: 'none' }}> Find Reservation </Button>
+              <Grid item xs={12} sx={{ textAlign: "center" }}>
+                <Button
+                  disabled={!buttonEnabled || loading}
+                  onClick={() => setLoading(true)}
+                  variant="contained"
+                  sx={{
+                    margin: "0px auto",
+                    fontWeight: 500,
+                    textTransform: "none",
+                  }}
+                >
+                  Find Reservation
+                </Button>
               </Grid>
             </Grid>
           </Grid>
@@ -224,7 +322,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               onClick={startChat}
               variant="contained"
               color="primary"
-              sx={{ fontWeight: 500, textTransform: 'none' }}
+              sx={{ fontWeight: 500, textTransform: "none" }}
             >
               Chat with Booking Support
             </Button>
