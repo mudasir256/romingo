@@ -183,7 +183,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               </Grid>
 
               <Grid item xs={12} sx={{ mb: '1rem'}}>
-                <FormControl onClick={(e) => anchorEl ? setAnchorEl(null) : setAnchorEl(e.currentTarget) }  variant="standard" fullWidth sx={{ cursor: 'pointer' }}>
+                <FormControl variant="standard" fullWidth sx={{ cursor: 'pointer' }}>
                   <InputLabel shrink htmlFor="bootstrap-input">
                     Check-in date
                   </InputLabel>
@@ -196,7 +196,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                       PopperProps={{ anchorEl: anchorEl, placement: 'bottom' }}
                       value={checkinDate || new Date()}
                       onChange={(e:any) => setCheckinDate(e)}
-                      renderInput={() => <BootstrapInput value={DateTime.fromJSDate(checkinDate).toFormat('MMM dd, yyyy')} />}
+                      renderInput={() => <BootstrapInput onClick={(e) => anchorEl ? setAnchorEl(null) : setAnchorEl(e.currentTarget) } value={DateTime.fromJSDate(checkinDate).toFormat('MMM dd, yyyy')} />}
                     />
                   </LocalizationProvider>
                 </FormControl>
