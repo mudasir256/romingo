@@ -165,7 +165,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
         </Grid>
         <Grid item xs={12}>
           <Link href='#rooms' sx={{ textDecoration: 'none' }}>
-            <Button disableElevation fullWidth  variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mb: '0rem', display: { md: 'flex', xs: 'none' }}}> Reserve a Room </Button>
+            <Button disableElevation fullWidth  variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mb: '0rem', display: { md: 'flex', xs: 'none' }}}> Select a room </Button>
           </Link>
         </Grid>
         {/* <Grid item xs={12}>

@@ -182,7 +182,7 @@ const Header: FC<Props> = ({ sx }) => {
                 lg: "-5rem auto .75rem 8rem",
                 xl: "0rem auto 0rem 10rem",
               },
-              fontFamily: "Montserrat",
+              fontFamily: "Roboto",
               fontWeight: 700,
               fontSize: { xs: "2.25rem", md: "4.125rem" },
               textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
@@ -468,7 +468,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       }
                     }}
                     sx={{
-                      fontFamily: "Montserrat",
+                      fontFamily: "Roboto",
                       width: "90%",
                       margin: "0px auto",
                       fontSize: "14px",
@@ -497,7 +497,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             padding: "0px",
                             fontSize: "14px",
                             fontWeight: 600,
-                            fontFamily: "Montserrat",
+                            fontFamily: "Roboto",
                             cursor: "pointer",
                             color: "#666",
                             border: "none",
@@ -571,7 +571,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       <Typography
                         sx={{
                           color: "#666",
-                          fontFamily: "Montserrat",
+                          fontFamily: "Roboto",
                           mb: "-.125rem",
                           textTransform: "none",
                           fontWeight: 600,
@@ -583,7 +583,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       <Typography
                         sx={{
                           color: "#666",
-                          fontFamily: "Montserrat",
+                          fontFamily: "Roboto",
                           textTransform: "none",
                           fontWeight: 600,
                           fontSize: { xs: "14px" },
@@ -602,7 +602,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       sx={{
                         alignItems: "center",
                         fontWeight: 800,
-                        fontFamily: "Montserrat",
+                        fontFamily: "Roboto",
                         display: "flex",
                         justifyContent: "center",
                         color: "#aaa",
@@ -615,7 +615,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       <Typography
                         sx={{
                           color: "#666",
-                          fontFamily: "Montserrat",
+                          fontFamily: "Roboto",
                           mb: "-.125rem",
                           textTransform: "none",
                           fontWeight: 600,
@@ -627,7 +627,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       <Typography
                         sx={{
                           color: "#666",
-                          fontFamily: "Montserrat",
+                          fontFamily: "Roboto",
                           textTransform: "none",
                           fontWeight: 600,
                           fontSize: { xs: "14px" },
@@ -755,10 +755,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       input: {
                         padding: "0px",
                         fontSize: "14px",
-                        fontWeight: 600,
-                        fontFamily: "Montserrat",
+                        fontWeight: 500,
+                        fontFamily: "Roboto",
                         cursor: "pointer",
-                        color: "#666",
+                        color: "#444",
                         border: "none",
                       },
                     }}
@@ -832,7 +832,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             <Typography
                               sx={{
                                 color: "#666",
-                                fontFamily: "Montserrat",
+                                fontFamily: "Roboto",
                                 mb: "-.125rem",
                                 textTransform: "none",
                                 fontWeight: 600,
@@ -844,7 +844,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             <Typography
                               sx={{
                                 color: "#666",
-                                fontFamily: "Montserrat",
+                                fontFamily: "Roboto",
                                 textTransform: "none",
                                 fontWeight: 600,
                                 fontSize: { xs: "14px" },
@@ -863,7 +863,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             sx={{
                               alignItems: "center",
                               fontWeight: 800,
-                              fontFamily: "Montserrat",
+                              fontFamily: "Roboto",
                               display: "flex",
                               justifyContent: "flex-start",
                               color: "#aaa",
@@ -876,7 +876,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             <Typography
                               sx={{
                                 color: "#666",
-                                fontFamily: "Montserrat",
+                                fontFamily: "Roboto",
                                 mb: "-.125rem",
                                 textTransform: "none",
                                 fontWeight: 600,
@@ -888,7 +888,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             <Typography
                               sx={{
                                 color: "#666",
-                                fontFamily: "Montserrat",
+                                fontFamily: "Roboto",
                                 textTransform: "none",
                                 fontWeight: 600,
                                 fontSize: { xs: "14px" },
@@ -958,7 +958,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     alignItems: "center",
                     padding: ".25rem 0rem",
                     justifyContent: "center",
-                    fontFamily: "Montserrat",
+                    fontFamily: "Roboto",
                     fontWeight: 600,
                     borderRadius: "6px",
                     textTransform: "none",
@@ -991,7 +991,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   alignItems: "center",
                   padding: ".25rem 0rem",
                   justifyContent: "center",
-                  fontFamily: "Montserrat",
+                  fontFamily: "Roboto",
                   fontWeight: 600,
                   borderRadius: "6px",
                   textTransform: "none",
@@ -1006,7 +1006,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             <Typography
               sx={{
                 textAlign: "center",
-                fontFamily: "Montserrat",
+                fontFamily: "Roboto",
                 fontWeight: 500,
                 fontSize: "14px",
                 color: "#888",
@@ -1128,7 +1128,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               <Typography
                 sx={{
                   color: "#666",
-                  fontFamily: "Montserrat",
+                  fontFamily: "Roboto",
                   mb: "-.125rem",
                   textTransform: "none",
                   fontWeight: 600,
@@ -1140,7 +1140,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               <Typography
                 sx={{
                   color: "#666",
-                  fontFamily: "Montserrat",
+                  fontFamily: "Roboto",
                   textTransform: "none",
                   fontWeight: 600,
                   fontSize: { xs: "14px" },
@@ -1184,7 +1184,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             sx={{
               color: "#fff",
               textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
-              fontFamily: "Montserrat",
+              fontFamily: "Roboto",
               textTransform: "none",
               fontWeight: 600,
               fontSize: { xs: "14px", textDecoration: "underline" },

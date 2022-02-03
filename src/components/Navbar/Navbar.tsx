@@ -236,21 +236,21 @@ const Navbar: FC<Props> = ({ sx }) => {
                 href="/list-your-property"
                 sx={{
                   border: "2px solid #03989E",
-                  padding: ".5rem 1rem",
+                  padding: ".25rem .5rem",
                   borderRadius: "6px",
                   mr: ".75rem",
                   textDecoration: "none",
                   fontWeight: 600,
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": { background: "#03989E", color: "#fff" },
                   color: "#03989E",
                 }}
               >
-                <HomeWork sx={{ mr: "1rem", fontSize: "20px" }} />
+                <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} />
                 <Typography
                   variant="body2"
-                  sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
+                  sx={{ fontWeight: 600, fontFamily: "Montserrat",
+                  color: "#03989E", }}
                 >
                   List Your Property
                 </Typography>
@@ -318,6 +318,32 @@ const Navbar: FC<Props> = ({ sx }) => {
             </Menu>
 
             <Hidden lgUp>
+
+              <Typography
+                onClick={() => history.push("/reservation/manage")}
+                variant="body2"
+                sx={{
+                  cursor: "pointer",
+                  mr: "auto",
+                  color: "#222",
+                  fontWeight: 600,
+                  fontFamily: "Montserrat",
+                }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "1.5px solid #222 ",
+                    borderRadius: "6px",
+                    padding: " .125rem .25rem",
+                  }}
+                >
+                  <Work sx={{ fontSize: "12px", mr: ".25rem" }} />
+                  My trips
+                </span>
+              </Typography>
+
               <Box
                 component="img"
                 src={
@@ -329,34 +355,11 @@ const Navbar: FC<Props> = ({ sx }) => {
                 }}
                 draggable="false"
                 sx={{
+                  mr: "auto",
                   maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
-              <Typography
-                onClick={() => history.push("/reservation/manage")}
-                variant="body2"
-                sx={{
-                  cursor: "pointer",
-                  ml: "auto",
-                  mr: "1rem",
-                  color: "#888",
-                  fontWeight: 600,
-                  fontFamily: "Montserrat",
-                }}
-              >
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    border: "2px solid #888 ",
-                    borderRadius: "6px",
-                    padding: " .25rem .5rem",
-                  }}
-                >
-                  <Work sx={{ fontSize: "14px", mr: ".25rem" }} />
-                  My trips
-                </span>
-              </Typography>
+
               <Link
                 onClick={(e) => {
                   setMenuOpen(!menuOpen);

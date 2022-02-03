@@ -218,7 +218,7 @@ const HomePage: FC<Props> = ({
                 margin: "0px auto",
               }}
             >
-              Explore a Romingo City
+              Destinations
             </Typography>
             <Typography
               variant="h5"
@@ -355,7 +355,7 @@ const HomePage: FC<Props> = ({
                 variant="h4"
                 sx={{ color: "primary.main", textAlign: "center" }}
               >
-                Your travel experts
+                Romingo
               </Typography>
               <Typography
                 variant="h5"
@@ -456,7 +456,7 @@ const HomePage: FC<Props> = ({
                 mr: "auto",
               }}
             >
-              Stay at a Romingo Favorite
+              Featured
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -803,7 +803,7 @@ const CustomerTestimonials = () => {
                 mb: matches ? "3rem" : lg ? "3rem" : "3rem",
               }}
             >
-              What our travelers are saying...
+              Reviews
             </Typography>
           </Grid>
           <Grid
@@ -1195,13 +1195,13 @@ const HotelCarousel = () => {
             maxWidth: "90%",
           }}
         >
-          Proudly Partnered With
+          Partnerships
         </Typography>
         <Typography
           variant="h5"
           sx={{ color: "text.secondary", textAlign: "center", mb: 5 }}
         >
-          Your Favorite Hotels
+          With your favorite hotels
         </Typography>
       </Grid>
 

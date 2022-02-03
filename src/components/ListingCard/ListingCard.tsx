@@ -1,6 +1,5 @@
 import { FC } from "react"
-import Check from "@mui/icons-material/Check"
-import { Star } from '@mui/icons-material'
+import { Check } from '@mui/icons-material'
 import { Grid, Chip, Link, Box, Stack, Typography } from '@mui/material'
 import { useHistory } from "react-router-dom"
 import ImageSlider from "../ImageSlider"
@@ -106,15 +105,15 @@ const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addr
 
                   <Box sx={{ pb: { xs: '0rem', sm: '0rem'} , pt: { xs: '.5rem', sm: '1rem'}, mt: { md: '0px', sm: '1rem'}, ml: { sm: '0px', xs: '0px'} }}>
                     <Box sx={{ mb: 1, display: 'flex' }}>
-                      <MoneyOffRounded sx={{ fontSize: 15, color: "#03989E", mt: '.25rem', mr: '.5rem', }}/>
-                      <Typography variant="body1" color="primary" sx={{fontWeight: 400, pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
+                      <Check sx={{ fontSize: 15, color: "#5b8d3e", mt: '.25rem', mr: '.5rem', }}/>
+                      <Typography variant="body1" sx={{fontWeight: 600, pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontFamily: 'Roboto', fontSize: '80%', color: '#5b8d3e' }}>
                         No hidden fees
                       </Typography>
                     </Box>
                     <Box sx={{ mt: 1, mb: 'auto', display: 'flex' }}>
-                      <VerifiedUser sx={{ fontSize: 15, color: "#03989E", mt: '.25rem', mr: '.5rem', }}/>
-                      <Typography variant="body1" color="primary" sx={{ fontWeight: 400, pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", }}>
-                      Free cancellation
+                      <Check sx={{ fontSize: 15, color: "#5b8d3e", mt: '.25rem', mr: '.5rem', }}/>
+                      <Typography variant="body1" sx={{ fontWeight: 600, pr: 0.15, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", fontFamily: 'Roboto', fontSize: '80%', color: '#5b8d3e' }}>
+                        Fully refundable, free cancellation
                       </Typography>
                     </Box>
 

@@ -157,27 +157,13 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
           >
             {loading && (
               <Grid>
-                <Grid
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "1rem 6rem 2rem 2rem",
-                    minWidth: "100%",
-                  }}
-                >
-                  {success ? (
-                    <>
-                      <Error sx={{ fontSize: "32px", color: "#9e0303" }} />
-                      <Typography
-                        variant="body1"
-                        color="#9e0303"
-                        sx={{ ml: "1rem", fontWeight: 500 }}
-                      >
-                        Reservation not found
-                      </Typography>
-                    </>
-                  ) : (
+                <Grid sx={{ display: 'flex', flexDirection: success ? 'column' : 'row', alignItems: 'center', justifyContent: 'space-between', padding: success ? '1rem 2rem' : '1rem 6rem 2rem 2rem', minWidth: '100%' }}>
+                  {success ? <>
+                    <Error sx={{ fontSize: '32px', color: '#9e0303' }} />
+                    <Typography variant="body1" color="#9e0303" sx={{ textAlign: 'center', mt: '1rem', fontWeight: 500, fontSize: '16px' }}>
+                      Reservation not found. Please contact our support staff for further assistance
+                    </Typography>
+                    </> :
                     <>
                       <CircularProgress
                         sx={{
@@ -194,7 +180,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                         Finding your reservation...
                       </Typography>
                     </>
-                  )}
+                  }
                 </Grid>
               </Grid>
             )}

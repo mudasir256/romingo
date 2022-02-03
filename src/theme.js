@@ -53,11 +53,12 @@ export const theme = {
     },
     body1: {
       fontFamily: "Roboto",
-      fontWeight: 300,
+      fontWeight: 500,
+      color: '#000000c7'
     },
     body2: {
       fontFamily: "Roboto",
-      fontWeight: 300,
+      fontWeight: 500,
     },
     subtitle1: {
       fontFamily: "Roboto",

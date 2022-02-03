@@ -214,11 +214,19 @@ const About: FC = () => {
               Romingo!
             </Typography>
             <Typography
-              variant="h5"
+              variant="h6"
               color="text.secondary"
-              sx={{ mt: 2, ml: 4, textAlign: "left" }}
+              sx={{ mt: 2, ml: 0, textAlign: "left", fontWeight: 600 }}
             >
-              - Romingo&apos;s CEO, Zach Somers
+              Zach Somers<i style={{ fontSize: '14px', marginTop: '.25rem', marginBottom: '-.25rem', display: 'block' }}>Founder & CEO</i>
+              <span style={{ fontSize: '14px' }}>Romingo</span>
+            </Typography>
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{ mt: 2, ml: 0, textAlign: "left", fontWeight: 600, fontStyle: 'italic', fontSize: '14px' }}
+            >
+              We would love to hear from you! Feel free to contact us at <a style={{color: '#03989e'}} href="mailto:hello@romingo.com">hello@romingo.com</a> for partnership, press, and any other inquiries.
             </Typography>
           </Grid>
         </Grid>

@@ -657,7 +657,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   }}
                 >
                   {" "}
-                  Reserve a Room{" "}
+                  Select a room{" "}
                 </Button>
               </Link>
               <Grid container spacing={2} sx={{ mt: 0 }}>
