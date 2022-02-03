@@ -496,7 +496,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           input: {
                             padding: "0px",
                             fontSize: "14px",
-                            fontWeight: 600,
+                            fontWeight: 500,
                             fontFamily: "Roboto",
                             cursor: "pointer",
                             color: "#666",
@@ -574,7 +574,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           fontFamily: "Roboto",
                           mb: "-.125rem",
                           textTransform: "none",
-                          fontWeight: 600,
+                          fontWeight: 500,
                           fontSize: { xs: "12px" },
                         }}
                       >
@@ -585,7 +585,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           color: "#666",
                           fontFamily: "Roboto",
                           textTransform: "none",
-                          fontWeight: 600,
+                          fontWeight: 500,
                           fontSize: { xs: "14px" },
                         }}
                       >
@@ -618,7 +618,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           fontFamily: "Roboto",
                           mb: "-.125rem",
                           textTransform: "none",
-                          fontWeight: 600,
+                          fontWeight: 500,
                           fontSize: { xs: "12px" },
                         }}
                       >
@@ -629,7 +629,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           color: "#666",
                           fontFamily: "Roboto",
                           textTransform: "none",
-                          fontWeight: 600,
+                          fontWeight: 500,
                           fontSize: { xs: "14px" },
                         }}
                       >
@@ -669,7 +669,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   justifyContent: "center",
                   mt: ".75rem",
                   fontFamily: "Montserrat",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   borderRadius: "6px",
                   textTransform: "none",
                   pointerEvents: "auto",
@@ -835,7 +835,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 fontFamily: "Roboto",
                                 mb: "-.125rem",
                                 textTransform: "none",
-                                fontWeight: 600,
+                                fontWeight: 500,
                                 fontSize: { xs: "10px" },
                               }}
                             >
@@ -846,7 +846,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 color: "#666",
                                 fontFamily: "Roboto",
                                 textTransform: "none",
-                                fontWeight: 600,
+                                fontWeight: 500,
                                 fontSize: { xs: "14px" },
                               }}
                             >
@@ -879,7 +879,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 fontFamily: "Roboto",
                                 mb: "-.125rem",
                                 textTransform: "none",
-                                fontWeight: 600,
+                                fontWeight: 500,
                                 fontSize: { xs: "10px" },
                               }}
                             >
@@ -890,7 +890,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 color: "#666",
                                 fontFamily: "Roboto",
                                 textTransform: "none",
-                                fontWeight: 600,
+                                fontWeight: 500,
                                 fontSize: { xs: "14px" },
                               }}
                             >
@@ -959,7 +959,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     padding: ".25rem 0rem",
                     justifyContent: "center",
                     fontFamily: "Roboto",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     borderRadius: "6px",
                     textTransform: "none",
                   }}
@@ -992,7 +992,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   padding: ".25rem 0rem",
                   justifyContent: "center",
                   fontFamily: "Roboto",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   borderRadius: "6px",
                   textTransform: "none",
                 }}
@@ -1028,7 +1028,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   textTransform: "none",
                   color: "#03989E",
                   borderRadius: "24px",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   cursor: "pointer",
                   "&:hover": { background: "#fff" },
                 }}
@@ -1131,7 +1131,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                   fontFamily: "Roboto",
                   mb: "-.125rem",
                   textTransform: "none",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: { xs: "10px" },
                 }}
               >
@@ -1142,7 +1142,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                   color: "#666",
                   fontFamily: "Roboto",
                   textTransform: "none",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: { xs: "14px" },
                 }}
               >
@@ -1186,7 +1186,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
               fontFamily: "Roboto",
               textTransform: "none",
-              fontWeight: 600,
+              fontWeight: 500,
               fontSize: { xs: "14px", textDecoration: "underline" },
             }}
           >
