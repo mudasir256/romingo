@@ -1209,7 +1209,7 @@ const CustomerTestimonials = () => {
                           justifyContent: "center",
                         }}
                       >
-                        {review.review}
+                        &quot;{review.review}&quot;
                         <br />
                       </Typography>
                     </Grid>
