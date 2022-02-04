@@ -79,7 +79,6 @@ const StepsContainer: FC = () => {
     const script = document.createElement('script');
     script.src = "https://paperform.co/__embed.min.js"
     document.body.appendChild(script)
-
   }, [])
 
     return <Grid container spacing={2}>

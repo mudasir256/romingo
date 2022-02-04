@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Container, Divider, Grid, Typography, Link } from "@mui/material";
 import { PopupButton } from "@typeform/embed-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 import ScrollToTop from "../../components/ScrollToTop";
+import { ChatBubble, Email, HomeWork, Send } from "@mui/icons-material";
 
 const Contact: FC = () => {
   const startChat = () => {
@@ -16,6 +17,13 @@ const Contact: FC = () => {
     window.Intercom("update");
     window.Intercom("show");
   };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://paperform.co/__embed.min.js"
+    document.body.appendChild(script)
+  }, [])
+
   return (
     <>
       <ScrollToTop />
@@ -23,17 +31,7 @@ const Contact: FC = () => {
 
       <Container maxWidth="md" sx={{ mt: 10 }}>
         <Box sx={{ textAlign: "center" }}>
-          <Box
-            component="img"
-            src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
-            alt={"Romingo Tennis Ball"}
-            sx={{
-              objectFit: "cover",
-              width: "100%",
-              height: "350px",
-              borderRadius: 5,
-            }}
-          />
+
           <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
             Contact Us
           </Typography>
@@ -66,13 +64,14 @@ const Contact: FC = () => {
                 reservation, please select “email us” to get in touch with us.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8 }}>
+            <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
               <Link href="mailto:hello@romingo.com" target="_blank">
                 <Typography
                   variant="h5"
                   color="primary"
-                  sx={{ textAlign: "center" }}
-                >
+                  sx={{ mb: '.5rem', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                  >
+                  <Email sx={{ mb: '1rem' }} />
                   Email Us
                 </Typography>
               </Link>
@@ -90,33 +89,22 @@ const Contact: FC = () => {
               md={4}
               sx={{ mt: 4, mb: 8, textAlign: "center" }}
             >
-              <PopupButton
-                id="zdVrRtxT"
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: "0",
-                  cursor: "pointer",
-                }}
-              >
-                <Link>
-                  <Typography
-                    variant="h5"
-                    color="primary"
-                    sx={{
-                      textAlign: "center",
-                    }}
-                  >
-                    List Your Property
-                  </Typography>
-                </Link>
-              </PopupButton>
+              <Link onClick={() => window.scrollTo({ top: 500, left: 0, behavior: 'smooth'})}>
+                <Typography
+                  variant="h5"
+                  color="primary"
+                  sx={{ mb: '.5rem', cursor: 'pointer', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Send sx={{ mb: '1rem' }} />
+                  Contact us
+                </Typography>
+              </Link>
               <Typography
                 variant="body1"
                 color="text.secondary"
                 sx={{ textAlign: "center" }}
               >
-                Want to Partner with Romingo?
+                Please complete the form below
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8 }}>
@@ -124,8 +112,8 @@ const Contact: FC = () => {
                 <Typography
                   variant="h5"
                   color="primary"
-                  sx={{ textAlign: "center" }}
-                >
+                  sx={{ mb: '.5rem', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                  > <ChatBubble sx={{ mb: '.5rem' }} />
                   Start a Chat
                 </Typography>
               </Link>
@@ -137,35 +125,21 @@ const Contact: FC = () => {
                 During business hours
               </Typography>
             </Grid>
+            <Grid item xs={12}>
+              <div data-paperform-id="5rnusmd7"></div>
+            </Grid>
             <Hidden mdDown>
-              <Grid item xs={12} md={6}>
-                <Box
-                  component="img"
-                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/lake-dog.jpeg"
-                  alt={"Dog on Lake"}
-                  sx={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "250px",
-                    boxShadow: 4,
-                    borderRadius: 3,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Box
-                  component="img"
-                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/kayak-dog.jpeg"
-                  alt={"Kayak Dog"}
-                  sx={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "250px",
-                    boxShadow: 4,
-                    borderRadius: 3,
-                  }}
-                />
-              </Grid>
+              <Box
+              component="img"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
+              alt={"Romingo Tennis Ball"}
+              sx={{
+                objectFit: "cover",
+                width: "100%",
+                height: "350px",
+                borderRadius: 5,
+              }}
+            />
             </Hidden>
           </Grid>
         </>
