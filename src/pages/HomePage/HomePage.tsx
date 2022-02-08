@@ -127,7 +127,7 @@ const HomePage: FC<Props> = ({
 
       <Box>
         <Container>
-          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 4, pb: 6 }}>
+          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 6, pb: 6 }}>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
               <Box
                 component="img"
@@ -380,7 +380,7 @@ const HomePage: FC<Props> = ({
               <Grid container spacing={{ sm: 3, md: 5 }}>
                 <Grid item xs={12} sm={6}>
                   <Box sx={{ height: "100%", display: "flex" }}>
-                    <Box sx={{ margin: "auto 0", padding: "10px" }}>
+                    <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
                       <Typography
                         variant="body1"
                         color="text.secondary"
@@ -394,13 +394,13 @@ const HomePage: FC<Props> = ({
                       >
                         Ready to get away? When you plan your next trip with
                         Romingo you&lsquo;ll receive:
-                        <ListItem sx={{ mt: '1rem', fontSize: '16px' }}>
+                        <ListItem sx={{ mt: '1rem', fontSize: '20px' }}>
                           <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} /> The best deals on rates
                         </ListItem>
-                        <ListItem sx={{ fontSize: '16px' }}>
+                        <ListItem sx={{ fontSize: '20px' }}>
                           <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} />  Zero pet fees for up to 2 pets, weighing 75 lbs. each
                         </ListItem>
-                        <ListItem sx={{ fontSize: '16px' }}>
+                        <ListItem sx={{ fontSize: '20px' }}>
                           <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} />  Pet beds, bowls, and treats upon arrival
                         </ListItem>
                       </Typography>
@@ -1230,7 +1230,8 @@ const HotelCarousel = () => {
     <Box
       sx={{
         backgroundColor: "white",
-        py: 6,
+        pt: 6,
+        pb: 6,
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
