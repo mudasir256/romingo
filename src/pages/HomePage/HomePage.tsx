@@ -539,7 +539,7 @@ const HomePage: FC<Props> = ({
                             sx={{
                               color: "text.secondary",
                               textAlign: "center",
-                              px: 2,
+                              px: 3,
                               pb: 2,
                               pt: "1rem",
                               fontWeight: 400,
