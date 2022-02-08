@@ -39,6 +39,8 @@ import {
   Pets,
   LiveHelp,
   PushPin,
+  WorkRounded,
+  HomeWorkRounded,
 } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -373,7 +375,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     padding: " .125rem .25rem",
                   }}
                 >
-                  <Work sx={{ fontSize: "16px", mr: ".25rem" }} />
+                  <WorkRounded sx={{ fontSize: "16px", mr: ".25rem" }} />
                 </span>
               </Typography>
               <a
@@ -395,7 +397,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     padding: " .125rem .25rem",
                   }}
                 >
-                  <HomeWork sx={{ fontSize: "16px", mr: ".25rem" }} />
+                  <HomeWorkRounded sx={{ fontSize: "16px", mr: ".25rem" }} />
                 </span>
               </a>
               <Box
