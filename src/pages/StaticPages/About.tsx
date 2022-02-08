@@ -80,7 +80,7 @@ const About: FC = () => {
                 alignItems: "center",
               }}
             >
-              <Grid item xs={12} md={6}>
+              <Grid item xs={6} md={6}>
                   <Box
                     component="img"
                     src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie8.jpeg"
@@ -92,9 +92,7 @@ const About: FC = () => {
                     }}
                   />
               </Grid>
-              <Hidden mdDown>
-                <Grid item xs={12} md={6}>
-
+              <Grid item xs={6} md={6}>
                 <Box
                   component="img"
                   src="https://storage.googleapis.com/romingo-development-public/images/front-end/jonathan_zach_maddie.jpeg"
@@ -105,9 +103,7 @@ const About: FC = () => {
                     borderRadius: 5,
                   }}
                 />
-
-                </Grid>
-              </Hidden>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item>
@@ -240,7 +236,7 @@ const About: FC = () => {
             mb: '2rem'
           }}
         >
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6} md={6}>
             <Box
               component="img"
               src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/IMG_0074%20(1).JPG"
@@ -252,22 +248,18 @@ const About: FC = () => {
               }}
             />
           </Grid>
-          <Hidden mdDown>
-            <Grid item xs={12} md={6}>
-
-            <Box
-              component="img"
-              src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/Maddie_Cream%20(1).jpeg"
-              alt={"Zach, Jonathan, and Maddie"}
-              sx={{
-                objectFit: "cover",
-                width: "100%",
-                borderRadius: 5,
-              }}
-            />
-
+            <Grid item xs={6} md={6}>
+              <Box
+                component="img"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/Maddie_Cream%20(1).jpeg"
+                alt={"Zach, Jonathan, and Maddie"}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  borderRadius: 5,
+                }}
+              />
             </Grid>
-          </Hidden>
         </Grid>
       </Container>
       <Footer />
