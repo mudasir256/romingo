@@ -204,6 +204,8 @@ const HomePage: FC<Props> = ({
         sx={{
           background: '#EDF9F9bf',
           py: 6,
+          borderTop: '1px solid #03989E1A',
+          borderBottom: '1px solid #03989E1A',
           backgroundPosition: "center center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -331,6 +333,8 @@ const HomePage: FC<Props> = ({
           "&::before": {
             content: '""',
             background: '#EDF9F9bf',
+            borderTop: '1px solid #03989E1A',
+            borderBottom: '1px solid #03989E1A',
             opacity: 1,
             backgroundSize: "cover",
             position: "absolute",
@@ -388,7 +392,7 @@ const HomePage: FC<Props> = ({
                           textAlign: "justify",
                         }}
                       >
-                        Ready to getaway? When you plan your next trip with
+                        Ready to get away? When you plan your next trip with
                         Romingo you&lsquo;ll receive:
                         <ListItem sx={{ mt: '1rem', fontSize: '16px' }}>
                           <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} /> The best deals on rates
@@ -437,6 +441,8 @@ const HomePage: FC<Props> = ({
           py: 6,
           backgroundPosition: "center center",
           backgroundSize: "cover",
+          borderTop: '1px solid #03989E1A',
+          borderBottom: '1px solid #03989E1A',
           backgroundRepeat: "no-repeat",
           width: "100%",
           background: '#EDF9F9bf',
@@ -467,14 +473,14 @@ const HomePage: FC<Props> = ({
                 gridAutoFlow: { xs: "column" },
                 overflow: "auto hidden",
                 pb: 4,
-                px: 4,
+                px: 2,
                 scrollSnapType: "x",
               }}
             >
               {featureHotels.map((hotel, key) => {
                 return (
                   <Grid item xs={12} lg={4} key={key}>
-                    <Box sx={{ minWidth: "300px", px: 3 }}>
+                    <Box sx={{ minWidth: "325px", px: 3 }}>
                       <Link
                         onClick={() => toFeatured(hotel.id, hotel.cityId)}
                         href="#"
@@ -788,7 +794,7 @@ const CustomerTestimonials = () => {
             justifyContent: "center",
           },
           background: { xs: "#fff", sm: "#fff", md: "#fff" },
-          padding: "2rem 0rem 4rem 0rem ",
+          padding: "0rem 0rem 4rem 0rem ",
           borderRadius: "6px",
         }}
       >
@@ -925,7 +931,7 @@ const CustomerTestimonials = () => {
                   lg: "calc(100vw - 500px)",
                   xl: "calc(100vw - 1000px)",
                 },
-                minHeight: { xs: "400px", sm: "450px", md: "375px" },
+                minHeight: { xs: "450px", sm: "450px", md: "375px" },
                 overflow: "hidden",
               },
               "& .slide": { display: { xs: "flex", sm: "flex", md: "flex" } },
