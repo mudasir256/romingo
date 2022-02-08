@@ -375,7 +375,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     padding: " .125rem .25rem",
                   }}
                 >
-                  <WorkRounded sx={{ fontSize: "16px", mr: ".25rem" }} />
+                  <WorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
                 </span>
               </Typography>
               <a
@@ -397,7 +397,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     padding: " .125rem .25rem",
                   }}
                 >
-                  <HomeWorkRounded sx={{ fontSize: "16px", mr: ".25rem" }} />
+                  <HomeWorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
                 </span>
               </a>
               <Box
