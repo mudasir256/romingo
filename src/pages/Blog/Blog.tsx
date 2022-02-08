@@ -124,7 +124,7 @@ const Blog: FC = () => {
         </Typography>
         <Divider variant="middle" light sx={{ mt: 2, mb: 2 }}>
           <Typography variant="body1" color="text.secondary">
-            Treats For Dog-Friendly Travel
+            Pet-friendly travel treats
           </Typography>
         </Divider>
         {tagNames && (

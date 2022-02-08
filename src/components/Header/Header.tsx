@@ -574,8 +574,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           fontFamily: "Roboto",
                           mb: "-.125rem",
                           textTransform: "none",
-                          fontWeight: 500,
-                          fontSize: { xs: "12px" },
+                          fontWeight: 600,
+                          fontSize: { xs: "11px" },
                         }}
                       >
                         Check-in
@@ -585,7 +585,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           color: "#666",
                           fontFamily: "Roboto",
                           textTransform: "none",
-                          fontWeight: 500,
+                          fontWeight: 600,
                           fontSize: { xs: "14px" },
                         }}
                       >
@@ -618,8 +618,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           fontFamily: "Roboto",
                           mb: "-.125rem",
                           textTransform: "none",
-                          fontWeight: 500,
-                          fontSize: { xs: "12px" },
+                          fontWeight: 600,
+                          fontSize: { xs: "11px" },
                         }}
                       >
                         Check-out
@@ -629,7 +629,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           color: "#666",
                           fontFamily: "Roboto",
                           textTransform: "none",
-                          fontWeight: 500,
+                          fontWeight: 600,
                           fontSize: { xs: "14px" },
                         }}
                       >
@@ -651,7 +651,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     justifyContent: "center",
                   }}
                 >
-                  <ExpandMore sx={{ height: "20px", color: "#666" }} />
+                  <ExpandMore sx={{ height: "20px", color: "#444" }} />
                 </Grid>
               </Grid>
               <Button
@@ -708,7 +708,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 minWidth: "356px",
                 minHeight: "34px",
                 maxHeight: "47px",
-                border: "2px solid #ddd",
+                border: "2px solid #343B5380",
                 padding: ".25rem .5rem",
                 borderRadius: "6px",
                 mr: ".5rem",
@@ -741,7 +741,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     size="small"
                     sx={{
                       "& .MuiOutlinedInput-root": {
-                        color: "#666",
+                        color: "#444",
                         "& fieldset": {
                           borderColor: "transparent",
                         },
@@ -774,7 +774,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 alignItems: "center",
                 maxHeight: "47px",
                 mr: ".5rem",
-                border: "2px solid #ddd",
+                border: "2px solid #343B5380",
                 padding: ".25rem .5rem",
                 "&:hover": { background: "#efefef" },
                 borderRadius: "6px",
@@ -821,7 +821,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           justifyContent: "center",
                         }}
                       >
-                        <Event sx={{ height: "20px", color: "#666" }} />
+                        <Event sx={{ height: "20px", color: "#444" }} />
                       </Grid>
                       <Grid item xs={8}>
                         <Grid
@@ -835,18 +835,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 fontFamily: "Roboto",
                                 mb: "-.125rem",
                                 textTransform: "none",
-                                fontWeight: 500,
-                                fontSize: { xs: "10px" },
+                                fontWeight: 600,
+                                fontSize: { xs: "11px" },
                               }}
                             >
                               Check-in
                             </Typography>
                             <Typography
                               sx={{
-                                color: "#666",
+                                color: "#444",
                                 fontFamily: "Roboto",
                                 textTransform: "none",
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 fontSize: { xs: "14px" },
                               }}
                             >
@@ -879,18 +879,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 fontFamily: "Roboto",
                                 mb: "-.125rem",
                                 textTransform: "none",
-                                fontWeight: 500,
-                                fontSize: { xs: "10px" },
+                                fontWeight: 600,
+                                fontSize: { xs: "11px" },
                               }}
                             >
                               Check-out
                             </Typography>
                             <Typography
                               sx={{
-                                color: "#666",
+                                color: "#444",
                                 fontFamily: "Roboto",
                                 textTransform: "none",
-                                fontWeight: 500,
+                                fontWeight: 600,
                                 fontSize: { xs: "14px" },
                               }}
                             >
@@ -914,7 +914,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           justifyContent: "center",
                         }}
                       >
-                        <ExpandMore sx={{ height: "20px", color: "#666" }} />
+                        <ExpandMore sx={{ height: "20px", color: "#444" }} />
                       </Grid>
                     </Grid>
                   )}
@@ -930,7 +930,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 display: "flex",
                 cursor: "pointer",
                 alignItems: "top",
-                border: "2px solid #ddd",
+                border: "2px solid #343B5380",
                 borderRadius: "6px",
                 padding: ".25rem .5rem",
                 maxHeight: "47px",
@@ -1113,7 +1113,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             justifyContent: "center",
           }}
         >
-          <PersonIcon sx={{ height: "20px", color: "#666", ml: ".25rem" }} />
+          <PersonIcon sx={{ height: "20px", color: "#444", ml: ".25rem" }} />
         </Grid>
         <Grid item xs={8}>
           <Grid
@@ -1131,18 +1131,18 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                   fontFamily: "Roboto",
                   mb: "-.125rem",
                   textTransform: "none",
-                  fontWeight: 500,
-                  fontSize: { xs: "10px" },
+                  fontWeight: 600,
+                  fontSize: { xs: "11px" },
                 }}
               >
                 Guests
               </Typography>
               <Typography
                 sx={{
-                  color: "#666",
+                  color: "#444",
                   fontFamily: "Roboto",
                   textTransform: "none",
-                  fontWeight: 500,
+                  fontWeight: 600,
                   fontSize: { xs: "14px" },
                 }}
               >
@@ -1186,7 +1186,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
               fontFamily: "Roboto",
               textTransform: "none",
-              fontWeight: 500,
+              fontWeight: 600,
               fontSize: { xs: "14px", textDecoration: "underline" },
             }}
           >

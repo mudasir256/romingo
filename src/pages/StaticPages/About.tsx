@@ -216,7 +216,7 @@ const About: FC = () => {
             <Typography
               variant="h6"
               color="text.secondary"
-              sx={{ mt: 2, ml: 0, textAlign: "left", fontWeight: 600 }}
+              sx={{ mt: 1, ml: 0, textAlign: "left", fontWeight: 600 }}
             >
               Zach Somers<i style={{ fontSize: '14px', marginTop: '.25rem', marginBottom: '-.25rem', display: 'block' }}>Founder & CEO</i>
               <span style={{ fontSize: '14px' }}>Romingo</span>
@@ -224,7 +224,7 @@ const About: FC = () => {
             <Typography
               variant="h6"
               color="text.secondary"
-              sx={{ mt: 2, ml: 0, textAlign: "left", fontWeight: 600, fontStyle: 'italic', fontSize: '14px' }}
+              sx={{ mt: 5, ml: 0, textAlign: "left", fontWeight: 600, fontStyle: 'italic', fontSize: '14px' }}
             >
               We would love to hear from you! Feel free to contact us at <a style={{color: '#03989e'}} href="mailto:hello@romingo.com">hello@romingo.com</a> for partnership, press, and any other inquiries.
             </Typography>

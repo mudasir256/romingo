@@ -20,7 +20,7 @@ const RedRoverPartner: FC = () => {
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
             <Typography variant="body1" color="text.primary" sx={{ fontWeight: 600 }}>
-              We’re Committed to Doing Our Part
+              We’re committed to doing our part
             </Typography>
           </Divider>
         <Grid container>
@@ -58,7 +58,7 @@ const RedRoverPartner: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h4" color="text.secondary">
-              What You Can Do!
+              What you can do!
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 500, textAlign: "left", lineHeight: 2, '& a': { color: '#940940'}}}>
               <ul style={{paddingInlineStart: '1rem'}}>

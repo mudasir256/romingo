@@ -290,6 +290,16 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
+            <Button
+              onClick={startChat}
+              variant="contained"
+              color="primary"
+              sx={{ fontWeight: 500, textTransform: "none" }}
+            >
+              Chat with Support
+            </Button>
+          </Grid>
           <Grid item xs={12}>
             <Box
               component="img"
@@ -302,16 +312,6 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                 borderRadius: 5,
               }}
             />
-          </Grid>
-          <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
-            <Button
-              onClick={startChat}
-              variant="contained"
-              color="primary"
-              sx={{ fontWeight: 500, textTransform: "none" }}
-            >
-              Chat with Booking Support
-            </Button>
           </Grid>
         </Grid>
       </Container>

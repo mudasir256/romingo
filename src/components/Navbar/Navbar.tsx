@@ -22,6 +22,7 @@ import {
   useMediaQuery,
   TextField,
   Button,
+  Drawer
 } from "@mui/material";
 import {
   KeyboardArrowDown,
@@ -30,6 +31,14 @@ import {
   CalendarToday,
   ViewDay,
   Work,
+  Groups,
+  RssFeed,
+  SupportAgent,
+  Sell,
+  Support,
+  Pets,
+  LiveHelp,
+  PushPin,
 } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -50,6 +59,7 @@ const Navbar: FC<Props> = ({ sx }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<any>(null);
+  const [mobileDeals, setMobileDeals] = useState<boolean>(false)
 
   const LOGIN = "Login";
   const REGISTER = "Register";
@@ -171,6 +181,27 @@ const Navbar: FC<Props> = ({ sx }) => {
                 </Typography>
               </Link>
               <Link
+                href="/faq"
+                sx={{
+                  padding: ".5rem 1rem",
+                  borderRadius: "6px",
+                  mr: ".75rem",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  display: "flex",
+                  alignItems: "center",
+                  "&:hover": { color: "#03989E" },
+                  color: "#666",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
+                >
+                  FAQ
+                </Typography>
+              </Link>
+              <Link
                 href="/blog"
                 sx={{
                   padding: ".5rem 1rem",
@@ -244,13 +275,16 @@ const Navbar: FC<Props> = ({ sx }) => {
                   display: "flex",
                   alignItems: "center",
                   color: "#03989E",
+                  '&:hover': {
+                    background: '#03989E',
+                    color: '#fff'
+                  }
                 }}
               >
                 <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} />
                 <Typography
                   variant="body2"
-                  sx={{ fontWeight: 600, fontFamily: "Montserrat",
-                  color: "#03989E", }}
+                  sx={{ fontWeight: 600, fontFamily: "Montserrat", }}
                 >
                   List Your Property
                 </Typography>
@@ -260,71 +294,72 @@ const Navbar: FC<Props> = ({ sx }) => {
               </Link> */}
             </Hidden>
 
-            <Menu
-              anchorEl={anchorEl}
-              transformOrigin={{ vertical: "top", horizontal: "right" }}
-              open={menuOpen}
-              onClose={() => setMenuOpen(!menuOpen)}
-              sx={{
-                fontWeight: 600,
-                minWidth: "300px",
-                marginTop: "50px",
-                ml: "-1rem",
-              }}
-              anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            >
-              <MenuItem
-                onClick={() => history.push("/about")}
-                component="button"
-                sx={{ fontWeight: 500, minWidth: "200px" }}
-              >
-                About us
-              </MenuItem>
-              <MenuItem
-                onClick={() => history.push("/romingo-partners")}
-                component="button"
-                sx={{ fontWeight: 500, minWidth: "200px" }}
-              >
-                Community
-              </MenuItem>
-              <MenuItem
-                onClick={() => history.push("/blog")}
-                component="button"
-                sx={{ fontWeight: 500, minWidth: "200px" }}
-              >
-                Blog
-              </MenuItem>
-              <MenuItem
-                onClick={() => history.push("/contact")}
-                component="button"
-                sx={{ fontWeight: 500, minWidth: "200px" }}
-              >
-                Support
-              </MenuItem>
-              <MenuItem sx={{ fontWeight: 500, minWidth: "200px" }}>
-                <RomingoDeals />
-              </MenuItem>
-              <MenuItem
-                component="button"
-                onClick={() => history.push("/list-your-property")}
-                sx={{ fontWeight: 500, minWidth: "200px" }}
-              >
-                List your property
-              </MenuItem>
-              {/* <Divider /> */}
-              {/* <MenuItem sx={{ fontWeight: 500, minWidth: '200px' }}>
-                Login
-              </MenuItem> */}
-            </Menu>
+
 
             <Hidden lgUp>
-
+              <Drawer PaperProps={{ sx: { minWidth: '280px' }}} anchor='right' onClose={() => setAnchorEl(null)} open={anchorEl ? true : false}>
+                <Box
+                  component="img"
+                  src={
+                    "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+                  }
+                  alt="Logo"
+                  draggable="false"
+                  onClick={() => history.push("/")}
+                  sx={{
+                    maxWidth: "140px",
+                    margin: "1rem auto",
+                  }}
+                />
+                <MenuItem
+                  onClick={() => history.push("/about")}
+                  component="button"
+                  sx={{ fontWeight: 500, minWidth: "200px" }}
+                >
+                 <Pets sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> About us
+                </MenuItem>
+                <MenuItem
+                  onClick={() => history.push("/romingo-partners")}
+                  component="button"
+                  sx={{ fontWeight: 500, minWidth: "200px" }}
+                >
+                 <Groups sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> Community
+                </MenuItem>
+                <MenuItem
+                  onClick={() => history.push("/faq")}
+                  component="button"
+                  sx={{ fontWeight: 500, minWidth: "200px" }}
+                >
+                 <LiveHelp sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> FAQ
+                </MenuItem>
+                <MenuItem
+                  onClick={() => history.push("/blog")}
+                  component="button"
+                  sx={{ fontWeight: 500, minWidth: "200px" }}
+                >
+                <PushPin sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  Blog
+                </MenuItem>
+                <MenuItem
+                  onClick={() => history.push("/contact")}
+                  component="button"
+                  sx={{ fontWeight: 500, minWidth: "200px" }}
+                >
+                <Support sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  Support
+                </MenuItem>
+                <RomingoDealsMobile />
+                <MenuItem
+                  component="button"
+                  onClick={() => history.push("/list-your-property")}
+                  sx={{ fontWeight: 500, minWidth: "200px" }}
+                >
+                <HomeWork sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  List your property
+                </MenuItem>
+              </Drawer>
               <Typography
                 onClick={() => history.push("/reservation/manage")}
                 variant="body2"
                 sx={{
                   cursor: "pointer",
-                  mr: "auto",
                   color: "#222",
                   fontWeight: 600,
                   fontFamily: "Montserrat",
@@ -334,16 +369,35 @@ const Navbar: FC<Props> = ({ sx }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    border: "1.5px solid #222 ",
                     borderRadius: "6px",
                     padding: " .125rem .25rem",
                   }}
                 >
-                  <Work sx={{ fontSize: "12px", mr: ".25rem" }} />
-                  My trips
+                  <Work sx={{ fontSize: "16px", mr: ".25rem" }} />
                 </span>
               </Typography>
-
+              <a
+                href='#destinations'
+                style={{
+                  cursor: "pointer",
+                  marginRight: "0px",
+                  marginLeft: '1rem',
+                  color: "#222",
+                  fontWeight: 600,
+                  fontFamily: "Montserrat",
+                }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    borderRadius: "6px",
+                    padding: " .125rem .25rem",
+                  }}
+                >
+                  <HomeWork sx={{ fontSize: "16px", mr: ".25rem" }} />
+                </span>
+              </a>
               <Box
                 component="img"
                 src={
@@ -355,7 +409,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 }}
                 draggable="false"
                 sx={{
-                  mr: "auto",
+                  mr: "auto", ml: 'auto',
                   maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
@@ -704,6 +758,180 @@ const RomingoDeals = () => {
         }}
       >
         Deals
+      </span>
+    </>
+  );
+};
+
+
+
+const RomingoDealsMobile = () => {
+  const [showDealsPopup, setShowDealsPopup] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+
+  useEffect(() => {
+    setEmailIsValid(/^\S+@\S+\.\S+$/.test(email));
+  }, [email]);
+
+  useEffect(() => {
+    emailSubmitted && setIsSubmitting(false);
+    !emailSubmitted && setEmail("");
+  }, [emailSubmitted]);
+
+  useEffect(() => {
+    if (!showDealsPopup)
+      setTimeout(() => {
+        setEmailSubmitted(false);
+      }, 250);
+  }, [showDealsPopup]);
+
+  const submitEmail = () => {
+    setIsSubmitting(true);
+    setTimeout(() => {
+      fetch(
+        `https://romingo.us6.list-manage.com/subscribe/post-json?u=585083137c3540a7371e3a74f&id=d4d3932414&EMAIL=${encodeURIComponent(
+          email
+        )}&c=?`,
+        { mode: "no-cors", method: "POST" }
+      ).then((res) => {
+        setEmailSubmitted(true);
+      });
+    }, 500);
+  };
+
+  return (
+    <>
+      <span
+        style={{ cursor: "pointer", transition: 'all .25s ease-in-out', overflow: 'hidden', maxHeight: showDealsPopup ? '200px': '50px', }}
+
+      >
+        <MenuItem
+          onClick={(e) => {
+            setShowDealsPopup(!showDealsPopup);
+          }}
+          sx={{ fontWeight: 500, minWidth: "200px" }}>
+          <Sell sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />
+          Deals
+          <KeyboardArrowDown sx={{ opacity: showDealsPopup ? 1 : 0, ml: 'auto', transition: 'all .25s ease-in-out', transform: showDealsPopup? 'rotate(180deg)' : 'rotate(0deg)' }} />
+        </MenuItem>
+        {showDealsPopup ?
+        <Grid
+          container
+          sx={{
+            maxWidth: '280px',
+            minHeight: "100px",
+            display: "flex",
+            overflow: "hidden",
+            padding: '0rem .5rem'
+          }}
+        >
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              color: "#00000099",
+              p: ".5rem .5rem",
+              pb: ".125rem",
+              fontFamily: "Montserrat",
+              fontWeight: 900,
+              fontSize: ".9rem",
+            }}
+          >
+            Sign up with your email below to access exclusive deals and more:
+          </Grid>
+          {emailSubmitted ? (
+            <Grid
+              item
+              xs={12}
+              sx={{
+                p: ".5rem .5rem .5rem .5rem",
+                fontFamily: "Work Sans",
+                color: "#03989E",
+                textAlign: "center",
+              }}
+            >
+              Awesome! You&lsquo;re subscribed to deals, tips, guides, and all
+              the other great content from Romingo Insiders!
+            </Grid>
+          ) : (
+            <>
+              {isSubmitting && (
+                <Grid
+                  sx={{
+                    position: "absolute",
+                    zIndex: 9,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    top: "0px",
+                    right: "0",
+                    left: "0",
+                    bottom: "0px",
+                    background: "#ffffff80",
+                    backdropFilter: "blur(1px)",
+                  }}
+                >
+                  <CircularProgress />
+                </Grid>
+              )}
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                sx={{
+                  p: ".25rem .5rem .5rem .5rem",
+                  display: "flex",
+                  flexDirection: 'column',
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <TextField
+                  variant="outlined"
+                  color="primary"
+                  placeholder="enter email"
+                  size="small"
+                  value={email}
+                  sx={{
+                    outline: "none",
+                    fontSize: ".8rem",
+                    input: { fontFamily: "Montserrat" },
+                  }}
+                  InputProps={{
+                    sx: {
+                      fontSize: ".5rem",
+                      maxHeight: "30px",
+                      fontFamily: "Montserrat",
+                      outline: "none",
+                    },
+                  }}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Button
+                  onClick={submitEmail}
+                  disabled={!emailIsValid || isSubmitting}
+                  size="small"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    fontWeight: 600,
+                    textTransform: "none",
+                    fontFamily: "Montserrat",
+                    mt: '.5rem'
+                  }}
+                >
+                  Sign up!
+                </Button>
+              </Grid>
+            </>
+          )}
+        </Grid> : <></>}
       </span>
     </>
   );

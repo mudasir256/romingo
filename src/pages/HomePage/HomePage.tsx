@@ -17,8 +17,10 @@ import {
   Typography,
   CircularProgress,
   useMediaQuery,
+  MenuItem,
+  ListItem,
 } from "@mui/material";
-import { ChevronLeft, ChevronRight, Cancel, Star } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Cancel, Star, Sell, MoneyOff, Pets, Check } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
@@ -130,7 +132,7 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bestAvailableRate.svg"
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
                 }
                 draggable="false"
                 sx={{ width: { xs: "35%", sm: "50%" } }}
@@ -147,7 +149,7 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/noPetFees.svg"
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog2.svg"
                 }
                 draggable="false"
                 sx={{ width: { xs: "35%", sm: "50%" } }}
@@ -163,7 +165,7 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog_paws_tall.svg"
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
                 }
                 draggable="false"
                 sx={{ width: { xs: "35%", sm: "50%" } }}
@@ -172,7 +174,7 @@ const HomePage: FC<Props> = ({
                 All pets welcome
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo hotels welcome (2) pets, 75 lbs. each, no breed
+                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
                 restrictions, ever.
               </Typography>
             </Grid>
@@ -180,7 +182,7 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/colored_dog_bowl_tall.svg"
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
                 }
                 draggable="false"
                 sx={{ width: { xs: "35%", sm: "50%" } }}
@@ -198,8 +200,9 @@ const HomePage: FC<Props> = ({
       </Box>
 
       <Box
+        id='destinations'
         sx={{
-          backgroundColor: "lightBackground.main",
+          background: '#EDF9F9bf',
           py: 6,
           backgroundPosition: "center center",
           backgroundSize: "cover",
@@ -304,18 +307,17 @@ const HomePage: FC<Props> = ({
               sx={{
                 color: "text.secondary",
                 textAlign: "center",
-                mb: 5,
+                mb: 2,
                 mt: "1rem",
                 maxWidth: "90%",
                 ml: "auto",
                 mr: "auto",
               }}
             >
-              <Link sx={{ cursor: "pointer" }}>
-                <EmailSignup />
-              </Link>{" "}
-              to be the first to experience our 15 new destinations arriving in
+
+             <Link> <EmailSignup /> </Link> to be the first to experience our 15 new destinations arriving in
               Spring 2022
+
             </Typography>
           </Grid>
         </Grid>
@@ -328,7 +330,7 @@ const HomePage: FC<Props> = ({
           position: "relative",
           "&::before": {
             content: '""',
-            background: "#fcf5f0",
+            background: '#EDF9F9bf',
             opacity: 1,
             backgroundSize: "cover",
             position: "absolute",
@@ -347,6 +349,7 @@ const HomePage: FC<Props> = ({
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            pb: { xs: 0, sm: 0, md: '2rem' }
           }}
         >
           <Grid container sx={{ py: 6 }}>
@@ -386,20 +389,16 @@ const HomePage: FC<Props> = ({
                         }}
                       >
                         Ready to getaway? When you plan your next trip with
-                        Romingo you&lsquo;ll receive...
-                        <ul>
-                          <li>The best deals on rates</li>
-                          <li>
-                            Zero pet fees for up to 2 pets, weighing 75 lbs.
-                            each
-                          </li>
-                          <li>Pet beds, bowls, and treats upon arrival</li>
-                        </ul>
-                        Plus, your reservations are backed by the Romingo
-                        Guarantee. Meaning if you aren&lsquo;t completely
-                        satisfied with your Romingo experience, our dedicated
-                        customer support team will do what it takes to make it
-                        right.
+                        Romingo you&lsquo;ll receive:
+                        <ListItem sx={{ mt: '1rem', fontSize: '16px' }}>
+                          <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} /> The best deals on rates
+                        </ListItem>
+                        <ListItem sx={{ fontSize: '16px' }}>
+                          <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} />  Zero pet fees for up to 2 pets, weighing 75 lbs. each
+                        </ListItem>
+                        <ListItem sx={{ fontSize: '16px' }}>
+                          <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} />  Pet beds, bowls, and treats upon arrival
+                        </ListItem>
                       </Typography>
                     </Box>
                   </Box>
@@ -440,7 +439,7 @@ const HomePage: FC<Props> = ({
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          background: "#fcf5f0",
+          background: '#EDF9F9bf',
         }}
       >
         <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
@@ -576,7 +575,7 @@ const HomePage: FC<Props> = ({
           position: "relative",
           "&::before": {
             content: '""',
-            backgroundColor: "secondary.lighter",
+            backgroundColor: "#fff",
             opacity: 1,
             backgroundSize: "cover",
             position: "absolute",
@@ -879,9 +878,7 @@ const CustomerTestimonials = () => {
                         maxWidth: "100%",
                       }}
                       src={
-                        index % 2 === 0
-                          ? "https://previews.123rf.com/images/lar01joka/lar01joka1804/lar01joka180400019/100152648-cute-shiba-inu-dog-avatar.jpg"
-                          : "https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg"
+                        item.image
                       }
                     />
                   </Grid>
@@ -928,7 +925,7 @@ const CustomerTestimonials = () => {
                   lg: "calc(100vw - 500px)",
                   xl: "calc(100vw - 1000px)",
                 },
-                minHeight: { xs: "400px", sm: "450px", md: "300px" },
+                minHeight: { xs: "400px", sm: "450px", md: "375px" },
                 overflow: "hidden",
               },
               "& .slide": { display: { xs: "flex", sm: "flex", md: "flex" } },
@@ -1015,9 +1012,7 @@ const CustomerTestimonials = () => {
                           maxWidth: "90%",
                         }}
                         src={
-                          index % 2 === 0
-                            ? "https://previews.123rf.com/images/lar01joka/lar01joka1804/lar01joka180400019/100152648-cute-shiba-inu-dog-avatar.jpg"
-                            : "https://image.shutterstock.com/image-vector/cartoon-character-jack-russell-terrier-260nw-579387331.jpg"
+                          review.image
                         }
                       />
                     </Grid>
@@ -1078,13 +1073,58 @@ const CustomerTestimonials = () => {
                           mb: { xs: ".25rem", sm: ".25rem", md: "1rem" },
                           lineHeight: 1.64,
                           minHeight: { xs: "100px", sm: "100px", md: "175px" },
-                          display: "flex",
+                          display: "flex", flexDirection: 'column',
                           alignItems: "center",
                           justifyContent: "center",
                         }}
                       >
                         &quot;{review.review}&quot;
                         <br />
+                        <Grid  sx={{  mt: { xs: 0, sm: 0, md: '1.5rem' }, ml: 'auto', mr: 'auto', textAlign: 'center', justifyContent: 'center', display: { xs: 'none', sm: 'none', md: 'flex' }}}>
+                        <Grid
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            style={{
+                              borderRadius: "6px",
+                              maxHeight: "40px",
+                              maxWidth: "40px",
+                            }}
+                            src={
+                              review.image
+                            }
+                          />
+                        </Grid>
+                        <Grid sx={{ pl: '1rem'}}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              color: "#11111199",
+                              fontSize: "1rem",
+                              fontFamily: "Montserrat",
+                              fontWeight: 700,
+                              textAlign: "left",
+                            }}
+                          >
+                            {review.name}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              textAlign: "left",
+                              color: "#11111199",
+                              mt: "-.25rem",
+                              fontWeight: 500,
+                              fontSize: "13px",
+                            }}
+                          >
+                            {review.location}
+                          </Typography>
+                        </Grid>
+                        </Grid>
                       </Typography>
                     </Grid>
                     <Grid
@@ -1107,11 +1147,22 @@ const CustomerTestimonials = () => {
                       xs={12}
                       sx={{
                         textAlign: { xs: "left", sm: "left", md: "center" },
-                        fontSize: "14px",
+                        fontSize: "16px",
                         fontWeight: 500,
                       }}
                     >
-                      5 / 5 stars verified user
+                      5 / 5 stars
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      sx={{
+                        mt: '1rem',
+                        textAlign: { xs: "left", sm: "left", md: "center" },
+                        fontSize: "14px",
+                        fontWeight: 500,
+                      }}>
+                      verified user
                     </Grid>
                   </Grid>
                 </Paper>

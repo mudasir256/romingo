@@ -38,7 +38,7 @@ const Contact: FC = () => {
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
           <Typography variant="body1" color="text.secondary">
-            We&apos;re Always Here To Help
+            We&apos;re always here to help
           </Typography>
         </Divider>
         <>
@@ -58,10 +58,9 @@ const Contact: FC = () => {
                 color="text.secondary"
                 sx={{ textAlign: "justify", lineHeight: 2 }}
               >
-                Our Support Team at Romingo is ready to assist with your
-                pup-friendly travel plans between Monday - Saturday, 9am - 6pm
-                PST. If your inquiry requires immediate assistance regarding a
-                reservation, please select “email us” to get in touch with us.
+                Our support team is here for you 24/7!
+                Please get in touch with us using one of the below methods.
+                If you require immediate assistance, we recommend using our chat feature.
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
