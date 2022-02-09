@@ -150,7 +150,7 @@ const HomePage: FC<Props> = ({
                 Lowest rates
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo negotiates the lowest rates and passes the savings onto
+                Romingo negotiates the best rates and passes the savings onto
                 you.
               </Typography>
             </Grid>
