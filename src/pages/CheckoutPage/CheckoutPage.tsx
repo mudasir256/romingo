@@ -52,10 +52,13 @@ const CheckoutPage: FC<Props> = () => {
   const mobile = useMediaQuery('(max-width:800px)')
 
   useEffect(() => {
-    window.Intercom("boot", {
-      app_id: "qa6datd3",
-    });
-    window.Intercom("update");
+    if (screen.height > 700) {
+      window.Intercom("boot", {
+        app_id: "qa6datd3",
+        alignment: "right",
+      });
+      window.Intercom("update");
+    }
   }, []);
 
   return (

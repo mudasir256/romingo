@@ -87,11 +87,13 @@ const HomePage: FC<Props> = ({
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    window.Intercom("boot", {
-      app_id: "qa6datd3",
-      alignment: "right",
-    });
-    window.Intercom("update");
+    if (screen.height > 700) {
+      window.Intercom("boot", {
+        app_id: "qa6datd3",
+        alignment: "right",
+      });
+      window.Intercom("update");
+    }
   }, []);
 
   const toFeatured = (id: string, cityId: string) => {

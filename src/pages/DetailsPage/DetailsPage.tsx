@@ -287,8 +287,15 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [data]);
 
+
   useEffect(() => {
-    window.Intercom("shutdown");
+    if (screen.height > 700) {
+      window.Intercom("boot", {
+        app_id: "qa6datd3",
+        alignment: "right",
+      });
+      window.Intercom("update");
+    }
   }, []);
 
   const [showGallery, setShowGallery] = useState(false);
