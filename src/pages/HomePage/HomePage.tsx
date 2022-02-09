@@ -29,6 +29,8 @@ import {
   MoneyOff,
   Pets,
   Check,
+  KeyboardArrowDown,
+  Message,
 } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -91,6 +93,7 @@ const HomePage: FC<Props> = ({
       window.Intercom("boot", {
         app_id: "qa6datd3",
         alignment: "right",
+        custom_launcher_selector: '#CUSTOM'
       });
       window.Intercom("update");
     }
@@ -135,6 +138,32 @@ const HomePage: FC<Props> = ({
     <>
       <ScrollToTop />
       <Header />
+
+      <div id="CUSTOM"
+        style={{
+          padding: '.5rem 1rem .5rem .5rem',
+          fontFamily: 'Roboto',
+          zIndex: 1501,
+          position: 'fixed',
+          flexDirection: 'row',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '8px',
+          bottom: '1.25rem',
+          right: '1.25rem',
+          boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.25)',
+          background: '#03989Ebf',
+          border: '1px solid #a6dbe5',
+          WebkitBackdropFilter: 'blur(12px)',
+          backdropFilter: 'blur(12px)',
+          fontSize: '14px',
+          color: '#fff'
+        }}>
+          <Message sx={{ fontSize: '18px', color: '#fff', mr: '.5rem'}} />
+          Chat with us
+
+       </div>
 
       <Box>
         <Container>

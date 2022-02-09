@@ -407,13 +407,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           sx={{
             position: "absolute",
             zIndex: 2,
-            margin: "114px auto 0px auto",
-            left: "5%",
-            width: "90vw",
+            margin: "0px auto 0px auto",
+            paddingTop: '64px',
+            paddingBottom: '12px',
+            borderBottom: '1px solid #ddd',
+            width: "100vw",
             background: "#fff",
-            boxShadow: "0px 2px 3px rgba(0, 0, 0, 0.25)",
-            borderRadius: "12px",
-            border: "2px solid #ddd",
           }}
         >
           <OccupantSelector
@@ -425,7 +424,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           <Box
             sx={{
               display: "flex",
-              padding: ".25rem .25rem",
+              padding: ".5rem 1rem",
               flexDirection: "column",
               alignItems: "center",
               mb: ".5rem",
@@ -438,22 +437,24 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 minWidth: "100%",
                 minHeight: "49px",
                 maxHeight: "47px",
+                border: "2px solid #343B5380",
+                borderRadius: '8px'
               }}
             >
               <Grid container>
                 <Grid
                   item
-                  xs={2}
+                  xs={1}
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    pr: "1rem",
+                    pl: '1rem'
                   }}
                 >
-                  <LocationCity sx={{ height: "20px", color: "#666" }} />
+                  <LocationCity sx={{ height: "24px", color: "#666" }} />
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={11} sx={{ marginRight: 'auto', pl: '.5rem', pr: '.5rem' }}>
                   <Autocomplete
                     options={cities}
                     value={getCity(selectedCity) || null}
@@ -469,8 +470,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     }}
                     sx={{
                       fontFamily: "Roboto",
-                      width: "90%",
-                      margin: "0px auto",
+                      width: "100%",
+                      margin: "0px auto 0px 0px ",
                       fontSize: "14px",
                     }}
                     renderInput={(params) => (
@@ -482,7 +483,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         size="small"
                         sx={{
                           "& .MuiOutlinedInput-root": {
-                            color: "#666",
+                            color: "#444",
                             "& fieldset": {
                               borderColor: "transparent",
                             },
@@ -499,8 +500,14 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             fontWeight: 500,
                             fontFamily: "Roboto",
                             cursor: "pointer",
-                            color: "#666",
+                            color: "#444",
                             border: "none",
+                            '&::placeholder': {
+                              textOverflow: 'ellipsis !important',
+                              color: '#666',
+                              opacity: 1,
+                              fontWeight: 600
+                            }
                           },
                         }}
                       />
@@ -516,7 +523,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 transition: "all .15s ease-in-out",
                 alignItems: "center",
                 maxHeight: "47px",
-                borderTop: "2px solid #ddd",
               }}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -543,75 +549,79 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   renderInput={() => <Grid sx={{ display: "none" }}></Grid>}
                 />
               </LocalizationProvider>
+
               <Grid
                 container
                 onClick={() => setOpen(true)}
                 sx={{
                   width: "100%",
-                  pt: "1rem",
-                  pl: ".25rem",
-                  pointerEvents: "auto",
+                  mt: '1rem'
                 }}
               >
-                <Grid
-                  item
-                  xs={2}
-                  sx={{
-                    pr: "1rem",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Event sx={{ height: "20px", color: "#666" }} />
-                </Grid>
-                <Grid item xs={8}>
-                  <Grid container>
-                    <Grid item xs={4}>
-                      <Typography
-                        sx={{
-                          color: "#666",
-                          fontFamily: "Roboto",
-                          mb: "-.125rem",
-                          textTransform: "none",
-                          fontWeight: 600,
-                          fontSize: { xs: "11px" },
-                        }}
-                      >
-                        Check-in
-                      </Typography>
-                      <Typography
-                        sx={{
-                          color: "#666",
-                          fontFamily: "Roboto",
-                          textTransform: "none",
-                          fontWeight: 600,
-                          fontSize: { xs: "14px" },
-                        }}
-                      >
-                        {checkDate[0]
-                          ? DateTime.fromJSDate(
-                              new Date(checkDate[0])
-                            ).toFormat("MMM dd")
-                          : ""}
-                      </Typography>
-                    </Grid>
-                    <Grid
-                      item
-                      xs={3}
-                      sx={{
-                        alignItems: "center",
-                        fontWeight: 800,
-                        fontFamily: "Roboto",
-                        display: "flex",
-                        justifyContent: "center",
-                        color: "#aaa",
-                        textAlign: "center",
-                      }}
+                <Grid item xs={6} sx={{ pr: '.25rem'}}>
+                <Grid container sx={{ border: "2px solid #343B5380", borderRadius: '6px', padding: '.25rem .25rem .25rem 1rem' }}>
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      pr: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                     >
-                      &#8212;
+                      <Event sx={{ height: "24px", color: "#666" }} />
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={9}>
+                      <Grid container>
+                        <Grid item xs={12}>
+                          <Typography
+                            sx={{
+                              color: "#666",
+                              fontFamily: "Roboto",
+                              mb: "-.125rem",
+                              textTransform: "none",
+                              fontWeight: 600,
+                              fontSize: { xs: "11px" },
+                            }}
+                          >
+                            Check-in
+                          </Typography>
+                          <Typography
+                            sx={{
+                              color: "#666",
+                              fontFamily: "Roboto",
+                              textTransform: "none",
+                              fontWeight: 600,
+                              fontSize: { xs: "14px" },
+                            }}
+                          >
+                            {checkDate[0]
+                              ? DateTime.fromJSDate(
+                                  new Date(checkDate[0])
+                                ).toFormat("MMM dd")
+                              : ""}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item xs={6} sx={{ pl: ' .25rem' }}>
+                  <Grid container sx={{ border: "2px solid #343B5380", borderRadius: '6px', padding: '.25rem .25rem .25rem 1rem' }}>
+                    <Grid
+                        item
+                        xs={3}
+                        sx={{
+                          pr: "1rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                        >
+                        <Event sx={{ height: "24px", color: "#666" }} />
+                      </Grid>
+                    <Grid item xs={9}>
                       <Typography
                         sx={{
                           color: "#666",
@@ -642,17 +652,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid
-                  item
-                  xs={1}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <ExpandMore sx={{ height: "20px", color: "#444" }} />
-                </Grid>
+
               </Grid>
               <Button
                 fullWidth
@@ -667,7 +667,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   alignItems: "center",
                   padding: ".25rem 0rem",
                   justifyContent: "center",
-                  mt: ".75rem",
+                  mt: "1rem",
+                  ml: '.5rem',
                   fontFamily: "Montserrat",
                   fontWeight: 500,
                   borderRadius: "6px",
@@ -1169,8 +1170,8 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
       <Grid
         container
         sx={{
-          marginTop: "-50px",
-          height: "50px",
+          marginBottom: '-2px',
+          height: "30px",
           display: { md: "none", xs: "flex" },
           alignItems: "center",
         }}
@@ -1178,22 +1179,22 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         <Grid
           item
           onClick={handleClick}
-          sx={{ display: "flex", textAlign: "right", ml: "auto" }}
+          sx={{ display: "flex", textAlign: "right", ml: "auto", mr: '.5rem' }}
         >
           <Typography
             sx={{
-              color: "#fff",
+              color: "#03989E",
               textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
               fontFamily: "Roboto",
               textTransform: "none",
               fontWeight: 600,
-              fontSize: { xs: "14px", textDecoration: "underline" },
+              fontSize: { xs: "12px",  },
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet
             {value.dogs === 1 ? "" : "s"}
           </Typography>
-          <ExpandMore sx={{ height: "20px", color: "#fff" }} />
+          <ExpandMore sx={{ height: "20px", color: "#03989E" }} />
         </Grid>
       </Grid>
 

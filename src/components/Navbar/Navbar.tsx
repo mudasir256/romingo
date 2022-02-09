@@ -9,6 +9,7 @@ import {
   CSSObject,
   useTheme,
   Link,
+  useScrollTrigger,
   AppBar,
   Popover,
   Grid,
@@ -62,7 +63,7 @@ const Navbar: FC<Props> = ({ sx }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<any>(null);
   const [mobileDeals, setMobileDeals] = useState<boolean>(false)
-
+  const trigger = useScrollTrigger()
   const LOGIN = "Login";
   const REGISTER = "Register";
   const FORGOT_PASSWORD = "Forgot";
@@ -90,7 +91,7 @@ const Navbar: FC<Props> = ({ sx }) => {
           backdropFilter: "blur(6px)",
           backgroundColor: "#ffffffed",
         }}
-        sx={{ boxShadow: 2 }}
+        sx={{ boxShadow: trigger? 2 : 0, borderBottom: '1px solid #ddd' }}
       >
         <Toolbar sx={{ display: "block", position: "relative" }}>
           <Box
