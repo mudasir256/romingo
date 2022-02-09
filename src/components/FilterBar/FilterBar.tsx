@@ -153,6 +153,56 @@ const FilterBar: FC<Props> = ({
     }
   };
 
+  const handleSearch: MouseEventHandler<Element> = () => {
+    if (
+      occupants.adults !== 0 &&
+      selectedCity &&
+      checkDate[0] &&
+      new Date(checkDate[0]) >=
+        new Date(new Date().setDate(new Date().getDate() - 1)) &&
+      checkDate[1] &&
+      new Date(checkDate[1]) >= new Date()
+    ) {
+      setFormError("");
+      setZoomIn(false);
+      dispatch(
+        saveSearch({
+          city: selectedCity,
+          checkIn: new Date(checkDate[0]).toISOString(),
+          checkOut: new Date(checkDate[1]).toISOString(),
+          occupants,
+        })
+      );
+
+      history.push("/listings");
+    } else {
+      if (!selectedCity) {
+        setFormError("Location required");
+      }
+      if (!checkDate[0]) {
+        setFormError("Check-in date required");
+      }
+      if (
+        checkDate[0] &&
+        new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
+      ) {
+        setFormError("Check-in date must be today at the earliest");
+      }
+      if (!checkDate[1]) {
+        setFormError("Check-out date required");
+      }
+      if (
+        checkDate[1] &&
+        new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
+      ) {
+        setFormError("Check-out date must be after today");
+      }
+      if (occupants.adults === 0) {
+        setFormError("Search must include at least 1 adult guest");
+      }
+    }
+  };
+
   return (
     <>
       <Box
@@ -482,7 +532,7 @@ const FilterBar: FC<Props> = ({
               </Box>
               <Box sx={{ textAlign: "center" }}>
                 <Button
-                  onClick={handleFilterOutClick}
+                  onClick={handleSearch}
                   disableElevation
                   type="submit"
                   variant="contained"
