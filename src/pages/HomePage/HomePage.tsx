@@ -20,7 +20,16 @@ import {
   MenuItem,
   ListItem,
 } from "@mui/material";
-import { ChevronLeft, ChevronRight, Cancel, Star, Sell, MoneyOff, Pets, Check } from "@mui/icons-material";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Cancel,
+  Star,
+  Sell,
+  MoneyOff,
+  Pets,
+  Check,
+} from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
@@ -141,7 +150,7 @@ const HomePage: FC<Props> = ({
                 Lowest rates
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo negotiates the lowest rates and pass the savings onto
+                Romingo negotiates the lowest rates and passes the savings onto
                 you.
               </Typography>
             </Grid>
@@ -200,12 +209,12 @@ const HomePage: FC<Props> = ({
       </Box>
 
       <Box
-        id='destinations'
+        id="destinations"
         sx={{
-          background: '#EDF9F9bf',
+          background: "#EDF9F9bf",
           py: 6,
-          borderTop: '1px solid #03989E1A',
-          borderBottom: '1px solid #03989E1A',
+          borderTop: "1px solid #03989E1A",
+          borderBottom: "1px solid #03989E1A",
           backgroundPosition: "center center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -316,10 +325,12 @@ const HomePage: FC<Props> = ({
                 mr: "auto",
               }}
             >
-
-             <Link> <EmailSignup /> </Link> to be the first to experience our 15 new destinations arriving in
+              <Link>
+                {" "}
+                <EmailSignup />{" "}
+              </Link>{" "}
+              to be the first to experience our 15 new destinations arriving in
               Spring 2022
-
             </Typography>
           </Grid>
         </Grid>
@@ -332,9 +343,9 @@ const HomePage: FC<Props> = ({
           position: "relative",
           "&::before": {
             content: '""',
-            background: '#EDF9F9bf',
-            borderTop: '1px solid #03989E1A',
-            borderBottom: '1px solid #03989E1A',
+            background: "#EDF9F9bf",
+            borderTop: "1px solid #03989E1A",
+            borderBottom: "1px solid #03989E1A",
             opacity: 1,
             backgroundSize: "cover",
             position: "absolute",
@@ -353,7 +364,7 @@ const HomePage: FC<Props> = ({
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            pb: { xs: 0, sm: 0, md: '2rem' }
+            pb: { xs: 0, sm: 0, md: "2rem" },
           }}
         >
           <Grid container sx={{ py: 6 }}>
@@ -394,14 +405,35 @@ const HomePage: FC<Props> = ({
                       >
                         Ready to get away? When you plan your next trip with
                         Romingo you&lsquo;ll receive:
-                        <ListItem sx={{ mt: '1rem', fontSize: '20px' }}>
-                          <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} /> The best deals on rates
+                        <ListItem sx={{ mt: "1rem", fontSize: "20px" }}>
+                          <Check
+                            sx={{
+                              mr: "1.5rem",
+                              color: "#03989E",
+                              fontSize: "18px",
+                            }}
+                          />
+                          The best deals on rates
                         </ListItem>
-                        <ListItem sx={{ fontSize: '20px' }}>
-                          <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} />  Zero pet fees for up to 2 pets, weighing 75 lbs. each
+                        <ListItem sx={{ fontSize: "20px" }}>
+                          <Check
+                            sx={{
+                              mr: "1.5rem",
+                              color: "#03989E",
+                              fontSize: "18px",
+                            }}
+                          />
+                          Zero pet fees for up to 2 pets, weighing 75 lbs. each
                         </ListItem>
-                        <ListItem sx={{ fontSize: '20px' }}>
-                          <Check sx={{ mr: '1.5rem', color: '#03989E', fontSize: '18px' }} />  Pet beds, bowls, and treats upon arrival
+                        <ListItem sx={{ fontSize: "20px" }}>
+                          <Check
+                            sx={{
+                              mr: "1.5rem",
+                              color: "#03989E",
+                              fontSize: "18px",
+                            }}
+                          />
+                          Pet beds, bowls, and treats upon arrival
                         </ListItem>
                       </Typography>
                     </Box>
@@ -441,11 +473,11 @@ const HomePage: FC<Props> = ({
           py: 6,
           backgroundPosition: "center center",
           backgroundSize: "cover",
-          borderTop: '1px solid #03989E1A',
-          borderBottom: '1px solid #03989E1A',
+          borderTop: "1px solid #03989E1A",
+          borderBottom: "1px solid #03989E1A",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          background: '#EDF9F9bf',
+          background: "#EDF9F9bf",
         }}
       >
         <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
@@ -827,7 +859,7 @@ const CustomerTestimonials = () => {
                 backgroundColor: "rgba(0,0,0,.1)",
                 borderRadius: "0.3em",
               },
-              maxHeight: "300px",
+              maxHeight: "400px",
               overflowY: "auto",
               borderRight: "1px solid #ccc",
               pr: "0rem",
@@ -883,9 +915,7 @@ const CustomerTestimonials = () => {
                         maxHeight: "100%",
                         maxWidth: "100%",
                       }}
-                      src={
-                        item.image
-                      }
+                      src={item.image}
                     />
                   </Grid>
                   <Grid item xs={10} sx={{ pl: "1rem" }}>
@@ -929,7 +959,7 @@ const CustomerTestimonials = () => {
                   sm: "100%",
                   md: "calc(100vw - 293px)",
                   lg: "calc(100vw - 500px)",
-                  xl: "calc(100vw - 1000px)",
+                  xl: "calc(100vw - 850px)",
                 },
                 minHeight: { xs: "450px", sm: "450px", md: "375px" },
                 overflow: "hidden",
@@ -982,18 +1012,21 @@ const CustomerTestimonials = () => {
                 </li>
               )}
             >
-              {reviews.map((review, index) => (
+              {reviews.map((review) => (
                 <Paper
                   key={review.name}
                   elevation={1}
                   sx={{
                     border: "1px solid #ddd",
                     padding: matches ? "1rem 1rem" : "1rem",
-                    minHeight: { xs: "0px", sm: "0px", md: "215px" },
+                    minHeight: { xs: "0px", sm: "0px", md: "400px" },
                     display: "flex",
+                    justifyContent: "center",
                     flexDirection: "column",
                     width: "95%",
                     margin: "auto auto auto auto",
+                    mt: 0,
+                    mb: 2,
                     borderRadius: "12px",
                     fontFamily: "Montserrat",
                     fontSize: "1.5rem",
@@ -1017,9 +1050,7 @@ const CustomerTestimonials = () => {
                           maxHeight: "90%",
                           maxWidth: "90%",
                         }}
-                        src={
-                          review.image
-                        }
+                        src={review.image}
                       />
                     </Grid>
                     <Grid
@@ -1079,57 +1110,65 @@ const CustomerTestimonials = () => {
                           mb: { xs: ".25rem", sm: ".25rem", md: "1rem" },
                           lineHeight: 1.64,
                           minHeight: { xs: "100px", sm: "100px", md: "175px" },
-                          display: "flex", flexDirection: 'column',
+                          display: "flex",
+                          flexDirection: "column",
                           alignItems: "center",
                           justifyContent: "center",
                         }}
                       >
                         &quot;{review.review}&quot;
                         <br />
-                        <Grid  sx={{  mt: { xs: 0, sm: 0, md: '1.5rem' }, ml: 'auto', mr: 'auto', textAlign: 'center', justifyContent: 'center', display: { xs: 'none', sm: 'none', md: 'flex' }}}>
                         <Grid
                           sx={{
-                            display: "flex",
-                            alignItems: "center",
+                            mt: { xs: 0, sm: 0, md: "1.5rem" },
+                            ml: "auto",
+                            mr: "auto",
+                            textAlign: "center",
                             justifyContent: "center",
+                            display: { xs: "none", sm: "none", md: "flex" },
                           }}
                         >
-                          <img
-                            style={{
-                              borderRadius: "6px",
-                              maxHeight: "40px",
-                              maxWidth: "40px",
-                            }}
-                            src={
-                              review.image
-                            }
-                          />
-                        </Grid>
-                        <Grid sx={{ pl: '1rem'}}>
-                          <Typography
-                            variant="h6"
+                          <Grid
                             sx={{
-                              color: "#11111199",
-                              fontSize: "1rem",
-                              fontFamily: "Montserrat",
-                              fontWeight: 700,
-                              textAlign: "left",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
                             }}
                           >
-                            {review.name}
-                          </Typography>
-                          <Typography
-                            sx={{
-                              textAlign: "left",
-                              color: "#11111199",
-                              mt: "-.25rem",
-                              fontWeight: 500,
-                              fontSize: "13px",
-                            }}
-                          >
-                            {review.location}
-                          </Typography>
-                        </Grid>
+                            <img
+                              style={{
+                                borderRadius: "6px",
+                                maxHeight: "40px",
+                                maxWidth: "40px",
+                              }}
+                              src={review.image}
+                            />
+                          </Grid>
+                          <Grid sx={{ pl: "1rem" }}>
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                color: "#11111199",
+                                fontSize: "1rem",
+                                fontFamily: "Montserrat",
+                                fontWeight: 700,
+                                textAlign: "left",
+                              }}
+                            >
+                              {review.name}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                textAlign: "left",
+                                color: "#11111199",
+                                mt: "-.25rem",
+                                fontWeight: 500,
+                                fontSize: "13px",
+                              }}
+                            >
+                              {review.location}
+                            </Typography>
+                          </Grid>
                         </Grid>
                       </Typography>
                     </Grid>
@@ -1163,11 +1202,12 @@ const CustomerTestimonials = () => {
                       item
                       xs={12}
                       sx={{
-                        mt: '1rem',
+                        mt: "1rem",
                         textAlign: { xs: "left", sm: "left", md: "center" },
                         fontSize: "14px",
                         fontWeight: 500,
-                      }}>
+                      }}
+                    >
                       verified user
                     </Grid>
                   </Grid>
