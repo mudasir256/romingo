@@ -357,6 +357,22 @@ const Navbar: FC<Props> = ({ sx }) => {
                 <HomeWork sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  List your property
                 </MenuItem>
               </Drawer>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+                }
+                alt="Logo"
+                onClick={() => {
+                  history.push("/");
+                }}
+                draggable="false"
+                sx={{
+                  mr: "auto", ml: '0px',
+                  maxHeight: { xs: "35px", md: "45px" },
+                }}
+              />
+
               <Typography
                 onClick={() => history.push("/reservation/manage")}
                 variant="body2"
@@ -400,21 +416,6 @@ const Navbar: FC<Props> = ({ sx }) => {
                   <HomeWorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
                 </span>
               </a>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                }
-                alt="Logo"
-                onClick={() => {
-                  history.push("/");
-                }}
-                draggable="false"
-                sx={{
-                  mr: "auto", ml: 'auto',
-                  maxHeight: { xs: "35px", md: "45px" },
-                }}
-              />
 
               <Link
                 onClick={(e) => {
