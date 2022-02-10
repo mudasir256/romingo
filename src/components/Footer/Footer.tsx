@@ -50,19 +50,14 @@ interface Props {
 const FooterMenus = {
   reservation: [
     {
-      text: "Manage Reservation",
-      link: "/reservation/manage",
-      target: "",
-    },
-    {
-      text: "Cancel Reservation",
+      text: "Manage reservation",
       link: "/reservation/manage",
       target: "",
     },
   ],
   about: [
     {
-      text: "Our Story",
+      text: "Our story",
       link: "/about",
       target: "",
     },
@@ -72,29 +67,29 @@ const FooterMenus = {
       target: "",
     },
     {
-      text: "Romingo Score",
+      text: "Romingo score",
       link: "/romingo-score",
       target: "",
     },
     {
-      text: "RedRover Partnership",
+      text: "RedRover partnership",
       link: "/romingo-partners",
       target: "",
     },
   ],
   contact: [
     {
-      text: "Contact Us",
+      text: "Contact us",
       link: "/contact",
       target: "",
     },
     {
-      text: "On Facebook",
+      text: "Facebook",
       link: "https://www.facebook.com/RomingoTravel",
       target: "_blank",
     },
     {
-      text: "On Instagram",
+      text: "Instagram",
       link: "https://www.instagram.com/romingotravel/",
       target: "_blank",
     },
@@ -120,7 +115,8 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
       sx={{
         ...sx,
         pt: 3,
-        backgroundColor: "#F7F7F7",
+        backgroundColor: "#f7f7f7",
+        borderTop: '1px solid #f2f2f2'
       }}
     >
       <Container maxWidth="lg">
@@ -139,11 +135,13 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.reservation.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link}>
+                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main",
+                          color: "text.secondary",
+                          textDecoration: 'none',
+                          '&:hover': { color: 'primary.main' }
                         }}
                       >
                         {menu.text}
@@ -162,17 +160,19 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                 color: "text.primary",
               }}
             >
-              About Us
+              Site map
             </Typography>
             <List>
               {footerMenus.about.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link}>
+                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main",
+                          color: "text.secondary",
+                          textDecoration: 'none',
+                          '&:hover': { color: 'primary.main' }
                         }}
                       >
                         {menu.text}
@@ -191,17 +191,19 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                 color: "text.primary",
               }}
             >
-              Contact Us
+              Contact
             </Typography>
             <List>
               {footerMenus.contact.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link} target={menu.target}>
+                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main",
+                          color: "text.secondary",
+                          textDecoration: 'none',
+                          '&:hover': { color: 'primary.main' }
                         }}
                       >
                         {menu.text}
@@ -236,11 +238,13 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                     marginBottom: -5,
                   }}
                 >
-                  <Link>
+                  <Link sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "primary.main",
+                        color: "text.secondary",
+                        textDecoration: 'none',
+                        '&:hover': { color: 'primary.main' }
                       }}
                     >
                       Guide to Dog-Friendly Travel
@@ -252,11 +256,14 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                 <Link
                   href="https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf"
                   target="_blank"
+                  sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
                 >
                   <Typography
                     variant="body2"
                     sx={{
-                      color: "primary.main",
+                      color: "text.secondary",
+                      textDecoration: 'none',
+                      '&:hover': { color: 'primary.main' }
                     }}
                   >
                     Guide to Air Travel With Your Dog
@@ -266,11 +273,13 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.blog.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link}>
+                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "primary.main",
+                          color: "text.secondary",
+                          textDecoration: 'none',
+                          '&:hover': { color: 'primary.main' }
                         }}
                       >
                         {menu.text}

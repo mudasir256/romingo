@@ -159,7 +159,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   variant="body2"
                   sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
                 >
-                  About us
+                  Our story
                 </Typography>
               </Link>
               <Link
@@ -319,7 +319,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   component="button"
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                 <Pets sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> About us
+                 <Pets sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> Our story
                 </MenuItem>
                 <MenuItem
                   onClick={() => history.push("/romingo-partners")}
@@ -396,7 +396,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 </span>
               </Typography>
               <a
-                href='#destinations'
+                href='/#destinations'
                 style={{
                   cursor: "pointer",
                   marginRight: "0px",
@@ -722,12 +722,22 @@ const RomingoDeals = () => {
                   value={email}
                   sx={{
                     outline: "none",
-                    fontSize: ".8rem",
-                    input: { fontFamily: "Montserrat" },
+                    input: { fontFamily: "Montserrat", fontSize: "14px", fontWeight: 500 },
+                    '& label.Mui-focused': {
+                      color: '#03989E',
+                    },
+                    '& .MuiInput-underline:after': {
+                      borderBottomColor: 'green',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#03989E',
+                      },
+                    },
                   }}
                   InputProps={{
                     sx: {
-                      fontSize: ".5rem",
+                      fontSize: "12px",
                       maxHeight: "30px",
                       fontFamily: "Montserrat",
                       width: { xs: "calc(100vw - 140px)", sm: "290px" },
@@ -906,6 +916,17 @@ const RomingoDealsMobile = () => {
                     outline: "none",
                     fontSize: ".8rem",
                     input: { fontFamily: "Montserrat" },
+                    '& label.Mui-focused': {
+                      color: '#03989E',
+                    },
+                    '& .MuiInput-underline:after': {
+                      borderBottomColor: 'green',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#03989E',
+                      },
+                    },
                   }}
                   InputProps={{
                     sx: {

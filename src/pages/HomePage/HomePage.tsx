@@ -88,17 +88,6 @@ const HomePage: FC<Props> = ({
   const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
 
-  useEffect(() => {
-    if (screen.height > 700) {
-      window.Intercom("boot", {
-        app_id: "qa6datd3",
-        alignment: "right",
-        custom_launcher_selector: '#CUSTOM'
-      });
-      window.Intercom("update");
-    }
-  }, []);
-
   const toFeatured = (id: string, cityId: string) => {
     let city = search.city;
     let checkIn = search.checkIn;
@@ -138,32 +127,6 @@ const HomePage: FC<Props> = ({
     <>
       <ScrollToTop />
       <Header />
-
-      {screen.height > 700 && <div id="CUSTOM"
-        style={{
-          padding: '.5rem 1rem .5rem .5rem',
-          fontFamily: 'Roboto',
-          zIndex: 1501,
-          position: 'fixed',
-          flexDirection: 'row',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '8px',
-          bottom: '1.25rem',
-          right: '1.25rem',
-          boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.25)',
-          background: '#03989Ebf',
-          border: '1px solid #a6dbe5',
-          WebkitBackdropFilter: 'blur(12px)',
-          backdropFilter: 'blur(12px)',
-          fontSize: '14px',
-          color: '#fff'
-        }}>
-          <Message sx={{ fontSize: '18px', color: '#fff', mr: '.5rem'}} />
-          Chat with us
-
-       </div>}
 
       <Box>
         <Container>
@@ -345,7 +308,7 @@ const HomePage: FC<Props> = ({
           </Grid>
           <Grid item xs={12}>
             <Typography
-              variant="h5"
+              variant="body1"
               sx={{
                 color: "text.secondary",
                 textAlign: "center",
@@ -519,7 +482,7 @@ const HomePage: FC<Props> = ({
                 color: "primary.main",
                 maxWidth: "90%",
                 textAlign: "center",
-                mb: 4,
+                mb: 6,
                 ml: "auto",
                 mr: "auto",
               }}
@@ -568,7 +531,7 @@ const HomePage: FC<Props> = ({
                             sx={{
                               objectFit: "cover",
                               width: "100%",
-                              height: "240px",
+                              height: "200px",
                               borderTopLeftRadius: 12,
                               borderTopRightRadius: 12,
                             }}
@@ -603,8 +566,7 @@ const HomePage: FC<Props> = ({
                               color: "text.secondary",
                               textAlign: "center",
                               px: 3,
-                              pb: 2,
-                              pt: "1rem",
+                              pb: 0,
                               fontWeight: 400,
                             }}
                           >
@@ -775,16 +737,29 @@ const HomePage: FC<Props> = ({
                       size="medium"
                       autoCapitalize="off"
                       autoCorrect="off"
-                      sx={{ width: "calc(100% - 100px)", background: "#fff" }}
+                      sx={{ width: "calc(100% - 100px)", background: "#fff", outlineColor: 'none',
+                      '& label.Mui-focused': {
+                        color: '#03989E',
+                      },
+                      '& .MuiInput-underline:after': {
+                        borderBottomColor: 'green',
+                      },
+                      '& .MuiOutlinedInput-root': {
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#03989E',
+                        },
+                      },
+                       }}
+
                     />
                     <Button
                       sx={{
-                        fontWeight: 600,
+                        fontWeight: 500,
                         ml: ".5rem",
                         maxWidth: "120px",
                         mb: "0",
                         py: 1.45,
-                        fontSize: "18px",
+                        fontSize: "16px",
                         textTransform: "none",
                       }}
                       variant="contained"
@@ -792,7 +767,7 @@ const HomePage: FC<Props> = ({
                       type="submit"
                       color="primary"
                     >
-                      Sign Up
+                      Sign up
                     </Button>
                   </Box>
                   <Box sx={{ textAlign: "center", mt: "1rem" }}>
@@ -916,7 +891,7 @@ const CustomerTestimonials = () => {
                     cursor: "pointer",
                     background: index === currentCard ? "#efefef" : "#fff",
                     padding: "1rem .5rem",
-                    borderRadius: index === currentCard ? "6px" : "0px",
+                    borderRadius: "6px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -1501,6 +1476,17 @@ const EmailSignup = () => {
                     outline: "none",
                     fontSize: ".8rem",
                     input: { fontFamily: "Montserrat" },
+                    '& label.Mui-focused': {
+                      color: '#03989E',
+                    },
+                    '& .MuiInput-underline:after': {
+                      borderBottomColor: 'green',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#03989E',
+                      },
+                    },
                   }}
                   InputProps={{
                     sx: {

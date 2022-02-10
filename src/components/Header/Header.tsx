@@ -497,7 +497,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           input: {
                             padding: "0px",
                             fontSize: "14px",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             fontFamily: "Roboto",
                             cursor: "pointer",
                             color: "#444",
@@ -688,7 +688,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ margin: "100px auto 0px auto" }}>
+        <Box sx={{ margin: "100px auto 0px auto", userSelect: 'none' }}>
           <Box
             sx={{
               display: "flex",
@@ -716,7 +716,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               }}
             >
               <LocationCity
-                sx={{ height: "20px", color: "#666", ml: ".25rem" }}
+                sx={{ height: "20px", color: "#444", ml: ".25rem" }}
               />
               <Autocomplete
                 options={cities}
@@ -756,11 +756,17 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       input: {
                         padding: "0px",
                         fontSize: "14px",
-                        fontWeight: 500,
+                        fontWeight: 600,
                         fontFamily: "Roboto",
                         cursor: "pointer",
                         color: "#444",
                         border: "none",
+                        '&::placeholder': {
+                          textOverflow: 'ellipsis !important',
+                          color: '#444',
+                          opacity: 1,
+                          fontWeight: 600
+                        }
                       },
                     }}
                   />
@@ -783,6 +789,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateRangePicker
+                  PaperProps={{ sx: { fontWeight: 700, '& .MuiTypography-root': { fontWeight: 500 } }}}
                   inputFormat="MMM dd"
                   disableMaskedInput={true}
                   open={open}
@@ -1179,7 +1186,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         <Grid
           item
           onClick={handleClick}
-          sx={{ display: "flex", textAlign: "right", ml: "auto", mr: '.5rem' }}
+          sx={{ display: "flex", textAlign: "left", mr: "auto", ml: '1rem' }}
         >
           <Typography
             sx={{

@@ -19,7 +19,7 @@ const RedRoverPartner: FC = () => {
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
-            <Typography variant="body1" color="text.primary" sx={{ fontWeight: 600 }}>
+            <Typography variant="body1" color="text.secondary">
               We’re committed to doing our part
             </Typography>
           </Divider>
@@ -28,7 +28,7 @@ const RedRoverPartner: FC = () => {
             <Box component="img" src="https://storage.googleapis.com/romingo-development-public/images/front-end/red-rover-logo.png" alt={"Red Rover - Bringing Animals from Crisis to Care"} sx={{ width: "100%", borderRadius: 5, }}/>
           </Grid>
           <Grid item xs={12} sm={12} md={8} sx={{ pl: {xs: 0, sm: 0, md: '1.5rem'} }}>
-          <Typography variant="body1" color="text.primary" sx={{ fontWeight: 500, textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }} >
+          <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 500, textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }} >
               That’s why every booking on Romingo includes a small charitable donation to Red Rover, a non-profit organization that aims to assist those in need. When you book with Romingo you’re helping real pets and their guardians find real help.
             </Typography>
           </Grid>
@@ -58,7 +58,7 @@ const RedRoverPartner: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h4" color="text.secondary">
-              What you can do!
+              What you can do
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 500, textAlign: "left", lineHeight: 2, '& a': { color: '#940940'}}}>
               <ul style={{paddingInlineStart: '1rem'}}>

@@ -17,17 +17,6 @@ const FAQ: FC = () => {
 
       <Container maxWidth="md" sx={{ mt: 10 }}>
         <Box sx={{ textAlign: "center" }}>
-          <Box
-            component="img"
-            src="https://storage.googleapis.com/romingo-development-public/images/front-end/dog-car-window.jpeg"
-            alt={"Dog Window Down"}
-            sx={{
-              objectFit: "cover",
-              width: "100%",
-              height: "350px",
-              borderRadius: 5,
-            }}
-          />
           <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
             Frequenty Asked Questions
           </Typography>

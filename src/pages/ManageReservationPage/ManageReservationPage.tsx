@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { alpha, styled } from "@mui/material/styles";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import {
   FormControl,
   CircularProgress,
@@ -16,15 +15,8 @@ import {
 } from "@mui/material";
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
-import BookingManageCard from "../../components/BookingManageCard";
 import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-import MobileDatePicker from "@mui/lab/MobileDatePicker";
-import { DateTime } from "luxon";
 import { Error } from "@mui/icons-material";
 
 interface BookingManage {
@@ -50,6 +42,7 @@ interface Props {
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
+    color: '#03989E'
   },
   "& .MuiInputBase-input": {
     borderRadius: 4,
@@ -73,23 +66,13 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("")
   const [confirmationNumber, setConfirmationNumber] = useState("");
-  const [dateRangeOpen, setDateRangeOpen] = useState(false);
-  const [checkinDate, setCheckinDate] = useState<any>(new Date());
-  const [anchorEl, setAnchorEl] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const buttonEnabled =
-    firstName.length > 2 &&
-    lastName.length > 2 &&
+    emailAddress.length > 2 &&
     confirmationNumber.length > 10;
-
-  useEffect(() => {
-    if (!anchorEl) setDateRangeOpen(false);
-    else setDateRangeOpen(true);
-  }, [anchorEl]);
 
   useEffect(() => {
     if (loading) {
@@ -116,36 +99,18 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
 
       <Container
         maxWidth="md"
-        sx={{ mt: 10, mb: 5, minHeight: "calc(100vh - 290px)" }}
+        sx={{ mt: 8, mb: 5,}}
       >
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography
-              variant="h4"
-              color="text.primary"
-              sx={{ mt: 2, textAlign: "center" }}
-            >
+            <Typography variant="h2" color="text.primary" sx={{ mt: 2, textAlign: 'center' }}>
               Manage your reservation
             </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ mt: 2, textAlign: "center", fontWeight: 500 }}
-            >
-              Modify, cancel, or rebook your reservation below
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <hr
-              style={{
-                margin: "1rem auto 0rem auto",
-                display: "block",
-                border: "0px",
-                height: "1px",
-                width: "50%",
-                background: "#ddd",
-              }}
-            />
+            <Divider variant="middle" light sx={{ my: 2 }}>
+              <Typography variant="body1" color="text.secondary">
+                Modify, cancel, or rebook your reservation below
+              </Typography>
+            </Divider>
           </Grid>
           <Grid
             item
@@ -203,24 +168,12 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
               <Grid item xs={12} sx={{ mb: "1rem" }}>
                 <FormControl variant="standard" fullWidth>
                   <InputLabel shrink htmlFor="bootstrap-input">
-                    First Name / Given Name
+                    Email address
                   </InputLabel>
                   <BootstrapInput
                     defaultValue=""
-                    onChange={(e) => setFirstName(e.target.value)}
-                    value={firstName}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sx={{ mb: "1rem" }}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink htmlFor="bootstrap-input">
-                    Last Name / Surname
-                  </InputLabel>
-                  <BootstrapInput
-                    defaultValue=""
-                    onChange={(e) => setLastName(e.target.value)}
-                    value={lastName}
+                    onChange={(e) => setEmailAddress(e.target.value)}
+                    value={emailAddress}
                   />
                 </FormControl>
               </Grid>
@@ -237,43 +190,6 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={12} sx={{ mb: "1rem" }}>
-                <FormControl
-                  variant="standard"
-                  fullWidth
-                  sx={{ cursor: "pointer" }}
-                >
-                  <InputLabel shrink htmlFor="bootstrap-input">
-                    Check-in date
-                  </InputLabel>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      open={dateRangeOpen}
-                      onClose={() => setDateRangeOpen(false)}
-                      inputFormat="MMM dd"
-                      disableMaskedInput={true}
-                      PopperProps={{
-                        anchorEl: anchorEl,
-                        placement: "bottom-end",
-                      }}
-                      value={checkinDate || new Date()}
-                      onChange={(e: any) => setCheckinDate(e)}
-                      renderInput={() => (
-                        <BootstrapInput
-                          onClick={(e) =>
-                            anchorEl
-                              ? setAnchorEl(null)
-                              : setAnchorEl(e.currentTarget)
-                          }
-                          value={DateTime.fromJSDate(checkinDate).toFormat(
-                            "MMM dd, yyyy"
-                          )}
-                        />
-                      )}
-                    />
-                  </LocalizationProvider>
-                </FormControl>
-              </Grid>
               <Grid item xs={12} sx={{ textAlign: "center" }}>
                 <Button
                   disabled={!buttonEnabled || loading}

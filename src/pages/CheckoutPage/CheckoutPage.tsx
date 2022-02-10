@@ -56,11 +56,11 @@ const CheckoutPage: FC<Props> = () => {
       window.Intercom("boot", {
         app_id: "qa6datd3",
         alignment: "right",
+        custom_launcher_selector: '#CUSTOM'
       });
       window.Intercom("update");
     }
   }, []);
-
   return (
     <>
       <ScrollToTop />
