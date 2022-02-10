@@ -139,7 +139,7 @@ const HomePage: FC<Props> = ({
       <ScrollToTop />
       <Header />
 
-      <div id="CUSTOM"
+      {screen.height > 700 && <div id="CUSTOM"
         style={{
           padding: '.5rem 1rem .5rem .5rem',
           fontFamily: 'Roboto',
@@ -163,7 +163,7 @@ const HomePage: FC<Props> = ({
           <Message sx={{ fontSize: '18px', color: '#fff', mr: '.5rem'}} />
           Chat with us
 
-       </div>
+       </div>}
 
       <Box>
         <Container>
