@@ -71,7 +71,7 @@ const Contact: FC = () => {
                   sx={{ mb: '.5rem', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
                   >
                   <Email sx={{ mb: '1rem' }} />
-                  Email Us
+                  Email us
                 </Typography>
               </Link>
               <Typography
