@@ -771,7 +771,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >
                   <ArrowBackIcon sx={{ fontSize: 16 }} />
                 </Fab>
-                <MobileBookingBar roomList={roomDropDown} />
+                {/* <MobileBookingBar roomList={roomDropDown} /> */}
               </Hidden>
             </Grid>
           </Grid>
