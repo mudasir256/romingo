@@ -1003,8 +1003,8 @@ const CustomerTestimonials = () => {
                     margin: "1rem .5rem 0rem .5rem",
                     background: "#333",
                     display: "flex",
-                    width: "15px",
-                    height: "15px",
+                    width: "10px",
+                    height: "10px",
                     borderRadius: "25px",
                   }}
                   onClick={onClickHandler}
