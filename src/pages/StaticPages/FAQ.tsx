@@ -184,7 +184,7 @@ const FAQ: FC = () => {
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo loves cats too, but at this time we are focusing on
-              spreading the message about pet-friendly travel.
+              spreading the message about dog-friendly travel.
             </Typography>
           </Grid>
           <Grid item xs={12}>
