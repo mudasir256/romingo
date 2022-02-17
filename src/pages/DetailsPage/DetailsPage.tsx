@@ -389,7 +389,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0&libraries=places';
       setTimeout(() => {
         document.getElementsByTagName('head')[0].appendChild(script);
-      }, 2500)
+      }, 250)
     }
   }, [data])
 
