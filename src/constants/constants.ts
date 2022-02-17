@@ -134,6 +134,7 @@ const GetHotelDetail = `
       })
       {
         id
+        googlePlaceId
         sabreId
         name
         desc
