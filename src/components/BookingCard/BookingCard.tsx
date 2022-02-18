@@ -107,8 +107,8 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     }
   }, [checkDate]);
 
-  return <Grid sx={{ position: 'sticky', top: '2rem', width: '95%', ml: 'auto'}}>
-    <Box sx={{ ...sx, borderRadius: 2, boxShadow: 3, p: '1rem',}}>
+  return <Grid sx={{ width: '95%', ml: 'auto'}}>
+    <Box sx={{ ...sx, borderRadius: 2, boxShadow: 0, p: '.25rem 0rem .25rem 2rem',}}>
       {/* <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
         <Typography variant="h5" sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
           ${selectedRoom?.room?.averagePrice.toFixed(2)}  <span style={{fontSize: '16px', fontWeight: 500}}>/ night</span>
@@ -119,7 +119,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
       </Box> */}
 
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
 
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
@@ -159,13 +159,13 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               )}
             />
           </LocalizationProvider>
-        </Grid>
-        <Grid item xs={12}>
+        </Grid> */}
+        {/* <Grid item xs={12}>
           <OccupantSelector size="small" value={occupants} onChange={(value) => { onOccupantChange(value); }} onClose={handleOccupantsClose} />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <Link href='#rooms' sx={{ textDecoration: 'none' }}>
-            <Button disableElevation fullWidth  variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mb: '0rem', display: { md: 'flex', xs: 'none' }}}> Select a room </Button>
+            <Button disableElevation fullWidth  variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mb: '0rem', display: { md: 'flex', xs: 'none' }}}> Reserve a room </Button>
           </Link>
         </Grid>
         {/* <Grid item xs={12}>

@@ -8,12 +8,17 @@ import React, {
 import { Carousel } from "react-responsive-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { DateTime } from "luxon";
 import { Dispatch } from "redux";
+import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
+import { randomDate } from "../../tools.js";
+import { saveSearch } from "../../store/searchReducer";
 import {
   SvgIcon,
   Link,
   Divider,
   Skeleton,
+  CSSObject,
   Chip,
   Container,
   Fab,
@@ -27,10 +32,21 @@ import {
   DialogContent,
   DialogTitle,
   ImageList,
+  InputLabel,
+  FormControl,
+  Stack,
+  Popover,
+  Autocomplete,
   ImageListItem,
+  Select,
+  MenuItem,
+  TextField,
   IconButton,
   Drawer,
 } from "@mui/material";
+import DateRangePicker from "@mui/lab/DateRangePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Breakpoint, Theme, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CloseIcon from "@mui/icons-material/Close";
@@ -39,8 +55,16 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Check from "@mui/icons-material/Check";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
+import PersonIcon from "@mui/icons-material/Person";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Casino,
+  ExpandMore,
+  LocationCity,
+  Shuffle,
+  Event,
+  RemoveCircleOutline,
+  AddCircleOutline,
   AccountBalanceWallet,
   FiberManualRecord,
   MeetingRoom,
@@ -78,8 +102,9 @@ import {
   Launch,
   ArrowBackIos,
   Close,
-} from "@mui/icons-material";
 
+} from "@mui/icons-material";
+import { useMeasure } from "react-use";
 import BookingCard from "../../components/BookingCard";
 import MobileBookingBar from "../../components/MobileBookingBar";
 import RomingoScore from "../../components/RomingoScore";
@@ -99,6 +124,15 @@ import { useWindowSize } from "react-use";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
+
+const locationIds = [
+  "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
+  "2714faad-9ea8-4851-9506-274710cdd51b",
+  "d4c10666-addf-47a6-9870-767518d9ebad",
+  "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
+  "82145909-13b4-4aab-be20-e0db474021c1",
+  "58b23325-2016-44ef-886f-67e962dab17f",
+];
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -389,7 +423,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0&libraries=places';
       setTimeout(() => {
         document.getElementsByTagName('head')[0].appendChild(script);
-      }, 250)
+      }, 0)
     }
   }, [data])
 
@@ -749,6 +783,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                             <span style={{ display: 'block'}}> {review.author_name} </span>
                             <span style={{ display: 'block', marginTop: '.25rem' }}> {review.relative_time_description} </span>
                           </Grid>
+                          <Grid item xs={12} sx={{ paddingTop: '1rem', color: '#222', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', fontWeight: 500, flexDirection: 'row', fontFamily: 'Montserrat' }}>
+                            <Star sx={{ fontSize: '2rem', mr: '1rem', color: "warning.main" }} />
+                            <span style={{ display: 'block', marginTop: '.25rem' }}> {review.rating} /5 </span>
+                          </Grid>
                           <Grid item xs={12} sx={{ letterSpacing: '0.011rem', mt: '.5rem', fontFamily: "roboto", padding: '.5rem 0rem', lineHeight: 1.75, color: '#444' }}>
                             {review.text}
                           </Grid>
@@ -879,6 +917,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           <Grid item xs={11} sx={{ paddingLeft: { xs: '2.25rem', sm: '2.25rem', md: '1.5rem' }, color: '#222', display: 'flex', justifyContent: 'center', fontWeight: 500, flexDirection: 'column', fontFamily: 'Montserrat' }}>
                             <span style={{ display: 'block'}}> {review.author_name} </span>
                             <span style={{ display: 'block', marginTop: '.25rem' }}> {review.relative_time_description} </span>
+                          </Grid>
+                          <Grid item xs={12} sx={{ paddingTop: '1rem', color: '#222', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', fontWeight: 500, flexDirection: 'row', fontFamily: 'Montserrat' }}>
+                            <Star sx={{ fontSize: '2rem', mr: '1rem', color: "warning.main" }} />
+                            <span style={{ display: 'block', marginTop: '.25rem' }}> {review.rating} /5 </span>
                           </Grid>
                           <Grid item xs={12} sx={{ letterSpacing: '0.011rem', mt: '.5rem', fontFamily: "roboto", padding: '.5rem 0rem', lineHeight: 1.75, color: '#444' }}>
                             {review.text}
@@ -1074,8 +1116,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   textAlign: "left",
                 }}
               >
-                Available Rooms
+                Choose your room
               </Typography>
+              <RoomsFilterBar />
               <Grid container columnSpacing={4} rowSpacing={4}>
                 {rooms.map((room: any, key: number) => {
                   return (
@@ -1766,432 +1809,899 @@ const AmenitiesCard: FC<AmenitiesProps> = ({
 };
 
 
+interface FilterBarProps {
+  sx?: CSSObject;
+  zoomed?: boolean;
+  home?: boolean;
+  city?: string;
+}
 
-const CustomerTestimonials = ({ reviews }: { reviews: any }) => {
-  const matches = useMediaQuery("(max-width:800px)");
-  const lg = useMediaQuery("(max-width:1160px)");
-  const [currentCard, setCurrentCard] = useState(0);
+const RoomsFilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
+  const [open, setOpen] = useState(false);
+  const [isAccept, setIsAccept] = useState(false);
+  const [isTextField, setIsTextField] = useState(false);
+  const [zoomIn, setZoomIn] = useState(zoomed);
+  const search = useSelector((state: any) => state.searchReducer.search);
+  const cities = useSelector((state: any) => state.cityListReducer.cities);
+  const [selectedCity, setSelectedCity] = useState(
+    search.city ? search.city : null
+  );
+  const [formError, setFormError] = useState("");
+  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
+    search.checkIn ? search.checkIn : new Date(),
+    search.checkOut
+      ? search.checkOut
+      : DateTime.local().plus({ days: 1 }).toJSDate(),
+  ]);
+  const [occupants, setOccupants] = useState(
+    search.occupants.dogs > 0
+      ? search.occupants
+      : { adults: 2, children: 0, dogs: 1 }
+  );
+  const history = useHistory();
+  const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
+  const below900 = useMediaQuery("(max-width:900px)");
+
+  const dispatch: Dispatch<any> = useDispatch();
+
+  const getCityName = (cityId: string) => {
+    if (cityId) {
+      return cities.filter((city: any) => city.id === cityId)[0].name;
+    }
+  };
+  const getCity = (cityId: string) =>
+    cities.filter((city: any) => city.id === cityId)[0];
+  const onOccupantChange = (value: Occupant) => setOccupants(value);
+
+  const dateToString = (isoString: string | Date | number) => {
+    const date = new Date(isoString);
+    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
+      "0" + date.getDate()
+    ).slice(-2)}`;
+  };
+
+  const handleFilterInClick: MouseEventHandler<Element> = () => {
+    setFormError("");
+    setZoomIn(true);
+  };
+
+  const handleDateRangeClose = () => {
+    setIsAccept(false);
+    if (!isTextField) {
+      setOpen(false);
+    }
+  };
 
   useEffect(() => {
-    if (currentCard === 0) {
-      document
-        .getElementById("scroll-container")!
-        .scrollTo({ left: 0, top: 0, behavior: "smooth" });
-    } else {
-      document
-        .getElementById("scroll-container")!
-        .scrollTo({ left: 0, top: currentCard * 75, behavior: "smooth" });
+    if (!open) setIsTextField(false);
+  }, [open]);
+
+  useEffect(() => {
+    if (city && city.length > 0 && cities.length > 0) {
+      setSelectedCity(city);
     }
-  }, [currentCard]);
+  }, [cities]);
+
+  const handleFilterOutClick: MouseEventHandler<Element> = () => {
+    // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
+
+    if (
+      occupants.adults !== 0 &&
+      selectedCity &&
+      checkDate[0] &&
+      checkDate[1]
+    ) {
+      setFormError("");
+      dispatch(
+        saveSearch({
+          city: selectedCity,
+          checkIn: new Date(checkDate[0]).toISOString(),
+          checkOut: new Date(checkDate[1]).toISOString(),
+          occupants,
+        })
+      );
+
+    } else {
+      alert("error");
+      if (!selectedCity) {
+        setFormError("Location required");
+      }
+      if (!checkDate[0]) {
+        setFormError("Check-in date required");
+      }
+      if (
+        checkDate[0] &&
+        new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
+      ) {
+        setFormError("Check-in date must be today at the earliest");
+      }
+      if (!checkDate[1]) {
+        setFormError("Check-out date required");
+      }
+      if (
+        checkDate[1] &&
+        new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
+      ) {
+        setFormError("Check-out date must be after today");
+      }
+      if (occupants.adults === 0) {
+        setFormError("Search must include at least 1 adult guest");
+      }
+    }
+  };
 
   return (
-    <Box
-      sx={{
-        background: { xs: "#fff", sm: "#fff", md: "#fff" },
-        py: 6,
-        pb: { xs: "0rem", sm: "2rem", md: "4rem", lg: "4rem" },
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <Container
-        maxWidth="lg"
-        sx={{
-          "& .carousel .control-dots": {
-            display: "flex",
-            justifyContent: "center",
-          },
-          background: { xs: "#fff", sm: "#fff", md: "#fff" },
-          padding: "0rem 0rem 4rem 0rem ",
-          borderRadius: "6px",
-        }}
-      >
-        <Grid container>
-          <Grid
-            id="scroll-container"
-            item
-            xs={3}
+    <>
+      {below900 ? (
+        <Box
+          sx={{
+            zIndex: 2,
+            margin: "0px auto 12px auto",
+            paddingBottom: '12px',
+            borderBottom: '1px solid #ddd',
+            width: "90vw",
+            background: "#fff",
+          }}
+        >
+          <OccupantSelector
+            value={occupants}
+            onChange={onOccupantChange}
+            variant="standard"
+            size="small"
+          />
+          <Box
             sx={{
-              "&::-webkit-scrollbar": {
-                width: "0.4em",
-              },
-              "&::-webkit-scrollbar-track": {
-                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
-                borderRadius: "0.3em",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                backgroundColor: "rgba(0,0,0,.1)",
-                borderRadius: "0.3em",
-              },
-              maxHeight: "400px",
-              overflowY: "auto",
-              borderRight: "1px solid #ccc",
-              pr: "0rem",
-              pt: "0",
-              display: { xs: "none", sm: "none", md: "flex" },
+              display: "flex",
+              padding: ".5rem .125rem",
               flexDirection: "column",
-              cursor: "pointer",
+              alignItems: "center",
+              mb: ".5rem",
             }}
           >
-            {reviews.map((item: any, index: number) => {
-              return (
-                <Grid
-                  container
-                  key={item.name}
-                  onClick={() => setCurrentCard(() => index)}
-                  sx={{
-                    transition: "all .25s ease-in-out",
-                    border:
-                      index === currentCard
-                        ? "1px solid #ccc"
-                        : "1px solid transparent",
-                    color: "#fff",
-                    cursor: "pointer",
-                    background: index === currentCard ? "#efefef" : "#fff",
-                    padding: "1rem .5rem",
-                    borderRadius: "6px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    "&:hover": {
-                      background: "#efefef",
-                      border: "1px solid #ddd",
-                    },
-                    borderRight: "0px",
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                    zIndex: index === currentCard ? 2 : 1,
+            <Box
+              sx={{
+                display: "flex",
+                width: "100%",
+                transition: "all .15s ease-in-out",
+                alignItems: "center",
+                maxHeight: "47px",
+              }}
+            >
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DateRangePicker
+                  inputFormat="MMM dd"
+                  disableMaskedInput={true}
+                  open={open}
+                  onAccept={() => setIsAccept(true)}
+                  onClose={handleDateRangeClose}
+                  onOpen={() => {
+                    if (!isAccept) {
+                      setOpen(true);
+                    }
                   }}
-                >
+                  allowSameDateSelection
+                  calendars={1}
+                  clearable={true}
+                  value={checkDate || null}
+                  minDate={new Date()}
+                  onChange={(newValue) => {
+                    setFormError("");
+                    setCheckDate(newValue);
+                  }}
+                  renderInput={() => <Grid sx={{ display: "none" }}></Grid>}
+                />
+              </LocalizationProvider>
+
+              <Grid
+                container
+                onClick={() => setOpen(true)}
+                sx={{
+                  width: "100%",
+                  mt: '1.125rem'
+                }}
+              >
+                <Grid item xs={6} sx={{ pr: '.25rem'}}>
+                <Grid container sx={{ border: "2px solid #343B5380", borderRadius: '6px', padding: '.25rem .25rem .25rem 1rem' }}>
                   <Grid
                     item
-                    xs={2}
+                    xs={3}
                     sx={{
+                      pr: "1rem",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      pl: ".25rem",
                     }}
-                  >
-                    <img
-                      style={{
-                        borderRadius: "6px",
-                        maxHeight: "100%",
-                        maxWidth: "100%",
-                      }}
-                      src={item.profile_photo_url}
-                    />
-                  </Grid>
-                  <Grid item xs={10} sx={{ pl: "1rem" }}>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: "#11111199",
-                        fontSize: "1rem",
-                        fontFamily: "Montserrat",
-                        fontWeight: 700,
-                        textAlign: "left",
-                      }}
                     >
-                      {item.author_name}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textAlign: "left",
-                        color: "#11111199",
-                        mt: "-.25rem",
-                        fontWeight: 500,
-                        fontSize: "13px",
-                      }}
-                    >
-                      {item.relative_time_description}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              );
-            })}
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={9}
-            sx={{
-              "& .slider-wrapper": {
-                maxWidth: {
-                  xs: "100%",
-                  sm: "100%",
-                  md: "calc(100vw - 293px)",
-                  lg: "calc(100vw - 500px)",
-                  xl: "calc(100vw - 1000px)",
-                },
-                minHeight: { xs: "550px", sm: "450px", md: "375px" },
-                overflow: "hidden",
-              },
-              "& .slide": { display: { xs: "flex", sm: "flex", md: "flex" } },
-              pl: { xs: 0, sm: 0, md: "2rem" },
-              mt: "auto",
-              mb: "auto", pb: '1rem',
-              display: { xs: "block", sm: "block", md: "flex" },
-              alignItems: "center",
-            }}
-          >
-            <Carousel
-              showThumbs={false}
-              interval={matches ? 3000 : 9000}
-              showArrows={false}
-              showIndicators={matches ? true : false}
-              showStatus={false}
-              infiniteLoop={true}
-              onChange={(e) => setCurrentCard(e)}
-              autoPlay
-              selectedItem={currentCard}
-              renderIndicator={(
-                onClickHandler: (
-                  e: React.MouseEvent | React.KeyboardEvent
-                ) => void,
-                isSelected: boolean,
-                index: number,
-                label: string
-              ) => (
-                <li
-                  style={{
-                    cursor: "pointer",
-                    opacity: isSelected ? "1" : "0.27",
-                    margin: "1rem .5rem 0rem .5rem",
-                    background: "#333",
-                    display: "flex",
-                    width: "10px",
-                    height: "10px",
-                    borderRadius: "25px",
-                  }}
-                  onClick={onClickHandler}
-                  onKeyDown={onClickHandler}
-                  value={index}
-                  key={index}
-                  role="button"
-                  tabIndex={0}
-                >
-                  {/* render the number instead of a box*/}
-                </li>
-              )}
-            >
-              {reviews.map((review: any) => (
-                <Paper
-                  key={review.author_name}
-                  elevation={1}
-                  sx={{
-                    border: "1px solid #ddd",
-                    padding: matches ? "1rem 1rem" : "1rem",
-                    minHeight: { xs: "0px", sm: "0px", md: "400px" },
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    width: "85%",
-                    margin: { xs: "auto auto auto auto", sm: '0px auto auto 1rem' },
-                    mt: 0,
-                    mb: 5,
-                    borderRadius: "12px",
-                    fontFamily: "Montserrat",
-                    fontSize: "1.5rem",
-
-                  }}
-                >
-                  <Grid
-                    container
-                    sx={{ display: "flex", flexDirection: "row" }}
-                  >
-                    <Grid
-                      item
-                      xs={2}
-                      sx={{
-                        display: { xs: "block", sm: "block", md: "none" },
-                        borderBottom: "1px solid #ddd",
-                      }}
-                    >
-                      <img
-                        style={{
-                          borderRadius: "6px",
-                          maxHeight: "90%",
-                          maxWidth: "90%",
-                        }}
-                        src={review.profile_photo_url}
-                      />
+                      <Event sx={{ height: "24px", color: "#666" }} />
                     </Grid>
-                    <Grid
-                      item
-                      xs={10}
-                      sx={{
-                        display: { xs: "block", sm: "block", md: "none" },
-                        borderBottom: "1px solid #ddd",
-                        pl: ".5rem",
-                        pb: ".5rem",
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          mt: "auto",
-                          color: "#11111199",
-                          fontSize: "1rem",
-                          fontFamily: "Montserrat",
-                          fontWeight: 700,
-                          textAlign: "left",
-                        }}
-                      >
-                        {review.author_name}
-                      </Typography>
-                      <Typography sx={{ textAlign: "left" }}>
-                        {review.relative_time_description}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12} >
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          fontSize: {
-                            xs: "1.25rem",
-                            sm: "1.25rem",
-                            md: "1.15rem",
-                          },
-                          pb: { xs: "0rem", sm: "0rem", md: "1.5rem" },
-                          pt: { xs: "0rem", sm: "0rem", md: "1.5rem" },
-                          borderTop: {
-                            xs: "none",
-                            sm: "none",
-                            md: "1px solid #ddd",
-                          },
-                          borderBottom: {
-                            xs: "none",
-                            sm: "none",
-                            md: "1px solid #ddd",
-                          },
-                          mt: { xs: "0", sm: "0", md: ".75rem" },
-                          fontFamily: "Montserrat",
-                          letterSpacing: "0px",
-                          display: 'inline-block',
-                          textAlign: { xs: "left", sm: "left", md: "center" },
-                          fontWeight: 500,
-                          color: "#11111199",
-                          mb: { xs: ".25rem", sm: ".25rem", md: "1rem" },
-                          minHeight: { xs: "100px", sm: "100px", md: "175px" },
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          maxHeight: '280px',
-                          overflowY: 'auto',
-                          "&::-webkit-scrollbar": {
-                            width: "0.4em",
-                          },
-                          "&::-webkit-scrollbar-track": {
-                            boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
-                            borderRadius: "0.3em",
-                          },
-                          "&::-webkit-scrollbar-thumb": {
-                            backgroundColor: "rgba(0,0,0,.1)",
-                            borderRadius: "0.3em",
-                          },
-                        }}
-                      >
-                        &quot;{review.text}&quot;
-                      </Typography>
-                    </Grid>
-
-                    <Grid container sx={{ marginTop: 'auto' }}>
-                      <Grid item xs={6}>
-                         <Grid
-                          sx={{
-                            mt: { xs: 0, sm: 0, md: ".5rem" },
-                            ml: "auto",
-                            mr: "auto",
-                            textAlign: "center",
-                            justifyContent: "center",
-                            display: { xs: "none", sm: "none", md: "flex" },
-                          }}
-                        >
-                          <Grid
+                    <Grid item xs={9}>
+                      <Grid container>
+                        <Grid item xs={12}>
+                          <Typography
                             sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
+                              color: "#666",
+                              fontFamily: "Roboto",
+                              mb: "-.125rem",
+                              textTransform: "none",
+                              fontWeight: 600,
+                              fontSize: { xs: "11px" },
                             }}
                           >
-                            <img
-                              style={{
-                                borderRadius: "6px",
-                                maxHeight: "40px",
-                                maxWidth: "40px",
-                              }}
-                              src={review.profile_photo_url}
-                            />
-                          </Grid>
-                          <Grid sx={{ pl: "1rem" }}>
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                color: "#11111199",
-                                fontSize: "1rem",
-                                fontFamily: "Montserrat",
-                                fontWeight: 700,
-                                textAlign: "left",
-                              }}
-                            >
-                              {review.author_name}
-                            </Typography>
-                            <Typography
-                              sx={{
-                                textAlign: "left",
-                                color: "#11111199",
-                                mt: "-.25rem",
-                                fontWeight: 500,
-                                fontSize: "13px",
-                              }}
-                            >
-                              {review.relative_time_description}
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Grid
-                          item
-                          xs={12}
-                          sx={{
-                            textAlign: { xs: "left", sm: "left", md: "center" },
-                            mt: "auto", display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            color: "#f9c171",
-                          }}
-                        >
-                          <Star sx={{ fontSize: '18px' }} />  <span style={{ fontSize: '80%' , marginLeft: '.5rem' }}>{review.rating} / 5</span>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={12}
-                          sx={{
-                            mt: "1rem",
-                            textAlign: { xs: "left", sm: "left", md: "center" },
-                            fontSize: "14px",
-                            fontWeight: 500,
-                          }}
-                        >
-                          <img style={{ maxWidth: '125px' }} src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png" />
+                            Check-in
+                          </Typography>
+                          <Typography
+                            sx={{
+                              color: "#666",
+                              fontFamily: "Roboto",
+                              textTransform: "none",
+                              fontWeight: 600,
+                              fontSize: { xs: "14px" },
+                            }}
+                          >
+                            {checkDate[0]
+                              ? DateTime.fromJSDate(
+                                  new Date(checkDate[0])
+                                ).toFormat("MMM dd")
+                              : ""}
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Grid>
-
-
-
                   </Grid>
-                </Paper>
-              ))}
-            </Carousel>
+                </Grid>
+                <Grid item xs={6} sx={{ pl: ' .25rem' }}>
+                  <Grid container sx={{ border: "2px solid #343B5380", borderRadius: '6px', padding: '.25rem .25rem .25rem 1rem' }}>
+                    <Grid
+                        item
+                        xs={3}
+                        sx={{
+                          pr: "1rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                        >
+                        <Event sx={{ height: "24px", color: "#666" }} />
+                      </Grid>
+                    <Grid item xs={9}>
+                      <Typography
+                        sx={{
+                          color: "#666",
+                          fontFamily: "Roboto",
+                          mb: "-.125rem",
+                          textTransform: "none",
+                          fontWeight: 600,
+                          fontSize: { xs: "11px" },
+                        }}
+                      >
+                        Check-out
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: "#666",
+                          fontFamily: "Roboto",
+                          textTransform: "none",
+                          fontWeight: 600,
+                          fontSize: { xs: "14px" },
+                        }}
+                      >
+                        {checkDate[1]
+                          ? DateTime.fromJSDate(
+                              new Date(checkDate[1])
+                            ).toFormat("MMM dd")
+                          : ""}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+
+              </Grid>
+              <Button
+                fullWidth
+                onClick={handleFilterOutClick}
+                disableElevation
+                type="submit"
+                variant="contained"
+                sx={{
+                  height: "47px",
+                  width: "47px",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: ".25rem 0rem",
+                  justifyContent: "center",
+                  mt: "1rem",
+                  ml: '.5rem',
+                  fontFamily: "Montserrat",
+                  fontWeight: 500,
+                  borderRadius: "6px",
+                  textTransform: "none",
+                  pointerEvents: "auto",
+                }}
+              >
+                <SearchIcon
+                  sx={{
+                    height: "32px",
+                    fontSize: "28px",
+                    pointerEvents: "auto",
+                  }}
+                />
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      ) : (
+        <Box sx={{ margin: "0px auto 24px auto", userSelect: 'none' }}>
+          <Box
+            sx={{
+              display: "flex",
+              background: "#fff",
+              flexDirection: below900 ? "column" : "row",
+              alignItems: "center",
+              mb: "1rem",
+              borderRadius: "12px",
+              mt: "1rem",
+              width: biggerThanTenForty ? "975px" : "837px",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                cursor: "pointer",
+                transition: "all .15s ease-in-out",
+                alignItems: "center",
+                maxHeight: "47px",
+                mr: ".5rem",
+                border: "2px solid #343B5380",
+                padding: ".25rem .5rem",
+                "&:hover": { background: "#efefef" },
+                borderRadius: "6px",
+              }}
+            >
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DateRangePicker
+                  PaperProps={{ sx: { fontWeight: 700, '& .MuiTypography-root': { fontWeight: 500 } }}}
+                  inputFormat="MMM dd"
+                  disableMaskedInput={true}
+                  open={open}
+                  onAccept={() => setIsAccept(true)}
+                  onClose={handleDateRangeClose}
+                  onOpen={() => {
+                    if (!isAccept) {
+                      setOpen(true);
+                    }
+                  }}
+                  allowSameDateSelection
+                  calendars={1}
+                  clearable={true}
+                  value={checkDate || null}
+                  minDate={new Date()}
+                  onChange={(newValue) => {
+                    setFormError("");
+                    setCheckDate(newValue);
+                  }}
+                  renderInput={(startProps, endProps) => (
+                    <Grid
+                      container
+                      onClick={() => setOpen(true)}
+                      sx={{
+                        minWidth: "275px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Grid
+                        item
+                        xs={2}
+                        sx={{
+                          pr: "1rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Event sx={{ height: "20px", color: "#444" }} />
+                      </Grid>
+                      <Grid item xs={8}>
+                        <Grid
+                          container
+                          sx={{ justifyContent: "center", display: "flex" }}
+                        >
+                          <Grid item xs={5}>
+                            <Typography
+                              sx={{
+                                color: "#666",
+                                fontFamily: "Roboto",
+                                mb: "-.125rem",
+                                textTransform: "none",
+                                fontWeight: 600,
+                                fontSize: { xs: "11px" },
+                              }}
+                            >
+                              Check-in
+                            </Typography>
+                            <Typography
+                              sx={{
+                                color: "#444",
+                                fontFamily: "Roboto",
+                                textTransform: "none",
+                                fontWeight: 600,
+                                fontSize: { xs: "14px" },
+                              }}
+                            >
+                              {checkDate[0]
+                                ? DateTime.fromJSDate(
+                                    new Date(checkDate[0])
+                                  ).toFormat("MMM dd")
+                                : ""}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={2}
+                            sx={{
+                              alignItems: "center",
+                              fontWeight: 800,
+                              fontFamily: "Roboto",
+                              display: "flex",
+                              justifyContent: "flex-start",
+                              color: "#aaa",
+                              textAlign: "center",
+                            }}
+                          >
+                            &#8212;
+                          </Grid>
+                          <Grid item xs={5}>
+                            <Typography
+                              sx={{
+                                color: "#666",
+                                fontFamily: "Roboto",
+                                mb: "-.125rem",
+                                textTransform: "none",
+                                fontWeight: 600,
+                                fontSize: { xs: "11px" },
+                              }}
+                            >
+                              Check-out
+                            </Typography>
+                            <Typography
+                              sx={{
+                                color: "#444",
+                                fontFamily: "Roboto",
+                                textTransform: "none",
+                                fontWeight: 600,
+                                fontSize: { xs: "14px" },
+                              }}
+                            >
+                              {checkDate[1]
+                                ? DateTime.fromJSDate(
+                                    new Date(checkDate[1])
+                                  ).toFormat("MMM dd")
+                                : ""}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        item
+                        xs={1}
+                        sx={{
+                          ml: "auto",
+                          mr: ".5rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <ExpandMore sx={{ height: "20px", color: "#444" }} />
+                      </Grid>
+                    </Grid>
+                  )}
+                />
+              </LocalizationProvider>
+            </Box>
+            <Box
+              sx={{
+                "&:hover": { background: "#efefef" },
+                transition: "all .15s ease-in-out",
+                mt: { xs: 1, md: 0 },
+                mr: ".5rem",
+                display: "flex",
+                cursor: "pointer",
+                alignItems: "top",
+                border: "2px solid #343B5380",
+                borderRadius: "6px",
+                padding: ".25rem .5rem",
+                maxHeight: "47px",
+              }}
+            >
+              <OccupantSelector
+                value={occupants}
+                onChange={onOccupantChange}
+                variant="standard"
+                size="small"
+              />
+            </Box>
+            {biggerThanTenForty && (
+              <Box>
+                <Button
+                  fullWidth
+                  onClick={handleFilterOutClick}
+                  disableElevation
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    height: "47px",
+                    width: "207px",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: ".25rem 0rem",
+                    justifyContent: "center",
+                    fontFamily: "Roboto",
+                    fontWeight: 500,
+                    borderRadius: "6px",
+                    textTransform: "none",
+                  }}
+                >
+                  Check rates
+                </Button>
+              </Box>
+            )}
+          </Box>
+
+          {!biggerThanTenForty && (
+            <Box
+              sx={{
+                margin: "1rem auto",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Button
+                fullWidth
+                onClick={handleFilterOutClick}
+                disableElevation
+                type="submit"
+                variant="contained"
+                sx={{
+                  height: "47px",
+                  width: "137px",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: ".25rem 0rem",
+                  justifyContent: "center",
+                  fontFamily: "Roboto",
+                  fontWeight: 500,
+                  borderRadius: "6px",
+                  textTransform: "none",
+                }}
+              >
+                Check rates
+              </Button>
+            </Box>
+          )}
+        </Box>
+      )}
+    </>
+  );
+};
+
+export interface Occupant {
+  adults: number;
+  children: number;
+  dogs: number;
+  childrenAge?: number[];
+  disabled?: boolean;
+}
+
+interface OccupantSelectorProps {
+  value: Occupant;
+  onChange: (value: Occupant) => void;
+  onClose?: () => void;
+  fullWidth?: boolean;
+  size?: "small" | "medium" | undefined;
+  variant?: "filled" | "outlined" | "standard" | undefined;
+  disabled?: boolean;
+}
+
+const OccupantSelector: FC<OccupantSelectorProps> = ({
+  value,
+  onChange,
+  onClose,
+  fullWidth = true,
+  size = "medium",
+  variant = "outlined",
+  disabled = false,
+}) => {
+  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+  const [ref, { width }] = useMeasure<HTMLDivElement>();
+  const [error, setError] = useState("");
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setError("");
+    if (value.adults === 0) {
+      setError("At least 1 adult is required");
+      return;
+    }
+    if (onClose) {
+      onClose();
+    }
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <Grid
+        container
+        onClick={handleClick}
+        sx={{
+          minWidth: { xs: "174px", sm: '174px', md: "275px" },
+          display: { xs: "none", md: "flex" },
+          alignItems: "center",
+        }}
+      >
+        <Grid
+          item
+          xs={2}
+          sx={{
+            pr: "1rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <PersonIcon sx={{ height: "20px", color: "#444", ml: ".25rem" }} />
+        </Grid>
+        <Grid item xs={8}>
+          <Grid
+            container
+            sx={{
+              justifyContent: "center",
+              display: "flex",
+              textAlign: "left",
+            }}
+          >
+            <Grid item xs={12}>
+              <Typography
+                sx={{
+                  color: "#666",
+                  fontFamily: "Roboto",
+                  mb: "-.125rem",
+                  textTransform: "none",
+                  fontWeight: 600,
+                  fontSize: { xs: "11px" },
+                }}
+              >
+                Guests
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#444",
+                  fontFamily: "Roboto",
+                  textTransform: "none",
+                  fontWeight: 600,
+                  fontSize: { xs: "14px" },
+                }}
+              >
+                {value.adults + value.children} Guests, {value.dogs} Pets
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
-      </Container>
-    </Box>
+        <Grid
+          item
+          xs={1}
+          sx={{
+            ml: "auto",
+            mr: ".5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <ExpandMore sx={{ height: "20px", color: "#666" }} />
+        </Grid>
+      </Grid>
+
+      <Grid
+        container
+        sx={{
+          marginBottom: '-2px',
+          height: "30px",
+          display: { md: "none", xs: "flex" },
+          alignItems: "center",
+        }}
+      >
+        <Grid
+          item
+          onClick={handleClick}
+          sx={{ display: "flex", textAlign: "left", mr: "auto", ml: '0rem' }}
+        >
+          <Typography
+            sx={{
+              color: "#03989E",
+              textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
+              fontFamily: "Roboto",
+              textTransform: "none",
+              fontWeight: 600,
+              fontSize: { xs: "12px",  },
+            }}
+          >
+            {value.adults + value.children} Guests, {value.dogs} Pet
+            {value.dogs === 1 ? "" : "s"}
+          </Typography>
+          <ExpandMore sx={{ height: "20px", color: "#03989E" }} />
+        </Grid>
+      </Grid>
+
+      <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        sx={{ ".MuiPopover-paper": { width: "250px", mt: ".5rem" } }}
+      >
+        <Stack sx={{ px: 2, pt: 2 }} spacing={1}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Typography variant="body1">Adults</Typography>
+            <NumberInput
+              value={value.adults}
+              onChange={(adults) => {
+                if (adults > 5) return;
+                onChange({ ...value, adults });
+              }}
+              minimum={1}
+            />
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="body1">Children</Typography>
+            <NumberInput
+              value={value.children}
+              onChange={(children) => {
+                if (children > 6) return;
+                if (value.childrenAge && value.childrenAge.length > children) {
+                  value.childrenAge = value.childrenAge.slice(0, children);
+                } else if (
+                  value.childrenAge &&
+                  value.childrenAge.length <= children
+                ) {
+                  while (value.childrenAge.length !== children) {
+                    value.childrenAge.push(0);
+                  }
+                }
+                onChange({ ...value, children });
+              }}
+            />
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="body1">Dogs</Typography>
+            <NumberInput
+              value={value.dogs}
+              onChange={(dogs) => {
+                if (dogs > 2) return;
+                onChange({ ...value, dogs });
+              }}
+            />
+          </Stack>
+          {error.length > 0 && (
+            <Typography
+              variant="body2"
+              color="error"
+              sx={{ textAlign: "center", fontSize: "80%" }}
+            >
+              {error}
+            </Typography>
+          )}
+          <Box
+            alignItems="center"
+            justifyContent="center"
+            sx={{ width: "100%" }}
+          >
+            {Array.from({ length: value.children }, (_, i: number) => {
+              return (
+                <Box
+                  sx={{
+                    mx: "5px",
+                    mt: "0px",
+                    mb: "15px",
+                    width: "calc(50% - 10px)",
+                    display: "inline-block",
+                  }}
+                  key={i}
+                >
+                  <FormControl variant="standard" fullWidth>
+                    <InputLabel sx={{ textAlign: "center" }}>
+                      Child {i + 1} Age
+                    </InputLabel>
+                    <Select
+                      key={i}
+                      color="primary"
+                      sx={{ textAlign: "center" }}
+                      value={
+                        value.childrenAge && value.childrenAge[i]
+                          ? value.childrenAge[i].toString()
+                          : "0"
+                      }
+                      onChange={(e: any) => {
+                        if (value.childrenAge === undefined) {
+                          value.childrenAge = [];
+                        }
+                        value.childrenAge[i] = parseInt(e.target.value);
+                        onChange({ ...value });
+                      }}
+                    >
+                      {Array.from({ length: 18 }, (_, k: number) => {
+                        return (
+                          <MenuItem value={k} key={k}>
+                            {k}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Box>
+              );
+            })}
+          </Box>
+        </Stack>
+        <Button
+          sx={{ pt: 1.5, pb: 1.5, width: "100%", mt: -1.25 }}
+          onClick={handleClose}
+        >
+          Done
+        </Button>
+      </Popover>
+    </>
+  );
+};
+
+interface NumberInputProps {
+  value: number;
+  onChange: (value: number) => void;
+  minimum?: number;
+}
+
+const NumberInput: FC<NumberInputProps> = ({
+  value,
+  onChange,
+  minimum = 0,
+}) => {
+  return (
+    <Stack spacing={2} direction="row" alignItems="center">
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
+        <RemoveCircleOutline />
+      </IconButton>
+      <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
+        {value}
+      </Typography>
+      <IconButton onClick={() => onChange(value + 1)}>
+        <AddCircleOutline />
+      </IconButton>
+    </Stack>
   );
 };
 

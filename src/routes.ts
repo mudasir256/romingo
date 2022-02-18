@@ -20,6 +20,7 @@ import ListYourProperty from "./pages/StaticPages/ListYourProperty";
 import RedRoverPartner from "./pages/StaticPages/RedRoverPartner";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Application from "./pages/StaticPages/Application";
 
 interface Routes {
   path: string;
@@ -121,6 +122,11 @@ const routes: Routes[] = [
   {
     path: "/list-your-property",
     component: ListYourProperty,
+    requireAuth: false,
+  },
+  {
+    path: "/application",
+    component: Application,
     requireAuth: false,
   },
   {

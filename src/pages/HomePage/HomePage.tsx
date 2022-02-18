@@ -205,10 +205,10 @@ const HomePage: FC<Props> = ({
       <Box
         id="destinations"
         sx={{
-          background: "#EDF9F9bf",
+          background: "#f3f5f9",
           py: 6,
-          borderTop: "1px solid #03989E1A",
-          borderBottom: "1px solid #03989E1A",
+          borderTop: "1px solid #f3f5f9",
+          borderBottom: "1px solid #f3f5f9",
           backgroundPosition: "center center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -308,15 +308,15 @@ const HomePage: FC<Props> = ({
           </Grid>
           <Grid item xs={12}>
             <Typography
-              variant="body1"
+              variant="h5"
               sx={{
                 color: "text.secondary",
                 textAlign: "center",
-                mb: 2,
+                mb: 5,
                 mt: "1rem",
-                maxWidth: "90%",
                 ml: "auto",
                 mr: "auto",
+                maxWidth: "80%",
               }}
             >
               <Link>
@@ -337,9 +337,9 @@ const HomePage: FC<Props> = ({
           position: "relative",
           "&::before": {
             content: '""',
-            background: "#EDF9F9bf",
-            borderTop: "1px solid #03989E1A",
-            borderBottom: "1px solid #03989E1A",
+            background: "#f3f5f9",
+            borderTop: "1px solid #f3f5f9",
+            borderBottom: "1px solid #f3f5f9",
             opacity: 1,
             backgroundSize: "cover",
             position: "absolute",
@@ -467,11 +467,11 @@ const HomePage: FC<Props> = ({
           py: 6,
           backgroundPosition: "center center",
           backgroundSize: "cover",
-          borderTop: "1px solid #03989E1A",
-          borderBottom: "1px solid #03989E1A",
+          borderTop: "1px solid #f3f5f9",
+          borderBottom: "1px solid #f3f5f9",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          background: "#EDF9F9bf",
+          background: "#f3f5f9",
         }}
       >
         <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
