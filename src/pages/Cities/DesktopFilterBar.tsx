@@ -53,7 +53,6 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
     search.checkOut ? search.checkOut : null,
   ]);
 
-  console.log(city);
   const [occupants, setOccupants] = useState(search.occupants);
 
   const getCityName = (cityId: string) => {

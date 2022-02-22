@@ -102,7 +102,6 @@ import {
   Launch,
   ArrowBackIos,
   Close,
-
 } from "@mui/icons-material";
 import { useMeasure } from "react-use";
 import BookingCard from "../../components/BookingCard";
@@ -1119,15 +1118,17 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 Choose your room
               </Typography>
               <RoomsFilterBar />
-              <Grid container columnSpacing={4} rowSpacing={4}>
+              <Grid container columnSpacing={6} rowSpacing={6}>
                 {rooms.map((room: any, key: number) => {
                   return (
                     <Grid
                       item
-                      md={6}
-                      sm={12}
+                      md={4}
+                      lg={4}
+                      sm={6}
+                      xs={12}
                       key={key}
-                      sx={{ minWidth: "300px", display: "flex", flex: 1 }}
+                      sx={{ display: "flex", flex: 1 }}
                     >
                       <RoomCard
                         key={key}
@@ -1136,13 +1137,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                         room={room}
                         sx={{
                           minWidth: "260px",
-                          borderRadius: "5px",
-                          p: 1.75,
+                          borderRadius: "8px",
+                          p: ' 0rem 1rem 1rem 1rem',
                           border: "1px solid #ddd",
                           transition: "all .15s ease-in-out",
                           boxShadow: 1,
-                          "&:hover": { boxShadow: 7 },
-                          height: "calc(100% - 32px)",
+                          "&:hover": { boxShadow: 3 },
                         }}
                         {...room}
                       />

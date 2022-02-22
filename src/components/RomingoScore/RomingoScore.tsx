@@ -34,7 +34,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
       <Grid container>
         <Grid item xs={12} sx={{ textAlign: { sm: 'right', xs: 'left' } }}>
           <Typography variant="h6" sx={{ color: "warning.main", mr: {sm: '0rem', xs: 'auto'}, ml:{ sm: 'auto', xs: '0px' }}}>
-            {score} {new Array(Math.round(score)).fill(undefined).map((item) => <Star key={item} sx={{ color: "warning.main", fontSize: '1rem', mt: -0.2, mr: '.25rem' }} />)}
+            {score} <Star sx={{ color: "warning.main", fontSize: '1rem', mt: -0.2, mr: '.25rem' }} />
           </Typography>
         </Grid>
         <Grid item xs={12} sx={{ ml: 'auto', textAlign: { sm: 'right', xs: 'left' }}}>

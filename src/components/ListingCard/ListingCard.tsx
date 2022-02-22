@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { Check } from '@mui/icons-material'
 import { Grid, Chip, Link, Box, Stack, Typography } from '@mui/material'
 import { useHistory } from "react-router-dom"
@@ -19,6 +19,7 @@ export interface ListingCardProps {
   dogAmenities?: string[],
   showAmenities?: boolean,
   highlighted?: boolean,
+  googlePlaceId?: string,
   duration?: number,
   location: {
     latitude: number,
@@ -32,10 +33,38 @@ export interface ListingCardProps {
   showPrice?: boolean,
   noLink?: boolean,
 }
-const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addressLine1, romingoScore, city, neighborhood, cancellation = false, lowestAveragePrice, currency = "$",
+const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addressLine1, googlePlaceId, romingoScore, city, neighborhood, cancellation = false, lowestAveragePrice, currency = "$",
   dogAmenities = [], showAmenities = true, highlighted = false, showPrice = true, noLink = false, ...props }) => {
   const history = useHistory();
   const mobileCardPadding = 1.8;
+
+  // const [reviewData, setReviewData] = useState<any>()
+  // const [reviewDialog, setReviewDialog] = useState<boolean>(false)
+
+  // const getReviewData = () => {
+  //   if (window.google) {
+  //     const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+  //     if (googlePlaceId !== undefined) {
+  //       service.getDetails({ placeId: googlePlaceId, fields: ['reviews', 'rating', 'user_ratings_total'] }, (a ,b) => { setReviewData(a)} );
+  //     }
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (googlePlaceId) {
+  //     const script = document.createElement('script');
+  //     script.type = 'text/javascript';
+  //     script.addEventListener('load', function(event) {
+  //       getReviewData()
+  //     });
+  //     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0&libraries=places';
+  //     setTimeout(() => {
+  //       document.getElementsByTagName('head')[0].appendChild(script);
+  //     }, 200)
+  //   }
+  // }, [googlePlaceId])
+
+
   return (
     <Box sx={{ color: "text.primary",
         boxShadow: 1,
@@ -124,6 +153,8 @@ const ListingCard: FC<ListingCardProps> = ({ id, duration, imageURLs, name, addr
               <Grid item xs={12} sm={5} md={5} lg={4} xl={3} sx={{ display: 'flex', flexDirection: { sm:'column', xs: 'row'}, minHeight: { xs: 60, sm: 162 },  p: { xs: '0rem .5rem', sm: '.5rem .5rem 0rem 1rem', md: '.75rem 0rem'} , justifyContent: { xs: 'space-between', sm: 'center'}}}>
 
                 <RomingoScore score={romingoScore} />
+
+
 
                   <Box sx={{ mt: { xs: '0px', sm:'auto' }, ml: { sm: 'auto', xs: '0px' }, mb: '0px', alignItems: "center", display: "flex", textAlign: { sm: "right", xs: 'left'}, justifyContent: { xs: "start", sm: 'end'}, flexDirection: { sm: "row", xs: 'column'} }}>
                     <Typography variant="h5" sx={{ mr: 0.45, letterSpacing: 1, color: "text.secondary", fontSize: "165%", }}>

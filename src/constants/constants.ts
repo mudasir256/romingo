@@ -18,6 +18,7 @@ const GetHotelBySearch = `
         id
         featuredImageURL
         imageURLs
+        googlePlaceId
         name
         addressLine1
         city {
@@ -194,6 +195,11 @@ const GetHotelDetail = `
         rooms {
           type
           nonSmoking
+          romingoMatch
+          areaInSquareFeet
+          featuredImageURL
+          imageURLs
+          name
           beds {
             code
             desc

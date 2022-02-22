@@ -17,7 +17,7 @@ const hist = createBrowserHistory();
 const muTheme = createTheme(theme);
 
 const client = new ApolloClient({
-  uri: 'https://graphql.romingo.com/graphql',
+  uri: process.env.REACT_APP_ENDPOINT,
   cache: new InMemoryCache({
     typePolicies: {
       Property: {

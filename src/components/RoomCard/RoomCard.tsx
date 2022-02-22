@@ -10,6 +10,7 @@ import Popper from "@mui/material/Popper";
 import Grow from "@mui/material/Grow";
 import Button from "@mui/material/Button";
 import Backdrop from "@mui/material/Backdrop";
+import { SvgIcon } from "@mui/material";
 import SingleBedOutlinedIcon from "@mui/icons-material/SingleBedOutlined";
 import KingBedOutlinedIcon from "@mui/icons-material/KingBedOutlined";
 import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
@@ -19,8 +20,55 @@ import { DateTime } from 'luxon'
 import { utils } from "../../services/utils";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
 import { Link, Dialog, DialogContent, DialogTitle, Chip, IconButton, Grid } from '@mui/material'
-import { InfoOutlined } from '@mui/icons-material';
+import { Bathtub, FreeBreakfast, InfoOutlined, KingBed, LocalBar, Vrpano, SingleBed, SquareFoot } from '@mui/icons-material';
 import { useMediaQuery } from '@mui/material'
+import {
+  Casino,
+  ExpandMore,
+  LocationCity,
+  Shuffle,
+  Event,
+  RemoveCircleOutline,
+  AddCircleOutline,
+  AccountBalanceWallet,
+  FiberManualRecord,
+  MeetingRoom,
+  HotTub,
+  Work,
+  ChildCare,
+  Weekend,
+  PersonAddAlt,
+  Star,
+  ArrowDownward,
+  Deck,
+  Nightlife,
+  Soap,
+  DirectionsRun,
+  Bed,
+  ShoppingBasket,
+  LocalCafe,
+  MoneyOff,
+  Label,
+  Pool,
+  SportsGolf,
+  SportsTennis,
+  DryCleaning,
+  RoomService,
+  FitnessCenter,
+  Wifi,
+  Pets,
+  SmokeFree,
+  BusinessCenter,
+  Accessible,
+  SvgIconComponent,
+  CarRental,
+  Crib,
+  Restaurant,
+  Chair,
+  Launch,
+  ArrowBackIos,
+  Close,
+} from "@mui/icons-material";
 
 interface Props {
   sx?: CSSObject;
@@ -59,6 +107,11 @@ interface Props {
     cancelable: boolean;
   };
   feesIncluded: boolean;
+  romingoMatch: boolean
+  areaInSquareFeet: number
+  featuredImageURL: string
+  imageURLs: Array<string>
+  name?: string;
 }
 
 export interface RoomInfo {
@@ -96,7 +149,70 @@ export interface RoomInfo {
     cancelable: boolean;
   };
   feesIncluded: boolean;
+  romingoMatch: boolean;
+  areaInSquareFeet: number;
+  featuredImageURL: string;
+  imageURLs: Array<string>;
+  name?: string;
 }
+
+const popularAmenities = [
+  { icon: Chair, text: ["sofa", "couch"], not: ["meeting rooms"], prettyText: 'sofa' },
+  { icon: Wifi, text: ["wifi", "wireless internet"], not: ["meeting rooms"], prettyText: 'wifi' },
+  { icon: LocalBar, text: ["minibar", "mini bar"], not: ["meeting rooms"], prettyText: 'mini bar in room' },
+  {
+    icon: KingBed,
+    text: ["king bed", "king size bed", "KING BEDS", "KING SIZE BED"],
+    not: ["meeting rooms"],
+    prettyText: "King size bed"
+  },
+  {
+    icon: SingleBed,
+    text: ["double bed", "dbl bed", "dbl", "twin size bed", "double size bed", "twin bed"],
+    not: ["meeting rooms"],
+    prettyText: "Double size bed"
+  },
+  {
+    icon: Bed,
+    text: ["queen bed", "queen size bed", "QUEEN BEDS", "QUEEN SIZE BED"],
+    not: ["meeting rooms"],
+    prettyText: "Queen size bed"
+  },
+  {
+    icon: FreeBreakfast,
+    text: ["free breakfast", "breakfast"],
+    not: ["meeting rooms"],
+    prettyText: "Breakfast included"
+  },
+  {
+    icon: Vrpano,
+    text: ["panoramic view", "panorama view"],
+    not: ["meeting rooms"],
+    prettyText: "Panaoramic view"
+  },
+  { icon: Bathtub, text: ["bath tub", "bathtub"], not: ["meeting rooms"], prettyText: "bath tub" },
+  // { icon: HotTub, text: ["hot tub"], not: ["meeting rooms"] },
+  // { icon: DryCleaning, text: ["dry cleaning"], not: ["meeting rooms"] },
+  // { icon: BusinessCenter, text: ["business center"], not: ["meeting rooms"] },
+  // { icon: RoomService, text: ["room service"], not: ["meeting rooms"] },
+  // { icon: Restaurant, text: ["restaurant"], not: ["meeting rooms"] },
+  // { icon: LocalCafe, text: ["coffee"], not: ["meeting rooms"] },
+];
+
+const otherAmenities = [
+  { icon: Casino, text: ["game room"] },
+  { icon: MeetingRoom, text: ["meeting", "convention"] },
+  { icon: Crib, text: ["crib", "crib rental"] },
+  { icon: Accessible, text: ["wheelchair access", "wheelchair accessible"] },
+  { icon: SportsGolf, text: ["golf"] },
+  { icon: SportsTennis, text: ["tennis"] },
+  { icon: CarRental, text: ["car rental", "rental"] },
+  { icon: Weekend, text: ["family room"] },
+  { icon: SmokeFree, text: ["non-smoking"] },
+  { icon: ChildCare, text: ["children programs"] },
+  { icon: Work, text: ["executive"] },
+  { icon: AccountBalanceWallet, text: ["in room safe"] },
+];
 
 const RoomCard: FC<Props> = ({
   sx,
@@ -113,6 +229,11 @@ const RoomCard: FC<Props> = ({
   bestRate = false,
   cancelationPolicy,
   feesIncluded,
+  romingoMatch,
+  areaInSquareFeet,
+  featuredImageURL,
+  imageURLs,
+  name,
   type,
   ...props
 }) => {
@@ -183,12 +304,29 @@ const RoomCard: FC<Props> = ({
     setRoomTitle(roomDescription);
   }, []);
 
+
+  const includedPopular = popularAmenities.reduce((acc: Array<any>, item: any) => {
+
+    if (item.text.find((pop: any) => desc.toLowerCase().includes(pop))) {
+      return [...acc, {
+        receivedText: item.prettyText,
+        icon: item.icon
+      }]
+    }
+    else {
+      return [...acc]
+    }
+
+  }, [])
+
+    // .sort((a: any, b: any) => (a.receivedText > b.receivedText ? 1 : -1));
+
   return (
     <Box sx={{ ...sx, display: "flex", flexWrap: "wrap", minHeight: "150px", flex: 1, backgroundColor: "#fff", }}>
       <Grid container>
-        <Grid item xs={12} sm={12} md={12} lg={9} sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", fontSize: "50px", border: '1px solid #ddd', margin: { xs: '.5rem 0rem', sm: '0rem 0rem .5rem 0rem'  }, borderRadius: '6px', minHeight: '125px', background: '#f3f5f6', color: '#03989e' }}>
-          {beds?.map((bed, key) => {
+        <Grid item xs={12} sm={12} md={12} lg={12} sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ display: "flex", flex: 1, alignItems: "center", justifyContent: "center", fontSize: "50px", borderBottom: '1px solid #ddd', margin: { xs: '0rem -1rem 1rem -1rem', sm: '0rem -1rem 1rem -1rem' }, borderRadius: '6px 6px 0px 0px', minHeight: { xs: '150px', sm: '150px', md: '150px'}, background: featuredImageURL ? `url(${featuredImageURL})` : '#f3f5f6', backgroundSize: 'cover',  color: '#03989e' }}>
+          {!featuredImageURL && beds?.map((bed, key) => {
             return Array.from({ length: bed.count }, (_, i: number) => (
               <React.Fragment key={key + "_" + i}>
                 {bed.code === 5 && (
@@ -248,47 +386,81 @@ const RoomCard: FC<Props> = ({
           )}
         </Box>
 
-
-          {mobile && <Grid container >
-            <Grid item xs={12}>
-              <Typography variant="h6" sx={{ display: 'flex', fontWeight: 700, fontFamily: 'Montserrat',color: "#111111bf", textAlign: "left", fontSize: { xs: '18px', sm: "18px", md: '20px'}, mt: '.25rem', letterSpacing: 0, textTransform: "capitalize", }}>
-              {roomTitle} &nbsp;
-            </Typography>
-            <Typography variant='body1' style={{ fontSize: '14px', textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}>
-              {desc.toLowerCase()}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sx={{ marginTop: '.5rem', marginBottom: '.5rem', justifyContent: 'space-between', alignItems: 'center', display: 'flex'}}>
-            <b style={{ color: '#222',  marginRight: 'auto', fontSize: '1.95rem', fontFamily: 'Montserrat', fontWeight: 600  }}>${room.totalPrice.toString().split('.')[0]}</b>
-            </Grid>
-
-            <Grid item xs={12} sx={{ marginTop: '.25rem', marginBottom: '.25rem', fontFamily: 'Roboto', justifyContent: 'space-between', alignItems: 'center', display: 'flex'}}>
-            <Typography variant="body2" sx={{fontFamily: 'Roboto', display: 'inline-block', textAlign: { xs: 'left', sm: 'left', md: 'left', lg: 'right' }, fontSize: "90%", fontWeight: "bold", color: '#11111199', }}>
-              ${totalPriceAfterTax.toFixed(2)} TOTAL <u onClick={handleOpenPrice} style={{ cursor: 'pointer', display: 'block', color: '#11111180' }}>
-              See Details</u>
-            </Typography>
-
-            <Typography variant="body2" sx={{fontFamily: 'Roboto', opacity: .75, overflow: "visible", textAlign: "right", fontSize: "90%", lineHeight: 1, fontWeight: 500, marginTop: '.5rem', marginBottom: '.25rem'}}>
-              {cancelationPolicy.cancelable &&  <>  <b style={{ fontWeight: 600, color: '#5B8D3E', marginBottom: '.5rem', display: 'inline-flex', alignItems: 'center' }}> Fully refundable <InfoOutlined onClick={handleOpenRefundData} sx={{ cursor: 'pointer',fontSize: '12px', ml: '.125rem' }} /> </b> <br />
-              Before {DateTime.fromISO(cancelationPolicy.deadlineLocal || new Date().toISOString()).toFormat('DD')} </>}
-
-
-              { ! cancelationPolicy.cancelable && "Non-Refundable"}
-            </Typography>
-
-
-            </Grid>
-          </Grid>
-         }
-
-          {!mobile && <> <Typography variant="h6" sx={{mt: '.25rem',  display: 'flex', fontWeight: 700, fontFamily: 'Montserrat', alignItems: 'center', color: "#111111bf", textAlign: "left", fontSize: { xs: '16px', sm: "18px", md: '20px'}, letterSpacing: 0, textTransform: "capitalize", }}>
-            {roomTitle} &nbsp;
+         <Typography variant="h6" sx={{ mb: '1rem', mt: '.25rem',  display: 'flex', fontWeight: 700, fontFamily: 'Montserrat', alignItems: 'center', color: "#111111bf", textAlign: "left", fontSize: { xs: '16px', sm: "18px", md: '20px'}, letterSpacing: 0, textTransform: "capitalize", }}>
+            {name ? name : roomTitle} &nbsp;
           </Typography>
-          <Typography variant='body1' style={{ fontSize: '14px', textTransform: 'capitalize', overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitBoxOrient: "vertical", WebkitLineClamp: 1 }}>
-              {desc.toLowerCase()}
-            </Typography>
-          </>}
 
+
+
+          {includedPopular.map((amenity, index) => {
+            const AmenityIcon = amenity.icon;
+            if (index < ( areaInSquareFeet ? 3 : 4)) {
+              return (
+                <Box
+                  sx={{
+                    display: "inline-flex",
+                    flexDirection: "row",
+                    alignItems: 'center',
+                    mt: ".5rem",
+                  }}
+                  key={index}
+                >
+                  <SvgIcon
+                    sx={{ color: "#666", mr: "1rem", fontSize: '18px' }}
+                    component={AmenityIcon}
+                  />
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: ".9rem",
+                      fontWeight: 500,
+                      mt: 0,
+                      color: "#666",
+                      textIndent: "-8px",
+                      paddingLeft: "8px",
+                      letterSpacing: ".015rem",
+                      fontFamily: "Roboto",
+                      textTransform: 'capitalize'
+                    }}
+                  >
+                    {amenity.receivedText.toLowerCase()}
+                  </Typography>
+                </Box>
+              );
+            }
+          })}
+
+
+
+          {areaInSquareFeet && <Box
+            sx={{
+              display: "inline-flex",
+              flexDirection: "row",
+              alignItems: 'center',
+              mt: ".5rem",
+            }}
+          >
+            <SvgIcon
+              sx={{ color: "#666", mr: "1rem", fontSize: '18px' }}
+              component={SquareFoot}
+            />
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: ".9rem",
+                fontWeight: 500,
+                mt: 0,
+                color: "#666",
+                textIndent: "-8px",
+                paddingLeft: "8px",
+                letterSpacing: ".015rem",
+                fontFamily: "Roboto",
+                textTransform: 'capitalize'
+              }}
+            >
+              {areaInSquareFeet} Sq ft
+            </Typography>
+          </Box>}
 
           <Backdrop open={open} onClick={() => { setAnchorEl(null); }} invisible={true} >
             <Popper id={id} open={open} placement='bottom' anchorEl={anchorEl} transition style={{ zIndex: 9999, }}>
@@ -339,40 +511,22 @@ const RoomCard: FC<Props> = ({
             </Popper>
           </Backdrop>
 
-
-
-
-
-
-
       </Grid>
-      <Grid item xs={12} sm={12} md={12} lg={3} sx={{ display: 'flex', textAlign: { md: 'left', lg: 'right', }, flexDirection: 'column', mt: { xs: '0rem', sm: '0' } }}>
+      <Grid item xs={12} sm={12} md={12} lg={12} sx={{ display: 'flex', textAlign: { md: 'left', lg: 'right', }, flexDirection: 'column', mt: { xs: '0rem', sm: '1rem' } }}>
         <Box sx={{ display: "flex", flexDirection: "column", margin: '0px', }}>
           <Box sx={{ height: "100%", textAlign: { md: 'left', lg: 'right', }, display: 'flex', flexDirection: 'column', mt: { xs: '.25rem', sm: '0'}}}>
-            {!mobile && <> <b style={{ color: '#222',  marginBottom: 'auto', fontSize: '2rem', fontFamily: 'Work Sans', fontWeight: 600  }}>${room.totalPrice.toString().split('.')[0]}</b>
 
-            <Typography variant="body2" sx={{ display: 'inline-block', mt: '.5rem', textAlign: { md: 'left', lg: 'right', }, fontSize: "80%", fontWeight: "bold", color: '#11111199', }}>
-              ${totalPriceAfterTax.toFixed(2)} TOTAL <u onClick={handleOpenPrice} style={{ cursor: 'pointer', display: 'block', color: '#11111180' }}>
-              See Details</u>
-            </Typography>
-
-            <Typography variant="body2" sx={{fontFamily: 'Roboto', opacity: .75, overflow: "visible", textAlign: { md: 'left', lg: 'right', }, fontSize: "80%", lineHeight: 1, fontWeight: 500, marginTop: '1rem', mb: { md: '1rem'}}}>
+            <Typography variant="body2" sx={{fontFamily: 'Roboto', opacity: .75, overflow: "visible", textAlign: "left", fontSize: "80%", lineHeight: 1, fontWeight: 600, marginTop: '1rem', mb: { md: '1rem'}}}>
               {cancelationPolicy.cancelable &&  <>  <b style={{ fontWeight: 600, color: '#5B8D3E', marginBottom: '.5rem', display: 'inline-flex', alignItems: 'center' }}> Fully refundable <InfoOutlined onClick={handleOpenRefundData} sx={{ cursor: 'pointer',fontSize: '12px', ml: '.125rem' }} /> </b> <br />
               Before {DateTime.fromISO(cancelationPolicy.deadlineLocal || new Date().toISOString()).toFormat('DD')} </>}
-
-
               { ! cancelationPolicy.cancelable && "Non-Refundable"}
             </Typography>
-
-            </>}
-
-
 
           </Box>
         </Box>
 
 
-        <Backdrop open={refundOpen} onClick={() => { setRefundAnchorEl(null); }} invisible={true} >
+          <Backdrop open={refundOpen} onClick={() => { setRefundAnchorEl(null); }} invisible={true} >
             <Popper id={refundId} open={refundOpen} placement='bottom' anchorEl={refundAnchorEl} transition style={{ zIndex: 9999, }}>
               {({ TransitionProps }) => (
                 <Grow {...TransitionProps} timeout={350}>
@@ -382,16 +536,26 @@ const RoomCard: FC<Props> = ({
                         By reserving on Romingo, you may cancel your reservation with a full refund on or before the date listed. <br /> <br />  Your reservation must be cancelled by the check-in time of the property&lsquo;s local time.  <br />  <br /> All cancellations after this date and time are subject to cancellation fee(s) in accordance with hotel policy and Romingo&lsquo;s terms.
                       </Typography>
                     </Box>
-
                   </Box>
                 </Grow>
               )}
             </Popper>
           </Backdrop>
 
+        </Grid>
+        <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'column' }}>
 
-          <Button disableElevation variant="contained" size="small" color="primary" sx={{ ml: 'auto', py: 1, px: 1, mb: 0.5, textTransform: "inherit", width: { sm: "100%", md: '100%', lg: '90%', xs: '100%'}, mt: { xs: '.5rem', sm: 'auto'} }} onClick={handleBook}>
-            <Typography variant="h6" sx={{ fontWeight: 600, textTransform: "uppercase", fontSize: { xs: "14px" } }}>
+          <b style={{ color: '#222',  marginBottom: 'auto', fontSize: '2rem', fontFamily: 'Work Sans', fontWeight: 600  }}>${room.totalPrice.toString().split('.')[0]}</b>
+
+          <Typography variant="body2" sx={{ textAlign: 'left', display: 'inline-block', mt: '.5rem', fontSize: "80%", fontWeight: "bold", color: '#11111199', }}>
+            ${totalPriceAfterTax.toFixed(2)} TOTAL <u onClick={handleOpenPrice} style={{ cursor: 'pointer', display: 'block', color: '#11111180' }}>
+            See Details</u>
+          </Typography>
+
+        </Grid>
+        <Grid item xs={6} sx={{ display: 'flex' }}>
+          <Button disableElevation variant="contained" size="small" color="primary" sx={{ ml: 'auto', mt: 'auto', py: 1, px: 1, mb: 0.5, textTransform: "capitalize", width: { sm: "50%", md: '50%', lg: '60%', xs: '100%'}, }} onClick={handleBook}>
+            <Typography variant="h6" sx={{ fontWeight: 600, textTransform: "capitalize", fontSize: { xs: "14px" } }}>
               Reserve
             </Typography>
           </Button>
