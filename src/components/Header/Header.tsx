@@ -7,14 +7,11 @@ import {
   Autocomplete,
   IconButton,
   TextField,
-  Zoom,
   Button,
   Box,
   Typography,
   Grid,
   CSSObject,
-  Link,
-  Divider,
   useMediaQuery,
   Stack,
   FormControl,
@@ -31,17 +28,13 @@ import {
   LocationCity,
 } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import PersonIcon from "@mui/icons-material/Person";
-import PetsIcon from "@mui/icons-material/Pets";
 import { randomDate } from "../../tools.js";
-import TagManager from "react-gtm-module";
 import { saveSearch } from "../../store/searchReducer";
-import { OverlappingFieldsCanBeMergedRule } from "graphql";
 import { DateTime } from "luxon";
 import { Shuffle } from "@mui/icons-material";
 import { useMeasure } from "react-use";
@@ -91,7 +84,7 @@ const Header: FC<Props> = ({ sx }) => {
       sx={{
         width: "100%",
         minHeight: { xs: "100vh", md: "calc(100vh - 270px)" },
-        paddingTop: {xs: '0px', sm: '0px', md: "270px"},
+        paddingTop: { xs: "0px", sm: "0px", md: "270px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -408,9 +401,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             position: "absolute",
             zIndex: 2,
             margin: "0px auto 0px auto",
-            paddingTop: '64px',
-            paddingBottom: '12px',
-            borderBottom: '1px solid #ddd',
+            paddingTop: "64px",
+            paddingBottom: "12px",
+            borderBottom: "1px solid #ddd",
             width: "100vw",
             background: "#fff",
           }}
@@ -438,7 +431,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 minHeight: "49px",
                 maxHeight: "47px",
                 border: "2px solid #343B5380",
-                borderRadius: '8px'
+                borderRadius: "8px",
               }}
             >
               <Grid container>
@@ -449,12 +442,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    pl: '1rem'
+                    pl: "1rem",
                   }}
                 >
                   <LocationCity sx={{ height: "24px", color: "#666" }} />
                 </Grid>
-                <Grid item xs={11} sx={{ marginRight: 'auto', pl: '.5rem', pr: '.5rem' }}>
+                <Grid
+                  item
+                  xs={11}
+                  sx={{ marginRight: "auto", pl: ".5rem", pr: ".5rem" }}
+                >
                   <Autocomplete
                     options={cities}
                     value={getCity(selectedCity) || null}
@@ -502,12 +499,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                             cursor: "pointer",
                             color: "#444",
                             border: "none",
-                            '&::placeholder': {
-                              textOverflow: 'ellipsis !important',
-                              color: '#666',
+                            "&::placeholder": {
+                              textOverflow: "ellipsis !important",
+                              color: "#666",
                               opacity: 1,
-                              fontWeight: 600
-                            }
+                              fontWeight: 600,
+                            },
                           },
                         }}
                       />
@@ -555,20 +552,27 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 onClick={() => setOpen(true)}
                 sx={{
                   width: "100%",
-                  mt: '1rem'
+                  mt: "1rem",
                 }}
               >
-                <Grid item xs={6} sx={{ pr: '.25rem'}}>
-                <Grid container sx={{ border: "2px solid #343B5380", borderRadius: '6px', padding: '.25rem .25rem .25rem 1rem' }}>
+                <Grid item xs={6} sx={{ pr: ".25rem" }}>
                   <Grid
-                    item
-                    xs={3}
+                    container
                     sx={{
-                      pr: "1rem",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      border: "2px solid #343B5380",
+                      borderRadius: "6px",
+                      padding: ".25rem .25rem .25rem 1rem",
                     }}
+                  >
+                    <Grid
+                      item
+                      xs={3}
+                      sx={{
+                        pr: "1rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
                     >
                       <Event sx={{ height: "24px", color: "#666" }} />
                     </Grid>
@@ -607,20 +611,27 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item xs={6} sx={{ pl: ' .25rem' }}>
-                  <Grid container sx={{ border: "2px solid #343B5380", borderRadius: '6px', padding: '.25rem .25rem .25rem 1rem' }}>
+                <Grid item xs={6} sx={{ pl: " .25rem" }}>
+                  <Grid
+                    container
+                    sx={{
+                      border: "2px solid #343B5380",
+                      borderRadius: "6px",
+                      padding: ".25rem .25rem .25rem 1rem",
+                    }}
+                  >
                     <Grid
-                        item
-                        xs={3}
-                        sx={{
-                          pr: "1rem",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                        >
-                        <Event sx={{ height: "24px", color: "#666" }} />
-                      </Grid>
+                      item
+                      xs={3}
+                      sx={{
+                        pr: "1rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Event sx={{ height: "24px", color: "#666" }} />
+                    </Grid>
                     <Grid item xs={9}>
                       <Typography
                         sx={{
@@ -652,7 +663,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     </Grid>
                   </Grid>
                 </Grid>
-
               </Grid>
               <Button
                 fullWidth
@@ -668,7 +678,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   padding: ".25rem 0rem",
                   justifyContent: "center",
                   mt: "1rem",
-                  ml: '.5rem',
+                  ml: ".5rem",
                   fontFamily: "Montserrat",
                   fontWeight: 500,
                   borderRadius: "6px",
@@ -688,7 +698,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ margin: "100px auto 0px auto", userSelect: 'none' }}>
+        <Box sx={{ margin: "100px auto 0px auto", userSelect: "none" }}>
           <Box
             sx={{
               display: "flex",
@@ -761,12 +771,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         cursor: "pointer",
                         color: "#444",
                         border: "none",
-                        '&::placeholder': {
-                          textOverflow: 'ellipsis !important',
-                          color: '#444',
+                        "&::placeholder": {
+                          textOverflow: "ellipsis !important",
+                          color: "#444",
                           opacity: 1,
-                          fontWeight: 600
-                        }
+                          fontWeight: 600,
+                        },
                       },
                     }}
                   />
@@ -789,7 +799,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateRangePicker
-                  PaperProps={{ sx: { fontWeight: 700, '& .MuiTypography-root': { fontWeight: 500 } }}}
+                  PaperProps={{
+                    sx: {
+                      fontWeight: 700,
+                      "& .MuiTypography-root": { fontWeight: 500 },
+                    },
+                  }}
                   inputFormat="MMM dd"
                   disableMaskedInput={true}
                   open={open}
@@ -1177,7 +1192,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
       <Grid
         container
         sx={{
-          marginBottom: '-2px',
+          marginBottom: "-2px",
           height: "30px",
           display: { md: "none", xs: "flex" },
           alignItems: "center",
@@ -1186,7 +1201,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         <Grid
           item
           onClick={handleClick}
-          sx={{ display: "flex", textAlign: "left", mr: "auto", ml: '1rem' }}
+          sx={{ display: "flex", textAlign: "left", mr: "auto", ml: "1rem" }}
         >
           <Typography
             sx={{
@@ -1195,7 +1210,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               fontFamily: "Roboto",
               textTransform: "none",
               fontWeight: 600,
-              fontSize: { xs: "12px",  },
+              fontSize: { xs: "12px" },
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet

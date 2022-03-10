@@ -169,21 +169,15 @@ export interface ListingCardProps {
 }
 
 const CheckoutPageListingCard: FC<ListingCardProps> = ({
-  id,
   imageURLs,
   name,
   addressLine1,
   romingoScore,
   city,
-  neighborhood,
-  cancellation = false,
   lowestAveragePrice,
   currency = "$",
-  dogAmenities = [],
-  showAmenities = true,
   highlighted = false,
   showPrice = true,
-  noLink = false,
   ...props
 }) => {
   return (

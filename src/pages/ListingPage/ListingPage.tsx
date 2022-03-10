@@ -35,13 +35,12 @@ import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
 import { useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Dispatch } from "redux";
-import RomingoGuarantee from "../../components/RomingoGuarantee";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
-import { TextField, Button, useMediaQuery } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import Footer from "../../components/Footer";
 import CustomToast from "../../components/UI/CustomToast";
 import SearchIcon from "@mui/icons-material/Search";
@@ -59,7 +58,6 @@ import { saveSearch } from "../../store/searchReducer";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { useMeasure } from "react-use";
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
@@ -81,7 +79,7 @@ interface MapLocation {
 const ScrollBarRef = React.createRef<HTMLDivElement>();
 const refArray: React.RefObject<HTMLAnchorElement>[] = [];
 
-const ListingPage: FC<Props> = ({ ...props }) => {
+const ListingPage: FC<Props> = () => {
   const search = useSelector(
     (state: any) => state.searchReducer.search,
     shallowEqual
@@ -167,17 +165,15 @@ const ListingPage: FC<Props> = ({ ...props }) => {
     return state.hotelListReducer.hotels;
   });
 
-  const markers: MapLocation[] = cards.map(
-    (card: ListingCardProps, key: number) => {
-      refArray.push(React.createRef<HTMLAnchorElement>());
-      return {
-        lat: card.location.latitude,
-        lng: card.location.longitude,
-        type: "hotel",
-        price: card.lowestAveragePrice,
-      };
-    }
-  );
+  const markers: MapLocation[] = cards.map((card: ListingCardProps) => {
+    refArray.push(React.createRef<HTMLAnchorElement>());
+    return {
+      lat: card.location.latitude,
+      lng: card.location.longitude,
+      type: "hotel",
+      price: card.lowestAveragePrice,
+    };
+  });
 
   const y = useMotionValue(0);
   const { height } = useWindowSize();
@@ -465,7 +461,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               size="large"
               color="secondary"
               variant="contained"
-              onClick={(e: any) => {
+              onClick={() => {
                 if (scrollRef?.current?.scrollTop === 0) {
                   setAnimate("collapsed");
                 } else {
@@ -666,8 +662,7 @@ const DesktopFilterBar: FC = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
-  const [isTextField, setIsTextField] = useState(false);
-  const mobile = useMediaQuery("(max-width:800px)");
+  const isTextField = false;
   const city = "";
   // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
@@ -686,12 +681,6 @@ const DesktopFilterBar: FC = () => {
 
   const [occupants, setOccupants] = useState(search.occupants);
 
-  const getCityName = (cityId: string) => {
-    for (let i = 0; i < cities.length; i++) {
-      if (cities[i].id === cityId) return cities[i].name;
-    }
-  };
-
   const handleDateRangeClose = () => {
     setIsAccept(false);
     if (!isTextField) {
@@ -705,19 +694,8 @@ const DesktopFilterBar: FC = () => {
     }
   };
 
-  const dateToString = (isoString: string | Date | number) => {
-    const date = new Date(isoString);
-    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
-      "0" + date.getDate()
-    ).slice(-2)}`;
-  };
-
   const onOccupantChange = (value: Occupant) => {
     setOccupants(value);
-  };
-
-  const handleFilterInClick = () => {
-    setFormError("");
   };
 
   useEffect(() => {
@@ -868,7 +846,7 @@ const DesktopFilterBar: FC = () => {
                 setFormError("");
                 setCheckDate(newValue);
               }}
-              renderInput={(startProps, endProps) => (
+              renderInput={() => (
                 <Button
                   onClick={() => setOpen(true)}
                   sx={{ px: { xs: 1, md: 1 } }}
@@ -960,13 +938,8 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
   value,
   onChange,
   onClose,
-  fullWidth = true,
-  size = "medium",
-  variant = "outlined",
-  disabled = false,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
-  const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [error, setError] = useState("");
 
   const handleClick = (event: any) => {

@@ -17,23 +17,8 @@ import {
   Typography,
   CircularProgress,
   useMediaQuery,
-  MenuItem,
-  ListItem,
 } from "@mui/material";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Cancel,
-  Star,
-  Sell,
-  MoneyOff,
-  Pets,
-  Check,
-  KeyboardArrowDown,
-  Message,
-  Diamond,
-  PetsOutlined,
-} from "@mui/icons-material";
+import { Cancel, Star, Diamond } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
@@ -1223,7 +1208,6 @@ const CustomerTestimonials = () => {
 };
 
 const HotelCarousel = () => {
-  const matches = useMediaQuery("(max-width:800px)");
   const hotelLogos = [
     "Ace%20Hotel.jpg",
     "Curator.png",
@@ -1352,7 +1336,7 @@ const EmailSignup = () => {
           email
         )}&c=?`,
         { mode: "no-cors", method: "POST" }
-      ).then((res) => {
+      ).then(() => {
         setEmailSubmitted(true);
       });
     }, 500);

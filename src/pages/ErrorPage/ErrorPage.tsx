@@ -12,7 +12,7 @@ interface Props {
   sx?: CSSObject;
 }
 
-const ErrorPage: FC<Props> = ({ sx }) => {
+const ErrorPage: FC<Props> = () => {
   return (
     <>
       <Box

@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Hidden from "@mui/material/Hidden";
 import { FC } from "react";
 import { Container, Divider, Grid, Typography } from "@mui/material";
 
@@ -81,16 +80,16 @@ const About: FC = () => {
               }}
             >
               <Grid item xs={6} md={6}>
-                  <Box
-                    component="img"
-                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie8.jpeg"
-                    alt={"Maddie, Beach Bulldog"}
-                    sx={{
-                      objectFit: "cover",
-                      width: "100%",
-                      borderRadius: 5,
-                    }}
-                  />
+                <Box
+                  component="img"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/maddie8.jpeg"
+                  alt={"Maddie, Beach Bulldog"}
+                  sx={{
+                    objectFit: "cover",
+                    width: "100%",
+                    borderRadius: 5,
+                  }}
+                />
               </Grid>
               <Grid item xs={6} md={6}>
                 <Box
@@ -214,15 +213,36 @@ const About: FC = () => {
               color="text.secondary"
               sx={{ mt: 1, ml: 0, textAlign: "left", fontWeight: 600 }}
             >
-              Zach Somers<i style={{ fontSize: '14px', marginTop: '.25rem', marginBottom: '-.25rem', display: 'block' }}>Founder & CEO</i>
-              <span style={{ fontSize: '14px' }}>Romingo</span>
+              Zach Somers
+              <i
+                style={{
+                  fontSize: "14px",
+                  marginTop: ".25rem",
+                  marginBottom: "-.25rem",
+                  display: "block",
+                }}
+              >
+                Founder & CEO
+              </i>
+              <span style={{ fontSize: "14px" }}>Romingo</span>
             </Typography>
             <Typography
               variant="h6"
               color="text.secondary"
-              sx={{ mt: 5, ml: 0, textAlign: "left", fontWeight: 600, fontStyle: 'italic', fontSize: '14px' }}
+              sx={{
+                mt: 5,
+                ml: 0,
+                textAlign: "left",
+                fontWeight: 600,
+                fontStyle: "italic",
+                fontSize: "14px",
+              }}
             >
-              We would love to hear from you! Feel free to contact us at <a style={{color: '#03989e'}} href="mailto:hello@romingo.com">hello@romingo.com</a> for partnership, press, and any other inquiries.
+              We would love to hear from you! Feel free to contact us at{" "}
+              <a style={{ color: "#03989e" }} href="mailto:hello@romingo.com">
+                hello@romingo.com
+              </a>{" "}
+              for partnership, press, and any other inquiries.
             </Typography>
           </Grid>
         </Grid>
@@ -233,7 +253,7 @@ const About: FC = () => {
             textAlign: "center",
             display: "flex",
             alignItems: "center",
-            mb: '2rem'
+            mb: "2rem",
           }}
         >
           <Grid item xs={6} md={6}>
@@ -248,18 +268,18 @@ const About: FC = () => {
               }}
             />
           </Grid>
-            <Grid item xs={6} md={6}>
-              <Box
-                component="img"
-                src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/Maddie_Cream%20(1).jpeg"
-                alt={"Zach, Jonathan, and Maddie"}
-                sx={{
-                  objectFit: "cover",
-                  width: "100%",
-                  borderRadius: 5,
-                }}
-              />
-            </Grid>
+          <Grid item xs={6} md={6}>
+            <Box
+              component="img"
+              src="https://storage.googleapis.com/romingo-development-public/images/front-end/about/Maddie_Cream%20(1).jpeg"
+              alt={"Zach, Jonathan, and Maddie"}
+              sx={{
+                objectFit: "cover",
+                width: "100%",
+                borderRadius: 5,
+              }}
+            />
+          </Grid>
         </Grid>
       </Container>
       <Footer />

@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";

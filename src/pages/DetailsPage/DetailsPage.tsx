@@ -1,17 +1,9 @@
-import React, {
-  FC,
-  useState,
-  MouseEventHandler,
-  useEffect,
-  ReactComponentElement,
-} from "react";
-import { Carousel } from "react-responsive-carousel";
+import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { DateTime } from "luxon";
 import { Dispatch } from "redux";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import { randomDate } from "../../tools.js";
 import { saveSearch } from "../../store/searchReducer";
 import {
   SvgIcon,
@@ -23,7 +15,6 @@ import {
   Container,
   Fab,
   Box,
-  Paper,
   Button,
   Grid,
   Hidden,
@@ -36,11 +27,9 @@ import {
   FormControl,
   Stack,
   Popover,
-  Autocomplete,
   ImageListItem,
   Select,
   MenuItem,
-  TextField,
   IconButton,
   Drawer,
 } from "@mui/material";
@@ -53,15 +42,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Check from "@mui/icons-material/Check";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Casino,
   ExpandMore,
-  LocationCity,
-  Shuffle,
   Event,
   RemoveCircleOutline,
   AddCircleOutline,
@@ -74,7 +60,6 @@ import {
   Weekend,
   PersonAddAlt,
   Star,
-  ArrowDownward,
   Deck,
   Nightlife,
   Soap,
@@ -83,7 +68,6 @@ import {
   ShoppingBasket,
   LocalCafe,
   MoneyOff,
-  Label,
   Pool,
   SportsGolf,
   SportsTennis,
@@ -95,7 +79,6 @@ import {
   SmokeFree,
   BusinessCenter,
   Accessible,
-  SvgIconComponent,
   CarRental,
   Crib,
   Restaurant,
@@ -103,10 +86,7 @@ import {
   ArrowBackIos,
   Close,
 } from "@mui/icons-material";
-import { useMeasure } from "react-use";
 import BookingCard from "../../components/BookingCard";
-import MobileBookingBar from "../../components/MobileBookingBar";
-import RomingoScore from "../../components/RomingoScore";
 import Map from "../../components/UI/Map/Map";
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import ActivitiesNearby from "../../components/ActivitiesNearby";
@@ -123,15 +103,7 @@ import { useWindowSize } from "react-use";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
-
-const locationIds = [
-  "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
-  "2714faad-9ea8-4851-9506-274710cdd51b",
-  "d4c10666-addf-47a6-9870-767518d9ebad",
-  "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
-  "82145909-13b4-4aab-be20-e0db474021c1",
-  "58b23325-2016-44ef-886f-67e962dab17f",
-];
+import Footer from "../../components/Footer";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -202,7 +174,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     return str?.replace("http:", "");
   };
 
-  const { loading, error, data } = useQuery(
+  const { loading, data } = useQuery(
     gql`
       ${GetHotelDetail}
     `,
@@ -417,7 +389,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       const service = new window.google.maps.places.PlacesService(
         document.createElement("div")
       );
-      service.getDetails(request, (a, b) => {
+      service.getDetails(request, (a) => {
         setReviewData(a);
       });
     }
@@ -427,7 +399,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     if (data && data.property && data.property.googlePlaceId) {
       const script = document.createElement("script");
       script.type = "text/javascript";
-      script.addEventListener("load", function (event) {
+      script.addEventListener("load", function () {
         getReviewData();
       });
       script.src =
@@ -439,388 +411,393 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   }, [data]);
 
   return (
-    <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
-      {" "}
-      {/* fcf5f0 */}
-      <ScrollToTop />
-      <Hidden mdDown>
-        <Box
-          sx={{
-            background: "#fff",
-            position: { xs: "fixed", md: "relative" },
-            top: 0,
-            left: 0,
-            right: 0,
-            width: "100%",
-            margin: "0 auto",
-            boxShadow: { xs: 0, md: 2 },
-            display: "flex",
-            justifyContent: { xs: "center", md: "flex-start" },
-            zIndex: 1000,
-            py: { xs: 0, md: 1 },
-            overflow: "hidden",
-          }}
-        >
-          <Link
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              history.push("/");
-            }}
-          >
-            <Box
-              component="img"
-              src={
-                "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-              }
-              alt="Logo"
-              draggable="false"
-              sx={{
-                display: { xs: "none", md: "block" },
-                ml: { xs: 0, md: 4 },
-                mr: { xs: 0, md: 8 },
-                height: { xs: "0px", md: "42px" },
-              }}
-            />
-          </Link>
-        </Box>
-      </Hidden>
-      {!loading && data && (
-        <Box
-          component="img"
-          src={removeHttpLink(data?.property?.featuredImageURL)}
-          alt={name}
-          boxShadow={2}
-          onClick={handleOpen}
-          display={{ xs: "block", md: "none" }}
-          sx={{
-            background: "#fff",
-            width: "100%",
-            boxShadow: 0,
-            borderBottom: "2px solid #ddd",
-            height: { xs: "200px", sm: "300px" },
-            objectFit: "cover",
-            borderRadius: 0,
-            mx: 0,
-            cursor: "pointer",
-          }}
-        />
-      )}
-      {loading && (
-        <Hidden mdUp>
-          <Skeleton
-            variant="rectangular"
-            animation="wave"
-            sx={{
-              height: { xs: "200px", sm: "300px" },
-              objectFit: "cover",
-              mx: "0px",
-              px: 0,
-              width: "100%",
-            }}
-          />
-        </Hidden>
-      )}
-      <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
-        <Grid container spacing={2} sx={{ position: "relative" }}>
-          <Grid item xs={12} sm={6}>
-            {loading && (
-              <Hidden mdDown>
-                <Skeleton
-                  variant="rectangular"
-                  animation="wave"
-                  sx={{
-                    height: { xs: "150px", sm: "375px" },
-                    objectFit: "cover",
-                    width: "100%",
-                  }}
-                />
-              </Hidden>
-            )}
-            {!loading && data && (
-              <Box
-                onClick={handleOpen}
-                component="img"
-                src={removeHttpLink(gallery[0])}
-                alt={name}
-                draggable="false"
-                boxShadow={2}
-                display={{ xs: "none", md: "block" }}
-                sx={{
-                  width: "100%",
-                  height: { xs: "150px", sm: "375px" },
-                  objectFit: "cover",
-                  borderRadius: 1,
-                  cursor: "pointer",
-                }}
-              />
-            )}
-          </Grid>
-          <Hidden mdDown>
-            <Grid item xs={12} sm={6}>
-              <Grid container spacing={2}>
-                {!loading &&
-                  data &&
-                  gallery.slice(1, 5).map((img: any) => {
-                    return (
-                      <Grid item sm={6} key={img}>
-                        <Box
-                          onClick={handleOpen}
-                          boxShadow={2}
-                          component="img"
-                          src={img.replace(/^http(s?):/i, "")}
-                          alt={name}
-                          sx={{
-                            width: "100%",
-                            height: "178px",
-                            objectFit: "cover",
-                            borderRadius: 1,
-                            cursor: "pointer",
-                          }}
-                        />
-                      </Grid>
-                    );
-                  })}
-                {loading &&
-                  Array.from({ length: 4 }, (_, i: number) => (
-                    <Grid item sm={6} key={i}>
-                      <Skeleton
-                        variant="rectangular"
-                        animation="wave"
-                        height="178px"
-                        width="100%"
-                      />
-                    </Grid>
-                  ))}
-              </Grid>
-            </Grid>
-          </Hidden>
+    <>
+      <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
+        {" "}
+        {/* fcf5f0 */}
+        <ScrollToTop />
+        <Hidden mdDown>
           <Box
             sx={{
-              position: "absolute",
-              right: { xs: "-10px", md: "20px" },
-              bottom: { xs: "8px", md: "20px" },
-              textAlign: "right",
+              background: "#fff",
+              position: { xs: "fixed", md: "relative" },
+              top: 0,
+              left: 0,
+              right: 0,
+              width: "100%",
+              margin: "0 auto",
+              boxShadow: { xs: 0, md: 2 },
+              display: "flex",
+              justifyContent: { xs: "center", md: "flex-start" },
+              zIndex: 1000,
+              py: { xs: 0, md: 1 },
+              overflow: "hidden",
             }}
           >
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{
-                textTransform: "none",
-                backgroundColor: "white",
-                "&:hover": { backgroundColor: "#fff" },
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push("/");
               }}
-              onClick={handleOpen}
             >
-              <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
-              View Photos
-            </Button>
-          </Box>
-        </Grid>
-        {loading && (
-          <>
-            <Skeleton
-              animation="wave"
-              width={250}
-              height={55}
-              sx={{ mt: 2, mb: 0 }}
-            />
-            <Skeleton
-              animation="wave"
-              width={330}
-              height={80}
-              sx={{ mt: -2 }}
-            />
-            <Loader size="300px" />
-            <Skeleton
-              animation="wave"
-              width="100%"
-              height={800}
-              sx={{ mt: -2 }}
-            />
-          </>
-        )}
-        {!loading && !data && (
-          <Container maxWidth="md">
-            <Box sx={{ textAlign: "center", mt: 10 }}>
-              <Typography variant="h5" color="primary">
-                This property does not have any rooms available that meet your
-                search criteria
-              </Typography>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ mt: 1, mb: 3 }}
-              >
-                Search other great Romingo rooms below
-              </Typography>
-              <Hidden mdDown>
-                <DesktopFilterBar />
-              </Hidden>
-              <Hidden mdUp>
-                <FilterBar />
-              </Hidden>
               <Box
                 component="img"
-                src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
-                alt={"No Properties Found"}
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+                }
+                alt="Logo"
+                draggable="false"
                 sx={{
-                  objectFit: "cover",
-                  height: 400,
-                  width: 900,
-                  maxWidth: "100%",
-                  boxShadow: 5,
-                  borderRadius: 5,
-                  mt: 4,
+                  display: { xs: "none", md: "block" },
+                  ml: { xs: 0, md: 4 },
+                  mr: { xs: 0, md: 8 },
+                  height: { xs: "0px", md: "42px" },
                 }}
               />
-            </Box>
-          </Container>
-        )}
+            </Link>
+          </Box>
+        </Hidden>
         {!loading && data && (
-          <Grid container spacing={2} sx={{ mt: 0 }}>
-            <Grid item xs={12} md={7} lg={8}>
-              <Grid
-                container
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                }}
-              >
-                <Typography
-                  variant="h5"
+          <Box
+            component="img"
+            src={removeHttpLink(data?.property?.featuredImageURL)}
+            alt={name}
+            boxShadow={2}
+            onClick={handleOpen}
+            display={{ xs: "block", md: "none" }}
+            sx={{
+              background: "#fff",
+              width: "100%",
+              boxShadow: 0,
+              borderBottom: "2px solid #ddd",
+              height: { xs: "200px", sm: "300px" },
+              objectFit: "cover",
+              borderRadius: 0,
+              mx: 0,
+              cursor: "pointer",
+            }}
+          />
+        )}
+        {loading && (
+          <Hidden mdUp>
+            <Skeleton
+              variant="rectangular"
+              animation="wave"
+              sx={{
+                height: { xs: "200px", sm: "300px" },
+                objectFit: "cover",
+                mx: "0px",
+                px: 0,
+                width: "100%",
+              }}
+            />
+          </Hidden>
+        )}
+        <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
+          <Grid container spacing={2} sx={{ position: "relative" }}>
+            <Grid item xs={12} sm={6}>
+              {loading && (
+                <Hidden mdDown>
+                  <Skeleton
+                    variant="rectangular"
+                    animation="wave"
+                    sx={{
+                      height: { xs: "150px", sm: "375px" },
+                      objectFit: "cover",
+                      width: "100%",
+                    }}
+                  />
+                </Hidden>
+              )}
+              {!loading && data && (
+                <Box
+                  onClick={handleOpen}
+                  component="img"
+                  src={removeHttpLink(gallery[0])}
+                  alt={name}
+                  draggable="false"
+                  boxShadow={2}
+                  display={{ xs: "none", md: "block" }}
                   sx={{
-                    color: "#222",
-                    display: { sm: "block", md: "flex" },
-                    justifyContent: "space-between",
-                    fontFamily: "Montserrat",
+                    width: "100%",
+                    height: { xs: "150px", sm: "375px" },
+                    objectFit: "cover",
+                    borderRadius: 1,
+                    cursor: "pointer",
+                  }}
+                />
+              )}
+            </Grid>
+            <Hidden mdDown>
+              <Grid item xs={12} sm={6}>
+                <Grid container spacing={2}>
+                  {!loading &&
+                    data &&
+                    gallery.slice(1, 5).map((img: any) => {
+                      return (
+                        <Grid item sm={6} key={img}>
+                          <Box
+                            onClick={handleOpen}
+                            boxShadow={2}
+                            component="img"
+                            src={img.replace(/^http(s?):/i, "")}
+                            alt={name}
+                            sx={{
+                              width: "100%",
+                              height: "178px",
+                              objectFit: "cover",
+                              borderRadius: 1,
+                              cursor: "pointer",
+                            }}
+                          />
+                        </Grid>
+                      );
+                    })}
+                  {loading &&
+                    Array.from({ length: 4 }, (_, i: number) => (
+                      <Grid item sm={6} key={i}>
+                        <Skeleton
+                          variant="rectangular"
+                          animation="wave"
+                          height="178px"
+                          width="100%"
+                        />
+                      </Grid>
+                    ))}
+                </Grid>
+              </Grid>
+            </Hidden>
+            <Box
+              sx={{
+                position: "absolute",
+                right: { xs: "-10px", md: "20px" },
+                bottom: { xs: "8px", md: "20px" },
+                textAlign: "right",
+              }}
+            >
+              <Button
+                variant="outlined"
+                size="small"
+                sx={{
+                  textTransform: "none",
+                  backgroundColor: "white",
+                  "&:hover": { backgroundColor: "#fff" },
+                }}
+                onClick={handleOpen}
+              >
+                <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
+                View Photos
+              </Button>
+            </Box>
+          </Grid>
+          {loading && (
+            <>
+              <Skeleton
+                animation="wave"
+                width={250}
+                height={55}
+                sx={{ mt: 2, mb: 0 }}
+              />
+              <Skeleton
+                animation="wave"
+                width={330}
+                height={80}
+                sx={{ mt: -2 }}
+              />
+              <Loader size="300px" />
+              <Skeleton
+                animation="wave"
+                width="100%"
+                height={800}
+                sx={{ mt: -2 }}
+              />
+            </>
+          )}
+          {!loading && !data && (
+            <Container maxWidth="md">
+              <Box sx={{ textAlign: "center", mt: 10 }}>
+                <Typography variant="h5" color="primary">
+                  This property does not have any rooms available that meet your
+                  search criteria
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ mt: 1, mb: 3 }}
+                >
+                  Search other great Romingo rooms below
+                </Typography>
+                <Hidden mdDown>
+                  <DesktopFilterBar />
+                </Hidden>
+                <Hidden mdUp>
+                  <FilterBar />
+                </Hidden>
+                <Box
+                  component="img"
+                  src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
+                  alt={"No Properties Found"}
+                  sx={{
+                    objectFit: "cover",
+                    height: 400,
+                    width: 900,
+                    maxWidth: "100%",
+                    boxShadow: 5,
+                    borderRadius: 5,
+                    mt: 4,
+                  }}
+                />
+              </Box>
+            </Container>
+          )}
+          {!loading && data && (
+            <Grid container spacing={2} sx={{ mt: 0 }}>
+              <Grid item xs={12} md={7} lg={8}>
+                <Grid
+                  container
+                  sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column", sm: "row" },
                   }}
                 >
-                  {name}
-                </Typography>
-                {reviewData ? (
                   <Typography
-                    variant="h6"
+                    variant="h5"
                     sx={{
-                      color: "primary.main",
-                      mr: { sm: "0rem", xs: "auto" },
-                      ml: { sm: "auto", xs: "0px" },
-                      marginBottom: { sm: "-1rem", xs: "0px" },
-                      textAlign: { sm: "right", xs: "left" },
+                      color: "#222",
+                      display: { sm: "block", md: "flex" },
+                      justifyContent: "space-between",
+                      fontFamily: "Montserrat",
                     }}
                   >
-                    {reviewData && reviewData.rating}
-                    <Star
+                    {name}
+                  </Typography>
+                  {reviewData ? (
+                    <Typography
+                      variant="h6"
                       sx={{
                         color: "primary.main",
-                        fontSize: "1rem",
-                        mt: -0.2,
-                        mr: ".25rem",
-                      }}
-                    />
-                    <Link
-                      onClick={() => setReviewDialog(true)}
-                      sx={{
-                        cursor: "pointer",
-                        color: "#777",
-                        textDecoration: "underline",
-                        display: { xs: "inline", sm: "inline", md: "block" },
-                        fontWeight: 500,
-                        opacity: 0.75,
-                        fontSize: "60%",
+                        mr: { sm: "0rem", xs: "auto" },
+                        ml: { sm: "auto", xs: "0px" },
+                        marginBottom: { sm: "-1rem", xs: "0px" },
+                        textAlign: { sm: "right", xs: "left" },
                       }}
                     >
-                      ({reviewData && reviewData.user_ratings_total} reviews)
-                    </Link>
-                    {!isMobile && (
-                      <Dialog
-                        PaperProps={{
-                          sx: {
-                            borderRadius: "12px",
-                            overflow: "hidden",
-                            maxHeight: { xs: "100vh", sm: "100vh", md: "85vh" },
-                            maxWidth: "1000px",
-                            padding: "2rem 1.5rem",
-                          },
+                      {reviewData && reviewData.rating}
+                      <Star
+                        sx={{
+                          color: "primary.main",
+                          fontSize: "1rem",
+                          mt: -0.2,
+                          mr: ".25rem",
                         }}
-                        open={reviewDialog}
-                        onClose={() => setReviewDialog(false)}
+                      />
+                      <Link
+                        onClick={() => setReviewDialog(true)}
+                        sx={{
+                          cursor: "pointer",
+                          color: "#777",
+                          textDecoration: "underline",
+                          display: { xs: "inline", sm: "inline", md: "block" },
+                          fontWeight: 500,
+                          opacity: 0.75,
+                          fontSize: "60%",
+                        }}
                       >
-                        <Grid container>
-                          <Grid
-                            item
-                            xs={12}
-                            sm={4}
-                            md={4}
-                            sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              pr: "1rem",
-                              pb: { xs: "1rem", sm: "1rem", md: "0rem" },
-                            }}
-                          >
-                            <Close
-                              onClick={() => setReviewDialog(false)}
+                        ({reviewData && reviewData.user_ratings_total} reviews)
+                      </Link>
+                      {!isMobile && (
+                        <Dialog
+                          PaperProps={{
+                            sx: {
+                              borderRadius: "12px",
+                              overflow: "hidden",
+                              maxHeight: {
+                                xs: "100vh",
+                                sm: "100vh",
+                                md: "85vh",
+                              },
+                              maxWidth: "1000px",
+                              padding: "2rem 1.5rem",
+                            },
+                          }}
+                          open={reviewDialog}
+                          onClose={() => setReviewDialog(false)}
+                        >
+                          <Grid container>
+                            <Grid
+                              item
+                              xs={12}
+                              sm={4}
+                              md={4}
                               sx={{
-                                "&:hover": { background: "#eee" },
-                                padding: ".25rem",
-                                borderRadius: "30px",
-                                cursor: "pointer",
-                                mt: "0rem",
-                                mb: "1rem",
-                              }}
-                            />
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                color: "#222",
-                                fontFamily: "Montserrat",
-                                fontSize: "2rem",
-                                textAlign: "left",
                                 display: "flex",
-                                alignItems: "center",
-                                mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
-                                mb: { xs: ".5rem", sm: ".5rem", md: "1rem" },
+                                flexDirection: "column",
+                                pr: "1rem",
+                                pb: { xs: "1rem", sm: "1rem", md: "0rem" },
                               }}
                             >
-                              <Star
+                              <Close
+                                onClick={() => setReviewDialog(false)}
                                 sx={{
-                                  fontSize: "2rem",
-                                  mr: "1rem",
-                                  color: "primary.main",
+                                  "&:hover": { background: "#eee" },
+                                  padding: ".25rem",
+                                  borderRadius: "30px",
+                                  cursor: "pointer",
+                                  mt: "0rem",
+                                  mb: "1rem",
                                 }}
                               />
-                              {reviewData.rating}
-                              &nbsp;&bull;&nbsp;{" "}
-                              <span
-                                style={{
-                                  fontSize: "80%",
-                                  fontWeight: 500,
-                                  color: "#666",
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  color: "#222",
+                                  fontFamily: "Montserrat",
+                                  fontSize: "2rem",
+                                  textAlign: "left",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
+                                  mb: { xs: ".5rem", sm: ".5rem", md: "1rem" },
                                 }}
                               >
-                                {" "}
-                                {reviewData.user_ratings_total} reviews{" "}
-                              </span>
-                            </Typography>
+                                <Star
+                                  sx={{
+                                    fontSize: "2rem",
+                                    mr: "1rem",
+                                    color: "primary.main",
+                                  }}
+                                />
+                                {reviewData.rating}
+                                &nbsp;&bull;&nbsp;{" "}
+                                <span
+                                  style={{
+                                    fontSize: "80%",
+                                    fontWeight: 500,
+                                    color: "#666",
+                                  }}
+                                >
+                                  {" "}
+                                  {reviewData.user_ratings_total} reviews{" "}
+                                </span>
+                              </Typography>
 
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                color: "#666",
-                                fontSize: "16px",
-                                fontWeight: 600,
-                                fontFamily: "Montserrat",
-                                textAlign: "left",
-                                mr: "1rem",
-                                mb: { xs: "1rem", sm: "1rem", md: "0rem" },
-                              }}
-                            >
-                              {data.property.name}
-                            </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  color: "#666",
+                                  fontSize: "16px",
+                                  fontWeight: 600,
+                                  fontFamily: "Montserrat",
+                                  textAlign: "left",
+                                  mr: "1rem",
+                                  mb: { xs: "1rem", sm: "1rem", md: "0rem" },
+                                }}
+                              >
+                                {data.property.name}
+                              </Typography>
 
-                            {/* <Typography
+                              {/* <Typography
                           variant="h6"
                           sx={{
                             color: "#222",
@@ -832,282 +809,284 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           {data.property.name}
                       </Typography> */}
 
-                            <img
-                              style={{ marginTop: "auto", maxWidth: "125px" }}
-                              src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sm={12}
-                            md={8}
-                            sx={{
-                              paddingLeft: { xs: "0", sm: "0", md: "3rem" },
-                              paddingTop: {
-                                xs: "2rem",
-                                sm: "2rem",
-                                md: "1rem",
-                              },
-                              maxHeight: {
-                                xs: `calc(${height}px - 100px)`,
-                                sm: `${height}px`,
-                                md: "70vh",
-                              },
-                              overflowY: "auto",
-                              display: "flex",
-                              flexDirection: {
-                                xs: "column-reverse",
-                                sm: "column-reverse",
-                                md: "column",
-                              },
-                              "&::-webkit-scrollbar": {
-                                width: "0.4em",
-                              },
-                              "&::-webkit-scrollbar-track": {
-                                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
-                                borderRadius: "0.3em",
-                              },
-                              "&::-webkit-scrollbar-thumb": {
-                                backgroundColor: "rgba(0,0,0,.25)",
-                                borderRadius: "0.3em",
-                              },
-                            }}
-                          >
-                            {reviewData &&
-                              reviewData?.reviews &&
-                              reviewData.reviews.map((review: any) => (
-                                <Grid
-                                  container
-                                  key={review.author_name}
-                                  sx={{ paddingBottom: "2rem" }}
-                                >
-                                  <Grid item xs={1}>
-                                    <img
-                                      style={{ maxHeight: "50px" }}
-                                      src={review.profile_photo_url}
-                                    />
-                                  </Grid>
-                                  <Grid
-                                    item
-                                    xs={11}
-                                    sx={{
-                                      paddingLeft: {
-                                        xs: "2.25rem",
-                                        sm: "2.25rem",
-                                        md: "1.5rem",
-                                      },
-                                      color: "#222",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      fontWeight: 500,
-                                      flexDirection: "column",
-                                      fontFamily: "Montserrat",
-                                    }}
-                                  >
-                                    <span style={{ display: "block" }}>
-                                      {" "}
-                                      {review.author_name}{" "}
-                                    </span>
-                                    <span
-                                      style={{
-                                        display: "block",
-                                        marginTop: ".25rem",
-                                      }}
-                                    >
-                                      {" "}
-                                      {review.relative_time_description}{" "}
-                                    </span>
-                                  </Grid>
-                                  <Grid
-                                    item
-                                    xs={12}
-                                    sx={{
-                                      paddingTop: "1rem",
-                                      color: "#222",
-                                      display: "flex",
-                                      justifyContent: "flex-start",
-                                      alignItems: "center",
-                                      fontWeight: 500,
-                                      flexDirection: "row",
-                                      fontFamily: "Montserrat",
-                                    }}
-                                  >
-                                    <Star
-                                      sx={{
-                                        fontSize: "2rem",
-                                        mr: "1rem",
-                                        color: "primary.main",
-                                      }}
-                                    />
-                                    <span
-                                      style={{
-                                        display: "block",
-                                        marginTop: ".25rem",
-                                      }}
-                                    >
-                                      {" "}
-                                      {review.rating} /5{" "}
-                                    </span>
-                                  </Grid>
-                                  <Grid
-                                    item
-                                    xs={12}
-                                    sx={{
-                                      letterSpacing: "0.011rem",
-                                      mt: ".5rem",
-                                      fontFamily: "roboto",
-                                      padding: ".5rem 0rem",
-                                      lineHeight: 1.75,
-                                      color: "#444",
-                                    }}
-                                  >
-                                    {review.text}
-                                  </Grid>
-                                </Grid>
-                              ))}
-
+                              <img
+                                style={{ marginTop: "auto", maxWidth: "125px" }}
+                                src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
+                              />
+                            </Grid>
                             <Grid
+                              item
+                              xs={12}
+                              sm={12}
+                              md={8}
                               sx={{
-                                mt: { md: "2rem", xs: ".5rem", sm: ".5rem" },
-                                mb: { xs: "2rem", sm: "2rem", md: "0" },
-                                display: "flex",
-                                alignItems: "center",
-                                pt: { md: "1.5rem", xs: "1rem", sm: "1rem" },
-                                pb: { xs: "1.5rem", sm: "1.5rem", md: "0" },
-                                position: "sticky",
-                                bottom: { xs: "", sm: "", md: "0px" },
-                                background: "#fff",
-                                borderBottom: {
-                                  md: "0",
-                                  xs: "2px solid #ddd",
-                                  sm: "2px solid #ddd",
+                                paddingLeft: { xs: "0", sm: "0", md: "3rem" },
+                                paddingTop: {
+                                  xs: "2rem",
+                                  sm: "2rem",
+                                  md: "1rem",
                                 },
-                                borderTop: {
-                                  xs: "0",
-                                  sm: "0",
-                                  md: "2px solid #ddd",
+                                maxHeight: {
+                                  xs: `calc(${height}px - 100px)`,
+                                  sm: `${height}px`,
+                                  md: "70vh",
+                                },
+                                overflowY: "auto",
+                                display: "flex",
+                                flexDirection: {
+                                  xs: "column-reverse",
+                                  sm: "column-reverse",
+                                  md: "column",
+                                },
+                                "&::-webkit-scrollbar": {
+                                  width: "0.4em",
+                                },
+                                "&::-webkit-scrollbar-track": {
+                                  boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                                  borderRadius: "0.3em",
+                                },
+                                "&::-webkit-scrollbar-thumb": {
+                                  backgroundColor: "rgba(0,0,0,.25)",
+                                  borderRadius: "0.3em",
                                 },
                               }}
                             >
+                              {reviewData &&
+                                reviewData?.reviews &&
+                                reviewData.reviews.map((review: any) => (
+                                  <Grid
+                                    container
+                                    key={review.author_name}
+                                    sx={{ paddingBottom: "2rem" }}
+                                  >
+                                    <Grid item xs={1}>
+                                      <img
+                                        style={{ maxHeight: "50px" }}
+                                        src={review.profile_photo_url}
+                                      />
+                                    </Grid>
+                                    <Grid
+                                      item
+                                      xs={11}
+                                      sx={{
+                                        paddingLeft: {
+                                          xs: "2.25rem",
+                                          sm: "2.25rem",
+                                          md: "1.5rem",
+                                        },
+                                        color: "#222",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        fontWeight: 500,
+                                        flexDirection: "column",
+                                        fontFamily: "Montserrat",
+                                      }}
+                                    >
+                                      <span style={{ display: "block" }}>
+                                        {" "}
+                                        {review.author_name}{" "}
+                                      </span>
+                                      <span
+                                        style={{
+                                          display: "block",
+                                          marginTop: ".25rem",
+                                        }}
+                                      >
+                                        {" "}
+                                        {review.relative_time_description}{" "}
+                                      </span>
+                                    </Grid>
+                                    <Grid
+                                      item
+                                      xs={12}
+                                      sx={{
+                                        paddingTop: "1rem",
+                                        color: "#222",
+                                        display: "flex",
+                                        justifyContent: "flex-start",
+                                        alignItems: "center",
+                                        fontWeight: 500,
+                                        flexDirection: "row",
+                                        fontFamily: "Montserrat",
+                                      }}
+                                    >
+                                      <Star
+                                        sx={{
+                                          fontSize: "2rem",
+                                          mr: "1rem",
+                                          color: "primary.main",
+                                        }}
+                                      />
+                                      <span
+                                        style={{
+                                          display: "block",
+                                          marginTop: ".25rem",
+                                        }}
+                                      >
+                                        {" "}
+                                        {review.rating} /5{" "}
+                                      </span>
+                                    </Grid>
+                                    <Grid
+                                      item
+                                      xs={12}
+                                      sx={{
+                                        letterSpacing: "0.011rem",
+                                        mt: ".5rem",
+                                        fontFamily: "roboto",
+                                        padding: ".5rem 0rem",
+                                        lineHeight: 1.75,
+                                        color: "#444",
+                                      }}
+                                    >
+                                      {review.text}
+                                    </Grid>
+                                  </Grid>
+                                ))}
+
+                              <Grid
+                                sx={{
+                                  mt: { md: "2rem", xs: ".5rem", sm: ".5rem" },
+                                  mb: { xs: "2rem", sm: "2rem", md: "0" },
+                                  display: "flex",
+                                  alignItems: "center",
+                                  pt: { md: "1.5rem", xs: "1rem", sm: "1rem" },
+                                  pb: { xs: "1.5rem", sm: "1.5rem", md: "0" },
+                                  position: "sticky",
+                                  bottom: { xs: "", sm: "", md: "0px" },
+                                  background: "#fff",
+                                  borderBottom: {
+                                    md: "0",
+                                    xs: "2px solid #ddd",
+                                    sm: "2px solid #ddd",
+                                  },
+                                  borderTop: {
+                                    xs: "0",
+                                    sm: "0",
+                                    md: "2px solid #ddd",
+                                  },
+                                }}
+                              >
+                                <Typography
+                                  variant="h6"
+                                  sx={{
+                                    color: "#666",
+                                    fontSize: "18px",
+                                    fontWeight: 600,
+                                    fontFamily: "Montserrat",
+                                    textAlign: "left",
+                                    ml: "1rem",
+                                  }}
+                                >
+                                  5 of {reviewData.user_ratings_total}
+                                </Typography>
+
+                                <Button
+                                  onClick={() =>
+                                    window.open(
+                                      `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                                    )
+                                  }
+                                  variant="outlined"
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    ml: "auto",
+                                    mr: "1rem",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  See all reviews
+                                  <Launch
+                                    sx={{ ml: "1rem", fontSize: "16px" }}
+                                  />
+                                </Button>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        </Dialog>
+                      )}
+                      {isMobile && (
+                        <Drawer
+                          PaperProps={{
+                            sx: {
+                              height: "100%",
+                              borderRadius: "0px",
+                              overflow: "hidden",
+                              padding: "2rem 1.5rem",
+                            },
+                          }}
+                          anchor="bottom"
+                          open={reviewDialog}
+                          onClose={() => setReviewDialog(false)}
+                        >
+                          <Grid container>
+                            <Grid
+                              item
+                              xs={12}
+                              sm={4}
+                              md={4}
+                              sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                pr: "1rem",
+                                pb: { xs: "1rem", sm: "1rem", md: "0rem" },
+                              }}
+                            >
+                              <ArrowBackIos
+                                onClick={() => setReviewDialog(false)}
+                                sx={{ mt: "4rem" }}
+                              />
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  color: "#222",
+                                  fontFamily: "Montserrat",
+                                  fontSize: "2rem",
+                                  textAlign: "left",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
+                                  mb: { xs: ".5rem", sm: ".5rem", md: "2rem" },
+                                }}
+                              >
+                                <Star
+                                  sx={{
+                                    fontSize: "2rem",
+                                    mr: "1rem",
+                                    color: "warning.main",
+                                  }}
+                                />
+                                {reviewData.rating}
+                                &nbsp;&bull;&nbsp;{" "}
+                                <span
+                                  style={{
+                                    fontSize: "80%",
+                                    fontWeight: 500,
+                                    color: "#666",
+                                  }}
+                                >
+                                  {" "}
+                                  {reviewData.user_ratings_total} reviews{" "}
+                                </span>
+                              </Typography>
+
                               <Typography
                                 variant="h6"
                                 sx={{
                                   color: "#666",
-                                  fontSize: "18px",
+                                  fontSize: "16px",
                                   fontWeight: 600,
                                   fontFamily: "Montserrat",
                                   textAlign: "left",
-                                  ml: "1rem",
+                                  mr: "1rem",
+                                  mb: { xs: "1rem", sm: "1rem", md: "0rem" },
                                 }}
                               >
-                                5 of {reviewData.user_ratings_total}
+                                {data.property.name}
                               </Typography>
 
-                              <Button
-                                onClick={() =>
-                                  window.open(
-                                    `https://www.google.com/maps/search/?api=1&query=${data.property.googlePlaceId}&query_place_id=${data.property.googlePlaceId}`
-                                  )
-                                }
-                                variant="outlined"
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  ml: "auto",
-                                  mr: "1rem",
-                                  fontWeight: 600,
-                                }}
-                              >
-                                See all reviews
-                                <Launch sx={{ ml: "1rem", fontSize: "16px" }} />
-                              </Button>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Dialog>
-                    )}
-                    {isMobile && (
-                      <Drawer
-                        PaperProps={{
-                          sx: {
-                            height: "100%",
-                            borderRadius: "0px",
-                            overflow: "hidden",
-                            padding: "2rem 1.5rem",
-                          },
-                        }}
-                        anchor="bottom"
-                        open={reviewDialog}
-                        onClose={() => setReviewDialog(false)}
-                      >
-                        <Grid container>
-                          <Grid
-                            item
-                            xs={12}
-                            sm={4}
-                            md={4}
-                            sx={{
-                              display: "flex",
-                              flexDirection: "column",
-                              pr: "1rem",
-                              pb: { xs: "1rem", sm: "1rem", md: "0rem" },
-                            }}
-                          >
-                            <ArrowBackIos
-                              onClick={() => setReviewDialog(false)}
-                              sx={{ mt: "4rem" }}
-                            />
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                color: "#222",
-                                fontFamily: "Montserrat",
-                                fontSize: "2rem",
-                                textAlign: "left",
-                                display: "flex",
-                                alignItems: "center",
-                                mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
-                                mb: { xs: ".5rem", sm: ".5rem", md: "2rem" },
-                              }}
-                            >
-                              <Star
-                                sx={{
-                                  fontSize: "2rem",
-                                  mr: "1rem",
-                                  color: "warning.main",
-                                }}
-                              />
-                              {reviewData.rating}
-                              &nbsp;&bull;&nbsp;{" "}
-                              <span
-                                style={{
-                                  fontSize: "80%",
-                                  fontWeight: 500,
-                                  color: "#666",
-                                }}
-                              >
-                                {" "}
-                                {reviewData.user_ratings_total} reviews{" "}
-                              </span>
-                            </Typography>
-
-                            <Typography
-                              variant="h6"
-                              sx={{
-                                color: "#666",
-                                fontSize: "16px",
-                                fontWeight: 600,
-                                fontFamily: "Montserrat",
-                                textAlign: "left",
-                                mr: "1rem",
-                                mb: { xs: "1rem", sm: "1rem", md: "0rem" },
-                              }}
-                            >
-                              {data.property.name}
-                            </Typography>
-
-                            {/* <Typography
+                              {/* <Typography
                           variant="h6"
                           sx={{
                             color: "#222",
@@ -1119,597 +1098,599 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           {data.property.name}
                       </Typography> */}
 
-                            <img
-                              style={{ marginTop: "auto", maxWidth: "125px" }}
-                              src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
-                            />
-                          </Grid>
-                          <Grid
-                            item
-                            xs={12}
-                            sm={12}
-                            md={8}
-                            sx={{
-                              paddingLeft: { xs: "0", sm: "0", md: "3rem" },
-                              paddingTop: {
-                                xs: "0rem",
-                                sm: "0rem",
-                                md: "1rem",
-                              },
-                              maxHeight: {
-                                xs: `calc(${height}px - 100px)`,
-                                sm: `${height}px`,
-                                md: "70vh",
-                              },
-                              overflowY: "auto",
-                              paddingBottom: "2rem",
-                            }}
-                          >
+                              <img
+                                style={{ marginTop: "auto", maxWidth: "125px" }}
+                                src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
+                              />
+                            </Grid>
                             <Grid
+                              item
+                              xs={12}
+                              sm={12}
+                              md={8}
                               sx={{
-                                mt: { md: "2rem", xs: ".5rem", sm: ".5rem" },
-                                mb: { xs: "2rem", sm: "2rem", md: "0" },
-                                display: "flex",
-                                alignItems: "center",
-                                pt: { md: "1.5rem", xs: "0rem", sm: "0rem" },
-                                pb: { xs: "1.5rem", sm: "1.5rem", md: "0" },
-                                background: "#fff",
-                                borderBottom: {
-                                  md: "0",
-                                  xs: "2px solid #ddd",
-                                  sm: "2px solid #ddd",
+                                paddingLeft: { xs: "0", sm: "0", md: "3rem" },
+                                paddingTop: {
+                                  xs: "0rem",
+                                  sm: "0rem",
+                                  md: "1rem",
                                 },
-                                borderTop: {
-                                  xs: "0",
-                                  sm: "0",
-                                  md: "2px solid #ddd",
+                                maxHeight: {
+                                  xs: `calc(${height}px - 100px)`,
+                                  sm: `${height}px`,
+                                  md: "70vh",
                                 },
+                                overflowY: "auto",
+                                paddingBottom: "2rem",
                               }}
                             >
-                              <Typography
-                                variant="h6"
+                              <Grid
                                 sx={{
-                                  color: "#666",
-                                  fontSize: "18px",
-                                  fontWeight: 600,
-                                  fontFamily: "Montserrat",
-                                  textAlign: "left",
-                                  ml: "1rem",
-                                }}
-                              >
-                                5 of {reviewData.user_ratings_total}
-                              </Typography>
-
-                              <Button
-                                onClick={() =>
-                                  window.open(
-                                    `https://www.google.com/maps/search/?api=1&query=${data.property.googlePlaceId}&query_place_id=${data.property.googlePlaceId}`
-                                  )
-                                }
-                                variant="outlined"
-                                sx={{
+                                  mt: { md: "2rem", xs: ".5rem", sm: ".5rem" },
+                                  mb: { xs: "2rem", sm: "2rem", md: "0" },
                                   display: "flex",
                                   alignItems: "center",
-                                  ml: "auto",
-                                  mr: "1rem",
-                                  fontWeight: 600,
+                                  pt: { md: "1.5rem", xs: "0rem", sm: "0rem" },
+                                  pb: { xs: "1.5rem", sm: "1.5rem", md: "0" },
+                                  background: "#fff",
+                                  borderBottom: {
+                                    md: "0",
+                                    xs: "2px solid #ddd",
+                                    sm: "2px solid #ddd",
+                                  },
+                                  borderTop: {
+                                    xs: "0",
+                                    sm: "0",
+                                    md: "2px solid #ddd",
+                                  },
                                 }}
                               >
-                                See all reviews
-                                <Launch sx={{ ml: "1rem", fontSize: "16px" }} />
-                              </Button>
-                            </Grid>
-
-                            {reviewData &&
-                              reviewData?.reviews &&
-                              reviewData.reviews.map((review: any) => (
-                                <Grid
-                                  container
-                                  key={review.author_name}
-                                  sx={{ paddingBottom: "6rem" }}
+                                <Typography
+                                  variant="h6"
+                                  sx={{
+                                    color: "#666",
+                                    fontSize: "18px",
+                                    fontWeight: 600,
+                                    fontFamily: "Montserrat",
+                                    textAlign: "left",
+                                    ml: "1rem",
+                                  }}
                                 >
-                                  <Grid item xs={1}>
-                                    <img
-                                      style={{ maxHeight: "50px" }}
-                                      src={review.profile_photo_url}
-                                    />
-                                  </Grid>
+                                  5 of {reviewData.user_ratings_total}
+                                </Typography>
+
+                                <Button
+                                  onClick={() =>
+                                    window.open(
+                                      `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                                    )
+                                  }
+                                  variant="outlined"
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    ml: "auto",
+                                    mr: "1rem",
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  See all reviews
+                                  <Launch
+                                    sx={{ ml: "1rem", fontSize: "16px" }}
+                                  />
+                                </Button>
+                              </Grid>
+
+                              {reviewData &&
+                                reviewData?.reviews &&
+                                reviewData.reviews.map((review: any) => (
                                   <Grid
-                                    item
-                                    xs={11}
-                                    sx={{
-                                      paddingLeft: {
-                                        xs: "2.25rem",
-                                        sm: "2.25rem",
-                                        md: "1.5rem",
-                                      },
-                                      color: "#222",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      fontWeight: 500,
-                                      flexDirection: "column",
-                                      fontFamily: "Montserrat",
-                                    }}
+                                    container
+                                    key={review.author_name}
+                                    sx={{ paddingBottom: "6rem" }}
                                   >
-                                    <span style={{ display: "block" }}>
-                                      {" "}
-                                      {review.author_name}{" "}
-                                    </span>
-                                    <span
-                                      style={{
-                                        display: "block",
-                                        marginTop: ".25rem",
-                                      }}
-                                    >
-                                      {" "}
-                                      {review.relative_time_description}{" "}
-                                    </span>
-                                  </Grid>
-                                  <Grid
-                                    item
-                                    xs={12}
-                                    sx={{
-                                      paddingTop: "1rem",
-                                      color: "#222",
-                                      display: "flex",
-                                      justifyContent: "flex-start",
-                                      alignItems: "center",
-                                      fontWeight: 500,
-                                      flexDirection: "row",
-                                      fontFamily: "Montserrat",
-                                    }}
-                                  >
-                                    <Star
+                                    <Grid item xs={1}>
+                                      <img
+                                        style={{ maxHeight: "50px" }}
+                                        src={review.profile_photo_url}
+                                      />
+                                    </Grid>
+                                    <Grid
+                                      item
+                                      xs={11}
                                       sx={{
-                                        fontSize: "2rem",
-                                        mr: "1rem",
-                                        color: "primary.main",
-                                      }}
-                                    />
-                                    <span
-                                      style={{
-                                        display: "block",
-                                        marginTop: ".25rem",
+                                        paddingLeft: {
+                                          xs: "2.25rem",
+                                          sm: "2.25rem",
+                                          md: "1.5rem",
+                                        },
+                                        color: "#222",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        fontWeight: 500,
+                                        flexDirection: "column",
+                                        fontFamily: "Montserrat",
                                       }}
                                     >
-                                      {" "}
-                                      {review.rating} /5{" "}
-                                    </span>
+                                      <span style={{ display: "block" }}>
+                                        {" "}
+                                        {review.author_name}{" "}
+                                      </span>
+                                      <span
+                                        style={{
+                                          display: "block",
+                                          marginTop: ".25rem",
+                                        }}
+                                      >
+                                        {" "}
+                                        {review.relative_time_description}{" "}
+                                      </span>
+                                    </Grid>
+                                    <Grid
+                                      item
+                                      xs={12}
+                                      sx={{
+                                        paddingTop: "1rem",
+                                        color: "#222",
+                                        display: "flex",
+                                        justifyContent: "flex-start",
+                                        alignItems: "center",
+                                        fontWeight: 500,
+                                        flexDirection: "row",
+                                        fontFamily: "Montserrat",
+                                      }}
+                                    >
+                                      <Star
+                                        sx={{
+                                          fontSize: "2rem",
+                                          mr: "1rem",
+                                          color: "primary.main",
+                                        }}
+                                      />
+                                      <span
+                                        style={{
+                                          display: "block",
+                                          marginTop: ".25rem",
+                                        }}
+                                      >
+                                        {" "}
+                                        {review.rating} /5{" "}
+                                      </span>
+                                    </Grid>
+                                    <Grid
+                                      item
+                                      xs={12}
+                                      sx={{
+                                        letterSpacing: "0.011rem",
+                                        mt: ".5rem",
+                                        fontFamily: "roboto",
+                                        padding: ".5rem 0rem",
+                                        lineHeight: 1.75,
+                                        color: "#444",
+                                      }}
+                                    >
+                                      {review.text}
+                                    </Grid>
                                   </Grid>
-                                  <Grid
-                                    item
-                                    xs={12}
-                                    sx={{
-                                      letterSpacing: "0.011rem",
-                                      mt: ".5rem",
-                                      fontFamily: "roboto",
-                                      padding: ".5rem 0rem",
-                                      lineHeight: 1.75,
-                                      color: "#444",
-                                    }}
-                                  >
-                                    {review.text}
-                                  </Grid>
-                                </Grid>
-                              ))}
+                                ))}
+                            </Grid>
                           </Grid>
-                        </Grid>
-                      </Drawer>
-                    )}
-                  </Typography>
-                ) : (
+                        </Drawer>
+                      )}
+                    </Typography>
+                  ) : (
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: "primary.main",
+                        mr: { sm: "0rem", xs: "auto" },
+                        ml: { sm: "auto", xs: "0px" },
+                      }}
+                    >
+                      {score}
+                      <Star
+                        sx={{
+                          color: "primary.main",
+                          fontSize: "1rem",
+                          mt: -0.2,
+                          mr: ".25rem",
+                        }}
+                      />
+                    </Typography>
+                  )}
+                </Grid>
+
+                <Typography
+                  variant="body1"
+                  sx={{
+                    letterSpacing: ".015rem",
+                    fontSize: "1rem",
+                    fontFamily: "Roboto",
+                    fontWeight: 400,
+                    color: "#999",
+                    mt: ".25rem",
+                  }}
+                >
+                  {location.address}, {city?.name}
+                </Typography>
+                <Chip
+                  sx={{ my: "1rem" }}
+                  icon={<LocationCityIcon />}
+                  label={neighborhood}
+                />
+
+                <ReadMore small text={defaultDescription} length={200} />
+                <Link href="#rooms">
+                  <Button
+                    fullWidth
+                    disableElevation
+                    variant="contained"
+                    sx={{
+                      fontFamily: "Montserrat",
+                      fontWeight: 600,
+                      mt: "1rem",
+                      display: { xs: "flex", md: "none" },
+                    }}
+                  >
+                    {" "}
+                    Select a room{" "}
+                  </Button>
+                </Link>
+                <Grid container spacing={2} sx={{ mt: 0 }}>
+                  <Grid item xs={12} sm={12} md={12} lg={12}>
+                    <Box
+                      sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
+                    >
+                      <AmenitiesCard
+                        title={"Hotel Amenities"}
+                        amenities={otherAmenities}
+                        viewAll
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
+                <Grid sx={{ pb: ".5rem" }}>
                   <Typography
                     variant="h6"
                     sx={{
-                      color: "primary.main",
-                      mr: { sm: "0rem", xs: "auto" },
-                      ml: { sm: "auto", xs: "0px" },
+                      mt: "1rem",
+                      color: "#222222",
+                      fontWeight: 600,
+                      fontFamily: "Montserrat",
+                      display: "block",
                     }}
                   >
-                    {score}
-                    <Star
-                      sx={{
-                        color: "primary.main",
-                        fontSize: "1rem",
-                        mt: -0.2,
-                        mr: ".25rem",
-                      }}
-                    />
+                    Where You&lsquo;ll Be
                   </Typography>
-                )}
-              </Grid>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  letterSpacing: ".015rem",
-                  fontSize: "1rem",
-                  fontFamily: "Roboto",
-                  fontWeight: 400,
-                  color: "#999",
-                  mt: ".25rem",
-                }}
-              >
-                {location.address}, {city?.name}
-              </Typography>
-              <Chip
-                sx={{ my: "1rem" }}
-                icon={<LocationCityIcon />}
-                label={neighborhood}
-              />
-
-              <ReadMore small text={defaultDescription} length={200} />
-              <Link href="#rooms">
-                <Button
-                  fullWidth
-                  disableElevation
-                  variant="contained"
-                  sx={{
-                    fontFamily: "Montserrat",
-                    fontWeight: 600,
-                    mt: "1rem",
-                    display: { xs: "flex", md: "none" },
-                  }}
-                >
-                  {" "}
-                  Select a room{" "}
-                </Button>
-              </Link>
-              <Grid container spacing={2} sx={{ mt: 0 }}>
-                <Grid item xs={12} sm={12} md={12} lg={12}>
-                  <Box
-                    sx={{ display: "flex", flex: 1, height: "100%", px: 0.5 }}
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      letterSpacing: ".015rem",
+                      mt: ".5rem",
+                      fontSize: "1rem",
+                      color: "#999",
+                      fontWeight: 400,
+                      fontFamily: "Roboto",
+                    }}
                   >
-                    <AmenitiesCard
-                      title={"Hotel Amenities"}
-                      amenities={otherAmenities}
-                      viewAll
+                    {location.address}, {city?.name}, CA, United States
+                  </Typography>
+                  <Box sx={{ display: "flex", my: 2, width: "100%" }}>
+                    <Map
+                      center={{
+                        lat: parseFloat(location.lat),
+                        lng: parseFloat(location.lon),
+                      }}
+                      height={fullScreen ? 200 : 300}
+                      markers={markers}
+                      zoom={14}
+                      selectedMarker={0}
                     />
                   </Box>
                 </Grid>
+                <Grid
+                  container
+                  sx={{
+                    borderTop: "1px solid #ddd",
+                    borderBottom: "1px solid #ddd",
+                    pb: "2rem",
+                    mt: "1rem",
+                  }}
+                >
+                  <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: "1.5rem" }}>
+                    <ActivitiesNearby
+                      nearby={nearby}
+                      title={"Nearby Activities"}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: "1.5rem" }}>
+                    <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
+                      <PetAmmenities
+                        title={"Pet Amenities"}
+                        amenities={amenities}
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid sx={{ pb: ".5rem" }}>
+              <Grid item xs={12} md={5} lg={4}>
+                <Hidden mdDown>
+                  <BookingCard
+                    sx={{ background: "#fff" }}
+                    roomList={roomDropDown}
+                    goToRate={goToRateScroll}
+                  />
+                </Hidden>
+                <Hidden mdUp>
+                  <Fab
+                    color="default"
+                    size="small"
+                    onClick={() => history.goBack()}
+                    aria-label="back"
+                    sx={{
+                      backgroundColor: "white",
+                      color: "text.secondary",
+                      position: "absolute",
+                      width: 35,
+                      height: 35,
+                      top: 15,
+                      left: 15,
+                    }}
+                  >
+                    <ArrowBackIcon sx={{ fontSize: 16 }} />
+                  </Fab>
+                  {/* <MobileBookingBar roomList={roomDropDown} /> */}
+                </Hidden>
+              </Grid>
+            </Grid>
+          )}
+          {!loading && data && (
+            <Grid
+              container
+              sx={{
+                mt: 0,
+                maxWidth: "100%",
+                paddingBottom: { xs: "2rem", sm: "2rem" },
+                borderBottom: "1px solid #ddd",
+              }}
+              id="rooms"
+              ref={RateCardRef}
+            >
+              <Grid item xs={12}>
                 <Typography
                   variant="h6"
                   sx={{
-                    mt: "1rem",
-                    color: "#222222",
-                    fontWeight: 600,
+                    color: "#222",
                     fontFamily: "Montserrat",
-                    display: "block",
+                    mt: { xs: 1, sm: 5 },
+                    mb: "1rem",
+                    textAlign: "left",
                   }}
                 >
-                  Where You&lsquo;ll Be
+                  Choose your room
                 </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    letterSpacing: ".015rem",
-                    mt: ".5rem",
-                    fontSize: "1rem",
-                    color: "#999",
-                    fontWeight: 400,
-                    fontFamily: "Roboto",
-                  }}
-                >
-                  {location.address}, {city?.name}, CA, United States
-                </Typography>
-                <Box sx={{ display: "flex", my: 2, width: "100%" }}>
-                  <Map
-                    center={{
-                      lat: parseFloat(location.lat),
-                      lng: parseFloat(location.lon),
-                    }}
-                    height={fullScreen ? 200 : 300}
-                    markers={markers}
-                    zoom={14}
-                    selectedMarker={0}
-                  />
-                </Box>
-              </Grid>
-              <Grid
-                container
-                sx={{
-                  borderTop: "1px solid #ddd",
-                  borderBottom: "1px solid #ddd",
-                  pb: "2rem",
-                  mt: "1rem",
-                }}
-              >
-                <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: "1.5rem" }}>
-                  <ActivitiesNearby
-                    nearby={nearby}
-                    title={"Nearby Activities"}
-                  />
+                <RoomsFilterBar />
+                <Grid container columnSpacing={6} rowSpacing={6}>
+                  {rooms
+                    .filter((r: any) => r.type !== "Accessible room")
+                    .map((room: any, key: number) => {
+                      return (
+                        <Grid
+                          item
+                          md={4}
+                          lg={4}
+                          sm={6}
+                          xs={12}
+                          key={key}
+                          sx={{ display: "flex", flex: 1 }}
+                        >
+                          <RoomCard
+                            key={key}
+                            bestRate={key === 0 ? true : false}
+                            HotelName={name}
+                            room={room}
+                            sx={{
+                              minWidth: "260px",
+                              borderRadius: "8px",
+                              p: " 0rem 1rem 1rem 1rem",
+                              border: "1px solid #ddd",
+                              transition: "all .15s ease-in-out",
+                              boxShadow: 1,
+                              "&:hover": { boxShadow: 3 },
+                            }}
+                            {...room}
+                          />
+                        </Grid>
+                      );
+                    })}
                 </Grid>
+                {rooms.filter((r: any) => r.type === "Accessible room").length >
+                  0 && (
+                  <>
+                    <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
+                      <Typography variant="h6">Accessible Rooms</Typography>
+                    </Divider>
 
-                <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: "1.5rem" }}>
-                  <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
-                    <PetAmmenities
-                      title={"Pet Amenities"}
-                      amenities={amenities}
-                    />
-                  </Box>
-                </Grid>
+                    <Grid container columnSpacing={6} rowSpacing={6}>
+                      {rooms
+                        .filter((r: any) => r.type === "Accessible room")
+                        .map((room: any, key: number) => {
+                          return (
+                            <Grid
+                              item
+                              md={4}
+                              lg={4}
+                              sm={6}
+                              xs={12}
+                              key={key}
+                              sx={{ display: "flex", flex: 1 }}
+                            >
+                              <RoomCard
+                                key={key}
+                                bestRate={key === 0 ? true : false}
+                                HotelName={name}
+                                room={room}
+                                sx={{
+                                  minWidth: "260px",
+                                  borderRadius: "8px",
+                                  p: " 0rem 1rem 1rem 1rem",
+                                  border: "1px solid #ddd",
+                                  transition: "all .15s ease-in-out",
+                                  boxShadow: 1,
+                                  "&:hover": { boxShadow: 3 },
+                                }}
+                                {...room}
+                              />
+                            </Grid>
+                          );
+                        })}
+                    </Grid>
+                  </>
+                )}
               </Grid>
             </Grid>
-            <Grid item xs={12} md={5} lg={4}>
-              <Hidden mdDown>
-                <BookingCard
-                  sx={{ background: "#fff" }}
-                  roomList={roomDropDown}
-                  goToRate={goToRateScroll}
-                />
-              </Hidden>
-              <Hidden mdUp>
-                <Fab
-                  color="default"
-                  size="small"
-                  onClick={() => history.goBack()}
-                  aria-label="back"
-                  sx={{
-                    backgroundColor: "white",
-                    color: "text.secondary",
-                    position: "absolute",
-                    width: 35,
-                    height: 35,
-                    top: 15,
-                    left: 15,
-                  }}
-                >
-                  <ArrowBackIcon sx={{ fontSize: 16 }} />
-                </Fab>
-                {/* <MobileBookingBar roomList={roomDropDown} /> */}
-              </Hidden>
-            </Grid>
-          </Grid>
-        )}
-        {!loading && data && (
-          <Grid
-            container
-            sx={{
-              mt: 0,
-              maxWidth: "100%",
-              paddingBottom: { xs: "2rem", sm: "2rem" },
-              borderBottom: "1px solid #ddd",
-            }}
-            id="rooms"
-            ref={RateCardRef}
-          >
-            <Grid item xs={12}>
+          )}
+          <Grid container sx={{ mt: 4 }}>
+            <Grid sx={{ pb: ".5rem" }}>
               <Typography
                 variant="h6"
                 sx={{
-                  color: "#222",
+                  mt: "1rem",
+                  color: "#222222",
+                  fontWeight: 600,
                   fontFamily: "Montserrat",
-                  mt: { xs: 1, sm: 5 },
-                  mb: "1rem",
-                  textAlign: "left",
+                  display: "block",
                 }}
               >
-                Choose your room
+                What People Are Saying
               </Typography>
-              <RoomsFilterBar />
-              <Grid container columnSpacing={6} rowSpacing={6}>
-                {rooms
-                  .filter((r: any) => r.type !== "Accessible room")
-                  .map((room: any, key: number) => {
-                    return (
-                      <Grid
-                        item
-                        md={4}
-                        lg={4}
-                        sm={6}
-                        xs={12}
-                        key={key}
-                        sx={{ display: "flex", flex: 1 }}
-                      >
-                        <RoomCard
-                          key={key}
-                          bestRate={key === 0 ? true : false}
-                          HotelName={name}
-                          room={room}
+              <img
+                style={{
+                  marginTop: "auto",
+                  maxWidth: "100px",
+                  marginLeft: "2px",
+                }}
+                src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
+              />
+              <Grid container spacing={4} mt={2}>
+                {reviewData &&
+                  reviewData?.reviews.map((review: any) => (
+                    <Grid item xs={12} sm={6} key={review.author_name}>
+                      <Grid container sx={{ paddingBottom: "2rem" }}>
+                        <Grid item xs={1}>
+                          <img
+                            style={{ maxHeight: "45px" }}
+                            src={review.profile_photo_url}
+                          />
+                        </Grid>
+                        <Grid
+                          item
+                          xs={11}
                           sx={{
-                            minWidth: "260px",
-                            borderRadius: "8px",
-                            p: " 0rem 1rem 1rem 1rem",
-                            border: "1px solid #ddd",
-                            transition: "all .15s ease-in-out",
-                            boxShadow: 1,
-                            "&:hover": { boxShadow: 3 },
+                            paddingLeft: {
+                              xs: "2.25rem",
+                              sm: "2.25rem",
+                              md: "1.5rem",
+                            },
+                            color: "#222",
+                            display: "flex",
+                            justifyContent: "center",
+                            fontWeight: 500,
+                            flexDirection: "column",
+                            fontFamily: "Montserrat",
+                            fontSize: "14px",
                           }}
-                          {...room}
-                        />
-                      </Grid>
-                    );
-                  })}
-              </Grid>
-              {rooms.filter((r: any) => r.type === "Accessible room").length >
-                0 && (
-                <>
-                  <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
-                    <Typography variant="h6">Accessible Rooms</Typography>
-                  </Divider>
-
-                  <Grid container columnSpacing={6} rowSpacing={6}>
-                    {rooms
-                      .filter((r: any) => r.type === "Accessible room")
-                      .map((room: any, key: number) => {
-                        return (
-                          <Grid
-                            item
-                            md={4}
-                            lg={4}
-                            sm={6}
-                            xs={12}
-                            key={key}
-                            sx={{ display: "flex", flex: 1 }}
+                        >
+                          <span style={{ display: "block" }}>
+                            {" "}
+                            {review.author_name}{" "}
+                          </span>
+                          <span
+                            style={{
+                              display: "block",
+                              marginTop: ".25rem",
+                            }}
                           >
-                            <RoomCard
-                              key={key}
-                              bestRate={key === 0 ? true : false}
-                              HotelName={name}
-                              room={room}
-                              sx={{
-                                minWidth: "260px",
-                                borderRadius: "8px",
-                                p: " 0rem 1rem 1rem 1rem",
-                                border: "1px solid #ddd",
-                                transition: "all .15s ease-in-out",
-                                boxShadow: 1,
-                                "&:hover": { boxShadow: 3 },
-                              }}
-                              {...room}
-                            />
-                          </Grid>
-                        );
-                      })}
-                  </Grid>
-                </>
+                            {" "}
+                            {review.relative_time_description}{" "}
+                          </span>
+                        </Grid>
+                        <Grid
+                          item
+                          xs={12}
+                          sx={{
+                            paddingTop: "1rem",
+                            color: "#222",
+                            display: "flex",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            fontWeight: 500,
+                            flexDirection: "row",
+                            fontFamily: "Montserrat",
+                          }}
+                        >
+                          <Star
+                            sx={{
+                              fontSize: "2rem",
+                              mr: "1rem",
+                              color: "primary.main",
+                            }}
+                          />
+                          <span
+                            style={{
+                              display: "block",
+                              marginTop: ".25rem",
+                            }}
+                          >
+                            {" "}
+                            {review.rating} /5{" "}
+                          </span>
+                        </Grid>
+                        <Grid
+                          item
+                          xs={12}
+                          sx={{
+                            letterSpacing: "0.011rem",
+                            mt: ".5rem",
+                            fontFamily: "roboto",
+                            padding: ".5rem 0rem",
+                            lineHeight: 1.75,
+                            color: "#444",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {review.text}
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  ))}
+              </Grid>
+              {reviewData && (
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                      )
+                    }
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      alignItems: "center",
+                      mr: "auto",
+                      fontWeight: 600,
+                    }}
+                  >
+                    See all reviews
+                    <Launch sx={{ ml: "1rem", fontSize: "16px" }} />
+                  </Button>
+                </Box>
               )}
             </Grid>
           </Grid>
-        )}
-        <Grid container sx={{ mt: 4 }}>
-          <Grid sx={{ pb: ".5rem" }}>
-            <Typography
-              variant="h6"
-              sx={{
-                mt: "1rem",
-                color: "#222222",
-                fontWeight: 600,
-                fontFamily: "Montserrat",
-                display: "block",
-              }}
-            >
-              What People Are Saying
-            </Typography>
-            <img
-              style={{
-                marginTop: "auto",
-                maxWidth: "100px",
-                marginLeft: "2px",
-              }}
-              src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
-            />
-            <Grid container spacing={4} mt={2}>
-              {reviewData &&
-                reviewData?.reviews.map((review: any) => (
-                  <Grid item xs={12} sm={6} key={review.author_name}>
-                    <Grid container sx={{ paddingBottom: "2rem" }}>
-                      <Grid item xs={1}>
-                        <img
-                          style={{ maxHeight: "45px" }}
-                          src={review.profile_photo_url}
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={11}
-                        sx={{
-                          paddingLeft: {
-                            xs: "2.25rem",
-                            sm: "2.25rem",
-                            md: "1.5rem",
-                          },
-                          color: "#222",
-                          display: "flex",
-                          justifyContent: "center",
-                          fontWeight: 500,
-                          flexDirection: "column",
-                          fontFamily: "Montserrat",
-                          fontSize: "14px",
-                        }}
-                      >
-                        <span style={{ display: "block" }}>
-                          {" "}
-                          {review.author_name}{" "}
-                        </span>
-                        <span
-                          style={{
-                            display: "block",
-                            marginTop: ".25rem",
-                          }}
-                        >
-                          {" "}
-                          {review.relative_time_description}{" "}
-                        </span>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          paddingTop: "1rem",
-                          color: "#222",
-                          display: "flex",
-                          justifyContent: "flex-start",
-                          alignItems: "center",
-                          fontWeight: 500,
-                          flexDirection: "row",
-                          fontFamily: "Montserrat",
-                        }}
-                      >
-                        <Star
-                          sx={{
-                            fontSize: "2rem",
-                            mr: "1rem",
-                            color: "primary.main",
-                          }}
-                        />
-                        <span
-                          style={{
-                            display: "block",
-                            marginTop: ".25rem",
-                          }}
-                        >
-                          {" "}
-                          {review.rating} /5{" "}
-                        </span>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          letterSpacing: "0.011rem",
-                          mt: ".5rem",
-                          fontFamily: "roboto",
-                          padding: ".5rem 0rem",
-                          lineHeight: 1.75,
-                          color: "#444",
-                          fontSize: "14px",
-                        }}
-                      >
-                        {review.text}
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                ))}
-            </Grid>
-            {reviewData && (
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Button
-                  onClick={() =>
-                    window.open(
-                      `https://www.google.com/maps/search/?api=1&query=${data.property.googlePlaceId}&query_place_id=${data.property.googlePlaceId}`
-                    )
-                  }
-                  variant="outlined"
-                  size="small"
-                  sx={{
-                    alignItems: "center",
-                    mr: "auto",
-                    fontWeight: 600,
-                  }}
-                >
-                  See all reviews
-                  <Launch sx={{ ml: "1rem", fontSize: "16px" }} />
-                </Button>
-              </Box>
-            )}
-          </Grid>
-        </Grid>
 
-        {/* {reviewData && <>
+          {/* {reviewData && <>
           <Typography
             id="reviews"
             variant="h6"
@@ -1726,75 +1707,77 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
          <CustomerTestimonials reviews={reviewData.reviews} />
          </>} */}
 
-        <SimpleReactLightbox>
-          <Dialog
-            open={showGallery}
-            keepMounted
-            fullScreen
-            onClose={handleClose}
-            scroll="paper"
-            aria-labelledby="photo-dialog-slide-title"
-            aria-describedby="photo-dialog-slide-description"
-          >
-            <DialogTitle
-              id="photo-dialog-slide-title"
-              sx={{
-                position: "sticky",
-                backgroundColor: "white",
-                display: "flex",
-                height: "30px",
-                justifyContent: "space-between",
-                alignItems: "bottom",
-                top: 0,
-                zIndex: 10000,
-                color: "primary.main",
-              }}
+          <SimpleReactLightbox>
+            <Dialog
+              open={showGallery}
+              keepMounted
+              fullScreen
+              onClose={handleClose}
+              scroll="paper"
+              aria-labelledby="photo-dialog-slide-title"
+              aria-describedby="photo-dialog-slide-description"
             >
-              <Typography
-                variant="h6"
+              <DialogTitle
+                id="photo-dialog-slide-title"
                 sx={{
-                  color: "#222222",
-                  fontWeight: 700,
-                  fontFamily: "Montserrat",
+                  position: "sticky",
+                  backgroundColor: "white",
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
+                  height: "30px",
+                  justifyContent: "space-between",
+                  alignItems: "bottom",
+                  top: 0,
+                  zIndex: 10000,
+                  color: "primary.main",
                 }}
               >
-                Photos
-              </Typography>
-              <IconButton
-                aria-label="close"
-                onClick={handleClose}
-                sx={{ color: (theme) => theme.palette.grey[500] }}
-              >
-                <CloseIcon />
-              </IconButton>
-            </DialogTitle>
-            <DialogContent sx={{ px: 0 }}>
-              <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
-                <ImageList variant="masonry" cols={getImageCols()} gap={8}>
-                  <SRLWrapper options={lightBoxOptions}>
-                    {gallery.map((item: any) => (
-                      <ImageListItem key={item} cols={1} rows={1}>
-                        <img
-                          srcSet={`${item.replace(
-                            /^http(s?):/i,
-                            ""
-                          )}?w=161&fit=crop&auto=format 1x,
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "#222222",
+                    fontWeight: 700,
+                    fontFamily: "Montserrat",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  Photos
+                </Typography>
+                <IconButton
+                  aria-label="close"
+                  onClick={handleClose}
+                  sx={{ color: (theme) => theme.palette.grey[500] }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </DialogTitle>
+              <DialogContent sx={{ px: 0 }}>
+                <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
+                  <ImageList variant="masonry" cols={getImageCols()} gap={8}>
+                    <SRLWrapper options={lightBoxOptions}>
+                      {gallery.map((item: any) => (
+                        <ImageListItem key={item} cols={1} rows={1}>
+                          <img
+                            srcSet={`${item.replace(
+                              /^http(s?):/i,
+                              ""
+                            )}?w=161&fit=crop&auto=format 1x,
 ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
-                          alt={name}
-                        />
-                      </ImageListItem>
-                    ))}
-                  </SRLWrapper>
-                </ImageList>
-              </Container>
-            </DialogContent>
-          </Dialog>
-        </SimpleReactLightbox>
-      </Container>
-    </Grid>
+                            alt={name}
+                          />
+                        </ImageListItem>
+                      ))}
+                    </SRLWrapper>
+                  </ImageList>
+                </Container>
+              </DialogContent>
+            </Dialog>
+          </SimpleReactLightbox>
+        </Container>
+      </Grid>
+      <Footer />
+    </>
   );
 };
 
@@ -1907,12 +1890,7 @@ interface AmenitiesProps {
   viewAll?: boolean;
 }
 
-const AmenitiesCard: FC<AmenitiesProps> = ({
-  title,
-  amenities,
-  rowNumber = 5,
-  viewAll,
-}) => {
+const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
   const [showDialog, setShowDialog] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -2370,21 +2348,15 @@ interface FilterBarProps {
   city?: string;
 }
 
-const RoomsFilterBar: FC<FilterBarProps> = ({
-  sx,
-  zoomed = false,
-  city = "",
-}) => {
+const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
-  const [zoomIn, setZoomIn] = useState(zoomed);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const [selectedCity, setSelectedCity] = useState(
     search.city ? search.city : null
   );
-  const [formError, setFormError] = useState("");
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     search.checkIn ? search.checkIn : new Date(),
     search.checkOut
@@ -2396,32 +2368,12 @@ const RoomsFilterBar: FC<FilterBarProps> = ({
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
-  const history = useHistory();
   const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
   const below900 = useMediaQuery("(max-width:900px)");
 
   const dispatch: Dispatch<any> = useDispatch();
 
-  const getCityName = (cityId: string) => {
-    if (cityId) {
-      return cities.filter((city: any) => city.id === cityId)[0].name;
-    }
-  };
-  const getCity = (cityId: string) =>
-    cities.filter((city: any) => city.id === cityId)[0];
   const onOccupantChange = (value: Occupant) => setOccupants(value);
-
-  const dateToString = (isoString: string | Date | number) => {
-    const date = new Date(isoString);
-    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
-      "0" + date.getDate()
-    ).slice(-2)}`;
-  };
-
-  const handleFilterInClick: MouseEventHandler<Element> = () => {
-    setFormError("");
-    setZoomIn(true);
-  };
 
   const handleDateRangeClose = () => {
     setIsAccept(false);
@@ -2449,7 +2401,6 @@ const RoomsFilterBar: FC<FilterBarProps> = ({
       checkDate[0] &&
       checkDate[1]
     ) {
-      setFormError("");
       dispatch(
         saveSearch({
           city: selectedCity,
@@ -2460,30 +2411,6 @@ const RoomsFilterBar: FC<FilterBarProps> = ({
       );
     } else {
       alert("error");
-      if (!selectedCity) {
-        setFormError("Location required");
-      }
-      if (!checkDate[0]) {
-        setFormError("Check-in date required");
-      }
-      if (
-        checkDate[0] &&
-        new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
-      ) {
-        setFormError("Check-in date must be today at the earliest");
-      }
-      if (!checkDate[1]) {
-        setFormError("Check-out date required");
-      }
-      if (
-        checkDate[1] &&
-        new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
-      ) {
-        setFormError("Check-out date must be after today");
-      }
-      if (occupants.adults === 0) {
-        setFormError("Search must include at least 1 adult guest");
-      }
     }
   };
 
@@ -2542,7 +2469,6 @@ const RoomsFilterBar: FC<FilterBarProps> = ({
                   value={checkDate || null}
                   minDate={new Date()}
                   onChange={(newValue) => {
-                    setFormError("");
                     setCheckDate(newValue);
                   }}
                   renderInput={() => <Grid sx={{ display: "none" }}></Grid>}
@@ -2751,10 +2677,9 @@ const RoomsFilterBar: FC<FilterBarProps> = ({
                   value={checkDate || null}
                   minDate={new Date()}
                   onChange={(newValue) => {
-                    setFormError("");
                     setCheckDate(newValue);
                   }}
-                  renderInput={(startProps, endProps) => (
+                  renderInput={() => (
                     <Grid
                       container
                       onClick={() => setOpen(true)}
@@ -2982,13 +2907,8 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
   value,
   onChange,
   onClose,
-  fullWidth = true,
-  size = "medium",
-  variant = "outlined",
-  disabled = false,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
-  const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [error, setError] = useState("");
 
   const handleClick = (event: any) => {

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { CSSObject } from "@mui/material";

@@ -1,9 +1,7 @@
 import React, { FC, useState, useEffect, MouseEventHandler } from "react";
 import { useHistory } from "react-router-dom";
 import {
-  Menu,
   MenuItem,
-  Divider,
   CircularProgress,
   Box,
   CSSObject,
@@ -23,18 +21,13 @@ import {
   useMediaQuery,
   TextField,
   Button,
-  Drawer
+  Drawer,
 } from "@mui/material";
 import {
   KeyboardArrowDown,
   Cancel,
   HomeWork,
-  CalendarToday,
-  ViewDay,
-  Work,
   Groups,
-  RssFeed,
-  SupportAgent,
   Sell,
   Support,
   Pets,
@@ -43,8 +36,6 @@ import {
   WorkRounded,
   HomeWorkRounded,
 } from "@mui/icons-material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginCard from "../../components/AuthCard/Login";
@@ -62,8 +53,8 @@ const Navbar: FC<Props> = ({ sx }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<any>(null);
-  const [mobileDeals, setMobileDeals] = useState<boolean>(false)
-  const trigger = useScrollTrigger()
+  const [mobileDeals, setMobileDeals] = useState<boolean>(false);
+  const trigger = useScrollTrigger();
   const LOGIN = "Login";
   const REGISTER = "Register";
   const FORGOT_PASSWORD = "Forgot";
@@ -91,7 +82,7 @@ const Navbar: FC<Props> = ({ sx }) => {
           backdropFilter: "blur(6px)",
           backgroundColor: "#ffffffed",
         }}
-        sx={{ boxShadow: trigger? 2 : 0, borderBottom: '1px solid #ddd' }}
+        sx={{ boxShadow: trigger ? 2 : 0, borderBottom: "1px solid #ddd" }}
       >
         <Toolbar sx={{ display: "block", position: "relative" }}>
           <Box
@@ -278,16 +269,16 @@ const Navbar: FC<Props> = ({ sx }) => {
                   display: "flex",
                   alignItems: "center",
                   color: "#03989E",
-                  '&:hover': {
-                    background: '#03989E',
-                    color: '#fff'
-                  }
+                  "&:hover": {
+                    background: "#03989E",
+                    color: "#fff",
+                  },
                 }}
               >
                 <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} />
                 <Typography
                   variant="body2"
-                  sx={{ fontWeight: 600, fontFamily: "Montserrat", }}
+                  sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
                 >
                   List Your Property
                 </Typography>
@@ -297,10 +288,13 @@ const Navbar: FC<Props> = ({ sx }) => {
               </Link> */}
             </Hidden>
 
-
-
             <Hidden lgUp>
-              <Drawer PaperProps={{ sx: { minWidth: '280px' }}} anchor='right' onClose={() => setAnchorEl(null)} open={anchorEl ? true : false}>
+              <Drawer
+                PaperProps={{ sx: { minWidth: "280px" } }}
+                anchor="right"
+                onClose={() => setAnchorEl(null)}
+                open={anchorEl ? true : false}
+              >
                 <Box
                   component="img"
                   src={
@@ -319,35 +313,50 @@ const Navbar: FC<Props> = ({ sx }) => {
                   component="button"
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                 <Pets sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> Our story
+                  <Pets
+                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                  />{" "}
+                  Our story
                 </MenuItem>
                 <MenuItem
                   onClick={() => history.push("/romingo-partners")}
                   component="button"
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                 <Groups sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> Community
+                  <Groups
+                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                  />{" "}
+                  Community
                 </MenuItem>
                 <MenuItem
                   onClick={() => history.push("/faq")}
                   component="button"
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                 <LiveHelp sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} /> FAQ
+                  <LiveHelp
+                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                  />{" "}
+                  FAQ
                 </MenuItem>
                 <MenuItem
                   onClick={() => history.push("/blog")}
                   component="button"
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                <PushPin sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  Blog
+                  <PushPin
+                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                  />{" "}
+                  Blog
                 </MenuItem>
                 <MenuItem
                   onClick={() => history.push("/contact")}
                   component="button"
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                <Support sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  Support
+                  <Support
+                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                  />{" "}
+                  Support
                 </MenuItem>
                 <RomingoDealsMobile />
                 <MenuItem
@@ -355,7 +364,10 @@ const Navbar: FC<Props> = ({ sx }) => {
                   onClick={() => history.push("/list-your-property")}
                   sx={{ fontWeight: 500, minWidth: "200px" }}
                 >
-                <HomeWork sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />  List your property
+                  <HomeWork
+                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                  />{" "}
+                  List your property
                 </MenuItem>
               </Drawer>
               <Box
@@ -369,7 +381,8 @@ const Navbar: FC<Props> = ({ sx }) => {
                 }}
                 draggable="false"
                 sx={{
-                  mr: "auto", ml: '0px',
+                  mr: "auto",
+                  ml: "0px",
                   maxHeight: { xs: "35px", md: "45px" },
                 }}
               />
@@ -396,11 +409,11 @@ const Navbar: FC<Props> = ({ sx }) => {
                 </span>
               </Typography>
               <a
-                href='/#destinations'
+                href="/#destinations"
                 style={{
                   cursor: "pointer",
                   marginRight: "0px",
-                  marginLeft: '1rem',
+                  marginLeft: "1rem",
                   color: "#222",
                   fontWeight: 600,
                   fontFamily: "Montserrat",
@@ -722,16 +735,20 @@ const RomingoDeals = () => {
                   value={email}
                   sx={{
                     outline: "none",
-                    input: { fontFamily: "Montserrat", fontSize: "14px", fontWeight: 500 },
-                    '& label.Mui-focused': {
-                      color: '#03989E',
+                    input: {
+                      fontFamily: "Montserrat",
+                      fontSize: "14px",
+                      fontWeight: 500,
                     },
-                    '& .MuiInput-underline:after': {
-                      borderBottomColor: 'green',
+                    "& label.Mui-focused": {
+                      color: "#03989E",
                     },
-                    '& .MuiOutlinedInput-root': {
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#03989E',
+                    "& .MuiInput-underline:after": {
+                      borderBottomColor: "green",
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#03989E",
                       },
                     },
                   }}
@@ -777,8 +794,6 @@ const RomingoDeals = () => {
   );
 };
 
-
-
 const RomingoDealsMobile = () => {
   const [showDealsPopup, setShowDealsPopup] = useState(false);
   const [email, setEmail] = useState("");
@@ -819,144 +834,159 @@ const RomingoDealsMobile = () => {
   return (
     <>
       <span
-        style={{ cursor: "pointer", transition: 'all .25s ease-in-out', overflow: 'hidden', maxHeight: showDealsPopup ? '200px': '50px', }}
-
+        style={{
+          cursor: "pointer",
+          transition: "all .25s ease-in-out",
+          overflow: "hidden",
+          maxHeight: showDealsPopup ? "200px" : "50px",
+        }}
       >
         <MenuItem
           onClick={(e) => {
             setShowDealsPopup(!showDealsPopup);
           }}
-          sx={{ fontWeight: 500, minWidth: "200px" }}>
-          <Sell sx={{ mr: '1.5rem', fontSize: '16px', color: '#666' }} />
-          Deals
-          <KeyboardArrowDown sx={{ opacity: showDealsPopup ? 1 : 0, ml: 'auto', transition: 'all .25s ease-in-out', transform: showDealsPopup? 'rotate(180deg)' : 'rotate(0deg)' }} />
-        </MenuItem>
-        {showDealsPopup ?
-        <Grid
-          container
-          sx={{
-            maxWidth: '280px',
-            minHeight: "100px",
-            display: "flex",
-            overflow: "hidden",
-            padding: '0rem .5rem'
-          }}
+          sx={{ fontWeight: 500, minWidth: "200px" }}
         >
-          <Grid
-            item
-            xs={12}
+          <Sell sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }} />
+          Deals
+          <KeyboardArrowDown
             sx={{
+              opacity: showDealsPopup ? 1 : 0,
+              ml: "auto",
+              transition: "all .25s ease-in-out",
+              transform: showDealsPopup ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
+        </MenuItem>
+        {showDealsPopup ? (
+          <Grid
+            container
+            sx={{
+              maxWidth: "280px",
+              minHeight: "100px",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              color: "#00000099",
-              p: ".5rem .5rem",
-              pb: ".125rem",
-              fontFamily: "Montserrat",
-              fontWeight: 900,
-              fontSize: ".9rem",
+              overflow: "hidden",
+              padding: "0rem .5rem",
             }}
           >
-            Sign up with your email below to access exclusive deals and more:
-          </Grid>
-          {emailSubmitted ? (
             <Grid
               item
               xs={12}
               sx={{
-                p: ".5rem .5rem .5rem .5rem",
-                fontFamily: "Work Sans",
-                color: "#03989E",
-                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                color: "#00000099",
+                p: ".5rem .5rem",
+                pb: ".125rem",
+                fontFamily: "Montserrat",
+                fontWeight: 900,
+                fontSize: ".9rem",
               }}
             >
-              Awesome! You&lsquo;re subscribed to deals, tips, guides, and all
-              the other great content from Romingo Insiders!
+              Sign up with your email below to access exclusive deals and more:
             </Grid>
-          ) : (
-            <>
-              {isSubmitting && (
-                <Grid
-                  sx={{
-                    position: "absolute",
-                    zIndex: 9,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    top: "0px",
-                    right: "0",
-                    left: "0",
-                    bottom: "0px",
-                    background: "#ffffff80",
-                    backdropFilter: "blur(1px)",
-                  }}
-                >
-                  <CircularProgress />
-                </Grid>
-              )}
+            {emailSubmitted ? (
               <Grid
                 item
                 xs={12}
-                sm={12}
                 sx={{
-                  p: ".25rem .5rem .5rem .5rem",
-                  display: "flex",
-                  flexDirection: 'column',
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  p: ".5rem .5rem .5rem .5rem",
+                  fontFamily: "Work Sans",
+                  color: "#03989E",
+                  textAlign: "center",
                 }}
               >
-                <TextField
-                  variant="outlined"
-                  color="primary"
-                  placeholder="enter email"
-                  size="small"
-                  value={email}
+                Awesome! You&lsquo;re subscribed to deals, tips, guides, and all
+                the other great content from Romingo Insiders!
+              </Grid>
+            ) : (
+              <>
+                {isSubmitting && (
+                  <Grid
+                    sx={{
+                      position: "absolute",
+                      zIndex: 9,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      top: "0px",
+                      right: "0",
+                      left: "0",
+                      bottom: "0px",
+                      background: "#ffffff80",
+                      backdropFilter: "blur(1px)",
+                    }}
+                  >
+                    <CircularProgress />
+                  </Grid>
+                )}
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
                   sx={{
-                    outline: "none",
-                    fontSize: ".8rem",
-                    input: { fontFamily: "Montserrat" },
-                    '& label.Mui-focused': {
-                      color: '#03989E',
-                    },
-                    '& .MuiInput-underline:after': {
-                      borderBottomColor: 'green',
-                    },
-                    '& .MuiOutlinedInput-root': {
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#03989E',
-                      },
-                    },
-                  }}
-                  InputProps={{
-                    sx: {
-                      fontSize: ".5rem",
-                      maxHeight: "30px",
-                      fontFamily: "Montserrat",
-                      outline: "none",
-                    },
-                  }}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Button
-                  onClick={submitEmail}
-                  disabled={!emailIsValid || isSubmitting}
-                  size="small"
-                  fullWidth
-                  variant="contained"
-                  sx={{
-                    fontWeight: 600,
-                    textTransform: "none",
-                    fontFamily: "Montserrat",
-                    mt: '.5rem'
+                    p: ".25rem .5rem .5rem .5rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
-                  Sign up!
-                </Button>
-              </Grid>
-            </>
-          )}
-        </Grid> : <></>}
+                  <TextField
+                    variant="outlined"
+                    color="primary"
+                    placeholder="enter email"
+                    size="small"
+                    value={email}
+                    sx={{
+                      outline: "none",
+                      fontSize: ".8rem",
+                      input: { fontFamily: "Montserrat" },
+                      "& label.Mui-focused": {
+                        color: "#03989E",
+                      },
+                      "& .MuiInput-underline:after": {
+                        borderBottomColor: "green",
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "&.Mui-focused fieldset": {
+                          borderColor: "#03989E",
+                        },
+                      },
+                    }}
+                    InputProps={{
+                      sx: {
+                        fontSize: ".5rem",
+                        maxHeight: "30px",
+                        fontFamily: "Montserrat",
+                        outline: "none",
+                      },
+                    }}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <Button
+                    onClick={submitEmail}
+                    disabled={!emailIsValid || isSubmitting}
+                    size="small"
+                    fullWidth
+                    variant="contained"
+                    sx={{
+                      fontWeight: 600,
+                      textTransform: "none",
+                      fontFamily: "Montserrat",
+                      mt: ".5rem",
+                    }}
+                  >
+                    Sign up!
+                  </Button>
+                </Grid>
+              </>
+            )}
+          </Grid>
+        ) : (
+          <></>
+        )}
       </span>
     </>
   );

@@ -25,9 +25,7 @@ interface Props {
 const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   const history = useHistory();
   const [roomType, setRoomType] = useState("0");
-  const [open, setOpen] = useState(false);
-  const [isAccept, setIsAccept] = useState(false);
-  const [isTextField, setIsTextField] = useState(false);
+
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -48,12 +46,10 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     shallowEqual
   );
 
-  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
+  const [checkDate] = useState<RangeInput<Date | null>>([
     search.checkIn ? search.checkIn : null,
     search.checkOut ? search.checkOut : null,
   ]);
-
-  const [occupants, setOccupants] = useState(search.occupants);
 
   const [selectedRoom, setSelectedRoom] = useState<{
     value: number;
@@ -97,60 +93,7 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
           p: ".25rem 0rem .25rem 2rem",
         }}
       >
-        {/* <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
-        <Typography variant="h5" sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
-          ${selectedRoom?.room?.averagePrice.toFixed(2)}  <span style={{fontSize: '16px', fontWeight: 500}}>/ night</span>
-        </Typography>
-        <Button disableElevation onClick={handleBook} variant="contained" size="small" color="primary" sx={{ ml: 'auto', py: '.75rem', px: '2rem' }}>
-          <Typography variant="body2" sx={{ fontFamily: 'Montserrat', fontWeight: 600 }}>Book Now</Typography>
-        </Button>
-      </Box> */}
-
         <Grid container spacing={2}>
-          {/* <Grid item xs={12}>
-
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DateRangePicker
-              open={open}
-              startText="Check-in"
-              endText="Check-out"
-              calendars={1}
-              onAccept={() => {
-                setIsAccept(true);
-              }}
-              onChange={(newValue) => {
-                setCheckDate(newValue);
-              }}
-              onClose={() => {
-                setIsAccept(false);
-                if (!isTextField) {
-                  setOpen(false);
-                  setIsTextField(false);
-                }
-              }}
-              onOpen={() => {
-                if (!isAccept) {
-                  setOpen(true);
-                }
-              }}
-              value={checkDate}
-              minDate={new Date()}
-              renderInput={(startProps, endProps) => (
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField sx={{ input: { fontWeight: 500 } }} size='small'{...startProps} InputLabelProps={{ style: { fontWeight: 500 }}} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField sx={{ input: { fontWeight: 500 } }} InputLabelProps={{ style: { fontWeight: 500 }}} size='small' {...endProps} onFocus={() => { setIsTextField(true); }} onBlur={() => { setIsTextField(false); }} fullWidth={true} />
-                  </Grid>
-                </Grid>
-              )}
-            />
-          </LocalizationProvider>
-        </Grid> */}
-          {/* <Grid item xs={12}>
-          <OccupantSelector size="small" value={occupants} onChange={(value) => { onOccupantChange(value); }} onClose={handleOccupantsClose} />
-        </Grid> */}
           <Grid item xs={12}>
             <Link href="#rooms" sx={{ textDecoration: "none" }}>
               <Button
@@ -169,30 +112,8 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               </Button>
             </Link>
           </Grid>
-          {/* <Grid item xs={12}>
-          <FormControl fullWidth>
-            <InputLabel>Room Type</InputLabel>
-            <Select size="small" value={roomType} onChange={(e) => { setRoomType(e.target.value); }} label="Room Type">
-              {roomList.map((room, key) => {
-                return (
-                  <MenuItem value={room.value} key={key}>
-                    {room?.description.length > 0 ? room.description : "Room"}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        </Grid> */}
         </Grid>
-        {/* <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
-        <Link href="#rooms" >
-          <Typography variant="body1" sx={{ fontSize: '1rem', mt: 2, display: 'flex', alignItems: 'center' }}>
-            Go To Rooms &amp; Rates <ArrowDownward sx={{ ml: '.5rem', fontSize: '1rem' }} />
-          </Typography>
-        </Link>
-      </Box> */}
       </Box>
-      {/* <RomingoGuarantee sx={{ mt: 5 }} /> */}
     </Grid>
   );
 };

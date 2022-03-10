@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react"
-import { Box, Grid } from "@mui/material"
-import { FC } from "react"
-import useWindowSize from "../../hooks/UseWindowSize"
-import "react-responsive-carousel/lib/styles/carousel.min.css"
-import "./slider.css"
-import { Carousel } from "react-responsive-carousel"
+import { useEffect, useState } from "react";
+import { Box, Grid } from "@mui/material";
+import { FC } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "./slider.css";
+import { Carousel } from "react-responsive-carousel";
 
 interface Props {
   images: string[];
@@ -16,78 +15,64 @@ interface Props {
 const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
-  const size = useWindowSize();
-
-  const initialSrcSet = images.map((img, i) => img.replace(/^http(s?):/i, "") + '?w=161&fit=crop&auto=format 1x')
-  const secondSrcSet = images.map((img, i) => img.replace(/^http(s?):/i, "") + '?w=161&fit=crop&auto=format&dpr=2 2x)')
 
   useEffect(() => {
     if (images && images.length > 0) {
-      setItems( images.slice(0, 10).map((img, i) =>  <Box
-      component="div"
-      key={img}
-      sx={{ ...sx,
-        display: 'block',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        width: '100%',
-        backgroundImage: `url(${img})`
-      }}
-    />   ))
+      setItems(
+        images.slice(0, 10).map((img, i) => (
+          <Box
+            component="div"
+            key={img}
+            sx={{
+              ...sx,
+              display: "block",
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+              width: "100%",
+              backgroundImage: `url(${img})`,
+            }}
+          />
+        ))
+      );
     }
-  }, [])
-
-
-//   useEffect(() => {
-//     if (images && images.length > 0) {
-//       setItems(
-//         images.slice(0, 10).map((img, i) => {
-//           if (i === 0) {
-
-//               console.log(`${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format 1x,
-// ${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`)
-
-//             return (
-//               <Box key={img} component="img"
-//                 srcSet={`${img.replace(
-//                   /^http(s?):/i,
-//                   ""
-//                 )}?w=161&fit=crop&auto=format 1x,
-// ${img.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
-//                 alt={name}
-//                 sx={{
-//                   ...sx,
-//                 }}
-//               />
-//             );
-//           } else {
-//             return (
-//               <Box key={img + "lazy"} sx={{ ...sx, }} />
-//             );
-//           }
-//         })
-//       );
-//     }
-//   }, []);
+  }, []);
 
   useEffect(() => {
     if (item !== 0) {
       const addItems = [...items];
-      const addItem =  <Box key={images[item]} sx={{ ...sx,
-        display: 'block',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        width: '100%',
-        backgroundImage: `url(${images[item]})`
-      }} />
+      const addItem = (
+        <Box
+          key={images[item]}
+          sx={{
+            ...sx,
+            display: "block",
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            width: "100%",
+            backgroundImage: `url(${images[item]})`,
+          }}
+        />
+      );
       addItems[item] = addItem;
       setItems(addItems);
     }
   }, [item]);
 
-  return items.length > 0 && <Carousel infiniteLoop selectedItem={item || 0} showStatus={false} showIndicators={false} showArrows={true} onChange={(i) => setItem(i)} showThumbs={false} >
-    {items}
-  </Carousel> || <Grid></Grid>
-}
+  return (
+    (items.length > 0 && (
+      <Carousel
+        infiniteLoop
+        selectedItem={item || 0}
+        showStatus={false}
+        showIndicators={false}
+        showArrows={true}
+        onChange={(i) => setItem(i)}
+        showThumbs={false}
+      >
+        {items}
+      </Carousel>
+    )) || <Grid></Grid>
+  );
+};
 
 export default ImageSlider;

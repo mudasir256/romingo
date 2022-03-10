@@ -1,10 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { Check } from "@mui/icons-material";
-import { Grid, Chip, Link, Box, Stack, Typography } from "@mui/material";
+import { Grid, Chip, Box, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import RomingoScore from "../RomingoScore/RomingoScore";
-import { MoneyOffRounded, VerifiedUser } from "@mui/icons-material";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 export interface ListingCardProps {

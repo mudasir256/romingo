@@ -1,22 +1,9 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
 import ImageSlider from "../ImageSlider";
-
-// interface Props {
-//   details: {
-//     checkIn: string;
-//     checkOut: string;
-//     occupants: {
-//       adults: number;
-//       dogs: number;
-//       children: number;
-//     };
-//     roomType: string;
-//   };
-// }
 
 const BookingDetailCard: FC = () => {
   // eslint-disable-next-line

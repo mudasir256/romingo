@@ -2,12 +2,11 @@ import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
 import { FC, useEffect } from "react";
 import { Container, Divider, Grid, Typography, Link } from "@mui/material";
-import { PopupButton } from "@typeform/embed-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 import ScrollToTop from "../../components/ScrollToTop";
-import { ChatBubble, Email, HomeWork, Send } from "@mui/icons-material";
+import { ChatBubble, Email, Send } from "@mui/icons-material";
 
 const Contact: FC = () => {
   const startChat = () => {
@@ -19,10 +18,10 @@ const Contact: FC = () => {
   };
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://paperform.co/__embed.min.js"
-    document.body.appendChild(script)
-  }, [])
+    const script = document.createElement("script");
+    script.src = "https://paperform.co/__embed.min.js";
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <>
@@ -31,7 +30,6 @@ const Contact: FC = () => {
 
       <Container maxWidth="md" sx={{ mt: 10 }}>
         <Box sx={{ textAlign: "center" }}>
-
           <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
             Contact Us
           </Typography>
@@ -58,19 +56,38 @@ const Contact: FC = () => {
                 color="text.secondary"
                 sx={{ textAlign: "justify", lineHeight: 2 }}
               >
-                Our support team is here for you 24/7!
-                Please get in touch with us using one of the below methods.
-                If you require immediate assistance, we recommend using our chat feature.
+                Our support team is here for you 24/7! Please get in touch with
+                us using one of the below methods. If you require immediate
+                assistance, we recommend using our chat feature.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{
+                mt: 4,
+                mb: 8,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
               <Link href="mailto:hello@romingo.com" target="_blank">
                 <Typography
                   variant="h5"
                   color="primary"
-                  sx={{ mb: '.5rem', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                  >
-                  <Email sx={{ mb: '1rem' }} />
+                  sx={{
+                    mb: ".5rem",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Email sx={{ mb: "1rem" }} />
                   Email us
                 </Typography>
               </Link>
@@ -88,13 +105,25 @@ const Contact: FC = () => {
               md={4}
               sx={{ mt: 4, mb: 8, textAlign: "center" }}
             >
-              <Link onClick={() => window.scrollTo({ top: 500, left: 0, behavior: 'smooth'})}>
+              <Link
+                onClick={() =>
+                  window.scrollTo({ top: 500, left: 0, behavior: "smooth" })
+                }
+              >
                 <Typography
                   variant="h5"
                   color="primary"
-                  sx={{ mb: '.5rem', cursor: 'pointer', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+                  sx={{
+                    mb: ".5rem",
+                    cursor: "pointer",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  <Send sx={{ mb: '1rem' }} />
+                  <Send sx={{ mb: "1rem" }} />
                   Contact us
                 </Typography>
               </Link>
@@ -111,8 +140,17 @@ const Contact: FC = () => {
                 <Typography
                   variant="h5"
                   color="primary"
-                  sx={{ mb: '.5rem', textAlign: "center", display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
-                  > <ChatBubble sx={{ mb: '.5rem' }} />
+                  sx={{
+                    mb: ".5rem",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {" "}
+                  <ChatBubble sx={{ mb: ".5rem" }} />
                   Start a Chat
                 </Typography>
               </Link>
@@ -129,16 +167,16 @@ const Contact: FC = () => {
             </Grid>
             <Hidden mdDown>
               <Box
-              component="img"
-              src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
-              alt={"Romingo Tennis Ball"}
-              sx={{
-                objectFit: "cover",
-                width: "100%",
-                height: "350px",
-                borderRadius: 5,
-              }}
-            />
+                component="img"
+                src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
+                alt={"Romingo Tennis Ball"}
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "350px",
+                  borderRadius: 5,
+                }}
+              />
             </Hidden>
           </Grid>
         </>

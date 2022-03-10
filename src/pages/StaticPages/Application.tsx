@@ -1,12 +1,9 @@
 import { FC } from "react";
-import { InputBase, Grid, Container } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import useWindowSize from "../../hooks/UseWindowSize";
-import { Check, Error } from "@mui/icons-material";
 import ScrollToTop from "../../components/ScrollToTop";
-import { alpha, styled } from "@mui/material/styles";
 
 const Application: FC = () => {
   return (
@@ -20,31 +17,6 @@ const Application: FC = () => {
     </>
   );
 };
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  "label + &": {
-    marginTop: theme.spacing(3),
-  },
-  "& .MuiInputBase-input": {
-    borderRadius: 4,
-    position: "relative",
-    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
-    border: "1px solid #ced4da",
-    fontSize: 16,
-    width: "100%",
-    padding: "10px 12px",
-    transition: theme.transitions.create([
-      "border-color",
-      "background-color",
-      "box-shadow",
-    ]),
-    // Use the system font instead of the default Roboto font.
-    "&:focus": {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-}));
 
 const StepsContainer: FC = () => {
   const [loading, setLoading] = useState(false);

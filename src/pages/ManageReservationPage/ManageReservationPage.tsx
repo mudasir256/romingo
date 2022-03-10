@@ -10,7 +10,6 @@ import {
   Grid,
   Container,
   Box,
-  TextField,
   Divider,
 } from "@mui/material";
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
@@ -42,7 +41,7 @@ interface Props {
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3),
-    color: '#03989E'
+    color: "#03989E",
   },
   "& .MuiInputBase-input": {
     borderRadius: 4,
@@ -65,14 +64,13 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
-  const [emailAddress, setEmailAddress] = useState("")
+const ManageReservationPage: FC<Props> = () => {
+  const [emailAddress, setEmailAddress] = useState("");
   const [confirmationNumber, setConfirmationNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const buttonEnabled =
-    emailAddress.length > 2 &&
-    confirmationNumber.length > 10;
+    emailAddress.length > 2 && confirmationNumber.length > 10;
 
   useEffect(() => {
     if (loading) {
@@ -97,13 +95,14 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
       <ScrollToTop />
       <Navbar />
 
-      <Container
-        maxWidth="md"
-        sx={{ mt: 8, mb: 5,}}
-      >
+      <Container maxWidth="md" sx={{ mt: 8, mb: 5 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h2" color="text.primary" sx={{ mt: 2, textAlign: 'center' }}>
+            <Typography
+              variant="h2"
+              color="text.primary"
+              sx={{ mt: 2, textAlign: "center" }}
+            >
               Manage your reservation
             </Typography>
             <Divider variant="middle" light sx={{ my: 2 }}>
@@ -122,13 +121,34 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
           >
             {loading && (
               <Grid>
-                <Grid sx={{ display: 'flex', flexDirection: success ? 'column' : 'row', alignItems: 'center', justifyContent: 'space-between', padding: success ? '1rem 2rem' : '1rem 6rem 2rem 2rem', minWidth: '100%' }}>
-                  {success ? <>
-                    <Error sx={{ fontSize: '32px', color: '#9e0303' }} />
-                    <Typography variant="body1" color="#9e0303" sx={{ textAlign: 'center', mt: '1rem', fontWeight: 500, fontSize: '16px' }}>
-                      Reservation not found. Please contact our support staff for further assistance
-                    </Typography>
-                    </> :
+                <Grid
+                  sx={{
+                    display: "flex",
+                    flexDirection: success ? "column" : "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: success ? "1rem 2rem" : "1rem 6rem 2rem 2rem",
+                    minWidth: "100%",
+                  }}
+                >
+                  {success ? (
+                    <>
+                      <Error sx={{ fontSize: "32px", color: "#9e0303" }} />
+                      <Typography
+                        variant="body1"
+                        color="#9e0303"
+                        sx={{
+                          textAlign: "center",
+                          mt: "1rem",
+                          fontWeight: 500,
+                          fontSize: "16px",
+                        }}
+                      >
+                        Reservation not found. Please contact our support staff
+                        for further assistance
+                      </Typography>
+                    </>
+                  ) : (
                     <>
                       <CircularProgress
                         sx={{
@@ -145,7 +165,7 @@ const ManageReservationPage: FC<Props> = ({ booking, faq = [] }) => {
                         Finding your reservation...
                       </Typography>
                     </>
-                  }
+                  )}
                 </Grid>
               </Grid>
             )}

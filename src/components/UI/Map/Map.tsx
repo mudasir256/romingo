@@ -2,7 +2,6 @@
 import { FC, useState, useEffect } from "react";
 import {
   GoogleMap,
-  LoadScript,
   Marker,
   InfoWindow,
   useJsApiLoader,
