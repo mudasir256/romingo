@@ -5,7 +5,7 @@ export const theme = {
     },
     secondary: {
       lighter: "#d9f7fc",
-      main: "#a6dbe5",
+      main: "#f3f5f9",
     },
     success: {
       main: "#ACC966",
@@ -54,7 +54,7 @@ export const theme = {
     body1: {
       fontFamily: "Roboto",
       fontWeight: 500,
-      color: '#000000c7'
+      color: "#000000c7",
     },
     body2: {
       fontFamily: "Roboto",

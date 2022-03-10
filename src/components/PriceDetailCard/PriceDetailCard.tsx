@@ -19,6 +19,7 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
     }[]
   >([]);
   const [feesIncluded, setFeesIncluded] = useState("");
+  const [fees, setFees] = useState([]);
 
   useEffect(() => {
     const tmp = [];
@@ -50,6 +51,7 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
     });
 
     setPriceArr([...tmp]);
+    setFees(detail?.room?.room?.fees);
   }, [detail]);
 
   const detailsLen = priceArr.length;
@@ -58,14 +60,15 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
     <Box
       sx={{
         color: "text.primary",
-        paddingTop: { xs: '1rem', sm: '0rem' }, paddingBottom: { xs : '2rem', sm: '1.5rem'},
-        px: { xs: '0rem', sm: '1rem' },
+        paddingTop: { xs: "1rem", sm: "0rem" },
+        paddingBottom: { xs: "2rem", sm: "1.5rem" },
+        px: { xs: "0rem", sm: "1rem" },
       }}
     >
       <Typography
         variant="h6"
         sx={{
-          fontFamily: 'Montserrat',
+          fontFamily: "Montserrat",
           color: "#222",
           textAlign: "left",
           mb: 1,
@@ -159,7 +162,16 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
           );
         }
       })}
-      <Typography variant="caption" sx={{ lineHeight: '1rem', fontWeight: 500, mt: '.5rem', display: 'block' }}>
+      {fees.length > 0 && {}}
+      <Typography
+        variant="caption"
+        sx={{
+          lineHeight: "1rem",
+          fontWeight: 500,
+          mt: ".5rem",
+          display: "block",
+        }}
+      >
         {feesIncluded}
       </Typography>
     </Box>

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
-import { DateTime } from 'luxon'
+import { DateTime } from "luxon";
 
 // interface Props {
 //   details: {
@@ -23,22 +23,24 @@ const BookingDetailCard: FC = () => {
 
   const roomType = useSelector(
     // eslint-disable-next-line
-    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room?.type
+    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room?.name
   );
 
   return (
-    <Box sx={{
+    <Box
+      sx={{
         color: "text.primary",
         py: 2,
-        pb: { xs: '2rem', sm: '2rem' },
-        px: { xs: '0rem', sm: '1rem' },
-        borderBottom: '1px solid #ddd'
+        pb: { xs: "2rem", sm: "2rem" },
+        px: { xs: "0rem", sm: "1rem" },
+        borderBottom: "1px solid #ddd",
       }}
     >
-      <Typography variant="h6"
+      <Typography
+        variant="h6"
         sx={{
           color: "#222",
-          fontFamily: 'Montserrat',
+          fontFamily: "Montserrat",
           textAlign: "left",
           mb: 1,
         }}
@@ -76,13 +78,13 @@ const BookingDetailCard: FC = () => {
               mt: 0.5,
               textTransform: "capitalize",
               color: "text.primary",
-              opacity: .75,
+              opacity: 0.75,
               textIndent: "-8px",
               paddingLeft: "8px",
               fontFamily: "Roboto",
             }}
           >
-            {DateTime.fromISO(details.checkIn).toFormat('MMM dd, yyyy')}
+            {DateTime.fromISO(details.checkIn).toFormat("MMM dd, yyyy")}
           </Typography>
         </Box>
         <Box>
@@ -107,13 +109,13 @@ const BookingDetailCard: FC = () => {
               mt: 0.5,
               textTransform: "capitalize",
               color: "text.primary",
-              opacity: .75,
+              opacity: 0.75,
               textIndent: "-8px",
               fontFamily: "Roboto",
               paddingLeft: "8px",
             }}
           >
-            {DateTime.fromISO(details.checkOut).toFormat('MMM dd, yyyy')}
+            {DateTime.fromISO(details.checkOut).toFormat("MMM dd, yyyy")}
           </Typography>
         </Box>
       </Box>
@@ -142,7 +144,7 @@ const BookingDetailCard: FC = () => {
             fontWeight: 500,
             mt: 0.5,
             textTransform: "capitalize",
-            opacity: .75,
+            opacity: 0.75,
             color: "text.primary",
             textIndent: "-8px",
             paddingLeft: "8px",
@@ -178,7 +180,7 @@ const BookingDetailCard: FC = () => {
             mt: 0.5,
             textTransform: "capitalize",
             color: "text.primary",
-            opacity: .75,
+            opacity: 0.75,
             textIndent: "-8px",
             paddingLeft: "8px",
             fontFamily: "Roboto",

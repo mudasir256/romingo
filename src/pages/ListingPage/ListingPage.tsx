@@ -1,8 +1,35 @@
-import { IconButton, Popover, InputLabel, FormControl, Autocomplete, Box, Hidden, Stack, Typography, Divider, Grid, Select, MenuItem } from "@mui/material"
-import { RemoveCircleOutline, AddCircleOutline, FilterList, ReportRounded } from '@mui/icons-material'
+import {
+  IconButton,
+  Popover,
+  InputLabel,
+  FormControl,
+  Autocomplete,
+  Box,
+  Hidden,
+  Stack,
+  Typography,
+  Divider,
+  Grid,
+  Select,
+  Skeleton,
+  MenuItem,
+} from "@mui/material";
+import {
+  RemoveCircleOutline,
+  AddCircleOutline,
+  FilterList,
+  ReportRounded,
+} from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
-import React, { SetStateAction, Dispatch as Dispatcher, FC, useRef, useState, useEffect } from "react";
+import React, {
+  SetStateAction,
+  Dispatch as Dispatcher,
+  FC,
+  useRef,
+  useState,
+  useEffect,
+} from "react";
 import { useHistory } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
@@ -22,13 +49,16 @@ import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
-import { GetHotelBySearch, GetHotelRackBySearch } from "../../constants/constants";
+import {
+  GetHotelBySearch,
+  GetHotelRackBySearch,
+} from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { saveSearch } from "../../store/searchReducer";
-import LocalizationProvider from "@mui/lab/LocalizationProvider"
-import DateRangePicker from "@mui/lab/DateRangePicker"
-import AdapterDateFns from "@mui/lab/AdapterDateFns"
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateRangePicker from "@mui/lab/DateRangePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { useMeasure } from "react-use";
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
@@ -58,7 +88,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   );
 
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
-  const [sortBy, setSortBy] = useState<string>('score')
+  const [sortBy, setSortBy] = useState<string>("score");
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -221,9 +251,9 @@ const ListingPage: FC<Props> = ({ ...props }) => {
   };
 
   useEffect(() => {
-    setHoverIndex(0)
-    setHotelIndex(0)
-  }, [sortBy])
+    setHoverIndex(0);
+    setHotelIndex(0);
+  }, [sortBy]);
 
   return (
     <>
@@ -246,11 +276,27 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         }}
       >
         {error && (
-          <CustomToast open={true} message={ "Something went wrong, please refresh the page and try again" } type="error" duration={5000} />
+          <CustomToast
+            open={true}
+            message={
+              "Something went wrong, please refresh the page and try again"
+            }
+            type="error"
+            duration={5000}
+          />
         )}
-        <Link href="#" onClick={(e) => { e.preventDefault(); history.push("/"); }} >
-          <Box component="img"
-            src={"https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"}
+        <Link
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            history.push("/");
+          }}
+        >
+          <Box
+            component="img"
+            src={
+              "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+            }
             alt="Logo"
             draggable="false"
             sx={{
@@ -263,10 +309,16 @@ const ListingPage: FC<Props> = ({ ...props }) => {
         </Link>
 
         <Hidden mdUp>
-          <FilterBar sx={{ mt: '1rem', }} />
+          <FilterBar sx={{ mt: "1rem" }} />
         </Hidden>
       </Box>
-      <Box sx={{ backgroundColor: "#feffff", display: { md: "flex", }, height: { xs: height, md: "calc(100vh - 59px)" }, }}>
+      <Box
+        sx={{
+          backgroundColor: "#feffff",
+          display: { md: "flex" },
+          height: { xs: height, md: "calc(100vh - 59px)" },
+        }}
+      >
         {loading ? (
           <Box
             sx={{
@@ -275,7 +327,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               p: 0,
               m: 0,
               boxShadow: 4,
-              width: { xs: "100%", md: "45%" },
+              width: { xs: "100%", md: "75%" },
               height: "100%",
               position: "relative",
               overflow: "hidden",
@@ -357,7 +409,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               }
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "center",  }}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <MotionBox
                 variants={triggerVariants}
                 animate={animate}
@@ -369,31 +421,41 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               />
             </Box>
             {loading ? (
-              <Stack spacing={3} sx={{  marginTop: '120px' }}>
+              <Stack spacing={3} sx={{ marginTop: "120px" }}>
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {Array.from({ length: 6 }, (_, i: number) => (
                   <ListingCardSkeleton key={i} />
                 ))}
               </Stack>
             ) : (
-              <Stack spacing={3} sx={{ pb: 7, pt: '2rem'}} >
+              <Stack spacing={3} sx={{ pb: 7, pt: "2rem" }}>
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {cards.length === 0 ? (
                   <>
-                    <Typography variant="h6" sx={{ textAlign: "center", mt: '2rem' }} color="text.secondary">
-                      <ReportRounded sx={{ fontSize: '2rem' }} /> <br />
+                    <Typography
+                      variant="h6"
+                      sx={{ textAlign: "center", mt: "2rem" }}
+                      color="text.secondary"
+                    >
+                      <ReportRounded sx={{ fontSize: "2rem" }} /> <br />
                       No rooms found for this search...
                     </Typography>
                   </>
                 ) : (
-                  cards.sort((a:any, b:any) => a.romingoScore > b.romingoScore ? 1 : -1 ).map((card: any, index: number) => (
-                    <ListingCard
-                      key={card.id}
-                      {...card}
-                      duration={DateTime.fromJSDate(new Date(search.checkOut)).diff(DateTime.fromJSDate(new Date(search.checkIn))).toFormat('d')}
-                      highlighted={hotelIndex === index ? true : false}
-                    />
-                  ))
+                  cards
+                    .sort((a: any, b: any) =>
+                      a.romingoScore > b.romingoScore ? 1 : -1
+                    )
+                    .map((card: any, index: number) => (
+                      <ListingCard
+                        key={card.id}
+                        {...card}
+                        duration={DateTime.fromJSDate(new Date(search.checkOut))
+                          .diff(DateTime.fromJSDate(new Date(search.checkIn)))
+                          .toFormat("d")}
+                        highlighted={hotelIndex === index ? true : false}
+                      />
+                    ))
                 )}
               </Stack>
             )}
@@ -433,7 +495,7 @@ const ListingPage: FC<Props> = ({ ...props }) => {
               px: 3,
               pt: 2,
               pb: 3,
-              width: "55%",
+              width: "70%",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
                 width: "0.4em",
@@ -449,52 +511,96 @@ const ListingPage: FC<Props> = ({ ...props }) => {
             }}
             ref={ScrollBarRef}
           >
-
             {/* <RomingoGuarantee sx={{ mb: 3 }} /> */}
 
-            <Grid sx={{ display: 'flex', mb: '1rem', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+            <Grid
+              sx={{
+                display: "flex",
+                flex: 1,
+                mb: "1rem",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
+            >
               <Hidden mdDown>
                 <DesktopFilterBar />
               </Hidden>
               <SortBar sortBy={sortBy} setSortBy={setSortBy} />
             </Grid>
 
-
-
             {loading ? (
-              <Stack spacing={3} >
+              <Stack spacing={3}>
+                <Skeleton
+                  animation="wave"
+                  width={150}
+                  height={58}
+                  sx={{ mt: -1, mb: -1, borderRadius: 0 }}
+                />
                 {Array.from({ length: 6 }, (_, i: number) => (
                   <ListingCardSkeleton key={i} />
                 ))}
               </Stack>
             ) : (
-              <Stack spacing={3} >
-                {(cards.length > 0) &&  <Typography variant="h6" sx={{ color: "#222222", fontWeight: 700, fontFamily: 'Montserrat', display: 'flex', alignItems: 'center', justifyContent: 'flex-start',}}>
-                {cards.length} Result{cards.length === 1 ? '':'s'} in {getCityName(search.city)}
-              </Typography>}
+              <Stack spacing={3}>
+                {cards.length > 0 && (
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#222222",
+                      fontWeight: 700,
+                      fontFamily: "Montserrat",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                    }}
+                  >
+                    {cards.length} Result{cards.length === 1 ? "" : "s"} in{" "}
+                    {getCityName(search.city)}
+                  </Typography>
+                )}
                 {cards.length === 0 ? (
                   <>
-                    <Typography variant="h6" sx={{ textAlign: "center", mt: '2rem' }} color="text.secondary">
-                    <ReportRounded sx={{ fontSize: '2rem' }} /> <br />
+                    <Typography
+                      variant="h6"
+                      sx={{ textAlign: "center", mt: "2rem" }}
+                      color="text.secondary"
+                    >
+                      <ReportRounded sx={{ fontSize: "2rem" }} /> <br />
                       No rooms were found for this search
                     </Typography>
                   </>
                 ) : (
-                  cards.sort((a:any, b:any) => (sortBy === 'score' ? a.romingoScore < b.romingoScore : sortBy === 'high' ? a.lowestAveragePrice < b.lowestAveragePrice : a.lowestAveragePrice > b.lowestAveragePrice) ? 1 : -1 ).map((card: any, index: number) => (
-                    <Box
-                      key={card.id}
-                      ref={refArray[index]}
-                      onMouseOver={() => {
-                        setHoverIndex(index);
-                      }}
-                    >
-                      <ListingCard
-                        {...card}
-                        duration={DateTime.fromJSDate(new Date(search.checkOut)).diff(DateTime.fromJSDate(new Date(search.checkIn))).toFormat('d')}
-                        highlighted={hotelIndex === index ? true : false}
-                      />
-                    </Box>
-                  ))
+                  cards
+                    .sort((a: any, b: any) =>
+                      (
+                        sortBy === "score"
+                          ? a.romingoScore < b.romingoScore
+                          : sortBy === "high"
+                          ? a.lowestAveragePrice < b.lowestAveragePrice
+                          : a.lowestAveragePrice > b.lowestAveragePrice
+                      )
+                        ? 1
+                        : -1
+                    )
+                    .map((card: any, index: number) => (
+                      <Box
+                        key={card.id}
+                        ref={refArray[index]}
+                        onMouseOver={() => {
+                          setHoverIndex(index);
+                        }}
+                      >
+                        <ListingCard
+                          {...card}
+                          duration={DateTime.fromJSDate(
+                            new Date(search.checkOut)
+                          )
+                            .diff(DateTime.fromJSDate(new Date(search.checkIn)))
+                            .toFormat("d")}
+                          highlighted={hotelIndex === index ? true : false}
+                        />
+                      </Box>
+                    ))
                 )}
               </Stack>
             )}
@@ -510,32 +616,59 @@ const ListingPage: FC<Props> = ({ ...props }) => {
 
 interface SortBarProps {
   sortBy: string;
-  setSortBy: Dispatcher<SetStateAction<string>>
+  setSortBy: Dispatcher<SetStateAction<string>>;
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
+  const { sortBy, setSortBy } = props;
 
-  const { sortBy, setSortBy } = props
-
-  return <Grid sx={{ pb: '1rem', textAlign: 'right', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-    <Select color='primary' value={sortBy} onChange={(e:any) => setSortBy(e.target.value)} style={{background: '#fff',  textAlign: 'center',  fontFamily: 'Montserrat', minWidth: '250px', maxHeight: '40px', borderRadius: '30px', fontSize: '13px', color: '#03989E', fontWeight: 600}} startAdornment={<FilterList sx={{ color: '#03989E', height: '16px' }} />}>
-      <MenuItem value="">
-        <em>None</em>
-      </MenuItem>
-      <MenuItem value='score'>&nbsp;&nbsp;Highest Romingo Score</MenuItem>
-      <MenuItem value='low'>&nbsp;&nbsp;Price: Low to High</MenuItem>
-      <MenuItem value='high'>&nbsp;&nbsp;Price: High to Low</MenuItem>
-    </Select>
-  </Grid>
-}
+  return (
+    <Grid
+      sx={{
+        pb: "1rem",
+        textAlign: "right",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+      }}
+    >
+      <Select
+        color="primary"
+        value={sortBy}
+        onChange={(e: any) => setSortBy(e.target.value)}
+        style={{
+          background: "#fff",
+          textAlign: "center",
+          fontFamily: "Montserrat",
+          minWidth: "250px",
+          maxHeight: "40px",
+          borderRadius: "30px",
+          fontSize: "13px",
+          color: "#03989E",
+          fontWeight: 600,
+        }}
+        startAdornment={
+          <FilterList sx={{ color: "#03989E", height: "16px" }} />
+        }
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
+        <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
+        <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
+      </Select>
+    </Grid>
+  );
+};
 
 const DesktopFilterBar: FC = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
-  const mobile = useMediaQuery('(max-width:800px)')
-  const city = ""
+  const mobile = useMediaQuery("(max-width:800px)");
+  const city = "";
   // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
   // eslint-disable-next-line
@@ -560,11 +693,11 @@ const DesktopFilterBar: FC = () => {
   };
 
   const handleDateRangeClose = () => {
-    setIsAccept(false)
+    setIsAccept(false);
     if (!isTextField) {
-      setOpen(false)
+      setOpen(false);
     }
-  }
+  };
 
   const getCity = (cityId: string) => {
     for (let i = 0; i < cities.length; i++) {
@@ -588,7 +721,7 @@ const DesktopFilterBar: FC = () => {
   };
 
   useEffect(() => {
-    if (city  && cities.length > 0) {
+    if (city && cities.length > 0) {
       setSelectedCity(city);
     }
   }, [cities]);
@@ -645,96 +778,164 @@ const DesktopFilterBar: FC = () => {
     }
   };
 
-  return  <Box>
-    <Box sx={{display: 'flex', background: '#fff', alignItems: 'center', border: '1px solid #ccc', mb: '1rem', padding: '.25rem .5rem .25rem .5rem', borderRadius: '12px'}}>
-      <Box sx={{  display: "flex", alignItems: "center", }} >
-        <Autocomplete options={cities} value={getCity(selectedCity) || null}
-          getOptionLabel={(option: any) => {
-            return option.name;
-          }}
-          // eslint-disable-next-line
-          onChange={(e, values: any) => {
-            if (values) {
-              setFormError("");
-              setSelectedCity(values.id);
-            }
-          }}
-          sx={{ width: "180px" }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              color="primary"
-              variant="outlined"
-              size="small"
-              sx={{ '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: 'transparent',
-                },
-                '&:hover fieldset': {
-                  borderColor: 'transparent',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: 'transparent',
-                },
-              }, input: { padding: '0px', fontSize: '12px', fontWeight: 600, fontFamily: 'Montserrat', cursor: "pointer", color: "primary.main", border: "none",  },}}
-            />
-          )}
-        />
-      </Box>
-      <Box sx={{ fontFamily: "Roboto", fontSize: '12px', fontWeight: 400, display: "flex", alignItems: "center", }} >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DateRangePicker
-          inputFormat="MMM dd"
-          disableMaskedInput={true}
-            open={open}
-            onAccept={() =>setIsAccept(true)}
-            onClose={handleDateRangeClose}
-            onOpen={() => {
-              if (!isAccept) {
-                setOpen(true);
+  return (
+    <Box>
+      <Box
+        sx={{
+          display: "flex",
+          background: "#fff",
+          alignItems: "center",
+          border: "1px solid #ccc",
+          mb: "1rem",
+          padding: ".25rem .5rem .25rem .5rem",
+          borderRadius: "12px",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Autocomplete
+            options={cities}
+            value={getCity(selectedCity) || null}
+            getOptionLabel={(option: any) => {
+              return option.name;
+            }}
+            // eslint-disable-next-line
+            onChange={(e, values: any) => {
+              if (values) {
+                setFormError("");
+                setSelectedCity(values.id);
               }
             }}
-            allowSameDateSelection
-            calendars={1}
-            clearable={true}
-            value={checkDate || null}
-            minDate={new Date()}
-            onChange={(newValue) => {
-              setFormError("");
-              setCheckDate(newValue);
-            }}
-            renderInput={(startProps, endProps) => (
-              <Button onClick={() => setOpen(true)} sx={{ px: { xs: 1, md: 1 } }}>
-                <Typography sx={{ fontFamily: 'Montserrat', textTransform: 'none',fontWeight: 600, fontSize: { xs: '13px' }}}>
-                  { checkDate[0] ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat('MMM dd') : ''}
-                  &nbsp;&#8212;&nbsp;
-                  { checkDate[1] ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat('MMM dd') : ''}
-                </Typography>
-              </Button>
+            sx={{ width: "180px" }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                color="primary"
+                variant="outlined"
+                size="small"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "transparent",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "transparent",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "transparent",
+                    },
+                  },
+                  input: {
+                    padding: "0px",
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    fontFamily: "Montserrat",
+                    cursor: "pointer",
+                    color: "primary.main",
+                    border: "none",
+                  },
+                }}
+              />
             )}
           />
-        </LocalizationProvider>
-      </Box>
-      <Box sx={{  mt: { xs: 1, md: 0, }, display: "flex", alignItems: "top", }}>
-        <OccupantSelector value={occupants} onChange={onOccupantChange} variant="standard" size="small" />
-      </Box>
-      <Box sx={{ textAlign: "center" }}>
-        <Button onClick={handleFilterOutClick}
-          disableElevation
-          type="submit"
-          variant="text"
-          sx={{ ml: '.25rem', display: 'flex', minWidth: '30px', alignItems: 'center', padding: '.25rem 0rem', justifyContent: 'center',}}
+        </Box>
+        <Box
+          sx={{
+            fontFamily: "Roboto",
+            fontSize: "12px",
+            fontWeight: 400,
+            display: "flex",
+            alignItems: "center",
+          }}
         >
-          <SearchIcon sx={{ height: '20px' }} />
-        </Button>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DateRangePicker
+              inputFormat="MMM dd"
+              disableMaskedInput={true}
+              open={open}
+              onAccept={() => setIsAccept(true)}
+              onClose={handleDateRangeClose}
+              onOpen={() => {
+                if (!isAccept) {
+                  setOpen(true);
+                }
+              }}
+              allowSameDateSelection
+              calendars={1}
+              clearable={true}
+              value={checkDate || null}
+              minDate={new Date()}
+              onChange={(newValue) => {
+                setFormError("");
+                setCheckDate(newValue);
+              }}
+              renderInput={(startProps, endProps) => (
+                <Button
+                  onClick={() => setOpen(true)}
+                  sx={{ px: { xs: 1, md: 1 } }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "Montserrat",
+                      textTransform: "none",
+                      fontWeight: 600,
+                      fontSize: { xs: "13px" },
+                    }}
+                  >
+                    {checkDate[0]
+                      ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
+                          "MMM dd"
+                        )
+                      : ""}
+                    &nbsp;&#8212;&nbsp;
+                    {checkDate[1]
+                      ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
+                          "MMM dd"
+                        )
+                      : ""}
+                  </Typography>
+                </Button>
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+        <Box sx={{ mt: { xs: 1, md: 0 }, display: "flex", alignItems: "top" }}>
+          <OccupantSelector
+            value={occupants}
+            onChange={onOccupantChange}
+            variant="standard"
+            size="small"
+          />
+        </Box>
+        <Box sx={{ textAlign: "center" }}>
+          <Button
+            onClick={handleFilterOutClick}
+            disableElevation
+            type="submit"
+            variant="text"
+            sx={{
+              ml: ".25rem",
+              display: "flex",
+              minWidth: "30px",
+              alignItems: "center",
+              padding: ".25rem 0rem",
+              justifyContent: "center",
+            }}
+          >
+            <SearchIcon sx={{ height: "20px" }} />
+          </Button>
+        </Box>
       </Box>
+      {formError.length > 0 && (
+        <Typography
+          variant="body2"
+          color="error"
+          sx={{ textAlign: "center", mt: 1 }}
+        >
+          {formError}
+        </Typography>
+      )}
     </Box>
-    {formError.length > 0 && (
-      <Typography  variant="body2" color="error" sx={{ textAlign: "center", mt: 1 }}>
-        {formError}
-      </Typography>
-    )}
-  </Box>
+  );
 };
 
 export interface Occupant {
@@ -755,7 +956,15 @@ interface OccupantSelectorProps {
   disabled?: boolean;
 }
 
-const OccupantSelector: FC<OccupantSelectorProps> = ({ value, onChange, onClose, fullWidth = true, size = "medium", variant = "outlined", disabled = false, }) => {
+const OccupantSelector: FC<OccupantSelectorProps> = ({
+  value,
+  onChange,
+  onClose,
+  fullWidth = true,
+  size = "medium",
+  variant = "outlined",
+  disabled = false,
+}) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [error, setError] = useState("");
@@ -778,19 +987,35 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({ value, onChange, onClose,
 
   return (
     <>
-      <Divider orientation="vertical" flexItem sx={{ mx: '.5rem', maxHeight: '75%' }} />
-     <Button onClick={handleClick} sx={{ px: { xs: 1, md: 1 }, }}>
-      <Typography sx={{ textTransform: "none", fontSize: "87%", fontWeight: 600}}>
-        {value.adults + value.children}
-      </Typography>
-      <PersonIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1, }}/>
-      <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{ mx: ".5rem", maxHeight: "75%" }}
+      />
+      <Button onClick={handleClick} sx={{ px: { xs: 1, md: 1 } }}>
+        <Typography
+          sx={{ textTransform: "none", fontSize: "87%", fontWeight: 600 }}
+        >
+          {value.adults + value.children}
+        </Typography>
+        <PersonIcon
+          sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1 }}
+        />
+        <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
 
-      <Typography sx={{ textTransform: "none", fontSize: { xs: "87%", }, fontWeight: 600 }}>
-        {value.dogs}
-      </Typography>
-      <PetsIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0.2, ml: 0.3, }}/>
-    </Button>
+        <Typography
+          sx={{
+            textTransform: "none",
+            fontSize: { xs: "87%" },
+            fontWeight: 600,
+          }}
+        >
+          {value.dogs}
+        </Typography>
+        <PetsIcon
+          sx={{ color: "primary.main", fontSize: "100%", mb: 0.2, ml: 0.3 }}
+        />
+      </Button>
       <Popover
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
@@ -803,10 +1028,9 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({ value, onChange, onClose,
           vertical: "bottom",
           horizontal: "center",
         }}
-        sx={{ ".MuiPopover-paper": { width: '250px' } }}
+        sx={{ ".MuiPopover-paper": { width: "250px" } }}
       >
         <Stack sx={{ px: 2, pt: 2 }} spacing={1}>
-
           <Stack
             direction="row"
             alignItems="center"
@@ -892,7 +1116,9 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({ value, onChange, onClose,
                     <InputLabel sx={{ textAlign: "center" }}>
                       Child {i + 1} Age
                     </InputLabel>
-                    <Select key={i} color="primary"
+                    <Select
+                      key={i}
+                      color="primary"
                       sx={{ textAlign: "center" }}
                       value={
                         value.childrenAge && value.childrenAge[i]
@@ -921,7 +1147,10 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({ value, onChange, onClose,
             })}
           </Box>
         </Stack>
-        <Button sx={{ pt: 1.5, pb: 1.5, width: "100%", mt: -1.25 }} onClick={handleClose}>
+        <Button
+          sx={{ pt: 1.5, pb: 1.5, width: "100%", mt: -1.25 }}
+          onClick={handleClose}
+        >
           Done
         </Button>
       </Popover>
@@ -929,14 +1158,17 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({ value, onChange, onClose,
   );
 };
 
-
 interface NumberInputProps {
   value: number;
   onChange: (value: number) => void;
   minimum?: number;
 }
 
-const NumberInput: FC<NumberInputProps> = ({ value, onChange, minimum = 0 }) => {
+const NumberInput: FC<NumberInputProps> = ({
+  value,
+  onChange,
+  minimum = 0,
+}) => {
   return (
     <Stack spacing={2} direction="row" alignItems="center">
       <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>

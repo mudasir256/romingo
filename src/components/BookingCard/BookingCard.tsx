@@ -5,24 +5,12 @@ import { Dispatch } from "redux";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import OccupantSelector, { Occupant, } from "../OccupantSelector/OccupantSelector";
 import Link from "@mui/material/Link";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
-import { ArrowDownward } from '@mui/icons-material'
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { saveSearch } from "../../store/searchReducer";
-import RomingoGuarantee from "../../components/RomingoGuarantee"
 
 interface Props {
   sx?: CSSObject;
@@ -67,14 +55,6 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
 
   const [occupants, setOccupants] = useState(search.occupants);
 
-  const onOccupantChange = (value: Occupant) => {
-    setOccupants(value);
-  };
-
-  const handleOccupantsClose = () => {
-    dispatch(saveSearch({ ...search, occupants }));
-  };
-
   const [selectedRoom, setSelectedRoom] = useState<{
     value: number;
     description: string;
@@ -107,9 +87,17 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
     }
   }, [checkDate]);
 
-  return <Grid sx={{ width: '95%', ml: 'auto'}}>
-    <Box sx={{ ...sx, borderRadius: 2, boxShadow: 0, p: '.25rem 0rem .25rem 2rem',}}>
-      {/* <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
+  return (
+    <Grid sx={{ width: "95%", ml: "auto" }}>
+      <Box
+        sx={{
+          ...sx,
+          borderRadius: 2,
+          boxShadow: 0,
+          p: ".25rem 0rem .25rem 2rem",
+        }}
+      >
+        {/* <Box sx={{ display: "flex", mb: '1rem', alignItems: "center", justifyContent: 'space-between', pb: '1rem'}}>
         <Typography variant="h5" sx={{ fontWeight: 600, fontFamily: 'Montserrat' }}>
           ${selectedRoom?.room?.averagePrice.toFixed(2)}  <span style={{fontSize: '16px', fontWeight: 500}}>/ night</span>
         </Typography>
@@ -118,8 +106,8 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
         </Button>
       </Box> */}
 
-      <Grid container spacing={2}>
-        {/* <Grid item xs={12}>
+        <Grid container spacing={2}>
+          {/* <Grid item xs={12}>
 
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
@@ -160,15 +148,28 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
             />
           </LocalizationProvider>
         </Grid> */}
-        {/* <Grid item xs={12}>
+          {/* <Grid item xs={12}>
           <OccupantSelector size="small" value={occupants} onChange={(value) => { onOccupantChange(value); }} onClose={handleOccupantsClose} />
         </Grid> */}
-        <Grid item xs={12}>
-          <Link href='#rooms' sx={{ textDecoration: 'none' }}>
-            <Button disableElevation fullWidth  variant='contained' sx={{ fontFamily: "Montserrat", fontWeight: 600, mb: '0rem', display: { md: 'flex', xs: 'none' }}}> Reserve a room </Button>
-          </Link>
-        </Grid>
-        {/* <Grid item xs={12}>
+          <Grid item xs={12}>
+            <Link href="#rooms" sx={{ textDecoration: "none" }}>
+              <Button
+                disableElevation
+                fullWidth
+                variant="contained"
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontWeight: 600,
+                  mb: "0rem",
+                  display: { md: "flex", xs: "none" },
+                }}
+              >
+                {" "}
+                Reserve a room{" "}
+              </Button>
+            </Link>
+          </Grid>
+          {/* <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel>Room Type</InputLabel>
             <Select size="small" value={roomType} onChange={(e) => { setRoomType(e.target.value); }} label="Room Type">
@@ -182,17 +183,18 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
             </Select>
           </FormControl>
         </Grid> */}
-      </Grid>
-      {/* <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
+        </Grid>
+        {/* <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", }}>
         <Link href="#rooms" >
           <Typography variant="body1" sx={{ fontSize: '1rem', mt: 2, display: 'flex', alignItems: 'center' }}>
             Go To Rooms &amp; Rates <ArrowDownward sx={{ ml: '.5rem', fontSize: '1rem' }} />
           </Typography>
         </Link>
       </Box> */}
-    </Box>
-    {/* <RomingoGuarantee sx={{ mt: 5 }} /> */}
-  </Grid>
+      </Box>
+      {/* <RomingoGuarantee sx={{ mt: 5 }} /> */}
+    </Grid>
+  );
 };
 
 export default BookingCard;

@@ -23,33 +23,30 @@ const ListingCardSkeleton: FC<Props> = ({ sx }) => {
     >
       <Skeleton
         sx={{
-          width: "100%",
-          maxWidth: { sm: 280 },
-          maxHeight: { xs: 180, sm: "100%" },
-          minHeight: { xs: 180, sm: "100%" },
+          width: { xs: "100%", sm: 400, md: 350, lg: 350 },
+          maxWidth: { xs: "100%", sm: 280 },
+          height: { xs: 300, sm: 211, md: 186 },
           borderRadius: 3,
           boxShadow: 0,
-          height: "auto",
         }}
         animation="wave"
         variant="rectangular"
       />
       <Box
         sx={{
-          pt: 1.8,
+          pt: 0,
           px: { xs: mobileCardPadding, sm: 1.8 },
           pb: { xs: mobileCardPadding, sm: 1.8 },
           flex: 1,
           minWidth: 0,
         }}
       >
-        <Skeleton animation="wave" width="90%" height={35} />
+        <Skeleton animation="wave" width="90%" height={25} />
 
         <Box>
-          <Skeleton animation="wave" width="70%" height={30} />
+          <Skeleton animation="wave" width="70%" height={18} />
 
           <Box sx={{ mt: 3, mb: 1.85 }}>
-            <Skeleton animation="wave" width="60%" />
             <Skeleton
               animation="wave"
               width={160}

@@ -31,6 +31,8 @@ import {
   Check,
   KeyboardArrowDown,
   Message,
+  Diamond,
+  PetsOutlined,
 } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -332,133 +334,123 @@ const HomePage: FC<Props> = ({
 
       <HotelCarousel />
 
-      <Box
+      <Container
+        maxWidth="xl"
         sx={{
           position: "relative",
-          "&::before": {
-            content: '""',
-            background: "#f3f5f9",
-            borderTop: "1px solid #f3f5f9",
-            borderBottom: "1px solid #f3f5f9",
-            opacity: 1,
-            backgroundSize: "cover",
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-          },
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          py: "2rem",
         }}
       >
-        <Container
-          maxWidth="lg"
-          sx={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            pb: { xs: 0, sm: 0, md: "2rem" },
-          }}
-        >
-          <Grid container sx={{ py: 6 }}>
-            <Grid item xs={12}>
-              <Typography
-                variant="h4"
-                sx={{ color: "primary.main", textAlign: "center" }}
-              >
-                Romingo
-              </Typography>
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "text.secondary",
-                  textAlign: "center",
-                  mb: { xs: 0, sm: 5 },
-                  mt: "1rem",
-                }}
-              >
-                Reinventing pet-friendly travel
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
-              <Grid container spacing={{ sm: 3, md: 5 }}>
-                <Grid item xs={12} sm={6}>
-                  <Box sx={{ height: "100%", display: "flex" }}>
-                    <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
-                      <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        sx={{
-                          mb: { xs: 3 },
-                          mt: 3,
-                          fontWeight: 400,
-                          fontSize: "115%",
-                          textAlign: "justify",
-                        }}
-                      >
-                        Ready to get away? When you plan your next trip with
-                        Romingo you&lsquo;ll receive:
-                        <ListItem sx={{ mt: "1rem", fontSize: "20px" }}>
-                          <Check
-                            sx={{
-                              mr: "1.5rem",
-                              color: "#03989E",
-                              fontSize: "18px",
-                            }}
-                          />
-                          The best deals on rates
-                        </ListItem>
-                        <ListItem sx={{ fontSize: "20px" }}>
-                          <Check
-                            sx={{
-                              mr: "1.5rem",
-                              color: "#03989E",
-                              fontSize: "18px",
-                            }}
-                          />
-                          Zero pet fees for up to 2 pets, weighing 75 lbs. each
-                        </ListItem>
-                        <ListItem sx={{ fontSize: "20px" }}>
-                          <Check
-                            sx={{
-                              mr: "1.5rem",
-                              color: "#03989E",
-                              fontSize: "18px",
-                            }}
-                          />
-                          Pet beds, bowls, and treats upon arrival
-                        </ListItem>
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Box sx={{ height: "100%", display: "flex" }}>
-                    <Box
-                      component="img"
-                      src="https://storage.googleapis.com/romingo-development-public/images/front-end/Relaxing_pup_windows%20(1).jpg"
-                      alt="Golden Retriever Under Covers"
-                      draggable="false"
+        <Grid container sx={{ py: 6 }}>
+          <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
+            <Grid container spacing={{ sm: 3, md: 5 }}>
+              <Grid item xs={12} sm={6}>
+                <Box sx={{ height: "100%", display: "flex" }}>
+                  <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
+                    <Typography
+                      variant="h4"
+                      sx={{ color: "primary.main", textAlign: "left" }}
+                    >
+                      Welcome to pet-friendly travel
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
                       sx={{
-                        width: "100%",
-                        maxHeight: "275px",
-                        borderRadius: 3,
-                        boxShadow: 5,
-                        objectFit: "cover",
-                        margin: "auto 0",
-                        position: "relative",
-                        textAlign: "center",
-                        display: "inline-block",
+                        mb: { xs: 3 },
+                        mt: 3,
+                        fontWeight: 400,
+                        fontSize: "115%",
+                        textAlign: "justify",
                       }}
-                    />
+                    >
+                      Tired of endlessly searching for pet-friendly hotels and
+                      vacation rentals? Now, you can travel the world freely
+                      with your pup by your side. Romingo has arrived to help
+                      make traveling with your pup simple and fun! Book your
+                      next trip with Romingo and enjoy a customized pet-
+                      friendly experience made just for you.
+                      <Grid container spacing={3} sx={{ mt: 3 }}>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Diamond
+                            sx={{
+                              mt: 1,
+                              mb: 1,
+                              color: "#a6dbe5",
+                              fontSize: "44px",
+                            }}
+                          />
+                          <br />
+                          Luxury hotels
+                        </Grid>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
+                            }
+                            draggable="false"
+                            sx={{ width: "60px" }}
+                          />
+                          <br />
+                          Lowest Rates
+                        </Grid>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog2.svg"
+                            }
+                            draggable="false"
+                            sx={{ width: "60px" }}
+                          />
+                          <br />
+                          Pet-friendly
+                        </Grid>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
+                            }
+                            draggable="false"
+                            sx={{ width: "60px" }}
+                          />
+                          <br />
+                          No hidden fees
+                        </Grid>
+                      </Grid>
+                    </Typography>
                   </Box>
-                </Grid>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Box sx={{ height: "100%", width: "100%", display: "flex" }}>
+                  <Box
+                    component="img"
+                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/Relaxing_pup_windows%20(1).jpg"
+                    alt="Golden Retriever Under Covers"
+                    draggable="false"
+                    sx={{
+                      width: "100%",
+                      boxShadow: 5,
+                      objectFit: "cover",
+                      margin: "auto 0",
+                      position: "relative",
+                      textAlign: "center",
+                      display: "inline-block",
+                    }}
+                  />
+                </Box>
               </Grid>
             </Grid>
           </Grid>
-        </Container>
-      </Box>
+        </Grid>
+      </Container>
 
       <CustomerTestimonials />
 
@@ -737,20 +729,22 @@ const HomePage: FC<Props> = ({
                       size="medium"
                       autoCapitalize="off"
                       autoCorrect="off"
-                      sx={{ width: "calc(100% - 100px)", background: "#fff", outlineColor: 'none',
-                      '& label.Mui-focused': {
-                        color: '#03989E',
-                      },
-                      '& .MuiInput-underline:after': {
-                        borderBottomColor: 'green',
-                      },
-                      '& .MuiOutlinedInput-root': {
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#03989E',
+                      sx={{
+                        width: "calc(100% - 100px)",
+                        background: "#fff",
+                        outlineColor: "none",
+                        "& label.Mui-focused": {
+                          color: "#03989E",
                         },
-                      },
-                       }}
-
+                        "& .MuiInput-underline:after": {
+                          borderBottomColor: "green",
+                        },
+                        "& .MuiOutlinedInput-root": {
+                          "&.Mui-focused fieldset": {
+                            borderColor: "#03989E",
+                          },
+                        },
+                      }}
                     />
                     <Button
                       sx={{
@@ -980,7 +974,7 @@ const CustomerTestimonials = () => {
           >
             <Carousel
               showThumbs={false}
-              interval={matches ? 3000 : 6000}
+              interval={matches ? 4000 : 7000}
               showArrows={false}
               showIndicators={matches ? true : false}
               showStatus={false}
@@ -993,8 +987,7 @@ const CustomerTestimonials = () => {
                   e: React.MouseEvent | React.KeyboardEvent
                 ) => void,
                 isSelected: boolean,
-                index: number,
-                label: string
+                index: number
               ) => (
                 <li
                   style={{
@@ -1021,9 +1014,8 @@ const CustomerTestimonials = () => {
               {reviews.map((review) => (
                 <Paper
                   key={review.name}
-                  elevation={1}
+                  elevation={0}
                   sx={{
-                    border: "1px solid #ddd",
                     padding: matches ? "1rem 1rem" : "1rem",
                     minHeight: { xs: "0px", sm: "0px", md: "400px" },
                     display: "flex",
@@ -1053,8 +1045,8 @@ const CustomerTestimonials = () => {
                       <img
                         style={{
                           borderRadius: "6px",
-                          maxHeight: "90%",
-                          maxWidth: "90%",
+                          height: "90%",
+                          width: "90%",
                         }}
                         src={review.image}
                       />
@@ -1144,8 +1136,8 @@ const CustomerTestimonials = () => {
                             <img
                               style={{
                                 borderRadius: "6px",
-                                maxHeight: "40px",
-                                maxWidth: "40px",
+                                maxHeight: "80px",
+                                maxWidth: "80px",
                               }}
                               src={review.image}
                             />
@@ -1155,7 +1147,7 @@ const CustomerTestimonials = () => {
                               variant="h6"
                               sx={{
                                 color: "#11111199",
-                                fontSize: "1rem",
+                                fontSize: "1.5rem",
                                 fontFamily: "Montserrat",
                                 fontWeight: 700,
                                 textAlign: "left",
@@ -1169,7 +1161,7 @@ const CustomerTestimonials = () => {
                                 color: "#11111199",
                                 mt: "-.25rem",
                                 fontWeight: 500,
-                                fontSize: "13px",
+                                fontSize: "16px",
                               }}
                             >
                               {review.location}
@@ -1476,15 +1468,15 @@ const EmailSignup = () => {
                     outline: "none",
                     fontSize: ".8rem",
                     input: { fontFamily: "Montserrat" },
-                    '& label.Mui-focused': {
-                      color: '#03989E',
+                    "& label.Mui-focused": {
+                      color: "#03989E",
                     },
-                    '& .MuiInput-underline:after': {
-                      borderBottomColor: 'green',
+                    "& .MuiInput-underline:after": {
+                      borderBottomColor: "green",
                     },
-                    '& .MuiOutlinedInput-root': {
-                      '&.Mui-focused fieldset': {
-                        borderColor: '#03989E',
+                    "& .MuiOutlinedInput-root": {
+                      "&.Mui-focused fieldset": {
+                        borderColor: "#03989E",
                       },
                     },
                   }}

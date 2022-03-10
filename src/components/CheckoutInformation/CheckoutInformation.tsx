@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 import Checkbox from "@mui/material/Checkbox";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { gql, useMutation } from "@apollo/client";
@@ -30,12 +31,7 @@ interface Props {
   price: number;
 }
 
-const CheckoutInformation: FC<Props> = ({
-  sx,
-  finePrint = null,
-  price,
-  priceKey,
-}) => {
+const CheckoutInformation: FC<Props> = ({ sx, price, priceKey }) => {
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
@@ -60,23 +56,18 @@ const CheckoutInformation: FC<Props> = ({
     phone: "",
   });
 
-  const [
-    createPI,
-    { data: piData, error: piError, loading: piLoading },
-  ] = useMutation(
+  const [createPI, { data: piData, loading: piLoading }] = useMutation(
     gql`
       ${CreatePaymentIntent}
     `
   );
 
-  const [
-    createBooking,
-    { data: createData, error: createError, loading: createLoading },
-  ] = useMutation(
-    gql`
-      ${CreateBooking}
-    `
-  );
+  const [createBooking, { data: createData, loading: createLoading }] =
+    useMutation(
+      gql`
+        ${CreateBooking}
+      `
+    );
 
   const handleCheck = () => {
     setCheckState(!checkState);
@@ -326,7 +317,6 @@ const CheckoutInformation: FC<Props> = ({
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: 3,
             pt: 3,
             pb: 2.5,
             px: 2,
@@ -418,17 +408,17 @@ const CheckoutInformation: FC<Props> = ({
               )}
             </Box>
           ) : (
-            <>
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Typography
                 variant="h6"
                 sx={{
                   color: "#222",
-                  textAlign: "center",
+                  textAlign: "left",
                   fontWeight: 700,
-                  fontFamily: "Montserrat"
+                  fontFamily: "Montserrat",
                 }}
               >
-                Primary Traveller Information
+                Traveller Information
               </Typography>
               <Grid container spacing={2} sx={{ py: 2 }}>
                 <Grid item xs={12} sm={6}>
@@ -491,12 +481,13 @@ const CheckoutInformation: FC<Props> = ({
                   />
                 </Grid>
               </Grid>
+              <Divider light sx={{ my: 2 }} />
               <Typography
                 variant="h6"
                 sx={{
                   color: "#222",
                   fontFamily: "Montserrat",
-                  textAlign: "center",
+                  textAlign: "left",
                   mb: 2,
                 }}
               >
@@ -511,8 +502,7 @@ const CheckoutInformation: FC<Props> = ({
                     options={{
                       iconStyle: "solid",
                       classes: {
-                        base:
-                          "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
+                        base: "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
                       },
                       style: {
                         base: {
@@ -600,7 +590,7 @@ const CheckoutInformation: FC<Props> = ({
                   </span>
                 </Typography>
               </Grid>
-            </>
+            </Box>
           )}
         </Box>
       </Box>
