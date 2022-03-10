@@ -417,7 +417,7 @@ const CheckoutInformation: FC<Props> = ({ sx, price, priceKey }) => {
                   fontFamily: "Montserrat",
                 }}
               >
-                Traveller Information
+                Guest Information
               </Typography>
               <Grid container spacing={2} sx={{ py: 2 }}>
                 <Grid item xs={12} sm={6}>

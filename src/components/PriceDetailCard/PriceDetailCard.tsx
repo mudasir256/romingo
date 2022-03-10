@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { CSSObject } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { CheckBox, CheckCircleOutlineRounded } from "@mui/icons-material";
 
 interface Props {
   sx?: CSSObject;
@@ -12,6 +13,9 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
+  const promoText = useSelector(
+    (state: any) => state.hotelDetailReducer?.detail?.checkoutPagePromoText
+  );
   const [priceArr, setPriceArr] = useState<
     {
       label: string;
@@ -20,6 +24,8 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   >([]);
   const [feesIncluded, setFeesIncluded] = useState("");
   const [fees, setFees] = useState([]);
+
+  console.log(promoText);
 
   useEffect(() => {
     const tmp = [];
@@ -174,6 +180,28 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
       >
         {feesIncluded}
       </Typography>
+      {promoText && (
+        <Typography
+          variant="body2"
+          color="primary.main"
+          sx={{
+            lineHeight: "1rem",
+            fontWeight: 500,
+            mt: "1rem",
+            mb: "-1.25rem",
+            height: "100%",
+          }}
+        >
+          <CheckCircleOutlineRounded
+            sx={{
+              fontSize: 15,
+              mb: "-0.15rem",
+              mr: ".1rem",
+            }}
+          />
+          {promoText}
+        </Typography>
+      )}
     </Box>
   );
 };

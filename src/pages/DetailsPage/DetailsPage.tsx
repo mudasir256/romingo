@@ -85,6 +85,7 @@ import {
   Launch,
   ArrowBackIos,
   Close,
+  LocalOffer,
 } from "@mui/icons-material";
 import BookingCard from "../../components/BookingCard";
 import Map from "../../components/UI/Map/Map";
@@ -129,6 +130,8 @@ interface Props {
   gallery: string[];
   score: number;
   defaultDescription: string;
+  detailsPagePromoText: string;
+  checkoutPagePromoText: string;
   cancellation?: boolean;
   cancelPenalty?: {
     refundable: boolean;
@@ -1058,7 +1061,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   }}
                                 />
                                 {reviewData.rating}
-                                &nbsp;&bull;&nbsp;{" "}
                                 <span
                                   style={{
                                     fontSize: "80%",
@@ -1313,11 +1315,23 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >
                   {location.address}, {city?.name}
                 </Typography>
-                <Chip
-                  sx={{ my: "1rem" }}
-                  icon={<LocationCityIcon />}
-                  label={neighborhood}
-                />
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    my: "1rem",
+                  }}
+                >
+                  <Chip icon={<LocationCityIcon />} label={neighborhood} />
+                  <Chip
+                    icon={<LocalOffer sx={{ fontSize: "100%" }} />}
+                    color="success"
+                    sx={{ backgroundColor: "#5b8d3e", color: "#fff", ml: 0.5 }}
+                    label={data?.property?.detailsPagePromoText}
+                  />
+                </Box>
 
                 <ReadMore small text={defaultDescription} length={200} />
                 <Link href="#rooms">
@@ -1689,24 +1703,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               )}
             </Grid>
           </Grid>
-
-          {/* {reviewData && <>
-          <Typography
-            id="reviews"
-            variant="h6"
-            sx={{
-              color: "#222",
-              fontFamily: "Montserrat",
-              mt: { xs: 1, sm: 5 },
-              mb: "1rem",
-              textAlign: "left",
-            }}
-          >
-            Reviews for {data.property.name}
-          </Typography>
-         <CustomerTestimonials reviews={reviewData.reviews} />
-         </>} */}
-
           <SimpleReactLightbox>
             <Dialog
               open={showGallery}

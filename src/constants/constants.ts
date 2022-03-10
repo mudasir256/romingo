@@ -16,6 +16,7 @@ const GetHotelBySearch = `
         }
       ) {
         id
+        listingsPagePromoText
         featuredImageURL
         imageURLs
         googlePlaceId
@@ -135,6 +136,8 @@ const GetHotelDetail = `
       })
       {
         id
+        detailsPagePromoText
+        checkoutPagePromoText
         googlePlaceId
         sabreId
         name
@@ -256,8 +259,6 @@ mutation CreatePaymentIntentMutation(
   }
 }
 `;
-
-
 
 const CreateBooking = `
 mutation CreateBookingMutation($createBookingInput: CreateBookingInput!) {

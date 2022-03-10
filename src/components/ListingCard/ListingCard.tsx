@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Check } from "@mui/icons-material";
+import { MonetizationOn, VerifiedUser } from "@mui/icons-material";
 import { Grid, Chip, Box, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
@@ -14,6 +14,7 @@ export interface ListingCardProps {
   romingoScore: number;
   cancellation?: boolean;
   lowestAveragePrice: number;
+  listingsPagePromoText?: string;
   currency?: string;
   dogAmenities?: string[];
   showAmenities?: boolean;
@@ -38,6 +39,7 @@ const ListingCard: FC<ListingCardProps> = ({
   imageURLs,
   name,
   addressLine1,
+  listingsPagePromoText,
   googlePlaceId,
   romingoScore,
   city,
@@ -54,32 +56,6 @@ const ListingCard: FC<ListingCardProps> = ({
 }) => {
   const history = useHistory();
   const mobileCardPadding = 1.8;
-
-  // const [reviewData, setReviewData] = useState<any>()
-  // const [reviewDialog, setReviewDialog] = useState<boolean>(false)
-
-  // const getReviewData = () => {
-  //   if (window.google) {
-  //     const service = new window.google.maps.places.PlacesService(document.createElement('div'));
-  //     if (googlePlaceId !== undefined) {
-  //       service.getDetails({ placeId: googlePlaceId, fields: ['reviews', 'rating', 'user_ratings_total'] }, (a ,b) => { setReviewData(a)} );
-  //     }
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (googlePlaceId) {
-  //     const script = document.createElement('script');
-  //     script.type = 'text/javascript';
-  //     script.addEventListener('load', function(event) {
-  //       getReviewData()
-  //     });
-  //     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0&libraries=places';
-  //     setTimeout(() => {
-  //       document.getElementsByTagName('head')[0].appendChild(script);
-  //     }, 200)
-  //   }
-  // }, [googlePlaceId])
 
   return (
     <Box
@@ -210,12 +186,12 @@ const ListingCard: FC<ListingCardProps> = ({
               }}
             >
               <Box sx={{ mb: 1, display: "flex" }}>
-                <Check
+                <MonetizationOn
                   sx={{
                     fontSize: 15,
                     color: "#5b8d3e",
-                    mt: ".25rem",
-                    mr: ".5rem",
+                    mt: ".15rem",
+                    mr: ".1rem",
                   }}
                 />
                 <Typography
@@ -231,16 +207,18 @@ const ListingCard: FC<ListingCardProps> = ({
                     color: "#5b8d3e",
                   }}
                 >
-                  No hidden fees
+                  {listingsPagePromoText
+                    ? listingsPagePromoText
+                    : "No hidden fees"}
                 </Typography>
               </Box>
               <Box sx={{ mt: 1, mb: "auto", display: "flex" }}>
-                <Check
+                <VerifiedUser
                   sx={{
                     fontSize: 15,
                     color: "#5b8d3e",
-                    mt: ".25rem",
-                    mr: ".5rem",
+                    mt: ".1rem",
+                    mr: ".1rem",
                   }}
                 />
                 <Typography
