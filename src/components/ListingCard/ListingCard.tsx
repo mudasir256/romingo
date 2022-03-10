@@ -278,9 +278,11 @@ const ListingCard: FC<ListingCardProps> = ({
                 sm: ".5rem .5rem 0rem 1rem",
                 md: ".75rem 0rem",
               },
+              alignItems: "end",
               justifyContent: { xs: "space-between", sm: "center" },
             }}
           >
+            <RomingoScore score={romingoScore} />
             <Box
               sx={{
                 mt: { xs: "0px", sm: "auto" },

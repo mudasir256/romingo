@@ -710,7 +710,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       textAlign: { sm: "right", xs: "left" },
                     }}
                   >
-                    {reviewData && reviewData.rating}{" "}
+                    {reviewData && reviewData.rating}
                     <Star
                       sx={{
                         color: "primary.main",
@@ -1007,11 +1007,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                               <Button
                                 onClick={() =>
                                   window.open(
-                                    `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                                      data.property.name
-                                    )}&destination_place_id=${
-                                      data.property.googlePlaceId
-                                    }`
+                                    `https://www.google.com/maps/search/?api=1&query=${data.property.googlePlaceId}&query_place_id=${data.property.googlePlaceId}`
                                   )
                                 }
                                 variant="outlined"
@@ -1187,11 +1183,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                               <Button
                                 onClick={() =>
                                   window.open(
-                                    `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                                      data.property.name
-                                    )}&destination_place_id=${
-                                      data.property.googlePlaceId
-                                    }`
+                                    `https://www.google.com/maps/search/?api=1&query=${data.property.googlePlaceId}&query_place_id=${data.property.googlePlaceId}`
                                   )
                                 }
                                 variant="outlined"
@@ -1314,7 +1306,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       ml: { sm: "auto", xs: "0px" },
                     }}
                   >
-                    {score}{" "}
+                    {score}
                     <Star
                       sx={{
                         color: "primary.main",
@@ -1698,9 +1690,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 <Button
                   onClick={() =>
                     window.open(
-                      `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                        data.property.name
-                      )}&destination_place_id=${data.property.googlePlaceId}`
+                      `https://www.google.com/maps/search/?api=1&query=${data.property.googlePlaceId}&query_place_id=${data.property.googlePlaceId}`
                     )
                   }
                   variant="outlined"
