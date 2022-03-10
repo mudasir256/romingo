@@ -345,15 +345,18 @@ const HomePage: FC<Props> = ({
           py: "2rem",
         }}
       >
-        <Grid container sx={{ py: 6 }}>
+        <Grid container sx={{ py: 4 }}>
           <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
             <Grid container spacing={{ sm: 3, md: 5 }}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} lg={6}>
                 <Box sx={{ height: "100%", display: "flex" }}>
                   <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
                     <Typography
                       variant="h4"
-                      sx={{ color: "primary.main", textAlign: "left" }}
+                      sx={{
+                        color: "primary.main",
+                        textAlign: { xs: "center", md: "left" },
+                      }}
                     >
                       Welcome to pet-friendly travel
                     </Typography>
@@ -428,7 +431,7 @@ const HomePage: FC<Props> = ({
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} lg={6}>
                 <Box sx={{ height: "100%", width: "100%", display: "flex" }}>
                   <Box
                     component="img"

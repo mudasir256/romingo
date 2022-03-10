@@ -2,7 +2,6 @@ import { FC, useEffect } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { useSelector } from "react-redux";
@@ -13,10 +12,10 @@ import CancelPolicy from "../../components/CancelPolicy";
 import PriceDetailCard from "../../components/PriceDetailCard";
 import CheckoutInformation from "../../components/CheckoutInformation";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
-import { Chip, useMediaQuery } from "@mui/material";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
+import { useMediaQuery } from "@mui/material";
 import ScrollToTop from "../../components/ScrollToTop";
 import ImageSlider from "../../components/ImageSlider";
+import { Star } from "@mui/icons-material";
 
 declare global {
   interface Window {
@@ -256,7 +255,24 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
             >
               {addressLine1}, {city?.name}
             </Typography>
-
+            <Typography
+              variant="h6"
+              sx={{
+                fontSize: "100%",
+                color: "primary.main",
+                textAlign: "left",
+                mb: -1,
+              }}
+            >
+              {romingoScore}
+              <Star
+                sx={{
+                  color: "primary.main",
+                  fontSize: "1rem",
+                  mb: -0.1,
+                }}
+              />
+            </Typography>
             <Box
               sx={{
                 display: "flex",

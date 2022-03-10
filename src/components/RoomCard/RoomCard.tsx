@@ -17,14 +17,11 @@ import WeekendOutlinedIcon from "@mui/icons-material/WeekendOutlined";
 import RoomPreferencesOutlinedIcon from "@mui/icons-material/RoomPreferencesOutlined";
 import { useDispatch } from "react-redux";
 import { DateTime } from "luxon";
-import { utils } from "../../services/utils";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
 import {
-  Link,
   Dialog,
   DialogContent,
   DialogTitle,
-  Chip,
   IconButton,
   Grid,
 } from "@mui/material";
@@ -38,53 +35,22 @@ import {
   SingleBed,
   SquareFoot,
 } from "@mui/icons-material";
-import { useMediaQuery } from "@mui/material";
 import {
   Casino,
-  ExpandMore,
-  LocationCity,
-  Shuffle,
-  Event,
-  RemoveCircleOutline,
-  AddCircleOutline,
   AccountBalanceWallet,
-  FiberManualRecord,
   MeetingRoom,
-  HotTub,
   Work,
   ChildCare,
   Weekend,
-  PersonAddAlt,
-  Star,
-  ArrowDownward,
-  Deck,
-  Nightlife,
-  Soap,
-  DirectionsRun,
   Bed,
-  ShoppingBasket,
-  LocalCafe,
-  MoneyOff,
-  Label,
-  Pool,
   SportsGolf,
   SportsTennis,
-  DryCleaning,
-  RoomService,
-  FitnessCenter,
   Wifi,
-  Pets,
   SmokeFree,
-  BusinessCenter,
   Accessible,
-  SvgIconComponent,
   CarRental,
   Crib,
-  Restaurant,
   Chair,
-  Launch,
-  ArrowBackIos,
-  Close,
 } from "@mui/icons-material";
 import ImageSlider from "../ImageSlider";
 
@@ -288,14 +254,6 @@ const RoomCard: FC<Props> = ({
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [refundAnchorEl, setRefundAnchorEl] = useState<null | Element>(null);
-
-  const mobile = useMediaQuery("(max-width: 900px)");
-
-  const handleClick: MouseEventHandler<Element> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowDialog(true);
-  };
 
   const handleOpenPrice: MouseEventHandler<Element> = (e) => {
     e.preventDefault();

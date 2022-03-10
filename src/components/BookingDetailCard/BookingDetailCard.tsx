@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
+import ImageSlider from "../ImageSlider";
 
 // interface Props {
 //   details: {
@@ -20,10 +21,9 @@ import { DateTime } from "luxon";
 const BookingDetailCard: FC = () => {
   // eslint-disable-next-line
   const details = useSelector((state: any) => state.searchReducer.search);
-
-  const roomType = useSelector(
+  const room = useSelector(
     // eslint-disable-next-line
-    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room?.name
+    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room
   );
 
   return (
@@ -184,10 +184,25 @@ const BookingDetailCard: FC = () => {
             textIndent: "-8px",
             paddingLeft: "8px",
             fontFamily: "Roboto",
+            mb: 1,
           }}
         >
-          {roomType ? roomType : "Room"}
+          {room?.name ? room.name : "Room"}
         </Typography>
+        <ImageSlider
+          images={room?.imageURLs}
+          name={room?.name ? room.name : "Room"}
+          sx={{
+            display: "flex",
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "50px",
+            borderRadius: "6px",
+            minHeight: { xs: "200px", sm: "200px", md: "220px" },
+            color: "#03989e",
+          }}
+        />
       </Box>
     </Box>
   );
