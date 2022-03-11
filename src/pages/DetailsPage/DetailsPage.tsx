@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import { Dispatch } from "redux";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { saveSearch } from "../../store/searchReducer";
+import { useJsApiLoader } from "@react-google-maps/api";
 import {
   SvgIcon,
   Link,
@@ -118,6 +119,16 @@ const useWidth = () => {
     }, null) || "xs"
   );
 };
+
+type Libraries = (
+  | "drawing"
+  | "geometry"
+  | "localContext"
+  | "places"
+  | "visualization"
+)[];
+
+const libraries: Libraries = ["places"];
 
 interface Props {
   name: string;
@@ -382,14 +393,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const [reviewData, setReviewData] = useState<any>();
   const [reviewDialog, setReviewDialog] = useState<boolean>(false);
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
+    libraries,
+  });
 
   const getReviewData = () => {
     const request = {
       placeId: data.property.googlePlaceId,
       fields: ["reviews", "rating", "user_ratings_total"],
     };
-    if (window.google) {
-      const service = new window.google.maps.places.PlacesService(
+    if (google) {
+      const service = new google.maps.places.PlacesService(
         document.createElement("div")
       );
       service.getDetails(request, (a) => {
@@ -399,19 +414,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   };
 
   useEffect(() => {
-    if (data && data.property && data.property.googlePlaceId) {
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.addEventListener("load", function () {
-        getReviewData();
-      });
-      script.src =
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0&libraries=places";
-      setTimeout(() => {
-        document.getElementsByTagName("head")[0].appendChild(script);
-      }, 0);
+    if (data && data.property && data.property.googlePlaceId && isLoaded) {
+      getReviewData();
     }
-  }, [data]);
+  }, [data, isLoaded]);
 
   return (
     <>

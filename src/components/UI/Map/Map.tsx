@@ -31,6 +31,16 @@ interface Size {
   height: string | number | undefined;
 }
 
+type Libraries = (
+  | "drawing"
+  | "geometry"
+  | "localContext"
+  | "places"
+  | "visualization"
+)[];
+
+const libraries: Libraries = ["places"];
+
 const Map: FC<Props> = ({
   center,
   height,
@@ -54,7 +64,8 @@ const Map: FC<Props> = ({
   });
 
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyDZAHqC_b5YOl00aj2LRivjvm0tNyxkZcI",
+    googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
+    libraries,
   });
 
   const size = useWindowSize();

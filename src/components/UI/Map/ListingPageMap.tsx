@@ -1,5 +1,6 @@
 import { FC, useState, useEffect, memo } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
 import Skeleton from "@mui/material/Skeleton";
@@ -24,6 +25,16 @@ interface Size {
   height: string | number | undefined;
 }
 
+type Libraries = (
+  | "drawing"
+  | "geometry"
+  | "localContext"
+  | "places"
+  | "visualization"
+)[];
+
+const libraries: Libraries = ["places"];
+
 const ListingPageMap: FC<Props> = ({
   center,
   height,
@@ -34,7 +45,8 @@ const ListingPageMap: FC<Props> = ({
   zoom = 10,
 }) => {
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyDZAHqC_b5YOl00aj2LRivjvm0tNyxkZcI",
+    googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
+    libraries,
   });
   const [localCenter, setLocalCenter] = useState(center);
   useEffect(() => {
