@@ -25,8 +25,6 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
   const [feesIncluded, setFeesIncluded] = useState("");
   const [fees, setFees] = useState([]);
 
-  console.log(promoText);
-
   useEffect(() => {
     const tmp = [];
 
@@ -168,7 +166,31 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
           );
         }
       })}
-      {fees.length > 0 && {}}
+      {/* {fees &&
+        fees?.map((fee) => (
+          <Box
+            key={fee?.desc}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              px: 2,
+              mb: 0.5,
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{ textAlign: "left", fontSize: "80%" }}
+            >
+              {fee?.desc}:
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ textAlign: "right", fontSize: "80%" }}
+            >
+              ${fee?.amount.toFixed(2)}
+            </Typography>
+          </Box>
+        ))} */}
       <Typography
         variant="caption"
         sx={{
