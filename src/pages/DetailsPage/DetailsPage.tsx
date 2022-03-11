@@ -1331,12 +1331,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   }}
                 >
                   <Chip icon={<LocationCityIcon />} label={neighborhood} />
-                  <Chip
-                    icon={<LocalOffer sx={{ fontSize: "100%" }} />}
-                    color="success"
-                    sx={{ backgroundColor: "#5b8d3e", color: "#fff", ml: 0.5 }}
-                    label={data?.property?.detailsPagePromoText}
-                  />
+                  {data?.property?.detailsPagePromoText && (
+                    <Chip
+                      icon={<LocalOffer sx={{ fontSize: "100%" }} />}
+                      color="success"
+                      sx={{
+                        backgroundColor: "#5b8d3e",
+                        color: "#fff",
+                        ml: 0.5,
+                      }}
+                      label={data?.property?.detailsPagePromoText}
+                    />
+                  )}
                 </Box>
 
                 <ReadMore small text={defaultDescription} length={200} />
