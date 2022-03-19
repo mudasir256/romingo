@@ -29,7 +29,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
               backgroundSize: "cover",
               backgroundPosition: "center center",
               width: "100%",
-              backgroundImage: `url(${img})`,
+              backgroundImage: `url('${img}')`,
             }}
           />
         ))
@@ -49,7 +49,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
             backgroundSize: "cover",
             backgroundPosition: "center center",
             width: "100%",
-            backgroundImage: `url(${images[item]})`,
+            backgroundImage: `url('${images[item]}')`,
           }}
         />
       );

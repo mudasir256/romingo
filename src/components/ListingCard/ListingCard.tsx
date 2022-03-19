@@ -56,7 +56,7 @@ const ListingCard: FC<ListingCardProps> = ({
 }) => {
   const history = useHistory();
   const mobileCardPadding = 1.8;
-
+  console.log(imageURLs);
   return (
     <Box
       sx={{
