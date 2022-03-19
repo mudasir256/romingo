@@ -262,11 +262,23 @@ const ListingCard: FC<ListingCardProps> = ({
             <Box
               sx={{
                 minWidth: "73px",
-                mt: { xs: "-20px", sm: 0 },
-                pb: { xs: "15px", sm: 0 },
               }}
             >
               <RomingoScore score={romingoScore} />
+              <Link
+                sx={{
+                  display: { xs: "block", sm: "none" },
+                  color: "#666",
+                  fontFamily: "montserrat",
+                  textDecoration: "underline",
+                  mr: -0.5,
+                  fontWeight: 500,
+                  opacity: 0.75,
+                  fontSize: "70%",
+                }}
+              >
+                (see reviews)
+              </Link>
             </Box>
             <Box
               sx={{
@@ -317,6 +329,7 @@ const ListingCard: FC<ListingCardProps> = ({
       <Link
         onClick={() => history.push(`/details/${id}#reviews`)}
         sx={{
+          display: { xs: "none", sm: "block" },
           cursor: "pointer",
           position: "absolute",
           right: { xs: "auto", sm: "42px" },

@@ -11,7 +11,7 @@ interface Props {
 const RomingoScore: FC<Props> = ({ score, sm = false, left = false }) => {
   return sm ? (
     <Box sx={{ display: "flex", minWidth: 0, alignItems: "center" }}>
-      <Star sx={{ color: "primary.main", fontSize: "90%", mt: -0.3 }} />
+      <Star sx={{ color: "#BC4749", fontSize: "90%", mt: -0.3 }} />
       <Typography variant="h6" sx={{ color: "#666", fontSize: "90%" }}>
         {score}
       </Typography>
