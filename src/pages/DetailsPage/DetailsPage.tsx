@@ -219,6 +219,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [nearby, setNearby] = useState([]);
 
   const [rooms, setRooms] = useState<RoomInfo[]>([]);
+  const [accessibleRooms, setAccessibleRooms] = useState<RoomInfo[]>([]);
 
   const [roomDropDown, setRoomDropDown] = useState<
     { value: number; description: string; room: RoomInfo }[]
@@ -282,7 +283,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       );
 
       if (romingoMatch.length > 0) {
-        setRooms(romingoMatch);
+        const accessibleArr: RoomInfo[] = [];
+        const nonAccessibleArr: RoomInfo[] = [];
+        romingoMatch.forEach((r: RoomInfo) =>
+          ((r.type && r.type.toLowerCase().startsWith("accessible")) ||
+          (r.name && r.name.toLowerCase().startsWith("accessible"))
+            ? accessibleArr
+            : nonAccessibleArr
+          ).push(r)
+        );
+
+        setAccessibleRooms(accessibleArr);
+        setRooms(nonAccessibleArr);
       } else {
         setRooms(data.property.rooms);
       }
@@ -1485,89 +1497,74 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 </Typography>
                 <RoomsFilterBar />
                 <Grid container columnSpacing={6} rowSpacing={6}>
-                  {rooms
-                    .filter(
-                      (r: any) =>
-                        r.type !== "Accessible room" &&
-                        r.type !== "Accessible Room"
-                    )
-                    .map((room: any, key: number) => {
-                      return (
-                        <Grid
-                          item
-                          md={4}
-                          lg={4}
-                          sm={6}
-                          xs={12}
+                  {rooms.map((room: any, key: number) => {
+                    return (
+                      <Grid
+                        item
+                        md={4}
+                        lg={4}
+                        sm={6}
+                        xs={12}
+                        key={key}
+                        sx={{ display: "flex", flex: 1 }}
+                      >
+                        <RoomCard
                           key={key}
-                          sx={{ display: "flex", flex: 1 }}
-                        >
-                          <RoomCard
-                            key={key}
-                            bestRate={key === 0 ? true : false}
-                            HotelName={name}
-                            room={room}
-                            sx={{
-                              minWidth: "260px",
-                              borderRadius: "8px",
-                              p: " 0rem 1rem 1rem 1rem",
-                              border: "1px solid #ddd",
-                              transition: "all .15s ease-in-out",
-                              boxShadow: 1,
-                              "&:hover": { boxShadow: 3 },
-                            }}
-                            {...room}
-                          />
-                        </Grid>
-                      );
-                    })}
+                          bestRate={key === 0 ? true : false}
+                          HotelName={name}
+                          room={room}
+                          sx={{
+                            minWidth: "260px",
+                            borderRadius: "8px",
+                            p: " 0rem 1rem 1rem 1rem",
+                            border: "1px solid #ddd",
+                            transition: "all .15s ease-in-out",
+                            boxShadow: 1,
+                            "&:hover": { boxShadow: 3 },
+                          }}
+                          {...room}
+                        />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
-                {rooms.filter(
-                  (r: any) =>
-                    r.type === "Accessible room" || r.type === "Accessible Room"
-                ).length > 0 && (
+                {accessibleRooms.length > 0 && (
                   <>
                     <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
                       <Typography variant="h6">Accessible Rooms</Typography>
                     </Divider>
 
                     <Grid container columnSpacing={6} rowSpacing={6}>
-                      {rooms
-                        .filter(
-                          (r: any) =>
-                            r.type === "Accessible room" ||
-                            r.type === "Accessible Room"
-                        )
-                        .map((room: any, key: number) => {
-                          return (
-                            <Grid
-                              item
-                              md={4}
-                              lg={4}
-                              sm={6}
-                              xs={12}
+                      {accessibleRooms.map((room: any, key: number) => {
+                        return (
+                          <Grid
+                            item
+                            md={4}
+                            lg={4}
+                            sm={6}
+                            xs={12}
+                            key={key}
+                            sx={{ display: "flex", flex: 1 }}
+                          >
+                            <RoomCard
                               key={key}
-                              sx={{ display: "flex", flex: 1 }}
-                            >
-                              <RoomCard
-                                key={key}
-                                bestRate={key === 0 ? true : false}
-                                HotelName={name}
-                                room={room}
-                                sx={{
-                                  minWidth: "260px",
-                                  borderRadius: "8px",
-                                  p: " 0rem 1rem 1rem 1rem",
-                                  border: "1px solid #ddd",
-                                  transition: "all .15s ease-in-out",
-                                  boxShadow: 1,
-                                  "&:hover": { boxShadow: 3 },
-                                }}
-                                {...room}
-                              />
-                            </Grid>
-                          );
-                        })}
+                              bestRate={key === 0 ? true : false}
+                              HotelName={name}
+                              room={room}
+                              sx={{
+                                minWidth: "260px",
+                                borderRadius: "8px",
+                                p: " 0rem 1rem 1rem 1rem",
+                                border: "1px solid #ddd",
+                                transition: "all .15s ease-in-out",
+                                boxShadow: 1,
+                                "&:hover": { boxShadow: 3 },
+                              }}
+                              {...room}
+                            />
+                          </Grid>
+                        );
+                      })}
                     </Grid>
                   </>
                 )}
