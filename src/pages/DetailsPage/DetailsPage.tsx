@@ -1486,7 +1486,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 <RoomsFilterBar />
                 <Grid container columnSpacing={6} rowSpacing={6}>
                   {rooms
-                    .filter((r: any) => r.type !== "Accessible room")
+                    .filter(
+                      (r: any) =>
+                        r.type !== "Accessible room" &&
+                        r.type !== "Accessible Room"
+                    )
                     .map((room: any, key: number) => {
                       return (
                         <Grid
@@ -1518,8 +1522,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       );
                     })}
                 </Grid>
-                {rooms.filter((r: any) => r.type === "Accessible room").length >
-                  0 && (
+                {rooms.filter(
+                  (r: any) =>
+                    r.type === "Accessible room" || r.type === "Accessible Room"
+                ).length > 0 && (
                   <>
                     <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
                       <Typography variant="h6">Accessible Rooms</Typography>
@@ -1527,7 +1533,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
                     <Grid container columnSpacing={6} rowSpacing={6}>
                       {rooms
-                        .filter((r: any) => r.type === "Accessible room")
+                        .filter(
+                          (r: any) =>
+                            r.type === "Accessible room" ||
+                            r.type === "Accessible Room"
+                        )
                         .map((room: any, key: number) => {
                           return (
                             <Grid
