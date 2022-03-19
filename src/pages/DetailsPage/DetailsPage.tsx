@@ -930,19 +930,19 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                     >
                                       <Star
                                         sx={{
-                                          fontSize: "2rem",
-                                          mr: "1rem",
-                                          color: "primary.main",
+                                          fontSize: "1.5rem",
+                                          mr: ".5rem",
+                                          color: "#BC4749",
                                         }}
                                       />
                                       <span
                                         style={{
                                           display: "block",
                                           marginTop: ".25rem",
+                                          letterSpacing: 2,
                                         }}
                                       >
-                                        {" "}
-                                        {review.rating} /5{" "}
+                                        {review.rating}/5
                                       </span>
                                     </Grid>
                                     <Grid
@@ -1254,19 +1254,19 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                     >
                                       <Star
                                         sx={{
-                                          fontSize: "2rem",
-                                          mr: "1rem",
-                                          color: "primary.main",
+                                          fontSize: "1.5rem",
+                                          mr: ".5rem",
+                                          color: "#BC4749",
                                         }}
                                       />
                                       <span
                                         style={{
                                           display: "block",
                                           marginTop: ".25rem",
+                                          letterSpacing: 2,
                                         }}
                                       >
-                                        {" "}
-                                        {review.rating} /5{" "}
+                                        {review.rating}/5
                                       </span>
                                     </Grid>
                                     <Grid
@@ -1645,19 +1645,19 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                         >
                           <Star
                             sx={{
-                              fontSize: "2rem",
-                              mr: "1rem",
-                              color: "primary.main",
+                              fontSize: "1.5rem",
+                              mr: ".5rem",
+                              color: "#BC4749",
                             }}
                           />
                           <span
                             style={{
                               display: "block",
                               marginTop: ".25rem",
+                              letterSpacing: 2,
                             }}
                           >
-                            {" "}
-                            {review.rating} /5{" "}
+                            {review.rating}/5
                           </span>
                         </Grid>
                         <Grid
