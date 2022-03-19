@@ -1027,38 +1027,41 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
           {biggerThanTenForty && (
             <Typography
+              color="text.secondary"
               sx={{
                 textAlign: "center",
                 fontFamily: "Roboto",
                 fontWeight: 500,
-                fontSize: "14px",
-                color: "#888",
-                m: { xs: "1.5rem auto", sm: "1.5rem auto 0rem auto" },
+                fontSize: "15px",
                 userSelect: "none",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                m: { xs: "2.75rem 0", sm: "2.75rem 0 0rem 0" },
               }}
             >
-              Need some inspiration? <br />{" "}
+              Need some inspiration?
               <Button
                 disableElevation
                 variant="contained"
                 onClick={handleImFlexibleClick}
                 sx={{
-                  mt: { xs: "1rem", sm: ".5rem" },
-                  background: "rgba(250, 250, 250, 0.9)",
+                  background: "rgba(200, 200, 200, 0.2)",
                   border: "1px solid #03989E80",
-                  fontSize: "12px",
-                  padding: ".25rem .75rem",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  padding: ".25rem 1rem",
                   textTransform: "none",
                   color: "#03989E",
                   borderRadius: "24px",
-                  fontWeight: 500,
+                  ml: 1,
                   cursor: "pointer",
                   "&:hover": { background: "#fff" },
                 }}
               >
-                {" "}
-                I&lsquo;m Flexible{" "}
-                <Shuffle sx={{ fontSize: "20px", ml: "1rem" }} />
+                I&lsquo;m Flexible
+                <Shuffle sx={{ fontSize: "20px", ml: 0.5 }} />
               </Button>
             </Typography>
           )}

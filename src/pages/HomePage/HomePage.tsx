@@ -18,7 +18,13 @@ import {
   CircularProgress,
   useMediaQuery,
 } from "@mui/material";
-import { Cancel, Star, Diamond } from "@mui/icons-material";
+import {
+  Cancel,
+  Star,
+  Diamond,
+  Pets,
+  VisibilityOff,
+} from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
@@ -114,86 +120,145 @@ const HomePage: FC<Props> = ({
     <>
       <ScrollToTop />
       <Header />
-
-      <Box>
-        <Container>
-          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 6, pb: 6 }}>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Lowest rates
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo negotiates the best rates and passes the savings onto
-                you.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog2.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                No pet fees
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                You will always pay $0 in pet fees by booking on Romingo.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                All pets welcome
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
-                restrictions, ever.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
-                }
-                draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Beds & bowls provided
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Every Romingo reservation includes free pet beds & bowls in your
-                room!
-              </Typography>
+      <Container
+        maxWidth="xl"
+        sx={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          py: "2rem",
+        }}
+      >
+        <Grid container sx={{ py: 4 }}>
+          <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
+            <Grid container spacing={{ sm: 3, md: 5 }}>
+              <Grid item xs={12} lg={6}>
+                <Box sx={{ height: "100%", display: "flex" }}>
+                  <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
+                    <Typography
+                      variant="h4"
+                      sx={{
+                        color: "primary.main",
+                        textAlign: "center",
+                      }}
+                    >
+                      Welcome to pet-friendly travel
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{
+                        mb: { xs: 3 },
+                        mt: 3,
+                        fontWeight: 400,
+                        fontSize: "115%",
+                        textAlign: "justify",
+                      }}
+                    >
+                      Tired of endlessly searching for pet-friendly hotels and
+                      vacation rentals? Now, you can travel the world freely
+                      with your pup by your side. Romingo has arrived to help
+                      make traveling with your pup simple and fun! Book your
+                      next trip with Romingo and enjoy a customized pet-
+                      friendly experience made just for you.
+                      <Grid container spacing={3} sx={{ mt: 3 }}>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Diamond
+                            sx={{
+                              mt: 1,
+                              mb: 1,
+                              color: "#a6dbe5",
+                              fontSize: "44px",
+                              padding: 1,
+                              border: "2px dotted #a6dbe5",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <br />
+                          Luxury hotels
+                        </Grid>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Star
+                            sx={{
+                              mt: 1,
+                              mb: 1,
+                              color: "#a6dbe5",
+                              fontSize: "44px",
+                              padding: 1,
+                              border: "2px dotted #a6dbe5",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <br />
+                          Lowest Rates
+                        </Grid>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <Pets
+                            sx={{
+                              mt: 1,
+                              mb: 1,
+                              color: "#a6dbe5",
+                              fontSize: "44px",
+                              padding: 1,
+                              border: "2px dotted #a6dbe5",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <br />
+                          Pet-friendly
+                        </Grid>
+                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
+                          <VisibilityOff
+                            sx={{
+                              mt: 1,
+                              mb: 1,
+                              color: "#a6dbe5",
+                              fontSize: "44px",
+                              padding: 1,
+                              border: "2px dotted #a6dbe5",
+                              borderRadius: "10px",
+                            }}
+                          />
+                          <br />
+                          No hidden fees
+                        </Grid>
+                      </Grid>
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid item xs={12} lg={6}>
+                <Box sx={{ height: "100%", width: "100%", display: "flex" }}>
+                  <Box
+                    component="img"
+                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-Golden-Retriever-Hotel-Bed.jpg"
+                    alt="Golden Retriever Under Covers"
+                    draggable="false"
+                    sx={{
+                      width: "100%",
+                      boxShadow: 3,
+                      objectFit: "cover",
+                      margin: "auto 0",
+                      position: "relative",
+                      textAlign: "center",
+                      display: "inline-block",
+                      borderRadius: "15px",
+                    }}
+                  />
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
-        </Container>
-      </Box>
+        </Grid>
+      </Container>
 
       <Box
         id="destinations"
         sx={{
           background: "#f3f5f9",
-          py: 6,
+          py: 4,
           borderTop: "1px solid #f3f5f9",
           borderBottom: "1px solid #f3f5f9",
           backgroundPosition: "center center",
@@ -204,17 +269,6 @@ const HomePage: FC<Props> = ({
       >
         <Grid container sx={{ ml: "calc(50% - 50vw)", mr: "calc(50% - 50vw)" }}>
           <Grid item xs={12}>
-            <Typography
-              variant="h4"
-              sx={{
-                color: "primary.main",
-                textAlign: "center",
-                maxWidth: "80%",
-                margin: "0px auto",
-              }}
-            >
-              Destinations
-            </Typography>
             <Typography
               variant="h5"
               sx={{
@@ -299,8 +353,8 @@ const HomePage: FC<Props> = ({
               sx={{
                 color: "text.secondary",
                 textAlign: "center",
-                mb: 5,
-                mt: "1rem",
+                mb: 2,
+                mt: "0rem",
                 ml: "auto",
                 mr: "auto",
                 maxWidth: "80%",
@@ -317,134 +371,86 @@ const HomePage: FC<Props> = ({
         </Grid>
       </Box>
 
-      <HotelCarousel />
-
-      <Container
-        maxWidth="xl"
-        sx={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          py: "2rem",
-        }}
-      >
-        <Grid container sx={{ py: 4 }}>
-          <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
-            <Grid container spacing={{ sm: 3, md: 5 }}>
-              <Grid item xs={12} lg={6}>
-                <Box sx={{ height: "100%", display: "flex" }}>
-                  <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        color: "primary.main",
-                        textAlign: { xs: "center", md: "left" },
-                      }}
-                    >
-                      Welcome to pet-friendly travel
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      color="text.secondary"
-                      sx={{
-                        mb: { xs: 3 },
-                        mt: 3,
-                        fontWeight: 400,
-                        fontSize: "115%",
-                        textAlign: "justify",
-                      }}
-                    >
-                      Tired of endlessly searching for pet-friendly hotels and
-                      vacation rentals? Now, you can travel the world freely
-                      with your pup by your side. Romingo has arrived to help
-                      make traveling with your pup simple and fun! Book your
-                      next trip with Romingo and enjoy a customized pet-
-                      friendly experience made just for you.
-                      <Grid container spacing={3} sx={{ mt: 3 }}>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Diamond
-                            sx={{
-                              mt: 1,
-                              mb: 1,
-                              color: "#a6dbe5",
-                              fontSize: "44px",
-                            }}
-                          />
-                          <br />
-                          Luxury hotels
-                        </Grid>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
-                            }
-                            draggable="false"
-                            sx={{ width: "60px" }}
-                          />
-                          <br />
-                          Lowest Rates
-                        </Grid>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog2.svg"
-                            }
-                            draggable="false"
-                            sx={{ width: "60px" }}
-                          />
-                          <br />
-                          Pet-friendly
-                        </Grid>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
-                            }
-                            draggable="false"
-                            sx={{ width: "60px" }}
-                          />
-                          <br />
-                          No hidden fees
-                        </Grid>
-                      </Grid>
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <Box sx={{ height: "100%", width: "100%", display: "flex" }}>
-                  <Box
-                    component="img"
-                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/Relaxing_pup_windows%20(1).jpg"
-                    alt="Golden Retriever Under Covers"
-                    draggable="false"
-                    sx={{
-                      width: "100%",
-                      boxShadow: 5,
-                      objectFit: "cover",
-                      margin: "auto 0",
-                      position: "relative",
-                      textAlign: "center",
-                      display: "inline-block",
-                    }}
-                  />
-                </Box>
-              </Grid>
+      <Box>
+        <Container>
+          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 6, pb: 6 }}>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                Lowest rates
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Romingo negotiates the best rates and passes the savings onto
+                you.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog2.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                No pet fees
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                You will always pay $0 in pet fees by booking on Romingo.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                All pets welcome
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
+                restrictions, ever.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
+                }
+                draggable="false"
+                sx={{ width: { xs: "35%", sm: "50%" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                Beds & bowls provided
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Every Romingo reservation includes free pet beds & bowls in your
+                room!
+              </Typography>
             </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Box>
 
-      <CustomerTestimonials />
+      <HotelCarousel />
 
       <Box
         sx={{
-          py: 6,
+          pt: 7,
+          pb: 3,
           backgroundPosition: "center center",
           backgroundSize: "cover",
           borderTop: "1px solid #f3f5f9",
@@ -455,21 +461,7 @@ const HomePage: FC<Props> = ({
         }}
       >
         <Grid container maxWidth="lg" sx={{ mx: "auto" }}>
-          <Grid item xs={12} sx={{ display: "flex" }}>
-            <Typography
-              variant="h4"
-              sx={{
-                color: "primary.main",
-                maxWidth: "90%",
-                textAlign: "center",
-                mb: 6,
-                ml: "auto",
-                mr: "auto",
-              }}
-            >
-              Featured
-            </Typography>
-          </Grid>
+          <Grid item xs={12} sx={{ display: "flex" }}></Grid>
           <Grid item xs={12}>
             <Grid
               container
@@ -581,14 +573,21 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Grid>
       </Box>
+
+      <CustomerTestimonials />
+
       <Box
         sx={{
           position: "relative",
           "&::before": {
-            content: '""',
-            backgroundColor: "#fff",
-            opacity: 1,
+            backgroundPosition: "center center",
             backgroundSize: "cover",
+            borderTop: "1px solid #f3f5f9",
+            backgroundRepeat: "no-repeat",
+            width: "100%",
+            content: '""',
+            backgroundColor: "#f7f7f7",
+            opacity: 1,
             position: "absolute",
             top: 0,
             right: 0,
@@ -609,17 +608,6 @@ const HomePage: FC<Props> = ({
         >
           <Grid container sx={{ py: 6 }}>
             <Grid item xs={12}>
-              <Typography
-                variant="h4"
-                sx={{
-                  color: "primary.main",
-                  textAlign: "center",
-                  maxWidth: "100%",
-                  margin: "0px auto",
-                }}
-              >
-                Save Money &amp; Travel More
-              </Typography>
               <Typography
                 variant="h5"
                 sx={{
@@ -797,8 +785,8 @@ const CustomerTestimonials = () => {
     <Box
       sx={{
         background: { xs: "#fff", sm: "#fff", md: "#fff" },
-        py: 6,
-        pb: { xs: "0rem", sm: "2rem", md: "4rem", lg: "4rem" },
+        pt: 8,
+        pb: { xs: "0rem", sm: "2rem" },
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -814,23 +802,11 @@ const CustomerTestimonials = () => {
             justifyContent: "center",
           },
           background: { xs: "#fff", sm: "#fff", md: "#fff" },
-          padding: "0rem 0rem 4rem 0rem ",
           borderRadius: "6px",
         }}
       >
         <Grid container>
-          <Grid item xs={12}>
-            <Typography
-              variant="h4"
-              sx={{
-                color: "primary.main",
-                textAlign: "center",
-                mb: matches ? "3rem" : lg ? "3rem" : "3rem",
-              }}
-            >
-              Reviews
-            </Typography>
-          </Grid>
+          <Grid item xs={12}></Grid>
           <Grid
             id="scroll-container"
             item
@@ -1268,25 +1244,7 @@ const HotelCarousel = () => {
         },
       }}
     >
-      <Grid item xs={12}>
-        <Typography
-          variant="h4"
-          sx={{
-            color: "primary.main",
-            textAlign: "center",
-            m: "0rem auto 1rem auto",
-            maxWidth: "90%",
-          }}
-        >
-          Partnerships
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{ color: "text.secondary", textAlign: "center", mb: 5 }}
-        >
-          With your favorite hotels
-        </Typography>
-      </Grid>
+      <Grid item xs={12}></Grid>
 
       <AliceCarousel
         items={hotelLogos}

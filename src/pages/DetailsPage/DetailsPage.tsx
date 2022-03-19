@@ -1,6 +1,6 @@
 import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { DateTime } from "luxon";
 import { Dispatch } from "redux";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
@@ -87,6 +87,7 @@ import {
   ArrowBackIos,
   Close,
   LocalOffer,
+  Circle,
 } from "@mui/icons-material";
 import BookingCard from "../../components/BookingCard";
 import Map from "../../components/UI/Map/Map";
@@ -106,6 +107,7 @@ import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import Footer from "../../components/Footer";
+import RomingoScore from "../../components/RomingoScore";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -167,6 +169,7 @@ interface Props {
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelId = props.match.params.id;
+  const pageLocation = useLocation();
   const search = useSelector((state: any) => state.searchReducer.search);
 
   const dispatch: Dispatch<any> = useDispatch();
@@ -204,6 +207,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+  const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
   const [location, setLocation] = useState({ address: "", lat: "", lon: "" });
   const [gallery, setGallery] = useState<string[]>([]);
@@ -233,6 +237,16 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isMobile = useMediaQuery("(max-width: 800px)");
+
+  useEffect(() => {
+    if (pageLocation.hash && reviewData?.reviews.length > 0) {
+      if (pageLocation.hash.slice(1) === "reviews") {
+        setReviewDialog(true);
+      }
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  }, [pageLocation, reviewData]);
 
   useEffect(() => {
     if (data && data?.property) {
@@ -391,7 +405,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const { height } = useWindowSize();
 
-  const [reviewData, setReviewData] = useState<any>();
   const [reviewDialog, setReviewDialog] = useState<boolean>(false);
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
@@ -685,32 +698,34 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     <Typography
                       variant="h6"
                       sx={{
-                        color: "primary.main",
                         mr: { sm: "0rem", xs: "auto" },
                         ml: { sm: "auto", xs: "0px" },
-                        marginBottom: { sm: "-1rem", xs: "0px" },
                         textAlign: { sm: "right", xs: "left" },
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
                       }}
                     >
-                      {reviewData && reviewData.rating}
-                      <Star
+                      <RomingoScore score={reviewData && reviewData.rating} />
+                      <Circle
                         sx={{
-                          color: "primary.main",
-                          fontSize: "1rem",
-                          mt: -0.2,
-                          mr: ".25rem",
+                          fontWeight: 500,
+                          mx: 0.5,
+                          opacity: 0.75,
+                          color: "#BC4749",
+                          fontSize: "20%",
                         }}
                       />
                       <Link
                         onClick={() => setReviewDialog(true)}
                         sx={{
                           cursor: "pointer",
-                          color: "#777",
+                          color: "#666",
                           textDecoration: "underline",
                           display: { xs: "inline", sm: "inline", md: "block" },
                           fontWeight: 500,
                           opacity: 0.75,
-                          fontSize: "60%",
+                          fontSize: "70%",
                         }}
                       >
                         ({reviewData && reviewData.user_ratings_total} reviews)
@@ -760,24 +775,19 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                               <Typography
                                 variant="h6"
                                 sx={{
-                                  color: "#222",
+                                  color: "#666",
                                   fontFamily: "Montserrat",
-                                  fontSize: "2rem",
-                                  textAlign: "left",
+                                  fontSize: "1.5rem",
                                   display: "flex",
                                   alignItems: "center",
                                   mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
-                                  mb: { xs: ".5rem", sm: ".5rem", md: "1rem" },
+                                  mb: ".5rem",
+                                  textAlign: "left",
                                 }}
                               >
-                                <Star
-                                  sx={{
-                                    fontSize: "2rem",
-                                    mr: "1rem",
-                                    color: "primary.main",
-                                  }}
+                                <RomingoScore
+                                  score={reviewData && reviewData.rating}
                                 />
-                                {reviewData.rating}
                                 &nbsp;&bull;&nbsp;{" "}
                                 <span
                                   style={{
@@ -786,8 +796,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                     color: "#666",
                                   }}
                                 >
-                                  {" "}
-                                  {reviewData.user_ratings_total} reviews{" "}
+                                  {reviewData.user_ratings_total} reviews
                                 </span>
                               </Typography>
 
@@ -1059,17 +1068,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   mb: { xs: ".5rem", sm: ".5rem", md: "2rem" },
                                 }}
                               >
-                                <Star
-                                  sx={{
-                                    fontSize: "2rem",
-                                    mr: "1rem",
-                                    color: "warning.main",
-                                  }}
+                                <RomingoScore
+                                  score={reviewData && reviewData.rating}
                                 />
-                                {reviewData.rating}
                                 <span
                                   style={{
-                                    fontSize: "80%",
+                                    fontSize: "60%",
                                     fontWeight: 500,
                                     color: "#666",
                                   }}
@@ -1287,24 +1291,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       )}
                     </Typography>
                   ) : (
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: "primary.main",
-                        mr: { sm: "0rem", xs: "auto" },
-                        ml: { sm: "auto", xs: "0px" },
-                      }}
-                    >
-                      {score}
-                      <Star
-                        sx={{
-                          color: "primary.main",
-                          fontSize: "1rem",
-                          mt: -0.2,
-                          mr: ".25rem",
-                        }}
-                      />
-                    </Typography>
+                    <RomingoScore score={reviewData && reviewData.rating} />
                   )}
                 </Grid>
 
@@ -1577,7 +1564,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </Grid>
             </Grid>
           )}
-          <Grid container sx={{ mt: 4 }}>
+          <Grid container sx={{ mt: 4 }} id="reviews">
             <Grid sx={{ pb: ".5rem" }}>
               <Typography
                 variant="h6"

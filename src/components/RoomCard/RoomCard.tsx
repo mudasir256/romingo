@@ -148,12 +148,6 @@ const popularAmenities = [
     prettyText: "sofa",
   },
   {
-    icon: Wifi,
-    text: ["wifi", "wireless internet"],
-    not: ["meeting rooms"],
-    prettyText: "wifi",
-  },
-  {
     icon: LocalBar,
     text: ["minibar", "mini bar"],
     not: ["meeting rooms"],
@@ -459,19 +453,48 @@ const RoomCard: FC<Props> = ({
               mb: "0rem",
               mt: "0rem",
               display: "flex",
-              fontWeight: 700,
+              fontWeight: 800,
               lineHeight: 1.25,
               fontFamily: "Montserrat",
               alignItems: "center",
-              color: "#111111bf",
+              color: "#222",
               textAlign: "left",
-              fontSize: { xs: "16px", sm: "18px", md: "20px" },
+              fontSize: "120%",
               letterSpacing: 0,
               textTransform: "capitalize",
             }}
           >
             {name ? name : roomTitle} &nbsp;
           </Typography>
+          <Box
+            sx={{
+              display: "inline-flex",
+              flexDirection: "row",
+              alignItems: "center",
+              mt: ".5rem",
+            }}
+          >
+            <SvgIcon
+              sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
+              component={Wifi}
+            />
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: ".9rem",
+                fontWeight: 500,
+                mt: 0,
+                color: "#666",
+                textIndent: "-8px",
+                paddingLeft: "8px",
+                letterSpacing: ".015rem",
+                fontFamily: "Roboto",
+                textTransform: "capitalize",
+              }}
+            >
+              Free Wifi
+            </Typography>
+          </Box>
 
           {includedPopular.map((amenity, index) => {
             const AmenityIcon = amenity.icon;
@@ -539,6 +562,37 @@ const RoomCard: FC<Props> = ({
                 }}
               >
                 {areaInSquareFeet} Sq ft
+              </Typography>
+            </Box>
+          )}
+
+          {amenities.length > 0 && (
+            <Box
+              sx={{
+                display: "inline-flex",
+                flexDirection: "row",
+                alignItems: "center",
+                mt: ".5rem",
+              }}
+            >
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: ".9rem",
+                  fontWeight: 500,
+                  mt: 0,
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  color: "#666",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  letterSpacing: ".015rem",
+                  fontFamily: "Roboto",
+                  textTransform: "capitalize",
+                }}
+                onClick={() => setShowDialog(true)}
+              >
+                View More Amenities
               </Typography>
             </Box>
           )}
@@ -807,12 +861,12 @@ const RoomCard: FC<Props> = ({
               variant="h6"
               sx={{
                 mr: 0.45,
-                fontWeight: 700,
+                fontWeight: 800,
                 fontFamily: "Montserrat",
                 alignItems: "center",
-                color: "#111111bf",
+                color: "#222",
                 textAlign: "left",
-                fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                fontSize: "120%",
                 letterSpacing: 0,
                 textTransform: "capitalize",
               }}
@@ -893,12 +947,12 @@ const RoomCard: FC<Props> = ({
         fullWidth
         onClose={handleClose}
         scroll="body"
-        sx={{ maxWidth: "xl" }}
+        maxWidth="xs"
       >
         <DialogTitle
           sx={{ textAlign: "center", color: "primary.main", pt: 1.5, pb: 0.5 }}
         >
-          {roomTitle}
+          {name ? name : roomTitle}
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -916,7 +970,7 @@ const RoomCard: FC<Props> = ({
           <Box>
             <Typography
               variant="body1"
-              sx={{ fontWeight: "bold", color: "secondary.main", mt: 2 }}
+              sx={{ fontWeight: "bold", color: "primary.main", mt: 2 }}
             >
               Amenities
             </Typography>
@@ -930,17 +984,15 @@ const RoomCard: FC<Props> = ({
                   }}
                   key={key}
                 >
-                  <Check
-                    sx={{ fontSize: 15, color: "primary.main", mt: 0.4 }}
-                  />
+                  <Check sx={{ fontSize: 16, color: "#666", mt: 0.4 }} />
                   <Typography
-                    variant="body2"
+                    variant="body1"
                     sx={{
                       mt: 0,
                       textTransform: "capitalize",
-                      color: "text.primary",
+                      color: "#666",
                       textIndent: "-8px",
-                      paddingLeft: "8px",
+                      paddingLeft: "12px",
                     }}
                   >
                     {amenity.desc}

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MonetizationOn, VerifiedUser } from "@mui/icons-material";
-import { Grid, Chip, Box, Typography } from "@mui/material";
+import { Grid, Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import RomingoScore from "../RomingoScore/RomingoScore";
@@ -257,9 +257,18 @@ const ListingCard: FC<ListingCardProps> = ({
               },
               alignItems: "end",
               justifyContent: { xs: "space-between", sm: "center" },
+              textAlign: { xs: "left", md: "right" },
             }}
           >
-            <RomingoScore score={romingoScore} />
+            <Box
+              sx={{
+                minWidth: "73px",
+                mt: { xs: "-20px", sm: 0 },
+                pb: { xs: "15px", sm: 0 },
+              }}
+            >
+              <RomingoScore score={romingoScore} />
+            </Box>
             <Box
               sx={{
                 mt: { xs: "0px", sm: "auto" },
@@ -306,6 +315,25 @@ const ListingCard: FC<ListingCardProps> = ({
           </Grid>
         </Grid>
       </Box>
+      <Link
+        onClick={() => history.push(`/details/${id}#reviews`)}
+        sx={{
+          cursor: "pointer",
+          position: "absolute",
+          right: { xs: "auto", sm: "42px" },
+          left: { xs: "48px", sm: "auto" },
+          mt: { xs: "455px", sm: "-95px" },
+          color: "#666",
+          fontFamily: "montserrat",
+          textDecoration: "underline",
+          mr: -0.5,
+          fontWeight: 500,
+          opacity: 0.75,
+          fontSize: "70%",
+        }}
+      >
+        (see reviews)
+      </Link>
     </Box>
   );
 };

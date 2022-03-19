@@ -16,6 +16,7 @@ import { useMediaQuery } from "@mui/material";
 import ScrollToTop from "../../components/ScrollToTop";
 import ImageSlider from "../../components/ImageSlider";
 import { Star } from "@mui/icons-material";
+import RomingoScore from "../../components/RomingoScore";
 
 declare global {
   interface Window {
@@ -219,21 +220,32 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
               }}
             />
           </Box>
-          <Typography
-            variant="body2"
+          <Box
             sx={{
-              color: "#222",
-              fontFamily: "Montserrat",
-              overflow: "hidden",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-              fontSize: "140%",
-              fontWeight: 800,
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "space-between",
+              justifyContent: "center",
               mt: 1,
             }}
           >
-            {name}
-          </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#222",
+                fontFamily: "Montserrat",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                fontSize: "140%",
+                flex: 1,
+                fontWeight: 800,
+              }}
+            >
+              {name}
+            </Typography>
+            <RomingoScore score={romingoScore} />
+          </Box>
 
           <Box>
             <Typography
@@ -245,28 +257,12 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
                 fontFamily: "Roboto",
                 textOverflow: "ellipsis",
                 color: "#999",
+                mb: { xs: 0, md: -1 },
               }}
             >
               {addressLine1}, {city?.name}
             </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                fontSize: "100%",
-                color: "primary.main",
-                textAlign: "left",
-                mb: -1,
-              }}
-            >
-              {romingoScore}
-              <Star
-                sx={{
-                  color: "primary.main",
-                  fontSize: "1rem",
-                  mb: -0.1,
-                }}
-              />
-            </Typography>
+
             <Box
               sx={{
                 display: "flex",
