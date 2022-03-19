@@ -776,34 +776,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 variant="h6"
                                 sx={{
                                   color: "#666",
-                                  fontFamily: "Montserrat",
-                                  fontSize: "1.5rem",
-                                  display: "flex",
-                                  alignItems: "center",
-                                  mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
-                                  mb: ".5rem",
-                                  textAlign: "left",
-                                }}
-                              >
-                                <RomingoScore
-                                  score={reviewData && reviewData.rating}
-                                />
-                                &nbsp;&bull;&nbsp;{" "}
-                                <span
-                                  style={{
-                                    fontSize: "80%",
-                                    fontWeight: 500,
-                                    color: "#666",
-                                  }}
-                                >
-                                  {reviewData.user_ratings_total} reviews
-                                </span>
-                              </Typography>
-
-                              <Typography
-                                variant="h6"
-                                sx={{
-                                  color: "#666",
                                   fontSize: "16px",
                                   fontWeight: 600,
                                   fontFamily: "Montserrat",
@@ -813,6 +785,34 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 }}
                               >
                                 {data.property.name}
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  color: "#666",
+                                  fontFamily: "Montserrat",
+                                  fontSize: "1.25rem",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  mt: { xs: ".5rem", sm: ".5rem", md: "0rem" },
+                                  mb: ".5rem",
+                                  textAlign: "left",
+                                }}
+                              >
+                                <RomingoScore
+                                  left
+                                  score={reviewData && reviewData.rating}
+                                />
+                                &nbsp;&bull;&nbsp;
+                                <span
+                                  style={{
+                                    fontSize: "80%",
+                                    fontWeight: 500,
+                                    color: "#666",
+                                  }}
+                                >
+                                  {reviewData.user_ratings_total} reviews
+                                </span>
                               </Typography>
 
                               {/* <Typography

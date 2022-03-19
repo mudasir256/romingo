@@ -5,9 +5,10 @@ import { Box, Typography, Grid } from "@mui/material";
 interface Props {
   score: number;
   sm?: boolean;
+  left?: boolean;
 }
 
-const RomingoScore: FC<Props> = ({ score, sm = false }) => {
+const RomingoScore: FC<Props> = ({ score, sm = false, left = false }) => {
   return sm ? (
     <Box sx={{ display: "flex", minWidth: 0, alignItems: "center" }}>
       <Star sx={{ color: "primary.main", fontSize: "90%", mt: -0.3 }} />
@@ -22,7 +23,7 @@ const RomingoScore: FC<Props> = ({ score, sm = false }) => {
         minWidth: 0,
         alignItems: "center",
         mr: { sm: "0rem", xs: "auto" },
-        ml: { sm: "auto", xs: "0px" },
+        ml: { sm: left ? "0px" : "auto", xs: "0px" },
       }}
     >
       <Grid container>
