@@ -262,6 +262,9 @@ const ListingCard: FC<ListingCardProps> = ({
             <Box
               sx={{
                 minWidth: "73px",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
               <RomingoScore score={romingoScore} />
@@ -272,6 +275,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   fontFamily: "montserrat",
                   textDecoration: "underline",
                   mr: -0.5,
+                  ml: { xs: 0.25 },
                   fontWeight: 500,
                   opacity: 0.75,
                   fontSize: "70%",

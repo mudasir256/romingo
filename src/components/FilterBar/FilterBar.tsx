@@ -74,13 +74,6 @@ const FilterBar: FC<Props> = ({
     }
   };
 
-  const dateToString = (isoString: string | Date | number) => {
-    const date = new Date(isoString);
-    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
-      "0" + date.getDate()
-    ).slice(-2)}`;
-  };
-
   const onOccupantChange = (value: Occupant) => {
     setOccupants(value);
   };
@@ -207,7 +200,6 @@ const FilterBar: FC<Props> = ({
     <>
       <Box
         sx={{
-          mt: { xs: ".75rem" },
           width: { xs: "100%", sm: "auto" },
           justifyContent: "center",
           display: "flex",
@@ -217,7 +209,6 @@ const FilterBar: FC<Props> = ({
         <Box
           sx={{
             display: "inline-block",
-            pb: "1rem",
             minWidth: { xs: "95%" },
             margin: "0px auto",
           }}

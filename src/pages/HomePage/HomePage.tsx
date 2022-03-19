@@ -17,6 +17,7 @@ import {
   Typography,
   CircularProgress,
   useMediaQuery,
+  Hidden,
 } from "@mui/material";
 import {
   Cancel,
@@ -34,6 +35,9 @@ import { saveSearch } from "../../store/searchReducer";
 import reviews from "./reviews";
 import nearby from "./cities";
 import featured from "./featured";
+import FilterBar from "../../components/FilterBar";
+
+import "./Sticky.css";
 
 interface Props {
   sx?: CSSObject;
@@ -115,6 +119,22 @@ const HomePage: FC<Props> = ({
     );
     history.push(`/details/${id}`);
   };
+
+  /* Method that will fix header after a specific scrollable */
+  const isSticky = () => {
+    const header = document.querySelector(".sticky-header");
+    const scrollTop = window.scrollY;
+    scrollTop >= 170
+      ? header && header.classList.add("is-sticky")
+      : header && header.classList.remove("is-sticky");
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", isSticky);
+    return () => {
+      window.removeEventListener("scroll", isSticky);
+    };
+  }, []);
 
   return (
     <>
@@ -759,6 +779,11 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Container>
       </Box>
+      <Hidden mdUp>
+        <Box className="sticky-header">
+          <FilterBar />
+        </Box>
+      </Hidden>
       <Footer />
     </>
   );

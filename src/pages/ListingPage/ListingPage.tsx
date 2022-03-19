@@ -305,7 +305,9 @@ const ListingPage: FC<Props> = () => {
         </Link>
 
         <Hidden mdUp>
-          <FilterBar sx={{ mt: "1rem" }} />
+          <Box sx={{ mt: ".75rem" }}>
+            <FilterBar />
+          </Box>
         </Hidden>
       </Box>
       <Box
