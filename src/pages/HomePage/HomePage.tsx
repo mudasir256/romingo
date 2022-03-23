@@ -185,61 +185,49 @@ const HomePage: FC<Props> = ({
                       friendly experience made just for you.
                       <Grid container spacing={3} sx={{ mt: 3 }}>
                         <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Diamond
-                            sx={{
-                              mt: 1,
-                              mb: 1,
-                              color: "#a6dbe5",
-                              fontSize: "44px",
-                              padding: 1,
-                              border: "2px dotted #a6dbe5",
-                              borderRadius: "10px",
-                            }}
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/luxury.jpg"
+                            }
+                            draggable="false"
+                            sx={{ height: { xs: "50px", sm: "80px" } }}
                           />
                           <br />
                           Luxury hotels
                         </Grid>
                         <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Star
-                            sx={{
-                              mt: 1,
-                              mb: 1,
-                              color: "#a6dbe5",
-                              fontSize: "44px",
-                              padding: 1,
-                              border: "2px dotted #a6dbe5",
-                              borderRadius: "10px",
-                            }}
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/lowest-rates.jpg"
+                            }
+                            draggable="false"
+                            sx={{ height: { xs: "50px", sm: "80px" } }}
                           />
                           <br />
                           Lowest Rates
                         </Grid>
                         <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Pets
-                            sx={{
-                              mt: 1,
-                              mb: 1,
-                              color: "#a6dbe5",
-                              fontSize: "44px",
-                              padding: 1,
-                              border: "2px dotted #a6dbe5",
-                              borderRadius: "10px",
-                            }}
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/pet-friendly1.jpg"
+                            }
+                            draggable="false"
+                            sx={{ height: { xs: "50px", sm: "80px" } }}
                           />
                           <br />
                           Pet-friendly
                         </Grid>
                         <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <VisibilityOff
-                            sx={{
-                              mt: 1,
-                              mb: 1,
-                              color: "#a6dbe5",
-                              fontSize: "44px",
-                              padding: 1,
-                              border: "2px dotted #a6dbe5",
-                              borderRadius: "10px",
-                            }}
+                          <Box
+                            component="img"
+                            src={
+                              "https://storage.googleapis.com/romingo-development-public/images/front-end/no-fees.jpg"
+                            }
+                            draggable="false"
+                            sx={{ height: { xs: "50px", sm: "80px" } }}
                           />
                           <br />
                           No hidden fees
@@ -393,7 +381,7 @@ const HomePage: FC<Props> = ({
 
       <Box>
         <Container>
-          <Grid container spacing={{ sm: 3, md: 5 }} sx={{ pt: 6, pb: 6 }}>
+          <Grid container spacing={{ sm: 4, md: 5 }} sx={{ pt: 6, pb: 6 }}>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
               <Box
                 component="img"
@@ -401,7 +389,7 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
                 }
                 draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
+                sx={{ height: { xs: "50px", sm: "100px" } }}
               />
               <Typography variant="h6" color="text.secondary">
                 Lowest rates
@@ -415,10 +403,10 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog2.svg"
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog-face.svg"
                 }
                 draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
+                sx={{ height: { xs: "50px", sm: "100px" } }}
               />
               <Typography variant="h6" color="text.secondary">
                 No pet fees
@@ -434,7 +422,7 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
                 }
                 draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
+                sx={{ height: { xs: "50px", sm: "100px" } }}
               />
               <Typography variant="h6" color="text.secondary">
                 All pets welcome
@@ -451,10 +439,10 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
                 }
                 draggable="false"
-                sx={{ width: { xs: "35%", sm: "50%" } }}
+                sx={{ height: { xs: "50px", sm: "100px" } }}
               />
               <Typography variant="h6" color="text.secondary">
-                Beds & bowls provided
+                Beds &amp; bowls provided
               </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 Every Romingo reservation includes free pet beds & bowls in your
