@@ -134,7 +134,7 @@ const HomePage: FC<Props> = ({
     <>
       <ScrollToTop />
       <Header />
-      <Container maxWidth="xl">
+      {/* <Container maxWidth="xl">
         <Grid
           container
           spacing={{ xs: 2, md: 4 }}
@@ -219,7 +219,7 @@ const HomePage: FC<Props> = ({
             </Box>
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
       <Box>
         <Container>
           <Grid container spacing={{ sm: 4, md: 5 }} sx={{ pt: 4, pb: 6 }}>

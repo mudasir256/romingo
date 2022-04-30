@@ -19,6 +19,7 @@ import {
   InputLabel,
   Select,
   Popover,
+  Hidden,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -711,8 +712,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               alignItems: "center",
               borderRadius: "12px",
               margin: "0px auto",
-              width: biggerThanTenForty ? "975px" : "837px",
-              pr: biggerThanTenForty ? "270px" : 0,
+              width: { md: "837px", lg: "975px" },
+              pr: { md: 0, lg: "270px" },
             }}
           >
             <OccupantSelector
@@ -733,7 +734,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               borderRadius: "12px",
               margin: "0px auto",
               mt: "1rem",
-              width: biggerThanTenForty ? "975px" : "837px",
+              width: { md: "837px", lg: "975px" },
             }}
           >
             <Box
@@ -1012,7 +1013,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 )}
               />
             </LocalizationProvider>
-            {biggerThanTenForty && (
+            <Hidden lgDown>
               <Box>
                 <Button
                   fullWidth
@@ -1036,10 +1037,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   <SearchIcon sx={{ height: "20px", mr: "1rem" }} /> Search
                 </Button>
               </Box>
-            )}
+            </Hidden>
           </Box>
 
-          {!biggerThanTenForty && (
+          <Hidden lgUp>
             <Box
               sx={{
                 margin: "1rem auto",
@@ -1069,7 +1070,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 <SearchIcon sx={{ height: "20px", mr: "1rem" }} /> Search
               </Button>
             </Box>
-          )}
+          </Hidden>
         </Box>
       )}
     </>
