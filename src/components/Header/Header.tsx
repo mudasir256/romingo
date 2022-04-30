@@ -38,6 +38,7 @@ import { randomDate } from "../../tools.js";
 import { saveSearch } from "../../store/searchReducer";
 import { DateTime } from "luxon";
 import { useMeasure } from "react-use";
+import useWindowSize from "../../hooks/UseWindowSize";
 
 interface Props {
   sx?: CSSObject;
@@ -67,18 +68,12 @@ const bgImages = [
 ];
 
 const Header: FC<Props> = ({ sx }) => {
-  const [bgImage, setBgImage] = useState("");
-  const [variant] = useState(localStorage.getItem("ROMINGO_EXPERIMENT_VAR"));
   const under900 = useMediaQuery("(max-width:900px");
   const smallHeight = useMediaQuery("(max-height:700px");
   const landscapeSE = useMediaQuery(
     "(max-height: 414px) and (max-width: 940px)"
   );
-
-  useEffect(() => {
-    setBgImage(bgImages[Math.floor(Math.random() * bgImages.length)]);
-  }, []);
-
+  const { height } = useWindowSize();
   return (
     <Box
       sx={{
@@ -107,10 +102,10 @@ const Header: FC<Props> = ({ sx }) => {
 
         <Box
           sx={{
-            width: "100%",
             borderRadius: "12px",
-            minHeight: {
-              xs: "100vh",
+            width: "100%",
+            height: {
+              xs: `100vh`,
               md: "calc(100vh - 230px)",
               lg: "calc(100vh - 148px)",
             },
@@ -127,8 +122,9 @@ const Header: FC<Props> = ({ sx }) => {
                   ? "right 0px top 10px"
                   : "right -145px top 10px",
                 md: "center",
-                xs: "right -145px top 10px",
+                xs: "right 25% bottom 35%",
               },
+
               top: { xs: 0, md: "240px", lg: "180px" },
               right: 0,
               bottom: 0,
