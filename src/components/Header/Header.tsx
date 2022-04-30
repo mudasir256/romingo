@@ -68,17 +68,22 @@ const bgImages = [
 ];
 
 const Header: FC<Props> = ({ sx }) => {
+  const [viewHeight, setViewHeight] = useState("");
   const under900 = useMediaQuery("(max-width:900px");
   const smallHeight = useMediaQuery("(max-height:700px");
   const landscapeSE = useMediaQuery(
     "(max-height: 414px) and (max-width: 940px)"
   );
-  const { height } = useWindowSize();
+
+  useEffect(() => {
+    setViewHeight(`${window.innerHeight}px`);
+  }, []);
+
   return (
     <Box
       sx={{
         width: "100%",
-        minHeight: { xs: "100vh", md: "calc(100vh - 200px)" },
+        minHeight: { xs: viewHeight, md: "calc(100vh - 200px)" },
         paddingTop: { xs: "0px", sm: "0px", md: "200px" },
         display: "flex",
         alignItems: "center",
@@ -105,7 +110,7 @@ const Header: FC<Props> = ({ sx }) => {
             borderRadius: "12px",
             width: "100%",
             height: {
-              xs: `100vh`,
+              xs: "100vh",
               md: "calc(100vh - 230px)",
               lg: "calc(100vh - 148px)",
             },
