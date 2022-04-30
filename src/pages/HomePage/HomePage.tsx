@@ -19,13 +19,7 @@ import {
   useMediaQuery,
   Hidden,
 } from "@mui/material";
-import {
-  Cancel,
-  Star,
-  Diamond,
-  Pets,
-  VisibilityOff,
-} from "@mui/icons-material";
+import { Cancel, Star } from "@mui/icons-material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
@@ -140,6 +134,165 @@ const HomePage: FC<Props> = ({
     <>
       <ScrollToTop />
       <Header />
+      <Container maxWidth="xl">
+        <Grid
+          container
+          spacing={{ xs: 2, md: 4 }}
+          sx={{ py: 4, px: { md: 8, sm: 0 } }}
+        >
+          <Grid item xs={12} lg={6}>
+            <Box
+              sx={{
+                height: { xs: "300px", md: "500px" },
+                width: "100%",
+                display: "flex",
+                borderRadius: "15px",
+                backgroundSize: "cover",
+                backgroundImage:
+                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-Golden-Retriever-Hotel-Bed.jpg")',
+              }}
+            >
+              <Box
+                sx={{
+                  zIndex: 100,
+                  height: "100%",
+                  maxWidth: { xs: "100%", md: "90%", xl: "100%" },
+                  mt: "30px",
+                  mx: "30px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  padding: { xs: "0 .5rem", sm: "0" },
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: "#fff",
+                    maxWidth: { xs: "92%", sm: "100%" },
+                    fontFamily: "Roboto",
+                    textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
+                  }}
+                >
+                  Your pets travel for free
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <Box
+              sx={{
+                height: { xs: "300px", md: "500px" },
+                width: "100%",
+                display: "flex",
+                borderRadius: "15px",
+                backgroundSize: "cover",
+                backgroundImage:
+                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-Golden-Retriever-Hotel-Bed.jpg")',
+              }}
+            >
+              <Box
+                sx={{
+                  zIndex: 100,
+                  height: "100%",
+                  maxWidth: { xs: "100%", md: "90%", xl: "100%" },
+                  mt: "30px",
+                  mx: "30px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  padding: { xs: "0 .5rem", sm: "0" },
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: "#fff",
+                    maxWidth: { xs: "92%", sm: "500px" },
+                    fontFamily: "Roboto",
+                    textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
+                  }}
+                >
+                  Pet-friendly experiences at luxury hotels
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+      <Box>
+        <Container>
+          <Grid container spacing={{ sm: 4, md: 5 }} sx={{ pt: 4, pb: 6 }}>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
+                }
+                draggable="false"
+                sx={{ height: { xs: "50px", sm: "100px" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                Lowest rates
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Romingo negotiates the best rates and passes the savings onto
+                you.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog-face.svg"
+                }
+                draggable="false"
+                sx={{ height: { xs: "50px", sm: "100px" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                No pet fees
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                You will always pay $0 in pet fees by booking on Romingo.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
+                }
+                draggable="false"
+                sx={{ height: { xs: "50px", sm: "100px" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                All pets welcome
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
+                restrictions, ever.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
+                }
+                draggable="false"
+                sx={{ height: { xs: "50px", sm: "100px" } }}
+              />
+              <Typography variant="h6" color="text.secondary">
+                Beds &amp; bowls provided
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+                Every Romingo reservation includes free pet beds & bowls in your
+                room!
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
       <Container
         maxWidth="xl"
         sx={{
@@ -377,80 +530,6 @@ const HomePage: FC<Props> = ({
             </Typography>
           </Grid>
         </Grid>
-      </Box>
-
-      <Box>
-        <Container>
-          <Grid container spacing={{ sm: 4, md: 5 }} sx={{ pt: 6, pb: 6 }}>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
-                }
-                draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Lowest rates
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo negotiates the best rates and passes the savings onto
-                you.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog-face.svg"
-                }
-                draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                No pet fees
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                You will always pay $0 in pet fees by booking on Romingo.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
-                }
-                draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                All pets welcome
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
-                restrictions, ever.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
-                }
-                draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
-              />
-              <Typography variant="h6" color="text.secondary">
-                Beds &amp; bowls provided
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Every Romingo reservation includes free pet beds & bowls in your
-                room!
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
       </Box>
 
       <HotelCarousel />

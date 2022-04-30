@@ -36,7 +36,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import { randomDate } from "../../tools.js";
 import { saveSearch } from "../../store/searchReducer";
 import { DateTime } from "luxon";
-import { Shuffle } from "@mui/icons-material";
 import { useMeasure } from "react-use";
 
 interface Props {
@@ -83,8 +82,8 @@ const Header: FC<Props> = ({ sx }) => {
     <Box
       sx={{
         width: "100%",
-        minHeight: { xs: "100vh", md: "calc(100vh - 270px)" },
-        paddingTop: { xs: "0px", sm: "0px", md: "270px" },
+        minHeight: { xs: "100vh", md: "calc(100vh - 200px)" },
+        paddingTop: { xs: "0px", sm: "0px", md: "200px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -109,7 +108,11 @@ const Header: FC<Props> = ({ sx }) => {
           sx={{
             width: "100%",
             borderRadius: "12px",
-            minHeight: { xs: "100vh", md: "calc(100vh - 220px)" },
+            minHeight: {
+              xs: "100vh",
+              md: "calc(100vh - 230px)",
+              lg: "calc(100vh - 148px)",
+            },
             "&::before": {
               content: '""',
               backgroundImage:
@@ -125,7 +128,7 @@ const Header: FC<Props> = ({ sx }) => {
                 md: "center",
                 xs: "right -145px top 10px",
               },
-              top: { xs: 0, md: "270px" },
+              top: { xs: 0, md: "240px", lg: "180px" },
               right: 0,
               bottom: 0,
               left: 0,
@@ -401,7 +404,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             position: "absolute",
             zIndex: 2,
             margin: "0px auto 0px auto",
-            paddingTop: "64px",
+            paddingTop: "74px",
             paddingBottom: "12px",
             borderBottom: "1px solid #ddd",
             width: "100vw",
@@ -421,6 +424,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               flexDirection: "column",
               alignItems: "center",
               mb: ".5rem",
+              mt: ".5rem",
             }}
           >
             <Box
@@ -698,7 +702,27 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ margin: "100px auto 0px auto", userSelect: "none" }}>
+        <Box sx={{ margin: "85px auto 0px auto", userSelect: "none" }}>
+          <Box
+            sx={{
+              display: "flex",
+              background: "#fff",
+              flexDirection: below900 ? "column" : "row",
+              alignItems: "center",
+              borderRadius: "12px",
+              margin: "0px auto",
+              width: biggerThanTenForty ? "975px" : "837px",
+              pr: biggerThanTenForty ? "270px" : 0,
+            }}
+          >
+            <OccupantSelector
+              value={occupants}
+              onChange={onOccupantChange}
+              variant="standard"
+              size="small"
+              align="right"
+            />
+          </Box>
           <Box
             sx={{
               display: "flex",
@@ -783,189 +807,211 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 )}
               />
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                cursor: "pointer",
-                transition: "all .15s ease-in-out",
-                alignItems: "center",
-                maxHeight: "47px",
-                mr: ".5rem",
-                border: "2px solid #343B5380",
-                padding: ".25rem .5rem",
-                "&:hover": { background: "#efefef" },
-                borderRadius: "6px",
-              }}
-            >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DateRangePicker
-                  PaperProps={{
-                    sx: {
-                      fontWeight: 700,
-                      "& .MuiTypography-root": { fontWeight: 500 },
-                    },
-                  }}
-                  inputFormat="MMM dd"
-                  disableMaskedInput={true}
-                  open={open}
-                  onAccept={() => setIsAccept(true)}
-                  onClose={handleDateRangeClose}
-                  onOpen={() => {
-                    if (!isAccept) {
-                      setOpen(true);
-                    }
-                  }}
-                  allowSameDateSelection
-                  calendars={1}
-                  clearable={true}
-                  value={checkDate || null}
-                  minDate={new Date()}
-                  onChange={(newValue) => {
-                    setFormError("");
-                    setCheckDate(newValue);
-                  }}
-                  renderInput={(startProps, endProps) => (
-                    <Grid
-                      container
-                      onClick={() => setOpen(true)}
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DateRangePicker
+                PaperProps={{
+                  sx: {
+                    fontWeight: 700,
+                    "& .MuiTypography-root": { fontWeight: 500 },
+                  },
+                }}
+                inputFormat="MMM dd"
+                disableMaskedInput={true}
+                open={open}
+                onAccept={() => setIsAccept(true)}
+                onClose={handleDateRangeClose}
+                onOpen={() => {
+                  if (!isAccept) {
+                    setOpen(true);
+                  }
+                }}
+                allowSameDateSelection
+                calendars={1}
+                clearable={true}
+                value={checkDate || null}
+                minDate={new Date()}
+                onChange={(newValue) => {
+                  setFormError("");
+                  setCheckDate(newValue);
+                }}
+                renderInput={(startProps, endProps) => (
+                  <>
+                    <Box
                       sx={{
-                        minWidth: "235px",
                         display: "flex",
+                        cursor: "pointer",
+                        transition: "all .15s ease-in-out",
                         alignItems: "center",
+                        minHeight: "34px",
+                        mr: ".5rem",
+                        border: "2px solid #343B5380",
+                        padding: ".25rem .5rem",
+                        "&:hover": { background: "#efefef" },
+                        borderRadius: "6px",
                       }}
                     >
                       <Grid
-                        item
-                        xs={2}
+                        container
+                        onClick={() => setOpen(true)}
                         sx={{
-                          pr: "1rem",
+                          minWidth: "200px",
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center",
                         }}
                       >
-                        <Event sx={{ height: "20px", color: "#444" }} />
-                      </Grid>
-                      <Grid item xs={8}>
                         <Grid
-                          container
-                          sx={{ justifyContent: "center", display: "flex" }}
+                          item
+                          xs={2}
+                          sx={{
+                            pr: "1rem",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
                         >
-                          <Grid item xs={5}>
-                            <Typography
-                              sx={{
-                                color: "#666",
-                                fontFamily: "Roboto",
-                                mb: "-.125rem",
-                                textTransform: "none",
-                                fontWeight: 600,
-                                fontSize: { xs: "11px" },
-                              }}
-                            >
-                              Check-in
-                            </Typography>
-                            <Typography
-                              sx={{
-                                color: "#444",
-                                fontFamily: "Roboto",
-                                textTransform: "none",
-                                fontWeight: 600,
-                                fontSize: { xs: "14px" },
-                              }}
-                            >
-                              {checkDate[0]
-                                ? DateTime.fromJSDate(
-                                    new Date(checkDate[0])
-                                  ).toFormat("MMM dd")
-                                : ""}
-                            </Typography>
-                          </Grid>
+                          <Event sx={{ height: "20px", color: "#444" }} />
+                        </Grid>
+                        <Grid item xs={8}>
                           <Grid
-                            item
-                            xs={2}
-                            sx={{
-                              alignItems: "center",
-                              fontWeight: 800,
-                              fontFamily: "Roboto",
-                              display: "flex",
-                              justifyContent: "flex-start",
-                              color: "#aaa",
-                              textAlign: "center",
-                            }}
+                            container
+                            sx={{ justifyContent: "center", display: "flex" }}
                           >
-                            &#8212;
-                          </Grid>
-                          <Grid item xs={5}>
-                            <Typography
-                              sx={{
-                                color: "#666",
-                                fontFamily: "Roboto",
-                                mb: "-.125rem",
-                                textTransform: "none",
-                                fontWeight: 600,
-                                fontSize: { xs: "11px" },
-                              }}
-                            >
-                              Check-out
-                            </Typography>
-                            <Typography
-                              sx={{
-                                color: "#444",
-                                fontFamily: "Roboto",
-                                textTransform: "none",
-                                fontWeight: 600,
-                                fontSize: { xs: "14px" },
-                              }}
-                            >
-                              {checkDate[1]
-                                ? DateTime.fromJSDate(
-                                    new Date(checkDate[1])
-                                  ).toFormat("MMM dd")
-                                : ""}
-                            </Typography>
+                            <Grid item xs={10}>
+                              <Typography
+                                sx={{
+                                  color: "#666",
+                                  fontFamily: "Roboto",
+                                  mb: "-.125rem",
+                                  textTransform: "none",
+                                  fontWeight: 600,
+                                  fontSize: { xs: "11px" },
+                                }}
+                              >
+                                Check-in
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  color: "#444",
+                                  fontFamily: "Roboto",
+                                  textTransform: "none",
+                                  fontWeight: 600,
+                                  fontSize: { xs: "14px" },
+                                }}
+                              >
+                                {checkDate[0]
+                                  ? DateTime.fromJSDate(
+                                      new Date(checkDate[0])
+                                    ).toFormat("MMM dd")
+                                  : ""}
+                              </Typography>
+                            </Grid>
                           </Grid>
                         </Grid>
+                        <Grid
+                          item
+                          xs={1}
+                          sx={{
+                            ml: "auto",
+                            mr: ".5rem",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <ExpandMore sx={{ height: "20px", color: "#444" }} />
+                        </Grid>
                       </Grid>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        cursor: "pointer",
+                        transition: "all .15s ease-in-out",
+                        alignItems: "center",
+                        minHeight: "34px",
+                        mr: ".5rem",
+                        border: "2px solid #343B5380",
+                        padding: ".25rem .5rem",
+                        "&:hover": { background: "#efefef" },
+                        borderRadius: "6px",
+                      }}
+                    >
                       <Grid
-                        item
-                        xs={1}
+                        container
+                        onClick={() => setOpen(true)}
                         sx={{
-                          ml: "auto",
-                          mr: ".5rem",
+                          minWidth: "200px",
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center",
                         }}
                       >
-                        <ExpandMore sx={{ height: "20px", color: "#444" }} />
+                        <Grid
+                          item
+                          xs={2}
+                          sx={{
+                            pr: "1rem",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Event sx={{ height: "20px", color: "#444" }} />
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Grid
+                            container
+                            sx={{ justifyContent: "center", display: "flex" }}
+                          >
+                            <Grid item xs={10}>
+                              <Typography
+                                sx={{
+                                  color: "#666",
+                                  fontFamily: "Roboto",
+                                  mb: "-.125rem",
+                                  textTransform: "none",
+                                  fontWeight: 600,
+                                  fontSize: { xs: "11px" },
+                                }}
+                              >
+                                Check-out
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  color: "#444",
+                                  fontFamily: "Roboto",
+                                  textTransform: "none",
+                                  fontWeight: 600,
+                                  fontSize: { xs: "14px" },
+                                }}
+                              >
+                                {checkDate[1]
+                                  ? DateTime.fromJSDate(
+                                      new Date(checkDate[1])
+                                    ).toFormat("MMM dd")
+                                  : ""}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid
+                          item
+                          xs={1}
+                          sx={{
+                            ml: "auto",
+                            mr: ".5rem",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <ExpandMore sx={{ height: "20px", color: "#444" }} />
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  )}
-                />
-              </LocalizationProvider>
-            </Box>
-            <Box
-              sx={{
-                "&:hover": { background: "#efefef" },
-                transition: "all .15s ease-in-out",
-                mt: { xs: 1, md: 0 },
-                mr: ".5rem",
-                display: "flex",
-                cursor: "pointer",
-                alignItems: "top",
-                border: "2px solid #343B5380",
-                borderRadius: "6px",
-                padding: ".25rem .5rem",
-                maxHeight: "47px",
-              }}
-            >
-              <OccupantSelector
-                value={occupants}
-                onChange={onOccupantChange}
-                variant="standard"
-                size="small"
+                    </Box>
+                  </>
+                )}
               />
-            </Box>
+            </LocalizationProvider>
             {biggerThanTenForty && (
               <Box>
                 <Button
@@ -1024,47 +1070,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               </Button>
             </Box>
           )}
-
-          {biggerThanTenForty && (
-            <Typography
-              color="text.secondary"
-              sx={{
-                textAlign: "center",
-                fontFamily: "Roboto",
-                fontWeight: 500,
-                fontSize: "15px",
-                userSelect: "none",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                m: { xs: "2.75rem 0", sm: "2.75rem 0 0rem 0" },
-              }}
-            >
-              Need some inspiration?
-              <Button
-                disableElevation
-                variant="contained"
-                onClick={handleImFlexibleClick}
-                sx={{
-                  background: "rgba(200, 200, 200, 0.2)",
-                  border: "1px solid #03989E80",
-                  fontSize: "15px",
-                  fontWeight: "bold",
-                  padding: ".25rem 1rem",
-                  textTransform: "none",
-                  color: "#03989E",
-                  borderRadius: "24px",
-                  ml: 1,
-                  cursor: "pointer",
-                  "&:hover": { background: "#fff" },
-                }}
-              >
-                I&lsquo;m Flexible
-                <Shuffle sx={{ fontSize: "20px", ml: 0.5 }} />
-              </Button>
-            </Typography>
-          )}
         </Box>
       )}
     </>
@@ -1087,6 +1092,7 @@ interface OccupantSelectorProps {
   size?: "small" | "medium" | undefined;
   variant?: "filled" | "outlined" | "standard" | undefined;
   disabled?: boolean;
+  align?: "left" | "right";
 }
 
 const OccupantSelector: FC<OccupantSelectorProps> = ({
@@ -1094,6 +1100,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
   onChange,
   onClose,
   fullWidth = true,
+  align = "left",
   size = "medium",
   variant = "outlined",
   disabled = false,
@@ -1125,7 +1132,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         onClick={handleClick}
         sx={{
           minWidth: "174px",
-          display: { xs: "none", md: "flex" },
+          display: variant === "outlined" ? "flex" : "none",
           alignItems: "center",
         }}
       >
@@ -1196,15 +1203,20 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         container
         sx={{
           marginBottom: "-2px",
-          height: "30px",
-          display: { md: "none", xs: "flex" },
+          height: "10px",
+          display: variant === "standard" ? "flex" : "none",
           alignItems: "center",
         }}
       >
         <Grid
           item
           onClick={handleClick}
-          sx={{ display: "flex", textAlign: "left", mr: "auto", ml: "1rem" }}
+          sx={{
+            display: "flex",
+            textAlign: align,
+            mr: align === "left" ? "auto" : 0,
+            ml: align === "right" ? "auto" : "1rem",
+          }}
         >
           <Typography
             sx={{
