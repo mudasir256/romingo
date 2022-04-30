@@ -138,12 +138,12 @@ const HomePage: FC<Props> = ({
         <Grid
           container
           spacing={{ xs: 2, md: 4 }}
-          sx={{ py: 4, px: { md: 8, sm: 0 } }}
+          sx={{ py: { xs: 3, lg: 6 }, px: { lg: 8, xs: 0 } }}
         >
           <Grid item xs={12} lg={6}>
             <Box
               sx={{
-                height: { xs: "300px", md: "500px" },
+                height: { xs: "300px", lg: "750px" },
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
@@ -182,7 +182,7 @@ const HomePage: FC<Props> = ({
           <Grid item xs={12} lg={6}>
             <Box
               sx={{
-                height: { xs: "300px", md: "500px" },
+                height: { xs: "300px", lg: "750px" },
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
