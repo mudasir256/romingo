@@ -80,6 +80,7 @@ const ScrollBarRef = React.createRef<HTMLDivElement>();
 const refArray: React.RefObject<HTMLAnchorElement>[] = [];
 
 const ListingPage: FC<Props> = () => {
+  const [height, setHeight] = useState(0);
   const search = useSelector(
     (state: any) => state.searchReducer.search,
     shallowEqual
@@ -144,6 +145,10 @@ const ListingPage: FC<Props> = () => {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
+    setHeight(window.outerHeight);
+  }, []);
+
+  useEffect(() => {
     if (data?.properties) {
       if (error) {
         return;
@@ -176,7 +181,6 @@ const ListingPage: FC<Props> = () => {
   });
 
   const y = useMotionValue(0);
-  const { height } = useWindowSize();
   const variants = {
     collapsed: {
       y: 0,
@@ -426,7 +430,14 @@ const ListingPage: FC<Props> = () => {
                 ))}
               </Stack>
             ) : (
-              <Stack spacing={3} sx={{ pb: 7, pt: "1rem", minHeight: "100vh" }}>
+              <Stack
+                spacing={3}
+                sx={{
+                  pb: 7,
+                  pt: "1rem",
+                  minHeight: "800px",
+                }}
+              >
                 <SortBar size="small" sortBy={sortBy} setSortBy={setSortBy} />
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {cards.length === 0 ? (
@@ -482,7 +493,7 @@ const ListingPage: FC<Props> = () => {
               }}
               sx={{
                 position: "absolute",
-                bottom: 15,
+                bottom: 10,
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 100,
