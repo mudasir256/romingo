@@ -68,6 +68,8 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
         showArrows={true}
         onChange={(i) => setItem(i)}
         showThumbs={false}
+        preventMovementUntilSwipeScrollTolerance
+        swipeScrollTolerance={100}
       >
         {items}
       </Carousel>

@@ -426,7 +426,8 @@ const ListingPage: FC<Props> = () => {
                 ))}
               </Stack>
             ) : (
-              <Stack spacing={3} sx={{ pb: 7, pt: "2rem" }}>
+              <Stack spacing={3} sx={{ pb: 7, pt: "1rem", minHeight: "100vh" }}>
+                <SortBar size="small" sortBy={sortBy} setSortBy={setSortBy} />
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {cards.length === 0 ? (
                   <>
@@ -442,7 +443,15 @@ const ListingPage: FC<Props> = () => {
                 ) : (
                   cards
                     .sort((a: any, b: any) =>
-                      a.romingoScore > b.romingoScore ? 1 : -1
+                      (
+                        sortBy === "score"
+                          ? a.romingoScore < b.romingoScore
+                          : sortBy === "high"
+                          ? a.lowestAveragePrice < b.lowestAveragePrice
+                          : a.lowestAveragePrice > b.lowestAveragePrice
+                      )
+                        ? 1
+                        : -1
                     )
                     .map((card: any, index: number) => (
                       <ListingCard
@@ -615,21 +624,25 @@ const ListingPage: FC<Props> = () => {
 interface SortBarProps {
   sortBy: string;
   setSortBy: Dispatcher<SetStateAction<string>>;
+  size?: string;
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy } = props;
+  const { sortBy, setSortBy, size } = props;
 
   return (
     <Grid
       sx={{
-        pb: "1rem",
+        pb: size === "small" ? 0 : "1rem",
         textAlign: "right",
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: size === "small" ? "center" : "flex-end",
       }}
     >
+      {size === "small" && (
+        <Typography sx={{ mr: "10px" }}>Sort by: </Typography>
+      )}
       <Select
         color="primary"
         value={sortBy}
