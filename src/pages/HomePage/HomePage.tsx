@@ -532,9 +532,9 @@ const HomePage: FC<Props> = ({
         </Grid>
       </Box>
 
-      <HotelCarousel />
+      {/* <HotelCarousel /> */}
 
-      <Box
+      {/* <Box
         sx={{
           pt: 7,
           pb: 3,
@@ -661,7 +661,7 @@ const HomePage: FC<Props> = ({
         </Grid>
       </Box>
 
-      <CustomerTestimonials />
+      <CustomerTestimonials /> */}
 
       <Box
         sx={{
