@@ -149,7 +149,7 @@ const HomePage: FC<Props> = ({
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-Golden-Retriever-Hotel-Bed.jpg")',
+                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-book-at-pet-friendly-hotel.jpeg")',
               }}
             >
               <Box
@@ -188,7 +188,7 @@ const HomePage: FC<Props> = ({
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-Golden-Retriever-Hotel-Bed.jpg")',
+                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-book-pet-friendly-hotels-beds-bowls-treats.jpeg")',
               }}
             >
               <Box
@@ -207,7 +207,7 @@ const HomePage: FC<Props> = ({
                 <Typography
                   variant="h3"
                   sx={{
-                    color: "#fff",
+                    color: "#333",
                     maxWidth: { xs: "92%", sm: "500px" },
                     fontFamily: "Roboto",
                     textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
@@ -394,7 +394,7 @@ const HomePage: FC<Props> = ({
                 <Box sx={{ height: "100%", width: "100%", display: "flex" }}>
                   <Box
                     component="img"
-                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-Golden-Retriever-Hotel-Bed.jpg"
+                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-pet-friendly-room-service-golden-retriever.jpeg"
                     alt="Golden Retriever Under Covers"
                     draggable="false"
                     sx={{

@@ -117,7 +117,7 @@ const Header: FC<Props> = ({ sx }) => {
             "&::before": {
               content: '""',
               backgroundImage:
-                'url("https://storage.googleapis.com/romingo-development-public/images/front-end/compressed-hero.jpeg")',
+                'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-pet-friendly-hotels-dogs-at-pool.jpeg")',
               opacity: 0.9,
               filter: "brightness(107%)",
               backgroundSize: "cover",

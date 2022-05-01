@@ -146,7 +146,7 @@ const ListingPage: FC<Props> = () => {
 
   useEffect(() => {
     setHeight(window.outerHeight);
-  }, []);
+  }, [window.outerHeight]);
 
   useEffect(() => {
     if (data?.properties) {
