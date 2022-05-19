@@ -65,7 +65,7 @@ const Header: FC<Props> = ({ sx }) => {
     <Box
       sx={{
         width: "100%",
-        minHeight: { xs: viewHeight, md: "calc(100vh - 200px)" },
+        minHeight: { xs: "0px", md: "calc(100vh - 200px)" },
         height: "100%",
         paddingTop: { xs: "0px", sm: "0px", md: "200px" },
         display: "flex",
@@ -98,7 +98,10 @@ const Header: FC<Props> = ({ sx }) => {
         />
       </Box>
 
-      <Container maxWidth="lg" sx={{ mt: { xs: "250px", md: "135px" } }}>
+      <Container
+        maxWidth="lg"
+        sx={{ mt: { xs: "250px", md: "135px" }, mb: "50px" }}
+      >
         <Hidden mdUp>
           <Box
             sx={{
