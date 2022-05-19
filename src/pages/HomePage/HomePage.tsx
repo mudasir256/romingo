@@ -747,7 +747,7 @@ const HomePage: FC<Props> = ({
             <Grid item xs={12}>
               <Box
                 sx={{
-                  height: { xs: "250px", md: "100px" },
+                  minHeight: { xs: "250px", md: "100px" },
                   display: "flex",
                   px: "50px",
                   backgroundColor: "#FFF",
