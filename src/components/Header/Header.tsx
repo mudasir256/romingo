@@ -100,7 +100,7 @@ const Header: FC<Props> = ({ sx }) => {
 
       <Container
         maxWidth="lg"
-        sx={{ mt: { xs: "250px", md: "135px" }, mb: "50px" }}
+        sx={{ mt: { xs: "250px", md: "135px" }, mb: "25px" }}
       >
         <Hidden mdUp>
           <Box
