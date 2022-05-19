@@ -20,6 +20,7 @@ import {
   Select,
   Popover,
   Hidden,
+  Container,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -27,6 +28,7 @@ import {
   Event,
   ExpandMore,
   LocationCity,
+  AddBoxOutlined,
 } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import DateRangePicker from "@mui/lab/DateRangePicker";
@@ -38,17 +40,10 @@ import { randomDate } from "../../tools.js";
 import { saveSearch } from "../../store/searchReducer";
 import { DateTime } from "luxon";
 import { useMeasure } from "react-use";
-import useWindowSize from "../../hooks/UseWindowSize";
 
 interface Props {
   sx?: CSSObject;
 }
-
-const variants = [
-  "Explore the world without the fees",
-  "Discover your next getaway the easy way",
-  "Resolve to travel in 2022",
-];
 
 const locationIds = [
   "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
@@ -59,21 +54,8 @@ const locationIds = [
   "58b23325-2016-44ef-886f-67e962dab17f",
 ];
 
-const bgImages = [
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/background-frenchie.jpeg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/woman-with-dog-in-snow.jpg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/trees-background.jpeg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/bridge-background.jpeg")',
-  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/open-road.jpeg")',
-];
-
 const Header: FC<Props> = ({ sx }) => {
   const [viewHeight, setViewHeight] = useState("");
-  const under900 = useMediaQuery("(max-width:900px");
-  const smallHeight = useMediaQuery("(max-height:700px");
-  const landscapeSE = useMediaQuery(
-    "(max-height: 414px) and (max-width: 940px)"
-  );
 
   useEffect(() => {
     setViewHeight(`${window.innerHeight}px`);
@@ -84,169 +66,119 @@ const Header: FC<Props> = ({ sx }) => {
       sx={{
         width: "100%",
         minHeight: { xs: viewHeight, md: "calc(100vh - 200px)" },
+        height: "100%",
         paddingTop: { xs: "0px", sm: "0px", md: "200px" },
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "start",
         top: 0,
         left: 0,
         ...sx,
       }}
     >
       <Navbar />
-      <Box sx={{ top: 0, position: "absolute", left: 0, width: "100%" }}>
+      <Box
+        sx={{
+          top: 0,
+          position: "absolute",
+          left: 0,
+          width: "100%",
+          backgroundColor: "#f7f7f7",
+          pb: { xs: 5, lg: 10 },
+          pt: { xs: 0, lg: 5 },
+        }}
+      >
         <FilterBar
           sx={{
             zIndex: 1401,
             width: "100%",
-            margin: "100px auto",
+            margin: "100px 0",
             display: "flex",
             justifyContent: "center",
           }}
         />
-
-        <Box
-          sx={{
-            borderRadius: "12px",
-            width: "100%",
-            height: {
-              xs: "100vh",
-              md: "calc(100vh - 230px)",
-              lg: "calc(100vh - 148px)",
-            },
-            "&::before": {
-              content: '""',
-              backgroundImage:
-                'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-pet-friendly-hotels-dogs-at-pool.jpeg")',
-              opacity: 0.9,
-              filter: "brightness(107%)",
-              backgroundSize: "cover",
-              position: "absolute",
-              backgroundPosition: {
-                sm: landscapeSE
-                  ? "right 0px top 10px"
-                  : "right -145px top 10px",
-                md: "center",
-                xs: "right 25% bottom 35%",
-              },
-
-              top: { xs: 0, md: "240px", lg: "180px" },
-              right: 0,
-              bottom: 0,
-              left: 0,
-              zIndex: 1,
-            },
-          }}
-        />
       </Box>
-      <Box
-        sx={{
-          marginTop: under900 ? 0 : "0px",
-          bottom: "0px",
-          zIndex: 1,
-          paddingBottom: { xs: "0px", sm: "0px", md: "0px" },
-          width: "100%",
-          position: { xs: "absolute", sm: "absolute", md: "relative" },
-          top: "0px",
-          minHeight: { xs: "calc(100vh)", sm: "100vh", md: "100%" },
-          maxHeight: { xs: "calc(100vh)", sm: "100vh", md: "100%" },
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+
+      <Container maxWidth="lg" sx={{ mt: { xs: "250px", md: "135px" } }}>
+        <Hidden mdUp>
+          <Box
+            sx={{
+              textAlign: "center",
+              backgroundColor: "#0d9fa3",
+              px: "10px",
+              py: "20px",
+              borderTopLeftRadius: "12px",
+              borderTopRightRadius: "12px",
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#fff",
+                textTransform: "uppercase",
+                fontSize: "220%",
+                textShadow: "0 5px 5px rgba(0,0,0,0.5)",
+              }}
+            >
+              Book <br />
+              pet-friendly hotels
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ color: "#fff", textShadow: "0 5px 5px rgba(0,0,0,0.5)" }}
+            >
+              Easy to use. Exclusive rates. No pet fees.
+            </Typography>
+          </Box>
+        </Hidden>
         <Box
           sx={{
-            zIndex: 100,
-            height: "100%",
-            maxWidth: { xs: "100%", md: "90%", xl: "100%" },
-            mt: "auto",
-            mb: { xs: "15%", sm: "0%" },
+            width: "100%",
+            height: { xs: "300px", md: "calc(100vh - 400px)" },
+            borderRadius: { xs: "0px 0px 24px 24px", md: "24px" },
+            content: '""',
+            backgroundImage:
+              'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/dog.jpg")',
+            backgroundSize: "cover",
             display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            padding: { xs: "0 .5rem", sm: "0" },
+            alignItems: "center",
+            backgroundPosition: "center",
           }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              color: "#333",
-              maxWidth: { xs: "92%", sm: "100%" },
-              margin: {
-                xs: "auto 1rem 1rem 1rem",
-                sm: landscapeSE
-                  ? "15rem 0rem 0rem 0rem"
-                  : "auto 1rem 1rem 1rem",
-                lg: "-5rem auto .75rem 8rem",
-                xl: "0rem auto 0rem 10rem",
-              },
-              fontFamily: "Roboto",
-              fontWeight: 700,
-              fontSize: { xs: "2.25rem", md: "4.125rem" },
-              textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
-            }}
-          >
-            Book pet-friendly hotels
-          </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              color: "#222",
-              fontWeight: 500,
-              fontFamily: "Montserrat",
-              textAlign: "left",
-              fontSize: { xs: "1.25rem", md: "1.65rem" },
-              margin: {
-                xs: smallHeight ? "0rem 1rem 0rem 1rem" : "0rem 1rem 4rem 1rem",
-                sm: landscapeSE ? "0rem 0rem 0rem 0rem" : "0rem 1rem 4rem 1rem",
-                lg: ".5rem auto .75rem 8rem",
-                xl: ".5rem auto .75rem 10rem",
-              },
-              textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
-            }}
-          >
-            Easy to use.
-            <Typography
-              sx={{
-                display: {
-                  xs: "inline",
-                  sm: landscapeSE ? "inline" : "block",
-                  md: "inline",
-                },
-                color: "#222",
-                fontWeight: 500,
-                fontFamily: "Montserrat",
-                textAlign: "left",
-                fontSize: { xs: "1.25rem", md: "1.65rem" },
-                margin: { xs: "0rem auto", sm: "0rem" },
-                textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
-              }}
-            >
-              {" "}
-              Exclusive rates.{" "}
-            </Typography>
-            <Typography
-              sx={{
-                display: {
-                  xs: "inline",
-                  sm: landscapeSE ? "inline" : "block",
-                  md: "inline",
-                },
-                color: "#222",
-                fontWeight: 500,
-                fontFamily: "Montserrat",
-                textAlign: "left",
-                fontSize: { xs: "1.25rem", md: "1.65rem" },
-                margin: { xs: "0rem auto", sm: "0rem" },
-                textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
-              }}
-            >
-              {" "}
-              No pet fees.
-            </Typography>
-          </Typography>
+          <Hidden mdDown>
+            <Box sx={{ px: "30px", maxWidth: "400px" }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  color: "#fff",
+                  textTransform: "uppercase",
+                  fontSize: "230%",
+                  fontWeight: 900,
+                  fontFamily: "Roboto",
+                  mb: "10px",
+                  mt: "-20px",
+                  letterSpacing: "-1px",
+                }}
+              >
+                Book pet-friendly hotels
+              </Typography>
+              <Typography variant="h5" sx={{ color: "#fff" }}>
+                Easy to use. Exclusive rates. <br />
+                No pet fees.
+              </Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                sx={{ mt: "20px", py: "20px", borderRadius: "24px" }}
+              >
+                <Typography variant="h5" color="primary">
+                  Book Now
+                </Typography>
+              </Button>
+            </Box>
+          </Hidden>
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };
@@ -410,7 +342,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             paddingBottom: "12px",
             borderBottom: "1px solid #ddd",
             width: "100vw",
-            background: "#fff",
           }}
         >
           <OccupantSelector
@@ -456,7 +387,11 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 <Grid
                   item
                   xs={11}
-                  sx={{ marginRight: "auto", pl: ".5rem", pr: ".5rem" }}
+                  sx={{
+                    marginRight: "auto",
+                    pl: ".5rem",
+                    pr: ".5rem",
+                  }}
                 >
                   <Autocomplete
                     options={cities}
@@ -708,7 +643,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           <Box
             sx={{
               display: "flex",
-              background: "#fff",
               flexDirection: below900 ? "column" : "row",
               alignItems: "center",
               borderRadius: "12px",
@@ -728,7 +662,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           <Box
             sx={{
               display: "flex",
-              background: "#fff",
               flexDirection: below900 ? "column" : "row",
               alignItems: "center",
               mb: "1rem",
@@ -749,6 +682,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 padding: ".25rem .5rem",
                 borderRadius: "6px",
                 mr: ".5rem",
+                backgroundColor: "#fff",
+                "&:hover": { background: "#efefef" },
               }}
             >
               <LocationCity
@@ -850,6 +785,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         padding: ".25rem .5rem",
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
+                        backgroundColor: "#fff",
                       }}
                     >
                       <Grid
@@ -936,6 +872,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         padding: ".25rem .5rem",
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
+                        backgroundColor: "#fff",
                       }}
                     >
                       <Grid
@@ -1024,15 +961,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   variant="contained"
                   sx={{
                     height: "47px",
-                    width: "137px",
+                    width: "150px",
                     display: "flex",
                     alignItems: "center",
                     padding: ".25rem 0rem",
                     justifyContent: "center",
                     fontFamily: "Roboto",
-                    fontWeight: 500,
-                    borderRadius: "6px",
+                    fontWeight: 600,
                     textTransform: "none",
+                    fontSize: "120%",
+                    borderRadius: "6px",
                   }}
                 >
                   <SearchIcon sx={{ height: "20px", mr: "1rem" }} /> Search
@@ -1057,15 +995,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 variant="contained"
                 sx={{
                   height: "47px",
-                  width: "137px",
+                  width: "150px",
                   display: "flex",
                   alignItems: "center",
                   padding: ".25rem 0rem",
                   justifyContent: "center",
                   fontFamily: "Roboto",
-                  fontWeight: 500,
-                  borderRadius: "6px",
+                  fontWeight: 600,
                   textTransform: "none",
+                  fontSize: "120%",
+                  borderRadius: "6px",
                 }}
               >
                 <SearchIcon sx={{ height: "20px", mr: "1rem" }} /> Search

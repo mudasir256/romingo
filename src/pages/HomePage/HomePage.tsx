@@ -134,29 +134,255 @@ const HomePage: FC<Props> = ({
     <>
       <ScrollToTop />
       <Header />
-      <Container maxWidth="xl">
+      <Box
+        sx={{
+          position: "relative",
+          "&::before": {
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            borderTop: "1px solid #f3f5f9",
+            backgroundRepeat: "no-repeat",
+            width: "100%",
+            content: '""',
+            backgroundColor: "#f7f7f7",
+            opacity: 1,
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+        }}
+      >
+        <Container
+          maxWidth="xl"
+          sx={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            py: "1.5rem",
+          }}
+        >
+          <Grid container sx={{ py: 4 }}>
+            <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
+              <Grid container spacing={{ sm: 3, md: 3 }}>
+                <Grid item xs={12} md={6}>
+                  <Box sx={{ height: "100%", display: "flex" }}>
+                    <Box
+                      sx={{
+                        margin: "auto 0",
+                        padding: "10px 0px",
+                        maxWidth: { xs: "100%", lg: "550px" },
+                      }}
+                    >
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          color: "primary.main",
+                          textAlign: "left",
+                          mb: "10px",
+                        }}
+                      >
+                        Redefining pet-friendly travel
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{
+                          mb: { xs: 3 },
+                          mt: 3,
+                          fontWeight: 400,
+                          fontSize: "115%",
+                          textAlign: "justify",
+                        }}
+                      >
+                        Tired of endlessly searching for pet-friendly hotels and
+                        vacation rentals? Now, you can travel the world freely
+                        with your pup by your side. Romingo has arrived to help
+                        make traveling with your pup simple and fun! Book your
+                        next trip with Romingo and enjoy a customized pet-
+                        friendly experience made just for you.
+                      </Typography>
+
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          backgroundColor: "#FFF",
+                          px: "18px",
+                          height: "90px",
+                          mb: "10px",
+                          border: "1px solid #ccc",
+                          borderRadius: { xs: "40px", md: "0 40px 40px 0" },
+                          ml: { xs: "0", md: "-90px" },
+                        }}
+                      >
+                        <Box
+                          component="img"
+                          src={"/images/icon1.svg"}
+                          draggable="false"
+                          sx={{
+                            width: "50px",
+                            mr: "30px",
+                          }}
+                        />
+                        <Typography variant="h5" color="text.secondary">
+                          Lowest Rates
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          backgroundColor: "#FFF",
+                          px: "18px",
+                          height: "90px",
+                          mb: "10px",
+                          border: "1px solid #ccc",
+                          borderRadius: { xs: "40px", md: "0 40px 40px 0" },
+                          ml: { xs: "0", md: "-90px" },
+                        }}
+                      >
+                        <Box
+                          component="img"
+                          src={"/images/icon2.svg"}
+                          draggable="false"
+                          sx={{
+                            width: "50px",
+                            mr: "30px",
+                          }}
+                        />
+                        <Typography variant="h5" color="text.secondary">
+                          24/7 Support
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          backgroundColor: "#FFF",
+                          px: "18px",
+                          height: "90px",
+                          mb: "10px",
+                          border: "1px solid #ccc",
+                          borderRadius: { xs: "40px", md: "0 40px 40px 0" },
+                          ml: { xs: "0", md: "-90px" },
+                        }}
+                      >
+                        <Box
+                          component="img"
+                          src={"/images/icon3.svg"}
+                          draggable="false"
+                          sx={{
+                            width: "50px",
+                            mr: "30px",
+                          }}
+                        />
+                        <Typography variant="h5" color="text.secondary">
+                          No Hidden Fees
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          backgroundColor: "#FFF",
+                          px: "18px",
+                          height: "90px",
+                          border: "1px solid #ccc",
+                          borderRadius: { xs: "40px", md: "0 40px 40px 0" },
+                          ml: { xs: "0", md: "-90px" },
+                        }}
+                      >
+                        <Box
+                          component="img"
+                          src={"/images/icon4.svg"}
+                          draggable="false"
+                          sx={{
+                            width: "50px",
+                            mr: "30px",
+                          }}
+                        />
+                        <Typography variant="h5" color="text.secondary">
+                          Accredited Travel Agency
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Box
+                    sx={{
+                      height: "100%",
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image1.jpg"
+                      alt="Check-in Desk With Dog"
+                      draggable="false"
+                      sx={{
+                        width: "100%",
+                        boxShadow: 3,
+                        objectFit: "cover",
+                        textAlign: "center",
+                        display: "inline-block",
+                        borderRadius: "15px",
+                        maxHeight: "325px",
+                        mb: "15px",
+                      }}
+                    />
+                    <Box
+                      component="img"
+                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image2.jpg"
+                      alt="Dogs at the Pool"
+                      draggable="false"
+                      sx={{
+                        width: "100%",
+                        boxShadow: 3,
+                        objectFit: "cover",
+                        textAlign: "center",
+                        display: "inline-block",
+                        borderRadius: "15px",
+                        maxHeight: "325px",
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+      <Container maxWidth="lg">
         <Grid
           container
           spacing={{ xs: 2, md: 4 }}
-          sx={{ py: { xs: 3, lg: 6 }, px: { lg: 8, xs: 0 } }}
+          sx={{ py: { xs: 3, md: 6 }, px: { lg: 0, xs: 0 } }}
         >
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} md={6}>
             <Box
               sx={{
-                height: { xs: "300px", lg: "750px" },
+                height: { xs: "300px", lg: "300px" },
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-book-at-pet-friendly-hotel.jpeg")',
+                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/image3.jpg")',
               }}
             >
               <Box
                 sx={{
                   zIndex: 100,
                   height: "100%",
-                  maxWidth: { xs: "100%", md: "90%", xl: "100%" },
+                  maxWidth: "250px",
                   mt: "30px",
                   mx: "30px",
                   display: "flex",
@@ -171,31 +397,32 @@ const HomePage: FC<Props> = ({
                     color: "#fff",
                     maxWidth: { xs: "92%", sm: "100%" },
                     fontFamily: "Roboto",
-                    textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
+                    fontSize: "240%",
+                    textShadow: "0 5px 5px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Your pets travel for free
+                  Your pets travel for FREE
                 </Typography>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} md={6}>
             <Box
               sx={{
-                height: { xs: "300px", lg: "750px" },
+                height: { xs: "300px", lg: "300px" },
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-book-pet-friendly-hotels-beds-bowls-treats.jpeg")',
+                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/image4.jpg")',
               }}
             >
               <Box
                 sx={{
                   zIndex: 100,
                   height: "100%",
-                  maxWidth: { xs: "100%", md: "90%", xl: "100%" },
+                  maxWidth: "250px",
                   mt: "30px",
                   mx: "30px",
                   display: "flex",
@@ -207,15 +434,31 @@ const HomePage: FC<Props> = ({
                 <Typography
                   variant="h3"
                   sx={{
-                    color: "#333",
-                    maxWidth: { xs: "92%", sm: "500px" },
+                    color: "#fff",
+                    maxWidth: { xs: "92%", sm: "100%" },
                     fontFamily: "Roboto",
-                    textShadow: "0px 0px 2px rgba(0, 0, 0, .15)",
+                    fontSize: "240%",
+                    textShadow: "0 5px 5px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Pet-friendly experiences at luxury hotels
+                  Pet Beds &amp; Treats Provided
                 </Typography>
               </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                py: "30px",
+                px: "50px",
+                backgroundColor: "#a6dbe5",
+                borderRadius: "24px",
+              }}
+            >
+              <Typography variant="h3">Reserve now, pay later</Typography>
+              <Typography variant="h5">
+                and cancellations are free, too!
+              </Typography>
             </Box>
           </Grid>
         </Grid>
@@ -293,127 +536,6 @@ const HomePage: FC<Props> = ({
           </Grid>
         </Container>
       </Box>
-      <Container
-        maxWidth="xl"
-        sx={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          py: "2rem",
-        }}
-      >
-        <Grid container sx={{ py: 4 }}>
-          <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
-            <Grid container spacing={{ sm: 3, md: 5 }}>
-              <Grid item xs={12} lg={6}>
-                <Box sx={{ height: "100%", display: "flex" }}>
-                  <Box sx={{ margin: "auto 0", padding: "10px 0px" }}>
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        color: "primary.main",
-                        textAlign: "center",
-                      }}
-                    >
-                      Welcome to pet-friendly travel
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      color="text.secondary"
-                      sx={{
-                        mb: { xs: 3 },
-                        mt: 3,
-                        fontWeight: 400,
-                        fontSize: "115%",
-                        textAlign: "justify",
-                      }}
-                    >
-                      Tired of endlessly searching for pet-friendly hotels and
-                      vacation rentals? Now, you can travel the world freely
-                      with your pup by your side. Romingo has arrived to help
-                      make traveling with your pup simple and fun! Book your
-                      next trip with Romingo and enjoy a customized pet-
-                      friendly experience made just for you.
-                      <Grid container spacing={3} sx={{ mt: 3 }}>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/luxury.jpg"
-                            }
-                            draggable="false"
-                            sx={{ height: { xs: "50px", sm: "80px" } }}
-                          />
-                          <br />
-                          Luxury hotels
-                        </Grid>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/lowest-rates.jpg"
-                            }
-                            draggable="false"
-                            sx={{ height: { xs: "50px", sm: "80px" } }}
-                          />
-                          <br />
-                          Lowest Rates
-                        </Grid>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/pet-friendly1.jpg"
-                            }
-                            draggable="false"
-                            sx={{ height: { xs: "50px", sm: "80px" } }}
-                          />
-                          <br />
-                          Pet-friendly
-                        </Grid>
-                        <Grid item xs={6} md={3} sx={{ textAlign: "center" }}>
-                          <Box
-                            component="img"
-                            src={
-                              "https://storage.googleapis.com/romingo-development-public/images/front-end/no-fees.jpg"
-                            }
-                            draggable="false"
-                            sx={{ height: { xs: "50px", sm: "80px" } }}
-                          />
-                          <br />
-                          No hidden fees
-                        </Grid>
-                      </Grid>
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={12} lg={6}>
-                <Box sx={{ height: "100%", width: "100%", display: "flex" }}>
-                  <Box
-                    component="img"
-                    src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo-pet-friendly-room-service-golden-retriever.jpeg"
-                    alt="Golden Retriever Under Covers"
-                    draggable="false"
-                    sx={{
-                      width: "100%",
-                      boxShadow: 3,
-                      objectFit: "cover",
-                      margin: "auto 0",
-                      position: "relative",
-                      textAlign: "center",
-                      display: "inline-block",
-                      borderRadius: "15px",
-                    }}
-                  />
-                </Box>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Container>
 
       <Box
         id="destinations"
