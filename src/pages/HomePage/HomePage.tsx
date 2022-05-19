@@ -334,25 +334,27 @@ const HomePage: FC<Props> = ({
                         textAlign: "center",
                         display: "inline-block",
                         borderRadius: "15px",
-                        maxHeight: "325px",
+                        maxHeight: { xs: "400px", md: "325px" },
                         mb: "15px",
                       }}
                     />
-                    <Box
-                      component="img"
-                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image2.jpg"
-                      alt="Dogs at the Pool"
-                      draggable="false"
-                      sx={{
-                        width: "100%",
-                        boxShadow: 3,
-                        objectFit: "cover",
-                        textAlign: "center",
-                        display: "inline-block",
-                        borderRadius: "15px",
-                        maxHeight: "325px",
-                      }}
-                    />
+                    <Hidden mdDown>
+                      <Box
+                        component="img"
+                        src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image2.jpg"
+                        alt="Dogs at the Pool"
+                        draggable="false"
+                        sx={{
+                          width: "100%",
+                          boxShadow: 3,
+                          objectFit: "cover",
+                          textAlign: "center",
+                          display: "inline-block",
+                          borderRadius: "15px",
+                          maxHeight: "325px",
+                        }}
+                      />
+                    </Hidden>
                   </Box>
                 </Grid>
               </Grid>
@@ -369,7 +371,7 @@ const HomePage: FC<Props> = ({
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                height: { xs: "300px", lg: "300px" },
+                height: { xs: "300px", lg: "350px" },
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
@@ -409,7 +411,7 @@ const HomePage: FC<Props> = ({
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                height: { xs: "300px", lg: "300px" },
+                height: { xs: "300px", lg: "350px" },
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
@@ -550,108 +552,251 @@ const HomePage: FC<Props> = ({
           width: "100%",
         }}
       >
-        <Grid container sx={{ ml: "calc(50% - 50vw)", mr: "calc(50% - 50vw)" }}>
-          <Grid item xs={12}>
-            <Typography
-              variant="h5"
-              sx={{
-                color: "text.secondary",
-                textAlign: "center",
-                mb: 5,
-                mt: "1rem",
-                ml: "auto",
-                mr: "auto",
-                maxWidth: "80%",
-              }}
-            >
-              Romingo currently features pet-friendly hotels across 6 beautiful
-              California destinations
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid
-              container
-              spacing={3}
-              sx={{
-                display: { xs: "grid", xl: "flex" },
-                gridAutoFlow: { xs: "column", lg: "column" },
-                overflow: "auto hidden",
-                pb: 4,
-                px: 4,
-                scrollSnapType: "x",
-              }}
-            >
-              {nearCities.map((nearCity, key) => {
-                return (
-                  <Grid item xs={12} sm={6} lg={4} xl={2} key={key}>
-                    <Box sx={{ minWidth: { xs: "250px", xl: "200px" } }}>
-                      <Link
-                        href=""
-                        onClick={() => history.push(nearCity.route)}
-                        sx={{ textDecoration: "none" }}
-                      >
-                        <Box
-                          sx={{
-                            borderRadius: 3,
-                            boxShadow: 2,
-                            backgroundColor: "white",
-                          }}
-                        >
-                          <Box
-                            component="img"
-                            src={nearCity.img}
-                            alt="background"
-                            draggable="false"
-                            sx={{
-                              objectFit: "cover",
-                              width: "100%",
-                              height: "240px",
-                              borderTopLeftRadius: 12,
-                              borderTopRightRadius: 12,
-                            }}
-                          />
-                          <Typography
-                            variant="h6"
-                            sx={{ mt: 2, textAlign: "center" }}
-                          >
-                            {nearCity.city}
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            sx={{ textAlign: "center", pb: 2, mb: 2 }}
-                          >
-                            {nearCity.state}
-                          </Typography>
-                        </Box>
-                      </Link>
-                    </Box>
+        <Container maxWidth="lg">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography
+                variant="h5"
+                sx={{
+                  color: "text.secondary",
+                  textAlign: "center",
+                  mb: 5,
+                  mt: "1rem",
+                  ml: "auto",
+                  mr: "auto",
+                  maxWidth: "80%",
+                }}
+              >
+                Travel with Romingo in...
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "24px",
+                  content: '""',
+                  backgroundImage:
+                    'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/arizona.jpg")',
+                  backgroundSize: "cover",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundPosition: "center",
+                }}
+              />
+              <Box
+                sx={{
+                  mt: "-65px",
+                  backgroundColor: "rgba(250,250,250,.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "65px",
+                  borderRadius: "0 0 24px 24px",
+                }}
+              >
+                <Typography variant="h4">Arizona</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "24px",
+                  content: '""',
+                  backgroundImage:
+                    'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/california.jpg")',
+                  backgroundSize: "cover",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundPosition: "center",
+                }}
+              />
+              <Box
+                sx={{
+                  mt: "-65px",
+                  backgroundColor: "rgba(250,250,250,.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "65px",
+                  borderRadius: "0 0 24px 24px",
+                }}
+              >
+                <Typography variant="h4">California</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "24px",
+                  content: '""',
+                  backgroundImage:
+                    'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/colorado.jpg")',
+                  backgroundSize: "cover",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundPosition: "center",
+                }}
+              />
+              <Box
+                sx={{
+                  mt: "-65px",
+                  backgroundColor: "rgba(250,250,250,.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "65px",
+                  borderRadius: "0 0 24px 24px",
+                }}
+              >
+                <Typography variant="h4">Colorado</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "24px",
+                  content: '""',
+                  backgroundImage:
+                    'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/oregon.jpg")',
+                  backgroundSize: "cover",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundPosition: "center",
+                }}
+              />
+              <Box
+                sx={{
+                  mt: "-65px",
+                  backgroundColor: "rgba(250,250,250,.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "65px",
+                  borderRadius: "0 0 24px 24px",
+                }}
+              >
+                <Typography variant="h4">Oregon</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "24px",
+                  content: '""',
+                  backgroundImage:
+                    'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/texas.jpg")',
+                  backgroundSize: "cover",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundPosition: "center",
+                }}
+              />
+              <Box
+                sx={{
+                  mt: "-65px",
+                  backgroundColor: "rgba(250,250,250,.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "65px",
+                  borderRadius: "0 0 24px 24px",
+                }}
+              >
+                <Typography variant="h4">Texas</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "24px",
+                  content: '""',
+                  backgroundImage:
+                    'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/utah.jpg")',
+                  backgroundSize: "cover",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundPosition: "center",
+                }}
+              />
+              <Box
+                sx={{
+                  mt: "-65px",
+                  backgroundColor: "rgba(250,250,250,.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "65px",
+                  borderRadius: "0 0 24px 24px",
+                }}
+              >
+                <Typography variant="h4">Utah</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  height: { xs: "250px", md: "100px" },
+                  display: "flex",
+                  px: "50px",
+                  backgroundColor: "#FFF",
+                  borderRadius: "24px",
+                  mt: "30px",
+                }}
+              >
+                <Grid container>
+                  <Grid
+                    item
+                    xs={12}
+                    md={8}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      mt: { xs: "40px", md: "0" },
+                    }}
+                  >
+                    <Typography variant="h4" color="text.secondary">
+                      More destinations arriving Fall 2022
+                    </Typography>
                   </Grid>
-                );
-              })}
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{
+                      display: "flex",
+                      alignItems: "end",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "200px",
+                        height: "120px",
+                        mt: { xs: "50px", md: "-20px" },
+                        content: '""',
+                        backgroundImage:
+                          'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/location.png")',
+                        backgroundSize: "cover",
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
             </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Typography
-              variant="h5"
-              sx={{
-                color: "text.secondary",
-                textAlign: "center",
-                mb: 2,
-                mt: "0rem",
-                ml: "auto",
-                mr: "auto",
-                maxWidth: "80%",
-              }}
-            >
-              <Link>
-                {" "}
-                <EmailSignup />{" "}
-              </Link>{" "}
-              to be the first to experience our 15 new destinations arriving in
-              Spring 2022
-            </Typography>
-          </Grid>
-        </Grid>
+        </Container>
       </Box>
 
       {/* <HotelCarousel /> */}
@@ -935,7 +1080,7 @@ const HomePage: FC<Props> = ({
                       sx={{
                         fontWeight: 500,
                         ml: ".5rem",
-                        maxWidth: "120px",
+                        width: { xs: "100px", md: "180px" },
                         mb: "0",
                         py: 1.45,
                         fontSize: "16px",

@@ -157,11 +157,15 @@ const Header: FC<Props> = ({ sx }) => {
                   mb: "10px",
                   mt: "-20px",
                   letterSpacing: "-1px",
+                  textShadow: "0 5px 5px rgba(0,0,0,0.5)",
                 }}
               >
                 Book pet-friendly hotels
               </Typography>
-              <Typography variant="h5" sx={{ color: "#fff" }}>
+              <Typography
+                variant="h5"
+                sx={{ color: "#fff", textShadow: "0 5px 5px rgba(0,0,0,0.5)" }}
+              >
                 Easy to use. Exclusive rates. <br />
                 No pet fees.
               </Typography>
