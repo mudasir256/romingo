@@ -116,7 +116,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
         ...sx,
         pt: 3,
         backgroundColor: "#f7f7f7",
-        borderTop: '1px solid #f2f2f2'
+        borderTop: "1px solid #f2f2f2",
       }}
     >
       <Container maxWidth="lg">
@@ -135,13 +135,19 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.reservation.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                    <Link
+                      href={menu.link}
+                      sx={{
+                        textDecoration: "none",
+                        "&:hover": { textDecoration: "underline" },
+                      }}
+                    >
                       <Typography
                         variant="body2"
                         sx={{
                           color: "text.secondary",
-                          textDecoration: 'none',
-                          '&:hover': { color: 'primary.main' }
+                          textDecoration: "none",
+                          "&:hover": { color: "primary.main" },
                         }}
                       >
                         {menu.text}
@@ -166,13 +172,19 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.about.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                    <Link
+                      href={menu.link}
+                      sx={{
+                        textDecoration: "none",
+                        "&:hover": { textDecoration: "underline" },
+                      }}
+                    >
                       <Typography
                         variant="body2"
                         sx={{
                           color: "text.secondary",
-                          textDecoration: 'none',
-                          '&:hover': { color: 'primary.main' }
+                          textDecoration: "none",
+                          "&:hover": { color: "primary.main" },
                         }}
                       >
                         {menu.text}
@@ -197,13 +209,19 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.contact.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                    <Link
+                      href={menu.link}
+                      sx={{
+                        textDecoration: "none",
+                        "&:hover": { textDecoration: "underline" },
+                      }}
+                    >
                       <Typography
                         variant="body2"
                         sx={{
                           color: "text.secondary",
-                          textDecoration: 'none',
-                          '&:hover': { color: 'primary.main' }
+                          textDecoration: "none",
+                          "&:hover": { color: "primary.main" },
                         }}
                       >
                         {menu.text}
@@ -225,7 +243,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               Content &amp; Blog
             </Typography>
             <List>
-              <ListItem key={"definitive-guide"} sx={{ pl: 0 }}>
+              {/* <ListItem key={"definitive-guide"} sx={{ pl: 0 }}>
                 <PopupButton
                   id="SYpKecCU"
                   style={{
@@ -251,19 +269,22 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
                     </Typography>
                   </Link>
                 </PopupButton>
-              </ListItem>
+              </ListItem> */}
               <ListItem sx={{ pl: 0 }}>
                 <Link
                   href="https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf"
                   target="_blank"
-                  sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                  sx={{
+                    textDecoration: "none",
+                    "&:hover": { textDecoration: "underline" },
+                  }}
                 >
                   <Typography
                     variant="body2"
                     sx={{
                       color: "text.secondary",
-                      textDecoration: 'none',
-                      '&:hover': { color: 'primary.main' }
+                      textDecoration: "none",
+                      "&:hover": { color: "primary.main" },
                     }}
                   >
                     Guide to Air Travel With Your Dog
@@ -273,13 +294,19 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               {footerMenus.blog.map((menu, key) => {
                 return (
                   <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link href={menu.link} sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                    <Link
+                      href={menu.link}
+                      sx={{
+                        textDecoration: "none",
+                        "&:hover": { textDecoration: "underline" },
+                      }}
+                    >
                       <Typography
                         variant="body2"
                         sx={{
                           color: "text.secondary",
-                          textDecoration: 'none',
-                          '&:hover': { color: 'primary.main' }
+                          textDecoration: "none",
+                          "&:hover": { color: "primary.main" },
                         }}
                       >
                         {menu.text}

@@ -126,7 +126,7 @@ const Header: FC<Props> = ({ sx }) => {
 
       <Container
         maxWidth="lg"
-        sx={{ mt: { xs: "250px", md: "135px" }, mb: "25px" }}
+        sx={{ mt: { xs: "250px", md: "100px" }, mb: "25px" }}
       >
         <Hidden mdUp>
           <Box
@@ -158,7 +158,7 @@ const Header: FC<Props> = ({ sx }) => {
         <Box
           sx={{
             width: "100%",
-            height: { xs: "300px", md: "calc(100vh - 400px)" },
+            height: { xs: "300px", md: "calc(100vh - 320px)" },
             borderRadius: { xs: "0px 0px 24px 24px", md: "24px" },
             content: '""',
             backgroundImage:

@@ -358,27 +358,7 @@ const FAQ: FC = () => {
             >
               We love partnering with new accommodations providers, and welcome
               any inquiries. Please{" "}
-              <PopupButton
-                id="zdVrRtxT"
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: "0",
-                  cursor: "pointer",
-                }}
-              >
-                <Link>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      textAlign: "center",
-                    }}
-                  >
-                    click here
-                  </Typography>
-                </Link>
-              </PopupButton>{" "}
-              to get started.
+              <Link href="/list-your-property">click here</Link> to get started.
             </Typography>
           </Grid>
           <Grid item xs={12}>
