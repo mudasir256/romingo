@@ -442,7 +442,7 @@ const ListingPage: FC<Props> = () => {
               >
                 <SortBar size="small" sortBy={sortBy} setSortBy={setSortBy} />
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
-                {cards.length ? (
+                {!cards.length ? (
                   <>
                     <Typography
                       variant="h6"
@@ -578,7 +578,7 @@ const ListingPage: FC<Props> = () => {
                     {getCityName(search.city)}
                   </Typography>
                 )}
-                {cards.length === 0 ? (
+                {!cards.length ? (
                   <>
                     <Typography
                       variant="h6"
