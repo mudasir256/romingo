@@ -181,7 +181,7 @@ const HomePage: FC<Props> = ({
                         variant="h4"
                         sx={{
                           color: "primary.main",
-                          textAlign: "left",
+                          textAlign: { xs: "center", md: "left" },
                           mb: "10px",
                         }}
                       >
@@ -467,7 +467,7 @@ const HomePage: FC<Props> = ({
       </Container>
       <Box>
         <Container>
-          <Grid container spacing={{ sm: 4, md: 5 }} sx={{ pt: 4, pb: 6 }}>
+          <Grid container spacing={{ xs: 3, md: 5 }} sx={{ pt: 2, pb: 6 }}>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
               <Box
                 component="img"
@@ -475,11 +475,9 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
                 }
                 draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
+                sx={{ height: "80px" }}
               />
-              <Typography variant="h6" color="text.secondary">
-                Lowest rates
-              </Typography>
+              <Typography variant="h6">Lowest rates</Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 Romingo negotiates the best rates and passes the savings onto
                 you.
@@ -492,11 +490,9 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog-face.svg"
                 }
                 draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
+                sx={{ height: "80px" }}
               />
-              <Typography variant="h6" color="text.secondary">
-                No pet fees
-              </Typography>
+              <Typography variant="h6">No pet fees</Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 You will always pay $0 in pet fees by booking on Romingo.
               </Typography>
@@ -508,11 +504,9 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
                 }
                 draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
+                sx={{ height: "80px" }}
               />
-              <Typography variant="h6" color="text.secondary">
-                All pets welcome
-              </Typography>
+              <Typography variant="h6">All pets welcome</Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 Romingo hotels welcome 2 pets, 75 lbs. each, no breed
                 restrictions, ever.
@@ -525,11 +519,9 @@ const HomePage: FC<Props> = ({
                   "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/bowls2.svg"
                 }
                 draggable="false"
-                sx={{ height: { xs: "50px", sm: "100px" } }}
+                sx={{ height: "80px" }}
               />
-              <Typography variant="h6" color="text.secondary">
-                Beds &amp; bowls provided
-              </Typography>
+              <Typography variant="h6">Beds &amp; bowls provided</Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 Every Romingo reservation includes free pet beds & bowls in your
                 room!
