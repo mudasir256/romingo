@@ -145,7 +145,9 @@ const ListingPage: FC<Props> = () => {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    setHeight(window.outerHeight);
+    setTimeout(() => {
+      setHeight(window.outerHeight);
+    }, 300);
   }, [window.outerHeight]);
 
   useEffect(() => {
@@ -318,7 +320,7 @@ const ListingPage: FC<Props> = () => {
         sx={{
           backgroundColor: "#feffff",
           display: { md: "flex" },
-          height: { xs: height, md: "calc(100vh - 59px)" },
+          height: { xs: `${height}px`, md: "calc(100vh - 59px)" },
         }}
       >
         {loading ? (
@@ -377,12 +379,12 @@ const ListingPage: FC<Props> = () => {
             style={{
               y,
               position: "absolute",
-              top: height - 52,
+              top: `${height - 52}px`,
               left: 0,
               right: 0,
               padding: 24,
               backgroundColor: "#feffff",
-              maxHeight: height - 48,
+              maxHeight: `${height - 48}px`,
               overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,
               overscrollBehavior: "none",
@@ -435,7 +437,7 @@ const ListingPage: FC<Props> = () => {
                 sx={{
                   pb: 7,
                   pt: "1rem",
-                  minHeight: "800px",
+                  minHeight: `${height - 200}px`,
                 }}
               >
                 <SortBar size="small" sortBy={sortBy} setSortBy={setSortBy} />
