@@ -322,27 +322,11 @@ const HomePage: FC<Props> = ({
                       justifyContent: "space-around",
                     }}
                   >
-                    <Box
-                      component="img"
-                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image1.jpg"
-                      alt="Check-in Desk With Dog"
-                      draggable="false"
-                      sx={{
-                        width: "100%",
-                        boxShadow: 3,
-                        objectFit: "cover",
-                        textAlign: "center",
-                        display: "inline-block",
-                        borderRadius: "15px",
-                        maxHeight: { xs: "400px", md: "325px" },
-                        mb: "15px",
-                      }}
-                    />
                     <Hidden mdDown>
                       <Box
                         component="img"
-                        src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image2.jpg"
-                        alt="Dogs at the Pool"
+                        src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image1.jpg"
+                        alt="Check-in Desk With Dog"
                         draggable="false"
                         sx={{
                           width: "100%",
@@ -351,10 +335,26 @@ const HomePage: FC<Props> = ({
                           textAlign: "center",
                           display: "inline-block",
                           borderRadius: "15px",
-                          maxHeight: "325px",
+                          maxHeight: { xs: "400px", md: "325px" },
+                          mb: "15px",
                         }}
                       />
                     </Hidden>
+                    <Box
+                      component="img"
+                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image2.jpg"
+                      alt="Dogs at the Pool"
+                      draggable="false"
+                      sx={{
+                        width: "100%",
+                        boxShadow: 3,
+                        objectFit: "cover",
+                        textAlign: "center",
+                        display: "inline-block",
+                        borderRadius: "15px",
+                        maxHeight: "325px",
+                      }}
+                    />
                   </Box>
                 </Grid>
               </Grid>
@@ -400,7 +400,7 @@ const HomePage: FC<Props> = ({
                     maxWidth: { xs: "92%", sm: "100%" },
                     fontFamily: "Roboto",
                     fontSize: "240%",
-                    textShadow: "0 5px 5px rgba(0,0,0,0.5)",
+                    textShadow: "0 2px 2px rgba(0,0,0,0.5)",
                   }}
                 >
                   Your pets travel for FREE
@@ -440,7 +440,7 @@ const HomePage: FC<Props> = ({
                     maxWidth: { xs: "92%", sm: "100%" },
                     fontFamily: "Roboto",
                     fontSize: "240%",
-                    textShadow: "0 5px 5px rgba(0,0,0,0.5)",
+                    textShadow: "0 2px 2px rgba(0,0,0,0.5)",
                   }}
                 >
                   Pet Beds &amp; Treats Provided

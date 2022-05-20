@@ -442,7 +442,7 @@ const ListingPage: FC<Props> = () => {
               >
                 <SortBar size="small" sortBy={sortBy} setSortBy={setSortBy} />
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
-                {cards.length === 0 ? (
+                {cards.length ? (
                   <>
                     <Typography
                       variant="h6"
@@ -454,7 +454,7 @@ const ListingPage: FC<Props> = () => {
                     </Typography>
                   </>
                 ) : (
-                  cards
+                  [...cards]
                     .sort((a: any, b: any) =>
                       (
                         sortBy === "score"
@@ -590,7 +590,7 @@ const ListingPage: FC<Props> = () => {
                     </Typography>
                   </>
                 ) : (
-                  cards
+                  [...cards]
                     .sort((a: any, b: any) =>
                       (
                         sortBy === "score"

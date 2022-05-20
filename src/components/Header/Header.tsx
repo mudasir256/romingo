@@ -55,11 +55,37 @@ const locationIds = [
 ];
 
 const Header: FC<Props> = ({ sx }) => {
+  const dispatch: Dispatch<any> = useDispatch();
+  const history = useHistory();
   const [viewHeight, setViewHeight] = useState("");
 
   useEffect(() => {
     setViewHeight(`${window.innerHeight}px`);
   }, []);
+
+  const handleImFlexibleClick = () => {
+    const thirtyDays = DateTime.local().plus({ days: 30 }).toJSDate();
+    const randomCheckIn = randomDate(new Date(), thirtyDays);
+    const oneWeekFromCheckin = DateTime.fromJSDate(randomCheckIn)
+      .plus({ days: 7 })
+      .toJSDate();
+    const randomCheckOut = randomDate(
+      DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
+      oneWeekFromCheckin
+    );
+
+    dispatch(
+      saveSearch({
+        city: locationIds[Math.floor(Math.random() * locationIds.length)],
+        checkIn: new Date(randomCheckIn).toISOString(),
+        checkOut: new Date(randomCheckOut).toISOString(),
+        occupants: { adults: 2, children: 0, dogs: 1 },
+      })
+    );
+    setTimeout(() => {
+      history.push("/listings");
+    }, 250);
+  };
 
   return (
     <Box
@@ -119,16 +145,12 @@ const Header: FC<Props> = ({ sx }) => {
                 color: "#fff",
                 textTransform: "uppercase",
                 fontSize: "220%",
-                textShadow: "0 5px 5px rgba(0,0,0,0.5)",
               }}
             >
               Book <br />
               pet-friendly hotels
             </Typography>
-            <Typography
-              variant="h6"
-              sx={{ color: "#fff", textShadow: "0 5px 5px rgba(0,0,0,0.5)" }}
-            >
+            <Typography variant="h6" sx={{ color: "#fff" }}>
               Easy to use. Exclusive rates. No pet fees.
             </Typography>
           </Box>
@@ -160,15 +182,11 @@ const Header: FC<Props> = ({ sx }) => {
                   mb: "10px",
                   mt: "-20px",
                   letterSpacing: "-1px",
-                  textShadow: "0 5px 5px rgba(0,0,0,0.5)",
                 }}
               >
                 Book pet-friendly hotels
               </Typography>
-              <Typography
-                variant="h5"
-                sx={{ color: "#fff", textShadow: "0 5px 5px rgba(0,0,0,0.5)" }}
-              >
+              <Typography variant="h5" sx={{ color: "#fff" }}>
                 Easy to use. Exclusive rates. <br />
                 No pet fees.
               </Typography>
@@ -176,7 +194,13 @@ const Header: FC<Props> = ({ sx }) => {
                 variant="contained"
                 color="secondary"
                 size="large"
-                sx={{ mt: "20px", py: "20px", borderRadius: "24px" }}
+                disableElevation
+                onClick={handleImFlexibleClick}
+                sx={{
+                  mt: "20px",
+                  py: "20px",
+                  borderRadius: "24px",
+                }}
               >
                 <Typography variant="h5" color="primary">
                   Book Now
@@ -310,31 +334,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
         setFormError("Search must include at least 1 adult guest");
       }
     }
-  };
-
-  const handleImFlexibleClick = () => {
-    const oneWeek = DateTime.local().plus({ days: 7 }).toJSDate();
-    const randomCheckIn = randomDate(new Date(), oneWeek);
-    const oneWeekFromCheckin = DateTime.fromJSDate(randomCheckIn)
-      .plus({ days: 7 })
-      .toJSDate();
-    const randomCheckOut = randomDate(
-      new Date(randomCheckIn),
-      oneWeekFromCheckin
-    );
-
-    dispatch(
-      saveSearch({
-        city: locationIds[Math.floor(Math.random() * locationIds.length)],
-        checkIn: new Date(randomCheckIn).toISOString(),
-        checkOut: new Date(randomCheckOut).toISOString(),
-        occupants: { adults: 2, children: 0, dogs: 1 },
-      })
-    );
-
-    setTimeout(() => {
-      history.push("/listings");
-    }, 250);
   };
 
   return (
@@ -1125,6 +1124,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                   textTransform: "none",
                   fontWeight: 600,
                   fontSize: { xs: "14px" },
+                  cursor: "pointer",
                 }}
               >
                 {value.adults + value.children} Guests, {value.dogs} Pets
@@ -1174,6 +1174,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               textTransform: "none",
               fontWeight: 600,
               fontSize: { xs: "12px" },
+              cursor: "pointer",
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet
