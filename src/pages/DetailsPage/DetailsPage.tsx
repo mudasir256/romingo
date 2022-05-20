@@ -411,8 +411,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const RateCardRef = React.createRef<HTMLDivElement>();
 
   const goToRateScroll = () => {
-    const top = RateCardRef?.current?.offsetTop || 0;
-    window.scrollTo(0, top);
+    RateCardRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const { height } = useWindowSize();
@@ -1345,22 +1344,20 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 </Box>
 
                 <ReadMore small text={defaultDescription} length={200} />
-                <Link href="#rooms">
-                  <Button
-                    fullWidth
-                    disableElevation
-                    variant="contained"
-                    sx={{
-                      fontFamily: "Montserrat",
-                      fontWeight: 600,
-                      mt: "1rem",
-                      display: { xs: "flex", md: "none" },
-                    }}
-                  >
-                    {" "}
-                    Select a room{" "}
-                  </Button>
-                </Link>
+                <Button
+                  onClick={goToRateScroll}
+                  fullWidth
+                  disableElevation
+                  variant="contained"
+                  sx={{
+                    fontFamily: "Montserrat",
+                    fontWeight: 600,
+                    mt: "1rem",
+                    display: { xs: "flex", md: "none" },
+                  }}
+                >
+                  Select a room
+                </Button>
                 <Grid container spacing={2} sx={{ mt: 0 }}>
                   <Grid item xs={12} sm={12} md={12} lg={12}>
                     <Box

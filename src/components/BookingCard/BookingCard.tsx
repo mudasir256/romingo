@@ -21,11 +21,7 @@ interface Props {
   goToRate?: () => void;
 }
 
-const BookingCard: FC<Props> = ({
-  sx,
-  roomList,
-  goToRate,
-}) => {
+const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
   const history = useHistory();
   const [roomType, setRoomType] = useState("0");
 
@@ -87,22 +83,20 @@ const BookingCard: FC<Props> = ({
       >
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Link href="#rooms" sx={{ textDecoration: "none" }}>
-              <Button
-                disableElevation
-                fullWidth
-                variant="contained"
-                sx={{
-                  fontFamily: "Montserrat",
-                  fontWeight: 600,
-                  mb: "0rem",
-                  display: { md: "flex", xs: "none" },
-                }}
-              >
-                {" "}
-                Reserve a room{" "}
-              </Button>
-            </Link>
+            <Button
+              onClick={goToRate}
+              disableElevation
+              fullWidth
+              variant="contained"
+              sx={{
+                fontFamily: "Montserrat",
+                fontWeight: 600,
+                mb: "0rem",
+                display: { md: "flex", xs: "none" },
+              }}
+            >
+              Reserve a room
+            </Button>
           </Grid>
         </Grid>
       </Box>
