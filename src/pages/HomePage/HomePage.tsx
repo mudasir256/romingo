@@ -512,7 +512,7 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/dog-face.svg"
+                  "https://storage.googleapis.com/romingo-production-public/images/Frontend/dog.svg"
                 }
                 draggable="false"
                 sx={{ height: "80px" }}
