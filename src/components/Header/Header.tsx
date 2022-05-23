@@ -126,7 +126,7 @@ const Header: FC<Props> = ({ sx }) => {
 
       <Container
         maxWidth="lg"
-        sx={{ mt: { xs: "250px", md: "100px" }, mb: "25px" }}
+        sx={{ mt: { xs: "250px", md: "160px" }, mb: "25px" }}
       >
         <Hidden mdUp>
           <Box
@@ -144,21 +144,21 @@ const Header: FC<Props> = ({ sx }) => {
               sx={{
                 color: "#fff",
                 textTransform: "uppercase",
-                fontSize: "220%",
+                fontSize: "200%",
               }}
             >
-              Book <br />
-              pet-friendly hotels
+              Book pet-friendly hotels
             </Typography>
             <Typography variant="h6" sx={{ color: "#fff" }}>
-              Easy to use. Exclusive rates. No pet fees.
+              Easy to use. Lowest rates. No pet fees.
             </Typography>
           </Box>
         </Hidden>
         <Box
           sx={{
             width: "100%",
-            height: { xs: "300px", md: "calc(100vh - 320px)" },
+            height: { xs: "220px", md: "calc(100vh - 450px)" },
+            minHeight: { xs: "220px", md: "400px" },
             borderRadius: { xs: "0px 0px 24px 24px", md: "24px" },
             content: '""',
             backgroundImage:
@@ -187,7 +187,7 @@ const Header: FC<Props> = ({ sx }) => {
                 Book pet-friendly hotels
               </Typography>
               <Typography variant="h5" sx={{ color: "#fff" }}>
-                Easy to use. Exclusive rates. <br />
+                Easy to use. Lowest rates. <br />
                 No pet fees.
               </Typography>
               <Button
@@ -400,6 +400,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   }}
                 >
                   <Autocomplete
+                    disableClearable
                     options={cities}
                     value={getCity(selectedCity) || null}
                     getOptionLabel={(option: any) => {
@@ -697,6 +698,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               />
               <Autocomplete
                 options={cities}
+                disableClearable
                 value={getCity(selectedCity) || null}
                 getOptionLabel={(option: any) => {
                   return option.name;

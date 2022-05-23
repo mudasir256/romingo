@@ -800,6 +800,7 @@ const DesktopFilterBar: FC = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
             options={cities}
+            disableClearable
             value={getCity(selectedCity) || null}
             getOptionLabel={(option: any) => {
               return option.name;

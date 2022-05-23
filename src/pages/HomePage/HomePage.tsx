@@ -168,7 +168,7 @@ const HomePage: FC<Props> = ({
           <Grid container sx={{ py: 4 }}>
             <Grid item xs={12} sx={{ px: { md: 8, sm: 0 } }}>
               <Grid container spacing={{ sm: 3, md: 3 }}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} lg={7}>
                   <Box sx={{ height: "100%", display: "flex" }}>
                     <Box
                       sx={{
@@ -178,7 +178,7 @@ const HomePage: FC<Props> = ({
                       }}
                     >
                       <Typography
-                        variant="h4"
+                        variant="h5"
                         sx={{
                           color: "primary.main",
                           textAlign: { xs: "center", md: "left" },
@@ -194,8 +194,10 @@ const HomePage: FC<Props> = ({
                           mb: { xs: 3 },
                           mt: 3,
                           fontWeight: 400,
+                          lineHeight: 1.75,
                           fontSize: "115%",
-                          textAlign: "justify",
+                          letterSpacing: 1.25,
+                          textAlign: "left",
                         }}
                       >
                         Tired of endlessly searching for pet-friendly hotels and
@@ -212,7 +214,7 @@ const HomePage: FC<Props> = ({
                           alignItems: "center",
                           backgroundColor: "#FFF",
                           px: "18px",
-                          height: "90px",
+                          height: "70px",
                           mb: "10px",
                           border: "1px solid #ccc",
                           borderRadius: { xs: "40px", md: "0 40px 40px 0" },
@@ -224,12 +226,16 @@ const HomePage: FC<Props> = ({
                           src={"/images/icon1.svg"}
                           draggable="false"
                           sx={{
-                            width: "50px",
+                            width: "40px",
                             mr: "30px",
                           }}
                         />
-                        <Typography variant="h5" color="text.secondary">
-                          Lowest Rates
+                        <Typography
+                          variant="h6"
+                          color="text.secondary"
+                          sx={{ lineHeight: 1 }}
+                        >
+                          Lowest rates
                         </Typography>
                       </Box>
                       <Box
@@ -238,7 +244,7 @@ const HomePage: FC<Props> = ({
                           alignItems: "center",
                           backgroundColor: "#FFF",
                           px: "18px",
-                          height: "90px",
+                          height: "70px",
                           mb: "10px",
                           border: "1px solid #ccc",
                           borderRadius: { xs: "40px", md: "0 40px 40px 0" },
@@ -250,12 +256,16 @@ const HomePage: FC<Props> = ({
                           src={"/images/icon2.svg"}
                           draggable="false"
                           sx={{
-                            width: "50px",
+                            width: "40px",
                             mr: "30px",
                           }}
                         />
-                        <Typography variant="h5" color="text.secondary">
-                          24/7 Support
+                        <Typography
+                          variant="h6"
+                          color="text.secondary"
+                          sx={{ lineHeight: 1 }}
+                        >
+                          24/7 support
                         </Typography>
                       </Box>
                       <Box
@@ -264,7 +274,7 @@ const HomePage: FC<Props> = ({
                           alignItems: "center",
                           backgroundColor: "#FFF",
                           px: "18px",
-                          height: "90px",
+                          height: "70px",
                           mb: "10px",
                           border: "1px solid #ccc",
                           borderRadius: { xs: "40px", md: "0 40px 40px 0" },
@@ -276,12 +286,16 @@ const HomePage: FC<Props> = ({
                           src={"/images/icon3.svg"}
                           draggable="false"
                           sx={{
-                            width: "50px",
+                            width: "40px",
                             mr: "30px",
                           }}
                         />
-                        <Typography variant="h5" color="text.secondary">
-                          No Hidden Fees
+                        <Typography
+                          variant="h6"
+                          color="text.secondary"
+                          sx={{ lineHeight: 1 }}
+                        >
+                          No hidden fees
                         </Typography>
                       </Box>
                       <Box
@@ -290,7 +304,7 @@ const HomePage: FC<Props> = ({
                           alignItems: "center",
                           backgroundColor: "#FFF",
                           px: "18px",
-                          height: "90px",
+                          height: "70px",
                           border: "1px solid #ccc",
                           borderRadius: { xs: "40px", md: "0 40px 40px 0" },
                           ml: { xs: "0", md: "-90px" },
@@ -301,18 +315,22 @@ const HomePage: FC<Props> = ({
                           src={"/images/icon4.svg"}
                           draggable="false"
                           sx={{
-                            width: "50px",
+                            width: "40px",
                             mr: "30px",
                           }}
                         />
-                        <Typography variant="h5" color="text.secondary">
-                          Accredited Travel Agency
+                        <Typography
+                          variant="h6"
+                          color="text.secondary"
+                          sx={{ lineHeight: 1 }}
+                        >
+                          Accredited travel agency
                         </Typography>
                       </Box>
                     </Box>
                   </Box>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} lg={5}>
                   <Box
                     sx={{
                       height: "100%",
@@ -335,14 +353,14 @@ const HomePage: FC<Props> = ({
                           textAlign: "center",
                           display: "inline-block",
                           borderRadius: "15px",
-                          maxHeight: { xs: "400px", md: "325px" },
+                          aspectRatio: "16 / 10",
                           mb: "15px",
                         }}
                       />
                     </Hidden>
                     <Box
                       component="img"
-                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/image2.jpg"
+                      src="https://storage.googleapis.com/romingo-production-public/images/Frontend/romingo-pets-pool.jpeg"
                       alt="Dogs at the Pool"
                       draggable="false"
                       sx={{
@@ -352,7 +370,7 @@ const HomePage: FC<Props> = ({
                         textAlign: "center",
                         display: "inline-block",
                         borderRadius: "15px",
-                        maxHeight: "325px",
+                        aspectRatio: "16 / 10",
                       }}
                     />
                   </Box>
@@ -371,13 +389,13 @@ const HomePage: FC<Props> = ({
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                height: { xs: "300px", lg: "350px" },
+                aspectRatio: "16 / 10",
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/image3.jpg")',
+                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/romingo-dog-checkin.jpeg")',
               }}
             >
               <Box
@@ -385,8 +403,8 @@ const HomePage: FC<Props> = ({
                   zIndex: 100,
                   height: "100%",
                   maxWidth: "250px",
-                  mt: "30px",
-                  mx: "30px",
+                  mt: { xs: "10px", md: "20px" },
+                  mx: { xs: "10px", md: "20px" },
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
@@ -396,14 +414,14 @@ const HomePage: FC<Props> = ({
                 <Typography
                   variant="h3"
                   sx={{
-                    color: "#fff",
-                    maxWidth: { xs: "92%", sm: "100%" },
+                    color: "#FFF",
+                    maxWidth: { xs: "65%", sm: "200px" },
                     fontFamily: "Roboto",
-                    fontSize: "240%",
+                    fontSize: { xs: "180%", md: "240%" },
                     textShadow: "0 2px 2px rgba(0,0,0,0.5)",
                   }}
                 >
-                  Your pets travel for FREE
+                  Pets travel for FREE
                 </Typography>
               </Box>
             </Box>
@@ -411,13 +429,13 @@ const HomePage: FC<Props> = ({
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                height: { xs: "300px", lg: "350px" },
+                aspectRatio: "16 / 10",
                 width: "100%",
                 display: "flex",
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/image4.jpg")',
+                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/romingo-beds-bowls.jpeg")',
               }}
             >
               <Box
@@ -425,8 +443,8 @@ const HomePage: FC<Props> = ({
                   zIndex: 100,
                   height: "100%",
                   maxWidth: "250px",
-                  mt: "30px",
-                  mx: "30px",
+                  mt: { xs: "10px", md: "20px" },
+                  mx: { xs: "10px", md: "20px" },
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
@@ -436,14 +454,14 @@ const HomePage: FC<Props> = ({
                 <Typography
                   variant="h3"
                   sx={{
-                    color: "#fff",
-                    maxWidth: { xs: "92%", sm: "100%" },
+                    color: "#000",
+                    maxWidth: { xs: "55%", sm: "100%" },
                     fontFamily: "Roboto",
-                    fontSize: "240%",
-                    textShadow: "0 2px 2px rgba(0,0,0,0.5)",
+                    fontSize: { xs: "180%", md: "240%" },
+                    textShadow: "0 2px 2px rgba(255,255,255,0.5)",
                   }}
                 >
-                  Pet Beds &amp; Treats Provided
+                  Pet beds &amp; treats provided
                 </Typography>
               </Box>
             </Box>
@@ -451,16 +469,14 @@ const HomePage: FC<Props> = ({
           <Grid item xs={12}>
             <Box
               sx={{
-                py: "30px",
-                px: "50px",
+                py: "20px",
+                px: "20px",
                 backgroundColor: "#a6dbe5",
                 borderRadius: "24px",
               }}
             >
               <Typography variant="h3">Reserve now, pay later</Typography>
-              <Typography variant="h5">
-                and cancellations are free, too!
-              </Typography>
+              <Typography variant="h5">plus, free cancellations!</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -472,15 +488,24 @@ const HomePage: FC<Props> = ({
               <Box
                 component="img"
                 src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
                 }
                 draggable="false"
                 sx={{ height: "80px" }}
               />
-              <Typography variant="h6">Lowest rates</Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo negotiates the best rates and passes the savings onto
-                you.
+              <Typography variant="h6">All pets welcome</Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{
+                  mt: 1,
+                  fontWeight: 400,
+                  fontSize: "115%",
+                  letterSpacing: 1.25,
+                }}
+              >
+                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
+                restrictions, ever.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
@@ -493,23 +518,17 @@ const HomePage: FC<Props> = ({
                 sx={{ height: "80px" }}
               />
               <Typography variant="h6">No pet fees</Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{
+                  mt: 1,
+                  fontWeight: 400,
+                  fontSize: "115%",
+                  letterSpacing: 1.25,
+                }}
+              >
                 You will always pay $0 in pet fees by booking on Romingo.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/support2.svg"
-                }
-                draggable="false"
-                sx={{ height: "80px" }}
-              />
-              <Typography variant="h6">All pets welcome</Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Romingo hotels welcome 2 pets, 75 lbs. each, no breed
-                restrictions, ever.
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
@@ -522,9 +541,42 @@ const HomePage: FC<Props> = ({
                 sx={{ height: "80px" }}
               />
               <Typography variant="h6">Beds &amp; bowls provided</Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                Every Romingo reservation includes free pet beds & bowls in your
-                room!
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{
+                  mt: 1,
+                  fontWeight: 400,
+                  fontSize: "115%",
+                  letterSpacing: 1.25,
+                }}
+              >
+                Every Romingo reservation includes free pet beds &amp; bowls in
+                your room!
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3} sx={{ textAlign: "center" }}>
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/fees2.svg"
+                }
+                draggable="false"
+                sx={{ height: "80px" }}
+              />
+              <Typography variant="h6">Lowest rates</Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{
+                  mt: 1,
+                  fontWeight: 400,
+                  fontSize: "115%",
+                  letterSpacing: 1.25,
+                }}
+              >
+                Romingo negotiates the best rates and passes the savings onto
+                you.
               </Typography>
             </Grid>
           </Grid>
@@ -759,7 +811,7 @@ const HomePage: FC<Props> = ({
                     }}
                   >
                     <Typography variant="h4" color="text.secondary">
-                      More destinations arriving Fall 2022
+                      New destinations arriving this year
                     </Typography>
                   </Grid>
                   <Grid
@@ -774,7 +826,7 @@ const HomePage: FC<Props> = ({
                   >
                     <Box
                       sx={{
-                        width: "200px",
+                        width: "215px",
                         height: "120px",
                         mt: { xs: "50px", md: "-20px" },
                         content: '""',
@@ -961,11 +1013,9 @@ const HomePage: FC<Props> = ({
                   textAlign: "center",
                   mb: { sm: "1rem", xs: "2rem" },
                   mt: { sm: "1rem", xs: "1rem" },
-                  fontSize: { xs: "95%", sm: "100%" },
                 }}
               >
-                Sign up for Romingo Insiders and get access to exclusive rates
-                and deals
+                Sign up for our newsletter to receive exclusive offers
               </Typography>
             </Grid>
             <Grid
@@ -1052,7 +1102,8 @@ const HomePage: FC<Props> = ({
                       autoCapitalize="off"
                       autoCorrect="off"
                       sx={{
-                        width: "calc(100% - 100px)",
+                        width: { xs: "calc(100% - 100px)", md: "400px" },
+                        minWidth: "200px",
                         background: "#fff",
                         outlineColor: "none",
                         "& label.Mui-focused": {
@@ -1085,19 +1136,6 @@ const HomePage: FC<Props> = ({
                     >
                       Sign up
                     </Button>
-                  </Box>
-                  <Box sx={{ textAlign: "center", mt: "1rem" }}>
-                    <Typography
-                      variant="body1"
-                      sx={{ color: "text.secondary", mb: "1rem" }}
-                    >
-                      Travel ideas, destination guides, special rates and
-                      promotions. We promise you and your dog will
-                      <FavoriteIcon
-                        sx={{ fontSize: "12px", mx: 0.2, mb: -0.3 }}
-                      />
-                      it!
-                    </Typography>
                   </Box>
                 </form>
               )}

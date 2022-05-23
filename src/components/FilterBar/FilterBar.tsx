@@ -345,6 +345,7 @@ const FilterBar: FC<Props> = ({
                 }}
               >
                 <Autocomplete
+                  disableClearable
                   options={cities}
                   value={getCity(selectedCity)}
                   // eslint-disable-next-line

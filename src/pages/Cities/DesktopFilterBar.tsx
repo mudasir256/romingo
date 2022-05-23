@@ -147,6 +147,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
             options={cities}
+            disableClearable
             value={getCity(selectedCity) || { id: null, name: "Choose City" }}
             getOptionLabel={(option: any) => {
               return option.name;
