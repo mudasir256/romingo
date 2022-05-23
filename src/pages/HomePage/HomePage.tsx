@@ -204,8 +204,8 @@ const HomePage: FC<Props> = ({
                         vacation rentals? Now, you can travel the world freely
                         with your pup by your side. Romingo has arrived to help
                         make traveling with your pup simple and fun! Book your
-                        next trip with Romingo and enjoy a customized pet-
-                        friendly experience made just for you.
+                        next trip with Romingo and enjoy a customized
+                        pet-friendly experience made just for you.
                       </Typography>
 
                       <Box
@@ -793,7 +793,7 @@ const HomePage: FC<Props> = ({
                 sx={{
                   minHeight: { xs: "250px", md: "100px" },
                   display: "flex",
-                  px: "50px",
+                  px: "30px",
                   backgroundColor: "#FFF",
                   borderRadius: "24px",
                   mt: "30px",
@@ -807,7 +807,7 @@ const HomePage: FC<Props> = ({
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      mt: { xs: "40px", md: "0" },
+                      mt: { xs: "30px", md: "0" },
                     }}
                   >
                     <Typography variant="h4" color="text.secondary">
