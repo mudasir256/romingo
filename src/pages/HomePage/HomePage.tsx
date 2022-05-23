@@ -395,7 +395,7 @@ const HomePage: FC<Props> = ({
                 borderRadius: "15px",
                 backgroundSize: "cover",
                 backgroundImage:
-                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/romingo-dog-checkin.jpeg")',
+                  'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/romingo-dog-bathrobe.jpeg")',
               }}
             >
               <Box
@@ -414,11 +414,11 @@ const HomePage: FC<Props> = ({
                 <Typography
                   variant="h3"
                   sx={{
-                    color: "#FFF",
+                    color: "#000",
                     maxWidth: { xs: "65%", sm: "200px" },
                     fontFamily: "Roboto",
                     fontSize: { xs: "180%", md: "240%" },
-                    textShadow: "0 2px 2px rgba(0,0,0,0.5)",
+                    textShadow: "0 2px 2px rgba(255,255,255,0.5)",
                   }}
                 >
                   Pets travel for FREE
@@ -602,7 +602,7 @@ const HomePage: FC<Props> = ({
               <Typography
                 variant="h5"
                 sx={{
-                  color: "text.secondary",
+                  color: "text.primary",
                   textAlign: "center",
                   mb: 5,
                   mt: "1rem",
