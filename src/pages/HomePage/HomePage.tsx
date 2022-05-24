@@ -32,6 +32,7 @@ import featured from "./featured";
 import FilterBar from "../../components/FilterBar";
 
 import "./Sticky.css";
+import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 
 interface Props {
   sx?: CSSObject;
@@ -1146,6 +1147,23 @@ const HomePage: FC<Props> = ({
       <Hidden mdUp>
         <Box className="sticky-header">
           <FilterBar />
+        </Box>
+      </Hidden>
+      <Hidden mdDown>
+        <Box
+          className="sticky-header"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              maxWidth: "700px",
+            }}
+          >
+            <DesktopFilterBar />
+          </Box>
         </Box>
       </Hidden>
       <Footer />

@@ -91,7 +91,7 @@ const Header: FC<Props> = ({ sx }) => {
     <Box
       sx={{
         width: "100%",
-        minHeight: { xs: "0px", md: "calc(100vh - 200px)" },
+        minHeight: { xs: "0px" },
         height: "100%",
         paddingTop: { xs: "0px", sm: "0px", md: "200px" },
         display: "flex",
@@ -109,7 +109,7 @@ const Header: FC<Props> = ({ sx }) => {
           left: 0,
           width: "100%",
           backgroundColor: "#f7f7f7",
-          pb: { xs: 5, lg: 10 },
+          pb: { xs: 5, lg: 8 },
           pt: { xs: 0, lg: 5 },
         }}
       >
@@ -126,7 +126,10 @@ const Header: FC<Props> = ({ sx }) => {
 
       <Container
         maxWidth="lg"
-        sx={{ mt: { xs: "250px", md: "160px" }, mb: "25px" }}
+        sx={{
+          mt: { xs: "250px", md: "100px" },
+          mb: "60px",
+        }}
       >
         <Hidden mdUp>
           <Box
@@ -158,7 +161,7 @@ const Header: FC<Props> = ({ sx }) => {
           sx={{
             width: "100%",
             height: { xs: "220px", md: "calc(100vh - 450px)" },
-            minHeight: { xs: "220px", md: "400px" },
+            minHeight: { xs: "220px", md: "500px" },
             borderRadius: { xs: "0px 0px 24px 24px", md: "24px" },
             content: '""',
             backgroundImage:
@@ -646,7 +649,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ margin: "85px auto 0px auto", userSelect: "none" }}>
+        <Box sx={{ margin: "65px auto 0px auto", userSelect: "none" }}>
           <Box
             sx={{
               display: "flex",
