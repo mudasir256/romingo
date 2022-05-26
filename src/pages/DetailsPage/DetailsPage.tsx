@@ -1395,7 +1395,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       fontFamily: "Roboto",
                     }}
                   >
-                    {location.address}, {city?.name}, CA, United States
+                    {location.address}, {city?.name}, United States
                   </Typography>
                   <Box sx={{ display: "flex", my: 2, width: "100%" }}>
                     <Map
