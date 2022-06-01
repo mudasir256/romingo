@@ -411,6 +411,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     getOptionLabel={(option: any) => {
                       return option.name;
                     }}
+                    renderOption={(props, option: any) => (
+                      <li {...props}>
+                        <img
+                          src={`/images/state-flags/${option?.state?.code.toLowerCase()}.png`}
+                          width="30px"
+                          style={{ marginRight: "10px" }}
+                        />
+                        {option.name}
+                      </li>
+                    )}
                     // eslint-disable-next-line
                     onChange={(e, values: any) => {
                       if (values) {
@@ -423,12 +433,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       width: "100%",
                       margin: "0px auto 0px 0px ",
                       fontSize: "14px",
-                    }}
-                    ListboxProps={{
-                      style: {
-                        position: "absolute",
-                        backgroundColor: "#fafafa",
-                      },
                     }}
                     renderInput={(params) => (
                       <TextField
