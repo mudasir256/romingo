@@ -173,15 +173,27 @@ const ListingPage: FC<Props> = () => {
   });
 
   const [markers, setMarkers] = useState(
-    cards.map((card: ListingCardProps) => {
-      refArray.push(React.createRef<HTMLAnchorElement>());
-      return {
-        lat: card.location.latitude,
-        lng: card.location.longitude,
-        type: "hotel",
-        price: card.lowestAveragePrice,
-      };
-    })
+    [...cards]
+      .sort((a: any, b: any) =>
+        (
+          sortBy === "score"
+            ? a.romingoScore < b.romingoScore
+            : sortBy === "high"
+            ? a.lowestAveragePrice < b.lowestAveragePrice
+            : a.lowestAveragePrice > b.lowestAveragePrice
+        )
+          ? 1
+          : -1
+      )
+      .map((card: ListingCardProps) => {
+        refArray.push(React.createRef<HTMLAnchorElement>());
+        return {
+          lat: card.location.latitude,
+          lng: card.location.longitude,
+          type: "hotel",
+          price: card.lowestAveragePrice,
+        };
+      })
   );
 
   const y = useMotionValue(0);
@@ -280,7 +292,7 @@ const ListingPage: FC<Props> = () => {
     );
     setHoverIndex(0);
     setHotelIndex(0);
-  }, [sortBy]);
+  }, [cards, sortBy]);
 
   return (
     <>
