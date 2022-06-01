@@ -172,15 +172,17 @@ const ListingPage: FC<Props> = () => {
     return state.hotelListReducer.hotels;
   });
 
-  const markers: MapLocation[] = cards.map((card: ListingCardProps) => {
-    refArray.push(React.createRef<HTMLAnchorElement>());
-    return {
-      lat: card.location.latitude,
-      lng: card.location.longitude,
-      type: "hotel",
-      price: card.lowestAveragePrice,
-    };
-  });
+  const [markers, setMarkers] = useState(
+    cards.map((card: ListingCardProps) => {
+      refArray.push(React.createRef<HTMLAnchorElement>());
+      return {
+        lat: card.location.latitude,
+        lng: card.location.longitude,
+        type: "hotel",
+        price: card.lowestAveragePrice,
+      };
+    })
+  );
 
   const y = useMotionValue(0);
   const variants = {
@@ -253,6 +255,29 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
+    setMarkers(
+      [...cards]
+        .sort((a: any, b: any) =>
+          (
+            sortBy === "score"
+              ? a.romingoScore < b.romingoScore
+              : sortBy === "high"
+              ? a.lowestAveragePrice < b.lowestAveragePrice
+              : a.lowestAveragePrice > b.lowestAveragePrice
+          )
+            ? 1
+            : -1
+        )
+        .map((card: ListingCardProps) => {
+          refArray.push(React.createRef<HTMLAnchorElement>());
+          return {
+            lat: card.location.latitude,
+            lng: card.location.longitude,
+            type: "hotel",
+            price: card.lowestAveragePrice,
+          };
+        })
+    );
     setHoverIndex(0);
     setHotelIndex(0);
   }, [sortBy]);
@@ -516,6 +541,7 @@ const ListingPage: FC<Props> = () => {
               pt: 2,
               pb: 3,
               width: "70%",
+              scrollBehavior: "smooth",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
                 width: "0.4em",
