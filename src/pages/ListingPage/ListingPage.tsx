@@ -172,6 +172,20 @@ const ListingPage: FC<Props> = () => {
     return state.hotelListReducer.hotels;
   });
 
+  const [sorted, setSorted] = useState(
+    [...cards].sort((a: any, b: any) =>
+      (
+        sortBy === "score"
+          ? a.romingoScore < b.romingoScore
+          : sortBy === "high"
+          ? a.lowestAveragePrice < b.lowestAveragePrice
+          : a.lowestAveragePrice > b.lowestAveragePrice
+      )
+        ? 1
+        : -1
+    )
+  );
+
   const [markers, setMarkers] = useState(
     [...cards]
       .sort((a: any, b: any) =>
@@ -267,6 +281,19 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
+    setSorted(
+      [...cards].sort((a: any, b: any) =>
+        (
+          sortBy === "score"
+            ? a.romingoScore < b.romingoScore
+            : sortBy === "high"
+            ? a.lowestAveragePrice < b.lowestAveragePrice
+            : a.lowestAveragePrice > b.lowestAveragePrice
+        )
+          ? 1
+          : -1
+      )
+    );
     setMarkers(
       [...cards]
         .sort((a: any, b: any) =>
@@ -389,15 +416,15 @@ const ListingPage: FC<Props> = () => {
               }}
               zoom={selectedCity?.zoom}
               markers={markers}
-              name={cards[hotelIndex]?.name}
-              location={cards[hotelIndex]?.addressLine1}
-              score={cards[hotelIndex]?.romingoScore}
-              price={cards[hotelIndex]?.lowestAveragePrice}
-              image={cards[hotelIndex]?.featuredImageURL}
-              amenities={cards[hotelIndex]?.dogAmenities}
+              name={sorted[hotelIndex]?.name}
+              location={sorted[hotelIndex]?.addressLine1}
+              score={sorted[hotelIndex]?.romingoScore}
+              price={sorted[hotelIndex]?.lowestAveragePrice}
+              image={sorted[hotelIndex]?.featuredImageURL}
+              amenities={sorted[hotelIndex]?.dogAmenities}
               markerClickCallBack={markerClick}
               selectedMarker={hoverIndex}
-              id={cards[hotelIndex]?.id}
+              id={sorted[hotelIndex]?.id}
               onClick={() => {
                 setAnimate("collapsed");
               }}
@@ -491,28 +518,16 @@ const ListingPage: FC<Props> = () => {
                     </Typography>
                   </>
                 ) : (
-                  [...cards]
-                    .sort((a: any, b: any) =>
-                      (
-                        sortBy === "score"
-                          ? a.romingoScore < b.romingoScore
-                          : sortBy === "high"
-                          ? a.lowestAveragePrice < b.lowestAveragePrice
-                          : a.lowestAveragePrice > b.lowestAveragePrice
-                      )
-                        ? 1
-                        : -1
-                    )
-                    .map((card: any, index: number) => (
-                      <ListingCard
-                        key={card.id}
-                        {...card}
-                        duration={DateTime.fromJSDate(new Date(search.checkOut))
-                          .diff(DateTime.fromJSDate(new Date(search.checkIn)))
-                          .toFormat("d")}
-                        highlighted={hotelIndex === index ? true : false}
-                      />
-                    ))
+                  sorted.map((card: any, index: number) => (
+                    <ListingCard
+                      key={card.id}
+                      {...card}
+                      duration={DateTime.fromJSDate(new Date(search.checkOut))
+                        .diff(DateTime.fromJSDate(new Date(search.checkIn)))
+                        .toFormat("d")}
+                      highlighted={hotelIndex === index ? true : false}
+                    />
+                  ))
                 )}
               </Stack>
             )}
@@ -628,37 +643,23 @@ const ListingPage: FC<Props> = () => {
                     </Typography>
                   </>
                 ) : (
-                  [...cards]
-                    .sort((a: any, b: any) =>
-                      (
-                        sortBy === "score"
-                          ? a.romingoScore < b.romingoScore
-                          : sortBy === "high"
-                          ? a.lowestAveragePrice < b.lowestAveragePrice
-                          : a.lowestAveragePrice > b.lowestAveragePrice
-                      )
-                        ? 1
-                        : -1
-                    )
-                    .map((card: any, index: number) => (
-                      <Box
-                        key={card.id}
-                        ref={refArray[index]}
-                        onMouseOver={() => {
-                          setHoverIndex(index);
-                        }}
-                      >
-                        <ListingCard
-                          {...card}
-                          duration={DateTime.fromJSDate(
-                            new Date(search.checkOut)
-                          )
-                            .diff(DateTime.fromJSDate(new Date(search.checkIn)))
-                            .toFormat("d")}
-                          highlighted={hotelIndex === index ? true : false}
-                        />
-                      </Box>
-                    ))
+                  sorted.map((card: any, index: number) => (
+                    <Box
+                      key={card.id}
+                      ref={refArray[index]}
+                      onMouseOver={() => {
+                        setHoverIndex(index);
+                      }}
+                    >
+                      <ListingCard
+                        {...card}
+                        duration={DateTime.fromJSDate(new Date(search.checkOut))
+                          .diff(DateTime.fromJSDate(new Date(search.checkIn)))
+                          .toFormat("d")}
+                        highlighted={hotelIndex === index ? true : false}
+                      />
+                    </Box>
+                  ))
                 )}
               </Stack>
             )}
