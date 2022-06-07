@@ -287,7 +287,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         const nonAccessibleArr: RoomInfo[] = [];
         romingoMatch.forEach((r: RoomInfo) =>
           ((r.type && r.type.toLowerCase().startsWith("accessible")) ||
-          (r.name && r.name.toLowerCase().startsWith("accessible"))
+          (r.name && r.name.toLowerCase().includes("accessible"))
             ? accessibleArr
             : nonAccessibleArr
           ).push(r)
