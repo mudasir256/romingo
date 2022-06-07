@@ -436,8 +436,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       return option.name;
                     }}
                     renderOption={(props, option: any) => (
-                      <li {...props} style={{ paddingLeft: 5 }}>
-                      <Box
+                      <li {...props} style={{ paddingLeft: 10 }}>
+                        <Box
                           sx={{
                             width: "55px",
                             display: "flex",
@@ -775,7 +775,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   return option.name;
                 }}
                 renderOption={(props, option: any) => (
-                  <li {...props} style={{ paddingLeft: 5 }}>
+                  <li {...props} style={{ paddingLeft: 10 }}>
                     <Box
                       sx={{
                         width: "55px",

@@ -141,7 +141,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
           borderRadius: "12px",
           margin: "0px auto",
           mt: "1rem",
-          maxWidth: "500px",
+          maxWidth: "600px",
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -167,10 +167,10 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
               }
             }}
             blurOnSelect="touch"
-            sx={{ width: "180px" }}
+            sx={{ width: "250px" }}
             renderOption={(props, option: any) => (
-              <li {...props} style={{ paddingLeft: 5 }}>
-              <Box
+              <li {...props} style={{ paddingLeft: 10 }}>
+                <Box
                   sx={{
                     width: "55px",
                     display: "flex",

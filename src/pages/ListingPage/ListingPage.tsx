@@ -853,10 +853,10 @@ const DesktopFilterBar: FC = () => {
             }}
             blurOnSelect="touch"
             renderOption={(props, option: any) => (
-              <li {...props} style={{ paddingLeft: 5 }}>
+              <li {...props} style={{ paddingLeft: 8 }}>
                 <Box
                   sx={{
-                    width: "25px",
+                    width: "35px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -881,7 +881,7 @@ const DesktopFilterBar: FC = () => {
                 setSelectedCity(values.id);
               }
             }}
-            sx={{ width: "180px" }}
+            sx={{ width: "200px" }}
             renderInput={(params) => (
               <TextField
                 {...params}

@@ -355,7 +355,7 @@ const FilterBar: FC<Props> = ({
                   })}
                   blurOnSelect="touch"
                   renderOption={(props, option: any) => (
-                    <li {...props} style={{ paddingLeft: 5 }}>
+                    <li {...props} style={{ paddingLeft: 10 }}>
                       <Box
                         sx={{
                           width: "55px",

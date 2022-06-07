@@ -462,7 +462,9 @@ const RoomCard: FC<Props> = ({
               fontSize: "120%",
               letterSpacing: 0,
               textTransform: "capitalize",
+              cursor: "pointer",
             }}
+            onClick={handleBook}
           >
             {name ? name : roomTitle} &nbsp;
           </Typography>
