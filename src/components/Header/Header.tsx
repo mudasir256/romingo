@@ -292,6 +292,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
     }
   }, [cities]);
 
+  console.log(selectedCity);
+
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
 
@@ -393,7 +395,21 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     pl: "1rem",
                   }}
                 >
-                  <LocationCity sx={{ height: "24px", color: "#666" }} />
+                  {selectedCity ? (
+                    <img
+                      src={`/images/location-icons/${getCity(selectedCity)
+                        ?.name.substring(
+                          0,
+                          getCity(selectedCity)?.name.indexOf(",")
+                        )
+                        .toLowerCase()
+                        .replace(/ /g, "_")}.svg`}
+                      height="24px"
+                      style={{ marginLeft: "5px" }}
+                    />
+                  ) : (
+                    <LocationCity sx={{ height: "24px", color: "#666" }} />
+                  )}
                 </Grid>
                 <Grid
                   item
@@ -406,18 +422,37 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 >
                   <Autocomplete
                     disableClearable
-                    options={cities}
+                    options={cities.sort(function (a: any, b: any) {
+                      if (a.state.name === b.state.name) {
+                        // Price is only important when cities are the same
+                        return b.name - a.name;
+                      }
+                      return a.state.name > b.state.name ? 1 : -1;
+                    })}
+                    groupBy={(o) => o.state.name}
                     value={getCity(selectedCity) || null}
                     getOptionLabel={(option: any) => {
                       return option.name;
                     }}
                     renderOption={(props, option: any) => (
                       <li {...props}>
-                        <img
-                          src={`/images/state-flags/${option?.state?.code.toLowerCase()}.png`}
-                          width="30px"
-                          style={{ marginRight: "10px" }}
-                        />
+                        <Box
+                          sx={{
+                            width: "50px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={`/images/location-icons/${option?.name
+                              .substring(0, option.name.indexOf(","))
+                              .toLowerCase()
+                              .replace(/ /g, "_")}.svg`}
+                            height="25px"
+                            style={{ marginRight: "10px" }}
+                          />
+                        </Box>
                         {option.name}
                       </li>
                     )}
@@ -708,11 +743,30 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 "&:hover": { background: "#efefef" },
               }}
             >
-              <LocationCity
-                sx={{ height: "20px", color: "#444", ml: ".25rem" }}
-              />
+              {selectedCity ? (
+                <img
+                  src={`/images/location-icons/${getCity(selectedCity)
+                    ?.name.substring(
+                      0,
+                      getCity(selectedCity)?.name.indexOf(",")
+                    )
+                    .toLowerCase()
+                    .replace(/ /g, "_")}.svg`}
+                  height="24px"
+                  style={{ marginLeft: "5px" }}
+                />
+              ) : (
+                <LocationCity sx={{ height: "24px", color: "#666" }} />
+              )}
               <Autocomplete
-                options={cities}
+                options={cities.sort(function (a: any, b: any) {
+                  if (a.state.name === b.state.name) {
+                    // Price is only important when cities are the same
+                    return b.name - a.name;
+                  }
+                  return a.state.name > b.state.name ? 1 : -1;
+                })}
+                groupBy={(o) => o.state.name}
                 disableClearable
                 value={getCity(selectedCity) || null}
                 getOptionLabel={(option: any) => {
@@ -720,11 +774,23 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 }}
                 renderOption={(props, option: any) => (
                   <li {...props}>
-                    <img
-                      src={`/images/state-flags/${option?.state?.code.toLowerCase()}.png`}
-                      width="30px"
-                      style={{ marginRight: "10px" }}
-                    />
+                    <Box
+                      sx={{
+                        width: "50px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        src={`/images/location-icons/${option?.name
+                          .substring(0, option.name.indexOf(","))
+                          .toLowerCase()
+                          .replace(/ /g, "_")}.svg`}
+                        height="25px"
+                        style={{ marginRight: "10px" }}
+                      />
+                    </Box>
                     {option.name}
                   </li>
                 )}
