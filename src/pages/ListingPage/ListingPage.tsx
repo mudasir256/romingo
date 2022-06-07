@@ -838,12 +838,42 @@ const DesktopFilterBar: FC = () => {
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
-            options={cities}
+            options={cities.sort(function (a: any, b: any) {
+              if (a.state.name === b.state.name) {
+                // Price is only important when cities are the same
+                return b.name - a.name;
+              }
+              return a.state.name > b.state.name ? 1 : -1;
+            })}
+            groupBy={(o) => o.state.name}
             disableClearable
             value={getCity(selectedCity) || null}
             getOptionLabel={(option: any) => {
               return option.name;
             }}
+            blurOnSelect="touch"
+            renderOption={(props, option: any) => (
+              <li {...props} style={{ paddingLeft: 5 }}>
+                <Box
+                  sx={{
+                    width: "25px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={`/images/location-icons/${option?.name
+                      .substring(0, option.name.indexOf(","))
+                      .toLowerCase()
+                      .replace(/ /g, "_")}.svg`}
+                    height="15px"
+                    style={{ marginRight: "2px" }}
+                  />
+                </Box>
+                {option.name}
+              </li>
+            )}
             // eslint-disable-next-line
             onChange={(e, values: any) => {
               if (values) {

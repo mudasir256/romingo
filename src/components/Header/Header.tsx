@@ -429,16 +429,17 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       }
                       return a.state.name > b.state.name ? 1 : -1;
                     })}
+                    blurOnSelect="touch"
                     groupBy={(o) => o.state.name}
                     value={getCity(selectedCity) || null}
                     getOptionLabel={(option: any) => {
                       return option.name;
                     }}
                     renderOption={(props, option: any) => (
-                      <li {...props}>
-                        <Box
+                      <li {...props} style={{ paddingLeft: 5 }}>
+                      <Box
                           sx={{
-                            width: "50px",
+                            width: "55px",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
@@ -768,15 +769,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 })}
                 groupBy={(o) => o.state.name}
                 disableClearable
+                blurOnSelect="touch"
                 value={getCity(selectedCity) || null}
                 getOptionLabel={(option: any) => {
                   return option.name;
                 }}
                 renderOption={(props, option: any) => (
-                  <li {...props}>
+                  <li {...props} style={{ paddingLeft: 5 }}>
                     <Box
                       sx={{
-                        width: "50px",
+                        width: "55px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",

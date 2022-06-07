@@ -146,7 +146,14 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
-            options={cities}
+            options={cities.sort(function (a: any, b: any) {
+              if (a.state.name === b.state.name) {
+                // Price is only important when cities are the same
+                return b.name - a.name;
+              }
+              return a.state.name > b.state.name ? 1 : -1;
+            })}
+            groupBy={(o) => o.state.name}
             disableClearable
             value={getCity(selectedCity) || { id: null, name: "Choose City" }}
             getOptionLabel={(option: any) => {
@@ -159,7 +166,30 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
                 setSelectedCity(values.id);
               }
             }}
+            blurOnSelect="touch"
             sx={{ width: "180px" }}
+            renderOption={(props, option: any) => (
+              <li {...props} style={{ paddingLeft: 5 }}>
+              <Box
+                  sx={{
+                    width: "55px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={`/images/location-icons/${option?.name
+                      .substring(0, option.name.indexOf(","))
+                      .toLowerCase()
+                      .replace(/ /g, "_")}.svg`}
+                    height="25px"
+                    style={{ marginRight: "10px" }}
+                  />
+                </Box>
+                {option.name}
+              </li>
+            )}
             renderInput={(params) => (
               <TextField
                 {...params}
