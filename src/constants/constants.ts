@@ -260,12 +260,39 @@ mutation CreatePaymentIntentMutation(
 }
 `;
 
+const CreateSetupIntent = `
+mutation CreateSetupIntentMutation(
+  $createSetupIntentInput: CreateSetupIntentInput!
+) {
+  createSetupIntent(input: $createSetupIntentInput) {
+    clientSecret
+    customerId
+  }
+}
+`;
+
 const CreateBooking = `
 mutation CreateBookingMutation($createBookingInput: CreateBookingInput!) {
   createBooking(input: $createBookingInput) {
     totalPriceAfterTax
     priceDifference
     priceChanged
+    booking {
+      id
+      sabreConfirmationId
+      propertyConfirmationId
+      faunaDocId
+    }
+  }
+}
+`;
+
+const CreateBooking2 = `
+mutation CreateBooking2Mutation($createBooking2Input: CreateBooking2Input!) {
+  createBooking2(input: $createBooking2Input) {
+    priceChanged
+    priceDifference
+    totalPriceAfterTax
     booking {
       id
       sabreConfirmationId
@@ -290,6 +317,8 @@ export {
   GetCities,
   GetHotelDetail,
   CreatePaymentIntent,
+  CreateSetupIntent,
   CreateBooking,
+  CreateBooking2,
   GetStripeClientSecret,
 };

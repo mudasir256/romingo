@@ -65,14 +65,14 @@ const Header: FC<Props> = ({ sx }) => {
   }, []);
 
   const handleImFlexibleClick = () => {
-    const thirtyDays = DateTime.local().plus({ days: 30 }).toJSDate();
+    const thirtyDays = DateTime.local().plus({ days: 21 }).toJSDate();
     const randomCheckIn = randomDate(new Date(), thirtyDays);
-    const oneWeekFromCheckin = DateTime.fromJSDate(randomCheckIn)
-      .plus({ days: 7 })
+    const threeDaysFromCheckIn = DateTime.fromJSDate(randomCheckIn)
+      .plus({ days: 3 })
       .toJSDate();
     const randomCheckOut = randomDate(
       DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
-      oneWeekFromCheckin
+      threeDaysFromCheckIn
     );
 
     dispatch(
@@ -156,6 +156,21 @@ const Header: FC<Props> = ({ sx }) => {
             <Typography variant="h6" sx={{ color: "#fff" }}>
               Easy to use. Lowest rates. No pet fees.
             </Typography>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="medium"
+              disableElevation
+              onClick={handleImFlexibleClick}
+              sx={{
+                mt: "10px",
+                py: "10px",
+                borderRadius: "24px",
+                fontWeight: "500",
+              }}
+            >
+              Book Now
+            </Button>
           </Box>
         </Hidden>
         <Box
@@ -291,8 +306,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       setSelectedCity(city);
     }
   }, [cities]);
-
-  console.log(selectedCity);
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });

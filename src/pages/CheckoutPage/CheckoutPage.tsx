@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -34,6 +34,8 @@ interface Props {
 }
 
 const CheckoutPage: FC<Props> = () => {
+  const [payLater, setPayLater] = useState(false);
+  const search = useSelector((state: any) => state.searchReducer.search);
   const { finePrint, room } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
@@ -47,6 +49,16 @@ const CheckoutPage: FC<Props> = () => {
   });
 
   const mobile = useMediaQuery("(max-width:800px)");
+
+  // set payLater to true if check-in is more than 3 days in the future
+  useEffect(() => {
+    const dateNow = new Date();
+    const checkinDate = new Date(search.checkIn);
+    const hours = Math.abs(checkinDate.getTime() - dateNow.getTime()) / 36e5;
+    if (hours > 72) {
+      setPayLater(true);
+    }
+  }, [search]);
 
   useEffect(() => {
     if (screen.height > 700) {
@@ -89,6 +101,7 @@ const CheckoutPage: FC<Props> = () => {
                   finePrint={finePrint}
                   price={detail?.room?.room?.totalPriceAfterTax}
                   priceKey={detail?.room?.room?.priceKey}
+                  payLater={payLater}
                 />
               </Grid>
             )}
@@ -108,7 +121,7 @@ const CheckoutPage: FC<Props> = () => {
                   <BookingDetailCard />
                 </Grid>
                 <Grid item xs={12} order={{ xs: 2, md: 2 }}>
-                  <PriceDetailCard />
+                  <PriceDetailCard payLater={payLater} />
                 </Grid>
                 {mobile && (
                   <Grid item xs={12} order={2}>
@@ -128,6 +141,7 @@ const CheckoutPage: FC<Props> = () => {
                       finePrint={finePrint}
                       price={detail?.room?.room?.totalPriceAfterTax}
                       priceKey={detail?.room?.room?.priceKey}
+                      payLater={payLater}
                     />
                   </Grid>
                 )}

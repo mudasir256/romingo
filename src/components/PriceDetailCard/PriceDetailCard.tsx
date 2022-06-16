@@ -7,9 +7,10 @@ import { CheckBox, CheckCircleOutlineRounded } from "@mui/icons-material";
 
 interface Props {
   sx?: CSSObject;
+  payLater: boolean;
 }
 
-const PriceDetailCard: FC<Props> = ({ sx }) => {
+const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
@@ -49,16 +50,23 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
         detail?.room?.room?.totalPriceAfterTax - detail?.room?.room?.totalPrice,
     });
 
+    if (payLater) {
+      tmp.push({
+        label: "Total",
+        price: detail?.room?.room?.totalPriceAfterTax,
+      });
+    }
+
     tmp.push({
       label: "Total Due Now",
-      price: detail?.room?.room?.totalPriceAfterTax,
+      price: payLater ? 0 : detail?.room?.room?.totalPriceAfterTax,
     });
 
     setPriceArr([...tmp]);
     setFees(detail?.room?.room?.fees);
-  }, [detail]);
+  }, [detail, payLater]);
 
-  const detailsLen = priceArr.length;
+  const detailsLen = payLater ? priceArr.length - 1 : priceArr.length;
 
   return (
     <Box
@@ -119,7 +127,7 @@ const PriceDetailCard: FC<Props> = ({ sx }) => {
                   paddingLeft: "8px",
                 }}
               >
-                {`$${detail.price?.toFixed(2)}`}
+                {`$${detail.price?.toFixed(2)}*`}
               </Typography>
             </Box>
           );
