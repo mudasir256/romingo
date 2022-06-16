@@ -622,7 +622,9 @@ const CheckoutInformation: FC<Props> = ({ sx, price, priceKey, payLater }) => {
             <Box
               sx={{
                 display:
-                  siLoading || piLoading || bnplLoading ? "none" : "flex",
+                  siLoading || piLoading || bnplLoading || paymentLoading
+                    ? "none"
+                    : "flex",
                 flexDirection: "column",
               }}
             >
