@@ -45,7 +45,7 @@ const routes: Routes[] = [
     requireAuth: false,
   },
   {
-    path: "/checkout",
+    path: "/checkout*",
     component: CheckoutPage,
     requireAuth: false,
   },

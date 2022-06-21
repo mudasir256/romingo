@@ -398,11 +398,23 @@ const CheckoutInformation: FC<Props> = ({
     if (createData?.createBooking?.priceChanged) {
       setPriceChanged(true);
     }
+    if (
+      createData?.createBooking2?.booking?.sabreConfirmationId &&
+      createData?.createBooking2?.booking?.propertyConfirmationId
+    ) {
+      history.push("?success=true", []);
+    }
   }, [createData]);
 
   useEffect(() => {
     if (bnplData?.createBooking2?.priceChanged) {
       setPriceChanged(true);
+    }
+    if (
+      bnplData?.createBooking2?.booking?.sabreConfirmationId &&
+      bnplData?.createBooking2?.booking?.propertyConfirmationId
+    ) {
+      history.push("?success=true", []);
     }
   }, [bnplData]);
 
