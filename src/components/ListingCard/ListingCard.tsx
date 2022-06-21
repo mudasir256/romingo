@@ -187,15 +187,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   ml: { sm: "0px", xs: "0px" },
                 }}
               >
-                <Box sx={{ mb: 1, display: "flex" }}>
-                  <MonetizationOn
-                    sx={{
-                      fontSize: 15,
-                      color: "#5b8d3e",
-                      mt: ".15rem",
-                      mr: ".1rem",
-                    }}
-                  />
+                <Box sx={{ mb: 0.5, display: "flex" }}>
                   <Typography
                     variant="body1"
                     sx={{
@@ -206,23 +198,13 @@ const ListingCard: FC<ListingCardProps> = ({
                       textOverflow: "ellipsis",
                       fontFamily: "Roboto",
                       fontSize: "80%",
-                      color: "#5b8d3e",
+                      color: "#009CA1",
                     }}
                   >
-                    {listingsPagePromoText
-                      ? listingsPagePromoText
-                      : "No hidden fees"}
+                    Fully refundable
                   </Typography>
                 </Box>
-                <Box sx={{ mt: 1, mb: "auto", display: "flex" }}>
-                  <VerifiedUser
-                    sx={{
-                      fontSize: 15,
-                      color: "#5b8d3e",
-                      mt: ".1rem",
-                      mr: ".1rem",
-                    }}
-                  />
+                <Box sx={{ mt: 0.5, mb: "auto", display: "flex" }}>
                   <Typography
                     variant="body1"
                     sx={{
@@ -233,10 +215,10 @@ const ListingCard: FC<ListingCardProps> = ({
                       textOverflow: "ellipsis",
                       fontFamily: "Roboto",
                       fontSize: "80%",
-                      color: "#5b8d3e",
+                      color: "#009CA1",
                     }}
                   >
-                    Fully refundable, free cancellation
+                    Reserve now, pay later
                   </Typography>
                 </Box>
               </Box>

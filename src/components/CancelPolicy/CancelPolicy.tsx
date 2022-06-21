@@ -21,10 +21,10 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
       <Box
         sx={{
           color: "#222",
-          borderTop: '1px solid #ddd',
+          borderTop: "1px solid #ddd",
           pt: { xs: 3, sm: 2 },
           pb: 2.5,
-          px: { xs: '0rem', sm: '1rem' },
+          px: { xs: "0rem", sm: "1rem" },
         }}
       >
         <Typography
@@ -51,7 +51,7 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   alignItems: "bottom",
                   justifyContent: "start",
                   mt: 1,
-                  fontFamily: "Lato"
+                  fontFamily: "Lato",
                 }}
               >
                 <Check
@@ -114,8 +114,8 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
               <Typography
                 variant="caption"
                 sx={{
-                  mt: '1rem',
-                  display: 'block',
+                  mt: "1rem",
+                  display: "block",
                   textAlign: "left",
                   fontFamily: "Roboto",
                   color: "text.light",

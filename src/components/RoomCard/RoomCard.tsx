@@ -760,7 +760,6 @@ const RoomCard: FC<Props> = ({
               >
                 {cancelationPolicy.cancelable && (
                   <>
-                    {" "}
                     <b
                       style={{
                         fontWeight: 600,
@@ -770,8 +769,19 @@ const RoomCard: FC<Props> = ({
                         alignItems: "center",
                       }}
                     >
-                      {" "}
-                      Fully refundable{" "}
+                      Reserve now, pay later
+                    </b>
+                    <br />
+                    <b
+                      style={{
+                        fontWeight: 600,
+                        color: "#5B8D3E",
+                        marginBottom: ".5rem",
+                        display: "inline-flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      Fully refundable
                       <InfoOutlined
                         onClick={handleOpenRefundData}
                         sx={{
@@ -779,8 +789,8 @@ const RoomCard: FC<Props> = ({
                           fontSize: "12px",
                           ml: ".125rem",
                         }}
-                      />{" "}
-                    </b>{" "}
+                      />
+                    </b>
                     <br />
                     Before{" "}
                     {DateTime.fromISO(
@@ -837,12 +847,12 @@ const RoomCard: FC<Props> = ({
                         sx={{ textAlign: "left", fontSize: "80%" }}
                       >
                         By reserving on Romingo, you may cancel your reservation
-                        with a full refund on or before the date listed. <br />{" "}
-                        <br /> Your reservation must be cancelled by the
-                        check-in time of the property&lsquo;s local time. <br />{" "}
-                        <br /> All cancellations after this date and time are
-                        subject to cancellation fee(s) in accordance with hotel
-                        policy and Romingo&lsquo;s terms.
+                        without incurring cancellation fees on or before the
+                        date listed. <br /> <br /> Your reservation must be
+                        cancelled by the check-in time of the property&lsquo;s
+                        local time. <br /> <br /> All cancellations after this
+                        date and time are subject to cancellation fee(s) in
+                        accordance with hotel policy and Romingo&lsquo;s terms.
                       </Typography>
                     </Box>
                   </Box>

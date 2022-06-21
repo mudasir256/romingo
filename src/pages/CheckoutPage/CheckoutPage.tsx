@@ -102,6 +102,7 @@ const CheckoutPage: FC<Props> = () => {
                   price={detail?.room?.room?.totalPriceAfterTax}
                   priceKey={detail?.room?.room?.priceKey}
                   payLater={payLater}
+                  policy={room?.room?.cancelationPolicy}
                 />
               </Grid>
             )}
@@ -142,6 +143,7 @@ const CheckoutPage: FC<Props> = () => {
                       price={detail?.room?.room?.totalPriceAfterTax}
                       priceKey={detail?.room?.room?.priceKey}
                       payLater={payLater}
+                      policy={room?.room?.cancelationPolicy}
                     />
                   </Grid>
                 )}

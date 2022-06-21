@@ -24,6 +24,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
+import { utils } from "../../services/utils";
 
 interface Props {
   sx?: CSSObject;
@@ -34,9 +35,19 @@ interface Props {
   priceKey: string;
   price: number;
   payLater: boolean;
+  policy: {
+    cancelable: boolean;
+    deadlineLocal: string | null;
+  };
 }
 
-const CheckoutInformation: FC<Props> = ({ sx, price, priceKey, payLater }) => {
+const CheckoutInformation: FC<Props> = ({
+  sx,
+  price,
+  priceKey,
+  payLater,
+  policy,
+}) => {
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
@@ -777,7 +788,51 @@ const CheckoutInformation: FC<Props> = ({ sx, price, priceKey, payLater }) => {
                     />
                   </Box>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ mt: 2 }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#222",
+                      fontFamily: "Montserrat",
+                      textAlign: "left",
+                      mb: 2,
+                    }}
+                  >
+                    Important Information
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ mt: 0, textAlign: "left" }}
+                  >
+                    <ul>
+                      {policy.cancelable ? (
+                        <li>
+                          Cancellations or changes made to your reservation
+                          after 11:59pm (local property time) on{" "}
+                          <span style={{ fontWeight: "bold" }}>
+                            {utils.getDateFull(policy?.deadlineLocal)}
+                          </span>{" "}
+                          or no-shows are subject to a cancellation fee equal to
+                          100% of the total amount paid for the reservation.
+                        </li>
+                      ) : (
+                        <li>This rate is non-refundable.</li>
+                      )}
+
+                      <li>
+                        You and your pet will be greeted by front desk staff
+                        upon arrival.
+                      </li>
+                      <li>
+                        Your card will be charged{" "}
+                        <span style={{ fontWeight: "bold" }}>
+                          ${price.toFixed(2)}
+                        </span>
+                        {payLater ? " three (3) days before check-in." : "."}
+                      </li>
+                    </ul>
+                  </Typography>
                   <Box
                     sx={{
                       display: "flex",
@@ -816,21 +871,8 @@ const CheckoutInformation: FC<Props> = ({ sx, price, priceKey, payLater }) => {
                     onClick={submitStripe}
                     sx={{ mt: 3 }}
                   >
-                    <Typography variant="h6">
-                      {payLater ? "Book Now Pay Later" : "Book It"}
-                    </Typography>
+                    <Typography variant="h6">Complete Booking</Typography>
                   </Button>
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    sx={{ mt: 2, textAlign: "left" }}
-                  >
-                    Your card will be charged{" "}
-                    <span style={{ fontWeight: "bold" }}>
-                      ${price.toFixed(2)}
-                    </span>
-                    {payLater ? " three (3) days before check-in." : "."}
-                  </Typography>
                 </Grid>
               </Box>
             )}

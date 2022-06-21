@@ -23,6 +23,11 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
       price: number;
     }[]
   >([]);
+  const dollarUSLocale = Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   const [feesIncluded, setFeesIncluded] = useState("");
   const [fees, setFees] = useState([]);
 
@@ -40,25 +45,33 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
     }
 
     tmp.push({
-      label: "Average Price Per Night",
+      label: "Average price per night",
       price: detail?.room?.room?.averagePrice,
     });
 
     tmp.push({
-      label: "Taxes & Fees",
+      label: "Nights",
+      price: detail?.room?.room?.totalPrice / detail?.room?.room?.averagePrice,
+    });
+
+    tmp.push({
+      label: "Total before taxes & fees",
+      price: detail?.room?.room?.totalPrice,
+    });
+
+    tmp.push({
+      label: "Taxes & fees",
       price:
         detail?.room?.room?.totalPriceAfterTax - detail?.room?.room?.totalPrice,
     });
 
-    if (payLater) {
-      tmp.push({
-        label: "Total",
-        price: detail?.room?.room?.totalPriceAfterTax,
-      });
-    }
+    tmp.push({
+      label: "Total",
+      price: detail?.room?.room?.totalPriceAfterTax,
+    });
 
     tmp.push({
-      label: "Total Due Now",
+      label: "Pay now",
       price: payLater ? 0 : detail?.room?.room?.totalPriceAfterTax,
     });
 
@@ -66,14 +79,14 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
     setFees(detail?.room?.room?.fees);
   }, [detail, payLater]);
 
-  const detailsLen = payLater ? priceArr.length - 1 : priceArr.length;
+  const detailsLen = priceArr.length;
 
   return (
     <Box
       sx={{
         color: "text.primary",
         paddingTop: { xs: "1rem", sm: "0rem" },
-        paddingBottom: { xs: "2rem", sm: "1.5rem" },
+        paddingBottom: { xs: "1rem", sm: "0.5rem" },
         px: { xs: "0rem", sm: "1rem" },
       }}
     >
@@ -89,49 +102,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
         Price Details
       </Typography>
       {priceArr.map((detail, i) => {
-        if (i === detailsLen - 1) {
-          return (
-            <Box
-              key={i}
-              sx={{
-                borderTop: "1px solid #DDD",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                mt: 1.5,
-                pt: 1.5,
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 0,
-                  textTransform: "capitalize",
-                  color: "#222",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  maxWidth: "70%",
-                  fontWeight: 600,
-                }}
-              >
-                {detail.label}
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "bold",
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                }}
-              >
-                {`$${detail.price?.toFixed(2)}*`}
-              </Typography>
-            </Box>
-          );
-        } else {
+        if (i === 1) {
           return (
             <Box
               key={i}
@@ -139,14 +110,15 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
+                borderBottom: "1px solid #DDD",
                 mt: 1,
+                pb: 1,
               }}
             >
               <Typography
                 variant="body2"
                 sx={{
                   mt: 0,
-                  textTransform: "capitalize",
                   color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
@@ -168,7 +140,168 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                   paddingLeft: "8px",
                 }}
               >
-                {`$${detail.price?.toFixed(2)}`}
+                {`x ${detail.price?.toFixed(0)}`}
+              </Typography>
+            </Box>
+          );
+        } else if (i === detailsLen - 2) {
+          return (
+            <Box
+              key={i}
+              sx={{
+                borderTop: "1px solid #DDD",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+                pt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0,
+                  color: "#222",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 600,
+                }}
+              >
+                {detail.label}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 500,
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`${dollarUSLocale.format(detail?.price)}*`}
+              </Typography>
+            </Box>
+          );
+        } else if (detail.label === "Pay now") {
+          return (
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0,
+                  color: "#5B8D3E",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 600,
+                }}
+              >
+                {detail.label}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 600,
+                  mt: 0,
+                  fontFamily: "Roboto",
+                  color: "#5B8D3E",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`${dollarUSLocale.format(detail?.price)}`}
+              </Typography>
+            </Box>
+          );
+        } else if (detail.label === "Taxes & fees") {
+          return (
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 600,
+                }}
+              >
+                {detail.label}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 500,
+                  mt: 0,
+                  fontFamily: "Roboto",
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`+ ${dollarUSLocale.format(detail?.price)}`}
+              </Typography>
+            </Box>
+          );
+        } else {
+          return (
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 600,
+                }}
+              >
+                {detail.label}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 500,
+                  mt: 0,
+                  fontFamily: "Roboto",
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`${dollarUSLocale.format(detail?.price)}`}
               </Typography>
             </Box>
           );
@@ -210,7 +343,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
       >
         {feesIncluded}
       </Typography>
-      {promoText && (
+      {/* {promoText && (
         <Typography
           variant="body2"
           color="primary.main"
@@ -231,7 +364,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
           />
           {promoText}
         </Typography>
-      )}
+      )} */}
     </Box>
   );
 };
