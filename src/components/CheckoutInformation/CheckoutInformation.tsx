@@ -402,7 +402,7 @@ const CheckoutInformation: FC<Props> = ({
       createData?.createBooking2?.booking?.sabreConfirmationId &&
       createData?.createBooking2?.booking?.propertyConfirmationId
     ) {
-      history.push("?success=true", []);
+      history.push("&success=true", []);
     }
   }, [createData]);
 
@@ -414,7 +414,7 @@ const CheckoutInformation: FC<Props> = ({
       bnplData?.createBooking2?.booking?.sabreConfirmationId &&
       bnplData?.createBooking2?.booking?.propertyConfirmationId
     ) {
-      history.push("?success=true", []);
+      history.push("&success=true", []);
     }
   }, [bnplData]);
 
