@@ -191,7 +191,6 @@ const ListingCard: FC<ListingCardProps> = ({
                   <Typography
                     variant="body1"
                     sx={{
-                      fontWeight: 600,
                       pr: 0.15,
                       overflow: "hidden",
                       whiteSpace: "nowrap",
@@ -208,7 +207,6 @@ const ListingCard: FC<ListingCardProps> = ({
                   <Typography
                     variant="body1"
                     sx={{
-                      fontWeight: 600,
                       pr: 0.15,
                       overflow: "hidden",
                       whiteSpace: "nowrap",
