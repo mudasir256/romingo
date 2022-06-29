@@ -391,9 +391,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 display: "flex",
                 alignItems: "center",
                 minWidth: "100%",
-                minHeight: "49px",
-                maxHeight: "47px",
-                border: "2px solid #343B5380",
+                minHeight: "45px",
+                maxHeight: "45px",
+                border: "1px solid #DDDDDD",
                 borderRadius: "8px",
               }}
             >
@@ -531,7 +531,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 width: "100%",
                 transition: "all .15s ease-in-out",
                 alignItems: "center",
-                maxHeight: "47px",
+                maxHeight: "45px",
               }}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -571,7 +571,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   <Grid
                     container
                     sx={{
-                      border: "2px solid #343B5380",
+                      border: "1px solid #DDDDDD",
                       borderRadius: "6px",
                       padding: ".25rem .25rem .25rem 1rem",
                     }}
@@ -627,7 +627,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   <Grid
                     container
                     sx={{
-                      border: "2px solid #343B5380",
+                      border: "1px solid #DDDDDD",
                       borderRadius: "6px",
                       padding: ".25rem .25rem .25rem 1rem",
                     }}
@@ -749,7 +749,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 minWidth: "356px",
                 minHeight: "34px",
                 maxHeight: "47px",
-                border: "2px solid #343B5380",
+                border: "1px solid #DDDDDD",
                 padding: ".25rem .5rem",
                 borderRadius: "6px",
                 mr: ".5rem",
@@ -895,7 +895,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         alignItems: "center",
                         minHeight: "34px",
                         mr: ".5rem",
-                        border: "2px solid #343B5380",
+                        border: "1px solid #DDDDDD",
                         padding: ".25rem .5rem",
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
@@ -982,7 +982,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         alignItems: "center",
                         minHeight: "34px",
                         mr: ".5rem",
-                        border: "2px solid #343B5380",
+                        border: "1px solid #343B5380",
                         padding: ".25rem .5rem",
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
