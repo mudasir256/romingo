@@ -982,7 +982,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         alignItems: "center",
                         minHeight: "34px",
                         mr: ".5rem",
-                        border: "1px solid #343B5380",
+                        border: "1px solid #DDDDDD",
                         padding: ".25rem .5rem",
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
