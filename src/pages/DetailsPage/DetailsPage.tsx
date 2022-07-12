@@ -1592,6 +1592,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               />
               <Grid container spacing={4} mt={2}>
                 {reviewData &&
+                  reviewData.reviews &&
                   reviewData?.reviews.map((review: any) => (
                     <Grid item xs={12} sm={6} key={review.author_name}>
                       <Grid container sx={{ paddingBottom: "2rem" }}>
