@@ -1,14 +1,20 @@
 import * as actionTypes from "./actionTypes";
+import TagManager from "react-gtm-module";
 
-export const setHotel = (detail: IHotelDetails) => (
-  dispatch: HotelDetailDispatchType
-) => {
-  // call api to login
-  dispatch({
-    type: actionTypes.SET_DETAILS,
-    detail,
-  });
-};
+export const setHotel =
+  (detail: IHotelDetails) => (dispatch: HotelDetailDispatchType) => {
+    TagManager.dataLayer({
+      dataLayer: {
+        event: "selectProperty",
+        propertyName: detail.name,
+        lowestPropertyPrice: detail.lowestAveragePrice,
+      },
+    });
+    dispatch({
+      type: actionTypes.SET_DETAILS,
+      detail,
+    });
+  };
 
 const initialState: DetailState = {
   detail: {

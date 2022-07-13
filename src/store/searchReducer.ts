@@ -1,6 +1,18 @@
 import * as actionTypes from "./actionTypes";
+import TagManager from "react-gtm-module";
 
 export const saveSearch = (search: ISearch) => {
+  TagManager.dataLayer({
+    dataLayer: {
+      event: "search", // event name declared during initialization
+      cityId: search.city,
+      checkIn: search.checkIn,
+      checkOut: search.checkOut,
+      adults: search.occupants.adults,
+      children: search.occupants.children,
+      dogs: search.occupants.dogs,
+    },
+  });
   const action: SearchAction = {
     type: actionTypes.SAVE_SEARCH,
     search,

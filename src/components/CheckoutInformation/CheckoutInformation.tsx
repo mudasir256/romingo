@@ -25,6 +25,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
 import { utils } from "../../services/utils";
+import TagManager from "react-gtm-module";
 
 interface Props {
   sx?: CSSObject;
@@ -363,6 +364,11 @@ const CheckoutInformation: FC<Props> = ({
           "*We were unable to process this transaction. Please try again.";
         setFormError(errors);
         setPaymentLoading(false);
+        TagManager.dataLayer({
+          dataLayer: {
+            event: "checkoutFail",
+          },
+        });
       }
     }
 
@@ -402,6 +408,12 @@ const CheckoutInformation: FC<Props> = ({
       createData?.createBooking2?.booking?.sabreConfirmationId &&
       createData?.createBooking2?.booking?.propertyConfirmationId
     ) {
+      TagManager.dataLayer({
+        dataLayer: {
+          event: "checkoutSuccess",
+          bnpl: false,
+        },
+      });
       history.push("?success=true", []);
     }
   }, [createData]);
@@ -414,6 +426,12 @@ const CheckoutInformation: FC<Props> = ({
       bnplData?.createBooking2?.booking?.sabreConfirmationId &&
       bnplData?.createBooking2?.booking?.propertyConfirmationId
     ) {
+      TagManager.dataLayer({
+        dataLayer: {
+          event: "checkoutSuccess",
+          bnpl: true,
+        },
+      });
       history.push("?success=true", []);
     }
   }, [bnplData]);
