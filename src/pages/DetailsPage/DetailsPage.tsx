@@ -1330,7 +1330,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   {location.address}, {city?.name}
                 </Typography>
 
-                {/* <Box
+                <Box
                   sx={{
                     display: "flex",
                     flexDirection: "row",
@@ -1339,22 +1339,24 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   }}
                 >
                   <Chip icon={<LocationCityIcon />} label={neighborhood} />
-                  {data?.property?.detailsPagePromoText && (
-                    <Chip
-                      icon={<LocalOffer sx={{ fontSize: "100%" }} />}
-                      color="success"
-                      sx={{
-                        backgroundColor: "#5b8d3e",
-                        color: "#fff",
-                        ml: 0.5,
-                      }}
-                      label={data?.property?.detailsPagePromoText}
-                    />
-                  )}
-                </Box> */}
-                {data?.property?.petFeePolicy?.totalFees &&
-                  data.property.petFeePolicy.totalFees !== -1 && (
-                    <Box
+                  {data?.property?.petFeePolicy?.totalFees &&
+                    data.property.petFeePolicy.totalFees !== -1 && (
+                      <Chip
+                        icon={<LocalOffer sx={{ fontSize: "100%" }} />}
+                        color="success"
+                        sx={{
+                          backgroundColor: "#5b8d3e",
+                          color: "#fff",
+                          ml: 0.5,
+                        }}
+                        label={`Save $${Math.round(
+                          data.property.petFeePolicy.totalFees
+                        )} on pet fees`}
+                      />
+                    )}
+                </Box>
+
+                {/* <Box
                       sx={{
                         border: "2px solid",
                         borderColor: "primary.main",
@@ -1433,9 +1435,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           </Typography>
                         </Typography>
                       </Typography>
-                    </Box>
-                  )}
-
+                    </Box> */}
                 <ReadMore small text={defaultDescription} length={200} />
                 <Button
                   onClick={goToRateScroll}

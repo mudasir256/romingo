@@ -175,6 +175,9 @@ interface IHotelDetails {
     value: string;
   }[];
   nearby: { text: string; distance: number }[];
+  petFeePolicy: {
+    totalFees: number;
+  };
   rooms: IRoom[];
   lowestAveragePrice?: number;
 }

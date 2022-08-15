@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { CSSObject } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { CheckBox, CheckCircleOutlineRounded } from "@mui/icons-material";
 
 interface Props {
   sx?: CSSObject;
@@ -14,8 +13,8 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
-  const promoText = useSelector(
-    (state: any) => state.hotelDetailReducer?.detail?.checkoutPagePromoText
+  const totalPetFees = useSelector(
+    (state: any) => state.hotelDetailReducer?.detail?.petFeePolicy?.totalFees
   );
   const [priceArr, setPriceArr] = useState<
     {
@@ -63,6 +62,11 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
       label: "Taxes & fees",
       price:
         detail?.room?.room?.totalPriceAfterTax - detail?.room?.room?.totalPrice,
+    });
+
+    tmp.push({
+      label: "Pet Fees",
+      price: totalPetFees,
     });
 
     tmp.push({
@@ -182,6 +186,60 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 }}
               >
                 {`${dollarUSLocale.format(detail?.price)}*`}
+              </Typography>
+            </Box>
+          );
+        } else if (detail.label === "Pet Fees") {
+          return (
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0,
+                  color: "#5B8D3E",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 600,
+                }}
+              >
+                {detail.label}
+              </Typography>
+
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: 600,
+                  mt: 0,
+                  fontFamily: "Roboto",
+                  color: "#5B8D3E",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {totalPetFees !== -1 ? (
+                  <>
+                    <span
+                      style={{
+                        color: "#BC4749",
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      `${dollarUSLocale.format(totalPetFees)}`
+                    </span>
+                    <span> $0</span>
+                  </>
+                ) : (
+                  "$0"
+                )}
               </Typography>
             </Box>
           );

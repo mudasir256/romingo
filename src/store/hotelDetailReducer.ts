@@ -27,6 +27,9 @@ const initialState: DetailState = {
     roomList: [],
     amenitiesTitle: "",
     nearby: [],
+    petFeePolicy: {
+      totalFees: -1,
+    },
     rooms: [],
   },
 };
