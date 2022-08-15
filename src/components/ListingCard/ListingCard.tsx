@@ -32,6 +32,15 @@ export interface ListingCardProps {
   neighborhood: string;
   showPrice?: boolean;
   noLink?: boolean;
+  petFeePolicy: {
+    maxPets: number;
+    maxWeightPerPetInLBS: number;
+    desc: string;
+    perPet: boolean;
+    perNight: boolean;
+    breakup: JSON;
+    totalFees: number;
+  };
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
@@ -52,6 +61,7 @@ const ListingCard: FC<ListingCardProps> = ({
   highlighted = false,
   showPrice = true,
   noLink = false,
+  petFeePolicy,
   ...props
 }) => {
   const history = useHistory();
@@ -125,7 +135,7 @@ const ListingCard: FC<ListingCardProps> = ({
               sm={7}
               md={7}
               lg={8}
-              xl={9}
+              xl={8}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -227,7 +237,7 @@ const ListingCard: FC<ListingCardProps> = ({
               sm={5}
               md={5}
               lg={4}
-              xl={3}
+              xl={4}
               sx={{
                 display: "flex",
                 flexDirection: { sm: "column", xs: "row" },
@@ -270,42 +280,114 @@ const ListingCard: FC<ListingCardProps> = ({
               <Box
                 sx={{
                   mt: { xs: "0px", sm: "auto" },
-                  ml: { sm: "auto", xs: "0px" },
+                  ml: "auto",
                   mb: "0px",
-                  alignItems: "center",
                   display: "flex",
-                  textAlign: { sm: "right", xs: "left" },
-                  justifyContent: { xs: "start", sm: "end" },
-                  flexDirection: { sm: "row", xs: "column" },
+                  textAlign: "right",
+                  flexDirection: "column",
+                  alignItems: "end",
                 }}
               >
-                <Typography
-                  variant="body2"
+                <Box
                   sx={{
-                    mr: 0.45,
-                    color: "#222",
-                    fontFamily: "Montserrat",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                    fontSize: "120%",
-                    fontWeight: 800,
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
                   }}
                 >
-                  {currency}
-                  {Math.round(lowestAveragePrice)}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "text.secondary",
-                    opacity: 0.8,
-                    fontWeight: 400,
-                    fontSize: "70%",
-                  }}
-                >
-                  per night
-                </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      mr: 0.45,
+                      color: "#222",
+                      fontFamily: "Montserrat",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                      fontSize: "120%",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {currency}
+                    {Math.round(lowestAveragePrice)}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      opacity: 0.8,
+                      fontWeight: 400,
+                      fontSize: "70%",
+                    }}
+                  >
+                    per night
+                  </Typography>
+                </Box>
+                {petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      fontFamily: "Montserrat",
+                      fontSize: "65%",
+                      opacity: 0.8,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Save{" "}
+                    <Typography
+                      component="span"
+                      sx={{
+                        // textDecoration: "line-through",
+                        // textDecorationColor: "#BC4749AA",
+                        // textDecorationThickness: "1px",
+                        color: "#4B7D2F",
+                        fontFamily: "Montserrat",
+                        fontSize: "120%",
+                        position: "relative",
+                        fontWeight: 600,
+                      }}
+                    >
+                      ${Math.round(petFeePolicy.totalFees)}
+                    </Typography>{" "}
+                    in pet fees
+                  </Typography>
+                )}
+                {/* <Chip
+                  variant="outlined"
+                  size="small"
+                  sx={{ mr: -0.25 }}
+                  label={
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "text.secondary",
+                        fontFamily: "Montserrat",
+                        fontSize: "80%",
+                        opacity: 0.8,
+                        fontWeight: 600,
+                      }}
+                    >
+                      Save{" "}
+                      <Typography
+                        component="span"
+                        sx={{
+                          // textDecoration: "line-through",
+                          // textDecorationColor: "#BC4749AA",
+                          // textDecorationThickness: "1px",
+                          color: "#03989E",
+                          fontFamily: "Montserrat",
+                          fontSize: "120%",
+                          position: "relative",
+                          fontWeight: 600,
+                        }}
+                      >
+                        ${Math.floor(Math.random() * (180 - 20 + 1) + 20)}
+                      </Typography>{" "}
+                      with $0 pet fees
+                    </Typography>
+                  }
+                /> */}
               </Box>
               {/* <Typography variant="h5" sx={{ fontWeight: 500, mt: '.5rem', mr: 0.45, ml: 'auto',  color: "text.secondary", fontSize: "85%", }}>
                       { duration ? `$${lowestAveragePrice*duration} for ${duration} nights` : 'duration'}

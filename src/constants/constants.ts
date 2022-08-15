@@ -5,6 +5,7 @@ const GetHotelBySearch = `
       $checkOut: Date!,
       $cityId: String!,
       $children: [ChildInput!]!,
+      $dogs: Int!,
     ) {
       properties(
         input: {
@@ -13,6 +14,7 @@ const GetHotelBySearch = `
           cityId: $cityId,
           checkIn: $checkIn,
           checkOut: $checkOut,
+          dogs: $dogs,
         }
       ) {
         id
@@ -44,6 +46,15 @@ const GetHotelBySearch = `
         romingoScore
         dogAmenities
         lowestAveragePrice
+        petFeePolicy {
+          maxPets
+          maxWeightPerPetInLBS
+          desc
+          perPet
+          perNight
+          breakup
+          totalFees
+        }
       }
     }
   `;
@@ -55,6 +66,7 @@ const GetHotelRackBySearch = `
       $checkOut: Date!,
       $cityId: String!,
       $children: [ChildInput!]!,
+      $dogs: Int!,
     ) {
       propertiesByCorporateDiscount(
         input: {
@@ -63,6 +75,7 @@ const GetHotelRackBySearch = `
           cityId: $cityId,
           checkIn: $checkIn,
           checkOut: $checkOut,
+          dogs: $dogs,
         }
       ) {
         id
@@ -92,6 +105,15 @@ const GetHotelRackBySearch = `
         romingoScore
         dogAmenities
         lowestAveragePrice
+        petFeePolicy {
+          maxPets
+          maxWeightPerPetInLBS
+          desc
+          perPet
+          perNight
+          breakup
+          totalFees
+        }
       }
     }
   `;
@@ -125,14 +147,16 @@ const GetHotelDetail = `
       $checkIn: Date!,
       $checkOut: Date!,
       $adults: Int!,
-      $children: [ChildInput!]!
+      $children: [ChildInput!]!,
+      $dogs: Int!,
     ) {
       property(input: {
         propertyId: $id,
         checkIn: $checkIn,
         checkOut: $checkOut,
         adults: $adults,
-        children: $children
+        children: $children,
+        dogs: $dogs,
       })
       {
         id
@@ -144,6 +168,15 @@ const GetHotelDetail = `
         desc
         addressLine1
         lowestAveragePrice
+        petFeePolicy {
+          maxPets
+          maxWeightPerPetInLBS
+          desc
+          perPet
+          perNight
+          breakup
+          totalFees
+        }
         city {
           id
           name

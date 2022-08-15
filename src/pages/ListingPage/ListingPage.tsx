@@ -123,6 +123,7 @@ const ListingPage: FC<Props> = () => {
         checkIn: search.checkIn.substring(0, 10),
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
+        dogs: search.occupants.dogs,
       },
     }
   );
@@ -138,6 +139,7 @@ const ListingPage: FC<Props> = () => {
         checkIn: search.checkIn.substring(0, 10),
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
+        dogs: search.occupants.dogs,
       },
     }
   );
