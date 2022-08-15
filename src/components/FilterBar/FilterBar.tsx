@@ -92,8 +92,8 @@ const FilterBar: FC<Props> = ({
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
-  const handleFilterOutClick: MouseEventHandler<Element> = () => {
-    if (!searchOnClose) {
+  const handleFilterOutClick = (_event: any, reason: string) => {
+    if (!searchOnClose || reason === 'backdropClick' || reason === 'escapeKeyDown') {
       setZoomIn(false);
       return;
     }
@@ -102,7 +102,7 @@ const FilterBar: FC<Props> = ({
       selectedCity &&
       checkDate[0] &&
       new Date(checkDate[0]) >=
-        new Date(new Date().setDate(new Date().getDate() - 1)) &&
+      new Date(new Date().setDate(new Date().getDate() - 1)) &&
       checkDate[1] &&
       new Date(checkDate[1]) >= new Date()
     ) {
@@ -152,7 +152,7 @@ const FilterBar: FC<Props> = ({
       selectedCity &&
       checkDate[0] &&
       new Date(checkDate[0]) >=
-        new Date(new Date().setDate(new Date().getDate() - 1)) &&
+      new Date(new Date().setDate(new Date().getDate() - 1)) &&
       checkDate[1] &&
       new Date(checkDate[1]) >= new Date()
     ) {
@@ -257,14 +257,14 @@ const FilterBar: FC<Props> = ({
               >
                 {checkDate[0]
                   ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
-                      "MMM dd"
-                    )
+                    "MMM dd"
+                  )
                   : ""}
                 &nbsp;&#8212;&nbsp;
                 {checkDate[1]
                   ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
-                      "MMM dd"
-                    )
+                    "MMM dd"
+                  )
                   : ""}
               </Typography>
             </Button>
