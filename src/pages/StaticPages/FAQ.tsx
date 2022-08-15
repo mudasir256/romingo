@@ -18,7 +18,7 @@ const FAQ: FC = () => {
       <Container maxWidth="md" sx={{ mt: 10 }}>
         <Box sx={{ textAlign: "center" }}>
           <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
-            Frequenty Asked Questions
+            Frequently Asked Questions
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>

@@ -183,6 +183,15 @@ export interface ListingCardProps {
   neighborhood: string;
   showPrice?: boolean;
   noLink?: boolean;
+  petFeePolicy: {
+    maxPets: number;
+    maxWeightPerPetInLBS: number;
+    desc: string;
+    perPet: boolean;
+    perNight: boolean;
+    breakup: JSON;
+    totalFees: number;
+  };
 }
 
 const CheckoutPageListingCard: FC<ListingCardProps> = ({

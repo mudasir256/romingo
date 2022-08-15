@@ -118,9 +118,9 @@ const About: FC = () => {
               getaways; finding places that will allow Maddie. I spent countless
               hours searching for travel solutions to support pet-friendly
               hotels that would not charge expensive pet fees, and they simply
-              do not exist. When it comes to hotels, there has never been a “one
-              stop shop” that allows travelers to book hotels that provide a
-              warm, welcoming experience when traveling with dogs.
+              do not exist. When it comes to hotels, there has never been a
+              “one-stop-shop” that allows travelers to book hotels that provide
+              a warm, welcoming experience when traveling with dogs.
             </Typography>
             <Box
               sx={{
