@@ -323,7 +323,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     per night
                   </Typography>
                 </Box>
-                {petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
+                {!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
                   <Typography
                     variant="body2"
                     sx={{
@@ -353,45 +353,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     in pet fees
                   </Typography>
                 )}
-                {/* <Chip
-                  variant="outlined"
-                  size="small"
-                  sx={{ mr: -0.25 }}
-                  label={
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "text.secondary",
-                        fontFamily: "Montserrat",
-                        fontSize: "80%",
-                        opacity: 0.8,
-                        fontWeight: 600,
-                      }}
-                    >
-                      Save{" "}
-                      <Typography
-                        component="span"
-                        sx={{
-                          // textDecoration: "line-through",
-                          // textDecorationColor: "#BC4749AA",
-                          // textDecorationThickness: "1px",
-                          color: "#03989E",
-                          fontFamily: "Montserrat",
-                          fontSize: "120%",
-                          position: "relative",
-                          fontWeight: 600,
-                        }}
-                      >
-                        ${Math.floor(Math.random() * (180 - 20 + 1) + 20)}
-                      </Typography>{" "}
-                      with $0 pet fees
-                    </Typography>
-                  }
-                /> */}
               </Box>
-              {/* <Typography variant="h5" sx={{ fontWeight: 500, mt: '.5rem', mr: 0.45, ml: 'auto',  color: "text.secondary", fontSize: "85%", }}>
-                      { duration ? `$${lowestAveragePrice*duration} for ${duration} nights` : 'duration'}
-                  </Typography> */}
             </Grid>
           </Grid>
         </Box>
