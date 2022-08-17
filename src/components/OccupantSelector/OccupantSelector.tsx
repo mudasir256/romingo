@@ -43,7 +43,7 @@ const OccupantSelector: FC<Props> = ({
   variant = "outlined",
   disabled = false,
   label
-  }) => {
+}) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [error, setError] = useState("");
@@ -69,14 +69,14 @@ const OccupantSelector: FC<Props> = ({
     <>
       <TextField
         fullWidth={fullWidth}
-        label={ label? label: "Guests"}
+        label={label ? label : "Guests"}
         sx={sx}
         size={size}
         variant={variant}
         value={
           value.adults === 0 && value.dogs === 0 && value.children === 0
             ? ""
-            : `${value.adults} ${(value.adults === 1) ? 'Adult' : 'Adults'}, ${value.children} ${(value.children == 1 ) ? 'Child' : 'Children'}, ${value.dogs} ${(value.dogs === 1) ? 'Pet' : 'Pets'}  `
+            : `${value.adults} ${(value.adults === 1) ? 'Adult' : 'Adults'}, ${value.children} ${(value.children == 1) ? 'Child' : 'Children'}, ${value.dogs} ${(value.dogs === 1) ? 'Pet' : 'Pets'}  `
         }
         inputProps={{
           readOnly: true,
@@ -100,21 +100,6 @@ const OccupantSelector: FC<Props> = ({
         sx={{ ".MuiPopover-paper": { width } }}
       >
         <Stack sx={{ px: 2, pt: 2 }} spacing={1}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            sx={{ width: "100%" }}
-          >
-            <Typography variant="body1">Dogs</Typography>
-            <NumberInput
-              value={value.dogs}
-              onChange={(dogs) => {
-                if (dogs > 2) return;
-                onChange({ ...value, dogs });
-              }}
-            />
-          </Stack>
           <Stack
             direction="row"
             alignItems="center"
@@ -152,6 +137,21 @@ const OccupantSelector: FC<Props> = ({
                   }
                 }
                 onChange({ ...value, children });
+              }}
+            />
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="body1">Dogs</Typography>
+            <NumberInput
+              value={value.dogs}
+              onChange={(dogs) => {
+                if (dogs > 2) return;
+                onChange({ ...value, dogs });
               }}
             />
           </Stack>
