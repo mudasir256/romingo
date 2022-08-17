@@ -204,11 +204,11 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 variant="body2"
                 sx={{
                   mt: 0,
-                  color: "#5B8D3E",
+                  color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
                   maxWidth: "70%",
-                  fontWeight: 600,
+                  fontWeight: 500,
                 }}
               >
                 {detail.label}
@@ -217,15 +217,15 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               <Typography
                 variant="body2"
                 sx={{
-                  fontWeight: 600,
+                  fontWeight: 500,
                   mt: 0,
                   fontFamily: "Roboto",
-                  color: "#5B8D3E",
+                  color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
                 }}
               >
-                {totalPetFees !== -1 ? (
+                {detail.price && detail.price !== -1 ? (
                   <>
                     <span
                       style={{
@@ -233,7 +233,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                         textDecoration: "line-through",
                       }}
                     >
-                      `${dollarUSLocale.format(totalPetFees)}`
+                      {dollarUSLocale.format(detail.price)}
                     </span>
                     <span> $0</span>
                   </>

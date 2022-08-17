@@ -1339,7 +1339,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   }}
                 >
                   <Chip icon={<LocationCityIcon />} label={neighborhood} />
-                  {data?.property?.petFeePolicy?.totalFees &&
+                  {!!data?.property?.petFeePolicy?.totalFees &&
                     data.property.petFeePolicy.totalFees !== -1 && (
                       <Chip
                         icon={<LocalOffer sx={{ fontSize: "100%" }} />}
