@@ -208,7 +208,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                   textIndent: "-8px",
                   paddingLeft: "8px",
                   maxWidth: "70%",
-                  fontWeight: 600,
+                  fontWeight: 500,
                 }}
               >
                 {detail.label}
@@ -217,7 +217,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               <Typography
                 variant="body2"
                 sx={{
-                  fontWeight: 600,
+                  fontWeight: 500,
                   mt: 0,
                   fontFamily: "Roboto",
                   color: "text.primary",
