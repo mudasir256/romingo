@@ -185,15 +185,15 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
-        if (x === 0) {
-          return {
-            age: 1,
-          };
-        }
+      if (x === 0) {
         return {
-          age: x,
+          age: 1,
         };
-      })
+      }
+      return {
+        age: x,
+      };
+    })
     : [];
 
   const removeHttpLink = function (str: string) {
@@ -222,7 +222,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [location, setLocation] = useState({ address: "", lat: "", lon: "" });
   const [gallery, setGallery] = useState<string[]>([]);
   const [score, setScore] = useState(0);
-  const [defaultDescription, setDefaultDescription] = useState("");
+  const [defaultDescription, setDefaultDescription] = useState("asdfasdfasdfasdfasdf");
   const [amenities, setAmenities] = useState<string[]>([]);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [neighborhood, setNeighborhood] = useState("");
@@ -297,7 +297,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         const nonAccessibleArr: RoomInfo[] = [];
         romingoMatch.forEach((r: RoomInfo) =>
           ((r.type && r.type.toLowerCase().startsWith("accessible")) ||
-          (r.name && r.name.toLowerCase().includes("accessible"))
+            (r.name && r.name.toLowerCase().includes("accessible"))
             ? accessibleArr
             : nonAccessibleArr
           ).push(r)
@@ -335,9 +335,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         let roomDescription = "";
 
         room.beds.map((bed: any) => {
-          roomDescription += `${bed.count} ${bed.desc}${
-            bed.count > 1 ? "s" : ""
-          }`;
+          roomDescription += `${bed.count} ${bed.desc}${bed.count > 1 ? "s" : ""
+            }`;
         });
 
         roomDescription =
@@ -1348,6 +1347,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                           backgroundColor: "#5b8d3e",
                           color: "#fff",
                           ml: 0.5,
+                          width: '150px'
                         }}
                         label={`Save $${Math.round(
                           data.property.petFeePolicy.totalFees
@@ -2360,77 +2360,77 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
         >
           {includedPopular.length < 6
             ? includedOther.map((amenity, index) => {
-                if (index < 6) {
-                  const AmenityIcon = amenity.icon;
-                  return (
-                    <Box
+              if (index < 6) {
+                const AmenityIcon = amenity.icon;
+                return (
+                  <Box
+                    sx={{
+                      display: "inline-flex",
+                      flexDirection: "row",
+                      mt: ".9rem",
+                    }}
+                    key={index}
+                  >
+                    <SvgIcon
+                      sx={{ color: "#999", mr: "1rem" }}
+                      component={AmenityIcon}
+                    />
+                    <Typography
+                      variant="body1"
                       sx={{
-                        display: "inline-flex",
-                        flexDirection: "row",
-                        mt: ".9rem",
+                        fontSize: ".9rem",
+                        fontWeight: 400,
+                        mt: 0,
+                        textTransform: "capitalize",
+                        color: "text.primary",
+                        textIndent: "-8px",
+                        paddingLeft: "8px",
+                        letterSpacing: ".015rem",
+                        fontFamily: "Roboto",
                       }}
-                      key={index}
                     >
-                      <SvgIcon
-                        sx={{ color: "#999", mr: "1rem" }}
-                        component={AmenityIcon}
-                      />
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          fontSize: ".9rem",
-                          fontWeight: 400,
-                          mt: 0,
-                          textTransform: "capitalize",
-                          color: "text.primary",
-                          textIndent: "-8px",
-                          paddingLeft: "8px",
-                          letterSpacing: ".015rem",
-                          fontFamily: "Roboto",
-                        }}
-                      >
-                        {amenity.receivedText}
-                      </Typography>
-                    </Box>
-                  );
-                }
-              })
+                      {amenity.receivedText}
+                    </Typography>
+                  </Box>
+                );
+              }
+            })
             : includedPopular.map((amenity, index) => {
-                if (index > 5 && index < 13) {
-                  const AmenityIcon = amenity.icon;
-                  return (
-                    <Box
+              if (index > 5 && index < 13) {
+                const AmenityIcon = amenity.icon;
+                return (
+                  <Box
+                    sx={{
+                      display: "inline-flex",
+                      flexDirection: "row",
+                      mt: ".9rem",
+                    }}
+                    key={index}
+                  >
+                    <SvgIcon
+                      sx={{ color: "#999", mr: "1rem" }}
+                      component={AmenityIcon}
+                    />
+                    <Typography
+                      variant="body1"
                       sx={{
-                        display: "inline-flex",
-                        flexDirection: "row",
-                        mt: ".9rem",
+                        fontSize: ".9rem",
+                        fontWeight: 400,
+                        mt: 0,
+                        textTransform: "capitalize",
+                        color: "text.primary",
+                        textIndent: "-8px",
+                        paddingLeft: "8px",
+                        letterSpacing: ".015rem",
+                        fontFamily: "Roboto",
                       }}
-                      key={index}
                     >
-                      <SvgIcon
-                        sx={{ color: "#999", mr: "1rem" }}
-                        component={AmenityIcon}
-                      />
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          fontSize: ".9rem",
-                          fontWeight: 400,
-                          mt: 0,
-                          textTransform: "capitalize",
-                          color: "text.primary",
-                          textIndent: "-8px",
-                          paddingLeft: "8px",
-                          letterSpacing: ".015rem",
-                          fontFamily: "Roboto",
-                        }}
-                      >
-                        {amenity.receivedText}
-                      </Typography>
-                    </Box>
-                  );
-                }
-              })}
+                      {amenity.receivedText}
+                    </Typography>
+                  </Box>
+                );
+              }
+            })}
         </Grid>
       </Grid>
     </Box>
@@ -2626,8 +2626,8 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
                           >
                             {checkDate[0]
                               ? DateTime.fromJSDate(
-                                  new Date(checkDate[0])
-                                ).toFormat("MMM dd")
+                                new Date(checkDate[0])
+                              ).toFormat("MMM dd")
                               : ""}
                           </Typography>
                         </Grid>
@@ -2680,8 +2680,8 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
                       >
                         {checkDate[1]
                           ? DateTime.fromJSDate(
-                              new Date(checkDate[1])
-                            ).toFormat("MMM dd")
+                            new Date(checkDate[1])
+                          ).toFormat("MMM dd")
                           : ""}
                       </Typography>
                     </Grid>
@@ -2826,8 +2826,8 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
                             >
                               {checkDate[0]
                                 ? DateTime.fromJSDate(
-                                    new Date(checkDate[0])
-                                  ).toFormat("MMM dd")
+                                  new Date(checkDate[0])
+                                ).toFormat("MMM dd")
                                 : ""}
                             </Typography>
                           </Grid>
@@ -2870,8 +2870,8 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
                             >
                               {checkDate[1]
                                 ? DateTime.fromJSDate(
-                                    new Date(checkDate[1])
-                                  ).toFormat("MMM dd")
+                                  new Date(checkDate[1])
+                                ).toFormat("MMM dd")
                                 : ""}
                             </Typography>
                           </Grid>
