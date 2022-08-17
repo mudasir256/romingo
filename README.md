@@ -20,9 +20,22 @@
 
     # Install the dependencies
     npm install --force
+
+    # If you face issue regarding babel
+    # remove babel from node module folders
+    # install manually babel 
+    npm i babel-loader@"8.1.0"
     ```
 
     (note: --force is required until a fix for 17.0.2 compatibility)
+
+
+1.  **copy example .example-env to .env file**
+
+    ```
+      cp .example-env .env
+    ```
+
 
 1.  **Install and start JSON Server to set up a test backend**
 
@@ -30,6 +43,7 @@
     # Install globally
     npm install -g json-server
     json-server --watch db.json
+
     ```
 
     -Available endpoints
