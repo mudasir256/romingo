@@ -108,6 +108,7 @@ import Loader from "../../components/UI/Loader";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import Footer from "../../components/Footer";
 import RomingoScore from "../../components/RomingoScore";
+import Navbar from "../../components/Navbar";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -474,9 +475,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               zIndex: 1000,
               py: { xs: 0, md: 1 },
               overflow: "hidden",
+              height: { md: '50px' },
             }}
           >
-            <Link
+            <Navbar />
+            {/* <Link
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -497,7 +500,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   height: { xs: "0px", md: "42px" },
                 }}
               />
-            </Link>
+            </Link> */}
           </Box>
         </Hidden>
         {!loading && data && (
