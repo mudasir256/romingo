@@ -79,7 +79,7 @@ const FooterMenus = {
   ],
   contact: [
     {
-      text: "Contact us",
+      text: "Support",
       link: "/contact",
       target: "",
     },
