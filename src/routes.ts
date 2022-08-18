@@ -39,8 +39,13 @@ const routes: Routes[] = [
     component: ListingPage,
     requireAuth: false,
   },
+  // {
+  //   path: "/details/:id",
+  //   component: DetailsPage,
+  //   requireAuth: false,
+  // },
   {
-    path: "/details/:id",
+    path: "/details/:alias",
     component: DetailsPage,
     requireAuth: false,
   },
