@@ -2485,6 +2485,10 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
   }, [open]);
 
   useEffect(() => {
+    console.log({search})  
+  },[])
+
+  useEffect(() => {
     if (city && city.length > 0 && cities.length > 0) {
       setSelectedCity(city);
     }
