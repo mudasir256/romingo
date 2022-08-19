@@ -1,9 +1,9 @@
 .carousel .control-next.control-arrow:before {
-  border-left: 10px solid #fff;
+  border-left: 10px solid #000;
 }
 
 .carousel .control-prev.control-arrow:before {
-  border-right: 10px solid #fff;
+  border-right: 10px solid #000;
 }
 
 .carousel .control-arrow:before,

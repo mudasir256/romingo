@@ -61,6 +61,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
+import Navbar from "../../components/Navbar";
 
 const MotionBox = motion(Box);
 
@@ -101,15 +102,15 @@ const ListingPage: FC<Props> = () => {
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
-        if (x === 0) {
-          return {
-            age: 1,
-          };
-        }
+      if (x === 0) {
         return {
-          age: x,
+          age: 1,
         };
-      })
+      }
+      return {
+        age: x,
+      };
+    })
     : [];
 
   const { loading, error, data } = useQuery(
@@ -180,8 +181,8 @@ const ListingPage: FC<Props> = () => {
         sortBy === "score"
           ? a.romingoScore < b.romingoScore
           : sortBy === "high"
-          ? a.lowestAveragePrice < b.lowestAveragePrice
-          : a.lowestAveragePrice > b.lowestAveragePrice
+            ? a.lowestAveragePrice < b.lowestAveragePrice
+            : a.lowestAveragePrice > b.lowestAveragePrice
       )
         ? 1
         : -1
@@ -195,8 +196,8 @@ const ListingPage: FC<Props> = () => {
           sortBy === "score"
             ? a.romingoScore < b.romingoScore
             : sortBy === "high"
-            ? a.lowestAveragePrice < b.lowestAveragePrice
-            : a.lowestAveragePrice > b.lowestAveragePrice
+              ? a.lowestAveragePrice < b.lowestAveragePrice
+              : a.lowestAveragePrice > b.lowestAveragePrice
         )
           ? 1
           : -1
@@ -289,8 +290,8 @@ const ListingPage: FC<Props> = () => {
           sortBy === "score"
             ? a.romingoScore < b.romingoScore
             : sortBy === "high"
-            ? a.lowestAveragePrice < b.lowestAveragePrice
-            : a.lowestAveragePrice > b.lowestAveragePrice
+              ? a.lowestAveragePrice < b.lowestAveragePrice
+              : a.lowestAveragePrice > b.lowestAveragePrice
         )
           ? 1
           : -1
@@ -303,8 +304,8 @@ const ListingPage: FC<Props> = () => {
             sortBy === "score"
               ? a.romingoScore < b.romingoScore
               : sortBy === "high"
-              ? a.lowestAveragePrice < b.lowestAveragePrice
-              : a.lowestAveragePrice > b.lowestAveragePrice
+                ? a.lowestAveragePrice < b.lowestAveragePrice
+                : a.lowestAveragePrice > b.lowestAveragePrice
           )
             ? 1
             : -1
@@ -339,6 +340,7 @@ const ListingPage: FC<Props> = () => {
           justifyContent: { xs: "center", md: "flex-start" },
           maxHeight: { xs: height, md: "100%" },
           overflow: "hidden",
+          height: { md: '50px' },
           zIndex: 1000,
           py: { xs: 0, md: 1 },
         }}
@@ -353,7 +355,7 @@ const ListingPage: FC<Props> = () => {
             duration={5000}
           />
         )}
-        <Link
+        {/* <Link
           href="#"
           onClick={(e) => {
             e.preventDefault();
@@ -374,7 +376,10 @@ const ListingPage: FC<Props> = () => {
               height: { xs: "0px", md: "42px" },
             }}
           />
-        </Link>
+        </Link> */}
+        <Hidden mdDown>
+          <Navbar />
+        </Hidden>
 
         <Hidden mdUp>
           <Box sx={{ mt: ".75rem" }}>
@@ -782,7 +787,7 @@ const DesktopFilterBar: FC = () => {
       selectedCity &&
       checkDate[0] &&
       new Date(checkDate[0]) >=
-        new Date(new Date().setDate(new Date().getDate() - 1)) &&
+      new Date(new Date().setDate(new Date().getDate() - 1)) &&
       checkDate[1] &&
       new Date(checkDate[1]) >= new Date()
     ) {
@@ -961,14 +966,14 @@ const DesktopFilterBar: FC = () => {
                   >
                     {checkDate[0]
                       ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
-                          "MMM dd"
-                        )
+                        "MMM dd"
+                      )
                       : ""}
                     &nbsp;&#8212;&nbsp;
                     {checkDate[1]
                       ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
-                          "MMM dd"
-                        )
+                        "MMM dd"
+                      )
                       : ""}
                   </Typography>
                 </Button>

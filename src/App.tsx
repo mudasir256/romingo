@@ -9,6 +9,7 @@ import { authService } from "./services/authService.js";
 import ErrorPage from "./pages/ErrorPage";
 import TagManager from "react-gtm-module";
 import { Message } from "@mui/icons-material";
+import Routes from "./routes";
 
 const AuthGuards = (props: any) => {
   const token = authService.getToken();
@@ -60,25 +61,8 @@ const App: FC = () => {
   }, [data]);
 
   return (
-    <Switch>
-      {routes.map((route, key) => {
-        if (!route.requireAuth)
-          return (
-            <Route
-              exact
-              path={route.path}
-              component={route.component}
-              key={key}
-            />
-          );
-        else
-          return (
-            <AuthGuards key={key}>
-              <Route exact path={route.path} component={route.component} />
-            </AuthGuards>
-          );
-      })}
-
+    <>
+      <Routes />
       {screen.height > 700 && (
         <div
           id="CUSTOM"
@@ -107,9 +91,7 @@ const App: FC = () => {
           Chat with us
         </div>
       )}
-
-      <Route component={ErrorPage} />
-    </Switch>
+    </>
   );
 };
 

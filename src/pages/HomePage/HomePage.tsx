@@ -186,7 +186,7 @@ const HomePage: FC<Props> = ({
                           mb: "10px",
                         }}
                       >
-                        Redefining pet-friendly travel
+                        Pet-friendly travel made easy
                       </Typography>
                       <Typography
                         variant="body1"
