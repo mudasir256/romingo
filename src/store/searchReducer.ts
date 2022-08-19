@@ -37,15 +37,34 @@ export const simulateHttpRequest = (action: SearchAction) => {
   };
 };
 
+
+let checkInDate = ""
+let checOutDate = ""
+let adultsCount = 0
+let dogsCount = 0
+
+if (window.location.href.match(/http[s]?:\/\/[\w|:]+\/hotel\/.+/gm)) {
+   const cdate = new Date()
+   const odate = new Date()
+   const checkInDateIns = (new Date(cdate.setMonth(cdate.getMonth()+1)))
+   const checkInOut = (new Date(odate.setMonth(odate.getMonth()+1)))
+   checkInOut.setDate(checkInOut.getDate() + 1)
+   checkInDate = checkInDateIns.toISOString()
+   checOutDate = checkInOut.toISOString()
+   adultsCount = 1
+   dogsCount = 1
+}
+
+const cdate = new Date()
 export const initialState: SearchState = {
   search: {
     city: "",
-    checkIn: "",
-    checkOut: "",
+    checkIn: checkInDate,
+    checkOut: checOutDate,
     occupants: {
-      adults: 0,
+      adults: adultsCount,
       children: 0,
-      dogs: 0,
+      dogs: dogsCount,
     },
   },
 };
