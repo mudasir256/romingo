@@ -39,13 +39,13 @@ const routes: Routes[] = [
     component: ListingPage,
     requireAuth: false,
   },
-  // {
-  //   path: "/details/:id",
-  //   component: DetailsPage,
-  //   requireAuth: false,
-  // },
   {
-    path: "/details/:alias",
+    path: "/details/:id",
+    component: DetailsPage,
+    requireAuth: false,
+  },
+  {
+    path: "/hotel/:alias",
     component: DetailsPage,
     requireAuth: false,
   },

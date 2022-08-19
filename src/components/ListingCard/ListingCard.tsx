@@ -112,7 +112,7 @@ const ListingCard: FC<ListingCardProps> = ({
         </Box>
 
         <Box
-          onClick={() => history.push("/details/" + alias)}
+          onClick={() => history.push("/hotel/" + alias)}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
@@ -398,7 +398,7 @@ const ListingCard: FC<ListingCardProps> = ({
           </Grid>
         </Box>
         <Link
-          onClick={() => history.push(`/details/${alias}#reviews`)}
+          onClick={() => history.push(`/hotel/${alias}#reviews`)}
           sx={{
             display: { xs: "none", sm: "block" },
             cursor: "pointer",
