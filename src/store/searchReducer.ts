@@ -65,21 +65,6 @@ export const initialState: SearchState = {
   },
 };
 
-
-
-// export const initialState: SearchState = {
-//   search: {
-//     city: "",
-//     checkIn: "",
-//     checkOut: "",
-//     occupants: {
-//       adults: 0,
-//       children: 0,
-//       dogs: 0,
-//     },
-//   },
-// };
-
 const searchReducer = (
   state: SearchState = initialState,
   action: SearchAction
