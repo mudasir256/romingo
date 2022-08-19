@@ -22,6 +22,7 @@ import {
   TextField,
   Button,
   Drawer,
+  Modal,
 } from "@mui/material";
 import {
   KeyboardArrowDown,
@@ -107,6 +108,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     maxWidth: "140px",
                     margin: "auto auto",
                     cursor: "pointer",
+                    height: '50px'
                   }}
                 />
               </Box>
@@ -171,7 +173,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   variant="body2"
                   sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
                 >
-                  Community
+                  Philanthropy
                 </Typography>
               </Link>
               <Link
@@ -326,7 +328,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   <Groups
                     sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
                   />{" "}
-                  Community
+                  Philanthropy
                 </MenuItem>
                 <MenuItem
                   onClick={() => history.push("/faq")}
@@ -383,7 +385,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 sx={{
                   mr: "auto",
                   ml: "0px",
-                  maxHeight: { xs: "35px", md: "45px" },
+                  maxHeight: { xs: "50px", md: "50px" },
                 }}
               />
 
@@ -492,8 +494,8 @@ const Navbar: FC<Props> = ({ sx }) => {
             {selectDialog === LOGIN
               ? "Login"
               : selectDialog === REGISTER
-              ? "Register"
-              : "Reset Your Password"}
+                ? "Register"
+                : "Reset Your Password"}
           </Typography>
           <IconButton
             aria-label="close"
@@ -633,154 +635,162 @@ const RomingoDeals = () => {
 
   return (
     <>
-      <Popover
+      <Modal
         onClose={() => setShowDealsPopup(false)}
         open={showDealsPopup}
-        anchorEl={anchorEl}
-        PaperProps={{
-          sx: {
-            borderRadius: "12px",
-            marginTop: "48px",
-            border: "1px solid #ddd",
-          },
-        }}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Grid
-          container
-          sx={{
-            width: { xs: "100%", sm: "393px" },
-            minHeight: "100px",
-            display: "flex",
-            overflow: "hidden",
-          }}
-        >
-          <Grid
-            item
-            xs={12}
+        <Box sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 400,
+          bgcolor: 'background.paper',
+          borderRadius: '12px',
+          boxShadow: 24,
+          p: 4,
+        }}>
+          <Cancel
+            onClick={() => setShowDealsPopup(false)}
             sx={{
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              cursor: "pointer",
+              transition: "all .15s linear",
+              marginBottom: "auto",
+              "&:hover": { color: "#03989E" },
+            }}
+          />
+          <Grid
+            container
+            sx={{
+              width: { xs: "100%", sm: "393px" },
+              minHeight: "100px",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              color: "#00000099",
-              p: ".5rem .5rem",
-              pb: ".125rem",
-              fontFamily: "Montserrat",
-              fontWeight: 900,
-              fontSize: ".9rem",
+              overflow: "hidden",
             }}
           >
-            Sign up with your email below to access exclusive deals and more:
-            <Cancel
-              onClick={() => setShowDealsPopup(false)}
-              sx={{
-                cursor: "pointer",
-                transition: "all .15s linear",
-                marginBottom: "auto",
-                "&:hover": { color: "#03989E" },
-              }}
-            />
-          </Grid>
-          {emailSubmitted ? (
             <Grid
               item
               xs={12}
               sx={{
-                p: ".5rem .5rem .5rem .5rem",
-                fontFamily: "Work Sans",
-                color: "#03989E",
-                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#00000099",
+                p: ".5rem .5rem",
+                pb: ".125rem",
+                fontFamily: "Montserrat",
+                fontWeight: 900,
+                fontSize: "1.2rem",
+                textAlign: 'center',
+                marginBottom: '30px'
               }}
             >
-              Awesome! You&lsquo;re subscribed to deals, tips, guides, and all
-              the other great content from Romingo Insiders!
+              Sign up to access exclusive deals
             </Grid>
-          ) : (
-            <>
-              {isSubmitting && (
-                <Grid
-                  sx={{
-                    position: "absolute",
-                    zIndex: 9,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    top: "0px",
-                    right: "0",
-                    left: "0",
-                    bottom: "0px",
-                    background: "#ffffff80",
-                    backdropFilter: "blur(1px)",
-                  }}
-                >
-                  <CircularProgress />
-                </Grid>
-              )}
+            {emailSubmitted ? (
               <Grid
                 item
                 xs={12}
-                sm={12}
                 sx={{
-                  p: ".25rem .5rem .5rem .5rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  p: ".5rem .5rem .5rem .5rem",
+                  fontFamily: "Work Sans",
+                  color: "#03989E",
+                  textAlign: "center",
                 }}
               >
-                <TextField
-                  variant="outlined"
-                  color="primary"
-                  placeholder="enter email"
-                  size="small"
-                  value={email}
+                Awesome! You&lsquo;re subscribed to deals, tips, guides, and all
+                the other great content from Romingo Insiders!
+              </Grid>
+            ) : (
+              <>
+                {isSubmitting && (
+                  <Grid
+                    sx={{
+                      position: "absolute",
+                      zIndex: 9,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      top: "0px",
+                      right: "0",
+                      left: "0",
+                      bottom: "0px",
+                      background: "#ffffff80",
+                      backdropFilter: "blur(1px)",
+                    }}
+                  >
+                    <CircularProgress />
+                  </Grid>
+                )}
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
                   sx={{
-                    outline: "none",
-                    input: {
-                      fontFamily: "Montserrat",
-                      fontSize: "14px",
-                      fontWeight: 500,
-                    },
-                    "& label.Mui-focused": {
-                      color: "#03989E",
-                    },
-                    "& .MuiInput-underline:after": {
-                      borderBottomColor: "green",
-                    },
-                    "& .MuiOutlinedInput-root": {
-                      "&.Mui-focused fieldset": {
-                        borderColor: "#03989E",
-                      },
-                    },
-                  }}
-                  InputProps={{
-                    sx: {
-                      fontSize: "12px",
-                      maxHeight: "30px",
-                      fontFamily: "Montserrat",
-                      width: { xs: "calc(100vw - 140px)", sm: "290px" },
-                      outline: "none",
-                    },
-                  }}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Button
-                  onClick={submitEmail}
-                  disabled={!emailIsValid || isSubmitting}
-                  size="small"
-                  variant="contained"
-                  sx={{
-                    fontWeight: 600,
-                    textTransform: "none",
-                    fontFamily: "Montserrat",
+                    p: ".25rem .5rem .5rem .5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
-                  Sign up!
-                </Button>
-              </Grid>
-            </>
-          )}
-        </Grid>
-      </Popover>
+                  <TextField
+                    variant="outlined"
+                    color="primary"
+                    placeholder="enter email"
+                    size="small"
+                    value={email}
+                    sx={{
+                      outline: "none",
+                      input: {
+                        fontFamily: "Montserrat",
+                        fontSize: "14px",
+                        fontWeight: 500,
+                      },
+                      "& label.Mui-focused": {
+                        color: "#03989E",
+                      },
+                      "& .MuiInput-underline:after": {
+                        borderBottomColor: "green",
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "&.Mui-focused fieldset": {
+                          borderColor: "#03989E",
+                        },
+                      },
+                    }}
+                    InputProps={{
+                      sx: {
+                        fontSize: "12px",
+                        maxHeight: "30px",
+                        fontFamily: "Montserrat",
+                        width: { xs: "calc(100vw - 140px)", sm: "290px" },
+                        outline: "none",
+                      },
+                    }}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <Button
+                    onClick={submitEmail}
+                    disabled={!emailIsValid || isSubmitting}
+                    size="small"
+                    variant="contained"
+                    sx={{
+                      fontWeight: 600,
+                      textTransform: "none",
+                      fontFamily: "Montserrat",
+                    }}
+                  >
+                    Sign up!
+                  </Button>
+                </Grid>
+              </>
+            )}
+          </Grid>
+        </Box>
+      </Modal>
       <span
         style={{ cursor: "pointer" }}
         onClick={(e) => {
