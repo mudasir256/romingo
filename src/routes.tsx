@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { Switch, Route, Redirect } from "react-router";
+
 import HomePage from "./pages/HomePage";
 import ListingPage from "./pages/ListingPage";
 import DetailsPage from "./pages/DetailsPage";
@@ -11,6 +13,7 @@ import SanFrancisco from "./pages/Cities/SanFran";
 import SantaBarbara from "./pages/Cities/SantaBarbara";
 import ManageReservationPage from "./pages/ManageReservationPage";
 import About from "./pages/StaticPages/About";
+import ErrorPage from "./pages/ErrorPage";
 import FAQ from "./pages/StaticPages/FAQ";
 import Contact from "./pages/StaticPages/Contact";
 import Privacy from "./pages/StaticPages/Privacy";
@@ -21,14 +24,15 @@ import RedRoverPartner from "./pages/StaticPages/RedRoverPartner";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Application from "./pages/StaticPages/Application";
+import { authService } from "./services/authService.js";
 
-interface Routes {
+interface RouteInterface {
   path: string;
   component: FC<any>;
   requireAuth: boolean;
 }
 
-const routes: Routes[] = [
+const routes: RouteInterface[] = [
   {
     path: "/",
     component: HomePage,
@@ -141,4 +145,38 @@ const routes: Routes[] = [
   },
 ];
 
-export default routes;
+const AuthGuards = (props: any) => {
+  const token = authService.getToken();
+  if (token && props.children) {
+    return props.children;
+  }
+
+  return <Redirect to={"/login"} />;
+};
+
+const Routes = () => {
+  return (
+    <Switch>
+      {routes.map((route, key) => {
+        if (!route.requireAuth)
+          return (
+            <Route
+              exact
+              path={route.path}
+              component={route.component}
+              key={key}
+            />
+          );
+        else
+          return (
+            <AuthGuards key={key}>
+              <Route exact path={route.path} component={route.component} />
+            </AuthGuards>
+          );
+      })}
+      <Route component={ErrorPage} />
+    </Switch>
+  );
+};
+
+export default Routes;
