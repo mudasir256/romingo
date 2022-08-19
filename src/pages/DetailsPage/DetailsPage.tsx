@@ -177,7 +177,8 @@ interface Props {
 }
 
 const DetailsPage: FC<Props> = ({ ...props }) => {
-  const hotelId = props.match.params.id;
+  const hotelId = props?.match?.params?.id || "undefined";
+  const hotelAlias = props.match.params.alias;
   const pageLocation = useLocation();
   const search = useSelector((state: any) => state.searchReducer.search);
 
@@ -212,6 +213,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         adults: search?.occupants?.adults,
         children: ageParam,
         dogs: search.occupants.dogs,
+        alias:hotelAlias,
       },
       fetchPolicy: "no-cache",
     }
@@ -2481,6 +2483,10 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
   useEffect(() => {
     if (!open) setIsTextField(false);
   }, [open]);
+
+  useEffect(() => {
+    console.log({search})  
+  },[])
 
   useEffect(() => {
     if (city && city.length > 0 && cities.length > 0) {

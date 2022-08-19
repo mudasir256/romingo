@@ -32,6 +32,7 @@ export interface ListingCardProps {
   neighborhood: string;
   showPrice?: boolean;
   noLink?: boolean;
+  alias: string;
   petFeePolicy: {
     maxPets: number;
     maxWeightPerPetInLBS: number;
@@ -62,6 +63,7 @@ const ListingCard: FC<ListingCardProps> = ({
   showPrice = true,
   noLink = false,
   petFeePolicy,
+  alias,
   ...props
 }) => {
   const history = useHistory();
@@ -110,7 +112,7 @@ const ListingCard: FC<ListingCardProps> = ({
         </Box>
 
         <Box
-          onClick={() => history.push("/details/" + id)}
+          onClick={() => history.push("/hotel/" + alias)}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
@@ -358,7 +360,7 @@ const ListingCard: FC<ListingCardProps> = ({
           </Grid>
         </Box>
         <Link
-          onClick={() => history.push(`/details/${id}#reviews`)}
+          onClick={() => history.push(`/hotel/${alias}#reviews`)}
           sx={{
             display: { xs: "none", sm: "block" },
             cursor: "pointer",

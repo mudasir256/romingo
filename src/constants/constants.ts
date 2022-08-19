@@ -5,7 +5,7 @@ const GetHotelBySearch = `
       $checkOut: Date!,
       $cityId: String!,
       $children: [ChildInput!]!,
-      $dogs: Int!,
+      $dogs: Int!
     ) {
       properties(
         input: {
@@ -55,6 +55,7 @@ const GetHotelBySearch = `
           breakup
           totalFees
         }
+        alias
       }
     }
   `;
@@ -149,6 +150,7 @@ const GetHotelDetail = `
       $adults: Int!,
       $children: [ChildInput!]!,
       $dogs: Int!,
+      $alias: String!,
     ) {
       property(input: {
         propertyId: $id,
@@ -157,6 +159,7 @@ const GetHotelDetail = `
         adults: $adults,
         children: $children,
         dogs: $dogs,
+        alias: $alias,
       })
       {
         id
@@ -166,6 +169,7 @@ const GetHotelDetail = `
         sabreId
         name
         desc
+        alias
         addressLine1
         lowestAveragePrice
         petFeePolicy {
