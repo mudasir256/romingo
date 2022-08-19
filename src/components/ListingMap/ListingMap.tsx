@@ -102,7 +102,7 @@ const ListingMap: FC<Props> = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                history.push("/details/" + id);
+                history.push("/hotel/" + id);
               }}
             >
               <Hidden mdUp>
