@@ -56,6 +56,7 @@ const GetHotelBySearch = `
           totalFees
         }
         alias
+        page_rank
       }
     }
   `;
