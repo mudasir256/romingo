@@ -43,7 +43,12 @@ let checOutDate = ""
 let adultsCount = 0
 let dogsCount = 0
 
-if (window.location.href.match(/http[s]?:\/\/[\w|:]+\/hotel\/.+/gm)) {
+const isPropertyPage = (path:string) => {
+  if (path.match(/\/hotel\/.*$/gm) || path.match(/\/details\/.*$/gm) ) return true
+  return false
+}
+
+if (isPropertyPage(window.location.pathname)) {
    const cdate = new Date()
    const odate = new Date()
    const checkInDateIns = (new Date(cdate.setMonth(cdate.getMonth()+1)))
