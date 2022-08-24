@@ -13,6 +13,7 @@ import {
   Select,
   Skeleton,
   MenuItem,
+  Switch,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -62,7 +63,7 @@ import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
 import Navbar from "../../components/Navbar";
-
+import "./listing.css";
 const MotionBox = motion(Box);
 
 interface Props {
@@ -89,6 +90,7 @@ const ListingPage: FC<Props> = () => {
 
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
   const [sortBy, setSortBy] = useState<string>("score");
+  const [allowBigDogs, setAllowBigDogs] = useState<number>(0);
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -125,6 +127,7 @@ const ListingPage: FC<Props> = () => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
         dogs: search.occupants.dogs,
+        allows_big_dogs:allowBigDogs
       },
     }
   );
@@ -144,8 +147,7 @@ const ListingPage: FC<Props> = () => {
       },
     }
   );
-
-  const dispatch: Dispatch<any> = useDispatch();
+   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
@@ -511,7 +513,7 @@ const ListingPage: FC<Props> = () => {
                   minHeight: `${height - 200}px`,
                 }}
               >
-                <SortBar size="small" sortBy={sortBy} setSortBy={setSortBy} />
+                <SortBar size="small" sortBy={sortBy} bigDog={allowBigDogs} setBigDog={setAllowBigDogs} setSortBy={setSortBy} />
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {!cards.length ? (
                   <>
@@ -605,7 +607,7 @@ const ListingPage: FC<Props> = () => {
               <Hidden mdDown>
                 <DesktopFilterBar />
               </Hidden>
-              <SortBar sortBy={sortBy} setSortBy={setSortBy} />
+              <SortBar sortBy={sortBy} bigDog={allowBigDogs} setBigDog={setAllowBigDogs} setSortBy={setSortBy} />
             </Grid>
 
             {loading ? (
@@ -684,13 +686,17 @@ interface SortBarProps {
   sortBy: string;
   setSortBy: Dispatcher<SetStateAction<string>>;
   size?: string;
+  bigDog?: number;
+  setBigDog: Dispatcher<SetStateAction<number>>;
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog } = props;
+  const history = useHistory()
 
   return (
     <Grid
+     className="alignCenter"
       sx={{
         pb: size === "small" ? 0 : "1rem",
         textAlign: "right",
@@ -728,9 +734,45 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
+
+      <div className="toggleWrap">  
+      <Typography
+          variant="body1"
+          sx={{
+            fontWeight: 600,
+            fontSize: "13px",
+            color: "#03989E",
+            display: { sm: "block", md: "flex" },
+            justifyContent: "center",
+            fontFamily: "Montserrat",
+          }}
+        >
+          BIG DOGS
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            mt: "1rem",
+            color: "#222",
+            fontWeight: 500,
+            fontSize: "1.25rem",
+            display: { sm: "block", md: "flex" },
+            justifyContent: "center",
+            fontFamily: "Roboto",
+          }}
+        >
+          <Switch value={bigDog} 
+            onChange={(e) => {
+              setBigDog( e.target.checked ? 1 : 0 );
+              history.push("/listings");
+              // Refresh
+          }} defaultChecked={false} />
+        </Typography>
+      </div>
     </Grid>
   );
 };
+
 
 const DesktopFilterBar: FC = () => {
   const history = useHistory();
