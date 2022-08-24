@@ -6,6 +6,7 @@ const GetHotelBySearch = `
       $cityId: String!,
       $children: [ChildInput!]!,
       $dogs: Int!
+      $allows_big_dogs: Int
     ) {
       properties(
         input: {
@@ -15,6 +16,7 @@ const GetHotelBySearch = `
           checkIn: $checkIn,
           checkOut: $checkOut,
           dogs: $dogs,
+          allows_big_dogs:$allows_big_dogs
         }
       ) {
         id
@@ -57,6 +59,8 @@ const GetHotelBySearch = `
         }
         alias
         page_rank
+        allows_big_dogs
+        
       }
     }
   `;
