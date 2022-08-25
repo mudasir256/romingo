@@ -12,6 +12,8 @@ import { theme } from "./theme";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
+import "./index.scss";
+
 const hist = createBrowserHistory();
 
 const muTheme = createTheme(theme);

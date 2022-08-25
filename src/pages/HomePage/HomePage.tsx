@@ -621,6 +621,7 @@ const HomePage: FC<Props> = ({
                   width: "100%",
                   height: "300px",
                   borderRadius: "24px",
+                  position: 'relative',
                   content: '""',
                   backgroundImage:
                     'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/arizona.jpg")',

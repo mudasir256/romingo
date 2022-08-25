@@ -94,9 +94,9 @@ const Header: FC<Props> = ({ sx }) => {
         width: "100%",
         minHeight: { xs: "0px" },
         height: "100%",
-        paddingTop: { xs: "0px", sm: "0px", md: "200px" },
         display: "flex",
         justifyContent: "start",
+        flexDirection: 'column',
         top: 0,
         left: 0,
         ...sx,
@@ -105,15 +105,21 @@ const Header: FC<Props> = ({ sx }) => {
       <Navbar />
       <Box
         sx={{
-          top: 0,
-          position: "absolute",
-          left: 0,
           width: "100%",
-          backgroundColor: "#f7f7f7",
-          pb: { xs: 5, lg: 8 },
-          pt: { xs: 0, lg: 5 },
+          height: '620px',
+          marginTop: '112px',
+          backgroundImage: 'url("https://storage.googleapis.com/romingo-production-public/images/Frontend/image1.jpg")',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
         }}
       >
+        <div style={{ fontFamily: 'sansita-light', fontSize: '85px', lineHeight: '72px', color: 'white', marginTop: '121px', marginLeft: '140px', marginBottom: '12px' }}>
+          Book<br />Pet-Friendly<br />Hotels
+        </div>
+        <div style={{ fontFamily: 'sansita-light', fontSize: '20px', lineHeight: '24px', color: 'white', marginLeft: '140px', letterSpacing: '1.6px' }}>
+          Easy to use. Lowest rates. No pet fees.
+        </div>
         <FilterBar
           sx={{
             zIndex: 1401,
@@ -229,7 +235,7 @@ const Header: FC<Props> = ({ sx }) => {
           </Hidden>
         </Box>
       </Container>
-    </Box>
+    </Box >
   );
 };
 
@@ -614,8 +620,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           >
                             {checkDate[0]
                               ? DateTime.fromJSDate(
-                                  new Date(checkDate[0])
-                                ).toFormat("MMM dd")
+                                new Date(checkDate[0])
+                              ).toFormat("MMM dd")
                               : ""}
                           </Typography>
                         </Grid>
@@ -668,8 +674,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       >
                         {checkDate[1]
                           ? DateTime.fromJSDate(
-                              new Date(checkDate[1])
-                            ).toFormat("MMM dd")
+                            new Date(checkDate[1])
+                          ).toFormat("MMM dd")
                           : ""}
                       </Typography>
                     </Grid>
@@ -710,7 +716,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ margin: "65px auto 0px auto", userSelect: "none" }}>
+        <Box sx={{ margin: "0", userSelect: "none", position: 'absolute', bottom: '-60px', left: '50%', transform: 'translateX(-50%)', height: '120px', background: 'white', borderRadius: '15px', border: '4px solid #009CA1' }}>
           <Box
             sx={{
               display: "flex",
@@ -952,8 +958,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                               >
                                 {checkDate[0]
                                   ? DateTime.fromJSDate(
-                                      new Date(checkDate[0])
-                                    ).toFormat("MMM dd")
+                                    new Date(checkDate[0])
+                                  ).toFormat("MMM dd")
                                   : ""}
                               </Typography>
                             </Grid>
@@ -1039,8 +1045,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                               >
                                 {checkDate[1]
                                   ? DateTime.fromJSDate(
-                                      new Date(checkDate[1])
-                                    ).toFormat("MMM dd")
+                                    new Date(checkDate[1])
+                                  ).toFormat("MMM dd")
                                   : ""}
                               </Typography>
                             </Grid>
