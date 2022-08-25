@@ -3,6 +3,7 @@
 <url> <loc>https://romingo.com/</loc> </url>
 <url> <loc>https://romingo.com/listings</loc> </url>
 <url> <loc>https://romingo.com/details/:id</loc> </url>
+<url> <loc>https://romingo.com/hotel/:alias</loc> </url>
 <url> <loc>https://romingo.com/checkout*</loc> </url>
 <url> <loc>https://romingo.com/reservation/manage</loc> </url>
 <url> <loc>https://romingo.com/los-angeles</loc> </url>

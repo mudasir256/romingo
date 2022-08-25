@@ -49,6 +49,11 @@ const routes: RouteInterface[] = [
     requireAuth: false,
   },
   {
+    path: "/hotel/:alias",
+    component: DetailsPage,
+    requireAuth: false,
+  },
+  {
     path: "/checkout*",
     component: CheckoutPage,
     requireAuth: false,
