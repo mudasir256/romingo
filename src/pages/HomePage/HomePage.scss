@@ -1,0 +1,103 @@
+.homepage {
+  .hotels {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 464px;
+
+    .hotel {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      &-image-wrapper {
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+
+      &-name {
+        font-family: "overpass-light";
+        font-size: 30px;
+        line-height: 46px;
+        text-align: center;
+        color: black;
+        margin: auto;
+      }
+
+      &-desc {
+        font-family: "overpass-light";
+        font-size: 16px;
+        line-height: 25px;
+        text-align: left;
+        color: black;
+        margin: auto;
+        margin-bottom: 16px;
+        margin-left: 30px;
+      }
+
+      &-bottom-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+        width: calc(100% - 60px);
+
+        .hotel-location {
+          font-family: "overpass-light";
+          font-size: 20px;
+          line-height: 31px;
+          text-align: left;
+          color: #009ca1;
+          text-decoration: underline;
+        }
+
+        .hotel-price {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          &-value {
+            font-family: "overpass-light";
+            font-size: 30px;
+            line-height: 46px;
+            text-align: left;
+            margin-right: 9px;
+          }
+
+          &-unit {
+            font-family: "overpass-light";
+            font-size: 14px;
+            line-height: 22px;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  &-dog {
+    height: 465px;
+    background: #f4dac9;
+    width: 100%;
+    position: relative;
+
+    &-wallpaper {
+      width: 85%;
+      max-width: 1640px;
+      height: 706px;
+      background-image: url("../../assets/images/homepage-dog.jpg");
+      background-repeat: no-repeat;
+      background-position: top left;
+      background-size: 100%;
+      top: -353px;
+			position: absolute;
+			left: 50%;
+			border-radius: 15px;
+			overflow: hidden;
+			transform: translate(-50%);
+    }
+  }
+}
