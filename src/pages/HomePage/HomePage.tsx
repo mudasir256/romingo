@@ -169,32 +169,32 @@ const HomePage: FC<Props> = ({
     <div className="homepage">
       <ScrollToTop />
       <Header />
-      <Box sx={{ width: '100%', height: '461px', background: '#F4DAC9', position: 'relative' }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', position: 'absolute', bottom: '-261.5px', left: '50%', transform: 'translateX(-50%)' }}>
-          <Box sx={{ width: '536px', height: '523px', boxShadow: '21px 7px 63px #0000000D', borderRadius: '15px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-            <img src={PetFriendlyImg} width="196.2px" height="237.2px" alt="" />
-            <div style={{ fontFamily: 'sansita-light', marginTop: '5px', marginBottom: '16px', fontSize: '45px', lineHeight: '54px' }}>
+      <Box className="info-boxes">
+        <Box className="info-boxes-container">
+          <Box className="info-box">
+            <img src={PetFriendlyImg} alt="" />
+            <div className="info-box-title">
               Pet-friendly
             </div>
-            <div style={{ fontFamily: 'overpass-light', fontSize: '22px', lineHeight: '28px', textAlign: 'center' }}>
+            <div className="info-box-desc">
               Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet
             </div>
           </Box>
-          <Box sx={{ width: '536px', height: '523px', boxShadow: '21px 7px 63px #0000000D', borderRadius: '15px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', marginLeft: '16px', marginRight: '16px' }}>
+          <Box className="info-box">
             <img src={PetFeesImg} width="234px" height="247px" alt="" />
-            <div style={{ fontFamily: 'sansita-light', marginTop: '5px', marginBottom: '16px', fontSize: '45px', lineHeight: '54px' }}>
+            <div className="info-box-title">
               $0 pet fees
             </div>
-            <div style={{ fontFamily: 'overpass-light', fontSize: '22px', lineHeight: '28px', textAlign: 'center' }}>
+            <div className="info-box-desc">
               Romingo negotiates $0 hotel pet fees on your behalf, you will never pay a pet fee with Romingo!
             </div>
           </Box>
-          <Box sx={{ width: '536px', height: '523px', boxShadow: '21px 7px 63px #0000000D', borderRadius: '15px', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+          <Box className="info-box">
             <img src={AllPupsImg} width="238px" height="227px" alt="" />
-            <div style={{ fontFamily: 'sansita-light', marginTop: '5px', marginBottom: '16px', fontSize: '45px', lineHeight: '54px' }}>
+            <div className="info-box-title">
               All pups welcome
             </div>
-            <div style={{ fontFamily: 'overpass-light', fontSize: '22px', lineHeight: '28px', textAlign: 'center' }}>
+            <div className="info-box-desc">
               Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
             </div>
           </Box>
@@ -254,6 +254,7 @@ const HomePage: FC<Props> = ({
           <Box
             sx={{
               maxWidth: "700px",
+              margin: 'auto'
             }}
           >
             <DesktopFilterBar />
