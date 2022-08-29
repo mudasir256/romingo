@@ -108,23 +108,22 @@ const Header: FC<Props> = ({ sx }) => {
         left: 0,
         ...sx,
       }}
+      className="header-wrapper"
     >
       <Navbar />
       <Box
+        className="filter-bar-wrapper"
         sx={{
-          width: "100%",
-          height: '620px',
-          marginTop: '112px',
           backgroundImage: `url(${HeroImage})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}
       >
-        <div style={{ fontFamily: 'sansita-light', fontSize: '85px', lineHeight: '72px', color: 'white', marginTop: '121px', marginLeft: '140px', marginBottom: '12px' }}>
+        <div className="filter-bar-wrapper-title">
           Book<br />Pet-Friendly<br />Hotels
         </div>
-        <div style={{ fontFamily: 'sansita-light', fontSize: '20px', lineHeight: '24px', color: 'white', marginLeft: '140px', letterSpacing: '1.6px' }}>
+        <div className="filter-bar-wrapper-desc">
           Easy to use. Lowest rates. No pet fees.
         </div>
         <FilterBar
@@ -278,7 +277,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                minWidth: "356px",
+                minWidth: "300px",
                 minHeight: "34px",
                 maxHeight: "47px",
                 border: 'none',
@@ -355,6 +354,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     {...params}
                     color="primary"
                     variant="outlined"
+                    className="auto-complete-input"
                     placeholder="Select a city"
                     size="small"
                     sx={{
@@ -368,22 +368,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         },
                         "&.Mui-focused fieldset": {
                           borderColor: "transparent",
-                        },
-                      },
-                      input: {
-                        padding: "0px",
-                        fontSize: "30px",
-                        lineHeight: '46px',
-                        fontWeight: 600,
-                        fontFamily: "overpass-light",
-                        cursor: "pointer",
-                        color: "#000",
-                        border: "none",
-                        "&::placeholder": {
-                          textOverflow: "ellipsis !important",
-                          color: "#444",
-                          opacity: 1,
-                          fontWeight: 600,
                         },
                       },
                     }}
@@ -477,6 +461,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                     textTransform: "none",
                                     fontSize: '30px',
                                     lineHeight: '46px',
+                                    ["@media (max-width: 600px)"]: { fontSize: '22px' }
                                   }}
                                 >
                                   {checkDate[0]
@@ -555,6 +540,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 textTransform: "none",
                                 fontSize: '30px',
                                 lineHeight: '46px',
+                                ["@media (max-width: 600px)"]: { fontSize: '22px' }
                               }}
                             >
                               {checkDate[1]
@@ -594,7 +580,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
         </div>
         <div className="filter-bar-desktop-wrapper-second">
           <div className="number-inputs">
-            <div style={{ marginLeft: '30px' }}>
+            <div className="number-input">
               <NumberInput
                 value={occupants.adults}
                 onChange={(adults) => {
