@@ -101,23 +101,89 @@
       }
     }
   }
+
+  .hotels-wrapper {
+    padding-top: 369px;
+    background: white;
+
+    @media screen and (max-width: 940px) {
+      padding-top: 40px;
+    }
+
+    &-header {
+      font-family: "sansita-light";
+      font-size: 55px;
+      line-height: 66px;
+      text-align: center;
+      margin-bottom: 34px;
+
+      @media screen and (max-width: 750px) {
+        font-size: 40px;
+        line-height: 40px;
+      }
+    }
+  }
+
   .hotels {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-around;
     margin-bottom: 464px;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 1300px) {
+      margin-bottom: 80px;
+    }
 
     .hotel {
-      margin-right: 16px;
+      width: 24%;
 
-      &:last-child {
-        margin-right: 0px;
+      @media screen and (max-width: 1300px) {
+        width: 48%;
+      }
+
+      @media screen and (max-width: 750px) {
+        width: 95%;
+        margin-bottom: 20px;
       }
 
       &-image-wrapper {
         border-radius: 15px;
         overflow: hidden;
         margin-bottom: 24px;
+        position: relative;
+
+        > img {
+          width: 100%;
+          height: 398px;
+
+          @media screen and (max-width: 750px) {
+            height: 250px;
+          }
+        }
+
+        .hotel-review-wrapper {
+          position: absolute;
+          top: 30px;
+          right: 30px;
+          width: 97px;
+          height: 27px;
+          background: #f9de00;
+          border-radius: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            margin-right: 5px;
+          }
+
+          &-text {
+            font-family: "overpass-light";
+            font-size: 16px;
+            line-height: 25px;
+          }
+        }
       }
 
       &-name {
@@ -138,6 +204,7 @@
         margin: auto;
         margin-bottom: 16px;
         margin-left: 30px;
+        text-align: center;
       }
 
       &-bottom-info {
@@ -186,6 +253,11 @@
     width: 100%;
     position: relative;
 
+    @media screen and (max-width: 1300px) {
+      height: fit-content;
+      padding: 20px 0px;
+    }
+
     &-wallpaper {
       width: 85%;
       max-width: 1640px;
@@ -200,6 +272,17 @@
       border-radius: 15px;
       overflow: hidden;
       transform: translate(-50%);
+      
+      @media screen and (max-width: 1300px) {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: auto;
+        background-size: contain;
+        background-position: center;
+        height: 400px;
+      }
     }
   }
 }

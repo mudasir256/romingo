@@ -4,6 +4,10 @@
     height: 620px;
     margin-top: 112px;
 
+    @media screen and (max-width: 600px) {
+      margin-top: 56px;
+    }
+
     &-title {
       font-family: "sansita-light";
       font-size: 85px;

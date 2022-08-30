@@ -26,6 +26,7 @@ import PetFriendlyImg from '../../assets/images/pet-friendly.png';
 import PetFeesImg from '../../assets/images/pet-fees.png';
 import AllPupsImg from '../../assets/images/all-pups.png';
 import HotelImg from '../../assets/images/hotel.png';
+import StarImg from '../../assets/images/star.svg';
 
 import "./Sticky.css";
 import "./HomePage.scss";
@@ -68,7 +69,7 @@ interface Props {
 
 const hotels = [
   {
-    review: 5,
+    review: '5.0',
     reviewCount: 18,
     title: 'Hotel Sofitel Los Angeles',
     desc: '8555 Beverly Blvd., Los Angeles, CA',
@@ -77,7 +78,7 @@ const hotels = [
     unit: 'per night'
   },
   {
-    review: 5,
+    review: '5.0',
     reviewCount: 18,
     title: 'Hotel Sofitel Los Angeles',
     desc: '8555 Beverly Blvd., Los Angeles, CA',
@@ -86,7 +87,7 @@ const hotels = [
     unit: 'per night'
   },
   {
-    review: 5,
+    review: '5.0',
     reviewCount: 18,
     title: 'Hotel Sofitel Los Angeles',
     desc: '8555 Beverly Blvd., Los Angeles, CA',
@@ -95,7 +96,7 @@ const hotels = [
     unit: 'per night'
   },
   {
-    review: 5,
+    review: '5.0',
     reviewCount: 18,
     title: 'Hotel Sofitel Los Angeles',
     desc: '8555 Beverly Blvd., Los Angeles, CA',
@@ -200,8 +201,8 @@ const HomePage: FC<Props> = ({
           </Box>
         </Box>
       </Box>
-      <Box sx={{ paddingTop: '369px', background: 'white' }}>
-        <div style={{ fontFamily: 'sansita-light', fontSize: '55px', lineHeight: '66px', textAlign: 'center', marginBottom: '34px' }}>
+      <Box className="hotels-wrapper" sx={{ paddingTop: '369px', background: 'white' }}>
+        <div className="hotels-wrapper-header">
           Travel with Romingo
         </div>
         <Box className="hotels">
@@ -209,7 +210,13 @@ const HomePage: FC<Props> = ({
             hotels.map((hotel, index) => (
               <div className="hotel" key={index}>
                 <div className="hotel-image-wrapper">
-                  <img src={HotelImg} width="398px" height="398px" alt="" />
+                  <img src={HotelImg} alt="" />
+                  <div className="hotel-review-wrapper">
+                    <img src={StarImg} width="16px" height="14px" alt="" />
+                    <div className="hotel-review-wrapper-text">
+                      {hotel.review} ({hotel.reviewCount})
+                    </div>
+                  </div>
                 </div>
                 <div className="hotel-name">
                   {hotel.title}
