@@ -144,6 +144,7 @@ const ListingPage: FC<Props> = () => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
         dogs: search.occupants.dogs,
+        allows_big_dogs:allowBigDogs
       },
     }
   );
@@ -735,7 +736,8 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
 
-      <div className="toggleWrap">  
+      {/* Temprory commented */}
+      {/* <div className="toggleWrap">  
       <Typography
           variant="body1"
           sx={{
@@ -768,7 +770,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
               // Refresh
           }} defaultChecked={false} />
         </Typography>
-      </div>
+      </div> */}
     </Grid>
   );
 };
