@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "overpass-light";
+  src: url(./assets/font/overpass/overpass-light.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "sansita-light";
+  src: url(./assets/font/sansita/Sansita-Light.otf) format("opentype");
+}
+
+body,
+html {
+  font-family: "overpass-light", sans-serif;
+}
