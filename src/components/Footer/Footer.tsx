@@ -1,20 +1,13 @@
-import Box from "@mui/material/Box";
+import React, { useState } from 'react';
 import { FC } from "react";
-import { CSSObject } from "@mui/material";
-import { PopupButton } from "@typeform/embed-react";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Link from "@mui/material/Link";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Hidden from "@mui/material/Hidden";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import { CSSObject, IconButton } from "@mui/material";
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import InstagramIcon from "@mui/icons-material/Instagram";
-import PetsIcon from "@mui/icons-material/Pets";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import HotelIcon from "@mui/icons-material/Hotel";
+import Link from "@mui/material/Link";
+
+import LogoImg from '../../assets/images/logo.png';
+import "./Footer.scss";
 
 interface Props {
   sx?: CSSObject;
@@ -110,283 +103,22 @@ const FooterMenus = {
 };
 
 const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
+  const [email, setEmail] = useState('');
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  }
   return (
-    <Box
-      sx={{
-        ...sx,
-        pt: 3,
-        backgroundColor: "#f7f7f7",
-        borderTop: "1px solid #f2f2f2",
-      }}
-    >
-      <Container maxWidth="lg">
-        <Grid container sx={{ borderBottom: "1px solid #DDDDDD" }}>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "bold",
-                color: "text.primary",
-              }}
-            >
-              Reservation
-            </Typography>
-            <List>
-              {footerMenus.reservation.map((menu, key) => {
-                return (
-                  <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link
-                      href={menu.link}
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { textDecoration: "underline" },
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "text.secondary",
-                          textDecoration: "none",
-                          "&:hover": { color: "primary.main" },
-                        }}
-                      >
-                        {menu.text}
-                      </Typography>
-                    </Link>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "bold",
-                color: "text.primary",
-              }}
-            >
-              Site map
-            </Typography>
-            <List>
-              {footerMenus.about.map((menu, key) => {
-                return (
-                  <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link
-                      href={menu.link}
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { textDecoration: "underline" },
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "text.secondary",
-                          textDecoration: "none",
-                          "&:hover": { color: "primary.main" },
-                        }}
-                      >
-                        {menu.text}
-                      </Typography>
-                    </Link>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "bold",
-                color: "text.primary",
-              }}
-            >
-              Contact
-            </Typography>
-            <List>
-              {footerMenus.contact.map((menu, key) => {
-                return (
-                  <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link
-                      href={menu.link}
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { textDecoration: "underline" },
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "text.secondary",
-                          textDecoration: "none",
-                          "&:hover": { color: "primary.main" },
-                        }}
-                      >
-                        {menu.text}
-                      </Typography>
-                    </Link>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "bold",
-                color: "text.primary",
-              }}
-            >
-              Content &amp; Blog
-            </Typography>
-            <List>
-              {/* <ListItem key={"definitive-guide"} sx={{ pl: 0 }}>
-                <PopupButton
-                  id="SYpKecCU"
-                  style={{
-                    background: "none",
-                    border: "none",
-                    textAlign: "left",
-                    padding: 0,
-                    cursor: "pointer",
-                    margin: 0,
-                    marginBottom: -5,
-                  }}
-                >
-                  <Link sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "text.secondary",
-                        textDecoration: 'none',
-                        '&:hover': { color: 'primary.main' }
-                      }}
-                    >
-                      Guide to Dog-Friendly Travel
-                    </Typography>
-                  </Link>
-                </PopupButton>
-              </ListItem> */}
-              <ListItem sx={{ pl: 0 }}>
-                <Link
-                  href="https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf"
-                  target="_blank"
-                  sx={{
-                    textDecoration: "none",
-                    "&:hover": { textDecoration: "underline" },
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      textDecoration: "none",
-                      "&:hover": { color: "primary.main" },
-                    }}
-                  >
-                    Guide to Air Travel With Your Dog
-                  </Typography>
-                </Link>
-              </ListItem>
-              {footerMenus.blog.map((menu, key) => {
-                return (
-                  <ListItem key={key} sx={{ pl: 0 }}>
-                    <Link
-                      href={menu.link}
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { textDecoration: "underline" },
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "text.secondary",
-                          textDecoration: "none",
-                          "&:hover": { color: "primary.main" },
-                        }}
-                      >
-                        {menu.text}
-                      </Typography>
-                    </Link>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
-        </Grid>
-      </Container>
-      <Container maxWidth="lg">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "space-between",
-            justifyContent: "space-between",
-            py: 1,
-          }}
-        >
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
-            <Typography
-              variant="body2"
-              sx={{
-                mr: 1,
-              }}
-            >
-              © {new Date().getFullYear()} Romingo, Inc.
-            </Typography>
-            <Link
-              href="/privacy"
-              sx={{
-                mr: 1,
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "primary.main",
-                }}
-              >
-                Privacy
-              </Typography>
-            </Link>
-            <Link href="/terms-of-use">
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "primary.main",
-                }}
-              >
-                Terms
-              </Typography>
-            </Link>
-          </Box>
-          <Hidden smDown>
-            <Typography variant="body2" color="#ccc">
-              <PetsIcon sx={{ fontSize: "13px", mx: 0.2, mb: -0.1 }} />+
-              <HotelIcon sx={{ fontSize: "15px", mx: 0.2, mb: -0.3 }} />=
-              <FavoriteIcon
-                onClick={() => (window.location.href = "/romingo-partners")}
-                sx={{
-                  fontSize: "15px",
-                  mx: 0.2,
-                  mb: -0.3,
-                  "& :hover": { color: "#03989E", cursor: "pointer" },
-                }}
-              />
-            </Typography>
-          </Hidden>
-        </Box>
-        <Hidden smUp>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+    <div className="footer">
+      <div className="footer-wrapper">
+        <div className="footer-wrapper-logo-section">
+          <img src={LogoImg} alt="" />
+          <div className="footer-wrapper-logo-section-text">
+            Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.
+          </div>
+          <div className="social-icons">
             <IconButton
               edge="start"
               sx={{ mr: 1, color: "black" }}
@@ -394,7 +126,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               href="https://www.facebook.com/RomingoTravel/"
               target="_blank"
             >
-              <FacebookIcon />
+              <FacebookRoundedIcon />
             </IconButton>
             <IconButton
               edge="start"
@@ -405,10 +137,75 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
             >
               <InstagramIcon />
             </IconButton>
-          </Box>
-        </Hidden>
-      </Container>
-    </Box>
+          </div>
+        </div>
+        <div className="link-section">
+
+          <div className="site-map-section">
+            <div className="site-map-section-header">
+              Site map
+            </div>
+            <div>
+              <Link href="/about">Our story</Link>
+            </div>
+            <div>
+              <Link href="/faq">FAQ</Link>
+            </div>
+            <div>
+              <Link href="/contact">Contact</Link>
+            </div>
+            <div>
+              <Link href="/romingo-score">Romingo score</Link>
+            </div>
+            <div>
+              <Link href="/romingo-partners">RedRover partnership</Link>
+            </div>
+          </div>
+          <div className="site-map-section">
+            <div className="site-map-section-header">
+              Content & Blog
+            </div>
+            <div>
+              <Link href="https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf"
+                target="_blank">Guide to Air Travel With Your Dog</Link>
+            </div>
+            <div>
+              <Link href="/blog" target="_blank">Romingo Blog</Link>
+            </div>
+            <div>
+              <Link href="/blog/12" target="_blank">Top travel tips</Link>
+            </div>
+          </div>
+          <div className="sign-up">
+            <div className="sign-up-header">
+              Newsletter signup
+            </div>
+            <form onSubmit={(e) => handleSubmit(e)}>
+              <input value={email} onChange={(e) => handleEmailChange(e)} type="email" required placeholder='Enter email address' />
+              <button type="submit">
+                <PlayArrowOutlinedIcon />
+              </button>
+            </form>
+            <div className="sign-up-footer">
+              Sign up for our newsletter to receive exclusive offers
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="footer-wrapper">
+        <div className="footer-wrapper-year">
+          © 2022 Romingo, Inc.
+        </div>
+        <div className="footer-wrapper-last-sections">
+          <Link href="/">
+            Privacy policy
+          </Link>
+          <Link href="/">
+            Terms & Conditions
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 
