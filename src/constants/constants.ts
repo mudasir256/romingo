@@ -88,6 +88,7 @@ const GetHotelRackBySearch = `
         featuredImageURL
         imageURLs
         name
+        alias
         addressLine1
         city {
           id
