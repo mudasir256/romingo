@@ -152,6 +152,7 @@
         overflow: hidden;
         margin-bottom: 24px;
         position: relative;
+        display: flex;
 
         > img {
           width: 100%;
@@ -279,8 +280,8 @@
         top: auto;
         transform: none;
         margin: auto;
-        background-size: contain;
-        background-position: center;
+        background-size: cover;
+        background-position: top center;
         height: 400px;
       }
     }
