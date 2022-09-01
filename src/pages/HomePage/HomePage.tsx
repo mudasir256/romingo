@@ -154,7 +154,8 @@ const HomePage: FC<Props> = ({
   const isSticky = () => {
     const header = document.querySelector(".sticky-header");
     const scrollTop = window.scrollY;
-    scrollTop >= 170
+
+    scrollTop >= 680
       ? header && header.classList.add("is-sticky")
       : header && header.classList.remove("is-sticky");
   };
