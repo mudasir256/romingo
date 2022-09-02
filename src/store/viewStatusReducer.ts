@@ -9,7 +9,7 @@ export const setViewStatus = (status: IViewStatus) => (dispatch: ViewStatusDispa
 }
 
 const initialState: IViewStatus = {
-  status: "preview"
+  status: "expanded"
 }
 
 const viewStatusReducer = (state: IViewStatus = initialState, action: ViewStatusAction) : IViewStatus => {

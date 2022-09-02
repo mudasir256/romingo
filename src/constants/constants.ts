@@ -6,6 +6,7 @@ const GetHotelBySearch = `
       $cityId: String!,
       $children: [ChildInput!]!,
       $dogs: Int!
+      $allows_big_dogs: Int
     ) {
       properties(
         input: {
@@ -15,6 +16,7 @@ const GetHotelBySearch = `
           checkIn: $checkIn,
           checkOut: $checkOut,
           dogs: $dogs,
+          allows_big_dogs:$allows_big_dogs
         }
       ) {
         id
@@ -56,6 +58,8 @@ const GetHotelBySearch = `
           totalFees
         }
         alias
+        page_rank
+        allows_big_dogs
       }
     }
   `;
@@ -68,6 +72,7 @@ const GetHotelRackBySearch = `
       $cityId: String!,
       $children: [ChildInput!]!,
       $dogs: Int!,
+      $allows_big_dogs: Int
     ) {
       propertiesByCorporateDiscount(
         input: {
@@ -77,12 +82,16 @@ const GetHotelRackBySearch = `
           checkIn: $checkIn,
           checkOut: $checkOut,
           dogs: $dogs,
+          allows_big_dogs:$allows_big_dogs
         }
       ) {
         id
         featuredImageURL
         imageURLs
         name
+        alias
+        page_rank
+        allows_big_dogs
         addressLine1
         city {
           id

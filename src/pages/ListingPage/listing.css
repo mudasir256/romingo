@@ -1,0 +1,13 @@
+.alignCenter {
+    align-items: center;
+}
+
+.toggleWrap {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.toggleWrap  p + p  {
+    margin: 0;
+}
