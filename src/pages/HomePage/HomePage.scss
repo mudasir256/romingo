@@ -1,4 +1,15 @@
 .homepage {
+  &-logo {
+    padding-top: 2em;
+    padding-right: 2em;
+    width: 180px;
+    float: right;  
+
+    @media screen and (max-width: 800px) {
+      padding: 1em;
+    }
+  }
+
   .info-boxes {
     width: 100%;
     height: 461px;
@@ -263,7 +274,8 @@
       width: 85%;
       max-width: 1640px;
       height: 706px;
-      background-image: url("../../assets/images/homepage-dog.jpg");
+
+      background-image: linear-gradient(248deg, #36454F 0%, #29292900 49%, #36454F 100%), url("../../assets/images/homepage-dog.jpg"); 
       background-repeat: no-repeat;
       background-position: top left;
       background-size: 100%;
@@ -285,5 +297,39 @@
         height: 400px;
       }
     }
+
+    &-text {
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding-left: 3em;
+      padding-bottom: 3em;
+
+      @media screen and (max-width: 800px) {
+        padding: 1em;
+      }
+    }
   }
+}
+.no-space {
+  padding: 0px;
+  margin: 0px;
+}
+.mb-sm {
+  margin-bottom: 1em;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 0.5em;
+  }
+}
+.mb-md {
+  margin-bottom: 2em;
+}
+.mb-lg {
+  margin-bottom: 4em;
+}
+.space-letters-sm {
+  letter-spacing: 1px;
+  font-weight: 100;
 }

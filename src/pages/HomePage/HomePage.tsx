@@ -27,6 +27,8 @@ import PetFeesImg from '../../assets/images/pet-fees.png';
 import AllPupsImg from '../../assets/images/all-pups.png';
 import HotelImg from '../../assets/images/hotel.png';
 import StarImg from '../../assets/images/star.svg';
+import LogoImgWhite from '../../assets/images/logo-white.png';
+
 
 import "./Sticky.css";
 import "./HomePage.scss";
@@ -244,7 +246,24 @@ const HomePage: FC<Props> = ({
         </Box>
       </Box>
       <Box className="homepage-dog">
-        <div className="homepage-dog-wallpaper"></div>
+        <div className="homepage-dog-wallpaper">
+          <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
+          <div className="homepage-dog-text">
+            <h1 className="no-space">Reserve now, pay later</h1>
+            <h3 className="no-space mb-sm space-letters-sm">Plus, free cancellations!</h3>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                textTransform: "none",
+                fontFamily: "overpass-light"
+              }}
+            >
+              Book now
+            </Button>
+
+          </div>
+        </div>
       </Box>
       <Hidden mdUp>
         <Box className="sticky-header">
