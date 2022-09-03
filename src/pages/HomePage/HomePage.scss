@@ -41,8 +41,8 @@
       }
 
       .info-box {
-        width: 536px;
-        height: 523px;
+        width: 500px;
+        height: 420px;
         box-shadow: 21px 7px 63px #0000000d;
         border-radius: 15px;
         background: white;
@@ -96,6 +96,7 @@
         }
 
         &-desc {
+          padding: 0.5em 3em;
           font-family: "overpass-light";
           font-size: 22px;
           line-height: 28px;
@@ -145,6 +146,8 @@
     flex-wrap: wrap;
 
     @media screen and (max-width: 1300px) {
+      margin-right: 1em;
+      margin-left: 1em;
       margin-bottom: 80px;
     }
 
@@ -259,14 +262,14 @@
   }
 
   &-dog {
-    height: 465px;
+    height: 460px;
     background: #f4dac9;
     width: 100%;
     position: relative;
 
     @media screen and (max-width: 1300px) {
       height: fit-content;
-      padding: 20px 0px;
+      padding: 2em 0px;
     }
 
     &-wallpaper {
@@ -286,6 +289,7 @@
       transform: translate(-50%);
       
       @media screen and (max-width: 1300px) {
+        width: 90%;
         position: relative;
         left: auto;
         top: auto;

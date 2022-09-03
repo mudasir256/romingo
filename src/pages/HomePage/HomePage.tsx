@@ -184,7 +184,7 @@ const HomePage: FC<Props> = ({
       <Box className="info-boxes">
         <Box className="info-boxes-container">
           <Box className="info-box">
-            <img src={PetFriendlyImg} alt="" />
+            <img src={PetFriendlyImg} alt="pet-friendly" />
             <div className="info-box-title">
               Pet-friendly
             </div>
@@ -193,7 +193,7 @@ const HomePage: FC<Props> = ({
             </div>
           </Box>
           <Box className="info-box">
-            <img src={PetFeesImg} width="234px" height="247px" alt="" />
+            <img src={PetFeesImg} width="234px" height="247px" alt="0 pet fees" />
             <div className="info-box-title">
               $0 pet fees
             </div>
@@ -202,7 +202,7 @@ const HomePage: FC<Props> = ({
             </div>
           </Box>
           <Box className="info-box">
-            <img src={AllPupsImg} width="238px" height="227px" alt="" />
+            <img src={AllPupsImg} width="238px" height="227px" alt="all pups welcome" />
             <div className="info-box-title">
               All pups welcome
             </div>
