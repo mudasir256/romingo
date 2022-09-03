@@ -189,7 +189,7 @@ const HomePage: FC<Props> = ({
               Pet-friendly
             </div>
             <div className="info-box-desc">
-              Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet
+              Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
             </div>
           </Box>
           <Box className="info-box">

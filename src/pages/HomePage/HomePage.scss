@@ -12,7 +12,7 @@
 
   .info-boxes {
     width: 100%;
-    height: 461px;
+    height: 400px;
     background: #f4dac9;
     position: relative;
 
@@ -26,7 +26,7 @@
       align-items: flex-start;
       justify-content: center;
       position: absolute;
-      bottom: -261.5px;
+      bottom: -200px;
       left: 50%;
       width: 100%;
       transform: translateX(-50%);
@@ -115,7 +115,7 @@
   }
 
   .hotels-wrapper {
-    padding-top: 369px;
+    padding-top: 300px;
     background: white;
 
     @media screen and (max-width: 940px) {
