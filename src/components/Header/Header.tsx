@@ -47,6 +47,8 @@ import HeroImage from '../../assets/images/home-hero.jpg';
 import SearchImage from '../../assets/icon/magnify.png';
 import CalendarImage from '../../assets/icon/calendar.png';
 
+import RedesignedSearchBar from '../RedesignedSearchBar'
+
 import "./Header.scss";
 
 interface Props {
@@ -114,27 +116,24 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: `url(${HeroImage})`,
+          backgroundImage: `linear-gradient(110deg, #000000 0%, #29292900 52%, #000000 100%), url(${HeroImage})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}
       >
-        <div className="filter-bar-wrapper-title">
-          Book<br />Pet-Friendly<br />Hotels
-        </div>
-        <div className="filter-bar-wrapper-desc">
-          Easy to use. Lowest rates. No pet fees.
-        </div>
-        <FilterBar
-          sx={{
-            zIndex: 1401,
-            width: "100%",
-            margin: "100px 0",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        />
+        <Box sx={{ 
+          ml: '3em', 
+          mt: '3em' 
+        }}>
+          <div className="filter-bar-wrapper-title">
+            Book<br />Pet-Friendly<br />Hotels
+          </div>
+          <div className="filter-bar-wrapper-desc">
+            Easy to use. Lowest rates. No pet fees.
+          </div>
+        </Box>
+        <RedesignedSearchBar />
       </Box>
     </Box >
   );
@@ -265,13 +264,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
   return (
     <Box className="filter-bar-desktop">
-      <Box
-        className="filter-bar-desktop-wrapper"
-        sx={{
-          flexDirection: below900 ? "column" : "row",
-        }}
-      >
-        <div className="filter-bar-desktop-wrapper-first">
+      <Box>
+        <div>
           <Box>
             <Box
               sx={{
@@ -411,7 +405,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 setCheckDate(newValue);
               }}
               renderInput={(startProps, endProps) => (
-                <div className="date-pickers-wrapper">
+                <div className="flex-row">
                   <Box
                     sx={{
                       cursor: "pointer",
@@ -446,94 +440,11 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       >
                         <img src={CalendarImage} width="22.7px" height="22.7px" alt="" />
                       </Grid>
-                      <Grid item xs={8}>
-                        <Grid
-                          container
-                          sx={{ justifyContent: "center", display: "flex" }}
-                        >
-                          <Grid item xs={10}>
-                            {
-                              checkDate[0] ?
-                                <Typography
-                                  sx={{
-                                    color: "black",
-                                    fontFamily: "overpass-light",
-                                    textTransform: "none",
-                                    fontSize: '30px',
-                                    lineHeight: '46px',
-                                    ["@media (max-width: 600px)"]: { fontSize: '22px' }
-                                  }}
-                                >
-                                  {checkDate[0]
-                                    ? DateTime.fromJSDate(
-                                      new Date(checkDate[0])
-                                    ).toFormat("MMM dd")
-                                    : ""}
-                                </Typography> : <Typography
-                                  sx={{
-                                    color: "black",
-                                    fontFamily: "overpass-light",
-                                    textTransform: "none",
-                                    fontSize: '30px',
-                                    lineHeight: '46px',
-                                  }}
-                                >
-                                  Check-in
-                                </Typography>
-                            }
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <div style={{
-                      fontFamily: 'overpass-light',
-                      fontSize: '15px',
-                      lineHeight: '23px',
-                      color: '#949494',
-                      marginLeft: '40px'
-                    }}>Add date</div>
-                  </Box>
-                  <Box
-                    sx={{
-                      cursor: "pointer",
-                      transition: "all .15s ease-in-out",
-                      minHeight: "34px",
-                      mr: ".5rem",
-                      border: 'none',
-                      padding: ".25rem .5rem",
-                      "&:hover": { background: "#efefef" },
-                      borderRadius: "6px",
-                      backgroundColor: "#fff",
-                    }}
-                  >
-                    <Grid
-                      container
-                      onClick={() => setOpen(true)}
-                      sx={{
-                        minWidth: "200px",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Grid
-                        item
-                        xs={2}
-                        sx={{
-                          pr: "1rem",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <img src={CalendarImage} width="22.7px" height="22.7px" alt="" />
-                      </Grid>
-                      <Grid item xs={8}>
-                        <Grid
-                          container
-                          sx={{ justifyContent: "center", display: "flex" }}
-                        >
-                          <Grid item xs={10}>
-                            {checkDate[1] ? <Typography
+              
+                      <Box>
+                        {
+                          checkDate[0] ?
+                            <Typography
                               sx={{
                                 color: "black",
                                 fontFamily: "overpass-light",
@@ -543,27 +454,25 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                                 ["@media (max-width: 600px)"]: { fontSize: '22px' }
                               }}
                             >
-                              {checkDate[1]
+                              {checkDate[0]
                                 ? DateTime.fromJSDate(
-                                  new Date(checkDate[1])
+                                  new Date(checkDate[0])
                                 ).toFormat("MMM dd")
                                 : ""}
-                            </Typography> :
-                              <Typography
-                                sx={{
-                                  color: "black",
-                                  fontFamily: "overpass-light",
-                                  textTransform: "none",
-                                  fontSize: '30px',
-                                  lineHeight: '46px',
-                                }}
-                              >
-                                Check-out
-                              </Typography>
-                            }
-                          </Grid>
-                        </Grid>
-                      </Grid>
+                            </Typography> : <Typography
+                              sx={{
+                                color: "black",
+                                fontFamily: "overpass-light",
+                                textTransform: "none",
+                                fontSize: '30px',
+                                lineHeight: '46px',
+                              }}
+                            >
+                              Check-in
+                            </Typography>
+                        }
+              
+                      </Box>
                     </Grid>
                     <div style={{
                       fontFamily: 'overpass-light',
@@ -573,74 +482,150 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       marginLeft: '40px'
                     }}>Add date</div>
                   </Box>
+
+                  <Box
+                    sx={{
+                      cursor: "pointer",
+                      transition: "all .15s ease-in-out",
+                      minHeight: "34px",
+                      mr: ".5rem",
+                      border: 'none',
+                      padding: ".25rem .5rem",
+                      "&:hover": { background: "#efefef" },
+                      borderRadius: "6px",
+                      backgroundColor: "#fff",
+                    }}
+                  >
+                    <Grid
+                      container
+                      onClick={() => setOpen(true)}
+                      sx={{
+                        minWidth: "200px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Grid
+                        item
+                        xs={2}
+                        sx={{
+                          pr: "1rem",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <img src={CalendarImage} width="22.7px" height="22.7px" alt="" />
+                      </Grid>
+                   
+                      <Box>
+                        {checkDate[1] ? <Typography
+                          sx={{
+                            color: "black",
+                            fontFamily: "overpass-light",
+                            textTransform: "none",
+                            fontSize: '30px',
+                            lineHeight: '46px',
+                            ["@media (max-width: 600px)"]: { fontSize: '22px' }
+                          }}
+                        >
+                          {checkDate[1]
+                            ? DateTime.fromJSDate(
+                              new Date(checkDate[1])
+                            ).toFormat("MMM dd")
+                            : ""}
+                        </Typography> :
+                          <Typography
+                            sx={{
+                              color: "black",
+                              fontFamily: "overpass-light",
+                              textTransform: "none",
+                              fontSize: '30px',
+                              lineHeight: '46px',
+                            }}
+                          >
+                            Check-out
+                          </Typography>
+                        }
+                      </Box>
+
+                    </Grid>
+                    <div style={{
+                      fontFamily: 'overpass-light',
+                      fontSize: '15px',
+                      lineHeight: '23px',
+                      color: '#949494',
+                      marginLeft: '40px'
+                    }}>Add date</div>
+                  </Box>
+
                 </div>
               )}
             />
           </LocalizationProvider>
         </div>
-        <div className="filter-bar-desktop-wrapper-second">
-          <div className="number-inputs">
-            <div className="number-input">
-              <NumberInput
-                value={occupants.adults}
-                onChange={(adults) => {
-                  if (adults > 5) return;
-                  onOccupantChange({ ...occupants, adults });
-                }}
-                minimum={1}
-                type="Guest"
-              />
-            </div>
-            <div style={{ margin: '0 86px' }}>
-              <NumberInput
-                value={occupants.children}
-                onChange={(children) => {
-                  if (children > 6) return;
-                  if (occupants.childrenAge && occupants.childrenAge.length > children) {
-                    occupants.childrenAge = occupants.childrenAge.slice(0, children);
-                  } else if (
-                    occupants.childrenAge &&
-                    occupants.childrenAge.length <= children
-                  ) {
-                    while (occupants.childrenAge.length !== children) {
-                      occupants.childrenAge.push(0);
-                    }
-                  }
-                  onOccupantChange({ ...occupants, children });
-                }}
-                type="Children"
-              />
-            </div>
+
+      
+        <div className="number-inputs">
+          <NumberInput
+            value={occupants.adults}
+            onChange={(adults) => {
+              if (adults > 5) return;
+              onOccupantChange({ ...occupants, adults });
+            }}
+            minimum={1}
+            type="Guest"
+          />
+    
+          <div style={{ margin: '0 3em' }}>
             <NumberInput
-              value={occupants.dogs}
-              onChange={(dogs) => {
-                if (dogs > 2) return;
-                onOccupantChange({ ...occupants, dogs });
+              value={occupants.children}
+              onChange={(children) => {
+                if (children > 6) return;
+                if (occupants.childrenAge && occupants.childrenAge.length > children) {
+                  occupants.childrenAge = occupants.childrenAge.slice(0, children);
+                } else if (
+                  occupants.childrenAge &&
+                  occupants.childrenAge.length <= children
+                ) {
+                  while (occupants.childrenAge.length !== children) {
+                    occupants.childrenAge.push(0);
+                  }
+                }
+                onOccupantChange({ ...occupants, children });
               }}
-              type="Pet"
+              type="Children"
             />
           </div>
-          <Box>
-            <button
-              onClick={handleFilterOutClick}
-              type="submit"
-              style={{
-                height: "52px",
-                width: "52px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                marginLeft: '40px',
-                padding: 0,
-                background: '#009CA1',
-                border: 'none'
-              }}
-            >
-              <SearchIcon sx={{ height: "15px", fill: 'white' }} />
-            </button>
-          </Box>
+
+          <NumberInput
+            value={occupants.dogs}
+            onChange={(dogs) => {
+              if (dogs > 2) return;
+              onOccupantChange({ ...occupants, dogs });
+            }}
+            type="Pet"
+          />
+          <button
+            onClick={handleFilterOutClick}
+            type="submit"
+            style={{
+              height: "52px",
+              width: "52px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "50%",
+              marginLeft: '40px',
+              padding: 0,
+              background: '#009CA1',
+              border: 'none'
+            }}
+          >
+            <SearchIcon sx={{ height: "15px", fill: 'white' }} />
+          </button>
         </div>
+     
       </Box>
     </Box>
   );
@@ -654,303 +639,6 @@ export interface Occupant {
   disabled?: boolean;
 }
 
-interface OccupantSelectorProps {
-  value: Occupant;
-  onChange: (value: Occupant) => void;
-  onClose?: () => void;
-  fullWidth?: boolean;
-  size?: "small" | "medium" | undefined;
-  variant?: "filled" | "outlined" | "standard" | undefined;
-  disabled?: boolean;
-  align?: "left" | "right";
-}
-
-const OccupantSelector: FC<OccupantSelectorProps> = ({
-  value,
-  onChange,
-  onClose,
-  fullWidth = true,
-  align = "left",
-  size = "medium",
-  variant = "outlined",
-  disabled = false,
-}) => {
-  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
-  const [ref, { width }] = useMeasure<HTMLDivElement>();
-  const [error, setError] = useState("");
-
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setError("");
-    if (value.adults === 0) {
-      setError("At least 1 adult is required");
-      return;
-    }
-    if (onClose) {
-      onClose();
-    }
-    setAnchorEl(null);
-  };
-
-  return (
-    <>
-      <Grid
-        container
-        onClick={handleClick}
-        sx={{
-          minWidth: "174px",
-          display: variant === "outlined" ? "flex" : "none",
-          alignItems: "center",
-        }}
-      >
-        <Grid
-          item
-          xs={2}
-          sx={{
-            pr: "1rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
-        </Grid>
-        <Grid item xs={8}>
-          <Grid
-            container
-            sx={{
-              justifyContent: "center",
-              display: "flex",
-              textAlign: "left",
-            }}
-          >
-            <Grid item xs={12}>
-              <Typography
-                sx={{
-                  color: "#666",
-                  fontFamily: "Roboto",
-                  mb: "-.125rem",
-                  textTransform: "none",
-                  fontWeight: 600,
-                  fontSize: { xs: "11px" },
-                }}
-              >
-                Guests
-              </Typography>
-              <Typography
-                sx={{
-                  color: "#444",
-                  fontFamily: "Roboto",
-                  textTransform: "none",
-                  fontWeight: 600,
-                  fontSize: { xs: "14px" },
-                  cursor: "pointer",
-                }}
-              >
-                {value.adults + value.children} Guests, {value.dogs} Pets
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          xs={1}
-          sx={{
-            ml: "auto",
-            mr: ".5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <ExpandMore sx={{ height: "20px", color: "#666" }} />
-        </Grid>
-      </Grid>
-
-      <Grid
-        container
-        sx={{
-          marginBottom: "-2px",
-          height: "10px",
-          display: variant === "standard" ? "flex" : "none",
-          alignItems: "center",
-        }}
-      >
-        <Grid
-          item
-          onClick={handleClick}
-          sx={{
-            display: "flex",
-            textAlign: align,
-            mr: align === "left" ? "auto" : 0,
-            ml: align === "right" ? "auto" : "1rem",
-          }}
-        >
-          <Typography
-            sx={{
-              color: "#03989E",
-              textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
-              fontFamily: "Roboto",
-              textTransform: "none",
-              fontWeight: 600,
-              fontSize: { xs: "12px" },
-              cursor: "pointer",
-            }}
-          >
-            {value.adults + value.children} Guests, {value.dogs} Pet
-            {value.dogs === 1 ? "" : "s"}
-          </Typography>
-          <ExpandMore sx={{ height: "20px", color: "#03989E" }} />
-        </Grid>
-      </Grid>
-
-      <Popover
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
-        sx={{ ".MuiPopover-paper": { width: "250px", mt: ".5rem" } }}
-      >
-        <Stack sx={{ px: 2, pt: 2 }} spacing={1}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography variant="body1">Adults</Typography>
-            <NumberInput
-              value={value.adults}
-              onChange={(adults) => {
-                if (adults > 5) return;
-                onChange({ ...value, adults });
-              }}
-              minimum={1}
-              type="Adults"
-            />
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            sx={{ width: "100%" }}
-          >
-            <Typography variant="body1">Children</Typography>
-            <NumberInput
-              value={value.children}
-              onChange={(children) => {
-                if (children > 6) return;
-                if (value.childrenAge && value.childrenAge.length > children) {
-                  value.childrenAge = value.childrenAge.slice(0, children);
-                } else if (
-                  value.childrenAge &&
-                  value.childrenAge.length <= children
-                ) {
-                  while (value.childrenAge.length !== children) {
-                    value.childrenAge.push(0);
-                  }
-                }
-                onChange({ ...value, children });
-              }}
-              type="Children"
-            />
-          </Stack>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            sx={{ width: "100%" }}
-          >
-            <Typography variant="body1">Dogs</Typography>
-            <NumberInput
-              value={value.dogs}
-              onChange={(dogs) => {
-                if (dogs > 2) return;
-                onChange({ ...value, dogs });
-              }}
-              type="Pets"
-            />
-          </Stack>
-          {error.length > 0 && (
-            <Typography
-              variant="body2"
-              color="error"
-              sx={{ textAlign: "center", fontSize: "80%" }}
-            >
-              {error}
-            </Typography>
-          )}
-          <Box
-            alignItems="center"
-            justifyContent="center"
-            sx={{ width: "100%" }}
-          >
-            {Array.from({ length: value.children }, (_, i: number) => {
-              return (
-                <Box
-                  sx={{
-                    mx: "5px",
-                    mt: "0px",
-                    mb: "15px",
-                    width: "calc(50% - 10px)",
-                    display: "inline-block",
-                  }}
-                  key={i}
-                >
-                  <FormControl variant="standard" fullWidth>
-                    <InputLabel sx={{ textAlign: "center" }}>
-                      Child {i + 1} Age
-                    </InputLabel>
-                    <Select
-                      key={i}
-                      color="primary"
-                      sx={{ textAlign: "center" }}
-                      value={
-                        value.childrenAge && value.childrenAge[i]
-                          ? value.childrenAge[i].toString()
-                          : "0"
-                      }
-                      onChange={(e: any) => {
-                        if (value.childrenAge === undefined) {
-                          value.childrenAge = [];
-                        }
-                        value.childrenAge[i] = parseInt(e.target.value);
-                        onChange({ ...value });
-                      }}
-                    >
-                      {Array.from({ length: 18 }, (_, k: number) => {
-                        return (
-                          <MenuItem value={k} key={k}>
-                            {k}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </Box>
-              );
-            })}
-          </Box>
-        </Stack>
-        <Button
-          sx={{ pt: 1.5, pb: 1.5, width: "100%", mt: -1.25 }}
-          onClick={handleClose}
-        >
-          Done
-        </Button>
-      </Popover>
-    </>
-  );
-};
 
 interface NumberInputProps {
   value: number;
@@ -972,11 +660,11 @@ const NumberInput: FC<NumberInputProps> = ({
           {value}
         </Typography>
         <Stack alignItems="center" sx={{ margin: '0 !important' }}>
-          <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => onChange(value + 1)}>
-            <ArrowDropUpOutlined />
+          <div style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => onChange(value + 1)}>
+            <ArrowDropUpOutlined fontSize="large" />
           </div>
-          <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => onChange(Math.max(value - 1, minimum))}>
-            <ArrowDropDownOutlined />
+          <div style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => onChange(Math.max(value - 1, minimum))}>
+            <ArrowDropDownOutlined fontSize="large" />
           </div>
         </Stack>
       </Stack>
