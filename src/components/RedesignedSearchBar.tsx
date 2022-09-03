@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const RedesignedSearchBar: FC = () => {
-  
+
   const search = useSelector((state: any) => state.searchReducer.search);
+  const cities = useSelector((state: any) => state.cityListReducer.cities);
   const [selectedCity, setSelectedCity] = useState(search.city ? search.city : null);
 
 
