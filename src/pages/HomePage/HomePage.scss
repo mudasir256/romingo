@@ -10,8 +10,7 @@
     }
   }
 
-  .info-boxes {
-    width: 100%;
+  .info-boxes { 
     height: 400px;
     background: #f4dac9;
     position: relative;
@@ -41,6 +40,7 @@
       }
 
       .info-box {
+        margin-left: 2em;
         width: 500px;
         height: 420px;
         box-shadow: 21px 7px 63px #0000000d;
@@ -56,19 +56,27 @@
           width: 32%;
         }
 
+
         @media screen and (max-width: 940px) {
           height: fit-content;
-          width: 90%;
-          margin: auto;
-          margin-bottom: 16px;
-          padding: 20px;
+          width: 84%;
+          margin: 1em auto;
+          padding: 1.5em;
+        }
+
+        @media screen and (max-width: 720px) {
+          height: fit-content;
+          width: 80%;
+          margin: 0.75em auto;
+          padding: 1.5em;
         }
 
         &:last-child {
-          margin-right: 0px;
+          margin-right: 2em;
 
           @media screen and (max-width: 940px) {
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
           }
         }
 
@@ -137,8 +145,8 @@
   }
 
   .hotels {
-    margin-right: 4em;
-    margin-left: 4em;
+    margin-right: 3em;
+    margin-left: 3em;
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
