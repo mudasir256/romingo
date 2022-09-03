@@ -10,6 +10,7 @@ import {
   TextField,
   Typography,
   Hidden,
+  Link,
 } from "@mui/material";
 import { Cancel, Star } from "@mui/icons-material";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -77,7 +78,8 @@ const hotels = [
     desc: '8555 Beverly Blvd., Los Angeles, CA',
     location: 'Beverly Hills',
     price: '$305',
-    unit: 'per night'
+    unit: 'per night',
+    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
   },
   {
     review: '5.0',
@@ -86,7 +88,9 @@ const hotels = [
     desc: '8555 Beverly Blvd., Los Angeles, CA',
     location: 'Beverly Hills',
     price: '$305',
-    unit: 'per night'
+    unit: 'per night',
+    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
+
   },
   {
     review: '5.0',
@@ -95,7 +99,9 @@ const hotels = [
     desc: '8555 Beverly Blvd., Los Angeles, CA',
     location: 'Beverly Hills',
     price: '$305',
-    unit: 'per night'
+    unit: 'per night',
+    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
+
   },
   {
     review: '5.0',
@@ -104,7 +110,9 @@ const hotels = [
     desc: '8555 Beverly Blvd., Los Angeles, CA',
     location: 'Beverly Hills',
     price: '$305',
-    unit: 'per night'
+    unit: 'per night',
+    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
+
   }
 ]
 const HomePage: FC<Props> = ({
@@ -221,23 +229,15 @@ const HomePage: FC<Props> = ({
                     </div>
                   </div>
                 </div>
-                <div className="hotel-name">
-                  {hotel.title}
-                </div>
-                <div className="hotel-desc">
-                  {hotel.desc}
-                </div>
-                <div className="hotel-bottom-info">
-                  <div className="hotel-location">
-                    {hotel.location}
-                  </div>
-                  <div className="hotel-price">
-                    <div className="hotel-price-value">
-                      {hotel.price}
-                    </div>
-                    <div className="hotel-price-unit">
-                      /{hotel.unit}
-                    </div>
+                <div className="hotel-text mb-sm">
+                  <h2 className="hotel-name no-space space-letters mb-xs">{hotel.title}</h2>
+                  <p className="hotel-desc no-space">{hotel.desc}</p>
+                  <div className="flex-row">
+                    <Link sx={{ fontSize: '1.25em' }} href={hotel.url}>{hotel.location}</Link>
+                    <p className="ml-auto mr-xs">
+                      <span className="text-md">{hotel.price}</span>
+                      <span className="text-sm">/ per night</span>
+                    </p>
                   </div>
                 </div>
               </div>
