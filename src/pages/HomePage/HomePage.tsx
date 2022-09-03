@@ -249,14 +249,15 @@ const HomePage: FC<Props> = ({
         <div className="homepage-dog-wallpaper">
           <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
           <div className="homepage-dog-text">
-            <h1 className="no-space">Reserve now, pay later</h1>
+            <h1 className="no-space sansita text-lg space-letters">Reserve now,</h1>
+            <h1 className="no-space sansita text-lg space-letters mb-xs">pay later</h1>
             <h3 className="no-space mb-sm space-letters-sm">Plus, free cancellations!</h3>
             <Button
               variant="contained"
               size="large"
               sx={{
                 textTransform: "none",
-                fontFamily: "overpass-light"
+                fontFamily: "sansita-light"
               }}
             >
               Book now
