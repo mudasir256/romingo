@@ -73,10 +73,13 @@ const Navbar: FC<Props> = ({ sx }) => {
     setSelectDialog(LOGIN);
   };
 
+  console.log(history.location.pathname)
+  const path = history.location.pathname
+
   return (
     <>
       <AppBar
-        position="fixed"
+        position={path === '/' ? 'fixed': 'relative'}
         style={{
           background: "#ffffffed",
           WebkitBackdropFilter: "blur(6px)",
@@ -91,7 +94,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              minHeight: { xs: "56px", sm: "111px" },
+              minHeight: { xs: "56px", sm: "100px" },
             }}
           >
             <Hidden lgDown>
