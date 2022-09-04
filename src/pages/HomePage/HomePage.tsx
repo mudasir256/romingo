@@ -34,6 +34,8 @@ import {
   GetHotelBySearch,
 } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
+import { DateTime } from "luxon";
+import { randomDate } from "../../tools.js";
 
 
 import "./Sticky.css";
@@ -216,6 +218,39 @@ const HomePage: FC<Props> = ({
   //   }
   // );
 
+  const locationIds = [
+    "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
+    "2714faad-9ea8-4851-9506-274710cdd51b",
+    "d4c10666-addf-47a6-9870-767518d9ebad",
+    "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
+    "82145909-13b4-4aab-be20-e0db474021c1",
+    "58b23325-2016-44ef-886f-67e962dab17f",
+  ];
+
+  const handleImFlexibleClick = () => {
+     const thirtyDays = DateTime.local().plus({ days: 21 }).toJSDate();
+     const randomCheckIn = randomDate(new Date(), thirtyDays);
+     const threeDaysFromCheckIn = DateTime.fromJSDate(randomCheckIn)
+       .plus({ days: 3 })
+       .toJSDate();
+     const randomCheckOut = randomDate(
+       DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
+       threeDaysFromCheckIn
+     );
+
+     dispatch(
+       saveSearch({
+         city: locationIds[Math.floor(Math.random() * locationIds.length)],
+         checkIn: new Date(randomCheckIn).toISOString(),
+         checkOut: new Date(randomCheckOut).toISOString(),
+         occupants: { adults: 2, children: 0, dogs: 1 },
+       })
+     );
+     setTimeout(() => {
+       history.push("/listings");
+     }, 250);
+   };
+
   const toFeatured = (id: string, cityId: string) => {
     let city = search.city;
     let checkIn = search.checkIn;
@@ -344,12 +379,14 @@ const HomePage: FC<Props> = ({
             <h1 className="no-space sansita text-lg space-letters mb-xs">pay later</h1>
             <h3 className="no-space mb-sm space-letters-sm">Plus, free cancellations!</h3>
             <Button
+              onClick={handleImFlexibleClick}
               variant="contained"
               size="large"
               sx={{
                 textTransform: "none",
                 fontFamily: "sansita-light"
               }}
+
             >
               Book now
             </Button>
