@@ -295,7 +295,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               border: 'none',
               padding: "1em",
               ml: '2em',
-              ["@media (max-width: 600px)"]: { ml: '0.75em' },
+              ["@media (max-width: 600px)"]: { mx: '0.75em' },
               borderRadius: "6px",
               backgroundColor: "#fff",
               minWidth: '270px',
