@@ -30,6 +30,11 @@ import HotelImg from '../../assets/images/hotel.png';
 import StarImg from '../../assets/images/star.svg';
 import LogoImgWhite from '../../assets/images/logo-white.png';
 
+import {
+  GetHotelBySearch,
+} from "../../constants/constants";
+import { gql, useQuery } from "@apollo/client";
+
 
 import "./Sticky.css";
 import "./HomePage.scss";
@@ -124,6 +129,92 @@ const HomePage: FC<Props> = ({
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
+
+  const today = new Date();
+  const fewDaysLater = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 2
+  ).toISOString();
+
+  const endTripDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 4
+  ).toISOString();
+
+  const cities = useSelector((state: any) => state.cityListReducer.cities);
+  const losAngeles = cities.find((city: any) => city.name === 'Los Angeles, CA')
+  const sanDiego = cities.find((city: any) => city.name === 'San Diego, CA')
+  const sanFrancisco = cities.find((city: any) => city.name === 'San Francisco, CA')
+  const dallas = cities.find((city: any) => city.name === 'Dallas, TX')
+
+  //TODO: fix dynamic fetch
+  // console.log(cities)
+
+  // const { data: LA, error } = useQuery(
+  //   gql`
+  //     ${GetHotelBySearch}
+  //   `,
+  //   {
+  //     variables: {
+  //       adults: 1,
+  //       cityId: losAngeles.id,
+  //       checkIn: fewDaysLater,
+  //       checkOut: endTripDate,
+  //       children: 0,
+  //       dogs: 1,
+  //     },
+  //   }
+  // );
+
+  // const { data: SD } = useQuery(
+  //   gql`
+  //     ${GetHotelBySearch}
+  //   `,
+  //   {
+  //     variables: {
+  //       adults: 1,
+  //       cityId: sanDiego.id,
+  //       checkIn: fewDaysLater,
+  //       checkOut: endTripDate,
+  //       children: 0,
+  //       dogs: 1,
+  //     },
+  //   }
+  // );
+
+  // const { data: SF } = useQuery(
+  //   gql`
+  //     ${GetHotelBySearch}
+  //   `,
+  //   {
+  //     variables: {
+  //       adults: 1,
+  //       cityId: sanFrancisco.id,
+  //       checkIn: fewDaysLater,
+  //       checkOut: endTripDate,
+  //       children: 0,
+  //       dogs: 1,
+  //     },
+  //   }
+  // );
+
+  // const { data: DL } = useQuery(
+  //   gql`
+  //     ${GetHotelBySearch}
+  //   `,
+  //   {
+  //     variables: {
+  //       adults: 1,
+  //       cityId: dallas.id,
+  //       checkIn: fewDaysLater,
+  //       checkOut: endTripDate,
+  //       children: 0,
+  //       dogs: 1,
+  //     },
+  //   }
+  // );
 
   const toFeatured = (id: string, cityId: string) => {
     let city = search.city;
