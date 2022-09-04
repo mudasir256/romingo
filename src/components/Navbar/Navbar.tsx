@@ -73,7 +73,6 @@ const Navbar: FC<Props> = ({ sx }) => {
     setSelectDialog(LOGIN);
   };
 
-  console.log(history.location.pathname)
   const path = history.location.pathname
 
   return (

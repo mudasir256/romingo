@@ -338,11 +338,8 @@ const ListingPage: FC<Props> = () => {
           boxShadow: { xs: 0, md: 2 },
           display: "flex",
           justifyContent: { xs: "center", md: "flex-start" },
-          maxHeight: { xs: height, md: "100%" },
           overflow: "hidden",
-          height: { md: '50px' },
           zIndex: 1000,
-          py: { xs: 0, md: 1 },
         }}
       >
         {error && (
@@ -377,9 +374,7 @@ const ListingPage: FC<Props> = () => {
             }}
           />
         </Link> */}
-        <Hidden mdDown>
-          <Navbar />
-        </Hidden>
+        <Hidden mdDown><Navbar /></Hidden>
 
         <Hidden mdUp>
           <Box sx={{ mt: ".75rem" }}>
