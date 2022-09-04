@@ -114,7 +114,9 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
     <div className="footer">
       <div className="footer-wrapper">
         <div className="footer-wrapper-logo-section">
-          <img src={LogoImg} alt="Romingo Logo" />
+          <Link href="/">
+           <img src={LogoImg} alt="Romingo Logo" />
+          </Link>
           <div className="footer-wrapper-logo-section-text">
             Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.
           </div>
