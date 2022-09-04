@@ -79,48 +79,49 @@ interface Props {
 
 const hotels = [
   {
-    review: '5.0',
-    reviewCount: 18,
-    title: 'Hotel Sofitel Los Angeles',
-    desc: '8555 Beverly Blvd., Los Angeles, CA',
-    location: 'Beverly Hills',
-    price: '$305',
+    review: '4.4',
+    reviewCount: 3805,
+    title: 'Intercontinental San Francisco',
+    desc: '888 Howard Street, San Francisco, CA',
+    location: 'SoMa District',
+    price: '$200 - $300',
     unit: 'per night',
-    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
+    url: '/hotel/intercontinental_san_francisco',
+    image: 'https://storage.googleapis.com/romingo-production-public/images/Intercon%20San%20Francisco/icsf-gallery-1-5e139744db8e1.jpg'
   },
   {
-    review: '5.0',
-    reviewCount: 18,
+    review: '4.6',
+    reviewCount: 3375,
     title: 'Hotel Sofitel Los Angeles',
     desc: '8555 Beverly Blvd., Los Angeles, CA',
     location: 'Beverly Hills',
-    price: '$305',
+    price: '$300 - $400',
     unit: 'per night',
-    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
-
+    url: '/hotel/sofitel_los_angeles_at_beverly_hills',
+    image: 'https://storage.googleapis.com/romingo-production-public/images/Sofitel%20Los%20Angeles/d8edb87b.webp'
   },
   {
-    review: '5.0',
-    reviewCount: 18,
-    title: 'Hotel Sofitel Los Angeles',
-    desc: '8555 Beverly Blvd., Los Angeles, CA',
-    location: 'Beverly Hills',
-    price: '$305',
+    review: '4.5',
+    reviewCount: 570,
+    title: 'Canopy By Hilton Dallas',
+    desc: '2950 Cityplace West Blvd., Dallas, TX',
+    location: 'Uptown',
+    price: '$250 - $400',
     unit: 'per night',
-    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
-
+    url: '/hotel/canopy_by_hilton_dallas_uptown',
+    image: 'https://storage.googleapis.com/romingo-production-public/images/Canopy%20by%20Hilton%20Dallas%20Uptown/18-bluelogic3014cc04-1-.webp'
   },
   {
-    review: '5.0',
-    reviewCount: 18,
-    title: 'Hotel Sofitel Los Angeles',
-    desc: '8555 Beverly Blvd., Los Angeles, CA',
-    location: 'Beverly Hills',
-    price: '$305',
+    review: '4.4',
+    reviewCount: 2160,
+    title: 'The Nines Portland',
+    desc: '525 Sw Morrison, Portland, OR',
+    location: 'Downtown',
+    price: '$250 - $500',
     unit: 'per night',
-    url: '/hotel/sofitel_los_angeles_at_beverly_hills'
-
-  }
+    url: '/hotel/the_nines',
+    image: 'https://storage.googleapis.com/romingo-production-public/images/The%20Nines/6fee32a5.webp'
+  },
 ]
 const HomePage: FC<Props> = ({
   nearCities = nearby,
@@ -342,14 +343,14 @@ const HomePage: FC<Props> = ({
         <div className="hotels-wrapper-header">
           Travel with Romingo
         </div>
-        <Box className="hotels">
+        <Box className="hotels" sx={{ cursor: 'pointer' }}>
           {
             hotels.map((hotel, index) => (
-              <div className="hotel" key={index}>
+              <div onClick={() => history.push(hotel.url)} className="hotel" key={index}>
                 <div className="hotel-image-wrapper">
-                  <img src={HotelImg} alt="" />
+                  <img src={hotel.image || HotelImg} alt="hotel picture" />
                   <div className="hotel-review-wrapper">
-                    <img src={StarImg} width="16px" height="14px" alt="" />
+                    <img src={StarImg} width="16px" height="14px" alt="star" />
                     <div className="hotel-review-wrapper-text">
                       {hotel.review} ({hotel.reviewCount})
                     </div>
