@@ -168,12 +168,21 @@ const CheckoutInformation: FC<Props> = ({
                 }
               );
             }
+            const { error, paymentIntent } = await stripe.confirmCardPayment(
+              clientSecret,
+              {
+                payment_method: {
+                  card: cardElement,
+                },
+              }
+            );
 
             createBooking2({
               variables: {
                 createBooking2Input: {
                   priceKey: priceKey,
                   customerId: data?.createSetupIntent?.customerId,
+                  paymentIntentId: paymentIntent ? paymentIntent.id : '',
                   email: checkoutForm.email,
                   mobile: {
                     countryCallingCode: checkoutForm.countryCode,
