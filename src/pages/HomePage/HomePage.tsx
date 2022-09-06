@@ -30,6 +30,8 @@ import HotelImg from '../../assets/images/hotel.png';
 import StarImg from '../../assets/images/star.svg';
 import LogoImgWhite from '../../assets/images/logo-white.png';
 
+import LowestRates from '../../assets/images/icon-01.jpg';
+
 import {
   GetHotelBySearch,
 } from "../../constants/constants";
@@ -311,28 +313,21 @@ const HomePage: FC<Props> = ({
       <Box className="info-boxes">
         <Box className="info-boxes-container">
           <Box className="info-box">
-            <img src={PetFriendlyImg} alt="pet-friendly" />
-            <div className="info-box-title">
-              Pet-friendly
-            </div>
+            <img src={LowestRates} alt="pet-friendly" />
+         
             <div className="info-box-desc">
               Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
             </div>
           </Box>
           <Box className="info-box">
-            <img src={PetFeesImg} width="234px" height="247px" alt="0 pet fees" />
-            <div className="info-box-title">
-              $0 pet fees
-            </div>
+            <img src={LowestRates} width="320px" height="320px" alt="0 pet fees" />
             <div className="info-box-desc">
               Romingo negotiates $0 hotel pet fees on your behalf, you will never pay a pet fee with Romingo!
             </div>
           </Box>
           <Box className="info-box">
-            <img src={AllPupsImg} width="238px" height="227px" alt="all pups welcome" />
-            <div className="info-box-title">
-              All pups welcome
-            </div>
+            <img src={LowestRates} width="320px" height="320px" alt="all pups welcome" />
+  
             <div className="info-box-desc">
               Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
             </div>
