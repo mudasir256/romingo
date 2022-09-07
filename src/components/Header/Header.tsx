@@ -125,7 +125,7 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `linear-gradient(180deg, #000000 0%, #29292900 52%, #000000 130%), url(${HeroImage4})`, sm: `linear-gradient(178deg, #000000 10%, #29292900 51%, #000000 110%), url(${HeroImage4})` },
+          backgroundImage: { xs: `linear-gradient(180deg, #000000 0%, #29292900 52%, #000000 130%), url(${HeroImage4})`, sm: `linear-gradient(160deg, #000000 10%, #29292900 55%, #000000 100%), url(${HeroImage4})` },
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -136,12 +136,13 @@ const Header: FC<Props> = ({ sx }) => {
           mt: { xs: '5em', sm: '14em' },  
           mb: { xs: '0em', sm: '2em' },
         }}>
-          <Box sx={{ textAlign: { xs: 'left', sm: 'center'} }} className="filter-bar-wrapper-title">
-            Book pet-friendly hotels
-          </Box>
+       
           <Box sx={{
             display: { xs: 'block', sm: 'none' }
           }}>
+            <Box sx={{ textAlign: { xs: 'left', sm: 'left'} }} className="filter-bar-wrapper-title">
+              Book pet-friendly hotels
+            </Box>
             <div className="filter-bar-wrapper-desc">
               Easy to use. Lowest rates. No pet fees.
             </div>
@@ -301,7 +302,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       ["@media (max-width: 720px)"]: { width: '480px' },
 
     }}>
-      <Box className="filter-bar-desktop">
+      <Box sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title">Book pet-friendly hotels</Box>
+      <Box sx={{ mt: '1.5em'}} className="filter-bar-desktop">
         <Box 
           sx={{
             display: 'flex',
