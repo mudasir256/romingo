@@ -310,35 +310,42 @@ const HomePage: FC<Props> = ({
     <div className="homepage">
       <ScrollToTop />
       <Header />
-      <Box className="info-boxes">
-        <Box className="info-boxes-container">
-          <Box className="info-box">
+      <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '300px' } }}>
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        mx: 'auto',
+        maxWidth: '1200px',
+        flexWrap: 'wrap',
+      }}>
+        <Box className="info-box">
+          <div className="align-center">
             <img src={PetFriendlyImg} alt="pet-friendly" />
-            <div className="info-box-title">
-              Pet-friendly
-            </div>
-            <div className="info-box-desc">
-              Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
-            </div>
-          </Box>
-          <Box className="info-box">
+            <div className="info-box-title">Pet-friendly</div>
+          </div>
+          <div className="info-box-desc">
+            Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
+          </div>
+        </Box>
+        <Box className="info-box">
+          <div className="align-center">
             <img src={PetFeesImg} width="234px" height="247px" alt="0 pet fees" />
-            <div className="info-box-title">
-              $0 pet fees
-            </div>
-            <div className="info-box-desc">
-              Romingo negotiates $0 hotel pet fees on your behalf, you will never pay a pet fee with Romingo!
-            </div>
-          </Box>
-          <Box className="info-box">
+            <div className="info-box-title">$0 pet fees</div>
+          </div>
+          <div className="info-box-desc">
+            Romingo negotiates $0 hotel pet fees on your behalf, you will never pay a pet fee with Romingo!
+          </div>
+        </Box>
+        <Box className="info-box">
+          <div className="align-center">
             <img src={AllPupsImg} width="238px" height="227px" alt="all pups welcome" />
-            <div className="info-box-title">
-              All pups welcome
-            </div>
-            <div className="info-box-desc">
-              Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
-            </div>
-          </Box>
+            <div className="info-box-title">All pups welcome</div>
+          </div>
+          <div className="info-box-desc">
+            Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
+          </div>
+        </Box>
         </Box>
       </Box>
       <Box className="hotels-wrapper" sx={{ paddingTop: '369px', background: 'white' }}>
@@ -378,8 +385,7 @@ const HomePage: FC<Props> = ({
         <div className="homepage-dog-wallpaper">
           <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
           <div className="homepage-dog-text">
-            <h1 className="no-space sansita text-lg space-letters">Reserve now,</h1>
-            <h1 className="no-space sansita text-lg space-letters mb-xs">pay later</h1>
+            <h1 className="no-space sansita text-lg space-letters" style={{marginBottom: '0.05em'}}>Reserve now, pay later</h1>
             <h3 className="no-space mb-sm space-letters-sm">Plus, free cancellations!</h3>
             <Button
               onClick={handleImFlexibleClick}

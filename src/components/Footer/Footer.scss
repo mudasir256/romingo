@@ -60,17 +60,17 @@
 
       img {
         padding-right: 20px;
-        width: 240px;
-        height: 60px;
+        width: 200px;
+        height: 50px;
         margin-bottom: 20px;
       }
 
       &-text {
         max-width: 475px;
         font-family: "overpass-light";
-        font-size: 16px;
-        line-height: 33px;
-        margin-bottom: 30px;
+        font-size: 1em;
+        line-height: 2em;
+        margin-bottom: 1em;
       }
 
       .social-icons {
@@ -87,6 +87,7 @@
 
     .site-map-section {
       margin-right: 40px;
+ 
 
       @media screen and (max-width: 1350px) {
         margin-left: 2em;
@@ -96,18 +97,19 @@
       }
       &-header {
         font-family: "overpass-light";
-        font-size: 24px;
-        line-height: 46px;
+        font-size: 1.5em;
+        line-height: 1.5em;
         color: black;
-        margin-bottom: 30px;
+        margin-bottom: 0.75em;
       }
       a {
         text-decoration: none;
         font-family: "overpass-light";
-        font-size: 16px;
+        font-size: 1em;
         line-height: 33px;
         color: black;
       }
+
     }
 
     .sign-up {
@@ -119,10 +121,10 @@
 
       &-header {
         font-family: "overpass-light";
-        font-size: 24px;
-        line-height: 46px;
+        font-size: 1.5em;
+        line-height: 1.5em;
         color: black;
-        margin-bottom: 30px;
+        margin-bottom: 0.75em;
       }
 
       form {

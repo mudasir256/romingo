@@ -1,3 +1,53 @@
+.align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.info-box {
+  width: 288px;
+  height: 300px;
+  box-shadow: 21px 7px 63px #0000000d;
+  border-radius: 15px;
+  background: white;
+  position: relative;
+  top: 100px;
+  padding: 1.5em;
+  margin: 2em;
+
+  @media screen and (max-width: 800px) {
+    top: 0px;
+    margin: 1.5em;
+    width: 340px;
+  }
+
+
+  img {
+    width: 130px;
+    height: 145px;
+  }
+
+
+  &-title {
+    text-align: center;
+    font-family: "sansita-light";
+    font-size: 2em;
+    line-height: 32px;
+  
+  }
+
+  &-desc {
+    margin-top: 1.5em;
+    padding: 0em 1em;
+    font-family: "overpass-light";
+    font-size: 1em;
+    line-height: 28px;
+    text-align: center;
+  
+  }
+
+}
+
 .homepage {
   &-logo {
     padding-top: 2em;
@@ -11,116 +61,11 @@
   }
 
   .info-boxes { 
-    height: 320px;
+    height: 300px;
     background: #f4dac9;
-    position: relative;
+    display: flex;
+    justify-content: center;
 
-    @media screen and (max-width: 940px) {
-      height: fit-content;
-      padding: 0 1em;
-    }
-
-    &-container {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      position: absolute;
-      bottom: -200px;
-      left: 50%;
-      width: 100%;
-      transform: translateX(-50%);
-
-      @media screen and (max-width: 940px) {
-        flex-direction: column;
-        position: relative;
-        left: auto;
-        transform: none;
-        bottom: auto;
-        padding: 30px 0 30px 0;
-      }
-
-      .info-box {
-        margin-left: 2em;
-        width: 500px;
-        height: 420px;
-        box-shadow: 21px 7px 63px #0000000d;
-        border-radius: 15px;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-right: 16px;
-        padding: 2em; 
-
-
-        @media screen and (max-width: 1440px) {
-          padding: 0em;
-        }
-
-        @media screen and (max-width: 940px) {
-          height: fit-content;
-          width: 84%;
-          margin: 1em auto;
-          padding: 1.5em;
-        }
-
-        @media screen and (max-width: 720px) {
-          height: fit-content;
-          width: 80%;
-          margin: 0.5em auto;
-          padding: 1.5em;
-        }
-
-        &:last-child {
-          margin-right: 2em;
-
-          @media screen and (max-width: 940px) {
-            margin-left: auto;
-            margin-right: auto;
-          }
-        }
-
-        img {
-          width: 196.2px;
-          height: 237.2px;
-
-          @media screen and (max-width: 1440px) {
-            width: 130px;
-            height: 145px;
-          }
-        }
-
-        &-title {
-          font-family: "sansita-light";
-          margin-top: 5px;
-          margin-bottom: 16px;
-          font-size: 45px;
-          line-height: 54px;
-
-          @media screen and (max-width: 1440px) {
-            font-size: 30px;
-            line-height: 30px;
-          }
-        }
-
-        &-desc {
-          padding: 0.5em 3em;
-          font-family: "overpass-light";
-          font-size: 22px;
-          line-height: 28px;
-          text-align: center;
-
-          @media screen and (max-width: 1440px) {
-            font-size: 18px;
-          }
-
-          @media screen and (max-width: 940px) {
-            max-width: 80%;
-          }
-        }
-      }
-    }
   }
 
   .hotels-wrapper {
@@ -136,7 +81,7 @@
       font-size: 3em;
       line-height: 66px;
       text-align: center;
-      margin-bottom: 34px;
+      margin-bottom: 1em;
 
       @media screen and (max-width: 750px) {
         font-size: 40px;
@@ -275,7 +220,7 @@
   }
 
   &-dog {
-    height: 460px;
+    height: 360px;
     background: #f4dac9;
     width: 100%;
     position: relative;
@@ -287,14 +232,14 @@
 
     &-wallpaper {
       width: 85%;
-      max-width: 1640px;
-      height: 706px;
+      max-width: 900px;
+      height: 560px;
 
       background-image: linear-gradient(248deg, #36454F 0%, #29292900 49%, #36454F 100%), url("../../assets/images/homepage-dog.jpg"); 
       background-repeat: no-repeat;
       background-position: top left;
       background-size: 100%;
-      top: -353px;
+      top: -300px;
       position: absolute;
       left: 50%;
       border-radius: 15px;
@@ -358,7 +303,7 @@
   margin-right: 2em;
 }
 .text-lg {
-  font-size: 2.5em;
+  font-size: 2em;
 }
 .text-md {
   font-size: 1.75em;
