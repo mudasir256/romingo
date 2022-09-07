@@ -74,6 +74,7 @@
 
         &:last-child {
           margin-right: 2em;
+
           @media screen and (max-width: 940px) {
             margin-left: auto;
             margin-right: auto;
@@ -81,10 +82,12 @@
         }
 
         img {
-      
-          width: 280px;
+          width: 196.2px;
+          height: 237.2px;
+
           @media screen and (max-width: 1440px) {
-         
+            width: 130px;
+            height: 145px;
           }
         }
 
@@ -107,7 +110,6 @@
           font-size: 22px;
           line-height: 28px;
           text-align: center;
-          margin-bottom: 1.5em;
 
           @media screen and (max-width: 1440px) {
             font-size: 18px;
@@ -144,30 +146,34 @@
   }
 
   .hotels {
-    margin-right: 3em;
-    margin-left: 3em;
     display: flex;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: center;
     margin-bottom: 464px;
     flex-wrap: wrap;
-
+    margin: 0 1em;
+    margin-bottom: 420px; 
     @media screen and (max-width: 1300px) {
-      margin-right: 1em;
-      margin-left: 1em;
       margin-bottom: 80px;
     }
 
     .hotel {
-      width: 24%;
+      width: 300px;
+      margin: 0 1em;
 
       @media screen and (max-width: 1550px) {
-        width: 48%;
+        width: 300px;
+        margin: 0 1em;
       }
 
       @media screen and (max-width: 750px) {
-        width: 95%;
+        width: 300px;
         margin-bottom: 20px;
+        margin: 0 0.5em;
+      }
+
+      @media screen and (max-width: 620px) {
+        width: 100%;
       }
 
       &-image-wrapper {
@@ -179,11 +185,11 @@
 
         > img {
           width: 100%;
-          height: 320px;
+          height: 240px;
           object-fit: cover;
 
           @media screen and (max-width: 750px) {
-            height: 250px;
+            height: 280px;
           }
         }
 
@@ -213,7 +219,7 @@
 
       &-name {
         font-family: "overpass-light";
-        font-size: 28px;
+        font-size: 1.5em;
         line-height: 32px;
         text-align: left;
         color: black;
@@ -221,7 +227,7 @@
 
       &-desc {
         font-family: "overpass-light";
-        font-size: 16px;
+        font-size: 1em;
         line-height: 25px;
         text-align: left !important;
         color: black;
@@ -251,7 +257,7 @@
 
           &-value {
             font-family: "overpass-light";
-            font-size: 30px;
+            font-size: 1em;
             line-height: 46px;
             text-align: left;
             margin-right: 9px;
@@ -259,7 +265,7 @@
 
           &-unit {
             font-family: "overpass-light";
-            font-size: 14px;
+            font-size: 1em;
             line-height: 22px;
             text-align: left;
           }

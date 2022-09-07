@@ -10,19 +10,19 @@
 
     &-title {
       font-family: "sansita-light";
-      font-size: 4.5em;
+      font-size: 4em;
       line-height: 1em;
       color: white;
       margin-bottom: 0.25em;
 
       @media screen and (max-width: 800px) {
-        font-size: 3em;
+        font-size: 2.5em;
       }
     }
 
     &-desc {
       font-family: "sansita-light";
-      font-size: 1.25em;
+      font-size: 1em;
       line-height: 24px;
       color: white;
       letter-spacing: 1.75px;

@@ -123,8 +123,8 @@ const Header: FC<Props> = ({ sx }) => {
         }}
       >
         <Box sx={{ 
-          ml: '3em', 
-          mt: '3em' 
+          ml: '4em', 
+          mt: '4em' 
         }}>
           <div className="filter-bar-wrapper-title">
             Book<br />Pet-Friendly<br />Hotels

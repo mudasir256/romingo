@@ -81,21 +81,21 @@ interface Props {
 
 const hotels = [
   {
-    review: '4.4',
-    reviewCount: 3805,
-    title: 'Intercontinental San Francisco',
-    desc: '888 Howard Street, San Francisco, CA',
-    location: 'SoMa District',
-    price: '$200 - $300',
+    review: '4.3',
+    reviewCount: 210,
+    title: 'Laurel Inn',
+    desc: '444 Presidio Avenue, San Francisco, CA',
+    location: 'Pacific Heights',
+    price: '$250 - $400',
     unit: 'per night',
-    url: '/hotel/intercontinental_san_francisco',
-    image: 'https://storage.googleapis.com/romingo-production-public/images/Intercon%20San%20Francisco/icsf-gallery-1-5e139744db8e1.jpg'
+    url: '/hotel/the_laurel_inn',
+    image: 'https://storage.googleapis.com/romingo-production-public/images/The%20Laurel%20Inn/Laurel%20Inn_Exterior_Facade%20CRPD1600x450.jpg'
   },
   {
     review: '4.6',
     reviewCount: 3375,
     title: 'Hotel Sofitel Los Angeles',
-    desc: '8555 Beverly Blvd., Los Angeles, CA',
+    desc: '8555 Beverly Blvd, Los Angeles, CA',
     location: 'Beverly Hills',
     price: '$300 - $400',
     unit: 'per night',
@@ -106,7 +106,7 @@ const hotels = [
     review: '4.5',
     reviewCount: 570,
     title: 'Canopy By Hilton Dallas',
-    desc: '2950 Cityplace West Blvd., Dallas, TX',
+    desc: '2950 Cityplace West Blvd, Dallas, TX',
     location: 'Uptown',
     price: '$250 - $400',
     unit: 'per night',
@@ -313,21 +313,28 @@ const HomePage: FC<Props> = ({
       <Box className="info-boxes">
         <Box className="info-boxes-container">
           <Box className="info-box">
-            <img src={LowestRates} alt="pet-friendly" />
-         
+            <img src={PetFriendlyImg} alt="pet-friendly" />
+            <div className="info-box-title">
+              Pet-friendly
+            </div>
             <div className="info-box-desc">
               Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
             </div>
           </Box>
           <Box className="info-box">
-            <img src={LowestRates} width="320px" height="320px" alt="0 pet fees" />
+            <img src={PetFeesImg} width="234px" height="247px" alt="0 pet fees" />
+            <div className="info-box-title">
+              $0 pet fees
+            </div>
             <div className="info-box-desc">
               Romingo negotiates $0 hotel pet fees on your behalf, you will never pay a pet fee with Romingo!
             </div>
           </Box>
           <Box className="info-box">
-            <img src={LowestRates} width="320px" height="320px" alt="all pups welcome" />
-  
+            <img src={AllPupsImg} width="238px" height="227px" alt="all pups welcome" />
+            <div className="info-box-title">
+              All pups welcome
+            </div>
             <div className="info-box-desc">
               Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
             </div>
@@ -355,10 +362,10 @@ const HomePage: FC<Props> = ({
                   <h2 className="hotel-name no-space space-letters mb-xs">{hotel.title}</h2>
                   <p className="hotel-desc no-space">{hotel.desc}</p>
                   <div className="flex-row">
-                    <Link sx={{ fontSize: '1.25em' }} href={hotel.url}>{hotel.location}</Link>
+                    <Link sx={{ fontSize: '1em' }} href={hotel.url}>{hotel.location}</Link>
                     <p className="ml-auto mr-xs">
-                      <span className="text-md">{hotel.price}</span>
-                      <span className="text-sm">/ per night</span>
+                      <span className="text-sm">{hotel.price}</span>
+                      <span className="text-sm"> / per night</span>
                     </p>
                   </div>
                 </div>
