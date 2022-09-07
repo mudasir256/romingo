@@ -401,6 +401,7 @@ const HomePage: FC<Props> = ({
         <FilterBar />
       </Box>
   
+      {/*
       <Hidden mdDown>
         <Box
           className="sticky-header"
@@ -419,6 +420,7 @@ const HomePage: FC<Props> = ({
           </Box>
         </Box>
       </Hidden>
+      */}
       <Footer />
     </div>
   );

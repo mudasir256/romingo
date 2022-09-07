@@ -45,6 +45,8 @@ import { DateTime } from "luxon";
 import { useMeasure } from "react-use";
 import HeroImage from '../../assets/images/home-hero.jpg';
 import HeroImage2 from '../../assets/images/home-hero-2.jpg';
+import HeroImage3 from '../../assets/images/home-hero-3.jpg';
+
 
 import SearchImage from '../../assets/icon/magnify.png';
 import CalendarImage from '../../assets/icon/calendar.png';
@@ -117,15 +119,16 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `linear-gradient(170deg, #000000 0%, #29292900 52%, #000000 100%), url(${HeroImage2})`, sm: `linear-gradient(110deg, #000000 0%, #29292900 52%, #000000 100%), url(${HeroImage2})` },
+          backgroundImage: { xs: `linear-gradient(180deg, #000000 0%, #29292900 52%, #000000 130%), url(${HeroImage3})`, sm: `linear-gradient(180deg, #000000 -10%, #29292900 49%, #000000 130%), url(${HeroImage3})` },
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}
       >
         <Box sx={{ 
-          ml: { xs: '1.5em', sm: '7em' },
+          ml: { xs: '1.5em', sm: '0em' },
           mt: { xs: '5em', sm: '4em' },  
+          mb: { xs: '0em', sm: '2em' },
         }}>
           <Box sx={{ textAlign: { xs: 'left', sm: 'center'} }} className="filter-bar-wrapper-title">
             Book pet-friendly hotels
@@ -280,7 +283,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       width: '1200px',
       ["@media (max-width: 1220px)"]: { width: '1000px' },
       ["@media (max-width: 1000px)"]: { width: '800px' },
-      ["@media (max-width: 920px)"]: { mt: '10em', width: '800px' },
+      ["@media (max-width: 920px)"]: { mt: '0em', width: '800px' },
       ["@media (max-width: 800px)"]: { mt: '0em', width: '600px' },
       ["@media (max-width: 720px)"]: { width: '480px' },
 
@@ -291,7 +294,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            ["@media (max-width: 1220px)"]: { display: 'block', mb: '1em' },
+            ["@media (max-width: 1220px)"]: { display: 'block', mb: '0.5em', mt: '0.5em' },
             ["@media (max-width: 1000px)"]: { display: 'flex' },
             ["@media (max-width: 920px)"]: { justifyContent: 'center' },
             ["@media (max-width: 720px)"]: { display: 'block' },
@@ -304,7 +307,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               display: "flex",
               alignItems: "center",
               border: 'none',
-              padding: "1em",
               ml: '2em',
               ["@media (max-width: 600px)"]: { mx: '0.75em' },
               borderRadius: "6px",
@@ -440,7 +442,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       justifyContent: 'space-around',
                       flexDirection: 'row',
                       alignItems: 'center',
-                      ["@media (max-width: 920px)"]: { display: 'block' },
+                      ["@media (max-width: 920px)"]: { display: 'flex' },
                       ["@media (max-width: 720px)"]: { display: 'flex' },
 
 
@@ -458,7 +460,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
                         backgroundColor: "#fff",
-                        p: '1em',
+                   
                       }}
                     >
               
@@ -493,8 +495,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                         "&:hover": { background: "#efefef" },
                         borderRadius: "6px",
                         backgroundColor: "#fff",
-                        ml: '1em',
-                        ["@media (max-width: 920px)"]: { ml: '0em' },
+                        ml: '2em',
+                        ["@media (max-width: 920px)"]: { ml: '1em' },
 
                       }}
                       onClick={() => setOpen(true)}
@@ -507,7 +509,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           fontFamily: "overpass-light",
                           textTransform: "none",
                           fontSize: '1em',
-                          lineHeight: '46px',
                           ml: '1em',
                           ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
                         }}
@@ -528,7 +529,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       
         <Box 
           sx={{ 
-            my: '1em',
+            my: '0.5em',
             ml: 'auto',
             mr: '2em',
             display: 'flex', 
@@ -580,8 +581,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             onClick={handleFilterOutClick}
             type="submit"
             style={{
-              height: "52px",
-              width: "52px",
+              height: "48px",
+              width: "48px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
