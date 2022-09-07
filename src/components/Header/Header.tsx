@@ -561,7 +561,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           <Typography
             sx={{
               ...labelStyle,
-              mb: '0.5em'
+              mb: '0.55em'
             }}>
             Guests
           </Typography>
