@@ -280,8 +280,8 @@ const Navbar: FC<Props> = ({ sx }) => {
                   List Your Property
                 </div>
               </Link>
-              <img src="/images/user.png" width="16px" height="18px" alt="" />
-              {/* <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{cursor: 'pointer', padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': '#fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' }, color: menuOpen ? '#fff':'#03989E'}}>
+              {/*<img src="/images/user.png" width="16px" height="18px" alt="" />
+              <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{cursor: 'pointer', padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': '#fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' }, color: menuOpen ? '#fff':'#03989E'}}>
                 <MenuIcon sx={{ margin: '0px auto'}} />
               </Link> */}
             </Hidden>
