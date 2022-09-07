@@ -127,7 +127,7 @@ const ListingPage: FC<Props> = () => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
         dogs: search.occupants.dogs,
-        allows_big_dogs:allowBigDogs
+        allows_big_dogs: allowBigDogs
       },
     }
   );
@@ -144,7 +144,7 @@ const ListingPage: FC<Props> = () => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
         dogs: search.occupants.dogs,
-        allows_big_dogs:allowBigDogs
+        allows_big_dogs: allowBigDogs
       },
     }
   );

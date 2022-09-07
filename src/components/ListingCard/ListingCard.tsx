@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import RomingoScore from "../RomingoScore/RomingoScore";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
+import StarIcon from "@mui/icons-material/Star";
+
 
 export interface ListingCardProps {
   id: string;
@@ -12,6 +14,7 @@ export interface ListingCardProps {
   name: string;
   addressLine1: string;
   romingoScore: number;
+  allows_big_dogs: number;
   cancellation?: boolean;
   lowestAveragePrice: number;
   listingsPagePromoText?: string;
@@ -48,6 +51,7 @@ const ListingCard: FC<ListingCardProps> = ({
   duration,
   imageURLs,
   name,
+  allows_big_dogs,
   addressLine1,
   listingsPagePromoText,
   googlePlaceId,
@@ -123,7 +127,7 @@ const ListingCard: FC<ListingCardProps> = ({
           <Grid
             container
             sx={{
-              minHeight: { xs: 200, sm: 162 },
+              minHeight: { xs: 160, sm: 186 },
               p: {
                 xs: ".5rem .75rem 0rem .75rem",
                 sm: ".5rem .5rem .5rem 1rem",
@@ -152,12 +156,12 @@ const ListingCard: FC<ListingCardProps> = ({
                 variant="body2"
                 sx={{
                   color: "#222",
-                  fontFamily: "Montserrat",
-                  overflow: "hidden",
+                  fontFamily: "overpass-light",
                   whiteSpace: "nowrap",
+                  fontSize: '1.25em',
                   textOverflow: "ellipsis",
-                  fontSize: "120%",
                   fontWeight: 800,
+                  width: '100%',
                 }}
               >
                 {name}
@@ -171,7 +175,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   overflow: "hidden",
                   fontWeight: 500,
                   whiteSpace: "nowrap",
-                  fontFamily: "Roboto",
+                  fontFamily: "overpass-light",
                   textOverflow: "ellipsis",
                   color: "#999",
                   mb: { xs: ".5rem", md: "0" },
@@ -180,57 +184,42 @@ const ListingCard: FC<ListingCardProps> = ({
                 {addressLine1}, {city?.name}
               </Typography>
 
-              <Chip
-                sx={{
-                  fontSize: "12px",
-                  mt: { xs: ".125rem", md: ".5rem" },
-                  mb: { xs: ".125rem", md: "auto" },
-                  mr: "auto",
-                }}
-                icon={<LocationCityIcon />}
-                label={neighborhood}
-              />
-
-              <Box
-                sx={{
-                  pb: { xs: "0rem", sm: "0rem" },
-                  pt: { xs: ".5rem", sm: "1rem" },
-                  mt: { md: "0px", sm: "1rem" },
-                  ml: { sm: "0px", xs: "0px" },
-                }}
-              >
-                <Box sx={{ mb: 0.5, display: "flex" }}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      pr: 0.15,
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      fontFamily: "Roboto",
-                      fontSize: "80%",
-                      color: "#009CA1",
-                    }}
-                  >
-                    Fully refundable
-                  </Typography>
-                </Box>
-                <Box sx={{ mt: 0.5, mb: "auto", display: "flex" }}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      pr: 0.15,
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      fontFamily: "Roboto",
-                      fontSize: "80%",
-                      color: "#009CA1",
-                    }}
-                  >
-                    Reserve now, pay later
-                  </Typography>
-                </Box>
+              <Box sx={{   
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+              }}>
+                <Chip
+                  size="small"
+                  sx={{
+                    fontSize: "12px",
+                    mt: { xs: ".125rem", md: ".5rem" },
+                    mb: { xs: ".125rem", md: "auto" },
+                    mr: '0.5em',
+                    p: '0.3em',
+                    backgroundColor: '#F9DE00',
+                    fontFamily: 'overpass-light',
+                  }}
+                  icon={<StarIcon fontSize="small" />}
+                  label={romingoScore}
+                />
+                <Link
+                  onClick={() => history.push(`/hotel/${alias}#reviews`)}
+                  sx={{
+                    display: { xs: "block" },
+                    color: "#666",
+                    fontFamily: "montserrat",
+                    textDecoration: "underline",
+                    mr: -0.5,
+                    ml: { xs: 0.25 },
+                    mt: { xs: 0, sm: '0.5em' },
+                    fontWeight: 500,
+                    opacity: 0.75,
+                    fontSize: "70%",
+                  }}
+                >
+                  (see reviews)
+                </Link>
               </Box>
             </Grid>
             <Grid
@@ -243,7 +232,7 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: { sm: "column", xs: "row" },
-                minHeight: { xs: 60, sm: 162 },
+                minHeight: { xs: 60, sm: 140 },
                 p: {
                   xs: "0rem .5rem",
                   sm: ".5rem .5rem 0rem 1rem",
@@ -262,22 +251,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   alignItems: "center",
                 }}
               >
-                <RomingoScore score={romingoScore} />
-                <Link
-                  sx={{
-                    display: { xs: "block", sm: "none" },
-                    color: "#666",
-                    fontFamily: "montserrat",
-                    textDecoration: "underline",
-                    mr: -0.5,
-                    ml: { xs: 0.25 },
-                    fontWeight: 500,
-                    opacity: 0.75,
-                    fontSize: "70%",
-                  }}
-                >
-                  (see reviews)
-                </Link>
+                {/* lower left */}
               </Box>
               <Box
                 sx={{
@@ -320,6 +294,7 @@ const ListingCard: FC<ListingCardProps> = ({
                       opacity: 0.8,
                       fontWeight: 400,
                       fontSize: "70%",
+                      fontFamily: 'overpass-light'
                     }}
                   >
                     per night
@@ -359,26 +334,6 @@ const ListingCard: FC<ListingCardProps> = ({
             </Grid>
           </Grid>
         </Box>
-        <Link
-          onClick={() => history.push(`/hotel/${alias}#reviews`)}
-          sx={{
-            display: { xs: "none", sm: "block" },
-            cursor: "pointer",
-            position: "absolute",
-            right: { xs: "auto", sm: "42px" },
-            left: { xs: "48px", sm: "auto" },
-            mt: { xs: "455px", sm: "-95px" },
-            color: "#666",
-            fontFamily: "montserrat",
-            textDecoration: "underline",
-            mr: -0.5,
-            fontWeight: 500,
-            opacity: 0.75,
-            fontSize: "70%",
-          }}
-        >
-          (see reviews)
-        </Link>
       </Box>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}
     </>
