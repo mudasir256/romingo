@@ -572,7 +572,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             size="small"
             fullWidth={false}
             sx={{
-              width: '240px',
+              width: '224px',
               label: {
                 fontFamily: 'overpass-light',
                 fontWeight: "bold",
