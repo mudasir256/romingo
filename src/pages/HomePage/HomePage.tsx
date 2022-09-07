@@ -294,7 +294,7 @@ const HomePage: FC<Props> = ({
     const header = document.querySelector(".sticky-header");
     const scrollTop = window.scrollY;
 
-    scrollTop >= 680
+    scrollTop >= 0
       ? header && header.classList.add("is-sticky")
       : header && header.classList.remove("is-sticky");
   };
@@ -397,11 +397,10 @@ const HomePage: FC<Props> = ({
           </div>
         </div>
       </Box>
-      <Hidden mdUp>
-        <Box className="sticky-header">
-          <FilterBar />
-        </Box>
-      </Hidden>
+      <Box sx={{ display: { xs: 'block', sm: 'none'} }} className="sticky-header is-sticky">
+        <FilterBar />
+      </Box>
+  
       <Hidden mdDown>
         <Box
           className="sticky-header"

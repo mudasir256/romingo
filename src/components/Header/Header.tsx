@@ -44,10 +44,11 @@ import { saveSearch } from "../../store/searchReducer";
 import { DateTime } from "luxon";
 import { useMeasure } from "react-use";
 import HeroImage from '../../assets/images/home-hero.jpg';
+import HeroImage2 from '../../assets/images/home-hero-2.jpg';
+
 import SearchImage from '../../assets/icon/magnify.png';
 import CalendarImage from '../../assets/icon/calendar.png';
 
-import RedesignedSearchBar from '../RedesignedSearchBar'
 
 import "./Header.scss";
 
@@ -116,25 +117,33 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: `linear-gradient(110deg, #000000 0%, #29292900 52%, #000000 100%), url(${HeroImage})`,
+          backgroundImage: { xs: `linear-gradient(170deg, #000000 0%, #29292900 52%, #000000 100%), url(${HeroImage2})`, sm: `linear-gradient(110deg, #000000 0%, #29292900 52%, #000000 100%), url(${HeroImage2})` },
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}
       >
         <Box sx={{ 
-          ml: '4em', 
-          mt: '4em' 
+          ml: { xs: '1.5em', sm: '7em' },
+          mt: { xs: '5em', sm: '4em' },  
         }}>
-          <div className="filter-bar-wrapper-title">
-            Book<br />Pet-Friendly<br />Hotels
-          </div>
-          <div className="filter-bar-wrapper-desc">
-            Easy to use. Lowest rates. No pet fees.
-          </div>
+          <Box sx={{ textAlign: { xs: 'left', sm: 'center'} }} className="filter-bar-wrapper-title">
+            Book pet-friendly hotels
+          </Box>
+          <Box sx={{
+            display: { xs: 'block', sm: 'none' }
+          }}>
+            <div className="filter-bar-wrapper-desc">
+              Easy to use. Lowest rates. No pet fees.
+            </div>
+          </Box>
         </Box>
-        {/*<RedesignedSearchBar />*/}
-        <FilterBar />
+
+        <Box sx={{ 
+          display: { xs: 'none', sm: 'block' }
+        }}>
+          <FilterBar />
+        </Box>
       </Box>
     </Box >
   );
@@ -265,13 +274,15 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
   return (
     <Box sx={{ 
-      mx: '2em',
-      mt: '16em',
-      position: 'relative',
+      mx: 'auto',
+      mt: '0em',
       zIndex: '20',
-      ["@media (max-width: 920px)"]: { mt: '10em' },
-      ["@media (max-width: 800px)"]: { mt: '16em' },
-
+      width: '1200px',
+      ["@media (max-width: 1220px)"]: { width: '1000px' },
+      ["@media (max-width: 1000px)"]: { width: '800px' },
+      ["@media (max-width: 920px)"]: { mt: '10em', width: '800px' },
+      ["@media (max-width: 800px)"]: { mt: '0em', width: '600px' },
+      ["@media (max-width: 720px)"]: { width: '480px' },
 
     }}>
       <Box className="filter-bar-desktop">
@@ -457,10 +468,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           color: "black",
                           fontFamily: "overpass-light",
                           textTransform: "none",
-                          fontSize: '1.5em',
+                          fontSize: '1em',
                           lineHeight: '46px',
                           ml: '1em',
-                          ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
+                          ["@media (max-width: 600px)"]: { fontSize: '1em' }
                         }}
                       >
                         {checkDate[0]
@@ -495,7 +506,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                           color: "black",
                           fontFamily: "overpass-light",
                           textTransform: "none",
-                          fontSize: '1.5em',
+                          fontSize: '1em',
                           lineHeight: '46px',
                           ml: '1em',
                           ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
