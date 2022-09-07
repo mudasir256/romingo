@@ -280,7 +280,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       mx: 'auto',
       mt: '0em',
       zIndex: '20',
-      width: '1200px',
+      width: '1150px',
       ["@media (max-width: 1220px)"]: { width: '1000px' },
       ["@media (max-width: 1000px)"]: { width: '800px' },
       ["@media (max-width: 920px)"]: { mt: '0em', width: '800px' },
