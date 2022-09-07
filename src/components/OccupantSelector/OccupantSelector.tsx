@@ -69,7 +69,7 @@ const OccupantSelector: FC<Props> = ({
     <>
       <TextField
         fullWidth={fullWidth}
-        label={label ? label : "Guests"}
+        label={label ? label : ""}
         sx={sx}
         size={size}
         variant={variant}

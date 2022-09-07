@@ -75,6 +75,17 @@ const Navbar: FC<Props> = ({ sx }) => {
 
   const path = history.location.pathname
 
+  const linkStyle = {
+    padding: ".5rem 1rem",
+    borderRadius: "6px",
+    mr: ".75rem",
+    textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
+    "&:hover": { color: "#03989E" },
+    color: "black",
+  }
+
   return (
     <>
       <AppBar
@@ -101,16 +112,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'flex-start' }}>
                   <Link
                     href="/about"
-                    sx={{
-                      padding: ".5rem 1rem",
-                      borderRadius: "6px",
-                      mr: ".75rem",
-                      textDecoration: "none",
-                      display: "flex",
-                      alignItems: "center",
-                      "&:hover": { color: "#03989E" },
-                      color: "black",
-                    }}
+                    sx={linkStyle}
                   >
                     <div
                       style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
@@ -122,14 +124,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     href="/reservation/manage"
                     sx={{
                       ml: "auto",
-                      padding: ".5rem 1rem",
-                      borderRadius: "6px",
-                      mr: ".75rem",
-                      textDecoration: "none",
-                      display: "flex",
-                      alignItems: "center",
-                      "&:hover": { color: "#03989E" },
-                      color: "black",
+                      ...linkStyle
                     }}
                   >
                     <div

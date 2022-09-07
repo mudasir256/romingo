@@ -31,7 +31,9 @@ import {
   BeachAccess,
   Waves,
   ArrowDropUpOutlined,
-  ArrowDropDownOutlined
+  ArrowDropDownOutlined,
+  Today,
+  InsertInvitation,
 } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import DateRangePicker from "@mui/lab/DateRangePicker";
@@ -46,11 +48,15 @@ import { useMeasure } from "react-use";
 import HeroImage from '../../assets/images/home-hero.jpg';
 import HeroImage2 from '../../assets/images/home-hero-2.jpg';
 import HeroImage3 from '../../assets/images/home-hero-3.jpg';
+import HeroImage4 from '../../assets/images/home-hero-4.jpg';
 
 
 import SearchImage from '../../assets/icon/magnify.png';
 import CalendarImage from '../../assets/icon/calendar.png';
 
+import OccupantSelector, {
+  Occupant,
+} from "../OccupantSelector/OccupantSelector";
 
 import "./Header.scss";
 
@@ -119,7 +125,7 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `linear-gradient(180deg, #000000 0%, #29292900 52%, #000000 130%), url(${HeroImage3})`, sm: `linear-gradient(180deg, #000000 -10%, #29292900 49%, #000000 130%), url(${HeroImage3})` },
+          backgroundImage: { xs: `linear-gradient(180deg, #000000 0%, #29292900 52%, #000000 130%), url(${HeroImage4})`, sm: `linear-gradient(178deg, #000000 10%, #29292900 51%, #000000 110%), url(${HeroImage4})` },
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -127,7 +133,7 @@ const Header: FC<Props> = ({ sx }) => {
       >
         <Box sx={{ 
           ml: { xs: '1.5em', sm: '0em' },
-          mt: { xs: '5em', sm: '4em' },  
+          mt: { xs: '5em', sm: '14em' },  
           mb: { xs: '0em', sm: '2em' },
         }}>
           <Box sx={{ textAlign: { xs: 'left', sm: 'center'} }} className="filter-bar-wrapper-title">
@@ -275,16 +281,23 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
     }
   };
 
+  const labelStyle = {
+    fontSize: '0.75em', 
+    fontWeight: 100, 
+    ml: '0.1em',
+    mb: '0.5em'
+  }
+
   return (
     <Box sx={{ 
       mx: 'auto',
       mt: '0em',
       zIndex: '20',
-      width: '1150px',
-      ["@media (max-width: 1220px)"]: { width: '1000px' },
-      ["@media (max-width: 1000px)"]: { width: '800px' },
-      ["@media (max-width: 920px)"]: { mt: '0em', width: '800px' },
-      ["@media (max-width: 800px)"]: { mt: '0em', width: '600px' },
+      width: '920px',
+      ["@media (max-width: 1220px)"]: { width: '920px' },
+      ["@media (max-width: 1000px)"]: { width: '920px' },
+      ["@media (max-width: 920px)"]: { mt: '0em', width: '800px', },
+      ["@media (max-width: 800px)"]: { mt: '0em', width: '600px', },
       ["@media (max-width: 720px)"]: { width: '480px' },
 
     }}>
@@ -294,6 +307,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
+            p: '0.5em',
+            px: '1em',
             ["@media (max-width: 1220px)"]: { display: 'block', mb: '0.5em', mt: '0.5em' },
             ["@media (max-width: 1000px)"]: { display: 'flex' },
             ["@media (max-width: 920px)"]: { justifyContent: 'center' },
@@ -301,111 +316,118 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
           }}
         >
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              border: 'none',
-              ml: '2em',
-              ["@media (max-width: 600px)"]: { mx: '0.75em' },
-              borderRadius: "6px",
-              backgroundColor: "#fff",
-              minWidth: '270px',
-              "&:hover": { background: "#efefef" },
-            }}
-          >
-            {selectedCity ? (
-              <img
-                src={`/images/location-icons/${getCity(selectedCity)
-                  ?.name.substring(
-                    0,
-                    getCity(selectedCity)?.name.indexOf(",")
-                  )
-                  .toLowerCase()
-                  .replace(/ /g, "_")}.svg`}
-                height="24px"
-                style={{ marginLeft: "5px" }}
-              />
-            ) : (
-              <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
-            )}
-            <Autocomplete
-              options={cities.sort(function (a: any, b: any) {
-                if (a.state.name === b.state.name) {
-                  // Price is only important when cities are the same
-                  return b.name - a.name;
-                }
-                return a.state.name > b.state.name ? 1 : -1;
-              })}
-              groupBy={(o) => o.state.name}
-              disableClearable
-              blurOnSelect="touch"
-              value={getCity(selectedCity) || null}
-              getOptionLabel={(option: any) => {
-                return option.name;
+          <Box>
+            <Typography
+              sx={{
+                ...labelStyle,
+                mb: 0
+              }}>
+              Select a city
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                border: 'none',
+                ["@media (max-width: 600px)"]: { mx: '0.75em' },
+                borderRadius: "6px",
+                backgroundColor: "#fff",
+                minWidth: '250px',
+                "&:hover": { background: "#efefef" },
               }}
-              renderOption={(props, option: any) => (
-                <li {...props} style={{ paddingLeft: 10 }}>
-                  <Box
-                    sx={{
-                      width: "60px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-
-                    }}
-                  >
-                    <img
-                      src={`/images/location-icons/${option?.name
-                        .substring(0, option.name.indexOf(","))
-                        .toLowerCase()
-                        .replace(/ /g, "_")}.svg`}
-                      height="25px"
-                      style={{ marginRight: "10px" }}
-                    />
-                  </Box>
-                    {option.name}
-                </li>
-              )}
-              // eslint-disable-next-line
-              onChange={(e, values: any) => {
-                if (values) {
-                  setFormError("");
-                  setSelectedCity(values.id);
-                }
-              }}
-              fullWidth
-              sx={{ fontFamily: "Montserrat", }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  color="primary"
-                  variant="outlined"
-                  className="auto-complete-input"
-                  placeholder="Select a city"
-                  size="small"
-                  sx={{         
-                    "& .MuiOutlinedInput-root": {
-                      color: "#444",
-                      "& fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "transparent",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "transparent",
-                      },
-                    },
-                  }}
+            >
+              {selectedCity ? (
+                <img
+                  src={`/images/location-icons/${getCity(selectedCity)
+                    ?.name.substring(
+                      0,
+                      getCity(selectedCity)?.name.indexOf(",")
+                    )
+                    .toLowerCase()
+                    .replace(/ /g, "_")}.svg`}
+                  height="24px"
+                  style={{ marginLeft: "5px" }}
                 />
+              ) : (
+                <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
               )}
-            />
+              <Autocomplete
+                options={cities.sort(function (a: any, b: any) {
+                  if (a.state.name === b.state.name) {
+                    // Price is only important when cities are the same
+                    return b.name - a.name;
+                  }
+                  return a.state.name > b.state.name ? 1 : -1;
+                })}
+                groupBy={(o) => o.state.name}
+                disableClearable
+                blurOnSelect="touch"
+                value={getCity(selectedCity) || null}
+                getOptionLabel={(option: any) => {
+                  return option.name;
+                }}
+                renderOption={(props, option: any) => (
+                  <li {...props} style={{ paddingLeft: 10 }}>
+                    <Box
+                      sx={{
+                        width: "60px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+
+                      }}
+                    >
+                      <img
+                        src={`/images/location-icons/${option?.name
+                          .substring(0, option.name.indexOf(","))
+                          .toLowerCase()
+                          .replace(/ /g, "_")}.svg`}
+                        height="25px"
+                        style={{ marginRight: "10px" }}
+                      />
+                    </Box>
+                      {option.name}
+                  </li>
+                )}
+                // eslint-disable-next-line
+                onChange={(e, values: any) => {
+                  if (values) {
+                    setFormError("");
+                    setSelectedCity(values.id);
+                  }
+                }}
+                fullWidth
+                sx={{ fontFamily: "Montserrat", }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    color="primary"
+                    variant="outlined"
+                    className="auto-complete-input"
+                    placeholder="Select a city"
+                    size="small"
+                    sx={{         
+                      "& .MuiOutlinedInput-root": {
+                        color: "#444",
+                        "& fieldset": {
+                          borderColor: "transparent",
+                        },
+                        "&:hover fieldset": {
+                          borderColor: "transparent",
+                        },
+                        "&.Mui-focused fieldset": {
+                          borderColor: "transparent",
+                        },
+                      },
+                    }}
+                  />
+                )}
+              />
+            </Box>
           </Box>
        
           <Box sx={{ 
-            ml: '2.25em',
+            ml: '1em',
             ["@media (max-width: 600px)"]: { ml: '1em' }
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -449,75 +471,82 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     }}
                     onClick={() => setOpen(true)}
                   >
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        cursor: "pointer",
-                        transition: "all .15s ease-in-out",
-                        border: 'none',
-                        "&:hover": { background: "#efefef" },
-                        borderRadius: "6px",
-                        backgroundColor: "#fff",
-                   
-                      }}
-                    >
-              
-                      <img src={CalendarImage} width="22.7px" height="22.7px" alt="" />
-                      <Typography
+                    <Box sx={{ mr: '1.5em'}}>
+                      <Typography sx={labelStyle}>Check-in date</Typography>
+                      <Box
                         sx={{
-                          color: "black",
-                          fontFamily: "overpass-light",
-                          textTransform: "none",
-                          fontSize: '1em',
-                          lineHeight: '46px',
-                          ml: '1em',
-                          ["@media (max-width: 600px)"]: { fontSize: '1em' }
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          cursor: "pointer",
+                          transition: "all .15s ease-in-out",
+                          border: 'none',
+                          "&:hover": { background: "#efefef" },
+                          borderRadius: "6px",
+                          backgroundColor: "#fff",
+                          py: '0.25em',
+                  
                         }}
                       >
-                        {checkDate[0]
-                          ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMMM dd")
-                          : "Check-in date"
-                        }
-                      </Typography> 
+                
+                        <Today />
+                        <Typography
+                          sx={{
+                            color: "black",
+                            fontFamily: "overpass-light",
+                            textTransform: "none",
+                            fontSize: '1em',
+                            ml: '0.5em',
+                            ["@media (max-width: 600px)"]: { fontSize: '1em' }
+                          }}
+                        >
+                          {checkDate[0]
+                            ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MM/dd/yy")
+                            : "Check-in date"
+                          }
+                        </Typography> 
+                      </Box>
                     </Box>
-
-                    <Box
-                      sx={{
-                        p: '1em',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        cursor: "pointer",
-                        transition: "all .15s ease-in-out",
-                        border: 'none',
-                        "&:hover": { background: "#efefef" },
-                        borderRadius: "6px",
-                        backgroundColor: "#fff",
-                        ml: '2em',
-                        ["@media (max-width: 920px)"]: { ml: '1em' },
-
-                      }}
-                      onClick={() => setOpen(true)}
-
-                    >
-                      <img src={CalendarImage} width="22.7px" height="22.7px" alt="" />
+                    <Box sx={{ ml: '1em', mr: '1.5em',}} >
                       <Typography
+                        sx={labelStyle}>
+                        Check-out date
+                      </Typography>
+                      <Box
                         sx={{
-                          color: "black",
-                          fontFamily: "overpass-light",
-                          textTransform: "none",
-                          fontSize: '1em',
-                          ml: '1em',
-                          ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          cursor: "pointer",
+                          transition: "all .15s ease-in-out",
+                          border: 'none',
+                          "&:hover": { background: "#efefef" },
+                          borderRadius: "6px",
+                          backgroundColor: "#fff",
+                          py: '0.25em',
+
+                
                         }}
+                        onClick={() => setOpen(true)}
+
                       >
-                        {checkDate[1]
-                          ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMMM dd")
-                          : "Check-out date"
-                        }
-                      </Typography> 
+                        <InsertInvitation />
+                        <Typography
+                          sx={{
+                            color: "black",
+                            fontFamily: "overpass-light",
+                            textTransform: "none",
+                            fontSize: '1em',
+                            ml: '0.5em',
+                            ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
+                          }}
+                        >
+                          {checkDate[1]
+                            ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MM/dd/yy")
+                            : "Check-out date"
+                          }
+                        </Typography> 
+                      </Box>
                     </Box>
                   </Box>
                 )}
@@ -526,92 +555,57 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           </Box>
 
         </Box>
-      
-        <Box 
-          sx={{ 
-            my: '0.5em',
-            ml: 'auto',
-            mr: '2em',
-            display: 'flex', 
-            flexDirection: 'row',
-            justifyContent: 'center',
-            ["@media (max-width: 600px)"]: { mx: 'auto' }
-          }}
-        >
-          <NumberInput
-            value={occupants.adults}
-            onChange={(adults) => {
-              if (adults > 5) return;
-              onOccupantChange({ ...occupants, adults });
+  
+          
+        <Box>
+          <Typography
+            sx={{
+              ...labelStyle,
+              mb: '0.5em'
+            }}>
+            Guests
+          </Typography>
+          <OccupantSelector
+            value={occupants}
+            onChange={onOccupantChange}
+            variant="standard"
+            size="small"
+            fullWidth={false}
+            sx={{
+              width: '240px',
+              label: {
+                fontFamily: 'overpass-light',
+                fontWeight: "bold",
+              },
+              input: {
+                fontWeight: 600,
+                cursor: "pointer",
+                fontFamily: 'overpass-light'
+              },
             }}
-            minimum={1}
-            type="Guest"
           />
-    
-          <div style={{ margin: '0 3em' }}>
-            <NumberInput
-              value={occupants.children}
-              onChange={(children) => {
-                if (children > 6) return;
-                if (occupants.childrenAge && occupants.childrenAge.length > children) {
-                  occupants.childrenAge = occupants.childrenAge.slice(0, children);
-                } else if (
-                  occupants.childrenAge &&
-                  occupants.childrenAge.length <= children
-                ) {
-                  while (occupants.childrenAge.length !== children) {
-                    occupants.childrenAge.push(0);
-                  }
-                }
-                onOccupantChange({ ...occupants, children });
-              }}
-              type="Children"
-            />
-          </div>
-
-          <NumberInput
-            value={occupants.dogs}
-            onChange={(dogs) => {
-              if (dogs > 2) return;
-              onOccupantChange({ ...occupants, dogs });
-            }}
-            type="Pet"
-          />
-          <button
-            onClick={handleFilterOutClick}
-            type="submit"
-            style={{
-              height: "48px",
-              width: "48px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "50%",
-              cursor: 'pointer',
-              padding: 0,
-              background: '#009CA1',
-              border: 'none',
-              alignSelf: "flex-end",
-              marginBottom: '1em',
-              marginLeft: '5em',
-              marginRight: '1em'
-            }}
-          >
-            <SearchIcon sx={{ height: "15px", fill: 'white' }} />
-          </button>
         </Box>
+
+        <Button
+          onClick={handleFilterOutClick}
+          variant="contained"
+          size="medium"
+          sx={{
+            textTransform: "none",
+            fontFamily: "sansita-light",
+            m: '0.75em',
+            p: '1.5em',
+            height: '44px',
+          }}
+          startIcon={<SearchIcon sx={{ height: "24px", fill: 'white' }} />}
+        >
+          Search
+        </Button>
+
       </Box>
     </Box>
   );
 };
-
-export interface Occupant {
-  adults: number;
-  children: number;
-  dogs: number;
-  childrenAge?: number[];
-  disabled?: boolean;
-}
 
 
 interface NumberInputProps {
