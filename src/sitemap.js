@@ -11,6 +11,9 @@ const routes = [
     path: "/details/:id",
   },
   {
+    path: "/hotel/:alias",
+  },
+  {
     path: "/checkout*",
   },
   {

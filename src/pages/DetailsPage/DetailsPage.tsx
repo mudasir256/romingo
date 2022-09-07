@@ -110,6 +110,7 @@ import Footer from "../../components/Footer";
 import RomingoScore from "../../components/RomingoScore";
 import Navbar from "../../components/Navbar";
 
+
 type BreakpointOrNull = Breakpoint | null;
 
 const useWidth = () => {
@@ -177,12 +178,17 @@ interface Props {
   googlePlaceId: string;
 }
 
+const isIdPage = (path:string) => {
+    if (path.match(/\/details\/.*$/gm)) return true
+    return false
+}
+
 const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelId = props?.match?.params?.id || "undefined";
-  const hotelAlias = props.match.params.alias;
+  const hotelAlias = props?.match?.params?.alias || "undefined";
   const pageLocation = useLocation();
   const search = useSelector((state: any) => state.searchReducer.search);
-
+  
   const dispatch: Dispatch<any> = useDispatch();
 
   const ageParam = search.occupants.childrenAge
@@ -201,6 +207,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const removeHttpLink = function (str: string) {
     return str?.replace("http:", "");
   };
+
+//  isIdPage(pageLocation.pathname)
 
   const { loading, data } = useQuery(
     gql`
@@ -263,7 +271,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   }, [pageLocation, reviewData]);
 
   useEffect(() => {
-    if (data && data?.property) {
+     if (data && data?.property) {
+      if (isIdPage(pageLocation.pathname)) {
+         if (data?.property?.alias) {
+           history.push(`/hotel/${data?.property?.alias}`)
+           return;
+         }
+      }
       dispatch(setHotel(data.property));
       setName(data.property.name);
       setLocation({
