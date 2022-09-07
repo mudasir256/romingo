@@ -89,7 +89,7 @@ const ListingPage: FC<Props> = () => {
   );
 
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
-  const [sortBy, setSortBy] = useState<string>("score");
+  const [sortBy, setSortBy] = useState<string>("featured");
   const [allowBigDogs, setAllowBigDogs] = useState<number>(0);
 
   const getCityName = (cityId: string) => {
@@ -178,14 +178,15 @@ const ListingPage: FC<Props> = () => {
     return state.hotelListReducer.hotels;
   });
 
+  console.log(cards)
+
   const [sorted, setSorted] = useState(
     [...cards].sort((a: any, b: any) =>
       (
-        sortBy === "score"
-          ? a.romingoScore < b.romingoScore
-          : sortBy === "high"
-            ? a.lowestAveragePrice < b.lowestAveragePrice
-            : a.lowestAveragePrice > b.lowestAveragePrice
+        sortBy === "score" ? a.romingoScore < b.romingoScore
+          : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
+          : sortBy === "low" ? a.lowestAveragePrice > b.lowestAveragePrice
+          : a.page_rank > b.page_rank
       )
         ? 1
         : -1
@@ -196,11 +197,10 @@ const ListingPage: FC<Props> = () => {
     [...cards]
       .sort((a: any, b: any) =>
         (
-          sortBy === "score"
-            ? a.romingoScore < b.romingoScore
-            : sortBy === "high"
-              ? a.lowestAveragePrice < b.lowestAveragePrice
-              : a.lowestAveragePrice > b.lowestAveragePrice
+          sortBy === "score" ? a.romingoScore < b.romingoScore
+            : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
+            : sortBy === "low" ? a.lowestAveragePrice > b.lowestAveragePrice
+            : a.page_rank > b.page_rank
         )
           ? 1
           : -1
@@ -290,11 +290,10 @@ const ListingPage: FC<Props> = () => {
     setSorted(
       [...cards].sort((a: any, b: any) =>
         (
-          sortBy === "score"
-            ? a.romingoScore < b.romingoScore
-            : sortBy === "high"
-              ? a.lowestAveragePrice < b.lowestAveragePrice
-              : a.lowestAveragePrice > b.lowestAveragePrice
+          sortBy === "score"  ? a.romingoScore < b.romingoScore 
+          : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
+          : sortBy === 'low'  ?  a.lowestAveragePrice > b.lowestAveragePrice
+          : a.page_rank > b.page_rank
         )
           ? 1
           : -1
@@ -304,11 +303,10 @@ const ListingPage: FC<Props> = () => {
       [...cards]
         .sort((a: any, b: any) =>
           (
-            sortBy === "score"
-              ? a.romingoScore < b.romingoScore
-              : sortBy === "high"
-                ? a.lowestAveragePrice < b.lowestAveragePrice
-                : a.lowestAveragePrice > b.lowestAveragePrice
+            sortBy === "score"  ? a.romingoScore < b.romingoScore
+            : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
+            : sortBy === "low"  ?  a.lowestAveragePrice > b.lowestAveragePrice
+            : a.page_rank > b.page_rank
           )
             ? 1
             : -1
@@ -728,9 +726,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
         }
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
+        <MenuItem value="featured">Featured</MenuItem>
         <MenuItem value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
         <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
