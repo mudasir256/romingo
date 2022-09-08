@@ -246,12 +246,18 @@ const ListingCard: FC<ListingCardProps> = ({
               <Box
                 sx={{
                   minWidth: "73px",
-                  display: "flex",
+                  display: { xs: "flex", sm: 'none' },
                   flexDirection: "row",
                   alignItems: "center",
                 }}
               >
-                {/* lower left */}
+                <Typography sx={{ 
+                  fontFamily: "sansita-light", 
+                  letterSpacing: '0.5px', 
+                  color: '#009CA1' 
+                }}>
+                  Reserve now, pay later
+                </Typography>
               </Box>
               <Box
                 sx={{
