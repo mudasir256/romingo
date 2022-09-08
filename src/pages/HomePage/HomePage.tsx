@@ -403,9 +403,9 @@ const HomePage: FC<Props> = ({
           </div>
         </div>
       </Box>
-      <Box sx={{ display: { xs: 'block', sm: 'none'} }} className="sticky-header is-sticky">
+   {/*   <Box sx={{ display: { xs: 'block', sm: 'none'} }} className="sticky-header is-sticky">
         <FilterBar />
-      </Box>
+      </Box>*/}
   
       {/*
       <Hidden mdDown>
