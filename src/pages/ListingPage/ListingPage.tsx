@@ -20,6 +20,7 @@ import {
   AddCircleOutline,
   FilterList,
   ReportRounded,
+  ListAlt,
 } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
@@ -251,6 +252,10 @@ const ListingPage: FC<Props> = () => {
   const [hoverIndex, setHoverIndex] = useState(0);
 
   useEffect(() => {
+    setAnimate("expanded");  // setAnimate("collapsed");
+  }, [])
+
+  useEffect(() => {
     dispatch(
       setViewStatus({
         status: animate,
@@ -450,7 +455,6 @@ const ListingPage: FC<Props> = () => {
               right: 0,
               padding: 24,
               backgroundColor: "#feffff",
-              maxHeight: `${height - 48}px`,
               overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,
               overscrollBehavior: "none",
@@ -458,23 +462,10 @@ const ListingPage: FC<Props> = () => {
             variants={variants}
             animate={animate}
             transition={{ duration: 0.4 }}
-            onScroll={(e: any) => {
-              if (e.target?.scrollTop <= 0) {
-                setAnimate("collapsed");
-              }
-            }}
             onDragEnd={(_, { offset }) => {
               if (offset.y < -30) {
                 if (animate === "collapsed") {
-                  setAnimate("preview");
-                } else {
                   setAnimate("expanded");
-                }
-              } else if (offset.y > 30) {
-                if (animate === "preview") {
-                  setAnimate("collapsed");
-                } else {
-                  setAnimate("preview");
                 }
               }
             }}
@@ -548,8 +539,8 @@ const ListingPage: FC<Props> = () => {
                 }
               }}
               sx={{
-                position: "absolute",
-                bottom: 10,
+                position: "fixed",
+                bottom: 48,
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 100,
