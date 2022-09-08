@@ -125,12 +125,6 @@ const Header: FC<Props> = ({ sx }) => {
     >
       <Navbar />
 
-      <Box sx={{ 
-        display: { xs: 'block', sm: 'block', md: 'none' },
-        top: { sm: '30px' }
-      }}>
-        <MobileFilterBar />
-      </Box>
     {/* `linear-gradient(178deg, #000000 30%, #29292900 70%, #000000 130%) */}
       <Box
         className="filter-bar-wrapper"
@@ -143,8 +137,8 @@ const Header: FC<Props> = ({ sx }) => {
       >
 
         <Box sx={{ 
-          ml: { xs: '1.5em', sm: '1.5em', md: '0em' },
-          mt: { xs: '10em', sm: '10em', md: '14em' },  
+          ml: { xs: '1em', sm: '1.5em', md: '0em' },
+          mt: { xs: '2.5em', sm: '5em', md: '14em' },  
           mb: { xs: '0em', sm: '0em', md: '2em' },
         }}>
           
@@ -155,11 +149,17 @@ const Header: FC<Props> = ({ sx }) => {
               Book pet-friendly hotels
             </Box>
             <div className="filter-bar-wrapper-desc">
-              Easy to use. Lowest rates. No pet fees.
+              Lowest rates. $0 pet fees.
             </div>
           </Box>
         </Box>
 
+        <Box sx={{ 
+          display: { xs: 'block', sm: 'block', md: 'none' },
+          top: { sm: '30px' }
+        }}>
+          <MobileFilterBar />
+        </Box>
         <Box sx={{ 
           display: { xs: 'none', sm: 'none', md: 'block' }
         }}>

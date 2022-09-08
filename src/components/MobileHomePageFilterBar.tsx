@@ -172,7 +172,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             position: "absolute",
             zIndex: 2,
             margin: "0px auto 0px auto",
-            paddingTop: "74px",
+            paddingTop: "2em",
             paddingBottom: "12px",
             width: "100vw",
             backgroundColor: 'transparent',
