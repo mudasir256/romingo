@@ -221,6 +221,21 @@ const ListingCard: FC<ListingCardProps> = ({
                   (see reviews)
                 </Link>
               </Box>
+              <Box
+                sx={{
+                  minWidth: "73px",
+                  display: { xs: "none", sm: 'block' },
+                  mt: 'auto'
+                }}
+              >
+                <Typography sx={{ 
+                  fontFamily: "sansita-light", 
+                  letterSpacing: '0.5px', 
+                  color: '#009CA1' 
+                }}>
+                  Reserve now, pay later
+                </Typography>
+              </Box>
             </Grid>
             <Grid
               item
