@@ -67,10 +67,6 @@
       }
     }
 
-    @media screen and (max-width: 1000px) {
-      display: block;
-    }
-
 
     .number-inputs {
       display: flex;
@@ -101,15 +97,6 @@
   flex-direction: row;
 }
 
-.block {
 
-}
-
-@media screen and (max-width: 1320px) {
-  .block {
-    color: red;
-    display: block;
-  }
-}
 
 

@@ -999,7 +999,8 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         container
         sx={{
           marginBottom: "-2px",
-          height: "10px",
+          mt: { xs: 0, sm: '2.25em' },
+          height: { xs: "10px", sm: '10px' },
           display: variant === "standard" ? "flex" : "none",
           alignItems: "center",
         }}
@@ -1021,7 +1022,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               fontFamily: "overpass-light",
               textTransform: "none",
               fontWeight: 600,
-              fontSize: { xs: "12px" },
+              fontSize: { xs: "12px", sm: '12px' },
               cursor: "pointer",
             }}
           >

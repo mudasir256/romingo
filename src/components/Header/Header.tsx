@@ -125,7 +125,10 @@ const Header: FC<Props> = ({ sx }) => {
     >
       <Navbar />
 
-      <Box sx={{ display: { xs: 'block', sm: 'none' }}}>
+      <Box sx={{ 
+        display: { xs: 'block', sm: 'block', md: 'none' },
+        top: { sm: '30px' }
+      }}>
         <MobileFilterBar />
       </Box>
     {/* `linear-gradient(178deg, #000000 30%, #29292900 70%, #000000 130%) */}
@@ -140,13 +143,13 @@ const Header: FC<Props> = ({ sx }) => {
       >
 
         <Box sx={{ 
-          ml: { xs: '1.5em', sm: '0em' },
-          mt: { xs: '10em', sm: '14em' },  
-          mb: { xs: '0em', sm: '2em' },
+          ml: { xs: '1.5em', sm: '1.5em', md: '0em' },
+          mt: { xs: '10em', sm: '10em', md: '14em' },  
+          mb: { xs: '0em', sm: '0em', md: '2em' },
         }}>
           
           <Box sx={{
-            display: { xs: 'block', sm: 'none' }
+            display: { xs: 'block', sm: 'block', md: 'none' }
           }}>
             <Box sx={{ textAlign: { xs: 'left', sm: 'left'} }} className="filter-bar-wrapper-title">
               Book pet-friendly hotels
@@ -158,7 +161,7 @@ const Header: FC<Props> = ({ sx }) => {
         </Box>
 
         <Box sx={{ 
-          display: { xs: 'none', sm: 'block' }
+          display: { xs: 'none', sm: 'none', md: 'block' }
         }}>
           <FilterBar />
         </Box>
@@ -303,12 +306,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       mt: '0em',
       zIndex: '20',
       width: '920px',
-      ["@media (max-width: 1220px)"]: { width: '920px' },
-      ["@media (max-width: 1000px)"]: { width: '920px' },
-      ["@media (max-width: 920px)"]: { mt: '0em', width: '800px', },
-      ["@media (max-width: 800px)"]: { mt: '0em', width: '600px', },
-      ["@media (max-width: 720px)"]: { width: '480px' },
-
     }}>
       <Box sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title">Book pet-friendly hotels</Box>
       <Box sx={{ mt: '1.5em'}} className="filter-bar-desktop">
@@ -319,11 +316,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             alignItems: 'center',
             p: '0.5em',
             px: '1em',
-            ["@media (max-width: 1220px)"]: { display: 'block', mb: '0.5em', mt: '0.5em' },
-            ["@media (max-width: 1000px)"]: { display: 'flex' },
-            ["@media (max-width: 920px)"]: { justifyContent: 'center' },
-            ["@media (max-width: 720px)"]: { display: 'block' },
-
           }}
         >
           <Box>
