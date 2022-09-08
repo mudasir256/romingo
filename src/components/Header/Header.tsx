@@ -129,7 +129,7 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `linear-gradient(168deg, #000000 20%, #29292900 58%, #000000 120%), url(${HeroImage4})`, sm: `linear-gradient(160deg, #000000 10%, #29292900 55%, #000000 100%), url(${HeroImage4})` },
+          backgroundImage: { xs: `linear-gradient(168deg, #000000 20%, #29292900 60%, #000000 120%), url(${HeroImage4})`, sm: `linear-gradient(160deg, #000000 10%, #29292900 55%, #000000 100%), url(${HeroImage4})` },
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -138,7 +138,7 @@ const Header: FC<Props> = ({ sx }) => {
 
         <Box sx={{ 
           ml: { xs: '1em', sm: '1.5em', md: '0em' },
-          mt: { xs: '2.5em', sm: '5em', md: '14em' },  
+          mt: { xs: '1.5em', sm: '5em', md: '14em' },  
           mb: { xs: '0em', sm: '0em', md: '2em' },
         }}>
           

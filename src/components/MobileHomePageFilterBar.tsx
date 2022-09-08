@@ -173,7 +173,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           position: "absolute",
           zIndex: 2,
           margin: "0px auto 0px auto",
-          paddingTop: "0.5em",
+          paddingTop: "0.1em",
           paddingBottom: "12px",
           width: "100vw",
           backgroundColor: 'transparent',
@@ -513,7 +513,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             type="submit"
             variant="contained"
             sx={{
-              height: "47px",
+              height: "40px",
               width: "50%",
               display: "flex",
               alignItems: "center",
