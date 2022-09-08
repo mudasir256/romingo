@@ -29,6 +29,8 @@ import {
   LocationCity,
   BeachAccess,
   Waves,
+  People,
+  Today,
 } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import DateRangePicker from "@mui/lab/DateRangePicker";
@@ -166,185 +168,179 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
   return (
     <>
-      {below900 ? (
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: 2,
+          margin: "0px auto 0px auto",
+          paddingTop: "0.5em",
+          paddingBottom: "12px",
+          width: "100vw",
+          backgroundColor: 'transparent',
+        }}
+      >
         <Box
           sx={{
-            position: "absolute",
-            zIndex: 2,
-            margin: "0px auto 0px auto",
-            paddingTop: "2em",
-            paddingBottom: "12px",
-            width: "100vw",
-            backgroundColor: 'transparent',
+            display: "flex",
+            padding: ".5rem 1rem",
+            flexDirection: "column",
+            alignItems: "center",
+            mb: ".5rem",
+            mt: ".5rem",
           }}
         >
-          <OccupantSelector
-            value={occupants}
-            onChange={onOccupantChange}
-            variant="standard"
-            size="small"
-          />
           <Box
             sx={{
               display: "flex",
-              padding: ".5rem 1rem",
-              flexDirection: "column",
               alignItems: "center",
-              mb: ".5rem",
-              mt: ".5rem",
+              minWidth: "100%",
+              minHeight: "45px",
+              maxHeight: "45px",
+              border: "1px solid #DDDDDD",
+              borderRadius: "8px",
+              backgroundColor: 'white'
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                minWidth: "100%",
-                minHeight: "45px",
-                maxHeight: "45px",
-                border: "1px solid #DDDDDD",
-                borderRadius: "8px",
-                backgroundColor: 'white'
-              }}
-            >
-              <Grid container>
-                <Grid
-                  item
-                  xs={1}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pl: "1rem",
-                  }}
-                >
-                  {selectedCity ? (
-                    <img
-                      src={`/images/location-icons/${getCity(selectedCity)
-                        ?.name.substring(
-                          0,
-                          getCity(selectedCity)?.name.indexOf(",")
-                        )
-                        .toLowerCase()
-                        .replace(/ /g, "_")}.svg`}
-                      height="24px"
-                      style={{ marginLeft: "5px" }}
-                    />
-                  ) : (
-                    <LocationCity sx={{ height: "24px", color: "#666" }} />
-                  )}
-                </Grid>
-                <Grid
-                  item
-                  xs={11}
-                  sx={{
-                    marginRight: "auto",
-                    pl: ".5rem",
-                    pr: ".5rem",
-                  }}
-                >
-                  <Autocomplete
-                    disableClearable
-                    options={cities.sort(function (a: any, b: any) {
-                      if (a.state.name === b.state.name) {
-                        // Price is only important when cities are the same
-                        return b.name - a.name;
-                      }
-                      return a.state.name > b.state.name ? 1 : -1;
-                    })}
-                    blurOnSelect="touch"
-                    groupBy={(o) => o.state.name}
-                    value={getCity(selectedCity) || null}
-                    getOptionLabel={(option: any) => {
-                      return option.name;
-                    }}
-                    renderOption={(props, option: any) => (
-                      <li {...props} style={{ paddingLeft: 10 }}>
-                        <Box
-                          sx={{
-                            width: "55px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <img
-                            src={`/images/location-icons/${option?.name
-                              .substring(0, option.name.indexOf(","))
-                              .toLowerCase()
-                              .replace(/ /g, "_")}.svg`}
-                            height="25px"
-                            style={{ marginRight: "10px" }}
-                          />
-                        </Box>
-                        {option.name}
-                      </li>
-                    )}
-                    // eslint-disable-next-line
-                    onChange={(e, values: any) => {
-                      if (values) {
-                        setFormError("");
-                        setSelectedCity(values.id);
-                      }
-                    }}
-                    sx={{
-                      fontFamily: "Roboto",
-                      width: "100%",
-                      margin: "0px auto 0px 0px ",
-                      fontSize: "14px",
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        color="primary"
-                        variant="outlined"
-                        placeholder="Select a city"
-                        size="small"
-
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            color: "#444",
-                            "& fieldset": {
-                              borderColor: "transparent",
-                            },
-                            "&:hover fieldset": {
-                              borderColor: "transparent",
-                            },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "transparent",
-                            },
-                          },
-                          input: {
-                            padding: "0px",
-                            fontSize: "14px",
-                            fontWeight: 600,
-                            fontFamily: "Roboto",
-                            cursor: "pointer",
-                            color: "#444",
-                            border: "none",
-                            "&::placeholder": {
-                              textOverflow: "ellipsis !important",
-                              color: "#666",
-                              opacity: 1,
-                              fontWeight: 600,
-                            },
-                          },
-                        }}
-                      />
-                    )}
+            <Grid container>
+              <Grid
+                item
+                xs={1}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  pl: "1rem",
+                }}
+              >
+                {selectedCity ? (
+                  <img
+                    src={`/images/location-icons/${getCity(selectedCity)
+                      ?.name.substring(
+                        0,
+                        getCity(selectedCity)?.name.indexOf(",")
+                      )
+                      .toLowerCase()
+                      .replace(/ /g, "_")}.svg`}
+                    height="24px"
+                    style={{ marginLeft: "5px" }}
                   />
-                </Grid>
+                ) : (
+                  <LocationCity sx={{ height: "24px", color: "#666" }} />
+                )}
               </Grid>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                width: "100%",
-                transition: "all .15s ease-in-out",
-                alignItems: "center",
-                maxHeight: "45px",
-              }}
-            >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <Grid
+                item
+                xs={11}
+                sx={{
+                  marginRight: "auto",
+                  pl: ".5rem",
+                  pr: ".5rem",
+                }}
+              >
+                <Autocomplete
+                  disableClearable
+                  options={cities.sort(function (a: any, b: any) {
+                    if (a.state.name === b.state.name) {
+                      // Price is only important when cities are the same
+                      return b.name - a.name;
+                    }
+                    return a.state.name > b.state.name ? 1 : -1;
+                  })}
+                  blurOnSelect="touch"
+                  groupBy={(o) => o.state.name}
+                  value={getCity(selectedCity) || null}
+                  getOptionLabel={(option: any) => {
+                    return option.name;
+                  }}
+                  renderOption={(props, option: any) => (
+                    <li {...props} style={{ paddingLeft: 10, fontFamily: 'overpass-light' }}>
+                      <Box
+                        sx={{
+                          width: "55px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <img
+                          src={`/images/location-icons/${option?.name
+                            .substring(0, option.name.indexOf(","))
+                            .toLowerCase()
+                            .replace(/ /g, "_")}.svg`}
+                          height="25px"
+                          style={{ marginRight: "10px" }}
+                        />
+                      </Box>
+                      {option.name}
+                    </li>
+                  )}
+                  // eslint-disable-next-line
+                  onChange={(e, values: any) => {
+                    if (values) {
+                      setFormError("");
+                      setSelectedCity(values.id);
+                    }
+                  }}
+                  sx={{
+                    fontFamily: "overpass-light",
+                    width: "100%",
+                    margin: "0px auto 0px 0px ",
+                    fontSize: "14px",
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      color="primary"
+                      variant="outlined"
+                      placeholder="Select a city"
+                      size="small"
+
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          color: "#444",
+                          "& fieldset": {
+                            borderColor: "transparent",
+                          },
+                          "&:hover fieldset": {
+                            borderColor: "transparent",
+                          },
+                          "&.Mui-focused fieldset": {
+                            borderColor: "transparent",
+                          },
+                        },
+                        input: {
+                          padding: "0px",
+                          fontSize: "14px",
+                          fontWeight: 600,
+                          fontFamily: "overpass-light",
+                          cursor: "pointer",
+                          color: "#444",
+                          border: "none",
+                          "&::placeholder": {
+                            textOverflow: "ellipsis !important",
+                            color: "#666",
+                            opacity: 1,
+                            fontWeight: 600,
+                          },
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              transition: "all .15s ease-in-out",
+              alignItems: "center",
+              maxHeight: "45px",
+            }}
+          >
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <Box sx={{ position: 'absolute', left: '50%', mt: '0em' }}>
                 <DateRangePicker
                   inputFormat="MMM dd"
                   disableMaskedInput={true}
@@ -367,172 +363,139 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   }}
                   renderInput={() => <Grid sx={{ display: "none" }}></Grid>}
                 />
-              </LocalizationProvider>
+              </Box>
+            </LocalizationProvider>
 
-              <Grid
-                container
-                onClick={() => setOpen(true)}
-                sx={{
-                  width: "100%",
-                  mt: "1rem",
+            <Grid
+              container
+              onClick={() => setOpen(true)}
+              sx={{
+                width: "100%",
+                mt: "1rem",
 
-                }}
-              >
-                <Grid item xs={6} sx={{ pr: ".25rem" }}>
+              }}
+            >
+              <Grid item xs={6} sx={{ pr: ".25rem" }}>
+                <Grid
+                  container
+                  sx={{
+                    border: "1px solid #DDDDDD",
+                    borderRadius: "6px",
+                    padding: ".25rem .25rem .25rem 1rem",
+                    backgroundColor: 'white'
+                  }}
+                >
                   <Grid
-                    container
+                    item
                     sx={{
-                      border: "1px solid #DDDDDD",
-                      borderRadius: "6px",
-                      padding: ".25rem .25rem .25rem 1rem",
-                      backgroundColor: 'white'
+                      pl: '0.5em',
+                      pr: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
-                    <Grid
-                      item
-                      xs={3}
-                      sx={{
-                        pr: "1rem",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Event sx={{ height: "24px", color: "#666" }} />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <Grid container>
-                        <Grid item xs={12}>
-                          <Typography
-                            sx={{
-                              color: "#666",
-                              fontFamily: "Roboto",
-                              mb: "-.125rem",
-                              textTransform: "none",
-                              fontWeight: 600,
-                              fontSize: { xs: "11px" },
-                            }}
-                          >
-                            Check-in
-                          </Typography>
-                          <Typography
-                            sx={{
-                              color: "#666",
-                              fontFamily: "Roboto",
-                              textTransform: "none",
-                              fontWeight: 600,
-                              fontSize: { xs: "14px" },
-                            }}
-                          >
-                            {checkDate[0]
-                              ? DateTime.fromJSDate(
-                                  new Date(checkDate[0])
-                                ).toFormat("MMM dd")
-                              : ""}
-                          </Typography>
-                        </Grid>
+                    <Today sx={{ height: "24px", color: "#666" }} />
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <Typography
+                          sx={{
+                            color: "#666",
+                            fontFamily: "overpass-light",
+                            mb: "-.125rem",
+                            textTransform: "none",
+                            fontWeight: 600,
+                            fontSize: { xs: "11px" },
+                          }}
+                        >
+                          Check-in
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: "#666",
+                            fontFamily: "overpass-light",
+                            textTransform: "none",
+                            fontWeight: 600,
+                            fontSize: { xs: "14px" },
+                          }}
+                        >
+                          {checkDate[0]
+                            ? DateTime.fromJSDate(
+                                new Date(checkDate[0])
+                              ).toFormat("MMM dd")
+                            : "Check-in date"}
+                        </Typography>
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item xs={6} sx={{ pl: " .25rem" }}>
+              </Grid>
+              <Grid item xs={6} sx={{ pl: " .25rem" }}>
+                <Grid
+                  container
+                  sx={{
+                    border: "1px solid #DDDDDD",
+                    borderRadius: "6px",
+                    padding: ".25rem .25rem .25rem 1rem",
+                    backgroundColor: 'white'
+                  }}
+                >
                   <Grid
-                    container
+                    item
                     sx={{
-                      border: "1px solid #DDDDDD",
-                      borderRadius: "6px",
-                      padding: ".25rem .25rem .25rem 1rem",
-                      backgroundColor: 'white'
+                      pl: '0.5em',
+                      pr: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
-                    <Grid
-                      item
-                      xs={3}
+                    <Event sx={{ height: "24px", color: "#666" }} />
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Typography
                       sx={{
-                        pr: "1rem",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        color: "#666",
+                        fontFamily: "overpass-light",
+                        mb: "-.125rem",
+                        textTransform: "none",
+                        fontWeight: 600,
+                        fontSize: { xs: "11px" },
                       }}
                     >
-                      <Event sx={{ height: "24px", color: "#666" }} />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <Typography
-                        sx={{
-                          color: "#666",
-                          fontFamily: "Roboto",
-                          mb: "-.125rem",
-                          textTransform: "none",
-                          fontWeight: 600,
-                          fontSize: { xs: "11px" },
-                        }}
-                      >
-                        Check-out
-                      </Typography>
-                      <Typography
-                        sx={{
-                          color: "#666",
-                          fontFamily: "Roboto",
-                          textTransform: "none",
-                          fontWeight: 600,
-                          fontSize: { xs: "14px" },
-                        }}
-                      >
-                        {checkDate[1]
-                          ? DateTime.fromJSDate(
-                              new Date(checkDate[1])
-                            ).toFormat("MMM dd")
-                          : ""}
-                      </Typography>
-                    </Grid>
+                      Check-out
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#666",
+                        fontFamily: "overpass-light",
+                        textTransform: "none",
+                        fontWeight: 600,
+                        fontSize: { xs: "14px" },
+                      }}
+                    >
+                      {checkDate[1]
+                        ? DateTime.fromJSDate(
+                            new Date(checkDate[1])
+                          ).toFormat("MMM dd")
+                        : "Check-out date"}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
-              <Button
-                fullWidth
-                onClick={handleFilterOutClick}
-                disableElevation
-                type="submit"
-                variant="contained"
-                sx={{
-                  height: "47px",
-                  width: "47px",
-                  display: "flex",
-                  alignItems: "center",
-                  padding: ".25rem 0rem",
-                  justifyContent: "center",
-                  mt: "1rem",
-                  ml: ".5rem",
-                  fontFamily: "Montserrat",
-                  fontWeight: 500,
-                  borderRadius: "6px",
-                  textTransform: "none",
-                  pointerEvents: "auto",
-                }}
-              >
-                <SearchIcon
-                  sx={{
-                    height: "32px",
-                    fontSize: "28px",
-                    pointerEvents: "auto",
-                  }}
-                />
-              </Button>
-            </Box>
+            </Grid>
           </Box>
-        </Box>
-      ) : (
-        <Box sx={{ margin: "65px auto 0px auto", userSelect: "none" }}>
+
           <Box
             sx={{
               display: "flex",
-              flexDirection: below900 ? "column" : "row",
+              width: "100%",
+              transition: "all .15s ease-in-out",
               alignItems: "center",
-              borderRadius: "12px",
-              margin: "0px auto",
-              width: { md: "837px", lg: "975px" },
-              pr: { md: 0, lg: "270px" },
+              maxHeight: "45px",
+              mt: '1em',
             }}
           >
             <OccupantSelector
@@ -540,406 +503,48 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               onChange={onOccupantChange}
               variant="standard"
               size="small"
-              align="right"
             />
           </Box>
-          <Box
+
+          <Button
+            fullWidth
+            onClick={handleFilterOutClick}
+            disableElevation
+            type="submit"
+            variant="contained"
             sx={{
+              height: "47px",
+              width: "50%",
               display: "flex",
-              flexDirection: below900 ? "column" : "row",
               alignItems: "center",
-              mb: "1rem",
-              borderRadius: "12px",
-              margin: "0px auto",
+              padding: ".25rem 0rem",
+              justifyContent: "center",
               mt: "1rem",
-              width: { md: "837px", lg: "975px" },
+              fontWeight: 500,
+              borderRadius: "6px",
+              textTransform: "none",
+              pointerEvents: "auto",
             }}
           >
-            <Box
+            <SearchIcon
               sx={{
-                display: "flex",
-                alignItems: "center",
-                minWidth: "356px",
-                minHeight: "34px",
-                maxHeight: "47px",
-                border: "1px solid #DDDDDD",
-                padding: ".25rem .5rem",
-                borderRadius: "6px",
-                mr: ".5rem",
-                backgroundColor: "#fff",
-                "&:hover": { background: "#efefef" },
+                fontSize: "1.5em",
+                pointerEvents: "auto",
+                mr: '0.25em',
               }}
-            >
-              {selectedCity ? (
-                <img
-                  src={`/images/location-icons/${getCity(selectedCity)
-                    ?.name.substring(
-                      0,
-                      getCity(selectedCity)?.name.indexOf(",")
-                    )
-                    .toLowerCase()
-                    .replace(/ /g, "_")}.svg`}
-                  height="24px"
-                  style={{ marginLeft: "5px" }}
-                />
-              ) : (
-                <LocationCity sx={{ height: "24px", color: "#666" }} />
-              )}
-              <Autocomplete
-                options={cities.sort(function (a: any, b: any) {
-                  if (a.state.name === b.state.name) {
-                    // Price is only important when cities are the same
-                    return b.name - a.name;
-                  }
-                  return a.state.name > b.state.name ? 1 : -1;
-                })}
-                groupBy={(o) => o.state.name}
-                disableClearable
-                blurOnSelect="touch"
-                value={getCity(selectedCity) || null}
-                getOptionLabel={(option: any) => {
-                  return option.name;
-                }}
-                renderOption={(props, option: any) => (
-                  <li {...props} style={{ paddingLeft: 10 }}>
-                    <Box
-                      sx={{
-                        width: "55px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <img
-                        src={`/images/location-icons/${option?.name
-                          .substring(0, option.name.indexOf(","))
-                          .toLowerCase()
-                          .replace(/ /g, "_")}.svg`}
-                        height="25px"
-                        style={{ marginRight: "10px" }}
-                      />
-                    </Box>
-                    {option.name}
-                  </li>
-                )}
-                // eslint-disable-next-line
-                onChange={(e, values: any) => {
-                  if (values) {
-                    setFormError("");
-                    setSelectedCity(values.id);
-                  }
-                }}
-                fullWidth
-                sx={{ fontFamily: "Montserrat" }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    color="primary"
-                    variant="outlined"
-                    placeholder="Select a city"
-                    size="small"
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        color: "#444",
-                        "& fieldset": {
-                          borderColor: "transparent",
-                        },
-                        "&:hover fieldset": {
-                          borderColor: "transparent",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "transparent",
-                        },
-                      },
-                      input: {
-                        padding: "0px",
-                        fontSize: "14px",
-                        fontWeight: 600,
-                        fontFamily: "Roboto",
-                        cursor: "pointer",
-                        color: "#444",
-                        border: "none",
-                        "&::placeholder": {
-                          textOverflow: "ellipsis !important",
-                          color: "#444",
-                          opacity: 1,
-                          fontWeight: 600,
-                        },
-                      },
-                    }}
-                  />
-                )}
-              />
-            </Box>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateRangePicker
-                PaperProps={{
-                  sx: {
-                    fontWeight: 700,
-                    "& .MuiTypography-root": { fontWeight: 500 },
-                  },
-                }}
-                inputFormat="MMM dd"
-                disableMaskedInput={true}
-                open={open}
-                onAccept={() => setIsAccept(true)}
-                onClose={handleDateRangeClose}
-                onOpen={() => {
-                  if (!isAccept) {
-                    setOpen(true);
-                  }
-                }}
-                allowSameDateSelection
-                calendars={1}
-                clearable={true}
-                value={checkDate || null}
-                minDate={new Date()}
-                onChange={(newValue) => {
-                  setFormError("");
-                  setCheckDate(newValue);
-                }}
-                renderInput={(startProps, endProps) => (
-                  <>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        cursor: "pointer",
-                        transition: "all .15s ease-in-out",
-                        alignItems: "center",
-                        minHeight: "34px",
-                        mr: ".5rem",
-                        border: "1px solid #DDDDDD",
-                        padding: ".25rem .5rem",
-                        "&:hover": { background: "#efefef" },
-                        borderRadius: "6px",
-                        backgroundColor: "#fff",
-                      }}
-                    >
-                      <Grid
-                        container
-                        onClick={() => setOpen(true)}
-                        sx={{
-                          minWidth: "200px",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Grid
-                          item
-                          xs={2}
-                          sx={{
-                            pr: "1rem",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <Event sx={{ height: "20px", color: "#444" }} />
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Grid
-                            container
-                            sx={{ justifyContent: "center", display: "flex" }}
-                          >
-                            <Grid item xs={10}>
-                              <Typography
-                                sx={{
-                                  color: "#666",
-                                  fontFamily: "Roboto",
-                                  mb: "-.125rem",
-                                  textTransform: "none",
-                                  fontWeight: 600,
-                                  fontSize: { xs: "11px" },
-                                }}
-                              >
-                                Check-in
-                              </Typography>
-                              <Typography
-                                sx={{
-                                  color: "#444",
-                                  fontFamily: "Roboto",
-                                  textTransform: "none",
-                                  fontWeight: 600,
-                                  fontSize: { xs: "14px" },
-                                }}
-                              >
-                                {checkDate[0]
-                                  ? DateTime.fromJSDate(
-                                      new Date(checkDate[0])
-                                    ).toFormat("MMM dd")
-                                  : ""}
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={1}
-                          sx={{
-                            ml: "auto",
-                            mr: ".5rem",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <ExpandMore sx={{ height: "20px", color: "#444" }} />
-                        </Grid>
-                      </Grid>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        cursor: "pointer",
-                        transition: "all .15s ease-in-out",
-                        alignItems: "center",
-                        minHeight: "34px",
-                        mr: ".5rem",
-                        border: "1px solid #DDDDDD",
-                        padding: ".25rem .5rem",
-                        "&:hover": { background: "#efefef" },
-                        borderRadius: "6px",
-                        backgroundColor: "#fff",
-                      }}
-                    >
-                      <Grid
-                        container
-                        onClick={() => setOpen(true)}
-                        sx={{
-                          minWidth: "200px",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Grid
-                          item
-                          xs={2}
-                          sx={{
-                            pr: "1rem",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <Event sx={{ height: "20px", color: "#444" }} />
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Grid
-                            container
-                            sx={{ justifyContent: "center", display: "flex" }}
-                          >
-                            <Grid item xs={10}>
-                              <Typography
-                                sx={{
-                                  color: "#666",
-                                  fontFamily: "Roboto",
-                                  mb: "-.125rem",
-                                  textTransform: "none",
-                                  fontWeight: 600,
-                                  fontSize: { xs: "11px" },
-                                }}
-                              >
-                                Check-out
-                              </Typography>
-                              <Typography
-                                sx={{
-                                  color: "#444",
-                                  fontFamily: "Roboto",
-                                  textTransform: "none",
-                                  fontWeight: 600,
-                                  fontSize: { xs: "14px" },
-                                }}
-                              >
-                                {checkDate[1]
-                                  ? DateTime.fromJSDate(
-                                      new Date(checkDate[1])
-                                    ).toFormat("MMM dd")
-                                  : ""}
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={1}
-                          sx={{
-                            ml: "auto",
-                            mr: ".5rem",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <ExpandMore sx={{ height: "20px", color: "#444" }} />
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </>
-                )}
-              />
-            </LocalizationProvider>
-            <Hidden lgDown>
-              <Box>
-                <Button
-                  fullWidth
-                  onClick={handleFilterOutClick}
-                  disableElevation
-                  type="submit"
-                  variant="contained"
-                  sx={{
-                    height: "47px",
-                    width: "150px",
-                    display: "flex",
-                    alignItems: "center",
-                    padding: ".25rem 0rem",
-                    justifyContent: "center",
-                    fontFamily: "Roboto",
-                    fontWeight: 600,
-                    textTransform: "none",
-                    fontSize: "120%",
-                    borderRadius: "6px",
-                  }}
-                >
-                  <SearchIcon sx={{ height: "20px", mr: "1rem" }} /> Search
-                </Button>
-              </Box>
-            </Hidden>
-          </Box>
-
-          <Hidden lgUp>
-            <Box
-              sx={{
-                margin: "1rem auto",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Button
-                fullWidth
-                onClick={handleFilterOutClick}
-                disableElevation
-                type="submit"
-                variant="contained"
-                sx={{
-                  height: "47px",
-                  width: "150px",
-                  display: "flex",
-                  alignItems: "center",
-                  padding: ".25rem 0rem",
-                  justifyContent: "center",
-                  fontFamily: "Roboto",
-                  fontWeight: 600,
-                  textTransform: "none",
-                  fontSize: "120%",
-                  borderRadius: "6px",
-                }}
-              >
-                <SearchIcon sx={{ height: "20px", mr: "1rem" }} /> Search
-              </Button>
-            </Box>
-          </Hidden>
+            />
+            <Typography sx={{
+                textTransform: "none",
+                fontFamily: "sansita-light",
+                color: 'white',
+                fontSize: '1.25em',
+                mb: '0.25em',
+              }}>
+              Search
+            </Typography>
+          </Button>
         </Box>
-      )}
+      </Box>
     </>
   );
 };
@@ -997,43 +602,53 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
     <>
       <Grid
         container
+        onClick={handleClick}
         sx={{
-          marginBottom: "-2px",
-          mt: { xs: 0, sm: '2.25em' },
-          height: { xs: "10px", sm: '10px' },
-          display: variant === "standard" ? "flex" : "none",
-          alignItems: "center",
+          border: "1px solid #DDDDDD",
+          borderRadius: "6px",
+          padding: ".5rem .25rem .5rem 1rem",
+          backgroundColor: 'white',
         }}
       >
         <Grid
           item
-          onClick={handleClick}
           sx={{
             display: "flex",
-            textAlign: align,
-            mr: align === "left" ? "auto" : 0,
-            ml: align === "right" ? "auto" : "1rem",
+            alignItems: "center",
+            ml: '0.5em',
+            mr: '0.25em',
           }}
         >
+    
+          <People sx={{
+            fontSize: "1.5em",
+            pointerEvents: "auto",
+            mr: '0.25em',
+            color: '#666',
+            height: '24px',
+            p: '0.1em',
+            pl: 0,
+          }}/>
+        </Grid>
           <Typography
             sx={{
-              color: "white",
-              textShadow: "0px 0px 1px rgba(0, 0, 0, 0.15)",
+              mt: '0.25em',
+              ml: '0.25em',
+              color: "#666",
               fontFamily: "overpass-light",
               textTransform: "none",
               fontWeight: 600,
-              fontSize: { xs: "12px", sm: '12px' },
-              cursor: "pointer",
+              fontSize: { xs: "14px" },
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet
             {value.dogs === 1 ? "" : "s"}
           </Typography>
-          <ExpandMore sx={{ height: "20px", color: 'white' }} />
-        </Grid>
-      </Grid>
+        </Grid>  
+  
 
       <Popover
+
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
         transformOrigin={{
@@ -1047,6 +662,18 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         }}
         sx={{ ".MuiPopover-paper": { width: "250px", mt: ".5rem" } }}
       >
+        {/* arrow
+        <Box sx={{
+          height: '12px', 
+          width: '12px', 
+          position: 'absolute', 
+          backgroundColor: '#666',
+          left: '50%',
+          transform: 'translate(-50%, -50%) rotate(45deg)',
+          zIndex: 100,
+        }} 
+        />
+        */}
         <Stack sx={{ px: 2, pt: 2 }} spacing={1}>
           <Stack
             direction="row"
