@@ -220,6 +220,8 @@ const ListingPage: FC<Props> = () => {
   const variants = {
     collapsed: {
       y: 0,
+      bottom: 0,
+      top: 'auto',
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
       height: 5,
@@ -232,6 +234,7 @@ const ListingPage: FC<Props> = () => {
     },
     expanded: {
       y: -height + 52,
+      top: `${height - 52}px`,
       borderTopLeftRadius: "0px",
       borderTopRightRadius: "0px",
     },
@@ -391,7 +394,7 @@ const ListingPage: FC<Props> = () => {
         sx={{
           backgroundColor: "#feffff",
           display: { md: "flex" },
-          height: { xs: `${height}px`, md: "calc(100vh - 59px)" },
+          height: { xs: `100vh`, md: "calc(100vh - 59px)" },
         }}
       >
         {loading ? (
@@ -449,8 +452,7 @@ const ListingPage: FC<Props> = () => {
             ref={scrollRef}
             style={{
               y,
-              position: "absolute",
-              top: `${height - 52}px`,
+              position: animate !== 'expanded' ? 'fixed' : "absolute",
               left: 0,
               right: 0,
               padding: 24,
@@ -659,7 +661,7 @@ const ListingPage: FC<Props> = () => {
           </Box>
         </Hidden>
       </Box>
-      <Box display={{ xs: "none", sm: "block" }}>
+      <Box display={{ xs: "none", sm: "none", md: 'block' }}>
         <Footer />
       </Box>
     </>
