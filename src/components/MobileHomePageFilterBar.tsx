@@ -377,18 +377,20 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             >
               <Grid item xs={6} sx={{ pr: ".25rem" }}>
                 <Grid
-                  container
+                  
                   sx={{
                     border: "1px solid #DDDDDD",
                     borderRadius: "6px",
                     padding: ".25rem .25rem .25rem 1rem",
-                    backgroundColor: 'white'
+                    backgroundColor: 'white',
+                    display: 'flex',
+                    flexDirection: 'row'
                   }}
                 >
                   <Grid
                     item
                     sx={{
-                      pl: '0.5em',
+                      pl: '0.1em',
                       pr: "1rem",
                       display: "flex",
                       alignItems: "center",
@@ -434,18 +436,19 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               </Grid>
               <Grid item xs={6} sx={{ pl: " .25rem" }}>
                 <Grid
-                  container
                   sx={{
                     border: "1px solid #DDDDDD",
                     borderRadius: "6px",
                     padding: ".25rem .25rem .25rem 1rem",
-                    backgroundColor: 'white'
+                    backgroundColor: 'white',
+                    display: 'flex',
+                    flexDirection: 'row'
                   }}
                 >
                   <Grid
                     item
                     sx={{
-                      pl: '0.5em',
+                      pl: '0.1em',
                       pr: "1rem",
                       display: "flex",
                       alignItems: "center",
@@ -606,7 +609,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
         sx={{
           border: "1px solid #DDDDDD",
           borderRadius: "6px",
-          padding: ".5rem .25rem .5rem 1rem",
+          padding: ".5rem 0rem .5rem 0.75rem",
           backgroundColor: 'white',
         }}
       >

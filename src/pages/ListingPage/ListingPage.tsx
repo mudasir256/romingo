@@ -179,6 +179,7 @@ const ListingPage: FC<Props> = () => {
     return state.hotelListReducer.hotels;
   });
 
+  console.log(cards)
 
   const [sorted, setSorted] = useState(
     [...cards].sort((a: any, b: any) =>
