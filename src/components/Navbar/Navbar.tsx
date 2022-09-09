@@ -73,10 +73,23 @@ const Navbar: FC<Props> = ({ sx }) => {
     setSelectDialog(LOGIN);
   };
 
+  const path = history.location.pathname
+
+  const linkStyle = {
+    padding: ".5rem 1rem",
+    borderRadius: "6px",
+    mr: ".75rem",
+    textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
+    "&:hover": { color: "#03989E" },
+    color: "black",
+  }
+
   return (
     <>
       <AppBar
-        position="fixed"
+        position={path === '/' ? 'fixed': 'relative'}
         style={{
           background: "#ffffffed",
           WebkitBackdropFilter: "blur(6px)",
@@ -91,71 +104,54 @@ const Navbar: FC<Props> = ({ sx }) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              minHeight: { xs: "56px", sm: "64px" },
+              minHeight: { xs: "56px", sm: "100px" },
             }}
           >
             <Hidden lgDown>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Box
-                  component="img"
-                  src={
-                    "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                  }
-                  alt="Logo"
-                  draggable="false"
-                  onClick={() => history.push("/")}
-                  sx={{
-                    maxWidth: "140px",
-                    margin: "auto auto",
-                    cursor: "pointer",
-                    height: '50px'
-                  }}
-                />
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'flex-start' }}>
+                  <Link
+                    href="/about"
+                    sx={linkStyle}
+                  >
+                    <div
+                      style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                    >
+                      About us
+                    </div>
+                  </Link>
+                  <Link
+                    href="/reservation/manage"
+                    sx={{
+                      ml: "auto",
+                      ...linkStyle
+                    }}
+                  >
+                    <div
+                      style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                    >
+                      My Trip
+                    </div>
+                  </Link>
+                </Box>
+
               </Box>
-              <Link
-                href="/reservation/manage"
+              <Box
+                component="img"
+                src={
+                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+                }
+                alt="Logo"
+                draggable="false"
+                onClick={() => history.push("/")}
                 sx={{
-                  ml: "auto",
-                  padding: ".5rem 1rem",
-                  borderRadius: "6px",
-                  mr: ".75rem",
-                  textDecoration: "none",
-                  fontWeight: 600,
-                  display: "flex",
-                  alignItems: "center",
-                  "&:hover": { color: "#03989E" },
-                  color: "#666",
+                  maxWidth: "252px",
+                  margin: "auto auto",
+                  cursor: "pointer",
+                  height: '77px'
                 }}
-              >
-                <Typography
-                  variant="body2"
-                  sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
-                >
-                  My trips
-                </Typography>
-              </Link>
-              <Link
-                href="/about"
-                sx={{
-                  padding: ".5rem 1rem",
-                  borderRadius: "6px",
-                  mr: ".75rem",
-                  textDecoration: "none",
-                  fontWeight: 600,
-                  display: "flex",
-                  alignItems: "center",
-                  "&:hover": { color: "#03989E" },
-                  color: "#666",
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
-                >
-                  Our story
-                </Typography>
-              </Link>
-              <Link
+              />
+              {/* <Link
                 href="/romingo-partners"
                 sx={{
                   padding: ".5rem 1rem",
@@ -258,34 +254,29 @@ const Navbar: FC<Props> = ({ sx }) => {
                 >
                   <RomingoDeals />
                 </Typography>
-              </Link>
+              </Link> */}
               <Link
                 href="/list-your-property"
                 sx={{
-                  border: "2px solid #03989E",
-                  padding: ".25rem .5rem",
+                  padding: ".5rem 1rem",
                   borderRadius: "6px",
-                  mr: ".75rem",
+                  mr: "27px",
                   textDecoration: "none",
-                  fontWeight: 600,
                   display: "flex",
                   alignItems: "center",
-                  color: "#03989E",
-                  "&:hover": {
-                    background: "#03989E",
-                    color: "#fff",
-                  },
+                  "&:hover": { color: "#03989E" },
+                  color: "black",
                 }}
               >
-                <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} />
-                <Typography
-                  variant="body2"
-                  sx={{ fontWeight: 600, fontFamily: "Montserrat" }}
+                {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
+                <div
+                  style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
                 >
                   List Your Property
-                </Typography>
+                </div>
               </Link>
-              {/* <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{cursor: 'pointer', padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': '#fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' }, color: menuOpen ? '#fff':'#03989E'}}>
+              {/*<img src="/images/user.png" width="16px" height="18px" alt="" />
+              <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{cursor: 'pointer', padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': '#fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' }, color: menuOpen ? '#fff':'#03989E'}}>
                 <MenuIcon sx={{ margin: '0px auto'}} />
               </Link> */}
             </Hidden>

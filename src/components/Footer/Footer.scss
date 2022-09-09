@@ -1,0 +1,183 @@
+.footer {
+  background: white;
+  padding-top: 86px;
+
+  .footer-wrapper {
+    max-width: 1560px;
+    padding: 0 1em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: auto;
+
+    .link-section {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      @media screen and (max-width: 1350px) {
+        flex-direction: column;
+      }
+    }
+
+    &:first-child {
+      padding-bottom: 76px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #949494;
+      @media screen and (max-width: 850px) {
+        flex-direction: column;
+      }
+    }
+    &:last-child {
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 75px;
+
+      @media screen and (max-width: 850px) {
+        flex-direction: column;
+      }
+
+      a {
+        font-size: 16px;
+        line-height: 33px;
+        color: black;
+        font-family: "overpass-light";
+
+        &:first-child {
+          margin-right: 34px;
+        }
+      }
+    }
+
+    &-logo-section {
+      margin-left: 2em;
+      margin-right: 1em;
+
+      @media screen and (max-width: 850px) {
+        margin-right: 0px;
+        margin-bottom: 40px;
+      }
+
+      img {
+        padding-right: 20px;
+        width: 200px;
+        height: 50px;
+        margin-bottom: 20px;
+      }
+
+      &-text {
+        max-width: 475px;
+        font-family: "overpass-light";
+        font-size: 1em;
+        line-height: 2em;
+        margin-bottom: 1em;
+      }
+
+      .social-icons {
+        margin-left: 0.15em;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        a:first-child {
+          margin-right: 24px;
+        }
+      }
+    }
+
+    .site-map-section {
+      margin-right: 40px;
+ 
+
+      @media screen and (max-width: 1350px) {
+        margin-left: 2em;
+
+        margin-right: 0px;
+        margin-bottom: 20px;
+      }
+      &-header {
+        font-family: "overpass-light";
+        font-size: 1.5em;
+        line-height: 1.5em;
+        color: black;
+        margin-bottom: 0.75em;
+      }
+      a {
+        text-decoration: none;
+        font-family: "overpass-light";
+        font-size: 1em;
+        line-height: 33px;
+        color: black;
+      }
+
+    }
+
+    .sign-up {
+      margin-right: 2em;
+
+      @media screen and (max-width: 1350px) {
+        margin-left: 2em;
+      }
+
+      &-header {
+        font-family: "overpass-light";
+        font-size: 1.5em;
+        line-height: 1.5em;
+        color: black;
+        margin-bottom: 0.75em;
+      }
+
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 31px;
+
+        input {
+          width: 240px;
+          border: none;
+          border-bottom: 2px solid #ececec;
+          font-family: "overpass-light";
+          font-size: 16px;
+          line-height: 32px;
+          margin-right: 8px;
+
+					@media screen and (max-width: 850px) {
+
+						width: 80%;
+						font-size: 16px;
+						line-height: 24px;
+						margin-right: 8px;
+					}
+
+          &::placeholder {
+            color: #949494;
+          }
+        }
+
+        button {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          border: none;
+          background: #009ca1;
+          cursor: pointer;
+
+          svg {
+            fill: white;
+          }
+        }
+      }
+
+      &-footer {
+        font-family: "overpass-light";
+        font-size: 16px;
+        line-height: 28px;
+        max-width: 240px;
+      }
+    }
+  }
+}

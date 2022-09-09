@@ -475,50 +475,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {" "}
         {/* fcf5f0 */}
         <ScrollToTop />
-        <Hidden mdDown>
-          <Box
-            sx={{
-              background: "#fff",
-              position: { xs: "fixed", md: "relative" },
-              top: 0,
-              left: 0,
-              right: 0,
-              width: "100%",
-              margin: "0 auto",
-              boxShadow: { xs: 0, md: 2 },
-              display: "flex",
-              justifyContent: { xs: "center", md: "flex-start" },
-              zIndex: 1000,
-              py: { xs: 0, md: 1 },
-              overflow: "hidden",
-              height: { md: '50px' },
-            }}
-          >
-            <Navbar />
-            {/* <Link
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                history.push("/");
-              }}
-            >
-              <Box
-                component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                }
-                alt="Logo"
-                draggable="false"
-                sx={{
-                  display: { xs: "none", md: "block" },
-                  ml: { xs: 0, md: 4 },
-                  mr: { xs: 0, md: 8 },
-                  height: { xs: "0px", md: "42px" },
-                }}
-              />
-            </Link> */}
-          </Box>
-        </Hidden>
+        <Hidden mdDown><Navbar /></Hidden>
         {!loading && data && (
           <Box
             component="img"

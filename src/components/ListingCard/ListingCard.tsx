@@ -1,10 +1,17 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { MonetizationOn, VerifiedUser } from "@mui/icons-material";
 import { Grid, Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import RomingoScore from "../RomingoScore/RomingoScore";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
+import StarIcon from "@mui/icons-material/Star";
+
+import {
+  Pets,
+  CreditCardOffTwoTone,
+  MoneyOffCsredTwoTone,
+} from '@mui/icons-material'
 
 export interface ListingCardProps {
   id: string;
@@ -12,6 +19,7 @@ export interface ListingCardProps {
   name: string;
   addressLine1: string;
   romingoScore: number;
+  allows_big_dogs: number;
   cancellation?: boolean;
   lowestAveragePrice: number;
   listingsPagePromoText?: string;
@@ -48,6 +56,7 @@ const ListingCard: FC<ListingCardProps> = ({
   duration,
   imageURLs,
   name,
+  allows_big_dogs,
   addressLine1,
   listingsPagePromoText,
   googlePlaceId,
@@ -68,6 +77,123 @@ const ListingCard: FC<ListingCardProps> = ({
 }) => {
   const history = useHistory();
   const mobileCardPadding = 1.8;
+
+  const [showRating, setShowRating] = useState(true)
+
+  const chipIconStyle = {
+    fontSize: "0.75em",
+    px: '0.3em',
+    backgroundColor: '#fffff',
+    fontFamily: 'overpass-light',
+    my: '0.25em',
+    width: '170px',
+    display: 'flex',
+    justifyContent: 'flex-start'
+  }
+  const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
+
+  const HotelDescriptors = () => (
+    <>
+      {hasPetFeeReduction &&
+        <Chip
+          size="small"
+          sx={chipIconStyle}
+          icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
+          label={<p>Save <span style={{color: 'green', fontSize: '1.1em'}}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
+        />
+      }
+      <Chip
+        size="small"
+        sx={chipIconStyle}
+        icon={<Pets fontSize="small"  />}
+        label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs. each"}
+      />
+      <Chip
+        size="small"
+        sx={chipIconStyle}
+        icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
+        label="Reserve now, pay later"
+      />
+    </>
+  )
+
+  const PriceDetails = () => (
+    <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      <Typography
+        variant="body2"
+        sx={{
+          mr: 0.45,
+          color: "#222",
+          fontFamily: "overpass-regular",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          fontSize: "1.5em",
+          fontWeight: 800,
+        }}
+      >
+        {currency}
+        {Math.round(lowestAveragePrice)} /
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          mr: 0.45,
+          color: "#222",
+          fontFamily: "overpass-light",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          fontSize: "1.0em",
+          fontWeight: 800,
+        }}
+      >
+        per night
+      </Typography>
+    </Box>
+ 
+    {/*
+    {!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
+      <Typography
+        variant="body2"
+        sx={{
+          color: "text.secondary",
+          fontFamily: "Montserrat",
+          fontSize: "65%",
+          opacity: 0.8,
+          fontWeight: 600,
+        }}
+      >
+        Save{" "}
+        <Typography
+          component="span"
+          sx={{
+            // textDecoration: "line-through",
+            // textDecorationColor: "#BC4749AA",
+            // textDecorationThickness: "1px",
+            color: "#4B7D2F",
+            fontFamily: "Montserrat",
+            fontSize: "120%",
+            position: "relative",
+            fontWeight: 600,
+          }}
+        >
+          ${Math.round(petFeePolicy.totalFees)}
+        </Typography>{" "}
+        in pet fees
+      </Typography>
+    )}
+  */}
+    </Box>
+  )
+
   return (
     <>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}
@@ -96,6 +222,29 @@ const ListingCard: FC<ListingCardProps> = ({
             height: { xs: "auto", sm: 211, md: 186 },
           }}
         >
+          <Box sx={{
+            position: 'relative',
+          }}>
+            {showRating &&
+              <Box sx={{ position: 'absolute', right: 8, top: 12, zIndex: 50 }}>
+                <Chip
+                  size="small"
+                  sx={{
+                    fontSize: "12px",
+                    mt: { xs: ".125rem", md: ".5rem" },
+                    mb: { xs: ".125rem", md: "auto" },
+                    mr: '0.5em',
+                    p: '0.3em',
+                    backgroundColor: 'rgba(249, 222, 0, .9)', //'#F9DE00',
+                    fontFamily: 'overpass-light',
+                    color: 'black',
+                  }}
+                  icon={<StarIcon fontSize="small" />}
+                  label={romingoScore}
+                />
+              </Box>
+            }
+          </Box>
           <ImageSlider
             images={imageURLs}
             name={name}
@@ -108,6 +257,7 @@ const ListingCard: FC<ListingCardProps> = ({
               borderTopLeftRadius: { xs: "6px", sm: "6px" },
               boxShadow: 0,
             }}
+            setShow={setShowRating}
           />
         </Box>
 
@@ -123,7 +273,7 @@ const ListingCard: FC<ListingCardProps> = ({
           <Grid
             container
             sx={{
-              minHeight: { xs: 200, sm: 162 },
+              minHeight: { xs: 160, sm: 186 },
               p: {
                 xs: ".5rem .75rem 0rem .75rem",
                 sm: ".5rem .5rem .5rem 1rem",
@@ -152,12 +302,12 @@ const ListingCard: FC<ListingCardProps> = ({
                 variant="body2"
                 sx={{
                   color: "#222",
-                  fontFamily: "Montserrat",
-                  overflow: "hidden",
+                  fontFamily: "overpass-light",
                   whiteSpace: "nowrap",
+                  fontSize: '1.25em',
                   textOverflow: "ellipsis",
-                  fontSize: "120%",
                   fontWeight: 800,
+                  width: '100%',
                 }}
               >
                 {name}
@@ -171,7 +321,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   overflow: "hidden",
                   fontWeight: 500,
                   whiteSpace: "nowrap",
-                  fontFamily: "Roboto",
+                  fontFamily: "overpass-light",
                   textOverflow: "ellipsis",
                   color: "#999",
                   mb: { xs: ".5rem", md: "0" },
@@ -180,57 +330,40 @@ const ListingCard: FC<ListingCardProps> = ({
                 {addressLine1}, {city?.name}
               </Typography>
 
-              <Chip
-                sx={{
-                  fontSize: "12px",
-                  mt: { xs: ".125rem", md: ".5rem" },
-                  mb: { xs: ".125rem", md: "auto" },
-                  mr: "auto",
-                }}
-                icon={<LocationCityIcon />}
-                label={neighborhood}
-              />
-
+              <Box sx={{   
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  mb: '0.5em',
+              }}>
+                {/*
+                <Link
+                  onClick={() => history.push(`/hotel/${alias}#reviews`)}
+                  sx={{
+                    display: { xs: "block" },
+                    color: "#666",
+                    fontFamily: "montserrat",
+                    textDecoration: "underline",
+                    mr: -0.5,
+                    ml: { xs: 0.25 },
+                    mt: { xs: 0, sm: '0.5em' },
+                    fontWeight: 500,
+                    opacity: 0.75,
+                    fontSize: "70%",
+                  }}
+                >
+                  (see reviews)
+                </Link>
+                */}
+              </Box>
               <Box
                 sx={{
-                  pb: { xs: "0rem", sm: "0rem" },
-                  pt: { xs: ".5rem", sm: "1rem" },
-                  mt: { md: "0px", sm: "1rem" },
-                  ml: { sm: "0px", xs: "0px" },
+                  minWidth: "73px",
+                  display: { xs: "none", sm: 'block' },
+                  mt: 'auto'
                 }}
               >
-                <Box sx={{ mb: 0.5, display: "flex" }}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      pr: 0.15,
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      fontFamily: "Roboto",
-                      fontSize: "80%",
-                      color: "#009CA1",
-                    }}
-                  >
-                    Fully refundable
-                  </Typography>
-                </Box>
-                <Box sx={{ mt: 0.5, mb: "auto", display: "flex" }}>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      pr: 0.15,
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      fontFamily: "Roboto",
-                      fontSize: "80%",
-                      color: "#009CA1",
-                    }}
-                  >
-                    Reserve now, pay later
-                  </Typography>
-                </Box>
+                <HotelDescriptors />
               </Box>
             </Grid>
             <Grid
@@ -243,142 +376,35 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: { sm: "column", xs: "row" },
-                minHeight: { xs: 60, sm: 162 },
+                minHeight: { xs: 60, sm: 140 },
                 p: {
                   xs: "0rem .5rem",
                   sm: ".5rem .5rem 0rem 1rem",
                   md: ".75rem 0rem",
                 },
                 alignItems: "end",
-                justifyContent: { xs: "space-between", sm: "center" },
+                justifyContent: { xs: "space-between", sm: "flex-end" },
                 textAlign: { xs: "left", md: "right" },
               }}
             >
               <Box
                 sx={{
-                  minWidth: "73px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
+                  display: { xs: "flex", sm: 'none' },
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  flexWrap: 'wrap',
+                  fontFamily: "overpass-light", 
+                  letterSpacing: '0.25px', 
+
                 }}
               >
-                <RomingoScore score={romingoScore} />
-                <Link
-                  sx={{
-                    display: { xs: "block", sm: "none" },
-                    color: "#666",
-                    fontFamily: "montserrat",
-                    textDecoration: "underline",
-                    mr: -0.5,
-                    ml: { xs: 0.25 },
-                    fontWeight: 500,
-                    opacity: 0.75,
-                    fontSize: "70%",
-                  }}
-                >
-                  (see reviews)
-                </Link>
+               <HotelDescriptors />
               </Box>
-              <Box
-                sx={{
-                  mt: { xs: "0px", sm: "auto" },
-                  ml: "auto",
-                  mb: "0px",
-                  display: "flex",
-                  textAlign: "right",
-                  flexDirection: "column",
-                  alignItems: "end",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      mr: 0.45,
-                      color: "#222",
-                      fontFamily: "Montserrat",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      fontSize: "120%",
-                      fontWeight: 800,
-                    }}
-                  >
-                    {currency}
-                    {Math.round(lowestAveragePrice)}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      opacity: 0.8,
-                      fontWeight: 400,
-                      fontSize: "70%",
-                    }}
-                  >
-                    per night
-                  </Typography>
-                </Box>
-                {!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      fontFamily: "Montserrat",
-                      fontSize: "65%",
-                      opacity: 0.8,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Save{" "}
-                    <Typography
-                      component="span"
-                      sx={{
-                        // textDecoration: "line-through",
-                        // textDecorationColor: "#BC4749AA",
-                        // textDecorationThickness: "1px",
-                        color: "#4B7D2F",
-                        fontFamily: "Montserrat",
-                        fontSize: "120%",
-                        position: "relative",
-                        fontWeight: 600,
-                      }}
-                    >
-                      ${Math.round(petFeePolicy.totalFees)}
-                    </Typography>{" "}
-                    in pet fees
-                  </Typography>
-                )}
-              </Box>
+              <PriceDetails />
             </Grid>
           </Grid>
         </Box>
-        <Link
-          onClick={() => history.push(`/hotel/${alias}#reviews`)}
-          sx={{
-            display: { xs: "none", sm: "block" },
-            cursor: "pointer",
-            position: "absolute",
-            right: { xs: "auto", sm: "42px" },
-            left: { xs: "48px", sm: "auto" },
-            mt: { xs: "455px", sm: "-95px" },
-            color: "#666",
-            fontFamily: "montserrat",
-            textDecoration: "underline",
-            mr: -0.5,
-            fontWeight: 500,
-            opacity: 0.75,
-            fontSize: "70%",
-          }}
-        >
-          (see reviews)
-        </Link>
       </Box>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}
     </>
