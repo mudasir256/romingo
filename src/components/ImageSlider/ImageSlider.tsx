@@ -10,9 +10,10 @@ interface Props {
   name: string;
   indicators?: boolean;
   sx?: any;
+  setShow?: any;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, name }) => {
+const ImageSlider: FC<Props> = ({ sx, images, name, setShow }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
 
@@ -66,7 +67,13 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
         showStatus={false}
         showIndicators={false}
         showArrows={true}
-        onChange={(i) => setItem(i)}
+        onChange={(i) => {
+          setItem(i)
+          setShow(false)
+          setTimeout(() => {
+            setShow(true)
+          }, 6000)
+        }}
         showThumbs={false}
         preventMovementUntilSwipeScrollTolerance
         swipeScrollTolerance={100}

@@ -256,6 +256,12 @@ const ListingPage: FC<Props> = () => {
 
   useEffect(() => {
     setAnimate("expanded");  // setAnimate("collapsed");
+    const intercomId = "CUSTOM"
+    const domNode = document.getElementById(intercomId);
+    if (domNode) {
+      domNode.style.display = 'none';
+    }
+    return () => { if (domNode) { domNode.style.display = 'flex' } }
   }, [])
 
   useEffect(() => {
@@ -542,7 +548,7 @@ const ListingPage: FC<Props> = () => {
               }}
               sx={{
                 position: "fixed",
-                bottom: 48,
+                bottom: 32,
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 100,

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { MonetizationOn, VerifiedUser } from "@mui/icons-material";
 import { Grid, Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,11 @@ import RomingoScore from "../RomingoScore/RomingoScore";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import StarIcon from "@mui/icons-material/Star";
 
+import {
+  Pets,
+  CreditCardOffTwoTone,
+  MoneyOffCsredTwoTone,
+} from '@mui/icons-material'
 
 export interface ListingCardProps {
   id: string;
@@ -72,6 +77,98 @@ const ListingCard: FC<ListingCardProps> = ({
 }) => {
   const history = useHistory();
   const mobileCardPadding = 1.8;
+
+  const [showRating, setShowRating] = useState(true)
+
+  const chipIconStyle = {
+    fontSize: "0.75em",
+    px: '0.3em',
+    backgroundColor: '#fffff',
+    fontFamily: 'overpass-light',
+    my: '0.25em',
+    width: '166px',
+    display: 'flex',
+    justifyContent: 'flex-start'
+  }
+  const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
+
+  const PriceDetails = () => (
+    <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      <Typography
+        variant="body2"
+        sx={{
+          mr: 0.45,
+          color: "#222",
+          fontFamily: "overpass-regular",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          fontSize: "1.5em",
+          fontWeight: 800,
+        }}
+      >
+        {currency}
+        {Math.round(lowestAveragePrice)} /
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          mr: 0.45,
+          color: "#222",
+          fontFamily: "overpass-regular",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis",
+          fontSize: "1.5em",
+          fontWeight: 800,
+        }}
+      >
+        per night
+      </Typography>
+    </Box>
+ 
+    {/*
+    {!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
+      <Typography
+        variant="body2"
+        sx={{
+          color: "text.secondary",
+          fontFamily: "Montserrat",
+          fontSize: "65%",
+          opacity: 0.8,
+          fontWeight: 600,
+        }}
+      >
+        Save{" "}
+        <Typography
+          component="span"
+          sx={{
+            // textDecoration: "line-through",
+            // textDecorationColor: "#BC4749AA",
+            // textDecorationThickness: "1px",
+            color: "#4B7D2F",
+            fontFamily: "Montserrat",
+            fontSize: "120%",
+            position: "relative",
+            fontWeight: 600,
+          }}
+        >
+          ${Math.round(petFeePolicy.totalFees)}
+        </Typography>{" "}
+        in pet fees
+      </Typography>
+    )}
+  */}
+    </Box>
+  )
+
   return (
     <>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}
@@ -100,6 +197,29 @@ const ListingCard: FC<ListingCardProps> = ({
             height: { xs: "auto", sm: 211, md: 186 },
           }}
         >
+          <Box sx={{
+            position: 'relative',
+          }}>
+            {showRating &&
+              <Box sx={{ position: 'absolute', right: 8, top: 12, zIndex: 50 }}>
+                <Chip
+                  size="small"
+                  sx={{
+                    fontSize: "12px",
+                    mt: { xs: ".125rem", md: ".5rem" },
+                    mb: { xs: ".125rem", md: "auto" },
+                    mr: '0.5em',
+                    p: '0.3em',
+                    backgroundColor: 'rgba(249, 222, 0, .9)', //'#F9DE00',
+                    fontFamily: 'overpass-light',
+                    color: 'black',
+                  }}
+                  icon={<StarIcon fontSize="small" />}
+                  label={romingoScore}
+                />
+              </Box>
+            }
+          </Box>
           <ImageSlider
             images={imageURLs}
             name={name}
@@ -112,6 +232,7 @@ const ListingCard: FC<ListingCardProps> = ({
               borderTopLeftRadius: { xs: "6px", sm: "6px" },
               boxShadow: 0,
             }}
+            setShow={setShowRating}
           />
         </Box>
 
@@ -188,21 +309,9 @@ const ListingCard: FC<ListingCardProps> = ({
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
+                  mb: '0.5em',
               }}>
-                <Chip
-                  size="small"
-                  sx={{
-                    fontSize: "12px",
-                    mt: { xs: ".125rem", md: ".5rem" },
-                    mb: { xs: ".125rem", md: "auto" },
-                    mr: '0.5em',
-                    p: '0.3em',
-                    backgroundColor: '#F9DE00',
-                    fontFamily: 'overpass-light',
-                  }}
-                  icon={<StarIcon fontSize="small" />}
-                  label={romingoScore}
-                />
+                {/*
                 <Link
                   onClick={() => history.push(`/hotel/${alias}#reviews`)}
                   sx={{
@@ -220,6 +329,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 >
                   (see reviews)
                 </Link>
+                */}
               </Box>
               <Box
                 sx={{
@@ -260,97 +370,39 @@ const ListingCard: FC<ListingCardProps> = ({
             >
               <Box
                 sx={{
-                  minWidth: "73px",
                   display: { xs: "flex", sm: 'none' },
-                  flexDirection: "row",
-                  alignItems: "center",
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
+                  flexWrap: 'wrap',
+                  fontFamily: "overpass-light", 
+                  letterSpacing: '0.25px', 
+
                 }}
               >
-                <Typography sx={{ 
-                  fontFamily: "sansita-light", 
-                  letterSpacing: '0.5px', 
-                  color: '#009CA1' 
-                }}>
-                  Reserve now, pay later
-                </Typography>
+                {hasPetFeeReduction &&
+                  <Chip
+                    size="small"
+                    sx={chipIconStyle}
+                    icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
+                    label={<p>Save <span style={{color: 'green', fontSize: '1.1em'}}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
+                  />
+                }
+                <Chip
+                  size="small"
+                  sx={chipIconStyle}
+                  icon={<Pets fontSize="small"  />}
+                  label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs."}
+                />
+                <Chip
+                  size="small"
+                  sx={chipIconStyle}
+                  icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
+                  label="Reserve now, pay later"
+                />
               </Box>
-              <Box
-                sx={{
-                  mt: { xs: "0px", sm: "auto" },
-                  ml: "auto",
-                  mb: "0px",
-                  display: "flex",
-                  textAlign: "right",
-                  flexDirection: "column",
-                  alignItems: "end",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      mr: 0.45,
-                      color: "#222",
-                      fontFamily: "Montserrat",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                      textOverflow: "ellipsis",
-                      fontSize: "120%",
-                      fontWeight: 800,
-                    }}
-                  >
-                    {currency}
-                    {Math.round(lowestAveragePrice)}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      opacity: 0.8,
-                      fontWeight: 400,
-                      fontSize: "70%",
-                      fontFamily: 'overpass-light'
-                    }}
-                  >
-                    per night
-                  </Typography>
-                </Box>
-                {!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "text.secondary",
-                      fontFamily: "Montserrat",
-                      fontSize: "65%",
-                      opacity: 0.8,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Save{" "}
-                    <Typography
-                      component="span"
-                      sx={{
-                        // textDecoration: "line-through",
-                        // textDecorationColor: "#BC4749AA",
-                        // textDecorationThickness: "1px",
-                        color: "#4B7D2F",
-                        fontFamily: "Montserrat",
-                        fontSize: "120%",
-                        position: "relative",
-                        fontWeight: 600,
-                      }}
-                    >
-                      ${Math.round(petFeePolicy.totalFees)}
-                    </Typography>{" "}
-                    in pet fees
-                  </Typography>
-                )}
+              <Box>
+                <PriceDetails />
               </Box>
             </Grid>
           </Grid>
