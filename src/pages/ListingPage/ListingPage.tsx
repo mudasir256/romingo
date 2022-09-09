@@ -20,6 +20,7 @@ import {
   AddCircleOutline,
   FilterList,
   ReportRounded,
+  ListAlt,
 } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
@@ -127,7 +128,7 @@ const ListingPage: FC<Props> = () => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
         dogs: search.occupants.dogs,
-        allows_big_dogs:allowBigDogs
+        allows_big_dogs: allowBigDogs
       },
     }
   );
@@ -144,7 +145,7 @@ const ListingPage: FC<Props> = () => {
         checkOut: search.checkOut.substring(0, 10),
         children: ageParam,
         dogs: search.occupants.dogs,
-        allows_big_dogs:allowBigDogs
+        allows_big_dogs: allowBigDogs
       },
     }
   );
@@ -219,6 +220,8 @@ const ListingPage: FC<Props> = () => {
   const variants = {
     collapsed: {
       y: 0,
+      bottom: 0,
+      top: 'auto',
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
       height: 5,
@@ -231,6 +234,7 @@ const ListingPage: FC<Props> = () => {
     },
     expanded: {
       y: -height + 52,
+      top: `${height - 52}px`,
       borderTopLeftRadius: "0px",
       borderTopRightRadius: "0px",
     },
@@ -249,6 +253,16 @@ const ListingPage: FC<Props> = () => {
   const history = useHistory();
   const [hotelIndex, setHotelIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(0);
+
+  useEffect(() => {
+    setAnimate("expanded");  // setAnimate("collapsed");
+    const intercomId = "CUSTOM"
+    const domNode = document.getElementById(intercomId);
+    if (domNode) {
+      domNode.style.display = 'none';
+    }
+    return () => { if (domNode) { domNode.style.display = 'flex' } }
+  }, [])
 
   useEffect(() => {
     dispatch(
@@ -338,11 +352,8 @@ const ListingPage: FC<Props> = () => {
           boxShadow: { xs: 0, md: 2 },
           display: "flex",
           justifyContent: { xs: "center", md: "flex-start" },
-          maxHeight: { xs: height, md: "100%" },
           overflow: "hidden",
-          height: { md: '50px' },
           zIndex: 1000,
-          py: { xs: 0, md: 1 },
         }}
       >
         {error && (
@@ -377,9 +388,7 @@ const ListingPage: FC<Props> = () => {
             }}
           />
         </Link> */}
-        <Hidden mdDown>
-          <Navbar />
-        </Hidden>
+        <Hidden mdDown><Navbar /></Hidden>
 
         <Hidden mdUp>
           <Box sx={{ mt: ".75rem" }}>
@@ -391,7 +400,7 @@ const ListingPage: FC<Props> = () => {
         sx={{
           backgroundColor: "#feffff",
           display: { md: "flex" },
-          height: { xs: `${height}px`, md: "calc(100vh - 59px)" },
+          height: { xs: `100vh`, md: "calc(100vh - 59px)" },
         }}
       >
         {loading ? (
@@ -449,13 +458,11 @@ const ListingPage: FC<Props> = () => {
             ref={scrollRef}
             style={{
               y,
-              position: "absolute",
-              top: `${height - 52}px`,
+              position: animate !== 'expanded' ? 'fixed' : "absolute",
               left: 0,
               right: 0,
               padding: 24,
               backgroundColor: "#feffff",
-              maxHeight: `${height - 48}px`,
               overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,
               overscrollBehavior: "none",
@@ -463,23 +470,10 @@ const ListingPage: FC<Props> = () => {
             variants={variants}
             animate={animate}
             transition={{ duration: 0.4 }}
-            onScroll={(e: any) => {
-              if (e.target?.scrollTop <= 0) {
-                setAnimate("collapsed");
-              }
-            }}
             onDragEnd={(_, { offset }) => {
               if (offset.y < -30) {
                 if (animate === "collapsed") {
-                  setAnimate("preview");
-                } else {
                   setAnimate("expanded");
-                }
-              } else if (offset.y > 30) {
-                if (animate === "preview") {
-                  setAnimate("collapsed");
-                } else {
-                  setAnimate("preview");
                 }
               }
             }}
@@ -553,8 +547,8 @@ const ListingPage: FC<Props> = () => {
                 }
               }}
               sx={{
-                position: "absolute",
-                bottom: 10,
+                position: "fixed",
+                bottom: 32,
                 left: "50%",
                 transform: "translateX(-50%)",
                 zIndex: 100,
@@ -574,7 +568,7 @@ const ListingPage: FC<Props> = () => {
               px: 3,
               pt: 2,
               pb: 3,
-              width: "70%",
+              width: "80%",
               scrollBehavior: "smooth",
               overflowY: "auto",
               "&::-webkit-scrollbar": {
@@ -673,7 +667,7 @@ const ListingPage: FC<Props> = () => {
           </Box>
         </Hidden>
       </Box>
-      <Box display={{ xs: "none", sm: "block" }}>
+      <Box display={{ xs: "none", sm: "none", md: 'block' }}>
         <Footer />
       </Box>
     </>
