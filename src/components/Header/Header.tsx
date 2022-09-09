@@ -137,7 +137,7 @@ const Header: FC<Props> = ({ sx }) => {
       >
 
         <Box sx={{ 
-          ml: { xs: '1em', sm: '1.5em', md: '0em' },
+          ml: { xs: '1.75em', sm: '1.5em', md: '0em' },
           mt: { xs: '1.5em', sm: '5em', md: '14em' },  
           mb: { xs: '0em', sm: '0em', md: '2em' },
         }}>
@@ -156,7 +156,7 @@ const Header: FC<Props> = ({ sx }) => {
 
         <Box sx={{ 
           display: { xs: 'block', sm: 'block', md: 'none' },
-          top: { sm: '30px' }
+          top: { sm: '30px' },
         }}>
           <MobileFilterBar />
         </Box>

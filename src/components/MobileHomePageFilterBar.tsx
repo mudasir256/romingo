@@ -182,7 +182,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
         <Box
           sx={{
             display: "flex",
-            padding: ".5rem 1rem",
+            padding: ".5rem 1.70rem",
             flexDirection: "column",
             alignItems: "center",
             mb: ".5rem",

@@ -105,7 +105,7 @@
     margin-bottom: 464px;
     flex-wrap: wrap;
     margin: 0 1em;
-    margin-bottom: 420px; 
+    margin-bottom: 400px; 
     @media screen and (max-width: 1300px) {
       margin-bottom: 80px;
     }
@@ -121,7 +121,6 @@
 
       @media screen and (max-width: 750px) {
         width: 300px;
-        margin-bottom: 20px;
         margin: 0 0.5em;
       }
 
@@ -181,7 +180,7 @@
       &-desc {
         font-family: "overpass-light";
         font-size: 1em;
-        line-height: 25px;
+        line-height: 1.25em;
         text-align: left !important;
         color: black;
         text-align: center;
@@ -196,8 +195,8 @@
 
         .hotel-location {
           font-family: "overpass-light";
-          font-size: 20px;
-          line-height: 31px;
+          font-size: 1em;
+          line-height: 1em;
           text-align: left;
           color: #009ca1;
           text-decoration: underline;
@@ -211,7 +210,7 @@
           &-value {
             font-family: "overpass-light";
             font-size: 1em;
-            line-height: 46px;
+            line-height: 1em;
             text-align: left;
             margin-right: 9px;
           }
@@ -219,7 +218,7 @@
           &-unit {
             font-family: "overpass-light";
             font-size: 1em;
-            line-height: 22px;
+            line-height: 1em;
             text-align: left;
           }
         }
