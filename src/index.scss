@@ -9,6 +9,12 @@
   font-family: "overpass-regular";
   src: url(./assets/font/overpass/overpass-regular.otf) format("opentype"),
     url(./assets/font/overpass/Overpass-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "overpass-bold";
+  src: url(./assets/font/overpass/overpass-bold.otf) format("opentype"),
+    url(./assets/font/overpass/Overpass-Bold.ttf) format("truetype");
 
 }
 

@@ -85,8 +85,7 @@ const ListingCard: FC<ListingCardProps> = ({
     px: '0.3em',
     backgroundColor: '#fffff',
     fontFamily: 'overpass-light',
-    my: '0.25em',
-    width: '170px',
+    mt: '0.35em',
     display: 'flex',
     justifyContent: 'flex-start'
   }
@@ -99,7 +98,7 @@ const ListingCard: FC<ListingCardProps> = ({
           size="small"
           sx={chipIconStyle}
           icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
-          label={<p>Save <span style={{color: 'green', fontSize: '1.1em'}}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
+          label={<p>Save <span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
         />
       }
       <Chip
@@ -389,11 +388,8 @@ const ListingCard: FC<ListingCardProps> = ({
             >
               <Box
                 sx={{
-                  display: { xs: "flex", sm: 'none' },
-                  flexDirection: 'column',
-                  justifyContent: 'flex-start',
-                  alignItems: 'flex-start',
-                  flexWrap: 'wrap',
+                  display: { xs: "block", sm: 'none' },
+              
                   fontFamily: "overpass-light", 
                   letterSpacing: '0.25px', 
 
