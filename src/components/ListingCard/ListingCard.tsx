@@ -92,6 +92,31 @@ const ListingCard: FC<ListingCardProps> = ({
   }
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
+  const HotelDescriptors = () => (
+    <>
+      {hasPetFeeReduction &&
+        <Chip
+          size="small"
+          sx={chipIconStyle}
+          icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
+          label={<p>Save <span style={{color: 'green', fontSize: '1.1em'}}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
+        />
+      }
+      <Chip
+        size="small"
+        sx={chipIconStyle}
+        icon={<Pets fontSize="small"  />}
+        label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs."}
+      />
+      <Chip
+        size="small"
+        sx={chipIconStyle}
+        icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
+        label="Reserve now, pay later"
+      />
+    </>
+  )
+
   const PriceDetails = () => (
     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
     <Box
@@ -122,11 +147,11 @@ const ListingCard: FC<ListingCardProps> = ({
         sx={{
           mr: 0.45,
           color: "#222",
-          fontFamily: "overpass-regular",
+          fontFamily: "overpass-light",
           overflow: "hidden",
           whiteSpace: "nowrap",
           textOverflow: "ellipsis",
-          fontSize: "1.5em",
+          fontSize: "1.0em",
           fontWeight: 800,
         }}
       >
@@ -338,13 +363,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   mt: 'auto'
                 }}
               >
-                <Typography sx={{ 
-                  fontFamily: "sansita-light", 
-                  letterSpacing: '0.5px', 
-                  color: '#009CA1' 
-                }}>
-                  Reserve now, pay later
-                </Typography>
+                <HotelDescriptors />
               </Box>
             </Grid>
             <Grid
@@ -364,7 +383,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   md: ".75rem 0rem",
                 },
                 alignItems: "end",
-                justifyContent: { xs: "space-between", sm: "center" },
+                justifyContent: { xs: "space-between", sm: "flex-end" },
                 textAlign: { xs: "left", md: "right" },
               }}
             >
@@ -380,30 +399,9 @@ const ListingCard: FC<ListingCardProps> = ({
 
                 }}
               >
-                {hasPetFeeReduction &&
-                  <Chip
-                    size="small"
-                    sx={chipIconStyle}
-                    icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
-                    label={<p>Save <span style={{color: 'green', fontSize: '1.1em'}}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
-                  />
-                }
-                <Chip
-                  size="small"
-                  sx={chipIconStyle}
-                  icon={<Pets fontSize="small"  />}
-                  label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs."}
-                />
-                <Chip
-                  size="small"
-                  sx={chipIconStyle}
-                  icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
-                  label="Reserve now, pay later"
-                />
+               <HotelDescriptors />
               </Box>
-              <Box>
-                <PriceDetails />
-              </Box>
+              <PriceDetails />
             </Grid>
           </Grid>
         </Box>
