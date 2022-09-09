@@ -568,7 +568,7 @@ const ListingPage: FC<Props> = () => {
               px: 3,
               pt: 2,
               pb: 3,
-              width: "70%",
+              width: "80%",
               scrollBehavior: "smooth",
               overflowY: "auto",
               "&::-webkit-scrollbar": {

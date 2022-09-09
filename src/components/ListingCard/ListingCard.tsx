@@ -86,7 +86,7 @@ const ListingCard: FC<ListingCardProps> = ({
     backgroundColor: '#fffff',
     fontFamily: 'overpass-light',
     my: '0.25em',
-    width: '166px',
+    width: '170px',
     display: 'flex',
     justifyContent: 'flex-start'
   }
@@ -106,7 +106,7 @@ const ListingCard: FC<ListingCardProps> = ({
         size="small"
         sx={chipIconStyle}
         icon={<Pets fontSize="small"  />}
-        label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs."}
+        label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs. each"}
       />
       <Chip
         size="small"
