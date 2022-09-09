@@ -357,9 +357,9 @@ const ListingCard: FC<ListingCardProps> = ({
               </Box>
               <Box
                 sx={{
-                  minWidth: "73px",
                   display: { xs: "none", sm: 'block' },
-                  mt: 'auto'
+                  mt: 'auto',
+                  maxWidth: '180px'
                 }}
               >
                 <HotelDescriptors />
