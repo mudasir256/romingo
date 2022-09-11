@@ -25,6 +25,13 @@
 
 }
 
+@font-face {
+  font-family: "sansita-bold";
+  src: url(./assets/font/sansita/Sansita-Bold.otf) format("opentype"),
+    url(./assets/font/sansita/Sansita-Bold.ttf) format("truetype");
+
+}
+
 body,
 html {
   font-family: "overpass-light", sans-serif;

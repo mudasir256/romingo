@@ -290,10 +290,11 @@
       bottom: 0;
       left: 0;
       padding-left: 3em;
-      padding-bottom: 3em;
+      padding-bottom: 2.5em;
 
-      @media (max-width: 800px) {
-        padding: 1.5em;
+      @media (max-width: 750px) {
+        padding-left: 1.5em;
+        padding-bottom: 1.25em;
       }
     }
   }

@@ -160,10 +160,10 @@ const HomePage: FC<Props> = ({
   const sanFrancisco = cities.find((city: any) => city.name === 'San Francisco, CA')
   const dallas = cities.find((city: any) => city.name === 'Dallas, TX')
 
-  //TODO: fix dynamic fetch
   //TODO: Add Hilton San Franscisco, Grand Hyatt San Diego, Mondrian Los Angeles, Saguaro Palm Springs
   // console.log(cities)
 
+  //TODO: fix dynamic fetch
   // const { data, error } = useQuery(
   //   gql`${GetHotelDetail}`,
   //   {
@@ -342,15 +342,23 @@ const HomePage: FC<Props> = ({
         <div className="homepage-dog-wallpaper">
           <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
           <div className="homepage-dog-text">
-            <h1 className="no-space sansita text-lg space-letters" style={{marginBottom: '0.05em'}}>Reserve now, pay later</h1>
-            <h3 className="no-space mb-sm space-letters-sm">Plus, free cancellations!</h3>
+            <Typography sx={{
+              fontFamily: 'sansita-bold',
+              fontSize: '1.75em',
+              color: 'white',
+              letterSpacing: '0.5px',
+              mb: '0em',
+              lineHeight: '1.25em',
+            }}>Reserve now, pay later</Typography>
+            <h3 className="no-space mb-xs space-letters-sm">Plus, free cancellations!</h3>
             <Button
               onClick={handleImFlexibleClick}
               variant="contained"
               size="large"
               sx={{
                 textTransform: "none",
-                fontFamily: "sansita-light"
+                fontFamily: "sansita-light",
+                mb: '1.5em',
               }}
 
             >
