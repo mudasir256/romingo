@@ -76,23 +76,23 @@ const ListingCard: FC<ListingCardProps> = ({
   ...props
 }) => {
   const history = useHistory();
-  const mobileCardPadding = 1.8;
+  const mobileCardPadding = 1;
 
   const [showRating, setShowRating] = useState(true)
 
   const chipIconStyle = {
-    fontSize: "0.75em",
+    fontSize: { xs: '0.6em', sm: "0.75em" },
     px: '0.3em',
     backgroundColor: '#fffff',
     fontFamily: 'overpass-light',
     mt: '0.35em',
     display: 'flex',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   }
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   const HotelDescriptors = () => (
-    <>
+    <Box>
       {hasPetFeeReduction &&
         <Chip
           size="small"
@@ -113,11 +113,11 @@ const ListingCard: FC<ListingCardProps> = ({
         icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
         label="Reserve now, pay later"
       />
-    </>
+    </Box>
   )
 
   const PriceDetails = () => (
-    <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
     <Box
       sx={{
         display: "flex",
@@ -128,29 +128,23 @@ const ListingCard: FC<ListingCardProps> = ({
       <Typography
         variant="body2"
         sx={{
-          mr: 0.45,
+          mr: { xs: 0, sm: 0.45 },
           color: "#222",
           fontFamily: "overpass-regular",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-          textOverflow: "ellipsis",
-          fontSize: "1.5em",
+          fontSize: { xs: '1.25em', sm: "1.5em" },
           fontWeight: 800,
         }}
       >
         {currency}
-        {Math.round(lowestAveragePrice)} /
+        {Math.round(lowestAveragePrice)}/
       </Typography>
       <Typography
         variant="body2"
         sx={{
-          mr: 0.45,
+          mr: { xs: 0, sm: 0.45 },
           color: "#222",
           fontFamily: "overpass-light",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-          textOverflow: "ellipsis",
-          fontSize: "1.0em",
+          fontSize: { xs: '0.75em', sm: "1.0em" },
           fontWeight: 800,
         }}
       >
@@ -274,7 +268,7 @@ const ListingCard: FC<ListingCardProps> = ({
             sx={{
               minHeight: { xs: 160, sm: 186 },
               p: {
-                xs: ".5rem .75rem 0rem .75rem",
+                xs: ".5rem .25rem 0rem .25rem",
                 sm: ".5rem .5rem .5rem 1rem",
                 md: "0rem 1rem",
               },
@@ -302,11 +296,9 @@ const ListingCard: FC<ListingCardProps> = ({
                 sx={{
                   color: "#222",
                   fontFamily: "overpass-light",
-                  whiteSpace: "nowrap",
                   fontSize: '1.25em',
-                  textOverflow: "ellipsis",
                   fontWeight: 800,
-                  width: '100%',
+                  letterSpacing: '0px',
                 }}
               >
                 {name}
@@ -392,7 +384,6 @@ const ListingCard: FC<ListingCardProps> = ({
               
                   fontFamily: "overpass-light", 
                   letterSpacing: '0.25px', 
-
                 }}
               >
                <HotelDescriptors />
