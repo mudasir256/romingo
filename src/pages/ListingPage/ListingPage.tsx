@@ -339,6 +339,14 @@ const ListingPage: FC<Props> = () => {
     setHotelIndex(0);
   }, [cards, sortBy]);
 
+  const start = search.checkIn.substring(0, 10)
+  const end = search.checkOut.substring(0, 10)
+  
+  const date1 = new Date(start).getTime();
+  const date2 = new Date(end).getTime();
+  const diffTime = Math.abs(date2 - date1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
   return (
     <>
       <ScrollToTop />
@@ -524,9 +532,7 @@ const ListingPage: FC<Props> = () => {
                     <ListingCard
                       key={card.id}
                       {...card}
-                      duration={DateTime.fromJSDate(new Date(search.checkOut))
-                        .diff(DateTime.fromJSDate(new Date(search.checkIn)))
-                        .toFormat("d")}
+                      duration={diffDays}
                       highlighted={hotelIndex === index ? true : false}
                     />
                   ))

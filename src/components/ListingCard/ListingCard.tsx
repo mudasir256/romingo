@@ -121,8 +121,8 @@ const ListingCard: FC<ListingCardProps> = ({
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: "column",
+        alignItems: "flex-end",
       }}
     >
       <Typography
@@ -131,24 +131,25 @@ const ListingCard: FC<ListingCardProps> = ({
           mr: { xs: 0, sm: 0.45 },
           color: "#222",
           fontFamily: "overpass-regular",
-          fontSize: { xs: '1.25em', sm: "1.5em" },
+          fontSize: "1.5em",
           fontWeight: 800,
         }}
       >
         {currency}
-        {Math.round(lowestAveragePrice)}/
+        {Math.round(lowestAveragePrice)}
       </Typography>
       <Typography
         variant="body2"
         sx={{
           mr: { xs: 0, sm: 0.45 },
-          color: "#222",
+          color: "#666",
           fontFamily: "overpass-light",
-          fontSize: { xs: '0.75em', sm: "1.0em" },
+          fontSize: { xs: '.75em', sm: "1em" },
+
           fontWeight: 800,
         }}
       >
-        per night
+        {currency}{Math.round(lowestAveragePrice * (duration ? duration : 1))} total
       </Typography>
     </Box>
  
