@@ -92,36 +92,40 @@ const ListingCard: FC<ListingCardProps> = ({
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   const HotelDescriptors = () => (
-    <Box>
+    <Box sx={{ display: 'flex' }}>
       {hasPetFeeReduction &&
         <Chip
           size="small"
           sx={chipIconStyle}
           icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
-          label={<p>Save <span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> in pet fees</p>}
+          label={<p><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</p>}
         />
       }
+      <Box sx={{ ml: '0.25em'}} />
       <Chip
         size="small"
         sx={chipIconStyle}
         icon={<Pets fontSize="small"  />}
-        label={allows_big_dogs ? "All weights accepted" : "2 dogs, up to 75 lbs. each"}
+        label={allows_big_dogs ? "All weights accepted" : "2 dogs 75 lbs. each"}
       />
+      {/*
       <Chip
         size="small"
         sx={chipIconStyle}
         icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
         label="Reserve now, pay later"
       />
+      */}
     </Box>
   )
 
   const PriceDetails = () => (
-    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+    <Box sx={{ ml: 'auto', mr: '0.5em', mb: '0.25em' }}>
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
+        justifyContent: 'flex-end',
         alignItems: "flex-end",
       }}
     >
@@ -131,7 +135,7 @@ const ListingCard: FC<ListingCardProps> = ({
           mr: { xs: 0, sm: 0.45 },
           color: "#222",
           fontFamily: "overpass-regular",
-          fontSize: "1.5em",
+          fontSize: "1.25em",
           fontWeight: 800,
         }}
       >
@@ -144,7 +148,7 @@ const ListingCard: FC<ListingCardProps> = ({
           mr: { xs: 0, sm: 0.45 },
           color: "#666",
           fontFamily: "overpass-light",
-          fontSize: { xs: '.75em', sm: "1em" },
+          fontSize: { xs: '.75em', sm: "0.75em" },
           fontWeight: 800,
         }}
       >
@@ -218,7 +222,7 @@ const ListingCard: FC<ListingCardProps> = ({
           <Box sx={{
             position: 'relative',
           }}>
-            {showRating &&
+            {/* showRating &&
               <Box sx={{ position: 'absolute', right: 8, top: 12, zIndex: 50 }}>
                 <Chip
                   size="small"
@@ -236,7 +240,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   label={romingoScore}
                 />
               </Box>
-            }
+            */}
           </Box>
           <ImageSlider
             images={imageURLs}
@@ -299,6 +303,8 @@ const ListingCard: FC<ListingCardProps> = ({
                   fontSize: '1.25em',
                   fontWeight: 800,
                   letterSpacing: '0px',
+                  whiteSpace: {xs: 'normal', sm: 'nowrap' },
+                  textOverflow: "ellipsis",
                 }}
               >
                 {name}
@@ -308,14 +314,13 @@ const ListingCard: FC<ListingCardProps> = ({
                 variant="body2"
                 sx={{
                   fontSize: { xs: "95%", sm: "90%" },
-                  mt: { xs: ".25rem", sm: ".125rem" },
+                  mt: { xs: "0rem", sm: ".125rem" },
                   overflow: "hidden",
                   fontWeight: 500,
                   whiteSpace: "nowrap",
                   fontFamily: "overpass-light",
                   textOverflow: "ellipsis",
                   color: "#999",
-                  mb: { xs: ".5rem", md: "0" },
                 }}
               >
                 {addressLine1}, {city?.name}
@@ -325,7 +330,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  mb: '0.5em',
+                  mb: '0.25em',
               }}>
                 {/*
                 <Link
@@ -347,15 +352,46 @@ const ListingCard: FC<ListingCardProps> = ({
                 </Link>
                 */}
               </Box>
+              <Box sx={{ 
+                mb: { xs: '0.5em', sm: '1em' },
+              }}>
+                <HotelDescriptors />
+              </Box>
+
               <Box
                 sx={{
                   display: { xs: "none", sm: 'block' },
                   mt: 'auto',
-                  maxWidth: '180px'
                 }}
               >
-                <HotelDescriptors />
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
+                  <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
+                  <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>4.2</span>
+                  <Link
+                    onClick={() => history.push(`/hotel/${alias}#reviews`)}
+                    sx={{
+                      color: "#666",
+                      fontFamily: "overpass-light",
+                      textDecoration: "underline",
+                      ml: { xs: 0.25 },
+                      fontWeight: 500,
+                      opacity: 0.75,
+                      fontSize: "70%",
+                    }}
+                  >
+                    (see reviews)
+                  </Link>
+                </Box> 
+
+                <Typography sx={{        
+                   fontFamily: "sansita-light",
+                   color: '#036A6E', 
+                   letterSpacing: '0.25px', 
+                 }}>
+                   Reserve now, pay later.
+                 </Typography>
               </Box>
+
             </Grid>
             <Grid
               item
@@ -382,11 +418,40 @@ const ListingCard: FC<ListingCardProps> = ({
                 sx={{
                   display: { xs: "block", sm: 'none' },
               
-                  fontFamily: "overpass-light", 
-                  letterSpacing: '0.25px', 
+                  ml: '0.25em',
+                  mb: '0.25em',
                 }}
               >
-               <HotelDescriptors />
+               {/*<HotelDescriptors />*/}
+      
+
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
+                  <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
+                  <span style={{ marginBottom: '0.2em', marginLeft: '0.25em', marginRight: '0.1em' }}>4.2</span>
+                  <Link
+                    onClick={() => history.push(`/hotel/${alias}#reviews`)}
+                    sx={{
+                      color: "#666",
+                      fontFamily: "overpass-light",
+                      textDecoration: "underline",
+                      mr: -0.5,
+                      ml: { xs: 0.25 },
+                      mt: { xs: 0, sm: '0.5em' },
+                      fontWeight: 500,
+                      opacity: 0.75,
+                      fontSize: "70%",
+                    }}
+                  >
+                    (see reviews)
+                  </Link>
+                </Box> 
+                <Typography sx={{        
+                   fontFamily: "sansita-light",
+                   color: '#036A6E', 
+                   letterSpacing: '0.25px', 
+                 }}>
+                   Reserve now, pay later.
+                 </Typography>
               </Box>
               <PriceDetails />
             </Grid>
