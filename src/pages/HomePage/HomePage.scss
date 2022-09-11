@@ -17,12 +17,13 @@
   padding: 0 1.5em 1.5em 1.5em;
   margin: 2em;
 
-  @media screen and (max-width: 1000px) {
+  @media (max-width: 1000px) {
     top: 0px;
   }
 
-  @media screen and (max-width: 700px) {
+  @media (max-width: 700px) {
     width: 400px;
+    height: 340px;
     padding-bottom: 0;
     margin-bottom: 0;
   }
@@ -33,6 +34,11 @@
     margin-bottom: 1em;
     width: 320px;
     height: 240px;
+
+    @media (max-width: 700px) {
+      width: 200px;
+      height: 160px;
+    }
   }
 
 
@@ -52,6 +58,12 @@
     font-size: 1em;
     line-height: 1.5em;
     text-align: center;
+
+
+    @media (max-width: 700px) {
+      margin-bottom: 0em;
+      padding: 0em;
+    }
   }
 
 
@@ -64,7 +76,7 @@
     width: 180px;
     float: right;  
 
-    @media screen and (max-width: 800px) {
+    @media (max-width: 800px) {
       padding: 1em;
     }
   }
@@ -81,7 +93,7 @@
     padding-top: 300px;
     background: white;
 
-    @media screen and (max-width: 940px) {
+    @media (max-width: 940px) {
       padding-top: 40px;
     }
 
@@ -92,7 +104,7 @@
       text-align: center;
       margin-bottom: 1em;
 
-      @media screen and (max-width: 750px) {
+      @media (max-width: 750px) {
         font-size: 40px;
         line-height: 40px;
       }
@@ -107,30 +119,34 @@
     flex-wrap: wrap;
     margin: 0 1em;
     margin-bottom: 400px; 
-    @media screen and (max-width: 1300px) {
+    @media (max-width: 1300px) {
       margin-bottom: 80px;
     }
 
     .hotel {
       width: 300px;
       margin: 0 1em;
+      border: 1px solid #DDDDDD;
+      border-radius: 16px;
+      background-color: white;
 
-      @media screen and (max-width: 1550px) {
+      @media (max-width: 1550px) {
         width: 300px;
         margin: 0 1em;
       }
 
-      @media screen and (max-width: 750px) {
+      @media (max-width: 750px) {
         width: 300px;
         margin: 0 0.5em;
       }
 
-      @media screen and (max-width: 620px) {
+      @media (max-width: 620px) {
         width: 100%;
       }
 
       &-image-wrapper {
-        border-radius: 15px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
         overflow: hidden;
         margin-bottom: 12px;
         position: relative;
@@ -141,7 +157,7 @@
           height: 240px;
           object-fit: cover;
 
-          @media screen and (max-width: 750px) {
+          @media (max-width: 750px) {
             height: 280px;
           }
         }
@@ -173,9 +189,10 @@
       &-name {
         font-family: "overpass-light";
         font-size: 1.5em;
-        line-height: 32px;
+        line-height: 1.25em;
         text-align: left;
         color: black;
+        letter-spacing: 0px;
       }
 
       &-desc {
@@ -210,7 +227,7 @@
 
           &-value {
             font-family: "overpass-light";
-            font-size: 1em;
+            font-size: 1.25em;
             line-height: 1em;
             text-align: left;
             margin-right: 9px;
@@ -218,7 +235,7 @@
 
           &-unit {
             font-family: "overpass-light";
-            font-size: 1em;
+            font-size: 1.25em;
             line-height: 1em;
             text-align: left;
           }
@@ -233,7 +250,7 @@
     width: 100%;
     position: relative;
 
-    @media screen and (max-width: 1300px) {
+    @media (max-width: 1300px) {
       height: fit-content;
       padding: 2em 0px;
     }
@@ -254,7 +271,7 @@
       overflow: hidden;
       transform: translate(-50%);
       
-      @media screen and (max-width: 1300px) {
+      @media (max-width: 1300px) {
         width: 90%;
         position: relative;
         left: auto;
@@ -275,7 +292,7 @@
       padding-left: 3em;
       padding-bottom: 3em;
 
-      @media screen and (max-width: 800px) {
+      @media (max-width: 800px) {
         padding: 1.5em;
       }
     }
@@ -291,7 +308,7 @@
 .mb-sm {
   margin-bottom: 1em;
 
-  @media screen and (max-width: 800px) {
+  @media (max-width: 800px) {
     margin-bottom: 1em;
   }
 }

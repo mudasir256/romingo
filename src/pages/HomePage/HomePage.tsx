@@ -39,11 +39,12 @@ import AuthenticPet from '../../assets/images/icon-03.png';
 
 import {
   GetHotelBySearch,
+  GetHotelRackBySearch,
+  GetHotelDetail
 } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
-
 
 import "./Sticky.css";
 import "./HomePage.scss";
@@ -160,71 +161,24 @@ const HomePage: FC<Props> = ({
   const dallas = cities.find((city: any) => city.name === 'Dallas, TX')
 
   //TODO: fix dynamic fetch
+  //TODO: Add Hilton San Franscisco, Grand Hyatt San Diego, Mondrian Los Angeles, Saguaro Palm Springs
   // console.log(cities)
 
-  // const { data: LA, error } = useQuery(
-  //   gql`
-  //     ${GetHotelBySearch}
-  //   `,
+  // const { data, error } = useQuery(
+  //   gql`${GetHotelDetail}`,
   //   {
-  //     variables: {
+  //      variables: {
+  //       id: 'ba772c6c-7fae-492a-85c0-6232eff50852',
+  //       checkIn: fewDaysLater.substring(0, 10),
+  //       checkOut: endTripDate.substring(0, 10),
   //       adults: 1,
-  //       cityId: losAngeles.id,
-  //       checkIn: fewDaysLater,
-  //       checkOut: endTripDate,
   //       children: 0,
   //       dogs: 1,
-  //     },
+  //       alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
+  //      }
   //   }
   // );
 
-  // const { data: SD } = useQuery(
-  //   gql`
-  //     ${GetHotelBySearch}
-  //   `,
-  //   {
-  //     variables: {
-  //       adults: 1,
-  //       cityId: sanDiego.id,
-  //       checkIn: fewDaysLater,
-  //       checkOut: endTripDate,
-  //       children: 0,
-  //       dogs: 1,
-  //     },
-  //   }
-  // );
-
-  // const { data: SF } = useQuery(
-  //   gql`
-  //     ${GetHotelBySearch}
-  //   `,
-  //   {
-  //     variables: {
-  //       adults: 1,
-  //       cityId: sanFrancisco.id,
-  //       checkIn: fewDaysLater,
-  //       checkOut: endTripDate,
-  //       children: 0,
-  //       dogs: 1,
-  //     },
-  //   }
-  // );
-
-  // const { data: DL } = useQuery(
-  //   gql`
-  //     ${GetHotelBySearch}
-  //   `,
-  //   {
-  //     variables: {
-  //       adults: 1,
-  //       cityId: dallas.id,
-  //       checkIn: fewDaysLater,
-  //       checkOut: endTripDate,
-  //       children: 0,
-  //       dogs: 1,
-  //     },
-  //   }
-  // );
 
   const locationIds = [
     "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
@@ -373,10 +327,10 @@ const HomePage: FC<Props> = ({
                   <p className="hotel-desc no-space">{hotel.desc}</p>
                   <div className="flex-row">
                     <Link sx={{ fontSize: '1em' }} href={hotel.url}>{hotel.location}</Link>
-                    <p className="ml-auto mr-xs">
-                      <span className="text-sm">{hotel.price}</span>
-                      <span className="text-sm"> / per night</span>
-                    </p>
+                    <Typography sx={{ fontSize: '1.25em', fontFamily: 'overpass-light',  }} className="ml-auto mr-xs">
+                      <span>{hotel.price}</span>
+                      <span> / per night</span>
+                    </Typography>
                   </div>
                 </div>
               </div>
