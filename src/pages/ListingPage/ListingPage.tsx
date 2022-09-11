@@ -661,9 +661,7 @@ const ListingPage: FC<Props> = () => {
                     >
                       <ListingCard
                         {...card}
-                        duration={DateTime.fromJSDate(new Date(search.checkOut))
-                          .diff(DateTime.fromJSDate(new Date(search.checkIn)))
-                          .toFormat("d")}
+                        duration={diffDays}
                         highlighted={hotelIndex === index ? true : false}
                       />
                     </Box>

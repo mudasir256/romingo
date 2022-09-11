@@ -145,7 +145,6 @@ const ListingCard: FC<ListingCardProps> = ({
           color: "#666",
           fontFamily: "overpass-light",
           fontSize: { xs: '.75em', sm: "1em" },
-
           fontWeight: 800,
         }}
       >
