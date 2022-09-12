@@ -309,6 +309,7 @@ const HomePage: FC<Props> = ({
           Travel with Romingo
         </div>
 
+        <Box sx={{ maxWidth: '1300px', mx: 'auto' }}>
         <Grid container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
           {(sanFrancisco && sanFrancisco.property) ?
             <Grid item xs={12} sm={12} md={6}>
@@ -351,6 +352,7 @@ const HomePage: FC<Props> = ({
           }  
         </Grid>
 
+        </Box>
       </Box>
 
       <Box className="homepage-dog">
