@@ -54,11 +54,6 @@ const App: FC = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (data) {
-      dispatch(setList([...data?.cities]));
-    }
-  }, [data]);
 
   return (
     <>

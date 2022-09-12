@@ -403,7 +403,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                   <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                  <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>4.2</span>
+                  <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
                   <Link
                     onClick={() => history.push(`/hotel/${alias}#reviews`)}
                     sx={{
@@ -463,7 +463,7 @@ const ListingCard: FC<ListingCardProps> = ({
                  </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                   <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                  <span style={{ marginBottom: '0.2em', marginLeft: '0.25em', marginRight: '0.1em' }}>4.2</span>
+                  <span style={{ marginBottom: '0.2em', marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
                   <Link
                     onClick={() => history.push(`/hotel/${alias}#reviews`)}
                     sx={{

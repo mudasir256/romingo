@@ -183,6 +183,7 @@ const GetHotelDetail = `
         alias
         addressLine1
         lowestAveragePrice
+        lowestTotalPriceAfterTax
         petFeePolicy {
           maxPets
           maxWeightPerPetInLBS

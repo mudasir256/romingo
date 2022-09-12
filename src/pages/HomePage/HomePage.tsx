@@ -11,6 +11,7 @@ import {
   Typography,
   Hidden,
   Link,
+  Grid,
 } from "@mui/material";
 import { Cancel, Star } from "@mui/icons-material";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -22,6 +23,8 @@ import nearby from "./cities";
 import featured from "./featured";
 import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 import PetFriendlyImg from '../../assets/images/pet-friendly.png';
 import PetFeesImg from '../../assets/images/pet-fees.png';
@@ -154,30 +157,72 @@ const HomePage: FC<Props> = ({
     today.getDate() + 4
   ).toISOString();
 
-  const cities = useSelector((state: any) => state.cityListReducer.cities);
-  const losAngeles = cities.find((city: any) => city.name === 'Los Angeles, CA')
-  const sanDiego = cities.find((city: any) => city.name === 'San Diego, CA')
-  const sanFrancisco = cities.find((city: any) => city.name === 'San Francisco, CA')
-  const dallas = cities.find((city: any) => city.name === 'Dallas, TX')
+  // const cities = useSelector((state: any) => state.cityListReducer.cities);
+  // const losAngeles = cities.find((city: any) => city.name === 'Los Angeles, CA')
+  // const sanDiego = cities.find((city: any) => city.name === 'San Diego, CA')
+  // const sanFrancisco = cities.find((city: any) => city.name === 'San Francisco, CA')
+  // const dallas = cities.find((city: any) => city.name === 'Dallas, TX')
 
-  //TODO: Add Hilton San Franscisco, Grand Hyatt San Diego, Mondrian Los Angeles, Saguaro Palm Springs
-  // console.log(cities)
+  const { data: sanFrancisco } = useQuery(
+    gql`${GetHotelDetail}`,
+    {
+       variables: {
+        id: 'ba772c6c-7fae-492a-85c0-6232eff50852',
+        checkIn: fewDaysLater.substring(0, 10),
+        checkOut: endTripDate.substring(0, 10),
+        adults: 1,
+        children: [],
+        dogs: 1,
+        alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
+       }
+    }
+  );
 
-  //TODO: fix dynamic fetch
-  // const { data, error } = useQuery(
-  //   gql`${GetHotelDetail}`,
-  //   {
-  //      variables: {
-  //       id: 'ba772c6c-7fae-492a-85c0-6232eff50852',
-  //       checkIn: fewDaysLater.substring(0, 10),
-  //       checkOut: endTripDate.substring(0, 10),
-  //       adults: 1,
-  //       children: 0,
-  //       dogs: 1,
-  //       alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
-  //      }
-  //   }
-  // );
+  const { data: sanDiego } = useQuery(
+    gql`${GetHotelDetail}`,
+    {
+       variables: {
+        id: 'fe1300a4-a06f-4347-8d7f-f271b3657ba9',
+        checkIn: fewDaysLater.substring(0, 10),
+        checkOut: endTripDate.substring(0, 10),
+        adults: 1,
+        children: [],
+        dogs: 1,
+        alias: 'San-Diego-Pet-Friendly-Hotels-Manchester-Grand-Hyatt-San-Diego',
+       }
+    }
+  );
+
+  const { data: losAngeles } = useQuery(
+    gql`${GetHotelDetail}`,
+    {
+       variables: {
+        id: 'e7742fb4-6154-4cd7-b0c6-6b35c0939140',
+        checkIn: fewDaysLater.substring(0, 10),
+        checkOut: endTripDate.substring(0, 10),
+        adults: 1,
+        children: [],
+        dogs: 1,
+        alias: 'Los-Angeles-Pet-Friendly-Hotels-Mondrian-Los-Angeles',
+       }
+    }
+  );
+
+  const { data: palmSprings } = useQuery(
+    gql`${GetHotelDetail}`,
+    {
+       variables: {
+        id: 'bfae657c-e216-4f18-bc64-da7a8c8aa4e8',
+        checkIn: fewDaysLater.substring(0, 10),
+        checkOut: endTripDate.substring(0, 10),
+        adults: 1,
+        children: [],
+        dogs: 1,
+        alias: 'Palm-Springs-Pet-Friendly-Hotels-The-Saguaro-Palm-Springs',
+       }
+    }
+  );
+
 
 
   const locationIds = [
@@ -265,6 +310,12 @@ const HomePage: FC<Props> = ({
     };
   }, []);
 
+  // useEffect(() => {
+  //   if (sanDiego) {
+
+  //   }
+  // }, [sanDiego])
+
   return (
     <div className="homepage">
       <ScrollToTop />
@@ -305,10 +356,59 @@ const HomePage: FC<Props> = ({
         </Box>
         </Box>
       </Box>
-      <Box className="hotels-wrapper" sx={{ paddingTop: '369px', background: 'white' }}>
+      <Box className="hotels-wrapper" sx={{ 
+        marginTop: { md: 0, lg: 0 },
+        marginBottom: { sm: 0, md: 0, lg: '369px' }, 
+        background: 'white' 
+      }}
+      >
         <div className="hotels-wrapper-header">
           Travel with Romingo
         </div>
+
+        <Grid container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
+          {(sanFrancisco && sanFrancisco.property) ?
+            <Grid item xs={12} sm={12} md={6}>
+              <ListingCard
+                key={0}
+                {...sanFrancisco.property}
+                highlighted={false}
+              />
+            </Grid>: <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={0} /></Grid>
+          }  
+
+          {(sanDiego && sanDiego.property) ?
+            <Grid item xs={12} sm={12} md={6}>
+              <ListingCard
+                key={1}
+                {...sanDiego.property}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={1} /></Grid>
+          }  
+
+          {(losAngeles && losAngeles.property) ?
+            <Grid item xs={12} sm={12} md={6}>
+              <ListingCard
+                key={2}
+                {...losAngeles.property}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={2} /></Grid>
+          }  
+
+          {(palmSprings && palmSprings.property) ?
+            <Grid item xs={12} sm={12} md={6}>
+              <ListingCard
+                key={3}
+                {...palmSprings.property}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={3} /></Grid>
+          }  
+        </Grid>
+
+        {/*
         <Box className="hotels" sx={{ cursor: 'pointer' }}>
           {
             hotels.map((hotel, index) => (
@@ -337,7 +437,9 @@ const HomePage: FC<Props> = ({
             ))
           }
         </Box>
+      */}
       </Box>
+
       <Box className="homepage-dog">
         <div className="homepage-dog-wallpaper">
           <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
