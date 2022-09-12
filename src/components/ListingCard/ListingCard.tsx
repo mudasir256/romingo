@@ -11,6 +11,7 @@ import {
   Pets,
   CreditCardOffTwoTone,
   MoneyOffCsredTwoTone,
+  ScaleTwoTone,
 } from '@mui/icons-material'
 
 export interface ListingCardProps {
@@ -83,33 +84,58 @@ const ListingCard: FC<ListingCardProps> = ({
   const [showRating, setShowRating] = useState(true)
 
   const chipIconStyle = {
-    fontSize: { xs: '0.6em', sm: "0.75em" },
-    px: '0.3em',
-    backgroundColor: '#fffff',
+    fontSize: { xs: '0.8em', sm: "0.8em" },
+    backgroundColor: 'transparent',
     fontFamily: 'overpass-light',
     mt: '0.35em',
     display: 'flex',
     justifyContent: 'flex-start',
+    mr: '0.75em'
+  }
+
+  const iconSpacing = {
+    mt: '0.15em', 
+    ml: '0.3em'
   }
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   const HotelDescriptors = () => (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {hasPetFeeReduction &&
         <Chip
           size="small"
           sx={chipIconStyle}
-          icon={<MoneyOffCsredTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
-          label={<p><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</p>}
+          icon={<MoneyOffCsredTwoTone fontSize="small" />}
+          label={<Box sx={{ ml: '0.25em'}}><span style={{color: 'green', fontSize: '1.2em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
         />
       }
-      <Box sx={{ ml: '0.25em'}} />
-      <Chip
-        size="small"
-        sx={chipIconStyle}
-        icon={<Pets fontSize="small"  />}
-        label={allows_big_dogs ? "All weights accepted" : "2 dogs 75 lbs. each"}
-      />
+ 
+      {allows_big_dogs ?
+        ( <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<Pets fontSize="small"  />}
+            label={<Box sx={iconSpacing}>All weights accepted</Box>}
+          />
+        ) :
+          <>
+            <Chip
+              size="small"
+              sx={chipIconStyle}
+              icon={<Pets fontSize="small"  />}
+              label={<Box sx={iconSpacing}>2 dogs</Box>}
+            />
+            <Chip
+              size="small"
+              sx={chipIconStyle}
+              icon={<ScaleTwoTone fontSize="small"  />}
+              label={<Box sx={iconSpacing}>75 lbs. each</Box>}
+            />
+          </>
+      }
+
+   
+
       {/*
       <Chip
         size="small"
@@ -136,7 +162,7 @@ const ListingCard: FC<ListingCardProps> = ({
         sx={{
           mr: { xs: 0, sm: 0.45 },
           color: "#222",
-          fontFamily: "overpass-regular",
+          fontFamily: "overpass-bold",
           fontSize: "1.25em",
           fontWeight: 800,
         }}
@@ -366,6 +392,15 @@ const ListingCard: FC<ListingCardProps> = ({
                   mt: 'auto',
                 }}
               >
+
+                <Typography sx={{        
+                   fontFamily: "overpass-light",
+                   color: '#036A6E', 
+                   letterSpacing: '0.25px', 
+                 }}>
+                   Reserve now, pay later.
+                 </Typography>
+
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                   <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
                   <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>4.2</span>
@@ -385,13 +420,6 @@ const ListingCard: FC<ListingCardProps> = ({
                   </Link>
                 </Box> 
 
-                <Typography sx={{        
-                   fontFamily: "sansita-light",
-                   color: '#036A6E', 
-                   letterSpacing: '0.25px', 
-                 }}>
-                   Reserve now, pay later.
-                 </Typography>
               </Box>
 
             </Grid>
@@ -426,7 +454,13 @@ const ListingCard: FC<ListingCardProps> = ({
               >
                {/*<HotelDescriptors />*/}
       
-
+                <Typography sx={{        
+                   fontFamily: "overpass-light",
+                   color: '#036A6E', 
+                   mb: '0.25em',
+                 }}>
+                   Reserve now, pay later.
+                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                   <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
                   <span style={{ marginBottom: '0.2em', marginLeft: '0.25em', marginRight: '0.1em' }}>4.2</span>
@@ -447,13 +481,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     (see reviews)
                   </Link>
                 </Box> 
-                <Typography sx={{        
-                   fontFamily: "sansita-light",
-                   color: '#036A6E', 
-                   letterSpacing: '0.25px', 
-                 }}>
-                   Reserve now, pay later.
-                 </Typography>
+
               </Box>
               <PriceDetails />
             </Grid>
