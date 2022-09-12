@@ -48,6 +48,7 @@ const GetHotelBySearch = `
         romingoScore
         dogAmenities
         lowestAveragePrice
+        lowestTotalPriceAfterTax
         petFeePolicy {
           maxPets
           maxWeightPerPetInLBS
@@ -115,6 +116,7 @@ const GetHotelRackBySearch = `
         romingoScore
         dogAmenities
         lowestAveragePrice
+        lowestTotalPriceAfterTax
         petFeePolicy {
           maxPets
           maxWeightPerPetInLBS

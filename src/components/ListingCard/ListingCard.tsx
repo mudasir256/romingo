@@ -22,6 +22,7 @@ export interface ListingCardProps {
   allows_big_dogs: number;
   cancellation?: boolean;
   lowestAveragePrice: number;
+  lowestTotalPriceAfterTax: number;
   listingsPagePromoText?: string;
   currency?: string;
   dogAmenities?: string[];
@@ -65,6 +66,7 @@ const ListingCard: FC<ListingCardProps> = ({
   neighborhood,
   cancellation = false,
   lowestAveragePrice,
+  lowestTotalPriceAfterTax,
   currency = "$",
   dogAmenities = [],
   showAmenities = true,
@@ -152,7 +154,7 @@ const ListingCard: FC<ListingCardProps> = ({
           fontWeight: 800,
         }}
       >
-        {currency}{Math.round(lowestAveragePrice * (duration ? duration : 1))} total
+        {currency}{Math.round(lowestTotalPriceAfterTax)} total
       </Typography>
     </Box>
  
