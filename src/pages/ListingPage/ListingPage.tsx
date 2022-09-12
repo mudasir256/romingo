@@ -469,7 +469,7 @@ const ListingPage: FC<Props> = () => {
               position: animate !== 'expanded' ? 'fixed' : "absolute",
               left: 0,
               right: 0,
-              padding: 24,
+              padding: '0.25em',
               backgroundColor: "#feffff",
               overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,
@@ -486,7 +486,10 @@ const ListingPage: FC<Props> = () => {
               }
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ 
+              display: "flex", 
+              justifyContent: "center",             
+            }}>
               <MotionBox
                 variants={triggerVariants}
                 animate={animate}

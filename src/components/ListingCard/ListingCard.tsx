@@ -84,18 +84,18 @@ const ListingCard: FC<ListingCardProps> = ({
   const [showRating, setShowRating] = useState(true)
 
   const chipIconStyle = {
-    fontSize: { xs: '0.8em', sm: "0.8em" },
+    fontSize: { xs: '0.72em', sm: "0.75em" },
     backgroundColor: 'transparent',
     fontFamily: 'overpass-light',
     mt: '0.35em',
     display: 'flex',
     justifyContent: 'flex-start',
-    mr: '0.75em'
+    mr: '0.50em'
   }
 
   const iconSpacing = {
     mt: '0.15em', 
-    ml: '0.3em'
+    ml: '0.20em'
   }
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
@@ -106,10 +106,10 @@ const ListingCard: FC<ListingCardProps> = ({
           size="small"
           sx={chipIconStyle}
           icon={<MoneyOffCsredTwoTone fontSize="small" />}
-          label={<Box sx={{ ml: '0.25em'}}><span style={{color: 'green', fontSize: '1.2em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
+          label={<Box sx={{ ml: '0.20em'}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
         />
       }
- 
+
       {allows_big_dogs ?
         ( <Chip
             size="small"
@@ -247,29 +247,6 @@ const ListingCard: FC<ListingCardProps> = ({
             height: { xs: "auto", sm: 211, md: 186 },
           }}
         >
-          <Box sx={{
-            position: 'relative',
-          }}>
-            {/* showRating &&
-              <Box sx={{ position: 'absolute', right: 8, top: 12, zIndex: 50 }}>
-                <Chip
-                  size="small"
-                  sx={{
-                    fontSize: "12px",
-                    mt: { xs: ".125rem", md: ".5rem" },
-                    mb: { xs: ".125rem", md: "auto" },
-                    mr: '0.5em',
-                    p: '0.3em',
-                    backgroundColor: 'rgba(249, 222, 0, .9)', //'#F9DE00',
-                    fontFamily: 'overpass-light',
-                    color: 'black',
-                  }}
-                  icon={<StarIcon fontSize="small" />}
-                  label={romingoScore}
-                />
-              </Box>
-            */}
-          </Box>
           <ImageSlider
             images={imageURLs}
             name={name}
@@ -381,7 +358,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 */}
               </Box>
               <Box sx={{ 
-                mb: { xs: '0.5em', sm: '1em' },
+                mb: { xs: '0.75em', sm: '1em' },
               }}>
                 <HotelDescriptors />
               </Box>
@@ -396,7 +373,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 <Typography sx={{        
                    fontFamily: "overpass-light",
                    color: '#036A6E', 
-                   letterSpacing: '0.25px', 
+                   fontSize: '0.9em',
                  }}>
                    Reserve now, pay later.
                  </Typography>
@@ -457,6 +434,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 <Typography sx={{        
                    fontFamily: "overpass-light",
                    color: '#036A6E', 
+                   fontSize: '0.9em',
                    mb: '0.25em',
                  }}>
                    Reserve now, pay later.
