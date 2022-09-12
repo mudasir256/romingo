@@ -88,52 +88,7 @@ interface Props {
   };
 }
 
-const hotels = [
-  {
-    review: '4.3',
-    reviewCount: 210,
-    title: 'Laurel Inn',
-    desc: '444 Presidio Avenue, San Francisco, CA',
-    location: 'Pacific Heights',
-    price: '$250 - $400',
-    unit: 'per night',
-    url: '/hotel/the_laurel_inn',
-    image: 'https://storage.googleapis.com/romingo-production-public/images/The%20Laurel%20Inn/Laurel%20Inn_Exterior_Facade%20CRPD1600x450.jpg'
-  },
-  {
-    review: '4.6',
-    reviewCount: 3375,
-    title: 'Hotel Sofitel Los Angeles',
-    desc: '8555 Beverly Blvd, Los Angeles, CA',
-    location: 'Beverly Hills',
-    price: '$300 - $400',
-    unit: 'per night',
-    url: '/hotel/sofitel_los_angeles_at_beverly_hills',
-    image: 'https://storage.googleapis.com/romingo-production-public/images/Sofitel%20Los%20Angeles/d8edb87b.webp'
-  },
-  {
-    review: '4.5',
-    reviewCount: 570,
-    title: 'Canopy By Hilton Dallas',
-    desc: '2950 Cityplace West Blvd, Dallas, TX',
-    location: 'Uptown',
-    price: '$250 - $400',
-    unit: 'per night',
-    url: '/hotel/canopy_by_hilton_dallas_uptown',
-    image: 'https://storage.googleapis.com/romingo-production-public/images/Canopy%20by%20Hilton%20Dallas%20Uptown/18-bluelogic3014cc04-1-.webp'
-  },
-  {
-    review: '4.4',
-    reviewCount: 2160,
-    title: 'The Nines Portland',
-    desc: '525 Sw Morrison, Portland, OR',
-    location: 'Downtown',
-    price: '$250 - $500',
-    unit: 'per night',
-    url: '/hotel/the_nines',
-    image: 'https://storage.googleapis.com/romingo-production-public/images/The%20Nines/6fee32a5.webp'
-  },
-]
+
 const HomePage: FC<Props> = ({
   nearCities = nearby,
   featureHotels = featured,
@@ -156,12 +111,6 @@ const HomePage: FC<Props> = ({
     today.getMonth(),
     today.getDate() + 4
   ).toISOString();
-
-  // const cities = useSelector((state: any) => state.cityListReducer.cities);
-  // const losAngeles = cities.find((city: any) => city.name === 'Los Angeles, CA')
-  // const sanDiego = cities.find((city: any) => city.name === 'San Diego, CA')
-  // const sanFrancisco = cities.find((city: any) => city.name === 'San Francisco, CA')
-  // const dallas = cities.find((city: any) => city.name === 'Dallas, TX')
 
   const { data: sanFrancisco } = useQuery(
     gql`${GetHotelDetail}`,
@@ -310,12 +259,6 @@ const HomePage: FC<Props> = ({
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (sanDiego) {
-
-  //   }
-  // }, [sanDiego])
-
   return (
     <div className="homepage">
       <ScrollToTop />
@@ -408,36 +351,6 @@ const HomePage: FC<Props> = ({
           }  
         </Grid>
 
-        {/*
-        <Box className="hotels" sx={{ cursor: 'pointer' }}>
-          {
-            hotels.map((hotel, index) => (
-              <div onClick={() => history.push(hotel.url)} className="hotel" key={index}>
-                <div className="hotel-image-wrapper">
-                  <img src={hotel.image || HotelImg} alt="hotel picture" />
-                  <div className="hotel-review-wrapper">
-                    <img src={StarImg} width="16px" height="14px" alt="star" />
-                    <div className="hotel-review-wrapper-text">
-                      {hotel.review} ({hotel.reviewCount})
-                    </div>
-                  </div>
-                </div>
-                <div className="hotel-text mb-sm">
-                  <h2 className="hotel-name no-space space-letters mb-xs">{hotel.title}</h2>
-                  <p className="hotel-desc no-space">{hotel.desc}</p>
-                  <div className="flex-row">
-                    <Link sx={{ fontSize: '1em' }} href={hotel.url}>{hotel.location}</Link>
-                    <Typography sx={{ fontSize: '1.25em', fontFamily: 'overpass-light',  }} className="ml-auto mr-xs">
-                      <span>{hotel.price}</span>
-                      <span> / per night</span>
-                    </Typography>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </Box>
-      */}
       </Box>
 
       <Box className="homepage-dog">
