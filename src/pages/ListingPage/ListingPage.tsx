@@ -469,7 +469,7 @@ const ListingPage: FC<Props> = () => {
               position: animate !== 'expanded' ? 'fixed' : "absolute",
               left: 0,
               right: 0,
-              padding: '0.25em',
+              padding: '0.45em',
               backgroundColor: "#feffff",
               overflow: animate !== "expanded" ? "hidden" : "scroll",
               zIndex: 100,

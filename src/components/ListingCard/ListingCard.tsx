@@ -90,12 +90,12 @@ const ListingCard: FC<ListingCardProps> = ({
     mt: '0.35em',
     display: 'flex',
     justifyContent: 'flex-start',
-    mr: '0.50em'
+    mr: '0.4em'
   }
 
   const iconSpacing = {
     mt: '0.15em', 
-    ml: '0.20em'
+    ml: '0.15em'
   }
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
@@ -106,7 +106,7 @@ const ListingCard: FC<ListingCardProps> = ({
           size="small"
           sx={chipIconStyle}
           icon={<MoneyOffCsredTwoTone fontSize="small" />}
-          label={<Box sx={{ ml: '0.20em'}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
+          label={<Box sx={{ ml: '0em'}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
         />
       }
 
