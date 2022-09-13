@@ -407,6 +407,7 @@ const ListingCard: FC<ListingCardProps> = ({
             </Grid>
 
             <Box sx={{  
+                display: { xs: 'block', sm: 'none' },
                 my: 'auto',
                 mt: '0.25em',
                 ml: '0.75em',
