@@ -115,7 +115,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     sx={linkStyle}
                   >
                     <div
-                      style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                      style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                     >
                       About us
                     </div>
@@ -128,7 +128,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     }}
                   >
                     <div
-                      style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                      style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                     >
                       My Trip
                     </div>
@@ -145,7 +145,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 draggable="false"
                 onClick={() => history.push("/")}
                 sx={{
-                  maxWidth: "252px",
+                  maxWidth: "230px",
                   margin: "auto auto",
                   cursor: "pointer",
                   height: '77px'
@@ -270,7 +270,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               >
                 {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
                 <div
-                  style={{ fontSize: '18px', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                  style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                 >
                   List Your Property
                 </div>
@@ -297,7 +297,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   draggable="false"
                   onClick={() => history.push("/")}
                   sx={{
-                    maxWidth: "140px",
+                    maxWidth: "120px",
                     margin: "1rem auto",
                   }}
                 />
@@ -376,7 +376,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 sx={{
                   mr: "auto",
                   ml: "0px",
-                  maxHeight: { xs: "50px", md: "50px" },
+                  maxHeight: { xs: "44px", md: "44px" },
                 }}
               />
 
