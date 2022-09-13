@@ -156,17 +156,17 @@ const HomePage: FC<Props> = ({
     }
   );
 
-  const { data: palmSprings } = useQuery(
+  const { data: losAngeles2 } = useQuery(
     gql`${GetHotelDetail}`,
     {
        variables: {
-        id: 'bfae657c-e216-4f18-bc64-da7a8c8aa4e8',
+        id: '5423edc4-4994-4d64-8f6a-6e3149763bda',
         checkIn: fewDaysLater.substring(0, 10),
         checkOut: endTripDate.substring(0, 10),
         adults: 1,
         children: [],
         dogs: 1,
-        alias: 'Palm-Springs-Pet-Friendly-Hotels-The-Saguaro-Palm-Springs',
+        alias: 'Los-Angeles-Pet-Friendly-Hotels-Ace-Hotel-Downtown-LA-Los-Angeles',
        }
     }
   );
@@ -258,8 +258,16 @@ const HomePage: FC<Props> = ({
     };
   }, []);
 
-  console.log(sanDiego)
-
+  const fillSearchBar = () => {
+    dispatch(
+      saveSearch({
+        city: '',
+        checkIn: fewDaysLater,
+        checkOut: endTripDate,
+        occupants: { adults: 1, children: 0, dogs: 1 },
+      })
+    );
+  }
 
   return (
     <div className="homepage">
@@ -312,7 +320,7 @@ const HomePage: FC<Props> = ({
         </div>
 
         <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
-        <Grid container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
+        <Grid onClick={() => fillSearchBar()} container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
           {(sanFrancisco && sanFrancisco.property) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
@@ -333,7 +341,7 @@ const HomePage: FC<Props> = ({
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
           } 
-
+{/*
           {(sanFrancisco && sanFrancisco.property) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
@@ -353,10 +361,9 @@ const HomePage: FC<Props> = ({
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
-          } 
+          } */}
 
 
-          {/* TODO: uncomment for production
           {(losAngeles && losAngeles.property) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
@@ -367,17 +374,17 @@ const HomePage: FC<Props> = ({
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={2} /></Grid>
           }  
 
-          {(palmSprings && palmSprings.property) ?
+          {(losAngeles2 && losAngeles2.property) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
-              <ListingCardSquare 
-                key={3}
-                {...palmSprings.property}
+              <ListingCardSquare
+                key={2}
+                {...losAngeles2.property}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={3} /></Grid>
           }  
 
-          */}
+          
         </Grid>
 
         </Box>
