@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FC } from "react";
-import { CSSObject, IconButton } from "@mui/material";
+import { CSSObject, IconButton, Box } from "@mui/material";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -195,17 +195,11 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
         </div>
       </div>
       <div className="footer-wrapper">
-        <div className="footer-wrapper-year">
-          © 2022 Romingo, Inc.
-        </div>
-        <div className="footer-wrapper-last-sections">
-          <Link href="/">
-            Privacy policy
-          </Link>
-          <Link href="/">
-            Terms & Conditions
-          </Link>
-        </div>
+        <Box sx={{ ml: '1.5em', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <div className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
+          <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
+          <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
+        </Box>
       </div>
     </div>
   );

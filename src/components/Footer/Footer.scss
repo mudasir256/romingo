@@ -1,6 +1,6 @@
 .footer {
   background: white;
-  padding-top: 86px;
+  padding-top: 4em;
 
   .footer-wrapper {
     max-width: 1560px;
@@ -21,8 +21,8 @@
     }
 
     &:first-child {
-      padding-bottom: 76px;
-      margin-bottom: 40px;
+      padding-bottom: 2em;
+      margin-bottom: 2em;
       border-bottom: 1px solid #949494;
       @media screen and (max-width: 850px) {
         flex-direction: column;
@@ -31,14 +31,14 @@
     &:last-child {
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 75px;
+      margin-bottom: 1em;
 
       @media screen and (max-width: 850px) {
         flex-direction: column;
       }
 
       a {
-        font-size: 16px;
+        font-size: 1em;
         line-height: 33px;
         color: black;
         font-family: "overpass-light";
@@ -51,7 +51,7 @@
 
     &-logo-section {
       margin-left: 2em;
-      margin-right: 1em;
+      margin-right: 2.5em;
 
       @media screen and (max-width: 850px) {
         margin-right: 0px;
@@ -62,7 +62,7 @@
         padding-right: 20px;
         width: 200px;
         height: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 1em;
       }
 
       &-text {
@@ -86,7 +86,7 @@
     }
 
     .site-map-section {
-      margin-right: 40px;
+      margin-right: 4em;
  
 
       @media screen and (max-width: 1350px) {
@@ -97,7 +97,7 @@
       }
       &-header {
         font-family: "overpass-light";
-        font-size: 1.5em;
+        font-size: 1.25em;
         line-height: 1.5em;
         color: black;
         margin-bottom: 0.75em;
@@ -105,7 +105,7 @@
       a {
         text-decoration: none;
         font-family: "overpass-light";
-        font-size: 1em;
+        font-size: 0.75em;
         line-height: 33px;
         color: black;
       }
@@ -121,7 +121,7 @@
 
       &-header {
         font-family: "overpass-light";
-        font-size: 1.5em;
+        font-size: 1.25em;
         line-height: 1.5em;
         color: black;
         margin-bottom: 0.75em;
@@ -131,7 +131,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        margin-bottom: 31px;
+        margin-bottom: 1.25em;
 
         input {
           width: 240px;

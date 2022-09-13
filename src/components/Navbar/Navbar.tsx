@@ -76,7 +76,7 @@ const Navbar: FC<Props> = ({ sx }) => {
   const path = history.location.pathname
 
   const linkStyle = {
-    padding: ".5rem 1rem",
+    padding: ".25rem 1rem",
     borderRadius: "6px",
     mr: ".75rem",
     textDecoration: "none",
@@ -104,7 +104,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              minHeight: { xs: "56px", sm: "100px" },
+              minHeight: { xs: "56px", sm: "84px" },
             }}
           >
             <Hidden lgDown>
