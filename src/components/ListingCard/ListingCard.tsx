@@ -363,13 +363,10 @@ const ListingCard: FC<ListingCardProps> = ({
                 <HotelDescriptors />
               </Box>
 
-              <Box
-                sx={{
-                  display: { xs: "none", sm: 'block' },
-                  mt: 'auto',
-                }}
-              >
-
+              <Box sx={{
+                display: { xs: 'none', sm: 'block' },
+                my: 'auto'
+              }}>
                 <Typography sx={{        
                    fontFamily: "overpass-light",
                    color: '#036A6E', 
@@ -377,6 +374,14 @@ const ListingCard: FC<ListingCardProps> = ({
                  }}>
                    Reserve now, pay later.
                  </Typography>
+               </Box>
+
+              <Box
+                sx={{
+                  display: { xs: "none", sm: 'block' },
+                  mt: 'auto',
+                }}
+              >
 
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                   <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
@@ -400,6 +405,21 @@ const ListingCard: FC<ListingCardProps> = ({
               </Box>
 
             </Grid>
+
+            <Box sx={{  
+                my: 'auto',
+                mt: '0.25em',
+                ml: '0.75em',
+            }}>
+              <Typography sx={{        
+                 fontFamily: "overpass-light",
+                 color: '#036A6E', 
+                 fontSize: '0.9em',
+               }}>
+                 Reserve now, pay later.
+               </Typography>
+             </Box>
+
             <Grid
               item
               xs={12}
@@ -410,7 +430,7 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: { sm: "column", xs: "row" },
-                minHeight: { xs: 60, sm: 140 },
+                minHeight: { xs: 54, sm: 140 },
                 p: {
                   xs: "0rem .5rem",
                   sm: ".5rem .5rem 0rem 1rem",
@@ -421,6 +441,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 textAlign: { xs: "left", md: "right" },
               }}
             >
+          
               <Box
                 sx={{
                   display: { xs: "block", sm: 'none' },
@@ -430,15 +451,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 }}
               >
                {/*<HotelDescriptors />*/}
-      
-                <Typography sx={{        
-                   fontFamily: "overpass-light",
-                   color: '#036A6E', 
-                   fontSize: '0.9em',
-                   mb: '0.25em',
-                 }}>
-                   Reserve now, pay later.
-                 </Typography>
+    
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                   <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
                   <span style={{ marginBottom: '0.2em', marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
