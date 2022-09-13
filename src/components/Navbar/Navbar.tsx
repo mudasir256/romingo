@@ -115,7 +115,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     sx={linkStyle}
                   >
                     <div
-                      style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                      style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                     >
                       About us
                     </div>
@@ -270,7 +270,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               >
                 {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
                 <div
-                  style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                  style={{ marginRight: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                 >
                   List Your Property
                 </div>
