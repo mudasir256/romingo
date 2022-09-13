@@ -23,6 +23,7 @@ import nearby from "./cities";
 import featured from "./featured";
 import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
+import ListingCardSquare from "../../components/MobileListingsCardHome";
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
@@ -36,8 +37,6 @@ import LogoImgWhite from '../../assets/images/logo-white.png';
 import LowestRates from '../../assets/images/icon-01.png';
 import ZeroPetFees from '../../assets/images/icon-02.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
-
-
 
 
 import {
@@ -259,6 +258,9 @@ const HomePage: FC<Props> = ({
     };
   }, []);
 
+  console.log(sanDiego)
+
+
   return (
     <div className="homepage">
       <ScrollToTop />
@@ -309,47 +311,73 @@ const HomePage: FC<Props> = ({
           Travel with Romingo
         </div>
 
-        <Box sx={{ maxWidth: '1300px', mx: 'auto' }}>
+        <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
         <Grid container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
           {(sanFrancisco && sanFrancisco.property) ?
-            <Grid item xs={12} sm={12} md={6}>
-              <ListingCard
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <ListingCardSquare
                 key={0}
                 {...sanFrancisco.property}
+                name={'Hilton San Francisco'}
                 highlighted={false}
               />
-            </Grid>: <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={0} /></Grid>
+            </Grid>: <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={0} /></Grid>
           }  
 
           {(sanDiego && sanDiego.property) ?
-            <Grid item xs={12} sm={12} md={6}>
-              <ListingCard
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <ListingCardSquare
                 key={1}
                 {...sanDiego.property}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={1} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
+          } 
+
+          {(sanFrancisco && sanFrancisco.property) ?
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <ListingCardSquare
+                key={0}
+                {...sanFrancisco.property}
+                name={'Hilton San Francisco'}
+                highlighted={false}
+              />
+            </Grid>: <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={0} /></Grid>
           }  
 
+          {(sanDiego && sanDiego.property) ?
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <ListingCardSquare
+                key={1}
+                {...sanDiego.property}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
+          } 
+
+
+          {/* TODO: uncomment for production
           {(losAngeles && losAngeles.property) ?
-            <Grid item xs={12} sm={12} md={6}>
-              <ListingCard
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <ListingCardSquare
                 key={2}
                 {...losAngeles.property}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={2} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={2} /></Grid>
           }  
 
           {(palmSprings && palmSprings.property) ?
-            <Grid item xs={12} sm={12} md={6}>
-              <ListingCard
+            <Grid item xs={12} sm={12} md={6} lg={3}>
+              <ListingCardSquare 
                 key={3}
                 {...palmSprings.property}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6}><ListingCardSkeleton key={3} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={3} /></Grid>
           }  
+
+          */}
         </Grid>
 
         </Box>
