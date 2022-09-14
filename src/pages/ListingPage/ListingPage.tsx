@@ -224,7 +224,7 @@ const ListingPage: FC<Props> = () => {
       top: 'auto',
       borderTopLeftRadius: "24px",
       borderTopRightRadius: "24px",
-      height: 5,
+      height: 24,
     },
     preview: {
       y: (-2 * height) / 5,
@@ -240,7 +240,7 @@ const ListingPage: FC<Props> = () => {
     },
   };
   const triggerVariants = {
-    collapsed: { height: 4, marginBottom: "24px" },
+    collapsed: { height: 4, marginBottom: "32px" },
     preview: { height: 4, marginBottom: "24px" },
     expanded: { height: 0, marginBottom: "35px" },
   };
@@ -349,6 +349,9 @@ const ListingPage: FC<Props> = () => {
   return (
     <>
       <ScrollToTop />
+      <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
+        <Navbar />
+      </Box>
       <Box
         sx={{
           position: { xs: "fixed", md: "relative" },
@@ -396,10 +399,9 @@ const ListingPage: FC<Props> = () => {
             }}
           />
         </Link> */}
-        <Hidden mdDown><Navbar /></Hidden>
 
         <Hidden mdUp>
-          <Box sx={{ mt: ".75rem" }}>
+          <Box sx={{ mt: animate === 'expanded' ? "0.75em" : '4em' }}>
             <FilterBar />
           </Box>
         </Hidden>
@@ -697,6 +699,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     <Grid
      className="alignCenter"
       sx={{
+        mt: { xs :'1em', sm: '1em', md: '0em' },
         pb: size === "small" ? 0 : "1rem",
         textAlign: "right",
         display: "flex",

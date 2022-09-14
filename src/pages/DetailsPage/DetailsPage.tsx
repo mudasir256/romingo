@@ -109,7 +109,7 @@ import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import Footer from "../../components/Footer";
 import RomingoScore from "../../components/RomingoScore";
 import Navbar from "../../components/Navbar";
-
+import HotelTags from '../../components/HotelTags';
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -176,6 +176,7 @@ interface Props {
   rooms: RoomInfo[];
   match: any;
   googlePlaceId: string;
+  allows_big_dogs: number;
 }
 
 const isIdPage = (path:string) => {
@@ -238,7 +239,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [neighborhood, setNeighborhood] = useState("");
   const [nearby, setNearby] = useState([]);
-
+  const [allowsBigDogs, setAllowsBigDogs] = useState(0);
   const [rooms, setRooms] = useState<RoomInfo[]>([]);
   const [accessibleRooms, setAccessibleRooms] = useState<RoomInfo[]>([]);
 
@@ -288,6 +289,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
       setCity({ ...data.property.city });
       setNeighborhood(data.property.neighborhood);
+      setAllowsBigDogs(data.property.allows_big_dogs);
 
       let tmp: any[] = [];
       data.property.imageURLs.map((image: string) => {
@@ -475,7 +477,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {" "}
         {/* fcf5f0 */}
         <ScrollToTop />
-        <Hidden mdDown><Navbar /></Hidden>
+        <Navbar />
         {!loading && data && (
           <Box
             component="img"
@@ -1304,6 +1306,20 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >
                   {location.address}, {city?.name}
                 </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    letterSpacing: ".015rem",
+                    fontSize: "1rem",
+                    fontFamily: "Roboto",
+                    fontWeight: 400,
+                    color: "#999",
+                    mt: ".25rem",
+                  }}
+                >
+                  {neighborhood}
+                </Typography>
+
 
                 <Box
                   sx={{
@@ -1312,24 +1328,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     alignItems: "center",
                     my: "1rem",
                   }}
-                >
-                  <Chip icon={<LocationCityIcon />} label={neighborhood} />
-                  {!!data?.property?.petFeePolicy?.totalFees &&
-                    data.property.petFeePolicy.totalFees !== -1 && (
-                      <Chip
-                        icon={<LocalOffer sx={{ fontSize: "100%" }} />}
-                        color="success"
-                        sx={{
-                          backgroundColor: "#5b8d3e",
-                          color: "#fff",
-                          ml: 0.5,
-                          width: '150px'
-                        }}
-                        label={`Save $${Math.round(
-                          data.property.petFeePolicy.totalFees
-                        )} on pet fees`}
-                      />
-                    )}
+                >                 
+                  <HotelTags petFeePolicy={data?.property?.petFeePolicy} allows_big_dogs={allowsBigDogs} />
                 </Box>
 
                 {/* <Box
@@ -1525,7 +1525,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       position: "absolute",
                       width: 35,
                       height: 35,
-                      top: 15,
+                      top: 70,
                       left: 15,
                     }}
                   >
