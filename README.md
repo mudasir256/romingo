@@ -76,7 +76,6 @@ A quick look at the top-level files and directories included with this template.
     ├── src
     ├── .env
     ├── .gitignore
-    ├── LICENSE
     ├── package.json
     ├── yarn.lock
     └── README.md
