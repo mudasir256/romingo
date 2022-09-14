@@ -286,26 +286,22 @@ const HomePage: FC<Props> = ({
           <div className="align-center">
             <img src={LowestRates} alt="lowest rates" />
           </div>
-          <div className="info-box-title">Truly pet-friendly</div>
-          <div className="info-box-desc">
-            Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
-          </div>
+          <div className="info-box-title">Your favorite hotels</div>
+          <div className="info-box-desc">Explore hundreds of our pet-friendly hotel partners such as Hilton, Hyatt, IHG, and more.</div>
         </Box>
         <Box className="info-box">
           <div className="align-center">
             <img src={ZeroPetFees}  alt="no pet fees" />
           </div>
-          <div className="info-box-title">$0 Pet Fees</div>
-          <div className="info-box-desc">Romingo negotiates $0 hotel pet fees on your behalf, you will never pay a pet fee with Romingo!</div>
+          <div className="info-box-title">$0 pet fees</div>
+          <div className="info-box-desc">Book the lowest hotel rates with Romingo, and never pay hotel pet fees again!</div>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}} >
           <div className="align-center">
             <img src={AuthenticPet} alt="authentic pet" />
           </div>
-          <div className="info-box-title">All breeds & weights welcome</div>
-          <div className="info-box-desc">
-            Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
-          </div>
+          <div className="info-box-title">Truly pet-friendly</div>
+          <div className="info-box-desc">Our hotel partners provide a warm, welcoming, and enjoyable travel experience for you and your pet.</div>
         </Box>
         </Box>
       </Box>

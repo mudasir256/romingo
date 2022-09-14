@@ -294,6 +294,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
   };
 
   const labelStyle = {
+    fontFamily: 'overpass-light',
     fontSize: '0.75em', 
     fontWeight: 100, 
     ml: '0.1em',
@@ -369,25 +370,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   return option.name;
                 }}
                 renderOption={(props, option: any) => (
-                  <li {...props} style={{ paddingLeft: 10 }}>
-                    <Box
-                      sx={{
-                        width: "60px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-
-                      }}
-                    >
-                      <img
-                        src={`/images/location-icons/${option?.name
-                          .substring(0, option.name.indexOf(","))
-                          .toLowerCase()
-                          .replace(/ /g, "_")}.svg`}
-                        height="25px"
-                        style={{ marginRight: "10px" }}
-                      />
-                    </Box>
+                  <li {...props} style={{ paddingLeft: 10, fontFamily: 'overpass-light', fontSize: '0.8em', marginLeft: '0.75em' }}>
                       {option.name}
                   </li>
                 )}
@@ -399,7 +382,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   }
                 }}
                 fullWidth
-                sx={{ fontFamily: "Montserrat", }}
+                sx={{ fontFamily: "overpass-light", }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -594,7 +577,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           size="medium"
           sx={{
             textTransform: "none",
-            fontFamily: "sansita-light",
+            fontFamily: "overpass-light",
             m: '0.75em',
             p: '1.5em',
             height: '44px',

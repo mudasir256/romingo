@@ -253,24 +253,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     return option.name;
                   }}
                   renderOption={(props, option: any) => (
-                    <li {...props} style={{ paddingLeft: 10, fontFamily: 'overpass-light' }}>
-                      <Box
-                        sx={{
-                          width: "55px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <img
-                          src={`/images/location-icons/${option?.name
-                            .substring(0, option.name.indexOf(","))
-                            .toLowerCase()
-                            .replace(/ /g, "_")}.svg`}
-                          height="25px"
-                          style={{ marginRight: "10px" }}
-                        />
-                      </Box>
+                    <li {...props} style={{ paddingLeft: 10, fontFamily: 'overpass-light', fontSize: '0.8em', marginLeft: '0.75em' }}>
                       {option.name}
                     </li>
                   )}
