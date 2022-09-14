@@ -36,3 +36,12 @@ body,
 html {
   font-family: "overpass-light", sans-serif;
 }
+
+.MuiAutocomplete-groupUl {
+  border-top: 1px dotted gray;
+}
+
+
+.MuiAutocomplete-groupUl li {
+  color: #009CA1 !important;
+}
