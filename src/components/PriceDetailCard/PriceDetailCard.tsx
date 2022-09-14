@@ -244,7 +244,8 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             </Box>
           );
         } else if (detail.label === "Pay now") {
-          return (
+          return (<></>)
+            /*
             <Box
               key={i}
               sx={{
@@ -282,7 +283,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 {`${dollarUSLocale.format(detail?.price)}`}
               </Typography>
             </Box>
-          );
+            */
         } else if (detail.label === "Taxes & fees") {
           return (
             <Box

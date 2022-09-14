@@ -866,11 +866,7 @@ const CheckoutInformation: FC<Props> = ({
                         upon arrival.
                       </li>
                       <li>
-                        Your card will be charged{" "}
-                        <span style={{ fontWeight: "bold" }}>
-                          ${price.toFixed(2)}
-                        </span>
-                        {payLater ? " three (3) days before check-in." : "."}
+                        Hotel will collect payment from guests directly upon check-in.
                       </li>
                     </ul>
                   </Typography>
