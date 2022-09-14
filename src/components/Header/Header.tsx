@@ -22,6 +22,7 @@ import {
   Hidden,
   Container,
 } from "@mui/material";
+
 import {
   RemoveCircleOutline,
   AddCircleOutline,
@@ -362,7 +363,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   }
                   return a.state.name > b.state.name ? 1 : -1;
                 })}
-                groupBy={(o) => o.state.name}
+                groupBy={(o) => o.state.name}         
                 disableClearable
                 blurOnSelect="touch"
                 value={getCity(selectedCity) || null}
@@ -382,7 +383,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   }
                 }}
                 fullWidth
-                sx={{ fontFamily: "overpass-light", }}
+                sx={{ 
+                  fontFamily: "overpass-light",
+                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
