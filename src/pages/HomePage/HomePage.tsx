@@ -286,7 +286,7 @@ const HomePage: FC<Props> = ({
           <div className="align-center">
             <img src={LowestRates} alt="lowest rates" />
           </div>
-          <div className="info-box-title">Lowest Rates</div>
+          <div className="info-box-title">Truly pet-friendly</div>
           <div className="info-box-desc">
             Our hotel partners provide a unique pet-friendly experience by warmly welcoming you and your pet.
           </div>
@@ -302,7 +302,7 @@ const HomePage: FC<Props> = ({
           <div className="align-center">
             <img src={AuthenticPet} alt="authentic pet" />
           </div>
-          <div className="info-box-title">Authentic Pet</div>
+          <div className="info-box-title">All breeds & weights welcome</div>
           <div className="info-box-desc">
             Say goodbye to weight or breed restrictions. Romingo hotels allow all pet weights and breeds!
           </div>
@@ -341,28 +341,6 @@ const HomePage: FC<Props> = ({
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
           } 
-{/*
-          {(sanFrancisco && sanFrancisco.property) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
-              <ListingCardSquare
-                key={0}
-                {...sanFrancisco.property}
-                name={'Hilton San Francisco'}
-                highlighted={false}
-              />
-            </Grid>: <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={0} /></Grid>
-          }  
-
-          {(sanDiego && sanDiego.property) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
-              <ListingCardSquare
-                key={1}
-                {...sanDiego.property}
-                highlighted={false}
-              />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
-          } */}
-
 
           {(losAngeles && losAngeles.property) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
