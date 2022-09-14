@@ -104,3 +104,5 @@ A quick look at the top-level files and directories included with this template.
 ---
 
 cloudbuild-dev.yaml is set to automatically deploy to dev.romingo.com when dev branch is pushed to. This is configured in GCP "Cloud Build"
+
+cloudbuild-prod.yaml is set to automatically deploy to PRODUCTION. This is configured in GCP "Cloud Build"
