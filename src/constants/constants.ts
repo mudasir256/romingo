@@ -61,6 +61,13 @@ const GetHotelBySearch = `
         alias
         page_rank
         allows_big_dogs
+        amenities {
+          code
+          desc
+          value
+          accessible
+          free
+        }
       }
     }
   `;
