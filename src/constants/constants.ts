@@ -133,6 +133,12 @@ const GetHotelRackBySearch = `
           breakup
           totalFees
         }
+        amenities {
+          code
+          desc
+          value
+          free
+        }
       }
     }
   `;

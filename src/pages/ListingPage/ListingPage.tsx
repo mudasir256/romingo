@@ -822,6 +822,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
 
+      {/*
       <FormControl>
       <InputLabel id="mutiple-select-label">Multiple Select</InputLabel>
       <Select
@@ -861,8 +862,9 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           </MenuItem>
         ))}
       </Select>
-    </FormControl>
 
+    </FormControl>
+    */}
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  
       <Typography
