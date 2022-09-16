@@ -263,7 +263,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       return (
                         [
                           <ListSubheader key={group[0].state.name} sx={{ color: '#009CA1', fontFamily: 'sansita-light', fontSize: '1.25em', letterSpacing: '0.5px' }}>{group[0].state.name}</ListSubheader>,
-                          <Box key={index} sx={{ pl: '0.8em', pr: '4em', pb: '1em' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
                           ...menuItems
                         ]
                       )
