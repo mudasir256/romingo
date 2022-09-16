@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router";
 import HomePage from "./pages/HomePage";
 import ListingPage from "./pages/ListingPage";
 import DetailsPage from "./pages/DetailsPage";
+import DetailPagev2 from "./pages/DetailPage-v2";
 import CheckoutPage from "./pages/CheckoutPage";
 import LosAngeles from "./pages/Cities/LosAngeles";
 import SanDiego from "./pages/Cities/SanDiego";

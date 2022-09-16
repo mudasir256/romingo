@@ -1,3 +1,21 @@
+const formatChildren = function (occupants) {
+  if (occupants.childrenAge) {
+    return occupants.childrenAge.map((x: number) => {
+      if (x === 0) {
+        return {
+          age: 1,
+        };
+      }
+      return {
+        age: x,
+      };
+    })
+  } else {
+    return []
+  }
+
+}
+
 const getDateTime = function (isoString) {
   var date = new Date(isoString);
   var year = date.getFullYear();
@@ -89,4 +107,5 @@ export const utils = {
   getFormatDate,
   getDateFull,
   meterToMile,
+  formatChildren,
 };

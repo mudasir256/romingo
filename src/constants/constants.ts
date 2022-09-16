@@ -373,6 +373,127 @@ const GetStripeClientSecret = `
   }
 `;
 
+const GetPropertyDetails = `
+  query GetPropertyDetailInput($alias: String!) {
+    getPropertyDetails(input: { alias: $alias }) {
+      addressLine1        
+      alias          
+      city {
+        id
+        name
+        state {
+          id
+          code
+          name
+          country {
+            id
+            name
+          }
+        }
+      }    
+      checkoutPagePromoText
+      desc              
+      detailsPagePromoText 
+      dogAmenities    
+      featuredImageURL 
+      googlePlaceId      
+      id             
+      imageURLs      
+      name             
+      romingoScore
+      listingsPagePromoText
+      page_rank          
+      allows_big_dogs
+      hotelEmail    
+      hotelAlternativeEmail
+      sabreId
+      zipCode
+      lowestAveragePrice
+    }
+  }
+`
+
+const GetSabreRoomReservations = `
+  query GetAvailableRoomsInput(
+    $alias: String!,
+    $adults: Int!,
+    $checkIn: Date!,
+    $checkOut: Date!,
+    $children: [ChildInput!]!,
+    $dogs: Int!
+  ) {
+    getSabreRoomReservationAvailabilty(
+      input: {
+        alias: $alias,
+        adults: $adults,
+        children: $children,
+        checkIn: $checkIn,
+        checkOut: $checkOut,
+        dogs: $dogs,
+      }
+    ) {
+      id
+      sabreId
+      alias
+      name
+      rooms {
+        type
+        nonSmoking
+        romingoMatch
+        areaInSquareFeet
+        featuredImageURL
+        imageURLs
+        name
+        beds {
+          code
+          desc
+          count
+        }
+        desc
+        amenities {
+          code
+          desc
+          value
+          accessible
+          free
+        }
+        maxOccupants
+        priceKey
+        breakfastIncluded
+        lunchIncluded
+        dinnerIncluded
+        averagePrice
+        totalPrice
+        averagePriceAfterTax
+        totalPriceAfterTax
+        feesIncluded
+        fees {
+          amount
+          desc
+        }
+        totalFees
+        cancelationPolicy {
+          cancelable
+          deadlineLocal
+          deadlineUnit
+          deadlineMultiplier
+          deadlineReference
+          desc
+        }
+      }
+      petFeePolicy {
+        maxPets
+        maxWeightPerPetInLBS
+        desc
+        perPet
+        perNight
+        breakup
+        totalFees
+      }
+    }
+  }
+`
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -383,4 +504,6 @@ export {
   CreateBooking,
   CreateBooking2,
   GetStripeClientSecret,
+  GetPropertyDetails,
+  GetSabreRoomReservations,
 };
