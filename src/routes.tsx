@@ -51,7 +51,7 @@ const routes: RouteInterface[] = [
   },
   {
     path: "/hotel/:alias",
-    component: DetailsPage,
+    component: DetailPagev2,
     requireAuth: false,
   },
   {

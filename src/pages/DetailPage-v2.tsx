@@ -10,9 +10,12 @@ import {
 } from "@mui/material";
 
 import Loader from '../components/UI/Loader';
+import ViewPhotos from '../components/UI/ViewPhotos';
+
 import RomingoScore from "../components/RomingoScore";
 import Navbar from "../components/Navbar";
 import HotelTags from '../components/HotelTags';
+
 
 const DetailsPagev2: any = ({ ...props }) => {
   const hotelId = props?.match?.params?.id || "undefined";
@@ -118,10 +121,13 @@ const DetailsPagev2: any = ({ ...props }) => {
           <Grid item container sx={{ flexDirection: 'row',  display: { xs: 'none', sm: 'flex' } }} sm={6}>
             <HotelImages />
           </Grid>
+          <Box sx={{ display: 'absolute', right: 0, bottom: 0}}>
+            <ViewPhotos onClick={handleOpen} />
+          </Box>
         </Grid>
       }
      
-      
+
 
     </Box>
     </>
