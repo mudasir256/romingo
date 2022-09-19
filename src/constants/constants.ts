@@ -416,7 +416,6 @@ const GetPropertyDetails = `
         perPet
         perNight
         breakup
-        totalFees
       }
     }
   }
