@@ -261,12 +261,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                 <FormControl fullWidth>
                   <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Select a city" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
                     {groups.map((group, index) => {
-                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
+                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
                       return (
                         [
-                          <ListSubheader key={group[0].state.name} sx={{ color: '#009CA1', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0}}>{group[0].state.name}</ListSubheader>,
+                          <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0}}>{group[0].state.name}</ListSubheader>,
+                          <Box key={index} sx={{ pl: '0.9em', pr: '1em', pb: '0.5em' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
                           ...menuItems,
-                          <Box key={index} sx={{ pl: '1em', pr: '1em', pb: '0.5em' }}> <Box sx={{borderBottom: '1px dotted black'}} /></Box>,
                         ]
                       )
                     })}
