@@ -14,6 +14,9 @@ import {
   Skeleton,
   MenuItem,
   Switch,
+  ListItemIcon,
+  Checkbox,
+  ListItemText,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -64,6 +67,7 @@ import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
 import Navbar from "../../components/Navbar";
+import { makeStyles } from "@material-ui/core/styles";
 import "./listing.css";
 const MotionBox = motion(Box);
 
@@ -92,6 +96,7 @@ const ListingPage: FC<Props> = () => {
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
   const [sortBy, setSortBy] = useState<string>("featured");
   const [allowBigDogs, setAllowBigDogs] = useState<number>(0);
+  const [selectedFilter, setSelectedFilter] = useState<any>([]);
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -179,7 +184,10 @@ const ListingPage: FC<Props> = () => {
     return state.hotelListReducer.hotels;
   });
 
+  const [allAmienities, setAllAmenities] = useState(
 
+  )
+  
   const [sorted, setSorted] = useState(
     [...cards].sort((a: any, b: any) =>
       (
@@ -345,6 +353,8 @@ const ListingPage: FC<Props> = () => {
   const date2 = new Date(end).getTime();
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+  console.log(cards)
 
   return (
     <>
@@ -518,7 +528,15 @@ const ListingPage: FC<Props> = () => {
                   minHeight: `${height - 200}px`,
                 }}
               >
-                <SortBar size="small" sortBy={sortBy} bigDog={allowBigDogs} setBigDog={setAllowBigDogs} setSortBy={setSortBy} />
+                <SortBar 
+                  size="small" 
+                  sortBy={sortBy} 
+                  bigDog={allowBigDogs} 
+                  setBigDog={setAllowBigDogs} 
+                  setSortBy={setSortBy}
+                  selectedFilter={selectedFilter}
+                  setSelectedFilter={setSelectedFilter}
+                />
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {!cards.length ? (
                   <>
@@ -610,7 +628,14 @@ const ListingPage: FC<Props> = () => {
               <Hidden mdDown>
                 <DesktopFilterBar />
               </Hidden>
-              <SortBar sortBy={sortBy} bigDog={allowBigDogs} setBigDog={setAllowBigDogs} setSortBy={setSortBy} />
+              <SortBar 
+                sortBy={sortBy} 
+                bigDog={allowBigDogs} 
+                setBigDog={setAllowBigDogs} 
+                setSortBy={setSortBy}
+                selectedFilter={selectedFilter}
+                setSelectedFilter={setSelectedFilter} 
+              />
             </Grid>
 
             {loading ? (
@@ -633,7 +658,7 @@ const ListingPage: FC<Props> = () => {
                     sx={{
                       color: "#222222",
                       fontWeight: 700,
-                      fontFamily: "Montserrat",
+                      fontFamily: "overpass-light",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "flex-start",
@@ -689,11 +714,75 @@ interface SortBarProps {
   size?: string;
   bigDog?: number;
   setBigDog: Dispatcher<SetStateAction<number>>;
+  selectedFilter?: any
+  setSelectedFilter?: any
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog } = props;
-  const history = useHistory()
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter } = props;
+  const history = useHistory();
+
+  const options = [
+    "101 : Wheelchair access",
+    "2016: Rollaway adult",
+    "228: Business center",
+    "233: Tennis court",
+    "259: High speed internet access",
+    "71: Pool",
+    "68: Parking",
+    "77: Room Service",
+  ];
+
+  const MenuProps: any = {
+    PaperProps: {
+      style: {
+        maxHeight: 48 * 4.5 + 8,
+        width: 250
+      }
+    },
+    getContentAnchorEl: null,
+    anchorOrigin: {
+      vertical: "bottom",
+      horizontal: "center"
+    },
+    transformOrigin: {
+      vertical: "top",
+      horizontal: "center"
+    },
+    variant: "menu"
+  };
+
+  const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      width: 300
+    },
+    indeterminateColor: {
+      color: "#f50057"
+    },
+    selectAllText: {
+      fontWeight: 500
+    },
+    selectedAll: {
+      backgroundColor: "rgba(0, 0, 0, 0.08)",
+      "&:hover": {
+        backgroundColor: "rgba(0, 0, 0, 0.08)"
+      }
+    }
+  }));
+
+  const classes = useStyles();
+  const isAllSelected =
+    options.length > 0 && selectedFilter.length === options.length;
+
+  const handleChange = (event: any) => {
+    const value = event.target.value;
+    if (value[value.length - 1] === "all") {
+      setSelectedFilter(selectedFilter.length === options.length ? [] : options);
+      return;
+    }
+    setSelectedFilter(value);
+  };
 
   return (
     <Grid
@@ -717,7 +806,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         style={{
           background: "#fff",
           textAlign: "center",
-          fontFamily: "Montserrat",
+          fontFamily: "overpass-light",
           minWidth: "250px",
           maxHeight: "40px",
           borderRadius: "30px",
@@ -735,6 +824,49 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
 
+      {/*
+      <FormControl>
+      <InputLabel id="mutiple-select-label">Multiple Select</InputLabel>
+      <Select
+        labelId="mutiple-select-label"
+        multiple
+        value={selectedFilter}
+        onChange={handleChange}
+        renderValue={(selected) => selected.join(", ")}
+        MenuProps={MenuProps}
+      >
+        <MenuItem
+          value="all"
+          classes={{
+            root: isAllSelected ? classes.selectedAll : ""
+          }}
+        >
+          <ListItemIcon>
+            <Checkbox
+              classes={{ indeterminate: classes.indeterminateColor }}
+              checked={isAllSelected}
+              indeterminate={
+                selectedFilter.length > 0 && selectedFilter.length < options.length
+              }
+            />
+          </ListItemIcon>
+          <ListItemText
+            classes={{ primary: classes.selectAllText }}
+            primary="Select All"
+          />
+        </MenuItem>
+        {options.map((option: any) => (
+          <MenuItem key={option} value={option}>
+            <ListItemIcon>
+              <Checkbox checked={selectedFilter.indexOf(option) > -1} />
+            </ListItemIcon>
+            <ListItemText primary={option} />
+          </MenuItem>
+        ))}
+      </Select>
+
+    </FormControl>
+    */}
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  
       <Typography
@@ -884,6 +1016,7 @@ const DesktopFilterBar: FC = () => {
           mb: "1rem",
           padding: ".25rem .5rem .25rem .5rem",
           borderRadius: "12px",
+          fontFamily: 'overpass-light'
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -902,26 +1035,19 @@ const DesktopFilterBar: FC = () => {
               return option.name;
             }}
             blurOnSelect="touch"
+            componentsProps={{
+              paper: {
+                style: {
+                  opacity: 1,
+                  backgroundColor: 'white',
+                  fontFamily: 'sansita-light',
+                  padding: '0 1em',
+                }
+              },
+            }}
             renderOption={(props, option: any) => (
-              <li {...props} style={{ paddingLeft: 8 }}>
-                <Box
-                  sx={{
-                    width: "35px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src={`/images/location-icons/${option?.name
-                      .substring(0, option.name.indexOf(","))
-                      .toLowerCase()
-                      .replace(/ /g, "_")}.svg`}
-                    height="15px"
-                    style={{ marginRight: "2px" }}
-                  />
-                </Box>
-                {option.name}
+              <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
+                  {option.name}
               </li>
             )}
             // eslint-disable-next-line
@@ -952,9 +1078,10 @@ const DesktopFilterBar: FC = () => {
                   },
                   input: {
                     padding: "0px",
-                    fontSize: "12px",
+                    fontSize: "0.9em",
                     fontWeight: 600,
-                    fontFamily: "Montserrat",
+                    fontFamily: "overpass-light"
+                    ,
                     cursor: "pointer",
                     color: "primary.main",
                     border: "none",
@@ -966,7 +1093,7 @@ const DesktopFilterBar: FC = () => {
         </Box>
         <Box
           sx={{
-            fontFamily: "Roboto",
+            fontFamily: "overpass-light",
             fontSize: "12px",
             fontWeight: 400,
             display: "flex",
@@ -1001,10 +1128,10 @@ const DesktopFilterBar: FC = () => {
                 >
                   <Typography
                     sx={{
-                      fontFamily: "Montserrat",
+                      fontFamily: "overpass-light",
                       textTransform: "none",
                       fontWeight: 600,
-                      fontSize: { xs: "13px" },
+                      fontSize: '1em',
                     }}
                   >
                     {checkDate[0]
@@ -1306,3 +1433,7 @@ const NumberInput: FC<NumberInputProps> = ({
 };
 
 export default ListingPage;
+function useStyles() {
+  throw new Error("Function not implemented.");
+}
+

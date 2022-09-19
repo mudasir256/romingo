@@ -37,11 +37,22 @@ html {
   font-family: "overpass-light", sans-serif;
 }
 
+.overpass {
+  font-family: "overpass-light" !important;
+}
+
+.MuiAutocomplete-groupLabel {
+  font-family: 'sansita-light';
+  padding: 0;
+}
+
 .MuiAutocomplete-groupUl {
   border-top: 1px solid gray;
+  //padding: 0 1em;
+  //font-family: 'sansita-light' !important;
 }
 
 
 .MuiAutocomplete-groupUl li {
-  color: #009CA1 !important;
+  //color: #009CA1 !important;
 }

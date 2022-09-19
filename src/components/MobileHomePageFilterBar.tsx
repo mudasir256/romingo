@@ -20,7 +20,9 @@ import {
   Popover,
   Hidden,
   Container,
+  ListSubheader,
 } from "@mui/material";
+
 import {
   RemoveCircleOutline,
   AddCircleOutline,
@@ -45,16 +47,16 @@ import { useMeasure } from "react-use";
 
 interface FilterBarProps {
   sx?: CSSObject;
-  zoomed?: boolean;
   home?: boolean;
   city?: string;
+  onSearch?: any;
 }
 
-const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
+const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch }) => {
   const [open, setOpen] = useState(false);
+  const [selectCityOpen, setSelectedCityOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
-  const [zoomIn, setZoomIn] = useState(zoomed);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const [selectedCity, setSelectedCity] = useState(
@@ -74,8 +76,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       : { adults: 2, children: 0, dogs: 1 }
   );
   const history = useHistory();
-  const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
-  const below900 = useMediaQuery("(max-width:900px)");
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -119,13 +119,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-
     if (
       occupants.adults !== 0 &&
       selectedCity &&
       checkDate[0] &&
       checkDate[1]
     ) {
+
+      if (onSearch) {
+        onSearch(selectedCity, checkDate[0], checkDate[1], occupants)
+        return
+      }
+
       setFormError("");
       dispatch(
         saveSearch({
@@ -166,23 +171,46 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
     }
   };
 
+  const handleCityClick = (cityId: string) => {
+    setSelectedCity(cityId)
+  }
+
+  function groupCities(collection: any) {
+      let i = 0, val, index;
+      const values = [], result = [];
+
+
+      for (; i < collection.length; i++) {
+          val = collection[i]['state']['name'];
+          index = values.indexOf(val);
+          if (index > -1)
+              result[index].push(collection[i]);
+          else {
+              values.push(val);
+              result.push([collection[i]]);
+          }
+      }
+      return result;
+  }
+  const groups = groupCities(cities);
+
   return (
     <>
       <Box
         sx={{
-          position: "absolute",
+          position: (home ? "absolute" : 'block'),
           zIndex: 2,
           margin: "0px auto 0px auto",
           paddingTop: "0.1em",
           paddingBottom: "12px",
-          width: "100vw",
+          width: (home ? "100vw" : '85vw'),
           backgroundColor: 'transparent',
         }}
       >
         <Box
           sx={{
             display: "flex",
-            padding: ".5rem 1.70rem",
+            padding: (home ? ".5rem 1.70rem" : '0.5em'),
             flexDirection: "column",
             alignItems: "center",
             mb: ".5rem",
@@ -228,89 +256,25 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   <LocationCity sx={{ height: "24px", color: "#666" }} />
                 )}
               </Grid>
-              <Grid
-                item
-                xs={11}
-                sx={{
-                  marginRight: "auto",
-                  pl: ".5rem",
-                  pr: ".5rem",
-                }}
-              >
-                <Autocomplete
-                  disableClearable
-                  options={cities.sort(function (a: any, b: any) {
-                    if (a.state.name === b.state.name) {
-                      // Price is only important when cities are the same
-                      return b.name - a.name;
-                    }
-                    return a.state.name > b.state.name ? 1 : -1;
-                  })}
-                  blurOnSelect="touch"
-                  groupBy={(o) => o.state.name}
-                  value={getCity(selectedCity) || null}
-                  getOptionLabel={(option: any) => {
-                    return option.name;
-                  }}
-                  renderOption={(props, option: any) => (
-                    <li {...props} style={{ paddingLeft: 10, fontFamily: 'overpass-light', fontSize: '0.8em', marginLeft: '0.75em' }}>
-                      {option.name}
-                    </li>
-                  )}
-                  // eslint-disable-next-line
-                  onChange={(e, values: any) => {
-                    if (values) {
-                      setFormError("");
-                      setSelectedCity(values.id);
-                    }
-                  }}
-                  sx={{
-                    fontFamily: "overpass-light",
-                    width: "100%",
-                    margin: "0px auto 0px 0px ",
-                    fontSize: "14px",
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      color="primary"
-                      variant="outlined"
-                      placeholder="Select a city"
-                      size="small"
-
-                      sx={{
-                        "& .MuiOutlinedInput-root": {
-                          color: "#444",
-                          "& fieldset": {
-                            borderColor: "transparent",
-                          },
-                          "&:hover fieldset": {
-                            borderColor: "transparent",
-                          },
-                          "&.Mui-focused fieldset": {
-                            borderColor: "transparent",
-                          },
-                        },
-                        input: {
-                          padding: "0px",
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          fontFamily: "overpass-light",
-                          cursor: "pointer",
-                          color: "#444",
-                          border: "none",
-                          "&::placeholder": {
-                            textOverflow: "ellipsis !important",
-                            color: "#666",
-                            opacity: 1,
-                            fontWeight: 600,
-                          },
-                        },
-                      }}
-                    />
-                  )}
-                />
+             
+              <Grid item xs={11} sx={{ zIndex: 50 }}>
+                <FormControl fullWidth>
+                  <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Select a city" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
+                    {groups.map((group, index) => {
+                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
+                      return (
+                        [
+                          <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0}}>{group[0].state.name}</ListSubheader>,
+                          <Box key={index} sx={{ pl: '0.9em', pr: '1em', pb: '0.5em' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
+                          ...menuItems,
+                        ]
+                      )
+                    })}
+                  </Select>
+                </FormControl>
               </Grid>
+
+
             </Grid>
           </Box>
           <Box

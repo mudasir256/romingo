@@ -370,8 +370,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 getOptionLabel={(option: any) => {
                   return option.name;
                 }}
+                componentsProps={{
+                  paper: {
+                    style: {
+                      opacity: 1,
+                      backgroundColor: 'white',
+                      fontFamily: 'sansita-light',
+                      padding: '0 1em',
+                    }
+                  },
+                }}
                 renderOption={(props, option: any) => (
-                  <li {...props} style={{ paddingLeft: 10, fontFamily: 'overpass-light', fontSize: '0.8em', marginLeft: '0.75em' }}>
+                  <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
                       {option.name}
                   </li>
                 )}
@@ -383,9 +393,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                   }
                 }}
                 fullWidth
-                sx={{ 
-                  fontFamily: "overpass-light",
-                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}

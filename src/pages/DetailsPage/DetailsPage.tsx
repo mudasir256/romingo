@@ -98,7 +98,7 @@ import FilterBar from "../../components/FilterBar";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
-import { GetHotelDetail } from "../../constants/constants";
+import { GetHotelDetail, GetPropertyDetails, GetSabreRoomReservations } from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
 import { useWindowSize } from "react-use";
@@ -134,57 +134,14 @@ type Libraries = (
 
 const libraries: Libraries = ["places"];
 
-interface Props {
-  name: string;
-  location: {
-    lat: string;
-    lon: string;
-    address: string;
-  };
-  mainImg: string;
-  gallery: string[];
-  score: number;
-  defaultDescription: string;
-  detailsPagePromoText: string;
-  checkoutPagePromoText: string;
-  cancellation?: boolean;
-  cancelPenalty?: {
-    refundable: boolean;
-    deadline: { absoluteDeadline: Date };
-    amountPercent: { amount: number; currencyCode: string };
-  }[];
-  dogAmenitiesTitle: string;
-  roomList: {
-    value: number;
-    description: string;
-  }[];
-  amenitiesTitle: string;
-  amenities: string[];
-  nearby: {
-    name: string;
-    distanceInMeters: number;
-  }[];
-  petFeePolicy: {
-    maxPets: number;
-    maxWeightPerPetInLBS: number;
-    desc: string;
-    perPet: boolean;
-    perNight: boolean;
-    breakup: JSON;
-    totalFees: number;
-  };
-  rooms: RoomInfo[];
-  match: any;
-  googlePlaceId: string;
-  allows_big_dogs: number;
-}
+
 
 const isIdPage = (path:string) => {
     if (path.match(/\/details\/.*$/gm)) return true
     return false
 }
 
-const DetailsPage: FC<Props> = ({ ...props }) => {
+const DetailsPage: any = ({ ...props }) => {
   const hotelId = props?.match?.params?.id || "undefined";
   const hotelAlias = props?.match?.params?.alias || "undefined";
   const pageLocation = useLocation();
@@ -228,6 +185,35 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       fetchPolicy: "no-cache",
     }
   );
+
+  // const { data, loading} = useQuery(
+  //   gql`
+  //     ${GetPropertyDetails}
+  //   `,
+  //   {
+  //     variables: {
+  //       alias: hotelAlias,
+  //     },
+  //   }
+  // );
+
+  // const { data: roomInformation } = useQuery(
+  //   gql`
+  //     ${GetSabreRoomReservations}
+  //   `,
+  //   {
+  //     variables: {
+  //       checkIn: search?.checkIn.substring(0, 10),
+  //       checkOut: search?.checkOut.substring(0, 10),
+  //       adults: search?.occupants?.adults,
+  //       children: ageParam,
+  //       dogs: search.occupants.dogs,
+  //       alias: hotelAlias,
+  //     },
+  //     fetchPolicy: "no-cache",
+  //   }
+  // );
+
 
   const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
@@ -471,6 +457,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [data, isLoaded]);
 
+  const PropertyDetails = () => (
+    <Box>
+      
+    </Box>
+  )
+
   return (
     <>
       <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
@@ -637,23 +629,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           {!loading && !data && (
             <Container maxWidth="md">
               <Box sx={{ textAlign: "center", mt: 10 }}>
-                <Typography variant="h5" color="primary">
-                  This property does not have any rooms available that meet your
-                  search criteria
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ mt: 1, mb: 3 }}
-                >
-                  Search other great Romingo rooms below
-                </Typography>
-                <Hidden mdDown>
-                  <DesktopFilterBar />
-                </Hidden>
-                <Hidden mdUp>
-                  <FilterBar />
-                </Hidden>
+                
+
+                <PropertyDetails />
+
+                <Hidden mdDown><DesktopFilterBar /></Hidden>
+                <Hidden mdUp><FilterBar /></Hidden>
                 <Box
                   component="img"
                   src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"

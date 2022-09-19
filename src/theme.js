@@ -25,59 +25,59 @@ export const theme = {
     },
   },
   typography: {
-    fontFamily: `"Roboto", "Montserrat", sans-serif`,
+    fontFamily: `"sansita-light", "sansita-light", sans-serif`,
     h1: {
-      fontFamily: "Montserrat",
+      fontFamily: "sansita-light",
       fontWeight: 900,
     },
     h2: {
-      fontFamily: "Montserrat",
+      fontFamily: "sansita-light",
       fontWeight: 900,
     },
     h3: {
-      fontFamily: "Montserrat",
+      fontFamily: "sansita-light",
       fontWeight: 900,
     },
     h4: {
-      fontFamily: "Montserrat",
+      fontFamily: "sansita-light",
       fontWeight: 900,
     },
     h5: {
-      fontFamily: "Montserrat",
+      fontFamily: "sansita-light",
       fontWeight: 900,
     },
     h6: {
-      fontFamily: "Montserrat",
+      fontFamily: "sansita-light",
       fontWeight: 700,
       letterSpacing: 0.5,
     },
     body1: {
-      fontFamily: "Roboto",
+      fontFamily: "overpass-light",
       fontWeight: 500,
       color: "#000000c7",
     },
     body2: {
-      fontFamily: "Roboto",
+      fontFamily: "overpass-light",
       fontWeight: 500,
     },
     subtitle1: {
-      fontFamily: "Roboto",
+      fontFamily: "overpass-light",
       fontWeight: 300,
     },
     subtitle2: {
-      fontFamily: "Roboto",
+      fontFamily: "overpass-light",
       fontWeight: 300,
     },
     button: {
-      fontFamily: "Roboto",
+      fontFamily: "sansita-light",
       fontWeight: 300,
     },
     caption: {
-      fontFamily: "Roboto",
+      fontFamily: "overpass-light",
       fontWeight: 300,
     },
     overline: {
-      fontFamily: "Roboto",
+      fontFamily: "overpass-light",
       fontWeight: 300,
     },
   },

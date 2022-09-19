@@ -52,6 +52,13 @@ export interface ListingCardProps {
     breakup: JSON;
     totalFees: number;
   };
+  amenities: {
+    code: number;
+    desc: string;
+    value: string;
+    accessible: boolean;
+    free: boolean;
+  }
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
@@ -76,6 +83,7 @@ const ListingCard: FC<ListingCardProps> = ({
   noLink = false,
   petFeePolicy,
   alias,
+  amenities,
   ...props
 }) => {
   const history = useHistory();
