@@ -47,17 +47,16 @@ import { useMeasure } from "react-use";
 
 interface FilterBarProps {
   sx?: CSSObject;
-  zoomed?: boolean;
   home?: boolean;
   city?: string;
+  onSearch?: any;
 }
 
-const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
+const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch }) => {
   const [open, setOpen] = useState(false);
   const [selectCityOpen, setSelectedCityOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
-  const [zoomIn, setZoomIn] = useState(zoomed);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const [selectedCity, setSelectedCity] = useState(
@@ -77,8 +76,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       : { adults: 2, children: 0, dogs: 1 }
   );
   const history = useHistory();
-  const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
-  const below900 = useMediaQuery("(max-width:900px)");
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -122,13 +119,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-
     if (
       occupants.adults !== 0 &&
       selectedCity &&
       checkDate[0] &&
       checkDate[1]
     ) {
+
+      if (onSearch) {
+        onSearch(selectedCity, checkDate[0], checkDate[1], occupants)
+        return
+      }
+
       setFormError("");
       dispatch(
         saveSearch({
@@ -196,19 +198,19 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
     <>
       <Box
         sx={{
-          position: "absolute",
+          position: (home ? "absolute" : 'block'),
           zIndex: 2,
           margin: "0px auto 0px auto",
           paddingTop: "0.1em",
           paddingBottom: "12px",
-          width: "100vw",
+          width: (home ? "100vw" : '85vw'),
           backgroundColor: 'transparent',
         }}
       >
         <Box
           sx={{
             display: "flex",
-            padding: ".5rem 1.70rem",
+            padding: (home ? ".5rem 1.70rem" : '0.5em'),
             flexDirection: "column",
             alignItems: "center",
             mb: ".5rem",
@@ -262,8 +264,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                       const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
                       return (
                         [
-                          <ListSubheader key={group[0].state.name} sx={{ color: '#009CA1', fontFamily: 'sansita-light', fontSize: '1.25em', letterSpacing: '0.5px' }}>{group[0].state.name}</ListSubheader>,
-                          ...menuItems
+                          <ListSubheader key={group[0].state.name} sx={{ color: '#009CA1', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0}}>{group[0].state.name}</ListSubheader>,
+                          ...menuItems,
+                          <Box key={index} sx={{ pl: '1em', pr: '1em', pb: '0.5em' }}> <Box sx={{borderBottom: '1px dotted black'}} /></Box>,
                         ]
                       )
                     })}

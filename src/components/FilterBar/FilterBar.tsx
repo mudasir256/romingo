@@ -19,6 +19,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
 import { DateTime } from "luxon";
 
+import MobileFilterBar from '../MobileHomePageFilterBar'
+
 import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
@@ -146,54 +148,21 @@ const FilterBar: FC<Props> = ({
     }
   };
 
-  const handleSearch: MouseEventHandler<Element> = () => {
-    if (
-      occupants.adults !== 0 &&
-      selectedCity &&
-      checkDate[0] &&
-      new Date(checkDate[0]) >=
-      new Date(new Date().setDate(new Date().getDate() - 1)) &&
-      checkDate[1] &&
-      new Date(checkDate[1]) >= new Date()
-    ) {
-      setFormError("");
-      setZoomIn(false);
-      dispatch(
-        saveSearch({
-          city: selectedCity,
-          checkIn: new Date(checkDate[0]).toISOString(),
-          checkOut: new Date(checkDate[1]).toISOString(),
-          occupants,
-        })
-      );
-
-      history.push("/listings");
-    } else {
-      if (!selectedCity) {
-        setFormError("Location required");
-      }
-      if (!checkDate[0]) {
-        setFormError("Check-in date required");
-      }
-      if (
-        checkDate[0] &&
-        new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
-      ) {
-        setFormError("Check-in date must be today at the earliest");
-      }
-      if (!checkDate[1]) {
-        setFormError("Check-out date required");
-      }
-      if (
-        checkDate[1] &&
-        new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
-      ) {
-        setFormError("Check-out date must be after today");
-      }
-      if (occupants.adults === 0) {
-        setFormError("Search must include at least 1 adult guest");
-      }
-    }
+  const handleSearch: any = (newSelectedCity, newCheckIn, newCheckOut, newOccupants) => {
+    setFormError("");
+    setZoomIn(false);
+    setSelectedCity(newSelectedCity)
+    setOccupants(newOccupants)
+    setCheckDate([newCheckIn, newCheckOut])
+    dispatch(
+      saveSearch({
+        city: newSelectedCity,
+        checkIn: new Date(newCheckIn).toISOString(),
+        checkOut: new Date(newCheckOut).toISOString(),
+        occupants: newOccupants,
+      })
+    );
+    history.push("/listings");
   };
 
   return (
@@ -307,286 +276,33 @@ const FilterBar: FC<Props> = ({
       </Box>
       <Dialog
         open={zoomIn}
-        onClose={handleFilterOutClick}
+        onClose={() => setZoomIn(false)}
         BackdropProps={{
           style: {
             backdropFilter: "blur(6px)",
             WebkitBackdropFilter: "blur(6px)",
           },
         }}
+        PaperProps={{
+          style: {
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: 'inherit',
+            opacity: 1
+          }
+        }}
       >
-        <Box
-          sx={{
-            borderRadius: 3,
-            backgroundColor: { xs: "#ffffffEB", md: "transparent" },
-            maxWidth: { xs: "95%", sm: "100%" },
-            margin: "0px auto",
-            WebkitBackdropFilter: "blur(6px)",
-            py: { xs: 1.5, md: 0 },
-            pb: "1rem",
-          }}
-        >
-          <Box sx={{ pt: { xs: 1, md: 0 }, pb: 1, px: 2.5, my: { xs: 0 } }}>
-            <Box
-              sx={{
-                display: { md: "flex", xs: "block" },
-                justifyContent: "center",
-              }}
-            >
-              <Box
-                sx={{
-                  minWidth: "150px",
-                  mb: {
-                    xs: 1,
-                    md: 0,
-                  },
-                  display: "flex",
-                  alignItems: "end",
-                }}
-              >
-                <Autocomplete
-                  disableClearable
-                  options={cities.sort(function (a: any, b: any) {
-                    if (a.state.name === b.state.name) {
-                      // Price is only important when cities are the same
-                      return b.name - a.name;
-                    }
-                    return a.state.name > b.state.name ? 1 : -1;
-                  })}
-                  blurOnSelect="touch"
-                  renderOption={(props, option: any) => (
-                    <li {...props} style={{ paddingLeft: 10 }}>
-                      <Box
-                        sx={{
-                          width: "55px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <img
-                          src={`/images/location-icons/${option?.name
-                            .substring(0, option.name.indexOf(","))
-                            .toLowerCase()
-                            .replace(/ /g, "_")}.svg`}
-                          height="25px"
-                          style={{ marginRight: "10px" }}
-                        />
-                      </Box>
-                      {option.name}
-                    </li>
-                  )}
-                  groupBy={(o) => o.state.name}
-                  value={getCity(selectedCity)}
-                  // eslint-disable-next-line
-                  getOptionLabel={(option: any) => {
-                    return option.name;
-                  }}
-                  // eslint-disable-next-line
-                  onChange={(e, values: any) => {
-                    if (values) {
-                      setFormError("");
-                      setSelectedCity(values.id);
-                    }
-                  }}
-                  sx={{
-                    width: { xs: "100%", md: "180px" },
-                    minWidth: "180px",
-                    fontWeight: 600,
-                    ml: { xs: 0, md: 2 },
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      color="primary"
-                      variant="standard"
-                      label="Location"
-                      size="small"
-                      sx={{
-                        label: {
-                          fontWeight: 600,
-                        },
-                        input: {
-                          cursor: "pointer",
-                          fontWeight: 600,
-                          color: "primary.main",
-                          border: "none",
-                          mt: 0.55,
-                          mb: 0.25,
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </Box>
-              <Box
-                sx={{
-                  fontFamily: "Roboto",
-                  display: "flex",
-                  alignItems: "end",
-                  fontWeight: 600,
-                }}
-              >
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateRangePicker
-                    inputFormat="MMM dd, yyyy"
-                    disableMaskedInput={true}
-                    open={open}
-                    onAccept={() => {
-                      setIsAccept(true);
-                    }}
-                    onClose={() => {
-                      setIsAccept(false);
-                      if (!isTextField) {
-                        setOpen(false);
-                        setIsTextField(false);
-                      }
-                    }}
-                    onOpen={() => {
-                      if (!isAccept) {
-                        setOpen(true);
-                      }
-                    }}
-                    startText="Check-in"
-                    endText="Check-out"
-                    allowSameDateSelection
-                    calendars={1}
-                    clearable={true}
-                    value={checkDate || null}
-                    minDate={new Date()}
-                    onChange={(newValue) => {
-                      setFormError("");
-                      setCheckDate(newValue);
-                    }}
-                    renderInput={(startProps, endProps) => (
-                      <Box sx={{ display: { xs: "block", md: "flex" } }}>
-                        <TextField
-                          {...startProps}
-                          onFocus={() => {
-                            setIsTextField(true);
-                          }}
-                          onBlur={() => {
-                            setIsTextField(false);
-                          }}
-                          onClick={() => {
-                            setOpen(true);
-                          }}
-                          size="small"
-                          color="primary"
-                          variant="standard"
-                          ref={
-                            startProps.inputRef as React.Ref<HTMLInputElement>
-                          }
-                          sx={{
-                            width: { xs: "50%", md: "100px" },
-                            my: { xs: 0.5, md: 0 },
-                            label: {
-                              fontWeight: "600",
-                            },
-                            input: {
-                              fontWeight: 600,
-                              cursor: "pointer",
-                              color: "primary.main",
-                              border: "none",
-                            },
-                          }}
-                        />
-                        <TextField
-                          {...endProps}
-                          onFocus={() => {
-                            setIsTextField(true);
-                          }}
-                          onBlur={() => {
-                            setIsTextField(false);
-                          }}
-                          onClick={() => {
-                            setOpen(true);
-                          }}
-                          size="small"
-                          color="primary"
-                          variant="standard"
-                          ref={endProps.inputRef as React.Ref<HTMLInputElement>}
-                          sx={{
-                            width: { xs: "50%", md: "100px" },
-                            my: { xs: 0.5, md: 0 },
-                            label: {
-                              fontWeight: "bold",
-                            },
-                            input: {
-                              fontWeight: 600,
-                              color: "primary.main",
-                              cursor: "pointer",
-                            },
-                          }}
-                        />
-                      </Box>
-                    )}
-                  />
-                </LocalizationProvider>
-              </Box>
-              <Box
-                sx={{
-                  minWidth: "240px",
-                  mt: {
-                    xs: 1,
-                    md: 0,
-                  },
-                  display: "flex",
-                  alignItems: "end",
-                }}
-              >
-                <OccupantSelector
-                  value={occupants}
-                  onChange={onOccupantChange}
-                  variant="standard"
-                  size="small"
-                  sx={{
-                    label: {
-                      fontWeight: "bold",
-                    },
-                    input: {
-                      fontWeight: 600,
-                      color: "primary.main",
-                      cursor: "pointer",
-                    },
-                  }}
-                />
-              </Box>
-              <Box sx={{ textAlign: "center" }}>
-                <Button
-                  onClick={handleSearch}
-                  disableElevation
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  sx={{
-                    pb: { xs: 1.5, md: 1.5 },
-                    pt: { xs: 1.5, md: 1.5 },
-                    mx: "auto",
-                    mt: "1rem",
-                    width: "65%",
-                    borderRadius: "12px",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  Search <SearchIcon sx={{ ml: "1rem" }} />
-                </Button>
-              </Box>
-            </Box>
-            {formError.length > 0 && (
-              <Typography
-                variant="body2"
-                color="error"
-                sx={{ textAlign: "center", mt: 1 }}
-              >
-                {formError}
-              </Typography>
-            )}
-          </Box>
-        </Box>
+        <MobileFilterBar home={false} onSearch={handleSearch} />
+
+        {formError.length > 0 && (
+          <Typography
+            variant="body2"
+            color="error"
+            sx={{ textAlign: "center", mt: 1 }}
+          >
+            {formError}
+          </Typography>
+        )}
       </Dialog>
     </>
   );
