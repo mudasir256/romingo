@@ -409,6 +409,15 @@ const GetPropertyDetails = `
       sabreId
       zipCode
       lowestAveragePrice
+      petFeePolicy {
+        maxPets
+        maxWeightPerPetInLBS
+        desc
+        perPet
+        perNight
+        breakup
+        totalFees
+      }
     }
   }
 `

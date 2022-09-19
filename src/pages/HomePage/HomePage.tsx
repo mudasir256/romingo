@@ -42,7 +42,8 @@ import AuthenticPet from '../../assets/images/icon-03.png';
 import {
   GetHotelBySearch,
   GetHotelRackBySearch,
-  GetHotelDetail
+  GetHotelDetail,
+  GetPropertyDetails,
 } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
