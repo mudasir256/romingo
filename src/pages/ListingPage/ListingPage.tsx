@@ -658,7 +658,7 @@ const ListingPage: FC<Props> = () => {
                     sx={{
                       color: "#222222",
                       fontWeight: 700,
-                      fontFamily: "Montserrat",
+                      fontFamily: "overpass-light",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "flex-start",
@@ -806,7 +806,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         style={{
           background: "#fff",
           textAlign: "center",
-          fontFamily: "Montserrat",
+          fontFamily: "overpass-light",
           minWidth: "250px",
           maxHeight: "40px",
           borderRadius: "30px",
@@ -1016,6 +1016,7 @@ const DesktopFilterBar: FC = () => {
           mb: "1rem",
           padding: ".25rem .5rem .25rem .5rem",
           borderRadius: "12px",
+          fontFamily: 'overpass-light'
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -1034,26 +1035,19 @@ const DesktopFilterBar: FC = () => {
               return option.name;
             }}
             blurOnSelect="touch"
+            componentsProps={{
+              paper: {
+                style: {
+                  opacity: 1,
+                  backgroundColor: 'white',
+                  fontFamily: 'sansita-light',
+                  padding: '0 1em',
+                }
+              },
+            }}
             renderOption={(props, option: any) => (
-              <li {...props} style={{ paddingLeft: 8 }}>
-                <Box
-                  sx={{
-                    width: "35px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src={`/images/location-icons/${option?.name
-                      .substring(0, option.name.indexOf(","))
-                      .toLowerCase()
-                      .replace(/ /g, "_")}.svg`}
-                    height="15px"
-                    style={{ marginRight: "2px" }}
-                  />
-                </Box>
-                {option.name}
+              <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
+                  {option.name}
               </li>
             )}
             // eslint-disable-next-line
@@ -1084,9 +1078,10 @@ const DesktopFilterBar: FC = () => {
                   },
                   input: {
                     padding: "0px",
-                    fontSize: "12px",
+                    fontSize: "0.9em",
                     fontWeight: 600,
-                    fontFamily: "Montserrat",
+                    fontFamily: "overpass-light"
+                    ,
                     cursor: "pointer",
                     color: "primary.main",
                     border: "none",
@@ -1098,7 +1093,7 @@ const DesktopFilterBar: FC = () => {
         </Box>
         <Box
           sx={{
-            fontFamily: "Roboto",
+            fontFamily: "overpass-light",
             fontSize: "12px",
             fontWeight: 400,
             display: "flex",
@@ -1133,10 +1128,10 @@ const DesktopFilterBar: FC = () => {
                 >
                   <Typography
                     sx={{
-                      fontFamily: "Montserrat",
+                      fontFamily: "overpass-light",
                       textTransform: "none",
                       fontWeight: 600,
-                      fontSize: { xs: "13px" },
+                      fontSize: '1em',
                     }}
                   >
                     {checkDate[0]
