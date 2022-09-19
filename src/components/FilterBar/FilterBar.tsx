@@ -165,6 +165,12 @@ const FilterBar: FC<Props> = ({
     history.push("/listings");
   };
 
+  const fontStyle = {
+    fontFamily: "overpass-light",
+    textTransform: "none",
+    fontSize: '.9em'
+  }
+
   return (
     <>
       <Box
@@ -196,14 +202,7 @@ const FilterBar: FC<Props> = ({
             }}
           >
             <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography
-                sx={{
-                  fontFamily: "Montserrat",
-                  textTransform: "none",
-                  fontWeight: 600,
-                  fontSize: { xs: "12px" },
-                }}
-              >
+              <Typography sx={fontStyle}>
                 {getCityName(selectedCity) || "Choose City"}
               </Typography>
             </Button>
@@ -217,12 +216,7 @@ const FilterBar: FC<Props> = ({
             ></Box>
             <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
               <Typography
-                sx={{
-                  fontFamily: "Montserrat",
-                  textTransform: "none",
-                  fontWeight: 600,
-                  fontSize: { xs: "12px" },
-                }}
+                sx={fontStyle}
               >
                 {checkDate[0]
                   ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
@@ -246,19 +240,11 @@ const FilterBar: FC<Props> = ({
               }}
             ></Box>
             <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography sx={{ textTransform: "none", fontSize: "87%" }}>
-                {occupants.adults + occupants.children}
-              </Typography>
-              <PersonIcon
-                sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1 }}
-              />
+              <Typography sx={fontStyle}>{occupants.adults + occupants.children}</Typography>
+              <PersonIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1 }}/>
               <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
 
-              <Typography
-                sx={{ textTransform: "none", fontSize: { xs: "87%" } }}
-              >
-                {occupants.dogs}
-              </Typography>
+              <Typography sx={fontStyle}>{occupants.dogs}</Typography>
               <PetsIcon
                 sx={{
                   color: "primary.main",
@@ -286,6 +272,7 @@ const FilterBar: FC<Props> = ({
         PaperProps={{
           style: {
             backgroundColor: 'transparent',
+            boxShadow: 'none',
             border: 'none',
             color: 'inherit',
             opacity: 1
