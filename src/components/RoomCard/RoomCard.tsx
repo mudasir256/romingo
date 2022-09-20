@@ -287,7 +287,6 @@ const RoomCard: FC<Props> = ({
 
   useEffect(() => {
     let roomDescription = "";
-
     beds.map((bed) => {
       if (roomDescription !== "") roomDescription += " + ";
 
@@ -387,7 +386,7 @@ const RoomCard: FC<Props> = ({
                 color: "#03989e",
               }}
             >
-              {beds?.map((bed, key) => {
+              {beds && beds?.map((bed, key) => {
                 return Array.from({ length: bed.count }, (_, i: number) => (
                   <React.Fragment key={key + "_" + i}>
                     {bed.code === 5 && (
@@ -568,7 +567,7 @@ const RoomCard: FC<Props> = ({
             </Box>
           )}
 
-          {amenities.length > 0 && (
+          {amenities && amenities.length > 0 && (
             <Box
               sx={{
                 display: "inline-flex",
@@ -986,7 +985,7 @@ const RoomCard: FC<Props> = ({
             >
               Amenities
             </Typography>
-            {amenities.map((amenity, key) => {
+            {amenities && amenities.map((amenity, key) => {
               return (
                 <Box
                   sx={{

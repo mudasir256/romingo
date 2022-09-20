@@ -98,7 +98,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
           occupants,
         })
       );
-
+      
       history.push("/listings");
     } else {
       if (!selectedCity) {

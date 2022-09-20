@@ -98,7 +98,11 @@ import FilterBar from "../../components/FilterBar";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
-import { GetHotelDetail } from "../../constants/constants";
+import { 
+  GetHotelDetail, 
+  GetPropertyDetails, 
+  GetSabreRoomReservations 
+} from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
 import { useWindowSize } from "react-use";
@@ -209,15 +213,24 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     return str?.replace("http:", "");
   };
 
-//  isIdPage(pageLocation.pathname)
 
-  const { loading, data, error } = useQuery(
+  const { data, loading } = useQuery(
     gql`
-      ${GetHotelDetail}
+      ${GetPropertyDetails}
     `,
     {
       variables: {
-        id: hotelId,
+        alias:hotelAlias,
+      },
+    }
+  );
+
+  const { data: roomInfo, error } = useQuery(
+    gql`
+      ${GetSabreRoomReservations}
+    `,
+    {
+      variables: {
         checkIn: search?.checkIn.substring(0, 10),
         checkOut: search?.checkOut.substring(0, 10),
         adults: search?.occupants?.adults,
@@ -228,9 +241,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       fetchPolicy: "no-cache",
     }
   );
-
-  console.log(data)
-  console.log(error)
 
   const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
@@ -275,45 +285,76 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   }, [pageLocation, reviewData]);
 
   useEffect(() => {
-     if (data && data?.property) {
+
+     if (data && data?.getPropertyDetails) {
       if (isIdPage(pageLocation.pathname)) {
-         if (data?.property?.alias) {
-           history.push(`/hotel/${data?.property?.alias}`)
+         if (data?.getPropertyDetails?.alias) {
+           history.push(`/hotel/${data?.getPropertyDetails?.alias}`)
            return;
          }
       }
-      dispatch(setHotel(data.property));
-      setName(data.property.name);
+      dispatch(setHotel(data.getPropertyDetails));
+      setName(data.getPropertyDetails.name);
+
       setLocation({
-        address: data.property.addressLine1,
-        lat: data.property.location.latitude,
-        lon: data.property.location.longitude,
+        address: data.getPropertyDetails.addressLine1,
+        lat: 0, //data.getPropertyDetails.location.latitude,
+        lon: 0, //data.getPropertyDetails.location.longitude,
       });
 
-      setCity({ ...data.property.city });
-      setNeighborhood(data.property.neighborhood);
-      setAllowsBigDogs(data.property.allows_big_dogs);
+      setCity({ ...data.getPropertyDetails.city });
+      setNeighborhood(data.getPropertyDetails.neighborhood);
+      setAllowsBigDogs(data.getPropertyDetails.allows_big_dogs);
 
-      let tmp: any[] = [];
-      data.property.imageURLs.map((image: string) => {
+      const tmp: any[] = [];
+      data.getPropertyDetails.imageURLs.map((image: string) => {
         tmp.push(image);
       });
-      data.property.sabreImageURLs.map((image: string) => {
-        tmp.push(image);
-      });
+      // data.getPropertyDetails.sabreImageURLs.map((image: string) => {
+      //   tmp.push(image);
+      // });
       setGallery([...tmp]);
-      setDefaultDescription(data.property.desc);
-      setAmenities(data.property.dogAmenities);
-      setScore(data.property.romingoScore);
+      setDefaultDescription(data.getPropertyDetails.desc);
+      setAmenities(data.getPropertyDetails.dogAmenities);
+      setScore(data.getPropertyDetails.romingoScore);
 
       const tmpAmenities: string[] = [];
-      if (data.property.amenities) {
-        data.property.amenities.map((amenity: any) => {
+      if (data.getPropertyDetails.amenities) {
+        data.getPropertyDetails.amenities.map((amenity: any) => {
           tmpAmenities.push(amenity.desc);
         }); 
       }
 
-      const romingoMatch = data.property.rooms.filter(
+
+      setOtherAmenities([...tmpAmenities]);
+
+      //setNearby(data.getPropertyDetails.nearbyActivities);
+
+      markers.push({
+        lat: 0, //data.getPropertyDetails.location.latitude,
+        lng: 0, //data.getPropertyDetails.location.longitude,
+        type: "hotel",
+        label: data.getPropertyDetails.name,
+      });
+
+      // data.getPropertyDetails.nearbyActivities.map((activity: any) => {
+      //   markers.push({
+      //     lat: activity.location.latitude,
+      //     lng: activity.location.longitude,
+      //     type: activity?.activityType?.name,
+      //     label: activity.name,
+      //   });
+      // });
+
+ 
+
+      setMarkers([...markers]);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (roomInfo && roomInfo.getSabreRoomReservationAvailabilty) {
+      const romingoMatch = roomInfo.getSabreRoomReservationAvailabilty.rooms.filter(
         (r: RoomInfo) => r.romingoMatch
       );
 
@@ -331,32 +372,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         setAccessibleRooms(accessibleArr);
         setRooms(nonAccessibleArr);
       } else {
-        setRooms(data.property.rooms);
+        setRooms([...roomInfo.getSabreRoomReservationAvailabilty.rooms])
       }
 
-      setOtherAmenities([...tmpAmenities]);
-
-      setNearby(data.property.nearbyActivities);
-
-      markers.push({
-        lat: data.property.location.latitude,
-        lng: data.property.location.longitude,
-        type: "hotel",
-        label: data.property.name,
-      });
-
-      data.property.nearbyActivities.map((activity: any) => {
-        markers.push({
-          lat: activity.location.latitude,
-          lng: activity.location.longitude,
-          type: activity?.activityType?.name,
-          label: activity.name,
-        });
-      });
-
-      tmp = [];
-
-      data.property.rooms.map((room: any, key: number) => {
+      const tmp = [];
+      roomInfo.getSabreRoomReservationAvailabilty.rooms.map((room: any, key: number) => {
         let roomDescription = "";
 
         room.beds.map((bed: any) => {
@@ -377,10 +397,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       });
 
       setRoomDropDown([...tmp]);
-
-      setMarkers([...markers]);
     }
-  }, [data]);
+  }, [roomInfo])
 
   useEffect(() => {
     if (screen.height > 700) {
@@ -458,7 +476,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const getReviewData = () => {
     const request = {
-      placeId: data.property.googlePlaceId,
+      placeId: data.getPropertyDetails.googlePlaceId,
       fields: ["reviews", "rating", "user_ratings_total"],
     };
     if (google) {
@@ -472,7 +490,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   };
 
   useEffect(() => {
-    if (data && data.property && data.property.googlePlaceId && isLoaded) {
+    if (data && data.getPropertyDetails && data.getPropertyDetails.googlePlaceId && isLoaded) {
       getReviewData();
     }
   }, [data, isLoaded]);
@@ -487,7 +505,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {!loading && data && (
           <Box
             component="img"
-            src={removeHttpLink(data?.property?.featuredImageURL)}
+            src={removeHttpLink(data?.getPropertyDetails?.featuredImageURL)}
             alt={name}
             boxShadow={2}
             onClick={handleOpen}
@@ -788,7 +806,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   mb: { xs: "1rem", sm: "1rem", md: "0rem" },
                                 }}
                               >
-                                {data.property.name}
+                                {data.getPropertyDetails.name}
                               </Typography>
                               <Typography
                                 variant="h6"
@@ -1006,7 +1024,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 <Button
                                   onClick={() =>
                                     window.open(
-                                      `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                                      `https://www.google.com/maps/search/?api=1&query=${data.getPropertyDetails.name}&query_place_id=${data.getPropertyDetails.googlePlaceId}`
                                     )
                                   }
                                   variant="outlined"
@@ -1099,7 +1117,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   mb: { xs: "1rem", sm: "1rem", md: "0rem" },
                                 }}
                               >
-                                {data.property.name}
+                                {data.getPropertyDetails.name}
                               </Typography>
 
                               {/* <Typography
@@ -1178,7 +1196,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 <Button
                                   onClick={() =>
                                     window.open(
-                                      `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                                      `https://www.google.com/maps/search/?api=1&query=${data.getPropertyDetails.name}&query_place_id=${data.getPropertyDetails.googlePlaceId}`
                                     )
                                   }
                                   variant="outlined"
@@ -1335,7 +1353,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     my: "1rem",
                   }}
                 >                 
-                  <HotelTags petFeePolicy={data?.property?.petFeePolicy} allows_big_dogs={allowsBigDogs} />
+                  <HotelTags petFeePolicy={data?.getPropertyDetails?.petFeePolicy} allows_big_dogs={allowsBigDogs} />
                 </Box>
 
                 {/* <Box
@@ -1764,7 +1782,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       <Button
                         onClick={() =>
                           window.open(
-                            `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                            `https://www.google.com/maps/search/?api=1&query=${data.getPropertyDetails.name}&query_place_id=${data.getPropertyDetails.googlePlaceId}`
                           )
                         }
                         variant="outlined"
