@@ -211,7 +211,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
 //  isIdPage(pageLocation.pathname)
 
-  const { loading, data } = useQuery(
+  const { loading, data, error } = useQuery(
     gql`
       ${GetHotelDetail}
     `,
@@ -229,34 +229,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  // const { data, loading} = useQuery(
-  //   gql`
-  //     ${GetPropertyDetails}
-  //   `,
-  //   {
-  //     variables: {
-  //       alias: hotelAlias,
-  //     },
-  //   }
-  // );
-
-  // const { data: roomInformation } = useQuery(
-  //   gql`
-  //     ${GetSabreRoomReservations}
-  //   `,
-  //   {
-  //     variables: {
-  //       checkIn: search?.checkIn.substring(0, 10),
-  //       checkOut: search?.checkOut.substring(0, 10),
-  //       adults: search?.occupants?.adults,
-  //       children: ageParam,
-  //       dogs: search.occupants.dogs,
-  //       alias: hotelAlias,
-  //     },
-  //     fetchPolicy: "no-cache",
-  //   }
-  // );
-
+  console.log(data)
+  console.log(error)
 
   const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
@@ -502,12 +476,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       getReviewData();
     }
   }, [data, isLoaded]);
-
-  const PropertyDetails = () => (
-    <Box>
-      
-    </Box>
-  )
 
   return (
     <>

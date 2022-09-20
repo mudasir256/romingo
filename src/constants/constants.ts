@@ -252,6 +252,10 @@ const GetHotelDetail = `
             count
           }
           desc
+          amenities {
+            code
+            desc
+          }
           maxOccupants
           priceKey
           breakfastIncluded
