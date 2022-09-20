@@ -98,7 +98,7 @@ import FilterBar from "../../components/FilterBar";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
-import { GetHotelDetail, GetPropertyDetails, GetSabreRoomReservations } from "../../constants/constants";
+import { GetHotelDetail } from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
 import { useWindowSize } from "react-use";
@@ -134,14 +134,57 @@ type Libraries = (
 
 const libraries: Libraries = ["places"];
 
-
+interface Props {
+  name: string;
+  location: {
+    lat: string;
+    lon: string;
+    address: string;
+  };
+  mainImg: string;
+  gallery: string[];
+  score: number;
+  defaultDescription: string;
+  detailsPagePromoText: string;
+  checkoutPagePromoText: string;
+  cancellation?: boolean;
+  cancelPenalty?: {
+    refundable: boolean;
+    deadline: { absoluteDeadline: Date };
+    amountPercent: { amount: number; currencyCode: string };
+  }[];
+  dogAmenitiesTitle: string;
+  roomList: {
+    value: number;
+    description: string;
+  }[];
+  amenitiesTitle: string;
+  amenities: string[];
+  nearby: {
+    name: string;
+    distanceInMeters: number;
+  }[];
+  petFeePolicy: {
+    maxPets: number;
+    maxWeightPerPetInLBS: number;
+    desc: string;
+    perPet: boolean;
+    perNight: boolean;
+    breakup: JSON;
+    totalFees: number;
+  };
+  rooms: RoomInfo[];
+  match: any;
+  googlePlaceId: string;
+  allows_big_dogs: number;
+}
 
 const isIdPage = (path:string) => {
     if (path.match(/\/details\/.*$/gm)) return true
     return false
 }
 
-const DetailsPage: any = ({ ...props }) => {
+const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelId = props?.match?.params?.id || "undefined";
   const hotelAlias = props?.match?.params?.alias || "undefined";
   const pageLocation = useLocation();
@@ -290,9 +333,12 @@ const DetailsPage: any = ({ ...props }) => {
       setScore(data.property.romingoScore);
 
       const tmpAmenities: string[] = [];
-      data.property.amenities.map((amenity: any) => {
-        tmpAmenities.push(amenity.desc);
-      });
+      if (data.property.amenities) {
+        data.property.amenities.map((amenity: any) => {
+          tmpAmenities.push(amenity.desc);
+        }); 
+      }
+
       const romingoMatch = data.property.rooms.filter(
         (r: RoomInfo) => r.romingoMatch
       );
@@ -629,12 +675,23 @@ const DetailsPage: any = ({ ...props }) => {
           {!loading && !data && (
             <Container maxWidth="md">
               <Box sx={{ textAlign: "center", mt: 10 }}>
-                
-
-                <PropertyDetails />
-
-                <Hidden mdDown><DesktopFilterBar /></Hidden>
-                <Hidden mdUp><FilterBar /></Hidden>
+                <Typography variant="h5" color="primary">
+                  This property does not have any rooms available that meet your
+                  search criteria
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ mt: 1, mb: 3 }}
+                >
+                  Search other great Romingo rooms below
+                </Typography>
+                <Hidden mdDown>
+                  <DesktopFilterBar />
+                </Hidden>
+                <Hidden mdUp>
+                  <FilterBar />
+                </Hidden>
                 <Box
                   component="img"
                   src="https://storage.googleapis.com/romingo-development-public/images/front-end/balcony-dog.jpeg"
