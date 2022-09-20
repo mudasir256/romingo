@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://romingo.com/</loc> </url>
+<url> <loc>https://romingo.com/listings</loc> </url>
+<url> <loc>https://romingo.com/details/:id</loc> </url>
+<url> <loc>https://romingo.com/hotel/:alias</loc> </url>
+<url> <loc>https://romingo.com/checkout*</loc> </url>
+<url> <loc>https://romingo.com/reservation/manage</loc> </url>
+<url> <loc>https://romingo.com/los-angeles</loc> </url>
+<url> <loc>https://romingo.com/san-diego</loc> </url>
+<url> <loc>https://romingo.com/orange-county</loc> </url>
+<url> <loc>https://romingo.com/san-francisco</loc> </url>
+<url> <loc>https://romingo.com/santa-barbara</loc> </url>
+<url> <loc>https://romingo.com/palm-springs</loc> </url>
+<url> <loc>https://romingo.com/about</loc> </url>
+<url> <loc>https://romingo.com/faq</loc> </url>
+<url> <loc>https://romingo.com/contact</loc> </url>
+<url> <loc>https://romingo.com/romingo-score</loc> </url>
+<url> <loc>https://romingo.com/privacy</loc> </url>
+<url> <loc>https://romingo.com/terms-of-use</loc> </url>
+<url> <loc>https://romingo.com/romingo-partners</loc> </url>
+<url> <loc>https://romingo.com/list-your-property</loc> </url>
+<url> <loc>https://romingo.com/application</loc> </url>
+<url> <loc>https://romingo.com/blog/:tag?</loc> </url>
+<url> <loc>https://romingo.com/blog/post/:id</loc> </url>
+</urlset>
