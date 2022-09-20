@@ -384,7 +384,7 @@ const ListingPage: FC<Props> = () => {
               "Something went wrong, please refresh the page and try again"
             }
             type="error"
-            duration={5000}
+            duration={3000}
           />
         )}
         {/* <Link
@@ -975,6 +975,17 @@ const DesktopFilterBar: FC = () => {
           occupants,
         })
       );
+      // refetch({
+      //   variables: {
+      //     adults: search.occupants.adults,
+      //     cityId: search.city,
+      //     checkIn: search.checkIn.substring(0, 10),
+      //     checkOut: search.checkOut.substring(0, 10),
+      //     children: ageParam,
+      //     dogs: search.occupants.dogs,
+      //     allows_big_dogs: allowBigDogs
+      //   }
+      // })
 
       history.push("/listings");
     } else {

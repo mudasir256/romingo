@@ -61,13 +61,6 @@ const GetHotelBySearch = `
         alias
         page_rank
         allows_big_dogs
-        amenities {
-          code
-          desc
-          value
-          accessible
-          free
-        }
       }
     }
   `;
@@ -132,12 +125,6 @@ const GetHotelRackBySearch = `
           perNight
           breakup
           totalFees
-        }
-        amenities {
-          code
-          desc
-          value
-          free
         }
       }
     }
@@ -231,12 +218,6 @@ const GetHotelDetail = `
         neighborhood
         romingoScore
         dogAmenities
-        amenities {
-          code
-          desc
-          value
-          free
-        }
         featuredImageURL
         imageURLs
         sabreImageURLs
@@ -271,13 +252,6 @@ const GetHotelDetail = `
             count
           }
           desc
-          amenities {
-            code
-            desc
-            value
-            accessible
-            free
-          }
           maxOccupants
           priceKey
           breakfastIncluded
@@ -458,13 +432,6 @@ const GetSabreRoomReservations = `
           count
         }
         desc
-        amenities {
-          code
-          desc
-          value
-          accessible
-          free
-        }
         maxOccupants
         priceKey
         breakfastIncluded
