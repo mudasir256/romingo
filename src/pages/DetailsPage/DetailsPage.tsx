@@ -317,7 +317,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         (r: RoomInfo) => r.romingoMatch
       );
 
-      if (romingoMatch.length > 0) {
+      if (romingoMatch && romingoMatch.length > 0) {
         const accessibleArr: RoomInfo[] = [];
         const nonAccessibleArr: RoomInfo[] = [];
         romingoMatch.forEach((r: RoomInfo) =>
@@ -1601,7 +1601,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       );
                     })}
                   </Grid>
-                  {accessibleRooms.length > 0 && (
+                  {accessibleRooms && accessibleRooms.length > 0 && (
                     <>
                       <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
                         <Typography variant="h6">Accessible Rooms</Typography>
@@ -2119,7 +2119,7 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
       >
         {title}
 
-        {viewAll && amenities.length > 13 && (
+        {viewAll && amenities && amenities.length > 13 && (
           <>
             <Box sx={{ textAlign: "right" }}>
               <Link
@@ -2340,7 +2340,7 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
             flexDirection: "column",
           }}
         >
-          {includedPopular.length < 6
+          {includedPopular && includedPopular.length < 6
             ? includedOther.map((amenity, index) => {
               if (index < 6) {
                 const AmenityIcon = amenity.icon;
@@ -3184,15 +3184,6 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               }}
             />
           </Stack>
-          {error.length > 0 && (
-            <Typography
-              variant="body2"
-              color="error"
-              sx={{ textAlign: "center", fontSize: "80%" }}
-            >
-              {error}
-            </Typography>
-          )}
           <Box
             alignItems="center"
             justifyContent="center"
