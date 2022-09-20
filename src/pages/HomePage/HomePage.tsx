@@ -112,66 +112,43 @@ const HomePage: FC<Props> = ({
     today.getDate() + 4
   ).toISOString();
 
-  const { data: sanFrancisco } = useQuery(
-    gql`${GetHotelDetail}`,
-    {
-       variables: {
-        id: 'ba772c6c-7fae-492a-85c0-6232eff50852',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
-        alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
-       }
-    }
-  );
-
   const { data: sanDiego } = useQuery(
-    gql`${GetHotelDetail}`,
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: 'fe1300a4-a06f-4347-8d7f-f271b3657ba9',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
         alias: 'San-Diego-Pet-Friendly-Hotels-Manchester-Grand-Hyatt-San-Diego',
        }
     }
   );
 
-  const { data: losAngeles } = useQuery(
-    gql`${GetHotelDetail}`,
+  const { data: sanFrancisco } = useQuery(
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: 'e7742fb4-6154-4cd7-b0c6-6b35c0939140',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
+        alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
+       }
+    }
+  );
+
+  const { data: losAngeles } = useQuery(
+    gql`${GetPropertyDetails}`,
+    {
+       variables: {
         alias: 'Los-Angeles-Pet-Friendly-Hotels-Mondrian-Los-Angeles',
        }
     }
   );
 
   const { data: losAngeles2 } = useQuery(
-    gql`${GetHotelDetail}`,
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: '5423edc4-4994-4d64-8f6a-6e3149763bda',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
         alias: 'Los-Angeles-Pet-Friendly-Hotels-Ace-Hotel-Downtown-LA-Los-Angeles',
        }
     }
   );
 
+  console.log(sanDiego)
 
 
   const locationIds = [
@@ -318,42 +295,46 @@ const HomePage: FC<Props> = ({
 
         <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
         <Grid onClick={() => fillSearchBar()} container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
-          {(sanFrancisco && sanFrancisco.property) ?
+          {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
                 key={0}
-                {...sanFrancisco.property}
+                {...sanFrancisco.getPropertyDetails}
                 name={'Hilton San Francisco'}
+                lowestTotalPriceAfterTax={143}
                 highlighted={false}
               />
             </Grid>: <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={0} /></Grid>
           }  
 
-          {(sanDiego && sanDiego.property) ?
+          {(sanDiego && sanDiego.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
                 key={1}
-                {...sanDiego.property}
+                {...sanDiego.getPropertyDetails}
+                lowestTotalPriceAfterTax={161}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
           } 
 
-          {(losAngeles && losAngeles.property) ?
+          {(losAngeles && losAngeles.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
                 key={2}
-                {...losAngeles.property}
+                {...losAngeles.getPropertyDetails}
+                lowestTotalPriceAfterTax={309}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={2} /></Grid>
           }  
 
-          {(losAngeles2 && losAngeles2.property) ?
+          {(losAngeles2 && losAngeles2.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
                 key={2}
-                {...losAngeles2.property}
+                {...losAngeles2.getPropertyDetails}
+                lowestTotalPriceAfterTax={144}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={3} /></Grid>
