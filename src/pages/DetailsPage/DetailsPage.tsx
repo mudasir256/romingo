@@ -33,6 +33,7 @@ import {
   MenuItem,
   IconButton,
   Drawer,
+  CircularProgress,
 } from "@mui/material";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -242,7 +243,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   console.log(detailInfo)
   console.log(error)
 
-  const { data: roomInfo } = useQuery(
+  const { data: roomInfo, loading: roomsLoading, refetch } = useQuery(
     gql`
       ${GetSabreRoomReservations}
     `,
@@ -299,7 +300,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         setReviewDialog(true);
       }
     } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }, [pageLocation, reviewData]);
 
@@ -1626,39 +1627,43 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   >
                     Choose your room
                   </Typography>
-                  <RoomsFilterBar />
-                  <Grid container columnSpacing={6} rowSpacing={6}>
-                    {rooms.map((room: any, key: number) => {
-                      return (
-                        <Grid
-                          item
-                          md={4}
-                          lg={4}
-                          sm={6}
-                          xs={12}
-                          key={key}
-                          sx={{ display: "flex", flex: 1 }}
-                        >
-                          <RoomCard
+                  <RoomsFilterBar refetch={refetch} />
+                  {roomsLoading ? <Box sx={{ mx: 'auto', textAlign: 'center'}}><CircularProgress /></Box> 
+                    : rooms.length > 0 ?
+                    <Grid container columnSpacing={6} rowSpacing={6}>
+                      {rooms.map((room: any, key: number) => {
+                        return (
+                          <Grid
+                            item
+                            md={4}
+                            lg={4}
+                            sm={6}
+                            xs={12}
                             key={key}
-                            bestRate={key === 0 ? true : false}
-                            HotelName={name}
-                            room={room}
-                            sx={{
-                              minWidth: "260px",
-                              borderRadius: "8px",
-                              p: " 0rem 1rem 1rem 1rem",
-                              border: "1px solid #ddd",
-                              transition: "all .15s ease-in-out",
-                              boxShadow: 1,
-                              "&:hover": { boxShadow: 3 },
-                            }}
-                            {...room}
-                          />
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
+                            sx={{ display: "flex", flex: 1 }}
+                          >
+                            <RoomCard
+                              key={key}
+                              bestRate={key === 0 ? true : false}
+                              HotelName={name}
+                              room={room}
+                              sx={{
+                                minWidth: "260px",
+                                borderRadius: "8px",
+                                p: " 0rem 1rem 1rem 1rem",
+                                border: "1px solid #ddd",
+                                transition: "all .15s ease-in-out",
+                                boxShadow: 1,
+                                "&:hover": { boxShadow: 3 },
+                              }}
+                              {...room}
+                            />
+                          </Grid>
+                        );
+                      })}
+                    </Grid>
+                    : <Typography sx={{ textAlign: 'center'}}>No rooms found in this date range.</Typography>
+                  }
                   {accessibleRooms && accessibleRooms.length > 0 && (
                     <>
                       <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
@@ -2482,9 +2487,10 @@ interface FilterBarProps {
   zoomed?: boolean;
   home?: boolean;
   city?: string;
+  refetch: any;
 }
 
-const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
+const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
@@ -2532,23 +2538,51 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
     }
   }, [cities]);
 
+  function getAgeParam(childrenAge) {
+    if (childrenAge) {
+      return childrenAge.map((x: number) => {
+        if (x === 0) {
+          return {
+            age: 1,
+          };
+        }
+        return {
+          age: x,
+        };
+      })
+    }
+    return []
+  }
+
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-
+    console.log(occupants)
+    console.log(checkDate)
     if (
       occupants.adults !== 0 &&
-      selectedCity &&
       checkDate[0] &&
       checkDate[1]
     ) {
       dispatch(
         saveSearch({
-          city: selectedCity,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
         })
       );
+
+ 
+      if (refetch) {
+        const checkIn = new Date(checkDate[0]).toISOString()
+        const checkOut = new Date(checkDate[1]).toISOString()
+        refetch({
+          checkIn: checkIn.substring(0, 10),
+          checkOut: checkOut.substring(0, 10),
+          adults: occupants.adults,
+          children: getAgeParam(occupants.childrenAge),
+          dogs: occupants.dogs,
+        })
+      }
     } else {
       alert("error");
     }
