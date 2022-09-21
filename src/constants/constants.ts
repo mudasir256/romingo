@@ -473,6 +473,46 @@ const GetSabreRoomReservations = `
   }
 `
 
+const GetSabrePropertyDetails = `
+    query (
+      $alias: String!
+    ) {
+      getSabrePropertyDetails(input: {
+        alias: $alias,
+      })
+      {
+        alias
+        sabreId
+        nearbyActivities {
+          id
+          activityType {
+            id
+            name
+          }
+          name
+          overview
+          desc
+          addressLine1
+          location {
+            latitude
+            longitude
+          }
+          price
+          distanceInMeters
+        }
+        amenities {
+          code
+          desc
+        }
+        addressLine1
+        location {
+          latitude
+          longitude
+        }
+    }
+  }
+`;
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -485,4 +525,5 @@ export {
   GetStripeClientSecret,
   GetPropertyDetails,
   GetSabreRoomReservations,
+  GetSabrePropertyDetails,
 };

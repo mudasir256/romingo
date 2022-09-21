@@ -33,6 +33,7 @@ import {
   MenuItem,
   IconButton,
   Drawer,
+  CircularProgress,
 } from "@mui/material";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -98,7 +99,12 @@ import FilterBar from "../../components/FilterBar";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
-import { GetHotelDetail } from "../../constants/constants";
+import { 
+  GetHotelDetail, 
+  GetPropertyDetails, 
+  GetSabreRoomReservations,
+  GetSabrePropertyDetails,
+} from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
 import { useWindowSize } from "react-use";
@@ -137,9 +143,11 @@ const libraries: Libraries = ["places"];
 interface Props {
   name: string;
   location: {
+    address: string;
+  };
+  locationCoordinates: {
     lat: string;
     lon: string;
-    address: string;
   };
   mainImg: string;
   gallery: string[];
@@ -209,15 +217,38 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     return str?.replace("http:", "");
   };
 
-//  isIdPage(pageLocation.pathname)
 
-  const { loading, data, error } = useQuery(
+  const { data, loading } = useQuery(
     gql`
-      ${GetHotelDetail}
+      ${GetPropertyDetails}
     `,
     {
       variables: {
-        id: hotelId,
+        alias:hotelAlias,
+      },
+    }
+  );
+
+  const { data: detailInfo, error } = useQuery(
+    gql`
+      ${GetSabrePropertyDetails}
+    `,
+    {
+      variables: {
+        alias: hotelAlias,
+      },
+    }
+  );
+
+  console.log(detailInfo)
+  console.log(error)
+
+  const { data: roomInfo, loading: roomsLoading, refetch } = useQuery(
+    gql`
+      ${GetSabreRoomReservations}
+    `,
+    {
+      variables: {
         checkIn: search?.checkIn.substring(0, 10),
         checkOut: search?.checkOut.substring(0, 10),
         adults: search?.occupants?.adults,
@@ -229,12 +260,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  console.log(data)
-  console.log(error)
 
   const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
-  const [location, setLocation] = useState({ address: "", lat: "", lon: "" });
+  const [location, setLocation] = useState({ address: "" });
+  const [locationCoordinates, setLocationCoordinates] = useState({ lat: "", lon: "" });
   const [gallery, setGallery] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [defaultDescription, setDefaultDescription] = useState("asdfasdfasdfasdfasdf");
@@ -270,50 +300,102 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         setReviewDialog(true);
       }
     } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }, [pageLocation, reviewData]);
 
   useEffect(() => {
-     if (data && data?.property) {
+
+     if (data && data?.getPropertyDetails) {
       if (isIdPage(pageLocation.pathname)) {
-         if (data?.property?.alias) {
-           history.push(`/hotel/${data?.property?.alias}`)
+         if (data?.getPropertyDetails?.alias) {
+           history.push(`/hotel/${data?.getPropertyDetails?.alias}`)
            return;
          }
       }
-      dispatch(setHotel(data.property));
-      setName(data.property.name);
-      setLocation({
-        address: data.property.addressLine1,
-        lat: data.property.location.latitude,
-        lon: data.property.location.longitude,
-      });
+      dispatch(setHotel(data.getPropertyDetails));
+      setName(data.getPropertyDetails.name);
 
-      setCity({ ...data.property.city });
-      setNeighborhood(data.property.neighborhood);
-      setAllowsBigDogs(data.property.allows_big_dogs);
+      setLocation({ address: data.getPropertyDetails.addressLine1 });
 
-      let tmp: any[] = [];
-      data.property.imageURLs.map((image: string) => {
+      setCity({ ...data.getPropertyDetails.city });
+      setNeighborhood(data.getPropertyDetails.neighborhood);
+      setAllowsBigDogs(data.getPropertyDetails.allows_big_dogs);
+
+      const tmp: any[] = [];
+      data.getPropertyDetails.imageURLs.map((image: string) => {
         tmp.push(image);
       });
-      data.property.sabreImageURLs.map((image: string) => {
-        tmp.push(image);
-      });
+      // data.getPropertyDetails.sabreImageURLs.map((image: string) => {
+      //   tmp.push(image);
+      // });
       setGallery([...tmp]);
-      setDefaultDescription(data.property.desc);
-      setAmenities(data.property.dogAmenities);
-      setScore(data.property.romingoScore);
+      setDefaultDescription(data.getPropertyDetails.desc);
+      setAmenities(data.getPropertyDetails.dogAmenities);
+      setScore(data.getPropertyDetails.romingoScore);
+
+
+      //setNearby(data.getPropertyDetails.nearbyActivities);
+
+      markers.push({
+        lat: 0, //data.getPropertyDetails.location.latitude,
+        lng: 0, //data.getPropertyDetails.location.longitude,
+        type: "hotel",
+        label: data.getPropertyDetails.name,
+      });
+
+      // data.getPropertyDetails.nearbyActivities.map((activity: any) => {
+      //   markers.push({
+      //     lat: activity.location.latitude,
+      //     lng: activity.location.longitude,
+      //     type: activity?.activityType?.name,
+      //     label: activity.name,
+      //   });
+      // });
+
+ 
+
+      setMarkers([...markers]);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (detailInfo && detailInfo.getSabrePropertyDetails) {
+      setLocationCoordinates({
+        lat: detailInfo.getSabrePropertyDetails.location.latitude,
+        lon: detailInfo.getSabrePropertyDetails.location.longitude,
+      });
 
       const tmpAmenities: string[] = [];
-      if (data.property.amenities) {
-        data.property.amenities.map((amenity: any) => {
-          tmpAmenities.push(amenity.desc);
-        }); 
-      }
+      detailInfo.getSabrePropertyDetails.amenities.map((amenity: any) => {
+        tmpAmenities.push(amenity.desc);
+      }); 
+      setOtherAmenities([...tmpAmenities]);
 
-      const romingoMatch = data.property.rooms.filter(
+      const tmpMarkers = [];
+      tmpMarkers.push({
+        lat: detailInfo.getSabrePropertyDetails.location.latitude,
+        lng: detailInfo.getSabrePropertyDetails.location.longitude,
+        type: "hotel",
+        label: name || '',
+      });
+      detailInfo.getSabrePropertyDetails.nearbyActivities.map((activity: any) => {
+         tmpMarkers.push({
+           lat: activity.location.latitude,
+           lng: activity.location.longitude,
+           type: activity?.activityType?.name,
+           label: activity.name,
+         });
+      });
+      setMarkers([...tmpMarkers]);
+      setNearby(detailInfo.getSabrePropertyDetails.nearbyActivities);
+
+    }
+  }, [detailInfo])
+
+  useEffect(() => {
+    if (roomInfo && roomInfo.getSabreRoomReservationAvailabilty) {
+      const romingoMatch = roomInfo.getSabreRoomReservationAvailabilty.rooms.filter(
         (r: RoomInfo) => r.romingoMatch
       );
 
@@ -331,32 +413,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         setAccessibleRooms(accessibleArr);
         setRooms(nonAccessibleArr);
       } else {
-        setRooms(data.property.rooms);
+        setRooms([...roomInfo.getSabreRoomReservationAvailabilty.rooms])
       }
 
-      setOtherAmenities([...tmpAmenities]);
-
-      setNearby(data.property.nearbyActivities);
-
-      markers.push({
-        lat: data.property.location.latitude,
-        lng: data.property.location.longitude,
-        type: "hotel",
-        label: data.property.name,
-      });
-
-      data.property.nearbyActivities.map((activity: any) => {
-        markers.push({
-          lat: activity.location.latitude,
-          lng: activity.location.longitude,
-          type: activity?.activityType?.name,
-          label: activity.name,
-        });
-      });
-
-      tmp = [];
-
-      data.property.rooms.map((room: any, key: number) => {
+      const tmp = [];
+      roomInfo.getSabreRoomReservationAvailabilty.rooms.map((room: any, key: number) => {
         let roomDescription = "";
 
         room.beds.map((bed: any) => {
@@ -377,10 +438,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       });
 
       setRoomDropDown([...tmp]);
-
-      setMarkers([...markers]);
     }
-  }, [data]);
+  }, [roomInfo])
 
   useEffect(() => {
     if (screen.height > 700) {
@@ -458,7 +517,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const getReviewData = () => {
     const request = {
-      placeId: data.property.googlePlaceId,
+      placeId: data.getPropertyDetails.googlePlaceId,
       fields: ["reviews", "rating", "user_ratings_total"],
     };
     if (google) {
@@ -472,7 +531,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   };
 
   useEffect(() => {
-    if (data && data.property && data.property.googlePlaceId && isLoaded) {
+    if (data && data.getPropertyDetails && data.getPropertyDetails.googlePlaceId && isLoaded) {
       getReviewData();
     }
   }, [data, isLoaded]);
@@ -487,7 +546,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         {!loading && data && (
           <Box
             component="img"
-            src={removeHttpLink(data?.property?.featuredImageURL)}
+            src={removeHttpLink(data?.getPropertyDetails?.featuredImageURL)}
             alt={name}
             boxShadow={2}
             onClick={handleOpen}
@@ -788,7 +847,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   mb: { xs: "1rem", sm: "1rem", md: "0rem" },
                                 }}
                               >
-                                {data.property.name}
+                                {data.getPropertyDetails.name}
                               </Typography>
                               <Typography
                                 variant="h6"
@@ -1006,7 +1065,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 <Button
                                   onClick={() =>
                                     window.open(
-                                      `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                                      `https://www.google.com/maps/search/?api=1&query=${data.getPropertyDetails.name}&query_place_id=${data.getPropertyDetails.googlePlaceId}`
                                     )
                                   }
                                   variant="outlined"
@@ -1099,7 +1158,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   mb: { xs: "1rem", sm: "1rem", md: "0rem" },
                                 }}
                               >
-                                {data.property.name}
+                                {data.getPropertyDetails.name}
                               </Typography>
 
                               {/* <Typography
@@ -1178,7 +1237,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 <Button
                                   onClick={() =>
                                     window.open(
-                                      `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                                      `https://www.google.com/maps/search/?api=1&query=${data.getPropertyDetails.name}&query_place_id=${data.getPropertyDetails.googlePlaceId}`
                                     )
                                   }
                                   variant="outlined"
@@ -1335,7 +1394,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     my: "1rem",
                   }}
                 >                 
-                  <HotelTags petFeePolicy={data?.property?.petFeePolicy} allows_big_dogs={allowsBigDogs} />
+                  <HotelTags petFeePolicy={data?.getPropertyDetails?.petFeePolicy} allows_big_dogs={allowsBigDogs} />
                 </Box>
 
                 {/* <Box
@@ -1475,8 +1534,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   <Box sx={{ display: "flex", my: 2, width: "100%" }}>
                     <Map
                       center={{
-                        lat: parseFloat(location.lat),
-                        lng: parseFloat(location.lon),
+                        lat: parseFloat(locationCoordinates.lat || 0),
+                        lng: parseFloat(locationCoordinates.lon || 0),
                       }}
                       height={fullScreen ? 200 : 300}
                       markers={markers}
@@ -1568,39 +1627,43 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   >
                     Choose your room
                   </Typography>
-                  <RoomsFilterBar />
-                  <Grid container columnSpacing={6} rowSpacing={6}>
-                    {rooms.map((room: any, key: number) => {
-                      return (
-                        <Grid
-                          item
-                          md={4}
-                          lg={4}
-                          sm={6}
-                          xs={12}
-                          key={key}
-                          sx={{ display: "flex", flex: 1 }}
-                        >
-                          <RoomCard
+                  <RoomsFilterBar refetch={refetch} />
+                  {roomsLoading ? <Box sx={{ mx: 'auto', textAlign: 'center'}}><CircularProgress /></Box> 
+                    : rooms.length > 0 ?
+                    <Grid container columnSpacing={6} rowSpacing={6}>
+                      {rooms.map((room: any, key: number) => {
+                        return (
+                          <Grid
+                            item
+                            md={4}
+                            lg={4}
+                            sm={6}
+                            xs={12}
                             key={key}
-                            bestRate={key === 0 ? true : false}
-                            HotelName={name}
-                            room={room}
-                            sx={{
-                              minWidth: "260px",
-                              borderRadius: "8px",
-                              p: " 0rem 1rem 1rem 1rem",
-                              border: "1px solid #ddd",
-                              transition: "all .15s ease-in-out",
-                              boxShadow: 1,
-                              "&:hover": { boxShadow: 3 },
-                            }}
-                            {...room}
-                          />
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
+                            sx={{ display: "flex", flex: 1 }}
+                          >
+                            <RoomCard
+                              key={key}
+                              bestRate={key === 0 ? true : false}
+                              HotelName={name}
+                              room={room}
+                              sx={{
+                                minWidth: "260px",
+                                borderRadius: "8px",
+                                p: " 0rem 1rem 1rem 1rem",
+                                border: "1px solid #ddd",
+                                transition: "all .15s ease-in-out",
+                                boxShadow: 1,
+                                "&:hover": { boxShadow: 3 },
+                              }}
+                              {...room}
+                            />
+                          </Grid>
+                        );
+                      })}
+                    </Grid>
+                    : <Typography sx={{ textAlign: 'center'}}>No rooms found in this date range.</Typography>
+                  }
                   {accessibleRooms && accessibleRooms.length > 0 && (
                     <>
                       <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
@@ -1764,7 +1827,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       <Button
                         onClick={() =>
                           window.open(
-                            `https://www.google.com/maps/search/?api=1&query=${data.property.name}&query_place_id=${data.property.googlePlaceId}`
+                            `https://www.google.com/maps/search/?api=1&query=${data.getPropertyDetails.name}&query_place_id=${data.getPropertyDetails.googlePlaceId}`
                           )
                         }
                         variant="outlined"
@@ -2424,9 +2487,10 @@ interface FilterBarProps {
   zoomed?: boolean;
   home?: boolean;
   city?: string;
+  refetch: any;
 }
 
-const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
+const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
@@ -2474,23 +2538,51 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "" }) => {
     }
   }, [cities]);
 
+  function getAgeParam(childrenAge) {
+    if (childrenAge) {
+      return childrenAge.map((x: number) => {
+        if (x === 0) {
+          return {
+            age: 1,
+          };
+        }
+        return {
+          age: x,
+        };
+      })
+    }
+    return []
+  }
+
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-
+    console.log(occupants)
+    console.log(checkDate)
     if (
       occupants.adults !== 0 &&
-      selectedCity &&
       checkDate[0] &&
       checkDate[1]
     ) {
       dispatch(
         saveSearch({
-          city: selectedCity,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
         })
       );
+
+ 
+      if (refetch) {
+        const checkIn = new Date(checkDate[0]).toISOString()
+        const checkOut = new Date(checkDate[1]).toISOString()
+        refetch({
+          checkIn: checkIn.substring(0, 10),
+          checkOut: checkOut.substring(0, 10),
+          adults: occupants.adults,
+          children: getAgeParam(occupants.childrenAge),
+          dogs: occupants.dogs,
+        })
+      }
     } else {
       alert("error");
     }

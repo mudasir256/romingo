@@ -121,7 +121,7 @@ const ListingPage: FC<Props> = () => {
     })
     : [];
 
-  const { loading, error, data } = useQuery(
+  const { loading, error, data, refetch } = useQuery(
     gql`
       ${GetHotelBySearch}
     `,
@@ -154,6 +154,8 @@ const ListingPage: FC<Props> = () => {
       },
     }
   );
+
+  console.log(search)
    const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
@@ -355,7 +357,7 @@ const ListingPage: FC<Props> = () => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
   console.log(cards)
-
+  console.log(error)
   return (
     <>
       <ScrollToTop />
