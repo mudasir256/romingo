@@ -37,6 +37,7 @@ import LogoImgWhite from '../../assets/images/logo-white.png';
 import LowestRates from '../../assets/images/icon-01.png';
 import ZeroPetFees from '../../assets/images/icon-02.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
+import BookNow from '../../assets/images/icon-04.png';
 
 
 import {
@@ -262,17 +263,17 @@ const HomePage: FC<Props> = ({
       }}>
         <Box className="info-box">
           <div className="align-center">
-            <img src={LowestRates} alt="lowest rates" />
+            <img className="book-now-image" src={BookNow} alt="lowest rates" />
           </div>
           <div className="info-box-title">Your favorite hotels</div>
           <div className="info-box-desc">Explore hundreds of our pet-friendly hotel partners such as Hilton, Hyatt, IHG, and more.</div>
         </Box>
         <Box className="info-box">
           <div className="align-center">
-            <img src={ZeroPetFees}  alt="no pet fees" />
+            <img src={LowestRates}  alt="no pet fees" />
           </div>
-          <div className="info-box-title">$0 pet fees</div>
-          <div className="info-box-desc">Book the lowest hotel rates with Romingo, and never pay hotel pet fees again!</div>
+          <div className="info-box-title">Lowest rates</div>
+          <div className="info-box-desc">Book the lowest hotel rates at your favorite pet-friendly hotels, and save with Romingo!</div>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}} >
           <div className="align-center">
