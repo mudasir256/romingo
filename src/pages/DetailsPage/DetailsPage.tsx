@@ -101,7 +101,8 @@ import { gql, useQuery } from "@apollo/client";
 import { 
   GetHotelDetail, 
   GetPropertyDetails, 
-  GetSabreRoomReservations 
+  GetSabreRoomReservations,
+  GetSabrePropertyDetails,
 } from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
@@ -141,9 +142,11 @@ const libraries: Libraries = ["places"];
 interface Props {
   name: string;
   location: {
+    address: string;
+  };
+  locationCoordinates: {
     lat: string;
     lon: string;
-    address: string;
   };
   mainImg: string;
   gallery: string[];
@@ -225,7 +228,21 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  const { data: roomInfo, error } = useQuery(
+  const { data: detailInfo, error } = useQuery(
+    gql`
+      ${GetSabrePropertyDetails}
+    `,
+    {
+      variables: {
+        alias: hotelAlias,
+      },
+    }
+  );
+
+  console.log(detailInfo)
+  console.log(error)
+
+  const { data: roomInfo } = useQuery(
     gql`
       ${GetSabreRoomReservations}
     `,
@@ -242,9 +259,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+
   const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
-  const [location, setLocation] = useState({ address: "", lat: "", lon: "" });
+  const [location, setLocation] = useState({ address: "" });
+  const [locationCoordinates, setLocationCoordinates] = useState({ lat: "", lon: "" });
   const [gallery, setGallery] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [defaultDescription, setDefaultDescription] = useState("asdfasdfasdfasdfasdf");
@@ -296,11 +315,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       dispatch(setHotel(data.getPropertyDetails));
       setName(data.getPropertyDetails.name);
 
-      setLocation({
-        address: data.getPropertyDetails.addressLine1,
-        lat: 0, //data.getPropertyDetails.location.latitude,
-        lon: 0, //data.getPropertyDetails.location.longitude,
-      });
+      setLocation({ address: data.getPropertyDetails.addressLine1 });
 
       setCity({ ...data.getPropertyDetails.city });
       setNeighborhood(data.getPropertyDetails.neighborhood);
@@ -318,15 +333,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setAmenities(data.getPropertyDetails.dogAmenities);
       setScore(data.getPropertyDetails.romingoScore);
 
-      const tmpAmenities: string[] = [];
-      if (data.getPropertyDetails.amenities) {
-        data.getPropertyDetails.amenities.map((amenity: any) => {
-          tmpAmenities.push(amenity.desc);
-        }); 
-      }
-
-
-      setOtherAmenities([...tmpAmenities]);
 
       //setNearby(data.getPropertyDetails.nearbyActivities);
 
@@ -351,6 +357,40 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       setMarkers([...markers]);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (detailInfo && detailInfo.getSabrePropertyDetails) {
+      setLocationCoordinates({
+        lat: detailInfo.getSabrePropertyDetails.location.latitude,
+        lon: detailInfo.getSabrePropertyDetails.location.longitude,
+      });
+
+      const tmpAmenities: string[] = [];
+      detailInfo.getSabrePropertyDetails.amenities.map((amenity: any) => {
+        tmpAmenities.push(amenity.desc);
+      }); 
+      setOtherAmenities([...tmpAmenities]);
+
+      const tmpMarkers = [];
+      tmpMarkers.push({
+        lat: detailInfo.getSabrePropertyDetails.location.latitude,
+        lng: detailInfo.getSabrePropertyDetails.location.longitude,
+        type: "hotel",
+        label: name || '',
+      });
+      detailInfo.getSabrePropertyDetails.nearbyActivities.map((activity: any) => {
+         tmpMarkers.push({
+           lat: activity.location.latitude,
+           lng: activity.location.longitude,
+           type: activity?.activityType?.name,
+           label: activity.name,
+         });
+      });
+      setMarkers([...tmpMarkers]);
+      setNearby(detailInfo.getSabrePropertyDetails.nearbyActivities);
+
+    }
+  }, [detailInfo])
 
   useEffect(() => {
     if (roomInfo && roomInfo.getSabreRoomReservationAvailabilty) {
@@ -1493,8 +1533,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   <Box sx={{ display: "flex", my: 2, width: "100%" }}>
                     <Map
                       center={{
-                        lat: parseFloat(location.lat),
-                        lng: parseFloat(location.lon),
+                        lat: parseFloat(locationCoordinates.lat || 0),
+                        lng: parseFloat(locationCoordinates.lon || 0),
                       }}
                       height={fullScreen ? 200 : 300}
                       markers={markers}
