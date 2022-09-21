@@ -502,6 +502,41 @@ const GetSabreRoomReservations = `
   }
 `
 
+const GetReservationDetails =`
+  query GetReservationDetailsInput (
+    $email: String!
+    $propertyConfirmationId: String!
+  ) {
+    getReservationDetails (
+      input: {
+        email: $email
+        propertyConfirmationId: $propertyConfirmationId
+      }
+    ) {
+      id
+      propertyId
+      paymentIntentId
+      cardId
+      sabreConfirmationId
+      propertyConfirmationId
+      faunaDocId
+      firstName
+      lastName
+      email
+      mobileNumber
+      checkInAtLocal
+      checkOutAtLocal
+      deadlineLocal
+      data
+      captured
+      cancellationFeePrice
+      intentType
+      setupIntentObject
+      customerId
+    }
+  }
+`;
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -514,4 +549,5 @@ export {
   GetStripeClientSecret,
   GetPropertyDetails,
   GetSabreRoomReservations,
+  GetReservationDetails,
 };
