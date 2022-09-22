@@ -492,14 +492,13 @@ const ManageReservationPage: FC<Props> = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Let Google help apps determine location. This means sending anonymous
-                location data to Google, even when no apps are running.
+                Are you sure want to cancel Booking?
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={() => setOpenCancelConfirmation(false)}>Disagree</Button>
+              <Button onClick={() => setOpenCancelConfirmation(false)}>No</Button>
               <Button onClick={handleCancelReservation} autoFocus>
-                Agree
+                Yes
               </Button>
             </DialogActions>
           </Dialog></>
