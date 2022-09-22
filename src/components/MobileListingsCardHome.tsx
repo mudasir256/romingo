@@ -6,7 +6,7 @@ import ImageSlider from "./ImageSlider";
 import RomingoScore from "./RomingoScore/RomingoScore";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import StarIcon from "@mui/icons-material/Star";
-
+import { utils } from '../services/utils'
 import {
   Pets,
   CreditCardOffTwoTone,
@@ -266,7 +266,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
               </Typography>
 
   
-              <HotelTags petFeePolicy={{ ...petFeePolicy, totalFees: computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
+              <HotelTags petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
     
             </Grid>
 
@@ -341,91 +341,5 @@ const ListingCardSquare: FC<ListingCardProps> = ({
     </>
   );
 };
-
-function computePetFeePolicyTotalFees(durationDays, dogs, petFeePolicy) {
-  try {
-    if (dogs < 1) {
-      return 0;
-    }
-
-    
-    const nights = durationDays;
-
-    if (nights < 1) {
-      return 0;
-    }
-
-    if (petFeePolicy.maxPets !== -1) {
-      if (dogs > petFeePolicy.maxPets) {
-        return -1;
-      }
-    }
-
-    if (nights > 365) {
-      return -1;
-    }
-
-    let keys = Object.keys(petFeePolicy.breakup);
-
-    for (let i = 0; i < keys.length; i++) {
-      keys[i] = parseInt(keys[i]);
-    }
-
-    keys = keys.sort((a, b) => {
-      a - b;
-    });
-
-    const values = [];
-
-    for (let i = 0; i < keys.length; i++) {
-      values.push(petFeePolicy.breakup[keys[i].toString()]);
-    }
-
-    let retVal;
-
-    if (petFeePolicy.perNight) {
-      for (let i = 0; i < keys.length; i++) {
-        if (nights <= keys[i]) {
-          if (values[i] === -1) {
-            return -1;
-          }
-          retVal = 0;
-          let prevKey = 0;
-          let newNights = 0;
-          for (let j = 0; j <= i; j++) {
-            if (j === i) {
-              newNights = nights - prevKey;
-            } else {
-              newNights = keys[j] - prevKey;
-            }
-            prevKey = keys[j];
-            if (petFeePolicy.perPet) {
-              retVal = retVal + newNights * dogs * values[j];
-            } else {
-              retVal = retVal + newNights * values[j];
-            }
-          }
-          return retVal;
-        }
-      }
-    } else {
-      for (let i = 0; i < keys.length; i++) {
-        if (nights <= keys[i]) {
-          retVal = values[i];
-          if (retVal === -1) {
-            return retVal;
-          }
-          if (petFeePolicy.perPet) {
-            retVal = retVal * dogs;
-          }
-          return retVal;
-        }
-      }
-    }
-  } catch (e) {
-    console.error(e);
-    return -1;
-  }
-}
 
 export default ListingCardSquare;

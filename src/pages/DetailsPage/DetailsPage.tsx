@@ -6,6 +6,7 @@ import { Dispatch } from "redux";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { saveSearch } from "../../store/searchReducer";
 import { useJsApiLoader } from "@react-google-maps/api";
+import { utils } from '../../services/utils';
 import {
   SvgIcon,
   Link,
@@ -218,7 +219,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   };
 
 
-  const { data, loading } = useQuery(
+  const { data, loading, error } = useQuery(
     gql`
       ${GetPropertyDetails}
     `,
@@ -229,7 +230,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
-  const { data: detailInfo, error } = useQuery(
+  const { data: detailInfo } = useQuery(
     gql`
       ${GetSabrePropertyDetails}
     `,
@@ -239,9 +240,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       },
     }
   );
-
-  console.log(detailInfo)
-  console.log(error)
 
   const { data: roomInfo, loading: roomsLoading, refetch } = useQuery(
     gql`
@@ -259,6 +257,14 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       fetchPolicy: "no-cache",
     }
   );
+
+  const start = search?.checkIn.substring(0, 10)
+  const end = search?.checkOut.substring(0, 10)
+  
+  const date1 = new Date(start).getTime();
+  const date2 = new Date(end).getTime();
+  const diffTime = Math.abs(date2 - date1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
 
   const [reviewData, setReviewData] = useState<any>();
@@ -313,7 +319,13 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
            return;
          }
       }
-      dispatch(setHotel(data.getPropertyDetails));
+      dispatch(setHotel({
+        ...data.getPropertyDetails,
+        petFeePolicy: {
+          ...data.getPropertyDetails.petFeePolicy,
+          totalFees: utils.computePetFeePolicyTotalFees(diffDays, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {})
+        }
+      }));
       setName(data.getPropertyDetails.name);
 
       setLocation({ address: data.getPropertyDetails.addressLine1 });
@@ -1394,7 +1406,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     my: "1rem",
                   }}
                 >                 
-                  <HotelTags petFeePolicy={data?.getPropertyDetails?.petFeePolicy} allows_big_dogs={allowsBigDogs} />
+                  <HotelTags 
+                    petFeePolicy={{ ...data?.getPropertyDetails?.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(diffDays, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {}) }} 
+                    allows_big_dogs={allowsBigDogs} 
+                  />
                 </Box>
 
                 {/* <Box
