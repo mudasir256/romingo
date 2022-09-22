@@ -149,7 +149,28 @@ const HomePage: FC<Props> = ({
     }
   );
 
-  console.log(sanDiego)
+  // Row 2
+
+  const { data: marina } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Los-Angeles-Pet-Friendly-Hotels-Marina-Del-Ray-Hotel-Los-Angeles', } }
+  );
+
+  const { data: denver } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Denver-Pet-Friendly-Hotels-Sonesta-Downtown-Denver', } }
+  );
+
+  const { data: portland } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Portland-Pet-Friendly-Hotels-Hyatt-Regency-Portland', } }
+  );
+
+  const { data: seattle } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Pan-Pacific-Seattle', } }
+  );
+
 
 
   const locationIds = [
@@ -333,12 +354,57 @@ const HomePage: FC<Props> = ({
           {(losAngeles2 && losAngeles2.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={3}>
               <ListingCardSquare
-                key={2}
+                key={3}
                 {...losAngeles2.getPropertyDetails}
                 lowestTotalPriceAfterTax={144}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={3} /></Grid>
+          }  
+
+          {(marina && marina.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+              <ListingCardSquare
+                key={4}
+                {...marina.getPropertyDetails}
+                lowestTotalPriceAfterTax={232}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={4} /></Grid>
+          }  
+
+          {(denver && denver.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+              <ListingCardSquare
+                key={5}
+                {...denver.getPropertyDetails}
+                lowestTotalPriceAfterTax={125}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={5} /></Grid>
+          }  
+
+          {(portland && portland.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+              <ListingCardSquare
+                key={6}
+                {...portland.getPropertyDetails}
+                lowestTotalPriceAfterTax={152}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={6} /></Grid>
+          }  
+        
+
+          {(seattle && seattle.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+              <ListingCardSquare
+                key={7}
+                {...seattle.getPropertyDetails}
+                lowestTotalPriceAfterTax={242}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={7} /></Grid>
           }  
 
           
