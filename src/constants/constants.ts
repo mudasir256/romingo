@@ -533,10 +533,18 @@ const GetReservationDetails =`
       intentType
       setupIntentObject
       customerId
+      reservationStatus
     }
   }
 `;
 
+const CancelBooking = `
+  mutation CancelBooking($cancelBookingInput: CancelBookingInput!) {
+    cancelBooking(input: $cancelBookingInput) {
+      status
+    }
+  }
+`;
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -550,4 +558,5 @@ export {
   GetPropertyDetails,
   GetSabreRoomReservations,
   GetReservationDetails,
+  CancelBooking,
 };

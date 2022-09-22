@@ -17,6 +17,7 @@ import {
   DialogContent,
   DialogActions,
   DialogProps,
+  DialogContentText,
 } from "@mui/material";
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
@@ -24,8 +25,8 @@ import Footer from "../../components/Footer";
 import ReservationDetails from "../../components/ReservationDetails";
 import ScrollToTop from "../../components/ScrollToTop";
 import { Error } from "@mui/icons-material";
-import { GetReservationDetails } from '../../constants/constants';
-import { gql, useLazyQuery, useQuery } from "@apollo/client";
+import { GetReservationDetails, CancelBooking } from '../../constants/constants';
+import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
 import moment from "moment";
 interface BookingManage {
@@ -58,10 +59,11 @@ interface BookingInterface {
   data: any,
   hotel: any,
   cancellationFeePrice: any,
-  captured: number
-  intentType: string
-  setupIntentObject: any
-  customerId: string
+  captured: number,
+  intentType: string,
+  setupIntentObject: any,
+  customerId: string,
+  reservationStatus: string
 }
 
 interface Props {
@@ -101,10 +103,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 const ManageReservationPage: FC<Props> = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [confirmationNumber, setConfirmationNumber] = useState("");
-  const [checkInDateDiff, setCheckInDateDiff] = useState(0);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [confirmationId, setConfirmationId] = useState("");
+  const [bookingStatus, setBookingStatus] = useState("");
   const [open, setOpen] = useState(false);
+  const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
   const [list, setList] = useState<BookingInterface[]>([]);
   const buttonEnabled =
@@ -124,26 +128,24 @@ const ManageReservationPage: FC<Props> = () => {
     }
   );
 
+  const [
+    cancelBooking,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(gql`${CancelBooking}`);
+
   useEffect(() => {
-    if (data) {
-      setList(data?.getReservationDetails)
-      const currentDate = moment().format('MM/DD/YYYY')
-      const comingCheckInDate = moment(formatUnix(parseInt(data.getReservationDetails[0].checkInAtLocal)))
-      const difference = moment(comingCheckInDate).diff(moment(currentDate), 'days');
-      setCheckInDateDiff(difference)
+    if (data) {      
+      if (Object.keys(data?.getReservationDetails).length > 0) {
+        setList(data?.getReservationDetails)
+        setBookingStatus(data?.getReservationDetails[0].reservationStatus)
+        setSuccess(false)
+      }
     }
   }, [data])
 
-
   useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        setSuccess(true);
-      }, 2500);
-    } else {
-      setSuccess(false);
-    }
-  }, [loading]);
+    if (called && !data) setSuccess(true);
+  }, [called])
 
   const startChat = () => {
     window.Intercom("boot", {
@@ -169,6 +171,10 @@ const ManageReservationPage: FC<Props> = () => {
     setOpen(false);
   };
 
+  const handleCancelBooking = (confirmationId: any) => {
+    setOpenCancelConfirmation(true);
+    setConfirmationId(confirmationId);
+  }
   const descriptionElementRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
     if (open) {
@@ -178,6 +184,21 @@ const ManageReservationPage: FC<Props> = () => {
       }
     }
   }, [open]);
+
+  const handleCancelReservation = () => {
+    if (confirmationId) {
+      cancelBooking({
+        variables: {
+          cancelBookingInput: {
+            confirmationId: confirmationId,
+            cancelAll: true
+          }
+        }
+      }).then((status) => {
+        setOpenCancelConfirmation(false)
+      })
+    }
+  }
 
   const columns: any = [
     {
@@ -214,16 +235,23 @@ const ManageReservationPage: FC<Props> = () => {
       selector: (row: BookingInterface) => formatUnixLong(parseInt(row.deadlineLocal)),
       width: '180px',
     },
-    checkInDateDiff > 1 && (
     {
-      name: 'Modify',
-      selector: (row: BookingInterface) =>
-        <>
-          {
-            <Button variant="contained" onClick={handleClickOpen('body')}>More Details</Button>
-          }
-        </>,
-    })
+      name: 'Booking Status',
+      selector: (row: BookingInterface) => row.reservationStatus?.toUpperCase()
+    },
+    bookingStatus === "upcoming" && (
+      {
+        name: 'Action',
+        selector: (row: BookingInterface) =>
+          <>
+            {
+              <Button variant="contained" onClick={handleClickOpen('body')}>Modify</Button>
+            },
+            {
+              <Button variant="contained" onClick={() => handleCancelBooking(row.sabreConfirmationId)}>Cancel</Button>
+            }
+          </>,
+      })
 
   ];
 
@@ -256,7 +284,7 @@ const ManageReservationPage: FC<Props> = () => {
             sx={{ margin: "0px auto 2rem auto" }}
             justifyContent="center"
           >
-            {loading && (
+            {success && (
               <Grid>
                 <Grid
                   sx={{
@@ -366,8 +394,7 @@ const ManageReservationPage: FC<Props> = () => {
         </Grid>
       </Container>
       {data &&
-        checkInDateDiff > 1 ? (
-        <Grid>
+        <><Grid>
           <Typography
             variant="body1"
             sx={{
@@ -379,7 +406,7 @@ const ManageReservationPage: FC<Props> = () => {
               marginLeft: "15px"
             }}
           >
-            UpComing
+            {bookingStatus}
           </Typography>
           <Grid
             sx={{
@@ -431,48 +458,6 @@ const ManageReservationPage: FC<Props> = () => {
             </DialogActions>
           </Dialog>
         </Grid>
-      ) : (
-        <Grid>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 600,
-              color: "#666",
-              display: { sm: "block", md: "flex" },
-              justifyContent: "space-between",
-              fontFamily: "Montserrat",
-              marginLeft: "15px"
-            }}
-          >
-            {checkInDateDiff > 1 ? "UpComing" : "Current"}
-          </Typography>
-          <Grid
-            sx={{
-              boxShadow: 3,
-              transition: "all .25s ease-in-out",
-              "&:hover": { boxShadow: 5 },
-              display: "flex",
-              borderRadius: "12px",
-              border: "1px solid #ddd",
-              flexDirection: { xs: "row", sm: "row" },
-              p: "1rem",
-              margin: '15px 45px 45px 45px',
-            }}
-          >
-            <Box
-              sx={{
-                width: '100%'
-              }}
-            >
-              <DataTable
-                columns={columns}
-                data={list}
-                paginationPerPage={10}
-                pagination
-              />
-            </Box>
-          </Grid>
-
           <Dialog
             open={open}
             onClose={handleClose}
@@ -495,9 +480,30 @@ const ManageReservationPage: FC<Props> = () => {
               <Button onClick={handleClose}>Save</Button>
             </DialogActions>
           </Dialog>
-        </Grid>
-      )}
 
+          <Dialog
+            open={openCancelConfirmation}
+            onClose={() => setOpenCancelConfirmation(false)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Use Google's location service?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Let Google help apps determine location. This means sending anonymous
+                location data to Google, even when no apps are running.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpenCancelConfirmation(false)}>Disagree</Button>
+              <Button onClick={handleCancelReservation} autoFocus>
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog></>
+      }
       <Container>
         <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
           <Button
