@@ -488,7 +488,7 @@ const ManageReservationPage: FC<Props> = () => {
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"Use Google's location service?"}
+              {"Confirmation"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
