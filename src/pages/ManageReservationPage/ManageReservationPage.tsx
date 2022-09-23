@@ -442,44 +442,21 @@ const ManageReservationPage: FC<Props> = () => {
             aria-labelledby="scroll-dialog-title"
             aria-describedby="scroll-dialog-description"
           >
-            <DialogTitle id="scroll-dialog-title">Modify</DialogTitle>
+            <DialogTitle id="scroll-dialog-title">You are Modifying Boooking</DialogTitle>
             <DialogContent dividers={scroll === 'paper'}>
               <Grid
                 container
               >
                 {data?.getReservationDetails && (
-                  <ReservationDetails {...data?.getReservationDetails[0]} />
+                  <ReservationDetails flag={"You are Modifying Boooking"} bookingId={data?.getReservationDetails[0].id} />
                 )}
               </Grid>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Save</Button>
             </DialogActions>
           </Dialog>
         </Grid>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            scroll={scroll}
-            aria-labelledby="scroll-dialog-title"
-            aria-describedby="scroll-dialog-description"
-          >
-            <DialogTitle id="scroll-dialog-title">Modify</DialogTitle>
-            <DialogContent dividers={scroll === 'paper'}>
-              <Grid
-                container
-              >
-                {data?.getReservationDetails && (
-                  <ReservationDetails {...data?.getReservationDetails[0]} />
-                )}
-              </Grid>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Save</Button>
-            </DialogActions>
-          </Dialog>
 
           <Dialog
             open={openCancelConfirmation}

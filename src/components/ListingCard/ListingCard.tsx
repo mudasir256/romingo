@@ -58,7 +58,9 @@ export interface ListingCardProps {
     value: string;
     accessible: boolean;
     free: boolean;
-  }
+  };
+  flag?: string;
+  bookingId?: string;
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
@@ -272,7 +274,7 @@ const ListingCard: FC<ListingCardProps> = ({
         </Box>
 
         <Box
-          onClick={() => history.push("/hotel/" + alias)}
+          onClick={() => history.push("/hotel/" + alias, {flag: props?.flag, bookingId: props?.bookingId})}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
