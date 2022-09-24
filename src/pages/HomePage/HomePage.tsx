@@ -296,7 +296,7 @@ const HomePage: FC<Props> = ({
     <Box sx={{
       maxWidth: '1300px',
       mx: 'auto',
-      mb: '1.5em',
+      mb: { xs: 0, sm: '1em' },
       px: { xs: '1em', sm: '1em', lg: '8em' },
       py: { xs: '1em', sm: '1em', lg: '1em' }  
     }}>
@@ -314,8 +314,8 @@ const HomePage: FC<Props> = ({
             {children}
         </Grid>
       </Box>
-      <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
-        <Carousel showArrows={false} showStatus={false} infiniteLoop> 
+      <Box sx={{ textAlign: 'left', mx: '-4.5em', pr: '2em', display: { sm: 'block', md: 'none', lg: 'none' }}}>
+        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={80} showArrows={false} showStatus={false} infiniteLoop> 
           {children}
         </Carousel>
       </Box>
@@ -359,8 +359,9 @@ const HomePage: FC<Props> = ({
         </Box>
       </Box>
       <Box className="hotels-wrapper" sx={{ 
-        marginTop: { md: 0, lg: 0 },
+        marginTop: { sm: 0, md: 0, lg: 0 },
         marginBottom: { sm: 0, md: 0, lg: '369px' }, 
+        pb: 0,
         background: 'white' 
       }}
       >
@@ -472,16 +473,6 @@ const HomePage: FC<Props> = ({
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
           } 
         </HotelSection>
-      
-
-        <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
-        <Grid onClick={() => fillSearchBar()} container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
- 
-
-          
-        </Grid>
-
-        </Box>
       </Box>
 
       <Box className="homepage-dog">
