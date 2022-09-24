@@ -260,7 +260,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       setFormError("");
       dispatch(
         saveSearch({
-          city: getCity(selectedCity),
+          city: selectedCity,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
