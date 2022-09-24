@@ -355,7 +355,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                             fontFamily: "overpass-light",
                             mb: "-.125rem",
                             textTransform: "none",
-                            fontWeight: 600,
                             fontSize: { xs: "11px" },
                           }}
                         >
@@ -366,7 +365,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                             color: "#666",
                             fontFamily: "overpass-light",
                             textTransform: "none",
-                            fontWeight: 600,
                             fontSize: { xs: "14px" },
                           }}
                         >
@@ -411,7 +409,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                         fontFamily: "overpass-light",
                         mb: "-.125rem",
                         textTransform: "none",
-                        fontWeight: 600,
                         fontSize: { xs: "11px" },
                       }}
                     >
@@ -422,7 +419,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                         color: "#666",
                         fontFamily: "overpass-light",
                         textTransform: "none",
-                        fontWeight: 600,
                         fontSize: { xs: "14px" },
                       }}
                     >
@@ -470,7 +466,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
               padding: ".25rem 0rem",
               justifyContent: "center",
               mt: "1rem",
-              fontWeight: 500,
               borderRadius: "6px",
               textTransform: "none",
               pointerEvents: "auto",
@@ -587,7 +582,6 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               color: "#666",
               fontFamily: "overpass-light",
               textTransform: "none",
-              fontWeight: 600,
               fontSize: { xs: "14px" },
             }}
           >

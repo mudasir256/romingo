@@ -210,6 +210,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
             px: { xs: mobileCardPadding, sm: 0 },
             pb: { xs: mobileCardPadding, sm: "0" },
             width: "100%",
+            px: '0.25em',
           }}
         >
           <Grid
@@ -231,7 +232,6 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 flexDirection: "column",
                 justifyContent: 'space-between',
                 p: "0.5em",
-            
               }}
             >
               <Typography
@@ -265,9 +265,9 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 {addressLine1}, {city?.name}
               </Typography>
 
-  
-              <HotelTags petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
-    
+              <Box sx={{ pb: '0.5em' }}>
+                <HotelTags petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
+              </Box>  
             </Grid>
 
 
@@ -295,8 +295,6 @@ const ListingCardSquare: FC<ListingCardProps> = ({
               <Box
                 sx={{
                   display: 'block',
-                  ml: '0.25em',
-                  mb: '0.25em',
                 }}
               >
 

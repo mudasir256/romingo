@@ -171,6 +171,28 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Pan-Pacific-Seattle', } }
   );
 
+  const { data: monte } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Santa-Barbara-Pet-Friendly-Hotels-Mar-Monte-Hotel-Santa-Barbara', } }
+  );
+
+  const { data: andre } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Hotel-Andra-Seattle', } }
+  );
+
+  const { data: thompson } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Thompson-Seattle', } }
+  ); 
+
+  const { data: zags } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'Portland-Pet-Friendly-Hotels-The-Hotel-Zags-Portland', } }
+  );
+
+  
+
 
 
   const locationIds = [
@@ -269,6 +291,29 @@ const HomePage: FC<Props> = ({
     );
   }
 
+  const HotelSection = ({ title, children }) => (
+    <Box sx={{
+      maxWidth: '1300px',
+      mx: 'auto',
+      mb: '1.5em',
+      px: { xs: '1em', sm: '1em', lg: '8em' },
+      py: { xs: '1em', sm: '1em', lg: '1em' }  
+    }}>
+      <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em' }}>{title}</Typography>
+      <Grid 
+        onClick={() => fillSearchBar()} 
+        container 
+        sx={{ 
+    
+        }} 
+        justifyContent="flex-start" 
+        spacing={{ xs: 2, lg: 4}}
+      >
+        {children}
+      </Grid>
+    </Box>
+  )
+
   return (
     <div className="homepage">
       <ScrollToTop />
@@ -279,7 +324,7 @@ const HomePage: FC<Props> = ({
         justifyContent: 'center',
         flexDirection: 'row',
         mx: 'auto',
-        maxWidth: '1240px',
+        maxWidth: '1300px',
         flexWrap: 'wrap',
       }}>
         <Box className="info-box">
@@ -311,14 +356,14 @@ const HomePage: FC<Props> = ({
         background: 'white' 
       }}
       >
-        <div className="hotels-wrapper-header">
+       
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '3em', color: 'black', textAlign:'center', mb: { xs: '0.5em'}}}>
           Travel with Romingo
-        </div>
+        </Typography>
 
-        <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
-        <Grid onClick={() => fillSearchBar()} container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
+        <HotelSection title="Fan Favorites">
           {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
                 key={0}
                 {...sanFrancisco.getPropertyDetails}
@@ -326,86 +371,108 @@ const HomePage: FC<Props> = ({
                 lowestTotalPriceAfterTax={143}
                 highlighted={false}
               />
-            </Grid>: <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={0} /></Grid>
+            </Grid>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
           }  
 
           {(sanDiego && sanDiego.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
                 key={1}
                 {...sanDiego.getPropertyDetails}
                 lowestTotalPriceAfterTax={161}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
           } 
 
-          {(losAngeles && losAngeles.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
-              <ListingCardSquare
-                key={2}
-                {...losAngeles.getPropertyDetails}
-                lowestTotalPriceAfterTax={309}
-                highlighted={false}
-              />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={2} /></Grid>
-          }  
 
           {(losAngeles2 && losAngeles2.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
-                key={3}
+                key={2}
                 {...losAngeles2.getPropertyDetails}
                 lowestTotalPriceAfterTax={144}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={3} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
           }  
+        </HotelSection>
 
+        <HotelSection title="Surfs up">
           {(marina && marina.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
-                key={4}
+                key={3}
                 {...marina.getPropertyDetails}
                 lowestTotalPriceAfterTax={232}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={4} /></Grid>
-          }  
-
-          {(denver && denver.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
-              <ListingCardSquare
-                key={5}
-                {...denver.getPropertyDetails}
-                lowestTotalPriceAfterTax={125}
-                highlighted={false}
-              />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={5} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
           }  
 
           {(portland && portland.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
-                key={6}
+                key={4}
                 {...portland.getPropertyDetails}
                 lowestTotalPriceAfterTax={152}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={6} /></Grid>
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
           }  
-        
 
-          {(seattle && seattle.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+          {(monte && monte.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
-                key={7}
-                {...seattle.getPropertyDetails}
-                lowestTotalPriceAfterTax={242}
+                key={5}
+                {...monte.getPropertyDetails}
+                lowestTotalPriceAfterTax={241}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}><ListingCardSkeleton key={7} /></Grid>
-          }  
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
+          } 
+
+        </HotelSection>
+
+        <HotelSection title="Sustainability trailblazers">
+          {(andre && andre.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={4}>
+              <ListingCardSquare
+                key={6}
+                {...andre.getPropertyDetails}
+                lowestTotalPriceAfterTax={241}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
+          } 
+
+          {(thompson && thompson.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={4}>
+              <ListingCardSquare
+                key={7}
+                {...thompson.getPropertyDetails}
+                lowestTotalPriceAfterTax={241}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
+          } 
+
+          {(zags && zags.getPropertyDetails) ?
+            <Grid item xs={12} sm={12} md={6} lg={4}>
+              <ListingCardSquare
+                key={8}
+                {...zags.getPropertyDetails}
+                lowestTotalPriceAfterTax={241}
+                highlighted={false}
+              />
+            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
+          } 
+        </HotelSection>
+      
+
+        <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
+        <Grid onClick={() => fillSearchBar()} container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
+ 
 
           
         </Grid>

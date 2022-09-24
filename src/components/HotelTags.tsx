@@ -39,9 +39,8 @@ const HotelTags: FC<Props> = ({ petFeePolicy, allows_big_dogs }) => {
       {hasPetFeeReduction &&
         <Chip
           size="small"
-          sx={chipIconStyle}
-          icon={<MoneyOffCsredTwoTone fontSize="small" />}
-          label={<Box sx={{ ml: '0em'}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
+          sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
+          label={<Box sx={{ ml: '0em', pl: 0}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
         />
       }
 

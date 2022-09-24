@@ -50,6 +50,9 @@ import HeroImage from '../../assets/images/home-hero.jpg';
 import HeroImage2 from '../../assets/images/home-hero-2.jpg';
 import HeroImage3 from '../../assets/images/home-hero-3.jpg';
 import HeroImage4 from '../../assets/images/home-hero-4.jpg';
+import HeroImage5 from '../../assets/images/home-hero-5.jpg';
+import HeroImage6 from '../../assets/images/home-hero-6.jpeg';
+import HeroImage7 from '../../assets/images/home-hero-7.jpeg';
 
 
 import SearchImage from '../../assets/icon/magnify.png';
@@ -257,7 +260,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       setFormError("");
       dispatch(
         saveSearch({
-          city: selectedCity,
+          city: getCity(selectedCity),
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
