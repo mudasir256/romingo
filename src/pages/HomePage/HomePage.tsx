@@ -39,6 +39,7 @@ import ZeroPetFees from '../../assets/images/icon-02.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
 
+import { Carousel } from "react-responsive-carousel";
 
 import {
   GetHotelBySearch,
@@ -300,17 +301,24 @@ const HomePage: FC<Props> = ({
       py: { xs: '1em', sm: '1em', lg: '1em' }  
     }}>
       <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em' }}>{title}</Typography>
-      <Grid 
-        onClick={() => fillSearchBar()} 
-        container 
-        sx={{ 
-    
-        }} 
-        justifyContent="flex-start" 
-        spacing={{ xs: 2, lg: 4}}
-      >
-        {children}
-      </Grid>
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block'} }}>
+        <Grid 
+          onClick={() => fillSearchBar()} 
+          container 
+          sx={{ 
+      
+          }} 
+          justifyContent="flex-start" 
+          spacing={{ xs: 2, lg: 4}}
+        >
+            {children}
+        </Grid>
+      </Box>
+      <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
+        <Carousel showArrows={false} showStatus={false} infiniteLoop> 
+          {children}
+        </Carousel>
+      </Box>
     </Box>
   )
 
@@ -356,7 +364,6 @@ const HomePage: FC<Props> = ({
         background: 'white' 
       }}
       >
-      
         <HotelSection title="Fan Favorites">
           {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={4}>

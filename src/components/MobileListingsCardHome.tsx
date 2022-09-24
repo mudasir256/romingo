@@ -244,6 +244,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                   letterSpacing: '0px',
                   whiteSpace: 'normal',
                   textOverflow: "ellipsis",
+                  textAlign: 'left'
                 }}
               >
                 {name}
@@ -260,6 +261,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                   fontFamily: "overpass-light",
                   textOverflow: "ellipsis",
                   color: "#999",
+                  textAlign: 'left'
                 }}
               >
                 {addressLine1}, {city?.name}
