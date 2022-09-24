@@ -415,7 +415,7 @@ const HomePage: FC<Props> = ({
               <ListingCardSquare
                 key={4}
                 {...portland.getPropertyDetails}
-                lowestTotalPriceAfterTax={152}
+                lowestTotalPriceAfterTax={219}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
@@ -440,7 +440,7 @@ const HomePage: FC<Props> = ({
               <ListingCardSquare
                 key={6}
                 {...andre.getPropertyDetails}
-                lowestTotalPriceAfterTax={241}
+                lowestTotalPriceAfterTax={216}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
@@ -451,7 +451,7 @@ const HomePage: FC<Props> = ({
               <ListingCardSquare
                 key={7}
                 {...thompson.getPropertyDetails}
-                lowestTotalPriceAfterTax={241}
+                lowestTotalPriceAfterTax={211}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
@@ -462,7 +462,7 @@ const HomePage: FC<Props> = ({
               <ListingCardSquare
                 key={8}
                 {...zags.getPropertyDetails}
-                lowestTotalPriceAfterTax={241}
+                lowestTotalPriceAfterTax={130}
                 highlighted={false}
               />
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
