@@ -297,10 +297,10 @@ const HomePage: FC<Props> = ({
       maxWidth: '1300px',
       mx: 'auto',
       mb: { xs: 0, sm: '1em' },
-      px: { xs: '1em', sm: '1em', lg: '8em' },
+      px: { xs: '0', sm: '1em', lg: '8em' },
       py: { xs: '1em', sm: '1em', lg: '1em' }  
     }}>
-      <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em' }}>{title}</Typography>
+      <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em', px: { xs: '0.9em', lg: '0.25em' } }}>{title}</Typography>
       <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block'} }}>
         <Grid 
           onClick={() => fillSearchBar()} 
@@ -314,8 +314,8 @@ const HomePage: FC<Props> = ({
             {children}
         </Grid>
       </Box>
-      <Box sx={{ textAlign: 'left', mx: '-4.5em', pr: '2em', display: { sm: 'block', md: 'none', lg: 'none' }}}>
-        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={80} showArrows={false} showStatus={false} infiniteLoop> 
+      <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
+        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={80} showIndicators={false} showArrows={false} showStatus={false}> 
           {children}
         </Carousel>
       </Box>
@@ -367,7 +367,11 @@ const HomePage: FC<Props> = ({
       >
         <HotelSection title="Fan Favorites">
           {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              ml: {xs : '1em', sm: 0},
+              mr: {xs: '1em', sm: 0},
+
+            }}>
               <ListingCardSquare
                 key={0}
                 {...sanFrancisco.getPropertyDetails}
@@ -379,7 +383,10 @@ const HomePage: FC<Props> = ({
           }  
 
           {(sanDiego && sanDiego.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              mr: {xs: '1em', sm: 0},
+
+            }}>
               <ListingCardSquare
                 key={1}
                 {...sanDiego.getPropertyDetails}
@@ -391,7 +398,9 @@ const HomePage: FC<Props> = ({
 
 
           {(losAngeles2 && losAngeles2.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              mr: {xs: '1em', sm: 0},
+            }}>
               <ListingCardSquare
                 key={2}
                 {...losAngeles2.getPropertyDetails}
@@ -404,7 +413,11 @@ const HomePage: FC<Props> = ({
 
         <HotelSection title="Surfs up">
           {(marina && marina.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              ml: {xs : '1em', sm: 0},
+              mr: {xs: '1em', sm: 0},
+
+            }}>
               <ListingCardSquare
                 key={3}
                 {...marina.getPropertyDetails}
@@ -415,7 +428,10 @@ const HomePage: FC<Props> = ({
           }  
 
           {(kimpton && kimpton.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              mr: {xs: '1em', sm: 0},
+
+            }}>
               <ListingCardSquare
                 key={4}
                 {...kimpton.getPropertyDetails}
@@ -427,7 +443,9 @@ const HomePage: FC<Props> = ({
           }  
 
           {(monte && monte.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              mr: {xs: '1em', sm: 0},
+            }}>
               <ListingCardSquare
                 key={5}
                 {...monte.getPropertyDetails}
@@ -441,7 +459,11 @@ const HomePage: FC<Props> = ({
 
         <HotelSection title="Sustainability trailblazers">
           {(andre && andre.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              ml: {xs : '1em', sm: 0},
+              mr: {xs: '1em', sm: 0},
+
+            }}>
               <ListingCardSquare
                 key={6}
                 {...andre.getPropertyDetails}
@@ -452,7 +474,9 @@ const HomePage: FC<Props> = ({
           } 
 
           {(thompson && thompson.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              mr: {xs: '1em', sm: 0},
+            }}>
               <ListingCardSquare
                 key={7}
                 {...thompson.getPropertyDetails}
@@ -463,7 +487,9 @@ const HomePage: FC<Props> = ({
           } 
 
           {(zags && zags.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4}>
+            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
+              mr: {xs: '1em', sm: 0},
+            }}>
               <ListingCardSquare
                 key={8}
                 {...zags.getPropertyDetails}
