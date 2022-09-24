@@ -582,7 +582,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
               color: "#666",
               fontFamily: "overpass-light",
               textTransform: "none",
-              fontSize: { xs: "14px" },
+              fontSize: '1em'
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet

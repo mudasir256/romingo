@@ -161,9 +161,9 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'Denver-Pet-Friendly-Hotels-Sonesta-Downtown-Denver', } }
   );
 
-  const { data: portland } = useQuery(
+  const { data: kimpton } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Portland-Pet-Friendly-Hotels-Hyatt-Regency-Portland', } }
+    { variables: { alias: 'Orange-County-Pet-Friendly-Hotels-Kimpton-Shorebreak-Huntington-Beach-Resort-Orange-County', } }
   );
 
   const { data: seattle } = useQuery(
@@ -318,7 +318,7 @@ const HomePage: FC<Props> = ({
     <div className="homepage">
       <ScrollToTop />
       <Header />
-      <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '300px' } }}>
+      <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>
       <Box sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -331,22 +331,22 @@ const HomePage: FC<Props> = ({
           <div className="align-center">
             <img className="book-now-image" src={BookNow} alt="lowest rates" />
           </div>
-          <div className="info-box-title">Your favorite hotels</div>
+          <div className="info-box-title">Book your favorite hotels</div>
           <div className="info-box-desc">Explore hundreds of our pet-friendly hotel partners such as Hilton, Hyatt, IHG, and more.</div>
         </Box>
         <Box className="info-box">
           <div className="align-center">
             <img src={LowestRates}  alt="no pet fees" />
           </div>
-          <div className="info-box-title">Lowest rates</div>
-          <div className="info-box-desc">Book the lowest hotel rates at your favorite pet-friendly hotels, and save with Romingo!</div>
+          <div className="info-box-title">$0 pet fees</div>
+          <div className="info-box-desc">Book the lowest hotel rates at your favorite pet-friendly hotels, and save on pet fees with Romingo!</div>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}} >
           <div className="align-center">
             <img src={AuthenticPet} alt="authentic pet" />
           </div>
           <div className="info-box-title">Truly pet-friendly</div>
-          <div className="info-box-desc">Our hotel partners provide a warm, welcoming, and enjoyable travel experience for you and your pet.</div>
+          <div className="info-box-desc">Our hotel partners provide a warm and welcoming travel experience for you and your pet.</div>
         </Box>
         </Box>
       </Box>
@@ -356,11 +356,7 @@ const HomePage: FC<Props> = ({
         background: 'white' 
       }}
       >
-       
-        <Typography sx={{fontFamily: 'sansita-light', fontSize: '3em', color: 'black', textAlign:'center', mb: { xs: '0.5em'}}}>
-          Travel with Romingo
-        </Typography>
-
+      
         <HotelSection title="Fan Favorites">
           {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={4}>
@@ -410,11 +406,12 @@ const HomePage: FC<Props> = ({
             </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
           }  
 
-          {(portland && portland.getPropertyDetails) ?
+          {(kimpton && kimpton.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <ListingCardSquare
                 key={4}
-                {...portland.getPropertyDetails}
+                {...kimpton.getPropertyDetails}
+                name={'Kimpton Shorebreak Resort'}
                 lowestTotalPriceAfterTax={219}
                 highlighted={false}
               />
