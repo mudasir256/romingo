@@ -412,9 +412,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       );
 
       if (romingoMatch && romingoMatch.length > 0) {
+
+        const uniqueRoomTypes = [... new Set(romingoMatch.map(room => room.name))]
+        const roomsTmp = []
+        uniqueRoomTypes.forEach(name => {
+          const comparisons = romingoMatch.filter(room => room.name === name).map(room => room.averagePrice)
+          const lowestPrice = Math.min(...comparisons)
+          roomsTmp.push(romingoMatch.find(room => (room.name === name && room.averagePrice === lowestPrice) ))
+        })
+
         const accessibleArr: RoomInfo[] = [];
         const nonAccessibleArr: RoomInfo[] = [];
-        romingoMatch.forEach((r: RoomInfo) =>
+        roomsTmp.forEach((r: RoomInfo) =>
           ((r.type && r.type.toLowerCase().startsWith("accessible")) ||
             (r.name && r.name.toLowerCase().includes("accessible"))
             ? accessibleArr
@@ -1679,7 +1688,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     </Grid>
                     : <Typography sx={{ textAlign: 'center'}}>No rooms found in this date range.</Typography>
                   }
-                  {accessibleRooms && accessibleRooms.length > 0 && (
+                  {!roomsLoading && accessibleRooms && accessibleRooms.length > 0 && (
                     <>
                       <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
                         <Typography variant="h6">Accessible Rooms</Typography>
