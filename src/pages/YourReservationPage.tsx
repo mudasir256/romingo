@@ -46,15 +46,15 @@ const YourReservationPage: FC<Props> = () => {
       <Navbar />
       {loading ? <p>Loading...</p>
         :
-        <Box sx={{ mx: 'auto', maxWidth: '600px' }}>
+        <Box sx={{ mx: 'auto', maxWidth: '660px' }}>
           {!data?.getReservationDetails?.length &&
-            <Box sx={{ ml: '1em', mt: '3em' }}>
+            <Box sx={{ ml: '2em', mt: '3em' }}>
               <Typography sx={headerStyle}>We couldn&apos;t find a reservation for that email and confirmation number.</Typography>
               <Button sx={{ mt: '0.5em' }} variant="contained" onClick={() => history.replace('/reservation/manage')}>Back</Button>
             </Box>
           }
           {data?.getReservationDetails?.map((reservation, index) => (
-            <Box key={index} sx={{ ml: '1em', mt: '3em' }}>
+            <Box key={index} sx={{ ml: '2em', mt: '3em' }}>
               {/* 
                 TODO: upcoming should say current if current... if finished, past trip ... else upcoming. 
                 the reservation status should be attached to the object.
@@ -76,6 +76,7 @@ const YourReservationPage: FC<Props> = () => {
                 Add: total price (with tax)
                 <br />
                 Add: cancellation policy (see trello) in local time
+                <br />
                 <em>Modify</em> <em>Cancel</em> 
               </Typography>
             </Box>
