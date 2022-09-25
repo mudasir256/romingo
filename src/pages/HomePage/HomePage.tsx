@@ -315,7 +315,7 @@ const HomePage: FC<Props> = ({
         </Grid>
       </Box>
       <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
-        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={80} showIndicators={false} showArrows={false} showStatus={false}> 
+        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={97} showIndicators={false} showArrows={false} showStatus={false}> 
           {children}
         </Carousel>
       </Box>
@@ -390,6 +390,7 @@ const HomePage: FC<Props> = ({
               <ListingCardSquare
                 key={1}
                 {...sanDiego.getPropertyDetails}
+                name={"Manchester Grand Hyatt"}
                 lowestTotalPriceAfterTax={161}
                 highlighted={false}
               />
@@ -415,7 +416,7 @@ const HomePage: FC<Props> = ({
           {(marina && marina.getPropertyDetails) ?
             <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
               ml: {xs : '1em', sm: 0},
-              mr: {xs: '1em', sm: 0},
+              mr: {xs: '0.75em', sm: 0},
 
             }}>
               <ListingCardSquare
