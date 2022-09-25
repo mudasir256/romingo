@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { alpha, styled } from "@mui/material/styles";
 import {
   FormControl,
@@ -99,6 +100,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ManageReservationPage: FC<Props> = () => {
+  const history = useHistory();
   const [emailAddress, setEmailAddress] = useState("");
   const [confirmationNumber, setConfirmationNumber] = useState("");
   const [checkInDateDiff, setCheckInDateDiff] = useState(0);
@@ -110,27 +112,28 @@ const ManageReservationPage: FC<Props> = () => {
   const buttonEnabled =
     emailAddress.length > 2 && confirmationNumber.length > 8;
 
-  const [
-    handleFindReservation,
-    { called, loading: reservationLoading, data }
-  ] = useLazyQuery(gql`
-    ${GetReservationDetails}
-    `,
-    {
-      variables: {
-        email: emailAddress,
-        propertyConfirmationId: confirmationNumber
-      },
-    }
-  );
+  // const [
+  //   handleFindReservation,
+  //   { called, loading: reservationLoading, data }
+  // ] = useLazyQuery(gql`
+  //   ${GetReservationDetails}
+  //   `,
+  //   {
+  //     variables: {
+  //       email: emailAddress,
+  //       propertyConfirmationId: confirmationNumber
+  //     },
+  //   }
+  // );
+  const data = {}
 
   useEffect(() => {
     if (data) {
-      setList(data?.getReservationDetails)
-      const currentDate = moment().format('MM/DD/YYYY')
-      const comingCheckInDate = moment(formatUnix(parseInt(data.getReservationDetails[0].checkInAtLocal)))
-      const difference = moment(comingCheckInDate).diff(moment(currentDate), 'days');
-      setCheckInDateDiff(difference)
+      //setList(data?.getReservationDetails)
+      //const currentDate = moment().format('MM/DD/YYYY')
+      //const comingCheckInDate = moment(formatUnix(parseInt(data.getReservationDetails[0].checkInAtLocal)))
+      //const difference = moment(comingCheckInDate).diff(moment(currentDate), 'days');
+      //setCheckInDateDiff(difference)
     }
   }, [data])
 
@@ -144,6 +147,13 @@ const ManageReservationPage: FC<Props> = () => {
       setSuccess(false);
     }
   }, [loading]);
+
+  const handleFindReservation = () => {
+    history.push({
+      pathname: '/reservation/details',
+      state: { emailAddress, confirmationNumber }
+    })
+  }
 
   const startChat = () => {
     window.Intercom("boot", {

@@ -13,6 +13,7 @@ import OrangeCounty from "./pages/Cities/OrangeCounty";
 import SanFrancisco from "./pages/Cities/SanFran";
 import SantaBarbara from "./pages/Cities/SantaBarbara";
 import ManageReservationPage from "./pages/ManageReservationPage";
+import YourReservationPage from "./pages/YourReservationPage";
 import About from "./pages/StaticPages/About";
 import ErrorPage from "./pages/ErrorPage";
 import FAQ from "./pages/StaticPages/FAQ";
@@ -62,6 +63,11 @@ const routes: RouteInterface[] = [
   {
     path: "/reservation/manage",
     component: ManageReservationPage,
+    requireAuth: false,
+  },
+  {
+    path: '/reservation/details',
+    component: YourReservationPage,
     requireAuth: false,
   },
   {
