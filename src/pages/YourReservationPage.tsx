@@ -4,8 +4,8 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { GetReservationDetails } from '../constants/constants';
-import { gql, useLazyQuery } from "@apollo/client";
+import { GetReservationDetails, CancelBooking } from '../constants/constants';
+import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useHistory } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 
@@ -13,8 +13,10 @@ import Navbar from "../components/Navbar";
 const YourReservationPage: FC<Props> = () => {
   const history = useHistory();
   const { emailAddress, confirmationNumber } = history.location.state
+
   console.log(emailAddress)
   console.log(confirmationNumber)
+
   const [
     handleFindReservation,
     { called, loading, data }
@@ -28,6 +30,11 @@ const YourReservationPage: FC<Props> = () => {
       },
     }
   );
+
+  const [
+    cancelBooking,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(gql`${CancelBooking}`);
 
   useState(() => {
     handleFindReservation()
@@ -55,11 +62,7 @@ const YourReservationPage: FC<Props> = () => {
           }
           {data?.getReservationDetails?.map((reservation, index) => (
             <Box key={index} sx={{ ml: '2em', mt: '3em' }}>
-              {/* 
-                TODO: upcoming should say current if current... if finished, past trip ... else upcoming. 
-                the reservation status should be attached to the object.
-              */}
-              <Typography sx={headerStyle}>Details for your upcoming stay:</Typography>
+              <Typography sx={headerStyle}>Details for your {reservation.reservationStatus} stay:</Typography>
               <Typography>
                 ADD: hotel name here
                 <br />

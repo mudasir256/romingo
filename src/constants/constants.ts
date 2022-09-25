@@ -533,6 +533,71 @@ const GetReservationDetails =`
       intentType
       setupIntentObject
       customerId
+      reservationStatus
+    }
+  }
+`;
+
+const CancelBooking = `
+  mutation CancelBooking($cancelBookingInput: CancelBookingInput!) {
+    cancelBooking(input: $cancelBookingInput) {
+      status
+    }
+  }
+`;
+
+const GetBookingDetails = `
+  query GetBookingDetailsInput ($id: String) {
+    getBookingDetails (input: {id: $id}) {
+      id
+      propertyId
+      paymentIntentId
+      cardId
+      sabreConfirmationId
+      propertyConfirmationId
+      faunaDocId
+      firstName
+      lastName
+      email
+      mobileNumber
+      checkInAtLocal
+      checkOutAtLocal
+      deadlineLocal
+      data
+      captured
+      cancellationFeePrice
+      intentType
+      setupIntentObject
+      customerId
+      reservationStatus
+    }
+  }
+`;
+
+const ModifyBookingDetails = `
+  mutation ModifyBooking($modifyBookingInput: ModifyBookingInput!) {
+    modifyBooking(input: $modifyBookingInput) {
+      id
+      propertyId
+      paymentIntentId
+      cardId
+      sabreConfirmationId
+      propertyConfirmationId
+      faunaDocId
+      firstName
+      lastName
+      email
+      mobileNumber
+      checkInAtLocal
+      checkOutAtLocal
+      deadlineLocal
+      data
+      captured
+      cancellationFeePrice
+      intentType
+      setupIntentObject
+      customerId
+      reservationStatus
     }
   }
 `;
@@ -550,4 +615,7 @@ export {
   GetPropertyDetails,
   GetSabreRoomReservations,
   GetReservationDetails,
+  CancelBooking,
+  GetBookingDetails,
+  ModifyBookingDetails,
 };

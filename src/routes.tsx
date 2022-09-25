@@ -27,6 +27,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Application from "./pages/StaticPages/Application";
 import { authService } from "./services/authService.js";
+import ModifyBooking from './components/ModifyBooking/ModifyBooking';
 
 interface RouteInterface {
   path: string;
@@ -155,6 +156,11 @@ const routes: RouteInterface[] = [
     component: BlogPost,
     requireAuth: false,
   },
+  {
+    path: "/modify-booking",
+    component: ModifyBooking,
+    requireAuth: false
+  }
 ];
 
 const AuthGuards = (props: any) => {

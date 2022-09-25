@@ -146,7 +146,7 @@ const DetailsPage: any = ({ ...props }) => {
   const hotelAlias = props?.match?.params?.alias || "undefined";
   const pageLocation = useLocation();
   const search = useSelector((state: any) => state.searchReducer.search);
-  
+  const locationState = useLocation<any>();
   const dispatch: Dispatch<any> = useDispatch();
 
   const ageParam = search.occupants.childrenAge
@@ -507,6 +507,7 @@ const DetailsPage: any = ({ ...props }) => {
           </Hidden>
         )}
         <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
+          <Typography variant="h5" sx={{mb: 3}}>{locationState.state?.flag}</Typography>
           <Grid container spacing={2} sx={{ position: "relative" }}>
             <Grid item xs={12} sm={6}>
               {loading && (
@@ -1561,6 +1562,8 @@ const DetailsPage: any = ({ ...props }) => {
                             bestRate={key === 0 ? true : false}
                             HotelName={name}
                             room={room}
+                            flag={locationState.state?.flag}
+                            bookingId={locationState.state?.bookingId}
                             sx={{
                               minWidth: "260px",
                               borderRadius: "8px",
@@ -1599,6 +1602,8 @@ const DetailsPage: any = ({ ...props }) => {
                                 bestRate={key === 0 ? true : false}
                                 HotelName={name}
                                 room={room}
+                                flag={locationState.state?.flag}
+                                bookingId={locationState.state?.bookingId}
                                 sx={{
                                   minWidth: "260px",
                                   borderRadius: "8px",
