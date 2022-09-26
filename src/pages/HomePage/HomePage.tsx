@@ -349,10 +349,15 @@ const HomePage: FC<Props> = ({
           <Box className="info-box-title" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
             $0 pet fees
           </Box>
+          <Box className="info-box-desc" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
+            Book the lowest hotel rates at your favorite pet-friendly hotels, and save on pet fees with Romingo!
+          </Box>
           <Box className="info-box-title" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
             Lowest rates        
           </Box>
-          <div className="info-box-desc">Book the lowest hotel rates at your favorite pet-friendly hotels, and save on pet fees with Romingo!</div>
+          <Box className="info-box-desc" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
+            Book the lowest hotel rates at your favorite pet-friendly hotels, and save on fees with Romingo!
+          </Box>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}} >
           <div className="align-center">
