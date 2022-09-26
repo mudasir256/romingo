@@ -136,20 +136,31 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
 
       modifyBookingDetails({
         variables: {
-          modifyBookingInput: {
-            sabreConfirmationId: list.sabreConfirmationId,
-            email: list.email,
-            mobile: list.mobile,
+          cancelBookingInput: {
+            confirmationId: list.sabreConfirmationId,
+            cancelAll: true
+          },
+          createBooking2Input: {
             priceKey: detail?.room?.room?.priceKey,
+            customerId: list?.customerId,
+            paymentIntentId: list.paymentIntentId,
+            email: list.email,
+            mobile: {
+              countryCallingCode: parseInt(list.mobileCountryCallingCode),
+              number: list.mobileNumber.toString(),
+            },
             adults: adults,
             children: children,
+            noOfDogs: occupants.dogs,
+            intentType: list.setupIntent ? 'setup Intent' : 'payment Intent',
+            setupIntentObject: list.setupIntent,
             cardId: list.cardId,
           }
         }
       }).then((status) => {
         console.log({stat: status.data.cancelBooking.status});
         if (status.data.cancelBooking.status) {
-          console.log("booking recreated");
+          alert("booking recreated");
         }
       })
     }

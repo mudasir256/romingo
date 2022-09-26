@@ -560,6 +560,7 @@ const GetBookingDetails = `
       lastName
       email
       mobileNumber
+      mobileCountryCallingCode
       checkInAtLocal
       checkOutAtLocal
       deadlineLocal
@@ -575,29 +576,24 @@ const GetBookingDetails = `
 `;
 
 const ModifyBookingDetails = `
-  mutation ModifyBooking($modifyBookingInput: ModifyBookingInput!) {
-    modifyBooking(input: $modifyBookingInput) {
-      id
-      propertyId
-      paymentIntentId
-      cardId
-      sabreConfirmationId
-      propertyConfirmationId
-      faunaDocId
-      firstName
-      lastName
-      email
-      mobileNumber
-      checkInAtLocal
-      checkOutAtLocal
-      deadlineLocal
-      data
-      captured
-      cancellationFeePrice
-      intentType
-      setupIntentObject
-      customerId
-      reservationStatus
+  mutation ModifyBooking  (
+    $cancelBookingInput: CancelBookingInput!
+    $createBooking2Input: CreateBooking2Input!
+  ) {
+    cancelBooking(input: $cancelBookingInput) {
+      status
+    }
+
+    createBooking2(input: $createBooking2Input) {
+      priceChanged
+      priceDifference
+      totalPriceAfterTax
+      booking {
+        id
+        sabreConfirmationId
+        propertyConfirmationId
+        faunaDocId
+      }
     }
   }
 `;

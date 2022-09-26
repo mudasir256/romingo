@@ -3,16 +3,33 @@ import {
   Box,
   Typography,
   Button,
+  Grid,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  DialogTitle,
+  Alert,
+  Snackbar,
+  DialogProps,
 } from "@mui/material";
 import { GetReservationDetails, CancelBooking } from '../constants/constants';
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useHistory } from 'react-router-dom';
 import Navbar from "../components/Navbar";
+import { useSelector } from "react-redux";
+import ReservationDetails from "../components/ReservationDetails";
 
 
 const YourReservationPage: FC<Props> = () => {
   const history = useHistory();
   const { emailAddress, confirmationNumber } = history.location.state
+  const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
+  const [succesAlert, setSuccesAlert] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(true);
+  const [confirmationId, setConfirmationId] = useState("");
+  const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
+  const [modifyDialogOpen, setModifyDialogOpen] = useState(false)
 
   console.log(emailAddress)
   console.log(confirmationNumber)
@@ -38,17 +55,75 @@ const YourReservationPage: FC<Props> = () => {
 
   useState(() => {
     handleFindReservation()
-  }, []) 
+  }, [])
 
+  const room = useSelector(
+    // eslint-disable-next-line
+    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room
+  );
 
-  console.log(data)
+  const hotel = useSelector((state: any) => {
+    return state.hotelDetailReducer.detail;
+  });
 
-  const headerStyle = {
-    fontSize: '1.5em', 
-    fontFamily: "overpass-regular"
+  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
+    setModifyDialogOpen(true);
+    setScroll(scrollType);
+  };
+
+  const [cancellableText, setCancellableText] = useState<any>("")
+  const formatUnixLong = (timestamp: number) => {
+    return new Date(timestamp).toLocaleString()
+  }
+  const formatUnix = (timestamp: number) => {
+    return new Date(timestamp).toLocaleDateString('en-US')
   }
 
-  return(
+  useEffect(() => {
+    if (data?.getReservationDetails) {
+      const canCancel = data?.getReservationDetails[0]?.data.cancelationPolicy?.cancelable ? `Refundable. Cancel Before ${formatUnixLong(parseInt(data?.getReservationDetails[0]?.deadlineLocal))} hotel time` : "Non Refundable"
+      setCancellableText(canCancel)
+    }
+  }, [data])
+
+  const handleCancelBooking = (confirmationId: any) => {
+    setOpenCancelConfirmation(true);
+    setConfirmationId(confirmationId);
+  }
+
+  const handleCancelReservation = () => {
+    if (confirmationId) {
+      cancelBooking({
+        variables: {
+          cancelBookingInput: {
+            confirmationId: confirmationId,
+            cancelAll: true
+          }
+        }
+      }).then((status) => {
+        if (status?.data?.cancelBooking?.status) {
+          setSuccesAlert(true)
+          setOpenCancelConfirmation(false)
+          setIsAlertOpen(true)
+        }
+      })
+    }
+  }
+
+  const handleAlertClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setIsAlertOpen(false);
+  };
+
+  const headerStyle = {
+    fontSize: '1.5em',
+    fontFamily: "overpass-regular",
+    textAlign: "center"
+  }
+
+  return (
     <Box>
       <Navbar />
       {loading ? <p>Loading...</p>
@@ -60,30 +135,160 @@ const YourReservationPage: FC<Props> = () => {
               <Button sx={{ mt: '0.5em' }} variant="contained" onClick={() => history.replace('/reservation/manage')}>Back</Button>
             </Box>
           }
-          {data?.getReservationDetails?.map((reservation, index) => (
-            <Box key={index} sx={{ ml: '2em', mt: '3em' }}>
-              <Typography sx={headerStyle}>Details for your {reservation.reservationStatus} stay:</Typography>
-              <Typography>
-                ADD: hotel name here
-                <br />
-                ADD: address line 1 + city, state here
-                <br />
-                ADD: check in time in local MM/DD/YYYY h:mm
-                <br />
-                Add: check out time in local MM/DD/YYY h:mm
-                <br />
-                Add: Room type
-                <br />
-                Add: Occupants ...adult, children, dogs
-                <br />
-                Add: total price (with tax)
-                <br />
-                Add: cancellation policy (see trello) in local time
-                <br />
-                <em>Modify</em> <em>Cancel</em> 
-              </Typography>
-            </Box>
+          {data?.getReservationDetails?.map((reservation: any, index: number) => (
+            <Grid
+              key={index}
+              sx={{
+                boxShadow: 3,
+                transition: "all .25s ease-in-out",
+                "&:hover": { boxShadow: 5 },
+                borderRadius: "12px",
+                border: "1px solid #ddd",
+                p: "1rem",
+                mt: { xs: 5, sm: 15 }
+              }}
+              container
+              spacing={2}
+            >
+              <Grid item xs={12} md={12}>
+                {console.log(reservation)}
+                <Typography sx={headerStyle}>Details for your {reservation.reservationStatus} stay:</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Hotel Name:</Typography>
+              </Grid>
+              <Grid item xs={9} md={8}
+              >
+                <Typography>{hotel?.name}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Address</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>{`${hotel?.addressLine1} ${hotel?.city?.name}`}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Check In Time</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>{formatUnix(parseInt(reservation.checkInAtLocal))}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Check Out Time</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>{formatUnix(parseInt(reservation.checkOutAtLocal))}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Room Type</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>{room?.name}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Occupants</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>Adults: {reservation.data.noOfAdults}, Children: {reservation.data.noOfChildren}, Dogs: {reservation.data.noOfDogs}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Total Price</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>${reservation.data.totalPriceAfterTax}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Cancellation Policy</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>{cancellableText}</Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  mt: { xs: 3, sm: 5 }
+                }}
+                xs={12}
+                md={12}
+              >
+                <Button
+                  variant="outlined"
+                  color="error"
+                  sx={{ mr: 2 }}
+                  onClick={() => handleCancelBooking(reservation.sabreConfirmationId)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="success"
+                  onClick={handleClickOpen('body')}
+                >
+                  Modify
+                </Button>
+              </Grid>
+            </Grid>
           ))}
+          <Dialog
+            open={openCancelConfirmation}
+            onClose={() => setOpenCancelConfirmation(false)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Confirmation"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure want to cancel Booking?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpenCancelConfirmation(false)}>No</Button>
+              <Button onClick={handleCancelReservation} autoFocus>
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
+
+          <Dialog
+            open={modifyDialogOpen}
+            onClose={() => setModifyDialogOpen(false)}
+            scroll={scroll}
+            aria-labelledby="scroll-dialog-title"
+            aria-describedby="scroll-dialog-description"
+          >
+            <DialogTitle id="scroll-dialog-title">You are Modifying Boooking</DialogTitle>
+            <DialogContent dividers={scroll === 'paper'}>
+              <Grid
+                container
+              >
+                {data?.getReservationDetails && (
+                  <ReservationDetails flag={"You are Modifying Boooking"} bookingId={data?.getReservationDetails[0].id} />
+                )}
+              </Grid>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setModifyDialogOpen(false)}>Cancel</Button>
+            </DialogActions>
+          </Dialog>
+
+          {succesAlert && (
+            <Snackbar open={isAlertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
+              <Alert onClose={handleAlertClose} severity="success" sx={{ width: '100%' }}>
+                {`The Booking for ${hotel.name} has been Cancelled!`}
+              </Alert>
+            </Snackbar>
+          )}
         </Box>
       }
     </Box>
