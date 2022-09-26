@@ -329,7 +329,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 ...labelStyle,
                 mb: 0
               }}>
-              Select a city
+              Where to
             </Typography>
             <Box
               sx={{
@@ -404,9 +404,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     className="auto-complete-input"
                     placeholder="Select a city"
                     size="small"
-                    sx={{         
+                    sx={{    
                       "& .MuiOutlinedInput-root": {
                         color: "#444",
+                        fontSize: '0.9em',
                         "& fieldset": {
                           borderColor: "transparent",
                         },
@@ -430,12 +431,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
-                PaperProps={{
-                  sx: {
-                    fontWeight: 700,
-                    "& .MuiTypography-root": { fontWeight: 500 },
-                  },
-                }}
                 inputFormat="MMM dd"
                 disableMaskedInput={true}
                 open={open}
@@ -573,10 +568,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
               width: '224px',
               label: {
                 fontFamily: 'overpass-light',
-                fontWeight: "bold",
               },
               input: {
-                fontWeight: 600,
                 cursor: "pointer",
                 fontFamily: 'overpass-light'
               },
