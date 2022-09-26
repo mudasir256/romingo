@@ -118,7 +118,7 @@ const HomePage: FC<Props> = ({
     gql`${GetPropertyDetails}`,
     {
        variables: {
-        alias: 'San-Diego-Pet-Friendly-Hotels-Manchester-Grand-Hyatt-San-Diego',
+        alias: 'pet-friendly-hotels-san-diego-manchester-grand-hyatt-san-diego',
        }
     }
   );
@@ -127,7 +127,7 @@ const HomePage: FC<Props> = ({
     gql`${GetPropertyDetails}`,
     {
        variables: {
-        alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
+        alias: 'pet-friendly-hotels-san-francisco-hilton-san-francisco-union-square-san-francisco',
        }
     }
   );
@@ -136,7 +136,7 @@ const HomePage: FC<Props> = ({
     gql`${GetPropertyDetails}`,
     {
        variables: {
-        alias: 'Los-Angeles-Pet-Friendly-Hotels-Mondrian-Los-Angeles',
+        alias: 'pet-friendly-hotels-los-angeles-mondrian-los-angeles',
        }
     }
   );
@@ -145,7 +145,7 @@ const HomePage: FC<Props> = ({
     gql`${GetPropertyDetails}`,
     {
        variables: {
-        alias: 'Los-Angeles-Pet-Friendly-Hotels-Ace-Hotel-Downtown-LA-Los-Angeles',
+        alias: 'pet-friendly-hotels-los-angeles-ace-hotel-downtown-los-angeles',
        }
     }
   );
@@ -154,42 +154,42 @@ const HomePage: FC<Props> = ({
 
   const { data: marina } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Los-Angeles-Pet-Friendly-Hotels-Marina-Del-Ray-Hotel-Los-Angeles', } }
+    { variables: { alias: 'pet-friendly-hotels-los-angeles-marina-del-ray-hotel-los-angeles', } }
   );
 
   const { data: denver } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Denver-Pet-Friendly-Hotels-Sonesta-Downtown-Denver', } }
+    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
   );
 
   const { data: kimpton } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Orange-County-Pet-Friendly-Hotels-Kimpton-Shorebreak-Huntington-Beach-Resort-Orange-County', } }
+    { variables: { alias: 'pet-friendly-hotels-orange-county-kimpton-shorebreak-huntington-beach-resort-orange-county', } }
   );
 
   const { data: seattle } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Pan-Pacific-Seattle', } }
+    { variables: { alias: 'pet-friendly-hotels-seattle-pan-pacific-seattle', } }
   );
 
   const { data: monte } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Santa-Barbara-Pet-Friendly-Hotels-Mar-Monte-Hotel-Santa-Barbara', } }
+    { variables: { alias: 'pet-friendly-hotels-santa-barbara-mar-monte-hotel-santa-barbara', } }
   );
 
   const { data: andre } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Hotel-Andra-Seattle', } }
+    { variables: { alias: 'pet-friendly-hotels-seattle-hotel-andra-seattle', } }
   );
 
   const { data: thompson } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Seattle-Pet-Friendly-Hotels-Thompson-Seattle', } }
+    { variables: { alias: 'pet-friendly-hotels-seattle-thompson-seattle', } }
   ); 
 
   const { data: zags } = useQuery(
     gql`${GetPropertyDetails}`,
-    { variables: { alias: 'Portland-Pet-Friendly-Hotels-The-Hotel-Zags-Portland', } }
+    { variables: { alias: 'pet-friendly-hotels-portland-the-hotel-zags-portland', } }
   );
 
   
