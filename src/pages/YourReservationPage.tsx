@@ -9,8 +9,6 @@ import {
   DialogContentText,
   DialogActions,
   DialogTitle,
-  Alert,
-  Snackbar,
   DialogProps,
 } from "@mui/material";
 import { GetReservationDetails, CancelBooking } from '../constants/constants';
@@ -19,6 +17,7 @@ import { useHistory } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import ReservationDetails from "../components/ReservationDetails";
+import Loader from "../components/UI/Loader";
 
 
 const YourReservationPage: FC<Props> = () => {
@@ -45,6 +44,7 @@ const YourReservationPage: FC<Props> = () => {
         email: emailAddress,
         propertyConfirmationId: confirmationNumber
       },
+      fetchPolicy: "network-only",
     }
   );
 
@@ -93,6 +93,7 @@ const YourReservationPage: FC<Props> = () => {
 
   const handleCancelReservation = () => {
     if (confirmationId) {
+      setOpenCancelConfirmation(false)
       cancelBooking({
         variables: {
           cancelBookingInput: {
@@ -105,17 +106,12 @@ const YourReservationPage: FC<Props> = () => {
           setSuccesAlert(true)
           setOpenCancelConfirmation(false)
           setIsAlertOpen(true)
+          history.push('/reservation/manage')
         }
       })
     }
   }
 
-  const handleAlertClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setIsAlertOpen(false);
-  };
 
   const headerStyle = {
     fontSize: '1.5em',
@@ -135,6 +131,21 @@ const YourReservationPage: FC<Props> = () => {
               <Button sx={{ mt: '0.5em' }} variant="contained" onClick={() => history.replace('/reservation/manage')}>Back</Button>
             </Box>
           }
+          {mutationLoading && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                right: 0,
+                left: 0,
+                background: "rgba(255, 255, 255, 0.7)"
+              }}
+            >
+              <Loader size="300px" />
+            </Box>
+          )}
           {data?.getReservationDetails?.map((reservation: any, index: number) => (
             <Grid
               key={index}
@@ -160,14 +171,14 @@ const YourReservationPage: FC<Props> = () => {
               </Grid>
               <Grid item xs={9} md={8}
               >
-                <Typography>{hotel?.name}</Typography>
+                <Typography>{reservation?.hotel?.name}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
                 <Typography>Address</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>{`${hotel?.addressLine1} ${hotel?.city?.name}`}</Typography>
+                <Typography>{`${reservation?.hotel?.address}, ${reservation?.hotel?.zipCode}`}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
@@ -220,21 +231,33 @@ const YourReservationPage: FC<Props> = () => {
                 xs={12}
                 md={12}
               >
-                <Button
-                  variant="outlined"
-                  color="error"
-                  sx={{ mr: 2 }}
-                  onClick={() => handleCancelBooking(reservation.sabreConfirmationId)}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="success"
-                  onClick={handleClickOpen('body')}
-                >
-                  Modify
-                </Button>
+                {reservation.reservationStatus == 'upcoming' ? (
+                  <>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      sx={{ mr: 2 }}
+                      onClick={() => handleCancelBooking(reservation.sabreConfirmationId)}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="success"
+                      onClick={handleClickOpen('body')}
+                    >
+                      Modify
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    color="info"
+                    onClick={() => history.push('/reservation/manage')}
+                  >
+                    Go Back
+                  </Button>
+                )}
               </Grid>
             </Grid>
           ))}
@@ -281,14 +304,6 @@ const YourReservationPage: FC<Props> = () => {
               <Button onClick={() => setModifyDialogOpen(false)}>Cancel</Button>
             </DialogActions>
           </Dialog>
-
-          {succesAlert && (
-            <Snackbar open={isAlertOpen} autoHideDuration={6000} onClose={handleAlertClose}>
-              <Alert onClose={handleAlertClose} severity="success" sx={{ width: '100%' }}>
-                {`The Booking for ${hotel.name} has been Cancelled!`}
-              </Alert>
-            </Snackbar>
-          )}
         </Box>
       }
     </Box>

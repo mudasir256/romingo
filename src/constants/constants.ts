@@ -534,6 +534,11 @@ const GetReservationDetails =`
       setupIntentObject
       customerId
       reservationStatus
+      hotel {
+        name
+        address
+        zipCode
+      }
     }
   }
 `;

@@ -20,6 +20,7 @@ import RomingoScore from "../../components/RomingoScore";
 import { useHistory, useLocation } from "react-router-dom";
 import { ModifyBookingDetails, GetBookingDetails } from '../../constants/constants'
 import { gql, useMutation, useQuery } from "@apollo/client";
+import Loader from "../../components/UI/Loader";
 
 declare global {
   interface Window {
@@ -60,7 +61,7 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
 
   const { data: bookingDetails } = useQuery(
     gql`${GetBookingDetails}`, {
-    fetchPolicy: "cache-first",
+    fetchPolicy: "network-only",
     variables: {
       id: pageLocation.state?.bookingId,
     }
@@ -68,9 +69,9 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
 
   useEffect(() => {
     if (bookingDetails) {
-     setList(bookingDetails.getBookingDetails[0])
+      setList(bookingDetails.getBookingDetails[0])
     }
- },[bookingDetails])
+  }, [bookingDetails])
 
   const mobile = useMediaQuery("(max-width:800px)");
 
@@ -97,7 +98,6 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
 
   const handleCancelReservation = () => {
     if (list.sabreConfirmationId) {
-
       const adults: { firstName: string; lastName: string }[] = [];
       const children: {
         firstName: string;
@@ -132,7 +132,6 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
           }
         );
       }
-        
 
       modifyBookingDetails({
         variables: {
@@ -158,9 +157,10 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
           }
         }
       }).then((status) => {
-        console.log({stat: status.data.cancelBooking.status});
         if (status.data.cancelBooking.status) {
-          alert("booking recreated");
+          setTimeout(() => {
+            history.push('/');
+          }, 3000);
         }
       })
     }
@@ -192,33 +192,85 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
                   noLink
                   small
                 />
-                <Typography variant="h5">Modification Confirmation</Typography>
-                <Box
-                  sx={{
-                    mt: 2,
-                    mb: "1rem",
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    marginTop: "90px"
-                  }}
-                >
-                  <Button
-                    variant="outlined"
-                    color="success"
-                    size="large"
-                    onClick={handleCancelReservation}
+                {mutationLoading ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      right: 0,
+                      left: 0,
+                    }}
                   >
-                    Modify
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    size="large"
-                    onClick={() => history.push('/reservation/manage')}
-                  >
-                    Cancel
-                  </Button>
-                </Box>
+                    <Loader size="300px" />
+                  </Box>
+                ) :
+                  mutationData !== undefined ? (
+                    <Box sx={{ mt: 5 }}>
+                      <Typography
+                        variant="h5"
+                        color="primary"
+                        sx={{ textAlign: "left", mb: 2 }}
+                      >
+                        You&apos;re booked!
+                      </Typography>
+
+                      <Typography variant="body1" sx={{ textAlign: "left" }}>
+                        Your confirmation number is:
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
+                      >
+                        {mutationData?.createBooking2?.booking?.propertyConfirmationId
+                          ? mutationData?.createBooking2?.booking
+                            ?.propertyConfirmationId
+                          : mutationData?.createBooking2?.booking
+                            ?.sabreConfirmationId}
+                      </Typography>
+                      <Typography variant="body1">
+                        We&apos;ve sent you an email with all of the details of
+                        your booking.
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <>
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          mt: 3
+                        }}
+                      >
+                        Modification Confirmation
+                      </Typography>
+                      <Box
+                        sx={{
+                          mt: 2,
+                          mb: "1rem",
+                          display: "flex",
+                          justifyContent: "space-evenly",
+                          marginTop: "90px"
+                        }}
+                      >
+                        <Button
+                          variant="outlined"
+                          color="success"
+                          size="large"
+                          onClick={handleCancelReservation}
+                        >
+                          Modify
+                        </Button>
+                        <Button
+                          variant="outlined"
+                          color="error"
+                          size="large"
+                          onClick={() => history.push('/reservation/manage')}
+                        >
+                          Cancel
+                        </Button>
+                      </Box>
+                    </>
+                  )}
               </Grid>
             )}
             <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
