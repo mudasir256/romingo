@@ -406,8 +406,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     size="small"
                     sx={{    
                       "& .MuiOutlinedInput-root": {
-                        color: "#444",
-                        fontSize: '0.9em',
                         "& fieldset": {
                           borderColor: "transparent",
                         },
@@ -565,13 +563,15 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             size="small"
             fullWidth={false}
             sx={{
-              width: '224px',
+              width: '214px',
               label: {
                 fontFamily: 'overpass-light',
+                fontSize: '1em',
               },
               input: {
                 cursor: "pointer",
-                fontFamily: 'overpass-light'
+                fontFamily: 'overpass-light',
+                fontSize: '1em',
               },
             }}
           />

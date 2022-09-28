@@ -46,20 +46,18 @@
     .auto-complete-input {
       input {
         padding: 0px;
-        font-size: 1.25em;
-        line-height: 46;
+        font-size: 1em;
         font-family: overpass-light;
         cursor: pointer;
-        color: #000;
         border: none;
+        color: black;
 
         @media screen and (max-width: 600px) {
-          font-size: 14px;
+          font-size: 1em;
         }
 
         &::placeholder {
           text-overflow: ellipsis !important;
-          color: #444;
           opacity: 1;
         }
       }
@@ -71,7 +69,7 @@
       align-items: center;
 
       @media screen and (max-width: 1120px) {
-        margin-bottom: 12px;
+        margin-bottom: 1em;
       }
 
       @media screen and (max-width: 600px) {
