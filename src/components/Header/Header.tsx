@@ -194,7 +194,7 @@ const Header: FC<Props> = ({ sx }) => {
 
         <Box sx={{ 
           ml: { xs: '1.75em', sm: '1.5em', md: '0em' },
-          mt: { xs: '6em', sm: '5em', md: '14em' },  
+          mt: { xs: '6em', sm: '5em', md: '5em' },  
           mb: { xs: '0em', sm: '0em', md: '2em' },
         }}>
           
