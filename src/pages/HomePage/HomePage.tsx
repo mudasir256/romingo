@@ -40,6 +40,15 @@ import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
 
 import { Carousel } from "react-responsive-carousel";
+<<<<<<< HEAD
+=======
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+>>>>>>> 815e260 (added multi carousel)
 
 import {
   GetHotelBySearch,
@@ -50,6 +59,10 @@ import {
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
+
+
+import MultiCarousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import "./Sticky.css";
 import "./HomePage.scss";
@@ -150,6 +163,10 @@ const HomePage: FC<Props> = ({
     }
   );
 
+  const { data: sonesta } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
+  );
   // Row 2
 
   const { data: marina } = useQuery(
@@ -192,7 +209,31 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'pet-friendly-hotels-portland-the-hotel-zags-portland', } }
   );
 
+<<<<<<< HEAD
   
+=======
+  const { data: missionBay } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-san-diego-hyatt-regency-mission-bay-san-diego', } }
+  );
+
+  const { data: intercontinental } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-san-diego-intercontinental-san-diego', } }
+  );
+
+
+  const { data: hyPortland } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-poprtland-hyatt-regency-portland', } }
+  );
+
+  const { data: line } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-los-angeles-the-line-los-angeles', } }
+  );
+
+>>>>>>> 815e260 (added multi carousel)
 
 
 
@@ -292,6 +333,24 @@ const HomePage: FC<Props> = ({
     );
   }
 
+  const CustomLeftArrow = ({ onClick, ...rest }) => {
+    const {
+      onMove,
+      carouselState: { currentSlide, deviceType }
+    } = rest;
+    // onMove means if dragging or swiping in progress.
+    return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', left: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowLeftIcon fontSize="large" /></Box></Box>
+  };
+  const CustomRightArrow = ({ onClick, ...rest }) => {
+    const {
+      onMove,
+      carouselState: { currentSlide, deviceType }
+    } = rest;
+    // onMove means if dragging or swiping in progress.
+    return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', right: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowRightIcon fontSize="large" /></Box></Box>
+  };
+
+
   const HotelSection = ({ title, children }) => (
     <Box sx={{
       maxWidth: '1300px',
@@ -368,6 +427,9 @@ const HomePage: FC<Props> = ({
         </Box>
         </Box>
       </Box>
+
+      
+
       <Box className="hotels-wrapper" sx={{ 
         marginTop: { sm: 0, md: 0, lg: 0 },
         marginBottom: { sm: 0, md: 0, lg: '369px' }, 
@@ -375,13 +437,26 @@ const HomePage: FC<Props> = ({
         background: 'white' 
       }}
       >
-        <HotelSection title="Fan Favorites">
-          {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              ml: {xs : '1em', sm: 0},
-              mr: {xs: '1em', sm: 0},
 
-            }}>
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Fan Favorites</Typography>
+        <MultiCarousel responsive={{
+            desktop: {
+              breakpoint: { max: 4000, min: 900},
+              items: 3,
+            },
+            mobile: {
+              breakpoint: { max: 900, min: 1},
+              items: 1,
+            }
+          }}
+          partialVisible={false}
+          infinite={true}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
+          {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={0}
                 {...sanFrancisco.getPropertyDetails}
@@ -389,14 +464,11 @@ const HomePage: FC<Props> = ({
                 lowestTotalPriceAfterTax={143}
                 highlighted={false}
               />
-            </Grid>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
+            </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
           }  
 
           {(sanDiego && sanDiego.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              mr: {xs: '1em', sm: 0},
-
-            }}>
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={1}
                 {...sanDiego.getPropertyDetails}
@@ -404,112 +476,198 @@ const HomePage: FC<Props> = ({
                 lowestTotalPriceAfterTax={161}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
           } 
 
 
           {(losAngeles2 && losAngeles2.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              mr: {xs: '1em', sm: 0},
-            }}>
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={2}
                 {...losAngeles2.getPropertyDetails}
                 lowestTotalPriceAfterTax={144}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
           }  
-        </HotelSection>
 
-        <HotelSection title="Surfs up">
-          {(marina && marina.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              ml: {xs : '1em', sm: 0},
-              mr: {xs: '0.75em', sm: 0},
 
-            }}>
+          {(losAngeles && losAngeles.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={3}
+                {...losAngeles.getPropertyDetails}
+                lowestTotalPriceAfterTax={299}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
+          }  
+
+          {(sonesta && sonesta.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={4}
+                {...sonesta.getPropertyDetails}
+                lowestTotalPriceAfterTax={125}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
+          }  
+        </MultiCarousel>
+        </Box>
+
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Surfs up</Typography>
+        <MultiCarousel responsive={{
+            desktop: {
+              breakpoint: { max: 4000, min: 900},
+              items: 3,
+            },
+            mobile: {
+              breakpoint: { max: 900, min: 1},
+              items: 1,
+            }
+          }}
+          partialVisible={false}
+          infinite={true}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
+          {(marina && marina.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={5}
                 {...marina.getPropertyDetails}
                 lowestTotalPriceAfterTax={232}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
           }  
 
           {(kimpton && kimpton.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              mr: {xs: '1em', sm: 0},
-
-            }}>
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
-                key={4}
+                key={6}
                 {...kimpton.getPropertyDetails}
                 name={'Kimpton Shorebreak Resort'}
                 lowestTotalPriceAfterTax={219}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
           }  
 
           {(monte && monte.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              mr: {xs: '1em', sm: 0},
-            }}>
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
-                key={5}
+                key={7}
                 {...monte.getPropertyDetails}
                 lowestTotalPriceAfterTax={241}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
+          } 
+          {(missionBay && missionBay.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={8}
+                {...missionBay.getPropertyDetails}
+                lowestTotalPriceAfterTax={219}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
+          } 
+          {(intercontinental && intercontinental.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={9}
+                {...intercontinental.getPropertyDetails}
+                lowestTotalPriceAfterTax={269}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={9} /></Grid>
           } 
 
-        </HotelSection>
+        </MultiCarousel>
+        </Box>
 
-        <HotelSection title="Sustainability trailblazers">
+
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Sustainability trailblazers</Typography>
+        <MultiCarousel responsive={{
+            desktop: {
+              breakpoint: { max: 4000, min: 900},
+              items: 3,
+            },
+            mobile: {
+              breakpoint: { max: 900, min: 1},
+              items: 1,
+            }
+          }}
+          partialVisible={false}
+          infinite={true}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
           {(andre && andre.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              ml: {xs : '1em', sm: 0},
-              mr: {xs: '1em', sm: 0},
-
-            }}>
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
-                key={6}
+                key={10}
                 {...andre.getPropertyDetails}
                 lowestTotalPriceAfterTax={216}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={10} /></Grid>
           } 
 
           {(thompson && thompson.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              mr: {xs: '1em', sm: 0},
-            }}>
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
-                key={7}
+                key={11}
                 {...thompson.getPropertyDetails}
                 lowestTotalPriceAfterTax={211}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={11} /></Grid>
           } 
 
           {(zags && zags.getPropertyDetails) ?
-            <Grid item xs={12} sm={12} md={6} lg={4} sx={{ 
-              mr: {xs: '1em', sm: 0},
-            }}>
+            <Box sx={{ p: '1em'}}>            
               <ListingCardSquare
-                key={8}
+                key={12}
                 {...zags.getPropertyDetails}
                 lowestTotalPriceAfterTax={130}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={12} /></Grid>
           } 
-        </HotelSection>
+
+          {(hyPortland && hyPortland.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>            
+              <ListingCardSquare
+                key={13}
+                {...hyPortland.getPropertyDetails}
+                lowestTotalPriceAfterTax={152}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={13} /></Grid>
+          } 
+
+          {(line && line.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>            
+              <ListingCardSquare
+                key={14}
+                {...line.getPropertyDetails}
+                lowestTotalPriceAfterTax={169}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
+          } 
+
+          
+        </MultiCarousel>
+        </Box>
+
+
       </Box>
 
       <Box className="homepage-dog">
