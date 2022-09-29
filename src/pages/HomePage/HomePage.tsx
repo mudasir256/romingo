@@ -320,7 +320,7 @@ const HomePage: FC<Props> = ({
   const fillSearchBar = () => {
     dispatch(
       saveSearch({
-        city: null,
+        city: '',
         checkIn: fewDaysLater,
         checkOut: endTripDate,
         occupants: { adults: 1, children: 0, dogs: 1 },
