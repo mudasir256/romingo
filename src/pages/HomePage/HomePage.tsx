@@ -40,15 +40,13 @@ import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
 
 import { Carousel } from "react-responsive-carousel";
-<<<<<<< HEAD
-=======
+
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
->>>>>>> 815e260 (added multi carousel)
 
 import {
   GetHotelBySearch,
@@ -209,9 +207,7 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'pet-friendly-hotels-portland-the-hotel-zags-portland', } }
   );
 
-<<<<<<< HEAD
-  
-=======
+
   const { data: missionBay } = useQuery(
     gql`${GetPropertyDetails}`,
     { variables: { alias: 'pet-friendly-hotels-san-diego-hyatt-regency-mission-bay-san-diego', } }
@@ -233,7 +229,6 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'pet-friendly-hotels-los-angeles-the-line-los-angeles', } }
   );
 
->>>>>>> 815e260 (added multi carousel)
 
 
 
