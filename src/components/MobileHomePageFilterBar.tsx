@@ -259,7 +259,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
              
               <Grid item xs={11} sx={{ zIndex: 50, pl: '0.75em' }}>
                 <FormControl fullWidth>
-                  <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity || 'Where to'}>
+                  {!selectedCity && <Typography sx={{ position: 'absolute', top: '22%', }}>Select a city</Typography>}
+                  <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
                     {groups.map((group, index) => {
                       const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
                       return (

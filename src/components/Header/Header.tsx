@@ -66,11 +66,12 @@ import Image1 from '../../assets/images/pet-friendly-travel-corgi.jpg'
 import Image2 from '../../assets/images/pet-friendly-travel-french-bulldog-2.jpeg'
 import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
 import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
-import Image5 from '../../assets/images/pet-friendly-travel-golden-retriever.jpg'
 import Image6 from '../../assets/images/pet-friendly-travel-jack-russell-2.jpeg'
 import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
 import Image8 from '../../assets/images/pet-friendly-travel-samoyed.jpeg'
 import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
+import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
+
 
 import SearchImage from '../../assets/icon/magnify.png';
 import CalendarImage from '../../assets/icon/calendar.png';
@@ -107,12 +108,12 @@ const Header: FC<Props> = ({ sx }) => {
       placement: 'bottom 0px left 0px'
     },
     {
-      component: Image5, 
-      placement: 'bottom -60px left 0px'
+      component: Image10, 
+      placement: 'bottom -200px left 0px'
     },
     {
-      component: Image2, 
-      placement: 'bottom -204px right 0px'
+      component: Image3, 
+      placement: 'bottom -120px right 0px'
     }
   ];
 
@@ -185,17 +186,17 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `url(${mobileImage.component})`, sm: `url(${desktopImage.component})` },
+          backgroundImage: { xs: `url(${mobileImage.component})`, sm: `url(${mobileImage.component})`, md: `url(${desktopImage.component})` },
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: { xs: mobileImage.placement, sm: desktopImage.placement },
+          backgroundPosition: { xs: mobileImage.placement, sm: mobileImage.placement, md: desktopImage.placement },
           backgroundSize: 'cover',
         }}
       >
 
         <Box sx={{ 
-          ml: { xs: '1.75em', sm: '1.5em', md: '0em' },
-          mt: { xs: '6em', sm: '5em', md: '9em' },  
-          mb: { xs: '0em', sm: '0em', md: '2em' },
+          ml: { xs: '1.75em', sm: '1.5em', md: '1.5em', lg: '0em' },
+          mt: { xs: '6em', sm: '8em', md: '9em', lg: '9em' },  
+          mb: { xs: '0em', sm: '0em', md: '0em', lg: '2em' },
         }}>
           
           <Box sx={{
