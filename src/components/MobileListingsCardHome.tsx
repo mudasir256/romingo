@@ -6,7 +6,7 @@ import ImageSlider from "./ImageSlider";
 import RomingoScore from "./RomingoScore/RomingoScore";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import StarIcon from "@mui/icons-material/Star";
-
+import { utils } from '../services/utils'
 import {
   Pets,
   CreditCardOffTwoTone,
@@ -100,25 +100,27 @@ const ListingCardSquare: FC<ListingCardProps> = ({
         sx={{
           mr: 0,
           color: "#222",
-          fontFamily: "overpass-bold",
-          fontSize: "1.25em",
+          fontFamily: "overpass-light",
+          fontSize: ".75em",
           fontWeight: 800,
         }}
       >
-        {currency}
-        {Math.round(lowestAveragePrice)}
+
+        rates from
       </Typography>
       <Typography
         variant="body2"
         sx={{
           mr: 0,
-          color: "#666",
-          fontFamily: "overpass-light",
-          fontSize: '0.75em',
+          mt: '0.1em',
+          fontFamily: "overpass-bold",
+          fontSize: '1.25em',
           fontWeight: 800,
+          display: 'flex',
+          alignItems: 'center'
         }}
       >
-        {currency}{Math.round(lowestTotalPriceAfterTax)} total
+        {currency}{Math.round(lowestTotalPriceAfterTax)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
       </Typography>
     </Box>
  
@@ -208,6 +210,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
             px: { xs: mobileCardPadding, sm: 0 },
             pb: { xs: mobileCardPadding, sm: "0" },
             width: "100%",
+            px: '0.25em',
           }}
         >
           <Grid
@@ -229,7 +232,6 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 flexDirection: "column",
                 justifyContent: 'space-between',
                 p: "0.5em",
-            
               }}
             >
               <Typography
@@ -242,6 +244,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                   letterSpacing: '0px',
                   whiteSpace: 'normal',
                   textOverflow: "ellipsis",
+                  textAlign: 'left'
                 }}
               >
                 {name}
@@ -258,14 +261,15 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                   fontFamily: "overpass-light",
                   textOverflow: "ellipsis",
                   color: "#999",
+                  textAlign: 'left'
                 }}
               >
                 {addressLine1}, {city?.name}
               </Typography>
 
-  
-              <HotelTags petFeePolicy={petFeePolicy} allows_big_dogs={allows_big_dogs} />
-    
+              <Box sx={{ pb: '0.5em' }}>
+                <HotelTags petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
+              </Box>  
             </Grid>
 
 
@@ -293,8 +297,6 @@ const ListingCardSquare: FC<ListingCardProps> = ({
               <Box
                 sx={{
                   display: 'block',
-                  ml: '0.25em',
-                  mb: '0.25em',
                 }}
               >
 

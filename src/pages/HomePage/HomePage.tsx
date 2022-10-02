@@ -37,7 +37,16 @@ import LogoImgWhite from '../../assets/images/logo-white.png';
 import LowestRates from '../../assets/images/icon-01.png';
 import ZeroPetFees from '../../assets/images/icon-02.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
+import BookNow from '../../assets/images/icon-04.png';
 
+import { Carousel } from "react-responsive-carousel";
+
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 import {
   GetHotelBySearch,
@@ -48,6 +57,10 @@ import {
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
+
+
+import MultiCarousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import "./Sticky.css";
 import "./HomePage.scss";
@@ -112,65 +125,110 @@ const HomePage: FC<Props> = ({
     today.getDate() + 4
   ).toISOString();
 
-  const { data: sanFrancisco } = useQuery(
-    gql`${GetHotelDetail}`,
+  const { data: sanDiego } = useQuery(
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: 'ba772c6c-7fae-492a-85c0-6232eff50852',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
-        alias: 'San-Francisco-Pet-Friendly-Hotels-Hilton-San-Francisco-Union-Square',
+        alias: 'pet-friendly-hotels-san-diego-manchester-grand-hyatt-san-diego',
        }
     }
   );
 
-  const { data: sanDiego } = useQuery(
-    gql`${GetHotelDetail}`,
+  const { data: sanFrancisco } = useQuery(
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: 'fe1300a4-a06f-4347-8d7f-f271b3657ba9',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
-        alias: 'San-Diego-Pet-Friendly-Hotels-Manchester-Grand-Hyatt-San-Diego',
+        alias: 'pet-friendly-hotels-san-francisco-hilton-san-francisco-union-square-san-francisco',
        }
     }
   );
 
   const { data: losAngeles } = useQuery(
-    gql`${GetHotelDetail}`,
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: 'e7742fb4-6154-4cd7-b0c6-6b35c0939140',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
-        alias: 'Los-Angeles-Pet-Friendly-Hotels-Mondrian-Los-Angeles',
+        alias: 'pet-friendly-hotels-los-angeles-mondrian-los-angeles',
        }
     }
   );
 
   const { data: losAngeles2 } = useQuery(
-    gql`${GetHotelDetail}`,
+    gql`${GetPropertyDetails}`,
     {
        variables: {
-        id: '5423edc4-4994-4d64-8f6a-6e3149763bda',
-        checkIn: fewDaysLater.substring(0, 10),
-        checkOut: endTripDate.substring(0, 10),
-        adults: 1,
-        children: [],
-        dogs: 1,
-        alias: 'Los-Angeles-Pet-Friendly-Hotels-Ace-Hotel-Downtown-LA-Los-Angeles',
+        alias: 'pet-friendly-hotels-los-angeles-ace-hotel-downtown-los-angeles',
        }
     }
   );
+
+  const { data: sonesta } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
+  );
+  // Row 2
+
+  const { data: marina } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-los-angeles-marina-del-ray-hotel-los-angeles', } }
+  );
+
+  const { data: denver } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
+  );
+
+  const { data: kimpton } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-orange-county-kimpton-shorebreak-huntington-beach-resort-orange-county', } }
+  );
+
+  const { data: seattle } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-seattle-pan-pacific-seattle', } }
+  );
+
+  const { data: monte } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-santa-barbara-mar-monte-hotel-santa-barbara', } }
+  );
+
+  const { data: andre } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-seattle-hotel-andra-seattle', } }
+  );
+
+  const { data: thompson } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-seattle-thompson-seattle', } }
+  ); 
+
+  const { data: zags } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-portland-the-hotel-zags-portland', } }
+  );
+
+
+  const { data: missionBay } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-san-diego-hyatt-regency-mission-bay-san-diego', } }
+  );
+
+  const { data: intercontinental } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-san-diego-intercontinental-san-diego', } }
+  );
+
+
+  const { data: hyPortland } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-poprtland-hyatt-regency-portland', } }
+  );
+
+  const { data: line } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-los-angeles-the-line-los-angeles', } }
+  );
+
 
 
 
@@ -270,99 +328,341 @@ const HomePage: FC<Props> = ({
     );
   }
 
+  const CustomLeftArrow = ({ onClick, ...rest }) => {
+    const {
+      onMove,
+      carouselState: { currentSlide, deviceType }
+    } = rest;
+    // onMove means if dragging or swiping in progress.
+    return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', left: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowLeftIcon fontSize="large" /></Box></Box>
+  };
+  const CustomRightArrow = ({ onClick, ...rest }) => {
+    const {
+      onMove,
+      carouselState: { currentSlide, deviceType }
+    } = rest;
+    // onMove means if dragging or swiping in progress.
+    return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', right: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowRightIcon fontSize="large" /></Box></Box>
+  };
+
+
+  const HotelSection = ({ title, children }) => (
+    <Box sx={{
+      maxWidth: '1300px',
+      mx: 'auto',
+      mb: { xs: 0, sm: '1em' },
+      px: { xs: '0', sm: '1em', lg: '8em' },
+      py: { xs: '1em', sm: '1em', lg: '1em' }  
+    }}>
+      <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em', px: { xs: '0.9em', lg: '0.25em' } }}>{title}</Typography>
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block'} }}>
+        <Grid 
+          onClick={() => fillSearchBar()} 
+          container 
+          sx={{ 
+      
+          }} 
+          justifyContent="flex-start" 
+          spacing={{ xs: 2, lg: 4}}
+        >
+            {children}
+        </Grid>
+      </Box>
+      <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
+        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={97} showIndicators={false} showArrows={false} showStatus={false}> 
+          {children}
+        </Carousel>
+      </Box>
+    </Box>
+  )
+
   return (
     <div className="homepage">
       <ScrollToTop />
       <Header />
-      <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '300px' } }}>
+      <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>
       <Box sx={{
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'row',
         mx: 'auto',
-        maxWidth: '1240px',
+        maxWidth: '1300px',
         flexWrap: 'wrap',
       }}>
         <Box className="info-box">
           <div className="align-center">
-            <img src={LowestRates} alt="lowest rates" />
+            <img className="book-now-image" src={BookNow} alt="lowest rates" />
           </div>
-          <div className="info-box-title">Your favorite hotels</div>
+          <div className="info-box-title">Book your favorite hotels</div>
           <div className="info-box-desc">Explore hundreds of our pet-friendly hotel partners such as Hilton, Hyatt, IHG, and more.</div>
         </Box>
         <Box className="info-box">
           <div className="align-center">
-            <img src={ZeroPetFees}  alt="no pet fees" />
+            <img src={LowestRates}  alt="no pet fees" />
           </div>
-          <div className="info-box-title">$0 pet fees</div>
-          <div className="info-box-desc">Book the lowest hotel rates with Romingo, and never pay hotel pet fees again!</div>
+          <Box className="info-box-title" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
+            $0 pet fees
+          </Box>
+          <Box className="info-box-desc" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
+            Book the lowest hotel rates at your favorite pet-friendly hotels, and save on pet fees with Romingo!
+          </Box>
+          <Box className="info-box-title" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
+            Lowest rates        
+          </Box>
+          <Box className="info-box-desc" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
+            Book the lowest hotel rates at your favorite pet-friendly hotels, and save on fees with Romingo!
+          </Box>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}} >
           <div className="align-center">
             <img src={AuthenticPet} alt="authentic pet" />
           </div>
           <div className="info-box-title">Truly pet-friendly</div>
-          <div className="info-box-desc">Our hotel partners provide a warm, welcoming, and enjoyable travel experience for you and your pet.</div>
+          <div className="info-box-desc">Our hotel partners provide a warm and welcoming travel experience for you and your pet.</div>
         </Box>
         </Box>
       </Box>
+
+      
+
       <Box className="hotels-wrapper" sx={{ 
-        marginTop: { md: 0, lg: 0 },
+        marginTop: { sm: 0, md: 0, lg: 0 },
         marginBottom: { sm: 0, md: 0, lg: '369px' }, 
+        pb: 0,
         background: 'white' 
       }}
       >
-        <div className="hotels-wrapper-header">
-          Travel with Romingo
-        </div>
 
-        <Box sx={{ maxWidth: '1520px', mx: 'auto' }}>
-        <Grid onClick={() => fillSearchBar()} container sx={{ p: '1em' }} justifyContent="flex-start" spacing={2}>
-          {(sanFrancisco && sanFrancisco.property) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Fan Favorites</Typography>
+        <MultiCarousel responsive={{
+            desktop: {
+              breakpoint: { max: 4000, min: 900},
+              items: 3,
+            },
+            mobile: {
+              breakpoint: { max: 900, min: 1},
+              items: 1,
+            }
+          }}
+          partialVisible={false}
+          infinite={true}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
+          {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={0}
-                {...sanFrancisco.property}
+                {...sanFrancisco.getPropertyDetails}
                 name={'Hilton San Francisco'}
+                lowestTotalPriceAfterTax={143}
                 highlighted={false}
               />
-            </Grid>: <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={0} /></Grid>
+            </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
           }  
 
-          {(sanDiego && sanDiego.property) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+          {(sanDiego && sanDiego.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={1}
-                {...sanDiego.property}
+                {...sanDiego.getPropertyDetails}
+                name={"Manchester Grand Hyatt"}
+                lowestTotalPriceAfterTax={161}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={1} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
           } 
 
-          {(losAngeles && losAngeles.property) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+
+          {(losAngeles2 && losAngeles2.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={2}
-                {...losAngeles.property}
+                {...losAngeles2.getPropertyDetails}
+                lowestTotalPriceAfterTax={144}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={2} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
           }  
 
-          {(losAngeles2 && losAngeles2.property) ?
-            <Grid item xs={12} sm={12} md={6} lg={3}>
+
+          {(losAngeles && losAngeles.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
               <ListingCardSquare
-                key={2}
-                {...losAngeles2.property}
+                key={3}
+                {...losAngeles.getPropertyDetails}
+                lowestTotalPriceAfterTax={299}
                 highlighted={false}
               />
-            </Grid> : <Grid item xs={12} sm={12} md={6} lg={3}><ListingCardSkeleton key={3} /></Grid>
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
           }  
+
+          {(sonesta && sonesta.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={4}
+                {...sonesta.getPropertyDetails}
+                lowestTotalPriceAfterTax={125}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
+          }  
+        </MultiCarousel>
+        </Box>
+
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Surfs up</Typography>
+        <MultiCarousel responsive={{
+            desktop: {
+              breakpoint: { max: 4000, min: 900},
+              items: 3,
+            },
+            mobile: {
+              breakpoint: { max: 900, min: 1},
+              items: 1,
+            }
+          }}
+          partialVisible={false}
+          infinite={true}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
+          {(marina && marina.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={5}
+                {...marina.getPropertyDetails}
+                lowestTotalPriceAfterTax={232}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
+          }  
+
+          {(kimpton && kimpton.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={6}
+                {...kimpton.getPropertyDetails}
+                name={'Kimpton Shorebreak Resort'}
+                lowestTotalPriceAfterTax={219}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
+          }  
+
+          {(monte && monte.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={7}
+                {...monte.getPropertyDetails}
+                lowestTotalPriceAfterTax={241}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
+          } 
+          {(missionBay && missionBay.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={8}
+                {...missionBay.getPropertyDetails}
+                lowestTotalPriceAfterTax={219}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
+          } 
+          {(intercontinental && intercontinental.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={9}
+                {...intercontinental.getPropertyDetails}
+                lowestTotalPriceAfterTax={269}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={9} /></Grid>
+          } 
+
+        </MultiCarousel>
+        </Box>
+
+
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Sustainability trailblazers</Typography>
+        <MultiCarousel responsive={{
+            desktop: {
+              breakpoint: { max: 4000, min: 900},
+              items: 3,
+            },
+            mobile: {
+              breakpoint: { max: 900, min: 1},
+              items: 1,
+            }
+          }}
+          partialVisible={false}
+          infinite={true}
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
+          {(andre && andre.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={10}
+                {...andre.getPropertyDetails}
+                lowestTotalPriceAfterTax={216}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={10} /></Grid>
+          } 
+
+          {(thompson && thompson.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>
+              <ListingCardSquare
+                key={11}
+                {...thompson.getPropertyDetails}
+                lowestTotalPriceAfterTax={211}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={11} /></Grid>
+          } 
+
+          {(zags && zags.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>            
+              <ListingCardSquare
+                key={12}
+                {...zags.getPropertyDetails}
+                lowestTotalPriceAfterTax={130}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={12} /></Grid>
+          } 
+
+          {(hyPortland && hyPortland.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>            
+              <ListingCardSquare
+                key={13}
+                {...hyPortland.getPropertyDetails}
+                lowestTotalPriceAfterTax={152}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={13} /></Grid>
+          } 
+
+          {(line && line.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>            
+              <ListingCardSquare
+                key={14}
+                {...line.getPropertyDetails}
+                lowestTotalPriceAfterTax={169}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
+          } 
 
           
-        </Grid>
-
+        </MultiCarousel>
         </Box>
+
+
       </Box>
 
       <Box className="homepage-dog">

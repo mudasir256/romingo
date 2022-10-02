@@ -8,7 +8,7 @@ automatic_scaling:
   max_instances: 2
   target_cpu_utilization: 0.75
 handlers:
-  - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|jpeg|css|js|webp|svg))$
+  - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|jpeg|css|js|webp|svg|xml))$
     static_files: build/\1
     upload: build/(.*)
     secure: always

@@ -33,6 +33,12 @@ interface Props {
   label?: string
 }
 
+const popOverLabelText = {
+  fontSize: '1em', 
+  fontFamily: 'overpass-light', 
+  color: 'black',
+}
+
 const OccupantSelector: FC<Props> = ({
   value,
   onChange,
@@ -105,7 +111,7 @@ const OccupantSelector: FC<Props> = ({
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="body1">Adults</Typography>
+            <Typography sx={popOverLabelText}>Adults</Typography>
             <NumberInput
               value={value.adults}
               onChange={(adults) => {
@@ -121,7 +127,7 @@ const OccupantSelector: FC<Props> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Children</Typography>
+            <Typography sx={popOverLabelText}>Children</Typography>
             <NumberInput
               value={value.children}
               onChange={(children) => {
@@ -146,7 +152,7 @@ const OccupantSelector: FC<Props> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Dogs</Typography>
+            <Typography sx={popOverLabelText}>Dogs</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
@@ -183,7 +189,7 @@ const OccupantSelector: FC<Props> = ({
                 >
                   <FormControl variant="standard" fullWidth>
                     <InputLabel sx={{ textAlign: "center" }}>
-                      Child {i + 1} Age
+                      <Typography sx={popOverLabelText}>Child {i + 1} Age</Typography>
                     </InputLabel>
                     <Select
                       key={i}

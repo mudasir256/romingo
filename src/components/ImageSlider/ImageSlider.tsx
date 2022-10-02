@@ -70,6 +70,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, setShow }) => {
         showArrows={true}
         onChange={(i) => {
           setItem(i)
+          /*
           setShow(false)
           if (timer) {
             window.clearTimeout(timer)
@@ -78,6 +79,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, setShow }) => {
             setShow(true)
           }, 6000)
           setTimer(newTimeout)
+          */
         }}
         showThumbs={false}
         preventMovementUntilSwipeScrollTolerance

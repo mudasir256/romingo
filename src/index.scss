@@ -32,6 +32,19 @@
 
 }
 
+.carousel-item-padding-px {
+
+}
+
+.shadow-rounded {
+  -webkit-box-shadow: 2px 3px 6px 0px rgba(214,214,214,1);
+  -moz-box-shadow: 2px 3px 6px 0px rgba(214,214,214,1);
+  box-shadow: 2px 3px 6px 0px rgba(214,214,214,1);
+  border-radius: 100%;
+  width: 44px;
+  height: 44px;
+}
+
 body,
 html {
   font-family: "overpass-light", sans-serif;
@@ -51,7 +64,6 @@ html {
   //padding: 0 1em;
   //font-family: 'sansita-light' !important;
 }
-
 
 .MuiAutocomplete-groupUl li {
   //color: #009CA1 !important;

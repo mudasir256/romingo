@@ -50,6 +50,27 @@ import HeroImage from '../../assets/images/home-hero.jpg';
 import HeroImage2 from '../../assets/images/home-hero-2.jpg';
 import HeroImage3 from '../../assets/images/home-hero-3.jpg';
 import HeroImage4 from '../../assets/images/home-hero-4.jpg';
+import HeroImage5 from '../../assets/images/home-hero-5.jpg';
+import HeroImage6 from '../../assets/images/home-hero-6.jpeg';
+import HeroImage7 from '../../assets/images/home-hero-7.jpeg';
+
+import HeroImage8 from '../../assets/images/home-hero-8.jpeg';
+import HeroImage8Mobile from '../../assets/images/home-hero-8-mobile.jpeg';
+import HeroImage9 from '../../assets/images/home-hero-9.jpeg';
+import HeroImage10 from '../../assets/images/home-hero-10.jpeg';
+import HeroImage11 from '../../assets/images/home-hero-11.jpeg';
+import HeroImage11Mobile from '../../assets/images/home-hero-11-mobile.jpeg';
+import HeroImage12 from '../../assets/images/home-hero-12.jpeg';
+
+import Image1 from '../../assets/images/pet-friendly-travel-corgi.jpg'
+import Image2 from '../../assets/images/pet-friendly-travel-french-bulldog-2.jpeg'
+import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
+import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
+import Image6 from '../../assets/images/pet-friendly-travel-jack-russell-2.jpeg'
+import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
+import Image8 from '../../assets/images/pet-friendly-travel-samoyed.jpeg'
+import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
+import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
 
 
 import SearchImage from '../../assets/icon/magnify.png';
@@ -81,8 +102,43 @@ const Header: FC<Props> = ({ sx }) => {
   const history = useHistory();
   const [viewHeight, setViewHeight] = useState("");
 
+  const imagesDesktop = [
+    {
+      component: Image7,
+      placement: 'bottom 0px left 0px'
+    },
+    {
+      component: Image10, 
+      placement: 'bottom -200px left 0px'
+    },
+    {
+      component: Image3, 
+      placement: 'bottom -120px right 0px'
+    }
+  ];
+
+  const imagesMobile = [
+    {
+      component:  Image4, 
+      placement: 'bottom -50px right 0px'
+    },
+    {
+      component: Image3, 
+      placement: 'bottom -50px left -120px'
+    },
+    {
+      component: Image9,
+      placement: 'bottom -50px right -0px'
+    }
+  ];
+
+  const [mobileImage, setMobileImage] = useState({})
+  const [desktopImage, setDesktopImage] = useState({})
+
   useEffect(() => {
     setViewHeight(`${window.innerHeight}px`);
+    setMobileImage(imagesMobile[Math.floor(Math.random()*imagesMobile.length)])
+    setDesktopImage(imagesDesktop[Math.floor(Math.random()*imagesDesktop.length)])
   }, []);
 
   const handleImFlexibleClick = () => {
@@ -130,17 +186,17 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `linear-gradient(168deg, #000000 20%, #29292900 60%, #000000 120%), url(${HeroImage4})`, sm: `linear-gradient(160deg, #000000 10%, #29292900 55%, #000000 100%), url(${HeroImage4})` },
+          backgroundImage: { xs: `url(${mobileImage.component})`, sm: `url(${mobileImage.component})`, md: `url(${desktopImage.component})` },
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundPosition: { xs: mobileImage.placement, sm: mobileImage.placement, md: desktopImage.placement },
           backgroundSize: 'cover',
         }}
       >
 
         <Box sx={{ 
-          ml: { xs: '1.75em', sm: '1.5em', md: '0em' },
-          mt: { xs: '1.5em', sm: '5em', md: '14em' },  
-          mb: { xs: '0em', sm: '0em', md: '2em' },
+          ml: { xs: '1.75em', sm: '1.5em', md: '1.5em', lg: '0em' },
+          mt: { xs: '6em', sm: '8em', md: '9em', lg: '9em' },  
+          mb: { xs: '0em', sm: '0em', md: '0em', lg: '2em' },
         }}>
           
           <Box sx={{
@@ -326,7 +382,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                 ...labelStyle,
                 mb: 0
               }}>
-              Select a city
+              Where to
             </Typography>
             <Box
               sx={{
@@ -401,9 +457,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
                     className="auto-complete-input"
                     placeholder="Select a city"
                     size="small"
-                    sx={{         
+                    sx={{    
                       "& .MuiOutlinedInput-root": {
-                        color: "#444",
                         "& fieldset": {
                           borderColor: "transparent",
                         },
@@ -427,12 +482,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
-                PaperProps={{
-                  sx: {
-                    fontWeight: 700,
-                    "& .MuiTypography-root": { fontWeight: 500 },
-                  },
-                }}
                 inputFormat="MMM dd"
                 disableMaskedInput={true}
                 open={open}
@@ -567,15 +616,15 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
             size="small"
             fullWidth={false}
             sx={{
-              width: '224px',
+              width: '214px',
               label: {
                 fontFamily: 'overpass-light',
-                fontWeight: "bold",
+                fontSize: '1em',
               },
               input: {
-                fontWeight: 600,
                 cursor: "pointer",
-                fontFamily: 'overpass-light'
+                fontFamily: 'overpass-light',
+                fontSize: '1em',
               },
             }}
           />

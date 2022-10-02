@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { FC } from "react";
-import { CSSObject, IconButton, Box } from "@mui/material";
+import { CSSObject, IconButton, Box, Dialog } from "@mui/material";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Link from "@mui/material/Link";
 
 import LogoImg from '../../assets/images/logo.png';
+import Pup from '../../assets/images/pup.png';
+import Pup2 from '../../assets/images/pup.png';
+import Pup3 from '../../assets/images/pup.png';
+
 import "./Footer.scss";
 
 interface Props {
@@ -104,13 +108,37 @@ const FooterMenus = {
 
 const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
   const [email, setEmail] = useState('');
+  const [showEgg, setShowEgg] = useState(false);
+  const [timer, setTimer] = useState(null);
+
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
   }
   const handleSubmit = (e: any) => {
     e.preventDefault();
   }
+
+  const easterEgg = () => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    const newTimer = setTimeout(() => {
+      setShowEgg(true)
+    }, 4000)
+    setTimer(newTimer)
+  }
+
+  const handleClose = () => {
+    setShowEgg(false)
+  }
+
   return (
+    <>
+      {showEgg &&
+        <Dialog onClose={handleClose} open={showEgg}>
+          <img src={Pup} />
+        </Dialog>
+      }
     <div className="footer">
       <div className="footer-wrapper">
         <div className="footer-wrapper-logo-section">
@@ -196,12 +224,13 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
       </div>
       <div className="footer-wrapper">
         <Box sx={{ ml: '1.5em', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-          <div className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
+          <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
           <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
           <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
         </Box>
       </div>
     </div>
+    </>
   );
 };
 

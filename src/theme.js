@@ -2,6 +2,7 @@ export const theme = {
   palette: {
     primary: {
       main: "#03989E",
+      black: '#000000',
     },
     secondary: {
       lighter: "#d9f7fc",

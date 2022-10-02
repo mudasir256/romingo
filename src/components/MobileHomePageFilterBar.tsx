@@ -250,16 +250,17 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                       .toLowerCase()
                       .replace(/ /g, "_")}.svg`}
                     height="24px"
-                    style={{ marginLeft: "5px" }}
+                    style={{ marginLeft: "5px", }}
                   />
                 ) : (
                   <LocationCity sx={{ height: "24px", color: "#666" }} />
                 )}
               </Grid>
              
-              <Grid item xs={11} sx={{ zIndex: 50 }}>
+              <Grid item xs={11} sx={{ zIndex: 50, pl: '0.75em' }}>
                 <FormControl fullWidth>
-                  <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Select a city" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
+                  {!selectedCity && <Typography sx={{ position: 'absolute', top: '22%', }}>Select a city</Typography>}
+                  <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
                     {groups.map((group, index) => {
                       const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
                       return (
@@ -344,30 +345,25 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                       justifyContent: "center",
                     }}
                   >
-                    <Today sx={{ height: "24px", color: "#666" }} />
+                    <Today sx={{ height: "24px" }} />
                   </Grid>
                   <Grid item xs={9}>
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography
                           sx={{
-                            color: "#666",
                             fontFamily: "overpass-light",
                             mb: "-.125rem",
-                            textTransform: "none",
-                            fontWeight: 600,
-                            fontSize: { xs: "11px" },
+                            fontSize: '.5em',
+                            color: "#666",
                           }}
                         >
                           Check-in
                         </Typography>
                         <Typography
                           sx={{
-                            color: "#666",
                             fontFamily: "overpass-light",
-                            textTransform: "none",
-                            fontWeight: 600,
-                            fontSize: { xs: "14px" },
+                            fontSize: '0.9em',
                           }}
                         >
                           {checkDate[0]
@@ -402,28 +398,26 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
                       justifyContent: "center",
                     }}
                   >
-                    <Event sx={{ height: "24px", color: "#666" }} />
+                    <Event sx={{ height: "24px" }} />
                   </Grid>
                   <Grid item xs={9}>
                     <Typography
                       sx={{
-                        color: "#666",
+       
                         fontFamily: "overpass-light",
                         mb: "-.125rem",
                         textTransform: "none",
-                        fontWeight: 600,
-                        fontSize: { xs: "11px" },
+                        fontSize: '0.5em',
+                        color: "#666",
                       }}
                     >
                       Check-out
                     </Typography>
                     <Typography
                       sx={{
-                        color: "#666",
                         fontFamily: "overpass-light",
                         textTransform: "none",
-                        fontWeight: 600,
-                        fontSize: { xs: "14px" },
+                        fontSize: '0.9em'
                       }}
                     >
                       {checkDate[1]
@@ -470,7 +464,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
               padding: ".25rem 0rem",
               justifyContent: "center",
               mt: "1rem",
-              fontWeight: 500,
               borderRadius: "6px",
               textTransform: "none",
               pointerEvents: "auto",
@@ -548,6 +541,12 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
     setAnchorEl(null);
   };
 
+  const popOverLabelText = {
+    fontSize: '1em', 
+    fontFamily: 'overpass-light', 
+    color: 'black',
+  }
+
   return (
     <>
       <Grid
@@ -574,7 +573,6 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             fontSize: "1.5em",
             pointerEvents: "auto",
             mr: '0.25em',
-            color: '#666',
             height: '24px',
             p: '0.1em',
             pl: 0,
@@ -584,11 +582,9 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             sx={{
               mt: '0.25em',
               ml: '0.25em',
-              color: "#666",
               fontFamily: "overpass-light",
               textTransform: "none",
-              fontWeight: 600,
-              fontSize: { xs: "14px" },
+              fontSize: '0.9em'
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet
@@ -630,7 +626,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             alignItems="center"
             justifyContent="space-between"
           >
-            <Typography variant="body1">Adults</Typography>
+            <Typography sx={popOverLabelText}>Adults</Typography>
             <NumberInput
               value={value.adults}
               onChange={(adults) => {
@@ -646,7 +642,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Children</Typography>
+            <Typography sx={popOverLabelText}>Children</Typography>
             <NumberInput
               value={value.children}
               onChange={(children) => {
@@ -671,7 +667,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Dogs</Typography>
+            <Typography sx={popOverLabelText}>Dogs</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
@@ -713,7 +709,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                     <Select
                       key={i}
                       color="primary"
-                      sx={{ textAlign: "center" }}
+                      sx={{ ...popOverLabelText, textAlign: "center" }}
                       value={
                         value.childrenAge && value.childrenAge[i]
                           ? value.childrenAge[i].toString()

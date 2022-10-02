@@ -279,6 +279,14 @@ const CheckoutInformation: FC<Props> = ({
         createSI({
           variables: { createSetupIntentInput: { email: checkoutForm.email } },
         });
+
+        TagManager.dataLayer({
+          dataLayer: {
+            event: "checkoutSuccess",
+            bnpl: true,
+          },
+        });
+        
       } catch (err) {
         console.log(err);
         errors.card =
@@ -286,104 +294,8 @@ const CheckoutInformation: FC<Props> = ({
         setFormError(errors);
         setPaymentLoading(false);
       }
-    // } else {
-    //   if (!stripe || !elements) {
-    //     console.log("Stripe or Elements not loaded");
-    //     setPaymentLoading(false);
-    //     return;
-    //   }
 
-    //   const cardElement = elements.getElement(CardElement);
-    //   if (!cardElement) {
-    //     setPaymentLoading(false);
-    //     return;
-    //   }
 
-    //   try {
-    //     const { error, paymentIntent } = await stripe.confirmCardPayment(
-    //       clientSecret,
-    //       {
-    //         payment_method: {
-    //           card: cardElement,
-    //         },
-    //       }
-    //     );
-    //     if (error) {
-    //       setFormError({
-    //         ...errors,
-    //         card: error?.message
-    //           ? error.message
-    //           : "We were unable to process this transaction. Please try again.",
-    //       });
-    //       console.log(error);
-    //       setPaymentLoading(false);
-    //       return;
-    //     }
-    //     const adults: { firstName: string; lastName: string }[] = [];
-    //     const children: {
-    //       firstName: string;
-    //       lastName: string;
-    //       age: number;
-    //     }[] = [];
-
-    //     Array.from(Array(occupants.adults)).forEach((_, i) => {
-    //       if (i === 0) {
-    //         adults.push({
-    //           firstName: checkoutForm.firstName.trim(),
-    //           lastName: checkoutForm.lastName.trim(),
-    //         });
-    //       } else {
-    //         const guestId = String.fromCharCode(64 + i);
-    //         adults.push({
-    //           firstName: `Adult${guestId}`,
-    //           lastName: checkoutForm.lastName.trim(),
-    //         });
-    //       }
-    //     });
-
-    //     if (occupants.children > 0) {
-    //       Array.from(Array(occupants?.childrenAge?.length)).forEach((x_, i) => {
-    //         const childId = String.fromCharCode(65 + i);
-    //         children.push({
-    //           firstName: `Child${childId}`,
-    //           lastName: checkoutForm.lastName.trim(),
-    //           age: occupants.childrenAge[i],
-    //         });
-    //       });
-    //     }
-
-    //     if (paymentIntent) {
-    //       createBooking({
-    //         variables: {
-    //           createBookingInput: {
-    //             paymentIntentId: paymentIntent.id,
-    //             email: checkoutForm.email,
-    //             mobile: {
-    //               countryCallingCode: checkoutForm.countryCode,
-    //               number: checkoutForm.phone,
-    //             },
-    //             adults,
-    //             children,
-    //             noOfDogs: occupants.dogs,
-    //           },
-    //         },
-    //       });
-    //     }
-    //   } catch (err) {
-    //     console.log(err);
-    //     errors.card =
-    //       "*We were unable to process this transaction. Please try again.";
-    //     setFormError(errors);
-    //     setPaymentLoading(false);
-    //     TagManager.dataLayer({
-    //       dataLayer: {
-    //         event: "checkoutFail",
-    //       },
-    //     });
-    //   }
-    // }
-
-    // setPaymentLoading(false);
   };
 
   const updatePhone = (e: any) => {
@@ -419,12 +331,6 @@ const CheckoutInformation: FC<Props> = ({
       createData?.createBooking2?.booking?.sabreConfirmationId &&
       createData?.createBooking2?.booking?.propertyConfirmationId
     ) {
-      TagManager.dataLayer({
-        dataLayer: {
-          event: "checkoutSuccess",
-          bnpl: false,
-        },
-      });
       history.push("?success=true", []);
     }
   }, [createData]);
@@ -437,12 +343,6 @@ const CheckoutInformation: FC<Props> = ({
       bnplData?.createBooking2?.booking?.sabreConfirmationId &&
       bnplData?.createBooking2?.booking?.propertyConfirmationId
     ) {
-      TagManager.dataLayer({
-        dataLayer: {
-          event: "checkoutSuccess",
-          bnpl: true,
-        },
-      });
       history.push("?success=true", []);
     }
   }, [bnplData]);

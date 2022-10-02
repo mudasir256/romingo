@@ -110,12 +110,11 @@ const ListingCard: FC<ListingCardProps> = ({
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   const HotelDescriptors = () => (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ display: 'flex' }}>
       {hasPetFeeReduction &&
         <Chip
           size="small"
-          sx={chipIconStyle}
-          icon={<MoneyOffCsredTwoTone fontSize="small" />}
+          sx={{ ...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
           label={<Box sx={{ ml: '0em'}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
         />
       }
@@ -170,27 +169,16 @@ const ListingCard: FC<ListingCardProps> = ({
       <Typography
         variant="body2"
         sx={{
-          mr: { xs: 0, sm: 0.45 },
-          color: "#222",
+          mr: 0,
+          mt: '0.1em',
           fontFamily: "overpass-bold",
-          fontSize: "1.25em",
+          fontSize: '1.25em',
           fontWeight: 800,
+          display: 'flex',
+          alignItems: 'center'
         }}
       >
-        {currency}
-        {Math.round(lowestAveragePrice)}
-      </Typography>
-      <Typography
-        variant="body2"
-        sx={{
-          mr: { xs: 0, sm: 0.45 },
-          color: "#666",
-          fontFamily: "overpass-light",
-          fontSize: { xs: '.75em', sm: "0.75em" },
-          fontWeight: 800,
-        }}
-      >
-        {currency}{Math.round(lowestTotalPriceAfterTax)} total
+        {currency}{Math.round(lowestTotalPriceAfterTax)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
       </Typography>
     </Box>
  
@@ -330,11 +318,10 @@ const ListingCard: FC<ListingCardProps> = ({
                 sx={{
                   fontSize: { xs: "95%", sm: "90%" },
                   mt: { xs: "0rem", sm: ".125rem" },
-                  overflow: "hidden",
+                
                   fontWeight: 500,
                   whiteSpace: "nowrap",
                   fontFamily: "overpass-light",
-                  textOverflow: "ellipsis",
                   color: "#999",
                 }}
               >
@@ -420,7 +407,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 display: { xs: 'block', sm: 'none' },
                 my: 'auto',
                 mt: '0.25em',
-                ml: '0.75em',
+                ml: '0.5em',
             }}>
               <Typography sx={{        
                  fontFamily: "overpass-light",
@@ -443,7 +430,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 flexDirection: { sm: "column", xs: "row" },
                 minHeight: { xs: 54, sm: 140 },
                 p: {
-                  xs: "0rem .5rem",
+                  xs: "0rem .5em",
                   sm: ".5rem .5rem 0rem 1rem",
                   md: ".75rem 0rem",
                 },

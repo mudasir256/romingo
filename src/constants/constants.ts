@@ -61,13 +61,6 @@ const GetHotelBySearch = `
         alias
         page_rank
         allows_big_dogs
-        amenities {
-          code
-          desc
-          value
-          accessible
-          free
-        }
       }
     }
   `;
@@ -132,12 +125,6 @@ const GetHotelRackBySearch = `
           perNight
           breakup
           totalFees
-        }
-        amenities {
-          code
-          desc
-          value
-          free
         }
       }
     }
@@ -231,12 +218,6 @@ const GetHotelDetail = `
         neighborhood
         romingoScore
         dogAmenities
-        amenities {
-          code
-          desc
-          value
-          free
-        }
         featuredImageURL
         imageURLs
         sabreImageURLs
@@ -274,9 +255,6 @@ const GetHotelDetail = `
           amenities {
             code
             desc
-            value
-            accessible
-            free
           }
           maxOccupants
           priceKey
@@ -458,13 +436,6 @@ const GetSabreRoomReservations = `
           count
         }
         desc
-        amenities {
-          code
-          desc
-          value
-          accessible
-          free
-        }
         maxOccupants
         priceKey
         breakfastIncluded
@@ -501,6 +472,7 @@ const GetSabreRoomReservations = `
     }
   }
 `
+
 
 const GetReservationDetails =`
   query GetReservationDetailsInput (
@@ -599,6 +571,43 @@ const ModifyBookingDetails = `
         propertyConfirmationId
         faunaDocId
       }
+
+const GetSabrePropertyDetails = `
+    query (
+      $alias: String!
+    ) {
+      getSabrePropertyDetails(input: {
+        alias: $alias,
+      })
+      {
+        alias
+        sabreId
+        nearbyActivities {
+          id
+          activityType {
+            id
+            name
+          }
+          name
+          overview
+          desc
+          addressLine1
+          location {
+            latitude
+            longitude
+          }
+          price
+          distanceInMeters
+        }
+        amenities {
+          code
+          desc
+        }
+        addressLine1
+        location {
+          latitude
+          longitude
+        }
     }
   }
 `;
@@ -619,4 +628,5 @@ export {
   CancelBooking,
   GetBookingDetails,
   ModifyBookingDetails,
+  GetSabrePropertyDetails,
 };
