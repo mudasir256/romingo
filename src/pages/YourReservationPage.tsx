@@ -269,7 +269,7 @@ const YourReservationPage: FC<Props> = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                Are you sure want to cancel Booking?
+                Are you sure want to cancel this stay?
               </DialogContentText>
             </DialogContent>
             <DialogActions>
