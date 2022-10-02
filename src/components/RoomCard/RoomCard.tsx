@@ -96,6 +96,8 @@ interface Props {
   featuredImageURL: string;
   imageURLs: Array<string>;
   name?: string;
+  flag?: string;
+  bookingId?: string;
 }
 
 export interface RoomInfo {
@@ -240,6 +242,8 @@ const RoomCard: FC<Props> = ({
   imageURLs,
   name,
   type,
+  flag,
+  bookingId,
   ...props
 }) => {
   const history = useHistory();
@@ -274,7 +278,7 @@ const RoomCard: FC<Props> = ({
         room: { value: 1, room: room, description: room.desc },
       })
     );
-    history.push("/checkout");
+    flag ? history.push("/modify-booking", {bookingId}) : history.push("/checkout");
   };
 
   const open = Boolean(anchorEl);

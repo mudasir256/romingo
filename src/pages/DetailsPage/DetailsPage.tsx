@@ -198,7 +198,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelAlias = props?.match?.params?.alias || "undefined";
   const pageLocation = useLocation();
   const search = useSelector((state: any) => state.searchReducer.search);
-  
+  const locationState = useLocation<any>();
   const dispatch: Dispatch<any> = useDispatch();
 
   const ageParam = search.occupants.childrenAge
@@ -601,6 +601,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Hidden>
         )}
         <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
+          <Typography variant="h5" sx={{mb: 3}}>{locationState.state?.flag}</Typography>
           <Grid container spacing={2} sx={{ position: "relative" }}>
             <Grid item xs={12} sm={6}>
               {loading && (
@@ -1664,6 +1665,27 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                             sm={6}
                             xs={12}
                             key={key}
+                            bestRate={key === 0 ? true : false}
+                            HotelName={name}
+                            room={room}
+                            flag={locationState.state?.flag}
+                            bookingId={locationState.state?.bookingId}
+                            sx={{
+                              minWidth: "260px",
+                              borderRadius: "8px",
+                              p: " 0rem 1rem 1rem 1rem",
+                              border: "1px solid #ddd",
+                              transition: "all .15s ease-in-out",
+                              boxShadow: 1,
+                              "&:hover": { boxShadow: 3 },
+                            }}
+                            {...room}
+                          />
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                  {accessibleRooms.length > 0 && (
                             sx={{ display: "flex", flex: 1 }}
                           >
                             <RoomCard
@@ -1711,6 +1733,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 bestRate={key === 0 ? true : false}
                                 HotelName={name}
                                 room={room}
+                                flag={locationState.state?.flag}
+                                bookingId={locationState.state?.bookingId}
                                 sx={{
                                   minWidth: "260px",
                                   borderRadius: "8px",
