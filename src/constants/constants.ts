@@ -571,6 +571,9 @@ const ModifyBookingDetails = `
         propertyConfirmationId
         faunaDocId
       }
+    }
+  }
+`
 
 const GetSabrePropertyDetails = `
     query (
