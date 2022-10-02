@@ -18,7 +18,7 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import ReservationDetails from "../components/ReservationDetails";
 import Loader from "../components/UI/Loader";
-
+import MobileSearchBar from '../components/MobileHomePageFilterBar';
 
 const YourReservationPage: FC<Props> = () => {
   const history = useHistory();
@@ -30,12 +30,9 @@ const YourReservationPage: FC<Props> = () => {
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
   const [modifyDialogOpen, setModifyDialogOpen] = useState(false)
 
-  console.log(emailAddress)
-  console.log(confirmationNumber)
-
   const [
     handleFindReservation,
-    { called, loading, data }
+    { called, loading, data, error }
   ] = useLazyQuery(gql`
     ${GetReservationDetails}
     `,
@@ -283,29 +280,30 @@ const YourReservationPage: FC<Props> = () => {
             </DialogActions>
           </Dialog>
 
-          <Dialog
-            open={modifyDialogOpen}
-            onClose={() => setModifyDialogOpen(false)}
-            scroll={scroll}
-            aria-labelledby="scroll-dialog-title"
-            aria-describedby="scroll-dialog-description"
-          >
-            <DialogTitle id="scroll-dialog-title">You are Modifying Boooking</DialogTitle>
-            <DialogContent dividers={scroll === 'paper'}>
-              <Grid
-                container
-              >
-                {data?.getReservationDetails && (
-                  <ReservationDetails flag={"You are Modifying Boooking"} bookingId={data?.getReservationDetails[0].id} />
-                )}
-              </Grid>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setModifyDialogOpen(false)}>Cancel</Button>
-            </DialogActions>
-          </Dialog>
+
         </Box>
       }
+      <Dialog
+        open={modifyDialogOpen}
+        onClose={() => setModifyDialogOpen(false)}
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+        fullWidth
+      >
+    {/*<ReservationDetails flag={"You are Modifying Boooking"} bookingId={data?.getReservationDetails[0].id} />*/}
+        <DialogTitle id="scroll-dialog-title">Modify this booking</DialogTitle>
+        <DialogContent dividers={scroll === 'paper'}>
+     
+            {data?.getReservationDetails && (
+              <MobileSearchBar home={false} forceWidth="inherit" flag="Modify this booking" bookingId={data?.getReservationDetails[0].id} />
+            )}
+      
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setModifyDialogOpen(false)}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   )
 }
