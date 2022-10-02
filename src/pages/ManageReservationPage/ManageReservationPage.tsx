@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { alpha, styled } from "@mui/material/styles";
 import {
   FormControl,
@@ -11,13 +12,24 @@ import {
   Container,
   Box,
   Divider,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogProps,
+  DialogContentText,
 } from "@mui/material";
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import ReservationDetails from "../../components/ReservationDetails";
 import ScrollToTop from "../../components/ScrollToTop";
 import { Error } from "@mui/icons-material";
-
+import { GetReservationDetails, CancelBooking } from '../../constants/constants';
+import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
+import moment from "moment";
 interface BookingManage {
   image: string;
   name: string;
@@ -28,6 +40,31 @@ interface BookingManage {
   roomType: string;
   confirmId: string;
   status: string;
+}
+
+interface BookingInterface {
+  id: string,
+  propertyId: string,
+  paymentIntentId: string,
+  cardId: string,
+  sabreConfirmationId: string,
+  propertyConfirmationId: string,
+  faunaDocId: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  mobileNumber: string,
+  checkInAtLocal: string,
+  checkOutAtLocal: string,
+  deadlineLocal: string,
+  data: any,
+  hotel: any,
+  cancellationFeePrice: any,
+  captured: number,
+  intentType: string,
+  setupIntentObject: any,
+  customerId: string,
+  reservationStatus: string
 }
 
 interface Props {
@@ -65,22 +102,61 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ManageReservationPage: FC<Props> = () => {
+  const history = useHistory();
   const [emailAddress, setEmailAddress] = useState("");
   const [confirmationNumber, setConfirmationNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [confirmationId, setConfirmationId] = useState("");
+  const [bookingStatus, setBookingStatus] = useState("");
+  const [open, setOpen] = useState(false);
+  const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
+  const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
+  const [list, setList] = useState<BookingInterface[]>([]);
   const buttonEnabled =
-    emailAddress.length > 2 && confirmationNumber.length > 10;
+    emailAddress.length > 2 && confirmationNumber.length > 8;
 
-  useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        setSuccess(true);
-      }, 2500);
-    } else {
-      setSuccess(false);
-    }
-  }, [loading]);
+  // const [
+  //   handleFindReservation,
+  //   { called, loading: reservationLoading, data }
+  // ] = useLazyQuery(gql`
+  //   ${GetReservationDetails}
+  //   `,
+  //   {
+  //     variables: {
+  //       email: emailAddress,
+  //       propertyConfirmationId: confirmationNumber
+  //     },
+  //   }
+  // );
+  const data = {}
+
+  const [
+    cancelBooking,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(gql`${CancelBooking}`);
+
+  // useEffect(() => {
+
+  //   if (data) {      
+  //     if (Object.keys(data?.getReservationDetails).length > 0) {
+  //       setList(data?.getReservationDetails)
+  //       setBookingStatus(data?.getReservationDetails[0].reservationStatus)
+  //       setSuccess(false)
+  //     }
+  //   }
+  // }, [data])
+
+  // useEffect(() => {
+  //   if (called && !data) setSuccess(true);
+  // }, [called])
+
+  const handleFindReservation = () => {
+    history.push({
+      pathname: '/reservation/details',
+      state: { emailAddress, confirmationNumber }
+    })
+  }
 
   const startChat = () => {
     window.Intercom("boot", {
@@ -89,6 +165,106 @@ const ManageReservationPage: FC<Props> = () => {
     window.Intercom("update");
     window.Intercom("show");
   };
+  const formatUnix = (timestamp: number) => {
+    return new Date(timestamp).toLocaleDateString('en-US')
+  }
+
+  const formatUnixLong = (timestamp: number) => {
+    return new Date(timestamp).toLocaleString()
+  }
+
+  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleCancelBooking = (confirmationId: any) => {
+    setOpenCancelConfirmation(true);
+    setConfirmationId(confirmationId);
+  }
+  const descriptionElementRef = React.useRef<HTMLElement>(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
+  const handleCancelReservation = () => {
+    if (confirmationId) {
+      cancelBooking({
+        variables: {
+          cancelBookingInput: {
+            confirmationId: confirmationId,
+            cancelAll: true
+          }
+        }
+      }).then((status) => {
+        setOpenCancelConfirmation(false)
+      })
+    }
+  }
+
+  const columns: any = [
+    {
+      name: 'Confirmation Id',
+      selector: (row: BookingInterface) => row.propertyConfirmationId,
+      width: '130px'
+    },
+    {
+      name: 'firstName',
+      selector: (row: BookingInterface) => row.firstName,
+    },
+    {
+      name: 'lastName',
+      selector: (row: BookingInterface) => row.lastName,
+    },
+    {
+      name: 'Check-in',
+      selector: (row: BookingInterface) => formatUnix(parseInt(row.checkInAtLocal)),
+    },
+    {
+      name: 'Check-out',
+      selector: (row: BookingInterface) => formatUnix(parseInt(row.checkOutAtLocal)),
+    },
+    {
+      name: 'Total $ + Tax',
+      selector: (row: BookingInterface) => `$${row.data.totalPriceAfterTax}`,
+    },
+    {
+      name: 'Can cancel?',
+      selector: (row: BookingInterface) => row.data.cancelationPolicy.cancelable ? 'Yes' : 'No',
+    },
+    {
+      name: 'Cancel by time',
+      selector: (row: BookingInterface) => formatUnixLong(parseInt(row.deadlineLocal)),
+      width: '180px',
+    },
+    {
+      name: 'Booking Status',
+      selector: (row: BookingInterface) => row.reservationStatus?.toUpperCase()
+    },
+    bookingStatus === "upcoming" && (
+      {
+        name: 'Action',
+        selector: (row: BookingInterface) =>
+          <>
+            {
+              <Button variant="contained" onClick={handleClickOpen('body')}>Modify</Button>
+            },
+            {
+              <Button variant="contained" onClick={() => handleCancelBooking(row.sabreConfirmationId)}>Cancel</Button>
+            }
+          </>,
+      })
+
+  ];
 
   return (
     <>
@@ -119,7 +295,7 @@ const ManageReservationPage: FC<Props> = () => {
             sx={{ margin: "0px auto 2rem auto" }}
             justifyContent="center"
           >
-            {loading && (
+            {success && (
               <Grid>
                 <Grid
                   sx={{
@@ -213,7 +389,7 @@ const ManageReservationPage: FC<Props> = () => {
               <Grid item xs={12} sx={{ textAlign: "center" }}>
                 <Button
                   disabled={!buttonEnabled || loading}
-                  onClick={() => setLoading(true)}
+                  onClick={() => handleFindReservation()}
                   variant="contained"
                   sx={{
                     margin: "0px auto",
@@ -226,29 +402,31 @@ const ManageReservationPage: FC<Props> = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
-            <Button
-              onClick={startChat}
-              variant="contained"
-              color="primary"
-              sx={{ fontWeight: 500, textTransform: "none" }}
-            >
-              Chat with Support
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Box
-              component="img"
-              src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
-              alt={"Romingo Tennis Ball"}
-              sx={{
-                objectFit: "cover",
-                width: "100%",
-                height: "260px",
-                borderRadius: 5,
-              }}
-            />
-          </Grid>
+        </Grid>
+      </Container>
+      <Container>
+        <Grid item xs={12} md={12} sx={{ my: 2, textAlign: "center" }}>
+          <Button
+            onClick={startChat}
+            variant="contained"
+            color="primary"
+            sx={{ fontWeight: 500, textTransform: "none" }}
+          >
+            Chat with Support
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Box
+            component="img"
+            src="https://storage.googleapis.com/romingo-development-public/images/front-end/romingo_ball.jpeg"
+            alt={"Romingo Tennis Ball"}
+            sx={{
+              objectFit: "cover",
+              width: "100%",
+              height: "260px",
+              borderRadius: 5,
+            }}
+          />
         </Grid>
       </Container>
       {/*

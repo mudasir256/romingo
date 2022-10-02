@@ -13,6 +13,7 @@ import OrangeCounty from "./pages/Cities/OrangeCounty";
 import SanFrancisco from "./pages/Cities/SanFran";
 import SantaBarbara from "./pages/Cities/SantaBarbara";
 import ManageReservationPage from "./pages/ManageReservationPage";
+import YourReservationPage from "./pages/YourReservationPage";
 import About from "./pages/StaticPages/About";
 import ErrorPage from "./pages/ErrorPage";
 import FAQ from "./pages/StaticPages/FAQ";
@@ -26,6 +27,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Application from "./pages/StaticPages/Application";
 import { authService } from "./services/authService.js";
+import ModifyBooking from './components/ModifyBooking/ModifyBooking';
 
 interface RouteInterface {
   path: string;
@@ -62,6 +64,11 @@ const routes: RouteInterface[] = [
   {
     path: "/reservation/manage",
     component: ManageReservationPage,
+    requireAuth: false,
+  },
+  {
+    path: '/reservation/details',
+    component: YourReservationPage,
     requireAuth: false,
   },
   {
@@ -149,6 +156,11 @@ const routes: RouteInterface[] = [
     component: BlogPost,
     requireAuth: false,
   },
+  {
+    path: "/modify-booking",
+    component: ModifyBooking,
+    requireAuth: false
+  }
 ];
 
 const AuthGuards = (props: any) => {

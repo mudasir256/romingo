@@ -35,7 +35,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useWindowSize } from "react-use";
 import Link from "@mui/material/Link";
 import { useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
@@ -355,9 +355,8 @@ const ListingPage: FC<Props> = () => {
   const date2 = new Date(end).getTime();
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  const location = useLocation<any>();
 
-  console.log(cards)
-  console.log(error)
   return (
     <>
       <ScrollToTop />
@@ -668,6 +667,7 @@ const ListingPage: FC<Props> = () => {
                   >
                     {cards.length} Result{cards.length === 1 ? "" : "s"} in{" "}
                     {getCityName(search.city)}
+                    {location.state?.flag && ` (${location.state?.flag})`}
                   </Typography>
                 )}
                 {!cards.length ? (
@@ -694,6 +694,8 @@ const ListingPage: FC<Props> = () => {
                         {...card}
                         duration={diffDays}
                         highlighted={hotelIndex === index ? true : false}
+                        flag={location.state?.flag}
+                        bookingId={location.state?.bookingId}
                       />
                     </Box>
                   ))
