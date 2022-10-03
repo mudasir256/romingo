@@ -473,6 +473,108 @@ const GetSabreRoomReservations = `
   }
 `
 
+
+const GetReservationDetails =`
+  query GetReservationDetailsInput (
+    $email: String!
+    $propertyConfirmationId: String!
+  ) {
+    getReservationDetails (
+      input: {
+        email: $email
+        propertyConfirmationId: $propertyConfirmationId
+      }
+    ) {
+      id
+      propertyId
+      paymentIntentId
+      cardId
+      sabreConfirmationId
+      propertyConfirmationId
+      faunaDocId
+      firstName
+      lastName
+      email
+      mobileNumber
+      checkInAtLocal
+      checkOutAtLocal
+      deadlineLocal
+      data
+      captured
+      cancellationFeePrice
+      intentType
+      setupIntentObject
+      customerId
+      reservationStatus
+      hotel {
+        name
+        address
+        zipCode
+      }
+    }
+  }
+`;
+
+const CancelBooking = `
+  mutation CancelBooking($cancelBookingInput: CancelBookingInput!) {
+    cancelBooking(input: $cancelBookingInput) {
+      status
+    }
+  }
+`;
+
+const GetBookingDetails = `
+  query GetBookingDetailsInput ($id: String) {
+    getBookingDetails (input: {id: $id}) {
+      id
+      propertyId
+      paymentIntentId
+      cardId
+      sabreConfirmationId
+      propertyConfirmationId
+      faunaDocId
+      firstName
+      lastName
+      email
+      mobileNumber
+      mobileCountryCallingCode
+      checkInAtLocal
+      checkOutAtLocal
+      deadlineLocal
+      data
+      captured
+      cancellationFeePrice
+      intentType
+      setupIntentObject
+      customerId
+      reservationStatus
+    }
+  }
+`;
+
+const ModifyBookingDetails = `
+  mutation ModifyBooking  (
+    $cancelBookingInput: CancelBookingInput!
+    $createBooking2Input: CreateBooking2Input!
+  ) {
+    cancelBooking(input: $cancelBookingInput) {
+      status
+    }
+
+    createBooking2(input: $createBooking2Input) {
+      priceChanged
+      priceDifference
+      totalPriceAfterTax
+      booking {
+        id
+        sabreConfirmationId
+        propertyConfirmationId
+        faunaDocId
+      }
+    }
+  }
+`
+
 const GetSabrePropertyDetails = `
     query (
       $alias: String!
@@ -525,5 +627,9 @@ export {
   GetStripeClientSecret,
   GetPropertyDetails,
   GetSabreRoomReservations,
+  GetReservationDetails,
+  CancelBooking,
+  GetBookingDetails,
+  ModifyBookingDetails,
   GetSabrePropertyDetails,
 };

@@ -50,9 +50,12 @@ interface FilterBarProps {
   home?: boolean;
   city?: string;
   onSearch?: any;
+  forceWidth?: string;
+  flag?: string;
+  bookingId?: string; 
 }
 
-const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch }) => {
+const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, forceWidth, flag, bookingId }) => {
   const [open, setOpen] = useState(false);
   const [selectCityOpen, setSelectedCityOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
@@ -141,7 +144,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
         })
       );
 
-      history.push("/listings");
+      history.push("/listings", {flag, bookingId});
     } else {
       alert("error");
       if (!selectedCity) {
@@ -194,6 +197,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
   }
   const groups = groupCities(cities);
 
+  let width = (home ? "100vw" : '85vw')
+  if (forceWidth) {
+    width = forceWidth
+  }
   return (
     <>
       <Box
@@ -203,7 +210,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch })
           margin: "0px auto 0px auto",
           paddingTop: "0.1em",
           paddingBottom: "12px",
-          width: (home ? "100vw" : '85vw'),
+          width: width,
           backgroundColor: 'transparent',
         }}
       >

@@ -198,7 +198,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const hotelAlias = props?.match?.params?.alias || "undefined";
   const pageLocation = useLocation();
   const search = useSelector((state: any) => state.searchReducer.search);
-  
+  const locationState = useLocation<any>();
   const dispatch: Dispatch<any> = useDispatch();
 
   const ageParam = search.occupants.childrenAge
@@ -601,6 +601,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           </Hidden>
         )}
         <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
+          <Typography variant="h5" sx={{mb: 3}}>{locationState.state?.flag}</Typography>
           <Grid container spacing={2} sx={{ position: "relative" }}>
             <Grid item xs={12} sm={6}>
               {loading && (
@@ -1653,81 +1654,85 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   </Typography>
                   <RoomsFilterBar refetch={refetch} />
                   {roomsLoading ? <Box sx={{ mx: 'auto', textAlign: 'center'}}><CircularProgress /></Box> 
-                    : rooms.length > 0 ?
-                    <Grid container columnSpacing={6} rowSpacing={6}>
-                      {rooms.map((room: any, key: number) => {
-                        return (
-                          <Grid
-                            item
-                            md={4}
-                            lg={4}
-                            sm={6}
-                            xs={12}
-                            key={key}
-                            sx={{ display: "flex", flex: 1 }}
-                          >
-                            <RoomCard
-                              key={key}
-                              bestRate={key === 0 ? true : false}
-                              HotelName={name}
-                              room={room}
-                              sx={{
-                                minWidth: "260px",
-                                borderRadius: "8px",
-                                p: " 0rem 1rem 1rem 1rem",
-                                border: "1px solid #ddd",
-                                transition: "all .15s ease-in-out",
-                                boxShadow: 1,
-                                "&:hover": { boxShadow: 3 },
-                              }}
-                              {...room}
-                            />
-                          </Grid>
-                        );
-                      })}
-                    </Grid>
-                    : <Typography sx={{ textAlign: 'center'}}>No rooms found in this date range.</Typography>
-                  }
-                  {!roomsLoading && accessibleRooms && accessibleRooms.length > 0 && (
-                    <>
-                      <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
-                        <Typography variant="h6">Accessible Rooms</Typography>
-                      </Divider>
+                     : rooms.length > 0 ?
+                     <Grid container columnSpacing={6} rowSpacing={6}>
+                       {rooms.map((room: any, key: number) => {
+                         return (
+                           <Grid
+                             item
+                             md={4}
+                             lg={4}
+                             sm={6}
+                             xs={12}
+                             key={key}
+                             sx={{ display: "flex", flex: 1 }}
+                           >
+                             <RoomCard
+                               key={key}
+                               bestRate={key === 0 ? true : false}
+                               HotelName={name}
+                               room={room}
+                               flag={locationState.state?.flag}
+                               bookingId={locationState.state?.bookingId}
+                               sx={{
+                                 minWidth: "260px",
+                                 borderRadius: "8px",
+                                 p: " 0rem 1rem 1rem 1rem",
+                                 border: "1px solid #ddd",
+                                 transition: "all .15s ease-in-out",
+                                 boxShadow: 1,
+                                 "&:hover": { boxShadow: 3 },
+                               }}
+                               {...room}
+                             />
+                           </Grid>
+                         );
+                       })}
+                     </Grid>
+                     : <Typography sx={{ textAlign: 'center'}}>No rooms found in this date range.</Typography>
+                   }
+                   {!roomsLoading && accessibleRooms && accessibleRooms.length > 0 && (
+                     <>
+                       <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
+                         <Typography variant="h6">Accessible Rooms</Typography>
+                       </Divider>
 
-                      <Grid container columnSpacing={6} rowSpacing={6}>
-                        {accessibleRooms.map((room: any, key: number) => {
-                          return (
-                            <Grid
-                              item
-                              md={4}
-                              lg={4}
-                              sm={6}
-                              xs={12}
-                              key={key}
-                              sx={{ display: "flex", flex: 1 }}
-                            >
-                              <RoomCard
-                                key={key}
-                                bestRate={key === 0 ? true : false}
-                                HotelName={name}
-                                room={room}
-                                sx={{
-                                  minWidth: "260px",
-                                  borderRadius: "8px",
-                                  p: " 0rem 1rem 1rem 1rem",
-                                  border: "1px solid #ddd",
-                                  transition: "all .15s ease-in-out",
-                                  boxShadow: 1,
-                                  "&:hover": { boxShadow: 3 },
-                                }}
-                                {...room}
-                              />
-                            </Grid>
-                          );
-                        })}
-                      </Grid>
-                    </>
-                  )}
+                       <Grid container columnSpacing={6} rowSpacing={6}>
+                         {accessibleRooms.map((room: any, key: number) => {
+                           return (
+                             <Grid
+                               item
+                               md={4}
+                               lg={4}
+                               sm={6}
+                               xs={12}
+                               key={key}
+                               sx={{ display: "flex", flex: 1 }}
+                             >
+                               <RoomCard
+                                 key={key}
+                                 bestRate={key === 0 ? true : false}
+                                 HotelName={name}
+                                 room={room}
+                                 sx={{
+                                   minWidth: "260px",
+                                   borderRadius: "8px",
+                                   p: " 0rem 1rem 1rem 1rem",
+                                   border: "1px solid #ddd",
+                                   transition: "all .15s ease-in-out",
+                                   boxShadow: 1,
+                                   "&:hover": { boxShadow: 3 },
+                                 }}
+                                 flag={locationState.state?.flag}
+                                 bookingId={locationState.state?.bookingId}
+                                 {...room}
+                               />
+                             </Grid>
+                           );
+                         })}
+                       </Grid>
+                     </>
+                   )}
                 </Grid>
               </Grid>
               <Grid container sx={{ mt: 4 }} id="reviews">

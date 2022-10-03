@@ -402,7 +402,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 </span>
               </Typography>
               <a
-                href="/#destinations"
+                href="/list-your-property"
                 style={{
                   cursor: "pointer",
                   marginRight: "0px",
