@@ -113,6 +113,12 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target.value);
+    fetch(
+      `https://romingo.us6.list-manage.com/subscribe/post-json?u=585083137c3540a7371e3a74f&id=d4d3932414&EMAIL=${encodeURIComponent(
+        e.target.value
+      )}&c=?`,
+      { mode: "no-cors", method: "POST" }
+    )
   }
   const handleSubmit = (e: any) => {
     e.preventDefault();

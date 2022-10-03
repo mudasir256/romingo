@@ -32,7 +32,6 @@ const YourReservationPage: FC<Props> = () => {
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
   const [modifyDialogOpen, setModifyDialogOpen] = useState(false)
 
-
   if (!emailAddress && !confirmationNumber) {
     const email = new URLSearchParams(history.location.search).get('email')
     const confirmation = new URLSearchParams(history.location.search).get('id')
@@ -248,6 +247,7 @@ const YourReservationPage: FC<Props> = () => {
                     >
                       Cancel
                     </Button>
+                    {/* 
                     <Button
                       variant="outlined"
                       color="success"
@@ -255,6 +255,7 @@ const YourReservationPage: FC<Props> = () => {
                     >
                       Modify
                     </Button>
+                    */}
                   </>
                 ) : (
                   <Button
