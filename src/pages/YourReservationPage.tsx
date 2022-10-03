@@ -22,13 +22,23 @@ import MobileSearchBar from '../components/MobileHomePageFilterBar';
 
 const YourReservationPage: FC<Props> = () => {
   const history = useHistory();
-  const { emailAddress, confirmationNumber } = history.location.state
+  let emailAddress = history.location.state?.emailAddress;
+  let confirmationNumber = history.location.state?.confirmationNumber;
+
   const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
   const [succesAlert, setSuccesAlert] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(true);
   const [confirmationId, setConfirmationId] = useState("");
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
   const [modifyDialogOpen, setModifyDialogOpen] = useState(false)
+
+
+  if (!emailAddress && !confirmationNumber) {
+    const email = new URLSearchParams(history.location.search).get('email')
+    const confirmation = new URLSearchParams(history.location.search).get('id')
+    emailAddress = email
+    confirmationNumber = confirmation
+  }
 
   const [
     handleFindReservation,
