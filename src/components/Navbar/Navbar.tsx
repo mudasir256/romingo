@@ -130,7 +130,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     <div
                       style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                     >
-                      My Trips
+                      My trips
                     </div>
                   </Link>
                 </Box>
