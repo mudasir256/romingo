@@ -17,6 +17,8 @@ import {
   ListItemIcon,
   Checkbox,
   ListItemText,
+  FormControlLabel,
+  FormGroup,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -524,9 +526,7 @@ const ListingPage: FC<Props> = () => {
               <Stack
                 spacing={3}
                 sx={{
-                  pb: 7,
-                  pt: "1rem",
-                  minHeight: `${height - 200}px`,
+                  pt: "3em",
                 }}
               >
                 <SortBar 
@@ -726,35 +726,28 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
   const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter } = props;
   const history = useHistory();
 
+  // const options = [
+  //   "101: Wheelchair access",
+  //   "2016: Rollaway adult",
+  //   "228: Business center",
+  //   "233: Tennis court",
+  //   "259: High speed internet access",
+  //   "71: Pool",
+  //   "68: Parking",
+  //   "77: Room Service",
+  // ];
+
   const options = [
-    "101 : Wheelchair access",
-    "2016: Rollaway adult",
-    "228: Business center",
-    "233: Tennis court",
-    "259: High speed internet access",
-    "71: Pool",
-    "68: Parking",
-    "77: Room Service",
+    "Wheelchair access",
+    "Rollaway adult",
+    "Business center",
+    "Tennis court",
+    "High speed internet access",
+    "Pool",
+    "Parking",
+    "Room Service",
   ];
 
-  const MenuProps: any = {
-    PaperProps: {
-      style: {
-        maxHeight: 48 * 4.5 + 8,
-        width: 250
-      }
-    },
-    getContentAnchorEl: null,
-    anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center"
-    },
-    transformOrigin: {
-      vertical: "top",
-      horizontal: "center"
-    },
-    variant: "menu"
-  };
 
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -788,6 +781,11 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     setSelectedFilter(value);
   };
 
+  useEffect(() => {
+    console.log(selectedFilter)
+
+  }, [selectedFilter])
+
   return (
     <Grid
      className="alignCenter"
@@ -796,13 +794,12 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         pb: size === "small" ? 0 : "1rem",
         textAlign: "right",
         display: "flex",
+        flexWrap: 'wrap',
         alignItems: "center",
         justifyContent: size === "small" ? "center" : "flex-end",
       }}
     >
-      {size === "small" && (
-        <Typography sx={{ mr: "10px" }}>Sort by: </Typography>
-      )}
+
       <Select
         color="primary"
         value={sortBy}
@@ -814,63 +811,74 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           minWidth: "250px",
           maxHeight: "40px",
           borderRadius: "30px",
-          fontSize: "13px",
+          fontSize: "0.9em",
           color: "#03989E",
-          fontWeight: 600,
         }}
+        variant="standard"
         startAdornment={
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
         }
       >
-        <MenuItem value="featured">Featured</MenuItem>
+        <MenuItem value="featured">Sort by: Featured</MenuItem>
         <MenuItem value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
         <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
 
-      {/*
       <FormControl>
-      <InputLabel id="mutiple-select-label">Multiple Select</InputLabel>
-      <Select
-        labelId="mutiple-select-label"
-        multiple
-        value={selectedFilter}
-        onChange={handleChange}
-        renderValue={(selected) => selected.join(", ")}
-        MenuProps={MenuProps}
-      >
-        <MenuItem
-          value="all"
-          classes={{
-            root: isAllSelected ? classes.selectedAll : ""
+        <InputLabel id="demo-simple-select-label"><Typography sx={{  fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
+        <Select
+          id="demo-simple-select"
+          color="primary"
+          value={selectedFilter}
+          onChange={handleChange}
+          variant="standard"
+          style={{
+            background: "#fff",
+            textAlign: "center",
+            fontFamily: "overpass-light",
+            minWidth: "250px",
+            maxHeight: "40px",
+            borderRadius: "30px",
+            fontSize: "0.9em",
+            color: "#03989E",
+            width: 240,
+            margin: '1em'
           }}
+          multiple
+          renderValue={(selectedFilter) => selectedFilter.join(", ")}
         >
-          <ListItemIcon>
-            <Checkbox
-              classes={{ indeterminate: classes.indeterminateColor }}
-              checked={isAllSelected}
-              indeterminate={
-                selectedFilter.length > 0 && selectedFilter.length < options.length
-              }
-            />
-          </ListItemIcon>
-          <ListItemText
-            classes={{ primary: classes.selectAllText }}
-            primary="Select All"
-          />
-        </MenuItem>
-        {options.map((option: any) => (
-          <MenuItem key={option} value={option}>
+          <MenuItem
+            value="all"
+            classes={{
+              root: isAllSelected ? classes.selectedAll : ""
+            }}
+          >
             <ListItemIcon>
-              <Checkbox checked={selectedFilter.indexOf(option) > -1} />
+              <Checkbox
+                classes={{ indeterminate: classes.indeterminateColor }}
+                checked={isAllSelected}
+                indeterminate={
+                  selectedFilter.length > 0 && selectedFilter.length < options.length
+                }
+              />
             </ListItemIcon>
-            <ListItemText primary={option} />
+            <ListItemText
+              classes={{ primary: classes.selectAllText }}
+              primary="Select All"
+            />
           </MenuItem>
-        ))}
-      </Select>
-
-    </FormControl>
-    */}
+          {options.map((option: any) => (
+            <MenuItem key={option} value={option}>
+              <ListItemIcon>
+                <Checkbox checked={selectedFilter.indexOf(option) > -1} />
+              </ListItemIcon>
+              <ListItemText primary={option} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+  
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  
       <Typography
