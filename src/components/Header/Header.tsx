@@ -120,7 +120,8 @@ const Header: FC<Props> = ({ sx }) => {
   const imagesMobile = [
     {
       component:  Image4, 
-      placement: 'bottom -50px right 0px'
+      placement: 'bottom -50px right 0px',
+      extra: 'linear-gradient(160deg, #000000 -100%, #29292900 55%, #000000 300%),'
     },
     {
       component: Image3, 
@@ -186,7 +187,7 @@ const Header: FC<Props> = ({ sx }) => {
       <Box
         className="filter-bar-wrapper"
         sx={{
-          backgroundImage: { xs: `url(${mobileImage.component})`, sm: `url(${mobileImage.component})`, md: `url(${desktopImage.component})` },
+          backgroundImage: { xs: `${mobileImage.extra ? mobileImage.extra : ''} url(${mobileImage.component})`, sm: `url(${mobileImage.component})`, md: `url(${desktopImage.component})` },
           backgroundRepeat: 'no-repeat',
           backgroundPosition: { xs: mobileImage.placement, sm: mobileImage.placement, md: desktopImage.placement },
           backgroundSize: 'cover',

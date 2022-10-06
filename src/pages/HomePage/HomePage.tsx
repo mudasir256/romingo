@@ -229,6 +229,10 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'pet-friendly-hotels-los-angeles-the-line-los-angeles', } }
   );
 
+  const { data: regency } = useQuery(
+    gql`${GetPropertyDetails}`,
+    { variables: { alias: 'pet-friendly-hotels-orange-county-hyatt-regency-orange-county', } }
+  );
 
 
 
@@ -407,10 +411,10 @@ const HomePage: FC<Props> = ({
             Book the lowest hotel rates at your favorite pet-friendly hotels, and save on pet fees with Romingo!
           </Box>
           <Box className="info-box-title" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            Lowest rates        
+            Insider rates        
           </Box>
           <Box className="info-box-desc" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            Book the lowest hotel rates at your favorite pet-friendly hotels, and save on fees with Romingo!
+            Book the best rates at your favorite pet-friendly hotels, and save on fees with Romingo!
           </Box>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}} >
@@ -474,13 +478,23 @@ const HomePage: FC<Props> = ({
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
           } 
 
+          {(line && line.getPropertyDetails) ?
+            <Box sx={{ p: '1em'}}>            
+              <ListingCardSquare
+                key={14}
+                {...line.getPropertyDetails}
+                lowestTotalPriceAfterTax={169}
+                highlighted={false}
+              />
+            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
+          } 
 
-          {(losAngeles2 && losAngeles2.getPropertyDetails) ?
+          {(regency && regency.getPropertyDetails) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={2}
-                {...losAngeles2.getPropertyDetails}
-                lowestTotalPriceAfterTax={144}
+                {...regency.getPropertyDetails}
+                lowestTotalPriceAfterTax={199}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
@@ -646,18 +660,6 @@ const HomePage: FC<Props> = ({
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={13} /></Grid>
           } 
-
-          {(line && line.getPropertyDetails) ?
-            <Box sx={{ p: '1em'}}>            
-              <ListingCardSquare
-                key={14}
-                {...line.getPropertyDetails}
-                lowestTotalPriceAfterTax={169}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
-          } 
-
           
         </MultiCarousel>
         </Box>

@@ -318,9 +318,9 @@ const CheckoutInformation: FC<Props> = ({
     if (piData?.priceChanged) {
       setPriceChanged(true);
     }
-    if (piData?.createPaymentIntent) {
-      setClientSecret(piData?.createPaymentIntent?.paymentIntent?.clientSecret);
-    }
+    // if (piData?.createPaymentIntent) {
+    //   setClientSecret(piData?.createPaymentIntent?.paymentIntent?.clientSecret);
+    // }
   }, [piData]);
 
   useEffect(() => {

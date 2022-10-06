@@ -130,7 +130,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                     <div
                       style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                     >
-                      My Trip
+                      My Trips
                     </div>
                   </Link>
                 </Box>
@@ -272,7 +272,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 <div
                   style={{ marginRight: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                 >
-                  List Your Property
+                  List your property
                 </div>
               </Link>
               {/*<img src="/images/user.png" width="16px" height="18px" alt="" />
