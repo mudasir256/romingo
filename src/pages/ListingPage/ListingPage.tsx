@@ -98,7 +98,7 @@ const ListingPage: FC<Props> = () => {
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
   const [sortBy, setSortBy] = useState<string>("featured");
   const [allowBigDogs, setAllowBigDogs] = useState<number>(0);
-  const [selectedFilter, setSelectedFilter] = useState<any>([]);
+  const [selectedFilter, setSelectedFilter] = useState<string>([]);
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -312,8 +312,13 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
+    let filtered = [...cards]
+    if (selectedFilter.length > 0) {
+      const amenitiesByHotel = cards.map(card => card.amenities.map(amenity => amenity.desc))
+      filtered = cards.filter(card => selectedFilter.every(filter => card.amenities.map(amenity => amenity.desc).includes(filter)))
+    }
     setSorted(
-      [...cards].sort((a: any, b: any) =>
+      [...filtered].sort((a: any, b: any) =>
         (
           sortBy === "score"  ? a.romingoScore < b.romingoScore 
           : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
@@ -325,7 +330,7 @@ const ListingPage: FC<Props> = () => {
       )
     );
     setMarkers(
-      [...cards]
+      [...filtered]
         .sort((a: any, b: any) =>
           (
             sortBy === "score"  ? a.romingoScore < b.romingoScore
@@ -348,9 +353,7 @@ const ListingPage: FC<Props> = () => {
     );
     setHoverIndex(0);
     setHotelIndex(0);
-  }, [cards, sortBy]);
-
-  console.log(cards)
+  }, [selectedFilter, cards, sortBy]);
 
 
   const start = search.checkIn.substring(0, 10)
@@ -417,7 +420,7 @@ const ListingPage: FC<Props> = () => {
         </Link> */}
 
         <Hidden mdUp>
-          <Box sx={{ mt: animate === 'expanded' ? "0.75em" : '4em' }}>
+          <Box sx={{ mt: animate === 'expanded' ? "0.75em" : '6em' }}>
             <FilterBar />
           </Box>
         </Hidden>
@@ -530,6 +533,7 @@ const ListingPage: FC<Props> = () => {
                 spacing={3}
                 sx={{
                   pt: "3em",
+                  height: sorted.length > 0 ? 'auto' : '120vh'
                 }}
               >
                 <SortBar 
@@ -541,6 +545,24 @@ const ListingPage: FC<Props> = () => {
                   selectedFilter={selectedFilter}
                   setSelectedFilter={setSelectedFilter}
                 />
+                {cards.length > 0 && (
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#222222",
+                      fontWeight: 700,
+                      pl: '0.25em',
+                      fontFamily: "overpass-light",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                    }}
+                  >
+                    {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
+                    {getCityName(search.city)}
+                    {location.state?.flag && ` (${location.state?.flag})`}
+                  </Typography>
+                )}
                 {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {!cards.length ? (
                   <>
@@ -668,7 +690,7 @@ const ListingPage: FC<Props> = () => {
                       justifyContent: "flex-start",
                     }}
                   >
-                    {cards.length} Result{cards.length === 1 ? "" : "s"} in{" "}
+                    {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
                     {getCityName(search.city)}
                     {location.state?.flag && ` (${location.state?.flag})`}
                   </Typography>
