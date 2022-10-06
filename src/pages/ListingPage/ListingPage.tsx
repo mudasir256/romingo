@@ -157,8 +157,8 @@ const ListingPage: FC<Props> = () => {
     }
   );
 
-  console.log(search)
-   const dispatch: Dispatch<any> = useDispatch();
+
+  const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
@@ -349,6 +349,9 @@ const ListingPage: FC<Props> = () => {
     setHoverIndex(0);
     setHotelIndex(0);
   }, [cards, sortBy]);
+
+  console.log(cards)
+
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -814,6 +817,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           fontSize: "0.9em",
           color: "#03989E",
         }}
+        sx={{  mb: {xs: '1em', sm: '0em'}  }}
         variant="standard"
         startAdornment={
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
@@ -824,6 +828,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
+
 
       <FormControl>
         <InputLabel id="demo-simple-select-label"><Typography sx={{  fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
