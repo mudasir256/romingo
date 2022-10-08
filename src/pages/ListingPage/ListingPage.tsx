@@ -20,6 +20,7 @@ import {
   FormControlLabel,
   FormGroup,
   Slider,
+  Rating,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -259,6 +260,7 @@ const ListingPage: FC<Props> = () => {
 
   const maxPrice = Math.max(...cards.map(card => card.lowestAveragePrice))
   const [value, setValue] = useState([0, maxPrice])
+  const [rating, setRating] = useState(0)
   const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -318,7 +320,9 @@ const ListingPage: FC<Props> = () => {
       filtered = cards.filter(card => selectedFilter.every(filter => card.amenities.map(amenity => amenity.desc).includes(filter)))
     }
     filtered = filtered.filter(card => (card.lowestAveragePrice > value[0] && card.lowestAveragePrice <= value[1]) )
-
+    if (rating) {
+      filtered = filtered.filter(card => parseInt(card.starRating) === rating)
+    }
     setSorted(
       [...filtered].sort((a: any, b: any) =>
         (
@@ -355,7 +359,7 @@ const ListingPage: FC<Props> = () => {
     );
     setHoverIndex(0);
     setHotelIndex(0);
-  }, [selectedFilter, cards, sortBy, value]);
+  }, [selectedFilter, cards, sortBy, value, rating]);
 
 
   const start = search.checkIn.substring(0, 10)
@@ -549,6 +553,8 @@ const ListingPage: FC<Props> = () => {
                   value={value}
                   setValue={setValue}
                   maxPrice={maxPrice}
+                  rating={rating}
+                  setRating={setRating}
                 />
                 {cards.length > 0 && (
                   <Typography
@@ -669,6 +675,8 @@ const ListingPage: FC<Props> = () => {
                 value={value}
                 setValue={setValue}
                 maxPrice={maxPrice}
+                rating={rating}
+                setRating={setRating}
               />
             </Grid>
 
@@ -756,7 +764,7 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating } = props;
   const history = useHistory();
   // const options = [
   //   "101: Wheelchair access",
@@ -942,6 +950,17 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           }
         ]}
         sx={{ mx: "2em" }}
+      />
+
+
+      <Typography component="legend">Hotel Star Rating:</Typography>
+      <Rating
+        name="simple-controlled"
+        value={rating}
+        onChange={(event, newValue) => {
+          setRating(newValue);
+        }}
+        sx={{ color: 'red'}}
       />
 
       {/* Temprory commented */}

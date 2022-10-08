@@ -65,6 +65,7 @@ const GetHotelBySearch = `
           code
           desc
         }
+        starRating
       }
     }
   `;
