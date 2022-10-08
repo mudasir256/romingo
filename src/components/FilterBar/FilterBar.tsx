@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import { Dialog, CSSObject, Divider } from "@mui/material";
-import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -43,7 +41,6 @@ const FilterBar: FC<Props> = ({
 }) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
-  const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
 
   const [zoomIn, setZoomIn] = useState(zoomed);

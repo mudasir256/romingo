@@ -19,6 +19,7 @@ import {
   ListItemText,
   FormControlLabel,
   FormGroup,
+  Slider,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -187,11 +188,8 @@ const ListingPage: FC<Props> = () => {
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;
   });
-
-  const [allAmienities, setAllAmenities] = useState(
-
-  )
   
+
   const [sorted, setSorted] = useState(
     [...cards].sort((a: any, b: any) =>
       (
@@ -811,6 +809,15 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
 
   }, [selectedFilter])
 
+  const valuetext = (value: number) => {
+    return value;
+  }
+
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
+
+
   return (
     <Grid
      className="alignCenter"
@@ -905,6 +912,14 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           ))}
         </Select>
       </FormControl>
+
+      <Slider
+        getAriaLabel={() => 'Temperature range'}
+        value={[0, 250]}
+        onChange={handleSliderChange}
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+      />
   
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  

@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import Link from "@mui/material/Link";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { saveSearch } from "../../store/searchReducer";
@@ -22,7 +21,6 @@ interface Props {
 }
 
 const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
-  const history = useHistory();
   const [roomType, setRoomType] = useState("0");
 
   // eslint-disable-next-line
