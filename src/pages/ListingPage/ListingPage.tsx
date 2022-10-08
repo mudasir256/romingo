@@ -257,6 +257,8 @@ const ListingPage: FC<Props> = () => {
 
   const viewStatus = useStore().getState().viewStatusReducer.status;
 
+  const maxPrice = Math.max(...cards.map(card => card.lowestAveragePrice))
+  const [value, setValue] = useState([0, maxPrice])
   const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -315,6 +317,8 @@ const ListingPage: FC<Props> = () => {
       const amenitiesByHotel = cards.map(card => card.amenities.map(amenity => amenity.desc))
       filtered = cards.filter(card => selectedFilter.every(filter => card.amenities.map(amenity => amenity.desc).includes(filter)))
     }
+    filtered = filtered.filter(card => (card.lowestAveragePrice > value[0] && card.lowestAveragePrice <= value[1]) )
+
     setSorted(
       [...filtered].sort((a: any, b: any) =>
         (
@@ -351,7 +355,7 @@ const ListingPage: FC<Props> = () => {
     );
     setHoverIndex(0);
     setHotelIndex(0);
-  }, [selectedFilter, cards, sortBy]);
+  }, [selectedFilter, cards, sortBy, value]);
 
 
   const start = search.checkIn.substring(0, 10)
@@ -542,6 +546,9 @@ const ListingPage: FC<Props> = () => {
                   setSortBy={setSortBy}
                   selectedFilter={selectedFilter}
                   setSelectedFilter={setSelectedFilter}
+                  value={value}
+                  setValue={setValue}
+                  maxPrice={maxPrice}
                 />
                 {cards.length > 0 && (
                   <Typography
@@ -659,6 +666,9 @@ const ListingPage: FC<Props> = () => {
                 setSortBy={setSortBy}
                 selectedFilter={selectedFilter}
                 setSelectedFilter={setSelectedFilter} 
+                value={value}
+                setValue={setValue}
+                maxPrice={maxPrice}
               />
             </Grid>
 
@@ -746,9 +756,8 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice } = props;
   const history = useHistory();
-
   // const options = [
   //   "101: Wheelchair access",
   //   "2016: Rollaway adult",
@@ -914,13 +923,27 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
       </FormControl>
 
       <Slider
-        getAriaLabel={() => 'Temperature range'}
-        value={[0, 250]}
+        getAriaLabel={() => 'Price range'}
+        value={value}
         onChange={handleSliderChange}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
+        min={0}
+        step={1}
+        max={maxPrice || 0}
+        marks={[
+          {
+            value: value[0],
+            label: `$${value[0]}`
+          },
+          {
+            value: value[1],
+            label: `$${value[1]}`
+          }
+        ]}
+        sx={{ mx: "2em" }}
       />
-  
+
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  
       <Typography

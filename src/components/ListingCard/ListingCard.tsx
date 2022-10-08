@@ -178,7 +178,7 @@ const ListingCard: FC<ListingCardProps> = ({
           alignItems: 'center'
         }}
       >
-        {currency}{Math.round(lowestTotalPriceAfterTax)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
+        {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
       </Typography>
     </Box>
  
