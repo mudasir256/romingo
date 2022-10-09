@@ -587,7 +587,7 @@ const ListingPage: FC<Props> = () => {
                       key={card.id}
                       {...card}
                       duration={diffDays}
-                      highlighted={hotelIndex === index ? true : false}
+                      highlighted={false}//{hotelIndex === index ? true : false}
                     />
                   ))
                 )}
@@ -744,7 +744,7 @@ const ListingPage: FC<Props> = () => {
                       <ListingCard
                         {...card}
                         duration={diffDays}
-                        highlighted={hotelIndex === index ? true : false}
+                        highlighted={false} //{hotelIndex === index ? true : false}
                         flag={location.state?.flag}
                         bookingId={location.state?.bookingId}
                       />
