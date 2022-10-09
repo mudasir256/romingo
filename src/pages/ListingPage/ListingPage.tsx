@@ -100,7 +100,10 @@ const ListingPage: FC<Props> = () => {
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
   const [sortBy, setSortBy] = useState<string>("featured");
   const [allowBigDogs, setAllowBigDogs] = useState<number>(0);
+
   const [selectedFilter, setSelectedFilter] = useState<string>([]);
+  const [showExtras, setShowExtras] = useState<boolean>(false);
+  const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -371,66 +374,37 @@ const ListingPage: FC<Props> = () => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
   const location = useLocation<any>();
 
+  console.log(cards)
+
   return (
     <>
       <ScrollToTop />
       <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
         <Navbar />
       </Box>
-      <Box
-        sx={{
-          position: { xs: "fixed", md: "relative" },
-          top: 0,
-          left: 0,
-          right: 0,
-          width: "100%",
-          margin: "0 auto",
-          boxShadow: { xs: 0, md: 2 },
-          display: "flex",
-          justifyContent: { xs: "center", md: "flex-start" },
-          overflow: "hidden",
-          zIndex: 1000,
-        }}
-      >
-        {error && (
-          <CustomToast
-            open={true}
-            message={
-              "Something went wrong, please refresh the page and try again"
-            }
-            type="error"
-            duration={3000}
-          />
-        )}
-        {/* <Link
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            history.push("/");
+
+      {animate === 'collapsed' && 
+        <Box 
+          sx={{  
+            display: { xs: 'flex', md: 'none'},
+            position: { xs: 'fixed' },
+            top: 0,
+            left: 0,
+            right: 0,
+            width: "100%",
+            margin: "0 auto",
+            boxShadow: { xs: 0, md: 2 },
+            justifyContent: { xs: "center" },
+            overflow: "hidden",
+            zIndex: 1000,
           }}
         >
-          <Box
-            component="img"
-            src={
-              "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-            }
-            alt="Logo"
-            draggable="false"
-            sx={{
-              display: { xs: "none", md: "block" },
-              ml: { xs: 0, md: 4 },
-              mr: { xs: 0, md: 8 },
-              height: { xs: "0px", md: "42px" },
-            }}
-          />
-        </Link> */}
-
-        <Hidden mdUp>
-          <Box sx={{ mt: animate === 'expanded' ? "0.75em" : '6em' }}>
+          <Box sx={{ mt: '6em' }}>
             <FilterBar />
           </Box>
-        </Hidden>
-      </Box>
+        </Box>
+      }
+
       <Box
         sx={{
           backgroundColor: "#feffff",
@@ -482,6 +456,7 @@ const ListingPage: FC<Props> = () => {
             />
           )
         )}
+
         <Hidden mdUp>
           <motion.div
             drag={animate !== "expanded" && "y"}
@@ -542,6 +517,25 @@ const ListingPage: FC<Props> = () => {
                   height: sorted.length > 0 ? 'auto' : '120vh'
                 }}
               >
+            
+            
+                <Grid container spacing={1}>
+                  <FilterBar />
+                  <Grid sx={{ mt: '1em' }} item xs={6}>
+                    <Button onClick={() => {
+                      setShowFilters(!showFilters)
+                      setShowExtras(false)
+                    }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                  </Grid>
+                  <Grid sx={{ mt: '1em' }} item xs={6}>
+                    <Button onClick={() => {
+                      setShowExtras(!showExtras)
+                      setShowFilters(false)
+                    }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                  </Grid>
+                </Grid>
+               
+
                 <SortBar 
                   size="small" 
                   sortBy={sortBy} 
@@ -555,6 +549,8 @@ const ListingPage: FC<Props> = () => {
                   maxPrice={maxPrice}
                   rating={rating}
                   setRating={setRating}
+                  showFilters={showFilters}
+                  showExtras={showExtras}
                 />
                 {cards.length > 0 && (
                   <Typography
@@ -574,7 +570,6 @@ const ListingPage: FC<Props> = () => {
                     {location.state?.flag && ` (${location.state?.flag})`}
                   </Typography>
                 )}
-                {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
                 {!cards.length ? (
                   <>
                     <Typography
@@ -651,7 +646,6 @@ const ListingPage: FC<Props> = () => {
             }}
             ref={ScrollBarRef}
           >
-            {/* <RomingoGuarantee sx={{ mb: 3 }} /> */}
 
             <Grid
               sx={{
@@ -665,6 +659,20 @@ const ListingPage: FC<Props> = () => {
               <Hidden mdDown>
                 <DesktopFilterBar />
               </Hidden>
+              <Grid container spacing={1}>
+                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
+                  <Button onClick={() => {
+                    setShowFilters(!showFilters)
+                    setShowExtras(false)
+                  }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                </Grid>
+                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
+                  <Button onClick={() => {
+                    setShowExtras(!showExtras)
+                    setShowFilters(false)
+                  }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                </Grid>
+              </Grid>
               <SortBar 
                 sortBy={sortBy} 
                 bigDog={allowBigDogs} 
@@ -677,6 +685,8 @@ const ListingPage: FC<Props> = () => {
                 maxPrice={maxPrice}
                 rating={rating}
                 setRating={setRating}
+                showFilters={showFilters}
+                showExtras={showExtras}
               />
             </Grid>
 
@@ -764,7 +774,7 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
   const history = useHistory();
   // const options = [
   //   "101: Wheelchair access",
@@ -777,15 +787,23 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
   //   "77: Room Service",
   // ];
 
+
+  // -Washing Machine/Dryer
+
+  // -Air Conditioned
+  // -Restaurant
+
   const options = [
-    "Wheelchair access",
-    "Rollaway adult",
+    //"Rollaway adult",
+    "Health club",
     "Business center",
     "Tennis court",
-    "High speed internet access",
+    //"High speed internet access",
     "Pool",
-    "Parking",
-    "Room Service",
+    "Hot Tub",
+    //"Parking",
+    "Room service",
+    "Wheelchair access",
   ];
 
 
@@ -836,19 +854,13 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
 
 
   return (
-    <Grid
-     className="alignCenter"
+    <Box
       sx={{
-        mt: { xs :'1em', sm: '1em', md: '0em' },
-        pb: size === "small" ? 0 : "1rem",
-        textAlign: "right",
-        display: "flex",
-        flexWrap: 'wrap',
-        alignItems: "center",
-        justifyContent: size === "small" ? "center" : "flex-end",
+        mt: { xs :'1em', sm: '1em', md: '1em' },
+        pb: '2em'
       }}
     >
-
+      {showFilters &&
       <Select
         color="primary"
         value={sortBy}
@@ -862,8 +874,9 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           borderRadius: "30px",
           fontSize: "0.9em",
           color: "#03989E",
+          width: '100%',
         }}
-        sx={{  mb: {xs: '1em', sm: '0em'}  }}
+        sx={{  mb: '1.5em' }}
         variant="standard"
         startAdornment={
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
@@ -874,9 +887,10 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
+      }
 
-
-      <FormControl>
+      {showFilters &&
+      <FormControl sx={{ mt: '1em', width: '100%'}}>
         <InputLabel id="demo-simple-select-label"><Typography sx={{  fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
         <Select
           id="demo-simple-select"
@@ -892,9 +906,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
             maxHeight: "40px",
             borderRadius: "30px",
             fontSize: "0.9em",
-            color: "#03989E",
-            width: 240,
-            margin: '1em'
+            color: "#03989E", 
           }}
           multiple
           renderValue={(selectedFilter) => selectedFilter.join(", ")}
@@ -929,39 +941,48 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           ))}
         </Select>
       </FormControl>
+      }
 
-      <Slider
-        getAriaLabel={() => 'Price range'}
-        value={value}
-        onChange={handleSliderChange}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-        min={0}
-        step={1}
-        max={maxPrice || 0}
-        marks={[
-          {
-            value: value[0],
-            label: `$${value[0]}`
-          },
-          {
-            value: value[1],
-            label: `$${value[1]}`
-          }
-        ]}
-        sx={{ mx: "2em" }}
-      />
+      {showExtras && 
+      <Box sx={{ display: 'flex', mt: {xs : 0, sm: 0, md: '1.5em'} }}>
+        <Typography sx={{ fontFamily: 'overpass-regular', mr: '0.5em' }} component="legend">Hotel Star Rating:</Typography>
+        <Rating
+          name="simple-controlled"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+          }}
+          sx={{ color: 'red'}}
+        />
+      </Box>
+      }
 
-
-      <Typography component="legend">Hotel Star Rating:</Typography>
-      <Rating
-        name="simple-controlled"
-        value={rating}
-        onChange={(event, newValue) => {
-          setRating(newValue);
-        }}
-        sx={{ color: 'red'}}
-      />
+      {showExtras &&
+      <Box sx={{ mt: '1.5em', textAlign: 'left', minWidth: '240px' }}>
+        <Typography component="legend" sx={{ fontFamily: 'overpass-regular'}}>Price per night:</Typography>
+        <Slider
+          getAriaLabel={() => 'Price range'}
+          value={value}
+          onChange={handleSliderChange}
+          valueLabelDisplay="auto"
+          getAriaValueText={valuetext}
+          min={0}
+          step={1}
+          max={maxPrice || 0}
+          marks={[
+            {
+              value: value[0],
+              label: `$${value[0]}`
+            },
+            {
+              value: value[1],
+              label: `$${value[1]}`
+            }
+          ]}
+          sx={{ ml: '1em', width: '90%' }}
+        />
+      </Box>
+      }
 
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  
@@ -998,7 +1019,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           }} defaultChecked={false} />
         </Typography>
       </div> */}
-    </Grid>
+    </Box>
   );
 };
 
