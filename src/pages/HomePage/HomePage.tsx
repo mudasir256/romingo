@@ -13,7 +13,7 @@ import {
   Link,
   Grid,
 } from "@mui/material";
-import { Cancel, Star } from "@mui/icons-material";
+import { Star } from "@mui/icons-material";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
