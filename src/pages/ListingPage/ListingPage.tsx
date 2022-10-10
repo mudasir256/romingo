@@ -319,8 +319,12 @@ const ListingPage: FC<Props> = () => {
   useEffect(() => {
     let filtered = [...cards]
     if (selectedFilter.length > 0) {
-      const amenitiesByHotel = cards.map(card => card.amenities.map(amenity => amenity.desc))
-      filtered = cards.filter(card => selectedFilter.every(filter => card.amenities.map(amenity => amenity.desc).includes(filter)))
+      filtered = cards.filter(card => selectedFilter.every(filter => {
+        if (card.amenities) {
+          return card.amenities.map(amenity => amenity.desc).includes(filter)
+        }
+        return []
+      }))
     }
     filtered = filtered.filter(card => (card.lowestAveragePrice > value[0] && card.lowestAveragePrice <= value[1]) )
     if (rating) {
@@ -788,10 +792,8 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
   // ];
 
 
-  // -Washing Machine/Dryer
 
   // -Air Conditioned
-  // -Restaurant
 
   const options = [
     //"Rollaway adult",
@@ -801,9 +803,13 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     //"High speed internet access",
     "Pool",
     "Hot Tub",
-    //"Parking",
+    "Restaurant",
     "Room service",
+    "Onsite laundry",
+    //"Parking",
+    "Smoke-free property",
     "Wheelchair access",
+    "Translation services",
   ];
 
 
@@ -875,6 +881,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           fontSize: "0.9em",
           color: "#03989E",
           width: '100%',
+          maxWidth: '480px',
         }}
         sx={{  mb: '1.5em' }}
         variant="standard"
@@ -907,6 +914,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
             borderRadius: "30px",
             fontSize: "0.9em",
             color: "#03989E", 
+            maxWidth: '480px',
           }}
           multiple
           renderValue={(selectedFilter) => selectedFilter.join(", ")}
