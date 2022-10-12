@@ -17,6 +17,7 @@
     "@date-io/date-fns": "^2.11.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@loadable/component": "^5.15.2",
     "@material-ui/core": "^4.12.3",
     "@mui/icons-material": "^5.2.5",
     "@mui/lab": "^5.0.0-alpha.62",
@@ -45,7 +46,6 @@
     "lottie-react": "^2.1.0",
     "luxon": "^3.0.3",
     "material-ui-phone-number": "^3.0.0",
-    "moment": "^2.29.4",
     "npm": "^8.3.0",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.5.1",
@@ -61,7 +61,7 @@
     "react-router-dom": "^5.2.0",
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "4.0.1",
-    "react-use": "^17.2.4",
+    "react-snap": "^1.23.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "sass": "^1.54.5",
@@ -79,7 +79,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=e54200c3e638",
-    "sitemap": "babel-node ./src/sitemap.js"
+    "sitemap": "babel-node ./src/sitemap.js",
+    "postbuild": "react-snap"
   },
   "eslintConfig": {
     "extends": [

@@ -8,9 +8,6 @@ import Link from "@mui/material/Link";
 
 import LogoImg from '../../assets/images/logo.png';
 import Pup from '../../assets/images/pup.png';
-import Pup2 from '../../assets/images/pup.png';
-import Pup3 from '../../assets/images/pup.png';
-
 import "./Footer.scss";
 
 interface Props {

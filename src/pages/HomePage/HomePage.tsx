@@ -15,8 +15,6 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
 import { saveSearch } from "../../store/searchReducer";
-import nearby from "./cities";
-import featured from "./featured";
 import ListingCardSquare from "../../components/MobileListingsCardHome";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
@@ -45,20 +43,6 @@ import "./HomePage.scss";
 
 interface Props {
   sx?: CSSObject;
-  nearCities: {
-    img: string;
-    city: string;
-    state: string;
-    route: string;
-  }[];
-  featureHotels: {
-    img: string;
-    name: string;
-    description: string;
-    city: string;
-    cityId: string;
-    id: string;
-  }[];
   footerMenus: {
     about: {
       text: string;
@@ -80,10 +64,7 @@ interface Props {
 }
 
 
-const HomePage: FC<Props> = ({
-  nearCities = nearby,
-  featureHotels = featured,
-}) => {
+const HomePage: FC<Props> = ({ }) => {
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
   const [subscribed, setSubscribed] = useState(false);
@@ -246,41 +227,6 @@ const HomePage: FC<Props> = ({
        history.push("/listings");
      }, 250);
    };
-
-  const toFeatured = (id: string, cityId: string) => {
-    let city = search.city;
-    let checkIn = search.checkIn;
-    let checkOut = search.checkOut;
-    let occupants = search.occupants;
-    const today = new Date();
-    if (!search.city) {
-      city = cityId;
-    }
-    if (~checkIn) {
-      checkIn = checkOut = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() + 7
-      ).toISOString();
-      checkOut = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() + 9
-      ).toISOString();
-    }
-    if (occupants.adults === 0) {
-      occupants = { adults: 2, dogs: 1, children: 0 };
-    }
-    dispatch(
-      saveSearch({
-        city,
-        checkIn,
-        checkOut,
-        occupants,
-      })
-    );
-    history.push(`/details/${id}`);
-  };
 
   /* Method that will fix header after a specific scrollable */
   const isSticky = () => {
@@ -692,30 +638,7 @@ const HomePage: FC<Props> = ({
           </div>
         </div>
       </Box>
-   {/*   <Box sx={{ display: { xs: 'block', sm: 'none'} }} className="sticky-header is-sticky">
-        <FilterBar />
-      </Box>*/}
-  
-      {/*
-      <Hidden mdDown>
-        <Box
-          className="sticky-header"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Box
-            sx={{
-              maxWidth: "700px",
-              margin: 'auto'
-            }}
-          >
-            <DesktopFilterBar />
-          </Box>
-        </Box>
-      </Hidden>
-      */}
+      
       <Footer />
     </div>
   );
