@@ -23,7 +23,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name }) => {
         images.slice(0, 10).map((img, i) => (
           <Box
             component="div"
-            key={img}
+            key={img + i}
             sx={{
               ...sx,
               display: "block",

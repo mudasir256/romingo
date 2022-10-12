@@ -1,5 +1,4 @@
 import {Helmet} from "react-helmet";
-import loadable from '@loadable/component'
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
@@ -263,7 +262,7 @@ const HomePage: FC<Props> = () => {
   const EndingSection = () => (
     <Box className="homepage-dog">
       <div className="homepage-dog-wallpaper">
-        <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
+        <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" loading="lazy"  />
         <div className="homepage-dog-text">
           <Typography sx={{
             fontFamily: 'sansita-bold',

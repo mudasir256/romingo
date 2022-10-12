@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { MonetizationOn, VerifiedUser } from "@mui/icons-material";
 import { Grid, Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
