@@ -493,7 +493,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     caption: {
       captionFontSize: "20px",
       captionColor: "#03989E",
-      captionFontFamily: "Montserrat, sans-serif",
+      captionFontFamily: "sans-serif",
     },
     progressBar: {
       backgroundColor: "#03989E",
@@ -791,7 +791,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       color: "#222",
                       display: { sm: "block", md: "flex" },
                       justifyContent: "space-between",
-                      fontFamily: "Montserrat",
                     }}
                   >
                     {name}
@@ -880,7 +879,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   color: "#666",
                                   fontSize: "16px",
                                   fontWeight: 600,
-                                  fontFamily: "Montserrat",
                                   textAlign: "left",
                                   mr: "1rem",
                                   mb: { xs: "1rem", sm: "1rem", md: "0rem" },
@@ -892,7 +890,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 variant="h6"
                                 sx={{
                                   color: "#666",
-                                  fontFamily: "Montserrat",
                                   fontSize: "1.25rem",
                                   display: "flex",
                                   alignItems: "center",
@@ -999,7 +996,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                         justifyContent: "center",
                                         fontWeight: 500,
                                         flexDirection: "column",
-                                        fontFamily: "Montserrat",
                                       }}
                                     >
                                       <span style={{ display: "block" }}>
@@ -1027,7 +1023,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                         alignItems: "center",
                                         fontWeight: 500,
                                         flexDirection: "row",
-                                        fontFamily: "Montserrat",
+
                                       }}
                                     >
                                       <Star
@@ -1093,7 +1089,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                     color: "#666",
                                     fontSize: "18px",
                                     fontWeight: 600,
-                                    fontFamily: "Montserrat",
                                     textAlign: "left",
                                     ml: "1rem",
                                   }}
@@ -1161,7 +1156,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 variant="h6"
                                 sx={{
                                   color: "#222",
-                                  fontFamily: "Montserrat",
                                   fontSize: "2rem",
                                   textAlign: "left",
                                   display: "flex",
@@ -1191,7 +1185,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                   color: "#666",
                                   fontSize: "16px",
                                   fontWeight: 600,
-                                  fontFamily: "Montserrat",
                                   textAlign: "left",
                                   mr: "1rem",
                                   mb: { xs: "1rem", sm: "1rem", md: "0rem" },
@@ -1265,7 +1258,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                     color: "#666",
                                     fontSize: "18px",
                                     fontWeight: 600,
-                                    fontFamily: "Montserrat",
                                     textAlign: "left",
                                     ml: "1rem",
                                   }}
@@ -1323,7 +1315,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                         justifyContent: "center",
                                         fontWeight: 500,
                                         flexDirection: "column",
-                                        fontFamily: "Montserrat",
                                       }}
                                     >
                                       <span style={{ display: "block" }}>
@@ -1351,7 +1342,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                         alignItems: "center",
                                         fontWeight: 500,
                                         flexDirection: "row",
-                                        fontFamily: "Montserrat",
                                       }}
                                     >
                                       <Star
@@ -1424,7 +1414,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   {neighborhood}
                 </Typography>
 
-
                 <Box
                   sx={{
                     display: "flex",
@@ -1438,87 +1427,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     allows_big_dogs={allowsBigDogs} 
                   />
                 </Box>
-
-                {/* <Box
-                      sx={{
-                        border: "2px solid",
-                        borderColor: "primary.main",
-                        backgroundColor: "primary.main",
-                        display: "inline-flex",
-                        flexDirection: "column",
-                        px: 4,
-                        pt: 2,
-                        pb: 1.5,
-                        my: 2,
-                        borderRadius: 5,
-                        lineHeight: 0,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "white",
-                          fontFamily: "Montserrat",
-                          lineHeight: 1,
-                          mb: 1,
-                          fontSize: "200%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        Pet Fees
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#000",
-                          lineHeight: 1,
-                          fontFamily: "Montserrat",
-                          fontSize: "180%",
-                          fontWeight: 900,
-                        }}
-                      >
-                        Other Sites:{"  "}
-                        <Typography
-                          component="span"
-                          sx={{
-                            color: "white",
-                            lineHeight: 1,
-                            fontFamily: "Montserrat",
-                            fontSize: "100%",
-                            position: "relative",
-                            fontWeight: 800,
-                            ml: 1.5,
-                          }}
-                        >
-                          ${Math.round(data.property.petFeePolicy.totalFees)}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: "#000",
-                            lineHeight: 1.5,
-                            fontSize: "100%",
-                            fontFamily: "Montserrat",
-                            fontWeight: 900,
-                          }}
-                        >
-                          Romingo:{"  "}
-                          <Typography
-                            component="span"
-                            sx={{
-                              color: "white",
-                              lineHeight: 1.5,
-                              fontFamily: "Montserrat",
-                              fontSize: "100%",
-                              position: "relative",
-                              fontWeight: 800,
-                              ml: 1.5,
-                            }}
-                          >
-                            $0
-                          </Typography>
-                        </Typography>
-                      </Typography>
-                    </Box> */}
                 <ReadMore small text={defaultDescription} length={200} />
                 <Button
                   onClick={goToRateScroll}
@@ -1526,7 +1434,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   disableElevation
                   variant="contained"
                   sx={{
-                    fontFamily: "Montserrat",
                     fontWeight: 600,
                     mt: "1rem",
                     display: { xs: "flex", md: "none" },
@@ -1554,7 +1461,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       mt: "1rem",
                       color: "#222222",
                       fontWeight: 600,
-                      fontFamily: "Montserrat",
                       display: "block",
                     }}
                   >
@@ -1661,7 +1567,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     variant="h6"
                     sx={{
                       color: "#222",
-                      fontFamily: "Montserrat",
                       mt: { xs: 1, sm: 5 },
                       mb: "1rem",
                       textAlign: "left",
@@ -1760,7 +1665,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       mt: "1rem",
                       color: "#222222",
                       fontWeight: 600,
-                      fontFamily: "Montserrat",
                       display: "block",
                     }}
                   >
@@ -1800,7 +1704,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 justifyContent: "center",
                                 fontWeight: 500,
                                 flexDirection: "column",
-                                fontFamily: "Montserrat",
                                 fontSize: "14px",
                               }}
                             >
@@ -1829,7 +1732,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                 alignItems: "center",
                                 fontWeight: 500,
                                 flexDirection: "row",
-                                fontFamily: "Montserrat",
                               }}
                             >
                               <Star
@@ -1923,7 +1825,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   sx={{
                     color: "#222222",
                     fontWeight: 700,
-                    fontFamily: "Montserrat",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
@@ -2014,7 +1915,7 @@ const PetAmmenities: FC<PetAmenitiesProps> = ({ amenities, title }) => {
     <Box sx={{ color: "text.primary", width: "100%", pl: { sm: "1rem" } }}>
       <Typography
         variant="h6"
-        sx={{ color: "#222222", fontWeight: 600, fontFamily: "Montserrat" }}
+        sx={{ color: "#222222", fontWeight: 600 }}
       >
         {title}
       </Typography>
@@ -2220,7 +2121,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
         sx={{
           color: "#222222",
           fontWeight: 600,
-          fontFamily: "Montserrat",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
@@ -2265,7 +2165,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                   sx={{
                     color: "#222222",
                     fontWeight: 700,
-                    fontFamily: "Montserrat",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
@@ -2293,7 +2192,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                     fontSize: "90%",
                     color: "#222222",
                     fontWeight: 600,
-                    fontFamily: "Montserrat",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
@@ -2341,7 +2239,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                     fontSize: "90%",
                     color: "#222222",
                     fontWeight: 600,
-                    fontFamily: "Montserrat",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
@@ -2827,7 +2724,6 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
                   justifyContent: "center",
                   mt: "1rem",
                   ml: ".5rem",
-                  fontFamily: "Montserrat",
                   fontWeight: 500,
                   borderRadius: "6px",
                   textTransform: "none",

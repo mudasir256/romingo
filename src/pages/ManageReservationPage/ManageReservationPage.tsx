@@ -211,60 +211,6 @@ const ManageReservationPage: FC<Props> = () => {
     }
   }
 
-  const columns: any = [
-    {
-      name: 'Confirmation Id',
-      selector: (row: BookingInterface) => row.propertyConfirmationId,
-      width: '130px'
-    },
-    {
-      name: 'firstName',
-      selector: (row: BookingInterface) => row.firstName,
-    },
-    {
-      name: 'lastName',
-      selector: (row: BookingInterface) => row.lastName,
-    },
-    {
-      name: 'Check-in',
-      selector: (row: BookingInterface) => formatUnix(parseInt(row.checkInAtLocal)),
-    },
-    {
-      name: 'Check-out',
-      selector: (row: BookingInterface) => formatUnix(parseInt(row.checkOutAtLocal)),
-    },
-    {
-      name: 'Total $ + Tax',
-      selector: (row: BookingInterface) => `$${row.data.totalPriceAfterTax}`,
-    },
-    {
-      name: 'Can cancel?',
-      selector: (row: BookingInterface) => row.data.cancelationPolicy.cancelable ? 'Yes' : 'No',
-    },
-    {
-      name: 'Cancel by time',
-      selector: (row: BookingInterface) => formatUnixLong(parseInt(row.deadlineLocal)),
-      width: '180px',
-    },
-    {
-      name: 'Booking Status',
-      selector: (row: BookingInterface) => row.reservationStatus?.toUpperCase()
-    },
-    bookingStatus === "upcoming" && (
-      {
-        name: 'Action',
-        selector: (row: BookingInterface) =>
-          <>
-            {
-              <Button variant="contained" onClick={handleClickOpen('body')}>Modify</Button>
-            },
-            {
-              <Button variant="contained" onClick={() => handleCancelBooking(row.sabreConfirmationId)}>Cancel</Button>
-            }
-          </>,
-      })
-
-  ];
 
   return (
     <>
