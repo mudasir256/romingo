@@ -1,3 +1,4 @@
+import {Helmet} from "react-helmet";
 import { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
@@ -5,15 +6,10 @@ import { useHistory } from "react-router-dom";
 import {
   Box,
   CSSObject,
-  Container,
   Button,
-  TextField,
   Typography,
-  Hidden,
-  Link,
   Grid,
 } from "@mui/material";
-import { Star } from "@mui/icons-material";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -21,39 +17,21 @@ import ScrollToTop from "../../components/ScrollToTop";
 import { saveSearch } from "../../store/searchReducer";
 import nearby from "./cities";
 import featured from "./featured";
-import FilterBar from "../../components/FilterBar";
-import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import ListingCardSquare from "../../components/MobileListingsCardHome";
-import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
-import PetFriendlyImg from '../../assets/images/pet-friendly.png';
-import PetFeesImg from '../../assets/images/pet-fees.png';
-import AllPupsImg from '../../assets/images/all-pups.png';
-import HotelImg from '../../assets/images/hotel.png';
-import StarImg from '../../assets/images/star.svg';
 import LogoImgWhite from '../../assets/images/logo-white.png';
 
 import LowestRates from '../../assets/images/icon-01.png';
-import ZeroPetFees from '../../assets/images/icon-02.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
 
 import { Carousel } from "react-responsive-carousel";
 
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
-import {
-  GetHotelBySearch,
-  GetHotelRackBySearch,
-  GetHotelDetail,
-  GetPropertyDetails,
-} from "../../constants/constants";
+import { GetPropertyDetails } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
@@ -382,6 +360,7 @@ const HomePage: FC<Props> = ({
 
   return (
     <div className="homepage">
+
       <ScrollToTop />
       <Header />
       <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>
