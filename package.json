@@ -78,7 +78,6 @@
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=e54200c3e638",
     "sitemap": "babel-node ./src/sitemap.js",
-    "postbuild": "react-snap",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
