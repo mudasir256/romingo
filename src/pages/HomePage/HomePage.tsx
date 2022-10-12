@@ -1,5 +1,6 @@
 import {Helmet} from "react-helmet";
-import { FC, useState, useEffect } from "react";
+import loadable from '@loadable/component'
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
@@ -10,10 +11,8 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
-import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ScrollToTop from "../../components/ScrollToTop";
 import { saveSearch } from "../../store/searchReducer";
 import ListingCardSquare from "../../components/MobileListingsCardHome";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
@@ -23,8 +22,6 @@ import LogoImgWhite from '../../assets/images/logo-white.png';
 import LowestRates from '../../assets/images/icon-01.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
-
-import { Carousel } from "react-responsive-carousel";
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
@@ -64,11 +61,9 @@ interface Props {
 }
 
 
-const HomePage: FC<Props> = ({ }) => {
+const HomePage: FC<Props> = () => {
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
-  const [subscribed, setSubscribed] = useState(false);
-  const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
 
   const today = new Date();
@@ -131,19 +126,10 @@ const HomePage: FC<Props> = ({ }) => {
     { variables: { alias: 'pet-friendly-hotels-los-angeles-marina-del-ray-hotel-los-angeles', } }
   );
 
-  const { data: denver } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
-  );
 
   const { data: kimpton } = useQuery(
     gql`${GetPropertyDetails}`,
     { variables: { alias: 'pet-friendly-hotels-orange-county-kimpton-shorebreak-huntington-beach-resort-orange-county', } }
-  );
-
-  const { data: seattle } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-seattle-pan-pacific-seattle', } }
   );
 
   const { data: monte } = useQuery(
@@ -274,33 +260,35 @@ const HomePage: FC<Props> = ({ }) => {
   };
 
 
-  const HotelSection = ({ title, children }) => (
-    <Box sx={{
-      maxWidth: '1300px',
-      mx: 'auto',
-      mb: { xs: 0, sm: '1em' },
-      px: { xs: '0', sm: '1em', lg: '8em' },
-      py: { xs: '1em', sm: '1em', lg: '1em' }  
-    }}>
-      <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em', px: { xs: '0.9em', lg: '0.25em' } }}>{title}</Typography>
-      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block'} }}>
-        <Grid 
-          onClick={() => fillSearchBar()} 
-          container 
-          sx={{ 
-      
-          }} 
-          justifyContent="flex-start" 
-          spacing={{ xs: 2, lg: 4}}
-        >
-            {children}
-        </Grid>
-      </Box>
-      <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
-        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={97} showIndicators={false} showArrows={false} showStatus={false}> 
-          {children}
-        </Carousel>
-      </Box>
+  const EndingSection = () => (
+    <Box className="homepage-dog">
+      <div className="homepage-dog-wallpaper">
+        <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
+        <div className="homepage-dog-text">
+          <Typography sx={{
+            fontFamily: 'sansita-bold',
+            fontSize: '1.75em',
+            color: 'white',
+            letterSpacing: '0.5px',
+            mb: '0em',
+            lineHeight: '1.25em',
+          }}>Reserve now, pay later</Typography>
+          <h3 className="no-space mb-xs space-letters-sm">Plus, free cancellations!</h3>
+          <Button
+            onClick={handleImFlexibleClick}
+            variant="contained"
+            size="large"
+            sx={{
+              textTransform: "none",
+              fontFamily: "sansita-light",
+              mb: '1.5em',
+            }}
+
+          >
+            Book now
+          </Button>
+        </div>
+      </div>
     </Box>
   )
 
@@ -323,7 +311,6 @@ const HomePage: FC<Props> = ({ }) => {
 
       </Helmet>
 
-      <ScrollToTop />
       <Header />
       <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>
       <Box sx={{
@@ -604,41 +591,10 @@ const HomePage: FC<Props> = ({ }) => {
           
         </MultiCarousel>
         </Box>
-
-
       </Box>
 
-      <Box className="homepage-dog">
-        <div className="homepage-dog-wallpaper">
-          <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
-          <div className="homepage-dog-text">
-            <Typography sx={{
-              fontFamily: 'sansita-bold',
-              fontSize: '1.75em',
-              color: 'white',
-              letterSpacing: '0.5px',
-              mb: '0em',
-              lineHeight: '1.25em',
-            }}>Reserve now, pay later</Typography>
-            <h3 className="no-space mb-xs space-letters-sm">Plus, free cancellations!</h3>
-            <Button
-              onClick={handleImFlexibleClick}
-              variant="contained"
-              size="large"
-              sx={{
-                textTransform: "none",
-                fontFamily: "sansita-light",
-                mb: '1.5em',
-              }}
+      <EndingSection />
 
-            >
-              Book now
-            </Button>
-
-          </div>
-        </div>
-      </Box>
-      
       <Footer />
     </div>
   );

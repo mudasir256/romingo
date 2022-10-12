@@ -35,7 +35,6 @@ interface Props {
   };
   priceKey: string;
   price: number;
-  payLater: boolean;
   policy: {
     cancelable: boolean;
     deadlineLocal: string | null;
@@ -46,7 +45,6 @@ const CheckoutInformation: FC<Props> = ({
   sx,
   price,
   priceKey,
-  payLater,
   policy,
 }) => {
   const history = useHistory();
@@ -273,27 +271,25 @@ const CheckoutInformation: FC<Props> = ({
       }
     });
 
-    // check if check-in date is greater than 72 hours in the future. If so, provide Buy Now Pay Later (BNPL) checkout flow.
-    // if (payLater) {
-      try {
-        createSI({
-          variables: { createSetupIntentInput: { email: checkoutForm.email } },
-        });
+    try {
+      createSI({
+        variables: { createSetupIntentInput: { email: checkoutForm.email } },
+      });
 
-        TagManager.dataLayer({
-          dataLayer: {
-            event: "checkoutSuccess",
-            bnpl: true,
-          },
-        });
-        
-      } catch (err) {
-        console.log(err);
-        errors.card =
-          "*We were unable to process this transaction. Please try again.";
-        setFormError(errors);
-        setPaymentLoading(false);
-      }
+      TagManager.dataLayer({
+        dataLayer: {
+          event: "checkoutSuccess",
+          bnpl: true,
+        },
+      });
+      
+    } catch (err) {
+      console.log(err);
+      errors.card =
+        "*We were unable to process this transaction. Please try again.";
+      setFormError(errors);
+      setPaymentLoading(false);
+    }
 
 
   };

@@ -15,8 +15,6 @@ import {
 } from "@mui/material";
 
 import {
-  AddCircleOutline,
-  Event,
   ArrowDropUpOutlined,
   ArrowDropDownOutlined,
   Today,
@@ -52,18 +50,8 @@ interface Props {
   sx?: CSSObject;
 }
 
-const locationIds = [
-  "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
-  "2714faad-9ea8-4851-9506-274710cdd51b",
-  "d4c10666-addf-47a6-9870-767518d9ebad",
-  "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
-  "82145909-13b4-4aab-be20-e0db474021c1",
-  "58b23325-2016-44ef-886f-67e962dab17f",
-];
-
 const Header: FC<Props> = ({ sx }) => {
   const dispatch: Dispatch<any> = useDispatch();
-  const history = useHistory();
 
   const imagesDesktop = [
     {

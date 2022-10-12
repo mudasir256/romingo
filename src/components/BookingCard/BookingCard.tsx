@@ -1,6 +1,5 @@
 import { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
-import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";

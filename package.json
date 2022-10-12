@@ -37,7 +37,6 @@
     "@types/react-material-ui-form-validator": "^2.1.1",
     "babel-loader": "^8.1.0",
     "date-fns": "^2.27.0",
-    "dayjs": "^1.11.5",
     "framer-motion": "^4.1.17",
     "graphql": "^15.8.0",
     "history": "^4.10.1",
@@ -48,9 +47,7 @@
     "material-ui-phone-number": "^3.0.0",
     "npm": "^8.3.0",
     "react": "^17.0.2",
-    "react-alice-carousel": "^2.5.1",
     "react-apollo": "^3.1.5",
-    "react-data-table-component": "^7.5.3",
     "react-dom": "^17.0.2",
     "react-gtm-module": "^2.0.11",
     "react-helmet": "^6.1.0",
@@ -66,6 +63,7 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.54.5",
     "simple-react-lightbox": "^3.6.6",
+    "source-map-explorer": "^2.5.3",
     "styled-components": "^5.3.5",
     "typescript": "^4.3.5",
     "web-vitals": "^0.2.4"
@@ -80,7 +78,8 @@
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=e54200c3e638",
     "sitemap": "babel-node ./src/sitemap.js",
-    "postbuild": "react-snap"
+    "postbuild": "react-snap",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -137,6 +136,7 @@
     "eslint-plugin-react": "^7.28.0",
     "path": "^0.12.7",
     "postcss": "^7.0.36",
-    "storybook-preset-craco": "^0.0.4"
+    "storybook-preset-craco": "^0.0.4",
+    "webpack-cli": "^4.10.0"
   }
 }

@@ -1,3 +1,4 @@
+import loadable from '@loadable/component'
 import {Helmet} from 'react-helmet';
 import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -90,9 +91,12 @@ import {
   Circle,
 } from "@mui/icons-material";
 import BookingCard from "../../components/BookingCard";
-import Map from "../../components/UI/Map/Map";
+
+const Map = loadable(() => import('../../components/UI/Map/Map'))
+const ActivitiesNearby = loadable(() => import('../../components/ActivitiesNearby'))
+
+
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
-import ActivitiesNearby from "../../components/ActivitiesNearby";
 import RoomCard from "../../components/RoomCard";
 import FilterBar from "../../components/FilterBar";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
