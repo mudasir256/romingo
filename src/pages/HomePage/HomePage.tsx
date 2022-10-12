@@ -25,7 +25,7 @@ import BookNow from '../../assets/images/icon-04.png';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
-import { GetPropertyDetails } from "../../constants/constants";
+import { GetPropertyDetails, GetHomePageProperty } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
@@ -78,106 +78,32 @@ const HomePage: FC<Props> = () => {
     today.getDate() + 4
   ).toISOString();
 
-  const { data: sanDiego } = useQuery(
-    gql`${GetPropertyDetails}`,
-    {
-       variables: {
-        alias: 'pet-friendly-hotels-san-diego-manchester-grand-hyatt-san-diego',
-       }
-    }
-  );
-
-  const { data: sanFrancisco } = useQuery(
-    gql`${GetPropertyDetails}`,
-    {
-       variables: {
-        alias: 'pet-friendly-hotels-san-francisco-hilton-san-francisco-union-square-san-francisco',
-       }
-    }
-  );
-
-  const { data: losAngeles } = useQuery(
-    gql`${GetPropertyDetails}`,
-    {
-       variables: {
-        alias: 'pet-friendly-hotels-los-angeles-mondrian-los-angeles',
-       }
-    }
-  );
-
-  const { data: losAngeles2 } = useQuery(
-    gql`${GetPropertyDetails}`,
-    {
-       variables: {
-        alias: 'pet-friendly-hotels-los-angeles-ace-hotel-downtown-los-angeles',
-       }
-    }
-  );
-
-  const { data: sonesta } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
-  );
-  // Row 2
-
-  const { data: marina } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-los-angeles-marina-del-ray-hotel-los-angeles', } }
-  );
 
 
-  const { data: kimpton } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-orange-county-kimpton-shorebreak-huntington-beach-resort-orange-county', } }
-  );
+  const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
-  const { data: monte } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-santa-barbara-mar-monte-hotel-santa-barbara', } }
-  );
+  let marina, losAngeles, kimpton, hyPortland, intercontinental, 
+    missionBay, regency, sonesta, zags, sanDiego, line,
+    sanFrancisco, andre, monte, thompson;
 
-  const { data: andre } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-seattle-hotel-andra-seattle', } }
-  );
-
-  const { data: thompson } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-seattle-thompson-seattle', } }
-  ); 
-
-  const { data: zags } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-portland-the-hotel-zags-portland', } }
-  );
-
-
-  const { data: missionBay } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-san-diego-hyatt-regency-mission-bay-san-diego', } }
-  );
-
-  const { data: intercontinental } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-san-diego-intercontinental-san-diego', } }
-  );
-
-
-  const { data: hyPortland } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-poprtland-hyatt-regency-portland', } }
-  );
-
-  const { data: line } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-los-angeles-the-line-los-angeles', } }
-  );
-
-  const { data: regency } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-orange-county-hyatt-regency-orange-county', } }
-  );
-
+  if (newData) {
+    console.log(newData)
+    marina = newData.getHomepageProperties[0];
+    losAngeles = newData.getHomepageProperties[1];
+    kimpton = newData.getHomepageProperties[2];
+    hyPortland = newData.getHomepageProperties[3];
+    intercontinental = newData.getHomepageProperties[4];
+    missionBay = newData.getHomepageProperties[5];
+    regency = newData.getHomepageProperties[6];
+    sonesta = newData.getHomepageProperties[7];
+    zags = newData.getHomepageProperties[8];
+    sanDiego = newData.getHomepageProperties[9];
+    line = newData.getHomepageProperties[10];
+    sanFrancisco = newData.getHomepageProperties[11];
+    andre = newData.getHomepageProperties[12];
+    monte = newData.getHomepageProperties[13];
+    thompson = newData.getHomepageProperties[14];
+  }
 
 
   const locationIds = [
@@ -381,46 +307,50 @@ const HomePage: FC<Props> = () => {
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
         >
-          {(sanFrancisco && sanFrancisco.getPropertyDetails) ?
+          {(sanFrancisco) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={0}
-                {...sanFrancisco.getPropertyDetails}
+                {...sanFrancisco}
                 name={'Hilton San Francisco'}
+                city={{ name: 'San Francisco, CA' }}
                 lowestTotalPriceAfterTax={143}
                 highlighted={false}
               />
             </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
           }  
 
-          {(sanDiego && sanDiego.getPropertyDetails) ?
+          {(sanDiego) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={1}
-                {...sanDiego.getPropertyDetails}
+                {...sanDiego}
                 name={"Manchester Grand Hyatt"}
+                city={{ name: 'San Diego, CA' }}
                 lowestTotalPriceAfterTax={161}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
           } 
 
-          {(line && line.getPropertyDetails) ?
+          {(line) ?
             <Box sx={{ p: '1em'}}>            
               <ListingCardSquare
                 key={14}
-                {...line.getPropertyDetails}
+                {...line}
+                city={{ name: 'Los Angeles, CA' }}
                 lowestTotalPriceAfterTax={169}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
           } 
 
-          {(regency && regency.getPropertyDetails) ?
+          {(regency) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={2}
-                {...regency.getPropertyDetails}
+                {...regency}
+                city={{ name: 'Orange County, CA' }}
                 lowestTotalPriceAfterTax={199}
                 highlighted={false}
               />
@@ -428,22 +358,24 @@ const HomePage: FC<Props> = () => {
           }  
 
 
-          {(losAngeles && losAngeles.getPropertyDetails) ?
+          {(losAngeles) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={3}
-                {...losAngeles.getPropertyDetails}
+                {...losAngeles}
+                city={{ name: 'Los Angeles, CA' }}
                 lowestTotalPriceAfterTax={299}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
           }  
 
-          {(sonesta && sonesta.getPropertyDetails) ?
+          {(sonesta) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={4}
-                {...sonesta.getPropertyDetails}
+                {...sonesta}
+                city={{ name: 'Denver, CO' }}
                 lowestTotalPriceAfterTax={125}
                 highlighted={false}
               />
@@ -469,54 +401,59 @@ const HomePage: FC<Props> = () => {
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
         >
-          {(marina && marina.getPropertyDetails) ?
+          {(marina) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={5}
-                {...marina.getPropertyDetails}
+                {...marina}
+                city={{ name: 'Los Angeles, CA' }}
                 lowestTotalPriceAfterTax={232}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
           }  
 
-          {(kimpton && kimpton.getPropertyDetails) ?
+          {(kimpton) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={6}
-                {...kimpton.getPropertyDetails}
+                {...kimpton}
                 name={'Kimpton Shorebreak Resort'}
+                city={{ name: 'Orange County, CA' }}
                 lowestTotalPriceAfterTax={219}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
           }  
 
-          {(monte && monte.getPropertyDetails) ?
+          {(monte) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={7}
-                {...monte.getPropertyDetails}
+                {...monte}
+                city={{ name: 'Santa Barbara, CA' }}
                 lowestTotalPriceAfterTax={241}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
           } 
-          {(missionBay && missionBay.getPropertyDetails) ?
+          {(missionBay) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={8}
-                {...missionBay.getPropertyDetails}
+                {...missionBay}
+                city={{ name: 'San Diego, CA' }}
                 lowestTotalPriceAfterTax={219}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
           } 
-          {(intercontinental && intercontinental.getPropertyDetails) ?
+          {(intercontinental) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={9}
-                {...intercontinental.getPropertyDetails}
+                {...intercontinental}
+                city={{ name: 'San Francisco, CA' }}
                 lowestTotalPriceAfterTax={269}
                 highlighted={false}
               />
@@ -544,44 +481,48 @@ const HomePage: FC<Props> = () => {
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
         >
-          {(andre && andre.getPropertyDetails) ?
+          {(andre) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={10}
-                {...andre.getPropertyDetails}
+                {...andre}
+                city={{ name: 'Seattle, WA' }}
                 lowestTotalPriceAfterTax={216}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={10} /></Grid>
           } 
 
-          {(thompson && thompson.getPropertyDetails) ?
+          {(thompson) ?
             <Box sx={{ p: '1em'}}>
               <ListingCardSquare
                 key={11}
-                {...thompson.getPropertyDetails}
+                {...thompson}
+                city={{ name: 'Seattle, WA' }}
                 lowestTotalPriceAfterTax={211}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={11} /></Grid>
           } 
 
-          {(zags && zags.getPropertyDetails) ?
+          {(zags) ?
             <Box sx={{ p: '1em'}}>            
               <ListingCardSquare
                 key={12}
-                {...zags.getPropertyDetails}
+                {...zags}
+                city={{ name: 'Portland, OR' }}
                 lowestTotalPriceAfterTax={130}
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={12} /></Grid>
           } 
 
-          {(hyPortland && hyPortland.getPropertyDetails) ?
+          {(hyPortland) ?
             <Box sx={{ p: '1em'}}>            
               <ListingCardSquare
                 key={13}
-                {...hyPortland.getPropertyDetails}
+                {...hyPortland}
+                city={{ name: 'Portland, OR' }}
                 lowestTotalPriceAfterTax={152}
                 highlighted={false}
               />
