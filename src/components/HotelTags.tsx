@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { CSSObject } from "@mui/material";
-import { Grid, Chip, Box, Typography, Link } from "@mui/material";
+import { Chip, Box } from "@mui/material";
 
 import {
   Pets,

@@ -361,6 +361,22 @@ const HomePage: FC<Props> = ({
   return (
     <div className="homepage">
 
+      <Helmet>
+        <title>Romingo | Book pet friendly hotels</title>
+        <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
+        <meta property="og:title" content="Romingo | Book pet friendly hotels" />
+        <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta property="og:url" content="https://www.romingo.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:title" content="Romingo | Book pet friendly hotels" />
+        <meta name="twitter:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+      </Helmet>
+
       <ScrollToTop />
       <Header />
       <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>

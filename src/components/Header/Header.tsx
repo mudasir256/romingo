@@ -27,19 +27,9 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import PersonIcon from "@mui/icons-material/Person";
 import { randomDate } from "../../tools.js";
 import { saveSearch } from "../../store/searchReducer";
 import { DateTime } from "luxon";
-import { useMeasure } from "react-use";
-
-import HeroImage8 from '../../assets/images/home-hero-8.jpeg';
-import HeroImage8Mobile from '../../assets/images/home-hero-8-mobile.jpeg';
-import HeroImage9 from '../../assets/images/home-hero-9.jpeg';
-import HeroImage10 from '../../assets/images/home-hero-10.jpeg';
-import HeroImage11 from '../../assets/images/home-hero-11.jpeg';
-import HeroImage11Mobile from '../../assets/images/home-hero-11-mobile.jpeg';
-import HeroImage12 from '../../assets/images/home-hero-12.jpeg';
 
 import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
 import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
@@ -113,30 +103,6 @@ const Header: FC<Props> = ({ sx }) => {
     setMobileImage(imagesMobile[Math.floor(Math.random()*imagesMobile.length)])
     setDesktopImage(imagesDesktop[Math.floor(Math.random()*imagesDesktop.length)])
   }, []);
-
-  const handleImFlexibleClick = () => {
-    const thirtyDays = DateTime.local().plus({ days: 21 }).toJSDate();
-    const randomCheckIn = randomDate(new Date(), thirtyDays);
-    const threeDaysFromCheckIn = DateTime.fromJSDate(randomCheckIn)
-      .plus({ days: 3 })
-      .toJSDate();
-    const randomCheckOut = randomDate(
-      DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
-      threeDaysFromCheckIn
-    );
-
-    dispatch(
-      saveSearch({
-        city: locationIds[Math.floor(Math.random() * locationIds.length)],
-        checkIn: new Date(randomCheckIn).toISOString(),
-        checkOut: new Date(randomCheckOut).toISOString(),
-        occupants: { adults: 2, children: 0, dogs: 1 },
-      })
-    );
-    setTimeout(() => {
-      history.push("/listings");
-    }, 250);
-  };
 
   return (
     <Box
@@ -232,7 +198,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
   );
   const history = useHistory();
   const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
-  const below900 = useMediaQuery("(max-width:900px)");
 
   const dispatch: Dispatch<any> = useDispatch();
 

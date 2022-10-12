@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet';
 import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
@@ -13,7 +14,6 @@ import {
   Divider,
   Skeleton,
   CSSObject,
-  Chip,
   Container,
   Fab,
   Box,
@@ -45,7 +45,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -88,7 +87,6 @@ import {
   Launch,
   ArrowBackIos,
   Close,
-  LocalOffer,
   Circle,
 } from "@mui/icons-material";
 import BookingCard from "../../components/BookingCard";
@@ -101,7 +99,6 @@ import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
 import { 
-  GetHotelDetail, 
   GetPropertyDetails, 
   GetSabreRoomReservations,
   GetSabrePropertyDetails,
@@ -273,7 +270,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [locationCoordinates, setLocationCoordinates] = useState({ lat: "", lon: "" });
   const [gallery, setGallery] = useState<string[]>([]);
   const [score, setScore] = useState(0);
-  const [defaultDescription, setDefaultDescription] = useState("asdfasdfasdfasdfasdf");
+  const [defaultDescription, setDefaultDescription] = useState("");
   const [amenities, setAmenities] = useState<string[]>([]);
   const [otherAmenities, setOtherAmenities] = useState<string[]>([]);
   const [neighborhood, setNeighborhood] = useState("");
@@ -557,8 +554,24 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [data, isLoaded]);
 
+  const title = `Romingo | ${name}`
   return (
     <>
+      <Helmet>
+        <title>{title}</title>
+        <description>{defaultDescription}</description>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={defaultDescription} />
+        <meta property="og:url" content={`https://www.romingo.com/hotel/${hotelAlias}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={data?.getPropertyDetails?.featuredImageURL} />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={defaultDescription} />
+        <meta name="twitter:image" content={data?.getPropertyDetails?.featuredImageURL} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
         {" "}
         {/* fcf5f0 */}

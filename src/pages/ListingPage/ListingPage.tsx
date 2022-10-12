@@ -1,3 +1,4 @@
+import {Helmet} from "react-helmet";
 import {
   IconButton,
   Popover,
@@ -13,12 +14,9 @@ import {
   Select,
   Skeleton,
   MenuItem,
-  Switch,
   ListItemIcon,
   Checkbox,
   ListItemText,
-  FormControlLabel,
-  FormGroup,
   Slider,
   Rating,
 } from "@mui/material";
@@ -27,7 +25,6 @@ import {
   AddCircleOutline,
   FilterList,
   ReportRounded,
-  ListAlt,
 } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
@@ -40,8 +37,6 @@ import React, {
   useEffect,
 } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { useWindowSize } from "react-use";
-import Link from "@mui/material/Link";
 import { useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Dispatch } from "redux";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
@@ -51,7 +46,6 @@ import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
 import { TextField, Button } from "@mui/material";
 import Footer from "../../components/Footer";
-import CustomToast from "../../components/UI/CustomToast";
 import SearchIcon from "@mui/icons-material/Search";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { gql, useQuery } from "@apollo/client";
@@ -261,7 +255,9 @@ const ListingPage: FC<Props> = () => {
 
   const viewStatus = useStore().getState().viewStatusReducer.status;
 
-  const maxPrice = Math.max(...cards.map(card => card.lowestAveragePrice))
+  const [maxPrice, setMaxPrice] = useState(
+    Math.max(...cards.map(card => card.lowestAveragePrice))
+  )
   const [value, setValue] = useState([0, maxPrice])
   const [rating, setRating] = useState(0)
   const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
@@ -317,6 +313,7 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
+    setMaxPrice(Math.max(...cards.map(card => card.lowestAveragePrice)))
     let filtered = [...cards]
     if (selectedFilter.length > 0) {
       filtered = cards.filter(card => selectedFilter.every(filter => {
@@ -366,6 +363,7 @@ const ListingPage: FC<Props> = () => {
     );
     setHoverIndex(0);
     setHotelIndex(0);
+
   }, [selectedFilter, cards, sortBy, value, rating]);
 
 
@@ -382,6 +380,21 @@ const ListingPage: FC<Props> = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Romingo | Find pet friendly hotels</title>
+        <description>Search for and find pet friendly hotels in your area.</description>
+        <meta property="og:title" content="Romingo | Find pet friendly hotels" />
+        <meta property="og:description" content="Search for and find pet friendly hotels in your area." />
+        <meta property="og:url" content="https://www.romingo.com/listings" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:title" content="Romingo | Find pet friendly hotels" />
+        <meta name="twitter:description" content="Search for and find pet friendly hotels in your area." />
+        <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       <ScrollToTop />
       <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
         <Navbar />
@@ -976,7 +989,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           getAriaValueText={valuetext}
           min={0}
           step={1}
-          max={maxPrice || 0}
+          max={maxPrice}
           marks={[
             {
               value: value[0],
