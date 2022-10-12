@@ -1,3 +1,4 @@
+import {Helmet} from "react-helmet";
 import {
   IconButton,
   Popover,
@@ -13,17 +14,17 @@ import {
   Select,
   Skeleton,
   MenuItem,
-  Switch,
   ListItemIcon,
   Checkbox,
   ListItemText,
+  Slider,
+  Rating,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
   AddCircleOutline,
   FilterList,
   ReportRounded,
-  ListAlt,
 } from "@mui/icons-material";
 import MapIcon from "@mui/icons-material/Map";
 import { motion, useMotionValue } from "framer-motion";
@@ -36,8 +37,6 @@ import React, {
   useEffect,
 } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { useWindowSize } from "react-use";
-import Link from "@mui/material/Link";
 import { useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Dispatch } from "redux";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
@@ -47,7 +46,6 @@ import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
 import { TextField, Button } from "@mui/material";
 import Footer from "../../components/Footer";
-import CustomToast from "../../components/UI/CustomToast";
 import SearchIcon from "@mui/icons-material/Search";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { gql, useQuery } from "@apollo/client";
@@ -96,7 +94,10 @@ const ListingPage: FC<Props> = () => {
   const cityList = useSelector((state: any) => state.cityListReducer.cities);
   const [sortBy, setSortBy] = useState<string>("featured");
   const [allowBigDogs, setAllowBigDogs] = useState<number>(0);
-  const [selectedFilter, setSelectedFilter] = useState<any>([]);
+
+  const [selectedFilter, setSelectedFilter] = useState<string>([]);
+  const [showExtras, setShowExtras] = useState<boolean>(false);
+  const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -155,8 +156,8 @@ const ListingPage: FC<Props> = () => {
     }
   );
 
-  console.log(search)
-   const dispatch: Dispatch<any> = useDispatch();
+
+  const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
@@ -185,11 +186,8 @@ const ListingPage: FC<Props> = () => {
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;
   });
-
-  const [allAmienities, setAllAmenities] = useState(
-
-  )
   
+
   const [sorted, setSorted] = useState(
     [...cards].sort((a: any, b: any) =>
       (
@@ -257,6 +255,11 @@ const ListingPage: FC<Props> = () => {
 
   const viewStatus = useStore().getState().viewStatusReducer.status;
 
+  const [maxPrice, setMaxPrice] = useState(
+    Math.max(...cards.map(card => card.lowestAveragePrice))
+  )
+  const [value, setValue] = useState([0, maxPrice])
+  const [rating, setRating] = useState(0)
   const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -310,8 +313,22 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
+    setMaxPrice(Math.max(...cards.map(card => card.lowestAveragePrice)))
+    let filtered = [...cards]
+    if (selectedFilter.length > 0) {
+      filtered = cards.filter(card => selectedFilter.every(filter => {
+        if (card.amenities) {
+          return card.amenities.map(amenity => amenity.desc).includes(filter)
+        }
+        return []
+      }))
+    }
+    filtered = filtered.filter(card => (card.lowestAveragePrice > value[0] && card.lowestAveragePrice <= value[1]) )
+    if (rating) {
+      filtered = filtered.filter(card => parseInt(card.starRating) === rating)
+    }
     setSorted(
-      [...cards].sort((a: any, b: any) =>
+      [...filtered].sort((a: any, b: any) =>
         (
           sortBy === "score"  ? a.romingoScore < b.romingoScore 
           : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
@@ -323,7 +340,7 @@ const ListingPage: FC<Props> = () => {
       )
     );
     setMarkers(
-      [...cards]
+      [...filtered]
         .sort((a: any, b: any) =>
           (
             sortBy === "score"  ? a.romingoScore < b.romingoScore
@@ -346,7 +363,9 @@ const ListingPage: FC<Props> = () => {
     );
     setHoverIndex(0);
     setHotelIndex(0);
-  }, [cards, sortBy]);
+
+  }, [selectedFilter, cards, sortBy, value, rating]);
+
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -357,66 +376,52 @@ const ListingPage: FC<Props> = () => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
   const location = useLocation<any>();
 
+  console.log(cards)
+
   return (
     <>
+      <Helmet>
+        <title>Romingo | Find pet friendly hotels</title>
+        <description>Search for and find pet friendly hotels in your area.</description>
+        <meta property="og:title" content="Romingo | Find pet friendly hotels" />
+        <meta property="og:description" content="Search for and find pet friendly hotels in your area." />
+        <meta property="og:url" content="https://www.romingo.com/listings" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:title" content="Romingo | Find pet friendly hotels" />
+        <meta name="twitter:description" content="Search for and find pet friendly hotels in your area." />
+        <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       <ScrollToTop />
       <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
         <Navbar />
       </Box>
-      <Box
-        sx={{
-          position: { xs: "fixed", md: "relative" },
-          top: 0,
-          left: 0,
-          right: 0,
-          width: "100%",
-          margin: "0 auto",
-          boxShadow: { xs: 0, md: 2 },
-          display: "flex",
-          justifyContent: { xs: "center", md: "flex-start" },
-          overflow: "hidden",
-          zIndex: 1000,
-        }}
-      >
-        {error && (
-          <CustomToast
-            open={true}
-            message={
-              "Something went wrong, please refresh the page and try again"
-            }
-            type="error"
-            duration={3000}
-          />
-        )}
-        {/* <Link
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            history.push("/");
+
+      {animate === 'collapsed' && 
+        <Box 
+          sx={{  
+            display: { xs: 'flex', md: 'none'},
+            position: { xs: 'fixed' },
+            top: 0,
+            left: 0,
+            right: 0,
+            width: "100%",
+            margin: "0 auto",
+            boxShadow: { xs: 0, md: 2 },
+            justifyContent: { xs: "center" },
+            overflow: "hidden",
+            zIndex: 1000,
           }}
         >
-          <Box
-            component="img"
-            src={
-              "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-            }
-            alt="Logo"
-            draggable="false"
-            sx={{
-              display: { xs: "none", md: "block" },
-              ml: { xs: 0, md: 4 },
-              mr: { xs: 0, md: 8 },
-              height: { xs: "0px", md: "42px" },
-            }}
-          />
-        </Link> */}
-
-        <Hidden mdUp>
-          <Box sx={{ mt: animate === 'expanded' ? "0.75em" : '4em' }}>
+          <Box sx={{ mt: '6em' }}>
             <FilterBar />
           </Box>
-        </Hidden>
-      </Box>
+        </Box>
+      }
+
       <Box
         sx={{
           backgroundColor: "#feffff",
@@ -468,6 +473,7 @@ const ListingPage: FC<Props> = () => {
             />
           )
         )}
+
         <Hidden mdUp>
           <motion.div
             drag={animate !== "expanded" && "y"}
@@ -524,11 +530,29 @@ const ListingPage: FC<Props> = () => {
               <Stack
                 spacing={3}
                 sx={{
-                  pb: 7,
-                  pt: "1rem",
-                  minHeight: `${height - 200}px`,
+                  pt: "3em",
+                  height: sorted.length > 0 ? 'auto' : '120vh'
                 }}
               >
+            
+            
+                <Grid container spacing={1}>
+                  <FilterBar />
+                  <Grid sx={{ mt: '1em' }} item xs={6}>
+                    <Button onClick={() => {
+                      setShowFilters(!showFilters)
+                      setShowExtras(false)
+                    }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                  </Grid>
+                  <Grid sx={{ mt: '1em' }} item xs={6}>
+                    <Button onClick={() => {
+                      setShowExtras(!showExtras)
+                      setShowFilters(false)
+                    }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                  </Grid>
+                </Grid>
+               
+
                 <SortBar 
                   size="small" 
                   sortBy={sortBy} 
@@ -537,8 +561,32 @@ const ListingPage: FC<Props> = () => {
                   setSortBy={setSortBy}
                   selectedFilter={selectedFilter}
                   setSelectedFilter={setSelectedFilter}
+                  value={value}
+                  setValue={setValue}
+                  maxPrice={maxPrice}
+                  rating={rating}
+                  setRating={setRating}
+                  showFilters={showFilters}
+                  showExtras={showExtras}
                 />
-                {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
+                {cards.length > 0 && (
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#222222",
+                      fontWeight: 700,
+                      pl: '0.25em',
+                      fontFamily: "overpass-light",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                    }}
+                  >
+                    {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
+                    {getCityName(search.city)}
+                    {location.state?.flag && ` (${location.state?.flag})`}
+                  </Typography>
+                )}
                 {!cards.length ? (
                   <>
                     <Typography
@@ -556,7 +604,7 @@ const ListingPage: FC<Props> = () => {
                       key={card.id}
                       {...card}
                       duration={diffDays}
-                      highlighted={hotelIndex === index ? true : false}
+                      highlighted={false}//{hotelIndex === index ? true : false}
                     />
                   ))
                 )}
@@ -615,7 +663,6 @@ const ListingPage: FC<Props> = () => {
             }}
             ref={ScrollBarRef}
           >
-            {/* <RomingoGuarantee sx={{ mb: 3 }} /> */}
 
             <Grid
               sx={{
@@ -629,6 +676,20 @@ const ListingPage: FC<Props> = () => {
               <Hidden mdDown>
                 <DesktopFilterBar />
               </Hidden>
+              <Grid container spacing={1}>
+                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
+                  <Button onClick={() => {
+                    setShowFilters(!showFilters)
+                    setShowExtras(false)
+                  }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                </Grid>
+                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
+                  <Button onClick={() => {
+                    setShowExtras(!showExtras)
+                    setShowFilters(false)
+                  }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                </Grid>
+              </Grid>
               <SortBar 
                 sortBy={sortBy} 
                 bigDog={allowBigDogs} 
@@ -636,6 +697,13 @@ const ListingPage: FC<Props> = () => {
                 setSortBy={setSortBy}
                 selectedFilter={selectedFilter}
                 setSelectedFilter={setSelectedFilter} 
+                value={value}
+                setValue={setValue}
+                maxPrice={maxPrice}
+                rating={rating}
+                setRating={setRating}
+                showFilters={showFilters}
+                showExtras={showExtras}
               />
             </Grid>
 
@@ -665,7 +733,7 @@ const ListingPage: FC<Props> = () => {
                       justifyContent: "flex-start",
                     }}
                   >
-                    {cards.length} Result{cards.length === 1 ? "" : "s"} in{" "}
+                    {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
                     {getCityName(search.city)}
                     {location.state?.flag && ` (${location.state?.flag})`}
                   </Typography>
@@ -693,7 +761,7 @@ const ListingPage: FC<Props> = () => {
                       <ListingCard
                         {...card}
                         duration={diffDays}
-                        highlighted={hotelIndex === index ? true : false}
+                        highlighted={false} //{hotelIndex === index ? true : false}
                         flag={location.state?.flag}
                         bookingId={location.state?.bookingId}
                       />
@@ -723,38 +791,40 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
   const history = useHistory();
+  // const options = [
+  //   "101: Wheelchair access",
+  //   "2016: Rollaway adult",
+  //   "228: Business center",
+  //   "233: Tennis court",
+  //   "259: High speed internet access",
+  //   "71: Pool",
+  //   "68: Parking",
+  //   "77: Room Service",
+  // ];
+
+
+
+  // -Air Conditioned
 
   const options = [
-    "101 : Wheelchair access",
-    "2016: Rollaway adult",
-    "228: Business center",
-    "233: Tennis court",
-    "259: High speed internet access",
-    "71: Pool",
-    "68: Parking",
-    "77: Room Service",
+    //"Rollaway adult",
+    "Health club",
+    "Business center",
+    "Tennis court",
+    //"High speed internet access",
+    "Pool",
+    "Hot Tub",
+    "Restaurant",
+    "Room service",
+    "Onsite laundry",
+    //"Parking",
+    "Smoke-free property",
+    "Wheelchair access",
+    "Translation services",
   ];
 
-  const MenuProps: any = {
-    PaperProps: {
-      style: {
-        maxHeight: 48 * 4.5 + 8,
-        width: 250
-      }
-    },
-    getContentAnchorEl: null,
-    anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center"
-    },
-    transformOrigin: {
-      vertical: "top",
-      horizontal: "center"
-    },
-    variant: "menu"
-  };
 
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -788,21 +858,28 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     setSelectedFilter(value);
   };
 
+  useEffect(() => {
+    console.log(selectedFilter)
+
+  }, [selectedFilter])
+
+  const valuetext = (value: number) => {
+    return value;
+  }
+
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
+
+
   return (
-    <Grid
-     className="alignCenter"
+    <Box
       sx={{
-        mt: { xs :'1em', sm: '1em', md: '0em' },
-        pb: size === "small" ? 0 : "1rem",
-        textAlign: "right",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: size === "small" ? "center" : "flex-end",
+        mt: { xs :'1em', sm: '1em', md: '1em' },
+        pb: '2em'
       }}
     >
-      {size === "small" && (
-        <Typography sx={{ mr: "10px" }}>Sort by: </Typography>
-      )}
+      {showFilters &&
       <Select
         color="primary"
         value={sortBy}
@@ -814,63 +891,120 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           minWidth: "250px",
           maxHeight: "40px",
           borderRadius: "30px",
-          fontSize: "13px",
+          fontSize: "0.9em",
           color: "#03989E",
-          fontWeight: 600,
+          width: '100%',
+          maxWidth: '480px',
         }}
+        sx={{  mb: '1.5em' }}
+        variant="standard"
         startAdornment={
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
         }
       >
-        <MenuItem value="featured">Featured</MenuItem>
+        <MenuItem value="featured">Sort by: Featured</MenuItem>
         <MenuItem value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
         <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
+      }
 
-      {/*
-      <FormControl>
-      <InputLabel id="mutiple-select-label">Multiple Select</InputLabel>
-      <Select
-        labelId="mutiple-select-label"
-        multiple
-        value={selectedFilter}
-        onChange={handleChange}
-        renderValue={(selected) => selected.join(", ")}
-        MenuProps={MenuProps}
-      >
-        <MenuItem
-          value="all"
-          classes={{
-            root: isAllSelected ? classes.selectedAll : ""
+      {showFilters &&
+      <FormControl sx={{ mt: '1em', width: '100%'}}>
+        <InputLabel id="demo-simple-select-label"><Typography sx={{  fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
+        <Select
+          id="demo-simple-select"
+          color="primary"
+          value={selectedFilter}
+          onChange={handleChange}
+          variant="standard"
+          style={{
+            background: "#fff",
+            textAlign: "center",
+            fontFamily: "overpass-light",
+            minWidth: "250px",
+            maxHeight: "40px",
+            borderRadius: "30px",
+            fontSize: "0.9em",
+            color: "#03989E", 
+            maxWidth: '480px',
           }}
+          multiple
+          renderValue={(selectedFilter) => selectedFilter.join(", ")}
         >
-          <ListItemIcon>
-            <Checkbox
-              classes={{ indeterminate: classes.indeterminateColor }}
-              checked={isAllSelected}
-              indeterminate={
-                selectedFilter.length > 0 && selectedFilter.length < options.length
-              }
-            />
-          </ListItemIcon>
-          <ListItemText
-            classes={{ primary: classes.selectAllText }}
-            primary="Select All"
-          />
-        </MenuItem>
-        {options.map((option: any) => (
-          <MenuItem key={option} value={option}>
+          <MenuItem
+            value="all"
+            classes={{
+              root: isAllSelected ? classes.selectedAll : ""
+            }}
+          >
             <ListItemIcon>
-              <Checkbox checked={selectedFilter.indexOf(option) > -1} />
+              <Checkbox
+                classes={{ indeterminate: classes.indeterminateColor }}
+                checked={isAllSelected}
+                indeterminate={
+                  selectedFilter.length > 0 && selectedFilter.length < options.length
+                }
+              />
             </ListItemIcon>
-            <ListItemText primary={option} />
+            <ListItemText
+              classes={{ primary: classes.selectAllText }}
+              primary="Select All"
+            />
           </MenuItem>
-        ))}
-      </Select>
+          {options.map((option: any) => (
+            <MenuItem key={option} value={option}>
+              <ListItemIcon>
+                <Checkbox checked={selectedFilter.indexOf(option) > -1} />
+              </ListItemIcon>
+              <ListItemText primary={option} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      }
 
-    </FormControl>
-    */}
+      {showExtras && 
+      <Box sx={{ display: 'flex', mt: {xs : 0, sm: 0, md: '1.5em'} }}>
+        <Typography sx={{ fontFamily: 'overpass-regular', mr: '0.5em' }} component="legend">Hotel Star Rating:</Typography>
+        <Rating
+          name="simple-controlled"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+          }}
+          sx={{ color: 'red'}}
+        />
+      </Box>
+      }
+
+      {showExtras &&
+      <Box sx={{ mt: '1.5em', textAlign: 'left', minWidth: '240px' }}>
+        <Typography component="legend" sx={{ fontFamily: 'overpass-regular'}}>Price per night:</Typography>
+        <Slider
+          getAriaLabel={() => 'Price range'}
+          value={value}
+          onChange={handleSliderChange}
+          valueLabelDisplay="auto"
+          getAriaValueText={valuetext}
+          min={0}
+          step={1}
+          max={maxPrice}
+          marks={[
+            {
+              value: value[0],
+              label: `$${value[0]}`
+            },
+            {
+              value: value[1],
+              label: `$${value[1]}`
+            }
+          ]}
+          sx={{ ml: '1em', width: '90%' }}
+        />
+      </Box>
+      }
+
       {/* Temprory commented */}
       {/* <div className="toggleWrap">  
       <Typography
@@ -906,7 +1040,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           }} defaultChecked={false} />
         </Typography>
       </div> */}
-    </Grid>
+    </Box>
   );
 };
 

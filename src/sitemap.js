@@ -72,4 +72,14 @@ const routes = [
   },
 ];
 
-new Sitemap(routes).build("https://romingo.com/").save("./sitemap.xml");
+const aliasMap = []
+const idMap = []
+
+//TODO: get all alias and idMap
+
+const paramsConfig = {
+  "/hotel/:alias": aliasMap,
+  "/blog/post/:id": idMap
+}
+
+new Sitemap(routes).applyParams(paramsConfig).build("https://romingo.com/").save("./sitemap.xml");

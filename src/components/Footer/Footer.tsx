@@ -8,9 +8,6 @@ import Link from "@mui/material/Link";
 
 import LogoImg from '../../assets/images/logo.png';
 import Pup from '../../assets/images/pup.png';
-import Pup2 from '../../assets/images/pup.png';
-import Pup3 from '../../assets/images/pup.png';
-
 import "./Footer.scss";
 
 interface Props {
@@ -142,14 +139,14 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
     <>
       {showEgg &&
         <Dialog onClose={handleClose} open={showEgg}>
-          <img src={Pup} />
+          <img loading="lazy" src={Pup} />
         </Dialog>
       }
     <div className="footer">
       <div className="footer-wrapper">
         <div className="footer-wrapper-logo-section">
           <Link href="/">
-           <img src={LogoImg} alt="Romingo Logo" />
+           <img loading="lazy" src={LogoImg} alt="Romingo Logo" />
           </Link>
           <div className="footer-wrapper-logo-section-text">
             Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.

@@ -10,10 +10,9 @@ interface Props {
   name: string;
   indicators?: boolean;
   sx?: any;
-  setShow?: any;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, name, setShow }) => {
+const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
   const [timer, setTimer] = useState(0);
@@ -24,7 +23,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, setShow }) => {
         images.slice(0, 10).map((img, i) => (
           <Box
             component="div"
-            key={img}
+            key={img + i}
             sx={{
               ...sx,
               display: "block",
@@ -70,16 +69,6 @@ const ImageSlider: FC<Props> = ({ sx, images, name, setShow }) => {
         showArrows={true}
         onChange={(i) => {
           setItem(i)
-          /*
-          setShow(false)
-          if (timer) {
-            window.clearTimeout(timer)
-          }
-          const newTimeout: number = window.setTimeout(() => {
-            setShow(true)
-          }, 6000)
-          setTimer(newTimeout)
-          */
         }}
         showThumbs={false}
         preventMovementUntilSwipeScrollTolerance

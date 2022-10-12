@@ -5,32 +5,16 @@ import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
   Autocomplete,
-  IconButton,
   TextField,
   Button,
   Box,
   Typography,
-  Grid,
   CSSObject,
   useMediaQuery,
   Stack,
-  FormControl,
-  MenuItem,
-  InputLabel,
-  Select,
-  Popover,
-  Hidden,
-  Container,
 } from "@mui/material";
 
 import {
-  RemoveCircleOutline,
-  AddCircleOutline,
-  Event,
-  ExpandMore,
-  LocationCity,
-  BeachAccess,
-  Waves,
   ArrowDropUpOutlined,
   ArrowDropDownOutlined,
   Today,
@@ -41,40 +25,18 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import PersonIcon from "@mui/icons-material/Person";
 import { randomDate } from "../../tools.js";
 import { saveSearch } from "../../store/searchReducer";
 import { DateTime } from "luxon";
-import { useMeasure } from "react-use";
-import HeroImage from '../../assets/images/home-hero.jpg';
-import HeroImage2 from '../../assets/images/home-hero-2.jpg';
-import HeroImage3 from '../../assets/images/home-hero-3.jpg';
-import HeroImage4 from '../../assets/images/home-hero-4.jpg';
-import HeroImage5 from '../../assets/images/home-hero-5.jpg';
-import HeroImage6 from '../../assets/images/home-hero-6.jpeg';
-import HeroImage7 from '../../assets/images/home-hero-7.jpeg';
 
-import HeroImage8 from '../../assets/images/home-hero-8.jpeg';
-import HeroImage8Mobile from '../../assets/images/home-hero-8-mobile.jpeg';
-import HeroImage9 from '../../assets/images/home-hero-9.jpeg';
-import HeroImage10 from '../../assets/images/home-hero-10.jpeg';
-import HeroImage11 from '../../assets/images/home-hero-11.jpeg';
-import HeroImage11Mobile from '../../assets/images/home-hero-11-mobile.jpeg';
-import HeroImage12 from '../../assets/images/home-hero-12.jpeg';
-
-import Image1 from '../../assets/images/pet-friendly-travel-corgi.jpg'
-import Image2 from '../../assets/images/pet-friendly-travel-french-bulldog-2.jpeg'
 import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
 import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
-import Image6 from '../../assets/images/pet-friendly-travel-jack-russell-2.jpeg'
 import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
-import Image8 from '../../assets/images/pet-friendly-travel-samoyed.jpeg'
 import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
 import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
 
 
 import SearchImage from '../../assets/icon/magnify.png';
-import CalendarImage from '../../assets/icon/calendar.png';
 
 import MobileFilterBar from '../MobileHomePageFilterBar'
 
@@ -88,19 +50,8 @@ interface Props {
   sx?: CSSObject;
 }
 
-const locationIds = [
-  "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
-  "2714faad-9ea8-4851-9506-274710cdd51b",
-  "d4c10666-addf-47a6-9870-767518d9ebad",
-  "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
-  "82145909-13b4-4aab-be20-e0db474021c1",
-  "58b23325-2016-44ef-886f-67e962dab17f",
-];
-
 const Header: FC<Props> = ({ sx }) => {
   const dispatch: Dispatch<any> = useDispatch();
-  const history = useHistory();
-  const [viewHeight, setViewHeight] = useState("");
 
   const imagesDesktop = [
     {
@@ -137,34 +88,9 @@ const Header: FC<Props> = ({ sx }) => {
   const [desktopImage, setDesktopImage] = useState({})
 
   useEffect(() => {
-    setViewHeight(`${window.innerHeight}px`);
     setMobileImage(imagesMobile[Math.floor(Math.random()*imagesMobile.length)])
     setDesktopImage(imagesDesktop[Math.floor(Math.random()*imagesDesktop.length)])
   }, []);
-
-  const handleImFlexibleClick = () => {
-    const thirtyDays = DateTime.local().plus({ days: 21 }).toJSDate();
-    const randomCheckIn = randomDate(new Date(), thirtyDays);
-    const threeDaysFromCheckIn = DateTime.fromJSDate(randomCheckIn)
-      .plus({ days: 3 })
-      .toJSDate();
-    const randomCheckOut = randomDate(
-      DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
-      threeDaysFromCheckIn
-    );
-
-    dispatch(
-      saveSearch({
-        city: locationIds[Math.floor(Math.random() * locationIds.length)],
-        checkIn: new Date(randomCheckIn).toISOString(),
-        checkOut: new Date(randomCheckOut).toISOString(),
-        occupants: { adults: 2, children: 0, dogs: 1 },
-      })
-    );
-    setTimeout(() => {
-      history.push("/listings");
-    }, 250);
-  };
 
   return (
     <Box
@@ -260,7 +186,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
   );
   const history = useHistory();
   const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
-  const below900 = useMediaQuery("(max-width:900px)");
 
   const dispatch: Dispatch<any> = useDispatch();
 

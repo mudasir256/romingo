@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { GetCities } from "./constants/constants";
 import { setList } from "./store/cityListReducer";
-import routes from "./routes";
 import { authService } from "./services/authService.js";
 import ErrorPage from "./pages/ErrorPage";
 import TagManager from "react-gtm-module";

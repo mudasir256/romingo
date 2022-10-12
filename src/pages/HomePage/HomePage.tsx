@@ -1,59 +1,31 @@
-import { FC, useState, useEffect } from "react";
+import {Helmet} from "react-helmet";
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
 import {
   Box,
   CSSObject,
-  Container,
   Button,
-  TextField,
   Typography,
-  Hidden,
-  Link,
   Grid,
 } from "@mui/material";
-import { Cancel, Star } from "@mui/icons-material";
-import "react-alice-carousel/lib/alice-carousel.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ScrollToTop from "../../components/ScrollToTop";
 import { saveSearch } from "../../store/searchReducer";
-import nearby from "./cities";
-import featured from "./featured";
-import FilterBar from "../../components/FilterBar";
-import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import ListingCardSquare from "../../components/MobileListingsCardHome";
-import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
-import PetFriendlyImg from '../../assets/images/pet-friendly.png';
-import PetFeesImg from '../../assets/images/pet-fees.png';
-import AllPupsImg from '../../assets/images/all-pups.png';
-import HotelImg from '../../assets/images/hotel.png';
-import StarImg from '../../assets/images/star.svg';
 import LogoImgWhite from '../../assets/images/logo-white.png';
 
 import LowestRates from '../../assets/images/icon-01.png';
-import ZeroPetFees from '../../assets/images/icon-02.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
 
-import { Carousel } from "react-responsive-carousel";
-
-import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
-import {
-  GetHotelBySearch,
-  GetHotelRackBySearch,
-  GetHotelDetail,
-  GetPropertyDetails,
-} from "../../constants/constants";
+import { GetPropertyDetails } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
@@ -67,20 +39,6 @@ import "./HomePage.scss";
 
 interface Props {
   sx?: CSSObject;
-  nearCities: {
-    img: string;
-    city: string;
-    state: string;
-    route: string;
-  }[];
-  featureHotels: {
-    img: string;
-    name: string;
-    description: string;
-    city: string;
-    cityId: string;
-    id: string;
-  }[];
   footerMenus: {
     about: {
       text: string;
@@ -102,14 +60,9 @@ interface Props {
 }
 
 
-const HomePage: FC<Props> = ({
-  nearCities = nearby,
-  featureHotels = featured,
-}) => {
+const HomePage: FC<Props> = () => {
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
-  const [subscribed, setSubscribed] = useState(false);
-  const [email, setEmail] = useState("");
   const dispatch: Dispatch<any> = useDispatch();
 
   const today = new Date();
@@ -172,19 +125,10 @@ const HomePage: FC<Props> = ({
     { variables: { alias: 'pet-friendly-hotels-los-angeles-marina-del-ray-hotel-los-angeles', } }
   );
 
-  const { data: denver } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-denver-sonesta-downtown-denver', } }
-  );
 
   const { data: kimpton } = useQuery(
     gql`${GetPropertyDetails}`,
     { variables: { alias: 'pet-friendly-hotels-orange-county-kimpton-shorebreak-huntington-beach-resort-orange-county', } }
-  );
-
-  const { data: seattle } = useQuery(
-    gql`${GetPropertyDetails}`,
-    { variables: { alias: 'pet-friendly-hotels-seattle-pan-pacific-seattle', } }
   );
 
   const { data: monte } = useQuery(
@@ -269,41 +213,6 @@ const HomePage: FC<Props> = ({
      }, 250);
    };
 
-  const toFeatured = (id: string, cityId: string) => {
-    let city = search.city;
-    let checkIn = search.checkIn;
-    let checkOut = search.checkOut;
-    let occupants = search.occupants;
-    const today = new Date();
-    if (!search.city) {
-      city = cityId;
-    }
-    if (~checkIn) {
-      checkIn = checkOut = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() + 7
-      ).toISOString();
-      checkOut = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() + 9
-      ).toISOString();
-    }
-    if (occupants.adults === 0) {
-      occupants = { adults: 2, dogs: 1, children: 0 };
-    }
-    dispatch(
-      saveSearch({
-        city,
-        checkIn,
-        checkOut,
-        occupants,
-      })
-    );
-    history.push(`/details/${id}`);
-  };
-
   /* Method that will fix header after a specific scrollable */
   const isSticky = () => {
     const header = document.querySelector(".sticky-header");
@@ -350,39 +259,57 @@ const HomePage: FC<Props> = ({
   };
 
 
-  const HotelSection = ({ title, children }) => (
-    <Box sx={{
-      maxWidth: '1300px',
-      mx: 'auto',
-      mb: { xs: 0, sm: '1em' },
-      px: { xs: '0', sm: '1em', lg: '8em' },
-      py: { xs: '1em', sm: '1em', lg: '1em' }  
-    }}>
-      <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', py: '0.5em', px: { xs: '0.9em', lg: '0.25em' } }}>{title}</Typography>
-      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block', lg: 'block'} }}>
-        <Grid 
-          onClick={() => fillSearchBar()} 
-          container 
-          sx={{ 
-      
-          }} 
-          justifyContent="flex-start" 
-          spacing={{ xs: 2, lg: 4}}
-        >
-            {children}
-        </Grid>
-      </Box>
-      <Box sx={{ textAlign: 'left', display: { sm: 'block', md: 'none', lg: 'none' }}}>
-        <Carousel emulateTouch={true} centerMode={true} centerSlidePercentage={97} showIndicators={false} showArrows={false} showStatus={false}> 
-          {children}
-        </Carousel>
-      </Box>
+  const EndingSection = () => (
+    <Box className="homepage-dog">
+      <div className="homepage-dog-wallpaper">
+        <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" loading="lazy"  />
+        <div className="homepage-dog-text">
+          <Typography sx={{
+            fontFamily: 'sansita-bold',
+            fontSize: '1.75em',
+            color: 'white',
+            letterSpacing: '0.5px',
+            mb: '0em',
+            lineHeight: '1.25em',
+          }}>Reserve now, pay later</Typography>
+          <h3 className="no-space mb-xs space-letters-sm">Plus, free cancellations!</h3>
+          <Button
+            onClick={handleImFlexibleClick}
+            variant="contained"
+            size="large"
+            sx={{
+              textTransform: "none",
+              fontFamily: "sansita-light",
+              mb: '1.5em',
+            }}
+
+          >
+            Book now
+          </Button>
+        </div>
+      </div>
     </Box>
   )
 
   return (
     <div className="homepage">
-      <ScrollToTop />
+
+      <Helmet>
+        <title>Romingo | Book pet friendly hotels</title>
+        <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
+        <meta property="og:title" content="Romingo | Book pet friendly hotels" />
+        <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta property="og:url" content="https://www.romingo.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:title" content="Romingo | Book pet friendly hotels" />
+        <meta name="twitter:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+      </Helmet>
+
       <Header />
       <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>
       <Box sx={{
@@ -663,64 +590,10 @@ const HomePage: FC<Props> = ({
           
         </MultiCarousel>
         </Box>
-
-
       </Box>
 
-      <Box className="homepage-dog">
-        <div className="homepage-dog-wallpaper">
-          <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" />
-          <div className="homepage-dog-text">
-            <Typography sx={{
-              fontFamily: 'sansita-bold',
-              fontSize: '1.75em',
-              color: 'white',
-              letterSpacing: '0.5px',
-              mb: '0em',
-              lineHeight: '1.25em',
-            }}>Reserve now, pay later</Typography>
-            <h3 className="no-space mb-xs space-letters-sm">Plus, free cancellations!</h3>
-            <Button
-              onClick={handleImFlexibleClick}
-              variant="contained"
-              size="large"
-              sx={{
-                textTransform: "none",
-                fontFamily: "sansita-light",
-                mb: '1.5em',
-              }}
+      <EndingSection />
 
-            >
-              Book now
-            </Button>
-
-          </div>
-        </div>
-      </Box>
-   {/*   <Box sx={{ display: { xs: 'block', sm: 'none'} }} className="sticky-header is-sticky">
-        <FilterBar />
-      </Box>*/}
-  
-      {/*
-      <Hidden mdDown>
-        <Box
-          className="sticky-header"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Box
-            sx={{
-              maxWidth: "700px",
-              margin: 'auto'
-            }}
-          >
-            <DesktopFilterBar />
-          </Box>
-        </Box>
-      </Hidden>
-      */}
       <Footer />
     </div>
   );

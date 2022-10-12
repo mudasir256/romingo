@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { MonetizationOn, VerifiedUser } from "@mui/icons-material";
 import { Grid, Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
@@ -178,7 +177,7 @@ const ListingCard: FC<ListingCardProps> = ({
           alignItems: 'center'
         }}
       >
-        {currency}{Math.round(lowestTotalPriceAfterTax)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
+        {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
       </Typography>
     </Box>
  

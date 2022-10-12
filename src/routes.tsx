@@ -1,33 +1,33 @@
 import { FC } from "react";
 import { Switch, Route, Redirect } from "react-router";
+import loadable from '@loadable/component'
 
-import HomePage from "./pages/HomePage";
-import ListingPage from "./pages/ListingPage";
-import DetailsPage from "./pages/DetailsPage";
-import DetailPagev2 from "./pages/DetailPage-v2";
-import CheckoutPage from "./pages/CheckoutPage";
-import LosAngeles from "./pages/Cities/LosAngeles";
-import SanDiego from "./pages/Cities/SanDiego";
-import PalmSprings from "./pages/Cities/PalmSprings";
-import OrangeCounty from "./pages/Cities/OrangeCounty";
-import SanFrancisco from "./pages/Cities/SanFran";
-import SantaBarbara from "./pages/Cities/SantaBarbara";
-import ManageReservationPage from "./pages/ManageReservationPage";
-import YourReservationPage from "./pages/YourReservationPage";
-import About from "./pages/StaticPages/About";
-import ErrorPage from "./pages/ErrorPage";
-import FAQ from "./pages/StaticPages/FAQ";
-import Contact from "./pages/StaticPages/Contact";
-import Privacy from "./pages/StaticPages/Privacy";
-import Terms from "./pages/StaticPages/Terms";
-import RomingoScorePage from "./pages/StaticPages/RomingoScorePage";
-import ListYourProperty from "./pages/StaticPages/ListYourProperty";
-import RedRoverPartner from "./pages/StaticPages/RedRoverPartner";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Application from "./pages/StaticPages/Application";
+const HomePage = loadable(() => import('./pages/HomePage'))
+const ListingPage = loadable(() => import('./pages/ListingPage'))
+const DetailsPage = loadable(() => import('./pages/DetailsPage'))
+const CheckoutPage = loadable(() => import('./pages/CheckoutPage'))
+const LosAngeles = loadable(() => import('./pages/Cities/LosAngeles'))
+const SanDiego = loadable(() => import('./pages/Cities/SanDiego'))
+const PalmSprings = loadable(() => import('./pages/Cities/PalmSprings'))
+const OrangeCounty = loadable(() => import('./pages/Cities/OrangeCounty'))
+const SanFrancisco = loadable(() => import('./pages/Cities/SanFran'))
+const SantaBarbara = loadable(() => import('./pages/Cities/SantaBarbara'))
+const ManageReservationPage = loadable(() => import('./pages/ManageReservationPage'))
+const YourReservationPage = loadable(() => import('./pages/YourReservationPage'))
+const ErrorPage = loadable(() => import('./pages/ErrorPage'))
+const About = loadable(() => import('./pages/StaticPages/About'))
+const FAQ = loadable(() => import('./pages/StaticPages/FAQ'))
+const Contact = loadable(() => import('./pages/StaticPages/Contact'))
+const Privacy = loadable(() => import('./pages/StaticPages/Privacy'))
+const Terms = loadable(() => import('./pages/StaticPages/Terms'))
+const RomingoScorePage = loadable(() => import('./pages/StaticPages/RomingoScorePage'))
+const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProperty'))
+const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartner'))
+const Application = loadable(() => import('./pages/StaticPages/Application'))
+
+const Blog = loadable(() => import('./pages/Blog'))
+const BlogPost = loadable(() => import('./pages/BlogPost'))
 import { authService } from "./services/authService.js";
-import ModifyBooking from './components/ModifyBooking/ModifyBooking';
 
 interface RouteInterface {
   path: string;
@@ -156,11 +156,6 @@ const routes: RouteInterface[] = [
     component: BlogPost,
     requireAuth: false,
   },
-  {
-    path: "/modify-booking",
-    component: ModifyBooking,
-    requireAuth: false
-  }
 ];
 
 const AuthGuards = (props: any) => {
