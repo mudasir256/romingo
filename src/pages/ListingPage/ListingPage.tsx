@@ -323,7 +323,7 @@ const ListingPage: FC<Props> = () => {
     setHoverIndex(0);
     setHotelIndex(0);
 
-  }, [selectedFilter, cards, sortBy, value, rating]);
+  }, [selectedFilter, data, sortBy, value, rating]);
 
 
   const start = search.checkIn.substring(0, 10)
