@@ -950,42 +950,6 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         />
       </Box>
       }
-
-      {/* Temprory commented */}
-      {/* <div className="toggleWrap">  
-      <Typography
-          variant="body1"
-          sx={{
-            fontWeight: 600,
-            fontSize: "13px",
-            color: "#03989E",
-            display: { sm: "block", md: "flex" },
-            justifyContent: "center",
-            fontFamily: "Montserrat",
-          }}
-        >
-          BIG DOGS
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            mt: "1rem",
-            color: "#222",
-            fontWeight: 500,
-            fontSize: "1.25rem",
-            display: { sm: "block", md: "flex" },
-            justifyContent: "center",
-            fontFamily: "Roboto",
-          }}
-        >
-          <Switch value={bigDog} 
-            onChange={(e) => {
-              setBigDog( e.target.checked ? 1 : 0 );
-              history.push("/listings");
-              // Refresh
-          }} defaultChecked={false} />
-        </Typography>
-      </div> */}
     </Box>
   );
 };

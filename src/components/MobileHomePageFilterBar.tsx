@@ -3,23 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
-  Autocomplete,
   IconButton,
-  TextField,
   Button,
   Box,
   Typography,
   Grid,
   CSSObject,
-  useMediaQuery,
   Stack,
   FormControl,
   MenuItem,
   InputLabel,
   Select,
   Popover,
-  Hidden,
-  Container,
   ListSubheader,
 } from "@mui/material";
 
@@ -27,10 +22,7 @@ import {
   RemoveCircleOutline,
   AddCircleOutline,
   Event,
-  ExpandMore,
   LocationCity,
-  BeachAccess,
-  Waves,
   People,
   Today,
 } from "@mui/icons-material";
@@ -39,8 +31,6 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import PersonIcon from "@mui/icons-material/Person";
-import { randomDate } from "../tools.js";
 import { saveSearch } from "../store/searchReducer";
 import { DateTime } from "luxon";
 import { useMeasure } from "react-use";
