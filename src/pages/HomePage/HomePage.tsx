@@ -79,7 +79,6 @@ const HomePage: FC<Props> = () => {
   ).toISOString();
 
 
-
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
   let marina, losAngeles, kimpton, hyPortland, intercontinental, 
@@ -87,7 +86,6 @@ const HomePage: FC<Props> = () => {
     sanFrancisco, andre, monte, thompson;
 
   if (newData) {
-    console.log(newData)
     marina = newData.getHomepageProperties[0];
     losAngeles = newData.getHomepageProperties[1];
     kimpton = newData.getHomepageProperties[2];

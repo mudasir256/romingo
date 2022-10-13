@@ -27,7 +27,6 @@ const BookingDetailCard: FC = () => {
         variant="h6"
         sx={{
           color: "#222",
-          fontFamily: "Montserrat",
           textAlign: "left",
           mb: 1,
         }}
@@ -52,7 +51,6 @@ const BookingDetailCard: FC = () => {
               color: "#222",
               textIndent: "-8px",
               paddingLeft: "8px",
-              fontFamily: "Montserrat",
               fontWeight: 600,
             }}
           >
@@ -68,7 +66,6 @@ const BookingDetailCard: FC = () => {
               opacity: 0.75,
               textIndent: "-8px",
               paddingLeft: "8px",
-              fontFamily: "Roboto",
             }}
           >
             {DateTime.fromISO(details.checkIn).toFormat("MMM dd, yyyy")}
@@ -83,7 +80,6 @@ const BookingDetailCard: FC = () => {
               color: "#222",
               textIndent: "-8px",
               paddingLeft: "8px",
-              fontFamily: "Montserrat",
               fontWeight: 600,
             }}
           >
@@ -98,7 +94,6 @@ const BookingDetailCard: FC = () => {
               color: "text.primary",
               opacity: 0.75,
               textIndent: "-8px",
-              fontFamily: "Roboto",
               paddingLeft: "8px",
             }}
           >
@@ -119,7 +114,6 @@ const BookingDetailCard: FC = () => {
             color: "#222",
             textIndent: "-8px",
             paddingLeft: "8px",
-            fontFamily: "Montserrat",
             fontWeight: 600,
           }}
         >
@@ -135,7 +129,6 @@ const BookingDetailCard: FC = () => {
             color: "text.primary",
             textIndent: "-8px",
             paddingLeft: "8px",
-            fontFamily: "Roboto",
           }}
         >
           {`${details.occupants.adults} Adults - ${details.occupants.children} Children - ${details.occupants.dogs} Dogs`}
@@ -153,7 +146,6 @@ const BookingDetailCard: FC = () => {
             textTransform: "capitalize",
             color: "#222",
             textIndent: "-8px",
-            fontFamily: "Montserrat",
             fontWeight: 600,
             paddingLeft: "8px",
           }}
@@ -170,7 +162,6 @@ const BookingDetailCard: FC = () => {
             opacity: 0.75,
             textIndent: "-8px",
             paddingLeft: "8px",
-            fontFamily: "Roboto",
             mb: 1,
           }}
         >

@@ -15,7 +15,6 @@ interface Props {
 const ImageSlider: FC<Props> = ({ sx, images, name }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
-  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     if (images && images.length > 0) {

@@ -2,14 +2,10 @@ import { FC, useState } from "react";
 import { Grid, Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
-import RomingoScore from "../RomingoScore/RomingoScore";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
 import StarIcon from "@mui/icons-material/Star";
 
 import {
   Pets,
-  CreditCardOffTwoTone,
-  MoneyOffCsredTwoTone,
   ScaleTwoTone,
 } from '@mui/icons-material'
 
@@ -23,7 +19,6 @@ export interface ListingCardProps {
   cancellation?: boolean;
   lowestAveragePrice: number;
   lowestTotalPriceAfterTax: number;
-  listingsPagePromoText?: string;
   currency?: string;
   dogAmenities?: string[];
   showAmenities?: boolean;
@@ -38,7 +33,6 @@ export interface ListingCardProps {
     id: string;
     name: string;
   };
-  neighborhood: string;
   showPrice?: boolean;
   noLink?: boolean;
   alias: string;
@@ -68,11 +62,9 @@ const ListingCard: FC<ListingCardProps> = ({
   name,
   allows_big_dogs,
   addressLine1,
-  listingsPagePromoText,
   googlePlaceId,
   romingoScore,
   city,
-  neighborhood,
   cancellation = false,
   lowestAveragePrice,
   lowestTotalPriceAfterTax,
@@ -157,62 +149,29 @@ const ListingCard: FC<ListingCardProps> = ({
 
   const PriceDetails = () => (
     <Box sx={{ ml: 'auto', mr: '0.5em', mb: '0.25em' }}>
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: 'flex-end',
-        alignItems: "flex-end",
-      }}
-    >
-      <Typography
-        variant="body2"
+      <Box
         sx={{
-          mr: 0,
-          mt: '0.1em',
-          fontFamily: "overpass-bold",
-          fontSize: '1.25em',
-          fontWeight: 800,
-          display: 'flex',
-          alignItems: 'center'
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: 'flex-end',
+          alignItems: "flex-end",
         }}
       >
-        {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
-      </Typography>
-    </Box>
- 
-    {/*
-    {!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1 && (
-      <Typography
-        variant="body2"
-        sx={{
-          color: "text.secondary",
-          fontFamily: "Montserrat",
-          fontSize: "65%",
-          opacity: 0.8,
-          fontWeight: 600,
-        }}
-      >
-        Save{" "}
         <Typography
-          component="span"
+          variant="body2"
           sx={{
-            // textDecoration: "line-through",
-            // textDecorationColor: "#BC4749AA",
-            // textDecorationThickness: "1px",
-            color: "#4B7D2F",
-            fontFamily: "Montserrat",
-            fontSize: "120%",
-            position: "relative",
-            fontWeight: 600,
+            mr: 0,
+            mt: '0.1em',
+            fontFamily: "overpass-bold",
+            fontSize: '1.25em',
+            fontWeight: 800,
+            display: 'flex',
+            alignItems: 'center'
           }}
         >
-          ${Math.round(petFeePolicy.totalFees)}
-        </Typography>{" "}
-        in pet fees
-      </Typography>
-    )}
-  */}
+          {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
+        </Typography>
+      </Box>
     </Box>
   )
 

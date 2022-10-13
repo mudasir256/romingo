@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { alpha, styled } from "@mui/material/styles";
 import {
@@ -12,13 +12,7 @@ import {
   Container,
   Box,
   Divider,
-  TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   DialogProps,
-  DialogContentText,
 } from "@mui/material";
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
@@ -26,9 +20,8 @@ import Footer from "../../components/Footer";
 import ReservationDetails from "../../components/ReservationDetails";
 import ScrollToTop from "../../components/ScrollToTop";
 import { Error } from "@mui/icons-material";
-import { GetReservationDetails, CancelBooking } from '../../constants/constants';
-import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import DataTable, { ExpanderComponentProps } from 'react-data-table-component';
+import { CancelBooking } from '../../constants/constants';
+import { gql, useMutation } from "@apollo/client";
 import moment from "moment";
 interface BookingManage {
   image: string;
@@ -131,25 +124,7 @@ const ManageReservationPage: FC<Props> = () => {
   // );
   const data = {}
 
-  const [
-    cancelBooking,
-    { data: mutationData, loading: mutationLoading, error: mutationError },
-  ] = useMutation(gql`${CancelBooking}`);
 
-  // useEffect(() => {
-
-  //   if (data) {      
-  //     if (Object.keys(data?.getReservationDetails).length > 0) {
-  //       setList(data?.getReservationDetails)
-  //       setBookingStatus(data?.getReservationDetails[0].reservationStatus)
-  //       setSuccess(false)
-  //     }
-  //   }
-  // }, [data])
-
-  // useEffect(() => {
-  //   if (called && !data) setSuccess(true);
-  // }, [called])
 
   const handleFindReservation = () => {
     history.push({
@@ -172,99 +147,6 @@ const ManageReservationPage: FC<Props> = () => {
   const formatUnixLong = (timestamp: number) => {
     return new Date(timestamp).toLocaleString()
   }
-
-  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
-    setOpen(true);
-    setScroll(scrollType);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleCancelBooking = (confirmationId: any) => {
-    setOpenCancelConfirmation(true);
-    setConfirmationId(confirmationId);
-  }
-  const descriptionElementRef = React.useRef<HTMLElement>(null);
-  React.useEffect(() => {
-    if (open) {
-      const { current: descriptionElement } = descriptionElementRef;
-      if (descriptionElement !== null) {
-        descriptionElement.focus();
-      }
-    }
-  }, [open]);
-
-  const handleCancelReservation = () => {
-    if (confirmationId) {
-      cancelBooking({
-        variables: {
-          cancelBookingInput: {
-            confirmationId: confirmationId,
-            cancelAll: true
-          }
-        }
-      }).then((status) => {
-        setOpenCancelConfirmation(false)
-      })
-    }
-  }
-
-  const columns: any = [
-    {
-      name: 'Confirmation Id',
-      selector: (row: BookingInterface) => row.propertyConfirmationId,
-      width: '130px'
-    },
-    {
-      name: 'firstName',
-      selector: (row: BookingInterface) => row.firstName,
-    },
-    {
-      name: 'lastName',
-      selector: (row: BookingInterface) => row.lastName,
-    },
-    {
-      name: 'Check-in',
-      selector: (row: BookingInterface) => formatUnix(parseInt(row.checkInAtLocal)),
-    },
-    {
-      name: 'Check-out',
-      selector: (row: BookingInterface) => formatUnix(parseInt(row.checkOutAtLocal)),
-    },
-    {
-      name: 'Total $ + Tax',
-      selector: (row: BookingInterface) => `$${row.data.totalPriceAfterTax}`,
-    },
-    {
-      name: 'Can cancel?',
-      selector: (row: BookingInterface) => row.data.cancelationPolicy.cancelable ? 'Yes' : 'No',
-    },
-    {
-      name: 'Cancel by time',
-      selector: (row: BookingInterface) => formatUnixLong(parseInt(row.deadlineLocal)),
-      width: '180px',
-    },
-    {
-      name: 'Booking Status',
-      selector: (row: BookingInterface) => row.reservationStatus?.toUpperCase()
-    },
-    bookingStatus === "upcoming" && (
-      {
-        name: 'Action',
-        selector: (row: BookingInterface) =>
-          <>
-            {
-              <Button variant="contained" onClick={handleClickOpen('body')}>Modify</Button>
-            },
-            {
-              <Button variant="contained" onClick={() => handleCancelBooking(row.sabreConfirmationId)}>Cancel</Button>
-            }
-          </>,
-      })
-
-  ];
 
   return (
     <>
@@ -429,137 +311,6 @@ const ManageReservationPage: FC<Props> = () => {
           />
         </Grid>
       </Container>
-      {/*
-
-      <Box
-        sx={{
-          pt: {
-            md: "40px",
-            xs: "70px",
-          },
-        }}
-      ><Container
-          maxWidth="lg"
-          sx={{
-            py: 3,
-            minHeight: "calc(100vh - 382px)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            mb: 5,
-          }}
-        >
-          <Box sx={{ maxWidth: "600px" }}>
-            <Typography
-              variant="h4"
-              sx={{
-                color: "primary.main",
-                mb: 1,
-                textAlign: "center",
-              }}
-            >
-              Manage Your Reservation
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "text.primary",
-                my: 2,
-                textAlign: "center",
-              }}
-            >
-              To manage a booking made through Romingo, you will need the
-              original email address used to make the reservation and the
-              confirmation number from your confirmation email. Please review
-              the cancellation policy for your reservation prior to cancelling
-              your reservation. The policy was provided on the reservation
-              checkout page as well as your confirmation email.
-            </Typography>
-          </Box>
-          {confirmedReservation && (
-            <Box
-              id="simple-tabpanel-0"
-              aria-labelledby={`simple-tab-0`}
-              sx={{
-                py: 3,
-                px: 1,
-              }}
-            >
-              <BookingManageCard
-                {...booking}
-                sx={{
-                  mb: 3,
-                }}
-              />
-            </Box>
-          )}
-          {!confirmedReservation && (
-            <Box>
-              <ValidatorForm
-                onSubmit={(e: React.SyntheticEvent) => {
-                  e.preventDefault();
-                  setConfirmedReservation(true);
-                }}
-              >
-                <Box>
-                  <TextValidator
-                    fullWidth
-                    name="email"
-                    label="Email Address"
-                    variant="outlined"
-                    value={email}
-                    validators={["required", "isEmail"]}
-                    helperText="The email address used to create the reservation"
-                    errorMessages={[
-                      "This field is required",
-                      "Email is not valid",
-                    ]}
-                    onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                      setEmail(e.currentTarget.value);
-                    }}
-                    FormHelperTextProps={{}}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    mt: 1,
-                  }}
-                >
-                  <TextValidator
-                    fullWidth
-                    name="reservation"
-                    label="Confirmation Number"
-                    variant="outlined"
-                    value={reservationNumber}
-                    validators={["required"]}
-                    errorMessages={["This field is required"]}
-                    helperText="Found in your confirmation email"
-                    onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                      setReservationNumber(e.currentTarget.value);
-                    }}
-                    FormHelperTextProps={{}}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    mt: 2,
-                    textAlign: "center",
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    size="large"
-                    color="primary"
-                    type="submit"
-                  >
-                    Retrieve Reservation
-                  </Button>
-                </Box>
-              </ValidatorForm>
-            </Box>
-          )}
-        </Container> */}
       <Footer />
     </>
   );

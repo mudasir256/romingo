@@ -98,6 +98,12 @@ const ListingPage: FC<Props> = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>([]);
   const [showExtras, setShowExtras] = useState<boolean>(false);
   const [showFilters, setShowFilters] = useState<boolean>(false);
+  const [maxPrice, setMaxPrice] = useState(0)
+  const [value, setValue] = useState([0, 500])
+
+  const [sorted, setSorted] = useState([])
+  const [markers, setMarkers] = useState([])
+
 
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cityList.length; i++) {
@@ -139,23 +145,22 @@ const ListingPage: FC<Props> = () => {
     }
   );
 
-  const { data: rack_data } = useQuery(
-    gql`
-      ${GetHotelRackBySearch}
-    `,
-    {
-      variables: {
-        adults: search.occupants.adults,
-        cityId: search.city,
-        checkIn: search.checkIn.substring(0, 10),
-        checkOut: search.checkOut.substring(0, 10),
-        children: ageParam,
-        dogs: search.occupants.dogs,
-        allows_big_dogs: allowBigDogs
-      },
-    }
-  );
-
+  // const { data: rack_data, error: error2 } = useQuery(
+  //   gql`
+  //     ${GetHotelRackBySearch}
+  //   `,
+  //   {
+  //     variables: {
+  //       adults: search.occupants.adults,
+  //       cityId: search.city,
+  //       checkIn: search.checkIn.substring(0, 10),
+  //       checkOut: search.checkOut.substring(0, 10),
+  //       children: ageParam,
+  //       dogs: search.occupants.dogs,
+  //       allows_big_dogs: allowBigDogs
+  //     },
+  //   }
+  // );
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -170,60 +175,18 @@ const ListingPage: FC<Props> = () => {
       if (error) {
         return;
       } else {
+        const price = Math.max(...data.properties.map(card => card.lowestAveragePrice))
+        setMaxPrice(price)
+        setValue([0, price])
         dispatch(setList(data.properties));
       }
     }
-    if (data?.properties && rack_data?.propertiesByCorporateDiscount) {
-      dispatch(
-        setList([
-          ...data.properties,
-          ...rack_data?.propertiesByCorporateDiscount,
-        ])
-      );
-    }
-  }, [data, rack_data]);
+  }, [data]);
 
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;
   });
   
-
-  const [sorted, setSorted] = useState(
-    [...cards].sort((a: any, b: any) =>
-      (
-        sortBy === "score" ? a.romingoScore < b.romingoScore
-          : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
-          : sortBy === "low" ? a.lowestAveragePrice > b.lowestAveragePrice
-          : a.page_rank > b.page_rank
-      )
-        ? 1
-        : -1
-    )
-  );
-
-  const [markers, setMarkers] = useState(
-    [...cards]
-      .sort((a: any, b: any) =>
-        (
-          sortBy === "score" ? a.romingoScore < b.romingoScore
-            : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
-            : sortBy === "low" ? a.lowestAveragePrice > b.lowestAveragePrice
-            : a.page_rank > b.page_rank
-        )
-          ? 1
-          : -1
-      )
-      .map((card: ListingCardProps) => {
-        refArray.push(React.createRef<HTMLAnchorElement>());
-        return {
-          lat: card.location.latitude,
-          lng: card.location.longitude,
-          type: "hotel",
-          price: card.lowestAveragePrice,
-        };
-      })
-  );
-
   const y = useMotionValue(0);
   const variants = {
     collapsed: {
@@ -255,10 +218,6 @@ const ListingPage: FC<Props> = () => {
 
   const viewStatus = useStore().getState().viewStatusReducer.status;
 
-  const [maxPrice, setMaxPrice] = useState(
-    Math.max(...cards.map(card => card.lowestAveragePrice))
-  )
-  const [value, setValue] = useState([0, maxPrice])
   const [rating, setRating] = useState(0)
   const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -376,7 +335,6 @@ const ListingPage: FC<Props> = () => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
   const location = useLocation<any>();
 
-  console.log(cards)
 
   return (
     <>
@@ -792,19 +750,6 @@ interface SortBarProps {
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
   const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
-  const history = useHistory();
-  // const options = [
-  //   "101: Wheelchair access",
-  //   "2016: Rollaway adult",
-  //   "228: Business center",
-  //   "233: Tennis court",
-  //   "259: High speed internet access",
-  //   "71: Pool",
-  //   "68: Parking",
-  //   "77: Room Service",
-  // ];
-
-
 
   // -Air Conditioned
 
@@ -1004,42 +949,6 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         />
       </Box>
       }
-
-      {/* Temprory commented */}
-      {/* <div className="toggleWrap">  
-      <Typography
-          variant="body1"
-          sx={{
-            fontWeight: 600,
-            fontSize: "13px",
-            color: "#03989E",
-            display: { sm: "block", md: "flex" },
-            justifyContent: "center",
-            fontFamily: "Montserrat",
-          }}
-        >
-          BIG DOGS
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            mt: "1rem",
-            color: "#222",
-            fontWeight: 500,
-            fontSize: "1.25rem",
-            display: { sm: "block", md: "flex" },
-            justifyContent: "center",
-            fontFamily: "Roboto",
-          }}
-        >
-          <Switch value={bigDog} 
-            onChange={(e) => {
-              setBigDog( e.target.checked ? 1 : 0 );
-              history.push("/listings");
-              // Refresh
-          }} defaultChecked={false} />
-        </Typography>
-      </div> */}
     </Box>
   );
 };
