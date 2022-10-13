@@ -750,7 +750,6 @@ interface SortBarProps {
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
   const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
-  const history = useHistory();
 
   // -Air Conditioned
 

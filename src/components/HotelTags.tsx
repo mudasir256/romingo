@@ -4,8 +4,6 @@ import { Chip, Box } from "@mui/material";
 
 import {
   Pets,
-  CreditCardOffTwoTone,
-  MoneyOffCsredTwoTone,
   ScaleTwoTone,
 } from '@mui/icons-material'
 

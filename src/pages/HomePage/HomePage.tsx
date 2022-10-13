@@ -79,7 +79,6 @@ const HomePage: FC<Props> = () => {
   ).toISOString();
 
 
-
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
   let marina, losAngeles, kimpton, hyPortland, intercontinental, 
