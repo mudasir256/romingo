@@ -12,9 +12,7 @@ import Checkbox from "@mui/material/Checkbox";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { gql, useMutation } from "@apollo/client";
 import {
-  CreateBooking,
   CreateBooking2,
-  CreatePaymentIntent,
   CreateSetupIntent,
 } from "../../constants/constants";
 import { useSelector } from "react-redux";
@@ -70,19 +68,6 @@ const CheckoutInformation: FC<Props> = ({
     countryCode: 1,
     phone: "",
   });
-
-  const [createPI, { data: piData, loading: piLoading }] = useMutation(
-    gql`
-      ${CreatePaymentIntent}
-    `
-  );
-
-  const [createBooking, { data: createData, loading: createLoading }] =
-    useMutation(
-      gql`
-        ${CreateBooking}
-      `
-    );
 
   const [createBooking2, { data: bnplData, loading: bnplLoading }] =
     useMutation(
@@ -166,14 +151,6 @@ const CheckoutInformation: FC<Props> = ({
                 }
               );
             }
-            // const { error, paymentIntent } = await stripe.confirmCardPayment(
-            //   clientSecret,
-            //   {
-            //     payment_method: {
-            //       card: cardElement,
-            //     },
-            //   }
-            // );
 
             createBooking2({
               variables: {
@@ -304,33 +281,6 @@ const CheckoutInformation: FC<Props> = ({
     });
   };
 
-  // useEffect(() => {
-  //   createPI({
-  //     variables: { createPaymentIntentInput: { priceKey } },
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    if (piData?.priceChanged) {
-      setPriceChanged(true);
-    }
-    // if (piData?.createPaymentIntent) {
-    //   setClientSecret(piData?.createPaymentIntent?.paymentIntent?.clientSecret);
-    // }
-  }, [piData]);
-
-  useEffect(() => {
-    if (createData?.createBooking?.priceChanged) {
-      setPriceChanged(true);
-    }
-    if (
-      createData?.createBooking2?.booking?.sabreConfirmationId &&
-      createData?.createBooking2?.booking?.propertyConfirmationId
-    ) {
-      history.push("?success=true", []);
-    }
-  }, [createData]);
-
   useEffect(() => {
     if (bnplData?.createBooking2?.priceChanged) {
       setPriceChanged(true);
@@ -405,9 +355,7 @@ const CheckoutInformation: FC<Props> = ({
           }}
         >
           <>
-            {(createLoading ||
-              piLoading ||
-              siLoading ||
+            {(siLoading ||
               paymentLoading ||
               bnplLoading) && (
               <>
@@ -500,94 +448,10 @@ const CheckoutInformation: FC<Props> = ({
                   </Box>
                 )}
               </Box>
-            ) : createData ? (
-              <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
-                {!createData?.createBooking?.booking?.sabreConfirmationId &&
-                !createData?.createBooking?.booking?.propertyConfirmationId ? (
-                  <Box sx={{ mt: -5 }}>
-                    <ErrorDog size="150px" />
-                    <Typography
-                      variant="h5"
-                      color="primary"
-                      sx={{ textAlign: "left", mb: 2 }}
-                    >
-                      Whoops! We caught our own tail while booking
-                    </Typography>
-                    <Typography variant="body1">
-                      This could happen for one or more of the following
-                      reasons:
-                    </Typography>
-                    <ul>
-                      <li>
-                        <Typography variant="body1">
-                          The room you were trying to book is no longer
-                          available
-                        </Typography>
-                      </li>
-                      <li>
-                        <Typography variant="body1">
-                          The hotel&apos;s booking server is down{" "}
-                        </Typography>
-                      </li>
-                      <li>
-                        <Typography variant="body1">
-                          Our payment processor is down{" "}
-                        </Typography>
-                      </li>
-                    </ul>
-                    <Typography variant="body1">
-                      If this behavior continues, please contact support with
-                      the following reference #:
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
-                    >
-                      {createData?.createBooking?.booking?.faunaDocId}
-                    </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
-                      Note: your credit card may have been authorized, but not
-                      charged. If your card was authorized, authorization should
-                      automatically fall off in a few days.
-                    </Typography>
-                  </Box>
-                ) : (
-                  <Box sx={{ mt: -5 }}>
-                    <Typography
-                      variant="h5"
-                      color="primary"
-                      sx={{ textAlign: "left", mb: 2 }}
-                    >
-                      You&apos;re booked!
-                    </Typography>
-
-                    <Typography variant="body1" sx={{ textAlign: "left" }}>
-                      Your confirmation number is:
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
-                    >
-                      {createData?.createBooking?.booking
-                        ?.propertyConfirmationId
-                        ? createData?.createBooking?.booking
-                            ?.propertyConfirmationId
-                        : createData?.createBooking?.booking
-                            ?.sabreConfirmationId}
-                    </Typography>
-                    <Typography variant="body1">
-                      We&apos;ve sent you an email with all of the details of
-                      your booking.
-                    </Typography>
-                  </Box>
-                )}
-              </Box>
             ) : (
               <Box
                 sx={{
                   display:
-                    createLoading ||
-                    piLoading ||
                     siLoading ||
                     paymentLoading ||
                     bnplLoading

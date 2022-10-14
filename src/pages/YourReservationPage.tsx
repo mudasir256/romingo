@@ -68,14 +68,11 @@ const YourReservationPage: FC<Props> = () => {
     (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room
   );
 
-  const hotel = useSelector((state: any) => {
-    return state.hotelDetailReducer.detail;
-  });
-
-  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
-    setModifyDialogOpen(true);
-    setScroll(scrollType);
-  };
+  ///Modify
+  // const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
+  //   setModifyDialogOpen(true);
+  //   setScroll(scrollType);
+  // };
 
   const [cancellableText, setCancellableText] = useState<any>("")
   const formatUnixLong = (timestamp: number) => {
@@ -112,7 +109,7 @@ const YourReservationPage: FC<Props> = () => {
           setSuccesAlert(true)
           setOpenCancelConfirmation(false)
           setIsAlertOpen(true)
-          history.push('/reservation/manage')
+          history.push('/listings')
         }
       })
     }
