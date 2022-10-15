@@ -500,13 +500,13 @@ const ListingPage: FC<Props> = () => {
                     <Button onClick={() => {
                       setShowFilters(!showFilters)
                       setShowExtras(false)
-                    }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                    }} sx={{ width: '100%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Sort & Filter</Button>
                   </Grid>
                   <Grid sx={{ mt: '1em' }} item xs={6}>
                     <Button onClick={() => {
                       setShowExtras(!showExtras)
                       setShowFilters(false)
-                    }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                    }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
                   </Grid>
                 </Grid>
                
@@ -639,13 +639,13 @@ const ListingPage: FC<Props> = () => {
                   <Button onClick={() => {
                     setShowFilters(!showFilters)
                     setShowExtras(false)
-                  }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                  }} sx={{ width: '100%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Sort & Filter</Button>
                 </Grid>
                 <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
                   <Button onClick={() => {
                     setShowExtras(!showExtras)
                     setShowFilters(false)
-                  }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                  }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
                 </Grid>
               </Grid>
               <SortBar 
@@ -751,17 +751,19 @@ interface SortBarProps {
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
   const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
 
+  const [shownOptionsCount, setShownOptionsCount] = useState(5)
   // -Air Conditioned
 
   const options = [
     //"Rollaway adult",
-    "Health club",
-    "Business center",
-    "Tennis court",
-    //"High speed internet access",
     "Pool",
     "Hot Tub",
     "Restaurant",
+    "Health club",
+
+    "Business center",
+    "Tennis court",
+    //"High speed internet access",
     "Room service",
     "Onsite laundry",
     //"Parking",
@@ -821,6 +823,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     <Box
       sx={{
         mt: { xs :'1em', sm: '1em', md: '1em' },
+        mx: 'auto',
         pb: '2em'
       }}
     >
@@ -838,7 +841,8 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           borderRadius: "30px",
           fontSize: "0.9em",
           color: "#03989E",
-          width: '100%',
+          width: '90%',
+          left: '16px',
           maxWidth: '480px',
         }}
         sx={{  mb: '1.5em' }}
@@ -847,16 +851,16 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
         }
       >
-        <MenuItem value="featured">Sort by: Featured</MenuItem>
-        <MenuItem value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
-        <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
-        <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
+        <MenuItem dense value="featured">Sort by: Featured</MenuItem>
+        <MenuItem dense value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
+        <MenuItem dense value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
+        <MenuItem dense value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
       }
 
       {showFilters &&
-      <FormControl sx={{ mt: '1em', width: '100%'}}>
-        <InputLabel id="demo-simple-select-label"><Typography sx={{  fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
+      <FormControl  sx={{ mt: '1em', width: '100%' }}>
+        <InputLabel id="demo-simple-select-label"><Typography sx={{  ml: '0.5em', fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
         <Select
           id="demo-simple-select"
           color="primary"
@@ -872,12 +876,16 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
             borderRadius: "30px",
             fontSize: "0.9em",
             color: "#03989E", 
+            width: '90%',
+            left: '16px',
             maxWidth: '480px',
           }}
           multiple
           renderValue={(selectedFilter) => selectedFilter.join(", ")}
         >
           <MenuItem
+            sx={{ width: '40%'}}
+            dense
             value="all"
             classes={{
               root: isAllSelected ? classes.selectedAll : ""
@@ -897,14 +905,16 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
               primary="Select All"
             />
           </MenuItem>
-          {options.map((option: any) => (
-            <MenuItem key={option} value={option}>
+          {options.slice(0,shownOptionsCount).map((option: any) => (
+            <MenuItem dense key={option} value={option} sx={{ width: '40%'}}>
               <ListItemIcon>
                 <Checkbox checked={selectedFilter.indexOf(option) > -1} />
               </ListItemIcon>
-              <ListItemText primary={option} />
+              <ListItemText dense primary={option} />
             </MenuItem>
           ))}
+          {shownOptionsCount == options.length && <Button sx={{ ml: '1em', width: '90%' }} variant="outlined" onClick={() => setShownOptionsCount(5)}>Show Less</Button>}
+          {shownOptionsCount != options.length && <Button  sx={{ ml: '1em', width: '90%' }} variant="outlined" onClick={() => setShownOptionsCount(options.length)}>Show More</Button>}
         </Select>
       </FormControl>
       }
