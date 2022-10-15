@@ -99,6 +99,7 @@ const ListingPage: FC<Props> = () => {
   const [showExtras, setShowExtras] = useState<boolean>(false);
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [maxPrice, setMaxPrice] = useState(0)
+  const [minPrice, setMinPrice] = useState(0)
   const [value, setValue] = useState([0, 500])
 
   const [sorted, setSorted] = useState([])
@@ -176,8 +177,11 @@ const ListingPage: FC<Props> = () => {
         return;
       } else {
         const price = Math.max(...data.properties.map(card => card.lowestAveragePrice))
+        const lowPrice = Math.min(...data.properties.map(card => card.lowestAveragePrice))
+
         setMaxPrice(price)
-        setValue([0, price])
+        setMinPrice(lowPrice)
+        setValue([lowPrice, price])
         dispatch(setList(data.properties));
       }
     }
@@ -492,8 +496,8 @@ const ListingPage: FC<Props> = () => {
                   height: sorted.length > 0 ? 'auto' : '120vh'
                 }}
               >
-            
-            
+                
+
                 <Grid container spacing={1}>
                   <FilterBar />
                   <Grid sx={{ mt: '1em' }} item xs={6}>
@@ -507,6 +511,13 @@ const ListingPage: FC<Props> = () => {
                       setShowExtras(!showExtras)
                       setShowFilters(false)
                     }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button onClick={() => {
+                      setSelectedFilter([])
+                      setRating(null)
+                      setValue([minPrice, maxPrice])
+                    }} sx={{ width: '95%' }} size="small" variant="outlined">Clear Filters</Button>
                   </Grid>
                 </Grid>
                
@@ -526,6 +537,7 @@ const ListingPage: FC<Props> = () => {
                   setRating={setRating}
                   showFilters={showFilters}
                   showExtras={showExtras}
+                  minPrice={minPrice}
                 />
                 {cards.length > 0 && (
                   <Typography
@@ -647,6 +659,13 @@ const ListingPage: FC<Props> = () => {
                     setShowFilters(false)
                   }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
                 </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={() => {
+                    setSelectedFilter([])
+                    setRating(null)
+                    setValue([minPrice, maxPrice])
+                  }} sx={{ width: '97%' }} size="small" variant="outlined">Clear Filters</Button>
+                </Grid>
               </Grid>
               <SortBar 
                 sortBy={sortBy} 
@@ -662,6 +681,7 @@ const ListingPage: FC<Props> = () => {
                 setRating={setRating}
                 showFilters={showFilters}
                 showExtras={showExtras}
+                minPrice={minPrice}
               />
             </Grid>
 
@@ -749,7 +769,7 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras, minPrice } = props;
 
   const [shownOptionsCount, setShownOptionsCount] = useState(5)
   // -Air Conditioned
@@ -884,7 +904,6 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           renderValue={(selectedFilter) => selectedFilter.join(", ")}
         >
           <MenuItem
-            sx={{ width: '40%'}}
             dense
             value="all"
             classes={{
@@ -906,7 +925,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
             />
           </MenuItem>
           {options.slice(0,shownOptionsCount).map((option: any) => (
-            <MenuItem dense key={option} value={option} sx={{ width: '40%'}}>
+            <MenuItem dense key={option} value={option}>
               <ListItemIcon>
                 <Checkbox checked={selectedFilter.indexOf(option) > -1} />
               </ListItemIcon>
@@ -942,7 +961,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           onChange={handleSliderChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
-          min={0}
+          min={minPrice}
           step={1}
           max={maxPrice}
           marks={[
