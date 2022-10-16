@@ -512,6 +512,7 @@ const ListingPage: FC<Props> = () => {
                       setShowFilters(false)
                     }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
                   </Grid>
+                  {(showFilters || showExtras) && 
                   <Grid item xs={12}>
                     <Button onClick={() => {
                       setSelectedFilter([])
@@ -519,6 +520,7 @@ const ListingPage: FC<Props> = () => {
                       setValue([minPrice, maxPrice])
                     }} sx={{ width: '95%' }} size="small" variant="outlined">Clear All Filters</Button>
                   </Grid>
+                  }
                 </Grid>
 
                 <div style={{ marginTop: '0.5em' }}>
@@ -682,6 +684,7 @@ const ListingPage: FC<Props> = () => {
                     setShowFilters(false)
                   }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
                 </Grid>
+                {(showFilters || showExtras) && 
                 <Grid item xs={12}>
                   <Button onClick={() => {
                     setSelectedFilter([])
@@ -689,6 +692,7 @@ const ListingPage: FC<Props> = () => {
                     setValue([minPrice, maxPrice])
                   }} sx={{ width: '97%' }} size="small" variant="outlined">Clear All Filters</Button>
                 </Grid>
+                }
               </Grid>
 
               <div style={{ marginTop: '0.5em' }}>
