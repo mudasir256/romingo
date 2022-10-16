@@ -1046,6 +1046,7 @@ const DesktopFilterBar: FC = () => {
   // eslint-disable-next-line
   const cities = useSelector((state: any) => state.cityListReducer.cities);
 
+
   const [selectedCity, setSelectedCity] = useState(
     search.city ? search.city : ""
   );
