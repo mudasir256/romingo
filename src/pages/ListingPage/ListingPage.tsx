@@ -19,6 +19,7 @@ import {
   ListItemText,
   Slider,
   Rating,
+  Chip,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -98,7 +99,7 @@ const ListingPage: FC<Props> = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>([]);
   const [showExtras, setShowExtras] = useState<boolean>(false);
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const [maxPrice, setMaxPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(500)
   const [minPrice, setMinPrice] = useState(0)
   const [value, setValue] = useState([0, 500])
 
@@ -276,7 +277,6 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
-    setMaxPrice(Math.max(...cards.map(card => card.lowestAveragePrice)))
     let filtered = [...cards]
     if (selectedFilter.length > 0) {
       filtered = cards.filter(card => selectedFilter.every(filter => {
@@ -517,10 +517,33 @@ const ListingPage: FC<Props> = () => {
                       setSelectedFilter([])
                       setRating(null)
                       setValue([minPrice, maxPrice])
-                    }} sx={{ width: '95%' }} size="small" variant="outlined">Clear Filters</Button>
+                    }} sx={{ width: '95%' }} size="small" variant="outlined">Clear All Filters</Button>
                   </Grid>
                 </Grid>
-               
+
+                <div style={{ marginTop: '0.5em' }}>
+                  {(value[0] != minPrice || value[1] != maxPrice) &&
+                    <Chip
+                      size="small"
+                      label="Custom Price Range"
+                      onDelete={() => setValue([minPrice, maxPrice])}
+                    />
+                  }
+                  {selectedFilter.length > 0 &&
+                    <Chip
+                      size="small"
+                      label={`${selectedFilter.length} ${selectedFilter.length === 1 ? 'amenity' : 'amenities'} selected`}
+                      onDelete={() => setSelectedFilter([])}
+                    />
+                  }
+                  {rating > 0 &&
+                    <Chip
+                      size="small"
+                      label={`${rating} star hotel`}
+                      onDelete={() => setRating(0)}
+                    />
+                  }
+                </div>
 
                 <SortBar 
                   size="small" 
@@ -664,9 +687,34 @@ const ListingPage: FC<Props> = () => {
                     setSelectedFilter([])
                     setRating(null)
                     setValue([minPrice, maxPrice])
-                  }} sx={{ width: '97%' }} size="small" variant="outlined">Clear Filters</Button>
+                  }} sx={{ width: '97%' }} size="small" variant="outlined">Clear All Filters</Button>
                 </Grid>
               </Grid>
+
+              <div style={{ marginTop: '0.5em' }}>
+                {(value[0] != minPrice || value[1] != maxPrice) &&
+                  <Chip
+                    size="small"
+                    label="Custom Price Range"
+                    onDelete={() => setValue([minPrice, maxPrice])}
+                  />
+                }
+                {selectedFilter.length > 0 &&
+                  <Chip
+                    size="small"
+                    label={`${selectedFilter.length} ${selectedFilter.length === 1 ? 'amenity' : 'amenities'} selected`}
+                    onDelete={() => setSelectedFilter([])}
+                  />
+                }
+                {rating > 0 &&
+                  <Chip
+                    size="small"
+                    label={`${rating} star hotel`}
+                    onDelete={() => setRating(0)}
+                  />
+                }
+              </div>
+
               <SortBar 
                 sortBy={sortBy} 
                 bigDog={allowBigDogs} 
