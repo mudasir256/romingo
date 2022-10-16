@@ -19,6 +19,7 @@ import {
   ListItemText,
   Slider,
   Rating,
+  Chip,
 } from "@mui/material";
 import {
   RemoveCircleOutline,
@@ -98,7 +99,8 @@ const ListingPage: FC<Props> = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>([]);
   const [showExtras, setShowExtras] = useState<boolean>(false);
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const [maxPrice, setMaxPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(500)
+  const [minPrice, setMinPrice] = useState(0)
   const [value, setValue] = useState([0, 500])
 
   const [sorted, setSorted] = useState([])
@@ -176,8 +178,11 @@ const ListingPage: FC<Props> = () => {
         return;
       } else {
         const price = Math.max(...data.properties.map(card => card.lowestAveragePrice))
+        const lowPrice = Math.min(...data.properties.map(card => card.lowestAveragePrice))
+
         setMaxPrice(price)
-        setValue([0, price])
+        setMinPrice(lowPrice)
+        setValue([lowPrice, price])
         dispatch(setList(data.properties));
       }
     }
@@ -272,7 +277,6 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
-    setMaxPrice(Math.max(...cards.map(card => card.lowestAveragePrice)))
     let filtered = [...cards]
     if (selectedFilter.length > 0) {
       filtered = cards.filter(card => selectedFilter.every(filter => {
@@ -492,24 +496,54 @@ const ListingPage: FC<Props> = () => {
                   height: sorted.length > 0 ? 'auto' : '120vh'
                 }}
               >
-            
-            
+                
+
                 <Grid container spacing={1}>
                   <FilterBar />
                   <Grid sx={{ mt: '1em' }} item xs={6}>
                     <Button onClick={() => {
                       setShowFilters(!showFilters)
                       setShowExtras(false)
-                    }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                    }} sx={{ width: '100%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Sort & Filter</Button>
                   </Grid>
                   <Grid sx={{ mt: '1em' }} item xs={6}>
                     <Button onClick={() => {
                       setShowExtras(!showExtras)
                       setShowFilters(false)
-                    }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                    }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button onClick={() => {
+                      setSelectedFilter([])
+                      setRating(null)
+                      setValue([minPrice, maxPrice])
+                    }} sx={{ width: '95%' }} size="small" variant="outlined">Clear All Filters</Button>
                   </Grid>
                 </Grid>
-               
+
+                <div style={{ marginTop: '0.5em' }}>
+                  {(value[0] != minPrice || value[1] != maxPrice) &&
+                    <Chip
+                      size="small"
+                      label="Custom Price Range"
+                      onDelete={() => setValue([minPrice, maxPrice])}
+                    />
+                  }
+                  {selectedFilter.length > 0 &&
+                    <Chip
+                      size="small"
+                      label={`${selectedFilter.length} ${selectedFilter.length === 1 ? 'amenity' : 'amenities'} selected`}
+                      onDelete={() => setSelectedFilter([])}
+                    />
+                  }
+                  {rating > 0 &&
+                    <Chip
+                      size="small"
+                      label={`${rating} star hotel`}
+                      onDelete={() => setRating(0)}
+                    />
+                  }
+                </div>
 
                 <SortBar 
                   size="small" 
@@ -526,6 +560,7 @@ const ListingPage: FC<Props> = () => {
                   setRating={setRating}
                   showFilters={showFilters}
                   showExtras={showExtras}
+                  minPrice={minPrice}
                 />
                 {cards.length > 0 && (
                   <Typography
@@ -639,15 +674,47 @@ const ListingPage: FC<Props> = () => {
                   <Button onClick={() => {
                     setShowFilters(!showFilters)
                     setShowExtras(false)
-                  }} sx={{ width: '100%' }} variant="contained">Sort & Filter</Button>
+                  }} sx={{ width: '100%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Sort & Filter</Button>
                 </Grid>
                 <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
                   <Button onClick={() => {
                     setShowExtras(!showExtras)
                     setShowFilters(false)
-                  }} sx={{ width: '95%' }} variant="contained">Hotel Rating & Price</Button>
+                  }} sx={{ width: '95%', backgroundColor: '#D3D3D3', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={() => {
+                    setSelectedFilter([])
+                    setRating(null)
+                    setValue([minPrice, maxPrice])
+                  }} sx={{ width: '97%' }} size="small" variant="outlined">Clear All Filters</Button>
                 </Grid>
               </Grid>
+
+              <div style={{ marginTop: '0.5em' }}>
+                {(value[0] != minPrice || value[1] != maxPrice) &&
+                  <Chip
+                    size="small"
+                    label="Custom Price Range"
+                    onDelete={() => setValue([minPrice, maxPrice])}
+                  />
+                }
+                {selectedFilter.length > 0 &&
+                  <Chip
+                    size="small"
+                    label={`${selectedFilter.length} ${selectedFilter.length === 1 ? 'amenity' : 'amenities'} selected`}
+                    onDelete={() => setSelectedFilter([])}
+                  />
+                }
+                {rating > 0 &&
+                  <Chip
+                    size="small"
+                    label={`${rating} star hotel`}
+                    onDelete={() => setRating(0)}
+                  />
+                }
+              </div>
+
               <SortBar 
                 sortBy={sortBy} 
                 bigDog={allowBigDogs} 
@@ -662,6 +729,7 @@ const ListingPage: FC<Props> = () => {
                 setRating={setRating}
                 showFilters={showFilters}
                 showExtras={showExtras}
+                minPrice={minPrice}
               />
             </Grid>
 
@@ -749,19 +817,21 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras, minPrice } = props;
 
+  const [shownOptionsCount, setShownOptionsCount] = useState(5)
   // -Air Conditioned
 
   const options = [
     //"Rollaway adult",
-    "Health club",
-    "Business center",
-    "Tennis court",
-    //"High speed internet access",
     "Pool",
     "Hot Tub",
     "Restaurant",
+    "Health club",
+
+    "Business center",
+    "Tennis court",
+    //"High speed internet access",
     "Room service",
     "Onsite laundry",
     //"Parking",
@@ -821,6 +891,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     <Box
       sx={{
         mt: { xs :'1em', sm: '1em', md: '1em' },
+        mx: 'auto',
         pb: '2em'
       }}
     >
@@ -838,7 +909,8 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           borderRadius: "30px",
           fontSize: "0.9em",
           color: "#03989E",
-          width: '100%',
+          width: '90%',
+          left: '16px',
           maxWidth: '480px',
         }}
         sx={{  mb: '1.5em' }}
@@ -847,16 +919,16 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
         }
       >
-        <MenuItem value="featured">Sort by: Featured</MenuItem>
-        <MenuItem value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
-        <MenuItem value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
-        <MenuItem value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
+        <MenuItem dense value="featured">Sort by: Featured</MenuItem>
+        <MenuItem dense value="score">&nbsp;&nbsp;Highest Rating</MenuItem>
+        <MenuItem dense value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
+        <MenuItem dense value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
       }
 
       {showFilters &&
-      <FormControl sx={{ mt: '1em', width: '100%'}}>
-        <InputLabel id="demo-simple-select-label"><Typography sx={{  fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
+      <FormControl  sx={{ mt: '1em', width: '100%' }}>
+        <InputLabel id="demo-simple-select-label"><Typography sx={{  ml: '0.5em', fontFamily: "overpass-light", color: 'gray' }}>{selectedFilter.length} amenity {selectedFilter.length === 1 ? 'filter' : 'filters'} selected</Typography></InputLabel>
         <Select
           id="demo-simple-select"
           color="primary"
@@ -872,12 +944,15 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
             borderRadius: "30px",
             fontSize: "0.9em",
             color: "#03989E", 
+            width: '90%',
+            left: '16px',
             maxWidth: '480px',
           }}
           multiple
           renderValue={(selectedFilter) => selectedFilter.join(", ")}
         >
           <MenuItem
+            dense
             value="all"
             classes={{
               root: isAllSelected ? classes.selectedAll : ""
@@ -897,14 +972,16 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
               primary="Select All"
             />
           </MenuItem>
-          {options.map((option: any) => (
-            <MenuItem key={option} value={option}>
+          {options.slice(0,shownOptionsCount).map((option: any) => (
+            <MenuItem dense key={option} value={option}>
               <ListItemIcon>
                 <Checkbox checked={selectedFilter.indexOf(option) > -1} />
               </ListItemIcon>
-              <ListItemText primary={option} />
+              <ListItemText dense primary={option} />
             </MenuItem>
           ))}
+          {shownOptionsCount == options.length && <Button sx={{ ml: '1em', width: '90%' }} variant="outlined" onClick={() => setShownOptionsCount(5)}>Show Less</Button>}
+          {shownOptionsCount != options.length && <Button  sx={{ ml: '1em', width: '90%' }} variant="outlined" onClick={() => setShownOptionsCount(options.length)}>Show More</Button>}
         </Select>
       </FormControl>
       }
@@ -932,7 +1009,7 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           onChange={handleSliderChange}
           valueLabelDisplay="auto"
           getAriaValueText={valuetext}
-          min={0}
+          min={minPrice}
           step={1}
           max={maxPrice}
           marks={[

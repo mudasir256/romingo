@@ -6,12 +6,8 @@ import { Dispatch } from "redux";
 import { Dialog, CSSObject, Divider } from "@mui/material";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Typography from "@mui/material/Typography";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
@@ -19,9 +15,6 @@ import { DateTime } from "luxon";
 
 import MobileFilterBar from '../MobileHomePageFilterBar'
 
-import OccupantSelector, {
-  Occupant,
-} from "../OccupantSelector/OccupantSelector";
 
 import { saveSearch } from "../../store/searchReducer";
 
@@ -64,12 +57,6 @@ const FilterBar: FC<Props> = ({
   const getCityName = (cityId: string) => {
     for (let i = 0; i < cities.length; i++) {
       if (cities[i].id === cityId) return cities[i].name;
-    }
-  };
-
-  const getCity = (cityId: string) => {
-    for (let i = 0; i < cities.length; i++) {
-      if (cities[i].id === cityId) return cities[i];
     }
   };
 
