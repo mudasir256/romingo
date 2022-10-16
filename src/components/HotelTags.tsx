@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { CSSObject } from "@mui/material";
 import { Chip, Box } from "@mui/material";
-
+import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import {
   Pets,
   ScaleTwoTone,
@@ -34,12 +34,18 @@ const HotelTags: FC<Props> = ({ petFeePolicy, allows_big_dogs }) => {
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-      {hasPetFeeReduction &&
+      {hasPetFeeReduction ?
         <Chip
           size="small"
           sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
-          label={<Box sx={{ ml: '0em', pl: 0}}><span style={{color: 'green', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900 }}>${Math.round(petFeePolicy.totalFees)}</span> pet fee savings</Box>}
+          label={<Box sx={{ ml: '0em', pl: 0}}><span style={{color: 'red', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900, textDecoration: 'line-through' }}>${Math.round(petFeePolicy.totalFees)}</span> $0 pet fees</Box>}
         />
+
+        :  <Chip
+            size="small"
+            sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
+            label={<Box sx={{ ml: '0em', pl: 0}}>$0 pet fees</Box>}
+          />
       }
 
       {allows_big_dogs ?
