@@ -2,9 +2,11 @@ import { FC } from "react";
 import { Switch, Route, Redirect } from "react-router";
 import loadable from '@loadable/component'
 
-const HomePage = loadable(() => import('./pages/HomePage'))
+import HomePage from './pages/HomePage'
+// const HomePage = loadable(() => import('./pages/HomePage'))
 const ListingPage = loadable(() => import('./pages/ListingPage'))
-const DetailsPage = loadable(() => import('./pages/DetailsPage'))
+import DetailsPage from './pages/DetailsPage'
+// const DetailsPage = loadable(() => import('./pages/DetailsPage'))
 const CheckoutPage = loadable(() => import('./pages/CheckoutPage'))
 const LosAngeles = loadable(() => import('./pages/Cities/LosAngeles'))
 const SanDiego = loadable(() => import('./pages/Cities/SanDiego'))
