@@ -522,18 +522,30 @@ const ListingPage: FC<Props> = () => {
                       onDelete={() => setValue([minPrice, maxPrice])}
                     />
                   }
-                  {selectedFilter.length > 0 &&
-                    <Chip
-                      size="small"
-                      label={`${selectedFilter.length} ${selectedFilter.length === 1 ? 'amenity' : 'amenities'} selected`}
-                      onDelete={() => setSelectedFilter([])}
-                    />
-                  }
+                  {selectedFilter.map(filter => (
+                    <Chip key={filter} size="small" label={filter} onDelete={() => {
+                      const indexOf = selectedFilter.indexOf(filter)
+                      const newArray = [...selectedFilter]
+                      newArray.splice(indexOf, 1)
+                      setSelectedFilter(newArray)
+                    }}/>
+                  ))}
                   {rating > 0 &&
                     <Chip
                       size="small"
                       label={`${rating} star hotel`}
                       onDelete={() => setRating(0)}
+                    />
+                  }
+                  {(rating > 0 || selectedFilter.length > 0 || value[0] != minPrice || value[1] != maxPrice) &&
+                    <Chip
+                      size="small"
+                      label="Clear all filters"
+                      onDelete={() => {
+                        setSelectedFilter([])
+                        setRating(null)
+                        setValue([minPrice, maxPrice])
+                      }}
                     />
                   }
                 </div>
@@ -555,15 +567,15 @@ const ListingPage: FC<Props> = () => {
                   showExtras={showExtras}
                   minPrice={minPrice}
                 />
+
                 
 
                 {(showFilters || showExtras) && 
                 <Grid item xs={12}>
                   <Button onClick={() => {
-                    setSelectedFilter([])
-                    setRating(null)
-                    setValue([minPrice, maxPrice])
-                  }} sx={{ width: '95%' }} size="small" variant="outlined">Clear All Filters</Button>
+                    setShowExtras(false)
+                    setShowFilters(false)
+                  }} sx={{ width: '95%' }} size="small" variant="outlined">Done</Button>
                 </Grid>
                 }
 
@@ -672,20 +684,17 @@ const ListingPage: FC<Props> = () => {
               }}
             >
               <Hidden mdDown>
+
+              <Box sx={{ mx: 'auto' }}>
                 <DesktopFilterBar />
+              </Box>
               </Hidden>
               <Grid container spacing={1}>
-                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
+                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={12}>
                   <Button onClick={() => {
-                    setShowFilters(!showFilters)
-                    setShowExtras(false)
+                    setShowFilters(true)
+                    setShowExtras(true)
                   }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E' }} variant="contained">Sort & Filter</Button>
-                </Grid>
-                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={6}>
-                  <Button onClick={() => {
-                    setShowExtras(!showExtras)
-                    setShowFilters(false)
-                  }} sx={{ width: '95%', backgroundColor: 'white', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
                 </Grid>
               </Grid>
 
@@ -697,13 +706,14 @@ const ListingPage: FC<Props> = () => {
                     onDelete={() => setValue([minPrice, maxPrice])}
                   />
                 }
-                {selectedFilter.length > 0 &&
-                  <Chip
-                    size="small"
-                    label={`${selectedFilter.length} ${selectedFilter.length === 1 ? 'amenity' : 'amenities'} selected`}
-                    onDelete={() => setSelectedFilter([])}
-                  />
-                }
+                {selectedFilter.map(filter => (
+                  <Chip key={filter} size="small" label={filter} onDelete={() => {
+                    const indexOf = selectedFilter.indexOf(filter)
+                    const newArray = [...selectedFilter]
+                    newArray.splice(indexOf, 1)
+                    setSelectedFilter(newArray)
+                  }}/>
+                ))}
                 {rating > 0 &&
                   <Chip
                     size="small"
@@ -711,11 +721,22 @@ const ListingPage: FC<Props> = () => {
                     onDelete={() => setRating(0)}
                   />
                 }
+                {(rating > 0 || selectedFilter.length > 0 || value[0] != minPrice || value[1] != maxPrice) &&
+                  <Chip
+                    size="small"
+                    label="Clear all filters"
+                    onDelete={() => {
+                      setSelectedFilter([])
+                      setRating(null)
+                      setValue([minPrice, maxPrice])
+                    }}
+                  />
+                } 
               </Grid>
             </Grid>
 
          
-            <Box sx={{mb: '1em' }}>
+            <Box sx={{mb: '1em', display: 'grid',   gridTemplateColumns: 'repeat(2, 1fr)', alignItems: 'center' }}>
               <SortBar 
                 sortBy={sortBy} 
                 bigDog={allowBigDogs} 
@@ -738,10 +759,9 @@ const ListingPage: FC<Props> = () => {
             {(showFilters || showExtras) && 
             <Grid item xs={12} sx={{ mb: '1em' }}>
               <Button onClick={() => {
-                setSelectedFilter([])
-                setRating(null)
-                setValue([minPrice, maxPrice])
-              }} sx={{ width: '97%' }} size="small" variant="outlined">Clear All Filters</Button>
+                setShowExtras(false)
+                setShowFilters(false)
+              }} sx={{ width: '97%' }} size="small" variant="outlined">Done</Button>
             </Grid>
             }
 
@@ -769,12 +789,13 @@ const ListingPage: FC<Props> = () => {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "flex-start",
+
                     }}
                   >
                     {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
                     {getCityName(search.city)}
                     {location.state?.flag && ` (${location.state?.flag})`}
-                  </Typography>
+                  </Typography>    
                 )}
                 {!cards.length ? (
                   <>
@@ -911,14 +932,13 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           textAlign: "center",
           fontFamily: "overpass-light",
           minWidth: "250px",
-          maxHeight: "48px",
+          maxHeight: "40px",
           borderRadius: "30px",
           fontSize: "0.9em",
           color: "#03989E",
           width: '90%',
           left: '16px',
         }}
-        sx={{  mb: '1.5em' }}
         variant="standard"
         startAdornment={
           <FilterList sx={{ color: "#03989E", height: "16px" }} />
@@ -929,6 +949,21 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
         <MenuItem dense value="low">&nbsp;&nbsp;Price: Low to High</MenuItem>
         <MenuItem dense value="high">&nbsp;&nbsp;Price: High to Low</MenuItem>
       </Select>
+      }
+
+
+      {showExtras && 
+      <Box sx={{ display: 'flex', mt: {xs : 0, sm: 0, md: '1.5em'}, pl: { xs :'3.5em', lg: '0em' } }}>
+        <Typography sx={{ fontFamily: 'overpass-regular', mr: '0.5em' }} component="legend">Hotel Star Rating:</Typography>
+        <Rating
+          name="simple-controlled"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+          }}
+          sx={{ color: 'red'}}
+        />
+      </Box>
       }
 
       {showFilters &&
@@ -988,20 +1023,6 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
           {shownOptionsCount != options.length && <Button  sx={{ ml: '1em', width: '90%' }} variant="outlined" onClick={() => setShownOptionsCount(options.length)}>Show More</Button>}
         </Select>
       </FormControl>
-      }
-
-      {showExtras && 
-      <Box sx={{ display: 'flex', mt: {xs : 0, sm: 0, md: '1.5em'}, pl: { xs :'3.5em', lg: '0em' } }}>
-        <Typography sx={{ fontFamily: 'overpass-regular', mr: '0.5em' }} component="legend">Hotel Star Rating:</Typography>
-        <Rating
-          name="simple-controlled"
-          value={rating}
-          onChange={(event, newValue) => {
-            setRating(newValue);
-          }}
-          sx={{ color: 'red'}}
-        />
-      </Box>
       }
 
       {showExtras &&
