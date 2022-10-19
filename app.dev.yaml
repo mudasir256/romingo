@@ -7,6 +7,25 @@ automatic_scaling:
   min_instances: 0
   max_instances: 1
   target_cpu_utilization: 0.90
+handlers:
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+env_variables:
+  NODE_ENV: 'development'
+  REACT_APP_STRIPE_CLIENT_KEY: "pk_test_51JcD2bBdk22npNeJQBWoPOP8JMvOlhYFkCr9KB5YlxU9vtV7Amdkl3lVLxX0qWxXy3YmghTewaILVISoURTfY8YJ00VvhyCojd"
+  REACT_APP_ENDPOINT: "https://dev.graphql.romingo.com/graphql"
+vpc_access_connector:
+  name: projects/eminent-helix-324520/locations/us-east1/connectors/vpc-connector-us-east1
+
+# service: site
+# runtime: nodejs14
+# instance_class: F1
+# automatic_scaling:
+#   min_instances: 0
+#   max_instances: 1
+#   target_cpu_utilization: 0.90
 # handlers:
   # - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|jpeg|css|js|webp|svg))$
   #   static_files: build/\1
@@ -18,7 +37,7 @@ automatic_scaling:
   #   secure: always
   #   redirect_http_response_code: 301
   #   script: auto
-env_variables:
-  NODE_ENV: "development"
-  REACT_APP_STRIPE_CLIENT_KEY: "pk_test_51JcD2bBdk22npNeJQBWoPOP8JMvOlhYFkCr9KB5YlxU9vtV7Amdkl3lVLxX0qWxXy3YmghTewaILVISoURTfY8YJ00VvhyCojd"
-  REACT_APP_ENDPOINT: "https://dev.graphql.romingo.com/graphql"
+# env_variables:
+#   NODE_ENV: "development"
+#   REACT_APP_STRIPE_CLIENT_KEY: "pk_test_51JcD2bBdk22npNeJQBWoPOP8JMvOlhYFkCr9KB5YlxU9vtV7Amdkl3lVLxX0qWxXy3YmghTewaILVISoURTfY8YJ00VvhyCojd"
+#   REACT_APP_ENDPOINT: "https://dev.graphql.romingo.com/graphql"
