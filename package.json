@@ -67,7 +67,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "node server.js",
     "dev": "craco start",
     "build": "craco build --force",
     "test": "craco test",

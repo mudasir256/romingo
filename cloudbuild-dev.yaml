@@ -15,8 +15,5 @@ steps:
       - "REACT_APP_ENDPOINT=https://dev.graphql.romingo.com/graphql"
   # deploy the service
   - name: gcr.io/cloud-builders/gcloud
-  # start server
-  - name: node:16.13.0
-    entrypoint: node server.js
     args: ["app", "deploy", "--appyaml", "app.dev.yaml"]
 timeout: 1220s

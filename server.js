@@ -51,6 +51,6 @@ app.get("*", (req, res) => {
   }
   return res.sendFile(path.join(__dirname, "build", "index.html"));
 });
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("listened on 3000");
 });
