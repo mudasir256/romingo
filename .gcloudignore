@@ -1,8 +1,13 @@
 # om namah shivaya
 
 # ignore everything
-/[!.]*
-/.?*
+#/[!.]*
+#/.?*
 
 # except
-!/build/
+#!/build/
+
+.git
+.gitignore
+# Node.js dependencies:
+node_modules/

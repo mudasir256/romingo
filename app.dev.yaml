@@ -3,6 +3,7 @@
 service: site
 runtime: nodejs14
 instance_class: F1
+entrypoint: npm run start
 automatic_scaling:
   min_instances: 0
   max_instances: 1
