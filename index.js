@@ -39,7 +39,9 @@ app.use("/static", express.static(path.join(__dirname, "build/static")));
 
 app.get("*", (req, res) => {
   let pathname = req.pathname || req.originalUrl;
+  console.log(pathname)
   let page = seo.find((item) => item.path === pathname);
+  console.log(page)
   if (page) {
     let html = fs.readFileSync(path.join(__dirname, "build", "index.html"));
     let htmlWithSeo = html
