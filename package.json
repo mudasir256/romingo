@@ -68,6 +68,7 @@
   },
   "scripts": {
     "start": "node ./server.js",
+    "prod": "node ./server.js",
     "dev": "craco start",
     "build": "craco build --force",
     "test": "craco test",
