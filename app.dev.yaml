@@ -11,7 +11,9 @@ handlers:
   - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|jpeg|css|js|webp|svg))$
     static_files: build/\1
     upload: build/(.*)
-  - url: /(.*)
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
     script: auto
 env_variables:
   NODE_ENV: "development"
