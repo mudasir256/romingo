@@ -562,7 +562,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   return (
     <>
       <Helmet>
-        <title>{title}</title>
+        <title>{title} Pet Policy - Romingo</title>
         <description>{defaultDescription}</description>
         <meta property="og:title" content={title} />
         <meta property="og:description" content={defaultDescription} />

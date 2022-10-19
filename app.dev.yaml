@@ -13,7 +13,7 @@ handlers:
     upload: build/(.*)
   - url: /(.*)
     upload: build/index.html
-    script: server.js
+    script: auto
 env_variables:
   NODE_ENV: "development"
   REACT_APP_STRIPE_CLIENT_KEY: "pk_test_51JcD2bBdk22npNeJQBWoPOP8JMvOlhYFkCr9KB5YlxU9vtV7Amdkl3lVLxX0qWxXy3YmghTewaILVISoURTfY8YJ00VvhyCojd"
