@@ -6,6 +6,7 @@
   "repository": {
     "type": "git"
   },
+  "start": "node server.js",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -67,8 +68,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "node ./server.js",
-    "prod": "node ./server.js",
+    "start": "node server.js",
+    "prod": "node server.js",
     "dev": "craco start",
     "build": "craco build --force",
     "test": "craco test",
