@@ -12,7 +12,6 @@ handlers:
     static_files: build/\1
     upload: build/(.*)
   - url: /(.*)
-    upload: build/index.html
     script: auto
 env_variables:
   NODE_ENV: "development"
