@@ -558,11 +558,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [data, isLoaded]);
 
-  const title = `Romingo | ${name}`
+  const title = `${name} Pet Policy - Romingo`
   return (
     <>
       <Helmet>
-        <title>{title} Pet Policy - Romingo</title>
+        <title>{title}</title>
         <description>{defaultDescription}</description>
         <meta property="og:title" content={title} />
         <meta property="og:description" content={defaultDescription} />
