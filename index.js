@@ -26,7 +26,7 @@ fs.createReadStream('./hotels.csv')
       path: `/hotel/${row[22]}`,
       title: `${row[4]} Pet Policy - Romingo`,
       description: row[5],
-      image: `https://storage.googleapis.com/romingo-production-public/images/${row[16]}/${row[11]}`
+      image: `https://storage.googleapis.com/romingo-production-public/images/${encodeURIComponent(row[16])}/${row[11]}`
     })
   })
   .on('end', () => console.log(seo));
