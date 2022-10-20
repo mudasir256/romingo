@@ -1,24 +1,42 @@
-# om namah shivaya
-
 service: site
 runtime: nodejs14
 instance_class: F1
+entrypoint: npm run start
 automatic_scaling:
-  min_instances: 1
-  max_instances: 2
-  target_cpu_utilization: 0.75
+  min_instances: 0
+  max_instances: 1
+  target_cpu_utilization: 0.90
 handlers:
-  - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|jpeg|css|js|webp|svg|xml))$
-    static_files: build/\1
-    upload: build/(.*)
+  - url: /.*
     secure: always
     redirect_http_response_code: 301
-  - url: /(.*)
-    static_files: build/index.html
-    upload: build/index.html
-    secure: always
-    redirect_http_response_code: 301
+    script: auto
 env_variables:
-  NODE_ENV: 'production'
-  REACT_APP_STRIPE_CLIENT_KEY: 'pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW'
-  REACT_APP_ENDPOINT: 'https://graphql.romingo.com/graphql'
+    NODE_ENV: 'production'
+    REACT_APP_STRIPE_CLIENT_KEY: 'pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW'
+    REACT_APP_ENDPOINT: 'https://graphql.romingo.com/graphql'
+  vpc_access_connector:
+    name: projects/romingo-production/locations/us-east1/connectors/vpc-connector-us-east1
+
+# service: site
+# runtime: nodejs14
+# instance_class: F1
+# automatic_scaling:
+#   min_instances: 1
+#   max_instances: 2
+#   target_cpu_utilization: 0.75
+# handlers:
+#   - url: /(.*\.(gif|media|json|ico|eot|ttf|woff|woff2|png|jpg|jpeg|css|js|webp|svg|xml))$
+#     static_files: build/\1
+#     upload: build/(.*)
+#     secure: always
+#     redirect_http_response_code: 301
+#   - url: /(.*)
+#     static_files: build/index.html
+#     upload: build/index.html
+#     secure: always
+#     redirect_http_response_code: 301
+# env_variables:
+#   NODE_ENV: 'production'
+#   REACT_APP_STRIPE_CLIENT_KEY: 'pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW'
+#   REACT_APP_ENDPOINT: 'https://graphql.romingo.com/graphql'
