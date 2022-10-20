@@ -56,5 +56,5 @@ app.get("*", (req, res) => {
   return res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 app.listen(parseInt(process.env.PORT) || 8080, () => {
-  console.log("listened on ");
+  console.log("listened on");
 });
