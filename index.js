@@ -46,8 +46,8 @@ app.get("*", (req, res) => {
     let html = fs.readFileSync(path.join(__dirname, "build", "index.html"));
     let htmlWithSeo = html
       .toString()
-      .replace("__META_TITLE__", page.title)
-      .replace("__META_DESCRIPTION__", page.description)
+      .replaceAll("__META_TITLE__", page.title)
+      .replaceAll("__META_DESCRIPTION__", page.description)
       .replace("__META_IMAGE__", page.image);
     return res.send(htmlWithSeo);
   }
