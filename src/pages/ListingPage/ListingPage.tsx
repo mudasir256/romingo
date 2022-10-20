@@ -343,7 +343,7 @@ const ListingPage: FC<Props> = () => {
   return (
     <>
       <Helmet>
-        <title>Romingo | Find pet friendly hotels</title>
+        <title>Find pet friendly hotels - Romingo</title>
         <description>Search for and find pet friendly hotels in your area.</description>
         <meta property="og:title" content="Romingo | Find pet friendly hotels" />
         <meta property="og:description" content="Search for and find pet friendly hotels in your area." />

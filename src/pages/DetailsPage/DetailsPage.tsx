@@ -558,7 +558,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [data, isLoaded]);
 
-  const title = `Romingo | ${name}`
+  const title = `${name} Pet Policy - Romingo`
   return (
     <>
       <Helmet>
@@ -1501,20 +1501,17 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     mt: "1rem",
                   }}
                 >
-                  <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: "1.5rem" }}>
-                    <ActivitiesNearby
-                      nearby={nearby}
-                      title={"Nearby Activities"}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6} md={6} lg={6} sx={{ pt: "1.5rem" }}>
-                    <Box sx={{ display: "flex", flex: 1, height: "100%" }}>
-                      <PetAmmenities
-                        title={"Pet Amenities"}
-                        amenities={amenities}
-                      />
-                    </Box>
+                  <Grid item xs={12}>
+                     <Typography
+                       variant="h6"
+                       sx={{
+                         color: "#222",
+                         mt: { xs: 1, sm: 5 },
+                         mb: "1rem",
+                         textAlign: "left",
+                       }}
+                     >Hotel Description</Typography>
+                    <ReadMore small text={data?.getPropertyDetails?.petFeePolicy?.desc} length={200} />
                   </Grid>
                 </Grid>
               </Grid>

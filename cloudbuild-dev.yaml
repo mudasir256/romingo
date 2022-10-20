@@ -16,4 +16,4 @@ steps:
   # deploy the service
   - name: gcr.io/cloud-builders/gcloud
     args: ["app", "deploy", "--appyaml", "app.dev.yaml"]
-timeout: 1220s
+timeout: 2020s

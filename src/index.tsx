@@ -56,27 +56,27 @@ const Package = () => (
   </React.StrictMode>
 )
 
-if (rootElement.hasChildNodes()) {
-  hydrate(<Package />, rootElement);
-} else {
-  render(<Package />, rootElement);
-}
+// if (rootElement.hasChildNodes()) {
+//   hydrate(<Package />, rootElement);
+// } else {
+//   render(<Package />, rootElement);
+// }
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <ThemeProvider theme={muTheme}>
-//       <ApolloProvider client={client}>
-//         <Provider store={store}>
-//           <PersistGate loading={null} persistor={persistor}>
-//             <Elements stripe={stripePromise}>
-//               <Router history={hist}>
-//                 <App />
-//               </Router>
-//             </Elements>
-//           </PersistGate>
-//         </Provider>
-//       </ApolloProvider>
-//     </ThemeProvider>
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider theme={muTheme}>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Elements stripe={stripePromise}>
+              <Router history={hist}>
+                <App />
+              </Router>
+            </Elements>
+          </PersistGate>
+        </Provider>
+      </ApolloProvider>
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);

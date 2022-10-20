@@ -216,10 +216,9 @@ const HomePage: FC<Props> = () => {
   )
 
   return (
-    <div className="homepage">
-
+    <div className="homepage">      
       <Helmet>
-        <title>Romingo | Book pet friendly hotels</title>
+        <title>Book pet friendly hotels - Romingo</title>
         <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
         <meta property="og:title" content="Romingo | Book pet friendly hotels" />
         <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
