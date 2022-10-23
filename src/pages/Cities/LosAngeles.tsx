@@ -18,6 +18,7 @@ import {
 } from "react-redux";
 import { gql, useQuery } from "@apollo/client";
 import { GetHotelBySearch } from "../../constants/constants";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 const LosAngeles: FC = () => {
 
@@ -196,7 +197,7 @@ const LosAngeles: FC = () => {
 
           <Grid item xs={12}>
             <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Different Hotels</Typography>
-            {data.properties.slice(0, 4).map(card => (
+            {data?.properties.slice(0, 4).map(card => (
               <Box key={card.id} sx={{ py: '0.5em' }}>
                 <ListingCard
                   {...card}
@@ -205,6 +206,7 @@ const LosAngeles: FC = () => {
                 />
               </Box>
             ))}
+            {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
           </Grid>
 
 
