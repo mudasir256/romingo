@@ -15,6 +15,17 @@ import ScrollToTop from "../../components/ScrollToTop";
 const ListYourProperty: FC = () => {
   return (
     <>
+      <Helmet>
+        <title>List your property - Romingo</title>
+        <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
+        <meta property="og:title" content="List your property - Romingo" />
+        <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       <ScrollToTop />
       <Navbar />
       <Container sx={{ mt: 10, mb: 5 }}>

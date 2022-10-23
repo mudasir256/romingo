@@ -16,7 +16,25 @@ const seo = [
     title: 'Find pet friendly hotels - Romingo',
     description: 'Search for and find pet friendly hotels in your area.',
     image: "https://romingo.com/static/media/logo.11150e63.png"
-  }
+  },
+  {
+    path: '/faq',
+    title: 'Frequently asked questions - Romingo',
+    description: 'Frequently asked questions at Romingo.',
+    image: ''
+  },
+  {
+    path: '/about',
+    title: 'About - Romingo',
+    description: 'Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.',
+    image: ''
+  },
+  {
+    path: '/contact',
+    title: 'Contact - Romingo',
+    description: 'Contact Romingo.',
+    image: ''
+  },
 ]
 fs.createReadStream('./hotels.csv')
   .pipe(csv.parse({ headers: false }))
@@ -29,13 +47,15 @@ fs.createReadStream('./hotels.csv')
       image: `https://storage.googleapis.com/romingo-production-public/images/${encodeURIComponent(row[16])}/${row[11]}`
     })
   })
-  .on('end', () => console.log(seo));
+  .on('end', () => console.log('loaded hotels.csv'));
 
 
 
 const app = new express();
 
 app.use("/static", express.static(path.join(__dirname, "build/static")));
+app.use("/public", express.static(path.join(__dirname, "build/images")));
+
 
 app.get("*", (req, res) => {
   let pathname = req.pathname || req.originalUrl;
@@ -52,8 +72,16 @@ app.get("*", (req, res) => {
       .replace("__META_DESCRIPTION__", page.description)
       .replace("__META_IMAGE__", page.image);
     return res.send(htmlWithSeo);
+  } else {
+    let htmlWithSeo = html
+      .toString()
+      .replace("__META_TITLE__", 'Romingo')
+      .replace("__META_DESCRIPTION__", 'Romingo - book pet friendly hotels.')
+      .replace("__META_TITLE__", 'Romingo')
+      .replace("__META_DESCRIPTION__", 'Romingo - book pet friendly hotels.')
+      .replace("__META_IMAGE__", '');
+    return res.send(htmlWithSeo);
   }
-  return res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 app.listen(parseInt(process.env.PORT) || 8080, () => {
   console.log("listened on");
