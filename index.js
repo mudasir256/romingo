@@ -9,13 +9,13 @@ const seo = [
     path: "/",
     title: "Book pet friendly hotels - Romingo",
     description: "Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.",
-    image: "https://romingo.com/static/media/logo.11150e63.png",
+    image: "https://romingo.com/public/images/home.jpg",
   },
   {
     path: '/listings',
     title: 'Find pet friendly hotels - Romingo',
     description: 'Search for and find pet friendly hotels in your area.',
-    image: "https://romingo.com/static/media/logo.11150e63.png"
+    image: "https://romingo.com/public/images/listings.jpg"
   },
   {
     path: '/faq',
@@ -27,7 +27,7 @@ const seo = [
     path: '/about',
     title: 'About - Romingo',
     description: 'Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.',
-    image: ''
+    image: 'https://romingo.com/public/images/home.jpg'
   },
   {
     path: '/contact',
@@ -56,6 +56,9 @@ const app = new express();
 app.use("/static", express.static(path.join(__dirname, "build/static")));
 app.use("/public", express.static(path.join(__dirname, "build/")));
 
+app.get('/sitemap.xml', function(req, res, next) {
+  res.sendFile(__dirname + '/public/sitemap.xml'); 
+})
 
 app.get("*", (req, res) => {
   let pathname = req.pathname || req.originalUrl;
@@ -73,6 +76,7 @@ app.get("*", (req, res) => {
       .replace("__META_IMAGE__", page.image);
     return res.send(htmlWithSeo);
   } else {
+    let html = fs.readFileSync(path.join(__dirname, "build", "index.html"));
     let htmlWithSeo = html
       .toString()
       .replace("__META_TITLE__", 'Romingo')

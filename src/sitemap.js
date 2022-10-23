@@ -67,9 +67,9 @@ const routes = [
   {
     path: "/application",
   },
-  {
-    path: "/blog/:tag?",
-  },
+  // {
+  //   path: "/blog/:tag?",
+  // },
   {
     path: "/blog/post/:id",
   },
