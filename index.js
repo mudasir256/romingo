@@ -54,7 +54,7 @@ fs.createReadStream('./hotels.csv')
 const app = new express();
 
 app.use("/static", express.static(path.join(__dirname, "build/static")));
-app.use("/public", express.static(path.join(__dirname, "build/images")));
+app.use("/public", express.static(path.join(__dirname, "build/")));
 
 
 app.get("*", (req, res) => {
