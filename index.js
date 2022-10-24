@@ -70,6 +70,24 @@ const seo = [
     title: 'Palm Springs Hotels - Romingo',
     description: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg'
+  },
+  {
+    path: '/list-your-property',
+    title: 'List your property - Romingo',
+    description: 'Interested in listing your property on the pet-friendliest site on the web? Learn more about Romingo partnerships & distribution by completing this brief form. Someone from our team will be in touch asap!',
+    image: ''
+  },
+  {
+    path: '/reservation/manage',
+    title: 'Manage your reservation - Romingo',
+    description: "Modify, cancel, or rebook your reservation on Romingo.",
+    image: ''
+  },
+  {
+    path: '/terms-of-use',
+    title: 'Terms of use - Romingo',
+    description: 'Accessing the Romingo website (“Site”) constitutes your agreement to the following Terms or Use (“Terms”). You should read these Terms and our privacy policy in their entirety before accessing, using, or obtaining information or services from the Site.',
+    image: ''
   }
 ]
 fs.createReadStream('./hotels.csv')
