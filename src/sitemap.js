@@ -10,9 +10,9 @@ const routes = [
   {
     path: "/listings",
   },
-  {
-    path: "/details/:id",
-  },
+  // {
+  //   path: "/details/:id",
+  // },
   {
     path: "/hotel/:alias",
   },

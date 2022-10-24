@@ -80,7 +80,7 @@ fs.createReadStream('./hotels.csv')
       path: `/hotel/${row[22]}`,
       title: `${row[4]} Pet Policy - Romingo`,
       description: row[5],
-      image: `https://storage.googleapis.com/romingo-production-public/images/${encodeURIComponent(row[16])}/${row[11]}`
+      image: `https://storage.googleapis.com/romingo-production-public/images/${encodeURIComponent(row[16])}/${row[11]}`,
     })
   })
   .on('end', () => console.log('loaded hotels.csv'));
@@ -109,7 +109,8 @@ app.get("*", (req, res) => {
       .replace("__META_DESCRIPTION__", page.description)
       .replace("__META_TITLE__", page.title)
       .replace("__META_DESCRIPTION__", page.description)
-      .replace("__META_IMAGE__", page.image);
+      .replace("__META_IMAGE__", page.image)
+      .replace("__META_URL__", `https://romingo.com${page.path}`);
     return res.send(htmlWithSeo);
   } else {
     let html = fs.readFileSync(path.join(__dirname, "build", "index.html"));
@@ -119,7 +120,8 @@ app.get("*", (req, res) => {
       .replace("__META_DESCRIPTION__", 'Romingo - book pet friendly hotels.')
       .replace("__META_TITLE__", 'Romingo')
       .replace("__META_DESCRIPTION__", 'Romingo - book pet friendly hotels.')
-      .replace("__META_IMAGE__", '');
+      .replace("__META_IMAGE__", '')
+      .replace("__META_URL__", pathname);
     return res.send(htmlWithSeo);
   }
 });
