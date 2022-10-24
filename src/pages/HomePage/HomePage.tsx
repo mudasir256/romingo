@@ -81,7 +81,7 @@ const HomePage: FC<Props> = () => {
 
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
-  let marina, losAngeles, kimpton, hyPortland, intercontinental, 
+  let marina, losAngeles, kimpton, intercontinental, 
     missionBay, regency, sonesta, zags, sanDiego, line,
     sanFrancisco, andre, monte, thompson;
 
@@ -89,18 +89,17 @@ const HomePage: FC<Props> = () => {
     marina = newData.getHomepageProperties[0];
     losAngeles = newData.getHomepageProperties[1];
     kimpton = newData.getHomepageProperties[2];
-    hyPortland = newData.getHomepageProperties[3];
-    intercontinental = newData.getHomepageProperties[4];
-    missionBay = newData.getHomepageProperties[5];
-    regency = newData.getHomepageProperties[6];
-    sonesta = newData.getHomepageProperties[7];
-    zags = newData.getHomepageProperties[8];
-    sanDiego = newData.getHomepageProperties[9];
-    line = newData.getHomepageProperties[10];
-    sanFrancisco = newData.getHomepageProperties[11];
-    andre = newData.getHomepageProperties[12];
-    monte = newData.getHomepageProperties[13];
-    thompson = newData.getHomepageProperties[14];
+    intercontinental = newData.getHomepageProperties[3];
+    missionBay = newData.getHomepageProperties[4];
+    regency = newData.getHomepageProperties[5];
+    sonesta = newData.getHomepageProperties[6];
+    zags = newData.getHomepageProperties[7];
+    sanDiego = newData.getHomepageProperties[8];
+    line = newData.getHomepageProperties[9];
+    sanFrancisco = newData.getHomepageProperties[10];
+    andre = newData.getHomepageProperties[11];
+    monte = newData.getHomepageProperties[12];
+    thompson = newData.getHomepageProperties[13];
   }
 
 
@@ -512,18 +511,6 @@ const HomePage: FC<Props> = () => {
                 highlighted={false}
               />
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={12} /></Grid>
-          } 
-
-          {(hyPortland) ?
-            <Box sx={{ p: '1em'}}>            
-              <ListingCardSquare
-                key={13}
-                {...hyPortland}
-                city={{ name: 'Portland, OR' }}
-                lowestTotalPriceAfterTax={152}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={13} /></Grid>
           } 
           
         </MultiCarousel>
