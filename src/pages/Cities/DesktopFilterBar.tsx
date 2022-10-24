@@ -179,7 +179,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
                   }}
                 >
                   <img
-                    src={`/images/location-icons/${option?.name
+                    src={`/public/images/location-icons/${option?.name
                       .substring(0, option.name.indexOf(","))
                       .toLowerCase()
                       .replace(/ /g, "_")}.svg`}

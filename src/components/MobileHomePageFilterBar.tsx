@@ -239,7 +239,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               >
                 {selectedCity ? (
                   <img
-                    src={`/images/location-icons/${getCity(selectedCity)
+                    src={`/public/images/location-icons/${getCity(selectedCity)
                       ?.name.substring(
                         0,
                         getCity(selectedCity)?.name.indexOf(",")
