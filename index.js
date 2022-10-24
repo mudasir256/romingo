@@ -20,19 +20,19 @@ const seo = [
   {
     path: '/faq',
     title: 'Frequently asked questions - Romingo',
-    description: 'Frequently asked questions at Romingo.',
+    description: "Romingo is a simple, user-friendly platform to book quality, dog friendly hotels. Our team works exclusively with hand-selected hotel partners to ensure you and your dog's guest experience is welcoming, warm, and 100% enjoyable. You can finally roam the world free with your pup and Romingo. Romingo does this by providing one, simple pet policy across all hotel partners. We call our streamlined policy the \"Romingo Guarantee\"",
     image: ''
   },
   {
     path: '/about',
     title: 'About - Romingo',
-    description: 'Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.',
+    description: "As a California native, there is nothing as relaxing and refreshing as driving up and down the California Coastline. Travel has always been one of my life's greatest joys, and during a prolonged global pandemic, weekend and car travel escapes with my partner, Jonathan, became a welcomed new outlet. Being near the ocean and feeling that fresh, crisp air recharges and inspires us. But I’ve always struggled leaving my French Bulldog, Maddie, at home when I travel.",
     image: 'https://romingo.com/public/images/home.jpg'
   },
   {
     path: '/contact',
     title: 'Contact - Romingo',
-    description: 'Contact Romingo.',
+    description: 'Our support team is here for you 24/7! Please get in touch with us using one of the below methods. If you require immediate assistance, we recommend using our chat feature.',
     image: ''
   },
   {
@@ -50,7 +50,7 @@ const seo = [
   {
     path: '/orange-county',
     title: 'Orange County Hotels - Romingo',
-    description 'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
+    description: 'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/oc-2.jpeg'
   },
   {
