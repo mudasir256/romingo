@@ -11,10 +11,64 @@ import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
 import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "./DesktopFilterBar"
+import {Helmet} from "react-helmet";
+import ListingCard from "../../components/ListingCard";
+import { 
+  useStore, 
+  useSelector 
+} from "react-redux";
+import { gql, useQuery } from "@apollo/client";
+import { GetHotelBySearch } from "../../constants/constants";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 const SanDiego: FC = () => {
+
+
+  const cityList = useSelector((state: any) => state.cityListReducer.cities);
+  const la = cityList.find(city => city.name === 'San Diego, CA')
+  const today = new Date();
+  const fewDaysLater = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 2
+  ).toISOString();
+
+  const endTripDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 4
+  ).toISOString();
+
+  const { loading, error, data, refetch } = useQuery(
+    gql`
+      ${GetHotelBySearch}
+    `,
+    {
+      variables: {
+        adults: 1,
+        cityId: la.id,
+        checkIn: fewDaysLater.slice(0,10),
+        checkOut: endTripDate.slice(0,10),
+        children: [],
+        dogs: 1,
+        allows_big_dogs: 0
+      },
+    }
+  );
+
   return (
     <>
+      <Helmet>
+        <title>San Diego Hotels - Romingo</title>
+        <description>For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions.</description>
+        <meta property="og:title" content="San Diego Hotels - Romingo" />
+        <meta property="og:description" content="For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions." />
+        <meta property="og:url" content="https://www.romingo.com/san-diego" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       <ScrollToTop />
       <Navbar />
       <Box
@@ -92,7 +146,7 @@ const SanDiego: FC = () => {
               and culture, diverse culinary experiences, and the great outdoors.
             </Typography>
           </Grid>
-          <Hidden mdDown>
+     {/*     <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
@@ -135,7 +189,7 @@ const SanDiego: FC = () => {
                 }}
               />
             </Grid>
-          </Hidden>
+          </Hidden>*/}
           <Grid item xs={12} md={4}>
             <Box
               component="img"
@@ -150,6 +204,22 @@ const SanDiego: FC = () => {
               }}
             />
           </Grid>
+
+
+          <Grid item xs={12}>
+            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore San Diego Hotels</Typography>
+            {data?.properties.slice(0, 4).map(card => (
+              <Box key={card.id} sx={{ py: '0.5em' }}>
+                <ListingCard
+                  {...card}
+                  duration={2}
+                  highlighted={false}
+                />
+              </Box>
+            ))}
+            {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+          </Grid>
+
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">

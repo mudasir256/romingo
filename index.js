@@ -35,6 +35,42 @@ const seo = [
     description: 'Contact Romingo.',
     image: ''
   },
+  {
+    path: '/los-angeles',
+    title: 'Los Angeles Hotels - Romingo',
+    description: 'Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year.',
+    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg'
+  },
+  {
+    path: '/san-diego',
+    title: 'San Diego Hotels - Romingo',
+    description: 'For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions.',
+    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sd-2.jpeg'
+  }, 
+  {
+    path: '/orange-county',
+    title: 'Orange County Hotels - Romingo',
+    description 'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
+    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/oc-2.jpeg'
+  },
+  {
+    path: '/san-francisco',
+    title: 'San Francisco Hotels - Romingo',
+    description: 'San Francisco is a lively cultural hub home to grand architectural buildings, world-class cuisine, cable cars, a dynamic waterfront, and plenty of outdoor adventures. The walkable city is adorned with iconic landmarks which is what truly sets San Francisco apart. Taking a stroll through the city’s streets is an exciting experience that will bring you from one unique neighborhood to another. San Francisco is a haven for lovers of performing arts and is also considered one of the United State’s greatest dining cities because of its rich diverse cultural influences, fresh ingredients, and creative chefs who come from all around the world.',
+    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sf-hero.jpeg'
+  },
+  {
+    path: '/santa-barbara',
+    title: 'Santa Barbara Hotels - Romingo',
+    description: 'Located on the central coast of California, the laid-back city of Santa Barbara offers the perfect getaway from the hustle and bustle of everyday life. The lovely city features Mediterranean style buildings that reflect its Spanish heritage, along with breathtaking mountain and beach views, and surrounding vineyards.',
+    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sb-2.jpeg'
+  },
+  {
+    path: '/palm-springs',
+    title: 'Palm Springs Hotels - Romingo',
+    description: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
+    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg'
+  }
 ]
 fs.createReadStream('./hotels.csv')
   .pipe(csv.parse({ headers: false }))

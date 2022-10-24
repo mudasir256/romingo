@@ -12,9 +12,56 @@ import ScrollToTop from "../../components/ScrollToTop";
 import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "./DesktopFilterBar"
 
+import {Helmet} from "react-helmet";
+import ListingCard from "../../components/ListingCard";
+import { 
+  useStore, 
+  useSelector 
+} from "react-redux";
+import { gql, useQuery } from "@apollo/client";
+import { GetHotelBySearch } from "../../constants/constants";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+
+
 const PalmSprings: FC = () => {
+
+  const cityList = useSelector((state: any) => state.cityListReducer.cities);
+  const la = cityList.find(city => city.name === 'Palm Springs, CA')
+  const today = new Date();
+  const fewDaysLater = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 2
+  ).toISOString();
+
+  const endTripDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 4
+  ).toISOString();
+
+  const { loading, error, data, refetch } = useQuery(
+    gql`
+      ${GetHotelBySearch}
+    `,
+    {
+      variables: {
+        adults: 1,
+        cityId: la.id,
+        checkIn: fewDaysLater.slice(0,10),
+        checkOut: endTripDate.slice(0,10),
+        children: [],
+        dogs: 1,
+        allows_big_dogs: 0
+      },
+    }
+  );
+
   return (
     <>
+      <Helmet>
+        <title>Palm Springs Hotels - Romingo</title>
+      </Helmet>
       <ScrollToTop />
       <Navbar />
       <Box
@@ -90,7 +137,7 @@ const PalmSprings: FC = () => {
               Palm Spring’s luxury stays!
             </Typography>
           </Grid>
-          <Hidden mdDown>
+          {/*<Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
@@ -133,7 +180,7 @@ const PalmSprings: FC = () => {
                 }}
               />
             </Grid>
-          </Hidden>
+          </Hidden>*/}
           <Grid item xs={12} md={4}>
             <Box
               component="img"
@@ -148,6 +195,21 @@ const PalmSprings: FC = () => {
               }}
             />
           </Grid>
+
+          <Grid item xs={12}>
+            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Palm Springs Hotels</Typography>
+            {data?.properties.slice(0, 4).map(card => (
+              <Box key={card.id} sx={{ py: '0.5em' }}>
+                <ListingCard
+                  {...card}
+                  duration={2}
+                  highlighted={false}
+                />
+              </Box>
+            ))}
+            {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+          </Grid>
+
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">

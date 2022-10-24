@@ -1,3 +1,4 @@
+import {Helmet} from "react-helmet";
 import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
 import Link from "@mui/material/Link";
@@ -54,10 +55,19 @@ const LosAngeles: FC = () => {
     }
   );
 
-  console.log(data)
-
   return (
     <>
+      <Helmet>
+        <title>Los Angeles Hotels - Romingo</title>
+        <description>Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year.</description>
+        <meta property="og:title" content="Los Angeles Hotels - Romingo" />
+        <meta property="og:description" content="Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year." />
+        <meta property="og:url" content="https://www.romingo.com/los-angeles" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+      
       <ScrollToTop />
       <Navbar />
       <Box
@@ -196,7 +206,7 @@ const LosAngeles: FC = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Different Hotels</Typography>
+            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Los Angeles Hotels</Typography>
             {data?.properties.slice(0, 4).map(card => (
               <Box key={card.id} sx={{ py: '0.5em' }}>
                 <ListingCard

@@ -11,10 +11,62 @@ import Footer from "../../components/Footer";
 import ScrollToTop from "../../components/ScrollToTop";
 import FilterBar from "../../components/FilterBar";
 import { DesktopFilterBar } from "./DesktopFilterBar"
+import {Helmet} from "react-helmet";
+import ListingCard from "../../components/ListingCard";
+import { 
+  useStore, 
+  useSelector 
+} from "react-redux";
+import { gql, useQuery } from "@apollo/client";
+import { GetHotelBySearch } from "../../constants/constants";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 const OrangeCounty: FC = () => {
+
+  const cityList = useSelector((state: any) => state.cityListReducer.cities);
+  const la = cityList.find(city => city.name === 'Orange County, CA')
+  const today = new Date();
+  const fewDaysLater = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 2
+  ).toISOString();
+
+  const endTripDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 4
+  ).toISOString();
+
+  const { loading, error, data, refetch } = useQuery(
+    gql`
+      ${GetHotelBySearch}
+    `,
+    {
+      variables: {
+        adults: 1,
+        cityId: la.id,
+        checkIn: fewDaysLater.slice(0,10),
+        checkOut: endTripDate.slice(0,10),
+        children: [],
+        dogs: 1,
+        allows_big_dogs: 0
+      },
+    }
+  );
+
   return (
     <>
+      <Helmet>
+        <title>Orange County Hotels - Romingo</title>
+        <description>Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.</description>
+        <meta property="og:title" content="San Diego Hotels - Romingo" />
+        <meta property="og:description" content="Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience." />
+        <meta property="og:url" content="https://www.romingo.com/orange-county" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Romingo" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       <ScrollToTop />
       <Navbar />
       <Box
@@ -92,7 +144,7 @@ const OrangeCounty: FC = () => {
               neighborhoods are.
             </Typography>
           </Grid>
-          <Hidden mdDown>
+      {/*    <Hidden mdDown>
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
@@ -135,7 +187,7 @@ const OrangeCounty: FC = () => {
                 }}
               />
             </Grid>
-          </Hidden>
+          </Hidden>*/}
           <Grid item xs={12} md={4}>
             <Box
               component="img"
@@ -150,6 +202,22 @@ const OrangeCounty: FC = () => {
               }}
             />
           </Grid>
+
+
+          <Grid item xs={12}>
+            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Orange County Hotels</Typography>
+            {data?.properties.slice(0, 4).map(card => (
+              <Box key={card.id} sx={{ py: '0.5em' }}>
+                <ListingCard
+                  {...card}
+                  duration={2}
+                  highlighted={false}
+                />
+              </Box>
+            ))}
+            {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+          </Grid>
+
           <Grid item xs={12}>
             <Divider light variant="middle" sx={{ mb: 2 }}>
               <Typography variant="body1" color="text.secondary">
