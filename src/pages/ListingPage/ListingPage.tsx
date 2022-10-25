@@ -504,13 +504,13 @@ const ListingPage: FC<Props> = () => {
                     <Button onClick={() => {
                       setShowFilters(!showFilters)
                       setShowExtras(false)
-                    }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E' }} variant="contained">Sort & Filter</Button>
+                    }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Sort & Filter</Button>
                   </Grid>
                   <Grid sx={{ mt: '1em' }} item xs={6}>
                     <Button onClick={() => {
                       setShowExtras(!showExtras)
                       setShowFilters(false)
-                    }} sx={{ width: '95%', backgroundColor: 'white', color: '#03989E' }} variant="contained">Hotel Rating & Price</Button>
+                    }} sx={{ width: '95%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Hotel Rating & Price</Button>
                   </Grid>
                 </Grid>
 
@@ -694,7 +694,7 @@ const ListingPage: FC<Props> = () => {
                   <Button onClick={() => {
                     setShowFilters(true)
                     setShowExtras(true)
-                  }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E' }} variant="contained">Sort & Filter</Button>
+                  }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Sort & Filter</Button>
                 </Grid>
               </Grid>
 
