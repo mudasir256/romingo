@@ -231,6 +231,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+  console.log(data)
+
   const { data: detailInfo } = useQuery(
     gql`
       ${GetSabrePropertyDetails}

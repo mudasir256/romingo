@@ -29,7 +29,7 @@ const iconSpacing = {
 }
 
 const HotelTags: FC<Props> = ({ petFeePolicy, allows_big_dogs }) => {
-
+  
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   return (

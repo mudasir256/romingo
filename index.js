@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const csv = require('fast-csv');
+const fetch = require('node-fetch')
+
 const data = []
 
 const seo = [
@@ -103,7 +105,33 @@ fs.createReadStream('./hotels.csv')
   })
   .on('end', () => console.log('loaded hotels.csv'));
 
+async function loadBlogPosts(page) {
+  const result = await fetch(`https://blog.romingo.com/wp-json/wp/v2/posts?page=${page}&per_page=50&_embed&_fields=id,excerpt,title,link,_links,_embedded`)
+  const json = await result.json()
+  const total = result.headers.get("x-wp-total")
 
+  for (let i = 0 ; i < json.length; i++) {
+    const url = json[i].link
+    const postId = json[i].id
+    fetch(`https://blog.romingo.com/wp-json/yoast/v1/get_head?url=${url}`).then(res => res.json()).then(seoJson => {
+      const { og_title, og_description, og_image } = seoJson.json
+      seo.push({
+        path: `/blog/post/${postId}`,
+        title: og_title,
+        description: og_description,
+        image: og_image[0].url
+      })
+    })
+  }
+
+  if (total > (50 * page)) {
+    loadBlogPosts(page + 1)
+  } else {
+    console.log('blog seo posts loaded')
+  }
+}
+
+loadBlogPosts(1)
 
 const app = new express();
 
