@@ -1,8 +1,8 @@
 import {Helmet} from "react-helmet";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
   Box,
   CSSObject,
@@ -24,6 +24,7 @@ import BookNow from '../../assets/images/icon-04.png';
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import { GetPropertyDetails, GetHomePageProperty } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
@@ -79,6 +80,7 @@ const HomePage: FC<Props> = () => {
   ).toISOString();
 
 
+
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
   let marina, losAngeles, kimpton, intercontinental, 
@@ -102,6 +104,7 @@ const HomePage: FC<Props> = () => {
     thompson = newData.getHomepageProperties[13];
   }
 
+  const [showLocations, setShowLocations] = useState(false)
 
   const locationIds = [
     "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
@@ -210,7 +213,7 @@ const HomePage: FC<Props> = () => {
             Book now
           </Button>
         </div>
-      </div>
+      </div> 
     </Box>
   )
 
@@ -518,6 +521,23 @@ const HomePage: FC<Props> = () => {
       </Box>
 
       <EndingSection />
+
+      <Box sx={{ textAlign: 'center', p: '2em', border: '1px solid black', m: '2em'}}>
+        <Box onClick={() => setShowLocations(!showLocations)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Typography sx={{ fontSize: '1.2em' }}>Browse locations</Typography>
+          <KeyboardArrowDownIcon color="primary" />
+        </Box>
+
+        {showLocations && (<Box sx={{ display: 'flex', flexDirection: 'column'}}>
+          <Link to="los-angeles">Los Angeles</Link>
+          <Link to="san-francisco">San Francisco</Link>
+          <Link to="san-diego">San Diego</Link>
+          <Link to="orange-county">Orange County</Link>
+          <Link to="santa-barbara">Santa Barbara</Link>
+          <Link to="palm-springs">Palm Springs</Link>
+        </Box>)}
+      </Box>
+  
 
       <Footer />
     </div>
