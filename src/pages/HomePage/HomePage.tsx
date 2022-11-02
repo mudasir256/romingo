@@ -88,15 +88,16 @@ const HomePage: FC<Props> = () => {
     sanFrancisco, andre, monte, thompson;
 
   if (newData) {
+    console.log(newData)
     marina = newData.getHomepageProperties[0];
     losAngeles = newData.getHomepageProperties[1];
     kimpton = newData.getHomepageProperties[2];
-    intercontinental = newData.getHomepageProperties[3];
-    missionBay = newData.getHomepageProperties[4];
-    regency = newData.getHomepageProperties[5];
-    sonesta = newData.getHomepageProperties[6];
-    zags = newData.getHomepageProperties[7];
-    sanDiego = newData.getHomepageProperties[8];
+    intercontinental = newData.getHomepageProperties[4];
+    missionBay = newData.getHomepageProperties[5];
+    regency = newData.getHomepageProperties[6];
+    sonesta = newData.getHomepageProperties[7];
+    zags = newData.getHomepageProperties[8];
+    sanDiego = newData.getHomepageProperties[3];
     line = newData.getHomepageProperties[9];
     sanFrancisco = newData.getHomepageProperties[10];
     andre = newData.getHomepageProperties[11];
@@ -528,14 +529,16 @@ const HomePage: FC<Props> = () => {
           <KeyboardArrowDownIcon color="primary" />
         </Box>
 
-        {showLocations && (<Box sx={{ display: 'flex', flexDirection: 'column'}}>
-          <Link to="los-angeles">Los Angeles</Link>
-          <Link to="san-francisco">San Francisco</Link>
-          <Link to="san-diego">San Diego</Link>
-          <Link to="orange-county">Orange County</Link>
-          <Link to="santa-barbara">Santa Barbara</Link>
-          <Link to="palm-springs">Palm Springs</Link>
-        </Box>)}
+        {showLocations && (
+          <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+            <Link to="los-angeles">Los Angeles</Link>
+            <Link to="san-francisco">San Francisco</Link>
+            <Link to="san-diego">San Diego</Link>
+            <Link to="orange-county">Orange County</Link>
+            <Link to="santa-barbara">Santa Barbara</Link>
+            <Link to="palm-springs">Palm Springs</Link>
+          </Box>
+        )}
       </Box>
   
 
