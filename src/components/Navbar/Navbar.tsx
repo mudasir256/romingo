@@ -109,13 +109,13 @@ const Navbar: FC<Props> = ({ sx }) => {
               <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'flex-start' }}>
                   <Link
-                    href="/about"
+                    href="/faq"
                     sx={linkStyle}
                   >
                     <div
                       style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
                     >
-                      About us
+                      FAQ
                     </div>
                   </Link>
                   <Link

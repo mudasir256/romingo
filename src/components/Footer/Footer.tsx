@@ -149,7 +149,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
            <img loading="lazy" src={LogoImg} alt="Romingo Logo" />
           </Link>
           <div className="footer-wrapper-logo-section-text">
-            Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.
+            Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.
           </div>
           <div className="social-icons">
             <IconButton
@@ -179,7 +179,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
               Site map
             </div>
             <div>
-              <Link href="/about">Our story</Link>
+              <Link href="/about">About us</Link>
             </div>
             <div>
               <Link href="/faq">FAQ</Link>
