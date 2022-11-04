@@ -88,7 +88,6 @@ const HomePage: FC<Props> = () => {
     sanFrancisco, andre, monte, thompson;
 
   if (newData) {
-    console.log(newData)
     marina = newData.getHomepageProperties[0];
     losAngeles = newData.getHomepageProperties[1];
     kimpton = newData.getHomepageProperties[2];
@@ -222,18 +221,14 @@ const HomePage: FC<Props> = () => {
     <div className="homepage">      
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
         <meta property="og:title" content="Romingo | Book pet friendly hotels" />
-        <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
         <meta property="og:url" content="https://www.romingo.com" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta property="og:site_name" content="Romingo" />
         <meta name="twitter:title" content="Romingo | Book pet friendly hotels" />
-        <meta name="twitter:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
         <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta name="twitter:card" content="summary_large_image" />
-
       </Helmet>
 
       <Header />
@@ -248,36 +243,37 @@ const HomePage: FC<Props> = () => {
       }}>
         <Box className="info-box">
           <div className="align-center">
-            <img className="book-now-image" src={BookNow} alt="lowest rates" />
-          </div>
-          <div className="info-box-title">Book your favorite hotels</div>
-          <div className="info-box-desc">Explore hundreds of our pet-friendly hotel partners such as Hilton, Hyatt, IHG, and more.</div>
-        </Box>
-        <Box className="info-box">
-          <div className="align-center">
             <img src={LowestRates}  alt="no pet fees" />
           </div>
           <Box className="info-box-title" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
-            $0 pet fees
+            $0 Pet Fees
           </Box>
           <Box className="info-box-desc" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
-            Book the lowest hotel rates at your favorite pet-friendly hotels, and save on pet fees with Romingo!
+            Stop paying hundreds of dollars in fees to bring your pets on vacation. All of our partner hotels will let your pups stay for free.
           </Box>
           <Box className="info-box-title" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            Insider rates        
+            $0 Pet Fees       
           </Box>
           <Box className="info-box-desc" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            Book the best rates at your favorite pet-friendly hotels, and save on fees with Romingo!
+            Stop paying hundreds of dollars in fees to bring your pets on vacation. All of our partner hotels will let your pups stay for free.
           </Box>
         </Box>
-        <Box className="info-box" sx={{ mb: '1.5em'}} >
+        <Box className="info-box" >
           <div className="align-center">
             <img src={AuthenticPet} alt="authentic pet" />
           </div>
-          <div className="info-box-title">Truly pet-friendly</div>
-          <div className="info-box-desc">Our hotel partners provide a warm and welcoming travel experience for you and your pet.</div>
+          <div className="info-box-title">Easy Pet Policies</div>
+          <div className="info-box-desc">Every hotel you book with Romingo will allow two dogs weighing up to 75 pounds. Some Romingo partner hotels allow pets of all breeds and sizes.</div>
         </Box>
+        <Box className="info-box" sx={{ mb: '1.5em'}}>
+          <div className="align-center">
+            <img className="book-now-image" src={BookNow} alt="lowest rates" />
+          </div>
+          <div className="info-box-title">The Best Pet-Friendly Hotels</div>
+          <div className="info-box-desc">Our pet-friendly hotel partners include Hilton, Hyatt, Kimpton, and more. Throw in our exclusive perks, and you can be sure you’ll experience the most pet-friendly travel possible.</div>
         </Box>
+       
+      </Box>
       </Box>
 
       
