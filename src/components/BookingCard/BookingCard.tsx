@@ -86,8 +86,8 @@ const BookingCard: FC<Props> = ({ sx, roomList, goToRate }) => {
               fullWidth
               variant="contained"
               sx={{
-                fontFamily: "Montserrat",
-                fontWeight: 600,
+                fontFamily: 'sansita-light',
+                letterSpacing: '0.5px',
                 mb: "0rem",
                 display: { md: "flex", xs: "none" },
               }}

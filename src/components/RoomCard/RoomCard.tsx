@@ -458,7 +458,6 @@ const RoomCard: FC<Props> = ({
               display: "flex",
               fontWeight: 800,
               lineHeight: 1.25,
-              fontFamily: "Montserrat",
               alignItems: "center",
               color: "#222",
               textAlign: "left",
@@ -877,7 +876,6 @@ const RoomCard: FC<Props> = ({
               sx={{
                 mr: 0.45,
                 fontWeight: 800,
-                fontFamily: "Montserrat",
                 alignItems: "center",
                 color: "#222",
                 textAlign: "left",

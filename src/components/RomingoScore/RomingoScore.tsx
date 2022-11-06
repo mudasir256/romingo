@@ -35,7 +35,6 @@ const RomingoScore: FC<Props> = ({ score, sm = false, left = false }) => {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "montserrat",
               fontSize: "90%",
               color: "#666666",
               mr: { sm: "0rem", xs: "auto" },

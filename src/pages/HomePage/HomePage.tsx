@@ -83,25 +83,28 @@ const HomePage: FC<Props> = () => {
 
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
-  let marina, losAngeles, kimpton, intercontinental, 
-    missionBay, regency, sonesta, zags, sanDiego, line,
-    sanFrancisco, andre, monte, thompson;
+  let losAngeles, line, regency, sonesta, sanFrancisco, sanDiego, 
+    missionBay, intercontinental, marina, monte, kimpton, 
+     andre, zags, thompson;
 
   if (newData) {
-    marina = newData.getHomepageProperties[0];
-    losAngeles = newData.getHomepageProperties[1];
-    kimpton = newData.getHomepageProperties[2];
-    intercontinental = newData.getHomepageProperties[4];
-    missionBay = newData.getHomepageProperties[5];
-    regency = newData.getHomepageProperties[6];
-    sonesta = newData.getHomepageProperties[7];
-    zags = newData.getHomepageProperties[8];
-    sanDiego = newData.getHomepageProperties[3];
-    line = newData.getHomepageProperties[9];
-    sanFrancisco = newData.getHomepageProperties[10];
-    andre = newData.getHomepageProperties[11];
-    monte = newData.getHomepageProperties[12];
-    thompson = newData.getHomepageProperties[13];
+    const sorted = [...newData.getHomepageProperties].sort((a, b) => a.name.localeCompare(b.name))
+    console.log(sorted)
+
+    sanFrancisco = sorted[0];
+    andre = sorted[1];
+    missionBay = sorted[2];
+    regency = sorted[3];
+    intercontinental = sorted[4];
+    kimpton = sorted[5];
+    sanDiego = sorted[6];
+    monte = sorted[7];
+    marina = sorted[8];
+    losAngeles = sorted[9];
+    sonesta = sorted[10];
+    zags = sorted[11];
+    line = sorted[12];
+    thompson = sorted[13];
   }
 
   const [showLocations, setShowLocations] = useState(false)

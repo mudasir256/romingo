@@ -359,17 +359,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         label: data.getPropertyDetails.name,
       });
 
-      // data.getPropertyDetails.nearbyActivities.map((activity: any) => {
-      //   markers.push({
-      //     lat: activity.location.latitude,
-      //     lng: activity.location.longitude,
-      //     type: activity?.activityType?.name,
-      //     label: activity.name,
-      //   });
-      // });
-
- 
-
+   
       setMarkers([...markers]);
     }
   }, [data]);
@@ -1051,7 +1041,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                       sx={{
                                         letterSpacing: "0.011rem",
                                         mt: ".5rem",
-                                        fontFamily: "roboto",
                                         padding: ".5rem 0rem",
                                         lineHeight: 1.75,
                                         color: "#444",
@@ -1369,7 +1358,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                       sx={{
                                         letterSpacing: "0.011rem",
                                         mt: ".5rem",
-                                        fontFamily: "roboto",
                                         padding: ".5rem 0rem",
                                         lineHeight: 1.75,
                                         color: "#444",
@@ -1394,7 +1382,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   sx={{
                     letterSpacing: ".015rem",
                     fontSize: "1rem",
-                    fontFamily: "Roboto",
                     fontWeight: 400,
                     color: "#999",
                     mt: ".25rem",
@@ -1407,7 +1394,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   sx={{
                     letterSpacing: ".015rem",
                     fontSize: "1rem",
-                    fontFamily: "Roboto",
                     fontWeight: 400,
                     color: "#999",
                     mt: ".25rem",
@@ -1476,7 +1462,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                       fontSize: "1rem",
                       color: "#999",
                       fontWeight: 400,
-                      fontFamily: "Roboto",
                     }}
                   >
                     {location.address}, {city?.name}, United States
@@ -1756,7 +1741,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                               sx={{
                                 letterSpacing: "0.011rem",
                                 mt: ".5rem",
-                                fontFamily: "roboto",
                                 padding: ".5rem 0rem",
                                 lineHeight: 1.75,
                                 color: "#444",
@@ -1955,7 +1939,6 @@ const PetAmmenities: FC<PetAmenitiesProps> = ({ amenities, title }) => {
                       textIndent: "-8px",
                       paddingLeft: "8px",
                       letterSpacing: ".015rem",
-                      fontFamily: "Roboto",
                     }}
                   >
                     {amenity.receivedText}
@@ -2224,7 +2207,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                           textIndent: "-8px",
                           paddingLeft: "8px",
                           letterSpacing: ".015rem",
-                          fontFamily: "Roboto",
                         }}
                       >
                         {amenity.receivedText}
@@ -2271,7 +2253,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                         textIndent: "-8px",
                         paddingLeft: "8px",
                         letterSpacing: ".015rem",
-                        fontFamily: "Roboto",
                       }}
                     >
                       {item}
@@ -2323,7 +2304,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                       textIndent: "-8px",
                       paddingLeft: "8px",
                       letterSpacing: ".015rem",
-                      fontFamily: "Roboto",
                     }}
                   >
                     {amenity.receivedText}
@@ -2373,7 +2353,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                         textIndent: "-8px",
                         paddingLeft: "8px",
                         letterSpacing: ".015rem",
-                        fontFamily: "Roboto",
                       }}
                     >
                       {amenity.receivedText}
@@ -2409,7 +2388,6 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                         textIndent: "-8px",
                         paddingLeft: "8px",
                         letterSpacing: ".015rem",
-                        fontFamily: "Roboto",
                       }}
                     >
                       {amenity.receivedText}

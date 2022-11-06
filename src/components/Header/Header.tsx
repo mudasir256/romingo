@@ -292,7 +292,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
       width: '920px',
     }}>
       <Box sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title">Book pet-friendly hotels</Box>
-      <Box sx={{ ml: '0.5em' }} className="filter-bar-wrapper-desc">Lowest rates. $0 pet fees.</Box>
+      <Box sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">Lowest rates. $0 pet fees.</Box>
       <Box sx={{ mt: '1.5em'}} className="filter-bar-desktop">
         <Box 
           sx={{
