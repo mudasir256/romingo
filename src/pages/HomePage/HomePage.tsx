@@ -89,7 +89,6 @@ const HomePage: FC<Props> = () => {
 
   if (newData) {
     const sorted = [...newData.getHomepageProperties].sort((a, b) => a.name.localeCompare(b.name))
-    console.log(sorted)
 
     sanFrancisco = sorted[0];
     andre = sorted[1];

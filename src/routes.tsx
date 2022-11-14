@@ -27,6 +27,8 @@ const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProp
 const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartner'))
 const Application = loadable(() => import('./pages/StaticPages/Application'))
 
+const LocationPageTemplate = loadable(() => import('./components/LocationPageTemplate'))
+
 const Blog = loadable(() => import('./pages/Blog'))
 const BlogPost = loadable(() => import('./pages/BlogPost'))
 import { authService } from "./services/authService.js";
@@ -189,6 +191,23 @@ const Routes = () => {
             </AuthGuards>
           );
       })}
+      <Route exact path="/austin"><LocationPageTemplate cityName="Austin, TX" /></Route>
+      <Route exact path="/dallas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
+      <Route exact path="/houston"><LocationPageTemplate cityName="Houston" /></Route>
+      <Route exact path="/oceanside"><LocationPageTemplate cityName="Oceanside, CA" /></Route>
+      <Route exact path="/phoenix"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
+      <Route exact path="/scottsdale"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
+      <Route exact path="/tucson"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
+      <Route exact path="/santa-fe"><LocationPageTemplate cityName="Santa Fe, MN" /></Route>
+      <Route exact path="/san-antonio"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
+      <Route exact path="/vail"><LocationPageTemplate cityName="Vail, CO" /></Route>
+      <Route exact path="/colorado-springs"><LocationPageTemplate cityName="Colorado Springs" /></Route>
+      <Route exact path="/denver"><LocationPageTemplate cityName="Denver, CO" /></Route>
+      <Route exact path="/seattle"><LocationPageTemplate cityName="Seattle, WA" /></Route>
+      <Route exact path="/portland"><LocationPageTemplate cityName="Portland, OR" /></Route>
+      <Route exact path="/sacramento"><LocationPageTemplate cityName="Sacramento, CA" /></Route>
+      <Route exact path="/salt-lake-city"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
+
       <Route component={ErrorPage} />
     </Switch>
   );

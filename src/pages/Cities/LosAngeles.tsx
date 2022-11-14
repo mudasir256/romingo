@@ -67,7 +67,7 @@ const LosAngeles: FC = () => {
         <meta property="og:site_name" content="Romingo" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      
+
       <ScrollToTop />
       <Navbar />
       <Box
@@ -207,7 +207,7 @@ const LosAngeles: FC = () => {
 
           <Grid item xs={12}>
             <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Los Angeles Hotels</Typography>
-            {data?.properties.slice(0, 4).map(card => (
+            {data?.properties.map(card => (
               <Box key={card.id} sx={{ py: '0.5em' }}>
                 <ListingCard
                   {...card}

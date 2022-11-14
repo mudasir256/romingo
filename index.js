@@ -4,6 +4,8 @@ const fs = require("fs");
 const csv = require('fast-csv');
 const fetch = require('node-fetch')
 
+const { HOTEL_DESCRIPTIONS } = require('./src/constants/locationPageDescriptions')
+
 const data = []
 
 const seo = [
@@ -72,6 +74,102 @@ const seo = [
     title: 'Palm Springs Hotels - Romingo',
     description: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg'
+  },
+  {
+    path: "/austin",
+    title: 'Austin Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[0].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[0].heroImage,
+  },
+  {
+    path: '/dallas',
+    title: 'Dallas Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[1].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[1].heroImage
+  },
+  {
+    path: '/houston',
+    title: 'Houston Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[2].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[2].heroImage
+  },
+  {
+    path: '/oceanside',
+    title: 'Oceanside Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[3].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[3].heroImage
+  },
+  {
+    path: '/phoenix',
+    title: 'Phoenix Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[4].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[4].heroImage
+  },
+  {
+    path: '/scottsdale',
+    title: 'Scottsdale Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[5].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[5].heroImage
+  },
+  {
+    path: '/tucson',
+    title: 'Tucson Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[6].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[6].heroImage
+  },
+  {
+    path: '/santa-fe',
+    title: 'Santa Fe Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[7].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[7].heroImage
+  },
+  {
+    path: '/san-antonio',
+    title: 'San Antonio Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[8].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[8].heroImage
+  },
+  {
+    path: '/vail',
+    title: 'Vail Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[9].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[9].heroImage
+  },
+  {
+    path: '/colorado-springs',
+    title: 'Colorado Springs Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[10].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[10].heroImage
+  },
+  {
+    path: '/denver',
+    title: 'Denver Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[11].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[11].heroImage
+  },
+  {
+    path: '/seattle',
+    title: 'Seattle Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[12].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[12].heroImage
+  },
+  {
+    path: '/portland',
+    title: 'Portland Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[13].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[13].heroImage
+  },
+  {
+    path: '/sacramento',
+    title: 'Sacramento Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[14].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[14].heroImage
+  },
+  {
+    path: '/salt-lake-city',
+    title: 'Salt Lake City Hotels — Romingo',
+    description: HOTEL_DESCRIPTIONS[15].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[15].heroImage
   },
   {
     path: '/list-your-property',
