@@ -206,7 +206,7 @@ const OrangeCounty: FC = () => {
 
           <Grid item xs={12}>
             <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore Orange County Hotels</Typography>
-            {data?.properties.slice(0, 4).map(card => (
+            {data?.properties.map(card => (
               <Box key={card.id} sx={{ py: '0.5em' }}>
                 <ListingCard
                   {...card}
