@@ -23,6 +23,11 @@ import { LocationProperties } from "../constants/constants";
 import ListingCardSkeleton from "./UI/ListingCardSkeleton";
 
 import { HOTEL_DESCRIPTIONS } from '../constants/locationPageDescriptions'
+import { LargeFilterBar } from '../components/LargeFilterBar'
+import "./Header/Header.scss";
+
+import PetsIcon from '@mui/icons-material/Pets';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
 
@@ -55,12 +60,24 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
     }
   );
 
-  console.log(data)
-  console.log(error)
-
-  console.log(foundCity)
-
   const onlyCity = foundCity.name.split(',')[0]
+
+  const IconTags = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
+      <Box sx={{ maxWidth: '240px'}}>
+        <Typography sx={{ display: 'flex', alignItems: 'center'}} variant="h6"><PetsIcon />&nbsp;&nbsp;Pet-friendly</Typography>
+        <Typography sx={{ fontSize: '0.9em'}}>we have searched thousands of hotels to find you the pet-friendliest.</Typography>
+      </Box>
+      <Box sx={{ maxWidth: '200px'}}>
+        <Typography variant="h6">$0 pet fees</Typography>
+        <Typography sx={{ fontSize: '0.9em'}}>you will always pay $0 in hotel pet fees with Romingo.</Typography>
+      </Box>
+      <Box sx={{ maxWidth: '240px'}}>
+        <Typography sx={{ display: 'flex', alignItems: 'center'}} variant="h6"><DoneAllIcon />&nbsp;&nbsp;Romingo guarentee</Typography>
+        <Typography sx={{ fontSize: '0.9em'}}>every hotel on Romingo welcomes up to 2 pets of 50 or 75 lbs. each.</Typography>
+      </Box>
+    </Box>
+  )
 
   return (
     <>
@@ -116,10 +133,13 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
               </Typography>
             </Divider>
             <Hidden mdDown>
-              <DesktopFilterBar />
+              <Box sx={{ mx: 'auto', maxWidth: '500px'}}>
+                <DesktopFilterBar city={foundCity.id} />
+              </Box>
+              <IconTags />
             </Hidden>
             <Hidden mdUp>
-              <FilterBar />
+              <FilterBar city={foundCity.id} />
             </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -168,10 +188,13 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
               </Typography>
             </Divider>
             <Hidden mdDown>
-              <DesktopFilterBar />
+              <Box sx={{ mx: 'auto', maxWidth: '500px'}}>
+                <DesktopFilterBar city={foundCity.id} />
+              </Box>
+              <IconTags />
             </Hidden>
             <Hidden mdUp>
-              <FilterBar />
+              <FilterBar city={foundCity.id} />
             </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
         </Grid>

@@ -31,15 +31,17 @@ interface Props {
   city?: string;
 }
 
-export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
+export const DesktopFilterBar: FC = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const isTextField = false;
+  const city = "";
   // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
   // eslint-disable-next-line
   const cities = useSelector((state: any) => state.cityListReducer.cities);
+
 
   const [selectedCity, setSelectedCity] = useState(
     search.city ? search.city : ""
@@ -85,7 +87,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
       selectedCity &&
       checkDate[0] &&
       new Date(checkDate[0]) >=
-        new Date(new Date().setDate(new Date().getDate() - 1)) &&
+      new Date(new Date().setDate(new Date().getDate() - 1)) &&
       checkDate[1] &&
       new Date(checkDate[1]) >= new Date()
     ) {
@@ -98,7 +100,18 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
           occupants,
         })
       );
-      
+      // refetch({
+      //   variables: {
+      //     adults: search.occupants.adults,
+      //     cityId: search.city,
+      //     checkIn: search.checkIn.substring(0, 10),
+      //     checkOut: search.checkOut.substring(0, 10),
+      //     children: ageParam,
+      //     dogs: search.occupants.dogs,
+      //     allows_big_dogs: allowBigDogs
+      //   }
+      // })
+
       history.push("/listings");
     } else {
       if (!selectedCity) {
@@ -139,9 +152,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
           mb: "1rem",
           padding: ".25rem .5rem .25rem .5rem",
           borderRadius: "12px",
-          margin: "0px auto",
-          mt: "1rem",
-          maxWidth: "600px",
+          fontFamily: 'overpass-light'
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -155,10 +166,26 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
             })}
             groupBy={(o) => o.state.name}
             disableClearable
-            value={getCity(selectedCity) || { id: null, name: "Choose City" }}
+            value={getCity(selectedCity) || null}
             getOptionLabel={(option: any) => {
               return option.name;
             }}
+            blurOnSelect="touch"
+            componentsProps={{
+              paper: {
+                style: {
+                  opacity: 1,
+                  backgroundColor: 'white',
+                  fontFamily: 'sansita-light',
+                  padding: '0 1em',
+                }
+              },
+            }}
+            renderOption={(props, option: any) => (
+              <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
+                  {option.name.split(',')[0]}
+              </li>
+            )}
             // eslint-disable-next-line
             onChange={(e, values: any) => {
               if (values) {
@@ -166,30 +193,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
                 setSelectedCity(values.id);
               }
             }}
-            blurOnSelect="touch"
-            sx={{ width: "250px" }}
-            renderOption={(props, option: any) => (
-              <li {...props} style={{ paddingLeft: 10 }}>
-                <Box
-                  sx={{
-                    width: "55px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src={`/public/images/location-icons/${option?.name
-                      .substring(0, option.name.indexOf(","))
-                      .toLowerCase()
-                      .replace(/ /g, "_")}.svg`}
-                    height="25px"
-                    style={{ marginRight: "10px" }}
-                  />
-                </Box>
-                {option.name}
-              </li>
-            )}
+            sx={{ width: "200px" }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -210,9 +214,10 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
                   },
                   input: {
                     padding: "0px",
-                    fontSize: "12px",
+                    fontSize: "0.9em",
                     fontWeight: 600,
-                    fontFamily: "Montserrat",
+                    fontFamily: "overpass-light"
+                    ,
                     cursor: "pointer",
                     color: "primary.main",
                     border: "none",
@@ -224,7 +229,7 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
         </Box>
         <Box
           sx={{
-            fontFamily: "Roboto",
+            fontFamily: "overpass-light",
             fontSize: "12px",
             fontWeight: 400,
             display: "flex",
@@ -259,24 +264,23 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
                 >
                   <Typography
                     sx={{
-                      fontFamily: "Montserrat",
+                      fontFamily: "overpass-light",
                       textTransform: "none",
                       fontWeight: 600,
-                      fontSize: { xs: "12px" },
-                      minWidth: "140px",
+                      fontSize: '1em',
                     }}
                   >
                     {checkDate[0]
                       ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
-                          "MMM dd"
-                        )
-                      : "Check In"}
+                        "MMM dd"
+                      )
+                      : ""}
                     &nbsp;&#8212;&nbsp;
                     {checkDate[1]
                       ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
-                          "MMM dd"
-                        )
-                      : "Check Out"}
+                        "MMM dd"
+                      )
+                      : ""}
                   </Typography>
                 </Button>
               )}
@@ -291,17 +295,16 @@ export const DesktopFilterBar: FC<Props> = ({ city = "" }) => {
             size="small"
           />
         </Box>
-        <Box sx={{ textAlign: "right", ml: "auto" }}>
+        <Box sx={{ textAlign: "center" }}>
           <Button
             onClick={handleFilterOutClick}
             disableElevation
             type="submit"
-            variant="contained"
+            variant="text"
             sx={{
-              ml: "auto",
-              minWidth: "70px",
+              ml: ".25rem",
               display: "flex",
-              width: "100%",
+              minWidth: "30px",
               alignItems: "center",
               padding: ".25rem 0rem",
               justifyContent: "center",
