@@ -1208,7 +1208,7 @@ const DesktopFilterBar: FC = () => {
             }}
             renderOption={(props, option: any) => (
               <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
-                  {option.name}
+                  {option.name.split(',')[0]}
               </li>
             )}
             // eslint-disable-next-line
