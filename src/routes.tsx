@@ -8,12 +8,7 @@ const ListingPage = loadable(() => import('./pages/ListingPage'))
 import DetailsPage from './pages/DetailsPage'
 // const DetailsPage = loadable(() => import('./pages/DetailsPage'))
 const CheckoutPage = loadable(() => import('./pages/CheckoutPage'))
-const LosAngeles = loadable(() => import('./pages/Cities/LosAngeles'))
-const SanDiego = loadable(() => import('./pages/Cities/SanDiego'))
-const PalmSprings = loadable(() => import('./pages/Cities/PalmSprings'))
-const OrangeCounty = loadable(() => import('./pages/Cities/OrangeCounty'))
-const SanFrancisco = loadable(() => import('./pages/Cities/SanFran'))
-const SantaBarbara = loadable(() => import('./pages/Cities/SantaBarbara'))
+
 const ManageReservationPage = loadable(() => import('./pages/ManageReservationPage'))
 const YourReservationPage = loadable(() => import('./pages/YourReservationPage'))
 const ErrorPage = loadable(() => import('./pages/ErrorPage'))
@@ -73,31 +68,6 @@ const routes: RouteInterface[] = [
   {
     path: '/reservation/details',
     component: YourReservationPage,
-    requireAuth: false,
-  },
-  {
-    path: "/los-angeles",
-    component: LosAngeles,
-    requireAuth: false,
-  },
-  {
-    path: "/san-diego",
-    component: SanDiego,
-    requireAuth: false,
-  },
-  {
-    path: "/orange-county",
-    component: OrangeCounty,
-    requireAuth: false,
-  },
-  {
-    path: "/san-francisco",
-    component: SanFrancisco,
-    requireAuth: false,
-  },
-  {
-    path: "/santa-barbara",
-    component: SantaBarbara,
     requireAuth: false,
   },
   {
@@ -203,7 +173,12 @@ const Routes = () => {
       <Route exact path="/sacramento"><LocationPageTemplate cityName="Sacramento, CA" /></Route>
       <Route exact path="/salt-lake-city"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
       <Route exact path="/palm-springs"><LocationPageTemplate cityName="Palm Springs, CA" /></Route>
-
+      <Route exact path="/los-angeles"><LocationPageTemplate cityName="Los Angeles, CA" /></Route>
+      <Route exact path="/orange-county"><LocationPageTemplate cityName="Orange County, CA" /></Route>
+      <Route exact path="/san-diego"><LocationPageTemplate cityName="San Diego, CA" /></Route>
+      <Route exact path="/san-francisco"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
+      <Route exact path="/santa-barbara"><LocationPageTemplate cityName="Santa Barbara, CA" /></Route>
+     
       <Route component={ErrorPage} />
     </Switch>
   );

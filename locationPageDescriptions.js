@@ -117,6 +117,41 @@ const HOTEL_DESCRIPTIONS = [
 		paragraphOne: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
 		paragraphTwo: 'Some of the city&apos;s main highlights include its art and culture scene and outdoor adventures where you can find miles of pet-friendly trails, canyons, mountain streams, and beautiful waterfalls. Finally, the cherry on top getting pampered at one of Palm Spring’s luxury stays!',
 		secondaryImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-4.jpeg'
+	},
+	{
+		city: 'Los Angeles, CA',
+		heroImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-hero.jpeg',
+		paragraphOne: 'Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year.',
+		paragraphTwo: 'The diverse, multiethnic population of Los Angeles today distinguishes the city as the cultural hub of the Pacific Rim. Furthermore, Los Angeles’ development makes it one of the most coveted cities for dog owners and pet-friendly travel. The area boasts a wide selection of pet-friendly accommodations, recreational opportunities, and attractions.',
+		secondaryImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg'
+	},
+	{
+		city: 'Orange County, CA',
+		heroImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/oc-hero.jpeg",
+		paragraphOne: 'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
+		paragraphTwo: 'Not only is Orange County a melting pot of cuisines and cultures, you can also discover stellar beaches, luxury shopping experiences, and plenty of outdoor recreational activities. Finally, the county is a desirable place to settle and visit for dog owners and families because of how accommodating its neighborhoods are.',
+		secondaryImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/oc-4.jpeg"
+	},
+	{
+		city: 'San Diego, CA',
+		heroImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sd-hero.jpeg",
+		paragraphOne: 'For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions.',
+		paragraphTwo: ' San Diego is often considered the most pet-friendly city in California with many pet-friendly spaces to enjoy throughout the city. Those who seek pet-friendly travel will find their hearts filled with what San Diego has to offer thanks to the city’s arts and culture, diverse culinary experiences, and the great outdoors.',
+		secondaryImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg"
+	},
+	{
+		city: 'San Francisco, CA',
+		heroImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sf-4.jpeg",
+		paragraphOne: 'San Francisco is a lively cultural hub home to grand architectural buildings, world-class cuisine, cable cars, a dynamic waterfront, and plenty of outdoor adventures. The walkable city is adorned with iconic landmarks which is what truly sets San Francisco apart. Taking a stroll through the city’s streets is an exciting experience that will bring you from one unique neighborhood to another. San Francisco is a haven for lovers of performing arts and is also considered one of the United State’s greatest dining cities because of its rich diverse cultural influences, fresh ingredients, and creative chefs who come from all around the world.',
+		paragraphTwo: 'Many of San Francisco’s attractions are outdoors, making it an ideal city for pet-friendly travel. Your dog will be intrigued by all the different landscapes and scenic views, and will be welcomed in many restaurants and hotels as well!',
+		secondaryImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sf-4.jpeg",
+	},
+	{	
+		city: 'Santa Barbara, CA',
+		heroImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sb-hero.jpeg",
+		paragraphOne: 'Located on the central coast of California, the laid-back city of Santa Barbara offers the perfect getaway from the hustle and bustle of everyday life. The lovely city features Mediterranean style buildings that reflect its Spanish heritage, along with breathtaking mountain and beach views, and surrounding vineyards.',
+		paragraphTwo: 'The breeze swept in from the ocean and its mild sunny climate makes this city an enjoyable destination for outdoor, pet-friendly activities. The city also hosts a number of impressive luxury stays anyone will fall in love with.',
+		secondaryImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sb-4.jpeg"
 	}
 ]
 
