@@ -3,6 +3,7 @@ import Hidden from "@mui/material/Hidden";
 import Link from "@mui/material/Link";
 import { FC } from "react";
 import { Container, Divider, Grid, Typography } from "@mui/material";
+import { utils } from '../services/utils'
 
 import Map from "./UI/Map/Map";
 import Navbar from "./Navbar";
@@ -175,6 +176,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
                   city={{ name: foundCity.name }}
                   duration={2}
                   highlighted={false}
+                  petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
                 />
               </Box>
             ))}
