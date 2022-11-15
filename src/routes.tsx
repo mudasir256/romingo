@@ -193,7 +193,7 @@ const Routes = () => {
       })}
       <Route exact path="/austin"><LocationPageTemplate cityName="Austin, TX" /></Route>
       <Route exact path="/dallas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
-      <Route exact path="/houston"><LocationPageTemplate cityName="Houston" /></Route>
+      <Route exact path="/houston"><LocationPageTemplate cityName="Houston, TX" /></Route>
       <Route exact path="/oceanside"><LocationPageTemplate cityName="Oceanside, CA" /></Route>
       <Route exact path="/phoenix"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
       <Route exact path="/scottsdale"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
@@ -201,7 +201,7 @@ const Routes = () => {
       <Route exact path="/santa-fe"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
       <Route exact path="/san-antonio"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
       <Route exact path="/vail"><LocationPageTemplate cityName="Vail, CO" /></Route>
-      <Route exact path="/colorado-springs"><LocationPageTemplate cityName="Colorado Springs" /></Route>
+      <Route exact path="/colorado-springs"><LocationPageTemplate cityName="Colorado Springs, CO" /></Route>
       <Route exact path="/denver"><LocationPageTemplate cityName="Denver, CO" /></Route>
       <Route exact path="/seattle"><LocationPageTemplate cityName="Seattle, WA" /></Route>
       <Route exact path="/portland"><LocationPageTemplate cityName="Portland, OR" /></Route>

@@ -155,6 +155,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
   const PriceDetails = () => (
     <Box sx={{ ml: 'auto', mr: '0.5em', mb: '0.25em' }}>
+
       <Box
         sx={{
           display: "flex",
@@ -163,20 +164,36 @@ const ListingCard: FC<ListingCardProps> = ({
           alignItems: "flex-end",
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{
-            mr: 0,
-            mt: '0.1em',
-            fontFamily: "overpass-bold",
-            fontSize: '1.25em',
-            fontWeight: 800,
-            display: 'flex',
-            alignItems: 'center'
-          }}
-        >
-          {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
-        </Typography>
+        {lowestAveragePrice ? 
+          <Typography
+            variant="body2"
+            sx={{
+              mr: 0,
+              mt: '0.1em',
+              fontFamily: "overpass-bold",
+              fontSize: '1.25em',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
+          </Typography>
+          :  <Typography
+            variant="body2"
+            sx={{
+              mr: 0,
+              mt: '0.1em',
+              fontFamily: "overpass-light",
+              fontSize: '1.25em',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            
+          </Typography>
+        }
       </Box>
     </Box>
   )

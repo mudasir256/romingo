@@ -19,7 +19,7 @@ import {
   useSelector 
 } from "react-redux";
 import { gql, useQuery } from "@apollo/client";
-import { GetHotelBySearch } from "../constants/constants";
+import { LocationProperties } from "../constants/constants";
 import ListingCardSkeleton from "./UI/ListingCardSkeleton";
 
 import { HOTEL_DESCRIPTIONS } from '../constants/locationPageDescriptions'
@@ -46,20 +46,17 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
 
   const { loading, error, data, refetch } = useQuery(
     gql`
-      ${GetHotelBySearch}
+      ${LocationProperties}
     `,
     {
       variables: {
-        adults: 1,
         cityId: foundCity.id,
-        checkIn: fewDaysLater.slice(0,10),
-        checkOut: endTripDate.slice(0,10),
-        children: [],
-        dogs: 1,
-        allows_big_dogs: 0
       },
     }
   );
+
+  console.log(data)
+  console.log(error)
 
   console.log(foundCity)
 
@@ -153,10 +150,11 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
 
           <Grid item xs={12}>
             <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore {onlyCity} Hotels</Typography>
-            {data?.properties.map(card => (
+            {data?.propertiesByLocation.map(card => (
               <Box key={card.id} sx={{ py: '0.5em' }}>
                 <ListingCard
                   {...card}
+                  city={{ name: foundCity.name }}
                   duration={2}
                   highlighted={false}
                 />

@@ -14,7 +14,7 @@ const HOTEL_DESCRIPTIONS = [
 		secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Dallas.jpg'
 	},
 	{
-		city: 'Houston',
+		city: 'Houston, TX',
 		heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Houston%20Texas.jpg',
 		paragraphOne: "Houston is the most populous city in the Southern United States and the fourth most populous city in the country. From the Space Center to the Museum of Natural Science, there are plenty of attractions to keep visitors entertained. The city is also home to a thriving food scene, with everything from Tex-Mex to Vietnamese cuisine on offer. And, of course, no visit to Houston would be complete without taking in a Houston Astros baseball game.",
 		paragraphTwo: "There are plenty of pet friendly hotels in Houston, Texas. If you're looking to explore all the city has to offer, there are dozens of hotels centrally located near popular attractions like the Museum District and The Galleria. No matter your budget or preferences, you're sure to find the perfect pet friendly hotel in Houston, Texas.",
@@ -70,7 +70,7 @@ const HOTEL_DESCRIPTIONS = [
 		secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Vail.jpg'
 	},
 	{
-		city: 'Colorado Springs',
+		city: 'Colorado Springs, CO',
 		heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Colorado%20Springs.jpg',
 		paragraphOne: "Nestled at the base of the Rocky Mountains, Colorado Springs is a beautiful city with plenty to offer visitors. Outdoor enthusiasts can explore the more than 60 parks and trails in the area, including Garden of the Gods Park and Pikes Peak. Colorado Springs is also home to the US Olympic Training Center. History buffs can learn about the city's past at the Museum of Colorado Springs History, while art lovers can appreciate the many sculptures and murals downtown.",
 		paragraphTwo: "Outdoor enthusiasts will find plenty to do in Colorado Springs, with hiking, biking, and climbing available. And, of course, no visit to Colorado Springs would be complete without taking in the stunning views of the mountains. There are many pet-friendly hotels in the area, making it easy to bring your pet along for the next big adventure.",

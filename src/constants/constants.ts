@@ -651,6 +651,40 @@ const GetHomePageProperty = `
   }
 `
 
+const LocationProperties = `
+  query  (
+    $cityId: String!
+  ) {
+    propertiesByLocation(input: {
+      cityId: $cityId,
+    }) {
+      id
+      addressLine1        
+      alias          
+      featuredImageURL 
+      googlePlaceId      
+      id             
+      imageURLs      
+      name             
+      romingoScore
+      allows_big_dogs
+      hotelEmail    
+      hotelAlternativeEmail
+      sabreId
+      zipCode
+      lowestAveragePrice
+      petFeePolicy {
+        maxPets
+        maxWeightPerPetInLBS
+        desc
+        perPet
+        perNight
+        breakup
+      }
+    }
+  }
+`
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -668,5 +702,6 @@ export {
   GetBookingDetails,
   ModifyBookingDetails,
   GetSabrePropertyDetails,
-  GetHomePageProperty
+  GetHomePageProperty,
+  LocationProperties,
 };

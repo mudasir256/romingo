@@ -55,6 +55,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
   const [selectedCity, setSelectedCity] = useState(
     search.city ? search.city : null
   );
+  const [selectedCityText, setSelectedCityText] = useState('');
+
   const [formError, setFormError] = useState("");
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     search.checkIn ? search.checkIn : new Date(),
@@ -164,8 +166,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     }
   };
 
-  const handleCityClick = (cityId: string) => {
-    setSelectedCity(cityId)
+  const handleCityClick = (city: string) => {
+    setSelectedCity(city.id)
+    setSelectedCityText(city.name)
   }
 
   function groupCities(collection: any) {
@@ -259,7 +262,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                   {!selectedCity && <Typography sx={{ position: 'absolute', top: '22%', }}>Select a city</Typography>}
                   <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
                     {groups.map((group, index) => {
-                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city.id)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
+                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name.split(',')[0]}</MenuItem>));
                       return (
                         [
                           <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0}}>{group[0].state.name}</ListSubheader>,
