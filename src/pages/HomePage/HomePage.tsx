@@ -245,34 +245,34 @@ const HomePage: FC<Props> = () => {
       }}>
         <Box className="info-box">
           <div className="align-center">
+            <img className="book-now-image" src={BookNow} alt="lowest rates" />
+          </div>
+          <div className="info-box-title">Pet-Friendly Travel</div>
+          <div className="info-box-desc">Say hello to Romingo! Our team has searched thousands of pet-friendly hotels, and we have hand-selected the pet-friendliest for you to easily book with Romingo.</div>
+        </Box>
+        <Box className="info-box">
+          <div className="align-center">
             <img src={LowestRates}  alt="no pet fees" />
           </div>
           <Box className="info-box-title" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
             $0 Pet Fees
           </Box>
           <Box className="info-box-desc" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
-            Stop paying hundreds of dollars in fees to bring your pets on vacation. All of our partner hotels will let your pups stay for free.
+            Romingo is the only travel site that saves you on costly hotel pet fees. When you book with Romingo, your pets will always stay for $0 at your favorite hotel brands.
           </Box>
           <Box className="info-box-title" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
             $0 Pet Fees       
           </Box>
           <Box className="info-box-desc" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            Stop paying hundreds of dollars in fees to bring your pets on vacation. All of our partner hotels will let your pups stay for free.
+            Romingo is the only travel site that saves you on costly hotel pet fees. When you book with Romingo, your pets will always stay for $0 at your favorite hotel brands.
           </Box>
-        </Box>
-        <Box className="info-box" >
-          <div className="align-center">
-            <img src={AuthenticPet} alt="authentic pet" />
-          </div>
-          <div className="info-box-title">Easy Pet Policies</div>
-          <div className="info-box-desc">Every hotel you book with Romingo will allow two dogs weighing up to 75 pounds. Some Romingo partner hotels allow pets of all breeds and sizes.</div>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}}>
           <div className="align-center">
-            <img className="book-now-image" src={BookNow} alt="lowest rates" />
+            <img src={AuthenticPet} alt="authentic pet" />
           </div>
-          <div className="info-box-title">The Best Pet-Friendly Hotels</div>
-          <div className="info-box-desc">Our pet-friendly hotel partners include Hilton, Hyatt, Kimpton, and more. Throw in our exclusive perks, and you can be sure you’ll experience the most pet-friendly travel possible.</div>
+          <div className="info-box-title">Romingo Guarantee</div>
+          <div className="info-box-desc">No more fine print pet policies. When you book with Romingo, every hotel partner welcomes 2 dogs up to 50 or 75 pounds each. Some hotels allow larger pet sizes.</div>
         </Box>
        
       </Box>
