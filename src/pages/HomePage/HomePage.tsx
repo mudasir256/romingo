@@ -529,12 +529,28 @@ const HomePage: FC<Props> = () => {
 
         {showLocations && (
           <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-            <Link to="los-angeles">Los Angeles</Link>
-            <Link to="san-francisco">San Francisco</Link>
-            <Link to="san-diego">San Diego</Link>
-            <Link to="orange-county">Orange County</Link>
-            <Link to="santa-barbara">Santa Barbara</Link>
-            <Link to="palm-springs">Palm Springs</Link>
+            <Link to="los-angeles">Los Angeles hotels</Link>
+            <Link to="san-francisco">San Francisco hotels</Link>
+            <Link to="san-diego">San Diego hotels</Link>
+            <Link to="orange-county">Orange County hotels</Link>
+            <Link to="santa-barbara">Santa Barbara hotels</Link>
+            <Link to="palm-springs">Palm Springs hotels</Link>
+            <Link to="austin">Austin hotels</Link>
+            <Link to="dallas">Dallas hotels</Link>
+            <Link to="houston">Houston hotels</Link>
+            <Link to="oceanside">Oceanside hotels</Link>
+            <Link to="phoenix">Phoenix hotels</Link>
+            <Link to="scottsdale">Scottsdale hotels</Link>
+            <Link to="tucson">Tucson hotels</Link>
+            <Link to ="santa-fe">Santa Fe hotels</Link>
+            <Link to="san-antonio">San Antonio hotels</Link>
+            <Link to="vail">Vail hotels</Link>
+            <Link to="colorado-springs">Colorado Springs hotels</Link>
+            <Link to="denver">Denver hotels</Link>
+            <Link to="seattle">Seattle hotels</Link>
+            <Link to="portland">Portland hotels</Link>
+            <Link to="sacramento">Sacramento hotels</Link>
+            <Link to="salt-lake-city">Salt Lake City hotels</Link>
           </Box>
         )}
       </Box>
