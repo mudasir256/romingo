@@ -79,6 +79,15 @@ const HomePage: FC<Props> = () => {
     today.getDate() + 4
   ).toISOString();
 
+  useEffect(() => {
+    window.Intercom("boot", {
+      app_id: "qa6datd3",
+      alignment: "right",
+      custom_launcher_selector: "#CUSTOM",
+    });
+    window.Intercom("update");
+  }, [])
+
 
 
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
