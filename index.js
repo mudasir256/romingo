@@ -4,7 +4,7 @@ const fs = require("fs");
 const csv = require('fast-csv');
 const fetch = require('node-fetch')
 
-const { HOTEL_DESCRIPTIONS } = require('./src/constants/locationPageDescriptions')
+const { HOTEL_DESCRIPTIONS } = require('./locationPageDescriptions')
 
 const data = []
 
