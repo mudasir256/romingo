@@ -49,7 +49,7 @@ const HOTEL_DESCRIPTIONS = [
 		secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Tucson.jpg'
 	},
 	{
-		city: 'Santa Fe, MN',
+		city: 'Santa Fe, NM',
 		heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Santa%20Fe%20New%20Mexico.jpg',
 		paragraphOne: "Santa Fe was founded in 1610 and is the oldest capital city in the United States. The city is known for its art and architecture, as well as its traditional Native American and Hispanic influences. There are several museums, pet-friendly walking trails, amazing restaurants, southwestern art galleries, and the famous Santa Fe Opera House. Visitors can also enjoy a variety of outdoor activities, such as hiking, dog walking, biking, and horseback riding.",
 		paragraphTwo: "Many of the hotels in Santa Fe are pet friendly and offer exceptional amenities for accompanying pets. The vast parks and grass areas make Santa Fe one of the best cities to travel to with your pet. Not to mention the great pet friendly hotels in the area.",
@@ -98,7 +98,7 @@ const HOTEL_DESCRIPTIONS = [
 		secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Portland.jpg'
 	},
 	{
-		city: 'Sacremento, CA',
+		city: 'Sacramento, CA',
 		heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Sacramento.jpeg',
 		paragraphOne: "Sacramento is the capital city of California, located in the northern part of the state. Sacramento is known for its Gold Rush history, and today it is a booming metropolis with a diverse population. The city has a growing arts and culture scene, and there are plenty of activities to keep visitors entertained. The pet-friendly vibe in Sacramento makes this a great city to visit with your four-legged family member.",
 		paragraphTwo: "Sacramento is also home to several professional sports teams, making it an excellent destination for sports fans. Whether you're interested in history or just looking for a fun-filled city to explore, Sacramento is sure to have something for you.",

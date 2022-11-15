@@ -198,7 +198,7 @@ const Routes = () => {
       <Route exact path="/phoenix"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
       <Route exact path="/scottsdale"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
       <Route exact path="/tucson"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
-      <Route exact path="/santa-fe"><LocationPageTemplate cityName="Santa Fe, MN" /></Route>
+      <Route exact path="/santa-fe"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
       <Route exact path="/san-antonio"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
       <Route exact path="/vail"><LocationPageTemplate cityName="Vail, CO" /></Route>
       <Route exact path="/colorado-springs"><LocationPageTemplate cityName="Colorado Springs" /></Route>
