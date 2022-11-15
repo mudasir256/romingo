@@ -66,7 +66,6 @@ const Contact: FC = () => {
             <Grid item xs={12}>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{ textAlign: "justify", lineHeight: 2 }}
               >
                 Our support team is here for you 24/7! Please get in touch with
@@ -106,7 +105,6 @@ const Contact: FC = () => {
               </Link>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{ textAlign: "center" }}
               >
                 hello@romingo.com
@@ -142,7 +140,6 @@ const Contact: FC = () => {
               </Link>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{ textAlign: "center" }}
               >
                 Please complete the form below
@@ -169,7 +166,6 @@ const Contact: FC = () => {
               </Link>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{ textAlign: "center" }}
               >
                 During business hours

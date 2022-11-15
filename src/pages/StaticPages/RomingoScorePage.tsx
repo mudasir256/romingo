@@ -48,7 +48,6 @@ const RomingoScorePage: FC = () => {
           <Grid item xs={12}>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               Before you book with Romingo, or if you’re contemplating whether
@@ -72,7 +71,6 @@ const RomingoScorePage: FC = () => {
             >
               <Typography
                 variant="h6"
-                color="text.secondary"
                 sx={{
                   textAlign: "center",
                   lineHeight: 1.5,
@@ -83,7 +81,6 @@ const RomingoScorePage: FC = () => {
             </Box>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{
                 textAlign: { xs: "left", md: "justify" },
                 lineHeight: 2,
@@ -135,12 +132,11 @@ const RomingoScorePage: FC = () => {
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="h4" color="text.secondary">
+            <Typography variant="h4">
               The Algorithm
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               In a nutshell, the Romingo Score algorithm rates a hotel on its
@@ -149,7 +145,6 @@ const RomingoScorePage: FC = () => {
               criteria:
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{ textAlign: "left", lineHeight: 2 }}
               >
                 <ul>
@@ -198,7 +193,6 @@ const RomingoScorePage: FC = () => {
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               Our goal with the Romingo Score is to help you navigate which
@@ -210,7 +204,6 @@ const RomingoScorePage: FC = () => {
           <Grid item>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               With the Romingo Score and Romingo Guarantee, we hope to make your

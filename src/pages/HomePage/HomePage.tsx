@@ -228,6 +228,33 @@ const HomePage: FC<Props> = () => {
     </Box>
   )
 
+  const locationLinks = [
+    { to: "los-angeles", name: 'Los Angeles' },
+    { to: "san-francisco", name: 'San Francisco' },
+    { to: "san-diego", name: 'San Diego' },
+    { to: "orange-county", name: 'Orange County' },
+    { to: "santa-barbara", name: 'Santa Barbara' },
+    { to: "palm-springs", name: 'Palm Springs' },
+    { to: "austin", name: 'Austin' },
+    { to: "dallas", name: 'Dallas' },
+    { to: "houston", name: 'Houston' },
+    { to: "oceanside", name: 'Oceanside' },
+    { to: "phoenix", name: 'Phoenix' },
+    { to: "scottsdale", name: 'Scottsdale' },
+    { to: "tucson", name: 'Tucson' },
+    { to: "santa-fe", name: 'Santa Fe' },
+    { to: "san-antonio", name: 'San Antonio' },
+    { to: "vail", name: 'Vail' },
+    { to: "colorado-springs", name: 'Colorado Springs' },
+    { to: "denver", name: 'Denver' },
+    { to: "seattle", name: 'Seattle' },
+    { to: "portland", name: 'Portland' },
+    { to: "sacramento", name: 'Sacramento' },
+    { to: "salt-lake-city", name: 'Salt Lake City' },
+  ]
+  locationLinks.sort((a, b) => a.name.localeCompare(b.name))
+
+
   return (
     <div className="homepage">      
       <Helmet>
@@ -538,28 +565,9 @@ const HomePage: FC<Props> = () => {
 
         {showLocations && (
           <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-            <Link to="los-angeles">Los Angeles hotels</Link>
-            <Link to="san-francisco">San Francisco hotels</Link>
-            <Link to="san-diego">San Diego hotels</Link>
-            <Link to="orange-county">Orange County hotels</Link>
-            <Link to="santa-barbara">Santa Barbara hotels</Link>
-            <Link to="palm-springs">Palm Springs hotels</Link>
-            <Link to="austin">Austin hotels</Link>
-            <Link to="dallas">Dallas hotels</Link>
-            <Link to="houston">Houston hotels</Link>
-            <Link to="oceanside">Oceanside hotels</Link>
-            <Link to="phoenix">Phoenix hotels</Link>
-            <Link to="scottsdale">Scottsdale hotels</Link>
-            <Link to="tucson">Tucson hotels</Link>
-            <Link to ="santa-fe">Santa Fe hotels</Link>
-            <Link to="san-antonio">San Antonio hotels</Link>
-            <Link to="vail">Vail hotels</Link>
-            <Link to="colorado-springs">Colorado Springs hotels</Link>
-            <Link to="denver">Denver hotels</Link>
-            <Link to="seattle">Seattle hotels</Link>
-            <Link to="portland">Portland hotels</Link>
-            <Link to="sacramento">Sacramento hotels</Link>
-            <Link to="salt-lake-city">Salt Lake City hotels</Link>
+            {locationLinks.map(link => 
+              <Link key={link.to} to={link.to}>{link.name} hotels</Link>
+            )}
           </Box>
         )}
       </Box>

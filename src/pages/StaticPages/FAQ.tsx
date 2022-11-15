@@ -52,12 +52,11 @@ const FAQ: FC = () => {
             <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
               About Romingo
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What is Romingo?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo is a simple, user-friendly platform to book quality, pet
@@ -70,12 +69,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How is Romingo different from other booking websites?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               We hand-select our hotel partners. Romingo only partners with
@@ -83,12 +81,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What is the Romingo Guarantee?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               The Romingo Guarantee ensures that when you book on Romingo, your
@@ -98,13 +95,12 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Why does Romingo only allow me to book hotels in certain
               destinations?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Our team here at Romingo is working tirelessly to bring
@@ -114,12 +110,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How does Romingo get the best available room rates?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo works with a finite number of hotels that agree to waive
@@ -132,60 +127,55 @@ const FAQ: FC = () => {
             <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
               Booking Hotels
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Are all hotels listed on Romingo pet-friendly?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Yes!
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How does payment of my hotel reservation work?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               The full room &amp; tax will be charged onto the credit card on file upon check in to the Hotel. Romingo does not collect any prepayment for your reservation. The hotel cancellation policy shall still apply, so please be sure to review each individual hotel cancellation policy. You may always cancel for a full refund so long as the reservation is cancelled inside the allowable cancellation window. Cancellations made inside the cancellation window are subject to the Hotel&apos;s cancellation fees.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How do I know if my dog or dogs are allowed at a hotel?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo hotel partners agree to either allow 2 dogs weighing 50-75 lbs. per pet in weight, and some properties allow pets of all sizes. Check out each hotel pet policy to ensure that you book the correct hotel based on your pet&apos;s size. 
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Can I bring my cat(s) or other pet to a Romingo reservation?{" "}
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo loves cats too, please be sure to check out each hotel pet policy to ensure that you book a cat-friendly hotel.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How do I make a hotel reservation?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Simple, check out our homepage at{" "}
@@ -194,12 +184,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How do I cancel or change a hotel reservation?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               You can click &quot;manage my reservation&quot; from our homepage
@@ -210,12 +199,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Why is the hotel asking me for a refundable pet deposit?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Some of our hotel partners do still require a refundable pet
@@ -225,12 +213,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Why can I book a room reservation with only up to 2 dogs?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Romingo and our hotels agree that any more than 2 dogs in a single
@@ -241,24 +228,22 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Why should I create a profile for myself and for my dog(s)?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               By creating your pup&apos;s profile, we can ensure that the Hotel is prepared to welcome you and your pups upon arrival. Some hotel partners will even be ready to greet your pet by name!
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Do I need to bring anything for my pet?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Yes, you will need to bring your pet&apos;s food, bowls, bedding, toys, and any other necessary items. If you&apos;d prefer to buy these items at your destination, our pet-friendly travel guides will provide all the information you&apos;ll need!
@@ -268,7 +253,7 @@ const FAQ: FC = () => {
             <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
               Concerns
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What if I arrive at a hotel and they do not allow my dogs?
             </Typography>
             <Typography
@@ -281,13 +266,12 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What if I arrive at a hotel and they charge me a non-refundable
               pet fee?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Please reach out to Romingo Support immediately if a Romingo hotel
@@ -296,12 +280,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What if I arrive at a hotel and they charge me a pet deposit?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Although Romingo and our partners do waive non-refundable pet
@@ -315,12 +298,11 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               When will my pet deposit be returned to me?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Pet deposits are typically refunded or returned to the original
@@ -330,48 +312,44 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Are pet-friendly hotels more expensive?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Not with Romingo. We negotiate with our hotel partners to ensure that guests -- and their pets -- receive fair rates at every Romingo stay.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What if my dog has behavior issues?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               We understand that every pup has a unique personality. Still, if you expect your dog to bark excessively, destroy hotel property, or act aggressively towards other pets or guests, it&apos;s likely that you&apos;ll be in violation of our standardized pet policy.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Can my dog sleep in the bed with me at a hotel?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Yes! How pet-friendly would our hotels be if we prohibited cuddles?
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               Can I leave my dog in the hotel room without me?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               Please consult each hotel pet policy to understand the hotel pet policy about unattended pets in the room.
@@ -381,12 +359,11 @@ const FAQ: FC = () => {
             <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
               Customer Service
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               How do I get ahold of someone at Romingo?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               You can reach our Romingo Support team anytime from our{" "}
@@ -397,13 +374,12 @@ const FAQ: FC = () => {
             <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
               Hotels &amp; Partnerships
             </Typography>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               I am a hotel or accommodations partner interested in partnering
               with Romingo, how do I inquire?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               We love partnering with new accommodations providers, and welcome
@@ -412,13 +388,12 @@ const FAQ: FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6">
               What are the participation requirements for a hotel or
               accommodations partner?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               All accommodations partners must agree to adhere to our Romingo

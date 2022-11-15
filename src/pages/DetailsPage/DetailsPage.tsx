@@ -1041,7 +1041,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                         mt: ".5rem",
                                         padding: ".5rem 0rem",
                                         lineHeight: 1.75,
-                                        color: "#444",
                                       }}
                                     >
                                       {review.text}
@@ -1358,7 +1357,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                                         mt: ".5rem",
                                         padding: ".5rem 0rem",
                                         lineHeight: 1.75,
-                                        color: "#444",
                                       }}
                                     >
                                       {review.text}

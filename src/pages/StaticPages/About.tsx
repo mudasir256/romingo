@@ -49,7 +49,6 @@ const About: FC = () => {
           <Grid item xs={12}>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               As a California native, there is nothing as relaxing and
@@ -72,7 +71,6 @@ const About: FC = () => {
             >
               <Typography
                 variant="h6"
-                color="text.secondary"
                 sx={{
                   textAlign: "center",
                   lineHeight: 1.5,
@@ -118,12 +116,11 @@ const About: FC = () => {
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="h4" color="text.secondary">
+            <Typography variant="h4">
               Travelling with dogs shouldn&apos;t be this difficult!
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               One thing has always stood in our way when planning those restful
@@ -145,7 +142,6 @@ const About: FC = () => {
             >
               <Typography
                 variant="h6"
-                color="text.secondary"
                 sx={{
                   textAlign: "center",
                   lineHeight: 2,
@@ -157,7 +153,6 @@ const About: FC = () => {
             </Box>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               Most hotels have weight and/or breed restrictions, or they charge
@@ -168,12 +163,11 @@ const About: FC = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="h4" color="text.secondary">
+            <Typography variant="h4">
               Hospitality is in Romingo&apos;s DNA
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               I have spent a long career in the hospitality industry, working
@@ -185,12 +179,11 @@ const About: FC = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography variant="h4" color="text.secondary">
+            <Typography variant="h4">
               Why not build it?
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
               So I set out to change the reality of travelling with dogs, for
@@ -205,7 +198,6 @@ const About: FC = () => {
               include:
               <Typography
                 variant="h6"
-                color="text.secondary"
                 sx={{ textAlign: "left" }}
               >
                 <ul>
@@ -222,7 +214,6 @@ const About: FC = () => {
             </Typography>
             <Typography
               variant="h6"
-              color="text.secondary"
               sx={{ mt: 1, ml: 0, textAlign: "left", fontWeight: 600 }}
             >
               Zach Somers
@@ -240,7 +231,6 @@ const About: FC = () => {
             </Typography>
             <Typography
               variant="h6"
-              color="text.secondary"
               sx={{
                 mt: 5,
                 ml: 0,

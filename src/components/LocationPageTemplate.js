@@ -104,7 +104,6 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
           <Grid item xs={12}>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               {cityContent.paragraphOne}
@@ -126,7 +125,6 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
           <Grid item xs={12} md={6}>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
               {cityContent.paragraphTwo}
