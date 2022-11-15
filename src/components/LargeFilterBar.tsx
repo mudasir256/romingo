@@ -36,6 +36,7 @@ import {
   InsertInvitation,
 } from "@mui/icons-material";
 import { DateTime } from "luxon";
+import { saveSearch } from "../store/searchReducer";
 
 import "./Header/Header.scss";
 
