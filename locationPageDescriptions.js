@@ -110,6 +110,13 @@ const HOTEL_DESCRIPTIONS = [
 		paragraphOne: "Salt Lake City is the capital of Utah and the largest city in the Intermountain West. The city is home to the iconic salt lake, as well as the world-famous Mormon Temple and Latter-day Saint (LDS) church headquarters. Nestled between a massive lake and huge mountains, Salt Lake City is a great hub for out door enthusiasts. And, with plenty of pet-friendly hotels, it is a great location for the whole family.",
 		paragraphTwo: "Salt Lake City is a popular tourist destination for its many outdoor activities, including skiing and hiking in the nearby Wasatch mountains, and its unique history and culture. The city is also a major business center, with many corporations headquartered.",
 		secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Salt%20Lake%20City.jpg'
+	},
+	{
+		city: 'Palm Springs, CA',
+		heroImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg',
+		paragraphOne: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
+		paragraphTwo: 'Some of the city&apos;s main highlights include its art and culture scene and outdoor adventures where you can find miles of pet-friendly trails, canyons, mountain streams, and beautiful waterfalls. Finally, the cherry on top getting pampered at one of Palm Spring’s luxury stays!',
+		secondaryImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-4.jpeg'
 	}
 ]
 

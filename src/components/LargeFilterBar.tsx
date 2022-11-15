@@ -46,7 +46,7 @@ interface FilterBarProps {
   city?: string;
 }
 
-export const LargeFilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = "" }) => {
+export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
@@ -174,11 +174,23 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ sx, zoomed = false, city = 
       mx: 'auto',
       mt: '0em',
       zIndex: '20',
-      width: '920px',
+      width: '886px',
     }}>
-      <Box sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title">Book pet-friendly hotels</Box>
-      <Box sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">Lowest rates. $0 pet fees.</Box>
-      <Box sx={{ mt: '1.5em'}} className="filter-bar-desktop">
+      {showText && <Box sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title">Book pet-friendly hotels</Box>}
+      {showText && <Box sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">Lowest rates. $0 pet fees.</Box>}
+      <Box sx={{ 
+          mt: '1.5em', 
+          borderRadius: '15px', 
+          border: '4px solid #D3D3D3',
+          boxSizing: 'border-box',
+          zIndex: 11,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }} 
+        className="filter-bar-desktop"
+      >
         <Box 
           sx={{
             display: 'flex',

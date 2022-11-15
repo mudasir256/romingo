@@ -101,11 +101,6 @@ const routes: RouteInterface[] = [
     requireAuth: false,
   },
   {
-    path: "/palm-springs",
-    component: PalmSprings,
-    requireAuth: false,
-  },
-  {
     path: "/about",
     component: About,
     requireAuth: false,
@@ -207,6 +202,7 @@ const Routes = () => {
       <Route exact path="/portland"><LocationPageTemplate cityName="Portland, OR" /></Route>
       <Route exact path="/sacramento"><LocationPageTemplate cityName="Sacramento, CA" /></Route>
       <Route exact path="/salt-lake-city"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
+      <Route exact path="/palm-springs"><LocationPageTemplate cityName="Palm Springs, CA" /></Route>
 
       <Route component={ErrorPage} />
     </Switch>

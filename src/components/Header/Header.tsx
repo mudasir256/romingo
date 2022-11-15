@@ -148,7 +148,7 @@ const Header: FC<Props> = ({ sx }) => {
         <Box sx={{ 
           display: { xs: 'none', sm: 'none', md: 'block' }
         }}>
-          <LargeFilterBar />
+          <LargeFilterBar showText={true} />
         </Box>
       </Box>
     </Box >
