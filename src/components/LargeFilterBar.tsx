@@ -37,6 +37,7 @@ import {
 } from "@mui/icons-material";
 import { DateTime } from "luxon";
 import { saveSearch } from "../store/searchReducer";
+import SearchImage from '../assets/icon/magnify.png';
 
 import "./Header/Header.scss";
 
