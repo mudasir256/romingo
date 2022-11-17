@@ -253,12 +253,12 @@ const CheckoutInformation: FC<Props> = ({
         variables: { createSetupIntentInput: { email: checkoutForm.email } },
       });
 
-      TagManager.dataLayer({
-        dataLayer: {
-          event: "checkoutSuccess",
-          bnpl: true,
-        },
-      });
+      // TagManager.dataLayer({
+      //   dataLayer: {
+      //     event: "checkoutSuccess",
+      //     bnpl: true,
+      //   },
+      // });
       
     } catch (err) {
       console.log(err);
