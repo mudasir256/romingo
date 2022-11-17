@@ -249,146 +249,64 @@ const ListingCard: FC<ListingCardProps> = ({
             px: { xs: mobileCardPadding, sm: 0 },
             pb: { xs: mobileCardPadding, sm: "0" },
             width: "100%",
+            position: 'relative'
           }}
         >
-          <Grid
-            container
+          <Box
             sx={{
-              minHeight: { xs: 160, sm: 186 },
+              minHeight: { xs: 160, sm: 170 },
               p: {
                 xs: ".5rem .25rem 0rem .25rem",
                 sm: ".5rem .5rem .5rem 1rem",
                 md: "0rem 1rem",
               },
+              ml: { xs: '0.4rem', md: 0 },
+              my: { xs: 0 , md: '0.5em' },
+              display: 'flex',
+              flexDirection: 'column',
+              position: 'relative'
             }}
           >
-            <Grid
-              item
-              xs={12}
-              sm={7}
-              md={7}
-              lg={8}
-              xl={8}
+            <Typography
+              variant="body2"
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                p: {
-                  xs: ".5rem",
-                  sm: ".5rem .5rem .5rem 1rem",
-                  md: ".75rem 0rem",
-                },
+                color: "#222",
+                fontFamily: "overpass-light",
+                fontSize: '1.25em',
+                fontWeight: 800,
+                letterSpacing: '0px',
+                width: '100%',
+                whiteSpace: {xs: 'normal', sm: 'normal' },
+                textOverflow: "ellipsis",
               }}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#222",
-                  fontFamily: "overpass-light",
-                  fontSize: '1.25em',
-                  fontWeight: 800,
-                  letterSpacing: '0px',
-                  whiteSpace: {xs: 'normal', sm: 'nowrap' },
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {name}
-              </Typography>
+              {name}
+            </Typography>
 
-              <Typography
-                variant="body2"
-                sx={{
-                  fontSize: { xs: "95%", sm: "90%" },
-                  mt: { xs: "0rem", sm: ".125rem" },
-                
-                  fontWeight: 500,
-                  whiteSpace: "nowrap",
-                  fontFamily: "overpass-light",
-                  color: "#999",
-                }}
-              >
-                {addressLine1}, {city?.name}
-              </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                fontSize: { xs: "95%", sm: "90%" },
+                mt: { xs: "0rem", sm: ".125rem" },
+              
+                fontWeight: 500,
+                whiteSpace: "nowrap",
+                fontFamily: "overpass-light",
+                color: "#999",
+              }}
+            >
+              {addressLine1}, {city?.name}
+            </Typography>
 
-              <Box sx={{   
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  mb: '0.25em',
-              }}>
-                {/*
-                <Link
-                  onClick={() => history.push(`/hotel/${alias}#reviews`)}
-                  sx={{
-                    display: { xs: "block" },
-                    color: "#666",
-                    fontFamily: "montserrat",
-                    textDecoration: "underline",
-                    mr: -0.5,
-                    ml: { xs: 0.25 },
-                    mt: { xs: 0, sm: '0.5em' },
-                    fontWeight: 500,
-                    opacity: 0.75,
-                    fontSize: "70%",
-                  }}
-                >
-                  (see reviews)
-                </Link>
-                */}
-              </Box>
-              <Box sx={{ 
-                mb: { xs: '0.75em', sm: '1em' },
-              }}>
-                <HotelDescriptors />
-              </Box>
+            <Box sx={{ 
+              mb: { xs: '0.75em', sm: '1em' },
+            }}>
+              <HotelDescriptors />
+            </Box>
 
-              <Box sx={{
-                display: { xs: 'none', sm: 'block' },
-                my: 'auto'
-              }}>
-                <Typography sx={{        
-                   fontFamily: "overpass-light",
-                   color: '#036A6E', 
-                   fontSize: '0.9em',
-                 }}>
-                   Reserve now, pay later.
-                 </Typography>
-               </Box>
-
-              <Box
-                sx={{
-                  display: { xs: "none", sm: 'block' },
-                  mt: 'auto',
-                }}
-              >
-
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
-                  <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                  <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
-                  <Link
-                    onClick={() => history.push(`/hotel/${alias}#reviews`)}
-                    sx={{
-                      color: "#666",
-                      fontFamily: "overpass-light",
-                      textDecoration: "underline",
-                      ml: { xs: 0.25 },
-                      fontWeight: 500,
-                      opacity: 0.75,
-                      fontSize: "70%",
-                    }}
-                  >
-                    (see reviews)
-                  </Link>
-                </Box> 
-
-              </Box>
-
-            </Grid>
-
-            <Box sx={{  
-                display: { xs: 'block', sm: 'none' },
-                my: 'auto',
-                mt: '0.25em',
-                ml: '0.5em',
+            <Box sx={{
+              display: { xs: 'block', sm: 'block' },
+              my: 'auto'
             }}>
               <Typography sx={{        
                  fontFamily: "overpass-light",
@@ -399,63 +317,43 @@ const ListingCard: FC<ListingCardProps> = ({
                </Typography>
              </Box>
 
-            <Grid
-              item
-              xs={12}
-              sm={5}
-              md={5}
-              lg={4}
-              xl={4}
+            <Box
               sx={{
-                display: "flex",
-                flexDirection: { sm: "column", xs: "row" },
-                minHeight: { xs: 54, sm: 140 },
-                p: {
-                  xs: "0rem .5em",
-                  sm: ".5rem .5rem 0rem 1rem",
-                  md: ".75rem 0rem",
-                },
-                alignItems: "end",
-                justifyContent: { xs: "space-between", sm: "flex-end" },
-                textAlign: { xs: "left", md: "right" },
+                display: { xs: "block", sm: 'block' },
+                mt: 'auto',
               }}
             >
-          
-              <Box
-                sx={{
-                  display: { xs: "block", sm: 'none' },
-              
-                  ml: '0.25em',
-                  mb: '0.25em',
-                }}
-              >
-               {/*<HotelDescriptors />*/}
-    
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
-                  <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                  <span style={{ marginBottom: '0.2em', marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
-                  <Link
-                    onClick={() => history.push(`/hotel/${alias}#reviews`)}
-                    sx={{
-                      color: "#666",
-                      fontFamily: "overpass-light",
-                      textDecoration: "underline",
-                      mr: -0.5,
-                      ml: { xs: 0.25 },
-                      mt: { xs: 0, sm: '0.5em' },
-                      fontWeight: 500,
-                      opacity: 0.75,
-                      fontSize: "70%",
-                    }}
-                  >
-                    (see reviews)
-                  </Link>
-                </Box> 
+              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
+                <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
+                <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
+                <Link
+                  onClick={() => history.push(`/hotel/${alias}#reviews`)}
+                  sx={{
+                    color: "#666",
+                    fontFamily: "overpass-light",
+                    textDecoration: "underline",
+                    ml: { xs: 0.25 },
+                    fontWeight: 500,
+                    opacity: 0.75,
+                    fontSize: "70%",
+                  }}
+                >
+                  (see reviews)
+                </Link>
+              </Box> 
 
-              </Box>
-              <PriceDetails />
-            </Grid>
-          </Grid>
+            </Box>
+
+          </Box>
+
+          <Box sx={{
+            position: 'absolute',
+            bottom: 4,
+            right: 12
+          }}>
+            <PriceDetails />
+          </Box>
+
         </Box>
       </Box>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}

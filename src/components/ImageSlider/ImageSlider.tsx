@@ -10,30 +10,50 @@ interface Props {
   name: string;
   indicators?: boolean;
   sx?: any;
+  forceLarge?: boolean;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, name }) => {
+const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
 
   useEffect(() => {
     if (images && images.length > 0) {
-      setItems(
-        images.slice(0, 10).map((img, i) => (
-          <Box
-            component="div"
-            key={img + i}
-            sx={{
-              ...sx,
-              display: "block",
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              width: "100%",
-              backgroundImage: `url('${img.replace(/'/g, "%27")}')`,
-            }}
-          />
-        ))
-      );
+      const components = 
+      forceLarge ?     
+            images.slice(0, 10).map((img, i) => <img key={img + i} style={{
+              display: 'block', 
+              width: '100%', 
+              height: '244px',
+              objectFit: 'cover',
+              objectPosition: 'center', 
+              borderRadius: '6px 6px 0 0',
+            }} src={img.replace(/'/g, "%27")} loading="lazy" />)
+            : images.slice(0, 10).map((img, i) => (
+              <>
+                <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}>
+                  <img key={img + i} style={{
+                    display: 'block', 
+                    width: '100%', 
+                    height: '187px',
+                    objectFit: 'cover',
+                    objectPosition: 'center', 
+                    borderRadius: '6px 0px 0px 6px',
+                  }} src={img.replace(/'/g, "%27")} loading="lazy" />
+                </Box>
+                <Box sx={{ display: { xs: 'block', sm: 'block', md: 'none'} }}>
+                  <img key={img + i} style={{
+                    display: 'block', 
+                    width: '100%', 
+                    height: '244px',
+                    objectFit: 'cover',
+                    objectPosition: 'center', 
+                    borderRadius: '6px 6px 0 0',
+                  }} src={img.replace(/'/g, "%27")} loading="lazy" />
+                </Box>
+              </>))
+
+      setItems(components);
     }
   }, []);
 

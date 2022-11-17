@@ -138,6 +138,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
           <ImageSlider
             images={imageURLs}
             name={name}
+            forceLarge={true}
             sx={{
               width: '100%',
               height: 240,

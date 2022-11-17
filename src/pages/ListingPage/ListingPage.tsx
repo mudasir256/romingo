@@ -48,20 +48,15 @@ import FilterBar from "../../components/FilterBar";
 import { TextField, Button } from "@mui/material";
 import Footer from "../../components/Footer";
 import SearchIcon from "@mui/icons-material/Search";
-import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
 import {
   GetHotelBySearch,
-  GetHotelRackBySearch,
 } from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { saveSearch } from "../../store/searchReducer";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
@@ -148,23 +143,6 @@ const ListingPage: FC<Props> = () => {
       },
     }
   );
-
-  // const { data: rack_data, error: error2 } = useQuery(
-  //   gql`
-  //     ${GetHotelRackBySearch}
-  //   `,
-  //   {
-  //     variables: {
-  //       adults: search.occupants.adults,
-  //       cityId: search.city,
-  //       checkIn: search.checkIn.substring(0, 10),
-  //       checkOut: search.checkOut.substring(0, 10),
-  //       children: ageParam,
-  //       dogs: search.occupants.dogs,
-  //       allows_big_dogs: allowBigDogs
-  //     },
-  //   }
-  // );
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -694,8 +672,8 @@ const ListingPage: FC<Props> = () => {
               <Grid container spacing={1}>
                 <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={12}>
                   <Button onClick={() => {
-                    setShowFilters(true)
-                    setShowExtras(true)
+                    setShowFilters(!showFilters)
+                    setShowExtras(!showExtras)
                   }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Sort & Filter</Button>
                 </Grid>
               </Grid>
