@@ -572,7 +572,6 @@ const HomePage: FC<Props> = () => {
         )}
       </Box>
   
-
       <Footer />
     </div>
   );
