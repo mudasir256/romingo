@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
@@ -235,6 +236,8 @@ const app = new express();
 
 app.use("/static", express.static(path.join(__dirname, "build/static")));
 app.use("/public", express.static(path.join(__dirname, "build/")));
+
+app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));
 
 app.get('/sitemap.xml', function(req, res, next) {
   res.sendFile(__dirname + '/public/sitemap.xml'); 
