@@ -259,12 +259,13 @@ const HomePage: FC<Props> = () => {
     <div className="homepage">      
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <meta property="og:title" content="Romingo | Book pet friendly hotels" />
+        <description>Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.</description>
+        <meta property="og:title" content="Book pet friendly hotels — Romingo" />
         <meta property="og:url" content="https://www.romingo.com" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta property="og:site_name" content="Romingo" />
-        <meta name="twitter:title" content="Romingo | Book pet friendly hotels" />
+        <meta name="twitter:title" content="Book pet friendly hotels — Romingo" />
         <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>

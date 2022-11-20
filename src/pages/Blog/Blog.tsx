@@ -115,9 +115,9 @@ const Blog: FC = () => {
     <>
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
+        <description>Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.</description>
         <meta property="og:title" content="Book pet friendly hotels - Romingo" />
-        <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta property="og:description" content="Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta property="og:site_name" content="Romingo" />
