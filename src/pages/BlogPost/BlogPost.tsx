@@ -193,6 +193,7 @@ const BlogPost: FC = () => {
               )}
 
               <Typography
+                component="h1"
                 variant="h3"
                 color="text.primary"
                 dangerouslySetInnerHTML={{
@@ -220,10 +221,14 @@ const BlogPost: FC = () => {
                 </Typography>
               </Divider>
               <Hidden mdDown>
-                <DesktopFilterBar city={cityId} />
+                <Box sx={{ mx: 'auto', maxWidth:'500px'}}>
+                  <DesktopFilterBar city={cityId} />
+                </Box>
               </Hidden>
               <Hidden mdUp>
-                <FilterBar searchOnClose={false} city={cityId} />
+                <Box sx={{ mx: 'auto', maxWidth: '500px'}}>
+                  <FilterBar searchOnClose={false} city={cityId} />
+                </Box>
               </Hidden>
               <div className="custom-blog-post">
                 <div className="post-template-default single single-post postid-1568 single-format-standard wp-custom-logo  nv-sidebar-full-width menu_sidebar_slide_right">

@@ -237,7 +237,9 @@ const app = new express();
 app.use("/static", express.static(path.join(__dirname, "build/static")));
 app.use("/public", express.static(path.join(__dirname, "build/")));
 
-app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));
+if (process.env.NODE_ENV !== 'development') {
+  app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN));  
+}
 
 app.get('/sitemap.xml', function(req, res, next) {
   res.sendFile(__dirname + '/public/sitemap.xml'); 

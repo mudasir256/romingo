@@ -21,6 +21,7 @@ const ReadMore: FC<Props> = ({
   return (
     <Typography
       variant="body2"
+      component="h2"
       sx={{
         lineHeight: small ? 1 : 2,
         display: "inline",

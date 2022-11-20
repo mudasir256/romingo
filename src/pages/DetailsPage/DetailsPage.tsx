@@ -777,6 +777,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >
                   <Typography
                     variant="h5"
+                    component="h1"
                     sx={{
                       color: "#222",
                       display: { sm: "block", md: "flex" },
@@ -865,6 +866,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                               />
                               <Typography
                                 variant="h6"
+                                component="h1"
                                 sx={{
                                   color: "#666",
                                   fontSize: "16px",
@@ -1169,6 +1171,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
                               <Typography
                                 variant="h6"
+                                component="h1"
                                 sx={{
                                   color: "#666",
                                   fontSize: "16px",

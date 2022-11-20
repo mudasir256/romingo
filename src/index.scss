@@ -50,6 +50,12 @@ html {
   font-family: "overpass-light", sans-serif;
 }
 
+h1, h2, h3 {
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+}
+
 .overpass {
   font-family: "overpass-light" !important;
 }
