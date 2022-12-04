@@ -84,6 +84,10 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
     <>
       <Helmet>
         <title>{foundCity.name} Hotels - Romingo</title>
+        <description>{cityContent.paragraphOne}</description>
+        <meta property="og:title" content={`${foundCity.name} Hotels - Romingo`} />
+        <meta property="og:description" content={cityContent.paragraphOne} />
+        <meta property="og:image" content={cityContent.heroImage} />
       </Helmet>
       <ScrollToTop />
       <Navbar />
@@ -100,7 +104,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       />
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Typography variant="h2" color="text.primary">
+          <Typography component="h1" variant="h2" color="text.primary">
             {onlyCity}
           </Typography>
         </Box>
@@ -121,6 +125,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
         >
           <Grid item xs={12}>
             <Typography
+              component="h2"
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >

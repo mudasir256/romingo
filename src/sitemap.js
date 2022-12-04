@@ -23,24 +23,7 @@ const routes = [
   {
     path: "/reservation/manage",
   },
-  {
-    path: "/los-angeles",
-  },
-  {
-    path: "/san-diego",
-  },
-  {
-    path: "/orange-county",
-  },
-  {
-    path: "/san-francisco",
-  },
-  {
-    path: "/santa-barbara",
-  },
-  {
-    path: "/palm-springs",
-  },
+
   {
     path: "/about",
   },
@@ -74,6 +57,28 @@ const routes = [
   {
     path: "/blog/post/:id",
   },
+  { path: "/los-angeles" },
+  { path: "/san-francisco" },
+  { path: "/san-diego" },
+  { path: "/orange-county"},
+  { path: "/santa-barbara"},
+  { path: "/palm-springs"},
+  { path: "/austin"},
+  { path: "/dallas" },
+  { path: "/houston" },
+  { path: "/oceanside" },
+  { path: "/phoenix" },
+  { path: "/scottsdale" },
+  { path: "/tucson" },
+  { path: "/santa-fe" },
+  { path: "/san-antonio" },
+  { path: "/vail" },
+  { path: "/colorado-springs" },
+  { path: "/denver" },
+  { path: "/seattle" },
+  { path: "/portland" },
+  { path: "/sacramento" },
+  { path: "/salt-lake-city" },
 ];
 
 const aliasMap = []
