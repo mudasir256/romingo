@@ -206,7 +206,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             <Typography
               sx={{
                 ...labelStyle,
-                mb: 0
+                mb: 0,
+                ml: '1em'
               }}>
               Where to
             </Typography>
@@ -223,17 +224,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
               }}
             >
               {selectedCity ? (
-                <img
-                  src={`/public/images/location-icons/${getCity(selectedCity)
-                    ?.name.substring(
-                      0,
-                      getCity(selectedCity)?.name.indexOf(",")
-                    )
-                    .toLowerCase()
-                    .replace(/ /g, "_")}.svg`}
-                  height="24px"
-                  style={{ marginLeft: "5px" }}
-                />
+                <></>
               ) : (
                 <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
               )}

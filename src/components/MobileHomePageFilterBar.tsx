@@ -241,17 +241,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                 }}
               >
                 {selectedCity ? (
-                  <img
-                    src={`/public/images/location-icons/${getCity(selectedCity)
-                      ?.name.substring(
-                        0,
-                        getCity(selectedCity)?.name.indexOf(",")
-                      )
-                      .toLowerCase()
-                      .replace(/ /g, "_")}.svg`}
-                    height="24px"
-                    style={{ marginLeft: "5px", }}
-                  />
+                  <></>
                 ) : (
                   <LocationCity sx={{ height: "24px", color: "#666" }} />
                 )}
