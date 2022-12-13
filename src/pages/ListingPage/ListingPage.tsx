@@ -266,7 +266,7 @@ const ListingPage: FC<Props> = () => {
         return []
       }))
     }
-    filtered = filtered.filter(card => (card.lowestAveragePrice > value[0] && card.lowestAveragePrice <= value[1]) )
+    filtered = filtered.filter(card => (card.lowestAveragePrice >= value[0] && card.lowestAveragePrice <= value[1]) )
     if (rating) {
       filtered = filtered.filter(card => parseInt(card.starRating) === rating)
     }
