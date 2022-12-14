@@ -27,6 +27,10 @@ const RegisterCard: FC<Props> = ({ sx }) => {
     };
   }, [confirmPassword]);
 
+  const registerAccount = async () => {
+    //TODO: create account
+  }
+
   return (
     <Box sx={{ ...sx }}>
       <ValidatorForm

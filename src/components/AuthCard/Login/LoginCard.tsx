@@ -19,19 +19,51 @@ const LoginCard: FC<Props> = ({ sx }) => {
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
 
+  const login = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `
+          query CreateUserInput(
+            $email: String!,
+            $password: String!
+          ){
+            loginUser(input: { email: $email, password: $password }) {
+              id
+              email
+            }
+          }
+        `,
+        variables: {
+          email: email,
+          password: password
+        }
+      })
+    })
+    const data = await result.json()
+    console.log(data)
+
+    if (data.data?.loginUser.id === 'not found') {
+      console.log('show error')
+      return
+    }
+
+    //TODO: save user id
+    dispatch(
+      loginUser({
+        email,
+        password,
+      })
+    );
+  }
+
   return (
     <Box sx={{ ...sx }}>
-      <ValidatorForm
-        onSubmit={(e: React.SyntheticEvent) => {
-          e.preventDefault();
-          dispatch(
-            loginUser({
-              email,
-              password,
-            })
-          );
-        }}
-      >
+      <ValidatorForm onSubmit={login}>
         <TextValidator
           fullWidth={true}
           name="email"
