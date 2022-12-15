@@ -5,6 +5,7 @@ import { Dispatch } from "redux";
 import { CSSObject } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom";
 
 import { loginUser } from "../../../store/userReducer";
 
@@ -12,12 +13,13 @@ interface Props {
   sx?: CSSObject;
 }
 
-const LoginCard: FC<Props> = ({ sx }) => {
+const LoginCard: FC<Props> = ({ sx, handleClose }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
+  const history = useHistory()
 
   const login = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -52,13 +54,13 @@ const LoginCard: FC<Props> = ({ sx }) => {
       return
     }
 
-    //TODO: save user id
     dispatch(
       loginUser({
-        email,
-        password,
+        email: data.data.loginUser.email,
+        id: data.data.loginUser.id
       })
     );
+    history.push('/profile')
   }
 
   return (

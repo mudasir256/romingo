@@ -42,6 +42,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
+import { authService } from "../../services/authService.js"
 
 interface Props {
   sx?: CSSObject;
@@ -71,6 +72,15 @@ const Navbar: FC<Props> = ({ sx }) => {
     setShowLogin(false);
     setSelectDialog(LOGIN);
   };
+
+  const handleProfileClick = () => {
+    const token = authService.getToken();
+    if (token) {
+      history.push('/profile')
+      return
+    }
+    setShowLogin(true)
+  }
 
   const path = history.location.pathname
 
@@ -170,7 +180,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   List your property
                 </div>
               </Link>
-              <Box onClick={() => setShowLogin(true)} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
+              <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
                 <Person sx={{ fontSize: '24px', color: 'black'}} />
               </Box>
             </Hidden>
@@ -274,7 +284,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 }}
               />
 
-              <Box onClick={() => setShowLogin(true)} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
+              <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
                 <Person sx={{ fontSize: '24px', color: 'black'}} />
               </Box>
 
@@ -413,6 +423,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 mt: 1,
                 py: 1,
               }}
+              handleClose={handleClose}
             />
           )}
           {selectDialog === REGISTER && (

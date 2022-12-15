@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 const ListingPage = loadable(() => import('./pages/ListingPage'))
 import DetailsPage from './pages/DetailsPage'
 // const DetailsPage = loadable(() => import('./pages/DetailsPage'))
+const ProfilePage = loadable(() => import('./pages/ProfilePage'))
 const CheckoutPage = loadable(() => import('./pages/CheckoutPage'))
 
 const ManageReservationPage = loadable(() => import('./pages/ManageReservationPage'))
@@ -49,6 +50,11 @@ const routes: RouteInterface[] = [
     path: "/details/:id",
     component: DetailsPage,
     requireAuth: false,
+  },
+  {
+    path: '/profile',
+    component: ProfilePage,
+    requireAuth: true
   },
   {
     path: "/hotel/:alias",

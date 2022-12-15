@@ -6,11 +6,12 @@ interface LoginInfo {
   password: string;
 }
 
-export const loginUser = (userData: LoginInfo) => (dispatch: UserDispatchType) => {
+export const loginUser = (userData: LoginInfo) => async (dispatch: UserDispatchType) => {
   // call api to login
+
   const res = {
-    token: "test token",
-    id: "123412341224",
+    token: userData.id,
+    id: userData.id,
     email: userData.email
   };
 

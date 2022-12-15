@@ -41,12 +41,12 @@ interface Props {
   sx?: CSSObject;
 }
 
-const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
+const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const [name, setName] = useState(userInfo.name);
-  const [email, setEmail] = useState(userInfo.email);
-  const [phone, setPhone] = useState(userInfo.phone);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   const [editProfile, setEditProfile] = useState(false);
   const [editDog, setEditDog] = useState(false);
@@ -61,9 +61,9 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
   };
 
   const initData = () => {
-    setName(userInfo.name);
-    setEmail(userInfo.email);
-    setPhone(userInfo.phone);
+    setName('');
+    setEmail('');
+    setPhone('');
   };
 
   const handleClose = () => {
@@ -649,6 +649,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               >
                 Person
               </Typography>
+              {/*
               <Button
                 size="small"
                 variant="outlined"
@@ -660,6 +661,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               >
                 Edit My Info
               </Button>
+             */}
             </Box>
           </Box>
           <Box>
@@ -677,7 +679,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 mt: 0.5,
               }}
             >
-              {userInfo.name}
+              {name}
             </Typography>
             <Typography
               variant="body1"
@@ -694,7 +696,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 mt: 0.5,
               }}
             >
-              {userInfo.email}
+              {email}
             </Typography>
             <Typography
               variant="body1"
@@ -711,7 +713,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 mt: 0.5,
               }}
             >
-              {userInfo.phone}
+              {phone}
             </Typography>
           </Box>
         </Container>
