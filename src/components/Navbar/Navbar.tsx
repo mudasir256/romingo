@@ -469,7 +469,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
             </Typography>
           </Link>
-          {selectDialog === LOGIN && (
+{/*          {selectDialog === LOGIN && (
             <Link
               href="#"
               onClick={(e) => {
@@ -488,7 +488,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 Forgot Password?
               </Typography>
             </Link>
-          )}
+          )}*/}
         </DialogContent>
       </Dialog>
     </>
