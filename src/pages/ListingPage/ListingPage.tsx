@@ -122,7 +122,7 @@ const ListingPage: FC<Props> = () => {
         };
       }
       return {
-        age: x,
+        age: x || 1,
       };
     })
     : [];

@@ -507,7 +507,7 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                       value={
                         value.childrenAge && value.childrenAge[i]
                           ? value.childrenAge[i].toString()
-                          : "0"
+                          : "1"
                       }
                       onChange={(e: any) => {
                         if (value.childrenAge === undefined) {
@@ -517,10 +517,10 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
                         onChange({ ...value });
                       }}
                     >
-                      {Array.from({ length: 18 }, (_, k: number) => {
+                      {Array.from({ length: 17 }, (_, k: number) => {
                         return (
-                          <MenuItem value={k} key={k}>
-                            {k}
+                          <MenuItem value={k + 1} key={k + 1}>
+                            {k + 1}
                           </MenuItem>
                         );
                       })}
