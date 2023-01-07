@@ -9,6 +9,7 @@ import {
   Button,
   Typography,
   Grid,
+  Slide,
 } from "@mui/material";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -315,6 +316,13 @@ const HomePage: FC<Props> = () => {
       </Box>
       </Box>
 
+      <Box sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', m: '2em'}}>
+        <Box onClick={() => setShowLocations(!showLocations)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Typography sx={{ fontSize: '1.2em' }}>Explore destinations</Typography>
+          <KeyboardArrowDownIcon color="primary" />
+        </Box>
+      </Box>
+
       
 
       <Box className="hotels-wrapper" sx={{ 
@@ -558,20 +566,38 @@ const HomePage: FC<Props> = () => {
 
       <EndingSection />
 
-      <Box sx={{ textAlign: 'center', p: '2em', border: '1px solid black', m: '2em'}}>
-        <Box onClick={() => setShowLocations(!showLocations)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <Typography sx={{ fontSize: '1.2em' }}>Browse locations</Typography>
-          <KeyboardArrowDownIcon color="primary" />
-        </Box>
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, mx: 'auto', maxWidth: '840px', height: '220px', overflow: 'auto', my: '1rem', p: '2em', boxShadow: 2, borderRadius: '20px' }}>
+        <h1>Discover more with Romingo</h1>
+        <h2>Hotels by location</h2>
+        <hr />
+        <br />
+        <Grid container spacing={2}>
+        {locationLinks.map(link => 
+          <Grid key={link.to} item xs={6}><Link key={link.to} to={link.to}>{link.name} hotels</Link></Grid>
+        )}
+        </Grid>
+      </Box>
 
-        {showLocations && (
-          <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+      <Slide direction='up' in={showLocations} mountOnEnter unmountOnExit>
+        <Box sx={{ 
+          position: 'fixed', 
+          overflow: 'auto',
+          bottom: '0', 
+          height: '80%', 
+          width: '100%', 
+          backgroundColor: 'white',
+          borderTopRightRadius: '20px',
+          borderTopLeftRadius: '20px'
+        }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', margin: '1rem', fontSize: '1.25rem'}}>
+            <Button sx={{ ml: 'auto', float: 'right', border: '1px solid black' }} onClick={() => setShowLocations(false)}>X</Button>
             {locationLinks.map(link => 
-              <Link key={link.to} to={link.to}>{link.name} hotels</Link>
+              <Box sx={{ my: '0.5rem' }} key={link.to}> <Link key={link.to} to={link.to}>{link.name} hotels</Link></Box>
             )}
           </Box>
-        )}
-      </Box>
+        </Box>
+      </Slide>
+
   
       <Footer />
     </div>
