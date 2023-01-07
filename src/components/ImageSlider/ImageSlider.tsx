@@ -39,7 +39,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
                     objectFit: 'cover',
                     objectPosition: 'center', 
                     borderRadius: '6px 0px 0px 6px',
-                  }} src={img.replace(/'/g, "%27")} loading="lazy" />
+                  }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>
                 <Box sx={{ display: { xs: 'block', sm: 'block', md: 'none'} }}>
                   <img key={img + i} style={{
@@ -49,7 +49,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
                     objectFit: 'cover',
                     objectPosition: 'center', 
                     borderRadius: '6px 6px 0 0',
-                  }} src={img.replace(/'/g, "%27")} loading="lazy" />
+                  }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>
               </>))
 
