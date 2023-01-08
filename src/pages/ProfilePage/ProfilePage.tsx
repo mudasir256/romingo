@@ -23,6 +23,10 @@ import { UserProfile } from '../../constants/constants'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import Navbar from "../../components/Navbar";
+import { useHistory } from 'react-router-dom'
+import { logoutUser } from "../../store/userReducer";
+import { useDispatch } from "react-redux";
+
 
 interface DogInfo {
   name?: string;
@@ -45,6 +49,8 @@ interface Props {
 
 const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   const theme = useTheme();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -86,6 +92,11 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   const handleDogClose = () => {
     setEditDog(false);
   };
+
+  const logout = () => {
+    dispatch(logoutUser())
+    history.push('/')
+  }
 
   React.useEffect(() => {
     ValidatorForm.addValidationRule("isPhone", (value: string) => {
@@ -800,6 +811,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
           </Box>
         </Container>
       </Box>
+
+      <Box sx={{ ml: '1rem' }}>
+        <Button onClick={() => logout()} variant="contained">Logout</Button>
+        {/* <Button variant="outlined">Delete Account</Button>*/}
+      </Box>
+
       <Dialog
         open={editProfile}
         keepMounted

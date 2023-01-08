@@ -16,6 +16,7 @@ interface Props {
 const LoginCard: FC<Props> = ({ sx, handleClose }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
@@ -49,9 +50,13 @@ const LoginCard: FC<Props> = ({ sx, handleClose }) => {
     const data = await result.json()
     console.log(data)
 
-    if (data.data?.loginUser.id === 'not found') {
-      console.log('show error')
+    if (data.data?.loginUser?.id === 'not found') {
+      setError("Email/password are incorrect.")
       return
+    }
+    if (data.data?.loginUser === null) {
+      setError("Email/password are incorrect.")
+      return 
     }
 
     dispatch(
@@ -65,6 +70,7 @@ const LoginCard: FC<Props> = ({ sx, handleClose }) => {
 
   return (
     <Box sx={{ ...sx }}>
+      {error && <p style={{color: 'red'}}>{error}</p>}
       <ValidatorForm onSubmit={login}>
         <TextValidator
           fullWidth={true}

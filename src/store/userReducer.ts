@@ -22,6 +22,14 @@ export const loginUser = (userData: LoginInfo) => async (dispatch: UserDispatchT
   })
 }
 
+export const logoutUser = () => async (dispatch: UserDispatchType) => {
+  authService.logout()
+  authService.setCredentials('', '')
+  dispatch({
+    type: actionTypes.SET_UNAUTHENTICATED
+  })
+}
+
 const initialState: UserState = {
   user: {
     token: "",

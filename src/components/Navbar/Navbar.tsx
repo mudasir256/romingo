@@ -74,7 +74,8 @@ const Navbar: FC<Props> = ({ sx }) => {
   };
 
   const handleProfileClick = () => {
-    const token = authService.getToken();
+    const token = authService.getUser();
+    console.log(token)
     if (token) {
       history.push('/profile')
       return
