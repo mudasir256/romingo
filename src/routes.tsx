@@ -54,7 +54,7 @@ const routes: RouteInterface[] = [
   {
     path: '/profile',
     component: ProfilePage,
-    requireAuth: true
+    requireAuth: false
   },
   {
     path: "/hotel/:alias",

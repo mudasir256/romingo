@@ -15,6 +15,7 @@ env_variables:
   NODE_ENV: 'development'
   REACT_APP_STRIPE_CLIENT_KEY: "pk_test_51JcD2bBdk22npNeJQBWoPOP8JMvOlhYFkCr9KB5YlxU9vtV7Amdkl3lVLxX0qWxXy3YmghTewaILVISoURTfY8YJ00VvhyCojd"
   REACT_APP_ENDPOINT: "https://dev.graphql.romingo.com/graphql"
+  REACT_APP_BASE_ENDPOINT: 'https://dev.graphql.romingo.com/'
 vpc_access_connector:
   name: projects/eminent-helix-324520/locations/us-east1/connectors/vpc-connector-us-east1
 

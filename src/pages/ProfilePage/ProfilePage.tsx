@@ -98,6 +98,18 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
     history.push('/')
   }
 
+  const deleteAccount = async () => {
+    const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/user/${authService.getUser().id}`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'no-cors'
+    })
+    console.log(result)
+    logout()
+  }
+
   React.useEffect(() => {
     ValidatorForm.addValidationRule("isPhone", (value: string) => {
       const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
@@ -814,7 +826,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
 
       <Box sx={{ ml: '1rem' }}>
         <Button onClick={() => logout()} variant="contained">Logout</Button>
-        {/* <Button variant="outlined">Delete Account</Button>*/}
+         <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
       </Box>
 
       <Dialog
