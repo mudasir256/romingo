@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import React, { FC, useState, MouseEventHandler } from "react";
+import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import { CSSObject } from "@mui/material";
 import Container from "@mui/material/Container";
@@ -17,10 +17,16 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
+import {Helmet} from "react-helmet";
+import { gql, useQuery } from "@apollo/client";
+import { UserProfile } from '../../constants/constants'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-
+import { authService } from "../../services/authService.js"
 import Navbar from "../../components/Navbar";
+import { useHistory } from 'react-router-dom'
+import { logoutUser } from "../../store/userReducer";
+import { useDispatch } from "react-redux";
+
 
 interface DogInfo {
   name?: string;
@@ -41,17 +47,22 @@ interface Props {
   sx?: CSSObject;
 }
 
-const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
+const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   const theme = useTheme();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const [name, setName] = useState(userInfo.name);
-  const [email, setEmail] = useState(userInfo.email);
-  const [phone, setPhone] = useState(userInfo.phone);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   const [editProfile, setEditProfile] = useState(false);
   const [editDog, setEditDog] = useState(false);
 
   const [editDogInfo, setEditDogInfo] = useState<DogInfo>({});
+
+  const [dogName, setDogName] = useState('')
+
 
   const handleEditClick: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -61,9 +72,9 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
   };
 
   const initData = () => {
-    setName(userInfo.name);
-    setEmail(userInfo.email);
-    setPhone(userInfo.phone);
+    setName('');
+    setEmail('');
+    setPhone('');
   };
 
   const handleClose = () => {
@@ -82,6 +93,23 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
     setEditDog(false);
   };
 
+  const logout = () => {
+    dispatch(logoutUser())
+    history.push('/')
+  }
+
+  const deleteAccount = async () => {
+    const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/user/${authService.getUser().id}`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'no-cors'
+    })
+    console.log(result)
+    logout()
+  }
+
   React.useEffect(() => {
     ValidatorForm.addValidationRule("isPhone", (value: string) => {
       const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
@@ -97,8 +125,44 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
   const EditDogModal = (props: DogInfo) => {
     return (
       <ValidatorForm
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
+          const data = new FormData(e.target)
+          const format = {
+            petName: data.get('name'),
+            petDescription: `${data.get('gender')}|${data.get('birthday')}|${data.get('weight')}`,
+            breedType: data.get('breed')
+          }
+          console.log(format)
+          const result2 =  await fetch(process.env.REACT_APP_ENDPOINT, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              query: `
+                mutation createUserProfileInput(
+                  $userId: String!,
+                  $pets: [PetsInput]
+                ){
+                  createUserProfile(input: { userId: $userId, pets: $pets }) {
+                    id
+                    email
+                    name
+                  }
+                }
+              `,
+              variables: {
+                userId: authService.getUser().id,
+                pets: [format]
+              }
+            })
+          })
+
+          const data2 = await result2.json()
+          console.log(data2)
+          refetch()
+          setEditDog(false)
         }}
       >
         <Grid container>
@@ -128,6 +192,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
             <TextField
               variant="outlined"
               type="text"
+              name="name"
               defaultValue={editDogInfo.name}
               fullWidth={true}
               size="medium"
@@ -185,6 +250,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 M
               </Typography>
               <Switch
+                name="gender"
                 defaultChecked={props.gender !== "male"}
                 color="primary"
                 inputProps={{ "aria-label": "secondary checkbox" }}
@@ -227,6 +293,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           </Grid>
           <Grid item xs={7} sm={9}>
             <TextField
+              name="birthday"
               variant="outlined"
               type="date"
               defaultValue={editDogInfo.birthday}
@@ -272,6 +339,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           </Grid>
           <Grid item xs={7} sm={9}>
             <TextField
+              name="weight"
               variant="outlined"
               type="text"
               defaultValue={editDogInfo.weight}
@@ -322,6 +390,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           </Grid>
           <Grid item xs={7} sm={9}>
             <TextField
+              name="breed"
               variant="outlined"
               type="text"
               defaultValue={editDogInfo.breed}
@@ -368,8 +437,46 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
     );
   };
 
+  const { loading, error, data, refetch } = useQuery(
+    gql`
+      ${UserProfile}
+    `,
+    {
+      variables: {
+        email: authService.getUser().email,
+        id: authService.getUser().id
+      },
+    }
+  );
+  console.log(data)
+  console.log(error)
+
+  console.log(authService.getUser().email)
+
+  // useEffect(async () => {
+  //   console.log(UserProfile)
+  //   const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       query: `${UserProfile}`,
+  //       variables: {
+  //         email: authService.getUser().email
+  //       }
+  //     })
+  //   })
+  //   const data = await result.json()
+  //   console.log(data)
+
+  // },[])
+
   return (
     <>
+      <Helmet>
+        <title>Book pet friendly hotels - Romingo</title>
+      </Helmet>
       <Navbar />
       <Box
         sx={{
@@ -435,7 +542,16 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 justifyContent: "start",
               }}
             >
-              {pups.map((pup, key) => {
+              {data?.getUserProfile.pets.map((pup, key) => {
+                const parts = pup.petDescription.split('|')
+                let gender = '';
+                let birthday = '';
+                let weight = ''
+                if (parts.length > 2) {
+                  gender = parts[0] == 'on' ? 'F' : 'M'
+                  birthday = parts[1]
+                  weight = parts[2]
+                }
                 return (
                   <Box
                     key={key}
@@ -451,7 +567,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                         boxShadow: 2,
                         backgroundColor: "white",
                       }}
-                    >
+                    >{/*
                       <Box
                         component="img"
                         src={pup.image}
@@ -465,9 +581,11 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                           borderTopRightRadius: 12,
                         }}
                       />
+                    */}
                       <Box
                         sx={{
-                          mt: -2.5,
+                          mt: 0,
+                          pt: 1,
                           px: 2,
                           position: "relative",
                         }}
@@ -486,7 +604,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                             background: "white",
                           }}
                         >
-                          {pup.name}
+                          {pup.petName}
                         </Typography>
                       </Box>
                       <Box sx={{ pt: 1, pb: 0.5, px: 0.5 }}>
@@ -514,7 +632,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                               textTransform: "capitalize",
                             }}
                           >
-                            {pup.gender}
+                            {gender}
                           </Typography>
                         </Box>
                         <Box
@@ -541,7 +659,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                               textTransform: "capitalize",
                             }}
                           >
-                            {pup.birthday}
+                            {birthday}
                           </Typography>
                         </Box>
                         <Box
@@ -568,7 +686,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                               textTransform: "capitalize",
                             }}
                           >
-                            {pup.weight}lbs
+                            {weight}lbs
                           </Typography>
                         </Box>
                         <Box
@@ -595,11 +713,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                               textTransform: "capitalize",
                             }}
                           >
-                            {pup.breed}
+                            {pup.breedType}
                           </Typography>
                         </Box>
                       </Box>
                     </Box>
+                    {/*
                     <Box
                       sx={{
                         position: "absolute",
@@ -619,6 +738,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                         Edit
                       </Button>
                     </Box>
+                    */}
                   </Box>
                 );
               })}
@@ -649,6 +769,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               >
                 Person
               </Typography>
+              {/*
               <Button
                 size="small"
                 variant="outlined"
@@ -660,42 +781,27 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
               >
                 Edit My Info
               </Button>
+             */}
             </Box>
           </Box>
           <Box>
             <Typography
               variant="body1"
               sx={{
-                fontWeight: "bold",
+         
               }}
             >
-              Name
+              Name: {data?.getUserProfile.name || ''}
             </Typography>
             <Typography
               variant="body1"
               sx={{
-                mt: 0.5,
-              }}
-            >
-              {userInfo.name}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
                 mt: 1.5,
               }}
             >
-              Email
+              Email:  {data?.getUserProfile.email}
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 0.5,
-              }}
-            >
-              {userInfo.email}
-            </Typography>
+            {/*
             <Typography
               variant="body1"
               sx={{
@@ -711,11 +817,18 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
                 mt: 0.5,
               }}
             >
-              {userInfo.phone}
+              {phone}
             </Typography>
+            */}
           </Box>
         </Container>
       </Box>
+
+      <Box sx={{ ml: '1rem' }}>
+        <Button onClick={() => logout()} variant="contained">Logout</Button>
+         <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
+      </Box>
+
       <Dialog
         open={editProfile}
         keepMounted
@@ -875,7 +988,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups }) => {
           }}
         >
           <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
-            <EditDogModal {...editDogInfo} />
+            <EditDogModal {...editDogInfo}/>
           </DialogContentText>
         </DialogContent>
       </Dialog>

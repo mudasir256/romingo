@@ -685,6 +685,26 @@ const LocationProperties = `
   }
 `
 
+const UserProfile = `
+  query(
+    $email: String!
+    $id: String
+  ) {
+    getUserProfile(input: {
+      email: $email, 
+      id: $id
+    }) {
+      email
+      name
+      pets {
+        petName
+        petDescription
+        breedType
+      }
+    }
+  }
+`
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -704,4 +724,5 @@ export {
   GetSabrePropertyDetails,
   GetHomePageProperty,
   LocationProperties,
+  UserProfile,
 };

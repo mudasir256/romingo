@@ -5,6 +5,7 @@ import { Dispatch } from "redux";
 import { CSSObject } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom";
 
 import { loginUser } from "../../../store/userReducer";
 
@@ -12,26 +13,65 @@ interface Props {
   sx?: CSSObject;
 }
 
-const LoginCard: FC<Props> = ({ sx }) => {
+const LoginCard: FC<Props> = ({ sx, handleClose }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
+  const history = useHistory()
+
+  const login = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `
+          query CreateUserInput(
+            $email: String!,
+            $password: String!
+          ){
+            loginUser(input: { email: $email, password: $password }) {
+              id
+              email
+            }
+          }
+        `,
+        variables: {
+          email: email,
+          password: password
+        }
+      })
+    })
+    const data = await result.json()
+    console.log(data)
+
+    if (data.data?.loginUser?.id === 'not found') {
+      setError("Email/password are incorrect.")
+      return
+    }
+    if (data.data?.loginUser === null) {
+      setError("Email/password are incorrect.")
+      return 
+    }
+
+    dispatch(
+      loginUser({
+        email: data.data.loginUser.email,
+        id: data.data.loginUser.id
+      })
+    );
+    history.push('/profile')
+  }
 
   return (
     <Box sx={{ ...sx }}>
-      <ValidatorForm
-        onSubmit={(e: React.SyntheticEvent) => {
-          e.preventDefault();
-          dispatch(
-            loginUser({
-              email,
-              password,
-            })
-          );
-        }}
-      >
+      {error && <p style={{color: 'red'}}>{error}</p>}
+      <ValidatorForm onSubmit={login}>
         <TextValidator
           fullWidth={true}
           name="email"

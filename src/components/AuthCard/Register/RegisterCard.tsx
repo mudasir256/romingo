@@ -13,6 +13,8 @@ const RegisterCard: FC<Props> = ({ sx }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   React.useEffect(() => {
     ValidatorForm.addValidationRule("isPasswordMatch", () => {
@@ -27,13 +29,78 @@ const RegisterCard: FC<Props> = ({ sx }) => {
     };
   }, [confirmPassword]);
 
+  const registerAccount = async (e: React.SyntheticEvent) => {
+    setSuccessMessage('')
+    setErrorMessage('')
+    const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `
+          mutation CreateUserInput(
+            $email: String!,
+            $password: String!
+          ){
+            createUser(input: { email: $email, password: $password }) {
+              id
+              email
+            }
+          }
+        `,
+        variables: {
+          email: email,
+          password: password
+        }
+      })
+    })
+    const data = await result.json()
+
+    console.log(data)
+    if (data.data.createUser?.id) {
+      const result2 =  await fetch(process.env.REACT_APP_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: `
+            mutation createUserProfileInput(
+              $userId: String!,
+              $name: String!
+            ){
+              createUserProfile(input: { userId: $userId, name: $name }) {
+                id
+                email
+                name
+              }
+            }
+          `,
+          variables: {
+            userId: data.data.createUser.id,
+            name: name,
+          }
+        })
+      })
+
+      const data2 = await result2.json()
+      console.log(data2)
+      setSuccessMessage('Account created! Please login to your account to access your profile!')
+
+    } else {
+      setErrorMessage('We encountered a server error. Please try again or create an account with a different email.')
+      //server error or email already exists
+
+    }
+
+  }
+
   return (
     <Box sx={{ ...sx }}>
-      <ValidatorForm
-        onSubmit={(e: React.SyntheticEvent) => {
-          e.preventDefault();
-        }}
-      >
+      {successMessage && <p style={{ paddingBottom: '1em', color: 'green'}}>{successMessage}</p>}
+      {errorMessage && <p style={{ paddingBottom: '1em', color: 'red'}}>{errorMessage}</p>}
+      <ValidatorForm onSubmit={registerAccount}>
         <TextValidator
           fullWidth={true}
           name="name"

@@ -35,12 +35,14 @@ import {
   PushPin,
   WorkRounded,
   HomeWorkRounded,
+  Person,
 } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
+import { authService } from "../../services/authService.js"
 
 interface Props {
   sx?: CSSObject;
@@ -70,6 +72,16 @@ const Navbar: FC<Props> = ({ sx }) => {
     setShowLogin(false);
     setSelectDialog(LOGIN);
   };
+
+  const handleProfileClick = () => {
+    const token = authService.getUser();
+    console.log(token)
+    if (token) {
+      history.push('/profile')
+      return
+    }
+    setShowLogin(true)
+  }
 
   const path = history.location.pathname
 
@@ -169,10 +181,9 @@ const Navbar: FC<Props> = ({ sx }) => {
                   List your property
                 </div>
               </Link>
-              {/*<img src="/images/user.png" width="16px" height="18px" alt="" />
-              <Link onClick={(e) => { setMenuOpen(!menuOpen);setAnchorEl(e.currentTarget)}} sx={{cursor: 'pointer', padding: '.5rem 1rem', minWidth: '20px', background: menuOpen ? '#03989E': '#fff', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'cener', textDecoration: 'none', '&:hover': { background: '#03989E', color: '#fff' }, color: menuOpen ? '#fff':'#03989E'}}>
-                <MenuIcon sx={{ margin: '0px auto'}} />
-              </Link> */}
+              <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
+                <Person sx={{ fontSize: '24px', color: 'black'}} />
+              </Box>
             </Hidden>
 
             <Hidden lgUp>
@@ -273,6 +284,10 @@ const Navbar: FC<Props> = ({ sx }) => {
                   maxHeight: { xs: "44px", md: "44px" },
                 }}
               />
+
+              <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
+                <Person sx={{ fontSize: '24px', color: 'black'}} />
+              </Box>
 
               <Typography
                 onClick={() => history.push("/reservation/manage")}
@@ -409,6 +424,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 mt: 1,
                 py: 1,
               }}
+              handleClose={handleClose}
             />
           )}
           {selectDialog === REGISTER && (
@@ -454,7 +470,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
             </Typography>
           </Link>
-          {selectDialog === LOGIN && (
+{/*          {selectDialog === LOGIN && (
             <Link
               href="#"
               onClick={(e) => {
@@ -473,7 +489,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 Forgot Password?
               </Typography>
             </Link>
-          )}
+          )}*/}
         </DialogContent>
       </Dialog>
     </>
