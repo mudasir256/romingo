@@ -1,35 +1,59 @@
+// @font-face {
+//   font-family: "overpass-light";
+//   src: url(./assets/font/overpass/overpass-light.otf) format("opentype"),
+//     url(./assets/font/overpass/Overpass-Light.ttf) format("truetype");
+
+// }
+
+// @font-face {
+//   font-family: "overpass-regular";
+//   src: url(./assets/font/overpass/overpass-regular.otf) format("opentype"),
+//     url(./assets/font/overpass/Overpass-Regular.ttf) format("truetype");
+// }
+
+// @font-face {
+//   font-family: "overpass-bold";
+//   src: url(./assets/font/overpass/overpass-bold.otf) format("opentype"),
+//     url(./assets/font/overpass/Overpass-Bold.ttf) format("truetype");
+
+// }
+
+// @font-face {
+//   font-family: "sansita-light";
+//   src: url(./assets/font/sansita/Sansita-Light.otf) format("opentype"),
+//     url(./assets/font/sansita/Sansita-Regular.ttf) format("truetype");
+// }
+
+// @font-face {
+//   font-family: "sansita-bold";
+//   src: url(./assets/font/sansita/Sansita-Bold.otf) format("opentype"),
+//     url(./assets/font/sansita/Sansita-Bold.ttf) format("truetype");
+
+// }
+
 @font-face {
   font-family: "overpass-light";
-  src: url(./assets/font/overpass/overpass-light.otf) format("opentype"),
-    url(./assets/font/overpass/Overpass-Light.ttf) format("truetype");
-
+  src: url(./assets/font/mangueira-regular.woff) format('woff');
 }
 
 @font-face {
   font-family: "overpass-regular";
-  src: url(./assets/font/overpass/overpass-regular.otf) format("opentype"),
-    url(./assets/font/overpass/Overpass-Regular.ttf) format("truetype");
+  src: url(./assets/font/mangueira-regular.woff) format('woff');
 }
 
 @font-face {
   font-family: "overpass-bold";
-  src: url(./assets/font/overpass/overpass-bold.otf) format("opentype"),
-    url(./assets/font/overpass/Overpass-Bold.ttf) format("truetype");
-
+  src: url(./assets/font/mangueira-regular.woff) format('woff');
 }
 
 @font-face {
   font-family: "sansita-light";
-  src: url(./assets/font/sansita/Sansita-Light.otf) format("opentype"),
-    url(./assets/font/sansita/Sansita-Regular.ttf) format("truetype");
-
+  src: url(./assets/font/calibre-regular.woff2) format('woff2');
 }
 
 @font-face {
   font-family: "sansita-bold";
-  src: url(./assets/font/sansita/Sansita-Bold.otf) format("opentype"),
-    url(./assets/font/sansita/Sansita-Bold.ttf) format("truetype");
-
+  src: url(./assets/font/calibre-regular.woff2) format('woff2');
 }
 
 .carousel-item-padding-px {
