@@ -94,14 +94,14 @@ const ListingCardSquare: FC<ListingCardProps> = ({
           sx={{
             mr: 0,
             mt: '0.1em',
-            fontFamily: "overpass-bold",
+            fontFamily: "sansita-light",
             fontSize: '1.25em',
             fontWeight: 800,
             display: 'flex',
             alignItems: 'center'
           }}
         >
-          {currency}{Math.round(lowestTotalPriceAfterTax)} <Typography sx={{ fontFamily:'overpass-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
+          {currency}{Math.round(lowestTotalPriceAfterTax)} <Typography sx={{ fontFamily:'sansita-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
         </Typography>
       </Box>
     </Box>
