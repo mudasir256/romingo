@@ -61,11 +61,6 @@ const FooterMenus = {
       target: "",
     },
     {
-      text: "Romingo score",
-      link: "/romingo-score",
-      target: "",
-    },
-    {
       text: "RedRover partnership",
       link: "/romingo-partners",
       target: "",
@@ -186,9 +181,6 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
             </div>
             <div>
               <Link href="/contact">Contact</Link>
-            </div>
-            <div>
-              <Link href="/romingo-score">Romingo score</Link>
             </div>
             <div>
               <Link href="/romingo-partners">RedRover partnership</Link>

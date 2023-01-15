@@ -286,33 +286,26 @@ const HomePage: FC<Props> = () => {
             <img className="book-now-image" src={BookNow} alt="lowest rates" />
           </div>
           <div className="info-box-title">Pet-Friendly Travel</div>
-          <div className="info-box-desc">Say hello to Romingo! Our team has searched thousands of pet-friendly hotels, and we have hand-selected the pet-friendliest for you to easily book with Romingo.</div>
+          <div className="info-box-desc">Romingo has searched through thousands of pet-friendly hotels, and we have hand-selected the best for you to easily book right here.</div>
         </Box>
         <Box className="info-box">
           <div className="align-center">
             <img src={LowestRates}  alt="no pet fees" />
           </div>
-          <Box className="info-box-title" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
-            $0 Pet Fees
+          <Box className="info-box-title">
+            Best rates + $0 pet fees       
           </Box>
-          <Box className="info-box-desc" sx={{ display: { xs: 'block', sm: 'block', md: 'block', lg: 'none'} }}>
-            Romingo is the only travel site that saves you on costly hotel pet fees. When you book with Romingo, your pets will always stay for $0 at your favorite hotel brands.
-          </Box>
-          <Box className="info-box-title" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            $0 Pet Fees       
-          </Box>
-          <Box className="info-box-desc" sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' } }}>
-            Romingo is the only travel site that saves you on costly hotel pet fees. When you book with Romingo, your pets will always stay for $0 at your favorite hotel brands.
+          <Box className="info-box-desc">
+            Other booking sites will charge hidden pet fees, but when you book with Romingo you receive the lowest rates, and your pets will always stay for $0.
           </Box>
         </Box>
         <Box className="info-box" sx={{ mb: '1.5em'}}>
           <div className="align-center">
             <img src={AuthenticPet} alt="authentic pet" />
           </div>
-          <div className="info-box-title">Romingo Guarantee</div>
-          <div className="info-box-desc">No more fine print pet policies. When you book with Romingo, every hotel partner welcomes 2 dogs up to 50 or 75 pounds each. Some hotels allow larger pet sizes.</div>
+          <div className="info-box-title">Trusted and accredited</div>
+          <div className="info-box-desc">You and your pets will receive VIP service at our pet-friendly partner hotels. Romingo is accredited and trusted for you to book pet-friendly hotels.</div>
         </Box>
-       
       </Box>
       </Box>
 
@@ -334,7 +327,7 @@ const HomePage: FC<Props> = () => {
       >
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
-        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Fan Favorites</Typography>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
         <MultiCarousel responsive={{
             desktop: {
               breakpoint: { max: 4000, min: 900},
@@ -428,7 +421,7 @@ const HomePage: FC<Props> = () => {
         </Box>
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
-        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Surfs up</Typography>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Feeling adventurous?</Typography>
         <MultiCarousel responsive={{
             desktop: {
               breakpoint: { max: 4000, min: 900},
@@ -508,7 +501,7 @@ const HomePage: FC<Props> = () => {
 
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mb: '2em' }}>
-        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Sustainability trailblazers</Typography>
+        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
         <MultiCarousel responsive={{
             desktop: {
               breakpoint: { max: 4000, min: 900},
@@ -566,14 +559,14 @@ const HomePage: FC<Props> = () => {
 
       <EndingSection />
 
-      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, mx: 'auto', maxWidth: '840px', height: '220px', overflow: 'auto', my: '1rem', p: '2em', boxShadow: 2, borderRadius: '20px' }}>
-        <h1>Discover more with Romingo</h1>
-        <h2>Hotels by location</h2>
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, mx: 'auto', maxWidth: '840px', overflow: 'auto', my: '1rem', p: '2em', boxShadow: 2, borderRadius: '20px' }}>
+        <h1>Plan your next trip with Romingo</h1>
+        <h2>Explore our destinations</h2>
         <hr />
         <br />
         <Grid container spacing={2}>
         {locationLinks.map(link => 
-          <Grid key={link.to} item xs={6}><Link key={link.to} to={link.to}>{link.name} hotels</Link></Grid>
+          <Grid key={link.to} item xs={6}><Link key={link.to} to={link.to}>{link.name} pet-friendly hotels</Link></Grid>
         )}
         </Grid>
       </Box>
