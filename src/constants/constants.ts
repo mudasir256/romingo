@@ -621,8 +621,8 @@ const GetSabrePropertyDetails = `
 `;
 
 const GetHomePageProperty = `
-  query GetHomePageProperties {
-    getHomepageProperties {
+  query GetHomePagePropertiesTwo {
+    getHomepagePropertiesTwo {
       id
       addressLine1        
       alias          
