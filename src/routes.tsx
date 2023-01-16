@@ -18,7 +18,6 @@ const FAQ = loadable(() => import('./pages/StaticPages/FAQ'))
 const Contact = loadable(() => import('./pages/StaticPages/Contact'))
 const Privacy = loadable(() => import('./pages/StaticPages/Privacy'))
 const Terms = loadable(() => import('./pages/StaticPages/Terms'))
-const RomingoScorePage = loadable(() => import('./pages/StaticPages/RomingoScorePage'))
 const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProperty'))
 const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartner'))
 const Application = loadable(() => import('./pages/StaticPages/Application'))
@@ -89,11 +88,6 @@ const routes: RouteInterface[] = [
   {
     path: "/contact",
     component: Contact,
-    requireAuth: false,
-  },
-  {
-    path: "/romingo-score",
-    component: RomingoScorePage,
     requireAuth: false,
   },
   {
