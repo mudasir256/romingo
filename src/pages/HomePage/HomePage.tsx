@@ -563,7 +563,6 @@ const HomePage: FC<Props> = () => {
                 <ListingCardSquare
                   key={7}
                   {...ghVail}
-                  name={'Kimpton Shorebreak Resort'}
                   city={{ name: 'Vail, CO' }}
                   lowestTotalPriceAfterTax={219}
                   highlighted={false}
@@ -611,7 +610,7 @@ const HomePage: FC<Props> = () => {
                 <ListingCardSquare
                   key={11}
                   {...andaz}
-                  city={{ name: 'Colorado Springs, CO' }}
+                  city={{ name: "Scottsdale, AZ" }}
                   lowestTotalPriceAfterTax={199}
                   highlighted={false}
                 />
