@@ -21,6 +21,7 @@ const Terms = loadable(() => import('./pages/StaticPages/Terms'))
 const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProperty'))
 const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartner'))
 const Application = loadable(() => import('./pages/StaticPages/Application'))
+const CreateAccount = loadable(() => import('./pages/CreateAccount'))
 
 const LocationPageTemplate = loadable(() => import('./components/LocationPageTemplate'))
 
@@ -125,6 +126,11 @@ const routes: RouteInterface[] = [
     component: BlogPost,
     requireAuth: false,
   },
+  {
+    path: '/create-account',
+    component: CreateAccount,
+    requireAuth: false,
+  }
 ];
 
 const AuthGuards = (props: any) => {

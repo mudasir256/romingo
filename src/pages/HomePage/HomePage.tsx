@@ -696,7 +696,7 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-        <Box sx={{ backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
+        <Box sx={{ position: 'relative', backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
           <Box 
             component="img" 
             sx={{ 
@@ -708,7 +708,11 @@ const HomePage: FC<Props> = () => {
           <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem' }, maxWidth: '500px'}}>
             <Typography variant="h2" sx={{ mb: '1rem'}}>Experience true <br/> pet-friendliness</Typography>
             <Typography variant="p" sx={{ fontSize: '1.25rem'}}>Enjoy unique pet-friendly inclusions when you book with Romingo. Pet beds, bowls, treats, and toys are provided free when you visit select hotels*.</Typography>
-            {/* Todo, create account button */}
+            <br />
+            <Button sx={{ mt: '0.5rem' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>
+						<br />
+						<br />
+						<Typography variant="p">*visit each hotel profile to learn more</Typography>
           </Box>
         </Box>
 

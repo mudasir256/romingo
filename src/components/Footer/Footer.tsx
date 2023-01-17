@@ -5,6 +5,9 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Link from "@mui/material/Link";
 
+import IATANLogo from '../../assets/images/IATANLogo.webp';
+import BBBLogo from '../../assets/images/BBBLogo.png';
+
 import LogoImg from '../../assets/images/logo.png';
 import Pup from '../../assets/images/pup.png';
 import "./Footer.scss";
@@ -153,7 +156,6 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
           </div>
         </div>
         <div className="link-section">
-
           <div className="site-map-section">
             <div className="site-map-section-header">
               Site map
@@ -185,6 +187,10 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
             <div>
               <Link href="/blog/12" target="_blank">Top travel tips</Link>
             </div>
+          </div>
+          <div style={{ marginLeft: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            <img width="200px" src={IATANLogo} alt="IATAN Logo" />
+            <img width="220px" src={BBBLogo} alt="BBB Logo" />
           </div>
         </div>
       </div>
