@@ -310,7 +310,7 @@ const HomePage: FC<Props> = () => {
             <img src={LowestRates}  alt="no pet fees" />
           </div>
           <Box className="info-box-title">
-            Best rates + $0 pet fees       
+            Best Rates + $0 Pet Fees       
           </Box>
           <Box className="info-box-desc">
             Other booking sites will charge hidden pet fees, but when you book with Romingo you receive the lowest rates, and your pets will always stay for $0.
