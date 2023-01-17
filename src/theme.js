@@ -34,6 +34,10 @@ export const theme = {
     h2: {
       fontFamily: "sansita-light",
       fontWeight: 900,
+      fontSize: '2.5rem',
+      '@media (min-width: 600px)': {
+        fontSize: '3.5rem'
+      }
     },
     h3: {
       fontFamily: "sansita-light",
