@@ -10,7 +10,10 @@ import {
   Typography,
   Grid,
   Slide,
+  TextField,
 } from "@mui/material";
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
+import CheckIcon from '@mui/icons-material/Check';
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { saveSearch } from "../../store/searchReducer";
@@ -19,6 +22,7 @@ import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 import SectionOneImage from '../../assets/images/home-hero.jpg';
 import SectionTwoImage from '../../assets/images/home-hero-3.jpg';
+import SectionThreeImage from '../../assets/images/homepage-dog.jpg';
 
 import LogoImgWhite from '../../assets/images/logo-white.png';
 import LowestRates from '../../assets/images/icon-01.png';
@@ -33,7 +37,7 @@ import { GetPropertyDetails, GetHomePageProperty } from "../../constants/constan
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
-
+import { subscribeToNewsletter } from '../../services/endpoints'
 
  
 import MultiCarousel from "react-multi-carousel";
@@ -66,6 +70,8 @@ interface Props {
 
 
 const HomePage: FC<Props> = () => {
+  const [email, setEmail] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false)
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
   const dispatch: Dispatch<any> = useDispatch();
@@ -261,12 +267,17 @@ const HomePage: FC<Props> = () => {
   ]
   locationLinks.sort((a, b) => a.name.localeCompare(b.name))
 
+  const handleEmailSubmit = () => {
+		setIsSuccess(false)
+		const result = subscribeToNewsletter(email)
+		setIsSuccess(result.success)
+  }
 
   return (
     <div className="homepage">      
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.</description>
+        <description>Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.</description>
         <meta property="og:title" content="Book pet friendly hotels — Romingo" />
         <meta property="og:url" content="https://www.romingo.com" />
         <meta property="og:type" content="website" />
@@ -500,7 +511,7 @@ const HomePage: FC<Props> = () => {
 
 
         <Box sx={{ backgroundColor: '#F4DAC9', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
-          <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem' }, maxWidth: '440px'}}>
+          <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem', xl: '5rem' }, maxWidth: '440px'}}>
             <Typography variant="h2" sx={{ mb: '1rem'}}>Travel the world with your pup by your side</Typography>
             <Typography variant="p" sx={{ fontSize: '1.25rem'}}>Romingo is the future of pet-friendly travel. It’s never been easier to travel with your pup!</Typography>
             <Button sx={{ mt: '1rem' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>
@@ -882,10 +893,10 @@ const HomePage: FC<Props> = () => {
           backgroundColor: 'white',
   
         }}>
-          <div>
+          <Box>
             <Typography variant="h3" mb="0.5rem">Plan your next trip with Romingo</Typography>
             <Typography variant="p" fontSize="1.25rem">Explore our destinations</Typography>
-          </div>
+          </Box>
           <hr />
           <Grid ml="auto" mt="1rem" mb="1rem" container spacing={2} sx={{ overflow: 'auto' }}>
           {locationLinks.map(link => 
@@ -894,6 +905,40 @@ const HomePage: FC<Props> = () => {
           </Grid>
         </Box>
       </Box>
+
+      <Box sx={{ backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
+        <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem' }, maxWidth: '560px'}}>
+          <Typography variant="h2" sx={{ mb: { xs: '1rem', sm: '1rem', md: '2rem' } }}>Sign up for Romingo exclusive deals and pet-friendly tips</Typography>
+          <Typography variant="p" sx={{ fontSize: '1.25rem' }}>Enter your email address below:</Typography>
+          <form style={{ marginTop: '1rem'}} onSubmit={(e) => {
+            e.preventDefault();
+            subscribeToNewsletter(email);
+          }}>
+            <TextField  
+              sx={{ width: '400px' }} 
+              variant="standard" 
+              value={email} 
+              onChange={(e) => setEmail(e.target?.value)} 
+              type="email" 
+              required 
+              placeholder='Email address' 
+              InputProps={{ endAdornment: 
+								isSuccess ? <Box sx={{ backgroundColor: 'white', width: '24px', height: '24px', borderRadius: '100%', cursor: 'pointer'}}><CheckIcon /></Box>
+									: <Box onClick={() => handleEmailSubmit()} sx={{ backgroundColor: 'white', width: '24px', height: '24px', borderRadius: '100%', cursor: 'pointer'}}><PlayArrowOutlinedIcon /></Box>
+              }}
+            />
+          </form>
+        </Box>
+        <Box 
+          component="img" 
+          sx={{ 
+            maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' }
+          }} 
+          src={SectionThreeImage} 
+          alt="sign up for exclusive deals"
+        />
+      </Box>
+
 
       <Slide direction='up' in={showLocations} mountOnEnter unmountOnExit>
         <Box sx={{ 

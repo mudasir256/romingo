@@ -13,7 +13,7 @@ const seo = [
   {
     path: "/",
     title: "Book pet friendly hotels - Romingo",
-    description: "Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.",
+    description: "Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.",
     image: "https://romingo.com/public/images/home.jpg",
   },
   {

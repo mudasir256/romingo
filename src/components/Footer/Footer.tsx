@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FC } from "react";
 import { CSSObject, IconButton, Box, Dialog } from "@mui/material";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Link from "@mui/material/Link";
 
@@ -99,22 +98,8 @@ const FooterMenus = {
 };
 
 const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
-  const [email, setEmail] = useState('');
   const [showEgg, setShowEgg] = useState(false);
   const [timer, setTimer] = useState(null);
-
-  const handleEmailChange = (e: any) => {
-    setEmail(e.target.value);
-    fetch(
-      `https://romingo.us6.list-manage.com/subscribe/post-json?u=585083137c3540a7371e3a74f&id=d4d3932414&EMAIL=${encodeURIComponent(
-        e.target.value
-      )}&c=?`,
-      { mode: "no-cors", method: "POST" }
-    )
-  }
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-  }
 
   const easterEgg = () => {
     if (timer) {
@@ -144,7 +129,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
            <img loading="lazy" src={LogoImg} alt="Romingo Logo" />
           </Link>
           <div className="footer-wrapper-logo-section-text">
-            Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.
+            Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.
           </div>
           <div className="social-icons">
             <IconButton
@@ -199,20 +184,6 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
             </div>
             <div>
               <Link href="/blog/12" target="_blank">Top travel tips</Link>
-            </div>
-          </div>
-          <div className="sign-up">
-            <div className="sign-up-header">
-              Newsletter signup
-            </div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <input value={email} onChange={(e) => handleEmailChange(e)} type="email" required placeholder='Enter email address' />
-              <button type="submit">
-                <PlayArrowOutlinedIcon />
-              </button>
-            </form>
-            <div className="sign-up-footer">
-              Sign up for our newsletter to receive exclusive offers
             </div>
           </div>
         </div>
