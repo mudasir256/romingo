@@ -167,7 +167,9 @@ const CheckoutInformation: FC<Props> = ({
                   children,
                   noOfDogs: occupants.dogs,
                   intentType: setupIntent ? 'setup Intent' : 'payment Intent',
-                  setupIntentObject: setupIntent
+                  setupIntentObject: setupIntent,
+                  utmSource: localStorage.getItem('utm_source') || '',
+                  utmMedium: localStorage.getItem('utm_medium') || ''
                 },
               },
             });

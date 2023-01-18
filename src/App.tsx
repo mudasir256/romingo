@@ -23,6 +23,8 @@ const randomNumber = (max: number) => Math.floor(Math.random() * max);
 
 const App: FC = () => {
   const dispatch = useDispatch();
+  const sp = new URLSearchParams(window.location.search);
+
   const { loading, error, data } = useQuery(
     gql`
       ${GetCities}
@@ -45,6 +47,12 @@ const App: FC = () => {
         checkoutFail: "Checkout Failure",
       },
     });
+    if (sp.get('utm_source')) {
+      localStorage.setItem('utm_source', sp.get('utm_source'))
+    }
+    if (sp.get('utm_medium')) {
+      localStorage.setItem('utm_medium', sp.get('utm_medium'))
+    }
   }, []);
 
   useEffect(() => {
