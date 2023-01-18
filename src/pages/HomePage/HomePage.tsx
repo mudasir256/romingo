@@ -636,7 +636,6 @@ const HomePage: FC<Props> = () => {
                 <ListingCardSquare
                   key={7}
                   {...ghVail}
-                  name={'Kimpton Shorebreak Resort'}
                   city={{ name: 'Vail, CO' }}
                   lowestTotalPriceAfterTax={219}
                   highlighted={false}
@@ -752,7 +751,7 @@ const HomePage: FC<Props> = () => {
               <ListingCardSquare
                 key={13}
                 {...leMerdien}
-                city={{ name: 'Seattle, WA' }}
+                city={{ name: 'Santa Monica, CA' }}
                 lowestTotalPriceAfterTax={259}
                 highlighted={false}
               />
@@ -825,7 +824,7 @@ const HomePage: FC<Props> = () => {
               <ListingCardSquare
                 key={13}
                 {...leMerdien}
-                city={{ name: 'Seattle, WA' }}
+                city={{ name: 'Santa Monica, CA' }}
                 lowestTotalPriceAfterTax={259}
                 highlighted={false}
               />
