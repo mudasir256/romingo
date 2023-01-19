@@ -139,17 +139,6 @@ const ListingCard: FC<ListingCardProps> = ({
             />
           </>
       }
-
-   
-
-      {/*
-      <Chip
-        size="small"
-        sx={chipIconStyle}
-        icon={<CreditCardOffTwoTone fontSize="small" sx={{mr: '0.5em'}}  />}
-        label="Reserve now, pay later"
-      />
-      */}
     </Box>
   )
 

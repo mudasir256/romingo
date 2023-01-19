@@ -799,6 +799,7 @@ const ListingPage: FC<Props> = () => {
                     >
                       <ListingCard
                         {...card}
+                        imageURLs={[...new Set([card.featuredImageURL, ...card.imageURLs])]}
                         duration={diffDays}
                         highlighted={false} //{hotelIndex === index ? true : false}
                         flag={location.state?.flag}
