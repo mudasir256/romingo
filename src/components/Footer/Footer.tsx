@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FC } from "react";
-import { CSSObject, IconButton, Box, Dialog } from "@mui/material";
+import { CSSObject, IconButton, Box, Dialog, Typography } from "@mui/material";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Link from "@mui/material/Link";
@@ -131,9 +131,9 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
           <Link href="/">
            <img loading="lazy" src={LogoImg} alt="Romingo Logo" />
           </Link>
-          <div className="footer-wrapper-logo-section-text">
+          <Typography component="p" variant="base2" maxWidth="400px" mb="0.5rem">
             Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.
-          </div>
+          </Typography>
           <div className="social-icons">
             <IconButton
               edge="start"

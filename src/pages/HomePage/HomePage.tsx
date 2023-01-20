@@ -98,8 +98,6 @@ const HomePage: FC<Props> = () => {
     window.Intercom("update");
   }, [])
 
-
-
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
   let ghSanDiego, westin, plazaResort, saguaro, hiltonSf, hrMissionBay,
@@ -208,39 +206,6 @@ const HomePage: FC<Props> = () => {
     return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', right: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowRightIcon fontSize="large" /></Box></Box>
   };
 
-
-  const EndingSection = () => (
-    <Box className="homepage-dog">
-      <div className="homepage-dog-wallpaper">
-        <img className="homepage-logo" src={LogoImgWhite} alt="Romingo Logo" loading="lazy"  />
-        <div className="homepage-dog-text">
-          <Typography sx={{
-            fontFamily: 'sansita-bold',
-            fontSize: '1.75em',
-            color: 'white',
-            letterSpacing: '0.5px',
-            mb: '0em',
-            lineHeight: '1.25em',
-          }}>Reserve now, pay later</Typography>
-          <h3 className="no-space mb-xs space-letters-sm">Plus, free cancellations!</h3>
-          <Button
-            onClick={handleImFlexibleClick}
-            variant="contained"
-            size="large"
-            sx={{
-              textTransform: "none",
-              fontFamily: "sansita-light",
-              mb: '1.5em',
-            }}
-
-          >
-            Book now
-          </Button>
-        </div>
-      </div> 
-    </Box>
-  )
-
   const locationLinks = [
     { to: "los-angeles", name: 'Los Angeles' },
     { to: "san-francisco", name: 'San Francisco' },
@@ -302,7 +267,7 @@ const HomePage: FC<Props> = () => {
           <div className="align-center">
             <img className="book-now-image" src={BookNow} alt="lowest rates" />
           </div>
-          <div className="info-box-title">Pet-Friendly Travel</div>
+          <div className="info-box-title">Pet-friendly travel</div>
           <div className="info-box-desc">Romingo has searched through thousands of pet-friendly hotels, and we have hand-selected the best for you to easily book right here.</div>
         </Box>
         <Box className="info-box">
@@ -310,7 +275,7 @@ const HomePage: FC<Props> = () => {
             <img src={LowestRates}  alt="no pet fees" />
           </div>
           <Box className="info-box-title">
-            Best Rates + $0 Pet Fees       
+            Best rates + $0 pet fees       
           </Box>
           <Box className="info-box-desc">
             Other booking sites will charge hidden pet fees, but when you book with Romingo you receive the lowest rates, and your pets will always stay for $0.
@@ -326,26 +291,26 @@ const HomePage: FC<Props> = () => {
       </Box>
       </Box>
 
-      <Box sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', m: '2em'}}>
+      <Box sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', mx: '1rem', mt: '2rem', mb: '0.25rem'}}>
         <Box onClick={() => setShowLocations(!showLocations)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <Typography sx={{ fontSize: '1.2em' }}>Explore destinations</Typography>
           <KeyboardArrowDownIcon color="primary" />
         </Box>
       </Box>
 
-      
 
       <Box className="hotels-wrapper" sx={{ 
         marginTop: { sm: 0, md: 0, lg: 0 },
         marginBottom: { sm: 0, md: 0, lg: 0 }, 
         pb: 0,
-        background: 'white' 
+        background: 'white',
+
       }}
       >
 
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '2em', mb: '2em' }}>
-          <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
-          <MultiCarousel responsive={{
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
+          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
+{/*          <MultiCarousel responsive={{
               desktop: {
                 breakpoint: { max: 4000, min: 900},
                 items: 0,
@@ -360,12 +325,15 @@ const HomePage: FC<Props> = () => {
             customLeftArrow={<CustomLeftArrow />}
             customRightArrow={<CustomRightArrow />}
           >
-            
+          </MultiCarousel>*/}
+
+          <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
             {(ghSanDiego) ?
-              <Box sx={{ p: '1em'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={0}
                   {...ghSanDiego}
+                  name="Manchester Grand Hyatt"
                   city={{ name: 'San Diego, CA' }}
                   lowestTotalPriceAfterTax={161}
                   highlighted={false}
@@ -373,79 +341,7 @@ const HomePage: FC<Props> = () => {
               </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
             }  
             {(westin) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={1}
-                  {...westin}
-                  city={{ name: 'Los Angeles, CA' }}
-                  lowestTotalPriceAfterTax={119}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
-            }  
-            {(plazaResort) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={2}
-                  {...plazaResort}
-                  city={{ name: 'Scottsdale, AZ' }}
-                  lowestTotalPriceAfterTax={149}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
-            }  
-            {(saguaro) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={3}
-                  {...saguaro}
-                  city={{ name: 'Palm Springs, CA' }}
-                  lowestTotalPriceAfterTax={135}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
-            }  
-
-            {(hiltonSf) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={4}
-                  {...hiltonSf}
-                  name={'Hilton San Francisco'}
-                  city={{ name: 'San Francisco, CA' }}
-                  lowestTotalPriceAfterTax={143}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
-            }  
-
-            {(hrMissionBay) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={5}
-                  {...hrMissionBay}
-                  city={{ name: 'San Diego, CA' }}
-                  lowestTotalPriceAfterTax={219}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
-            } 
-          </MultiCarousel>
-
-          <Box sx={{ display: { xs: 'none', 'sm': 'none', md: 'none', lg: 'flex' } }}>
-            {(ghSanDiego) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
-                <ListingCardSquare
-                  key={0}
-                  {...ghSanDiego}
-                  city={{ name: 'San Diego, CA' }}
-                  lowestTotalPriceAfterTax={161}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
-            }  
-            {(westin) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={1}
                   {...westin}
@@ -457,7 +353,7 @@ const HomePage: FC<Props> = () => {
               </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
             }  
             {(plazaResort) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={2}
                   {...plazaResort}
@@ -469,9 +365,9 @@ const HomePage: FC<Props> = () => {
             }  
           </Box>
 
-          <Box sx={{ display: { xs: 'none', 'sm': 'none', md: 'none', lg: 'flex' } }}>
+          <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: '0.5rem' }}>
             {(saguaro) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={3}
                   {...saguaro}
@@ -483,7 +379,7 @@ const HomePage: FC<Props> = () => {
             }  
 
             {(hiltonSf) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={4}
                   {...hiltonSf}
@@ -496,7 +392,7 @@ const HomePage: FC<Props> = () => {
             }  
 
             {(hrMissionBay) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={5}
                   {...hrMissionBay}
@@ -510,116 +406,42 @@ const HomePage: FC<Props> = () => {
         </Box>
 
 
-        <Box sx={{ width: '100%', backgroundColor: '#F4DAC9', display: { xs: 'block', sm: 'block', md: 'flex' }, justifyContent: 'center', alignItems: 'flex-start' }}> 
-          <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem', xl: '5rem' }, maxWidth: { xs: 'auto', sm: 'auto', md: '440px' } , mx: 'auto'}}>
-            <Typography variant="h2" sx={{ mb: '1rem'}}>Travel the world with your pup by your side</Typography>
-            <Typography variant="p" sx={{ fontSize: '1.25rem'}}>Romingo is the future of pet-friendly travel. It’s never been easier to travel with your pup!</Typography>
-            <Box sx={{ textAlign: 'center', mt: '1rem', mb: '1rem' }}>
+        <Box sx={{ width: '100%', backgroundColor: '#F4DAC9', display: { xs: 'block', sm: 'block', md: 'flex' }, justifyContent: 'center', alignItems: 'flex-start', mt: '1rem'}}> 
+          <Box 
+            component="img" 
+            sx={{ 
+              marginLeft: 'auto', 
+              maxWidth: '100%',
+              display: { xs: 'block', sm: 'block', md: 'none'}
+            }} 
+            src={SectionOneImage} 
+            alt="pet-friendly travel"
+          />
+          <Box sx={{ p: { xs: '1.0rem', sm: '1.0rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '480px' } , mx: 'auto', my: 'auto'}}>
+            <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mt: { xs: '1rem', sm: '1rem', md: 0 },  mb: '1.5rem'}}>Travel the world with your pup by your side</Typography>
+            <Typography variant="p" sx={{ fontSize: '1.25rem', mb: '1.5rem'}}>Romingo is the future of pet-friendly travel. It’s never been easier to travel with your pup!</Typography>
+            <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mt: '1rem', mb: '1.5rem' }}>
               <Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>
             </Box>
           </Box>
           <Box 
             component="img" 
-            sx={{ marginLeft: 'auto', 
-              maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' }
+            sx={{ 
+              marginLeft: 'auto', 
+              maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' },
+              display: { xs: 'none', sm: 'none', md: 'block'}
             }} 
             src={SectionOneImage} 
             alt="pet-friendly travel"
           />
         </Box>
 
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '2em', mb: '2em' }}>
-          <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Feeling adventurous?</Typography>
-          <MultiCarousel responsive={{
-              desktop: {
-                breakpoint: { max: 4000, min: 900},
-                items: 0,
-              },
-              mobile: {
-                breakpoint: { max: 900, min: 1},
-                items: 1,
-              }
-            }}
-            partialVisible={false}
-            infinite={true}
-            customLeftArrow={<CustomLeftArrow />}
-            customRightArrow={<CustomRightArrow />}
-          >
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
+          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Feeling adventurous?</Typography>
 
+          <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
             {(avalon) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={6}
-                  {...avalon}
-                  city={{ name: 'Palm Springs, CA' }}
-                  lowestTotalPriceAfterTax={199}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
-            }  
-
-            {(ghVail) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={7}
-                  {...ghVail}
-                  city={{ name: 'Vail, CO' }}
-                  lowestTotalPriceAfterTax={219}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
-            }  
-
-            {(elRey) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={8}
-                  {...elRey}
-                  city={{ name: 'Santa Fe, NM' }}
-                  lowestTotalPriceAfterTax={109}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
-            } 
-    
-            {(element) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={9}
-                  {...element}
-                  city={{ name: 'Colorado Springs, CO' }}
-                  lowestTotalPriceAfterTax={149}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={9} /></Grid>
-            } 
-
-            {(olive) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={10}
-                  {...olive}
-                  city={{ name: 'Seattle, WA' }}
-                  lowestTotalPriceAfterTax={169}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={10} /></Grid>
-            } 
-            {(andaz) ?
-              <Box sx={{ p: '1em'}}>
-                <ListingCardSquare
-                  key={11}
-                  {...andaz}
-                  city={{ name: "Scottsdale, AZ" }}
-                  lowestTotalPriceAfterTax={199}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={11} /></Grid>
-            } 
-          </MultiCarousel>
-          <Box sx={{ display: { xs: 'none', 'sm': 'none', md: 'none', lg: 'flex' } }}>
-            {(avalon) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={6}
                   {...avalon}
@@ -632,7 +454,7 @@ const HomePage: FC<Props> = () => {
             }  
 
             {(ghVail) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={7}
                   {...ghVail}
@@ -644,7 +466,7 @@ const HomePage: FC<Props> = () => {
             }  
 
             {(elRey) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={8}
                   {...elRey}
@@ -655,9 +477,9 @@ const HomePage: FC<Props> = () => {
               </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
             } 
           </Box>
-          <Box sx={{ display: { xs: 'none', 'sm': 'none', md: 'none', lg: 'flex' } }}>
+          <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: '0.5rem' }}>
             {(element) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={9}
                   {...element}
@@ -670,7 +492,7 @@ const HomePage: FC<Props> = () => {
             } 
 
             {(olive) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={10}
                   {...olive}
@@ -681,7 +503,7 @@ const HomePage: FC<Props> = () => {
               </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={10} /></Grid>
             } 
             {(andaz) ?
-              <Box sx={{ p: '1em', width: '400px'}}>
+              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={11}
                   {...andaz}
@@ -694,7 +516,7 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-        <Box sx={{ position: 'relative', backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
+        <Box sx={{ position: 'relative', backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start', mt: '1rem' }}> 
           <Box 
             component="img" 
             sx={{ 
@@ -703,11 +525,10 @@ const HomePage: FC<Props> = () => {
             src={SectionTwoImage} 
             alt="feeling adventurous?"
           />
-          <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem' }, maxWidth: '500px'}}>
-            <Typography variant="h2" sx={{ mb: '1rem'}}>Experience true <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }} /> pet-friendliness</Typography>
-            <Typography variant="p" sx={{ fontSize: '1.25rem'}}>Enjoy unique pet-friendly inclusions when you book with Romingo. Pet beds, bowls, treats, and toys are provided free when you visit select hotels*.</Typography>
-            <br />
-            <Box sx={{ mt: '1rem', textAlign: 'center'}}>
+          <Box sx={{ p: { xs: '1.6rem', sm: '1.6rem', md: 0}, maxWidth: '500px', mx:'auto', my: 'auto'}}>
+            <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mb: '1.5rem'}}>Experience true <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }} /> pet-friendliness</Typography>
+            <Typography variant="p" sx={{ mb: '1.5rem'}}>Enjoy unique pet-friendly inclusions when you book with Romingo. Pet beds, bowls, treats, and toys are provided free when you visit select hotels*.</Typography>
+            <Box sx={{ mt: '1.5rem', textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
               <Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>
 						</Box>
             <br />
@@ -717,25 +538,11 @@ const HomePage: FC<Props> = () => {
         </Box>
 
 
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4em', mb: '2em' }}>
-        <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
-        <MultiCarousel responsive={{
-            desktop: {
-              breakpoint: { max: 4000, min: 900},
-              items: 0,
-            },
-            mobile: {
-              breakpoint: { max: 900, min: 1},
-              items: 1,
-            }
-          }}
-          partialVisible={false}
-          infinite={true}
-          customLeftArrow={<CustomLeftArrow />}
-          customRightArrow={<CustomRightArrow />}
-        >
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
+        <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
+        <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
           {(seabird) ?
-            <Box sx={{ p: '1em'}}>
+            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
               <ListingCardSquare
                 key={12}
                 {...seabird}
@@ -747,10 +554,11 @@ const HomePage: FC<Props> = () => {
           } 
 
           {(leMerdien) ?
-            <Box sx={{ p: '1em'}}>
+            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
               <ListingCardSquare
                 key={13}
                 {...leMerdien}
+                name="Le Meridien Delfina"
                 city={{ name: 'Santa Monica, CA' }}
                 lowestTotalPriceAfterTax={259}
                 highlighted={false}
@@ -759,80 +567,7 @@ const HomePage: FC<Props> = () => {
           } 
 
           {(paradisePoint) ?
-            <Box sx={{ p: '1em'}}>            
-              <ListingCardSquare
-                key={14}
-                {...paradisePoint}
-                city={{ name: 'San Diego, CA' }}
-                lowestTotalPriceAfterTax={189}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
-          } 
-
-          {(hiltonLongBeach) ?
-            <Box sx={{ p: '1em'}}>            
-              <ListingCardSquare
-                key={15}
-                {...hiltonLongBeach}
-                city={{ name: 'Orange County, CA' }}
-                lowestTotalPriceAfterTax={199}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={15} /></Grid>
-          } 
-
-          {(hrOrange) ?
-            <Box sx={{ p: '1em'}}>            
-              <ListingCardSquare
-                key={16}
-                {...hrOrange}
-                city={{ name: 'Orange County, CA' }}
-                lowestTotalPriceAfterTax={189}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={16} /></Grid>
-          } 
-          {(marina) ?
-            <Box sx={{ p: '1em'}}>            
-              <ListingCardSquare
-                key={17}
-                {...marina}
-                city={{ name: 'Los Angeles, CA' }}
-                lowestTotalPriceAfterTax={232}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={17} /></Grid>
-          } 
-          
-        </MultiCarousel>
-        <Box sx={{ display: { xs: 'none', 'sm': 'none', md: 'none', lg: 'flex' } }}>
-          {(seabird) ?
-            <Box sx={{ p: '1em', width: '400px'}}>
-              <ListingCardSquare
-                key={12}
-                {...seabird}
-                city={{ name: 'Oceanside, CA' }}
-                lowestTotalPriceAfterTax={299}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={12} /></Grid>
-          } 
-
-          {(leMerdien) ?
-            <Box sx={{ p: '1em', width: '400px'}}>
-              <ListingCardSquare
-                key={13}
-                {...leMerdien}
-                city={{ name: 'Santa Monica, CA' }}
-                lowestTotalPriceAfterTax={259}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={13} /></Grid>
-          } 
-
-          {(paradisePoint) ?
-            <Box sx={{ p: '1em', width: '400px'}}>            
+            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>           
               <ListingCardSquare
                 key={14}
                 {...paradisePoint}
@@ -843,10 +578,10 @@ const HomePage: FC<Props> = () => {
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
           } 
         </Box>
-        <Box sx={{ display: { xs: 'none', 'sm': 'none', md: 'none', lg: 'flex' } }}>
+        <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
 
           {(hiltonLongBeach) ?
-            <Box sx={{ p: '1em', width: '400px'}}>            
+            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>            
               <ListingCardSquare
                 key={15}
                 {...hiltonLongBeach}
@@ -858,10 +593,11 @@ const HomePage: FC<Props> = () => {
           } 
 
           {(hrOrange) ?
-            <Box sx={{ p: '1em', width: '400px'}}>            
+            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>           
               <ListingCardSquare
                 key={16}
                 {...hrOrange}
+                name="Hyatt Regency OC"
                 city={{ name: 'Orange County, CA' }}
                 lowestTotalPriceAfterTax={189}
                 highlighted={false}
@@ -869,7 +605,7 @@ const HomePage: FC<Props> = () => {
             </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={16} /></Grid>
           } 
           {(marina) ?
-            <Box sx={{ p: '1em', width: '400px'}}>            
+            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>           
               <ListingCardSquare
                 key={17}
                 {...marina}
@@ -883,7 +619,7 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
-      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#F4DAC9" p="2em">
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#F4DAC9" p="2rem" mt="2rem">
         <Box sx={{ 
           mx: 'auto', maxWidth: '760px', 
           overflow: 'auto', 
@@ -903,17 +639,28 @@ const HomePage: FC<Props> = () => {
           <hr />
           <Grid ml="auto" mt="1rem" mb="1rem" container spacing={2} sx={{ overflow: 'auto' }}>
           {locationLinks.map(link => 
-            <Grid key={link.to} item xs={6}><Link key={link.to} to={link.to}>{link.name} pet-friendly hotels</Link></Grid>
+            <Grid key={link.to} item xs={6}><Link key={link.to} to={link.to}><Typography variant="base">{link.name} pet-friendly hotels</Typography></Link></Grid>
           )}
           </Grid>
         </Box>
       </Box>
 
       <Box sx={{ backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
-        <Box sx={{ p: { xs: '1rem', sm: '1rem', md : '1.25rem', lg: '3rem' }, maxWidth: '560px'}}>
-          <Typography variant="h2" sx={{ mb: { xs: '1rem', sm: '1rem', md: '2rem' } }}>Sign up for Romingo exclusive deals and pet-friendly tips</Typography>
-          <Typography variant="p" sx={{ fontSize: '1.25rem' }}>Enter your email address below:</Typography>
-          <form style={{ marginTop: '1rem'}} onSubmit={(e) => {
+        <Box 
+          component="img" 
+          sx={{ 
+            marginLeft: 'auto', 
+            maxWidth: '100%',
+            display: { xs: 'block', sm: 'block', md: 'none'}
+          }} 
+          src={SectionThreeImage} 
+          alt="pet-friendly travel"
+        />
+        <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0}, maxWidth: '580px', mx: 'auto', my: 'auto'}}>
+          <Typography variant="h2" sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mb: { xs: '1rem', sm: '1rem', md: '2rem' } }}>Sign up for Romingo exclusive deals and pet-friendly tips</Typography>
+          <Typography component="p" variant="p" sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>Enter your email address below:</Typography>
+          <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
+          <form style={{ marginTop: '1.25rem'}} onSubmit={(e) => {
             e.preventDefault();
             subscribeToNewsletter(email);
           }}>
@@ -931,12 +678,14 @@ const HomePage: FC<Props> = () => {
               }}
             />
           </form>
+          </Box>
         </Box>
         <Box 
           component="img" 
           sx={{ 
             ml: 'auto',
-            maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' }
+            display: { xs: 'none', sm: 'none', md: 'block'},
+            maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '700px', xl: '700px' }
           }} 
           src={SectionThreeImage} 
           alt="sign up for exclusive deals"

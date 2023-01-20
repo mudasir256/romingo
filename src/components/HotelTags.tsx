@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { CSSObject } from "@mui/material";
-import { Chip, Box } from "@mui/material";
+import { Chip, Box, Typography } from "@mui/material";
 import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import {
   Pets,
@@ -28,9 +28,19 @@ const iconSpacing = {
   ml: '0em'
 }
 
-const HotelTags: FC<Props> = ({ petFeePolicy, allows_big_dogs }) => {
+const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dogs }) => {
   
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
+
+  if (displayOne) {
+    return (
+      <Chip
+        size="small"
+        sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
+        label={<Typography variant="base" sx={{ color: '#717171'}}><span style={{color: 'red', fontWeight: 900, textDecoration: 'line-through' }}>${Math.round(petFeePolicy.totalFees)}</span> $0 pet fees</Typography>}
+      />
+    )
+  }
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>

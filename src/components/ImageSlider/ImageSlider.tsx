@@ -24,10 +24,10 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
             images.slice(0, 10).map((img, i) => <img key={img + i} style={{
               display: 'block', 
               width: '100%', 
-              height: '244px',
+              height: '280px',
               objectFit: 'cover',
               objectPosition: 'center', 
-              borderRadius: '6px 6px 0 0',
+              borderRadius: '6px 6px 6px 6px',
             }} src={img.replace(/'/g, "%27")} loading="lazy" />)
             : images.slice(0, 10).map((img, i) => (
               <>
@@ -58,24 +58,24 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
   }, []);
 
   useEffect(() => {
-    if (item !== 0) {
-      const addItems = [...items];
-      const addItem = (
-        <Box
-          key={images[item]}
-          sx={{
-            ...sx,
-            display: "block",
-            backgroundSize: "cover",
-            backgroundPosition: "center center",
-            width: "100%",
-            backgroundImage: `url('${images[item].replace(/'/g, "%27")}')`,
-          }}
-        />
-      );
-      addItems[item] = addItem;
-      setItems(addItems);
-    }
+    // if (item !== 0) {
+    //   const addItems = [...items];
+    //   const addItem = (
+    //     <Box
+    //       key={images[item]}
+    //       sx={{
+    //         ...sx,
+    //         display: "block",
+    //         backgroundSize: "cover",
+    //         backgroundPosition: "center center",
+    //         width: "100%",
+    //         backgroundImage: `url('${images[item].replace(/'/g, "%27")}')`,
+    //       }}
+    //     />
+    //   );
+    //   addItems[item] = addItem;
+    //   setItems(addItems);
+    // }
   }, [item]);
 
   return (
