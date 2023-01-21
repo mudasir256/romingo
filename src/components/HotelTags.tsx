@@ -33,13 +33,18 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   if (displayOne) {
-    return (
-      <Chip
-        size="small"
-        sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
-        label={<Typography variant="base" sx={{ color: '#717171'}}><span style={{color: 'red', fontWeight: 900, textDecoration: 'line-through' }}>${Math.round(petFeePolicy.totalFees)}</span> $0 pet fees</Typography>}
-      />
-    )
+    const component = hasPetFeeReduction ?
+        <Chip
+          size="small"
+          sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
+          label={<Typography variant="base" sx={{ color: '#717171'}}><span style={{color: 'red', fontWeight: 900, textDecoration: 'line-through' }}>${Math.round(petFeePolicy.totalFees)}</span> $0 pet fees</Typography>}
+        />
+        : <Chip
+          size="small"
+          sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
+          label={<Typography variant="base" sx={{ color: '#717171'}}>$0 pet fees</Typography>}
+        />
+    return component
   }
 
   return (

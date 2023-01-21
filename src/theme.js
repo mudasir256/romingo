@@ -34,9 +34,9 @@ export const theme = {
     h2: {
       fontFamily: "sansita-light",
       fontWeight: 900,
-      fontSize: '2.25rem',
+      fontSize: '2rem',
       '@media (min-width: 600px)': {
-        fontSize: '3rem'
+        fontSize: '2.5rem'
       }
     },
     h3: {
@@ -72,22 +72,26 @@ export const theme = {
     body2: {
       fontFamily: "overpass-light",
       fontWeight: 500,
-      fontSize: '1.25rem'
+      fontSize: '1.25rem',
+      lineHeight: '1.5rem',
     },
     p: {
       fontFamily: 'sansita-light',
       fontWeight: 500,
-      fontSize: '1.25rem'
+      fontSize: '1.25rem',
+      lineHeight: '1.5rem',
     },
     p2: {
       fontFamily: "overpass-light",
       fontWeight: 500,
-      fontSize: '1.25rem'
+      fontSize: '1.25rem',
+      lineHeight: '1.5rem',
     },
     base: {
       fontFamily: 'sansita-light',
       fontWeight: 500,
-      fontSize: '1rem'
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
     },
     base2: {
       fontFamily: "overpass-light",

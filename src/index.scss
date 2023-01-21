@@ -32,8 +32,26 @@
 // }
 
 @font-face {
+    font-family: 'ModernEra-Regular';
+    src: url(./assets/font/ModernEra-Regular.woff) format('woff'),
+         url(./assets/font/ModernEra-Regular.woff2) format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family: 'ModernEra-Bold';
+    src: url(./assets/font/ModernEra-Bold.woff) format('woff'),
+         url(./assets/font/ModernEra-Bold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
   font-family: "overpass-light";
-  src: url(./assets/font/mangueira-regular.woff) format('woff');
+  src: url(./assets/font/ModernEra-Regular.woff) format('woff'),
+         url(./assets/font/ModernEra-Regular.woff2) format('woff2');
 }
 
 @font-face {
@@ -48,7 +66,8 @@
 
 @font-face {
   font-family: "sansita-light";
-  src: url(./assets/font/calibre-regular.woff2) format('woff2');
+  src: url(./assets/font/ModernEra-Regular.woff) format('woff'),
+    url(./assets/font/ModernEra-Regular.woff2) format('woff2');
 }
 
 @font-face {

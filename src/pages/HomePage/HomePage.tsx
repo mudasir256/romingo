@@ -238,6 +238,16 @@ const HomePage: FC<Props> = () => {
 		setIsSuccess(result.success)
   }
 
+  const InfoBox = ({ imgSrc, imgAlt, imgWidth, header, text }) => (
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '300px', mt: '2rem', p: '1.5rem', backgroundColor: 'white', borderRadius: '24px', boxShadow: '21px 7px 63px #0000000d' }}>
+      <img style={{ width: imgWidth, textAlign: 'center'}} src={imgSrc} alt={imgAlt} />
+      <Box textAlign="center">
+        <Typography variant="h5" pt="1rem" pb="0.5rem">{header}</Typography>
+        <Typography component="p" variant="base">{text}</Typography>
+      </Box>
+    </Box>
+  )
+
   return (
     <div className="homepage">      
       <Helmet>
@@ -254,41 +264,40 @@ const HomePage: FC<Props> = () => {
       </Helmet>
 
       <Header />
-      <Box sx={{  background: '#f4dac9', mx: 'auto', py: '0.5em', height: { md: 'auto', lg: '240px' } }}>
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        mx: 'auto',
-        maxWidth: '1300px',
-        flexWrap: 'wrap',
-      }}>
-        <Box className="info-box">
-          <div className="align-center">
-            <img className="book-now-image" src={BookNow} alt="lowest rates" />
-          </div>
-          <div className="info-box-title">Pet-friendly travel</div>
-          <div className="info-box-desc">Romingo has searched through thousands of pet-friendly hotels, and we have hand-selected the best for you to easily book right here.</div>
+      <Box sx={{  background: { xs: '#A6DBE5', sm: 'white', md: '#f4dac9' }, mx: 'auto', py: '1rem', height: { md: 'auto', lg: '240px' },  }}>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'row',
+          mx: 'auto',
+          maxWidth: '1300px',
+          flexWrap: 'wrap',
+          gap: { xs: '1.5rem', sm: '1.5rem', md: '2.5rem' },
+          mt: '2rem',
+          mb: { xs: '1.5rem', sm: '1.5rem', md: 0 }
+        }}>
+          <InfoBox 
+            imgSrc={BookNow}
+            imgAlt="pet-friendly travel"
+            imgWidth="70%"
+            header="Pet-friendly travel"
+            text="Romingo has searched through thousands of pet-friendly hotels, and we have hand-selected the best for you to easily book right here." 
+          />
+          <InfoBox
+            imgSrc={LowestRates}
+            imgAlt="lowest rates"
+            imgWidth="83%"
+            header="Best rates + $0 pet fees"
+            text="Other booking sites will charge hidden pet fees, but when you book with Romingo you receive the lowest rates, and your pets will always stay for $0."
+          />
+          <InfoBox
+            imgSrc={AuthenticPet}
+            imgAlt="trusted and accredited"
+            imgWidth='85%'
+            header="Trusted and accredited"
+            text="You and your pets will receive VIP service at our pet-friendly partner hotels. Romingo is accredited and trusted for you to book pet-friendly hotels."
+          />
         </Box>
-        <Box className="info-box">
-          <div className="align-center">
-            <img src={LowestRates}  alt="no pet fees" />
-          </div>
-          <Box className="info-box-title">
-            Best rates + $0 pet fees       
-          </Box>
-          <Box className="info-box-desc">
-            Other booking sites will charge hidden pet fees, but when you book with Romingo you receive the lowest rates, and your pets will always stay for $0.
-          </Box>
-        </Box>
-        <Box className="info-box" sx={{ mb: '1.5em'}}>
-          <div className="align-center">
-            <img src={AuthenticPet} alt="authentic pet" />
-          </div>
-          <div className="info-box-title">Trusted and accredited</div>
-          <div className="info-box-desc">You and your pets will receive VIP service at our pet-friendly partner hotels. Romingo is accredited and trusted for you to book pet-friendly hotels.</div>
-        </Box>
-      </Box>
       </Box>
 
       <Box sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', mx: '1rem', mt: '2rem', mb: '0.25rem'}}>
@@ -299,8 +308,8 @@ const HomePage: FC<Props> = () => {
       </Box>
 
 
-      <Box className="hotels-wrapper" sx={{ 
-        marginTop: { sm: 0, md: 0, lg: 0 },
+      <Box  sx={{ 
+        mt: { xs: '3rem', sm: '3rem', md: "20rem" },
         marginBottom: { sm: 0, md: 0, lg: 0 }, 
         pb: 0,
         background: 'white',

@@ -118,6 +118,20 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
     setShowEgg(false)
   }
 
+  const SiteLinkSection = ({ header, links }) => (
+    <Box>
+      <Typography variant="h5">{header}</Typography>
+      <Box display="flex" flexDirection="column">
+        {links.map(link => {
+          if (link.isBlank) {
+            return <Link my="0.75rem" key={link.href} href={link.href} target="_blank">{link.text}</Link>
+          }
+          return <Link my="0.75rem" key={link.href} href={link.href}>{link.text}</Link>
+        })}
+      </Box>
+    </Box>
+  )
+
   return (
     <>
       {showEgg &&
@@ -125,83 +139,60 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
           <img loading="lazy" src={Pup} />
         </Dialog>
       }
-    <div className="footer">
-      <div className="footer-wrapper">
-        <div className="footer-wrapper-logo-section">
-          <Link href="/">
-           <img loading="lazy" src={LogoImg} alt="Romingo Logo" />
-          </Link>
-          <Typography component="p" variant="base2" maxWidth="400px" mb="0.5rem">
-            Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.
-          </Typography>
-          <div className="social-icons">
-            <IconButton
-              edge="start"
-              sx={{ mr: 1, color: "black" }}
-              aria-label="menu"
-              href="https://www.facebook.com/RomingoTravel/"
-              target="_blank"
-            >
-              <FacebookRoundedIcon />
-            </IconButton>
-            <IconButton
-              edge="start"
-              sx={{ mr: 1, color: "black" }}
-              aria-label="menu"
-              href="https://www.instagram.com/romingotravel/"
-              target="_blank"
-            >
-              <InstagramIcon />
-            </IconButton>
-          </div>
-        </div>
-        <div className="link-section">
-          <div className="site-map-section">
-            <div className="site-map-section-header">
-              Site map
+    <Box mt="4rem" mb="1.5rem">
+    
+        <Box sx={{ p: '2rem', gap: '2rem', display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, justifyContent: 'space-around', flexWrap: 'wrap'}}>
+          <Box>
+            <Link href="/"><img loading="lazy" width="220px" src={LogoImg} alt="Romingo Logo" /></Link>
+            <Typography component="p" variant="base" maxWidth="400px" mb="0.5rem">
+              Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.
+            </Typography>
+            <div className="social-icons">
+              <IconButton
+                edge="start"
+                sx={{ mr: 1, color: "black" }}
+                aria-label="menu"
+                href="https://www.facebook.com/RomingoTravel/"
+                target="_blank"
+              >
+                <FacebookRoundedIcon />
+              </IconButton>
+              <IconButton
+                edge="start"
+                sx={{ mr: 1, color: "black" }}
+                aria-label="menu"
+                href="https://www.instagram.com/romingotravel/"
+                target="_blank"
+              >
+                <InstagramIcon />
+              </IconButton>
             </div>
-            <div>
-              <Link href="/about">About us</Link>
-            </div>
-            <div>
-              <Link href="/faq">FAQ</Link>
-            </div>
-            <div>
-              <Link href="/contact">Contact</Link>
-            </div>
-            <div>
-              <Link href="/romingo-partners">RedRover partnership</Link>
-            </div>
-          </div>
-          <div className="site-map-section">
-            <div className="site-map-section-header">
-              Content & Blog
-            </div>
-            <div>
-              <Link href="https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf"
-                target="_blank">Guide to Air Travel With Your Dog</Link>
-            </div>
-            <div>
-              <Link href="/blog" target="_blank">Romingo Blog</Link>
-            </div>
-            <div>
-              <Link href="/blog/12" target="_blank">Top travel tips</Link>
-            </div>
-          </div>
-          <div style={{ marginLeft: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            <img width="200px" src={IATANLogo} alt="IATAN Logo" />
-            <img width="220px" src={BBBLogo} alt="BBB Logo" />
-          </div>
-        </div>
-      </div>
-      <div className="footer-wrapper">
-        <Box sx={{ ml: '1.5em', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-          <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
-          <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
-          <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
+          </Box>
+          <SiteLinkSection header="Site map" links={[
+            { href: "/about", text: 'About us'},
+            { href: "/faq", text: 'FAQ'},
+            { href: "/contact", text: 'Contact'},
+            { href: "/romingo-partners", text: 'RedRover Partnership'},
+          ]} />
+          <SiteLinkSection header="Content & Blog" links={[
+            { href: 'https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf', text: 'Guide to Air Travel With Your Dog'},
+            { href: '/blog', text: 'Romingo Blog', isBlank: true },
+            { href: '/blog/12', text: 'Top travel tips', isBlank: true }
+          ]} />
+
+          <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
+            <img width="160px" src={IATANLogo} alt="IATAN Logo" />
+            <img style={{ marginLeft: '-1rem'}} width="180px" src={BBBLogo} alt="BBB Logo" />
+          </Box>
         </Box>
-      </div>
-    </div>
+
+      <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
+        <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
+        <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
+      </Box>
+
+    </Box>
     </>
   );
 };

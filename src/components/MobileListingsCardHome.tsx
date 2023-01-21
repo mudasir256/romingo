@@ -133,7 +133,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
             >
               <Box sx={{ display: 'flex' }}>
                 <Typography
-                  variant="h4"
+                  variant="h5"
                   sx={{
                     color: "#222",
                     whiteSpace: 'normal',
@@ -143,14 +143,14 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 >
                   {name}
                 </Typography>
-                <Box onClick={() => history.push(`/hotel/${alias}#reviews`)} sx={{ ml: 'auto', mr: '0.5rem', mt: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
+                <Box onClick={() => history.push(`/hotel/${alias}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
                   <Box sx={{ color: 'red'}}><StarIcon fontSize="inherit" /></Box>
-                  <Typography variant="base" mb="8px">{romingoScore}</Typography>
+                  <Typography variant="base" mb="2px">{romingoScore}</Typography>
                 </Box> 
               </Box>
 
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   overflow: "hidden",
                   whiteSpace: "nowrap",
@@ -162,7 +162,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 {addressLine1}, {city?.name}
               </Typography>
 
-              <Box sx={{ pb: '0.5em' }}>
+              <Box sx={{ pb: '0.75rem' }}>
                 <HotelTags displayOne={true} petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
               </Box>  
               <PriceDetails />
