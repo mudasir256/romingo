@@ -426,10 +426,10 @@ const HomePage: FC<Props> = () => {
             src={SectionOneImage} 
             alt="pet-friendly travel"
           />
-          <Box sx={{ p: { xs: '1.0rem', sm: '1.0rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '480px' } , mx: 'auto', my: 'auto'}}>
+          <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '410px' } , mx: 'auto', my: 'auto'}}>
             <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mt: { xs: '1rem', sm: '1rem', md: 0 },  mb: '1.5rem'}}>Travel the world with your pup by your side</Typography>
-            <Typography variant="p" sx={{ fontSize: '1.25rem', mb: '1.5rem'}}>Romingo is the future of pet-friendly travel. It’s never been easier to travel with your pup!</Typography>
-            <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mt: '1rem', mb: '1.5rem' }}>
+            <Typography variant="p" sx={{ fontSize: '1.25rem', mb: '2rem'}}>Romingo is the future of pet-friendly travel. It’s never been easier to travel with your pup!</Typography>
+            <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mt: '2rem', mb: '1.5rem' }}>
               <Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>
             </Box>
           </Box>
@@ -446,7 +446,7 @@ const HomePage: FC<Props> = () => {
         </Box>
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
-          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Feeling adventurous?</Typography>
+          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Feeling adventurous?</Typography>
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
             {(avalon) ?
@@ -532,23 +532,23 @@ const HomePage: FC<Props> = () => {
               maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' }
             }} 
             src={SectionTwoImage} 
-            alt="feeling adventurous?"
+            alt="experience true pet-friendliness"
           />
-          <Box sx={{ p: { xs: '1.6rem', sm: '1.6rem', md: 0}, maxWidth: '500px', mx:'auto', my: 'auto'}}>
-            <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mb: '1.5rem'}}>Experience true <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }} /> pet-friendliness</Typography>
+          <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: '2rem'}, maxWidth: '500px', mx:'auto', my: 'auto'}}>
+            <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mb: '1.5rem'}}>Experience true pet-friendliness</Typography>
             <Typography variant="p" sx={{ mb: '1.5rem'}}>Enjoy unique pet-friendly inclusions when you book with Romingo. Pet beds, bowls, treats, and toys are provided free when you visit select hotels*.</Typography>
             <Box sx={{ mt: '1.5rem', textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
               <Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>
 						</Box>
             <br />
 						<br />
-						<Typography variant="p">*visit each hotel profile to learn more</Typography>
+						<Typography variant="base">*visit each hotel profile to learn more</Typography>
           </Box>
         </Box>
 
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
-        <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
+        <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
         <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
           {(seabird) ?
             <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
@@ -642,7 +642,7 @@ const HomePage: FC<Props> = () => {
   
         }}>
           <Box>
-            <Typography variant="h3" mb="0.5rem">Plan your next trip with Romingo</Typography>
+            <Typography variant="h2" mb="0.5rem">Plan your next trip with Romingo</Typography>
             <Typography variant="p" fontSize="1.25rem">Explore our destinations</Typography>
           </Box>
           <hr />
@@ -665,7 +665,7 @@ const HomePage: FC<Props> = () => {
           src={SectionThreeImage} 
           alt="pet-friendly travel"
         />
-        <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0}, maxWidth: '580px', mx: 'auto', my: 'auto'}}>
+        <Box sx={{ py: { xs: '3rem', sm: '3rem', md: 0}, maxWidth: '580px', mx: 'auto', my: 'auto'}}>
           <Typography variant="h2" sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mb: { xs: '1rem', sm: '1rem', md: '2rem' } }}>Sign up for Romingo exclusive deals and pet-friendly tips</Typography>
           <Typography component="p" variant="p" sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>Enter your email address below:</Typography>
           <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
