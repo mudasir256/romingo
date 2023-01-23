@@ -144,7 +144,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
         <Box sx={{ p: '2rem', gap: '2rem', display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, justifyContent: 'space-around', flexWrap: 'wrap'}}>
           <Box>
             <Link href="/"><img loading="lazy" width="220px" src={LogoImg} alt="Romingo Logo" /></Link>
-            <Typography component="p" variant="base" maxWidth="400px" mb="0.5rem">
+            <Typography component="p" variant="base" maxWidth="400px" mt="0.5rem" mb="0.5rem">
               Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.
             </Typography>
             <div className="social-icons">

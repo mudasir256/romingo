@@ -43,7 +43,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Breakpoint, Theme, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CloseIcon from "@mui/icons-material/Close";
-import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
+import SimpleReactLightbox, { SRLWrapper, useLightbox } from "simple-react-lightbox";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonIcon from "@mui/icons-material/Person";
@@ -201,6 +201,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const search = useSelector((state: any) => state.searchReducer.search);
   const locationState = useLocation<any>();
   const dispatch: Dispatch<any> = useDispatch();
+
+  const { openLightbox, closeLightbox } = useLightbox()
+
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {
@@ -546,6 +549,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       getReviewData();
     }
   }, [data, isLoaded]);
+
+  const [showFullImage, setShowFullImage] = useState<string>('http://storage.googleapis.com/romingo-production-public/images/Hilton%20Long%20Beach/635f0aa8.webp?w=161&fit=crop&auto=format&dpr=2');
 
   const title = `${name} Pet Policy - Romingo`
   return (
@@ -1777,6 +1782,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </>
           )}
 
+          {showFullImage && 
+            <Dialog maxWidth="xl" sx={{ p: '2rem',  }} open={true} onClick={() => setShowFullImage('')}>
+              <img src={showFullImage}  style={{ maxHeight: '80vh', objectFit: 'contain' }} />
+            </Dialog>
+          }
+
           <SimpleReactLightbox>
             <Dialog
               open={showGallery}
@@ -1822,11 +1833,15 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 </IconButton>
               </DialogTitle>
               <DialogContent sx={{ px: 0 }}>
+
                 <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
-                  <ImageList variant="masonry" cols={getImageCols()} gap={8}>
-                    <SRLWrapper options={lightBoxOptions}>
-                      {gallery.map((item: any) => (
-                        <ImageListItem key={item} cols={1} rows={1}>
+                  <ImageList variant="standard" cols={getImageCols()} gap={8}>
+                      {gallery.map((item: any, index: Integer) => (
+                        <ImageListItem key={item} onClick={() => {
+                          if (!isMobile) {
+                            setShowFullImage(item)
+                          }
+                        }}>
                           <img
                             srcSet={`${item.replace(
                               /^http(s?):/i,
@@ -1834,14 +1849,17 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                             )}?w=161&fit=crop&auto=format 1x,
 ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
                             alt={name}
+                            loading="lazy"
                           />
                         </ImageListItem>
                       ))}
-                    </SRLWrapper>
                   </ImageList>
                 </Container>
               </DialogContent>
             </Dialog>
+
+          {/* <SRLWrapper options={lightBoxOptions} /> */}
+
           </SimpleReactLightbox>
         </Container>
       </Grid>

@@ -32,11 +32,11 @@ function computePetFeePolicyTotalFees(durationDays, dogs, petFeePolicy) {
       return 0;
     }
 
-    if (petFeePolicy.maxPets !== -1) {
-      if (dogs > petFeePolicy.maxPets) {
-        return -1;
-      }
-    }
+    // if (petFeePolicy.maxPets !== -1) {
+    //   if (dogs > petFeePolicy.maxPets) {
+    //     return -1;
+    //   }
+    // }
 
     if (nights > 365) {
       return -1;
