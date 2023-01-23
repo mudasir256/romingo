@@ -550,7 +550,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [data, isLoaded]);
 
-  const [showFullImage, setShowFullImage] = useState<string>('http://storage.googleapis.com/romingo-production-public/images/Hilton%20Long%20Beach/635f0aa8.webp?w=161&fit=crop&auto=format&dpr=2');
+  const [showFullImage, setShowFullImage] = useState<string>('');
 
   const title = `${name} Pet Policy - Romingo`
   return (
