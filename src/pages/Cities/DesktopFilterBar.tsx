@@ -249,7 +249,7 @@ export const DesktopFilterBar: FC = () => {
                 }
               }}
               allowSameDateSelection
-              calendars={1}
+              calendars={2}
               clearable={true}
               value={checkDate || null}
               minDate={new Date()}

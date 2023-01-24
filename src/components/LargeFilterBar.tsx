@@ -310,7 +310,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                   }
                 }}
                 allowSameDateSelection
-                calendars={1}
+                calendars={2}
                 clearable={true}
                 value={checkDate || null}
                 minDate={new Date()}
