@@ -311,11 +311,11 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               <Box sx={{ 
                 zIndex: 100, 
                 width: '100%', 
-                height: '75%',
-                position: 'fixed', 
+                height: '90vh',
+                position: 'absolute', 
                 backgroundColor: 'white',
                 gap: '1rem',
-                left: '0', top: 52, mt: '0rem' }}
+                left: '0', top: '-104px', mt: '0rem' }}
               >
                  <InfiniteCalendar
                     ref={calendarRef}
@@ -344,8 +344,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                       weekdayColor: '#03989E',
                     }}
                   />
-                  <Box m="1rem">
-                    <Button m="1rem" onClick={() => {
+                  <Box zIndex="900" position="fixed" width="90%" backgroundColor="white" bottom="0" p="1rem">
+                    <Button onClick={() => {
                       const { start, end } = calendarRef.current.state.selected
                       setCheckDate([start, end])
                       setShowMobileCalendar(false)
