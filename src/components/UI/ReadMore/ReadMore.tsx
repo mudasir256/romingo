@@ -20,13 +20,11 @@ const ReadMore: FC<Props> = ({
 
   return (
     <Typography
-      variant="body2"
+      variant="base"
       component="h2"
       sx={{
-        lineHeight: small ? 1 : 2,
         display: "inline",
         my: 0,
-        fontSize: small ? ".9rem" : "100%",
         textAlign: justify ? "justify" : "left",
       }}
     >

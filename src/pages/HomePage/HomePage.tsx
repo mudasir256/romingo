@@ -39,10 +39,6 @@ import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
 import { subscribeToNewsletter } from '../../services/endpoints'
 
- 
-import MultiCarousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-
 import "./Sticky.css";
 import "./HomePage.scss";
 

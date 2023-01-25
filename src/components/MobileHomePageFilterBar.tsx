@@ -1,4 +1,4 @@
-import { FC, useState, MouseEventHandler, useEffect } from "react";
+import { FC, useState, MouseEventHandler, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
@@ -35,6 +35,12 @@ import { saveSearch } from "../store/searchReducer";
 import { DateTime } from "luxon";
 import { useMeasure } from "react-use";
 
+import InfiniteCalendar, {
+  Calendar,
+  withRange,
+} from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css';
+
 interface FilterBarProps {
   sx?: CSSObject;
   home?: boolean;
@@ -46,6 +52,9 @@ interface FilterBarProps {
 }
 
 const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, forceWidth, flag, bookingId }) => {
+ 
+  const calendarRef = useRef(null)
+
   const [open, setOpen] = useState(false);
   const [selectCityOpen, setSelectedCityOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
@@ -194,6 +203,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
   if (forceWidth) {
     width = forceWidth
   }
+
+  const CalendarWithRange = withRange(Calendar);
+  const [showMobileCalendar, setShowMobileCalendar] = useState(false)
+
   return (
     <>
       <Box
@@ -250,18 +263,35 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               <Grid item xs={11} sx={{ zIndex: 50, pl: '0.75em' }}>
                 <FormControl fullWidth>
                   {!selectedCity && <Typography sx={{ position: 'absolute', top: '22%', }}>Select a city</Typography>}
-                  <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ ml: '0.5em', pt: '0.4em' }} value={selectedCity}>
+                  <Select 
+                    disableUnderline 
+                    labelId="select-city" 
+                    className="overpass no-select" 
+                    id="select-city-field" 
+                    label="Where to" 
+                    variant="standard" 
+                    sx={{ 
+                      ml: '0.5em', 
+                      pt: '0.4em',
+                      position: 'relative',
+                    }} 
+                    value={selectedCity}
+                    MenuProps={{
+                      sx: {  height: '500px' }
+                    }}
+                  >
                     {groups.map((group, index) => {
-                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1' }} key={city.id} value={city.id}>{city.name.split(',')[0]}</MenuItem>));
+                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1', backgroundColor: 'white', '&:hover': { backgroundColor: '#f3f5f9'} }} key={city.id} value={city.id}>{city.name.split(',')[0]}</MenuItem>));
                       return (
                         [
-                          <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0}}>{group[0].state.name}</ListSubheader>,
-                          <Box key={index} sx={{ pl: '0.9em', pr: '1em', pb: '0.5em' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
+                          <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0, backgroundColor: 'white'}}>{group[0].state.name}</ListSubheader>,
+                          <Box key={index} sx={{ pl: '0.9em', pr: '1em', pb: '0.5em', backgroundColor: 'white' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
                           ...menuItems,
                         ]
                       )
                     })}
                   </Select>
+        
                 </FormControl>
               </Grid>
 
@@ -277,45 +307,63 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               maxHeight: "45px",
             }}
           >
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <Box sx={{ position: 'absolute', left: '50%', mt: '0em' }}>
-                <DateRangePicker
-                  inputFormat="MMM dd"
-                  disableMaskedInput={true}
-                  open={open}
-                  onAccept={() => setIsAccept(true)}
-                  onClose={handleDateRangeClose}
-                  onOpen={() => {
-                    if (!isAccept) {
-                      setOpen(true);
-                    }
-                  }}
-                  allowSameDateSelection
-                  calendars={1}
-                  clearable={true}
-                  value={checkDate || null}
-                  minDate={new Date()}
-                  onChange={(newValue) => {
-                    setFormError("");
-                    setCheckDate(newValue);
-                  }}
-                  renderInput={() => <Grid sx={{ display: "none" }}></Grid>}
-                />
-              </Box>
-            </LocalizationProvider>
+            {showMobileCalendar &&
+              <Box sx={{ 
+                zIndex: 100, 
+                width: '100%', 
+                height: '100%',
+                position: 'fixed', 
+                backgroundColor: 'white',
+                gap: '1rem',
+                left: '0', top: 52, mt: '0rem' }}
+              >
+                 <InfiniteCalendar
+                    ref={calendarRef}
+                    Component={CalendarWithRange}
+                    width="100%"
+                    displayOptions={{
+                      showHeader: true
+                    }}
+                    minDate={new Date()}
+                    selected={{
+                      start: checkDate[0],
+                      end: checkDate[1],
+                    }}
+                    locale={{
+                      headerFormat: 'MMM Do',
+                    }}
+                    theme={{
+                      headerColor: '#03989E',
+                      floatingNav: {
+                        background: '#717171',
+                        chevron: 'transparent',
+                        color: '#FFF',
+                      },
+                      accentColor: '#03989E',
+                      selectionColor: '#03989E',
+                      weekdayColor: '#03989E',
+                    }}
+                  />
+                  <Box m="1rem">
+                    <Button m="1rem" onClick={() => {
+                      const { start, end } = calendarRef.current.state.selected
+                      setCheckDate([start, end])
+                      setShowMobileCalendar(false)
+                    }} fullWidth variant="contained">Done</Button>
+                  </Box>  
+                </Box>
+            }
 
             <Grid
               container
               onClick={() => setOpen(true)}
               sx={{
                 width: "100%",
-                mt: "1rem",
-
+                mt: "1rem"
               }}
             >
-              <Grid item xs={6} sx={{ pr: ".25rem" }}>
+              <Grid onClick={() => setShowMobileCalendar(true)} item xs={6} sx={{ pr: ".25rem" }}>
                 <Grid
-                  
                   sx={{
                     border: "1px solid #DDDDDD",
                     borderRadius: "6px",
@@ -350,12 +398,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                         >
                           Check-in
                         </Typography>
-                        <Typography
-                          sx={{
-                            fontFamily: "overpass-light",
-                            fontSize: '0.9em',
-                          }}
-                        >
+                        <Typography variant="base">
                           {checkDate[0]
                             ? DateTime.fromJSDate(
                                 new Date(checkDate[0])
@@ -367,7 +410,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={6} sx={{ pl: " .25rem" }}>
+              <Grid onClick={() => setShowMobileCalendar(true)} item xs={6} sx={{ pl: " .25rem" }}>
                 <Grid
                   sx={{
                     border: "1px solid #DDDDDD",
@@ -403,13 +446,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     >
                       Check-out
                     </Typography>
-                    <Typography
-                      sx={{
-                        fontFamily: "overpass-light",
-                        textTransform: "none",
-                        fontSize: '0.9em'
-                      }}
-                    >
+                    <Typography variant="base">
                       {checkDate[1]
                         ? DateTime.fromJSDate(
                             new Date(checkDate[1])
@@ -568,13 +605,10 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             pl: 0,
           }}/>
         </Grid>
-          <Typography
+          <Typography variant="base"
             sx={{
               mt: '0.25em',
               ml: '0.25em',
-              fontFamily: "overpass-light",
-              textTransform: "none",
-              fontSize: '0.9em'
             }}
           >
             {value.adults + value.children} Guests, {value.dogs} Pet
