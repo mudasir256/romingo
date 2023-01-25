@@ -28,7 +28,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
               objectFit: 'cover',
               objectPosition: 'center', 
               borderRadius: '6px 6px 6px 6px',
-            }} src={img.replace(/'/g, "%27")} loading="lazy" />)
+            }} src={img.replace(/'/g, "%27")} alt="hotel image" loading="lazy" />)
             : images.slice(0, 10).map((img, i) => (
               <>
                 <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}>
