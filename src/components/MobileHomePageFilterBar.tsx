@@ -344,7 +344,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                       weekdayColor: '#03989E',
                     }}
                   />
-                  <Box zIndex="900" position="fixed" width="90%" backgroundColor="white" bottom="0" p="1rem">
+                  <Box zIndex="900" position="fixed" width="94%" backgroundColor="white" bottom="0" p="1rem">
                     <Button onClick={() => {
                       const { start, end } = calendarRef.current.state.selected
                       setCheckDate([start, end])

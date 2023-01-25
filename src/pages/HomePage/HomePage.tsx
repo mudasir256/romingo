@@ -2,6 +2,7 @@ import {Helmet} from "react-helmet";
 import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
+import { useWindowSize } from "react-use";
 import { useHistory, Link } from "react-router-dom";
 import {
   Box,
@@ -71,6 +72,7 @@ const HomePage: FC<Props> = () => {
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
   const dispatch: Dispatch<any> = useDispatch();
+  const { width } = useWindowSize()
 
   const today = new Date();
   const fewDaysLater = new Date(
@@ -92,6 +94,14 @@ const HomePage: FC<Props> = () => {
       custom_launcher_selector: "#CUSTOM",
     });
     window.Intercom("update");
+    if (width < 700) {
+      const intercomId = "CUSTOM"
+      const domNode = document.getElementById(intercomId);
+      if (domNode) {
+        domNode.style.display = 'none';
+      }
+      return () => { if (domNode) { domNode.style.display = 'flex' } }
+    }
   }, [])
 
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
@@ -364,7 +374,7 @@ const HomePage: FC<Props> = () => {
             imgAlt="pet-friendly travel"
             imgWidth="70%"
             header="Pet-friendly travel"
-            text="Romingo has searched through thousands of pet-friendly hotels for our members to have an amazing travel experience." 
+            text="Romingo has searched thousands of pet-friendly hotels and we've picked the best for travelers and their pets to enjoy." 
           />
           <InfoBox
             imgSrc={LowestRates}
@@ -487,7 +497,7 @@ const HomePage: FC<Props> = () => {
             imgAlt="pet-friendly travel"
             backgroundColor="#F3F0D2"
             header="Spring break on sale!"
-            text="Book pet-friendly hotels and hit the road with your pet by your side. Enjoy up to 20% off luxury hotels and $0 pet fees!"
+            text=" Book pet-friendly hotels and hit the road with your pet in the passenger seat. Enjoy up to 20% off all hotels and pay $0 pet fees!"
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
         </Box>
@@ -576,11 +586,11 @@ const HomePage: FC<Props> = () => {
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
-            backgroundColor="#BCAABE"
+            backgroundColor="#A259D4"
             fontColor="white"
             header="Romingo Rewards 🐶"
             text="Enjoy unique pet-friendly amenities with Romingo. Pet beds, bowls, treats, and toys are free when visiting select hotels*."
-            cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
+            cta={<Button sx={{  width: '300px', backgroundColor: 'black' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
             extraText="*visit each hotel profile to learn more"
           />
         </Box>
