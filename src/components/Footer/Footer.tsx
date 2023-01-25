@@ -181,8 +181,8 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
           ]} />
 
           <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
-            <img width="160px" src={IATANLogo} alt="IATAN Logo" loading="lazy" />
-            <img style={{ marginLeft: '-1rem'}} width="180px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
+            <img width="140px" src={IATANLogo} alt="IATAN Logo" loading="lazy" />
+            <img style={{ marginLeft: '-1rem'}} width="160px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
           </Box>
         </Box>
 
