@@ -311,7 +311,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               <Box sx={{ 
                 zIndex: 100, 
                 width: '100%', 
-                height: '90%',
+                height: '75%',
                 position: 'fixed', 
                 backgroundColor: 'white',
                 gap: '1rem',
