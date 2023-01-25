@@ -636,9 +636,9 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
   return (
     <>
       <Helmet>
-        <title>{foundCity.name} Hotels - Romingo</title>
+        <title>Pet-friendly hotels in {foundCity.name} - Romingo</title>
         <description>{cityContent.paragraphOne}</description>
-        <meta property="og:title" content={`${foundCity.name} Hotels - Romingo`} />
+        <meta property="og:title" content={`Pet-friendly hotels in ${foundCity.name} - Romingo`} />
         <meta property="og:description" content={cityContent.paragraphOne} />
         <meta property="og:image" content={cityContent.heroImage} />
       </Helmet>
@@ -658,7 +658,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography component="h1" variant="h2" color="text.primary">
-            {onlyCity}
+            Pet-friendly hotels in {onlyCity}
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>
@@ -701,10 +701,10 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
               <FilterBar city={foundCity.id} />
             </Hidden>            <Divider light variant="middle" sx={{ mt: 3 }} />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={7}>
             <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
+              variant="base"
+              sx={{  lineHeight: 2 }}
             >
               {cityContent.paragraphTwo}
             </Typography>
@@ -722,11 +722,12 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
                 boxShadow: 4,
                 borderRadius: 3,
               }}
+              loading="lazy"
             />
           </Grid>
 
           <Grid item xs={12}>
-            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>Explore {onlyCity} Hotels</Typography>
+            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>{onlyCity} pet-friendy hotels</Typography>
             {data?.propertiesByLocation.map(card => (
               <Box key={card.id} sx={{ py: '0.5em' }}>
                 <ListingCard

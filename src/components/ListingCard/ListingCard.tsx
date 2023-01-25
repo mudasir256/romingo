@@ -316,7 +316,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
                 <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
                 <Link
-                  onClick={() => history.push(`/hotel/${alias}#reviews`)}
+                  href={`/hotel/${alias}#reviews`}
                   sx={{
                     color: "#666",
                     fontFamily: "overpass-light",
