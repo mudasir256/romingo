@@ -250,6 +250,7 @@ const HomePage: FC<Props> = () => {
         }} 
         src={imgSrc} 
         alt={imgAlt}
+        loading="lazy"
       />
       <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '440px' } , mx: 'auto', my: 'auto'}}>
         <Typography variant="h2" sx={{ color: fontColor, textAlign: { xs: 'left', sm: 'left', md: 'left' }, mt: { xs: '1rem', sm: '1rem', md: 0 },  mb: '1.5rem'}}>{header}</Typography>
@@ -268,6 +269,7 @@ const HomePage: FC<Props> = () => {
         }} 
         src={imgSrc} 
         alt={imgAlt}
+        loading="lazy"
       />
     </Box>
   )
@@ -281,6 +283,7 @@ const HomePage: FC<Props> = () => {
         }} 
         src={imgSrc} 
         alt={imgAlt}
+        loading="lazy"
       />
       <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: '2rem'}, maxWidth: '500px', mx:'auto', my: 'auto'}}>
         <Typography variant="h2" sx={{ color: fontColor, textAlign: { xs: 'left', sm: 'left', md: 'left' }, mb: '1.5rem'}}>{header}</Typography>
