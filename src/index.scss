@@ -75,10 +75,6 @@
   src: url(./assets/font/calibre-regular.woff2) format('woff2');
 }
 
-.carousel-item-padding-px {
-
-}
-
 .shadow-rounded {
   -webkit-box-shadow: 2px 3px 6px 0px rgba(214,214,214,1);
   -moz-box-shadow: 2px 3px 6px 0px rgba(214,214,214,1);
@@ -86,6 +82,10 @@
   border-radius: 100%;
   width: 44px;
   height: 44px;
+}
+
+.Cal__Container__root {
+  font-family: "overpass-light", sans-serif !important;
 }
 
 body,

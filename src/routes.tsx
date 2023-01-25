@@ -162,28 +162,28 @@ const Routes = () => {
             </AuthGuards>
           );
       })}
-      <Route exact path="/austin"><LocationPageTemplate cityName="Austin, TX" /></Route>
-      <Route exact path="/dallas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
-      <Route exact path="/houston"><LocationPageTemplate cityName="Houston, TX" /></Route>
-      <Route exact path="/oceanside"><LocationPageTemplate cityName="Oceanside, CA" /></Route>
-      <Route exact path="/phoenix"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
-      <Route exact path="/scottsdale"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
-      <Route exact path="/tucson"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
-      <Route exact path="/santa-fe"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
-      <Route exact path="/san-antonio"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
-      <Route exact path="/vail"><LocationPageTemplate cityName="Vail, CO" /></Route>
-      <Route exact path="/colorado-springs"><LocationPageTemplate cityName="Colorado Springs, CO" /></Route>
-      <Route exact path="/denver"><LocationPageTemplate cityName="Denver, CO" /></Route>
-      <Route exact path="/seattle"><LocationPageTemplate cityName="Seattle, WA" /></Route>
-      <Route exact path="/portland"><LocationPageTemplate cityName="Portland, OR" /></Route>
-      <Route exact path="/sacramento"><LocationPageTemplate cityName="Sacramento, CA" /></Route>
-      <Route exact path="/salt-lake-city"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
-      <Route exact path="/palm-springs"><LocationPageTemplate cityName="Palm Springs, CA" /></Route>
-      <Route exact path="/los-angeles"><LocationPageTemplate cityName="Los Angeles, CA" /></Route>
-      <Route exact path="/orange-county"><LocationPageTemplate cityName="Orange County, CA" /></Route>
-      <Route exact path="/san-diego"><LocationPageTemplate cityName="San Diego, CA" /></Route>
-      <Route exact path="/san-francisco"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
-      <Route exact path="/santa-barbara"><LocationPageTemplate cityName="Santa Barbara, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-austin-texas"><LocationPageTemplate cityName="Austin, TX" /></Route>
+      <Route exact path="/pet-friendly-hotels-dallas-texas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
+      <Route exact path="/pet-friendly-hotels-houston-texas"><LocationPageTemplate cityName="Houston, TX" /></Route>
+      <Route exact path="/pet-friendly-hotels-oceanside-california"><LocationPageTemplate cityName="Oceanside, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-phoenix-arizona"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
+      <Route exact path="/pet-friendly-hotels-scottsdale-arizona"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
+      <Route exact path="/pet-friendly-hotels-tucson-arizona"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
+      <Route exact path="/pet-friendly-hotels-santa-fe-new-mexico"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
+      <Route exact path="/pet-friendly-hotels-san-antonio-texas"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
+      <Route exact path="/pet-friendly-hotels-vail-colorado"><LocationPageTemplate cityName="Vail, CO" /></Route>
+      <Route exact path="/pet-friendly-hotels-colorado-springs-colorado"><LocationPageTemplate cityName="Colorado Springs, CO" /></Route>
+      <Route exact path="/pet-friendly-hotels-denver-colorado"><LocationPageTemplate cityName="Denver, CO" /></Route>
+      <Route exact path="/pet-friendly-hotels-seattle-washington"><LocationPageTemplate cityName="Seattle, WA" /></Route>
+      <Route exact path="/pet-friendly-hotels-portland-oregon"><LocationPageTemplate cityName="Portland, OR" /></Route>
+      <Route exact path="/pet-friendly-hotels-sacramento-california"><LocationPageTemplate cityName="Sacramento, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-salt-lake-city-utah"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
+      <Route exact path="/pet-friendly-hotels-palm-springs-california"><LocationPageTemplate cityName="Palm Springs, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-los-angeles-california"><LocationPageTemplate cityName="Los Angeles, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-orange-county-california"><LocationPageTemplate cityName="Orange County, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-san-diego-california"><LocationPageTemplate cityName="San Diego, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-san-francisco-california"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels-santa-barbara-california"><LocationPageTemplate cityName="Santa Barbara, CA" /></Route>
      
       <Route component={ErrorPage} />
     </Switch>

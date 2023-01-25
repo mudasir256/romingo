@@ -181,13 +181,13 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
           ]} />
 
           <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
-            <img width="160px" src={IATANLogo} alt="IATAN Logo" />
-            <img style={{ marginLeft: '-1rem'}} width="180px" src={BBBLogo} alt="BBB Logo" />
+            <img width="160px" src={IATANLogo} alt="IATAN Logo" loading="lazy" />
+            <img style={{ marginLeft: '-1rem'}} width="180px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
           </Box>
         </Box>
 
       <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
+        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
         <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
         <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
       </Box>

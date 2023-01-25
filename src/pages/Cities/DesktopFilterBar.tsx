@@ -248,7 +248,7 @@ export const DesktopFilterBar: FC = () => {
                   setOpen(true);
                 }
               }}
-              allowSameDateSelection
+              // allowSameDateSelection
               calendars={2}
               clearable={true}
               value={checkDate || null}

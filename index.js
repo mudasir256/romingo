@@ -41,133 +41,133 @@ const seo = [
     image: ''
   },
   {
-    path: '/los-angeles',
+    path: '/pet-friendly-hotels-los-angeles-california',
     title: 'Los Angeles Hotels - Romingo',
     description: 'Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg'
   },
   {
-    path: '/san-diego',
+    path: '/pet-friendly-hotels-san-diego-california',
     title: 'San Diego Hotels - Romingo',
     description: 'For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sd-2.jpeg'
   }, 
   {
-    path: '/orange-county',
+    path: '/pet-friendly-hotels-orange-county-california',
     title: 'Orange County Hotels - Romingo',
     description: 'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/oc-2.jpeg'
   },
   {
-    path: '/san-francisco',
+    path: '/pet-friendly-hotels-san-francisco-california',
     title: 'San Francisco Hotels - Romingo',
     description: 'San Francisco is a lively cultural hub home to grand architectural buildings, world-class cuisine, cable cars, a dynamic waterfront, and plenty of outdoor adventures. The walkable city is adorned with iconic landmarks which is what truly sets San Francisco apart. Taking a stroll through the city’s streets is an exciting experience that will bring you from one unique neighborhood to another. San Francisco is a haven for lovers of performing arts and is also considered one of the United State’s greatest dining cities because of its rich diverse cultural influences, fresh ingredients, and creative chefs who come from all around the world.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sf-hero.jpeg'
   },
   {
-    path: '/santa-barbara',
+    path: '/pet-friendly-hotels-santa-barbara-california',
     title: 'Santa Barbara Hotels - Romingo',
     description: 'Located on the central coast of California, the laid-back city of Santa Barbara offers the perfect getaway from the hustle and bustle of everyday life. The lovely city features Mediterranean style buildings that reflect its Spanish heritage, along with breathtaking mountain and beach views, and surrounding vineyards.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sb-2.jpeg'
   },
   {
-    path: '/palm-springs',
+    path: '/pet-friendly-hotels-palm-springs-california',
     title: 'Palm Springs Hotels - Romingo',
     description: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
     image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg'
   },
   {
-    path: "/austin",
+    path: "/pet-friendly-hotels-austin-texas",
     title: 'Austin Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[0].paragraphOne,
     image: HOTEL_DESCRIPTIONS[0].heroImage,
   },
   {
-    path: '/dallas',
+    path: '/pet-friendly-hotels-dallas-texas',
     title: 'Dallas Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[1].paragraphOne,
     image: HOTEL_DESCRIPTIONS[1].heroImage
   },
   {
-    path: '/houston',
+    path: '/pet-friendly-hotels-houston-texas',
     title: 'Houston Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[2].paragraphOne,
     image: HOTEL_DESCRIPTIONS[2].heroImage
   },
   {
-    path: '/oceanside',
+    path: '/pet-friendly-hotels-oceanside-california',
     title: 'Oceanside Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[3].paragraphOne,
     image: HOTEL_DESCRIPTIONS[3].heroImage
   },
   {
-    path: '/phoenix',
+    path: '/pet-friendly-hotels-phoenix-arizona',
     title: 'Phoenix Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[4].paragraphOne,
     image: HOTEL_DESCRIPTIONS[4].heroImage
   },
   {
-    path: '/scottsdale',
+    path: '/pet-friendly-hotels-scottsdale-arizona',
     title: 'Scottsdale Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[5].paragraphOne,
     image: HOTEL_DESCRIPTIONS[5].heroImage
   },
   {
-    path: '/tucson',
+    path: '/pet-friendly-hotels-tucson-arizona',
     title: 'Tucson Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[6].paragraphOne,
     image: HOTEL_DESCRIPTIONS[6].heroImage
   },
   {
-    path: '/santa-fe',
+    path: '/pet-friendly-hotels-santa-fe-new-mexico',
     title: 'Santa Fe Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[7].paragraphOne,
     image: HOTEL_DESCRIPTIONS[7].heroImage
   },
   {
-    path: '/san-antonio',
+    path: '/pet-friendly-hotels-san-antonio-texas',
     title: 'San Antonio Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[8].paragraphOne,
     image: HOTEL_DESCRIPTIONS[8].heroImage
   },
   {
-    path: '/vail',
+    path: '/pet-friendly-hotels-vail-colorado',
     title: 'Vail Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[9].paragraphOne,
     image: HOTEL_DESCRIPTIONS[9].heroImage
   },
   {
-    path: '/colorado-springs',
+    path: '/pet-friendly-hotels-colorado-springs-colorado',
     title: 'Colorado Springs Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[10].paragraphOne,
     image: HOTEL_DESCRIPTIONS[10].heroImage
   },
   {
-    path: '/denver',
+    path: '/pet-friendly-hotels-denver-colorado',
     title: 'Denver Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[11].paragraphOne,
     image: HOTEL_DESCRIPTIONS[11].heroImage
   },
   {
-    path: '/seattle',
+    path: '/pet-friendly-hotels-seattle-washington',
     title: 'Seattle Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[12].paragraphOne,
     image: HOTEL_DESCRIPTIONS[12].heroImage
   },
   {
-    path: '/portland',
+    path: '/pet-friendly-hotels-portland-oregon',
     title: 'Portland Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[13].paragraphOne,
     image: HOTEL_DESCRIPTIONS[13].heroImage
   },
   {
-    path: '/sacramento',
+    path: '/pet-friendly-hotels-sacramento-california',
     title: 'Sacramento Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[14].paragraphOne,
     image: HOTEL_DESCRIPTIONS[14].heroImage
   },
   {
-    path: '/salt-lake-city',
+    path: '/pet-friendly-hotels-salt-lake-city-utah',
     title: 'Salt Lake City Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[15].paragraphOne,
     image: HOTEL_DESCRIPTIONS[15].heroImage
