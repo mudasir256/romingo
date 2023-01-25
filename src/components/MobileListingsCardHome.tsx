@@ -67,9 +67,10 @@ const ListingCardSquare: FC<ListingCardProps> = ({
 
 
   const PriceDetails = () => (
-    <Box>
+    <Box textAlign="right" mr="0.5rem">
+      <Typography variant="base" sx={{ fontSize: '0.75rem'}}>rates from</Typography>
       <Typography variant="h5">
-        {currency}{Math.round(lowestTotalPriceAfterTax)} <span style={{ fontSize: '1rem'}}>/ night</span>
+        {currency}{Math.round(lowestTotalPriceAfterTax)} <span style={{ fontSize: '1rem', fontWeight: 400}}>/ night</span>
       </Typography>
     </Box>
   )
@@ -162,7 +163,7 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 {addressLine1}, {city?.name}
               </Typography>
 
-              <Box sx={{ pb: '0.75rem' }}>
+              <Box mb="-1rem">
                 <HotelTags displayOne={true} petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
               </Box>  
               <PriceDetails />

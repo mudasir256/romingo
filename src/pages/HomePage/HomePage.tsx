@@ -20,8 +20,8 @@ import { saveSearch } from "../../store/searchReducer";
 import ListingCardSquare from "../../components/MobileListingsCardHome";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
-import SectionOneImage from '../../assets/images/home-hero.jpg';
-import SectionTwoImage from '../../assets/images/home-hero-3.jpg';
+import SectionOneImage from '../../assets/images/section-one.jpg';
+import SectionTwoImage from '../../assets/images/home-hero.jpg';
 import SectionThreeImage from '../../assets/images/homepage-dog.jpg';
 
 import LogoImgWhite from '../../assets/images/logo-white.png';
@@ -228,11 +228,6 @@ const HomePage: FC<Props> = () => {
   ]
   locationLinks.sort((a, b) => a.name.localeCompare(b.name))
 
-  const handleEmailSubmit = () => {
-		setIsSuccess(false)
-		const result = subscribeToNewsletter(email)
-		setIsSuccess(result.success)
-  }
 
   const InfoBox = ({ imgSrc, imgAlt, imgWidth, header, text }) => (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '300px', mt: '2rem', p: '1.5rem', backgroundColor: 'white', borderRadius: '24px', boxShadow: '21px 7px 63px #0000000d' }}>
@@ -243,6 +238,95 @@ const HomePage: FC<Props> = () => {
       </Box>
     </Box>
   )
+
+  const RightPhotoBox = ({ imgSrc, imgAlt, backgroundColor, fontColor = 'black', header, text, cta, extraText }) => (
+    <Box sx={{ width: '100%', backgroundColor: backgroundColor, display: { xs: 'block', sm: 'block', md: 'flex' }, justifyContent: 'center', alignItems: 'flex-start' }}> 
+      <Box 
+        component="img" 
+        sx={{ 
+          marginLeft: 'auto', 
+          maxWidth: '100%',
+          display: { xs: 'block', sm: 'block', md: 'none'}
+        }} 
+        src={imgSrc} 
+        alt={imgAlt}
+      />
+      <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '440px' } , mx: 'auto', my: 'auto'}}>
+        <Typography variant="h2" sx={{ color: fontColor, textAlign: { xs: 'left', sm: 'left', md: 'left' }, mt: { xs: '1rem', sm: '1rem', md: 0 },  mb: '1.5rem'}}>{header}</Typography>
+        <Typography variant="p" sx={{ color: fontColor, fontSize: '1.25rem', mb: '2rem'}}>{text}</Typography>
+        <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mt: '2rem', mb: '1.5rem' }}>
+          {cta}
+        </Box>
+        {extraText && <Typography variant="base" sx={{ color: fontColor }}>{extraText}</Typography>}
+      </Box>
+      <Box 
+        component="img" 
+        sx={{ 
+          marginLeft: 'auto', 
+          maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' },
+          display: { xs: 'none', sm: 'none', md: 'block'}
+        }} 
+        src={imgSrc} 
+        alt={imgAlt}
+      />
+    </Box>
+  )
+
+  const LeftPhotoBox = ({ imgSrc, imgAlt, fontColor = 'black', backgroundColor, header, text, cta, extraText }) => (
+    <Box sx={{ position: 'relative', backgroundColor: backgroundColor, display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start'}}> 
+      <Box 
+        component="img" 
+        sx={{ 
+          maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' }
+        }} 
+        src={imgSrc} 
+        alt={imgAlt}
+      />
+      <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: '2rem'}, maxWidth: '500px', mx:'auto', my: 'auto'}}>
+        <Typography variant="h2" sx={{ color: fontColor, textAlign: { xs: 'left', sm: 'left', md: 'left' }, mb: '1.5rem'}}>{header}</Typography>
+        <Typography variant="p" sx={{ color: fontColor, mb: '1.5rem'}}>{text}</Typography>
+        <Box sx={{ mt: '1.5rem', textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
+          {cta}
+        </Box>
+        <br />
+        <br />
+        {extraText && <Typography variant="base" sx={{ color: fontColor }}>{extraText}</Typography>}
+      </Box>
+    </Box>
+  )
+
+  const SignUpEmail = () => {
+    const [isSuccess, setIsSuccess] = useState(false)
+    const [email, setEmail] = useState('')
+    return (
+      <form style={{ marginTop: '1.25rem'}} onSubmit={(e) => {
+        e.preventDefault();
+        subscribeToNewsletter(email);
+      }}>
+        <TextField  
+          sx={{ 
+            '& .MuiInput-underline:before': { borderBottomColor: 'white' },
+             '& .MuiInput-underline:after': { borderBottomColor: 'white' },
+            input: { color: 'white'  },  
+            width: { xs: '100%', sm: '100%', md: '300px' } }} 
+          variant="standard" 
+          type="email" 
+          value={email}
+          onChange={(e) => setEmail(e.target?.value)}
+          required 
+          placeholder='Email address' 
+          InputProps={{ endAdornment: 
+            isSuccess ? <Box sx={{ backgroundColor: 'white', width: '24px', height: '24px', borderRadius: '100%', cursor: 'pointer'}}><CheckIcon /></Box>
+              : <Box onClick={() => {
+                setIsSuccess(false)
+                const result = subscribeToNewsletter(email)
+                setIsSuccess(result.success)
+              }} sx={{ backgroundColor: 'white', width: '24px', height: '24px', borderRadius: '100%', cursor: 'pointer'}}><PlayArrowOutlinedIcon /></Box>
+          }}
+        />
+      </form>
+    )
+  }
 
   return (
     <div className="homepage">      
@@ -277,21 +361,21 @@ const HomePage: FC<Props> = () => {
             imgAlt="pet-friendly travel"
             imgWidth="70%"
             header="Pet-friendly travel"
-            text="Romingo has searched through thousands of pet-friendly hotels, and we have hand-selected the best for you to easily book right here." 
+            text="Romingo has searched through thousands of pet-friendly hotels for our members to have an amazing travel experience." 
           />
           <InfoBox
             imgSrc={LowestRates}
             imgAlt="lowest rates"
             imgWidth="83%"
             header="Best rates + $0 pet fees"
-            text="Other booking sites will charge hidden pet fees, but when you book with Romingo you receive the lowest rates, and your pets will always stay for $0."
+            text="Many travel sites have hidden fees, but Romingo offers the lowest rates and pets always stay for $0 pet fees."
           />
           <InfoBox
             imgSrc={AuthenticPet}
             imgAlt="trusted and accredited"
             imgWidth='85%'
             header="Trusted and accredited"
-            text="You and your pets will receive VIP service at our pet-friendly partner hotels. Romingo is accredited and trusted for you to book pet-friendly hotels."
+            text="Travelers and pets receive VIP amenities at our partner hotels. Plan your next pet-friendly trip with Romingo!"
           />
         </Box>
       </Box>
@@ -315,22 +399,6 @@ const HomePage: FC<Props> = () => {
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
-{/*          <MultiCarousel responsive={{
-              desktop: {
-                breakpoint: { max: 4000, min: 900},
-                items: 0,
-              },
-              mobile: {
-                breakpoint: { max: 900, min: 1},
-                items: 1,
-              }
-            }}
-            partialVisible={false}
-            infinite={true}
-            customLeftArrow={<CustomLeftArrow />}
-            customRightArrow={<CustomRightArrow />}
-          >
-          </MultiCarousel>*/}
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
             {(ghSanDiego) ?
@@ -410,34 +478,14 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-
-        <Box sx={{ width: '100%', backgroundColor: '#F4DAC9', display: { xs: 'block', sm: 'block', md: 'flex' }, justifyContent: 'center', alignItems: 'flex-start', mt: '1rem'}}> 
-          <Box 
-            component="img" 
-            sx={{ 
-              marginLeft: 'auto', 
-              maxWidth: '100%',
-              display: { xs: 'block', sm: 'block', md: 'none'}
-            }} 
-            src={SectionOneImage} 
-            alt="pet-friendly travel"
-          />
-          <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '410px' } , mx: 'auto', my: 'auto'}}>
-            <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mt: { xs: '1rem', sm: '1rem', md: 0 },  mb: '1.5rem'}}>Travel the world with your pup by your side</Typography>
-            <Typography variant="p" sx={{ fontSize: '1.25rem', mb: '2rem'}}>Romingo is the future of pet-friendly travel. It’s never been easier to travel with your pup!</Typography>
-            <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mt: '2rem', mb: '1.5rem' }}>
-              <Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>
-            </Box>
-          </Box>
-          <Box 
-            component="img" 
-            sx={{ 
-              marginLeft: 'auto', 
-              maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' },
-              display: { xs: 'none', sm: 'none', md: 'block'}
-            }} 
-            src={SectionOneImage} 
-            alt="pet-friendly travel"
+        <Box mt="1rem">
+          <LeftPhotoBox
+            imgSrc={SectionOneImage}
+            imgAlt="pet-friendly travel"
+            backgroundColor="#F3F0D2"
+            header="Spring break on sale!"
+            text="Book pet-friendly hotels and hit the road with your pet by your side. Enjoy up to 20% off luxury hotels and $0 pet fees!"
+            cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
         </Box>
 
@@ -521,27 +569,18 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-        <Box sx={{ position: 'relative', backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start', mt: '1rem' }}> 
-          <Box 
-            component="img" 
-            sx={{ 
-              maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' }
-            }} 
-            src={SectionTwoImage} 
-            alt="experience true pet-friendliness"
+        <Box mt="1rem">
+          <RightPhotoBox
+            imgSrc={SectionTwoImage}
+            imgAlt="romingo rewards"
+            backgroundColor="#BCAABE"
+            fontColor="white"
+            header="Romingo Rewards 🐶"
+            text="Enjoy unique pet-friendly amenities with Romingo. Pet beds, bowls, treats, and toys are free when visiting select hotels*."
+            cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
+            extraText="*visit each hotel profile to learn more"
           />
-          <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: '2rem'}, maxWidth: '500px', mx:'auto', my: 'auto'}}>
-            <Typography variant="h2" sx={{ textAlign: { xs: 'left', sm: 'left', md: 'left' }, mb: '1.5rem'}}>Experience true pet-friendliness</Typography>
-            <Typography variant="p" sx={{ mb: '1.5rem'}}>Enjoy unique pet-friendly inclusions when you book with Romingo. Pet beds, bowls, treats, and toys are provided free when you visit select hotels*.</Typography>
-            <Box sx={{ mt: '1.5rem', textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
-              <Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>
-						</Box>
-            <br />
-						<br />
-						<Typography variant="base">*visit each hotel profile to learn more</Typography>
-          </Box>
         </Box>
-
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
         <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
@@ -624,7 +663,7 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
-      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#F4DAC9" p="2rem" mt="2rem">
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#A6DBE5" p="2rem" mt="2rem">
         <Box sx={{ 
           mx: 'auto', maxWidth: '760px', 
           overflow: 'auto', 
@@ -650,52 +689,15 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
-      <Box sx={{ backgroundColor: '#A6DBE5', display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start' }}> 
-        <Box 
-          component="img" 
-          sx={{ 
-            marginLeft: 'auto', 
-            maxWidth: '100%',
-            display: { xs: 'block', sm: 'block', md: 'none'}
-          }} 
-          src={SectionThreeImage} 
-          alt="pet-friendly travel"
-        />
-        <Box sx={{ py: { xs: '3rem', sm: '3rem', md: 0}, maxWidth: '580px', mx: 'auto', my: 'auto'}}>
-          <Typography variant="h2" sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mb: { xs: '1rem', sm: '1rem', md: '2rem' } }}>Sign up for Romingo exclusive deals and pet-friendly tips</Typography>
-          <Typography component="p" variant="p" sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>Enter your email address below:</Typography>
-          <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}>
-          <form style={{ marginTop: '1.25rem'}} onSubmit={(e) => {
-            e.preventDefault();
-            subscribeToNewsletter(email);
-          }}>
-            <TextField  
-              sx={{ width: '300px' }} 
-              variant="standard" 
-              value={email} 
-              onChange={(e) => setEmail(e.target?.value)} 
-              type="email" 
-              required 
-              placeholder='Email address' 
-              InputProps={{ endAdornment: 
-								isSuccess ? <Box sx={{ backgroundColor: 'white', width: '24px', height: '24px', borderRadius: '100%', cursor: 'pointer'}}><CheckIcon /></Box>
-									: <Box onClick={() => handleEmailSubmit()} sx={{ backgroundColor: 'white', width: '24px', height: '24px', borderRadius: '100%', cursor: 'pointer'}}><PlayArrowOutlinedIcon /></Box>
-              }}
-            />
-          </form>
-          </Box>
-        </Box>
-        <Box 
-          component="img" 
-          sx={{ 
-            ml: 'auto',
-            display: { xs: 'none', sm: 'none', md: 'block'},
-            maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '700px', xl: '700px' }
-          }} 
-          src={SectionThreeImage} 
-          alt="sign up for exclusive deals"
-        />
-      </Box>
+      <RightPhotoBox
+        imgSrc={SectionThreeImage}
+        imgAlt="sign up for romingo exclusive deals"
+        backgroundColor="#009CA1"
+        fontColor="white"
+        header="Sign up for Romingo exclusive deals and pet-friendly tips"
+        text="Enter your email address below:"
+        cta={<SignUpEmail />}
+      />
 
 
       <Slide direction='up' in={showLocations} mountOnEnter unmountOnExit>

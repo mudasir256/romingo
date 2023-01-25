@@ -187,7 +187,7 @@ const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
         </Box>
 
       <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2022 Romingo, Inc.</div>
+        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
         <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
         <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
       </Box>
