@@ -277,7 +277,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     }} 
                     value={selectedCity}
                     MenuProps={{
-                      sx: {  height: '500px' }
+                      sx: { ml: '-0.5rem', width: '90vh', height: '50vh' }
                     }}
                   >
                     {groups.map((group, index) => {
