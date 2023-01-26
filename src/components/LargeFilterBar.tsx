@@ -20,7 +20,7 @@ import {
   TextField,
   useMediaQuery,
 } from "@mui/material";
-
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -163,12 +163,51 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     }
   };
 
+  const [showSelectCity, setShowSelectCity] = useState<boolean>(false)
+
   const labelStyle = {
     fontFamily: 'overpass-light',
     fontSize: '0.75em', 
     fontWeight: 100, 
     ml: '0.1em',
     mb: '0.5em'
+  }
+
+  const groupBy = function(xs, key) {
+    return xs.reduce(function(rv, x) {
+      (rv[x[key].name] = rv[x[key].name] || []).push(x);
+      return rv;
+    }, {});
+  };
+
+  const DesktopSelectCity = () => {
+    cities.sort(function (a: any, b: any) {
+      if (a.state.name === b.state.name) {
+        // Price is only important when cities are the same
+        return b.name - a.name;
+      }
+      return a.state.name > b.state.name ? 1 : -1;
+    })
+
+    const grouped = groupBy(cities, 'state')
+    console.log(grouped)
+    return (
+      <Box sx={{ position: 'absolute', mt: '0.65rem', display: 'flex', gap: '1rem', flexDirection: 'row', width: '800px', backgroundColor: 'white', p: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', boxShadow: 4, borderRadius: 3,}} >
+        <Box onClick={() => setShowSelectCity(false)} position="absolute" right="8px" top="8px" sx={{ cursor: 'pointer'}} ><HighlightOffIcon /></Box>
+        {Object.keys(grouped).map(cityKey => (
+          <Box key={cityKey} width="160px" my="0.25rem">
+            <Typography variant="h5">{cityKey}</Typography>
+            {grouped[cityKey].map(city => (
+              <Typography onClick={() => {
+                console.log(city.id)
+                setSelectedCity(city.id)
+                setShowSelectCity(false)
+              }} component="p" key={city.name} variant="base" color="primary" sx={{ '&:hover': { backgroundColor: '#d9f7fc' }, cursor: 'pointer' }}>{city.name.split(',')[0]}</Typography>
+            ))}
+          </Box>
+        ))}
+      </Box>
+    )
   }
 
   return (
@@ -206,93 +245,52 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             <Typography
               sx={{
                 ...labelStyle,
-                mb: 0,
+                mb: '0.7em',
                 ml: '1em'
               }}>
               Where to
             </Typography>
             <Box
               sx={{
+                mb: '0.3rem',
+                ml: '0.5rem',
                 display: "flex",
                 alignItems: "center",
+                gap: '0.5rem',
                 border: 'none',
                 ["@media (max-width: 600px)"]: { mx: '0.75em' },
                 borderRadius: "6px",
                 backgroundColor: "#fff",
-                minWidth: '250px',
+                minWidth: '220px',
                 "&:hover": { background: "#efefef" },
               }}
+              onClick={() => setShowSelectCity(!showSelectCity)}
             >
-              {selectedCity ? (
-                <></>
-              ) : (
-                <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
-              )}
-              <Autocomplete
-                options={cities.sort(function (a: any, b: any) {
-                  if (a.state.name === b.state.name) {
-                    // Price is only important when cities are the same
-                    return b.name - a.name;
-                  }
-                  return a.state.name > b.state.name ? 1 : -1;
-                })}
-                groupBy={(o) => o.state.name}         
-                disableClearable
-                blurOnSelect="touch"
-                value={getCity(selectedCity) || null}
-                getOptionLabel={(option: any) => {
-                  return option.name;
-                }}
-                componentsProps={{
-                  paper: {
-                    style: {
-                      opacity: 1,
-                      backgroundColor: 'white',
-                      fontFamily: 'sansita-light',
-                      padding: '0 1em',
-                    }
+              
+              <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
+              <Typography
+                variant="base"
+                className="auto-complete-input"
+                sx={{   
+                  cursor: 'pointer', 
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "transparent",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "transparent",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "transparent",
+                    },
                   },
                 }}
-                renderOption={(props, option: any) => (
-                  <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
-                      {option.name.split(',')[0]}
-                  </li>
-                )}
-                // eslint-disable-next-line
-                onChange={(e, values: any) => {
-                  if (values) {
-                    setFormError("");
-                    setSelectedCity(values.id);
-                  }
-                }}
-                fullWidth
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    color="primary"
-                    variant="outlined"
-                    className="auto-complete-input"
-                    placeholder="Select a city"
-                    size="small"
-                    sx={{    
-                      "& .MuiOutlinedInput-root": {
-                        "& fieldset": {
-                          borderColor: "transparent",
-                        },
-                        "&:hover fieldset": {
-                          borderColor: "transparent",
-                        },
-                        "&.Mui-focused fieldset": {
-                          borderColor: "transparent",
-                        },
-                      },
-                    }}
-                  />
-                )}
-              />
+              >{selectedCity ? getCity(selectedCity).name : 'Select a city'}</Typography>
             </Box>
+            {showSelectCity && <DesktopSelectCity />}
+
           </Box>
-       
+
           <Box sx={{ 
             ml: '1em',
             ["@media (max-width: 600px)"]: { ml: '1em' }
