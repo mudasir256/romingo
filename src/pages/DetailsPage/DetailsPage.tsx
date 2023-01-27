@@ -547,8 +547,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   useEffect(() => {
     if (data && data.getPropertyDetails && data.getPropertyDetails.googlePlaceId && isLoaded) {
-      console.log('loading review data')
-      getReviewData();
+      if (process.env.NODE_ENV === 'production') {
+        getReviewData();
+      }
     }
   }, [data, isLoaded]);
 
