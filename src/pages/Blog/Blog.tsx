@@ -17,6 +17,7 @@ import ScrollToTop from "../../components/ScrollToTop";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import Loader from "../../components/UI/Loader";
+import { slugify } from '../../services/utils'
 
 interface BlogParams {
   tag: string | undefined;
@@ -114,10 +115,8 @@ const Blog: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo.</description>
-        <meta property="og:title" content="Book pet friendly hotels - Romingo" />
-        <meta property="og:description" content="Romingo makes it easy for dog owners to find pet-friendly hotels without paying fees. You and your pet are sure to enjoy hassle-free travel with Romingo." />
+        <title>Romingo Blog</title>
+        <meta property="og:title" content="Romingo Blog" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta property="og:site_name" content="Romingo" />
@@ -200,6 +199,7 @@ const Blog: FC = () => {
                         onClick={() =>
                           history.push(`/blog/post/${post.id}`, {
                             fromBlog: true,
+                            postId: post.id
                           })
                         }
                         href={`/blog/post/${post.id}`}

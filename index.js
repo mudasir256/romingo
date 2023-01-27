@@ -189,6 +189,11 @@ const seo = [
     title: 'Terms of use - Romingo',
     description: 'Accessing the Romingo website (“Site”) constitutes your agreement to the following Terms or Use (“Terms”). You should read these Terms and our privacy policy in their entirety before accessing, using, or obtaining information or services from the Site.',
     image: ''
+  },
+  {
+    path: '/blog',
+    title: 'Romingo Blog',
+    description: 'Discover pet-friendly travel tips and exclusive deals for Romingo.'
   }
 ]
 fs.createReadStream('./hotels.csv')
