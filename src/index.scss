@@ -39,6 +39,16 @@
     font-weight: normal;
     text-rendering: optimizeLegibility;
 }
+
+@font-face {
+    font-family: 'ModernEra-Regular';
+    src: url(./assets/font/ModernEra-Bold.woff) format('woff'),
+         url(./assets/font/ModernEra-Bold.woff2) format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
 @font-face {
     font-family: 'ModernEra-Bold';
     src: url(./assets/font/ModernEra-Bold.woff) format('woff'),

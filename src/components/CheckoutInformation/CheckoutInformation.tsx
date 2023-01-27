@@ -468,7 +468,6 @@ const CheckoutInformation: FC<Props> = ({
                     color: "#222",
                     textAlign: "left",
                     fontWeight: 700,
-                    fontFamily: "Montserrat",
                   }}
                 >
                   Guest Information
@@ -539,7 +538,6 @@ const CheckoutInformation: FC<Props> = ({
                   variant="h6"
                   sx={{
                     color: "#222",
-                    fontFamily: "Montserrat",
                     textAlign: "left",
                     mb: 2,
                   }}
@@ -596,7 +594,6 @@ const CheckoutInformation: FC<Props> = ({
                     variant="h6"
                     sx={{
                       color: "#222",
-                      fontFamily: "Montserrat",
                       textAlign: "left",
                       mb: 2,
                     }}
@@ -604,7 +601,7 @@ const CheckoutInformation: FC<Props> = ({
                     Important Information
                   </Typography>
                   <Typography
-                    variant="body2"
+                    variant="base"
                     color="text.secondary"
                     sx={{ mt: 0, textAlign: "left" }}
                   >
@@ -613,7 +610,7 @@ const CheckoutInformation: FC<Props> = ({
                         <li>
                           Cancellations or changes made to your reservation
                           after 11:59pm (local property time) on{" "}
-                          <span style={{ fontWeight: "bold" }}>
+                          <span style={{ fontWeight: "bold", color: 'black' }}>
                             {utils.getDateFull(policy?.deadlineLocal)}
                           </span>{" "}
                           or no-shows are subject to a cancellation fee equal to

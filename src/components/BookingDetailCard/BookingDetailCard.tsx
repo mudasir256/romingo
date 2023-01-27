@@ -28,7 +28,7 @@ const BookingDetailCard: FC = () => {
         sx={{
           color: "#222",
           textAlign: "left",
-          mb: 1,
+          mb: '1rem',
         }}
       >
         Booking Details
@@ -36,6 +36,7 @@ const BookingDetailCard: FC = () => {
       <Box
         sx={{
           display: "flex",
+          mb: '1rem'
         }}
       >
         <Box
@@ -57,15 +58,14 @@ const BookingDetailCard: FC = () => {
             Check In
           </Typography>
           <Typography
-            variant="body2"
+            variant="base"
             sx={{
               fontWeight: 500,
               mt: 0.5,
               textTransform: "capitalize",
               color: "text.primary",
               opacity: 0.75,
-              textIndent: "-8px",
-              paddingLeft: "8px",
+      
             }}
           >
             {DateTime.fromISO(details.checkIn).toFormat("MMM dd, yyyy")}
@@ -86,15 +86,13 @@ const BookingDetailCard: FC = () => {
             Check Out
           </Typography>
           <Typography
-            variant="body2"
+            variant="base"
             sx={{
               fontWeight: 500,
               mt: 0.5,
               textTransform: "capitalize",
               color: "text.primary",
               opacity: 0.75,
-              textIndent: "-8px",
-              paddingLeft: "8px",
             }}
           >
             {DateTime.fromISO(details.checkOut).toFormat("MMM dd, yyyy")}
@@ -104,6 +102,7 @@ const BookingDetailCard: FC = () => {
       <Box
         sx={{
           mt: 1,
+          mb: '1rem'
         }}
       >
         <Typography
@@ -120,15 +119,14 @@ const BookingDetailCard: FC = () => {
           Guests
         </Typography>
         <Typography
-          variant="body2"
+          variant="base"
           sx={{
             fontWeight: 500,
             mt: 0.5,
             textTransform: "capitalize",
             opacity: 0.75,
             color: "text.primary",
-            textIndent: "-8px",
-            paddingLeft: "8px",
+
           }}
         >
           {`${details.occupants.adults} Adults - ${details.occupants.children} Children - ${details.occupants.dogs} Dogs`}
@@ -152,21 +150,20 @@ const BookingDetailCard: FC = () => {
         >
           Room Type
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            fontWeight: 500,
-            mt: 0.5,
-            textTransform: "capitalize",
-            color: "text.primary",
-            opacity: 0.75,
-            textIndent: "-8px",
-            paddingLeft: "8px",
-            mb: 1,
-          }}
-        >
-          {room?.name ? room.name : "Room"}
-        </Typography>
+        <Box mb="0.5rem">
+          <Typography
+            variant="base"
+            sx={{
+              fontWeight: 500,
+              mt: 0.5,
+              textTransform: "capitalize",
+              color: "text.primary",
+              opacity: 0.75,
+            }}
+          >
+            {room?.name ? room.name : "Room"}
+          </Typography>
+        </Box>
         <ImageSlider
           images={room?.imageURLs}
           name={room?.name ? room.name : "Room"}

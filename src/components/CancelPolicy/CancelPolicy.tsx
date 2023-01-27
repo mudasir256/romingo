@@ -30,7 +30,6 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
         <Typography
           variant="h6"
           sx={{
-            fontFamily: "Montserrat",
             color: "#222",
             textAlign: "left",
           }}
@@ -63,11 +62,10 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   }}
                 />
                 <Typography
-                  variant="body2"
+                  variant="base"
                   sx={{
                     mt: 0,
                     fontWeight: 500,
-                    fontFamily: "Roboto",
                     color: "text.light",
                   }}
                 >
@@ -96,10 +94,9 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 />
 
                 <Typography
-                  variant="body2"
+                  variant="base"
                   sx={{
                     mt: 0,
-                    fontFamily: "Roboto",
                     fontWeight: 500,
                     color: "text.light",
                   }}
@@ -117,7 +114,6 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   mt: "1rem",
                   display: "block",
                   textAlign: "left",
-                  fontFamily: "Roboto",
                   color: "text.light",
                 }}
               >

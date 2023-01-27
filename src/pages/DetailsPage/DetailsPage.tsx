@@ -118,6 +118,7 @@ import Footer from "../../components/Footer";
 import RomingoScore from "../../components/RomingoScore";
 import Navbar from "../../components/Navbar";
 import HotelTags from '../../components/HotelTags';
+import googleImage from '../../assets/images/google_on_white.png'
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -546,6 +547,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   useEffect(() => {
     if (data && data.getPropertyDetails && data.getPropertyDetails.googlePlaceId && isLoaded) {
+      console.log('loading review data')
       getReviewData();
     }
   }, [data, isLoaded]);
@@ -1458,11 +1460,11 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                     Where You&lsquo;ll Be
                   </Typography>
                   <Typography
-                    variant="h5"
+                    variant="h6"
                     sx={{
                       letterSpacing: ".015rem",
                       mt: ".5rem",
-                      fontSize: "1rem",
+          
                       color: "#999",
                       fontWeight: 400,
                     }}
@@ -1657,14 +1659,18 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                   >
                     What People Are Saying
                   </Typography>
-                  <img
-                    style={{
-                      marginTop: "auto",
-                      maxWidth: "100px",
-                      marginLeft: "2px",
-                    }}
-                    src="https://developers.google.com/maps/documentation/images/powered_by_google_on_white.png"
-                  />
+                  <Box display="flex" alignItems="center" gap="0.25rem">
+                    <Typography variant="base">Powered By</Typography>
+                    <img
+                      style={{
+                        marginTop: "auto",
+                        maxWidth: "100px",
+                        marginLeft: "2px",
+                        width: '80px'
+                      }}
+                      src={googleImage}
+                    />
+                  </Box>
                   <Grid container spacing={4} mt={2}>
                     {reviewData &&
                       reviewData.reviews &&

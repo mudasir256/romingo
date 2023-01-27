@@ -97,13 +97,13 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
       <Typography
         variant="h6"
         sx={{
-          fontFamily: "Montserrat",
           color: "#222",
           textAlign: "left",
           mb: 1,
+          fontWeight: 800
         }}
       >
-        Price Details
+        <b>Price Details</b>
       </Typography>
       {priceArr.map((detail, i) => {
         if (i === 1) {
@@ -120,7 +120,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               }}
             >
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -134,11 +134,10 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
-                  fontFamily: "Roboto",
                   color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
@@ -162,7 +161,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               }}
             >
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   mt: 0,
                   color: "#222",
@@ -176,7 +175,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
@@ -201,7 +200,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               }}
             >
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -215,11 +214,10 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
-                  fontFamily: "Roboto",
                   color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
@@ -296,7 +294,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               }}
             >
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -310,11 +308,10 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
-                  fontFamily: "Roboto",
                   color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
@@ -336,7 +333,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               }}
             >
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -350,11 +347,10 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="body2"
+                variant="p"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
-                  fontFamily: "Roboto",
                   color: "text.primary",
                   textIndent: "-8px",
                   paddingLeft: "8px",
