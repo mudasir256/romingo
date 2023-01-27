@@ -250,6 +250,11 @@ app.get('/sitemap.xml', function(req, res, next) {
   res.sendFile(__dirname + '/public/sitemap.xml'); 
 })
 
+app.get('/robots.txt', function(req, res, next) {
+  res.sendFile(__dirname + '/public/robots.txt'); 
+
+})
+
 app.get("*", (req, res) => {
   let pathname = req.pathname || req.originalUrl;
   console.log(pathname)
