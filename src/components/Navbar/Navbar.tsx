@@ -427,14 +427,15 @@ const Navbar: FC<Props> = ({ sx }) => {
               handleClose={handleClose}
             />
           )}
-          {selectDialog === REGISTER && (
+          {selectDialog === REGISTER && (<>
+            <Typography variant="base">Create an account with Romingo to earn rewards, manage reservations, and receive special deals / offers.</Typography>
             <RegisterCard
               sx={{
                 mt: 1,
                 py: 1,
               }}
             />
-          )}
+          </>)}
           {selectDialog === FORGOT_PASSWORD && (
             <ResetPassword
               sx={{
@@ -451,7 +452,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               textAlign: "center",
             }}
           >
-            {selectDialog === LOGIN ? "Not a member?" : "Already a memeber?"}
+            {selectDialog === LOGIN ? "Not a member?" : "Already a member?"}
           </Typography>
           <Link
             href="#"

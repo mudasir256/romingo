@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import { CSSObject } from "@mui/material";
 import Button from "@mui/material/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import  { subscribeToNewsletter } from '../../../services/endpoints'
 
 interface Props {
   sx?: CSSObject;
@@ -59,6 +60,9 @@ const RegisterCard: FC<Props> = ({ sx }) => {
 
     console.log(data)
     if (data.data.createUser?.id) {
+
+      subscribeToNewsletter(email)
+
       const result2 =  await fetch(process.env.REACT_APP_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -86,6 +90,7 @@ const RegisterCard: FC<Props> = ({ sx }) => {
 
       const data2 = await result2.json()
       console.log(data2)
+
       setSuccessMessage('Account created! Please login to your account to access your profile!')
 
     } else {
