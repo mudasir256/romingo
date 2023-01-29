@@ -19,14 +19,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {Helmet} from "react-helmet";
 import { gql, useQuery } from "@apollo/client";
-import { UserProfile } from '../../constants/constants'
+import { UserProfile, GetReservationDetails } from '../../constants/constants'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import Navbar from "../../components/Navbar";
 import { useHistory } from 'react-router-dom'
 import { logoutUser } from "../../store/userReducer";
 import { useDispatch } from "react-redux";
-
 
 interface DogInfo {
   name?: string;
@@ -99,6 +98,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   }
 
   const deleteAccount = async () => {
+    console.log('delete account')
     const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/user/${authService.getUser().id}`, {
       method: "POST",
       headers: {
@@ -472,6 +472,25 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
 
   // },[])
 
+  const [trips, setTrips] = useState([])
+
+  useEffect(() => {
+    getTrips()
+  }, [])
+
+  const getTrips = async () => {
+    try {
+      const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/user/reservations?email=${authService.getUser().email}&id=${authService.getUser().id}`, {
+        method: 'GET'
+      })
+      const data = await result.json()
+      setTrips(data.result)
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -784,17 +803,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
              */}
             </Box>
           </Box>
-          <Box>
-            <Typography
-              variant="body1"
-              sx={{
-         
-              }}
-            >
+          <Box display="flex" flexDirection="column">
+            <Typography variant="base">
               Name: {data?.getUserProfile.name || ''}
             </Typography>
             <Typography
-              variant="body1"
+              variant="base"
               sx={{
                 mt: 1.5,
               }}
@@ -821,12 +835,20 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
             </Typography>
             */}
           </Box>
-        </Container>
-      </Box>
 
-      <Box sx={{ ml: '1rem' }}>
-        <Button onClick={() => logout()} variant="contained">Logout</Button>
-         <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
+
+          <Box>
+            <Typography variant="h4">Trips</Typography>
+
+          </Box>
+
+
+          <Box mt="1rem" >
+            <Button sx={{ mr: '0.5rem' }} onClick={() => logout()} variant="contained">Logout</Button>
+            <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
+          </Box>
+        </Container>
+
       </Box>
 
       <Dialog

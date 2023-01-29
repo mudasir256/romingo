@@ -61,7 +61,9 @@ const RegisterCard: FC<Props> = ({ sx }) => {
     console.log(data)
     if (data.data.createUser?.id) {
 
-      subscribeToNewsletter(email)
+      if (process.env.NODE_ENV === 'production') {
+        subscribeToNewsletter(email)
+      }
 
       const result2 =  await fetch(process.env.REACT_APP_ENDPOINT, {
         method: 'POST',
