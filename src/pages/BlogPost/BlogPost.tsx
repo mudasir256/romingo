@@ -111,14 +111,16 @@ const BlogPost: FC = () => {
   const loadPost = async () => {
     setLoading(true);
     const response = await fetch(
-      `https://blog.romingo.com/wp-json/wp/v2/posts/${id}?_embed&_fields=id,title,categories,content,tags,_links,_embedded`
+      `https://blog.romingo.com/wp-json/wp/v2/posts?slug=${id}&_embed&_fields=id,title,categories,content,tags,_links,_embedded`
     );
     const posts = await response.json();
-    setPost(posts);
-    loadTags(posts.tags);
-    setCity(posts.categories);
+    setPost(posts[0]);
+    loadTags(posts[0].tags);
+    setCity(posts[0].categories);
     setLoading(false);
     setLoaded(true);
+  
+
   };
 
   const setCity = (cats: number[]) => {

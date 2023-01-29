@@ -77,7 +77,7 @@ const Blog: FC = () => {
   };
 
   const loadPosts = async (p = page) => {
-    let url = `https://blog.romingo.com/wp-json/wp/v2/posts?page=${p}&_embed&_fields=id,excerpt,title,_links,_embedded`;
+    let url = `https://blog.romingo.com/wp-json/wp/v2/posts?page=${p}&_embed&_fields=id,slug,excerpt,title,_links,_embedded`;
     if (tag) {
       url += `&tags=${tag}`;
       const response = await fetch(
@@ -197,12 +197,12 @@ const Blog: FC = () => {
                     >
                       <Link
                         onClick={() =>
-                          history.push(`/blog/post/${post.id}`, {
+                          history.push(`/blog/post/${post.slug}`, {
                             fromBlog: true,
                             postId: post.id
                           })
                         }
-                        href={`/blog/post/${post.id}`}
+                        href={`/blog/post/${post.slug}`}
                         color="text.primary"
                         sx={{ textDecoration: "none" }}
                       >
@@ -232,7 +232,7 @@ const Blog: FC = () => {
                       >
                         <Box>
                           <Link
-                            href={`/blog/post/${post.id}`}
+                            href={`/blog/post/${post.slug}`}
                             color="text.primary"
                             sx={{ textDecoration: "none" }}
                           >
@@ -261,7 +261,7 @@ const Blog: FC = () => {
                             color="text.primary"
                           />
                         </Box>
-                        <Link href={`/blog/post/${post.id}`}>
+                        <Link href={`/blog/post/${post.slug}`}>
                           <Typography
                             variant="body1"
                             color="primary"
