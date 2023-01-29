@@ -24,6 +24,8 @@ import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
 import { utils } from "../../services/utils";
 import TagManager from "react-gtm-module";
+import  { subscribeToNewsletter } from '../../services/endpoints'
+
 
 interface Props {
   sx?: CSSObject;
@@ -173,6 +175,8 @@ const CheckoutInformation: FC<Props> = ({
                 },
               },
             });
+            subscribeToNewsletter(checkoutForm.email)
+
           }
           setPaymentLoading(false);
         } catch (err) {

@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { CSSObject } from "@mui/material";
 import Button from "@mui/material/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import  { subscribeToNewsletter } from '../../../services/endpoints'
+import { subscribeToNewsletter } from '../../../services/endpoints'
 
 interface Props {
   sx?: CSSObject;
