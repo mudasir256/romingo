@@ -130,7 +130,6 @@ const CheckoutPage: FC<Props> = () => {
                       variant="h6"
                       sx={{
                         color: "#222",
-                        fontFamily: "Montserrat",
                         textAlign: "left",
                         mb: 1,
                       }}

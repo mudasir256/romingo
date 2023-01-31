@@ -495,6 +495,13 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
     }
   }
 
+  const manageTrip = (trip) => {
+    history.push('/reservation/details', {
+      emailAddress: trip.email,
+      confirmationNumber: trip.propertyConfirmationId
+    })
+  }
+
   return (
     <>
       <Helmet>
@@ -842,32 +849,35 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
 
 
           <Box>
-            <Typography variant="h4">Trips</Typography>
+            <Typography my="1rem" variant="h4">Trips</Typography>
             {loadingTrips ? <CircularProgress /> :
-            <Grid container xs={12} gap="1rem">
+            <Grid container spacing={2}>
             {trips.map(trip => {
               const reservationStatus = findReservationStatus(trip.checkInAtLocal, trip.reservationStatus)
               return (
-                <Grid item xs={12} sm={12} md={5} key={trip.id} boxShadow="1" m="0.5rem" p="1.5rem" display="flex" flexDirection="column" gap="0.5rem">
-                  <Box display="flex">
-                    <Typography variant="h5">{trip.hotelName}</Typography>
-                    <Typography 
-                      ml="auto" 
-                      variant="p" 
-                      color={
-                        reservationStatus === 'cancelled' ? 'red' 
-                        : reservationStatus === 'current' ? 'green'
-                        : reservationStatus === 'upcoming' ? 'blue'
-                        : reservationStatus === 'past' ? 'gray'
-                        : 'black'}>
-                        {reservationStatus} trip
-                    </Typography>
-                  </Box>
-                  <Typography variant="p">{trip.addressLine1}</Typography>
-                  <Typography variant="p">{trip.data.noOfAdults} Adults, {trip.data.noOfChildren} Children, {trip.data.noOfDogs} Pets</Typography>
-                  <Box display="flex">
-                    <Typography variant="p">{formatUnix(trip.checkInAtLocal)} - {formatUnix(trip.checkOutAtLocal)}</Typography>
-                    <Typography ml="auto" variant="p">${trip.data.averagePriceAfterTax} / night</Typography>
+                <Grid item xs={12} sm={12} md={6} key={trip.id}>
+                  <Box boxShadow="1" p="1rem" gap="0.5rem" display="flex" flexDirection="column" >
+                    <Box display="flex">
+                      <Typography variant="h5">{trip.hotelName}</Typography>
+                      <Typography 
+                        ml="auto" 
+                        variant="base" 
+                        color={
+                          reservationStatus === 'cancelled' ? 'red' 
+                          : reservationStatus === 'current' ? 'green'
+                          : reservationStatus === 'upcoming' ? 'blue'
+                          : reservationStatus === 'past' ? 'gray'
+                          : 'black'}>
+                          {reservationStatus} trip
+                      </Typography>
+                    </Box>
+                    <Typography variant="base">{trip.addressLine1}, {trip.zipCode}</Typography>
+                    <Typography variant="base">{trip.data.noOfAdults} Adults, {trip.data.noOfChildren} Children, {trip.data.noOfDogs} Pets</Typography>
+                    <Box display="flex" mb="0.5rem">
+                      <Typography variant="p">{formatUnix(trip.checkInAtLocal)} - {formatUnix(trip.checkOutAtLocal)}</Typography>
+                      <Typography ml="auto" variant="p">${trip.data.averagePriceAfterTax} / night</Typography>
+                    </Box>
+                    {reservationStatus === 'upcoming' && <Button onClick={() => manageTrip(trip)} variant="contained">Manage Reservation</Button>}
                   </Box>
                 </Grid>
               )
