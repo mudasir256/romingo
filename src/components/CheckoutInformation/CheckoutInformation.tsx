@@ -472,10 +472,11 @@ const CheckoutInformation: FC<Props> = ({
                         : bnplData?.createBooking2?.booking
                             ?.sabreConfirmationId}
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography variant="body1" sx={{ mb: 2}}>
                       We&apos;ve sent you an email with all of the details of
                       your booking.
                     </Typography>
+                    <Typography variant="body1"><Link href="/create-account">Create an account</Link> with Romingo to earn rewards, manage reservations, and receive special deals and offers.</Typography>
                   </Box>
                 )}
               </Box>
@@ -536,6 +537,7 @@ const CheckoutInformation: FC<Props> = ({
                       type="email"
                       name="email"
                       label={"Email Address"}
+                      defaultValue={checkoutForm.email}
                       placeholder="Email"
                       fullWidth={true}
                       onChange={updateForm}
