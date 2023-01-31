@@ -450,29 +450,6 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
       },
     }
   );
-  console.log(data)
-  console.log(error)
-
-  console.log(authService.getUser().email)
-
-  // useEffect(async () => {
-  //   console.log(UserProfile)
-  //   const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       query: `${UserProfile}`,
-  //       variables: {
-  //         email: authService.getUser().email
-  //       }
-  //     })
-  //   })
-  //   const data = await result.json()
-  //   console.log(data)
-
-  // },[])
 
   const [trips, setTrips] = useState([])
   const [loadingTrips, setLoadingTrips] = useState(true)
@@ -489,7 +466,6 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
       const data = await result.json()
       setTrips(data.result.reverse())
       setLoadingTrips(false)
-      console.log(data.result)
     } catch (err) {
       console.log(err)
     }
@@ -887,7 +863,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
           </Box>
 
 
-          <Box mt="1rem" >
+          <Box mt="2rem" >
             <Button sx={{ mr: '0.5rem' }} onClick={() => logout()} variant="contained">Logout</Button>
             <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
           </Box>
