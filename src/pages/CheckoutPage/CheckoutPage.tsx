@@ -257,7 +257,6 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
               variant="body2"
               sx={{
                 color: "#222",
-                fontFamily: "Montserrat",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
@@ -278,7 +277,6 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
                 fontSize: { xs: "95%", sm: "100%" },
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                fontFamily: "Roboto",
                 textOverflow: "ellipsis",
                 color: "#999",
                 mb: { xs: 0, md: -1 },
