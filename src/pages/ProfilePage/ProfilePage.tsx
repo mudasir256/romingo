@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { CSSObject } from "@mui/material";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -17,16 +18,16 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { gql, useQuery } from "@apollo/client";
-import { UserProfile } from '../../constants/constants'
+import { UserProfile, GetReservationDetails } from '../../constants/constants'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import Navbar from "../../components/Navbar";
 import { useHistory } from 'react-router-dom'
 import { logoutUser } from "../../store/userReducer";
 import { useDispatch } from "react-redux";
-
+import { formatUnix, findReservationStatus } from '../../services/utils.js'
 
 interface DogInfo {
   name?: string;
@@ -99,6 +100,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   }
 
   const deleteAccount = async () => {
+    console.log('delete account')
     const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/user/${authService.getUser().id}`, {
       method: "POST",
       headers: {
@@ -448,29 +450,33 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
       },
     }
   );
-  console.log(data)
-  console.log(error)
 
-  console.log(authService.getUser().email)
+  const [trips, setTrips] = useState([])
+  const [loadingTrips, setLoadingTrips] = useState(true)
 
-  // useEffect(async () => {
-  //   console.log(UserProfile)
-  //   const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       query: `${UserProfile}`,
-  //       variables: {
-  //         email: authService.getUser().email
-  //       }
-  //     })
-  //   })
-  //   const data = await result.json()
-  //   console.log(data)
+  useEffect(() => {
+    getTrips()
+  }, [])
 
-  // },[])
+  const getTrips = async () => {
+    try {
+      const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/user/reservations?email=${authService.getUser().email}&id=${authService.getUser().id}`, {
+        method: 'GET'
+      })
+      const data = await result.json()
+      setTrips(data.result.reverse())
+      setLoadingTrips(false)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const manageTrip = (trip) => {
+    history.push('/reservation/details', {
+      emailAddress: trip.email,
+      confirmationNumber: trip.propertyConfirmationId
+    })
+  }
 
   return (
     <>
@@ -784,17 +790,12 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
              */}
             </Box>
           </Box>
-          <Box>
-            <Typography
-              variant="body1"
-              sx={{
-         
-              }}
-            >
+          <Box display="flex" flexDirection="column">
+            <Typography variant="base">
               Name: {data?.getUserProfile.name || ''}
             </Typography>
             <Typography
-              variant="body1"
+              variant="base"
               sx={{
                 mt: 1.5,
               }}
@@ -821,12 +822,53 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
             </Typography>
             */}
           </Box>
-        </Container>
-      </Box>
 
-      <Box sx={{ ml: '1rem' }}>
-        <Button onClick={() => logout()} variant="contained">Logout</Button>
-         <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
+
+          <Box>
+            <Typography my="1rem" variant="h4">Trips</Typography>
+            {loadingTrips ? <CircularProgress /> :
+            <Grid container spacing={2}>
+            {trips.map(trip => {
+              const reservationStatus = findReservationStatus(trip.checkInAtLocal, trip.reservationStatus)
+              return (
+                <Grid item xs={12} sm={12} md={6} key={trip.id}>
+                  <Box boxShadow="1" p="1rem" gap="0.5rem" display="flex" flexDirection="column" >
+                    <Box display="flex">
+                      <Typography variant="h5">{trip.hotelName}</Typography>
+                      <Typography 
+                        ml="auto" 
+                        variant="base" 
+                        color={
+                          reservationStatus === 'cancelled' ? 'red' 
+                          : reservationStatus === 'current' ? 'green'
+                          : reservationStatus === 'upcoming' ? 'blue'
+                          : reservationStatus === 'past' ? 'gray'
+                          : 'black'}>
+                          {reservationStatus} trip
+                      </Typography>
+                    </Box>
+                    <Typography variant="base">{trip.addressLine1}, {trip.zipCode}</Typography>
+                    <Typography variant="base">{trip.data.noOfAdults} Adults, {trip.data.noOfChildren} Children, {trip.data.noOfDogs} Pets</Typography>
+                    <Box display="flex" mb="0.5rem">
+                      <Typography variant="p">{formatUnix(trip.checkInAtLocal)} - {formatUnix(trip.checkOutAtLocal)}</Typography>
+                      <Typography ml="auto" variant="p">${trip.data.averagePriceAfterTax} / night</Typography>
+                    </Box>
+                    {reservationStatus === 'upcoming' && <Button onClick={() => manageTrip(trip)} variant="contained">Manage Reservation</Button>}
+                  </Box>
+                </Grid>
+              )
+            })}
+            </Grid>
+            }
+          </Box>
+
+
+          <Box mt="2rem" >
+            <Button sx={{ mr: '0.5rem' }} onClick={() => logout()} variant="contained">Logout</Button>
+            <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
+          </Box>
+        </Container>
+
       </Box>
 
       <Dialog

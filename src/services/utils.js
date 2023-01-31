@@ -13,7 +13,31 @@ const formatChildren = function (occupants) {
   } else {
     return []
   }
+}
 
+export const formatUnixLong = (timestamp) => {
+  return new Date(timestamp).toLocaleString()
+}
+export const formatUnix = (timestamp) => {
+  return new Date(timestamp).toLocaleDateString('en-US')
+}
+
+export const findReservationStatus = (checkInTime, reservationStatus) => {
+  //TODO: send back 'upcoming', 'cancelled', 'current', 'past'
+  if (reservationStatus === 'cancelled') {
+    return 'cancelled'
+  }
+
+  const differenceInTime = new Date(checkInTime).getTime() - new Date().getTime();
+  const differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
+
+  if (differenceInDays > 1) {
+    return 'upcoming'
+  } else if (differenceInDays < 0) {
+    return 'past'
+  } else if (differenceInDays == 0) {
+    return 'current'
+  }
 }
 
 export const slugify = (str) => {

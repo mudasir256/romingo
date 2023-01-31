@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { CSSObject } from "@mui/material";
 import Button from "@mui/material/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { subscribeToNewsletter } from '../../../services/endpoints'
+import { createAccount, addNameToAccount } from '../../../services/endpoints'
 
 interface Props {
   sx?: CSSObject;
@@ -33,72 +33,15 @@ const RegisterCard: FC<Props> = ({ sx }) => {
   const registerAccount = async (e: React.SyntheticEvent) => {
     setSuccessMessage('')
     setErrorMessage('')
-    const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        query: `
-          mutation CreateUserInput(
-            $email: String!,
-            $password: String!
-          ){
-            createUser(input: { email: $email, password: $password }) {
-              id
-              email
-            }
-          }
-        `,
-        variables: {
-          email: email,
-          password: password
-        }
-      })
-    })
-    const data = await result.json()
-
-    console.log(data)
+    const data = await createAccount(email, password)
     if (data.data.createUser?.id) {
-
-      subscribeToNewsletter(email)
-
-      const result2 =  await fetch(process.env.REACT_APP_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          query: `
-            mutation createUserProfileInput(
-              $userId: String!,
-              $name: String!
-            ){
-              createUserProfile(input: { userId: $userId, name: $name }) {
-                id
-                email
-                name
-              }
-            }
-          `,
-          variables: {
-            userId: data.data.createUser.id,
-            name: name,
-          }
-        })
-      })
-
-      const data2 = await result2.json()
+      const data2 = await addNameToAccount(data.data.createUser.id, name)
       console.log(data2)
-
       setSuccessMessage('Account created! Please login to your account to access your profile!')
-
     } else {
       setErrorMessage('We encountered a server error. Please try again or create an account with a different email.')
       //server error or email already exists
-
     }
-
   }
 
   return (

@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -24,8 +24,9 @@ import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
 import { utils } from "../../services/utils";
 import TagManager from "react-gtm-module";
-import  { subscribeToNewsletter } from '../../services/endpoints'
-
+import  { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { authService } from "../../services/authService.js"
 
 interface Props {
   sx?: CSSObject;
@@ -60,16 +61,35 @@ const CheckoutInformation: FC<Props> = ({
     check: "",
     card: "",
   });
+
+  console.log(authService.getUser())
   const [priceChanged, setPriceChanged] = useState(false);
   const [checkState, setCheckState] = useState(false);
+  const [checkAccountState, setCheckAccountState] = useState(false);
   const { occupants } = useSelector((state: any) => state.searchReducer.search);
   const [checkoutForm, setCheckoutForm] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    email: authService.getUser().email || "",
     countryCode: 1,
     phone: "",
   });
+
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  React.useEffect(() => {
+    ValidatorForm.addValidationRule("isPasswordMatch", () => {
+      if (confirmPassword !== password) {
+        return false;
+      }
+      return true;
+    });
+
+    return () => {
+      ValidatorForm.removeValidationRule("isPasswordMatch");
+    };
+  }, [confirmPassword]);
 
   const [createBooking2, { data: bnplData, loading: bnplLoading }] =
     useMutation(
@@ -81,6 +101,10 @@ const CheckoutInformation: FC<Props> = ({
   const handleCheck = () => {
     setCheckState(!checkState);
   };
+
+  const handleCheckAccount = () => {
+    setCheckAccountState(!checkAccountState)
+  }
 
   const updateForm = (e: any) => {
     setCheckoutForm({
@@ -259,12 +283,13 @@ const CheckoutInformation: FC<Props> = ({
         variables: { createSetupIntentInput: { email: checkoutForm.email } },
       });
 
-      // TagManager.dataLayer({
-      //   dataLayer: {
-      //     event: "checkoutSuccess",
-      //     bnpl: true,
-      //   },
-      // });
+      if (password && confirmPassword) {
+        const data = await createAccount(checkoutForm.email, password)
+        if (data.data.createUser?.id) {
+          const data2 = await addNameToAccount(data.data.createUser.id, `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`)
+          console.log(data2)
+        }
+      }
       
     } catch (err) {
       console.log(err);
@@ -593,6 +618,64 @@ const CheckoutInformation: FC<Props> = ({
                     />
                   </Box>
                 </Grid>
+
+                <Divider light sx={{ my: 2 }} />
+
+                <Grid item xs={12} sx={{ mt: 2}}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#222",
+                      textAlign: "left",
+                    }}
+                  >
+                    Create an account (optional)
+                  </Typography>
+                  <Typography component="p" mb="1rem" variant="base">Earn rewards, manage reservations, and receive special deals and offers at the email used above.</Typography>
+                  <ValidatorForm>
+                    <TextValidator
+                      fullWidth={true}
+                      name="password"
+                      type="password"
+                      label="Password"
+                      variant="outlined"
+                      value={password}
+                      validators={["minStringLength:8", "maxStringLength:52"]}
+                      errorMessages={[
+                        "Minimum 8 characters",
+                        "Maxium 52 characters",
+                      ]}
+                      onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                        setPassword(e.currentTarget.value);
+                      }}
+                      sx={{
+                        mt: 1,
+                      }}
+                      FormHelperTextProps={{}}
+                    />
+                    <TextValidator
+                      fullWidth={true}
+                      name="confirmPassword"
+                      label="Confirm Password"
+                      type="password"
+                      variant="outlined"
+                      value={confirmPassword}
+                      validators={["isPasswordMatch"]}
+                      errorMessages={["Passwords must match"]}
+                      onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                        setConfirmPassword(e.currentTarget.value);
+                      }}
+                      sx={{
+                        mt: 1,
+                      }}
+                      FormHelperTextProps={{}}
+                    />
+                  </ValidatorForm>
+                </Grid>
+
+                <Divider light sx={{ my: 2 }} />
+
+
                 <Grid item xs={12} sx={{ mt: 2 }}>
                   <Typography
                     variant="h6"
@@ -657,6 +740,7 @@ const CheckoutInformation: FC<Props> = ({
                       and cancellation policy.
                     </Typography>
                   </Box>
+
                   <Typography variant="caption" color="error">
                     {formError.check}
                   </Typography>
