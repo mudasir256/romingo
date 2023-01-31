@@ -275,7 +275,6 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 fontSize: { xs: "95%", sm: "90%" },
                 mt: { xs: "0rem", sm: ".125rem" },
-              
                 fontWeight: 500,
                 whiteSpace: "nowrap",
                 fontFamily: "overpass-light",
