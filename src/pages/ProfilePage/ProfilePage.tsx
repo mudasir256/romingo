@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { CSSObject } from "@mui/material";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -474,6 +475,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   // },[])
 
   const [trips, setTrips] = useState([])
+  const [loadingTrips, setLoadingTrips] = useState(true)
 
   useEffect(() => {
     getTrips()
@@ -485,7 +487,8 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
         method: 'GET'
       })
       const data = await result.json()
-      setTrips(data.result)
+      setTrips(data.result.reverse())
+      setLoadingTrips(false)
       console.log(data.result)
     } catch (err) {
       console.log(err)
@@ -840,6 +843,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
 
           <Box>
             <Typography variant="h4">Trips</Typography>
+            {loadingTrips ? <CircularProgress /> :
             <Grid container xs={12} gap="1rem">
             {trips.map(trip => {
               const reservationStatus = findReservationStatus(trip.checkInAtLocal, trip.reservationStatus)
@@ -869,6 +873,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
               )
             })}
             </Grid>
+            }
           </Box>
 
 
