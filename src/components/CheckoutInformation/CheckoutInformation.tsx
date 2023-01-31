@@ -70,7 +70,7 @@ const CheckoutInformation: FC<Props> = ({
   const [checkoutForm, setCheckoutForm] = useState({
     firstName: "",
     lastName: "",
-    email: authService.getUser().email || "",
+    email: authService.getUser()?.email || "",
     countryCode: 1,
     phone: "",
   });
