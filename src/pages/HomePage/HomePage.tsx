@@ -393,8 +393,8 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
-      <Box sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', mx: '1rem', mt: '2rem', mb: '0.25rem'}}>
-        <Box onClick={() => setShowLocations(!showLocations)} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <Box onClick={() => setShowLocations(!showLocations)} sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', mx: '1rem', mt: '2rem', mb: '0.25rem'}}>
+        <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <Typography sx={{ fontSize: '1.2em' }}>Explore destinations</Typography>
           <KeyboardArrowDownIcon color="primary" />
         </Box>
@@ -586,7 +586,7 @@ const HomePage: FC<Props> = () => {
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
-            backgroundColor="#A259D4"
+            backgroundColor="#A16AAE"
             fontColor="white"
             header="Romingo Rewards 🐶"
             text="Enjoy unique pet-friendly amenities with Romingo. Pet beds, bowls, treats, and toys are free when visiting select hotels*."
@@ -679,10 +679,8 @@ const HomePage: FC<Props> = () => {
       <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#A6DBE5" p="2rem" mt="2rem">
         <Box sx={{ 
           mx: 'auto', maxWidth: '760px', 
-          overflow: 'auto', 
           my: '1rem', 
-          pl: '2em',
-          pt: '2em', 
+          p: '1.5rem',
           boxShadow: 2, 
           gap: '1rem',
           borderRadius: '20px',
@@ -725,10 +723,13 @@ const HomePage: FC<Props> = () => {
           borderTopLeftRadius: '20px',
           zIndex: 1000
         }}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', fontSize: '1.25rem'}}>
-            <Button sx={{ ml: 'auto', float: 'right', mt: '1rem', mr: '1rem' }} variant="outlined" onClick={() => setShowLocations(false)}>X</Button>
+          <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
+            <Typography textAlign="center" variant="h5">Explore destinations</Typography>
+            <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowLocations(false)}>X</Button>
+          </Box>
+          <Box height="88%" overflow="scroll">
             {locationLinks.map(link => 
-              <Box sx={{ px: '1.25rem', py: '0.75rem' }} key={link.to}> <Link key={link.to} to={link.to}>{link.name} hotels</Link></Box>
+              <Link key={link.to} to={link.to} style={{ textDecoration: 'none', color: 'black'}}><Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }}><Typography variant="p">{link.name}</Typography></Box></Link>
             )}
           </Box>
         </Box>
