@@ -16,6 +16,7 @@ import {
   Select,
   Popover,
   ListSubheader,
+  Slide,
 } from "@mui/material";
 
 import {
@@ -65,6 +66,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     search.city ? search.city : null
   );
   const [selectedCityText, setSelectedCityText] = useState('');
+  const [showCities, setShowCities] = useState(false);
 
   const [formError, setFormError] = useState("");
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
@@ -250,17 +252,13 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  pl: "1rem",
+                  pl: "1.9rem",
                 }}
               >
-                {selectedCity ? (
-                  <></>
-                ) : (
-                  <LocationCity sx={{ height: "24px", color: "#666" }} />
-                )}
+                <LocationCity sx={{ height: "24px", color: "#666" }} />
               </Grid>
              
-              <Grid item xs={11} sx={{ zIndex: 50, pl: '0.75em' }}>
+              <Grid item xs={10} sx={{ zIndex: 50, pl: { xs: '1.7rem', sm: '1.7rem', md: '1.25rem' }  }}>
                 <FormControl fullWidth>
                   {!selectedCity && <Typography sx={{ position: 'absolute', top: '22%', }}>Select a city</Typography>}
                   <Select 
@@ -271,13 +269,15 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     label="Where to" 
                     variant="standard" 
                     sx={{ 
-                      ml: '0.5em', 
-                      pt: '0.4em',
+                      ml: '1rem', 
+                      pt: '0.1rem',
                       position: 'relative',
                     }} 
                     value={selectedCity}
+                    open={false}
+                    onOpen={() => setShowCities(!showCities)}
                     MenuProps={{
-                      sx: { ml: '-0.5rem', width: '90vh', height: '50vh' }
+                      sx: { display: 'none', ml: '-0.5rem', width: '90vh', height: '50vh' }
                     }}
                   >
                     {groups.map((group, index) => {
@@ -515,6 +515,30 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           </Button>
         </Box>
       </Box>
+
+      <Slide direction='up' in={showCities} mountOnEnter unmountOnExit>
+        <Box sx={{ 
+          position: 'fixed', 
+          overflow: 'auto',
+          bottom: '0', 
+          height: '80%', 
+          width: '100%', 
+          backgroundColor: 'white',
+          borderTopRightRadius: '20px',
+          borderTopLeftRadius: '20px',
+          zIndex: 1000
+        }}>
+          <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
+            <Typography textAlign="center" variant="h5">{selectedCity ? getCityName(selectedCity).split(',')[0] : 'Select a city'}</Typography>
+            <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowCities(false)}>X</Button>
+          </Box>
+          <Box height="88%" overflow="scroll">
+            {cities.map(city => 
+              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={city.name} onClick={() => { setSelectedCity(city.id); setShowCities(false); } }> <Typography variant="p">{city.name.split(',')[0]}</Typography></Box>
+            )}
+          </Box>
+        </Box>
+      </Slide>
     </>
   );
 };

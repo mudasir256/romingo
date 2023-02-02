@@ -722,12 +722,13 @@ const HomePage: FC<Props> = () => {
           width: '100%', 
           backgroundColor: 'white',
           borderTopRightRadius: '20px',
-          borderTopLeftRadius: '20px'
+          borderTopLeftRadius: '20px',
+          zIndex: 1000
         }}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', margin: '1rem', fontSize: '1.25rem'}}>
-            <Button sx={{ ml: 'auto', float: 'right', border: '1px solid black' }} onClick={() => setShowLocations(false)}>X</Button>
+          <Box sx={{ display: 'flex', flexDirection: 'column', fontSize: '1.25rem'}}>
+            <Button sx={{ ml: 'auto', float: 'right', mt: '1rem', mr: '1rem' }} variant="outlined" onClick={() => setShowLocations(false)}>X</Button>
             {locationLinks.map(link => 
-              <Box sx={{ my: '0.5rem' }} key={link.to}> <Link key={link.to} to={link.to}>{link.name} hotels</Link></Box>
+              <Box sx={{ px: '1.25rem', py: '0.75rem' }} key={link.to}> <Link key={link.to} to={link.to}>{link.name} hotels</Link></Box>
             )}
           </Box>
         </Box>
