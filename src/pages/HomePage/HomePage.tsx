@@ -104,14 +104,16 @@ const HomePage: FC<Props> = () => {
     }
   }, [])
 
+  //TODO update to 3
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
-  let ghSanDiego, westin, plazaResort, saguaro, hiltonSf, hrMissionBay,
+  let ghSanDiego, westin, plazaResort, saguaro, hiltonSf, hrMissionBay, thompson,
   avalon, ghVail, elRey, element, olive, andaz,
   seabird, leMerdien, paradisePoint, hiltonLongBeach, hrOrange, marina
 
   if (newData) {
-    const sorted = [...newData.getHomepagePropertiesTwo].sort((a, b) => a.name.localeCompare(b.name))
+    const sorted = [...newData.getHomepagePropertiesThree].sort((a, b) => a.name.localeCompare(b.name))
+    console.log(sorted)
     andaz = sorted[0];
     avalon = sorted[1];
     elRey = sorted[2];
@@ -120,16 +122,16 @@ const HomePage: FC<Props> = () => {
     hiltonLongBeach = sorted[5];
     hiltonSf = sorted[6];
     olive = sorted[7];
-    hrMissionBay = sorted[8];
-    hrOrange = sorted[9];
-    leMerdien = sorted[10];
-    ghSanDiego = sorted[11];
-    marina = sorted[12];
-    paradisePoint = sorted[13];
-    plazaResort = sorted[14];
-    saguaro = sorted[15];
-    seabird = sorted[16];
-    westin = sorted[17]
+    hrOrange = sorted[8];
+    leMerdien = sorted[9];
+    ghSanDiego = sorted[10];
+    marina = sorted[11];
+    paradisePoint = sorted[12];
+    plazaResort = sorted[13];
+    saguaro = sorted[14];
+    seabird = sorted[15];
+    westin = sorted[16];
+    thompson = sorted[17]
   }
 
   const [showLocations, setShowLocations] = useState(false)
@@ -477,13 +479,13 @@ const HomePage: FC<Props> = () => {
               </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
             }  
 
-            {(hrMissionBay) ?
+            {(thompson) ?
               <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   key={5}
-                  {...hrMissionBay}
-                  city={{ name: 'San Diego, CA' }}
-                  lowestTotalPriceAfterTax={219}
+                  {...thompson}
+                  city={{ name: 'San Antonio, TX' }}
+                  lowestTotalPriceAfterTax={199}
                   highlighted={false}
                 />
               </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
