@@ -38,6 +38,7 @@
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
+    font-display: swap;
 }
 
 @font-face {
@@ -47,6 +48,7 @@
     font-style: normal;
     font-weight: bold;
     text-rendering: optimizeLegibility;
+    font-display: swap;
 }
 
 @font-face {
@@ -56,17 +58,20 @@
     font-style: normal;
     font-weight: bold;
     text-rendering: optimizeLegibility;
+    font-display: swap;
 }
 
 @font-face {
   font-family: "overpass-light";
   src: url(./assets/font/ModernEra-Regular.woff) format('woff'),
          url(./assets/font/ModernEra-Regular.woff2) format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: "overpass-regular";
   src: url(./assets/font/mangueira-regular.woff) format('woff');
+  font-display: swap;
 }
 
 @font-face {
@@ -78,6 +83,7 @@
   font-family: "sansita-light";
   src: url(./assets/font/ModernEra-Regular.woff) format('woff'),
     url(./assets/font/ModernEra-Regular.woff2) format('woff2');
+  font-display: swap;
 }
 
 @font-face {

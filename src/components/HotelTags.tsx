@@ -1,7 +1,5 @@
 import { FC } from "react";
-import { CSSObject } from "@mui/material";
 import { Chip, Box, Typography } from "@mui/material";
-import MoneyOffIcon from '@mui/icons-material/MoneyOff';
 import {
   Pets,
   ScaleTwoTone,

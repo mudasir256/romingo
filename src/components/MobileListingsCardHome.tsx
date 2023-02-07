@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import { Grid, Box, Typography, Link } from "@mui/material";
+import { FC } from "react";
+import { Grid, Box, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "./ImageSlider";
 import StarIcon from "@mui/icons-material/Star";

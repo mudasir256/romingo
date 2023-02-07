@@ -21,7 +21,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
     if (images && images.length > 0) {
       const components = 
       forceLarge ?     
-            images.slice(0, 10).map((img, i) => <img key={img + i} style={{
+            images.slice(0, 5).map((img, i) => <img key={img + i} style={{
               display: 'block', 
               width: '100%', 
               height: '280px',

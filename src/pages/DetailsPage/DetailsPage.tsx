@@ -43,7 +43,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Breakpoint, Theme, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CloseIcon from "@mui/icons-material/Close";
-import SimpleReactLightbox, { SRLWrapper, useLightbox } from "simple-react-lightbox";
+import SimpleReactLightbox, { useLightbox } from "simple-react-lightbox";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonIcon from "@mui/icons-material/Person";
@@ -93,8 +93,6 @@ import {
 import BookingCard from "../../components/BookingCard";
 
 const Map = loadable(() => import('../../components/UI/Map/Map'))
-const ActivitiesNearby = loadable(() => import('../../components/ActivitiesNearby'))
-
 
 import ReadMore from "../../components/UI/ReadMore/ReadMore";
 import RoomCard from "../../components/RoomCard";
@@ -202,9 +200,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const search = useSelector((state: any) => state.searchReducer.search);
   const locationState = useLocation<any>();
   const dispatch: Dispatch<any> = useDispatch();
-
-  const { openLightbox, closeLightbox } = useLightbox()
-
 
   const ageParam = search.occupants.childrenAge
     ? search.occupants.childrenAge.map((x: number) => {

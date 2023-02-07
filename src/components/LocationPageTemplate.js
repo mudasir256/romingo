@@ -1,7 +1,5 @@
 import Box from "@mui/material/Box";
 import Hidden from "@mui/material/Hidden";
-import Link from "@mui/material/Link";
-import { FC } from "react";
 import { Container, Divider, Grid, Typography } from "@mui/material";
 import { utils } from '../services/utils'
 
@@ -11,7 +9,6 @@ import Footer from "./Footer";
 
 import ScrollToTop from "./ScrollToTop";
 import FilterBar from "./FilterBar";
-import { DesktopFilterBar } from "../pages/Cities/DesktopFilterBar"
 
 import {Helmet} from "react-helmet";
 import ListingCard from "./ListingCard";
@@ -591,17 +588,6 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
   const cityContent = HOTEL_DESCRIPTIONS.find(obj => obj.city === cityName)
 
   const today = new Date();
-  const fewDaysLater = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 2
-  ).toISOString();
-
-  const endTripDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 4
-  ).toISOString();
 
   const { loading, error, data, refetch } = useQuery(
     gql`

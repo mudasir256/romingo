@@ -25,16 +25,13 @@ import SectionOneImage from '../../assets/images/section-one.jpg';
 import SectionTwoImage from '../../assets/images/home-hero.jpg';
 import SectionThreeImage from '../../assets/images/homepage-dog.jpg';
 
-import LogoImgWhite from '../../assets/images/logo-white.png';
 import LowestRates from '../../assets/images/icon-01.png';
 import AuthenticPet from '../../assets/images/icon-03.png';
 import BookNow from '../../assets/images/icon-04.png';
 
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import { GetPropertyDetails, GetHomePageProperty } from "../../constants/constants";
+import { GetHomePageProperty } from "../../constants/constants";
 import { gql, useQuery } from "@apollo/client";
 import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
@@ -67,25 +64,12 @@ interface Props {
 
 
 const HomePage: FC<Props> = () => {
-  const [email, setEmail] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false)
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
   const dispatch: Dispatch<any> = useDispatch();
   const { width } = useWindowSize()
 
   const today = new Date();
-  const fewDaysLater = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 2
-  ).toISOString();
-
-  const endTripDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 4
-  ).toISOString();
 
   useEffect(() => {
     window.Intercom("boot", {
@@ -104,7 +88,6 @@ const HomePage: FC<Props> = () => {
     }
   }, [])
 
-  //TODO update to 3
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
   let ghSanDiego, westin, plazaResort, saguaro, hiltonSf, hrMissionBay, thompson,
@@ -113,7 +96,6 @@ const HomePage: FC<Props> = () => {
 
   if (newData) {
     const sorted = [...newData.getHomepagePropertiesThree].sort((a, b) => a.name.localeCompare(b.name))
-    console.log(sorted)
     andaz = sorted[0];
     avalon = sorted[1];
     elRey = sorted[2];
@@ -186,33 +168,6 @@ const HomePage: FC<Props> = () => {
     };
   }, []);
 
-  const fillSearchBar = () => {
-    dispatch(
-      saveSearch({
-        city: '',
-        checkIn: fewDaysLater,
-        checkOut: endTripDate,
-        occupants: { adults: 1, children: 0, dogs: 1 },
-      })
-    );
-  }
-
-  const CustomLeftArrow = ({ onClick, ...rest }) => {
-    const {
-      onMove,
-      carouselState: { currentSlide, deviceType }
-    } = rest;
-    // onMove means if dragging or swiping in progress.
-    return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', left: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowLeftIcon fontSize="large" /></Box></Box>
-  };
-  const CustomRightArrow = ({ onClick, ...rest }) => {
-    const {
-      onMove,
-      carouselState: { currentSlide, deviceType }
-    } = rest;
-    // onMove means if dragging or swiping in progress.
-    return <Box className="shadow-rounded" sx={{ cursor: 'pointer', backgroundColor: 'white', position: 'absolute', right: "3px"}} onClick={() => onClick()} ><Box sx={{ display: 'flex', justifyContent: 'center', mt: '0.25em' }}><KeyboardArrowRightIcon fontSize="large" /></Box></Box>
-  };
 
   const locationLinks = [
     { to: "pet-friendly-hotels-los-angeles-california", name: 'Los Angeles' },

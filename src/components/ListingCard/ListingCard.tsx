@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Grid, Chip, Box, Typography, Link } from "@mui/material";
+import { Chip, Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
@@ -14,29 +14,29 @@ export interface ListingCardProps {
   imageURLs: string[];
   name: string;
   addressLine1: string;
-  romingoScore: number;
-  allows_big_dogs: number;
+  romingoScore?: number;
+  allows_big_dogs?: number;
   cancellation?: boolean;
-  lowestAveragePrice: number;
-  lowestTotalPriceAfterTax: number;
+  lowestAveragePrice?: number;
+  lowestTotalPriceAfterTax?: number;
   currency?: string;
   dogAmenities?: string[];
   showAmenities?: boolean;
   highlighted?: boolean;
   googlePlaceId?: string;
   duration?: number;
-  location: {
+  location?: {
     latitude: number;
     longitude: number;
   };
-  city: {
+  city?: {
     id: string;
     name: string;
   };
   showPrice?: boolean;
   noLink?: boolean;
   alias: string;
-  petFeePolicy: {
+  petFeePolicy?: {
     maxPets: number;
     maxWeightPerPetInLBS: number;
     desc: string;
@@ -45,7 +45,7 @@ export interface ListingCardProps {
     breakup: JSON;
     totalFees: number;
   };
-  amenities: {
+  amenities?: {
     code: number;
     desc: string;
     value: string;

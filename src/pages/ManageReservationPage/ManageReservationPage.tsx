@@ -17,12 +17,9 @@ import {
 import { Occupant } from "../../components/OccupantSelector/OccupantSelector";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import ReservationDetails from "../../components/ReservationDetails";
 import ScrollToTop from "../../components/ScrollToTop";
 import { Error } from "@mui/icons-material";
-import { CancelBooking } from '../../constants/constants';
-import { gql, useMutation } from "@apollo/client";
-import moment from "moment";
+
 interface BookingManage {
   image: string;
   name: string;
@@ -100,7 +97,6 @@ const ManageReservationPage: FC<Props> = () => {
   const [confirmationNumber, setConfirmationNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [confirmationId, setConfirmationId] = useState("");
   const [bookingStatus, setBookingStatus] = useState("");
   const [open, setOpen] = useState(false);
   const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
@@ -109,22 +105,7 @@ const ManageReservationPage: FC<Props> = () => {
   const buttonEnabled =
     emailAddress.length > 2 && confirmationNumber.length > 8;
 
-  // const [
-  //   handleFindReservation,
-  //   { called, loading: reservationLoading, data }
-  // ] = useLazyQuery(gql`
-  //   ${GetReservationDetails}
-  //   `,
-  //   {
-  //     variables: {
-  //       email: emailAddress,
-  //       propertyConfirmationId: confirmationNumber
-  //     },
-  //   }
-  // );
   const data = {}
-
-
 
   const handleFindReservation = () => {
     history.push({

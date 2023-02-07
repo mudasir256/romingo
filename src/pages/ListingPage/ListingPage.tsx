@@ -1,15 +1,11 @@
 import {Helmet} from "react-helmet";
 import {
-  IconButton,
-  Popover,
   InputLabel,
   FormControl,
-  Autocomplete,
   Box,
   Hidden,
   Stack,
   Typography,
-  Divider,
   Grid,
   Select,
   Skeleton,
@@ -22,8 +18,6 @@ import {
   Chip,
 } from "@mui/material";
 import {
-  RemoveCircleOutline,
-  AddCircleOutline,
   FilterList,
   ReportRounded,
 } from "@mui/icons-material";
@@ -45,9 +39,8 @@ import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 import ListingCard from "../../components/ListingCard";
 import ListingMap from "../../components/ListingMap";
 import FilterBar from "../../components/FilterBar";
-import { TextField, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import Footer from "../../components/Footer";
-import SearchIcon from "@mui/icons-material/Search";
 import { gql, useQuery } from "@apollo/client";
 import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
@@ -57,9 +50,6 @@ import {
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { saveSearch } from "../../store/searchReducer";
-import { DateTime } from "luxon";
-import PersonIcon from "@mui/icons-material/Person";
-import PetsIcon from "@mui/icons-material/Pets";
 import Navbar from "../../components/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
 import "./listing.css";

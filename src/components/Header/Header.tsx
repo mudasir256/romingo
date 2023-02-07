@@ -1,33 +1,9 @@
-import { FC, useState, MouseEventHandler, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import Navbar from "../Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { Dispatch } from "redux";
 import {
-  Autocomplete,
-  TextField,
-  Button,
   Box,
-  Typography,
   CSSObject,
-  useMediaQuery,
-  Stack,
 } from "@mui/material";
-
-import {
-  ArrowDropUpOutlined,
-  ArrowDropDownOutlined,
-  Today,
-  InsertInvitation,
-} from "@mui/icons-material";
-import SearchIcon from "@mui/icons-material/Search";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
-import { randomDate } from "../../tools.js";
-import { saveSearch } from "../../store/searchReducer";
-import { DateTime } from "luxon";
 
 import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
 import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
@@ -35,15 +11,8 @@ import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
 import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
 import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
 
-
-import SearchImage from '../../assets/icon/magnify.png';
-
 import MobileFilterBar from '../MobileHomePageFilterBar'
 import { LargeFilterBar } from '../LargeFilterBar'
-
-import OccupantSelector, {
-  Occupant,
-} from "../OccupantSelector/OccupantSelector";
 
 import "./Header.scss";
 
@@ -52,7 +21,6 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ sx }) => {
-  const dispatch: Dispatch<any> = useDispatch();
 
   const imagesDesktop = [
     {

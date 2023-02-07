@@ -23,7 +23,6 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
 import { utils } from "../../services/utils";
-import TagManager from "react-gtm-module";
 import  { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
@@ -51,7 +50,6 @@ const CheckoutInformation: FC<Props> = ({
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
-  const [clientSecret, setClientSecret] = useState("");
   const [paymentLoading, setPaymentLoading] = useState(false);
   const [formError, setFormError] = useState({
     firstName: "",

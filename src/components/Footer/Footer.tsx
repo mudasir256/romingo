@@ -14,93 +14,9 @@ import "./Footer.scss";
 
 interface Props {
   sx?: CSSObject;
-  footerMenus?: {
-    reservation: {
-      text: string;
-      link: string;
-      target: string;
-    }[];
-    about: {
-      text: string;
-      link: string;
-      target: string;
-    }[];
-    contact: {
-      text: string;
-      link: string;
-      target: string;
-    }[];
-    blog: {
-      text: string;
-      link: string;
-      target: string;
-    }[];
-    sitemap: {
-      text: string;
-      link: string;
-      target: string;
-    }[];
-  };
 }
 
-const FooterMenus = {
-  reservation: [
-    {
-      text: "Manage reservation",
-      link: "/reservation/manage",
-      target: "",
-    },
-  ],
-  about: [
-    {
-      text: "Our story",
-      link: "/about",
-      target: "",
-    },
-    {
-      text: "FAQ",
-      link: "/faq",
-      target: "",
-    },
-    {
-      text: "RedRover partnership",
-      link: "/romingo-partners",
-      target: "",
-    },
-  ],
-  contact: [
-    {
-      text: "Support",
-      link: "/contact",
-      target: "",
-    },
-    {
-      text: "Facebook",
-      link: "https://www.facebook.com/RomingoTravel",
-      target: "_blank",
-    },
-    {
-      text: "Instagram",
-      link: "https://www.instagram.com/romingotravel/",
-      target: "_blank",
-    },
-  ],
-  blog: [
-    {
-      text: "Romingo Blog",
-      link: "/blog",
-      target: "_blank",
-    },
-    {
-      text: "Top Travel Tips",
-      link: "/blog/12",
-      target: "_blank",
-    },
-  ],
-  sitemap: [],
-};
-
-const Footer: FC<Props> = ({ sx, footerMenus = FooterMenus }) => {
+const Footer: FC<Props> = ({ sx }) => {
   const [showEgg, setShowEgg] = useState(false);
   const [timer, setTimer] = useState(null);
 

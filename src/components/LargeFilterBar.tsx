@@ -3,22 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
-  IconButton,
   Button,
   Box,
   Typography,
-  Grid,
   CSSObject,
-  Stack,
-  FormControl,
-  MenuItem,
-  InputLabel,
-  Select,
-  Popover,
-  ListSubheader,
-  Autocomplete,
-  TextField,
-  useMediaQuery,
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
@@ -30,8 +18,6 @@ import OccupantSelector, {
   Occupant,
 } from "./OccupantSelector/OccupantSelector";
 import {
-  ArrowDropUpOutlined,
-  ArrowDropDownOutlined,
   Today,
   InsertInvitation,
 } from "@mui/icons-material";
@@ -52,7 +38,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
-  const [zoomIn, setZoomIn] = useState(zoomed);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const [selectedCity, setSelectedCity] = useState(
@@ -72,30 +57,13 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       : { adults: 2, children: 0, dogs: 1 }
   );
   const history = useHistory();
-  const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
 
   const dispatch: Dispatch<any> = useDispatch();
 
-  const getCityName = (cityId: string) => {
-    if (cityId) {
-      return cities.filter((city: any) => city.id === cityId)[0].name;
-    }
-  };
   const getCity = (cityId: string) =>
     cities.filter((city: any) => city.id === cityId)[0];
   const onOccupantChange = (value: Occupant) => setOccupants(value);
 
-  const dateToString = (isoString: string | Date | number) => {
-    const date = new Date(isoString);
-    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
-      "0" + date.getDate()
-    ).slice(-2)}`;
-  };
-
-  const handleFilterInClick: MouseEventHandler<Element> = () => {
-    setFormError("");
-    setZoomIn(true);
-  };
 
   const handleDateRangeClose = () => {
     setIsAccept(false);
@@ -462,39 +430,5 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
 
       </Box>
     </Box>
-  );
-};
-
-
-interface NumberInputProps {
-  value: number;
-  onChange: (value: number) => void;
-  minimum?: number;
-  type: string;
-}
-
-const NumberInput: FC<NumberInputProps> = ({
-  value,
-  onChange,
-  minimum = 0,
-  type = 'Guest'
-}) => {
-  return (
-    <div>
-      <Stack spacing={2} direction="row" alignItems="center">
-        <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
-          {value}
-        </Typography>
-        <Stack alignItems="center" sx={{ margin: '0 !important' }}>
-          <div style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => onChange(value + 1)}>
-            <ArrowDropUpOutlined fontSize="large" />
-          </div>
-          <div style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => onChange(Math.max(value - 1, minimum))}>
-            <ArrowDropDownOutlined fontSize="large" />
-          </div>
-        </Stack>
-      </Stack>
-      <div style={{ fontFamily: 'overpass-light', fontSize: '15px', lineHeight: '23px', color: '#949494' }}>{type}</div>
-    </div>
   );
 };

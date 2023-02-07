@@ -28,13 +28,9 @@ import {
   Today,
 } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { saveSearch } from "../store/searchReducer";
 import { DateTime } from "luxon";
-import { useMeasure } from "react-use";
 
 import InfiniteCalendar, {
   Calendar,
@@ -57,8 +53,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
   const calendarRef = useRef(null)
 
   const [open, setOpen] = useState(false);
-  const [selectCityOpen, setSelectedCityOpen] = useState(false);
-  const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
@@ -90,28 +84,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
       return cities.filter((city: any) => city.id === cityId)[0].name;
     }
   };
-  const getCity = (cityId: string) =>
-    cities.filter((city: any) => city.id === cityId)[0];
+ 
   const onOccupantChange = (value: Occupant) => setOccupants(value);
-
-  const dateToString = (isoString: string | Date | number) => {
-    const date = new Date(isoString);
-    return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
-      "0" + date.getDate()
-    ).slice(-2)}`;
-  };
-
-  const handleFilterInClick: MouseEventHandler<Element> = () => {
-    setFormError("");
-    setZoomIn(true);
-  };
-
-  const handleDateRangeClose = () => {
-    setIsAccept(false);
-    if (!isTextField) {
-      setOpen(false);
-    }
-  };
 
   useEffect(() => {
     if (!open) setIsTextField(false);
@@ -573,7 +547,6 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
   disabled = false,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
-  const [ref, { width }] = useMeasure<HTMLDivElement>();
   const [error, setError] = useState("");
 
   const handleClick = (event: any) => {

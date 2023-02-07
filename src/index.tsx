@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { hydrate, render } from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
@@ -35,32 +34,6 @@ const client = new ApolloClient({
 const stripePromise = loadStripe(
   process.env.REACT_APP_STRIPE_CLIENT_KEY as string
 );
-
-const rootElement = document.getElementById("root");
-
-const Package = () => (
-  <React.StrictMode>
-    <ThemeProvider theme={muTheme}>
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <Elements stripe={stripePromise}>
-              <Router history={hist}>
-                <App />
-              </Router>
-            </Elements>
-          </PersistGate>
-        </Provider>
-      </ApolloProvider>
-    </ThemeProvider>
-  </React.StrictMode>
-)
-
-// if (rootElement.hasChildNodes()) {
-//   hydrate(<Package />, rootElement);
-// } else {
-//   render(<Package />, rootElement);
-// }
 
 ReactDOM.render(
   <React.StrictMode>

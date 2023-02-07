@@ -16,7 +16,6 @@ import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useHistory } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
-import ReservationDetails from "../components/ReservationDetails";
 import Loader from "../components/UI/Loader";
 import MobileSearchBar from '../components/MobileHomePageFilterBar';
 

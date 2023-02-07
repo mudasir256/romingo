@@ -33,9 +33,6 @@ const FilterBar: FC<Props> = ({
   searchOnClose = true,
 }) => {
   const history = useHistory();
-  const [open, setOpen] = useState(false);
-  const [isTextField, setIsTextField] = useState(false);
-
   const [zoomIn, setZoomIn] = useState(zoomed);
   // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
@@ -60,10 +57,6 @@ const FilterBar: FC<Props> = ({
     }
   };
 
-  const onOccupantChange = (value: Occupant) => {
-    setOccupants(value);
-  };
-
   const handleFilterInClick: MouseEventHandler<Element> = () => {
     setFormError("");
     setZoomIn(true);
@@ -77,60 +70,6 @@ const FilterBar: FC<Props> = ({
 
   // eslint-disable-next-line
   const dispatch: Dispatch<any> = useDispatch();
-
-  const handleFilterOutClick = (_event: any, reason: string) => {
-    if (!searchOnClose || reason === 'backdropClick' || reason === 'escapeKeyDown') {
-      setZoomIn(false);
-      return;
-    }
-    if (
-      occupants.adults !== 0 &&
-      selectedCity &&
-      checkDate[0] &&
-      new Date(checkDate[0]) >=
-      new Date(new Date().setDate(new Date().getDate() - 1)) &&
-      checkDate[1] &&
-      new Date(checkDate[1]) >= new Date()
-    ) {
-      setFormError("");
-      setZoomIn(false);
-      dispatch(
-        saveSearch({
-          city: selectedCity,
-          checkIn: new Date(checkDate[0]).toISOString(),
-          checkOut: new Date(checkDate[1]).toISOString(),
-          occupants,
-        })
-      );
-
-      history.push("/listings");
-    } else {
-      if (!selectedCity) {
-        setFormError("Location required");
-      }
-      if (!checkDate[0]) {
-        setFormError("Check-in date required");
-      }
-      if (
-        checkDate[0] &&
-        new Date(checkDate[0]) <= new Date(new Date().setHours(23, 59, 59, 0))
-      ) {
-        setFormError("Check-in date must be today at the earliest");
-      }
-      if (!checkDate[1]) {
-        setFormError("Check-out date required");
-      }
-      if (
-        checkDate[1] &&
-        new Date(checkDate[1]) <= new Date(new Date().setHours(23, 59, 59, 0))
-      ) {
-        setFormError("Check-out date must be after today");
-      }
-      if (occupants.adults === 0) {
-        setFormError("Search must include at least 1 adult guest");
-      }
-    }
-  };
 
   const handleSearch: any = (newSelectedCity, newCheckIn, newCheckOut, newOccupants) => {
     setFormError("");
