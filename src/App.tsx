@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { GetCities } from "./constants/constants";
 import { setList } from "./store/cityListReducer";
 import { authService } from "./services/authService.js";
-import ErrorPage from "./pages/ErrorPage";
 import TagManager from "react-gtm-module";
 import { Message } from "@mui/icons-material";
 import Routes from "./routes";
