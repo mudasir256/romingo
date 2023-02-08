@@ -9,8 +9,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Router } from "react-router-dom";
 import { theme } from "./theme";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 
 import "./index.scss";
 
