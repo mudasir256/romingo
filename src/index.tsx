@@ -31,9 +31,9 @@ const client = new ApolloClient({
   connectToDevTools: true,
 });
 
-const stripePromise = loadStripe(
-  process.env.REACT_APP_STRIPE_CLIENT_KEY as string
-);
+// const stripePromise = loadStripe(
+//   process.env.REACT_APP_STRIPE_CLIENT_KEY as string
+// );
 
 ReactDOM.render(
   <React.StrictMode>
@@ -41,11 +41,11 @@ ReactDOM.render(
       <ApolloProvider client={client}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Elements stripe={stripePromise}>
-              <Router history={hist}>
+{/*            <Elements stripe={stripePromise}>
+*/}              <Router history={hist}>
                 <App />
               </Router>
-            </Elements>
+{/*            </Elements>*/}
           </PersistGate>
         </Provider>
       </ApolloProvider>

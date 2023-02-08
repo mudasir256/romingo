@@ -28,6 +28,8 @@ const LocationPageTemplate = loadable(() => import('./components/LocationPageTem
 const Blog = loadable(() => import('./pages/Blog'))
 const BlogPost = loadable(() => import('./pages/BlogPost'))
 import { authService } from "./services/authService.js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 interface RouteInterface {
   path: string;
@@ -61,11 +63,11 @@ const routes: RouteInterface[] = [
     component: DetailsPage,
     requireAuth: false,
   },
-  {
-    path: "/checkout*",
-    component: CheckoutPage,
-    requireAuth: false,
-  },
+  // {
+  //   path: "/checkout*",
+  //   component: CheckoutPage,
+  //   requireAuth: false,
+  // },
   {
     path: "/reservation/manage",
     component: ManageReservationPage,
@@ -142,6 +144,10 @@ const AuthGuards = (props: any) => {
   return <Redirect to={"/login"} />;
 };
 
+const stripePromise = loadStripe(
+  process.env.REACT_APP_STRIPE_CLIENT_KEY as string
+);
+
 const Routes = () => {
   return (
     <Switch>
@@ -162,6 +168,12 @@ const Routes = () => {
             </AuthGuards>
           );
       })}
+
+      <Route exact path="/checkout*">
+        <Elements stripe={stripePromise}>
+          <CheckoutPage />
+        </Elements>
+      </Route>
       <Route exact path="/pet-friendly-hotels-austin-texas"><LocationPageTemplate cityName="Austin, TX" /></Route>
       <Route exact path="/pet-friendly-hotels-dallas-texas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
       <Route exact path="/pet-friendly-hotels-houston-texas"><LocationPageTemplate cityName="Houston, TX" /></Route>
