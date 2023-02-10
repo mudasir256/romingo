@@ -21,13 +21,13 @@ import { saveSearch } from "../../store/searchReducer";
 import ListingCardSquare from "../../components/MobileListingsCardHome";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
-import SectionOneImage from '../../assets/images/section-one.jpg';
-import SectionTwoImage from '../../assets/images/home-hero.jpg';
-import SectionThreeImage from '../../assets/images/homepage-dog.jpg';
+// import SectionOneImage from '../../assets/images/section-one.jpg';
+// import SectionTwoImage from '../../assets/images/home-hero.jpg';
+// import SectionThreeImage from '../../assets/images/homepage-dog.jpg';
 
-import LowestRates from '../../assets/images/icon-01.png';
-import AuthenticPet from '../../assets/images/icon-03.png';
-import BookNow from '../../assets/images/icon-04.png';
+// import LowestRates from '../../assets/images/icon-01.png';
+// import AuthenticPet from '../../assets/images/icon-03.png';
+// import BookNow from '../../assets/images/icon-04.png';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
@@ -62,6 +62,13 @@ interface Props {
   };
 }
 
+const SectionOneImage = '/public/sections-icons/section-one.jpg'
+const SectionTwoImage = '/public/sections-icons/home-hero.jpg'
+const SectionThreeImage = '/public/sections-icons/homepage-dog.jpg'
+
+const LowestRates = '/public/sections-icons/icon-01.png'
+const AuthenticPet = '/public/sections-icons/icon-03.png'
+const BookNow = '/public/sections-icons/icon-04.png'
 
 const HomePage: FC<Props> = () => {
   const history = useHistory();
