@@ -77,6 +77,11 @@ function computePetFeePolicyTotalFees(durationDays, dogs, petFeePolicy) {
 
     let keys = Object.keys(petFeePolicy.breakup);
 
+    //BUG: 5 being added somehow?
+    if (keys.indexOf('5') > -1) {
+      keys.splice(0, 1)
+    }
+
     for (let i = 0; i < keys.length; i++) {
       keys[i] = parseInt(keys[i]);
     }
