@@ -5,12 +5,6 @@ import {
   CSSObject,
 } from "@mui/material";
 
-// import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
-// import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
-// import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
-// import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
-// import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
-
 import MobileFilterBar from '../MobileHomePageFilterBar'
 import { LargeFilterBar } from '../LargeFilterBar'
 
@@ -24,31 +18,31 @@ const Header: FC<Props> = ({ sx }) => {
 
   const imagesDesktop = [
     {
-      component: '/public/hero/five.jpeg',
+      component: 'https://www.romingo.com/public/hero/five.jpeg',
       placement: 'bottom 0px left 0px'
     },
     {
-      component: '/public/hero/two.jpeg', 
+      component: 'https://www.romingo.com/public/hero/two.jpeg', 
       placement: 'bottom -200px left 0px'
     },
     {
-      component: '/public/hero/one.jpeg', 
+      component: 'https://www.romingo.com/public/hero/one.jpeg', 
       placement: 'bottom -120px right 0px'
     }
   ];
 
   const imagesMobile = [
     {
-      component:  '/public/hero/three.jpeg', 
+      component:  'https://www.romingo.com/public/hero/three.jpeg', 
       placement: 'bottom -50px right 0px',
       extra: 'linear-gradient(160deg, #000000 -100%, #29292900 55%, #000000 300%),'
     },
     {
-      component: '/public/hero/one.jpeg', 
+      component: 'https://www.romingo.com/public/hero/one.jpeg', 
       placement: 'bottom -50px left -120px'
     },
     {
-      component: '/public/hero/four.jpeg',
+      component: 'https://www.romingo.com/public/hero/four.jpeg',
       placement: 'bottom -50px right -0px'
     }
   ];

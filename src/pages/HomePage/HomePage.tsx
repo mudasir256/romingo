@@ -62,13 +62,13 @@ interface Props {
   };
 }
 
-const SectionOneImage = '/public/sections-icons/section-one.jpg'
-const SectionTwoImage = '/public/sections-icons/home-hero.jpg'
-const SectionThreeImage = '/public/sections-icons/homepage-dog.jpg'
+const SectionOneImage = 'https://www.romingo.com/public/sections-icons/section-one.jpg'
+const SectionTwoImage = 'https://www.romingo.com/public/sections-icons/home-hero.jpg'
+const SectionThreeImage = 'https://www.romingo.com/public/sections-icons/homepage-dog.jpg'
 
-const LowestRates = '/public/sections-icons/icon-01.png'
-const AuthenticPet = '/public/sections-icons/icon-03.png'
-const BookNow = '/public/sections-icons/icon-04.png'
+const LowestRates = 'https://www.romingo.com/public/sections-icons/icon-01.png'
+const AuthenticPet = 'https://www.romingo.com/public/sections-icons/icon-03.png'
+const BookNow = 'https://www.romingo.com/public/sections-icons/icon-04.png'
 
 const HomePage: FC<Props> = () => {
   const history = useHistory();

@@ -43,7 +43,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Breakpoint, Theme, useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CloseIcon from "@mui/icons-material/Close";
-import SimpleReactLightbox, { useLightbox } from "simple-react-lightbox";
+import SimpleReactLightbox from "simple-react-lightbox";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonIcon from "@mui/icons-material/Person";

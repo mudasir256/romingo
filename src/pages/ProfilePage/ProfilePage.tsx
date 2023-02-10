@@ -20,7 +20,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Helmet } from "react-helmet";
 import { gql, useQuery } from "@apollo/client";
-import { UserProfile, GetReservationDetails } from '../../constants/constants'
+import { UserProfile } from '../../constants/constants'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import Navbar from "../../components/Navbar";

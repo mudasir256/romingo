@@ -1,4 +1,4 @@
-import { FC } from "react";
+ import { FC } from "react";
 import { Grid, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";

@@ -356,14 +356,6 @@ const Navbar: FC<Props> = ({ sx }) => {
                 <MenuIcon sx={{ margin: "0px auto" }} />
               </Link>
             </Hidden>
-            {/* <Button
-              variant="text"
-              size="small"
-              color="primary"
-              onClick={() => history.push("/reservation/manage")}
-            >
-              Manage Reservation
-            </Button> */}
           </Box>
         </Toolbar>
       </AppBar>

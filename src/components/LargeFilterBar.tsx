@@ -411,7 +411,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             }}
           />
         </Box>
-
         <Button
           onClick={handleFilterOutClick}
           variant="contained"
@@ -427,7 +426,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         >
           Search
         </Button>
-
       </Box>
     </Box>
   );

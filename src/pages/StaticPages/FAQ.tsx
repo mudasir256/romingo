@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import { FC } from "react";
 import { Container, Divider, Grid, Typography } from "@mui/material";
 import Link from "@mui/material/Link";
-import { PopupButton } from "@typeform/embed-react";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
