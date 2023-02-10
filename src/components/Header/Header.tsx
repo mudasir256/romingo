@@ -5,11 +5,11 @@ import {
   CSSObject,
 } from "@mui/material";
 
-import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
-import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
-import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
-import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
-import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
+// import Image3 from '../../assets/images/pet-friendly-travel-french-bulldog.jpeg'
+// import Image4 from '../../assets/images/pet-friendly-travel-golden-retriever-2.jpeg'
+// import Image7 from '../../assets/images/pet-friendly-travel-jack-russell.jpeg'
+// import Image9 from '../../assets/images/pet-friendly-travel-jack-russell-fall.jpeg'
+// import Image10 from '../../assets/images/pet-friendly-travel-golden-doodle.jpeg'
 
 import MobileFilterBar from '../MobileHomePageFilterBar'
 import { LargeFilterBar } from '../LargeFilterBar'
