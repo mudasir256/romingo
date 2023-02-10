@@ -24,31 +24,31 @@ const Header: FC<Props> = ({ sx }) => {
 
   const imagesDesktop = [
     {
-      component: Image7,
+      component: '/hero/five.jpeg',
       placement: 'bottom 0px left 0px'
     },
     {
-      component: Image10, 
+      component: '/hero/two.jpeg', 
       placement: 'bottom -200px left 0px'
     },
     {
-      component: Image3, 
+      component: '/hero/one.jpeg', 
       placement: 'bottom -120px right 0px'
     }
   ];
 
   const imagesMobile = [
     {
-      component:  Image4, 
+      component:  '/hero/three.jpeg', 
       placement: 'bottom -50px right 0px',
       extra: 'linear-gradient(160deg, #000000 -100%, #29292900 55%, #000000 300%),'
     },
     {
-      component: Image3, 
+      component: '/hero/one.jpeg', 
       placement: 'bottom -50px left -120px'
     },
     {
-      component: Image9,
+      component: '/hero/four.jpeg',
       placement: 'bottom -50px right -0px'
     }
   ];
