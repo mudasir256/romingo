@@ -27,6 +27,8 @@ import "./Header/Header.scss";
 import PetsIcon from '@mui/icons-material/Pets';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
+import InnerContent from '../pages/Cities/InnerContent'
+
 const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
 
   let cityList = useSelector((state: any) => state.cityListReducer.cities);
@@ -712,22 +714,8 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
             />
           </Grid>
 
-          <Grid item xs={12}>
-            <Typography sx={{fontFamily: 'sansita-light', fontSize: '2em', ml: '0.25em' }}>{onlyCity} pet-friendy hotels</Typography>
-            {data?.propertiesByLocation.map(card => (
-              <Box key={card.id} sx={{ py: '0.5em' }}>
-                <ListingCard
-                  {...card}
-                  city={{ name: foundCity.name }}
-                  duration={2}
-                  highlighted={false}
-                  petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
-                />
-              </Box>
-            ))}
-            {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
-          </Grid>
-
+          <InnerContent cityId={foundCity.id} cityName={onlyCity} city={foundCity.name} />
+   
           <Grid item xs={12} sx={{ mb: 1 }}>
             <Divider light variant="middle" sx={{ mb: 1 }}>
               <Typography variant="body1" color="text.secondary">
