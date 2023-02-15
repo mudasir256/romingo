@@ -933,7 +933,1197 @@ export default function InnerContent({ cityId, cityName, city }) {
         </Box>
       </Box>
     </>)
-  } else {
+  } else if (cityName === 'Austin') {
+    return (<>
+      <HotelSection 
+        text="The past few years have seen Austin transform into one of the most popular landing spots for young professionals, entrepreneurs, and creatives. With its unique blend of culture, tech-savvy businesses, and a booming job market, Austin is an ideal place to make your mark in the world. From delicious Tex-Mex eateries to some of the best live music venues around, Austin is sure to keep you entertained for a weekend or extend work-cation."
+        secondaryText="But what about your four-legged friend? Don’t worry: Austin has plenty to offer in terms of pet-friendly accommodations and activities. Many hotels are pet-friendly and offer special amenities such as dog beds, treats, and even pet sitters. There are also numerous dog parks scattered around the city. &#09;&#09; From lakeside walks to doggy yoga, Austin has plenty of activities that can make your pet’s visit just as enjoyable as yours."
+        cityName="Austin"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Austin</Typography>
+        <Typography variant="h5">Explore Austin&apos;s Off-Leash Dog Parks</Typography>
+        
+        <LinkContent
+          link="https://austinparks.org/park/red-bud-isle/"
+          linkText="Red Bud Isle"
+          text="This sprawling off-leash dog park near the Tom Miller Dam offers plenty of activities for humans as well, including fishing, hiking, biking, and swimming."
+        />
+
+        <LinkContent
+          link="https://www.yelp.com/biz/barton-springs-pool-austin"
+          linkText="Barkin' Springs"
+          text="Located just next to Austin hotspot Barton Springs, Barkin' Springs will let your furry friend cool off in style."
+        />
+
+        <LinkContent
+          link="https://austinparks.org/park/onion-creek-district-park/"
+          linkText="Onoin Creek District Park"
+          text=" Down in Southeast Austin, Onion Creek District Park offers lovely forest trails, as well as plenty of open space to play in."
+        />
+
+        <LinkContent
+          link="https://austinparks.org/park/barton-creek-greenbelt/"
+          linkText="Barton Creek Greenbelt Preserve"
+          text="Offering activities like rock climbing, mountain biking, and bird watching or humans, Barton Creek Greenbelt Preserve is an ideal spot for two-legged and four-legged fun. That's right: your pup is welcome to join you on the trails and explore this scenic area."
+        />
+
+        <LinkContent
+          link="https://austinparks.org/park/bull-creek/"
+          linkText="Bull Creek District Park"
+          text="Located north of Austin, Bull Creek District Park is a great spot for some relaxed hiking. The landscape includes limestone ledges and small hills - perfect for those who want to break a sweat with their pup in tow."
+        />
+
+        <LinkContent
+          link="https://austinparks.org/?s=emma+long"
+          linkText="Turkey Creek Trail at Emma Long Metropolitan Park"
+          text="Those in search of an even more strenuous hike should check out Turkey Creek Trail at Emma Long Metropolitan Park. This 3-mile trail is quite steep, but offers plenty of rewarding views and wildlife spotting opportunities to make the journey worthwhile."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.circlebrewing.com/"
+          linkText="Circle Brewing Company"
+          text="Located in North Austin, Circle Brewing Company welcomes furry friends to their outdoor patio. Enjoy a pint while your pup enjoys some snacks - both of you won't be disappointed."
+        />
+
+        <LinkContent
+          link="https://www.draughthouse.com/"
+          linkText="Draught House Pub & Brewery"
+          text="With 74 taps and an array of local laudits, Draught House Pub & Brewery has established itself as the perfect spot to grab a beer while your pup hangs out on the dog-friendly patio."
+        />
+
+        <LinkContent
+          link="https://wanderlustwine.com/"
+          linkText="Wanderlust Wine Co"
+          text="tching to try some local vino? Head over to Wanderlust Wine Co with your pup and sample a few of their delicious wines! This pet-friendly winery has locations in Downtown Austin and on the Eastside."
+        />
+
+        <Typography variant="h5">Check Out Austin&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+
+        <LinkContent
+          link="https://www.fatcitystacks.com/"
+          linkText="Fat City Stacks"
+          text="Enjoy some delicious breakfast sandwiches and coffee with your pup at Fat City Stacks. This pet-friendly café is located in the vibrant South Congress area, and offers an impressive menu just for dogs, featuring chicken meatballs, peanut butter, and greek yogurt ice cream!"
+        />
+
+        <LinkContent
+          link="https://www.ilikelick.com/"
+          linkText="Lick Honest Ice Creams"
+          text="On a hot Austin day, cool down with your furry friend at Lick Honest Ice Creams. This pet-friendly shop offers delicious made-from-scratch flavors that are sure to please both you and your pup!"
+        />
+
+        <LinkContent
+          link="https://www.easytigerusa.com/"
+          linkText="Easy Tiger"
+          text="What better way to spend a lazy Sunday than with a beer and some pretzels? You can do both while your pup hangs out on the Easy Tiger patio."
+        />
+
+        <Typography variant="h2">Austin&apos;s Dog Daycare and Boarding</Typography>
+        <Typography variant="base">If you&apos;re looking for doggy daycare while you&apos;re in Austin, here are a few of our favorites:</Typography>
+
+        <LinkContent
+          link="https://www.campbowwow.com/austin/"
+          linkText="Camp Bow Wow Austin"
+          text="Located on the north side of Austin towards Round Rock, Camp Bow Wow offers a safe, fun environment for your pup to socialize and play with other dogs."
+        />
+
+        <LinkContent
+          link="https://www.dogtopia.com/austin-south/"
+          linkText="Dogtopia South Austin"
+          text="Dogtopia South Austin offers doggy daycare, boarding, grooming and more. They also have a wide selection of activities to keep your pup entertained while at the facility."
+        />
+
+        <LinkContent
+          link="https://bhvaustin.com/"
+          linkText="BHV Austin"
+          text="BHV Austin is a state-of-the-art doggy daycare and boarding facility located in South Austin. They offer spacious play areas, comfortable suites for overnight stays and lots of fun activities to keep your pup happy and healthy!"
+        />
+
+        <Typography variant="h2">Austin&apos;s Best Pet Stores</Typography>
+        <Typography variant="base">A pup vacation certainly warrants a new toy or ten, right? Here are your best options for pet stores in Austin.</Typography>
+
+        <LinkContent
+          link="https://www.pawsonchicon.com/"
+          linkText="Paws on Chicon"
+          text="Located in East Austin, Paws on Chicon is a great spot to find all your pup's necessities. They carry everything from food and treats to toys and collars - plus, they offer plenty of goodies for cats too!"
+        />
+
+        <LinkContent
+          link="https://healthypetaustin.com/"
+          linkText="Healthy Pet"
+          text="With three locations in the Austin area, Healthy Pet is the place to go for all your pup's health needs. From vitamins and supplements to pet-safe cleaning products, this pet store has you covered."
+        />
+
+        <LinkContent
+          link="https://tomlinsons.com/"
+          linkText="Tomlinson's Feed"
+          text=" Tomlinson’s Feed has been an Austin favorite for more than 70 years. This pet store has endless options for your pup, including food, treats, toys and grooming supplies. They also offer self-serve dog wash stations!"
+        />
+
+        <LinkContent
+          link="https://petsupermarket.brickworksoftware.com/store-locator/?page=1&storesPerPage=15"
+          linkText="Pet Supermarket"
+          text="Pet Supermarket has everything your pup needs, from food and treats to toys, beds and more."
+        />
+
+        <Typography variant="h2">Bonus Activity: Paddleboard or Kayak with Your Dog</Typography>
+        <Typography variant="base">Take your pup out on the water with you! Take a <a href="https://www.gilisports.com/blogs/sup-near-me/best-places-for-paddle-boarding-in-austin" target="_blank" rel="noreferrer">paddleboard</a> or <a href="https://www.tripadvisor.com/Attractions-g30196-Activities-c61-t191-Austin_Texas.html" target="_blank" rel="noreferrer">kayak tour</a> on one of Austin&apos;s many local bodies of water.</Typography>
+
+      </Box>
+    </>)
+  } else if (cityName === 'Dallas') {
+    return (<>
+      <HotelSection 
+        text="Planning a trip to Dallas with your tail-wagging pal?  You’ll be pleased to know that the Lone Star State's third-largest city is a pet friendly destination. From parks, trails and even attractions offering special amenities for your furry friends, you’ll find plenty of ways to include them in your getaway."
+        secondaryText=""
+        cityName="Dallas"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Dallas</Typography>
+
+        <Typography variant="h5">Explore Dallas&apos;s Off-Leash Dog Parks</Typography>
+        <LinkContent
+          link="http://www.dallasparks.org/Facilities/Facility/Details/NorthBark-Dog-Park-359"
+          linkText="NorthBark Dog Park"
+          text="Just north of downtown in the cool, shady NorthBark Dog Park, your pup can enjoy an off-leash area to get some exercise and socialize with other dogs. The park has plenty of obstacles for both large and small dogs to jump on, alongside a separate section reserved just for smaller breeds."
+        />
+
+        <LinkContent
+          link="https://muttscantina.com/"
+          linkText="MUTTS Canine Cantina"
+          text="For a unique experience, head to MUTTS Canine Cantina with your pup. This dog-centric destination has everything you need for a fun day out with your furry friend – an off-leash park, full bar and restaurant, doggy pool, and even live music."
+        />
+
+        <LinkContent
+          link="https://www.klydewarrenpark.org/join-give/my-best-friends-dog-park.html"
+          linkText="My Best Friend's Park at Klyde Warren Park"
+          text="The scenic Klyde Warren Park has plenty of activities for both you and your pup, including an off-leash zone specifically designed with doggy fun in mind. The park also offers a dog water fountain and several areas to cool off in the shade."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="https://www.traillink.com/trail/katy-trail-(dallas)/"
+          linkText="Katy Trail"
+          text="This scenic trail follows the path of an old railroad,  offering 3.5 miles of paved paths ideal for a leisurely stroll with your pup. You can access the trail from several areas around the city and enjoy sweeping views of downtown Dallas as you explore."
+        />
+
+        <LinkContent
+          link="https://www.traillink.com/trail/bachman-lake-park-loop-trail/"
+          linkText="Machman Lake Park Loop Trail"
+          text="This 2-mile loop trail is one of the most scenic places to take your pup in Dallas. The path goes around Bachman Lake, offering tranquil views and a few small hills perfect for an energetic walk."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://deepellumbrewing.com/"
+          linkText="Deep Ellum Brewing Co"
+          text="Sprawling local favorite Deep Ellum Brewing Co. is the perfect place to stop for a sip and some canine fun with your pup. The brewery has several outdoor areas where pets are allowed, and they even host occasional doggy events!"
+        />
+
+        <LinkContent
+          link="https://oakcliffbrewing.com/"
+          linkText="Oak Cliff Brewing Co"
+          text="Oak Cliff Brewing Co. is another great option if you want to grab a pint with your pup. The brewery has several outdoor areas where pets are allowed, including a large beer garden perfect for spending time with your furry friend."
+        />
+
+        <LinkContent
+          link="https://www.peticolasbrewing.com/"
+          linkText="Peticolas Brewing Company"
+          text="This brewery is the perfect spot for a beer and some pup-play time. They have plenty of outdoor space, including a large lawn where your pooch can run around. Plus, Peticolas also offers several doggy treats to keep your pup happy while you sip on craft brews."
+        />
+
+        <Typography variant="h5">Check Out Dallas&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.breadwinnerscafe.com/"
+          linkText="Bread Winners Cafe & Bakery"
+          text="This cozy cafe is a great spot to grab some biscuits & gravy with your pup (OK, maybe just biscuits for your little friend.)  The restaurant has several pet-friendly outdoor tables perfect for grabbing a bite with your canine companion."
+        />
+
+        <LinkContent
+          link="https://www.rodeogoat.com/"
+          linkText="Rodeo Goat"
+          text="Rodeo Goat is a popular spot for craft beers and burgers, and their pet-friendly patio makes it the perfect place to stop with your pup. Cozy up by the fire at night!"
+        />
+
+        <LinkContent
+          link="https://torchystacos.com/"
+          linkText="Torchy's Tacos"
+          text="Statewide favorite Torchy’s Tacos also offers outdoor seating for you and your pup. They serve up plenty of Texas-style tacos perfect for a mid-day snack with your furry friend."
+        />
+
+        <Typography variant="h2">Dallas&apos;s Best Dog Daycare and Boarding Facilities</Typography>
+        <LinkContent
+          link="https://www.dogtopia.com/dallas-inwood/"
+          linkText="Dogtopia"
+          text="Dogtopia of Dallas offers daycare, overnight boarding, and grooming services for your pup. They have spacious play areas to keep your dog active and happy while you’re away. Keep an eye on your pal using Dogtopia's webcam access!"
+        />
+
+        <LinkContent
+          link="https://www.lakesidepawsfrisco.com/"
+          linkText="Lakeside Paws"
+          text="Over in Frisco, Lakeside Paws is the perfect spot for your pup to play and stay while you head off on human-only adventures. The facility offers daycare, overnight boarding, dog walking, and spa services – all in a safe, secure environment."
+        />
+
+        <LinkContent
+          link="https://www.castlecreekpetresort.com/"
+          linkText="Castle Creek Pet Resort & Spa"
+          text=" For a truly pampered pup, head to Castle Creek Pet Resort & Spa. Sprawling across a 13,000 square feet horse ranch, Castle Creek also offers private indoor suites with individual covered patios."
+        />
+
+        <Typography variant="h2">Dallas&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link="https://greenpetdallas.com/"
+          linkText="Green Pet Supply"
+          text="This pet supply store is your one-stop shop for all things pup. Green Pet Supply offers natural and organic products for your furry friend, as well as raw food diet supplies and eco-friendly toys."
+        />
+
+        <LinkContent
+          link="http://www.odysseypets.com/"
+          linkText="Odyssey Pets"
+          text="Odyssey Pets is a great spot for pet lovers looking to spoil their companions. They sell everything from treats and toys to clothing, accessories, and grooming supplies – perfect for pampering your pup!"
+        />
+
+        <LinkContent
+          link="https://stores.petco.com/tx/dallas/pet-supplies-dallas-tx-440.html"
+          linkText="Petco"
+          text="If you’re looking for a more traditional pet store, Petco is your best bet. They have a wide selection of food and supplies, as well as grooming and vet services. Plus, they offer plenty of pet-friendly events and classes perfect for meeting other pup-lovers in the area."
+        />
+
+        <LinkContent
+          link="https://theluckydogbarkery.com/"
+          linkText="Lucky Dog Barkery"
+          text="For some pet-friendly treats, stop by Lucky Dog Barkery. This adorable shop is stocked with natural and organic goodies perfect for your pup. They even have a selection of handcrafted cakes for special occasions!"
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Denver') {
+    return (<>
+      <HotelSection 
+        text="With its mile-high elevation and 300+ days of sunshine each year, Denver is an ideal destination for those looking to enjoy the outdoors. It's also a great stop for dog owners, boasting numerous pet-friendly parks and trails. Denver is home to some of the most impressive cultural attractions in the country, from the Denver Art Museum to Red Rocks Park and Amphitheatre. With its vibrant local music scene and thriving nightlife, Denver has something for everyone. And don't forget about all the delicious restaurants and food trucks scattered throughout the city!"
+        secondaryText="In this guide, we'll take a look at how you and your furry friend can make the most of your Denver visit. Let's dive in."
+        cityName="Denver"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Denver</Typography>
+        <Typography variant="h5">Explore Denver&apos;s Off-Leash Dog Parks</Typography>
+        
+        <LinkContent
+          link="https://www.cityofgolden.net/city-services/dog-parks/"
+          linkText="Tony Grampsas Dog Park"
+          text=" Golden's 2.5-acre Tony Grampsas Dog Park is one of the most popular off-leash dog parks in the Denver area. Boasting trails and a wooded area, this dog park is a great place for both you and your pup to get some exercise."
+        />
+
+        <LinkContent
+          link="https://www.lakewood.org/Government/Departments/Community-Resources/Parks-Forestry-and-Open-Space/A-to-Z-Park-List/Forsberg-Iron-Spring-Park"
+          linkText="Forsberg Park"
+          text="With views of Green Mountain and Red Rocks Ampitheatre, Lakewood's Forsberg Park is a great spot for you and your pup. Take a lap through the park's obstacle course!"
+        />
+
+        <LinkContent
+          link="https://cpw.state.co.us/placestogo/parks/CherryCreek/Pages/DogOff-LeashArea.aspx"
+          linkText="Cherry Creek Dog Off-Leash Area"
+          text="This 107-acre off-leash area is located in Denver's Cherry Creek State Park. It features plenty of open space for your pup to romp around, as well as a portion of the creek where they can cool off."
+        />
+
+        <LinkContent
+          link="https://www.cityofwestminster.us/ParksRecreation/Parks,TrailsOpenSpace/WestminsterHillsOff-LeashDogPark"
+          linkText="Westminster Hills Off-Leash Dog Park"
+          text="This 420-acre park is located in the Denver suburb of Westminster and offers plenty of trails, open grassy areas, and even a pond for your pup to explore."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup in Denver</Typography>
+        <LinkContent
+          link="https://dayhikesneardenver.com/elk-meadow-park-south-loop/"
+          linkText="South Loop, Elk Meadow Park"
+          text="This easy, 2.6-mile trail offers plenty of views of the surrounding Rockies, making it a great spot for you and your pup to take in nature. Beyond South Loop, Elk Meadow Park offers 25 additional miles of trails!"
+        />
+
+        <LinkContent
+          link="https://dayhikesneardenver.com/mt-sanitas-hike-near-boulder/"
+          linkText="Mt. Sanitas"
+          text="If you're looking for a more strenuous hike, Mt. Sanitas is the perfect spot for you and your pup. The 3-mile loop features plenty of elevation changes and great views of Boulder. You can also find more casual trails on the mountainside."
+        />
+
+        <LinkContent
+          link="https://dayhikesneardenver.com/red-rocks-trail-red-rocks-park/"
+          linkText="Red Rocks Trail"
+          text="This 6-mile loop trail offers plenty of views and is a great spot for you and your leashed pup to get some exercise. Plus, you can take in the sights at Red Rocks Amphitheatre!"
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/carboy-winery/"
+          linkText="Carboy Winery"
+          text="Cap Hill's Carboy Winery offers flights of their wines, as well as small bites and cheese plates. Bring your tail-wagging companion for Carboy's Wine and Wags special, every day from 3 PM to 6 PM!"
+        />
+
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/the-infinite-monkey-theorem-2/"
+          linkText="The Infinite Monkey Theorem"
+          text="This Denver urban winery offers a great selection of wines, hard ciders, and more. They also offer a pet-friendly patio and occasional pet-centered events."
+        />
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/bigsbys-folly-2/"
+          linkText="Bigsby's Folly"
+          text="This craft winery in the RiNo Arts District offers a variety of flights and glasses along with small plates. Bigsby's Folly also has an expansive outdoor patio, perfect for you and your pup to enjoy their vino!"
+        />
+
+        <Typography variant="h2">Check Out Denver&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/just-be-kitchen/"
+          linkText="Just Be Kitchen"
+          text="This plant-based eatery offers breakfast, lunch, and dinner with plenty of vegan, paleo, and allergen-friendly options. They even offer pet-friendly outdoor seating!"
+        />
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/highlands-cork-coffee/"
+          linkText="Highlands Cork & Coffee"
+          text="This cozy cafe in the Highlands neighborhood offers an extensive selection of coffees, teas, and pastries -- and, perhaps most importantly, a selection of treats just for your furry friend."
+        />
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/postino-lohi/"
+          linkText="Postino — LoHi"
+          text="LoHi's Postino offers an extensive selection of wines and craft beers, along with small plates and bruschetta. Pups can join on the patio and enjoy treats and a water bowl."
+        />
+
+        <Typography variant="h2">Denver&apos;s Dog Daycare and Boarding</Typography>
+        <Typography variant="base">If you&apos;re in need of a doggy daycare while running errands or exploring around Denver, look no further!</Typography>
+
+        <LinkContent
+          link="https://www.barkandplaydenver.com/"
+          linkText="Bark & Play"
+          text="This sprawling daycare and boarding facility offers both an indoor play area and outdoor play area with a swimming pool and shaded areas."
+        />
+
+        <LinkContent
+          link="https://www.barklymanor.com/"
+          linkText="Barkly Manor"
+          text="This large pet boarding and daycare facility offers spacious suites, a variety of play areas, and even swimming pools for your pup to enjoy."
+        />
+
+        <Typography variant="h2">Denver&apos;s Best Pet Stores</Typography>
+
+        <LinkContent
+          link="https://www.doggiedelightsonbroadway.com/"
+          linkText="Doggie Delights on Broadway"
+          text="This family-owned pet store offers a wide selection of high-quality pet food and supplies, as well as treats and toys. Bring your furry friend to play with store regulars Tazu and Zimba!"
+        />
+        <LinkContent
+          link="https://lilysbathsandbiscuits.com/"
+          linkText="Lily's Bath and Biscuits"
+          text="This pet store offers plenty of supplies, grooming services and luxury pet items, as well as a self-service dog wash so you can give your pup a good scrub down."
+        />
+        <LinkContent
+          link="https://www.qualitypaws.com/"
+          linkText="Quality Paws Natural Pet"
+          text="Quality Paws has an array of natural products, including treats and supplements. They also offer holistic health consultations and classes to help you keep your pup healthy and happy!"
+        />
+        <LinkContent
+          link="https://twopalsandapup.com/"
+          linkText="Two Pals & A Pup"
+          text="Located in City Park, Two Pals & A Pup offers pet supplies and accessories, as well as homemade dog treats. They also offer custom engraving services so you can have your pup's name or initials inscribed on a tag."
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Oceanside') {
+    return (<>
+      <HotelSection 
+        text="Nestled between Los Angeles and San Diego alongside the Pacific Coast Highway, Oceanside, California is a hidden gem of the Southern California region. With stunning beaches and nearby attractions, Oceanside is one of the most popular destinations for family vacations. From surfing to strolling along the pier, outdoor activities are plentiful in this beach town. It's also a supremely pet-friendly destination: families can take their four-legged friends to the expansive beaches, dog parks, and trails. Let's break down the best pet-friendly travel options Oceanside has to offer!"
+        secondaryText=""
+        cityName="Oceanside"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Oceanside</Typography>
+
+        <Typography variant="h5">Explore Oceanside&apos;s Off-Leash Dog Parks</Typography>
+        
+        <LinkContent
+          link="https://www.ci.oceanside.ca.us/gov/ns/parks/amenities/parks.asp"
+          linkText="Buccaneer Beach Park"
+          text="This pet-friendly beach park is the perfect place to take your pup for a morning or evening stroll. The beach allows dogs off leash as long as they remain within voice command of their owners."
+        />
+        <LinkContent
+          link="https://www.carlsbadca.gov/Home/Components/FacilityDirectory/FacilityDirectory/104/7400?selcat=26"
+          linkText="Poinsettia Dog Park"
+          text="In nearby Carlsbad, the Poinsettia Dog Park is a great option for pet owners who are looking for a place to let their pooch run free. This dog park offers plenty of grass and open space for your pup to enjoy, as well as benches and shady trees to keep you comfortable while you watch them play."
+        />
+        <LinkContent
+          link="https://www.carlsbadca.gov/Home/Components/FacilityDirectory/FacilityDirectory/10/7417"
+          linkText="Alga Norte Community Park"
+          text="Alga Norte Community Park is an excellent option for pet owners in Oceanside. This park has a large, fenced-in area with obstacles and play equipment that's perfect for off-leash fun. Plus, there are plenty of walking trails and other amenities to enjoy."
+        />
+        <LinkContent
+          link="https://www.cityofvista.com/departments/recreation-comm-services/parks-trails"
+          linkText="South Buena Vista Park"
+          text="South Buena Vista Park is a great spot for pet owners in Oceanside. This park features plenty of open space, benches and pet waste stations to make your visit easier. Plus, the nearby beach allows you to take your pup for some fun in the sun!"
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+
+        <LinkContent
+          link="https://www.sandiegocounty.gov/parks/Camping/guajome.html"
+          linkText="Guajome Park"
+          text="Boasting 4.5 miles of tranquil trails that cut through woodlands, wetlands, and more, Guajome Park is the perfect spot for a leisurely hike with your leashed four-legged friend."
+        />
+        <LinkContent
+          link="https://www.ci.oceanside.ca.us/gov/ns/parks/amenities/trails.asp"
+          linkText="San Luis Rey Bike Trail"
+          text="This paved bike trail stretches from Oceanside to San Luis Rey River and is the perfect spot for a quick jaunt with your pup. You'll find plenty of benches and pet waste stations along the way, so you can rest when you need to."
+        />
+        <LinkContent
+          link="https://www.sdparks.org/content/sdparks/en/park-pages/SanElijo.html"
+          linkText="San Elijo Lagoon Ecological Reserve"
+          text="A 15 minute drive down the coast, this reserve is home to miles of trails that are perfect for a leisurely stroll with your pup. The scenery is also stunning, so be sure to bring your camera!"
+        />
+
+        <Typography variant='h5'>Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.tripswithpets.com/pet-friendly-activity/wineries/united-states/ca/oceanside/beach-house-winery?arrivalDate=2022-11-20&departureDate=2022-11-22"
+          linkText="Beach House Winery"
+          text="This pet-friendly winery offers a variety of wines to sample and relax with, all while your pup lounges nearby. The outdoor seating is the perfect spot to take in the views while sipping on a glass of wine."
+        />
+        <LinkContent
+          link="https://www.oceansidebrewingco.com/"
+          linkText="Oceanside Brewing Company"
+          text="This pet-friendly brewery is a longtime local favorite. Offering a selection of year-round and seasonal beers on tap, Oceanside Brewing Company has outdoor seating for you and your pup."
+        />
+        <LinkContent
+          link="https://www.yelp.com/biz/stone-brewing-tap-room-oceanside-oceanside?osq=dog+friendly+breweries"
+          linkText="Stone Brewing Tap Room - Oceanside"
+          text="Stone Brewing Tap Room is a great spot for craft beer lovers and their four-legged friends. Relax with your pup on the outdoor patio as you sample a selection of brews from this popular local brewery."
+        />
+
+        <Typography variant='h2'>Check Out Oceanside&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.bagbybeer.com/"
+          linkText="Bagby"
+          text="This pet-friendly restaurant's rotating menu is sure to please even the pickiest of eaters. Enjoy a bite to eat on the sun-drenched patio with your pup by your side."
+        />
+        <LinkContent
+          link="http://beachbreakcafe.menutoeat.com/"
+          linkText="Beach Break Cafe"
+          text="This pet-friendly cafe is the perfect spot to grab a coffee and some breakfast with your pup. Enjoy the fresh coastal air on the outdoor patio as you take in views of the nearby beach."
+        />
+        <LinkContent
+          link="https://stratfordattheharbor.com/"
+          linkText="Stratford at the Harbor"
+          text="How about a little ocean breeze to go with your meal? Stratford at the Harbor offers a wide selection of tasty dishes and drinks. Plus, they offer outdoor seating so you can enjoy your meal with your pup in tow."
+        />
+
+        <Typography variant='h2'>Oceanside&apos;s Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="https://www.pacificpetresort.com/"
+          linkText="Oceanside Pet Hotel"
+          text="If you need to leave town for a night but don’t want to leave your pup behind, Oceanside Pet Hotel is the perfect choice. Here, they offer a comfortable and secure environment for your pup while you are away."
+        />
+        <LinkContent
+          link="https://theanimalkeeper.com/locations/oceanside-carlsbad/"
+          linkText="The Animal Keeper"
+          text="This is an excellent choice for pet owners who need a daycare or boarding option. The Animal Keeper offers a variety of fun activities and services to keep your pup entertained."
+        />
+        <LinkContent
+          link="https://www.camprunamutt.com/sorrentovalley/"
+          linkText="Camp Run-A-Mutt"
+          text="Offering daycare, boarding, and training services, Camp Run-A-Mutt is the perfect spot to socialize your pup. Plus, they offer a secure and supervised environment built with safety in mind."
+        />
+
+        <Typography variant="h2">Oceanside&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link="https://www.petsmart.com/"
+          linkText="PetSmart"
+          text="Your one-stop shop for everything pet related, PetSmart offers a variety of products and services to keep your pup happy and healthy. From toys and treats to grooming services, this is your go-to spot for anything you and your pup need."
+        />
+        <LinkContent
+          link="https://pupologie.com/"
+          linkText="Pupologie"
+          text="Featuring all-natural, organic products and treats, Pupologie is a local pet store you won’t want to miss. Plus, they offer custom gift baskets for your pup."
+        />
+        <LinkContent
+          link="https://www.threedogsc.com/"
+          linkText="Three Dog Bakery San Clemente"
+          text="If you’re looking for something special for your pup, Three Dog Bakery San Clemente is the place to go. This gourmet bakery offers a selection of treats made with natural and organic ingredients."
+        />
+        <LinkContent
+          link="https://www.petco.com/shop/en/petcostore"
+          linkText="PETCO"
+          text="This chain pet store is a great option for all of your basic needs. From toys and treats to food and grooming supplies, PETCO has it all! Plus, they offer a variety of services—including vaccinations and microchipping—to keep your pup healthy and happy."
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Orange County') {
+    return (<>
+      <HotelSection 
+        text="You don't have to be a Disney Princess to enjoy a trip to Orange County -- even if your family pooch is treated like royalty. With plenty of dog-friendly activities and places to stay, Orange County is a great spot for you and your furry friend."
+        secondaryText=""
+        cityName="Orange County"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Orange County</Typography>
+
+        <Typography variant="h5">Explore Orange County&apos;s Off-Leash Dog Parks</Typography>
+        <Typography variant="base">If you&apos;re looking for a place to take your furry friend for a good time, check out one of Orange County&apos;s many off-leash dog parks.</Typography>
+       
+        <LinkContent
+          link="https://www.avca.net/"
+          linkText="Aliso Viejo Community Association Dog Park"
+          text="Aliso Viejo Community Association Dog Park is a great spot for both small and large dogs. This creekside park also features open space, paths with connections to hiking trails, portable toilets, and shaded picnic table areas."
+        />
+        <LinkContent
+          link="https://www.anaheim.net/facilities/facility/details/La-Palma-Park-104"
+          linkText="La Palma Park Dog Park"
+          text="If you're looking for a great place to take your furry friend for a good time, check out La Palma Park Dog Park. This large dog park has separate areas for large and small dogs, with lots of space to run and play. Water fountains are available and there are benches for people to sit down. Located in Anaheim, this pet-friendly park is a great place to spend the day with your pup!"
+        />
+        <LinkContent
+          link="https://www.yelp.com/biz/maxwell-dog-park-anaheim"
+          linkText="Maxwell Dog Park"
+          text="Maxwell Dog Park is the perfect spot if you're in the Huntington Beach area and looking for a pet-friendly outing. This spacious dog park features some hills and valleys and a mix of dirt and grass. Drinking fountains are available with benches for owners. There are also a few agility obstacle features here."
+        />
+        <LinkContent
+          link="https://www.anaheim.net/Facilities/Facility/Details/Olive-Hills-Dog-Park-437?&centerLat=33.83939902950562&centerLng=-117.8263788185118&zoom=16"
+          linkText="Olive Hills Dog Park"
+          text="Up in Fullerton, Olive Hills Dog Park is another great option for pet owners. The park offers separate small and large dog areas with agility equipment, benches, and some artificial turf. The surrounding park features walking paths and tennis courts."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <Typography variant="base">Orange County has miles of trails, perfect for getting out with your pup and enjoying the outdoors.</Typography>
+
+        <LinkContent
+          link="https://www.alltrails.com/trail/us/california/aliso-summit-trail"
+          linkText="Aliso Summit Trail"
+          text="Check out the Aliso Summit Trail if you're looking for a great hike to take your pup on. This dog-friendly hike is a flat dirt trail except for one steep hill at the very end where you will be rewarded with a gorgeous view of the Pacific Ocean and a cool ocean breeze."
+        />
+        <LinkContent
+          link="https://www.alltrails.com/trail/us/california/back-bay-loop"
+          linkText="Back Bay Loop"
+          text="This mostly-paved trail winds around Upper Newport Bay where you will be greeted with a cool breeze and surrounded by stunning vistas of the water. The highlight of this trail is the marshy preserve near the upper bay which resembles the Everglades."
+        />
+        <LinkContent
+          link="https://www.alltrails.com/trail/us/california/bedford-peak"
+          linkText="Bedford Peak Trail"
+          text="One of the most challenging dog-friendly hikes in Orange County is Bedford Peak. This trail is steep, but the great views and cooler temperature at the top make it worth the effort. Dogs must be kept on leash."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.gopetfriendly.com/activities/breweries-wineries/ca/san-diego/mission-brewery"
+          linkText="Mission Brewery"
+          text="Mission Brewery in Costa Mesa is a great spot to bring your pup. This brewery combines beer and sunshine, with plenty of outdoor seating and an on-site food truck."
+        />
+        <LinkContent
+          link="https://www.gopetfriendly.com/activities/breweries-wineries/ca/torrance/absolution-brewing-company"
+          linkText="Absolution Brewing Company"
+          text="Absolution Brewing Company in Torrance is a pet-friendly brewery that offers a selection of craft beers and wines. The patio area has plenty of seating, so you can enjoy the sunshine while your pup gets to frolic around."
+        />
+
+        <Typography variant="h2">Check Out Orange County&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://slaters5050.com/menus/dog-menu/"
+          linkText="Slater’s 50/50"
+          text="Slater's 50/50 in Anaheim Hills is a great spot for those who want to enjoy some delicious burgers with their pup. The restaurant has both indoor and outdoor seating, so you can either take your pup to the patio or enjoy your meal inside."
+        />
+        <LinkContent
+          link="https://bruxie.com/"
+          linkText="Bruxie Gourmet Waffle Shop"
+          text="Thinking of taking your pup out for a fun brunch? Check out Bruxie Gourmet Waffle Shop in Huntington Beach. They offer delicious Belgian-style waffles and have plenty of outdoor seating, making it the perfect spot to enjoy some tasty treats with your pup."
+        />
+        <LinkContent
+          link="https://tapsfishhouse.com/taps-brea/"
+          linkText="Taps Fish House & Brewery"
+          text="Taps Fish House & Brewery in Irvine is a great spot for those looking for delicious seafood and craft beers. The restaurant offers both indoor and outdoor seating, making it the perfect place to bring your pup for lunch or dinner."
+        />
+
+        <Typography variant="h2">Orange County Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="http://campopiedaycare.com/"
+          linkText="Camp Opie Dog Daycare"
+          text="Camp Opie Dog Daycare and Boarding in Santa Margarita is a great place to take your pup while you're away. The facility offers social playgroups so that your pup can make friends and have fun. They also offer grooming, boarding, and obedience training."
+        />
+
+        <LinkContent
+          link="https://ciaociaopetcare.com/"
+          linkText="Ciao Ciao PetCare"
+          text="Ciao Ciao PetCare is a pet-friendly facility that offers daycare, boarding, and even doggy spa services. The staff here is experienced and attentive to your pup's needs. They offer plenty of outdoor playtime as well as enrichment activities to keep your pup entertained."
+        />
+
+        <Typography variant="h2">Orange County&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link=""
+          linkText="Pet Country"
+          text="Pet Country Pet Shop in Anaheim is the perfect spot to pick up all of your pet supplies. The shop offers a variety of natural and organic dog food, toys, treats, and more. They also have a wide selection of pet apparel and accessories for you to choose from."
+        />
+
+        <LinkContent
+          link=""
+          linkText="PetSmart"
+          text="PetSmart is a great place to pick up all of your pet supplies and products. The store carries a wide selection of food, toys, treats, and more for cats and dogs. They also have an in-store grooming salon if you need to give your pup a touch up."
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Phoenix') {
+    return (<>
+      <HotelSection 
+        text="Planning a trip to Phoenix, Arizona with your dog in tow? You've got lots to look forward to! From hiking in the Sonoran Desert to exploring downtown art galleries, there is something for everyone in this sizzling desert city. While you pack your sunscreen and a water bowl or four for your furry friend, let's run down the best hotels, activities, and tips for pet-friendly travel in Phoenix."
+        secondaryText=""
+        cityName="Phoenix"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Phoenix</Typography>
+
+        <Typography variant="h5">Explore Phoenix&apos;s Off-Leash Dog Parks</Typography>
+
+        <LinkContent 
+          link="https://www.phoenix.gov/parkssite/Pages/dogparkshancedog.aspx"
+          linkText="Hance Park Dog Park at Margaret T. Hance Park"
+          text="This large, one-acre park boasts plenty of grassy areas for your pup to run and play, and there's even a shade structure to cool off under and chilled water fountains for much-needed rehydration."
+        />
+
+        <LinkContent 
+          link="https://www.phoenix.gov/parks/parks/dog-parks"
+          linkText="Pinnacle Dog Park"
+          text="This two-acre park is located in North Phoenix, just off of I-17. It has separate areas for large dogs and smaller breeds, as well as a number of agility obstacles and toys to keep your pup entertained. The shady trees throughout the park are a great place for some respite from the sun's rays."
+        />
+
+        <LinkContent
+          link="https://www.phoenix.gov/parks/parks/dog-parks/paradise-valley-dog-park"
+          linkText="Paradise Valley Dog Park"
+          text="As its name suggests, this park is nestled in Paradise Valley and has some great views to enjoy while your pup frolics. Its one-acre park boasts an agility course, a separate area for small dogs, and plenty of shade and water fountains."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="https://www.phoenix.gov/parks/trails/locations/papago-park"
+          linkText="Papago Park"
+          text="This popular Phoenix park is the perfect place to take a hike with your pup. There are miles of trails (some designated for the off-leash crowd!) that offer stunning views of the desert landscape and wildlife."
+        />
+
+        <LinkContent
+          link="https://www.alltrails.com/trail/us/arizona/shaw-butte-trail--3"
+          linkText="Shaw Butte Trail"
+          text="If you're looking for a more strenuous trek, hit up the Shaw Butte Trail. It's located near North Mountain Park and features scenic views of Phoenix and Camelback Mountain in the background."
+        />
+
+        <LinkContent
+          link="https://www.phoenix.gov/parks/trails/locations/rio-salado-habitat-restoration-area"
+          linkText="Rio Salado Habitat Restoration Area"
+          text="This urban park is the largest green space in Phoenix and offers plenty of paw-friendly trails for your pup to explore, as well as educational programs for all ages."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="http://santanbrewing.com/"
+          linkText="SanTan Brewing Company"
+          text="This popular craft brewery welcomes leashed pets in its outdoor seating area. Enjoy a cold beer and pup-friendly treats while you relax in the sun."
+        />
+
+        <LinkContent
+          link="https://www.helluvabrewing.com/"
+          linkText="Helluva Brewing Company"
+          text="This small brewery boasts an outdoor patio with plenty of seating and a few pup-friendly games. They also offer an array of craft beers, wine, and kombucha on tap."
+        />
+
+        <LinkContent
+          link="https://oakcreekvineyards.net/"
+          linkText="Oak Creek Vineyard & Winery"
+          text="This family-run vineyard in Sedona offers 24 acres of paw-friendly trails and outdoor seating areas with stunning views. Enjoy a glass of wine or a beer while your pup sniffs around the vineyards."
+        />
+
+        <Typography variant="h2">Check Out Phoenix&apos;s Pet-Friendly Restaurants and Cafe</Typography>
+        <LinkContent 
+          link="https://ohsobrewery.com/"
+          linkText="O.H.S.O. Eatery + NanoBrewery"
+          text="This popular restaurant specializes in craft beer and locally sourced menu items. They welcome pups with open arms, offering a variety of doggy-friendly treats and an outdoor patio complete with canine water bowls."
+        />
+
+        <LinkContent
+          link="https://www.auntchiladas.com/"
+          linkText="Aunt Chilada's"
+          text="This Mexican restaurant in Phoenix offers up delicious food and a pet-friendly patio. Your dog will love the pup-approved snacks!"
+        />
+
+        <LinkContent
+          link="https://www.windsoraz.com/"
+          linkText="Windsor"
+          text="This perfect spot for brunch offers outdoor seating and a few pup-friendly surprises. Enjoy bottomless mimosas while your pup chomps on some special goodies from the kitchen."
+        />
+
+        <Typography variant="h2">Phoenix&apos;s Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="http://www.applewoodpetresort.com/"
+          linkText="Applewood Pet Resort & Spa"
+          text="Located just outside of downtown Phoenix, this full-service pet resort offers cage-free daycare and boarding with 24/7 supervision. They even offer a spa service for your pup if they're looking to indulge in some extra pampering while you’re away."
+        />
+
+        <LinkContent
+          link="https://www.bellridgeah.com/"
+          linkText="AZPetVet Bell Ridge"
+          text="This pet resort offers all-inclusive doggy daycare and boarding with plenty of exercise and socialization opportunities. They have separate areas for small, medium, and large dogs, as well as vet services onsite."
+        />
+
+        <LinkContent
+          link="https://boulderfalls.com/"
+          linkText="Boulder Falls Pet Resort"
+          text="This luxury pet resort is home to a host of activities and amenities for your pup, including a swimming pool, an agility course, and plenty of comfy beds. It's the perfect place for your four-legged friend while you're away!"
+        />
+
+        <Typography variant="h2">Phoenix&apos;s Best Pet Stores</Typography>
+        <LinkContent  
+          link="http://www.phoenixnewtimes.com/locations/kosmos-dog-house-2335325/"
+          linkText="Kosmo's Doghouse"
+          text="This pet boutique offers a wide selection of food, treats, toys, and accessories for your pup. They also have a great grooming service that will make sure your pup looks and feels their best."
+        />
+
+        <LinkContent
+          link="https://www.noblebeastpets.com/"
+          linkText="Noble Beast"
+          text="This pet supply store specializes in natural and organic products, including food, treats, toys, and grooming supplies. Plus, they offer a variety of classes and activities to help keep your pup happy and healthy."
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Portland') {
+    return (<>
+      <HotelSection 
+        text="You may already have some travel plans outlined for your trip to Portland -- a stop by Powell's Book Store, a brewery tour through the Pearl, a frantic escape from the rain. But what about your dog? Fortunately, Portland has something for everyone, including those traveling with their furry friends. You can take a walk or run together along the beautiful Willamette River Greenway, explore one of the many dog-friendly parks in the city, or go on a hike together alongside the stunning Columbia River Gorge."
+        secondaryText="In this guide, we'll provide a list of the best hotels, restaurants, and activities that are perfect for animal lovers. So pack your bags and get ready to explore everything that Portland has to offer!"
+        cityName="Portland"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Portland</Typography>
+
+        <Typography variant="h5">Explore Portland&apos;s Off-Leash Dog Parks</Typography>
+        <Typography variant="base">Portland is home to many off-leash dog parks, which provide a great opportunity for your pup to socialize and burn off some energy. There are parks located all around the city, so no matter where you&apos;re staying, there&apos;s sure to be one nearby. Here are a few of our favorite off-leash dog parks in Portland:</Typography>
+
+        <LinkContent 
+          link="https://explorethepearl.com/the-fields-park/"
+          linkText="The Fields"
+          text="The Fields is a large open field for downtown dogs. The north side of The Fields features a fenced dog park, half of which is reserved for smaller dogs and the other half for larger dogs."
+        />
+
+        <LinkContent 
+          link="https://www.portlandoregon.gov/parks/finder/index.cfm?action=ViewPark&PropertyID=63"
+          linkText="Brentwood Park"
+          text="Located in SE Portland, Brentwood Park has plenty of open grassy areas and a small pond where your pup can take a dip."
+        />
+        <LinkContent 
+          link="https://www.portland.gov/parks/chimney-park"
+          linkText="Chimney Park"
+          text="Tucked away in NE Portland, Chimney Park is a quiet and secluded park with plenty of space for your pup to explore."
+        />
+        <LinkContent 
+          link="https://www.portland.gov/parks/gabriel-park"
+          linkText="Gabriel Park"
+          text="Gabriel Park is a sprawling park located in SW Portland with plenty of walking trails and grassy areas."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="https://www.alltrails.com/trail/us/oregon/wildwood-trail--4"
+          linkText="Wildwood Trail"
+          text="This 30-mile trail runs through Forest Park, connecting the western and eastern parts of the city. It's a great place to take your pup for a scenic hike or run."
+        />
+
+        <LinkContent
+          link="https://www.alltrails.com/trail/us/oregon/powell-butte-loop-trail--2"
+          linkText="Powell Butte Loop Hike"
+          text="This easy 2-mile loop is the perfect way to get some fresh air and take in the stunning views of Mt. Rainier."
+        />
+
+        <LinkContent
+          link="https://stateparks.oregon.gov/index.cfm?do=park.profile&parkId=103"
+          linkText="Tryon Creek State Natural Area"
+          text="Tyron Creek State Natural Area is a 693-acre park is home to plenty of hiking trails, a lake, and even an off-leash dog area."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.threshold.beer/"
+          linkText="Threshold Brewing"
+          text="Threshold Brewing in SE Portland is the perfect place to relax and grab a Polish-style beer with your pup. They even have outdoor seating so you can enjoy the sunshine together."
+        />
+
+        <LinkContent
+          link="https://migrationbrewing.com/"
+          linkText="Migration Brewing"
+          text="Boasting four pubs across Portland, Migration Brewing has fast become one of the city's favorite spots for craft beer. Many of their locations also have dog-friendly patios, so be sure to bring your pup along!"
+        />
+
+        <LinkContent
+          link="https://keelerestatevineyard.com/"
+          linkText="Keeler Estate"
+          text="A wine club for dogs? We're in. Keeler Estate is a pet-friendly winery that offers tours and tastings for both people and their canine companions. (OK, the wine's just for people. But pups get treats too!)"
+        />
+
+        <Typography variant="h2">Check Out Portland&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.leisurepublichouse.com/"
+          linkText="Leisure Public House"
+          text="Offering hot-pressed sandwiches and boozy popsicles in the summer, this relaxed pub in SE Portland is the perfect spot to grab a bite with your pup."
+        />
+
+        <LinkContent
+          link="https://pdx.eater.com/venue/23244/tamale-boy"
+          linkText="Tamale Boy"
+          text="This Mexican restaurant in SE Portland has become a favorite among locals for its delicious burritos and tacos, and a favorite among pups for its dog-friendly back patio!"
+        />
+
+        <LinkContent
+          link="http://www.pizzajerkpdx.com/"
+          linkText="Pizza Jerk"
+          text="Pizza Jerk is a popular spot for delicious wood-fired pizza and craft beer in NE Portland. They even have a dog-friendly patio that's perfect for sharing a slice with your furry friend."
+        />
+
+        <Typography variant="h2">Portland Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="https://www.barkzone.com/"
+          linkText="BarkZone Dog Daycare & Boarding"
+          text="If you're looking for a place to board your pup while you explore Portland, look no further than BarkZone. This daycare and boarding facility offers everything from daycare services to overnight stays in their spacious, climate-controlled suites."
+        />
+
+        <LinkContent
+          link="https://busterandlilly.wixsite.com/mysite"
+          linkText="Buster & Lilly's Doggie Daycare"
+          text=" Located in SE Portland, Buster & Lilly's Doggie Daycare is the perfect place for your pup to stay while you're away. They offer playgroups and one-on-one time with their experienced staff, as well as overnight boarding services."
+        />
+
+        <Typography variant="h2">Portland&apos;s Best Pet Stores</Typography>
+        <Typography variant="base">Just in case your pup&apos;s favorite toys get soaked in a Portland puddle, here are your best options for pet stores in town.</Typography>
+      
+        <LinkContent
+          link="https://www.yelp.com/biz/meat-portland?utm_campaign=NULL,0168f9cf-77ab-4440-8e5a-ea1eced5d23e&utm_medium=3b4c1d20-9476-4bb7-8ba7-0900aedc17cc"
+          linkText="Meat"
+          text="For all your natural pet food needs, check out Meat. Located in SE Portland, this shop specializes in health-conscious pet foods and natural treats."
+        />
+
+        <LinkContent
+          link="https://www.yelp.com/biz/the-filling-station-pet-supplies-portland-2?utm_campaign=NULL,0168f9cf-77ab-4440-8e5a-ea1eced5d23e&utm_medium=3b4c1d20-9476-4bb7-8ba7-0900aedc17cc"
+          linkText="The Filling Station Pet Supplies"
+          text="The Filling Station is a local favorite for pet supplies,  toys, and other pet needs. The store is located in the Alberta Arts District and offers everything from cat food to bird cages."
+        />
+
+        <LinkContent
+          link="https://portlandpetstores.com/saltys-pet-supply/"
+          linkText="Salty’s Pet Supply"
+          text="Salty’s Pet Supply is another excellent place for pet owners to stop in Portland. Customers love Salty’s for the fantastic staff, the wide selection of products, and the reliable prices that make it easy to find great deals."
+        />
+      </Box>
+    </>)
+  } else if (cityName === 'Salt Lake City') {
+    return (<>
+      <Box width="100%" padding="2.5rem" display="flex" flexDirection="column" gap="1rem">
+        <Divider />
+        <Typography mt="1rem" variant="base">Looking for an adventurous destination to explore with your pet? We&apos;ll go ahead and put in a vote for Salt Lake City.</Typography>
+        <Typography variant="base">SLC is a vibrant city and an ideal hub for outdoor activities in the surrounding breathtaking landscapes. The nearby Wasatch Mountains offer endless opportunities for hiking, biking, camping, skiing and snowboarding. Visitors can also enjoy rafting and fishing on rivers like the Jordan or Weber. Meanwhile, Downtown Salt Lake City boasts art galleries, museums, and historic sites that tell the stories of the region&apos;s past. Music lovers will appreciate the many concert venues scattered throughout the city.</Typography>
+        <Typography mb="1rem" variant="base">For pet owners, Salt Lake City has a variety of pet-friendly attractions and activities. The city is home to several dog parks, including Liberty Park, Millcreek Canyon Dog Park, and Sugarhouse Park. Pet owners can also check out the Animal Planet Store in downtown Salt Lake City for interactive fun with their furry friends.</Typography>
+
+        <Typography variant="h2">Pet-Friendly Hotels in Salt Lake City</Typography>
+        <Typography variant="base" component="p">Salt Lake City has a number of pet-friendly hotels that offer a comfortable stay for your four-legged companion. Pet owners should be aware that some hotels may have weight limits or other restrictions when it comes to bringing pets, but Romingo&apos;s standardized pet policy ensures that every pet owner can bring two dogs weighing up to 75 lbs each without paying any fees.</Typography>
+        {data?.propertiesByLocation.map(card => (
+          <Box key={card.id} sx={{ py: '0.5em' }}>
+            <ListingCard
+              {...card}
+              city={{ name: 'Salt Lake City' }}
+              duration={2}
+              highlighted={false}
+              petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+            />
+          </Box>
+        ))}
+        {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+      </Box>
+
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Salt Lake City</Typography>
+
+        <Typography variant="h5">Explore Salt Lake City&apos;s Off-Leash Dog Parks</Typography>
+
+        <LinkContent
+          link="https://slco.org/parks/tanner-park/"
+          linkText="Tanner Park"
+          text="Boasting tennis courts, an amphitheater, and even BMX tracks, Tanner Park has lots to offer -- but most importantly for your four-legged friend, its dog park is nearly three acres of off-leash fun."
+        />
+
+        <LinkContent
+          link="https://www.thrivepetcare.com/veterinary-groups/utah-dog-park-centers"
+          linkText="Utah Dog Park"
+          text="This indoor, social-friendly park is a great spot for your pet to meet other dogs and enjoy plenty of playtime, regardless of season."
+        />
+
+        <LinkContent
+          link="https://www.slc.gov/parks/parks-division/lindsey-gardens/"
+          linkText="Lindsey Gardens Park"
+          text="A small but popular dog park located in the heart of Salt Lake City, Lindsey Gardens offers plenty of amenities."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="http://rootsrated.com/salt-lake-city-ut/hiking/neffs-canyon-hiking"
+          linkText="Neff's Canyon"
+          text="This picturesque trail offers stunning views of the Wasatch Mountains and plenty of opportunities for your pup to explore."
+        />
+
+        <LinkContent
+          link="http://rootsrated.com/salt-lake-city-ut/hiking/dog-lake"
+          linkText="Dog Lake"
+          text="This easy-to-moderately difficult trail circles Dog Lake, offering a great outing for pups and owners of all skill levels."
+        />
+
+        <LinkContent
+          link="http://rootsrated.com/salt-lake-city-ut/cycling/emigration-canyon"
+          linkText="Kilyon Canyon"
+          text="Alongside a stream and through canyons, this scenic trail is a perfect journey for you and your pup to explore on a sunny day."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.gopetfriendly.com/activities/breweries-wineries/ut/salt-lake-city/mountain-west-cider"
+          linkText="Mountain West Cider"
+          text="This cidery allows dogs to join their owners on the patio and offers a delicious selection of ciders for every palette."
+        />
+
+        <LinkContent
+          link="https://www.gopetfriendly.com/activities/breweries-wineries/ut/salt-lake-city/fisher-brewing-company"
+          linkText="Fisher Brewing Company"
+          text="Brews and food trucks are a perfect match, and Fisher Brewing Company knows it. This Salt Lake City brewery has a large, pet-friendly outdoor area where you can enjoy a locally-brewed beer or eats from visiting food trucks."
+        />
+
+        <LinkContent
+          link="https://www.gopetfriendly.com/activities/breweries-wineries/ut/salt-lake-city/tf-brewing"
+          linkText="TF Brewing"
+          text="TF Brewing is a Salt Lake City-based brewery with a taproom that offers pet-friendly outdoor seating and visiting food trucks. TF boasts 13 rotating taps serving lagers, sours, and more. Bring your pooch and stay warm by the firepits!"
+        />
+
+        <Typography variant="h2">Check Out Salt Lake City&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.instagram.com/beerhive_pub/?hl=en"
+          linkText="Beerhive Pub"
+          text="This downtown pub is a fantastic spot to grab a beer and a bite with your pup. Take advantage of the outside seating or hang out inside while enjoying the wide selection of craft beers, specialty cocktails, and pub grub."
+        />
+
+        <LinkContent
+          link="https://www.brugeswaffles.com/bruges-bistro-salt-lake-city/"
+          linkText="Bruges Belgian Bistro"
+          text="Enjoy a delicious Belgian-style meal with your pup on the outdoor patio. Bruges is a great spot for owners and pooches to relax and enjoy some of Salt Lake City's finest beers, mussels, and fries."
+        />
+
+        <LinkContent
+          link="https://www.facebook.com/cafeon1st"
+          linkText="Cafe on 1st"
+          text="Just off Main Street in downtown Salt Lake City, Cafe on 1st offers delicious food and coffee with pet-friendly outdoor seating. Enjoy some of the cafe's unique menu items and people-watch while sipping your favorite beverage."
+        />
+
+        <Typography variant="h2">Salt Lake City Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="https://swimatbarleys.com/"
+          linkText="Barley's Canine Recreation Center"
+          text="Barley's offers a wide range of play and boarding options for your pup. From daycare to overnight stays, your pet will always be supervised with the utmost care in Barley's clean, comfortable facility."
+        />
+
+        <LinkContent
+          link="https://desertdogdaycare.com/"
+          linkText="Desert Dog Daycare"
+          text="This daycare center offers a safe and fun environment for your pup while you're away. Desert Dog boasts large outdoor play areas and plenty of indoor space, ensuring that your pooch will be well-taken care of during its stay."
+        />
+
+        <LinkContent
+          link="https://diggitydogresort.com/"
+          linkText="Diggity Dog Resort"
+          text="This resort offers overnight and daycare boarding options for your pup. Whether you're looking for a place to leave your pet for an extended period or just need a spot for it to stay while you run errands, Diggity Dog Resort will be sure that your furry friend is well taken care of!"
+        />
+
+        <Typography variant="h2">Salt Lake City&apos;s Best Pet Stores</Typography>
+
+        <LinkContent
+          link="https://www.petspawt.com/"
+          linkText="Pet Spawt"
+          text="With a wide selection of pet supplies and grooming services, Pet Spawt is an excellent spot to find all your pet needs. From food and toys to clothing and treats, you'll be sure to find something special for your pup here."
+        />
+
+        <LinkContent  
+          link="https://dogsmeow.com/"
+          linkText="The Dog’s Meow"
+          text="Stop by this locally-owned pet store for an extensive selection of treats, toys, and other pet supplies. The Dog’s Meow also hosts fun events such as agility classes and obedience training."
+        />
+
+        <LinkContent
+          link="https://houndandcat.com/"
+          linkText="Hound and Cat"
+          text="This unique pet store offers everything from food and toys to apparel and accessories for your pup. They also offer a self-service grooming station, so you can get your pup spruced up while you shop."
+        />
+      </Box>
+    </>)
+  } else if (cityName === 'Santa Fe') {
+    return (<>
+      <Box width="100%" padding="2.5rem" display="flex" flexDirection="column" gap="1rem">
+        <Divider />
+        <Typography mt="1rem" variant="base">Santa Fe, New Mexico is a vibrant and historical city full of culture, entertainment, and outdoor activities. From the Santa Fe Plaza and its many museums to the stunning Sangre de Cristo Mountains and ski slopes, there&apos;s something for everyone in this unique high desert community -- and yes, that applies to pet owners looking to travel to Santa Fe with their four-legged friends!</Typography>
+        <Typography variant="base">The city is home to some of the best art galleries in all of America. From traditional Native American pottery to cutting-edge contemporary works, art lovers can enjoy a variety of artistic styles. Visitors can also explore the city&apos;s many historic sites and museums, including the Loretto Chapel, San Miguel Mission and Palace of the Governors.</Typography>
+        <Typography variant="base">Outdoor enthusiasts have an abundance of activities to choose from in Santa Fe. Nature lovers can hike or bike in the Sangre de Cristo Mountains, which offer excellent views of the city and its surrounding areas. Skiers and snowboarders can enjoy skiing and snowboarding at nearby ski resorts like Ski Santa Fe.</Typography>
+        <Typography mb="1rem" variant="base">Finally, pet owners will be happy to know that Santa Fe is a pet-friendly city. Visitors can bring their furry friends along on many of the city&apos;s trails, parks and even some hotels. With its variety of pet-friendly activities, it&apos;s easy for visitors to find something for everyone in the family -- including your pup!</Typography>
+        <Typography variant="h2">Pet-Friendly Hotels in Santa Fe</Typography>
+        {data?.propertiesByLocation.map(card => (
+          <Box key={card.id} sx={{ py: '0.5em' }}>
+            <ListingCard
+              {...card}
+              city={{ name: 'Santa Fe' }}
+              duration={2}
+              highlighted={false}
+              petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+            />
+          </Box>
+        ))}
+        {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+      </Box>
+
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Santa Fe</Typography>
+
+        <Typography variant="h5">Explore Santa Fe&apos;s Off-Leash Dog Parks</Typography>
+
+        <LinkContent
+          link="https://thedogparkproject.org/index.html"
+          linkText="Frank S. Ortiz Dog Park"
+          text="This sprawling park offers plenty of space to run, play, and explore. Dogs must be leashed when entering the park but can then be let off leash once inside."
+        />
+
+        <LinkContent
+          link="http://sfhumanesociety.org/services-get-involved/dog-parks/"
+          linkText="Santa Fe Animal Shelter Dog Park"
+          text="This smaller, fenced-in park offers a safe and secure environment for dogs to run and play. Dogs must remain leashed when entering the park."
+        />
+
+        <LinkContent
+          link="https://www.santafenm.gov/ft_marcy_recreation_complex"
+          linkText="Fort Marcy Dog Park"
+          text="Built especially for small dogs, Fort Marcy Dog Park is the perfect place for your little pup to get some exercise and meet new friends."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="https://www.santafe.org/new_mexico_state_capitol/"
+          linkText="State Capitol Grounds"
+          text="Take a leisurely stroll with your pup around the state Capitol grounds and enjoy beautiful scenery along the way."
+        />
+
+        <LinkContent
+          link="https://railyardpark.org/about/"
+          linkText="Railyard Park Conservancy"
+          text="Perfect for both long and short walks, this historic park is a great place to take your pup for an outing."
+        />
+
+        <LinkContent
+          link="http://www.cerrillosnewmexico.com/cerrillos-state-park"
+          linkText="Cerrillos Hills State Park"
+          text="Take a hike with your pup through the rolling hills of this state park and explore its many trails. Make sure to keep your dog on a leash during the entire hike."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="http://www.duelbrewing.com/"
+          linkText="Duel Brewing"
+          text="Stop by this pet-friendly brewery for a refreshing drink and enjoy some of their unique beers while your pup explores the outdoor patio."
+        />
+
+        <LinkContent
+          link="https://rowleyfarmhouse.com/"
+          linkText="Rowley Farmhouse Ales"
+          text="Take your pup for a visit to this pet-friendly and independently-owned brewery, where you can enjoy some of their delicious ales and snacks."
+        />
+
+        <LinkContent
+          link="http://www.estrelladelnortevineyard.com/"
+          linkText="Estrella Del Norte Vineyard and Tasting Room"
+          text="Relax on the outdoor patio at Estrella Del Norte Vineyard and enjoy some of their award-winning wines while your pup lounges alongside you."
+        />
+
+        <Typography variant="h2">Check Out Santa Fe&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.elfarolsantafe.com/"
+          linkText="El Farol"
+          text="Enjoy some delicious Spanish cuisine and a glass of wine with your pup at this pet-friendly restaurant."
+        />
+
+        <LinkContent
+          link="https://cowgirlsantafe.com/"
+          linkText="Cowgirl BBQ"
+          text="Stop by this popular barbeque joint for some of their delicious Texas-style cuisine and let your pup join you on the outdoor patio."
+        />
+
+        <Typography variant="h2">Santa Fe&apos;s Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="http://topdogsantafe.com/"
+          linkText="Top Dog Pet Resort"
+          text="If you need to board your pup for the day or for a longer stay, Top Dog Pet Resort offers top-notch care in a comfortable and safe environment."
+        />
+
+        <LinkContent
+          link="https://zoomiesinc.com/"
+          linkText="Zoomies"
+          text="If you need a place to take your pup during the day while you explore Santa Fe, Zoomies offers doggie daycare services in a fun and loving atmosphere."
+        />
+
+        <Typography variant="h2">Santa Fe&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link="https://www.tecatu.com/"
+          linkText="Teca Tu-A Pawsworthy Pet Emporium"
+          text="Stop by this pet emporium for everything you need to spoil your pup, including beds, toys and treats."
+        />
+
+        <LinkContent
+          link="https://www.petco.com/shop/en/petcostore"
+          linkText="PETCO"
+          text="This chain popular pet store offers all the necessities you need to keep your pup happy and healthy."
+        />
+
+        <LinkContent
+          link="https://martysmeals.com/"
+          linkText="Marty’s Meals"
+          text="This pet-friendly store offers an array of healthy food and treats for your pup, as well as a wide selection of supplies."
+        />
+      </Box>
+    </>)
+  } 
+
+
+  else {
     return (
       <HotelSection 
         text=""
