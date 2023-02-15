@@ -2120,7 +2120,432 @@ export default function InnerContent({ cityId, cityName, city }) {
         />
       </Box>
     </>)
-  } 
+  } else if (cityName === 'Scottsdale') {
+    return (<>
+      <Box width="100%" padding="2.5rem" display="flex" flexDirection="column" gap="1rem">
+        <Divider />
+        <Typography mt="1rem" variant="base">Whether you&apos;re headed to Scottsdale for Spring Training, spring break, or just to enjoy some sunshine, there&apos;s something for everyone. From exceptional golf courses and luxury spas to art galleries and free live music events, Scottsdale has what it takes to make your trip one you won&apos;t soon forget. Don&apos;t forget to take a tour of the vibrant downtown area that is home to unique shops, restaurants, and lively bars. If you’re feeling particularly adventurous, take a hot air balloon ride to get an aerial view of the entire city!</Typography>
+        <Typography variant="base">Pet-friendly hotel accommodations, dog parks, and local hiking trails make it easy to have a great time with your pooch. Plus, Scottsdale is home to some of Arizona’s most pet-friendly attractions, from the Southwest Wildlife Conservation Center to McDowell Sonoran Preserve, where you can explore miles of pet-friendly trails.</Typography>
+        <Typography variant="base">Let&apos;s dive into our guide to pet-friendly travel in Scottsdale, Arizona!</Typography>
+
+        <Typography variant="h2">Pet-Friendly Hotels in Scottsdale</Typography>
+        {data?.propertiesByLocation.map(card => (
+          <Box key={card.id} sx={{ py: '0.5em' }}>
+            <ListingCard
+              {...card}
+              city={{ name: 'Scottsdale' }}
+              duration={2}
+              highlighted={false}
+              petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+            />
+          </Box>
+        ))}
+        {loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+      </Box>
+
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Scottsdale</Typography>
+
+        <Typography variant="h5">Explore Scottsdale&apos;s Off-Leash Dog Parks</Typography>
+
+        <LinkContent
+          link="https://www.scottsdaleaz.gov/parks/dog-parks"
+          linkText="Chaparral Park"
+          text="Located on the north side of Scottsdale, Chaparral Park offers two off-leash dog areas. The first is a one-acre area for small dogs and puppies, while the second is a two-acre area for larger breeds."
+        />
+
+        <LinkContent
+          link="https://www.scottsdaleaz.gov/parks/eldorado-park"
+          linkText="Eldorado Park"
+          text="Spend an afternoon at Eldorado Park in Scottsdale, Arizona, which spans over sixty acres with something for everyone in the family. Take your dog for a walk along the greenbelt walking path around the lake."
+        />
+
+        <LinkContent
+          link="https://www.scottsdaleaz.gov/parks/dog-parks"
+          linkText="Vista del Camino Dog Park"
+          text="Humans and their canine friends can enjoy off-leash playtime at Vista del Camino Dog Park. This half-acre park offers water stations, benches, and shade trees. Leashed dogs are also welcome throughout the larger Vista del Camino Park. Parking for the dog park is available off Pierce Street."
+        />
+
+        <LinkContent
+          link="https://www.scottsdaleaz.gov/parks/dog-parks"
+          linkText="Horizon Dog Park"
+          text="Horizon Dog Park is a small off-leash area located on the far west end of Horizon Park. Features include a large shade structure, human and canine water fountains, and a water feature to control the dust."
+        />
+
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="http://mcdowellsonoran.org/"
+          linkText="McDowell Sonoran Preserve"
+          text="Scottsdale’s McDowell Sonoran Preserve is a great spot for hiking with your pup. Spanning over 30,000 acres of desert land, the preserve is home to more than 200 miles of trails ranging from easy strolls to steep climbs."
+        />
+
+        <LinkContent
+          link="https://www.mcdowellsonoran.org/trailhead-main/toms"
+          linkText="Tom’s Thumb"
+          text="Tom’s Thumb is a popular hiking spot in the McDowell Mountains with spectacular views. It's an ideal place to spend an afternoon with your pup, as it offers several moderate trails that wind up and around huge rock formations."
+        />
+
+        <LinkContent
+          link="https://www.mcdowellsonoran.org/gateway"
+          linkText="Gateway Trailhead"
+          text="Take a hike at the Gateway Trailhead, located near the McDowell Sonoran Preserve Visitor Center. With more than 8 miles of trails and spectacular views of the valley below, this is a top option for an afternoon adventure with your pup."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://mcfatebrewing.com/"
+          linkText="McFate Brewing Company"
+          text="Enjoy a cold beer and some pup-friendly snacks at McFate Brewing Company. This pet-friendly brewery offers an outdoor patio that’s perfect for kicking back with your four-legged friend."
+        />
+
+        <LinkContent
+          link="https://cheefbotanicals.com/cbd-best-sellers/"
+          linkText="Scottsdale Beer Company"
+          text="Let your pup join you as you sample craft beer at Scottsdale Beer Company. A pet-friendly patio and a range of rotating taps make this brewery worth checking out."
+        />
+
+        <LinkContent
+          link="https://www.suvinowineryaz.com/"
+          linkText="Su Vino Winery"
+          text="Enjoy a glass of wine beneath the stars at Su Vino Winery. Not only is it pet-friendly, but it also features plenty of live music and space for your pup to roam around."
+        />
+
+        <Typography variant="h2">Check Out Scottsdale&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.facebook.com/MorningSqueezeScottsdale"
+          linkText="Morning Squeeze"
+          text="Grab a bite to eat at Morning Squeeze, an all-day breakfast spot that’s also pet-friendly. Enjoy classic diner fare like omelets, biscuits and gravy, and French toast in their outdoor patio with your pup."
+        />
+
+        <LinkContent
+          link="https://aznypdpizza.com/nypd-pizza-locations-az/north-scottsdale-raintree-101"
+          linkText="NYPD Pizza - North Scottsdale"
+          text="This pet-friendly pizzeria is a great spot to grab dinner with your dog. Enjoy classic pizza and calzones, along with salads and sandwiches, in NYPD Pizza’s outdoor patio."
+        />
+
+        <LinkContent
+          link="https://www.facebook.com/ohsodistillery"
+          linkText="O.H.S.O Eatery & Distillery"
+          text="This local eatery is the perfect spot to spend an afternoon with your four-legged friend. Enjoy craft beer, creative cocktails, and a range of American comfort food in O.H.S.O’s pet-friendly patio."
+        />
+
+        <Typography variant="h2">Scottsdale&apos;s Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="https://www.pawcommons.com/scottsdale-az/"
+          linkText="Paw Commons Pet Resort"
+          text="Take a break from your pup and let them stay at Paw Commons Pet Resort. This popular daycare and boarding facility offers luxurious suites, play yards, spa services, and plenty of activities for your furry friend."
+        />
+
+        <LinkContent
+          link="https://alwaysunleashed.com/"
+          linkText="Always Unleashed Resort"
+          text="Another great option for daycare and boarding is Always Unleashed Resort. This pet resort offers comfortable lodging, fun activities, and 24-hour supervision."
+        />
+
+        <LinkContent
+          link="https://www.petitepupdaycare.com/"
+          linkText="Petite Pup Daycare"
+          text="Petite Pup Daycare is an excellent option for smaller breeds or puppies. They offer a variety of play areas, exercise classes, and activities designed to keep your pup safe and entertained."
+        />
+
+        <Typography variant="h2">Scottsdale&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link="http://www.seespotonline.com/"
+          linkText="See Spot Shop"
+          text="See Spot Shop is a pet boutique offering an array of products for your pup. From stylish collars and leashes to healthy treats and toys, they have everything you need to keep your furry friend happy and healthy."
+        />
+
+        <LinkContent
+          link="https://www.petco.com/shop/en/petcostore"
+          linkText="PETCO"
+          text="PETCO is a great spot to stock up on supplies for your pup. Shop their wide selection of pet food, toys, treats and more at this local store."
+        />
+
+        <LinkContent
+          link="http://www.scottsdalelivestock.com/"
+          linkText="Scottsdale Livestock"
+          text="Visit Scottsdale Livestock for a wide selection of pet supplies and accessories. From grooming tools to training equipment, you’ll find everything you need for your pup here."
+        />
+
+        <LinkContent
+          link="https://www.petsmart.com/"
+          linkText="PetSmart"
+          text="PetSmart offers all the essentials for your furry friend. Shop their selection of pet food, toys, treats and more at this popular chain."
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Seattle') {
+    return (<>
+      <HotelSection 
+        text="If you're looking for a great place to take your pup on vacation, Seattle is an excellent choice! With so many activities and places to stay, it's the perfect destination for any dog-loving traveler. Whether you want to explore the city or just relax with your pup, Seattle has something for everyone. So pack up the leash and head out on an adventure today. Your pup will love every minute of it!"
+        secondaryText=""
+        cityName="Seattle"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Seattle</Typography>
+
+        <Typography variant="h5">Explore Seattle&apos;s Off-Leash Dog Parks</Typography>
+
+        <LinkContent 
+          link="https://www.seattle.gov/parks/allparks/blue-dog-pond"
+          linkText="Blue Dog Pond"
+          text="If you're up for a game of fetch, Blue Dog Pond is the place for you and your pup. The wide open field is fenced in, meaning your dog can run to their heart's content. Just be warned that during rainy seasons, the ground can get pretty muddy. But no need to worry – there are parkside water stations where you can wash off your pup's dirty paws before heading home."
+        />
+
+        <LinkContent
+          link="https://www.seattle.gov/parks/allparks/denny-park"
+          linkText="Denny Park"
+          text="Denny Park’s off-leash area isn’t as large as Blue Dog Pond, but it offers plenty of room for a good game of fetch. Plus, the park has beautiful views of downtown Seattle, so you can enjoy the sights while your pup enjoys their playtime."
+        />
+
+        <LinkContent
+          link="https://www.dogwoodplaypark.com/"
+          linkText="Dogwood Play Park"
+          text="This is a great spot for socializing and bonding with your pup. With plenty of space to play, agility equipment, a dog pool, and an on-site bar, Dogwood Play Park has everything you need for a fun day out with your pet."
+        />
+
+        <LinkContent
+          link="https://www.seattle.gov/parks/find/parks/jose-rizal-park"
+          linkText="Dr. Jose Rizal Park"
+          text="This is the spot for a social media–worthy photoshoot of your pooch amid the Seattle skyline. Plus, if the gate-protected off-leash area doesn’t provide enough stimulation, the park’s walking paths with stunning views just might."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="https://www.wta.org/go-hiking/hikes/ira-spring-memorial#trailhead-map"
+          linkText="Ira Spring Trail at Mason Lake"
+          text="The 6.5-mile trail is named after Ira Spring, a lifelong conservationist and nature photographer. Fittingly, it's a photographer’s dream. The trail starts gradually, and you can cool off in Mason Creek before the serious climbing begins around 2 miles in. Enjoy the gorgeous views of Mason Lake and Bandera Mountain before heading back down. Or heck, bring gear and stay in one of the designated camping areas overnight!"
+        />
+
+        <LinkContent
+          link="https://www.wta.org/go-hiking/hikes/navaho-pass#trailhead-map"
+          linkText="Navaho Pass"
+          text="Get ready for a beautiful day out with your pup at Navaho Pass. The trail is 5.5 miles round trip and offers views of the Cascade Mountains, glimpses of the Snoqualmie River, and plenty of opportunities to take pictures—it’s literally picture perfect!"
+        />
+
+        <LinkContent
+          link="https://www.wta.org/go-hiking/hikes/anderson-and-watson-lakes#trailhead-map"
+          linkText="Anderson and Watson Lakes"
+          text="This trail may be short, but it packs a punch with mesmerizing views of Anderson and Watson Lakes. After the initial climb, hikers can take a leisurely stroll through an old growth forest before heading back to the car."
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/patterson-cellars/"
+          linkText="Patterson Cellars"
+          text="With tasting rooms in Woodinville, Leavenworth, and South Seattle, Patterson Cellars is most definitely a local favorite. Even better, all of the locations are dog-friendly! Pups can visit the patios and tasting rooms. Drink away your worries while your dog looks on judgingly and nibbles on provided treats and water."
+        />
+
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/elsom-cellars/"
+          linkText="Elsom Cellars"
+          text="Elsom Cellars is the perfect spot for a getaway with your pup. The bright and airy tasting room atmosphere makes for an easygoing afternoon, or you can grab a bottle to bring out to their dog-friendly patio. Plus, they have a food truck onsite so no one goes hungry!"
+        />
+
+        <LinkContent
+          link="https://www.sidewalkdog.com/business/spoiled-dog-winery/"
+          linkText="Spoiled Dog Winery"
+          text="This is the ultimate pup-friendly spot. Spoiled Dog Winery allows your dogs to roam the outside area, plus they have a doggie pool! Humans can sip on their award-winning bottles of wine while their four-legged friends cool off in the pool. It’s also a great opportunity to meet other pet parents and make local (human) friends!"
+        />
+
+        <Typography variant="h2">Check Out Seattle&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://www.normseatery.com/"
+          linkText="Norm’s Eatery & Ale House"
+          text="This is a great spot for brunch, lunch, and dinner. Not only do they serve up delicious food and tasty drinks but their outside area is pet-friendly too! You can enjoy your meal with your pup by your side."
+        />
+
+        <LinkContent
+          link="http://www.supersixseattle.com/"
+          linkText="Super Six"
+          text="Tucked away in a former auto body shop, Super Six is a vibrant spot that serves up some really yummy Asian-fusion cuisine. The restaurant has an outside area where your pup can sit and watch you enjoy your meal."
+        />
+
+        <LinkContent
+          link="https://www.portagebaycafe.com/"
+          linkText="Portage Bay Cafe"
+          text="Fiending for something organic? Check out Portage Bay Cafe. Their mission is to provide food with 100% organic ingredients and they have an outside seating area that’s perfect for bringing your pup along."
+        />
+
+        <Typography variant="h2">Seattle&apos;s Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="https://www.acanine.com/"
+          linkText="A Canine Experience Inc."
+          text="A Canine Experience Inc. is a great option for both daycare and boarding. They have large indoor play areas where your pup can run around and make friends, plus they offer enrichment classes to help keep them mentally stimulated when you’re away. Plus, their staff are all certified trainers so you know your pup will be in good hands!"
+        />
+
+        <LinkContent
+          link="http://caninecomfortcorner.com/"
+          linkText="Canine Comfort Corner"
+          text="Canine Comfort Corner is a great option for dogs who prefer more personal attention. Their team of expert dog handlers will give your pup individualized care while you’re away. They offer daycare, boarding, and training services so your pup can have an enjoyable stay without feeling overwhelmed or stressed out."
+        />
+
+        <Typography variant="h2">Seattle&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link="https://www.petpros.net/lake-city-pet-stores/"
+          linkText="PetPros"
+          text="PetPros is a great option for pet supplies. They carry everything from food to toys, and even have a grooming salon on site! Curbside pickup and delivery options are available for those who don’t want to venture out on an infamous Seattle rainy day."
+        />
+
+        <LinkContent
+          link="https://www.emeraldcitypetsupplies.com/products/shop/"
+          linkText="Emerald City Pet Supplies"
+          text="Emerald City Pet Supplies is a great option for pet owners looking for natural, organic products. They have a wide selection of holistic food, treats, supplements and more! Plus, their staff are always happy to answer any questions you may have about your pup’s nutrition."
+        />
+
+        <LinkContent
+          link="https://www.allthebestpetcare.com/"
+          linkText="All The Best Pet Care"
+          text="Family-owned local chain All The Best Pet Care is a great option for pet owners looking for high-quality food and supplies."
+        />
+
+      </Box>
+    </>)
+  } else if (cityName === 'Tucson') {
+    return (<>
+      <HotelSection 
+        text="Planning a visit to Tucson, Arizona? You'll find plenty to keep you busy! From cultural attractions like The Tucson Museum of Art and the Arizona Sonora Desert Museum, to outdoor activities like hiking in Saguaro National Park, or exploring the windy streets of downtown Tucson, there's something for everyone. And if you're bringing your pet, don't forget to check out the popular dog-friendly parks and trails."
+        secondaryText="Here's our guide to pet-friendly travel in Tucson."
+        cityName="Tucson"
+        includedHotels={
+          [
+            'all'
+          ]
+        }
+      />
+      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
+        <Typography mt="1rem" variant="h2">Pet-Friendly Activies in Tucson</Typography>
+
+        <Typography variant="h5">Explore Tucson&apos;s Off-Leash Dog Parks</Typography>
+
+        <LinkContent
+          link="https://webcms.pima.gov/cms/one.aspx?portalId=169&pageId=1415"
+          linkText="Smiling Dog Ranch Dog Park at George Mehl Family Foothills Park"
+          text="With acres of open space to explore, Smiling Dog Ranch is the perfect spot for your pup to run and play."
+        />
+
+        <LinkContent
+          link="https://webcms.pima.gov/cms/one.aspx?portalId=169&pageId=1427"
+          linkText="McDonald District Park"
+          text="Offering a fenced-in area for your pup to run and play, McDonald District Park is a popular spot for Tucson dog owners."
+        />
+
+        <LinkContent
+          link="https://www.tucsonaz.gov/parks/dog-parks#PurpleHeart"
+          linkText="Purple Heart Park - Ivan's Spot"
+          text="Named after a late, beloved police dog, Ivan's Spot is open to off-leash play and offers plenty of room for your pup to roam. Choose between devoted areas for large and small dogs!"
+        />
+
+        <LinkContent
+          link="https://webcms.pima.gov/cms/One.aspx?portalId=169&pageId=1367"
+          linkText="Brandi Fenton Memorial Park"
+          text="Offering an extensive, fenced-in area for off-leash play, Brandi Fenton Memorial Park is another popular spot for Tucson dog owners."
+        />
+
+        <Typography variant="h5">Take a Hike with Your Pup</Typography>
+        <LinkContent
+          link="https://webcms.pima.gov/cms/one.aspx?portalId=169&pageId=6688"
+          linkText="Sweetwater Preserve Trailhead"
+          text="Packed with breathtaking views, this trail is perfect for both you and your pup to explore—just make sure to keep your pup leashed at all times."
+        />
+
+        <LinkContent
+          link="https://azstateparks.com/catalina/explore/facility-information"
+          linkText="Catalina State Park"
+          text="Offering stunning desert views, Catalina State Park is a great spot to take a hike with your pup. With more than 5,000 acres of foothills and canyons, you and your furry friend are sure to have an amazing time."
+        />
+
+        <LinkContent
+          link="https://webcms.pima.gov/cms/one.aspx?portalId=169&pageId=6109"
+          linkText="Agua Caliente Hill Trail"
+          text="With plenty of room for your pup to roam and explore, Agua Caliente Hill Trail is a great spot to spend a morning. Just make sure to follow leash laws and bring water—it can get hot out there!"
+        />
+
+        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
+        <LinkContent
+          link="https://barriobrewing.com/"
+          linkText="Barrio Brewing Co."
+          text="Barrio Brewing Co. is a popular spot for drinkers and dogs alike—just make sure to keep your pup leashed at all times! Enjoy an ice-cold brew in their beer garden, and don't forget to order some delicious food from their food truck."
+        />
+
+        <LinkContent
+          link="https://www.borderlandsbrewing.com/"
+          linkText="Borderlands Brewing Co."
+          text="Borderlands Brewing Co. is a great spot to kick back with a cold one, and your pup can join in on the fun too! They offer plenty of outdoor seating, so you and your pup can relax in style."
+        />
+
+        <LinkContent
+          link="https://www.pueblovidabrewing.com/"
+          linkText="Pueblo Vida Brewing Company"
+          text="One of the newest additions to Tucson's craft beer scene, Pueblo Vida Brewing Company offers plenty of outdoor seating for you and your pup. Enjoy a cold pint in their spacious beer garden, and make sure to order some grub from one of their food trucks!"
+        />
+
+        <Typography variant="h2">Check Out Tucson&apos;s Pet-Friendly Restaurants and Cafes</Typography>
+        <LinkContent
+          link="https://barriobrewing.com/"
+          linkText="Barrio Brewing Company"
+          text="This popular brewery is a great spot for you and your pup to grab a bite. Choose from their selection of craft beers, and don't forget to order one of their delicious menu items."
+        />
+
+        <LinkContent
+          link="http://www.foxrestaurantconcepts.com/zinburger.html"
+          linkText="Zinburger"
+          text="Located in the La Encantada Shopping Center, Zinburger is a great spot for you and your pup to grab a bite. Popular menu items include their signature burgers and salads."
+        />
+
+        <LinkContent
+          link="https://firetruckbrewing.com/"
+          linkText="Firetruck Brewing Company"
+          text="Firetruck Brewing Company is a great spot for you and your pup to grab a bite. Enjoy their selection of craft beers, as well as delicious bar food like street tacos and flatbread pizza."
+        />
+
+        <Typography variant="h2">Tucson&apos;s Dog Daycare and Boarding</Typography>
+        <LinkContent
+          link="http://www.dawghouse.biz/"
+          linkText="Dawg House"
+          text="With plenty of room for your pup to run and play, Dawg House is a popular spot for Tucson dog owners. They offer both daycare and boarding services, so you can rest easy knowing that your pup is in good hands while you're away."
+        />
+
+        <LinkContent
+          link="https://cobysdoghouse.com/"
+          linkText="Cobys Dog House"
+          text="Cobys Dog House is a great spot for you to board your pup while you're away. They offer a wide range of services, including daycare and overnight boarding, so your pup can stay safe and comfortable while you're away."
+        />
+
+        <LinkContent
+          link="http://sabinocanyonpetresort.com/"
+          linkText="Sabino Canyon Pet Resort"
+          text="Offering a wide variety of services, including daycare, boarding and grooming, Sabino Canyon Pet Resort is the perfect spot for your pup to stay while you're away. They offer plenty of outdoor space for your pup to frolic!"
+        />
+
+        <Typography variant="h2">Tucson&apos;s Best Pet Stores</Typography>
+        <LinkContent
+          link="https://www.dogsndonutstucson.com/"
+          linkText="Dogs-N-Donuts"
+          text="This popular pet store offers a wide selection of pet supplies and treats, including natural and organic food for your pup. They also offer self-serve dog wash stations, so you can pamper your pup in style!"
+        />
+
+        <LinkContent
+          link="https://www.petco.com/shop/en/petcostore"
+          linkText="PETCO"
+          text="PETCO is a great spot to pick up all of your pet supplies. They have a wide selection of food, toys, and other items for your pup. Plus, they offer plenty of helpful advice from their knowledgeable staff!"
+        />
+
+        <LinkContent
+          link="https://oldtownhorseandpet.com/"
+          linkText="Old Town Horse & Pets"
+          text="Locally owned and operated, Old Town Horse & Pets offers a wide selection of pet supplies and accessories. They carry a wide variety of food, toys, and other items for your four-legged friend."
+        />
+      </Box>
+    </>)
+  }
 
 
   else {
