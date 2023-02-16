@@ -2545,7 +2545,7 @@ export default function InnerContent({ cityId, cityName, city }) {
         />
       </Box>
     </>)
-  }
+  } //Houston, Colorado Springs, Vail, San Antonio
 
 
   else {

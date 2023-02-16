@@ -527,7 +527,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const getReviewData = () => {
     const request = {
-      placeId: data.getPropertyDetails.googlePlaceId,
+      placeId: data.getPropertyDetails.googlePlaceId.trim(),
       fields: ["reviews", "rating", "user_ratings_total"],
     };
     if (google) {
