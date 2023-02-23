@@ -61,12 +61,12 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
           />
       }
 
-      {allows_big_dogs ?
+      {petFeePolicy.maxWeightPerPetInLBS <= 0 ?
         ( <Chip
             size="small"
             sx={chipIconStyle}
             icon={<Pets fontSize="small"  />}
-            label={<Box sx={iconSpacing}>All weights accepted</Box>}
+            label={<Box sx={iconSpacing}>All pet sizes allowed</Box>}
           />
         ) :
           <>
@@ -80,7 +80,7 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
               size="small"
               sx={chipIconStyle}
               icon={<ScaleTwoTone fontSize="small"  />}
-              label={<Box sx={iconSpacing}>75 lbs. each</Box>}
+              label={<Box sx={iconSpacing}>{petFeePolicy.maxWeightPerPetInLBS} lbs. each</Box>}
             />
           </>
       }
