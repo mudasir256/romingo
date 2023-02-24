@@ -425,7 +425,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         setAccessibleRooms(accessibleArr);
         setRooms(nonAccessibleArr);
       } else {
-        setRooms([...roomInfo.getSabreRoomReservationAvailabilty.rooms])
+        setRooms([]) //...roomInfo.getSabreRoomReservationAvailabilty.rooms
       }
 
       const tmp = [];
