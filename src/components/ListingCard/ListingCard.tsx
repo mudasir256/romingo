@@ -115,8 +115,22 @@ const ListingCard: FC<ListingCardProps> = ({
             label={<Box sx={{ ml: '0em', pl: 0}}>$0 pet fees</Box>}
           />
       }
-
-      {petFeePolicy.maxWeightPerPetInLBS <= 0 ?
+      {petFeePolicy.maxWeightPerPetInLBS === null ?
+        <>
+          <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<Pets fontSize="small"  />}
+            label={<Box sx={iconSpacing}>2 dogs</Box>}
+          />
+          <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<ScaleTwoTone fontSize="small"  />}
+            label={<Box sx={iconSpacing}>75 lbs. each</Box>}
+          />
+        </> :
+       petFeePolicy.maxWeightPerPetInLBS <= 0 ?
         ( <Chip
             size="small"
             sx={chipIconStyle}
