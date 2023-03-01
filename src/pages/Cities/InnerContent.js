@@ -65,12 +65,7 @@ export default function InnerContent({ cityId, cityName, city }) {
         cityName="San Francisco"
         includedHotels={
           [
-            'pet-friendly-hotels-san-francisco-hilton-san-francisco-union-square',
-            'pet-friendly-hotels-san-francisco-marriott-fishermans-wharf',
-            'pet-friendly-hotels-san-francisco-hyatt-regency-san-francisco-embarcadero',
-            'pet-friendly-hotels-san-francisco-kimpton-alton-hotel-fishermans-wharf',
-            'pet-friendly-hotels-san-francisco-intercontinental-san-francisco',
-            'pet-friendly-hotels-san-francisco-argonaut-hotel'
+            'all'
           ]
         }
       />
@@ -454,9 +449,7 @@ export default function InnerContent({ cityId, cityName, city }) {
         cityName="Palm Springs"
         includedHotels={
           [
-            'pet-friendly-hotels-palm-springs-margaritaville-resort-palm-springs',
-            'pet-friendly-hotels-palm-springs-arrive-palm-springs',
-            'pet-friendly-hotels-palm-springs-kimpton-rowan-palm-springs'
+            'all'
           ]
         }
       />
@@ -762,8 +755,7 @@ export default function InnerContent({ cityId, cityName, city }) {
         cityName="Sacramento"
         includedHotels={
           [
-            'pet-friendly-hotels-sacramento-hyatt-regency-sacramento',
-            'pet-friendly-hotels-sacramento-kimpton-sawyer-hotel'
+            'all'
           ]
         }
       />
