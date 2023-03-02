@@ -407,9 +407,9 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         const uniqueRoomTypes = [... new Set(romingoMatch.map(room => room.name))]
         const roomsTmp = []
         uniqueRoomTypes.forEach(name => {
-          const comparisons = romingoMatch.filter(room => room.name === name).map(room => room.averagePrice)
-          const lowestPrice = Math.min(...comparisons)
-          roomsTmp.push(romingoMatch.find(room => (room.name === name && room.averagePrice === lowestPrice) ))
+          // const comparisons = romingoMatch.filter(room => room.name === name).map(room => room.averagePrice)
+          // const lowestPrice = Math.min(...comparisons)
+          roomsTmp.push(romingoMatch.find(room => (room.name === name))) //&& room.averagePrice === lowestPrice) ))
         })
 
         const accessibleArr: RoomInfo[] = [];
