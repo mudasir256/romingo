@@ -99,10 +99,10 @@ const Navbar: FC<Props> = ({ sx }) => {
       <AppBar
         position={path === '/' ? 'fixed': 'relative'}
         style={{
-          background: "#ffffffed",
+          background: "white",
           WebkitBackdropFilter: "blur(6px)",
           backdropFilter: "blur(6px)",
-          backgroundColor: "#ffffffed",
+          backgroundColor: "white",
         }}
         sx={{ boxShadow: trigger ? 2 : 0, borderBottom: "1px solid #ddd" }}
       >
