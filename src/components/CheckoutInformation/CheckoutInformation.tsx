@@ -277,6 +277,8 @@ const CheckoutInformation: FC<Props> = ({
     });
 
     try {
+
+      //TODO: if policy.cancelable SI, otherwise directly charge
       createSI({
         variables: { createSetupIntentInput: { email: checkoutForm.email } },
       });

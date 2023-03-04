@@ -6,8 +6,9 @@ import StarIcon from "@mui/icons-material/Star";
 
 import {
   Pets,
-  ScaleTwoTone,
 } from '@mui/icons-material'
+
+import DogIcon from '../../assets/icon/dog.png'
 
 export interface ListingCardProps {
   id: string;
@@ -115,9 +116,22 @@ const ListingCard: FC<ListingCardProps> = ({
             label={<Box sx={{ ml: '0em', pl: 0}}>$0 pet fees</Box>}
           />
       }
-      {petFeePolicy.maxWeightPerPetInLBS === null ?
+      {(petFeePolicy.maxWeightPerPetInLBS === null || petFeePolicy.maxWeightPerPetInLBS === '') ?
         <>
           <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<Pets fontSize="small"  />}
+            label={<Box sx={iconSpacing}>No limit on number of pets</Box>}
+          />
+          <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<img width="18px" src={DogIcon} />}
+            label={<Box sx={iconSpacing}>No pet weight limits</Box>}
+          />
+        </> : petFeePolicy.maxWeightPerPetInLBS <= 0 ?
+        ( <><Chip
             size="small"
             sx={chipIconStyle}
             icon={<Pets fontSize="small"  />}
@@ -126,17 +140,10 @@ const ListingCard: FC<ListingCardProps> = ({
           <Chip
             size="small"
             sx={chipIconStyle}
-            icon={<ScaleTwoTone fontSize="small"  />}
+            icon={<img width="18px" src={DogIcon} />}
             label={<Box sx={iconSpacing}>75 lbs. each</Box>}
           />
-        </> :
-       petFeePolicy.maxWeightPerPetInLBS <= 0 ?
-        ( <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<Pets fontSize="small"  />}
-            label={<Box sx={iconSpacing}>All pet sizes allowed</Box>}
-          />
+          </>
         ) :
           <>
             <Chip
@@ -148,7 +155,7 @@ const ListingCard: FC<ListingCardProps> = ({
             <Chip
               size="small"
               sx={chipIconStyle}
-              icon={<ScaleTwoTone fontSize="small"  />}
+              icon={<img width="18px" src={DogIcon} />}
               label={<Box sx={iconSpacing}>{petFeePolicy.maxWeightPerPetInLBS} lbs. each</Box>}
             />
           </>

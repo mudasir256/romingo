@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Chip, Box, Typography } from "@mui/material";
 import {
   Pets,
-  ScaleTwoTone,
 } from '@mui/icons-material'
+import DogIcon from '../assets/icon/dog.png'
 
 interface Props {
   petFeePolicy: any,
@@ -18,13 +18,14 @@ const chipIconStyle = {
   mt: '0.35em',
   display: 'flex',
   justifyContent: 'flex-start',
-  mr: '0.1em'
+  mr: '0.1em',
 }
 
 const iconSpacing = {
   mt: '0.15em', 
   ml: '0em'
 }
+
 
 const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dogs }) => {
   
@@ -61,9 +62,22 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
           />
       }
 
-      {petFeePolicy.maxWeightPerPetInLBS === null ?
+      {(petFeePolicy.maxWeightPerPetInLBS === null || petFeePolicy.maxWeightPerPetInLBS === '') ?
         <>
           <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<Pets fontSize="small"  />}
+            label={<Box sx={iconSpacing}>No limit on number of pets</Box>}
+          />
+          <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<img width="18px" src={DogIcon} />}
+            label={<Box sx={iconSpacing}>No pet weight limits</Box>}
+          />
+        </> : petFeePolicy.maxWeightPerPetInLBS <= 0 ?
+        ( <><Chip
             size="small"
             sx={chipIconStyle}
             icon={<Pets fontSize="small"  />}
@@ -72,16 +86,10 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
           <Chip
             size="small"
             sx={chipIconStyle}
-            icon={<ScaleTwoTone fontSize="small"  />}
+            icon={<img width="18px" src={DogIcon} />}
             label={<Box sx={iconSpacing}>75 lbs. each</Box>}
           />
-        </> : petFeePolicy.maxWeightPerPetInLBS <= 0 ?
-        ( <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<Pets fontSize="small"  />}
-            label={<Box sx={iconSpacing}>All pet sizes allowed</Box>}
-          />
+          </>
         ) :
           <>
             <Chip
@@ -93,7 +101,7 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
             <Chip
               size="small"
               sx={chipIconStyle}
-              icon={<ScaleTwoTone fontSize="small"  />}
+              icon={<img width="18px" src={DogIcon} />}
               label={<Box sx={iconSpacing}>{petFeePolicy.maxWeightPerPetInLBS} lbs. each</Box>}
             />
           </>
