@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CSSObject } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Check from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
-
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { utils } from "../../services/utils";
 
 interface Props {
@@ -16,6 +16,9 @@ interface Props {
 }
 
 const CancelPolicy: FC<Props> = ({ sx, policy }) => {
+
+  const [showExtra, setShowExtra] = useState(false)
+
   return (
     <Box sx={sx}>
       <Box
@@ -120,11 +123,11 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 *Dates effective in the hotel timezone.
               </Typography>
             </>
-          ) : (
+          ) : (<>
             <Box
               sx={{
                 display: "flex",
-                alignItems: "bottom",
+                alignItems: "center",
                 justifyContent: "start",
                 mt: 1,
               }}
@@ -133,7 +136,7 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 sx={{
                   fontSize: { xs: 15, sm: 18 },
                   mr: 0.75,
-                  mt: 0.25,
+                  mt: 0,
                   color: "error.main",
                 }}
               />
@@ -142,12 +145,26 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 variant="body1"
                 sx={{
                   mt: 0,
-                  color: "text.light",
+                  mr: 0.75,
+                  color: "red",
                 }}
               >
                 The rate is non-refundable.
               </Typography>
+              <InfoOutlinedIcon style={{ fontSize: '20px', color: 'red', marginBottom: '6px'}} onMouseEnter={() => setShowExtra(true)} onMouseLeave={() => setShowExtra(false)} />
             </Box>
+              {showExtra && <Box position="absolute">
+              <Typography
+                variant="body1"
+                sx={{
+                  mt: 0,
+                  color: "text.light",
+                }}
+              >
+                If you change or cancel your booking you will not get a refund or credit to use for a future stay. This policy will apply regardless of COVID-19, subject to any local consumer laws.
+              </Typography></Box>
+              } 
+            </>
           )}
         </Box>
       </Box>
