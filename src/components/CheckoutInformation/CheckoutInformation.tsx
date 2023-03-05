@@ -14,6 +14,7 @@ import { gql, useMutation } from "@apollo/client";
 import {
   CreateBooking2,
   CreateSetupIntent,
+  CreatePaymentIntent,
 } from "../../constants/constants";
 import { useSelector } from "react-redux";
 import Dialog from "@mui/material/Dialog";
@@ -111,6 +112,117 @@ const CheckoutInformation: FC<Props> = ({
     });
   };
 
+
+  const [createPI, { data: piData, loading: piLoading }] = useMutation(
+    gql`
+      ${CreatePaymentIntent}
+    `,
+    {
+      async onCompleted(data) {
+        setPaymentLoading(true);
+        if (!stripe || !elements) {
+          console.log("Stripe or Elements not loaded");
+          setPaymentLoading(false);
+          return;
+        }
+
+        const cardElement = elements.getElement(CardElement);
+        if (!cardElement) {
+          setPaymentLoading(false);
+          return;
+        }
+
+        try {
+          const { error, paymentIntent } = await stripe.confirmCardPayment(
+             data?.createPaymentIntent?.paymentIntent?.clientSecret,
+             {
+               payment_method: {
+                 card: cardElement,
+                 billing_details: {
+                   name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
+                 },
+               },
+             }
+           );
+          if (paymentIntent) {
+            const adults: { firstName: string; lastName: string }[] = [];
+            const children: {
+              firstName: string;
+              lastName: string;
+              age: number;
+            }[] = [];
+
+            Array.from(Array(occupants.adults)).forEach((_, i) => {
+              if (i === 0) {
+                adults.push({
+                  firstName: checkoutForm.firstName.trim(),
+                  lastName: checkoutForm.lastName.trim(),
+                });
+              } else {
+                const guestId = String.fromCharCode(64 + i);
+                adults.push({
+                  firstName: `Adult${guestId}`,
+                  lastName: checkoutForm.lastName.trim(),
+                });
+              }
+            });
+
+            if (occupants.children > 0) {
+              Array.from(Array(occupants?.childrenAge?.length)).forEach(
+                (x_, i) => {
+                  const childId = String.fromCharCode(65 + i);
+                  children.push({
+                    firstName: `Child${childId}`,
+                    lastName: checkoutForm.lastName.trim(),
+                    age: occupants.childrenAge[i],
+                  });
+                }
+              );
+            }
+
+            createBooking2({
+              variables: {
+                createBooking2Input: {
+                  priceKey: priceKey,
+                  customerId: paymentIntent.id,
+                  paymentIntentId: paymentIntent.id,
+                  email: checkoutForm.email,
+                  mobile: {
+                    countryCallingCode: checkoutForm.countryCode,
+                    number: checkoutForm.phone,
+                  },
+                  adults,
+                  children,
+                  noOfDogs: occupants.dogs,
+                  intentType: 'payment_intent',
+                  setupIntentObject: {
+                    created: parseInt((new Date().getTime() / 1000).toFixed(0))
+                  },
+                  utmSource: localStorage.getItem('utm_source') || '',
+                  utmMedium: localStorage.getItem('utm_medium') || ''
+                },
+              },
+            });
+            subscribeToNewsletter(checkoutForm.email)
+          }
+          setPaymentLoading(false);
+
+        } catch (err) {
+          console.log(err);
+          setFormError({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            check: "",
+            card: "*We were unable to process this transaction. Please try again.",
+          });
+          setPaymentLoading(false);
+        }
+      }
+    }
+  );
+
   const [createSI, { data: siData, loading: siLoading }] = useMutation(
     gql`
       ${CreateSetupIntent}
@@ -190,7 +302,7 @@ const CheckoutInformation: FC<Props> = ({
                   adults,
                   children,
                   noOfDogs: occupants.dogs,
-                  intentType: setupIntent ? 'setup Intent' : 'payment Intent',
+                  intentType: 'setup_intent',
                   setupIntentObject: setupIntent,
                   utmSource: localStorage.getItem('utm_source') || '',
                   utmMedium: localStorage.getItem('utm_medium') || ''
@@ -278,10 +390,16 @@ const CheckoutInformation: FC<Props> = ({
 
     try {
 
-      //TODO: if policy.cancelable SI, otherwise directly charge
-      createSI({
-        variables: { createSetupIntentInput: { email: checkoutForm.email } },
-      });
+      if (policy.cancelable) {
+        createSI({
+          variables: { createSetupIntentInput: { email: checkoutForm.email } },
+        });
+      } else {
+        createPI({
+          variables: { createPaymentIntentInput: { priceKey: priceKey } },
+        });
+      }
+  
 
       if (password && confirmPassword) {
         const data = await createAccount(checkoutForm.email, password)
@@ -387,6 +505,7 @@ const CheckoutInformation: FC<Props> = ({
         >
           <>
             {(siLoading ||
+              piLoading ||
               paymentLoading ||
               bnplLoading) && (
               <>
@@ -485,6 +604,7 @@ const CheckoutInformation: FC<Props> = ({
                 sx={{
                   display:
                     siLoading ||
+                    piLoading ||
                     paymentLoading ||
                     bnplLoading
                       ? "none"
@@ -713,9 +833,13 @@ const CheckoutInformation: FC<Props> = ({
                         You and your pet will be greeted by front desk staff
                         upon arrival.
                       </li>
-                      <li>
-                        Hotel will collect payment from guests directly upon check-in.
-                      </li>
+                      {policy.cancelable ? (
+                        <li>
+                          Hotel will collect payment from guests directly upon check-in.
+                        </li>
+                      ) : (
+                        <li>Your card will be charged immediately on a successful booking.</li>
+                      )}
                     </ul>
                   </Typography>
                   <Box
