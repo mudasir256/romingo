@@ -603,12 +603,7 @@ export default function InnerContent({ cityId, cityName, city }) {
         cityName="Los Angeles"
         includedHotels={
           [
-            'pet-friendly-hotels-los-angeles-mondrian-los-angeles',
-            'pet-friendly-hotels-los-angeles-the-line-la',
-            'pet-friendly-hotels-los-angeles-kimpton-la-peer-hotel',
-            'pet-friendly-hotels-los-angeles-softiel-los-angeles-at-beverly-hills',
-            'pet-friendly-hotels-los-angeles-1-hotel-west-hollywood',
-            'pet-friendly-hotels-los-angeles-kimpton-hotel-wilshire'
+            'all'
           ]
         }
       />
