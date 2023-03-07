@@ -550,7 +550,7 @@ const HomePage: FC<Props> = () => {
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
-            backgroundColor="#A16AAE"
+            backgroundColor="#ffa57f"
             fontColor="white"
             header="Romingo Rewards 🐶"
             text="Romingo offers pet lovers an easy way to book pet-friendly travel.  Experience the best pet-friendly hotels with the lowest rates and $0 pet fees when you book through Romingo. Roam the world freely with Romingo."

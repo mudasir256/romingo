@@ -17,11 +17,9 @@
       line-height: 1em;
       color: white;
       margin-bottom: 0.25em;
-      text-shadow: 2px 2px #080808;
 
       @media screen and (max-width: 800px) {
         font-size: 2em;
-        text-shadow: 1px 1px #080808;
       }
     }
 
@@ -31,7 +29,6 @@
       line-height: 24px;
       color: white;
       letter-spacing: 1.75px;
-      text-shadow: 1px 1px #080808;
 
       @media screen and (max-width: 800px) {
         font-size: 1em;

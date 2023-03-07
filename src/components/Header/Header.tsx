@@ -37,7 +37,7 @@ const Header: FC<Props> = ({ sx }) => {
   const imagesMobile = [
     {
     component: 'https://www.romingo.com/public/hero/dev-1.jpg',
-    placement: 'bottom -50px left -200px'
+    placement: 'bottom -50px left -300px'
     }
     // {
     //   component:  'https://www.romingo.com/public/hero/three.jpeg', 

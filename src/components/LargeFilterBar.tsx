@@ -247,7 +247,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             </Typography>
             <FormControl fullWidth>
               {!selectedCity && <Typography sx={{ position: 'absolute', top: '10%', }}>Select a city</Typography>}
-              <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ width: '220px', height: '29px', pt: '0.4rem' }} MenuProps={{ sx: { maxHeight: '55vh', position: 'absolute', left: '-20px', bottom: '-40px'} }} value={selectedCity}>
+              <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ width: '220px', height: '29px', pt: '0.4rem' }} MenuProps={{ sx: { maxHeight: '45vh', mt: '0rem', ml: '-1rem'} }} value={selectedCity}>
                 {groups.map((group, index) => {
                   const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: 'black' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
                   return (
