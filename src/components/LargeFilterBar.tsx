@@ -7,6 +7,10 @@ import {
   Box,
   Typography,
   CSSObject,
+  Select,
+  FormControl,
+  MenuItem,
+  ListSubheader
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
@@ -43,6 +47,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   const [selectedCity, setSelectedCity] = useState(
     search.city ? search.city : null
   );
+
   const [formError, setFormError] = useState("");
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
     search.checkIn ? search.checkIn : new Date(),
@@ -178,6 +183,29 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     )
   }
 
+  function groupCities(collection: any) {
+      let i = 0, val, index;
+      const values = [], result = [];
+
+
+      for (; i < collection.length; i++) {
+          val = collection[i]['state']['name'];
+          index = values.indexOf(val);
+          if (index > -1)
+              result[index].push(collection[i]);
+          else {
+              values.push(val);
+              result.push([collection[i]]);
+          }
+      }
+      return result;
+  }
+  const groups = groupCities(cities);
+
+  const handleCityClick = (city: any) => {
+    setSelectedCity(city.id)
+  }
+
   return (
     <Box sx={{ 
       mx: 'auto',
@@ -213,12 +241,25 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             <Typography
               sx={{
                 ...labelStyle,
-                mb: '0.7em',
-                ml: '1em'
+               
               }}>
               Where to
             </Typography>
-            <Box
+            <FormControl fullWidth>
+              {!selectedCity && <Typography sx={{ position: 'absolute', top: '10%', }}>Select a city</Typography>}
+              <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ width: '220px', height: '29px', pt: '0.4rem' }} MenuProps={{ sx: { maxHeight: '55vh', position: 'absolute', left: '-20px', bottom: '-40px'} }} value={selectedCity}>
+                {groups.map((group, index) => {
+                  const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: 'black' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
+                  return (
+                    [
+                      <Box key={index} sx={{ pl: '0.9em', pr: '1em' }}></Box>,
+                      ...menuItems,
+                    ]
+                  )
+                })}
+              </Select>
+            </FormControl>
+      {/*      <Box
               sx={{
                 mb: '0.3rem',
                 ml: '0.5rem',
@@ -233,9 +274,10 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                 "&:hover": { background: "#efefef" },
               }}
               onClick={() => setShowSelectCity(!showSelectCity)}
-            >
+            >*/}
+
               
-              <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
+{/*              <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
               <Typography
                 variant="base"
                 className="auto-complete-input"
@@ -253,9 +295,11 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                     },
                   },
                 }}
-              >{selectedCity ? getCity(selectedCity).name : 'Select a city'}</Typography>
-            </Box>
+              >{selectedCity ? getCity(selectedCity).name : 'Select a city'}</Typography>*/}
+            {/* </Box> */}
+            {/*
             {showSelectCity && <DesktopSelectCity />}
+            */}
 
           </Box>
 

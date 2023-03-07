@@ -243,7 +243,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     label="Where to" 
                     variant="standard" 
                     sx={{ 
-                      ml: '1rem', 
+                      ml: '0rem', 
                       pt: '0.1rem',
                       position: 'relative',
                     }} 
@@ -286,10 +286,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                 zIndex: 100, 
                 width: '100%', 
                 height: '90vh',
-                position: 'absolute', 
+                position: 'fixed', 
                 backgroundColor: 'white',
                 gap: '1rem',
-                left: '0', top: '-104px', mt: '0rem' }}
+                left: '0', top: '50px', mt: '0rem' }}
               >
                  <InfiniteCalendar
                     ref={calendarRef}
@@ -494,6 +494,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         <Box sx={{ 
           position: 'fixed', 
           overflow: 'auto',
+          left: '0',
           bottom: '0', 
           height: '80%', 
           width: '100%', 
