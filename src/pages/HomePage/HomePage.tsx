@@ -553,7 +553,7 @@ const HomePage: FC<Props> = () => {
             backgroundColor="#ffa57f"
             fontColor="white"
             header="Romingo Rewards 🐶"
-            text="Romingo offers pet lovers an easy way to book pet-friendly travel.  Experience the best pet-friendly hotels with the lowest rates and $0 pet fees when you book through Romingo. Roam the world freely with Romingo."
+            text="Get rewarded when you book with Romingo. Simple create a free account, book travel with your furry friend, and earn points towards future stays. For  every 5 reservations that are booked and stayed, guests will receive a $100 Romingo Reward towards a future hotel reservation."
             cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
           />
         </Box>
