@@ -9,191 +9,224 @@ const { HOTEL_DESCRIPTIONS } = require('./locationPageDescriptions')
 
 const data = []
 
+const defaultKeywords = "hotels, travel, pet friendly hotels, hotels near me, booking hotel, hotel booking, hotels nearby"
+
 const seo = [
   {
     path: "/",
     title: "Book pet friendly hotels - Romingo",
     description: "Romingo offers pet lovers an easy way to book pet-friendly travel. Experience the best dog-friendly hotels with Romingo, offering the lowest rates with $0 pet fees. You and your pet can roam the world freely with Romingo.",
     image: "https://romingo.com/public/images/home.jpg",
+    keywords: defaultKeywords
   },
   {
     path: '/listings',
     title: 'Find pet friendly hotels - Romingo',
     description: 'Search for and find pet friendly hotels in your area.',
-    image: "https://romingo.com/public/images/listings.jpg"
+    image: "https://romingo.com/public/images/listings.jpg",
+    keywords: defaultKeywords
   },
   {
     path: '/faq',
     title: 'Frequently asked questions - Romingo',
     description: "Romingo is a simple, user-friendly platform to book quality, dog friendly hotels. Our team works exclusively with hand-selected hotel partners to ensure you and your dog's guest experience is welcoming, warm, and 100% enjoyable. You can finally roam the world free with your pup and Romingo. Romingo does this by providing one, simple pet policy across all hotel partners. We call our streamlined policy the \"Romingo Guarantee\"",
-    image: ''
+    image: '',
+    keywords: defaultKeywords
   },
   {
     path: '/about',
     title: 'About - Romingo',
     description: "As a California native, there is nothing as relaxing and refreshing as driving up and down the California Coastline. Travel has always been one of my life's greatest joys, and during a prolonged global pandemic, weekend and car travel escapes with my partner, Jonathan, became a welcomed new outlet. Being near the ocean and feeling that fresh, crisp air recharges and inspires us. But I’ve always struggled leaving my French Bulldog, Maddie, at home when I travel.",
-    image: 'https://romingo.com/public/images/home.jpg'
+    image: 'https://romingo.com/public/images/home.jpg',
+    keywords: defaultKeywords
   },
   {
     path: '/contact',
     title: 'Contact - Romingo',
     description: 'Our support team is here for you 24/7! Please get in touch with us using one of the below methods. If you require immediate assistance, we recommend using our chat feature.',
-    image: ''
+    image: '',
+    keywords: defaultKeywords
   },
   {
     path: '/pet-friendly-hotels/los-angeles-california',
     title: 'Los Angeles Hotels - Romingo',
-    description: 'Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year.',
-    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg'
+    description: HOTEL_DESCRIPTIONS[17].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[17].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[17].keywords
   },
   {
     path: '/pet-friendly-hotels/san-diego-california',
     title: 'San Diego Hotels - Romingo',
-    description: 'For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions.',
-    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sd-2.jpeg'
+    description: HOTEL_DESCRIPTIONS[19].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[19].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[19].keywords
   }, 
   {
     path: '/pet-friendly-hotels/orange-county-california',
     title: 'Orange County Hotels - Romingo',
-    description: 'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
-    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/oc-2.jpeg'
+    description: HOTEL_DESCRIPTIONS[18].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[18].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[18].keywords
   },
   {
     path: '/pet-friendly-hotels/san-francisco-california',
     title: 'San Francisco Hotels - Romingo',
-    description: 'San Francisco is a lively cultural hub home to grand architectural buildings, world-class cuisine, cable cars, a dynamic waterfront, and plenty of outdoor adventures. The walkable city is adorned with iconic landmarks which is what truly sets San Francisco apart. Taking a stroll through the city’s streets is an exciting experience that will bring you from one unique neighborhood to another. San Francisco is a haven for lovers of performing arts and is also considered one of the United State’s greatest dining cities because of its rich diverse cultural influences, fresh ingredients, and creative chefs who come from all around the world.',
-    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sf-hero.jpeg'
+    description: HOTEL_DESCRIPTIONS[20].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[20].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[20].keywords
   },
   {
     path: '/pet-friendly-hotels/santa-barbara-california',
     title: 'Santa Barbara Hotels - Romingo',
-    description: 'Located on the central coast of California, the laid-back city of Santa Barbara offers the perfect getaway from the hustle and bustle of everyday life. The lovely city features Mediterranean style buildings that reflect its Spanish heritage, along with breathtaking mountain and beach views, and surrounding vineyards.',
-    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/sb-2.jpeg'
+    description: HOTEL_DESCRIPTIONS[21].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[21].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[21].keywords
   },
   {
     path: '/pet-friendly-hotels/palm-springs-california',
     title: 'Palm Springs Hotels - Romingo',
-    description: 'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
-    image: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg'
+    description: HOTEL_DESCRIPTIONS[16].paragraphOne,
+    image: HOTEL_DESCRIPTIONS[16].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[16].keywords
   },
   {
     path: "/pet-friendly-hotels/austin-texas",
     title: 'Austin Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[0].paragraphOne,
     image: HOTEL_DESCRIPTIONS[0].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[0].keywords
   },
   {
     path: '/pet-friendly-hotels/dallas-texas',
     title: 'Dallas Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[1].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[1].heroImage
+    image: HOTEL_DESCRIPTIONS[1].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[1].keywords
   },
   {
     path: '/pet-friendly-hotels/houston-texas',
     title: 'Houston Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[2].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[2].heroImage
+    image: HOTEL_DESCRIPTIONS[2].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[2].keywords
   },
   {
     path: '/pet-friendly-hotels/oceanside-california',
     title: 'Oceanside Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[3].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[3].heroImage
+    image: HOTEL_DESCRIPTIONS[3].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[3].keywords
   },
   {
     path: '/pet-friendly-hotels/phoenix-arizona',
     title: 'Phoenix Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[4].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[4].heroImage
+    image: HOTEL_DESCRIPTIONS[4].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[4].keywords
   },
   {
     path: '/pet-friendly-hotels/scottsdale-arizona',
     title: 'Scottsdale Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[5].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[5].heroImage
+    image: HOTEL_DESCRIPTIONS[5].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[5].keywords
   },
   {
     path: '/pet-friendly-hotels/tucson-arizona',
     title: 'Tucson Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[6].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[6].heroImage
+    image: HOTEL_DESCRIPTIONS[6].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[6].keywords
   },
   {
     path: '/pet-friendly-hotels/santa-fe-new-mexico',
     title: 'Santa Fe Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[7].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[7].heroImage
+    image: HOTEL_DESCRIPTIONS[7].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[7].keywords
   },
   {
     path: '/pet-friendly-hotels/san-antonio-texas',
     title: 'San Antonio Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[8].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[8].heroImage
+    image: HOTEL_DESCRIPTIONS[8].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[8].keywords
   },
   {
     path: '/pet-friendly-hotels/vail-colorado',
     title: 'Vail Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[9].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[9].heroImage
+    image: HOTEL_DESCRIPTIONS[9].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[9].keywords
   },
   {
     path: '/pet-friendly-hotels/colorado-springs-colorado',
     title: 'Colorado Springs Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[10].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[10].heroImage
+    image: HOTEL_DESCRIPTIONS[10].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[10].keywords
   },
   {
     path: '/pet-friendly-hotels/denver-colorado',
     title: 'Denver Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[11].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[11].heroImage
+    image: HOTEL_DESCRIPTIONS[11].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[11].keywords
   },
   {
     path: '/pet-friendly-hotels/seattle-washington',
     title: 'Seattle Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[12].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[12].heroImage
+    image: HOTEL_DESCRIPTIONS[12].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[12].keywords
   },
   {
     path: '/pet-friendly-hotels/portland-oregon',
     title: 'Portland Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[13].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[13].heroImage
+    image: HOTEL_DESCRIPTIONS[13].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[13].keywords
   },
   {
     path: '/pet-friendly-hotels/sacramento-california',
     title: 'Sacramento Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[14].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[14].heroImage
+    image: HOTEL_DESCRIPTIONS[14].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[14].keywords
   },
   {
     path: '/pet-friendly-hotels/salt-lake-city-utah',
     title: 'Salt Lake City Hotels — Romingo',
     description: HOTEL_DESCRIPTIONS[15].paragraphOne,
-    image: HOTEL_DESCRIPTIONS[15].heroImage
+    image: HOTEL_DESCRIPTIONS[15].heroImage,
+    keywords: HOTEL_DESCRIPTIONS[15].keywords
   },
   {
     path: '/list-your-property',
     title: 'List your property - Romingo',
     description: 'Interested in listing your property on the pet-friendliest site on the web? Learn more about Romingo partnerships & distribution by completing this brief form. Someone from our team will be in touch asap!',
-    image: ''
+    image: '',
+    keywords: defaultKeywords
   },
   {
     path: '/reservation/manage',
     title: 'Manage your reservation - Romingo',
     description: "Modify, cancel, or rebook your reservation on Romingo.",
-    image: ''
+    image: '',
+    keywords: defaultKeywords
   },
   {
     path: '/terms-of-use',
     title: 'Terms of use - Romingo',
     description: 'Accessing the Romingo website (“Site”) constitutes your agreement to the following Terms or Use (“Terms”). You should read these Terms and our privacy policy in their entirety before accessing, using, or obtaining information or services from the Site.',
-    image: ''
+    image: '',
+    keywords: defaultKeywords
   },
   {
     path: '/blog',
     title: 'Romingo Blog',
-    description: 'Discover pet-friendly travel tips and exclusive deals for Romingo.'
+    description: 'Discover pet-friendly travel tips and exclusive deals for Romingo.',
+    keywords: defaultKeywords
   }
 ]
 fs.createReadStream('./hotels.csv')
@@ -270,7 +303,8 @@ app.get("*", (req, res) => {
       .replace("__META_TITLE__", page.title)
       .replace("__META_DESCRIPTION__", page.description)
       .replace("__META_IMAGE__", page.image)
-      .replace("__META_URL__", `https://romingo.com${page.path}`);
+      .replace("__META_URL__", `https://romingo.com${page.path}`)
+      .replace("__META_KEYWORDS__", page.keywords);
     return res.send(htmlWithSeo);
   } else {
     let html = fs.readFileSync(path.join(__dirname, "build", "index.html"));
@@ -282,6 +316,7 @@ app.get("*", (req, res) => {
       .replace("__META_DESCRIPTION__", 'Romingo - book pet friendly hotels.')
       .replace("__META_IMAGE__", '')
       .replace("__META_URL__", pathname);
+      .replace("__META_KEYWORDS__", "hotels, travel, pet friendly hotels, hotels near me, booking hotel, hotel booking, hotels nearby")
     return res.send(htmlWithSeo);
   }
 });

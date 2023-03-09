@@ -78,6 +78,7 @@ const ListingCard: FC<ListingCardProps> = ({
   petFeePolicy,
   alias,
   amenities,
+  limitImages = false,
   ...props
 }) => {
   const history = useHistory();
@@ -244,17 +245,22 @@ const ListingCard: FC<ListingCardProps> = ({
               boxShadow: 0,
             }}
             setShow={setShowRating}
+            imageCount={limitImages ? 3 : 10}
           />
         </Box>
 
         <Box
+          component="a"
+          href={`/hotel/${alias}`}
+
           onClick={() => history.push("/hotel/" + alias, {flag: props?.flag, bookingId: props?.bookingId})}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
             pb: { xs: mobileCardPadding, sm: "0" },
             width: "100%",
-            position: 'relative'
+            position: 'relative',
+            textDecoration: 'none'
           }}
         >
           <Box
@@ -329,7 +335,7 @@ const ListingCard: FC<ListingCardProps> = ({
             >
               <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
                 <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                <span style={{ marginLeft: '0.25em', marginRight: '0.1em' }}>{romingoScore}</span>
+                <span style={{ marginLeft: '0.25em', marginRight: '0.1em', color: 'black' }}>{romingoScore}</span>
                 <Link
                   href={`/hotel/${alias}#reviews`}
                   sx={{

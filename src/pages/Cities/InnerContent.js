@@ -41,6 +41,7 @@ export default function InnerContent({ cityId, cityName, city }) {
               city={{ name: city }}
               duration={2}
               highlighted={false}
+              limitImages={true}
               petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
             />
           </Box>
@@ -52,7 +53,7 @@ export default function InnerContent({ cityId, cityName, city }) {
   const LinkContent = ({ link, linkText, text }) => (
     <Box>
       <Typography variant="base" component="p"><a href={link} target="_blank" rel="noreferrer">{linkText}</a></Typography>
-      <Typography variant="base">{text}</Typography>
+      <Typography variant="base" component="p">{text}</Typography>
     </Box>
   )
 

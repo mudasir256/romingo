@@ -13,7 +13,7 @@ interface Props {
   forceLarge?: boolean;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
+const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10 }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
 
@@ -29,7 +29,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge }) => {
               objectPosition: 'center', 
               borderRadius: '6px 6px 6px 6px',
             }} src={img.replace(/'/g, "%27")} alt="hotel image" loading="lazy" />)
-            : images.slice(0, 10).map((img, i) => (
+            : images.slice(0, imageCount).map((img, i) => (
               <>
                 <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}>
                   <img key={img + i} style={{
