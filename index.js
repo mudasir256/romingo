@@ -315,8 +315,8 @@ app.get("*", (req, res) => {
       .replace("__META_TITLE__", 'Romingo')
       .replace("__META_DESCRIPTION__", 'Romingo - book pet friendly hotels.')
       .replace("__META_IMAGE__", '')
-      .replace("__META_URL__", pathname);
-      .replace("__META_KEYWORDS__", "hotels, travel, pet friendly hotels, hotels near me, booking hotel, hotel booking, hotels nearby")
+      .replace("__META_URL__", pathname)
+      .replace("__META_KEYWORDS__", "hotels, travel, pet friendly hotels, hotels near me, booking hotel, hotel booking, hotels nearby");
     return res.send(htmlWithSeo);
   }
 });
