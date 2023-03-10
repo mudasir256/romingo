@@ -49,154 +49,154 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/los-angeles-california',
-    title: 'Los Angeles Hotels - Romingo',
+    title: 'Pet-friendly hotels in Los Angeles - Romingo',
     description: HOTEL_DESCRIPTIONS[17].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[17].heroImage,
     keywords: HOTEL_DESCRIPTIONS[17].keywords
   },
   {
     path: '/pet-friendly-hotels/san-diego-california',
-    title: 'San Diego Hotels - Romingo',
+    title: 'Pet-friendly hotels in San Diego - Romingo',
     description: HOTEL_DESCRIPTIONS[19].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[19].heroImage,
     keywords: HOTEL_DESCRIPTIONS[19].keywords
   }, 
   {
     path: '/pet-friendly-hotels/orange-county-california',
-    title: 'Orange County Hotels - Romingo',
+    title: 'Pet-friendly hotels in Orange County - Romingo',
     description: HOTEL_DESCRIPTIONS[18].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[18].heroImage,
     keywords: HOTEL_DESCRIPTIONS[18].keywords
   },
   {
     path: '/pet-friendly-hotels/san-francisco-california',
-    title: 'San Francisco Hotels - Romingo',
+    title: 'Pet-friendly hotels in San Francisco - Romingo',
     description: HOTEL_DESCRIPTIONS[20].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[20].heroImage,
     keywords: HOTEL_DESCRIPTIONS[20].keywords
   },
   {
     path: '/pet-friendly-hotels/santa-barbara-california',
-    title: 'Santa Barbara Hotels - Romingo',
+    title: 'Pet-friendly hotels in Santa Barbara - Romingo',
     description: HOTEL_DESCRIPTIONS[21].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[21].heroImage,
     keywords: HOTEL_DESCRIPTIONS[21].keywords
   },
   {
     path: '/pet-friendly-hotels/palm-springs-california',
-    title: 'Palm Springs Hotels - Romingo',
+    title: 'Pet-friendly hotels in Palm Springs - Romingo',
     description: HOTEL_DESCRIPTIONS[16].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[16].heroImage,
     keywords: HOTEL_DESCRIPTIONS[16].keywords
   },
   {
     path: "/pet-friendly-hotels/austin-texas",
-    title: 'Austin Hotels — Romingo',
+    title: 'Pet-friendly hotels in Austin — Romingo',
     description: HOTEL_DESCRIPTIONS[0].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[0].heroImage,
     keywords: HOTEL_DESCRIPTIONS[0].keywords
   },
   {
     path: '/pet-friendly-hotels/dallas-texas',
-    title: 'Dallas Hotels — Romingo',
+    title: 'Pet-friendly hotels in Dallas — Romingo',
     description: HOTEL_DESCRIPTIONS[1].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[1].heroImage,
     keywords: HOTEL_DESCRIPTIONS[1].keywords
   },
   {
     path: '/pet-friendly-hotels/houston-texas',
-    title: 'Houston Hotels — Romingo',
+    title: 'Pet-friendly hotels in Houston — Romingo',
     description: HOTEL_DESCRIPTIONS[2].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[2].heroImage,
     keywords: HOTEL_DESCRIPTIONS[2].keywords
   },
   {
     path: '/pet-friendly-hotels/oceanside-california',
-    title: 'Oceanside Hotels — Romingo',
+    title: 'Pet-friendly hotels in Oceanside — Romingo',
     description: HOTEL_DESCRIPTIONS[3].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[3].heroImage,
     keywords: HOTEL_DESCRIPTIONS[3].keywords
   },
   {
     path: '/pet-friendly-hotels/phoenix-arizona',
-    title: 'Phoenix Hotels — Romingo',
+    title: 'Pet-friendly hotels in Phoenix — Romingo',
     description: HOTEL_DESCRIPTIONS[4].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[4].heroImage,
     keywords: HOTEL_DESCRIPTIONS[4].keywords
   },
   {
     path: '/pet-friendly-hotels/scottsdale-arizona',
-    title: 'Scottsdale Hotels — Romingo',
+    title: 'Pet-friendly hotels in Scottsdale — Romingo',
     description: HOTEL_DESCRIPTIONS[5].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[5].heroImage,
     keywords: HOTEL_DESCRIPTIONS[5].keywords
   },
   {
     path: '/pet-friendly-hotels/tucson-arizona',
-    title: 'Tucson Hotels — Romingo',
+    title: 'Pet-friendly hotels in Tucson — Romingo',
     description: HOTEL_DESCRIPTIONS[6].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[6].heroImage,
     keywords: HOTEL_DESCRIPTIONS[6].keywords
   },
   {
     path: '/pet-friendly-hotels/santa-fe-new-mexico',
-    title: 'Santa Fe Hotels — Romingo',
+    title: 'Pet-friendly hotels in Santa Fe — Romingo',
     description: HOTEL_DESCRIPTIONS[7].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[7].heroImage,
     keywords: HOTEL_DESCRIPTIONS[7].keywords
   },
   {
     path: '/pet-friendly-hotels/san-antonio-texas',
-    title: 'San Antonio Hotels — Romingo',
+    title: 'Pet-friendly hotels in San Antonio — Romingo',
     description: HOTEL_DESCRIPTIONS[8].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[8].heroImage,
     keywords: HOTEL_DESCRIPTIONS[8].keywords
   },
   {
     path: '/pet-friendly-hotels/vail-colorado',
-    title: 'Vail Hotels — Romingo',
+    title: 'Pet-friendly hotels in Vail — Romingo',
     description: HOTEL_DESCRIPTIONS[9].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[9].heroImage,
     keywords: HOTEL_DESCRIPTIONS[9].keywords
   },
   {
     path: '/pet-friendly-hotels/colorado-springs-colorado',
-    title: 'Colorado Springs Hotels — Romingo',
+    title: 'Pet-friendly hotels in Colorado Springs — Romingo',
     description: HOTEL_DESCRIPTIONS[10].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[10].heroImage,
     keywords: HOTEL_DESCRIPTIONS[10].keywords
   },
   {
     path: '/pet-friendly-hotels/denver-colorado',
-    title: 'Denver Hotels — Romingo',
+    title: 'Pet-friendly hotels in Denver — Romingo',
     description: HOTEL_DESCRIPTIONS[11].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[11].heroImage,
     keywords: HOTEL_DESCRIPTIONS[11].keywords
   },
   {
     path: '/pet-friendly-hotels/seattle-washington',
-    title: 'Seattle Hotels — Romingo',
+    title: 'Pet-friendly hotels in Seattle — Romingo',
     description: HOTEL_DESCRIPTIONS[12].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[12].heroImage,
     keywords: HOTEL_DESCRIPTIONS[12].keywords
   },
   {
     path: '/pet-friendly-hotels/portland-oregon',
-    title: 'Portland Hotels — Romingo',
+    title: 'Pet-friendly hotels in Portland — Romingo',
     description: HOTEL_DESCRIPTIONS[13].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[13].heroImage,
     keywords: HOTEL_DESCRIPTIONS[13].keywords
   },
   {
     path: '/pet-friendly-hotels/sacramento-california',
-    title: 'Sacramento Hotels — Romingo',
+    title: 'Pet-friendly hotels in Sacramento — Romingo',
     description: HOTEL_DESCRIPTIONS[14].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[14].heroImage,
     keywords: HOTEL_DESCRIPTIONS[14].keywords
   },
   {
     path: '/pet-friendly-hotels/salt-lake-city-utah',
-    title: 'Salt Lake City Hotels — Romingo',
+    title: 'Pet-friendly hotels in Salt Lake City — Romingo',
     description: HOTEL_DESCRIPTIONS[15].paragraphOne.slice(0, 160),
     image: HOTEL_DESCRIPTIONS[15].heroImage,
     keywords: HOTEL_DESCRIPTIONS[15].keywords

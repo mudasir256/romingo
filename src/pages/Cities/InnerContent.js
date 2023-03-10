@@ -1851,6 +1851,7 @@ export default function InnerContent({ cityId, cityName, city }) {
               city={{ name: 'Salt Lake City' }}
               duration={2}
               highlighted={false}
+              limitImages={true}
               petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
             />
           </Box>
@@ -1994,6 +1995,7 @@ export default function InnerContent({ cityId, cityName, city }) {
               city={{ name: 'Santa Fe' }}
               duration={2}
               highlighted={false}
+              limitImages={true}
               petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
             />
           </Box>
@@ -2124,6 +2126,7 @@ export default function InnerContent({ cityId, cityName, city }) {
               city={{ name: 'Scottsdale' }}
               duration={2}
               highlighted={false}
+              limitImages={true}
               petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
             />
           </Box>
