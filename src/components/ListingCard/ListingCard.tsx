@@ -182,7 +182,8 @@ const ListingCard: FC<ListingCardProps> = ({
               fontSize: '1.25em',
               fontWeight: 800,
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              color: 'black'
             }}
           >
             {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'sansita-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
