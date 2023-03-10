@@ -24,10 +24,11 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
       <Box
         sx={{
           color: "#222",
-          borderTop: "1px solid #ddd",
           pt: { xs: 3, sm: 2 },
           pb: 2.5,
           px: { xs: "0rem", sm: "1rem" },
+          boxShadow: { xs: 0, sm: 0, md: 1 },
+          borderRadius: 2
         }}
       >
         <Typography
@@ -65,9 +66,9 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                   }}
                 />
                 <Typography
-                  variant="base"
+                  variant="caption"
                   sx={{
-                    mt: 0,
+                    mt: 0.3,
                     fontWeight: 500,
                     color: "text.light",
                   }}
@@ -97,9 +98,9 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
                 />
 
                 <Typography
-                  variant="base"
+                  variant="caption"
                   sx={{
-                    mt: 0,
+                    mt: 0.3,
                     fontWeight: 500,
                     color: "text.light",
                   }}

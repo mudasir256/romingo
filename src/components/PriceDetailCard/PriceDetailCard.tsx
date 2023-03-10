@@ -89,9 +89,11 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
     <Box
       sx={{
         color: "text.primary",
-        paddingTop: { xs: "1rem", sm: "0rem" },
-        paddingBottom: { xs: "1rem", sm: "0.5rem" },
+        paddingTop: { xs: "1rem", sm: "1rem" },
+        paddingBottom: { xs: "1rem", sm: "0.75rem" },
         px: { xs: "0rem", sm: "1rem" },
+        boxShadow: { xs: 0, sm: 0, md: 1 },
+        borderRadius: 2
       }}
     >
       <Typography
@@ -99,12 +101,13 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
         sx={{
           color: "#222",
           textAlign: "left",
-          mb: 1,
+          mb: '0.75rem',
           fontWeight: 800
         }}
       >
         <b>Price Details</b>
       </Typography>
+
       {priceArr.map((detail, i) => {
         if (i === 1) {
           return (
@@ -116,11 +119,11 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 alignItems: "flex-end",
                 borderBottom: "1px solid #DDD",
                 mt: 1,
-                pb: 1,
+                pb: 2,
               }}
             >
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -134,7 +137,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
@@ -147,44 +150,44 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
             </Box>
           );
-        } else if (i === detailsLen - 2) {
+        } else if (i === detailsLen - 2) { //this is Total
           return (
             <Box
               key={i}
               sx={{
-                borderTop: "1px solid #DDD",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
                 mt: 1,
-                pt: 1,
+                borderTop: "1px solid #DDD",
+                pt: 2
               }}
             >
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   mt: 0,
-                  color: "#222",
+                  color: "black",
                   textIndent: "-8px",
                   paddingLeft: "8px",
                   maxWidth: "70%",
-                  fontWeight: 600,
+                  fontWeight: 800,
                 }}
               >
-                {detail.label}
+                <b>{detail.label}</b>
               </Typography>
 
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
-                  fontWeight: 500,
+                  fontWeight: 800,
                   mt: 0,
-                  color: "text.primary",
+                  color: "black",
                   textIndent: "-8px",
                   paddingLeft: "8px",
                 }}
               >
-                {`${dollarUSLocale.format(detail?.price)}*`}
+                <b>{`${dollarUSLocale.format(detail?.price)}*`}</b>
               </Typography>
             </Box>
           );
@@ -196,11 +199,12 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
-                mt: 1,
+                pt: 0,
+                pb: 1,  
               }}
             >
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -214,7 +218,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
@@ -291,10 +295,13 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 justifyContent: "space-between",
                 alignItems: "flex-end",
                 mt: 1,
+                pt: 2,
+                mb: 1,
+                borderTop: "1px solid #DDD",
               }}
             >
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -308,7 +315,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   fontWeight: 500,
                   mt: 0,
@@ -329,11 +336,12 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "flex-end",
-                mt: 1,
+                mt: 2,
+                pb: 0.5
               }}
             >
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   mt: 0,
                   color: "text.primary",
@@ -347,7 +355,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
               </Typography>
 
               <Typography
-                variant="p"
+                variant="base"
                 sx={{
                   fontWeight: 500,
                   mt: 0,

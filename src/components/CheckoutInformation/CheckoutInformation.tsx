@@ -61,7 +61,6 @@ const CheckoutInformation: FC<Props> = ({
     card: "",
   });
 
-  console.log(authService.getUser())
   const [priceChanged, setPriceChanged] = useState(false);
   const [checkState, setCheckState] = useState(false);
   const [checkAccountState, setCheckAccountState] = useState(false);
@@ -498,7 +497,7 @@ const CheckoutInformation: FC<Props> = ({
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            pt: 3,
+            pt: 0,
             pb: 2.5,
             px: 2,
           }}
@@ -840,6 +839,9 @@ const CheckoutInformation: FC<Props> = ({
                       ) : (
                         <li>Your card will be charged immediately on a successful booking.</li>
                       )}
+                      <li>
+                        Hotel may request a fully-refundable pet deposit and/or signed pet waiver upon check-in.
+                      </li>
                     </ul>
                   </Typography>
                   <Box

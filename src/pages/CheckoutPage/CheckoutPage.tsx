@@ -17,6 +17,7 @@ import ScrollToTop from "../../components/ScrollToTop";
 import ImageSlider from "../../components/ImageSlider";
 import { Star } from "@mui/icons-material";
 import RomingoScore from "../../components/RomingoScore";
+import DiscountIcon from '@mui/icons-material/LocalOffer';
 
 declare global {
   interface Window {
@@ -77,7 +78,7 @@ const CheckoutPage: FC<Props> = () => {
       <Box
         sx={{
           backgroundColor: "#feffff",
-          pt: { sm: "64px", xs: "56px" },
+          pt: '12px'
         }}
       >
         <Container maxWidth="lg">
@@ -97,7 +98,7 @@ const CheckoutPage: FC<Props> = () => {
                   small
                 />
                 <CheckoutInformation
-                  sx={{ mt: 2, mb: "1rem" }}
+                  sx={{ mt: 1, mb: "1rem" }}
                   finePrint={finePrint}
                   price={detail?.room?.room?.totalPriceAfterTax}
                   priceKey={detail?.room?.room?.priceKey}
@@ -216,18 +217,20 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: highlighted ? "lightBackground.main" : "white",
-        borderBottom: "1px solid #ddd",
         pb: "1rem",
       }}
       {...props}
     >
       <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: 0 }, maxWidth: "100%" }}>
+
         <Box
           sx={{
             pt: 3,
             px: { xs: 0, sm: 1.8 },
           }}
         >
+          <Typography variant="h4" mb="1rem">Secure Booking</Typography>
+          <Typography component="p" mb="1rem" variant="base" sx={{ boxShadow: 1, p: '0.75rem', borderRadius: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}><DiscountIcon color="primary" /> You earn stay credit on this reservation! (create an account required)</Typography>
           <Box
             sx={{
               width: "100%",
@@ -250,7 +253,7 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
               flexDirection: "row",
               alignItems: "space-between",
               justifyContent: "center",
-              mt: 1,
+              mt: 2,
             }}
           >
             <Typography
@@ -328,6 +331,10 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
             </Box>
           </Box>
         </Box>
+        <Box mt="1.5rem" sx={{ mx: { xs: 0, sm: 0, md: '1rem' } }}>
+          <hr />
+        </Box>
+
       </Box>
     </Box>
   );
