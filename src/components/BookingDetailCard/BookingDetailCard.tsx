@@ -17,7 +17,7 @@ const BookingDetailCard: FC = () => {
     <Box
       sx={{
         color: "text.primary",
-        py: 2,
+        py: { xs: 0, sm: 0, md: 1 },
         mt: { xs: 0, sm: 0, md: '8.75rem' },
         pb: { xs: "1rem", sm: "1rem" },
         px: { xs: "0rem", sm: "1rem" },

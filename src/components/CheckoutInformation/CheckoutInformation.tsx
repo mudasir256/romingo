@@ -27,6 +27,9 @@ import { utils } from "../../services/utils";
 import  { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
+import StarsIcon from '@mui/icons-material/Stars';
+import PetsIcon from '@mui/icons-material/Pets';
+import WorkHistoryIcon from '@mui/icons-material/Work';
 
 interface Props {
   sx?: CSSObject;
@@ -752,7 +755,12 @@ const CheckoutInformation: FC<Props> = ({
                   >
                     Create an account (optional)
                   </Typography>
-                  <Typography component="p" mb="1rem" variant="base">Earn rewards, manage reservations, and receive special deals and offers at the email used above.</Typography>
+                  <Box mt="0.5rem" mb="1.5rem" ml="0.5rem">
+                    <Typography component="p" mb="0.75rem" variant="base" display="flex" alignItems="center" gap="0.5rem"><StarsIcon /> Earn rewards towards free travel</Typography>
+                    <Typography component="p" mb="0.75rem" variant="base" display="flex" alignItems="center" gap="0.5rem"><WorkHistoryIcon /> Easily manage your trips</Typography>
+                    <Typography component="p" variant="base" display="flex" alignItems="center" gap="0.5rem"><PetsIcon /> Receive pet-friendly tips & tricks</Typography>
+                  </Box>
+                  <Typography component="p" mb="1rem" variant="base">Enter a password to create an account based on the email address above.</Typography>
                   <ValidatorForm>
                     <TextValidator
                       fullWidth={true}

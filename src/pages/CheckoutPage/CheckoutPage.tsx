@@ -128,7 +128,7 @@ const CheckoutPage: FC<Props> = () => {
                 {mobile && (
                   <Grid item xs={12} order={2}>
                     <Typography
-                      variant="h6"
+                      variant="h5"
                       sx={{
                         color: "#222",
                         textAlign: "left",
@@ -230,7 +230,7 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
           }}
         >
           <Typography variant="h4" mb="1rem">Secure Booking</Typography>
-          <Typography component="p" mb="1rem" variant="base" sx={{ boxShadow: 1, p: '0.75rem', borderRadius: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}><DiscountIcon color="primary" /> You earn stay credit on this reservation! (create an account required)</Typography>
+          <Typography component="p" mb="1rem" variant="base" sx={{ boxShadow: 1, p: '0.75rem', borderRadius: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}><DiscountIcon color="primary" /> You earn stay credit on this reservation!</Typography>
           <Box
             sx={{
               width: "100%",
