@@ -31,6 +31,9 @@ const BlogPost = loadable(() => import('./pages/BlogPost'))
 const HiltonPolicy = loadable(() => import('./pages/PolicyPages/Hilton'))
 const HyattPolicy = loadable(() => import('./pages/PolicyPages/Hyatt'))
 const IHGPolicy = loadable(() => import('./pages/PolicyPages/IHG'))
+const MarriottPolicy = loadable(() => import('./pages/PolicyPages/Marriott'))
+const Motel6Policy = loadable(() => import('./pages/PolicyPages/Motel6'))
+const BoutiquePolicy = loadable(() => import('./pages/PolicyPages/Boutique'))
 
 
 import { authService } from "./services/authService.js";
@@ -206,7 +209,9 @@ const Routes = () => {
       <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
       <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>
       <Route exact path="/ihg-pet-policy"><IHGPolicy /></Route>
-
+      <Route exact path="/marriott-pet-policy"><MarriottPolicy /></Route>
+      <Route exact path="/motel-6-pet-policy"><Motel6Policy /></Route>
+      <Route exact path="/boutique-pet-policy"><BoutiquePolicy /></Route>
 
       <Route component={ErrorPage} />
     </Switch>
