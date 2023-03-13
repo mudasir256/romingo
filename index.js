@@ -226,6 +226,14 @@ const seo = [
     path: '/blog',
     title: 'Romingo Blog',
     description: 'Discover pet-friendly travel tips and exclusive deals for Romingo.',
+    image: '',
+    keywords: defaultKeywords
+  },
+  {
+    path: '/hilton-pet-policy',
+    title: "A Guide to Hilton's Pet Policy: What You Need to Know — Romingo",
+    description: "If you're traveling with your furry friend, it's important to understand the pet policies of the hotels you're considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we'll provide an overview of Hilton's pet policy and offer tips for traveling with pets to Hilton hotels.",
+    image: "https://www.romingo.com/public/images/policy-images/hilton.jpg",
     keywords: defaultKeywords
   }
 ]

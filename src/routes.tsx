@@ -29,6 +29,8 @@ const Blog = loadable(() => import('./pages/Blog'))
 const BlogPost = loadable(() => import('./pages/BlogPost'))
 
 const HiltonPolicy = loadable(() => import('./pages/PolicyPages/Hilton'))
+const HyattPolicy = loadable(() => import('./pages/PolicyPages/Hyatt'))
+
 
 import { authService } from "./services/authService.js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -201,6 +203,7 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/santa-barbara-california"><LocationPageTemplate cityName="Santa Barbara, CA" /></Route>
      
       <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
+      <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>
 
 
       <Route component={ErrorPage} />

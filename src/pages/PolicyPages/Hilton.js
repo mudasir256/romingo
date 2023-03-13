@@ -7,11 +7,11 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 
-import One from '../../assets/images/policy-images/hilton.jpg';
-import Two from '../../assets/images/policy-images/hilton-2.jpg';
-import Three from '../../assets/images/policy-images/hilton-3.jpg';
-import Four from '../../assets/images/policy-images/hilton-4.jpg';
-import Five from '../../assets/images/policy-images/hilton-5.jpg';
+const One = 'https://www.romingo.com/public/images/policy-images/hilton.jpg';
+const Two = 'https://www.romingo.com/public/images/policy-images/hilton-2.jpg';
+const Three = 'https://www.romingo.com/public/images/policy-images/hilton-3.jpg';
+const Four = 'https://www.romingo.com/public/images/policy-images/hilton-4.jpg';
+const Five = 'https://www.romingo.com/public/images/policy-images/hilton-5.jpg';
 
 export default function Hilton() {
 	return (<>
