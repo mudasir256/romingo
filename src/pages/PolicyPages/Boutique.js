@@ -25,7 +25,7 @@ export default function Boutique() {
 	return (<>
 		<Helmet>
 			<title>Why Choose a Dog-Friendly Boutique Hotel? — Romingo</title>
-			<description>Are you tired of leaving your furry best friend behind when you hit the road for a vacation? Well, we've got some good news for you! Dog-friendly boutique hotels are on the rise, and we've put together the ultimate guide to help you find the perfect spot for you and your pooch.</description>
+			<description>Are you tired of leaving your furry best friend behind when you hit the road for a vacation? Well, we&apos;ve got some good news for you! Dog-friendly boutique hotels are on the rise, and we&apos;ve put together the ultimate guide to help you find the perfect spot for you and your pooch.</description>
 			<meta property="og:title" content="Why Choose a Dog-Friendly Boutique Hotel? — Romingo" />
 			<meta property="og:description" content="Are you tired of leaving your furry best friend behind when you hit the road for a vacation? Well, we've got some good news for you! Dog-friendly boutique hotels are on the rise, and we've put together the ultimate guide to help you find the perfect spot for you and your pooch." />
 			<meta property="og:image" content={One} />

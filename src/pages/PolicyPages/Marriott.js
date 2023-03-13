@@ -70,10 +70,10 @@ export default function Marriott() {
 
 			<ul>
 				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Make sure your pet is up-to-date on their vaccinations and bring along proof of vaccinations, just in case.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Pack your pet's favorite toys, bedding, and food to ensure they feel at home in their new surroundings.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Pack your pet&apos;s favorite toys, bedding, and food to ensure they feel at home in their new surroundings.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>If your pet is anxious or prone to car sickness, speak to your vet about any medications that may be helpful.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Bring a collar and leash for your pet, and ensure they wear an identification tag with your current contact information.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Familiarize yourself with the hotel's pet policy and any fees or restrictions associated with bringing your pet.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Familiarize yourself with the hotel&apos;s pet policy and any fees or restrictions associated with bringing your pet.</li>
 			</ul>
 
 			<Header text="How to Ensure a Comfortable Stay at Marriott Hotels with Your Pet" />
