@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Chip, Box, Typography } from "@mui/material";
 import {
   Pets,
+  Spa,
+  Info,
 } from '@mui/icons-material'
 import DogIcon from '../assets/icon/dog.png'
 
@@ -27,9 +29,11 @@ const iconSpacing = {
 }
 
 
-const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dogs }) => {
+const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dogs, vipAmenity = [] }) => {
   
-  console.log(petFeePolicy)
+  const [showExtraInfo, setShowExtraInfo] = useState(false)
+  const [showMobileExtraInfo, setShowMobileExtraInfo] = useState(false)
+
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   if (displayOne) {
@@ -103,6 +107,25 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
             />
       }
 
+      {vipAmenity.includes('3') && //dog bowls & treats
+        <>
+          <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<Spa fontSize="small" />}
+            label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities 
+              <Info fontSize="xs" sx={{ display: { xs: 'none' , sm: 'none', md: 'block'} }} onMouseEnter={() => setShowExtraInfo(true)} onMouseLeave={() => setShowExtraInfo(false)} /> 
+              <Info fontSize="xs" sx={{ display: { xs: 'block' , sm: 'block', md: 'none'} }} onClick={() => setShowMobileExtraInfo(!showMobileExtraInfo)} /> 
+            </Box>}
+          />
+          {showExtraInfo && <Box position="relative">
+            <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Romingo guests will receive use of free pet amenities at this hotel including pet beds, bowls, and treats (subject to availability).</Typography></Box>
+          </Box>}
+          {showMobileExtraInfo && <Box mt="0.5rem">
+            <Typography variant="caption">*Romingo guests will receive use of free pet amenities at this hotel including pet beds, bowls, and treats (subject to availability).</Typography>
+          </Box>}
+        </>
+      }
     
 
       {/*

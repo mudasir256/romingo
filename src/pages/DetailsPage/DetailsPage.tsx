@@ -1413,7 +1413,8 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >                 
                   <HotelTags 
                     petFeePolicy={{ ...data?.getPropertyDetails?.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(diffDays || 1, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {}) }} 
-                    allows_big_dogs={allowsBigDogs} 
+                    allows_big_dogs={allowsBigDogs}
+                    vipAmenity={data?.getPropertyDetails.dogAmenities} 
                   />
                 </Box>
                 <ReadMore small text={defaultDescription} length={200} />

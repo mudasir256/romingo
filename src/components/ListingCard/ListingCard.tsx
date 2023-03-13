@@ -6,6 +6,8 @@ import StarIcon from "@mui/icons-material/Star";
 
 import {
   Pets,
+  Spa,
+  Info,
 } from '@mui/icons-material'
 
 import DogIcon from '../../assets/icon/dog.png'
@@ -103,7 +105,7 @@ const ListingCard: FC<ListingCardProps> = ({
   const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
 
   const HotelDescriptors = () => (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {hasPetFeeReduction ?
         <Chip
           size="small"
@@ -157,6 +159,17 @@ const ListingCard: FC<ListingCardProps> = ({
               label={<Box sx={iconSpacing}>{petFeePolicy.maxWeightPerPetInLBS} lbs. each</Box>}
             />
   
+      }
+
+      {dogAmenities.includes('dog beds & bowls') && 
+        <>
+          <Chip
+            size="small"
+            sx={chipIconStyle}
+            icon={<Spa fontSize="small" />}
+            label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities</Box>}
+          />
+        </>
       }
     </Box>
   )
