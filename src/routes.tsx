@@ -27,6 +27,9 @@ const LocationPageTemplate = loadable(() => import('./components/LocationPageTem
 
 const Blog = loadable(() => import('./pages/Blog'))
 const BlogPost = loadable(() => import('./pages/BlogPost'))
+
+const HiltonPolicy = loadable(() => import('./pages/PolicyPages/Hilton'))
+
 import { authService } from "./services/authService.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -197,6 +200,9 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/san-francisco-california"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
       <Route exact path="/pet-friendly-hotels/santa-barbara-california"><LocationPageTemplate cityName="Santa Barbara, CA" /></Route>
      
+      <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
+
+
       <Route component={ErrorPage} />
     </Switch>
   );
