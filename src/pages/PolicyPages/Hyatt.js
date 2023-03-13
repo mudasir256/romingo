@@ -81,7 +81,13 @@ export default function Hyatt() {
 			<Header text="How To Ensure A Comfortable Stay at Hyatt Hotels With Your Pet" />
 			<img src={Three} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Content text="It's important to make sure your furry friend is comfortable and well-behaved during your stay. Here are some tips for creating a comfortable and respectful environment for your pet at a Hyatt hotel:" />
-
+			<ul>
+				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>Create a comfortable space for your pet in the hotel room, with their own bed and water and food bowls.</li>
+				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>Take your pet for regular walks to stretch their legs and get some exercise.</li>
+				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>If your pet is anxious or stressed, spend some extra time with them to help them feel more comfortable in their new environment.</li>
+				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>Be respectful of other guests at the hotel, and keep your pet on a leash in common areas.</li>
+				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>Clean up after your pet and dispose of waste properly.</li>
+			</ul>
 		</Box>
 		<Footer />
 	</>)
