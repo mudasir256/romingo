@@ -23,10 +23,20 @@ export default function Marriott() {
 	const [loading, setLoading] = useState(true)
 
 	const fetchHotels = async () => {
-		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Westin')
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Westin', {
+				method: "GET,
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
 		const data = await result.json()
 
-		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Residence')
+		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Residence', {
+				method: "GET,
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
 		const data2 = await result2.json()
 		
 		setHotels([...data.hotels, ...data2.hotels])

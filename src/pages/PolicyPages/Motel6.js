@@ -22,7 +22,12 @@ export default function Motel6() {
 	const [loading, setLoading] = useState(true)
 
 	const fetchHotels = async () => {
-		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Motel%206')
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Motel%206', {
+				method: "GET,
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
 		const data = await result.json()
 		console.log(data)
 		setHotels(data.hotels)
