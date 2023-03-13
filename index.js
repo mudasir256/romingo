@@ -258,14 +258,14 @@ const seo = [
     keywords: defaultKeywords
   },
   {
-    path: 'motel-6-pet-policy',
+    path: '/motel-6-pet-policy',
     title: "Motel 6’s Pet Policy: An Overview — Romingo",
     description: "Traveling with pets can be a wonderful experience, but it's important to understand the pet policies of hotels before booking your stay. Motel 6 is a popular hotel chain offering a pet-friendly policy at most of its locations. It’s also America's original pet-friendly hotel chain and has been serving travelers since 1962. Here’s everything you need to know!",
     image: "https://www.romingo.com/public/images/policy-images/motel-6.jpg",
     keywords: defaultKeywords
   },
   {
-    path: 'boutique-pet-policy',
+    path: '/boutique-pet-policy',
     title: "Why Choose a Dog-Friendly Boutique Hotel? — Romingo",
     description: "Are you tired of leaving your furry best friend behind when you hit the road for a vacation? Well, we've got some good news for you! Dog-friendly boutique hotels are on the rise, and we've put together the ultimate guide to help you find the perfect spot for you and your pooch.",
     image: "https://www.romingo.com/public/images/policy-images/boutique.webp",
