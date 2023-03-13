@@ -25,11 +25,16 @@ export default function Hilton() {
 	const [loading, setLoading] = useState(true)
 
 	const fetchHotels = async () => {
-		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hilton')
-		const data = await result.json()
-		console.log(data)
-		setHotels(data.hotels)
-		setLoading(false)
+		try {
+			const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hilton')
+			const data = await result.json()
+			console.log(data)
+			setHotels(data.hotels)
+			setLoading(false)
+		} catch (err) {
+			console.log(err)
+			setLoading(false)
+		}
 	}
 
 	useEffect(() => {
