@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import {
   Box,
   Typography,
@@ -7,11 +9,33 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 
+import { utils } from '../../services/utils'
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+
 const One = 'https://www.romingo.com/public/images/policy-images/marriott.jpg';
 const Two = 'https://www.romingo.com/public/images/policy-images/marriott-2.jpg';
 const Three = 'https://www.romingo.com/public/images/policy-images/marriott-3.jpg';
 
 export default function Marriott() {
+
+	const [hotels, setHotels] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	const fetchHotels = async () => {
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Westin')
+		const data = await result.json()
+
+		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Residence')
+		const data2 = await result2.json()
+		
+		setHotels([...data.hotels, ...data2.hotels])
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		fetchHotels()
+	}, [])
 
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h4">{text}</Typography>
@@ -31,7 +55,8 @@ export default function Marriott() {
 		</Helmet>
 
 		<Navbar />
-		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
+			<br />
 			<Content text="Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it's important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free." />
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Marriot&apos;s Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
@@ -86,6 +111,20 @@ export default function Marriott() {
 				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Be respectful of other guests at the hotel, and keep your pet on a leash in common areas.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}>Clean up after your pet and dispose of waste properly.</li>
 			</ul>
+
+			<Box mt="1rem" />
+			{hotels.map(card => (
+				<Box key={card.id} sx={{ py: '0.5rem' }}>
+					<ListingCard
+						{...card}
+						duration={2}
+						highlighted={false}
+						limitImages={true}
+						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+					/>
+				</Box>
+			))}
+			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
 		
 		</Box>
 		<Footer />

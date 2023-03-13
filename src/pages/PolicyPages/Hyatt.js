@@ -1,7 +1,13 @@
+import { useEffect, useState } from 'react'
+
 import {
   Box,
   Typography,
 } from "@mui/material";
+
+import { utils } from '../../services/utils'
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -13,12 +19,27 @@ const Three = 'https://www.romingo.com/public/images/policy-images/hyatt-3.jpg';
 
 export default function Hyatt() {
 
+	const [hotels, setHotels] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	const fetchHotels = async () => {
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hyatt')
+		const data = await result.json()
+		console.log(data)
+		setHotels(data.hotels)
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		fetchHotels()
+	}, [])
+
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h4">{text}</Typography>
 	)
 
 	const Content = ({ text }) => (
-		<Typography variant="p" mb="0.5rem">{text}</Typography>
+		<Typography variant="p" component="p" mb="1rem">{text}</Typography>
 	)
 
 	return (<>
@@ -31,7 +52,7 @@ export default function Hyatt() {
 		</Helmet>
 
 		<Navbar />
-		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hyatt&apos;s Pet Policy: What You Need to Know</Typography>
 			<Typography variant="p">Are you planning to travel with your furry friend and looking for a pet-friendly hotel? Look no further than Hyatt, a hotel brand that has a longstanding commitment to creating comfortable and welcoming experiences for both pets and their owners. But before booking your stay, it&apos;s important to understand Hyatt&apos;s pet policy and any fees and restrictions that come with bringing your pet along. Luckily, you don&apos;t have to navigate this process alone. Romingo is the premier resource for booking pet-friendly hotels, and we&apos;ve got all the information you need to plan the perfect pet-friendly getaway with Hyatt.</Typography>
 
@@ -88,6 +109,20 @@ export default function Hyatt() {
 				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>Be respectful of other guests at the hotel, and keep your pet on a leash in common areas.</li>
 				<li style={{ marginBottom: '0.5rem', fontSize: '1.25rem'}}>Clean up after your pet and dispose of waste properly.</li>
 			</ul>
+
+			<Box mt="1rem" />
+			{hotels.map(card => (
+				<Box key={card.id} sx={{ py: '0.5rem' }}>
+					<ListingCard
+						{...card}
+						duration={2}
+						highlighted={false}
+						limitImages={true}
+						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+					/>
+				</Box>
+			))}
+			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
 		</Box>
 		<Footer />
 	</>)

@@ -19,7 +19,7 @@ export default function Boutique() {
 	)
 
 	const Content = ({ text }) => (
-		<Typography variant="p" mb="0.5rem">{text}</Typography>
+		<Typography component="p" variant="p" mb="1rem">{text}</Typography>
 	)
 
 	return (<>
@@ -33,6 +33,7 @@ export default function Boutique() {
 
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+			<br />
 			<Content text="Are you tired of leaving your furry best friend behind when you hit the road for a vacation? Well, we've got some good news for you! Dog-friendly boutique hotels are on the rise, and we've put together the ultimate guide to help you find the perfect spot for you and your pooch." />
 			<Content text="Traveling with your dog can be a game-changer. No more guilt-ridden goodbyes and no more worrying about your furry friend's well-being while you're away. Plus, having your dog by your side can make for an even more enjoyable trip! You'll have a built-in companion for long hikes, beach days, and exploring new places." />
 			<Content text="In this article, we'll introduce you to the world of dog-friendly boutique hotels, highlight why they're a better choice than traditional hotel chains for pet owners, and give you the lowdown on the top hotels across the United States. We'll also provide some tips and tricks for traveling with your furry friend and answers to some frequently asked questions. So buckle up, grab your pup, and let's dive in!" />

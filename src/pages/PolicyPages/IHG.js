@@ -1,7 +1,13 @@
+import { useEffect, useState } from 'react'
+
 import {
   Box,
   Typography,
 } from "@mui/material";
+
+import { utils } from '../../services/utils'
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -12,12 +18,33 @@ const Two = 'https://www.romingo.com/public/images/policy-images/ihg-2.jpg';
 
 export default function IHG() {
 
+	const [hotels, setHotels] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	const fetchHotels = async () => {
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Holiday')
+		const data = await result.json()
+
+		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/InterContinental')
+		const data2 = await result2.json()
+
+		const result3 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Kimpton')
+		const data3 = await result3.json()
+
+		setHotels([...data.hotels, ...data2.hotels, ...data3.hotels])
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		fetchHotels()
+	}, [])
+
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h4">{text}</Typography>
 	)
 
 	const Content = ({ text }) => (
-		<Typography variant="p" mb="0.5rem">{text}</Typography>
+		<Typography variant="p" component="p" mb="1rem">{text}</Typography>
 	)
 
 	return (<>
@@ -30,7 +57,7 @@ export default function IHG() {
 		</Helmet>
 
 		<Navbar />
-		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem'}}>
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">IHG&apos;s Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Typography variant="p">Traveling with your furry companion can be a fun adventure, but it&apos;s crucial to make sure you&apos;re booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you&apos;re looking for a luxury experience or a budget-friendly stay, there&apos;s an IHG brand that caters to your needs and welcomes your furry friend. Let&apos;s take a closer look at IHG&apos;s pet policies and highlight some of the best pet-friendly options in the portfolio.</Typography>
@@ -71,7 +98,19 @@ export default function IHG() {
 			<Header text="Why IHG Hotels Are Great For Pet-Friendly Stays" />
 			<Content text="IHG Hotels are the perfect place for a pet-friendly stay because they offer a variety of brands that cater to different travel styles, from extended-stay suites to luxury resorts. With some planning and preparation, guests can enjoy a stress-free stay with their pets and create unforgettable memories together." />
 
-		
+			<Box mt="1rem" />
+			{hotels.map(card => (
+				<Box key={card.id} sx={{ py: '0.5rem' }}>
+					<ListingCard
+						{...card}
+						duration={2}
+						highlighted={false}
+						limitImages={true}
+						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+					/>
+				</Box>
+			))}
+			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
 		</Box>
 		<Footer />
 	</>)

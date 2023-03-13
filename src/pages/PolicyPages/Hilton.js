@@ -1,11 +1,17 @@
+import { useEffect, useState } from 'react'
+
 import {
-  Box,
-  Typography,
+	Box,
+	Typography,
 } from "@mui/material";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
+
+import { utils } from '../../services/utils'
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 const One = 'https://www.romingo.com/public/images/policy-images/hilton.jpg';
 const Two = 'https://www.romingo.com/public/images/policy-images/hilton-2.jpg';
@@ -14,6 +20,22 @@ const Four = 'https://www.romingo.com/public/images/policy-images/hilton-4.jpg';
 const Five = 'https://www.romingo.com/public/images/policy-images/hilton-5.jpg';
 
 export default function Hilton() {
+
+	const [hotels, setHotels] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	const fetchHotels = async () => {
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hilton')
+		const data = await result.json()
+		console.log(data)
+		setHotels(data.hotels)
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		fetchHotels()
+	}, [])
+
 	return (<>
 		<Helmet>
 			<title>A Guide to Hilton&apos;s Pet Policy: What You Need to Know — Romingo</title>
@@ -24,7 +46,7 @@ export default function Hilton() {
 		</Helmet>
 
 		<Navbar />
-		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hilton&apos;s Pet Policy: What You Need to Know</Typography>
 			<Typography variant="p">If you&apos;re traveling with your furry friend, it&apos;s important to understand the pet policies of the hotels you&apos;re considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we&apos;ll provide an overview of Hilton&apos;s pet policy and offer tips for traveling with pets to Hilton hotels.</Typography>
 			<Typography mt="2rem" mb="0.5rem" variant="h4">Hilton&apos;s Pet Policy: All You Need to Know</Typography>
@@ -74,6 +96,20 @@ export default function Hilton() {
 			<Typography mt="2rem" mb="0.5rem" variant="h4">How to Prepare for a Trip With Pets to Hilton Hotels</Typography>
 			<img src={Five} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Typography variant="p">When preparing for a trip with pets to a Hilton hotel, it is important to plan ahead. Be sure to bring along any necessary supplies and medications your pet may need during the stay. Additionally, you should make sure your pet is up-to-date on all vaccinations and has a collar and tags with your contact information in case they get lost. Finally, it is important to be aware of the local laws and regulations regarding animals when traveling.</Typography>
+			
+			<Box mt="1rem" />
+			{hotels.map(card => (
+				<Box key={card.id} sx={{ py: '0.5rem' }}>
+					<ListingCard
+						{...card}
+						duration={2}
+						highlighted={false}
+						limitImages={true}
+						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+					/>
+				</Box>
+			))}
+			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
 		</Box>
 		<Footer />
 	</>)

@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import {
   Box,
   Typography,
@@ -7,10 +9,29 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 
+import { utils } from '../../services/utils'
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+
 const One = 'https://www.romingo.com/public/images/policy-images/motel-6.jpg';
 const Two = 'https://www.romingo.com/public/images/policy-images/motel-6-2.jpg';
 
 export default function Motel6() {
+
+	const [hotels, setHotels] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	const fetchHotels = async () => {
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Motel%206')
+		const data = await result.json()
+		console.log(data)
+		setHotels(data.hotels)
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		fetchHotels()
+	}, [])
 
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h4">{text}</Typography>
@@ -30,7 +51,7 @@ export default function Motel6() {
 		</Helmet>
 
 		<Navbar />
-		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<Content text="Traveling with pets can be a wonderful experience, but it's important to understand the pet policies of hotels before booking your stay. Motel 6 is a popular hotel chain offering a pet-friendly policy at most of its locations. It’s also America's original pet-friendly hotel chain and has been serving travelers since 1962. Here’s everything you need to know!" />
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Motel 6&apos;s Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
@@ -51,7 +72,20 @@ export default function Motel6() {
 			<Header text="Why Motel 6 Is Great For Pet-Friendly Stays" />
 			<Content text="Motel 6's pet policy allows pet owners to bring their furry friends along on their travels without incurring additional fees, which greatly benefits those traveling on a budget. With guidelines in place to ensure the safety and comfort of all guests, pet owners can enjoy a pleasant stay at Motel 6 hotels with their pets. Be sure to use resources such as Romingo to find and book pet-friendly rooms and follow the guidelines for pets to ensure a comfortable stay for you and your pet." />
 
-		
+			<Box mt="1rem" />
+			{hotels.map(card => (
+				<Box key={card.id} sx={{ py: '0.5rem' }}>
+					<ListingCard
+						{...card}
+						duration={2}
+						highlighted={false}
+						limitImages={true}
+						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+					/>
+				</Box>
+			))}
+			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+
 		</Box>
 		<Footer />
 	</>)
