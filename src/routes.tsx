@@ -30,6 +30,7 @@ const BlogPost = loadable(() => import('./pages/BlogPost'))
 
 const HiltonPolicy = loadable(() => import('./pages/PolicyPages/Hilton'))
 const HyattPolicy = loadable(() => import('./pages/PolicyPages/Hyatt'))
+const IHGPolicy = loadable(() => import('./pages/PolicyPages/IHG'))
 
 
 import { authService } from "./services/authService.js";
@@ -204,6 +205,7 @@ const Routes = () => {
      
       <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
       <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>
+      <Route exact path="/ihg-pet-policy"><IHGPolicy /></Route>
 
 
       <Route component={ErrorPage} />
