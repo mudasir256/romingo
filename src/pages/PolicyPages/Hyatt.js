@@ -40,7 +40,7 @@ export default function Hyatt() {
 	}, [])
 
 	const Header = ({ text }) => (
-		<Typography mt="2rem" mb="0.5rem" variant="h4">{text}</Typography>
+		<Typography mt="2rem" mb="0.5rem" variant="h5">{text}</Typography>
 	)
 
 	const Content = ({ text }) => (

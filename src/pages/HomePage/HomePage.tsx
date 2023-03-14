@@ -13,6 +13,7 @@ import {
   Slide,
   TextField,
 } from "@mui/material";
+
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import Header from "../../components/Header";
@@ -124,6 +125,8 @@ const HomePage: FC<Props> = () => {
   }
 
   const [showLocations, setShowLocations] = useState(false)
+  const [showPetPolicies, setShowPetPolicies] = useState(false)
+  const [showFull, setShowFull] = useState(false)
 
   const locationIds = [
     "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
@@ -201,6 +204,16 @@ const HomePage: FC<Props> = () => {
     { to: "pet-friendly-hotels/salt-lake-city-utah", name: 'Salt Lake City' },
   ]
   locationLinks.sort((a, b) => a.name.localeCompare(b.name))
+
+  const policyLinks = [
+    { to: 'hyatt-pet-policy', name: "Hyatt's Pet Policy" },
+    { to: 'marriott-pet-policy', name: "Marriott's Pet Policy" },
+    { to: 'ihg-pet-policy', name: "IHG's Pet Policy" },
+    { to: 'hilton-pet-policy', name: "Hilton's Pet Policy" },
+    { to: "boutique-pet-policy", name: "Boutique Pet Policies" },
+    { to: "motel-6-pet-policy", name: "Motel 6's Pet Policy" }
+  ]
+  policyLinks.sort((a, b) => a.name.localeCompare(b.name))
 
 
   const InfoBox = ({ imgSrc, imgAlt, imgWidth, header, text }) => (
@@ -364,6 +377,12 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
+      <Box onClick={() => setShowPetPolicies(!showPetPolicies)} sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', mx: '1rem', mt: '2rem', mb: '0.25rem'}}>
+        <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Typography sx={{ fontSize: '1.2em' }}>Hotel Pet Policies</Typography>
+          <KeyboardArrowDownIcon color="primary" />
+        </Box>
+      </Box>
 
       <Box  sx={{ 
         mt: { xs: '3rem', sm: '3rem', md: "20rem" },
@@ -648,18 +667,32 @@ const HomePage: FC<Props> = () => {
           gap: '1rem',
           borderRadius: '20px',
           backgroundColor: 'white',
-  
+          height: showFull ? 'auto' : '220px',
+          overflow: 'hidden'
         }}>
           <Box>
-            <Typography variant="h2" mb="0.5rem">Plan your next trip with Romingo</Typography>
-            <Typography variant="p" fontSize="1.25rem">Explore our destinations</Typography>
+            <Typography variant="h2" mb="1rem" textAlign="center">Plan your next trip with Romingo</Typography>
           </Box>
-          <hr />
-          <Grid ml="auto" mt="1rem" mb="1rem" container spacing={2} sx={{ overflow: 'auto' }}>
-          {locationLinks.map(link => 
-            <Grid key={link.to} item xs={6}><Link key={link.to} to={link.to}><Typography variant="base">{link.name} pet-friendly hotels</Typography></Link></Grid>
-          )}
-          </Grid>
+          {!showFull && <Box position="relative">
+            <Box onClick={() => setShowFull(!showFull)} textAlign="center" position="absolute" top="160px" backgroundColor="white" width="100%" py="0.25rem" clickable sx={{ '&:hover': { backgroundColor: '#D3D3D3' } }}>
+              <KeyboardArrowDownIcon color="white" />
+            </Box>
+          </Box>
+          }
+          <Box display="flex" flexDirection="row" sx={{ justifyContent: 'space-around'}}>
+            <Box display="flex" flexDirection="column" gap="0.5rem">
+              <Typography borderBottom="1px solid black" variant="p" fontSize="1.25rem">Explore our destinations</Typography>
+              {locationLinks.map(link => 
+                <Box key={link.to}><Link key={link.to} to={link.to}><Typography variant="base">{link.name} pet-friendly hotels</Typography></Link></Box>
+              )}
+            </Box>
+            <Box display="flex" flexDirection="column" gap="0.5rem">
+              <Typography borderBottom="1px solid black" variant="p" fontSize="1.25rem">Hotel pet policies</Typography>
+              {policyLinks.map(link => 
+                <Box key={link.to}><Link key={link.to} to={link.to}><Typography variant="base">{link.name} pet-friendly hotels</Typography></Link></Box>
+              )}
+            </Box>
+          </Box>   
         </Box>
       </Box>
 
@@ -692,6 +725,30 @@ const HomePage: FC<Props> = () => {
           </Box>
           <Box height="88%" overflow="scroll">
             {locationLinks.map(link => 
+              <Link key={link.to} to={link.to} style={{ textDecoration: 'none', color: 'black'}}><Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }}><Typography variant="p">{link.name}</Typography></Box></Link>
+            )}
+          </Box>
+        </Box>
+      </Slide>
+
+      <Slide direction='up' in={showPetPolicies} mountOnEnter unmountOnExit>
+        <Box sx={{ 
+          position: 'fixed', 
+          overflow: 'auto',
+          bottom: '0', 
+          height: '80%', 
+          width: '100%', 
+          backgroundColor: 'white',
+          borderTopRightRadius: '20px',
+          borderTopLeftRadius: '20px',
+          zIndex: 1000
+        }}>
+          <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
+            <Typography textAlign="center" variant="h5">Hotel Pet Policies</Typography>
+            <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowLocations(false)}>X</Button>
+          </Box>
+          <Box height="88%" overflow="scroll">
+            {policyLinks.map(link => 
               <Link key={link.to} to={link.to} style={{ textDecoration: 'none', color: 'black'}}><Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }}><Typography variant="p">{link.name}</Typography></Box></Link>
             )}
           </Box>
