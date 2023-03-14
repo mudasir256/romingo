@@ -79,6 +79,12 @@ const routes = [
     { path: "pet-friendly-hotels/portland-oregon" },
     { path: "pet-friendly-hotels/sacramento-california" },
     { path: "pet-friendly-hotels/salt-lake-city-utah" },
+    { path: '/hyatt-pet-policy' },
+    { path: '/hilton-pet-policy' },
+    { path: '/marriott-pet-policy'},
+    { path: '/boutique-pet-policy'},
+    { path: '/ihg-pet-policy'},
+    { path: '/motel-6-pet-policy'}
 ];
 
 const aliasMap = []
