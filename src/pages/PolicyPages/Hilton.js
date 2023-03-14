@@ -27,7 +27,7 @@ export default function Hilton() {
 	const fetchHotels = async () => {
 		try {
 			const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hilton', {
-				method: "GET,
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				}

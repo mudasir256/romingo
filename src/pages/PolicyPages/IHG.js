@@ -23,7 +23,7 @@ export default function IHG() {
 
 	const fetchHotels = async () => {
 		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Holiday', {
-				method: "GET,
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				}
@@ -31,7 +31,7 @@ export default function IHG() {
 		const data = await result.json()
 
 		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/InterContinental', {
-				method: "GET,
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				}
@@ -39,7 +39,7 @@ export default function IHG() {
 		const data2 = await result2.json()
 
 		const result3 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Kimpton', {
-				method: "GET,
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				}

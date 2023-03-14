@@ -24,7 +24,7 @@ export default function Marriott() {
 
 	const fetchHotels = async () => {
 		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Westin', {
-				method: "GET,
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				}
@@ -32,7 +32,7 @@ export default function Marriott() {
 		const data = await result.json()
 
 		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Residence', {
-				method: "GET,
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				}
