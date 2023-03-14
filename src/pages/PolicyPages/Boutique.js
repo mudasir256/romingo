@@ -19,7 +19,7 @@ export default function Boutique() {
 	)
 
 	const Content = ({ text }) => (
-		<Typography component="p" variant="p" mb="1rem">{text}</Typography>
+		<Typography component="p" variant="base" mb="1rem">{text}</Typography>
 	)
 
 	return (<>

@@ -59,7 +59,7 @@ export default function IHG() {
 	)
 
 	const Content = ({ text }) => (
-		<Typography variant="p" component="p" mb="1rem">{text}</Typography>
+		<Typography variant="base" component="p" mb="1rem">{text}</Typography>
 	)
 
 	return (<>
@@ -75,21 +75,21 @@ export default function IHG() {
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem'}}>
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">IHG&apos;s Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
-			<Typography variant="p">Traveling with your furry companion can be a fun adventure, but it&apos;s crucial to make sure you&apos;re booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you&apos;re looking for a luxury experience or a budget-friendly stay, there&apos;s an IHG brand that caters to your needs and welcomes your furry friend. Let&apos;s take a closer look at IHG&apos;s pet policies and highlight some of the best pet-friendly options in the portfolio.</Typography>
+			<Typography variant="base">Traveling with your furry companion can be a fun adventure, but it&apos;s crucial to make sure you&apos;re booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you&apos;re looking for a luxury experience or a budget-friendly stay, there&apos;s an IHG brand that caters to your needs and welcomes your furry friend. Let&apos;s take a closer look at IHG&apos;s pet policies and highlight some of the best pet-friendly options in the portfolio.</Typography>
 
 			<Header text="Top 10 Pet-Friendly IHG Hotel Brands" />
 			<ul>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Atwell Suites</b>: All-suites brand with co-working spaces and free breakfast, dogs under 40 pounds are welcome but must be crated when the guest is away.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Avid Hotels</b>: Value brand with free breakfast and fresh coffee, pet policies vary by property with some allowing pets for a reasonable fee of $20 per night.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Candlewood Suites</b>: Extended-stay brand with fully-equipped kitchens, outdoor grills, and free laundry, all locations are pet-friendly with a non-refundable fee of $75 for stays up to 6 nights and $150 for stays 7 nights or longer.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Crowne Plaza Hotels & Resorts</b>: Found in cities and urban areas with solid Wi-Fi, premium bedding, gyms, and on-site dining, pet policies vary by location with fees ranging from $75 to $100.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>EVEN Hotels</b>: Wellness-focused brand with fitness, dining, relaxation, and sleeping pillars, pets must weigh less than 50 pounds with a fee of $100 per stay.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Holiday Inn Express</b>: Well-known brand with affordable prices and free hot breakfast, many locations allow dogs with fees around $50 per stay.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Holiday Inn Hotels & Resorts</b>: Family-friendly brand with activities included, many locations accept pets with fees around $50.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>InterContinental Hotels & Resorts</b>: luxury brand with fine dining and spas, some locations allow small dogs for fees up to $250.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Kimpton Hotels & Restaurants</b>: boutique brand focused on art, wellness, and dining with a “sincerely personal” guest experience, all hotels are pet-friendly with no extra charge for pets of any size, weight, or breed.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Mr & Mrs Smith</b>: Boutique hotel travel club with access to hundreds of unique properties around the world that tend to be pet-friendly, amenities for pets include beds, special menus, toys, walking options, and massages.</li>
-				<li style={{ marginBottom: '1rem', fontSize: '1.25rem'}}><b>Staybridge Suites</b>: Extended-stay brand with all-suite accommodations and home-away-from-home amenities, dogs under 50 pounds are welcome with fees around $75 for a 1-week stay.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Atwell Suites</b>: All-suites brand with co-working spaces and free breakfast, dogs under 40 pounds are welcome but must be crated when the guest is away.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Avid Hotels</b>: Value brand with free breakfast and fresh coffee, pet policies vary by property with some allowing pets for a reasonable fee of $20 per night.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Candlewood Suites</b>: Extended-stay brand with fully-equipped kitchens, outdoor grills, and free laundry, all locations are pet-friendly with a non-refundable fee of $75 for stays up to 6 nights and $150 for stays 7 nights or longer.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Crowne Plaza Hotels & Resorts</b>: Found in cities and urban areas with solid Wi-Fi, premium bedding, gyms, and on-site dining, pet policies vary by location with fees ranging from $75 to $100.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>EVEN Hotels</b>: Wellness-focused brand with fitness, dining, relaxation, and sleeping pillars, pets must weigh less than 50 pounds with a fee of $100 per stay.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Holiday Inn Express</b>: Well-known brand with affordable prices and free hot breakfast, many locations allow dogs with fees around $50 per stay.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Holiday Inn Hotels & Resorts</b>: Family-friendly brand with activities included, many locations accept pets with fees around $50.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>InterContinental Hotels & Resorts</b>: luxury brand with fine dining and spas, some locations allow small dogs for fees up to $250.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Kimpton Hotels & Restaurants</b>: boutique brand focused on art, wellness, and dining with a “sincerely personal” guest experience, all hotels are pet-friendly with no extra charge for pets of any size, weight, or breed.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Mr & Mrs Smith</b>: Boutique hotel travel club with access to hundreds of unique properties around the world that tend to be pet-friendly, amenities for pets include beds, special menus, toys, walking options, and massages.</li>
+				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Staybridge Suites</b>: Extended-stay brand with all-suite accommodations and home-away-from-home amenities, dogs under 50 pounds are welcome with fees around $75 for a 1-week stay.</li>
 			</ul>
 
 			<Header text="Pet-Friendly Amenities at IHG Hotels" />
@@ -97,7 +97,7 @@ export default function IHG() {
 
 			<Header text="How to Find and Book Pet-Friendly Rooms at IHG Hotels" />
 			<img src={Two} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
-			<Typography variant="p" mb="0.5rem">To find and book pet-friendly rooms at IHG Hotels, pet owners can use resources like Romingo. Romingo is a premier resource for booking pet-friendly hotels and provides a comprehensive list of hotels that allow pets. When booking a pet-friendly room, be sure to mention that you will be traveling with a pet to ensure that the hotel is aware of your furry friend&apos;s presence. A link to a directory of pet-friendly IHG hotels is also available on the <a href="https://www.ihg.com/destinations/us/en/pet-friendly-hotels" target="_blank" rel="noreferrer">hotel&apos;s website.</a></Typography>
+			<Typography variant="base" mb="0.5rem">To find and book pet-friendly rooms at IHG Hotels, pet owners can use resources like Romingo. Romingo is a premier resource for booking pet-friendly hotels and provides a comprehensive list of hotels that allow pets. When booking a pet-friendly room, be sure to mention that you will be traveling with a pet to ensure that the hotel is aware of your furry friend&apos;s presence. A link to a directory of pet-friendly IHG hotels is also available on the <a href="https://www.ihg.com/destinations/us/en/pet-friendly-hotels" target="_blank" rel="noreferrer">hotel&apos;s website.</a></Typography>
 
 
 			<Header text="How To Prepare For A Successful IHG Hotel Stay With A Pet" />

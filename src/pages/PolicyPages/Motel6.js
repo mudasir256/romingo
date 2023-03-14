@@ -43,7 +43,7 @@ export default function Motel6() {
 	)
 
 	const Content = ({ text }) => (
-		<Typography variant="p" mb="0.5rem">{text}</Typography>
+		<Typography variant="base" mb="0.5rem">{text}</Typography>
 	)
 
 	return (<>
@@ -66,7 +66,7 @@ export default function Motel6() {
 			<Content text="The amenities and services provided for pets at these hotels include access to grassy areas for walks, pet waste stations, and clean-up bags. Some Motel 6 locations offer pet-friendly rooms with hard-surface floors and beds." />
 
 			<Header text="How to Find and Book Pet-Friendly Rooms at Motel 6 Hotels" />
-			<Typography variant="p" mb="0.5rem">To find and book pet-friendly rooms at Motel 6 hotels, pet owners can use resources such as Romingo. Romingo is a premier resource for booking pet-friendly hotels and provides a comprehensive list of hotels that allow pets. When booking a pet-friendly room, be sure to mention that you will be traveling with a pet to ensure that the hotel is aware of your furry friend&apos;s presence. A link to a directory of pet-friendly Motel 6 hotels is also available on the <a href="https://www.motel6.com/en/home/policies/reservation-policies.html" target="_blank" rel="noreferrer">hotel&apos;s website.</a></Typography>
+			<Typography variant="base" mb="0.5rem">To find and book pet-friendly rooms at Motel 6 hotels, pet owners can use resources such as Romingo. Romingo is a premier resource for booking pet-friendly hotels and provides a comprehensive list of hotels that allow pets. When booking a pet-friendly room, be sure to mention that you will be traveling with a pet to ensure that the hotel is aware of your furry friend&apos;s presence. A link to a directory of pet-friendly Motel 6 hotels is also available on the <a href="https://www.motel6.com/en/home/policies/reservation-policies.html" target="_blank" rel="noreferrer">hotel&apos;s website.</a></Typography>
 
 			<Header text="How To Prepare For A Successful Motel 6 Stay With A Pet" />
 			<img src={Two} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
