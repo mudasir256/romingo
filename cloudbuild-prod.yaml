@@ -12,6 +12,7 @@ steps:
       - "NODE_ENV=production"
       - "REACT_APP_STRIPE_CLIENT_KEY=pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW"
       - "REACT_APP_ENDPOINT=https://graphql.romingo.com/graphql"
+      - "REACT_APP_BASE_ENDPOINT=https://graphql.romingo.com/"
   # deploy the service
   - name: gcr.io/cloud-builders/gcloud
     args: ["app", "deploy", "--appyaml", "app.prod.yaml"]
