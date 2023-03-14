@@ -1,7 +1,13 @@
+import { useEffect, useState } from 'react'
+
 import {
   Box,
   Typography,
 } from "@mui/material";
+
+import { utils } from '../../services/utils'
+import ListingCard from "../../components/ListingCard";
+import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -13,6 +19,57 @@ const Three = 'https://www.romingo.com/public/images/policy-images/boutique-3.jp
 const Four = 'https://www.romingo.com/public/images/policy-images/boutique-4.jpeg';
 
 export default function Boutique() {
+
+	const [hotels, setHotels] = useState([])
+	const [loading, setLoading] = useState(true)
+	const fetchHotels = async () => {
+		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Marina%20Del', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data = await result.json()
+
+		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Pendry', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data2 = await result2.json()
+
+		const result3 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Catbird', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data3 = await result3.json()
+
+		const result4 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/LINE', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data4 = await result4.json()
+
+		const result5 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Pan%20Pacific', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data5 = await result5.json()
+
+		setHotels([...data.hotels, ...data2.hotels, ...data3.hotels, ...data4.hotels, ...data5.hotels])
+		setLoading(false)
+	}
+
+	useEffect(() => {
+		fetchHotels()
+	}, [])
 
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h4">{text}</Typography>
@@ -106,7 +163,20 @@ export default function Boutique() {
 			<Content text="So pack your bags, grab your dog's leash, and hit the road! And don't forget to share your own experiences and recommendations for dog-friendly hotels in the comments below. Happy travels!" />
 
 			<img src={Four} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
-		
+			
+			<Box mt="1rem" />
+			{hotels.map(card => (
+				<Box key={card.id} sx={{ py: '0.5rem' }}>
+					<ListingCard
+						{...card}
+						duration={2}
+						highlighted={false}
+						limitImages={true}
+						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
+					/>
+				</Box>
+			))}
+			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
 		</Box>
 		<Footer />
 	</>)
