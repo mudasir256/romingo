@@ -26,6 +26,7 @@ export default function Hilton() {
 
 	const fetchHotels = async () => {
 		try {
+			console.log(process.env.REACT_APP_BASE_ENDPOINT)
 			const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hilton', {
 				method: "GET",
 				headers: {
@@ -43,6 +44,7 @@ export default function Hilton() {
 	}
 
 	useEffect(() => {
+		console.log('fetch hotels!')
 		fetchHotels()
 	}, [])
 
