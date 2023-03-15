@@ -210,8 +210,8 @@ const HomePage: FC<Props> = () => {
     { to: 'hilton-pet-policy', name: "Hilton hotels pet policy" },
     { to: 'ihg-pet-policy', name: "IHG hotels pet policy" },
     { to: 'hyatt-pet-policy', name: "Hyatt hotels pet policy" },
-    { to: "motel-6-pet-policy", name: "Motel 6 hotels pet policy" }
-    { to: "boutique-pet-policy", name: "Boutique hotels pet policy" },
+    { to: "motel-6-pet-policy", name: "Motel 6 hotels pet policy" },
+    { to: "boutique-pet-policy", name: "Boutique hotels pet policy" }
   ]
 
 
