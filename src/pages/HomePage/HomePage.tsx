@@ -206,14 +206,13 @@ const HomePage: FC<Props> = () => {
   locationLinks.sort((a, b) => a.name.localeCompare(b.name))
 
   const policyLinks = [
-    { to: 'hyatt-pet-policy', name: "Hyatt's Pet Policy" },
-    { to: 'marriott-pet-policy', name: "Marriott's Pet Policy" },
-    { to: 'ihg-pet-policy', name: "IHG's Pet Policy" },
-    { to: 'hilton-pet-policy', name: "Hilton's Pet Policy" },
-    { to: "boutique-pet-policy", name: "Boutique Pet Policies" },
-    { to: "motel-6-pet-policy", name: "Motel 6's Pet Policy" }
+    { to: 'marriott-pet-policy', name: "Marriott hotels pet policy" },
+    { to: 'hilton-pet-policy', name: "Hilton hotels pet policy" },
+    { to: 'ihg-pet-policy', name: "IHG hotels pet policy" },
+    { to: 'hyatt-pet-policy', name: "Hyatt hotels pet policy" },
+    { to: "motel-6-pet-policy", name: "Motel 6 hotels pet policy" }
+    { to: "boutique-pet-policy", name: "Boutique hotels pet policy" },
   ]
-  policyLinks.sort((a, b) => a.name.localeCompare(b.name))
 
 
   const InfoBox = ({ imgSrc, imgAlt, imgWidth, header, text }) => (
@@ -379,7 +378,7 @@ const HomePage: FC<Props> = () => {
 
       <Box onClick={() => setShowPetPolicies(!showPetPolicies)} sx={{ display: { sm: 'block', md: 'none'}, boxShadow: 2, "&:hover": { boxShadow: 3 } , textAlign: 'center', p: '2em', borderRadius: '20px', mx: '1rem', mt: '2rem', mb: '0.25rem'}}>
         <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <Typography sx={{ fontSize: '1.2em' }}>Hotel Pet Policies</Typography>
+          <Typography sx={{ fontSize: '1.2em' }}>Hotel pet policies</Typography>
           <KeyboardArrowDownIcon color="primary" />
         </Box>
       </Box>
@@ -744,8 +743,8 @@ const HomePage: FC<Props> = () => {
           zIndex: 1000
         }}>
           <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
-            <Typography textAlign="center" variant="h5">Hotel Pet Policies</Typography>
-            <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowLocations(false)}>X</Button>
+            <Typography textAlign="center" variant="h5">Hotel pet policies</Typography>
+            <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowPetPolicies(false)}>X</Button>
           </Box>
           <Box height="88%" overflow="scroll">
             {policyLinks.map(link => 

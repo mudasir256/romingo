@@ -48,9 +48,9 @@ export default function Motel6() {
 
 	return (<>
 		<Helmet>
-			<title>Motel 6&apos;s Pet Policy: An Overview — Romingo</title>
+			<title>Motel 6 Hotels Pet Policy: An Overview — Romingo</title>
 			<description>Traveling with pets can be a wonderful experience, but it&apos;s important to understand the pet policies of hotels before booking your stay. Motel 6 is a popular hotel chain offering a pet-friendly policy at most of its locations. It&apos;s also America&apos;s original pet-friendly hotel chain and has been serving travelers since 1962. Here&apos;s everything you need to know!</description>
-			<meta property="og:title" content="Motel 6’s Pet Policy: An Overview — Romingo" />
+			<meta property="og:title" content="Motel 6 Hotels Pet Policy: An Overview — Romingo" />
 			<meta property="og:description" content="Traveling with pets can be a wonderful experience, but it's important to understand the pet policies of hotels before booking your stay. Motel 6 is a popular hotel chain offering a pet-friendly policy at most of its locations. It’s also America's original pet-friendly hotel chain and has been serving travelers since 1962. Here’s everything you need to know!" />
 			<meta property="og:image" content={One} />
 		</Helmet>
@@ -58,7 +58,7 @@ export default function Motel6() {
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<Content text="Traveling with pets can be a wonderful experience, but it's important to understand the pet policies of hotels before booking your stay. Motel 6 is a popular hotel chain offering a pet-friendly policy at most of its locations. It’s also America's original pet-friendly hotel chain and has been serving travelers since 1962. Here’s everything you need to know!" />
-			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Motel 6&apos;s Pet Policy: An Overview</Typography>
+			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Motel 6 Hotels Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Content text="Motel 6 welcomes service animals and well-behaved pets at most of its locations. The hotel chain does not charge a pet fee for service animals and allows up to two pets per room. However, Studio 6 locations require a $10 per day pet fee, with a maximum of $75 per stay." />
 

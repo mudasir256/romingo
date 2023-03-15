@@ -64,16 +64,16 @@ export default function IHG() {
 
 	return (<>
 		<Helmet>
-			<title>IHG&apos;s Pet Policy: An Overview — Romingo</title>
+			<title>IHG Hotels Pet Policy: An Overview — Romingo</title>
 			<description>Traveling with your furry companion can be a fun adventure, but it&apos;s crucial to make sure you&apos;re booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you&apos;re looking for a luxury experience or a budget-friendly stay, there&apos;s an IHG brand that caters to your needs and welcomes your furry friend. Let&apos;s take a closer look at IHG&apos;s pet policies and highlight some of the best pet-friendly options in the portfolio.</description>
-			<meta property="og:title" content="IHG’s Pet Policy: An Overview — Romingo" />
+			<meta property="og:title" content="IHG Hotels Pet Policy: An Overview — Romingo" />
 			<meta property="og:description" content="Traveling with your furry companion can be a fun adventure, but it's crucial to make sure you're booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you're looking for a luxury experience or a budget-friendly stay, there's an IHG brand that caters to your needs and welcomes your furry friend. Let’s take a closer look at IHG's pet policies and highlight some of the best pet-friendly options in the portfolio." />
 			<meta property="og:image" content={One} />
 		</Helmet>
 
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem'}}>
-			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">IHG&apos;s Pet Policy: An Overview</Typography>
+			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">IHG Hotels Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Typography variant="base">Traveling with your furry companion can be a fun adventure, but it&apos;s crucial to make sure you&apos;re booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you&apos;re looking for a luxury experience or a budget-friendly stay, there&apos;s an IHG brand that caters to your needs and welcomes your furry friend. Let&apos;s take a closer look at IHG&apos;s pet policies and highlight some of the best pet-friendly options in the portfolio.</Typography>
 

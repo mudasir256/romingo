@@ -231,35 +231,35 @@ const seo = [
   },
   {
     path: '/hilton-pet-policy',
-    title: "A Guide to Hilton's Pet Policy: What You Need to Know — Romingo",
+    title: "A Guide to Hilton Hotels Pet Policy: What You Need to Know — Romingo",
     description: "If you're traveling with your furry friend, it's important to understand the pet policies of the hotels you're considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we'll provide an overview of Hilton's pet policy and offer tips for traveling with pets to Hilton hotels.",
     image: "https://www.romingo.com/public/images/policy-images/hilton.jpg",
     keywords: defaultKeywords
   },
   {
     path: '/hyatt-pet-policy',
-    title: "A Guide to Hyatt's Pet Policy: What You Need to Know — Romingo",
+    title: "A Guide to Hyatt Hotels Pet Policy: What You Need to Know — Romingo",
     description: "Are you planning to travel with your furry friend and looking for a pet-friendly hotel? Look no further than Hyatt, a hotel brand that has a longstanding commitment to creating comfortable and welcoming experiences for both pets and their owners. But before booking your stay, it's important to understand Hyatt's pet policy and any fees and restrictions that come with bringing your pet along. Luckily, you don't have to navigate this process alone. Romingo is the premier resource for booking pet-friendly hotels, and we've got all the information you need to plan the perfect pet-friendly getaway with Hyatt.",
     image: 'https://www.romingo.com/public/images/policy-images/hyatt.jpg',
     keywords: defaultKeywords
   },
   {
     path: '/ihg-pet-policy',
-    title: "IHG’s Pet Policy: An Overview — Romingo",
+    title: "IHG Hotels Pet Policy: An Overview — Romingo",
     description: "Traveling with your furry companion can be a fun adventure, but it's crucial to make sure you're booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you're looking for a luxury experience or a budget-friendly stay, there's an IHG brand that caters to your needs and welcomes your furry friend. Let’s take a closer look at IHG's pet policies and highlight some of the best pet-friendly options in the portfolio.",
     image: "https://www.romingo.com/public/images/policy-images/ihg.jpg",
     keywords: defaultKeywords
   },
   {
     path: '/marriott-pet-policy',
-    title: "Marriott’s Pet Policy: An Overview — Romingo",
+    title: "Marriott Hotels Pet Policy: An Overview — Romingo",
     description: "Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it's important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free.",
     image: "https://www.romingo.com/public/images/policy-images/marriott.jpg",
     keywords: defaultKeywords
   },
   {
     path: '/motel-6-pet-policy',
-    title: "Motel 6’s Pet Policy: An Overview — Romingo",
+    title: "Motel 6 Hotels Pet Policy: An Overview — Romingo",
     description: "Traveling with pets can be a wonderful experience, but it's important to understand the pet policies of hotels before booking your stay. Motel 6 is a popular hotel chain offering a pet-friendly policy at most of its locations. It’s also America's original pet-friendly hotel chain and has been serving travelers since 1962. Here’s everything you need to know!",
     image: "https://www.romingo.com/public/images/policy-images/motel-6.jpg",
     keywords: defaultKeywords

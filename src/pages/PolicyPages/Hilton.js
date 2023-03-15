@@ -50,18 +50,18 @@ export default function Hilton() {
 
 	return (<>
 		<Helmet>
-			<title>A Guide to Hilton&apos;s Pet Policy: What You Need to Know — Romingo</title>
+			<title>A Guide to Hilton Hotels Pet Policy: What You Need to Know — Romingo</title>
 			<description>If you&apos;re traveling with your furry friend, it&apos;s important to understand the pet policies of the hotels you&apos;re considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we&apos;ll provide an overview of Hilton&apos;s pet policy and offer tips for traveling with pets to Hilton hotels.</description>
-			<meta property="og:title" content="A Guide to Hilton's Pet Policy: What You Need to Know — Romingo" />
+			<meta property="og:title" content="A Guide to Hilton Hotels Pet Policy: What You Need to Know — Romingo" />
 			<meta property="og:description" content="If you're traveling with your furry friend, it's important to understand the pet policies of the hotels you're considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we'll provide an overview of Hilton's pet policy and offer tips for traveling with pets to Hilton hotels." />
 			<meta property="og:image" content={One} />
 		</Helmet>
 
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
-			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hilton&apos;s Pet Policy: What You Need to Know</Typography>
+			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hilton Hotels Pet Policy: What You Need to Know</Typography>
 			<Typography variant="base">If you&apos;re traveling with your furry friend, it&apos;s important to understand the pet policies of the hotels you&apos;re considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we&apos;ll provide an overview of Hilton&apos;s pet policy and offer tips for traveling with pets to Hilton hotels.</Typography>
-			<Typography mt="2rem" mb="0.5rem" variant="h5">Hilton&apos;s Pet Policy: All You Need to Know</Typography>
+			<Typography mt="2rem" mb="0.5rem" variant="h5">Hilton Hotels Pet Policy: All You Need to Know</Typography>
 			<Typography variant="base">Hilton&apos;s pet policy allows guests to bring their pets to select hotels within the Hilton portfolio. Dogs and cats are the most common types of pets allowed, although some hotels may allow other types of animals as well. There is typically a non-refundable fee associated with bringing a pet, which can range from $50 to $150 per stay. Some hotels may also have restrictions on the size or breed of pet allowed, so it&apos;s important to check with the hotel in advance.</Typography>
 			<Typography mt="2rem" variant="h4">The Best Pet-Friendly Hilton Hotel Brands for Your Next Vacation</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />

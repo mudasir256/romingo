@@ -38,8 +38,24 @@ export default function Marriott() {
 				}
 			})
 		const data2 = await result2.json()
+
+		const result3 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Aloft', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data3 = await result3.json()
+
+		const result4 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Sheraton', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				}
+			})
+		const data4 = await result4.json()
 		
-		setHotels([...data.hotels, ...data2.hotels])
+		setHotels([...data.hotels, ...data2.hotels, ...data3.hotels, ...data4.hotels])
 		setLoading(false)
 	}
 
@@ -57,9 +73,9 @@ export default function Marriott() {
 
 	return (<>
 		<Helmet>
-			<title>Marriott&apos;s Pet Policy: An Overview — Romingo</title>
+			<title>Marriott Hotels Pet Policy: An Overview — Romingo</title>
 			<description>Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it&apos;s important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free.</description>
-			<meta property="og:title" content="Marriott’s Pet Policy: An Overview — Romingo" />
+			<meta property="og:title" content="Marriott Hotels Pet Policy: An Overview — Romingo" />
 			<meta property="og:description" content="Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it's important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free." />
 			<meta property="og:image" content={One} />
 		</Helmet>
@@ -68,7 +84,7 @@ export default function Marriott() {
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<br />
 			<Content text="Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it's important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free." />
-			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Marriot&apos;s Pet Policy: An Overview</Typography>
+			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Marriott Hotels Pet Policy: An Overview</Typography>
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Content text="Marriott Hotels allows guests to bring up to two pets per room, with a weight limit of 150 pounds per pet. The pets allowed at Marriott hotels include dogs, cats, birds, and fish. Marriott also welcomes service animals at all of their locations. Guests who wish to bring their pets to Marriott hotels will be charged a non-refundable fee of $100 per stay and an additional cleaning fee in some cases." />
 

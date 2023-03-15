@@ -49,7 +49,7 @@ export default function Hyatt() {
 
 	return (<>
 		<Helmet>
-			<title>A Guide to Hyatt&apos;s Pet Policy: An Overview — Romingo</title>
+			<title>A Guide to Hyatt Hotels Pet Policy: An Overview — Romingo</title>
 			<description>Are you planning to travel with your furry friend and looking for a pet-friendly hotel? Look no further than Hyatt, a hotel brand that has a longstanding commitment to creating comfortable and welcoming experiences for both pets and their owners. But before booking your stay, it&apos;s important to understand Hyatt&apos;s pet policy and any fees and restrictions that come with bringing your pet along. Luckily, you don&apos;t have to navigate this process alone. Romingo is the premier resource for booking pet-friendly hotels, and we&apos;ve got all the information you need to plan the perfect pet-friendly getaway with Hyatt.</description>
 			<meta property="og:title" content="A Guide to Hyatt's Pet Policy: What You Need to Know — Romingo" />
 			<meta property="og:description" content="Are you planning to travel with your furry friend and looking for a pet-friendly hotel? Look no further than Hyatt, a hotel brand that has a longstanding commitment to creating comfortable and welcoming experiences for both pets and their owners. But before booking your stay, it's important to understand Hyatt's pet policy and any fees and restrictions that come with bringing your pet along. Luckily, you don't have to navigate this process alone. Romingo is the premier resource for booking pet-friendly hotels, and we've got all the information you need to plan the perfect pet-friendly getaway with Hyatt." />
@@ -58,10 +58,10 @@ export default function Hyatt() {
 
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
-			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hyatt&apos;s Pet Policy: What You Need to Know</Typography>
+			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hyatt Hotels Pet Policy: What You Need to Know</Typography>
 			<Typography variant="base">Are you planning to travel with your furry friend and looking for a pet-friendly hotel? Look no further than Hyatt, a hotel brand that has a longstanding commitment to creating comfortable and welcoming experiences for both pets and their owners. But before booking your stay, it&apos;s important to understand Hyatt&apos;s pet policy and any fees and restrictions that come with bringing your pet along. Luckily, you don&apos;t have to navigate this process alone. Romingo is the premier resource for booking pet-friendly hotels, and we&apos;ve got all the information you need to plan the perfect pet-friendly getaway with Hyatt.</Typography>
 
-			<Header text="Hyatt's Pet Policy: An Overview" />
+			<Header text="Hyatt Hotels Pet Policy: An Overview" />
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 
 			<Content text="Hyatt is known for providing luxurious and high-end accommodations for travelers all around the world. But, did you know that they are also very pet-friendly? Hyatt understands the importance of furry companions and welcomes pets of all shapes and sizes to their hotels." />
