@@ -2,10 +2,10 @@ import { FC, useState } from "react";
 import { Chip, Box, Typography } from "@mui/material";
 import {
   Pets,
-  Spa,
   Info,
 } from '@mui/icons-material'
 import DogIcon from '../assets/icon/dog.png'
+import GiftIcon from '../assets/icon/gift.svg'
 
 interface Props {
   petFeePolicy: any,
@@ -112,7 +112,7 @@ const HotelTags: FC<Props> = ({ displayOne = false, petFeePolicy, allows_big_dog
           <Chip
             size="small"
             sx={chipIconStyle}
-            icon={<Spa fontSize="small" />}
+            icon={<img width="18px" src={GiftIcon} />}
             label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities 
               <Info fontSize="xs" sx={{ display: { xs: 'none' , sm: 'none', md: 'block'} }} onMouseEnter={() => setShowExtraInfo(true)} onMouseLeave={() => setShowExtraInfo(false)} /> 
               <Info fontSize="xs" sx={{ display: { xs: 'block' , sm: 'block', md: 'none'} }} onClick={() => setShowMobileExtraInfo(!showMobileExtraInfo)} /> 

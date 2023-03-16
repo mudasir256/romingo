@@ -6,11 +6,11 @@ import StarIcon from "@mui/icons-material/Star";
 
 import {
   Pets,
-  Spa,
   Info,
 } from '@mui/icons-material'
 
 import DogIcon from '../../assets/icon/dog.png'
+import GiftIcon from '../../assets/icon/gift.svg'
 
 export interface ListingCardProps {
   id: string;
@@ -166,7 +166,7 @@ const ListingCard: FC<ListingCardProps> = ({
           <Chip
             size="small"
             sx={chipIconStyle}
-            icon={<Spa fontSize="small" />}
+            icon={<img width="18px" src={GiftIcon} />}
             label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities</Box>}
           />
         </>

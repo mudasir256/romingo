@@ -90,6 +90,9 @@ const ListingPage: FC<Props> = () => {
   const [minPrice, setMinPrice] = useState(0)
   const [value, setValue] = useState([0, 500])
 
+  const [freeAmenities, setFreeAmenities] = useState(false)
+  const [noPetRestrictions, setNoPetRestrictions] = useState(false)
+
   const [sorted, setSorted] = useState([])
   const [markers, setMarkers] = useState([])
 
@@ -260,6 +263,15 @@ const ListingPage: FC<Props> = () => {
     if (rating) {
       filtered = filtered.filter(card => parseInt(card.starRating) === rating)
     }
+
+    if (noPetRestrictions) {
+      console.log(filtered)
+      filtered = filtered.filter(card => card.petFeePolicy.maxWeightPerPetInLBS === null || card.petFeePolicy.maxWeightPerPetInLBS === '')
+    }
+    if (freeAmenities) {
+      filtered = filtered.filter(card => card.dogAmenities.includes('dog beds & bowls'))
+    }
+
     setSorted(
       [...filtered].sort((a: any, b: any) =>
         (
@@ -297,7 +309,7 @@ const ListingPage: FC<Props> = () => {
     setHoverIndex(0);
     setHotelIndex(0);
 
-  }, [selectedFilter, data, sortBy, value, rating]);
+  }, [selectedFilter, data, sortBy, value, rating, freeAmenities, noPetRestrictions]);
 
 
   const start = search.checkIn.substring(0, 10)
@@ -536,6 +548,10 @@ const ListingPage: FC<Props> = () => {
                   showFilters={showFilters}
                   showExtras={showExtras}
                   minPrice={minPrice}
+                  noPetRestrictions={noPetRestrictions}
+                  setNoPetRestrictions={setNoPetRestrictions}
+                  freeAmenities={freeAmenities}
+                  setFreeAmenities={setFreeAmenities}
                 />
 
                 
@@ -722,6 +738,10 @@ const ListingPage: FC<Props> = () => {
                 showFilters={showFilters}
                 showExtras={showExtras}
                 minPrice={minPrice}
+                noPetRestrictions={noPetRestrictions}
+                setNoPetRestrictions={setNoPetRestrictions}
+                freeAmenities={freeAmenities}
+                setFreeAmenities={setFreeAmenities}
               />
             </Box>
 
@@ -821,7 +841,7 @@ interface SortBarProps {
 }
 
 const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
-  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras, minPrice } = props;
+  const { sortBy, setSortBy, size, bigDog, setBigDog, selectedFilter, setSelectedFilter, value, setValue, maxPrice, rating, setRating, showFilters, showExtras, minPrice, setFreeAmenities, freeAmenities, setNoPetRestrictions, noPetRestrictions } = props;
 
   const [shownOptionsCount, setShownOptionsCount] = useState(5)
   // -Air Conditioned
@@ -893,6 +913,25 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
 
   return (
     <>
+      {showFilters && <>
+        <Box textAlign="center" mb="0.5rem">
+          <Checkbox
+            classes={{ indeterminate: classes.indeterminateColor }}
+            checked={freeAmenities}
+            onChange={() => setFreeAmenities(!freeAmenities)}
+          /> 
+          <Typography variant="base">Free VIP pet amenities</Typography>
+        </Box>
+        <Box textAlign="center" mb="0.5rem">
+          <Checkbox
+            classes={{ indeterminate: classes.indeterminateColor }}
+            checked={noPetRestrictions}
+            onChange={() => setNoPetRestrictions(!noPetRestrictions)}
+          /> 
+          <Typography variant="base">No pet size restrictions</Typography>
+        </Box>
+      </>}
+
       {showFilters &&
       <Select
         color="primary"
