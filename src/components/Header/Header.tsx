@@ -99,7 +99,7 @@ const Header: FC<Props> = ({ sx }) => {
           <Box sx={{
             display: { xs: 'block', sm: 'block', md: 'none' }
           }}>
-            <Box component="h1" sx={{ textAlign: { xs: 'left', sm: 'left'} }} className="filter-bar-wrapper-title">
+            <Box sx={{ textAlign: { xs: 'left', sm: 'left'} }} className="filter-bar-wrapper-title">
               Book pet-friendly hotels
             </Box>
             <div className="filter-bar-wrapper-desc">

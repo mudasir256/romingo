@@ -624,10 +624,10 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
   return (
     <>
       <Helmet>
-        <title>Pet-friendly hotels in {foundCity.name} - Romingo</title>
+        <title>Pet friendly hotels {onlyCity} - Romingo</title>
         <description>{cityContent.paragraphOne}</description>
         <meta name="keywords" content={cityContent.keywords} />
-        <meta property="og:title" content={`Pet-friendly hotels in ${foundCity.name} - Romingo`} />
+        <meta property="og:title" content={`Pet friendly hotels ${onlyCity} - Romingo`} />
         <meta property="og:description" content={cityContent.paragraphOne} />
         <meta property="og:image" content={cityContent.heroImage} />
       </Helmet>
@@ -647,7 +647,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography component="h1" variant="h2" color="text.primary">
-            {`Pet-friendly hotels in ${onlyCity}`}
+            {`Pet friendly hotels ${onlyCity}`}
           </Typography>
         </Box>
         <Divider variant="middle" light sx={{ my: 2 }}>

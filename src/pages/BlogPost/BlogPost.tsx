@@ -265,7 +265,7 @@ const BlogPost: FC = () => {
                     mx: 0.25,
                   }}
                   label={`#${tag.name}`}
-                  onClick={() => history.push(`/blog/${tag.id}`)}
+                  onClick={() => history.push(`/blog?tag=${tag.id}`)}
                 />
               ))}
               <Divider light sx={{ mt: 2, mb: 2 }} />

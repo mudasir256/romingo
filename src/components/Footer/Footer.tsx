@@ -93,7 +93,7 @@ const Footer: FC<Props> = ({ sx }) => {
           <SiteLinkSection header="Content & Blog" links={[
             { href: 'https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf', text: 'Guide to Air Travel With Your Dog'},
             { href: '/blog', text: 'Romingo Blog', isBlank: true },
-            { href: '/blog/12', text: 'Top travel tips', isBlank: true }
+            { href: '/blog?tag=12', text: 'Top travel tips', isBlank: true }
           ]} />
 
           <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>

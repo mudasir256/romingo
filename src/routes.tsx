@@ -128,7 +128,7 @@ const routes: RouteInterface[] = [
     requireAuth: false,
   },
   {
-    path: "/blog/:tag?",
+    path: "/blog/",
     component: Blog,
     requireAuth: false,
   },

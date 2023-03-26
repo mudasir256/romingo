@@ -58,9 +58,9 @@ interface Tag {
 
 const Blog: FC = () => {
   const history = useHistory();
-  const { tag } = useParams<BlogParams>();
   const { search } = useLocation<string | null>();
   const params = useMemo(() => new URLSearchParams(search), [search]);
+  const tag = params.get('tag')
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState<any>(0);
   const [page, setPage] = useState<number>(parseInt(params.get("page") || "1"));
@@ -99,13 +99,17 @@ const Blog: FC = () => {
   };
 
   useEffect(() => {
+    setPage("1")
     loadTags();
-    loadPosts();
+    loadPosts(1);
   }, [tag]);
 
   const changePage = (page: number) => {
+    console.log(params)
+
+    params.append('page', page)
     history.push({
-      search: `?page=${page}`,
+      search: params.toString(),
     });
     setPage(page);
     loadPosts(page);
@@ -149,7 +153,7 @@ const Blog: FC = () => {
                   mx: 0.25,
                 }}
                 label={`#${tag.name}`}
-                onClick={() => history.push(`/blog/${tag.id}`)}
+                onClick={() => history.push(`/blog?tag=${tag.id}`)}
               />
             ))}
           </Box>
