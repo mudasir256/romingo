@@ -1571,7 +1571,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             >
               Compare Rates
             </Typography>
-
+            <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 pet fees and receive VIP pet amenities upon arrival.</Typography>
             <Box display="flex" gap="1rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
               <Box position="relative" py="1rem" px="1.5rem" textAlign="center" border="solid 1px black">
                 <div><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
