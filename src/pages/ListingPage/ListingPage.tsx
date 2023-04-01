@@ -206,12 +206,6 @@ const ListingPage: FC<Props> = () => {
 
   useEffect(() => {
     setAnimate("expanded");  // setAnimate("collapsed");
-    const intercomId = "CUSTOM"
-    const domNode = document.getElementById(intercomId);
-    if (domNode) {
-      domNode.style.display = 'none';
-    }
-    return () => { if (domNode) { domNode.style.display = 'flex' } }
   }, [])
 
   useEffect(() => {

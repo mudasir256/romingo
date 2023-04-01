@@ -474,14 +474,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   }, [roomInfo])
 
-  useEffect(() => {
-    window.Intercom("boot", {
-      app_id: "qa6datd3",
-      alignment: "right",
-      custom_launcher_selector: "#CUSTOM",
-    });
-    window.Intercom("update");
-  }, []);
 
   const [showGallery, setShowGallery] = useState(false);
   const lightBoxOptions = {
