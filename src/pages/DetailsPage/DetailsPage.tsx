@@ -1549,6 +1549,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
             </Grid>
           )}
 
+          {priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice && 
           <Box sx={{
             maxWidth: '760px'
           }}>
@@ -1583,10 +1584,12 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </a>
             </Box>
           </Box>
+          }
 
           <Box pt="3rem">
             <Divider />
           </Box>
+
 
           {!loading && data && (
             <>
