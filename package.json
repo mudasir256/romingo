@@ -57,6 +57,7 @@
     "react-router-dom": "^5.2.0",
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "4.0.1",
+    "react-use-intercom": "^5.0.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "sass": "^1.54.5",
@@ -129,11 +130,13 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "chromatic": "^6.3.3",
+    "customize-cra": "^1.0.0",
     "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.28.0",
     "file-loader": "^6.2.0",
     "path": "^0.12.7",
     "postcss": "^7.0.36",
+    "react-app-rewired": "^2.2.1",
     "storybook-preset-craco": "^0.0.4",
     "webpack-cli": "^4.10.0"
   }

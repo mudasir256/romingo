@@ -79,23 +79,6 @@ const HomePage: FC<Props> = () => {
 
   const today = new Date();
 
-  useEffect(() => {
-    window.Intercom("boot", {
-      app_id: "qa6datd3",
-      alignment: "right",
-      custom_launcher_selector: "#CUSTOM",
-    });
-    window.Intercom("update");
-    if (width < 700) {
-      const intercomId = "CUSTOM"
-      const domNode = document.getElementById(intercomId);
-      if (domNode) {
-        domNode.style.display = 'none';
-      }
-      return () => { if (domNode) { domNode.style.display = 'flex' } }
-    }
-  }, [])
-
   const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
   let ghSanDiego, westin, plazaResort, saguaro, hiltonSf, hrMissionBay, thompson,

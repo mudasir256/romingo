@@ -1,1 +1,15 @@
-module.exports = {};
+module.exports = {
+	webpack: {
+	   configure: {
+	     module: {
+	       rules: [
+	         {
+	           type: 'javascript/auto',
+	           test: /\.mjs$/,
+	           use: [],
+	         },
+	       ],
+	     },
+	   },
+	 },
+}

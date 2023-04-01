@@ -6,7 +6,6 @@ import { GetCities } from "./constants/constants";
 import { setList } from "./store/cityListReducer";
 import { authService } from "./services/authService.js";
 import TagManager from "react-gtm-module";
-import { Message } from "@mui/icons-material";
 import Routes from "./routes";
 
 const AuthGuards = (props: any) => {
@@ -64,34 +63,6 @@ const App: FC = () => {
   return (
     <>
       <Routes />
-      {screen.height > 700 && (
-        <div
-          id="CUSTOM"
-          style={{
-            padding: ".5rem 1rem .5rem .5rem",
-            fontFamily: "Roboto",
-            zIndex: 1501,
-            position: "fixed",
-            flexDirection: "row",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "8px",
-            bottom: "1.25rem",
-            right: "1.25rem",
-            boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.25)",
-            background: "#03989Ebf",
-            border: "1px solid #a6dbe5",
-            WebkitBackdropFilter: "blur(12px)",
-            backdropFilter: "blur(12px)",
-            fontSize: "14px",
-            color: "#fff",
-          }}
-        >
-          <Message sx={{ fontSize: "18px", color: "#fff", mr: ".5rem" }} />
-          Chat with us
-        </div>
-      )}
     </>
   );
 };

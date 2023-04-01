@@ -15,7 +15,7 @@ const YourReservationPage = loadable(() => import('./pages/YourReservationPage')
 const ErrorPage = loadable(() => import('./pages/ErrorPage'))
 const About = loadable(() => import('./pages/StaticPages/About'))
 const FAQ = loadable(() => import('./pages/StaticPages/FAQ'))
-const Contact = loadable(() => import('./pages/StaticPages/Contact'))
+const ContactPage = loadable(() => import('./pages/StaticPages/Contact'))
 const Privacy = loadable(() => import('./pages/StaticPages/Privacy'))
 const Terms = loadable(() => import('./pages/StaticPages/Terms'))
 const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProperty'))
@@ -39,6 +39,7 @@ const BoutiquePolicy = loadable(() => import('./pages/PolicyPages/Boutique'))
 import { authService } from "./services/authService.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { IntercomProvider } from 'react-use-intercom';
 
 interface RouteInterface {
   path: string;
@@ -95,11 +96,6 @@ const routes: RouteInterface[] = [
   {
     path: "/faq",
     component: FAQ,
-    requireAuth: false,
-  },
-  {
-    path: "/contact",
-    component: Contact,
     requireAuth: false,
   },
   {
@@ -177,6 +173,12 @@ const Routes = () => {
             </AuthGuards>
           );
       })}
+
+      <Route exact path="/contact">
+        <IntercomProvider appId="qa6datd3">
+          <ContactPage />
+        </IntercomProvider>
+      </Route>
 
       <Route exact path="/checkout*">
         <Elements stripe={stripePromise}>

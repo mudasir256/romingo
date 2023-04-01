@@ -5,17 +5,20 @@ import { FC, useEffect } from "react";
 import { Container, Divider, Grid, Typography, Link } from "@mui/material";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Message } from "@mui/icons-material";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import { ChatBubble, Email, Send } from "@mui/icons-material";
+import { useIntercom } from 'react-use-intercom';
 
 const Contact: FC = () => {
+
+  const { boot, shutdown, hide, show, update } = useIntercom();
+
   const startChat = () => {
-    window.Intercom("boot", {
-      app_id: "qa6datd3",
-    });
-    window.Intercom("update");
-    window.Intercom("show");
+    boot()
+    update()
+    show()
   };
 
   useEffect(() => {
@@ -190,6 +193,35 @@ const Contact: FC = () => {
           </Grid>
         </>
       </Container>
+      
+        <div
+          id="CUSTOM"
+          onClick={startChat}
+          style={{
+            padding: ".5rem 1rem .5rem .5rem",
+            fontFamily: "Roboto",
+            zIndex: 1501,
+            position: "fixed",
+            flexDirection: "row",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "8px",
+            bottom: "1.25rem",
+            right: "1.25rem",
+            boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.25)",
+            background: "#03989Ebf",
+            border: "1px solid #a6dbe5",
+            WebkitBackdropFilter: "blur(12px)",
+            backdropFilter: "blur(12px)",
+            fontSize: "14px",
+            color: "#fff",
+          }}
+        >
+          <Message sx={{ fontSize: "18px", color: "#fff", mr: ".5rem" }} />
+          Chat with us
+        </div>
+      
       <Footer />
     </>
   );
