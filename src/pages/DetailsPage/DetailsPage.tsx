@@ -1557,25 +1557,25 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               sx={{
                 color: "#222",
                 mt: { xs: 1, sm: 5 },
-                
+                mb: 1.5,
                 textAlign: "left",
               }}
             >
               Compare Rates
             </Typography>
-            <Typography variant="base" mb="1rem">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 pet fees and receive VIP pet amenities upon arrival.</Typography>
-            <Box display="flex" gap="1rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
-              <Box position="relative" py="1rem" px="1.5rem" textAlign="center" border="solid 1px black">
-                <div><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
-                <Typography variant="p"><b>${lowestRomingoRate}</b></Typography>
+            <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 pet fees and receive VIP pet amenities upon arrival.</Typography>
+            <Box mt="1.5rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
+              <Box position="relative" py="2rem" px="4rem" textAlign="center" border="solid 1px black">
+                <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
+                <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b></Typography>
                 <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
                   <Typography variant="base">$0 pet fee</Typography>
                 </Box>
               </Box>
               <a style={{ textDecoration: 'none', color: 'black'}} href={priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.clickUrl} target="_blank" rel="noreferrer">
-                <Box position="relative" p="1rem" textAlign="center" border="solid 1px black">
-                  <div><img style={{width: '240px'}} src="https://tripadvisor.mediaroom.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered_RGB.svg" /></div>
-                  <Typography variant="p"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b></Typography>
+                <Box position="relative" py="2rem" px="3rem" textAlign="center" border="solid 1px black">
+                  <div style={{ marginBottom: '0.5rem'}}><img style={{width: '240px'}} src="https://tripadvisor.mediaroom.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered_RGB.svg" /></div>
+                  <Typography variant="p" py="2rem"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b></Typography>
                   <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
                     <Typography variant="base">${utils.computePetFeePolicyTotalFees(diffDays || 1, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {})} pet fee</Typography>
                   </Box>
