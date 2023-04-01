@@ -104,6 +104,7 @@ import {
   GetPropertyDetails, 
   GetSabreRoomReservations,
   GetSabrePropertyDetails,
+  TripHotelList,
 } from "../../constants/constants";
 
 import { setHotel } from "../../store/hotelDetailReducer";
@@ -230,6 +231,21 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+  const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
+    gql`${TripHotelList}`,
+    {
+      variables: {
+        hotel_ids: data?.getPropertyDetails?.id || '',
+        hotel_id_type: 'TA',
+        checkIn: search?.checkIn.substring(0, 10),
+        checkOut: search?.checkOut.substring(0, 10),
+        num_adults: search?.occupants?.adults.toString(),
+        num_rooms: '1',
+        currency: 'USD'
+      }
+    }
+  )
+
 
   const { data: detailInfo } = useQuery(
     gql`
@@ -267,6 +283,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
+  const [lowestRomingoRate, setLowestRomingoRate] = useState<any>(0);
 
   const [reviewData, setReviewData] = useState<any>();
   const [name, setName] = useState("");
@@ -411,6 +428,10 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           // const lowestPrice = Math.min(...comparisons)
           roomsTmp.push(romingoMatch.find(room => (room.name === name))) //&& room.averagePrice === lowestPrice) ))
         })
+
+        const comparisons = romingoMatch.map(room => room.averagePrice)
+        const lowestPrice = Math.min(...comparisons)
+        setLowestRomingoRate(Math.abs(lowestPrice).toFixed(0))
 
         const accessibleArr: RoomInfo[] = [];
         const nonAccessibleArr: RoomInfo[] = [];
@@ -1535,6 +1556,46 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </Grid>
             </Grid>
           )}
+
+          <Box sx={{
+            maxWidth: '760px'
+          }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#222",
+                mt: { xs: 1, sm: 5 },
+                mb: "1rem",
+                textAlign: "left",
+              }}
+            >
+              Compare Rates
+            </Typography>
+
+            <Box display="flex" gap="1rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
+              <Box position="relative" py="1rem" px="1.5rem" textAlign="center" border="solid 1px black">
+                <div><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
+                <Typography variant="p"><b>${lowestRomingoRate}</b></Typography>
+                <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
+                  <Typography variant="base">$0 pet fee</Typography>
+                </Box>
+              </Box>
+              <a style={{ textDecoration: 'none', color: 'black'}} href={priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.clickUrl} target="_blank" rel="noreferrer">
+                <Box position="relative" p="1rem" textAlign="center" border="solid 1px black">
+                  <div><img style={{width: '240px'}} src="https://tripadvisor.mediaroom.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered_RGB.svg" /></div>
+                  <Typography variant="p"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b></Typography>
+                  <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
+                    <Typography variant="base">${utils.computePetFeePolicyTotalFees(diffDays || 1, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {})} pet fee</Typography>
+                  </Box>
+                </Box>
+              </a>
+            </Box>
+          </Box>
+
+          <Box pt="3rem">
+            <Divider />
+          </Box>
+
           {!loading && data && (
             <>
               <Grid

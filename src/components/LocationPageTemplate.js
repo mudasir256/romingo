@@ -591,17 +591,6 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
 
   const today = new Date();
 
-  const { loading, error, data, refetch } = useQuery(
-    gql`
-      ${LocationProperties}
-    `,
-    {
-      variables: {
-        cityId: foundCity.id,
-      },
-    }
-  );
-
   const onlyCity = foundCity.name.split(',')[0]
 
   const IconTags = () => (

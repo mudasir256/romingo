@@ -673,6 +673,7 @@ const LocationProperties = `
       sabreId
       zipCode
       lowestAveragePrice
+      listingsPagePromoText
       petFeePolicy {
         maxPets
         maxWeightPerPetInLBS
@@ -683,6 +684,50 @@ const LocationProperties = `
       }
     }
   }
+`
+
+const TripHotelList = `
+  query TripHotelList(
+    $hotel_ids: String!,
+    $hotel_id_type: String,
+    $checkIn: Date!,
+    $checkOut: Date!,
+    $num_adults: String,
+    $num_rooms: String,
+    $currency: String
+  ) {
+  tripHotelList(input: {
+    hotel_ids: $hotel_ids,
+    hotel_id_type: $hotel_id_type,
+    checkIn: $checkIn,
+    checkOut: $checkOut,
+    num_adults: $num_adults,
+    num_rooms: $num_rooms,
+    currency: $currency
+  }) {
+    success
+    error_msg
+    data {
+      requestId
+      results {
+        hotelId
+        strikeThroughDisplayPrice
+        availability
+        offers {
+          availability
+          displayName
+          displayPrice
+          price
+          logo
+          clickUrl
+        }
+      }
+      pricingType
+      isComplete
+      invalidHotelIds
+    }
+  }
+}
 `
 
 const UserProfile = `
@@ -725,4 +770,5 @@ export {
   GetHomePageProperty,
   LocationProperties,
   UserProfile,
+  TripHotelList,
 };
