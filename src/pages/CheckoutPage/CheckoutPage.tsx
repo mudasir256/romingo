@@ -61,16 +61,6 @@ const CheckoutPage: FC<Props> = () => {
     }
   }, [search]);
 
-  useEffect(() => {
-    if (screen.height > 700) {
-      window.Intercom("boot", {
-        app_id: "qa6datd3",
-        alignment: "right",
-        custom_launcher_selector: "#CUSTOM",
-      });
-      window.Intercom("update");
-    }
-  }, []);
   return (
     <>
       <ScrollToTop />
