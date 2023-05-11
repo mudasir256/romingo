@@ -46,6 +46,7 @@ import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
 import {
   GetHotelBySearch,
+  GetHotelBySearchNew
 } from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
@@ -122,22 +123,50 @@ const ListingPage: FC<Props> = () => {
 
   const { loading, error, data, refetch } = useQuery(
     gql`
-      ${GetHotelBySearch}
+      ${GetHotelBySearchNew}
     `,
     {
+      //TODO: replace variables here with dynamic values
       variables: {
-        adults: search.occupants.adults,
-        cityId: search.city,
-        checkIn: search.checkIn.substring(0, 10),
-        checkOut: search.checkOut.substring(0, 10),
-        children: ageParam,
-        dogs: search.occupants.dogs,
-        allows_big_dogs: allowBigDogs
+        adults: 1,//search.occupants.adults,
+        checkInDate: '1686460399000', //unix timestamp june 11
+        checkOutDate: '1686633199000', //june 13
+        latitude: '40.7128',
+        longitude: '-74.0060',
+        children: 1
+        // adults: search.occupants.adults,
+        // checkInDate: search.checkIn.substring(0, 10),
+        // checkOutDate: search.checkOut.substring(0, 10),
+        // children: 1//TODO: replace with a number,
+        // dogs: search.occupants.dogs,
       },
     }
   );
 
+  console.log(data)
+
+
+
   const dispatch: Dispatch<any> = useDispatch();
+
+  //Reference for graphql errors
+  // useEffect(() => {
+  //   fetch('http://localhost:4000/graphql', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       query: GetHotelBySearchNew,
+  //       variables: {
+      
+  //       },
+  //     }),
+  //   }).then(res => res.json())
+  //   .then(data => console.log(data))
+  //   .catch(err => console.log(err))
+  // },[])
+
 
   useEffect(() => {
     setTimeout(() => {

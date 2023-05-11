@@ -1,3 +1,38 @@
+const GetHotelBySearchNew = `
+  query SearchHotelsInput(
+    $checkInDate: String!
+    $checkOutDate: String! 
+    $latitude: String!
+    $longitude: String!
+    $adults: Int!
+    $children: Int!
+  ) {
+    getHotels(
+      input: {
+        adults: $adults,
+        children: $children,
+        checkInDate: $checkInDate,
+        checkOutDate: $checkOutDate,
+        latitude: $latitude,
+        longitude: $longitude
+      }
+    ) {
+      sessionId
+      hotels {
+        Address
+        GeoLocation
+        ID
+        StarRating
+        address
+        DisplayName
+        DefaultImage
+        zipCode
+        name
+      }
+    }
+  }
+`
+
 const GetHotelBySearch = `
     query PropertiesInput(
       $adults: Int!,
@@ -771,4 +806,7 @@ export {
   LocationProperties,
   UserProfile,
   TripHotelList,
+
+  //v2
+  GetHotelBySearchNew,
 };
