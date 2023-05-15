@@ -40,6 +40,7 @@ import { authService } from "./services/authService.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { IntercomProvider } from 'react-use-intercom';
+import ListingPageNew from "./pages/ListingPage/ListingPageNew";
 
 interface RouteInterface {
   path: string;
@@ -55,7 +56,7 @@ const routes: RouteInterface[] = [
   },
   {
     path: "/listings",
-    component: ListingPage,
+    component: ListingPageNew,
     requireAuth: false,
   },
   {
