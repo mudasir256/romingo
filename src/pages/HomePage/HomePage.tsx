@@ -74,6 +74,7 @@ const BookNow = 'https://www.romingo.com/public/sections-icons/icon-04.png'
 const HomePage: FC<Props> = () => {
   const history = useHistory();
   const search = useSelector((state: any) => state.searchReducer.search);
+  const cities = useSelector((state: any) => state.cityListReducer.cities);
   const dispatch: Dispatch<any> = useDispatch();
   const { width } = useWindowSize()
 
@@ -130,13 +131,17 @@ const HomePage: FC<Props> = () => {
        DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
        threeDaysFromCheckIn
      );
+     const cityId = locationIds[Math.floor(Math.random() * locationIds.length)];
+     const center = cities.find(x => x.id === cityId).center
 
      dispatch(
        saveSearch({
-         city: locationIds[Math.floor(Math.random() * locationIds.length)],
+         city: cityId,
          checkIn: new Date(randomCheckIn).toISOString(),
          checkOut: new Date(randomCheckOut).toISOString(),
          occupants: { adults: 2, children: 0, dogs: 1 },
+         lat: center.latitude,
+         lng: center.longitude,
        })
      );
      setTimeout(() => {
