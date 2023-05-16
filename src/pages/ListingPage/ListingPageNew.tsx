@@ -160,7 +160,6 @@ const ListingPageNew = ({ ...props }) => {
 
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" fullWidth onChange={handleSearch} />
           <Typography>Filter By</Typography>
-          <Typography>Popular Filters</Typography>
           <FormGroup>
             <FormControlLabel control={<Checkbox />} label="Pool" />
             <FormControlLabel control={<Checkbox />} label="Pet Friendly" />
