@@ -40,7 +40,7 @@ const ListingPageNew = ({ ...props }) => {
 
 
   useEffect(() => {
-    if (data) {
+    if (data && data.getHotels.sessionId) {
       setSessionId(data.getHotels.sessionId);
       const filteredHotels = [];
       const markers = [];
