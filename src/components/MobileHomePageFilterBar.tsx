@@ -110,6 +110,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         onSearch(selectedCity, checkDate[0], checkDate[1], occupants)
         return
       }
+      const center = cities.find(x => x.id === selectedCity).center
 
       setFormError("");
       dispatch(
@@ -118,6 +119,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
+          lat: center.latitude,
+          lng: center.longitude,
         })
       );
 

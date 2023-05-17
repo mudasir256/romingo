@@ -1,5 +1,5 @@
 import { withStyles } from "@material-ui/styles";
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField } from "@mui/material";
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField, Dialog, AppBar, Toolbar, IconButton, useMediaQuery } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -12,6 +12,10 @@ import CardList from "../../components/CardList";
 import Map from "../../components/UI/Map";
 import { useSelector } from "react-redux";
 import moment from 'moment';
+import CloseIcon from '@mui/icons-material/Close';
+import FilterBar from "../../components/MobileHomePageFilterBar";
+import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
+import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -27,6 +31,9 @@ const ListingPageNew = ({ ...props }) => {
   const [rating, setRating] = useState([]);
   const [query, setQuery] = useState('');
   const [sliderValue, setSliderValue] = useState(1000)
+  const [openMap, setOpenMap] = useState(false)
+  const [viewFilters, setViewFilters] = useState(false)
+  const mobile = useMediaQuery("(max-width:800px)");
 
   const { data } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children, search.lat, search.lng)}`);
@@ -57,7 +64,7 @@ const ListingPageNew = ({ ...props }) => {
 
     for (const hotel of data.getHotels.hotels) {
       if (hotel.DisplayName.includes(e.target.value) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
-        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude  })
+        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       }
     }
     for (const hotel of filteredHotels) {
@@ -72,8 +79,8 @@ const ListingPageNew = ({ ...props }) => {
     let newHotelsAfterFiltering = [];
     const filteredHotels = [];
     for (const hotel of data.getHotels.hotels) {
-      if(hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))){
-        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude  })
+      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
+        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       }
     }
     if (e.target.value === 'alphabetSort') {
@@ -94,8 +101,8 @@ const ListingPageNew = ({ ...props }) => {
     const filteredHotels = [];
     const hotelsAfterFiltering = []
     const markers = []
-    for (const hotel of data.getHotels.hotels){
-      if(hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= e.target.value && (rating.length === 0 || rating.includes(hotel.StarRating))){
+    for (const hotel of data.getHotels.hotels) {
+      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= e.target.value && (rating.length === 0 || rating.includes(hotel.StarRating))) {
         filteredHotels.push(hotel)
       }
     }
@@ -112,22 +119,22 @@ const ListingPageNew = ({ ...props }) => {
 
   const handleRatingChange = (e) => {
     const newRatings = rating;
-    if(!rating.includes(e.target.name) && e.target.checked){
+    if (!rating.includes(e.target.name) && e.target.checked) {
       newRatings.push(e.target.name)
-    } 
+    }
 
-    if(rating.includes(e.target.name) && !e.target.checked) {
+    if (rating.includes(e.target.name) && !e.target.checked) {
       const index = newRatings.indexOf(e.target.name);
-      if (index > -1) { 
-        newRatings.splice(index, 1); 
+      if (index > -1) {
+        newRatings.splice(index, 1);
       }
     }
 
     const filteredHotels = [];
     const hotelsAfterFiltering = []
     const markers = []
-    for (const hotel of data.getHotels.hotels){
-      if(hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue &&(rating.length === 0 || rating.includes(hotel.StarRating))){
+    for (const hotel of data.getHotels.hotels) {
+      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
         filteredHotels.push(hotel)
       }
     }
@@ -146,9 +153,21 @@ const ListingPageNew = ({ ...props }) => {
     <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
       <Navbar />
-      <LargeFilterBar />
-      <Grid container direction='row' spacing={2} sx={{ maxWidth: 1200, margin: 'auto', position: 'relative' }} >
-        <Grid item xs={4} >
+      {mobile ?
+        <Box sx={{ width: '95%', margin: '10px auto' }}>
+          <DesktopFilterBarNew city={search.city} />
+        </Box> : <LargeFilterBar />}
+      <Grid container direction='row' style={{ padding: mobile ? '0' : '30px', width: mobile ? '100%': '80%',margin: 'auto', position: 'relative', }} >
+        {mobile ?         
+        <Grid item container justifyContent='space-between' style={{padding: '0 10px'}}>
+          <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
+            View on full map
+          </Button>
+          <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setViewFilters(true)}>
+            View filters
+          </Button>
+        </Grid> : 
+        <Grid item xs={0} sm={4} >
           <Box sx={{ display: "flex", my: 2, width: "100%" }}>
             <Map center={{ lat: search.lat, lng: search.lng }}
               height={300}
@@ -157,9 +176,12 @@ const ListingPageNew = ({ ...props }) => {
               markers={markers}
             />
           </Box>
+          <Button variant="outlined" style={{ width: '100%', marginBottom: 10,  }} onClick={() => setOpenMap(true)}>
+            View on full map
+          </Button>
 
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" fullWidth onChange={handleSearch} />
-          <Typography>Filter By</Typography>
+          <Typography style={{marginTop: 10}}>Filter By</Typography>
           <FormGroup>
             <FormControlLabel control={<Checkbox />} label="Pool" />
             <FormControlLabel control={<Checkbox />} label="Pet Friendly" />
@@ -171,21 +193,22 @@ const ListingPageNew = ({ ...props }) => {
           <Slider defaultValue={0} step={100} marks min={0} max={1000} onChange={handleSliderChange} />
           <Typography>Guest Rating</Typography>
           <FormGroup onChange={handleRatingChange}>
-            <FormControlLabel control={<Checkbox name="1" checked={rating.includes("1")}/>} label="1" />
-            <FormControlLabel control={<Checkbox name="2" checked={rating.includes("2")}/>} label="2" />
-            <FormControlLabel control={<Checkbox name="3" checked={rating.includes("3")}/>} label="3" />
-            <FormControlLabel control={<Checkbox name="4" checked={rating.includes("4")}/>} label="4" />
-            <FormControlLabel control={<Checkbox name="5" checked={rating.includes("5")}/>} label="5" />
+            <FormControlLabel control={<Checkbox name="1" checked={rating.includes("1")} />} label="1" />
+            <FormControlLabel control={<Checkbox name="2" checked={rating.includes("2")} />} label="2" />
+            <FormControlLabel control={<Checkbox name="3" checked={rating.includes("3")} />} label="3" />
+            <FormControlLabel control={<Checkbox name="4" checked={rating.includes("4")} />} label="4" />
+            <FormControlLabel control={<Checkbox name="5" checked={rating.includes("5")} />} label="5" />
           </FormGroup>
-        </Grid>
-        <Grid item xs={8} >
-          <Grid container direction='row'>
+        </Grid>}
+
+        <Grid item xs={12} sm={8} style={{padding: mobile ? '0 10px' : '0 30px', width: '96%'}}>
+          <Grid item container direction='row'>
             <Grid item container direction='row' justifyContent='space-between'>
               <Grid item>
                 <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
               </Grid>
-              <Grid item style={{ marginRight: '22px' }}>
-                <FormControl fullWidth size="medium">
+              <Grid item >
+                <FormControl fullWidth size="small">
                   <InputLabel id="demo-simple-select-label">Sort</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -193,6 +216,7 @@ const ListingPageNew = ({ ...props }) => {
                     label="Sort"
                     onChange={handleSort}
                     variant='outlined'
+                    
                   >
                     <MenuItem value={'alphabetSort'}>Alphabet sort</MenuItem>
                     <MenuItem value={'priceSort'}>Price sort</MenuItem>
@@ -201,9 +225,79 @@ const ListingPageNew = ({ ...props }) => {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item>
           <CardList cards={hotels} />
+          </Grid>
         </Grid>
       </Grid>
+      <Dialog
+        fullScreen
+        open={openMap}
+        onClose={() => setOpenMap(false)}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => setOpenMap(false)}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Full screen map
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Map center={{ lat: search.lat, lng: search.lng }}
+          zoom={11}
+          selectedMarker={0}
+          markers={markers}
+        />
+      </Dialog>
+      <Dialog
+        fullScreen
+        open={viewFilters}
+        onClose={() => setOpenMap(false)}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => setViewFilters(false)}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Filters
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Box style={{padding: 20}}>
+          <TextField id="outlined-basic" label="Search by property name" variant="outlined" value={query} fullWidth onChange={handleSearch} />
+          <Typography style={{marginTop: 10}}>Filter By</Typography>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox />} label="Pool" />
+            <FormControlLabel control={<Checkbox />} label="Pet Friendly" />
+            <FormControlLabel control={<Checkbox />} label="Hot Tub" />
+            <FormControlLabel control={<Checkbox />} label="Bed & breakfast" />
+            <FormControlLabel control={<Checkbox />} label="Condo" />
+          </FormGroup>
+          <Typography>Price per night</Typography>
+          <Slider defaultValue={0} step={100} marks min={0} max={1000} value={sliderValue} onChange={handleSliderChange} />
+          <Typography>Guest Rating</Typography>
+          <FormGroup onChange={handleRatingChange}>
+            <FormControlLabel control={<Checkbox name="1" checked={rating.includes("1")} />} label="1" />
+            <FormControlLabel control={<Checkbox name="2" checked={rating.includes("2")} />} label="2" />
+            <FormControlLabel control={<Checkbox name="3" checked={rating.includes("3")} />} label="3" />
+            <FormControlLabel control={<Checkbox name="4" checked={rating.includes("4")} />} label="4" />
+            <FormControlLabel control={<Checkbox name="5" checked={rating.includes("5")} />} label="5" />
+          </FormGroup>
+        </Box>
+      </Dialog>
     </Grid>
   )
 }
