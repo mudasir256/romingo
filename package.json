@@ -44,6 +44,7 @@
     "lottie-react": "^2.1.0",
     "luxon": "^3.0.3",
     "material-ui-phone-number": "^3.0.0",
+    "moment": "^2.29.4",
     "node-fetch": "^2.6.7",
     "prerender-node": "^3.5.0",
     "react": "^17.0.2",

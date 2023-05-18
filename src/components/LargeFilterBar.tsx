@@ -96,6 +96,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       checkDate[0] &&
       checkDate[1]
     ) {
+      const center = cities.find(x => x.id === selectedCity).center
       setFormError("");
       dispatch(
         saveSearch({
@@ -103,6 +104,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
+          lat: center.latitude,
+          lng: center.longitude,
         })
       );
 
@@ -211,7 +214,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       mx: 'auto',
       mt: '0em',
       zIndex: '20',
-      width: '886px',
+      width: 'fit-content',
     }}>
       {showText && <Box component="h1" sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title">Book pet-friendly hotels</Box>}
       {showText && <Box component="h2" sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">Lowest rates. $0 pet fees.</Box>}

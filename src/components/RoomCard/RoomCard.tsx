@@ -53,7 +53,6 @@ import {
   Chair,
 } from "@mui/icons-material";
 import ImageSlider from "../ImageSlider";
-
 interface Props {
   sx?: CSSObject;
   room: any;
@@ -106,40 +105,40 @@ export interface RoomInfo {
     count: number;
     desc: string;
     __typename: string;
-  }[];
-  desc: string;
+  }[]; //no
+  desc: string; //no
   amenities: {
     code: number;
     desc: string;
     value: string;
-  }[];
-  averagePrice: number;
-  averagePriceAfterTax: number;
-  breakfastIncluded: boolean;
-  dinnerIncluded: boolean;
-  totalFees?: number;
+  }[]; //no
+  averagePrice: number; //final price is there if we can use original price we can use that field
+  averagePriceAfterTax: number; //Final price after tax is there 
+  breakfastIncluded: boolean; //no breakfast details
+  dinnerIncluded: boolean; //no dinner details
+  totalFees?: number; //we have array of fees
   fees?: {
     amount: number;
     desc: string;
-  }[];
-  lunchIncluded: boolean;
-  maxOccupants: number;
-  nonSmoking: boolean;
-  priceKey: string;
-  totalPrice: number;
-  totalPriceAfterTax: number;
-  type: string;
-  bestRate?: boolean;
+  }[]; //we have amount and title so we can use title in place of desc
+  lunchIncluded: boolean;//not there
+  maxOccupants: number; //if adultCounts is there it will be fine
+  nonSmoking: boolean;// not there
+  priceKey: string;//not there but there is a room key
+  totalPrice: number; //its there
+  totalPriceAfterTax: number; //its there
+  type: string;//i think we can use room name
+  bestRate?: boolean;// only price is there
   cancelationPolicy: {
     deadlineLocal: string | null;
     cancelable: boolean;
-  };
-  feesIncluded: boolean;
-  romingoMatch: boolean;
-  areaInSquareFeet: number;
-  featuredImageURL: string;
-  imageURLs: Array<string>;
-  name?: string;
+  };//not there
+  feesIncluded: boolean; //i think we can calculate
+  romingoMatch: boolean; //i am not sure
+  areaInSquareFeet: number; //no
+  featuredImageURL: string; //no
+  imageURLs: Array<string>; //no
+  name?: string; //its there
 }
 
 const popularAmenities = [

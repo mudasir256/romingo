@@ -2,6 +2,8 @@ interface ISearch {
   city: string;
   checkIn: string;
   checkOut: string;
+  lat?: string;
+  lng?: string;
   occupants: {
     adults: number;
     children: number;

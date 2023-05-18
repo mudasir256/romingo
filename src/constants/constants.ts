@@ -785,6 +785,28 @@ const UserProfile = `
   }
 `
 
+const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number) => { return `query {
+  getHotels(input: {adults: ${adults},
+  checkInDate: "${checkIn}",
+  checkOutDate: "${checkOut}",
+  children: ${children},
+  latitude: "${latitude}",
+  longitude: "${longitude}"
+}) {
+    sessionId
+    hotels {
+      ID
+      Address 
+      DefaultImage
+      DisplayName
+      GeoLocation
+      StarRating
+      SuppliersLowestPackagePrices
+    }
+  }
+}
+`}
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -809,4 +831,5 @@ export {
 
   //v2
   GetHotelBySearchNew,
+  GetHotelsByLocation,
 };
