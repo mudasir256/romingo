@@ -7,7 +7,7 @@ interface Props {
   boxShadow?: number;
 }
 
-const CardList: FC<Props> = ({ cards, boxShadow = 4 }) => {
+const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   return (
     <Box
     >
@@ -16,7 +16,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4 }) => {
           key={card.name}
           sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
         >
-          <ListingCard {...card} />
+          <ListingCard {...card} sessionId={sessionId} hotel={card}/>
         </Box>
       ))}
     </Box>

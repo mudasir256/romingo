@@ -807,6 +807,16 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
 }
 `}
 
+const getPackages = (hotelId: string, sessionId: string) => {
+  return `query {
+    getHotelDetails(input: {hotelId: "${hotelId}", sessionId: "${sessionId}"}) {
+      Result
+      RoomsContent
+    }
+  }
+  `
+}
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -832,4 +842,5 @@ export {
   //v2
   GetHotelBySearchNew,
   GetHotelsByLocation,
+  getPackages,
 };

@@ -81,6 +81,8 @@ const ListingCard: FC<ListingCardProps> = ({
   alias,
   amenities,
   limitImages = false,
+  sessionId,
+  hotel,
   ...props
 }) => {
   const history = useHistory();
@@ -265,9 +267,9 @@ const ListingCard: FC<ListingCardProps> = ({
 
         <Box
           component="a"
-          href={`/hotel/${alias}`}
+          href={`/hotel/${id}`}
 
-          onClick={() => history.push("/hotel/" + alias, {flag: props?.flag, bookingId: props?.bookingId})}
+          onClick={() => history.push("/hotel/" + id, {sessionId: sessionId, hotelDetails: hotel})}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
