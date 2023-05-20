@@ -2,13 +2,20 @@ import {
   Box,
   Typography,
   Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
 } from "@mui/material";
+
 import { utils } from '../../services/utils'
 
 import { gql, useQuery } from "@apollo/client";
 import { LocationProperties } from "../../constants/constants";
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+import Dallas from "../../components/Cities/Dallas";
+import Austin from "../../components/Cities/Austin";
 
 export default function InnerContent({ cityId, cityName, city }) {
 
@@ -923,280 +930,13 @@ export default function InnerContent({ cityId, cityName, city }) {
       </Box>
     </>)
   } else if (cityName === 'Austin') {
-    return (<>
-      <HotelSection 
-        text="The past few years have seen Austin transform into one of the most popular landing spots for young professionals, entrepreneurs, and creatives. With its unique blend of culture, tech-savvy businesses, and a booming job market, Austin is an ideal place to make your mark in the world. From delicious Tex-Mex eateries to some of the best live music venues around, Austin is sure to keep you entertained for a weekend or extend work-cation."
-        secondaryText="But what about your four-legged friend? Don’t worry: Austin has plenty to offer in terms of pet-friendly accommodations and activities. Many hotels are pet-friendly and offer special amenities such as dog beds, treats, and even pet sitters. There are also numerous dog parks scattered around the city. &#09;&#09; From lakeside walks to doggy yoga, Austin has plenty of activities that can make your pet’s visit just as enjoyable as yours."
-        cityName="Austin"
-        includedHotels={
-          [
-            'all'
-          ]
-        }
-      />
-      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
-        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Austin</Typography>
-        <Typography variant="h5">Explore Austin&apos;s Off-Leash Dog Parks</Typography>
-        
-        <LinkContent
-          link="https://austinparks.org/park/red-bud-isle/"
-          linkText="Red Bud Isle"
-          text="This sprawling off-leash dog park near the Tom Miller Dam offers plenty of activities for humans as well, including fishing, hiking, biking, and swimming."
-        />
-
-        <LinkContent
-          link="https://www.yelp.com/biz/barton-springs-pool-austin"
-          linkText="Barkin' Springs"
-          text="Located just next to Austin hotspot Barton Springs, Barkin' Springs will let your furry friend cool off in style."
-        />
-
-        <LinkContent
-          link="https://austinparks.org/park/onion-creek-district-park/"
-          linkText="Onoin Creek District Park"
-          text=" Down in Southeast Austin, Onion Creek District Park offers lovely forest trails, as well as plenty of open space to play in."
-        />
-
-        <LinkContent
-          link="https://austinparks.org/park/barton-creek-greenbelt/"
-          linkText="Barton Creek Greenbelt Preserve"
-          text="Offering activities like rock climbing, mountain biking, and bird watching or humans, Barton Creek Greenbelt Preserve is an ideal spot for two-legged and four-legged fun. That's right: your pup is welcome to join you on the trails and explore this scenic area."
-        />
-
-        <LinkContent
-          link="https://austinparks.org/park/bull-creek/"
-          linkText="Bull Creek District Park"
-          text="Located north of Austin, Bull Creek District Park is a great spot for some relaxed hiking. The landscape includes limestone ledges and small hills - perfect for those who want to break a sweat with their pup in tow."
-        />
-
-        <LinkContent
-          link="https://austinparks.org/?s=emma+long"
-          linkText="Turkey Creek Trail at Emma Long Metropolitan Park"
-          text="Those in search of an even more strenuous hike should check out Turkey Creek Trail at Emma Long Metropolitan Park. This 3-mile trail is quite steep, but offers plenty of rewarding views and wildlife spotting opportunities to make the journey worthwhile."
-        />
-
-        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
-        <LinkContent
-          link="https://www.circlebrewing.com/"
-          linkText="Circle Brewing Company"
-          text="Located in North Austin, Circle Brewing Company welcomes furry friends to their outdoor patio. Enjoy a pint while your pup enjoys some snacks - both of you won't be disappointed."
-        />
-
-        <LinkContent
-          link="https://www.draughthouse.com/"
-          linkText="Draught House Pub & Brewery"
-          text="With 74 taps and an array of local laudits, Draught House Pub & Brewery has established itself as the perfect spot to grab a beer while your pup hangs out on the dog-friendly patio."
-        />
-
-        <LinkContent
-          link="https://wanderlustwine.com/"
-          linkText="Wanderlust Wine Co"
-          text="tching to try some local vino? Head over to Wanderlust Wine Co with your pup and sample a few of their delicious wines! This pet-friendly winery has locations in Downtown Austin and on the Eastside."
-        />
-
-        <Typography variant="h5">Check Out Austin&apos;s Pet-Friendly Restaurants and Cafes</Typography>
-
-        <LinkContent
-          link="https://www.fatcitystacks.com/"
-          linkText="Fat City Stacks"
-          text="Enjoy some delicious breakfast sandwiches and coffee with your pup at Fat City Stacks. This pet-friendly café is located in the vibrant South Congress area, and offers an impressive menu just for dogs, featuring chicken meatballs, peanut butter, and greek yogurt ice cream!"
-        />
-
-        <LinkContent
-          link="https://www.ilikelick.com/"
-          linkText="Lick Honest Ice Creams"
-          text="On a hot Austin day, cool down with your furry friend at Lick Honest Ice Creams. This pet-friendly shop offers delicious made-from-scratch flavors that are sure to please both you and your pup!"
-        />
-
-        <LinkContent
-          link="https://www.easytigerusa.com/"
-          linkText="Easy Tiger"
-          text="What better way to spend a lazy Sunday than with a beer and some pretzels? You can do both while your pup hangs out on the Easy Tiger patio."
-        />
-
-        <Typography variant="h2">Austin&apos;s Dog Daycare and Boarding</Typography>
-        <Typography variant="base">If you&apos;re looking for doggy daycare while you&apos;re in Austin, here are a few of our favorites:</Typography>
-
-        <LinkContent
-          link="https://www.campbowwow.com/austin/"
-          linkText="Camp Bow Wow Austin"
-          text="Located on the north side of Austin towards Round Rock, Camp Bow Wow offers a safe, fun environment for your pup to socialize and play with other dogs."
-        />
-
-        <LinkContent
-          link="https://www.dogtopia.com/austin-south/"
-          linkText="Dogtopia South Austin"
-          text="Dogtopia South Austin offers doggy daycare, boarding, grooming and more. They also have a wide selection of activities to keep your pup entertained while at the facility."
-        />
-
-        <LinkContent
-          link="https://bhvaustin.com/"
-          linkText="BHV Austin"
-          text="BHV Austin is a state-of-the-art doggy daycare and boarding facility located in South Austin. They offer spacious play areas, comfortable suites for overnight stays and lots of fun activities to keep your pup happy and healthy!"
-        />
-
-        <Typography variant="h2">Austin&apos;s Best Pet Stores</Typography>
-        <Typography variant="base">A pup vacation certainly warrants a new toy or ten, right? Here are your best options for pet stores in Austin.</Typography>
-
-        <LinkContent
-          link="https://www.pawsonchicon.com/"
-          linkText="Paws on Chicon"
-          text="Located in East Austin, Paws on Chicon is a great spot to find all your pup's necessities. They carry everything from food and treats to toys and collars - plus, they offer plenty of goodies for cats too!"
-        />
-
-        <LinkContent
-          link="https://healthypetaustin.com/"
-          linkText="Healthy Pet"
-          text="With three locations in the Austin area, Healthy Pet is the place to go for all your pup's health needs. From vitamins and supplements to pet-safe cleaning products, this pet store has you covered."
-        />
-
-        <LinkContent
-          link="https://tomlinsons.com/"
-          linkText="Tomlinson's Feed"
-          text=" Tomlinson’s Feed has been an Austin favorite for more than 70 years. This pet store has endless options for your pup, including food, treats, toys and grooming supplies. They also offer self-serve dog wash stations!"
-        />
-
-        <LinkContent
-          link="https://petsupermarket.brickworksoftware.com/store-locator/?page=1&storesPerPage=15"
-          linkText="Pet Supermarket"
-          text="Pet Supermarket has everything your pup needs, from food and treats to toys, beds and more."
-        />
-
-        <Typography variant="h2">Bonus Activity: Paddleboard or Kayak with Your Dog</Typography>
-        <Typography variant="base">Take your pup out on the water with you! Take a <a href="https://www.gilisports.com/blogs/sup-near-me/best-places-for-paddle-boarding-in-austin" target="_blank" rel="noreferrer">paddleboard</a> or <a href="https://www.tripadvisor.com/Attractions-g30196-Activities-c61-t191-Austin_Texas.html" target="_blank" rel="noreferrer">kayak tour</a> on one of Austin&apos;s many local bodies of water.</Typography>
-
-      </Box>
-    </>)
+    return (
+      <Austin />
+    );
   } else if (cityName === 'Dallas') {
-    return (<>
-      <HotelSection 
-        text="Planning a trip to Dallas with your tail-wagging pal?  You’ll be pleased to know that the Lone Star State's third-largest city is a pet friendly destination. From parks, trails and even attractions offering special amenities for your furry friends, you’ll find plenty of ways to include them in your getaway."
-        secondaryText=""
-        cityName="Dallas"
-        includedHotels={
-          [
-            'all'
-          ]
-        }
-      />
-      <Box px="2.5rem" pb="2.5rem" display="flex" flexDirection="column" gap="1.5rem">
-        <Typography mt="1rem" variant="h2">Pet-Friendly Activities in Dallas</Typography>
-
-        <Typography variant="h5">Explore Dallas&apos;s Off-Leash Dog Parks</Typography>
-        <LinkContent
-          link="http://www.dallasparks.org/Facilities/Facility/Details/NorthBark-Dog-Park-359"
-          linkText="NorthBark Dog Park"
-          text="Just north of downtown in the cool, shady NorthBark Dog Park, your pup can enjoy an off-leash area to get some exercise and socialize with other dogs. The park has plenty of obstacles for both large and small dogs to jump on, alongside a separate section reserved just for smaller breeds."
-        />
-
-        <LinkContent
-          link="https://muttscantina.com/"
-          linkText="MUTTS Canine Cantina"
-          text="For a unique experience, head to MUTTS Canine Cantina with your pup. This dog-centric destination has everything you need for a fun day out with your furry friend – an off-leash park, full bar and restaurant, doggy pool, and even live music."
-        />
-
-        <LinkContent
-          link="https://www.klydewarrenpark.org/join-give/my-best-friends-dog-park.html"
-          linkText="My Best Friend's Park at Klyde Warren Park"
-          text="The scenic Klyde Warren Park has plenty of activities for both you and your pup, including an off-leash zone specifically designed with doggy fun in mind. The park also offers a dog water fountain and several areas to cool off in the shade."
-        />
-
-        <Typography variant="h5">Take a Hike with Your Pup</Typography>
-        <LinkContent
-          link="https://www.traillink.com/trail/katy-trail-(dallas)/"
-          linkText="Katy Trail"
-          text="This scenic trail follows the path of an old railroad,  offering 3.5 miles of paved paths ideal for a leisurely stroll with your pup. You can access the trail from several areas around the city and enjoy sweeping views of downtown Dallas as you explore."
-        />
-
-        <LinkContent
-          link="https://www.traillink.com/trail/bachman-lake-park-loop-trail/"
-          linkText="Machman Lake Park Loop Trail"
-          text="This 2-mile loop trail is one of the most scenic places to take your pup in Dallas. The path goes around Bachman Lake, offering tranquil views and a few small hills perfect for an energetic walk."
-        />
-
-        <Typography variant="h5">Visit a Pet-Friendly Brewery or Winery</Typography>
-        <LinkContent
-          link="https://deepellumbrewing.com/"
-          linkText="Deep Ellum Brewing Co"
-          text="Sprawling local favorite Deep Ellum Brewing Co. is the perfect place to stop for a sip and some canine fun with your pup. The brewery has several outdoor areas where pets are allowed, and they even host occasional doggy events!"
-        />
-
-        <LinkContent
-          link="https://oakcliffbrewing.com/"
-          linkText="Oak Cliff Brewing Co"
-          text="Oak Cliff Brewing Co. is another great option if you want to grab a pint with your pup. The brewery has several outdoor areas where pets are allowed, including a large beer garden perfect for spending time with your furry friend."
-        />
-
-        <LinkContent
-          link="https://www.peticolasbrewing.com/"
-          linkText="Peticolas Brewing Company"
-          text="This brewery is the perfect spot for a beer and some pup-play time. They have plenty of outdoor space, including a large lawn where your pooch can run around. Plus, Peticolas also offers several doggy treats to keep your pup happy while you sip on craft brews."
-        />
-
-        <Typography variant="h5">Check Out Dallas&apos;s Pet-Friendly Restaurants and Cafes</Typography>
-        <LinkContent
-          link="https://www.breadwinnerscafe.com/"
-          linkText="Bread Winners Cafe & Bakery"
-          text="This cozy cafe is a great spot to grab some biscuits & gravy with your pup (OK, maybe just biscuits for your little friend.)  The restaurant has several pet-friendly outdoor tables perfect for grabbing a bite with your canine companion."
-        />
-
-        <LinkContent
-          link="https://www.rodeogoat.com/"
-          linkText="Rodeo Goat"
-          text="Rodeo Goat is a popular spot for craft beers and burgers, and their pet-friendly patio makes it the perfect place to stop with your pup. Cozy up by the fire at night!"
-        />
-
-        <LinkContent
-          link="https://torchystacos.com/"
-          linkText="Torchy's Tacos"
-          text="Statewide favorite Torchy’s Tacos also offers outdoor seating for you and your pup. They serve up plenty of Texas-style tacos perfect for a mid-day snack with your furry friend."
-        />
-
-        <Typography variant="h2">Dallas&apos;s Best Dog Daycare and Boarding Facilities</Typography>
-        <LinkContent
-          link="https://www.dogtopia.com/dallas-inwood/"
-          linkText="Dogtopia"
-          text="Dogtopia of Dallas offers daycare, overnight boarding, and grooming services for your pup. They have spacious play areas to keep your dog active and happy while you’re away. Keep an eye on your pal using Dogtopia's webcam access!"
-        />
-
-        <LinkContent
-          link="https://www.lakesidepawsfrisco.com/"
-          linkText="Lakeside Paws"
-          text="Over in Frisco, Lakeside Paws is the perfect spot for your pup to play and stay while you head off on human-only adventures. The facility offers daycare, overnight boarding, dog walking, and spa services – all in a safe, secure environment."
-        />
-
-        <LinkContent
-          link="https://www.castlecreekpetresort.com/"
-          linkText="Castle Creek Pet Resort & Spa"
-          text=" For a truly pampered pup, head to Castle Creek Pet Resort & Spa. Sprawling across a 13,000 square feet horse ranch, Castle Creek also offers private indoor suites with individual covered patios."
-        />
-
-        <Typography variant="h2">Dallas&apos;s Best Pet Stores</Typography>
-        <LinkContent
-          link="https://greenpetdallas.com/"
-          linkText="Green Pet Supply"
-          text="This pet supply store is your one-stop shop for all things pup. Green Pet Supply offers natural and organic products for your furry friend, as well as raw food diet supplies and eco-friendly toys."
-        />
-
-        <LinkContent
-          link="http://www.odysseypets.com/"
-          linkText="Odyssey Pets"
-          text="Odyssey Pets is a great spot for pet lovers looking to spoil their companions. They sell everything from treats and toys to clothing, accessories, and grooming supplies – perfect for pampering your pup!"
-        />
-
-        <LinkContent
-          link="https://stores.petco.com/tx/dallas/pet-supplies-dallas-tx-440.html"
-          linkText="Petco"
-          text="If you’re looking for a more traditional pet store, Petco is your best bet. They have a wide selection of food and supplies, as well as grooming and vet services. Plus, they offer plenty of pet-friendly events and classes perfect for meeting other pup-lovers in the area."
-        />
-
-        <LinkContent
-          link="https://theluckydogbarkery.com/"
-          linkText="Lucky Dog Barkery"
-          text="For some pet-friendly treats, stop by Lucky Dog Barkery. This adorable shop is stocked with natural and organic goodies perfect for your pup. They even have a selection of handcrafted cakes for special occasions!"
-        />
-
-      </Box>
-    </>)
+    return (
+      <Dallas />
+    );
   } else if (cityName === 'Denver') {
     return (<>
       <HotelSection 
