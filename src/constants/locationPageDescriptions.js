@@ -17,9 +17,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Dallas%20Texas.jpeg',
     paragraphOne:
-      'Envelope yourself in the Western atmosphere of Dallas, Texas – with your beloved companion nestled by your side. ',
+      'Embark on a thrilling adventure with your precious pet through the dazzling city of Houston, Texas.',
     paragraphTwo:
-      "Dallas is more than just a large hub for business, shopping and culture -- there’s also an array of pet-friendly hotels catering to a wide variety of preferences and budgets. ",
+      "Famed for its rich cultural tapestry, stunning waterways, world-class museums and dynamic culinary landscape, Houston has established itself as an irresistible destination for travelers. Adding to its allure, the city offers a remarkable assortment of pet-friendly hotels, catering to a wide range of preferences and budgets. These accommodations ensure that both you and your furry companion can enjoy Houston's countless attractions in comfort and style.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Dallas.jpg',
     keywords:
@@ -43,9 +43,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Oceanside%20California.jpeg',
     paragraphOne:
-      "Oceanside, California, is a beautiful oceanside town located in Southern California. Visitors can enjoy stunning ocean views, beaches, pet-friendly hotels, restaurants, and shops. There is also a pier which is a great place to walk, fish, or just take in the views. Oceanside is a popular destination for tourists and locals alike, and there is something for everyone to enjoy. Whether you're interested in surfing, kayaking, or simply exploring the coastline, oceanside is sure to please. If your pet is feeling adventurous as well, there are also plenty do friendly hiking trails in the area.",
+      'Embrace the alluring coastal appeal of Oceanside, California, as you venture with your cherished pet. This enchanting beach town, recognized for its immaculate shores, scenic harbor, and dynamic arts culture, presents a remarkable range of pet-friendly accommodations to satisfy diverse preferences and budgets.',
     paragraphTwo:
-      "Looking for a pet-friendly place to stay in Oceanside, California? There are plenty of pet friendly hotel options to choose from, whether you're looking for a luxurious getaway or a budget-friendly place to crash. For those wanting to splurge, the Oceanside area offers plenty of upscale hotels with all the bells and whistles, including top-notch amenities and breathtaking views. If you're on a tight budget, don't worry - there are also plenty of hotels that won't break the bank. No matter your budget, there's sure to be a hotel that's perfect for you.",
+      "Review our showcase of Oceanside's top pet-friendly lodgings, highlighting well-established hotel chains and distinctive boutique establishments. Together with your furry companion, discover the ideal temporary haven as you unearth the mesmerizing charm of this relaxed coastal utopia.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Oceanside.jpg',
     keywords:
@@ -56,9 +56,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Phoenix%20Arizona.jpg',
     paragraphOne:
-      'Phoenix is a popular destination for tourists and business travelers alike. The capital city of Arizona, Phoenix, is best known for its year-round sun. A lesser-known fact is that it is the fifth-largest city in the United States. This vibrant city offers a diverse range of activities and attractions to keep visitors entertained.',
+      'Phoenix extends a warm invitation to pet owners, especially during the summertime when it’s too hot for a dog’s bare feet on the sidewalk in mid day',
     paragraphTwo:
-      "From hiking and biking in the Sonoran Desert to exploring the diverse cuisine and nightlife, there's something for everyone in Phoenix. With Phoenix being a hub for business and outdoor adventure alike, there are plenty of pet-friendly hotel options for travelers of all types.",
+      'Aside from that, Phoenix offers a selection of inviting accommodations that cater to their furry companions. This dynamic city presents an array of delightful pet-friendly hotels, ensuring an unforgettable and pleasurable stay for you and your beloved pet.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Phoenix.jpg',
     keywords:
@@ -69,9 +69,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Scottsdale%20Arizona.jpeg',
     paragraphOne:
-      'Scottsdale is a beautiful city in Arizona, just east of the capital city of Phoenix. Sitting at 1,200’ elevation, Scottsdale is a very green city with large orchards of old olive trees. If you are looking for a place to relax and rejuvenate, Scottsdale is the perfect destination. In addition to its many great attractions, Scottsdale has many pet-friendly hotels.',
+      'Scottsdale, Arizona, is a city that boasts a unique blend of natural beauty, luxury, and cultural experiences. What sets Scottsdale apart is its desert landscape, characterized by majestic saguaro cacti, stunning mountain vistas, and breathtaking sunsets. ',
     paragraphTwo:
-      'While summers can get into triple digits on the thermometer over summer, the head is dry so it is not as oppressive as it can be in other parts of the country. The winters in Scottsdale are mild and the best time to visit. The cool temperatures are perfect for morning hikes with the dog, followed by afternoon rounds of golf at one of the many world-class courses in the area.',
+      'The city embraces its Western heritage and offers a wide range of outdoor activities, from hiking and horseback riding to hot air ballooning and desert jeep tours.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Scottsdale.jpg',
     keywords:
@@ -82,9 +82,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Tucson%20Arizona.jpg',
     paragraphOne:
-      'Tucson is a city in Arizona that is rich in history and culture. Founded in 1775, Tucson was the first European settlement in the state. The city has since grown to become the second-largest in Arizona, with a population of over 1 million people. Tucson is home to several preserved adobe buildings, including the San Xavier del Bac Mission, which was built in the 18th century. The city is also home to the University of Arizona, founded in 1885.',
+      "Tucson beckons as a vibrant desert destination, its landscapes dazzling and history rich. Nestled in the Sonoran Desert's heart, Tucson blends natural beauty with Southwestern charm, offering something for all. From traversing picturesque desert trails to immersing in the city's artistic offerings, this captivating desert oasis delights.",
     paragraphTwo:
-      "Tucson has a warm desert climate and is known for its annual Tucson Rodeo and Tucson Gem & Mineral Show. Visitors can explore the city's many museums and art galleries or drive through one of Tucson's nearby pet-friendly national parks. The winter is the best time to visit Tuscon with your pet. There are plenty of fantastic pet friendly hotels in the area that cater to you and your pets.",
+      "The city's vibrant arts scene and rich cultural heritage add to its charm, with influences from Native American traditions and the Old West creating a unique atmosphere.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Tucson.jpg',
     keywords:
@@ -95,9 +95,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Santa%20Fe%20New%20Mexico.jpg',
     paragraphOne:
-      'Santa Fe was founded in 1610 and is the oldest capital city in the United States. The city is known for its art and architecture, as well as its traditional Native American and Hispanic influences. There are several museums, pet-friendly walking trails, amazing restaurants, southwestern art galleries, and the famous Santa Fe Opera House. Visitors can also enjoy a variety of outdoor activities, such as hiking, dog walking, biking, and horseback riding.',
+      'Santa Fe, New Mexico, holds a place of honor in the hearts of those who appreciate history, culture, and artistic expression. This adobe-clad city beckons visitors with its vibrant arts scene, rich Native American heritage, and fusion of old-world charm and contemporary creativity.',
     paragraphTwo:
-      'Many of the hotels in Santa Fe are pet friendly and offer exceptional amenities for accompanying pets. The vast parks and grass areas make Santa Fe one of the best cities to travel to with your pet. Not to mention the great pet friendly hotels in the area.',
+      "From the legendary Santa Fe Plaza to the iconic Canyon Road, the city's art galleries, museums, and cultural landmarks showcase its diverse and captivating cultural tapestry.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Santa%20Fe.jpg',
     keywords:
@@ -108,9 +108,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/San%20Antonio.jpg',
     paragraphOne:
-      'Founded in 1718, San Antonio is well known for the infamous 1836 Battle of the Alamo. Today, the Alamo is a popular tourist destination. The city is also home to the pet-friendly San Antonio River Walk, a network of pedestrian paths along the San Antonio River. Other popular attractions include the Tower of the Americas, SeaWorld, and Six Flags.',
+      "San Antonio, Texas, beckons with its rich cultural heritage and vibrant atmosphere, offering a unique experience for visitors. The city's deep historical roots are evident in iconic landmarks like the Alamo and Spanish missions, showcasing its fascinating past. The fusion of Mexican and Texan cultures creates a diverse culinary scene, where you can savor mouthwatering Tex-Mex dishes and traditional Mexican flavors. ",
     paragraphTwo:
-      'There is so much to see in San Antonio, and it is a great place to visit for a long weekend. Plus, with the many pet-friendly hotels in the area, there is no reason not to plan a trip. While in San Antonio, be sure to visit the McNay Art Museum and the San Antonio Museum of Art.',
+      "The enchanting Riverwalk, a picturesque network of walkways along the San Antonio River, invites you to explore charming restaurants, shops, and vibrant nightlife. San Antonio's festive spirit comes alive during events like Fiesta San Antonio, a colorful celebration that highlights the city's cultural heritage and community pride.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/San%20Antonio.jpg',
     keywords:
@@ -121,9 +121,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Vail%20Colorado.jpg',
     paragraphOne:
-      "Vail Colorado is one of the most popular winter destinations in the United States. Located in the Rocky Mountains, Vail is known for its stunning scenery and world-class ski resorts. Visitors can enjoy a variety of activities both on and off the slopes, including snowboarding, dog sledding, ice skating, and snowmobiling. There are also plenty of high-end retail shops, restaurants, and pet-friendly hotels. Whether you're looking for an action-packed vacation or a relaxing getaway, Vail is the perfect place to enjoy some spectacular winter weather.",
+      'Nestled amidst the awe-inspiring and towering Rocky Mountains, Vail Colorado stands as an unparalleled haven for outdoor enthusiasts and nature lovers alike.',
     paragraphTwo:
-      'This vibrant mountain town is also a popular summer destination. The pet-friendly mountainside accommodations make Vail the perfect destination for outdoor adventure year-round. During the summer, there is world-class downhill mountain biking, hiking, fly fishing, and trails for afternoon runs with your dog.',
+      "Internationally renowned for its exceptional skiing opportunities, the destination's slopes cater to avid winter sports enthusiasts seeking the ultimate alpine experience.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Vail.jpg',
     keywords:
@@ -134,9 +134,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Colorado%20Springs.jpg',
     paragraphOne:
-      "Nestled at the base of the Rocky Mountains, Colorado Springs is a beautiful city with plenty to offer visitors. Outdoor enthusiasts can explore the more than 60 parks and trails in the area, including Garden of the Gods Park and Pikes Peak. Colorado Springs is also home to the US Olympic Training Center. History buffs can learn about the city's past at the Museum of Colorado Springs History, while art lovers can appreciate the many sculptures and murals downtown.",
+      "Situated at the base of the Rocky Mountains, Colorado Springs captivates with stunning landscapes, rich history and with a variety of outdoor activities available. It's a favorite for pet owners with its diverse selection of pet-friendly hotels. ",
     paragraphTwo:
-      'Outdoor enthusiasts will find plenty to do in Colorado Springs, with hiking, biking, and climbing available. And, of course, no visit to Colorado Springs would be complete without taking in the stunning views of the mountains. There are many pet-friendly hotels in the area, making it easy to bring your pet along for the next big adventure.',
+      "Regardless of whether you visit Colorado Springs for its unrivaled outdoor recreation, its captivating cultural attractions, or merely to relax and soak in the mountain vistas, you'll undoubtedly discover a pet-friendly hotel that not only meets your needs – but also surpasses your expectations.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Colorado%20Springs.jpg',
     keywords:
@@ -147,9 +147,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Denver.jpg',
     paragraphOne:
-      'The Mile High City, Denver, boasts a vibrant downtown area with plenty of shopping, dining, and pet-friendly hotels. Outside of the city, visitors can enjoy the Rocky Mountains and all the outdoor activities they have to offer. Outdoor enthusiasts can hike, mountain bike, or ski in the nearby mountains, while culture lovers can explore the numerous art galleries and museums.',
+      'Take a thrilling plunge into the dynamic tapestry of Denver, Colorado, a city resplendent with its imposing Rocky Mountain skyline and pulsating arts scene.',
     paragraphTwo:
-      'Denver is nestled in the Rocky Mountains and boasts stunning views in every direction. The River Walk in the NoDo downtown region is the perfect place to bring your dog. During the summer months, you will see many dogs and their owners wading in the cool river water. Best of all, some of the top pet-friendly hotels are close by.',
+      'This vivacious city is a paradise for those traveling with their loyal four-legged companions – offering a diverse array of welcoming pet-friendly hotels.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Denver.jpg',
     keywords:
@@ -160,9 +160,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Seattle.jpg',
     paragraphOne:
-      'Seattle is a vibrant city located in the Pacific Northwest region of the United States. The city is situated on Puget Sound, with stunning views of the Cascade Mountains and Olympic Mountain range. Seattle is known for its coffee culture, rain, pet-friendly activities, and live music.',
+      'Seattle is a vibrant and cosmopolitan city celebrated for its stunning waterfront, thriving arts scene, and awe-inspiring natural beauty. Nestled between majestic mountains and the glistening waters of Puget Sound, Seattle offers a unique fusion of urban sophistication and outdoor exploration.',
     paragraphTwo:
-      'The city is also home to several major corporations, including Amazon, Starbucks, and Boeing. Visitors to Seattle can enjoy various activities, from exploring the vibrant downtown area to hiking in the nearby mountains. And, with a wide variety of pet-friendly hotels, Seattle is an excellent destination for the whole family.',
+      'Renowned for its coffee culture, grunge music legacy and tech-driven innovation, the city buzzes with a dynamic energy that captivates visitors from across the globe.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Seattle.jpg',
     keywords:
@@ -186,9 +186,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Sacramento.jpeg',
     paragraphOne:
-      'Sacramento is the capital city of California, located in the northern part of the state. Sacramento is known for its Gold Rush history, and today it is a booming metropolis with a diverse population. The city has a growing arts and culture scene, and there are plenty of activities to keep visitors entertained. The pet-friendly vibe in Sacramento makes this a great city to visit with your four-legged family member.',
+      'Uncover the pet-friendly allure of Sacramento, California, where a collection of exceptional accommodations eagerly await the arrival of you and your furry companions. ',
     paragraphTwo:
-      "Sacramento is also home to several professional sports teams, making it an excellent destination for sports fans. Whether you're interested in history or just looking for a fun-filled city to explore, Sacramento is sure to have something for you.",
+      "Sacramento, the capital of California, boasts it’s own unique blend of history, culture and natural beauty. Its rich heritage is evident in the preserved historic districts and landmarks that offer a glimpse into the city's past.",
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Sacramento.jpeg',
     keywords:
@@ -199,9 +199,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/Salt%20Lake%20City.jpeg',
     paragraphOne:
-      'Salt Lake City is the capital of Utah and the largest city in the Intermountain West. The city is home to the iconic salt lake, as well as the world-famous Mormon Temple and Latter-day Saint (LDS) church headquarters. Nestled between a massive lake and huge mountains, Salt Lake City is a great hub for out door enthusiasts. And, with plenty of pet-friendly hotels, it is a great location for the whole family.',
+      'Salt Lake City, the capital of Utah, is a city brimming with unique characteristics that set it apart from other destinations. Discover why SLC stands for "Sniff, Love & Companionship" with dog friendly Salt Lake. ',
     paragraphTwo:
-      'Salt Lake City is a popular tourist destination for its many outdoor activities, including skiing and hiking in the nearby Wasatch mountains, and its unique history and culture. The city is also a major business center, with many corporations headquartered.',
+      'One of its most distinctive features is its stunning natural surroundings, with the majestic peaks of the Wasatch Mountains serving as a breathtaking backdrop. This allows for a vaiety of outdoor activities year-round, from skiing and snowboarding in the winter to hiking and mountain biking in the summer.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-production-public/locations/secondary/Salt%20Lake%20City.jpg',
     keywords:
@@ -212,9 +212,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg',
     paragraphOne:
-      'Palm Springs offers something unique and different from many of the famous coastal cities in California. Located in the Sonoran Desert, this city is most known for its golf courses, mountainous views, mid-century architecture, and first-class spa resorts. For those who enjoy warm weather and discovering the charm of locally owned and operated businesses, Palm Springs has more than enough to offer.',
+      'Picture a world where the joyous wag of a tail and the gentle purr of contentment harmonize with the warm desert breeze. Dog friendly Palm Springs,with its abundant sunshine and awe-inspiring landscapes, sets the stage for an unforgettable sojourn with your furry sidekick. ',
     paragraphTwo:
-      'Some of the city&apos;s main highlights include its art and culture scene and outdoor adventures where you can find miles of pet-friendly trails, canyons, mountain streams, and beautiful waterfalls. Finally, the cherry on top getting pampered at one of Palm Spring’s luxury stays!',
+      'Palm Springs is a sun-kissed desert oasis renowned for its breathtaking natural beauty, with majestic mountains and vibrant palm trees against a backdrop of blue skies. It’s a haven of mid-century modern architecture, where iconic designs seamlessly blend with the desert landscape, attracting architecture enthusiasts from around the world.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-4.jpeg',
     keywords:
@@ -225,9 +225,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/la-hero.jpeg',
     paragraphOne:
-      'Los Angeles is regarded as one of the most renowned cities in the whole world. This dazzling city is known as the entertainment capital and sits in close proximity to a number of world famous beaches. You can also find amusement parks, countless museums, a variety of pet-friendly tourist attractions, great hikes, and so much more! When you visit Los Angeles, there is never a shortage of things to see, try, and eat -- which is why there are roughly 50 million visitors in Los Angeles every year.',
+      'Delight in the glitz and glamour of Los Angeles with your furry friend by your side. This dynamic metropolis, known for Hollywood, Disneyland,  famous landmarks, flourishing arts community and a long scenic coastline, there’s an impressive selection of pet-friendly hotels to cater to various preferences – and budgets.',
     paragraphTwo:
-      'The diverse, multiethnic population of Los Angeles today distinguishes the city as the cultural hub of the Pacific Rim. Furthermore, Los Angeles’ development makes it one of the most coveted cities for dog owners and pet-friendly travel. The area boasts a wide selection of pet-friendly accommodations, recreational opportunities, and attractions.',
+      'Let’s explore the finest pet-friendly accommodations in LA, featuring both well-established hotel brands and charming boutique properties.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg',
     keywords:
@@ -238,9 +238,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/oc-hero.jpeg',
     paragraphOne:
-      'Orange County is nestled between Los Angeles and Orange County, home to many popular cities like Newport Beach, Anaheim, and Irvine. The county strikes a perfect balance between suburban life and tourist attractions, boosting its popularity in recent decades and making it an inviting destination for California travelers. One major reason for Orange County’s popularity is its accessibility to a variety of indoor and outdoor experiences, delivering a memorable and well-rounded travel experience.',
+      "Orange County, California is a picturesque coastal region nestled between Los Angeles and San Diego – known for its pristine beaches, vibrant art and iconic attractions like Disneyland, Knott's Berry Farm and the unequalled Orange County Fair.",
     paragraphTwo:
-      'Not only is Orange County a melting pot of cuisines and cultures, you can also discover stellar beaches, luxury shopping experiences, and plenty of outdoor recreational activities. Finally, the county is a desirable place to settle and visit for dog owners and families because of how accommodating its neighborhoods are.',
+      'With a diverse array of communities (including affluent enclaves, surfing hotspots, and charming historic districts), Orange County offers an enticing blend of Southern California lifestyle, culture and natural beauty.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/oc-4.jpeg',
     keywords:
@@ -251,9 +251,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/sd-hero.jpeg',
     paragraphOne:
-      'For a change of pace in sunny California, head on over to the state’s second largest city, San Diego. San Diego is renowned for its relaxed culture, idyllic weather, miles of white-sand beaches, and a variety of things to see and do for adventurers (and dogs) of all ages. San Diego is a family-friendly city that’s especially a must visit for those who love the beach. Sitting at the most Southern part of California and by the border of Mexico, this charming city carries an abundance of Spanish influences in their culture, cuisine, and attractions.',
+      'San Diego  is a city known for its unique blend of natural beauty, vibrant culture and endless sunshine.',
     paragraphTwo:
-      ' San Diego is often considered the most pet-friendly city in California with many pet-friendly spaces to enjoy throughout the city. Those who seek pet-friendly travel will find their hearts filled with what San Diego has to offer thanks to the city’s arts and culture, diverse culinary experiences, and the great outdoors.',
+      'What sets San Diego apart is the stunning coastline, with miles of pristine beaches and picturesque cliffs that offer breathtaking views of the Pacific Ocean.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg',
     keywords:
@@ -264,9 +264,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/sf-4.jpeg',
     paragraphOne:
-      'San Francisco is a lively cultural hub home to grand architectural buildings, world-class cuisine, cable cars, a dynamic waterfront, and plenty of outdoor adventures. The walkable city is adorned with iconic landmarks which is what truly sets San Francisco apart. Taking a stroll through the city’s streets is an exciting experience that will bring you from one unique neighborhood to another. San Francisco is a haven for lovers of performing arts and is also considered one of the United State’s greatest dining cities because of its rich diverse cultural influences, fresh ingredients, and creative chefs who come from all around the world.',
+      'San Francisco is a city long celebrated for its iconic landmarks such as the Golden Gate Bridge, the cable cars and older colorful Victorian houses. San Francisco is also renown for vibrant culture. And the “City by the Bay” boasts many pet-friendly accommodations to cater to the needs of travelers with our furry friends.',
     paragraphTwo:
-      'Many of San Francisco’s attractions are outdoors, making it an ideal city for pet-friendly travel. Your dog will be intrigued by all the different landscapes and scenic views, and will be welcomed in many restaurants and hotels as well!',
+      'San Francisco is a perfect dog friendly destination for pet owners seeking unforgettable experiences alongside their four-legged companions. Even with my large German Shepherd, we had a great time seeing the sights and enjoying the great weather.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/sf-4.jpeg',
     keywords:
@@ -277,9 +277,9 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/sb-hero.jpeg',
     paragraphOne:
-      'Located on the central coast of California, the laid-back city of Santa Barbara offers the perfect getaway from the hustle and bustle of everyday life. The lovely city features Mediterranean style buildings that reflect its Spanish heritage, along with breathtaking mountain and beach views, and surrounding vineyards.',
+      'Santa Barbara, a captivating coastal city in California, is renowned for its breathtaking beaches, charming architecture, and vibrant culture.',
     paragraphTwo:
-      'The breeze swept in from the ocean and its mild sunny climate makes this city an enjoyable destination for outdoor, pet-friendly activities. The city also hosts a number of impressive luxury stays anyone will fall in love with.',
+      'What truly distinguishes Santa Barbara is its enchanting blend of natural beauty and Spanish colonial influence. With its red-tiled roofs, whitewashed buildings, and lush landscapes, the city exudes an enduring elegance and a laid-back coastal vibe.',
     secondaryImage:
       'https://storage.googleapis.com/romingo-development-public/images/front-end/sb-4.jpeg',
     keywords:

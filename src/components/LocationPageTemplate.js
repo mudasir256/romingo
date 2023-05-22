@@ -582,15 +582,12 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       },
     ];
   }
-  console.log(cityList);
   const foundCity = cityList.find((city) => city.name === cityName);
-  console.log(foundCity);
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === cityName);
 
   const today = new Date();
 
   const onlyCity = foundCity.name.split(',')[0];
-  console.log(onlyCity);
 
   const IconTags = () => (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', p: '1em' }}>
