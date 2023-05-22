@@ -785,13 +785,14 @@ const UserProfile = `
   }
 `
 
-const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number) => { return `query {
+const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => { return `query {
   getHotels(input: {adults: ${adults},
   checkInDate: "${checkIn}",
   checkOutDate: "${checkOut}",
   children: ${children},
   latitude: "${latitude}",
-  longitude: "${longitude}"
+  longitude: "${longitude}",
+  hotelIds: "${hotelIds}"
 }) {
     sessionId
     hotels {
@@ -807,9 +808,15 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
 }
 `}
 
-const getPackages = (hotelId: string, sessionId: string) => {
+const getPackages = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => {
   return `query {
-    getHotelDetails(input: {hotelId: "${hotelId}", sessionId: "${sessionId}"}) {
+    getHotelDetails(input: {adults: ${adults},
+      checkInDate: "${checkIn}",
+      checkOutDate: "${checkOut}",
+      children: ${children},
+      latitude: "${latitude}",
+      longitude: "${longitude}",
+      hotelIds: "${hotelIds}"}) {
       Result
       RoomsContent
     }

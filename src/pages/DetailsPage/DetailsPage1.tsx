@@ -14,6 +14,9 @@ import { gql, useQuery } from "@apollo/client";
 import { getPackages } from "../../constants/constants";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
+import { RoomsFilterBar } from "./DetailsPage";
+import moment from "moment";
+import { useSelector } from "react-redux";
 
 const DetailsPage1 = ({ ...props }) => {
   const classes = props.classes;
@@ -29,11 +32,13 @@ const DetailsPage1 = ({ ...props }) => {
   const [openDetails, setOpenDetails] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const search = useSelector((state: any) => state.searchReducer.search);
+
 
 
   const { data, error, refetch } = useQuery(
     gql`
-      ${getPackages(hotelId, sessionId)}
+      ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children, search.lat, search.lng, [hotelId])}
     `
   );
 
@@ -166,6 +171,7 @@ const DetailsPage1 = ({ ...props }) => {
             >
               Choose your room
             </Typography>
+            <RoomsFilterBar refetch={refetch} />
           </Grid>
           {rooms.length > 0 &&
             <Grid container >
@@ -192,7 +198,7 @@ const DetailsPage1 = ({ ...props }) => {
                     }}
                   >
                     <Grid item style={{ padding: 0 }}>
-                      <ImageSlider images={filterroom.Images} name={room.Rooms[0].RoomName} />
+                      <ImageSlider images={filterroom ? filterroom.Images : ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']} name={room.Rooms[0].RoomName} />
                     </Grid>
                     <Grid item style={{ padding: 10 }}>
                       <Typography
