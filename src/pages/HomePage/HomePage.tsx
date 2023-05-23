@@ -460,9 +460,9 @@ const HomePage: FC<Props> = () => {
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
-            backgroundColor="#F3F0D2"
-            header="Spring break on sale!"
-            text=" Book pet-friendly hotels and hit the road with your pet in the passenger seat. Enjoy up to 20% off all hotels and pay $0 pet fees!"
+            backgroundColor="#A6DBE5"
+            header="Summertime savings! ☀️🏄"
+            text="Book your favorite pet-friendly hotels with Romingo and enjoy up to 20% off all hotels... plus $0 pet fees!"
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
         </Box>
