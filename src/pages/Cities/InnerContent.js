@@ -134,7 +134,14 @@ export default function InnerContent({ cityId, cityName, city }) {
   } else if (cityName === 'Sacramento') {
     return <Sacramento />;
   } else if (cityName === 'Austin') {
-    return <Austin />;
+    const hotelsToDisplay =
+      data?.propertiesByLocation.filter((property) =>
+        ['pet-friendly-hotels-austin-hotel-ella', 'pet-friendly-hotels-austin-south-congress-hotel'].some(
+          (hotelAlias) => hotelAlias === property.alias || hotelAlias === 'all'
+        )
+      ) || [];
+
+    return <Austin hotels={hotelsToDisplay} />;
   } else if (cityName === 'Dallas') {
     return <Dallas />;
   } else if (cityName === 'Denver') {

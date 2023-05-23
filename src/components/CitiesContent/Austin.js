@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Elegant and stylish accommodations',
@@ -30,7 +33,8 @@ const highlights5 = [
   'Pet-friendly atmosphere',
 ];
 
-const Austin = () => {
+const Austin = ({ hotels }) => {
+
   return (
     <Box
       px='2.5rem'
@@ -67,6 +71,25 @@ const Austin = () => {
         pet-friendly hotels are the perfect base for your adventures.
       </Typography>
       <Typography variant='h5'>Hotel Ella</Typography>
+      {hotels.length > 0 ?
+      <ListingCard
+        {...hotels[1]}
+        city={{ name: 'Austin, TX' }}
+        duration={2}
+        highlighted={false}
+        limitImages={true}
+        lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+        petFeePolicy={{
+          ...hotels[1].petFeePolicy,
+          totalFees: utils.computePetFeePolicyTotalFees(
+            2,
+            1,
+            hotels[1].petFeePolicy
+          ),
+        }}
+      />
+      : <ListingCardSkeleton key={1} /> }
+
       <Typography variant='base'>
         Nestled near the University of Texas, Hotel Ella is an upscale boutique
         hotel situated in a beautifully restored historic mansion. This
@@ -89,7 +112,24 @@ const Austin = () => {
       />
 
       <Typography variant='h5'>South Congress Hotel</Typography>
-
+      {hotels.length > 0 ?
+      <ListingCard
+        {...hotels[0]}
+        city={{ name: 'Austin, TX' }}
+        duration={2}
+        highlighted={false}
+        limitImages={true}
+        lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+        petFeePolicy={{
+          ...hotels[0].petFeePolicy,
+          totalFees: utils.computePetFeePolicyTotalFees(
+            2,
+            1,
+            hotels[0].petFeePolicy
+          ),
+        }}
+      />
+      : <ListingCardSkeleton key={0} /> }
       <Typography variant='base'>
         South Congress Hotel is a chic boutique hotel offering fashionable
         accommodations and a pet-friendly atmosphere. With its prime location

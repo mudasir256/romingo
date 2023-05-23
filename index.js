@@ -91,8 +91,8 @@ const seo = [
   },
   {
     path: "/pet-friendly-hotels/austin-texas",
-    title: 'Pet friendly hotels Austin — Romingo',
-    description: HOTEL_DESCRIPTIONS[0].paragraphOne.slice(0, 160),
+    title: 'Pet Friendly Hotels Austin | Romingo',
+    description: 'Austin is known for its live music and incredible food. If you’re traveling with your pet, here are the best pet-friendly hotels in Austin, Texas!',
     image: HOTEL_DESCRIPTIONS[0].heroImage,
     keywords: HOTEL_DESCRIPTIONS[0].keywords
   },
