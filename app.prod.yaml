@@ -17,6 +17,7 @@ env_variables:
   REACT_APP_ENDPOINT: 'https://graphql.romingo.com/graphql'
   REACT_APP_BASE_ENDPOINT: 'https://graphql.romingo.com/'
   PRERENDER_TOKEN: '87ZZ4y7Kq41EcM9eRIwo'
+  SKIP_PREFLIGHT_CHECK: true
 vpc_access_connector:
   name: projects/romingo-production/locations/us-east1/connectors/vpc-connector-us-east1
 
