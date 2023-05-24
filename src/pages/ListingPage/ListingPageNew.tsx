@@ -27,13 +27,15 @@ const ListingPageNew = ({ ...props }) => {
   const [center, setCenter] = useState({ lat: search.latitude, lng: search.longitude })
   const [markers, setMarkers] = useState([]);
   const [sort, setSort] = useState('alphabetSort');
-  const [selectedCity, setSelectedCity] = useState(cities.find(x => x.id === search.city).name)
+  const [selectedCity, setSelectedCity] = useState(search.city)
   const [rating, setRating] = useState([]);
   const [query, setQuery] = useState('');
   const [sliderValue, setSliderValue] = useState(1000)
   const [openMap, setOpenMap] = useState(false)
   const [viewFilters, setViewFilters] = useState(false);
-  
+
+  console.log(search)
+
   const mobile = useMediaQuery("(max-width:800px)");
 
   const { data } = useQuery(

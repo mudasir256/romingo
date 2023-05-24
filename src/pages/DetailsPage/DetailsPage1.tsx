@@ -34,8 +34,6 @@ const DetailsPage1 = ({ ...props }) => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const search = useSelector((state: any) => state.searchReducer.search);
 
-
-
   const { data, error, refetch } = useQuery(
     gql`
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children, search.lat, search.lng, [hotelId])}
@@ -66,8 +64,8 @@ const DetailsPage1 = ({ ...props }) => {
     <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
       <Navbar />
-      <Grid container direction='row' spacing={2} sx={{ maxWidth: mobile ? '95%' : 1200 , margin: 'auto', position: 'relative', }} >
-        <Grid item xs={12} md={6} style={{padding: mobile ? 0: 'inherit'}}>
+      <Grid container direction='row' spacing={2} sx={{ maxWidth: mobile ? '95%' : 1200, margin: 'auto', position: 'relative', }} >
+        <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : 'inherit' }}>
           <Box
             component="img"
             src={gallery[0]}
@@ -173,7 +171,7 @@ const DetailsPage1 = ({ ...props }) => {
             </Typography>
             <RoomsFilterBar refetch={refetch} />
           </Grid>
-          {rooms.length > 0 &&
+          {rooms.length > 0 ?
             <Grid container >
               {rooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
@@ -190,7 +188,7 @@ const DetailsPage1 = ({ ...props }) => {
                     sm={6}
                     xs={12}
                     key={key}
-                    style={{ margin: 10, maxWidth: mobile? '100%' : 280, position: 'relative' }}
+                    style={{ margin: 10, maxWidth: mobile ? '100%' : 280, position: 'relative' }}
                     sx={{
                       transition: "all .15s ease-in-out",
                       boxShadow: 1,
@@ -251,30 +249,30 @@ const DetailsPage1 = ({ ...props }) => {
                       </Box>
                     </Grid>
                     <Button
-                        disableElevation
-                        variant="contained"
-                        size="small"
-                        color="primary"
-                         style={{position: 'absolute', bottom: 0, right: 0, margin: 10}}
-                         onClick={() => {history.push('/checkout')}}
+                      disableElevation
+                      variant="contained"
+                      size="small"
+                      color="primary"
+                      style={{ position: 'absolute', bottom: 0, right: 0, margin: 10 }}
+                      onClick={() => { history.push('/checkout') }}
+                    >
+                      <Typography
+                        sx={{
+                          fontWeight: 600,
+                          textTransform: "capitalize",
+                          fontSize: { xs: "14px" },
+                        }}
                       >
-                        <Typography
-                          sx={{
-                            fontWeight: 600,
-                            textTransform: "capitalize",
-                            fontSize: { xs: "14px" },
-                          }}
-                        >
-                          Reserve
-                        </Typography>
-                      </Button>
-                      
+                        Reserve
+                      </Typography>
+                    </Button>
+
                     {/* {filterroom.Amenities.map((a, i) => <Typography key={i}>{a}</Typography>)} */}
                   </Grid>
                 );
               })}
             </Grid>
-
+            : <Typography sx={{ textAlign: 'center' }}>No rooms found in this date range.</Typography>
           }
         </Grid>
       </Grid>

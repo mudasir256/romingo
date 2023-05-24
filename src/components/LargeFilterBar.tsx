@@ -30,6 +30,7 @@ import { saveSearch } from "../store/searchReducer";
 import SearchImage from '../assets/icon/magnify.png';
 
 import "./Header/Header.scss";
+import GooglePlaceAutoComplete from "./GooglePlaceAutoComplete";
 
 interface FilterBarProps {
   sx?: CSSObject;
@@ -61,6 +62,9 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
+
+  const [newValue, setNewValue] = useState(null);
+
   const history = useHistory();
 
   const dispatch: Dispatch<any> = useDispatch();
@@ -89,27 +93,26 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-
+    if(!newValue) return
     if (
       occupants.adults !== 0 &&
       selectedCity &&
       checkDate[0] &&
       checkDate[1]
     ) {
-      const center = cities.find(x => x.id === selectedCity).center
       setFormError("");
       dispatch(
         saveSearch({
-          city: selectedCity,
+          city: newValue.city,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
-          lat: center.latitude,
-          lng: center.longitude,
+          lat: newValue.lat,
+          lng: newValue.lng,
         })
       );
-
-      history.push("/listings");
+    
+          history.push("/listings");
     } else {
       alert("error");
       if (!selectedCity) {
@@ -241,26 +244,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
           }}
         >
           <Box>
-            <Typography
-              sx={{
-                ...labelStyle,
-               
-              }}>
-              Where to
-            </Typography>
             <FormControl fullWidth>
-              {!selectedCity && <Typography sx={{ position: 'absolute', top: '10%', }}>Select a city</Typography>}
-              <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ width: '220px', height: '29px', pt: '0.4rem' }} MenuProps={{ sx: { maxHeight: '45vh', mt: '0rem', ml: '-1rem'} }} value={selectedCity}>
-                {groups.map((group, index) => {
-                  const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: 'black' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
-                  return (
-                    [
-                      <Box key={index} sx={{ pl: '0.9em', pr: '1em' }}></Box>,
-                      ...menuItems,
-                    ]
-                  )
-                })}
-              </Select>
+              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
             </FormControl>
       {/*      <Box
               sx={{
