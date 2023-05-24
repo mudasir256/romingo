@@ -1,5 +1,5 @@
 service: site
-runtime: nodejs14
+runtime: nodejs16
 instance_class: F1
 entrypoint: npm run start
 automatic_scaling:
