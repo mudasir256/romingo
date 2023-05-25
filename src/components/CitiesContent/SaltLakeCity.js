@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const SaltLakeCity = () => {
+const SaltLakeCity = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -53,6 +56,26 @@ const SaltLakeCity = () => {
       <Typography variant='h5'>
         Motel 6-Salt Lake City, UT - Downtown
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Salt Lake City, UT' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the heart of downtown Salt Lake City at Motel 6-Salt
@@ -71,6 +94,26 @@ const SaltLakeCity = () => {
       <Typography variant='h5'>
         Motel 6-Salt Lake City, UT - West - Airport
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Salt Lake City, UT' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Situated conveniently near the airport, Motel 6-Salt Lake City, UT -
@@ -86,6 +129,26 @@ const SaltLakeCity = () => {
       </Typography>
 
       <Typography variant='h5'>Hotel Monaco</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Salt Lake City, UT' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Experience the epitome of luxury and sophistication at Hotel Monaco, a
@@ -127,6 +190,26 @@ const SaltLakeCity = () => {
       </Typography>
 
       <Typography variant='h5'>Hilton Salt Lake City Center</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Salt Lake City, UT' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Featuring the ultimate in convenience and comfort, the Hilton Salt Lake

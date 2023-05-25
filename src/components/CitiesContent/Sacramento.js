@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const Sacramento = () => {
+const Sacramento = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -9,7 +12,7 @@ const Sacramento = () => {
       flexDirection='column'
       gap='1.5rem'
     >
-      <Typography mt='1rem' variant='h2'>
+      <Typography mt='1rem' variant='base'>
         With close proximity to both mountains and the coast, Sacramento
         provides easy access to outdoor adventures – making it a perfect
         destination for nature enthusiasts. Additionally, the city is known for
@@ -17,7 +20,7 @@ const Sacramento = () => {
         sourced ingredients in its diverse array of restaurants.
       </Typography>
 
-      <Typography variant='h2'>sacramento: The Dog Friendly City</Typography>
+      <Typography variant='h2'>Sacramento: The Dog Friendly City</Typography>
 
       <Typography variant='base'>
         This hospitable city wholeheartedly embraces its four-legged residents,
@@ -36,6 +39,26 @@ const Sacramento = () => {
       </Typography>
 
       <Typography variant='h5'>Westin Sacramento</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         This place is the epitome of luxury and pet-friendly comfort seen at
@@ -63,6 +86,26 @@ const Sacramento = () => {
       <Typography variant='h5'>
         Hyatt Place Sacramento-Rancho Cordova
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Embark on a journey of modern comfort at Hyatt Place Sacramento-Rancho
@@ -85,6 +128,26 @@ const Sacramento = () => {
       <Typography variant='h5'>
         Hyatt House Sacramento/Midtown Autograph Collection
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Indulge in the lap of luxury at Hyatt House Sacramento/Midtown Autograph
@@ -101,6 +164,26 @@ const Sacramento = () => {
       </Typography>
 
       <Typography variant='h5'>The Citizen Hotel</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Experience an exquisite blend of historic charm and pet-friendly
@@ -123,6 +206,26 @@ const Sacramento = () => {
       </Typography>
 
       <Typography variant='h5'>Larkspur Landing Sacramento</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )} */}
 
       <Typography variant='base'>
         Larkspur Landing Sacramento welcomes your furry companions. For a fee of
@@ -143,6 +246,26 @@ const Sacramento = () => {
       </Typography>
 
       <Typography variant='h5'>Kimpton Sawyer Hotel</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the trendy allure of Kimpton Sawyer Hotel, a
@@ -161,6 +284,26 @@ const Sacramento = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt Regency Sacramento</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'Sacramento, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         At Hyatt Regency Sacramento, a world of luxurious indulgence and

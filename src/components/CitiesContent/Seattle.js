@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../ListingCard/ListingCard';
+import ListingCardSkeleton from '../UI/ListingCardSkeleton/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const Seattle = () => {
+const Seattle = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -35,6 +38,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>ACE Hotel Seattle</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Unveil the trendy and eclectic ambiance of ACE Hotel Seattle, a
@@ -50,6 +73,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Alexis Royal Sonesta Seattle</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Indulge in the lap of luxury at Alexis Royal Sonesta Seattle, a
@@ -70,6 +113,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Level South Lake Union</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Experience the epitome of comfort at Level South Lake Union, a
@@ -87,6 +150,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt at Olive 8</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Unwind in refined style at Hyatt at Olive 8, a pet-friendly hotel
@@ -107,6 +190,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Hotel Andra</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Embark on a journey of Scandinavian-inspired elegance at Hotel Andra, a
@@ -123,6 +226,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Kimpton Palladian Hotel</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         Uncover the allure of Kimpton Palladian Hotel, a pet-friendly boutique
@@ -138,7 +261,27 @@ const Seattle = () => {
         esteemed guests.
       </Typography>
 
-      <Typography variant='h5'>Kimpton Hotel Monac</Typography>
+      <Typography variant='h5'>Kimpton Hotel Monaco</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[6]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[6].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[6].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[6].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={6} />
+      )}
 
       <Typography variant='base'>
         Delight in an enchanting fusion of luxury and whimsy at Kimpton Hotel
@@ -154,6 +297,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Kimpton Hotel Vintage Seattle</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[7]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[7].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[7].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[7].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={7} />
+      )}
 
       <Typography variant='base'>
         Savor the sophistication of Kimpton Hotel Vintage Seattle, a
@@ -170,6 +333,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Hotel 1000 LXR Seattle</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[8]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[8].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[8].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[8].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={8} />
+      )}
 
       <Typography variant='base'>
         Experience the pinnacle of contemporary luxury at Hotel 1000 LXR
@@ -186,6 +369,26 @@ const Seattle = () => {
       </Typography>
 
       <Typography variant='h5'>Pan Pacific Seattle</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[9]}
+          city={{ name: 'Seattle, WA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[9].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[9].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[9].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={9} />
+      )}
 
       <Typography variant='base'>
         Unveil a sanctuary of tranquility at Pan Pacific Seattle, a pet-friendly

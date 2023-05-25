@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../ListingCard/ListingCard';
+import ListingCardSkeleton from '../UI/ListingCardSkeleton/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const SantaBarbara = () => {
+const SantaBarbara = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -45,7 +48,27 @@ const SantaBarbara = () => {
         a pet-welcoming environment.
       </Typography>
 
-      <Typography variant='h2'>Motel 6-Goleta, CA - Santa Barbara</Typography>
+      <Typography variant='h5'>Motel 6-Goleta, CA - Santa Barbara</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Santa Barbara, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         This budget-friendly gem extends its open arms to pets weighing up to 35
@@ -82,6 +105,26 @@ const SantaBarbara = () => {
       <Typography variant='h5'>
         Motel 6-Santa Barbara, CA - State Street
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Santa Barbara, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Ideally situated on State Street, Motel 6-Santa Barbara, CA - State
@@ -98,6 +141,26 @@ const SantaBarbara = () => {
       <Typography variant='h5'>
         Motel 6-Santa Barbara, CA - Beach Mar Monte Hotel
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Santa Barbara, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the coastal charm of Motel 6-Santa Barbara, CA -
@@ -116,6 +179,26 @@ const SantaBarbara = () => {
       <Typography variant='h5'>
         The Leta Tapestry Collection by Hilton
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Santa Barbara, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         As a pet-friendly haven, The Leta Tapestry Collection by Hilton extends
@@ -155,6 +238,26 @@ const SantaBarbara = () => {
       </Typography>
 
       <Typography variant='h5'>The Kimpton Canary</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Santa Barbara, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Embark on a journey of refined charm at The Kimpton Canary, a

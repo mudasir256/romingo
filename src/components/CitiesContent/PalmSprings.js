@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const PalmSprings = () => {
+const PalmSprings = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -48,6 +51,26 @@ const PalmSprings = () => {
       </Typography>
 
       <Typography variant='h5'>Ingleside Inn Palm Springs</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Palm Springs, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Prepare to be captivated by the irresistible charm of Ingleside Inn Palm
@@ -73,6 +96,26 @@ const PalmSprings = () => {
       <Typography variant='h5'>
         Avalon Hotel & Bungalows Palm Springs
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Palm Springs, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Discover a haven of serenity at Avalon Hotel & Bungalows Palm Springs,
@@ -89,6 +132,26 @@ const PalmSprings = () => {
       </Typography>
 
       <Typography variant='h5'>The Saguaro Palm Springs</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Palm Springs, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Prepare to be awestruck by the vibrant energy of The Saguaro Palm
@@ -107,6 +170,26 @@ const PalmSprings = () => {
       </Typography>
 
       <Typography variant='h5'>Margaritaville Resort Palm Springs</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Palm Springs, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Transport yourself to a tropical paradise at Margaritaville Resort Palm
@@ -124,6 +207,26 @@ const PalmSprings = () => {
       </Typography>
 
       <Typography variant='h5'>Kimpton Rowan Palm Springs</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Palm Springs, CA' }}
+          duration={4}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Find respite in the lap of sophistication at Kimpton Rowan Palm Springs,
@@ -140,7 +243,7 @@ const PalmSprings = () => {
         engage in social encounters, and form lasting connections with new pals.
       </Typography>
 
-      <Typography variant='baseh5'>
+      <Typography variant='base'>
         Palm Springs, California, stands tall as a beacon of pet-friendly
         hospitality, boasting an impressive lineup of hotels that cater to
         various tastes and budgets. From the enchanting Ingleside Inn Palm

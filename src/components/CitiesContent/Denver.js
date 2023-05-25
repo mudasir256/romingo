@@ -205,7 +205,7 @@ const Denver = ({hotels}) => {
         <ListingCard
           {...hotels[3]}
           city={{ name: 'Denver, CO' }}
-          duration={3}
+          duration={2}
           highlighted={false}
           limitImages={true}
           lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
@@ -235,7 +235,7 @@ const Denver = ({hotels}) => {
         <ListingCard
           {...hotels[4]}
           city={{ name: 'Denver, CO' }}
-          duration={4}
+          duration={2}
           highlighted={false}
           limitImages={true}
           lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}

@@ -60,6 +60,26 @@ const Oceanside = ({hotels}) => {
       </Typography>
 
       <Typography variant='h5'>Mission Pacific</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Oceanside, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )} */}
 
       <Typography variant='base'>
         Bask in the coastal opulence of Mission Pacific, where exceptional
@@ -95,6 +115,26 @@ const Oceanside = ({hotels}) => {
       />
 
       <Typography variant='h5'>The Seabird</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Oceanside, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )} */}
 
       <Typography variant='base'>
         Indulge in the serene sophistication of The Seabird, a tranquil oasis
@@ -130,6 +170,26 @@ const Oceanside = ({hotels}) => {
       />
 
       <Typography variant='h5'>Harbor Inn & Suites Oceanside</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Oceanside, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )} */}
 
       <Typography variant='base'>
         Embrace the cozy affordability of Harbor Inn & Suites Oceanside, a
@@ -167,6 +227,26 @@ const Oceanside = ({hotels}) => {
       />
 
       <Typography variant='h5'>Ramada by Wyndham Oceanside</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Oceanside, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )} */}
 
       <Typography variant='base'>
         Unwind in the amiable atmosphere of Ramada by Wyndham Oceanside, a

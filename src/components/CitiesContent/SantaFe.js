@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../ListingCard/ListingCard';
+import ListingCardSkeleton from '../UI/ListingCardSkeleton/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const SantaFe = () => {
+const SantaFe = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -55,6 +58,26 @@ const SantaFe = () => {
       </Typography>
 
       <Typography variant='h5'>Best Western Plus Inn of Santa Fe</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Santa Fe, NM' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )} */}
 
       <Typography variant='base'>
         Experience the true essence of Southwestern hospitality at the Best
@@ -92,6 +115,26 @@ const SantaFe = () => {
       </Typography>
 
       <Typography variant='h5'>Motel 6 Santa Fe</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Santa Fe, NM' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Discover the convenience of Motel 6 Santa Fe, a pet-friendly hotel
@@ -107,6 +150,26 @@ const SantaFe = () => {
       </Typography>
 
       <Typography variant='h5'>Motel 6 Santa Fe Central</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Santa Fe, NM' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )} */}
 
       <Typography variant='base'>
         Nestled in the central area of Santa Fe, Motel 6 Santa Fe Central offers
@@ -126,6 +189,26 @@ const SantaFe = () => {
       </Typography>
 
       <Typography variant='h5'>Motel 6 Santa Fe Plaza Downtown</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Santa Fe, NM' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Peacefully enjoy the charm and convenience of Motel 6 Santa Fe Plaza

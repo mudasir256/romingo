@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Prime location near attractions',
@@ -44,7 +47,7 @@ const highlights6 = [
 
 ];
 
-const OrangeCounty = () => {
+const OrangeCounty = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -67,6 +70,26 @@ const OrangeCounty = () => {
       <Typography variant='h5'>
         Homewood Suites Anaheim Convention Center-Disneyland
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Orange County, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Step into the inviting atmosphere of Homewood Suites Anaheim Convention
@@ -90,6 +113,26 @@ const OrangeCounty = () => {
       />
 
       <Typography variant='h5'>Clarion Hotel Anaheim Resort</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Orange County, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Bask in the warm hospitality of Clarion Hotel Anaheim Resort, where two
@@ -115,6 +158,26 @@ const OrangeCounty = () => {
       <Typography variant='h5'>
         DoubleTree by Hilton Santa Ana - Orange County Airport
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Orange County, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Appreciate the contemporary sophistication of DoubleTree by Hilton Santa
@@ -142,6 +205,26 @@ const OrangeCounty = () => {
       <Typography variant='h5'>
         Sonesta Simply Suites Orange County Airport
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Orange County, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Discover the cozy charm of Sonesta Simply Suites Orange County Airport,
@@ -165,6 +248,26 @@ const OrangeCounty = () => {
       <Typography variant='h5'>
         Sonesta ES Suites Huntington Beach Fountain Valley
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Orange County, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Treat yourself to the spacious luxury of Sonesta ES Suites Huntington
@@ -194,6 +297,26 @@ const OrangeCounty = () => {
       <Typography variant='h5'>
         Sonesta Select Huntington Beach Fountain Valley
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'Orange County, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         Unwind in the chic ambiance of Sonesta Select Huntington Beach Fountain
@@ -221,11 +344,15 @@ const OrangeCounty = () => {
       />
 
       <Typography variant='base'>
-      Orange County offers an eclectic mix of pet-friendly hotels for travelers and their four-legged companions. 
+        Orange County offers an eclectic mix of pet-friendly hotels for
+        travelers and their four-legged companions.
       </Typography>
 
       <Typography variant='base'>
-      From the exceptional Homewood Suites Anaheim Convention Center-Disneyland to the stylish Sonesta Select Huntington Beach Fountain Valley, you and your pet are sure to find the perfect lodging option for an unforgettable Orange County escapade.
+        From the exceptional Homewood Suites Anaheim Convention
+        Center-Disneyland to the stylish Sonesta Select Huntington Beach
+        Fountain Valley, you and your pet are sure to find the perfect lodging
+        option for an unforgettable Orange County escapade.
       </Typography>
     </Box>
   );

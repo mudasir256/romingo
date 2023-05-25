@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const Portland = () => {
+const Portland = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -29,7 +32,27 @@ const Portland = () => {
         experience, where your furry companions are treated like VIPs.{' '}
       </Typography>
 
-      <Typography variant='h2'>Aloft Portland at Cascade Station</Typography>
+      <Typography variant='h5'>Aloft Portland at Cascade Station</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         This contemporary hotel, exuding a perfect blend of style and
@@ -62,6 +85,26 @@ const Portland = () => {
       </Typography>
 
       <Typography variant='h5'>The Hoxton Portland</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Nestled in the heart of the city, The Hoxton Portland extends a warm
@@ -79,6 +122,26 @@ const Portland = () => {
       <Typography variant='h5'>
         The Porter Portland Curio Collection by Hilton
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Every corner of The Porter Portland Curio Collection by Hilton exudes an
@@ -109,6 +172,26 @@ const Portland = () => {
       <Typography variant='h5'>
         The Benson Portland Curio Collection by Hilton
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Experience the epitome of luxury at The Benson Portland Curio Collection
@@ -128,6 +211,26 @@ const Portland = () => {
       </Typography>
 
       <Typography variant='h5'>Moxy Portland Downtown</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         At Moxy Portland Downtown, pets up to 70 lbs can join you for a fee of
@@ -145,6 +248,26 @@ const Portland = () => {
       <Typography variant='h5'>
         Canopy by Hilton Portland Pearl District Autograph Collection
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         Discover contemporary elegance at Canopy by Hilton Portland Pearl
@@ -161,6 +284,26 @@ const Portland = () => {
       </Typography>
 
       <Typography variant='h5'>The Hi-Lo</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[6]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[6].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[6].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[6].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={6} />
+      )}
 
       <Typography variant='base'>
         Experience a blend of modern design and warm hospitality at The Hi-Lo,
@@ -177,6 +320,26 @@ const Portland = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt Centric Downtown Portland</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[7]}
+          city={{ name: 'Portland, OR' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[7].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[7].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[7].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={7} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the vibrant heart of Portland at Hyatt Centric

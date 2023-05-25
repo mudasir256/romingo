@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../ListingCard/ListingCard';
+import ListingCardSkeleton from '../UI/ListingCardSkeleton/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const Vail = () => {
+const Vail = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -37,6 +40,26 @@ const Vail = () => {
       </Typography>
 
       <Typography variant='h5'>Grand Hyatt Vail</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Vail, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         You’ll find unrivaled luxury at Grand Hyatt Vail, a pet-friendly haven

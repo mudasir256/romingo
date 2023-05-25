@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const SanAntonio = () => {
+const SanAntonio = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -55,6 +58,26 @@ const SanAntonio = () => {
       <Typography variant='h5'>
         Rodeway Inn San Antonio Near Lackland AFB and Kelly Field
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Conveniently located near Lackland Air Force Base and Kelly Field,
@@ -73,6 +96,26 @@ const SanAntonio = () => {
       <Typography variant='h5'>
         La Quinta Inn by Wyndham Brooks City Base
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Situated in the Brooks City Base area, La Quinta Inn is a pet-friendly
@@ -88,6 +131,26 @@ const SanAntonio = () => {
       </Typography>
 
       <Typography variant='h5'>Aloft San Antonio Northwest</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Experience contemporary comfort at Aloft San Antonio Northwest, a
@@ -104,6 +167,26 @@ const SanAntonio = () => {
       </Typography>
 
       <Typography variant='h5'>Sheraton Gunter Hotel</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the historic charm and elegance of Sheraton Gunter
@@ -122,6 +205,26 @@ const SanAntonio = () => {
       <Typography variant='h5'>
         La Quinta Inn San Antonio North Stone Oak
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Nestled in the scenic Stone Oak area, La Quinta Inn offers a
@@ -139,6 +242,26 @@ const SanAntonio = () => {
       <Typography variant='h5'>
         Sonesta ES Suites San Antonio Downtown Alamo Plaza
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         Discover the spacious comfort of Sonesta ES Suites San Antonio Downtown
@@ -161,6 +284,26 @@ const SanAntonio = () => {
       <Typography variant='h5'>
         Thompson San Antonio Hotel Contessa Riverwalk
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[6]}
+          city={{ name: 'San Antonio, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[6].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[6].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[6].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={6} />
+      )}
 
       <Typography variant='base'>
         Experience the luxury and sophistication of Thompson San Antonio Hotel

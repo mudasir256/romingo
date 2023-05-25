@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const Phoenix = () => {
+const Phoenix = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -31,6 +34,26 @@ const Phoenix = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt Place Phoenix Downtown</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Phoenix, AZ' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the vibrant heart of downtown Phoenix at the
@@ -48,6 +71,26 @@ const Phoenix = () => {
       </Typography>
 
       <Typography variant='h5'>Sonesta Simply Suites Phoenix North</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Phoenix, AZ' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Embrace a cozy retreat at Sonesta Simply Suites Phoenix North, where
@@ -65,6 +108,26 @@ const Phoenix = () => {
       </Typography>
 
       <Typography variant='h5'>Kimpton Hotel Palomar Phoenix</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Phoenix, AZ' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the lap of luxury at the sophisticated Kimpton Hotel
@@ -81,6 +144,26 @@ const Phoenix = () => {
       </Typography>
 
       <Typography variant='h5'>Sleep Inn Phoenix North</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Phoenix, AZ' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Discover the perfect blend of affordability and pet-friendliness at
@@ -98,6 +181,26 @@ const Phoenix = () => {
       </Typography>
 
       <Typography variant='h5'>Embassy Suites Phoenix - Biltmore</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Phoenix, AZ' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Experience the epitome of upscale comfort and convenience at the
@@ -118,6 +221,26 @@ const Phoenix = () => {
       <Typography variant='h5'>
         Comfort Inn and Suites Phoenix North - Deer Valley
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'Phoenix, AZ' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         At Comfort Inn and Suites Phoenix North - Deer Valley, you and your pet
@@ -142,7 +265,9 @@ const Phoenix = () => {
       </Typography>
 
       <Typography variant='base'>
-      Immerse yourself in the warmth of hospitality and revel in the joy of pet-friendly amenities as you navigate the vibrant cityscape of Phoenix, embracing the unique bond with your beloved pet every step of the way.
+        Immerse yourself in the warmth of hospitality and revel in the joy of
+        pet-friendly amenities as you navigate the vibrant cityscape of Phoenix,
+        embracing the unique bond with your beloved pet every step of the way.
       </Typography>
     </Box>
   );

@@ -1,6 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const SanDiego = () => {
+const SanDiego = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -33,6 +36,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Paradise Point San Diego</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Discover a true paradise at Paradise Point San Diego, a pet-friendly
@@ -51,6 +74,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Hilton San Diego Bayfront</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Experience the comfort and convenience of Hilton San Diego Bayfront, a
@@ -69,6 +112,26 @@ const SanDiego = () => {
       <Typography variant='h5'>
         Carte Hotel San Diego Downtown Curio Collection by Hilton
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Indulge in the luxury and sophistication of Carte Hotel San Diego
@@ -85,6 +148,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Solamar San Diego</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Experience the vibrant energy of San Diego at Solamar, a pet-friendly
@@ -101,6 +184,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>The Monsaraz San Diego</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Nestled in the heart of downtown San Diego, The Monsaraz is a
@@ -117,6 +220,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Manchester Grand Hyatt San Diego</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[5].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         Discover the height of luxury at Manchester Grand Hyatt San Diego, a
@@ -134,6 +257,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Intercontinental San Diego</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[6]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[6].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[6].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[6].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={6} />
+      )}
 
       <Typography variant='base'>
         Experience refined elegance at Intercontinental San Diego, a
@@ -150,6 +293,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt Regency Mission Bay</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[7]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[7].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[7].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[7].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={7} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the beauty of Hyatt Regency Mission Bay, a
@@ -172,6 +335,26 @@ const SanDiego = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt Regency La Jolla at Aventine</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[8]}
+          city={{ name: 'San Diego, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[8].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[8].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[8].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={8} />
+      )}
 
       <Typography variant='base'>
         Discover a blend of luxury and tranquility at Hyatt Regency La Jolla at
