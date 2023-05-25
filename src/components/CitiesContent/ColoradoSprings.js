@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Prime downtown location',
@@ -21,7 +24,7 @@ const highlights3 = [
   'Pet-friendly atmosphere',
 ];
 
-const ColoradoSprings = () => {
+const ColoradoSprings = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -65,6 +68,26 @@ const ColoradoSprings = () => {
       </Typography>
 
       <Typography variant='h5'>Element Colorado Springs Downtown</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Colorado Springs, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         You can get an eco-friendly stay with pet amenities including beds and
@@ -94,6 +117,26 @@ const ColoradoSprings = () => {
       <Typography variant='h5'>
         Hyatt Place Colorado Springs Garden of the Gods
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Colorado Springs, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Situated near the awe-inspiring Garden of the Gods Park, Hyatt Place
@@ -130,6 +173,26 @@ const ColoradoSprings = () => {
       />
 
       <Typography variant='h5'>Wingate by Wyndham Colorado Springs</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Colorado Springs, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         For a cozy and budget-friendly stay for you and your pet, Wingate by
@@ -167,7 +230,12 @@ const ColoradoSprings = () => {
         pet-friendly eateries before heading back to your hotel.
       </Typography>
 
-      <Typography variant='base'>Colorado Springs, with its breathtaking scenery and diverse cultural attractions, is an ideal destination for pet owners. With various pet-friendly hotels and activities, you and your pet are sure to create lasting memories. So, pack your bags and set off on an unforgettable journey through the enchanting beauty of Colorado Springs.
+      <Typography variant='base'>
+        Colorado Springs, with its breathtaking scenery and diverse cultural
+        attractions, is an ideal destination for pet owners. With various
+        pet-friendly hotels and activities, you and your pet are sure to create
+        lasting memories. So, pack your bags and set off on an unforgettable
+        journey through the enchanting beauty of Colorado Springs.
       </Typography>
     </Box>
   );

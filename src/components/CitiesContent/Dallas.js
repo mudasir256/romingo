@@ -1,5 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import HighlightBox from "./HighlightBox";
+import { Box, Typography } from '@mui/material';
+import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Prime location near popular attractions',
@@ -35,8 +38,7 @@ const highlights4 = [
   'On-site parking',
 ];
 
-
-const Dallas = () => {
+const Dallas = ({ hotels }) => {
   return (
     <Box
       px='2.5rem'
@@ -50,14 +52,17 @@ const Dallas = () => {
         lodgings, featuring the prestigious hotel chains you’re familiar with
         along with a unique boutique establishment.
       </Typography>
+
       <Typography variant='base'>
         From the idyllic Klyde Warren Park to the charming streets of the Bishop
         Arts District, your pet will be ecstatic to be a part of your dog
         friendly Dallas journey.
       </Typography>
+
       <Typography variant='h2'>
         Handpicked Dallas Dog Friendly Hotels
       </Typography>
+
       <Typography variant='base'>
         We carefully hand pick hotels based on their pet-friendly amenities,
         welcoming ambiance and prime location. Whether you prefer the opulence
@@ -65,23 +70,49 @@ const Dallas = () => {
         assured that you&apos;ll find the perfect accommodation tailored to your
         needs.
       </Typography>
+
       <Typography variant='base'>
         Some hotels even go above and beyond to pamper your pet, providing
         comfortable pet beds, food and water bowls, and delightful treats,
         making your furry companion feel right at home.
       </Typography>
+
       <Typography variant='base'>
         After a day filled with exploration, retreat to your pet-friendly hotel,
         where you and your furry companion can relax and recharge, ready for
         another day of excitement in this dazzling city.
       </Typography>
+
       <Typography variant='h5'>The Highland Dallas Collection</Typography>
+
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Dallas, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
+
       <Typography variant='base'>
         The Highland Dallas Collection offers a perfect blend of elegance and
         pet-friendly hospitality. This boutique hotel provides all the essential
         amenities, including pet beds and food bowls, while its central location
         ensures effortless city exploration for you and your furry companion.
       </Typography>
+
       <Typography variant='base'>
         The hotel allows dogs for a non-refundable pet fee of $75 plus tax per
         pet. Dogs are allowed in the rooms, but they must be leashed in public
@@ -95,6 +126,26 @@ const Dallas = () => {
       />
 
       <Typography variant='h5'>HALL Arts Dallas</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Dallas, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )} */}
 
       <Typography variant='base'>
         HALL Arts Dallas provides an experience of contemporary sophistication.
@@ -120,6 +171,26 @@ const Dallas = () => {
       />
 
       <Typography variant='h5'>Canopy by Hilton Dallas Uptown</Typography>
+      {/* {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Dallas, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )} */}
 
       <Typography variant='base'>
         Canopy by Hilton Dallas Uptown lets you immerse yourself with Western
@@ -141,6 +212,26 @@ const Dallas = () => {
       />
 
       <Typography variant='h5'>Hyatt Regency Dallas</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Dallas, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
       <Typography variant='base'>
         Hyatt Regency Dallas offers modern comfort and luxury in a convenient
         downtown location. This pet-friendly hotel features a range of
@@ -207,6 +298,6 @@ const Dallas = () => {
       </Typography>
     </Box>
   );
-}
+};
 
-export default Dallas
+export default Dallas;

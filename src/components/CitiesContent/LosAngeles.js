@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Prime location near popular attractions',
@@ -36,7 +39,7 @@ const highlights5 = [
   'Pet-friendly atmosphere',
 ];
 
-const LosAngeles = () => {
+const LosAngeles = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -83,6 +86,26 @@ const LosAngeles = () => {
       <Typography variant='h5'>
         Kimpton Palomar Los Angeles - Beverly Hills
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Los Angeles, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in the elegance and refinement of Kimpton Palomar Los
@@ -103,6 +126,26 @@ const LosAngeles = () => {
       />
 
       <Typography variant='h5'>Mondrian Los Angeles</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Los Angeles, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Treat yourself to the sleek and modern atmosphere of Mondrian Los
@@ -120,6 +163,26 @@ const LosAngeles = () => {
       />
 
       <Typography variant='h5'>Marina del Rey Hotel</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Los Angeles, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         The Marina del Rey Hotel invites guests to revel in its breathtaking
@@ -160,6 +223,26 @@ const LosAngeles = () => {
       />
 
       <Typography variant='h5'>Kimpton La Peer Hotel</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Los Angeles, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Savor the fashionable elegance of Kimpton La Peer Hotel, a boutique gem
@@ -177,6 +260,26 @@ const LosAngeles = () => {
       />
 
       <Typography variant='h5'>Kimpton Hotel Wilshire</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Los Angeles, CA' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Relax in the inviting ambiance of Kimpton Hotel Wilshire, a pet-friendly

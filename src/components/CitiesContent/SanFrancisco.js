@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../ListingCard/ListingCard';
+import ListingCardSkeleton from '../UI/ListingCardSkeleton/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'A fitness center',
@@ -32,7 +35,7 @@ const highlights6 = [
   'Pet-friendly',
 ];
 
-const SanFrancisco = () => {
+const SanFrancisco = ({ hotels }) => {
   return (
     <Box
       px='2.5rem'

@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Proximity to Oceanside&apos;s primary attractions',
@@ -30,7 +33,7 @@ const highlights4 = [
   'Pet-friendly ambiance',
 ];
 
-const Oceanside = () => {
+const Oceanside = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -207,11 +210,17 @@ const Oceanside = () => {
       </Typography>
 
       <Typography variant='base'>
-      Beyond these exceptional pet-friendly hotels, Oceanside provides numerous dog-friendly parks, trails and attractions for you and your pet to explore in tandem. Delight in the magical Oceanside Harbor Beach or meander through the bustling Oceanside Pier for some outdoor excitement. Your pet will revel in joining you on your Oceanside escapades.
+        Beyond these exceptional pet-friendly hotels, Oceanside provides
+        numerous dog-friendly parks, trails and attractions for you and your pet
+        to explore in tandem. Delight in the magical Oceanside Harbor Beach or
+        meander through the bustling Oceanside Pier for some outdoor excitement.
+        Your pet will revel in joining you on your Oceanside escapades.
       </Typography>
 
       <Typography variant='base'>
-      Oceanside, California, epitomizes the ideal destination for pet owners, offering a rich cultural landscape, varied attractions and a hospitable environment for both humans and pets.
+        Oceanside, California, epitomizes the ideal destination for pet owners,
+        offering a rich cultural landscape, varied attractions and a hospitable
+        environment for both humans and pets.
       </Typography>
     </Box>
   );

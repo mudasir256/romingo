@@ -37,6 +37,25 @@ import Tucson from '../../components/CitiesContent/Tucson';
 import Vail from '../../components/CitiesContent/Vail';
 import SaltLakeCity from '../../components/CitiesContent/SaltLakeCity';
 
+export const getHotelsByAlias = (data, aliases) => {
+  return aliases
+    .map((alias) =>
+      data?.propertiesByLocation.find((property) => property.alias === alias)
+    )
+    .filter(Boolean); // remove any undefined elements in case a hotel was not found
+};
+
+// const hotelsToDisplay =
+//   data?.propertiesByLocation.filter((property) =>
+//     [
+//       'pet-friendly-hotels-austin-hotel-ella',
+//       'pet-friendly-hotels-austin-south-congress-hotel',
+//       'pet-friendly-hotels-austin-four-seasons-austin',
+//     ].some(
+//       (hotelAlias) => hotelAlias === property.alias || hotelAlias === 'all'
+//     )
+//   ) || [];
+
 export default function InnerContent({ cityId, cityName, city }) {
   const { loading, error, data } = useQuery(
     gql`
@@ -130,24 +149,62 @@ export default function InnerContent({ cityId, cityName, city }) {
   } else if (cityName === 'Palm Springs') {
     return <PalmSprings />;
   } else if (cityName === 'Los Angeles') {
-    return <LosAngeles />;
+    const hotelAliases = [
+      'pet-friendly-hotels-los-angeles-kimpton-hotel-palomar-los-angeles-beverly-hills',
+      'pet-friendly-hotels-los-angeles-mondrian-los-angeles',
+      'pet-friendly-hotels-los-angeles-marina-del-ray-hotel',
+      'pet-friendly-hotels-los-angeles-kimpton-la-peer-hotel',
+      'pet-friendly-hotels-los-angeles-kimpton-hotel-wilshire',
+    ];
+
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
+    return <LosAngeles hotels={hotelsToDisplay} />;
   } else if (cityName === 'Sacramento') {
     return <Sacramento />;
   } else if (cityName === 'Austin') {
-    const hotelsToDisplay =
-      data?.propertiesByLocation.filter((property) =>
-        ['pet-friendly-hotels-austin-hotel-ella', 'pet-friendly-hotels-austin-south-congress-hotel'].some(
-          (hotelAlias) => hotelAlias === property.alias || hotelAlias === 'all'
-        )
-      ) || [];
+    const hotelAliases = [
+      'pet-friendly-hotels-austin-hotel-ella',
+      'pet-friendly-hotels-austin-south-congress-hotel',
+      'pet-friendly-hotels-austin-four-seasons-austin',
+      'pet-friendly-hotels-austin-the-otis-hotel-autograph-collection',
+      'pet-friendly-hotels-austin-hyatt-house-austin-downtown',
+      'pet-friendly-hotels-austin-element-austin-downtown',
+    ];
+
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
 
     return <Austin hotels={hotelsToDisplay} />;
   } else if (cityName === 'Dallas') {
-    return <Dallas />;
+    const hotelAliases = [
+      'pet-friendly-hotels-dallas-the-highland-dallas-collection',
+      'pet-friendly-hotels-dallas-hall-arts-dallas',
+      'pet-friendly-hotels-dallas-canopy-by-hilton-dallas-uptown',
+      'pet-friendly-hotels-dallas-hyatt-regency-dallas',
+    ];
+
+    console.log(data);
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
+    console.log(hotelsToDisplay);
+
+    return <Dallas hotels={hotelsToDisplay} />;
   } else if (cityName === 'Denver') {
-    return <Denver />;
+    const hotelAliases = [
+      'pet-friendly-hotels-denver-hyatt-centric-downtown-denver',
+      'pet-friendly-hotels-denver-thompson-denver',
+      'pet-friendly-hotels-denver-hilton-garden-inn-denver-union-station',
+      'pet-friendly-hotels-denver-magnolia-hotel-denver',
+      'pet-friendly-hotels-denver-kimpton-hotel-la-born',
+    ];
+
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
+    return <Denver hotels={hotelsToDisplay} />;
   } else if (cityName === 'Oceanside') {
-    return <Oceanside />;
+    const hotelAliases = [
+      '',
+    ];
+
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
+    return <Oceanside hotels={hotelsToDisplay} />;
   } else if (cityName === 'Orange County') {
     return <OrangeCounty />;
   } else if (cityName === 'Phoenix') {
@@ -165,9 +222,25 @@ export default function InnerContent({ cityId, cityName, city }) {
   } else if (cityName === 'Tucson') {
     return <Tucson />;
   } else if (cityName === 'Colorado Springs') {
-    return <ColoradoSprings />;
+    const hotelAliases = [
+      'pet-friendly-hotels-colorado-springs-element-colorado-springs-downtown',
+      'pet-friendly-hotels-colorado-springs-hyatt-place-colorado-springs-garden-of-the-gods',
+      'pet-friendly-hotels-colorado-springs-wingate-by-wyndham-colorado-springs',
+    ];
+
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
+    return <ColoradoSprings hotels={hotelsToDisplay} />;
   } else if (cityName === 'Houston') {
-    return <Houston />;
+    const hotelAliases = [
+      'pet-friendly-hotels-houston-four-seasons-houston',
+      'pet-friendly-hotels-houston-westin-houston-medical-center',
+      'pet-friendly-hotels-houston-hilton-houston-westchase',
+      'pet-friendly-hotels-houston-c-baldwin-curio-collection-by-hilton',
+      'pet-friendly-hotels-houston-la-quinta-inn-&-suites-by-wyndham-houston-nw-brookhollow',
+    ];
+
+    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
+    return <Houston hotels={hotelsToDisplay} />;
   } else if (cityName === 'San Antonio') {
     return <SanAntonio />;
   } else if (cityName === 'Santa Barbara') {

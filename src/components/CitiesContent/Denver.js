@@ -1,7 +1,9 @@
 import { Box, Typography } from '@mui/material';
-import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
-const Denver = () => {
+const Denver = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -49,6 +51,26 @@ const Denver = () => {
       </Typography>
 
       <Typography variant='h5'>Hyatt Centric Downtown Denver</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Denver, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         This upscale hotel is committed to delivering exceptional hospitality,
@@ -83,6 +105,26 @@ const Denver = () => {
       </Typography>
 
       <Typography variant='h5'>Thompson Denver</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Denver, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Thompson Denver is a contemporary gem, exuding style and sophistication
@@ -109,6 +151,26 @@ const Denver = () => {
       <Typography variant='h5'>
         Historic Hilton Garden Inn Denver Union Station
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Denver, CO' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Nestled in the heart of the city, the historic Hilton Garden Inn Denver
@@ -139,6 +201,26 @@ const Denver = () => {
       </Typography>
 
       <Typography variant='h5'>Magnolia Hotel Denver</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Denver, CO' }}
+          duration={3}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Experience the enchanting blend of contemporary design and classic
@@ -149,6 +231,26 @@ const Denver = () => {
       </Typography>
 
       <Typography variant='h5'>Kimpton Hotel Born</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Denver, CO' }}
+          duration={4}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Finally, the Kimpton Hotel Born beckons with its stylish urban

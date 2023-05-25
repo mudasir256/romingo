@@ -70,25 +70,28 @@ const Austin = ({ hotels }) => {
         enjoy a leisurely stroll along the picturesque waterfront, Austin&apos;s
         pet-friendly hotels are the perfect base for your adventures.
       </Typography>
+
       <Typography variant='h5'>Hotel Ella</Typography>
-      {hotels.length > 0 ?
-      <ListingCard
-        {...hotels[1]}
-        city={{ name: 'Austin, TX' }}
-        duration={2}
-        highlighted={false}
-        limitImages={true}
-        lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
-        petFeePolicy={{
-          ...hotels[1].petFeePolicy,
-          totalFees: utils.computePetFeePolicyTotalFees(
-            2,
-            1,
-            hotels[1].petFeePolicy
-          ),
-        }}
-      />
-      : <ListingCardSkeleton key={1} /> }
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Austin, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Nestled near the University of Texas, Hotel Ella is an upscale boutique
@@ -112,24 +115,27 @@ const Austin = ({ hotels }) => {
       />
 
       <Typography variant='h5'>South Congress Hotel</Typography>
-      {hotels.length > 0 ?
-      <ListingCard
-        {...hotels[0]}
-        city={{ name: 'Austin, TX' }}
-        duration={2}
-        highlighted={false}
-        limitImages={true}
-        lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
-        petFeePolicy={{
-          ...hotels[0].petFeePolicy,
-          totalFees: utils.computePetFeePolicyTotalFees(
-            2,
-            1,
-            hotels[0].petFeePolicy
-          ),
-        }}
-      />
-      : <ListingCardSkeleton key={0} /> }
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Austin, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
+
       <Typography variant='base'>
         South Congress Hotel is a chic boutique hotel offering fashionable
         accommodations and a pet-friendly atmosphere. With its prime location
@@ -153,6 +159,26 @@ const Austin = ({ hotels }) => {
       </Typography>
 
       <Typography variant='h5'>Four Seasons Austin</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Austin, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Discover exceptional service and lavish amenities at the Four Seasons
@@ -182,6 +208,26 @@ const Austin = ({ hotels }) => {
       <HighlightBox title='Key highlights include:' highlights={highlights2} />
 
       <Typography variant='h5'>The Otis Hotel Autograph Collection</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Austin, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Experience sophistication at this boutique hotel, part of the Autograph
@@ -205,6 +251,26 @@ const Austin = ({ hotels }) => {
       />
 
       <Typography variant='h5'>Hyatt House Austin Downtown</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Austin, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Nestled in the heart of downtown, Hyatt House Austin Downtown offers
@@ -233,6 +299,26 @@ const Austin = ({ hotels }) => {
       />
 
       <Typography variant='h5'>Element Austin Downtown</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[5]}
+          city={{ name: 'Austin, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[5].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[5].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={5} />
+      )}
 
       <Typography variant='base'>
         This eco-friendly hotel offers a revitalizing stay for you and your pet.
@@ -266,4 +352,5 @@ const Austin = ({ hotels }) => {
     </Box>
   );
 };
+
 export default Austin;

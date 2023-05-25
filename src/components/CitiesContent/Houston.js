@@ -1,5 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import HighlightBox from './HighlightBox';
+import ListingCard from '../../components/ListingCard';
+import ListingCardSkeleton from '../../components/UI/ListingCardSkeleton';
+import { utils } from '../../services/utils';
 
 const highlights1 = [
   'Prime location near top attractions',
@@ -42,7 +45,7 @@ const highlights5 = [
   'Complimentary Wi-Fi',
 ];
 
-const Houston = () => {
+const Houston = ({hotels}) => {
   return (
     <Box
       px='2.5rem'
@@ -89,6 +92,26 @@ const Houston = () => {
       </Typography>
 
       <Typography variant='h5'>Four Seasons Houston</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[0]}
+          city={{ name: 'Houston, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[0].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[0].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[0].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={0} />
+      )}
 
       <Typography variant='base'>
         Revel in unparalleled luxury and comfort at Four Seasons Houston, a
@@ -110,6 +133,26 @@ const Houston = () => {
       />
 
       <Typography variant='h5'>Westin Houston Medical Center</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[1]}
+          city={{ name: 'Houston, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[1].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[1].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[1].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={1} />
+      )}
 
       <Typography variant='base'>
         Immerse yourself in a revitalizing retreat at the Westin Houston Medical
@@ -130,6 +173,26 @@ const Houston = () => {
       />
 
       <Typography variant='h5'>Hilton Houston Westchase</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[2]}
+          city={{ name: 'Houston, TX' }}
+          duration={2}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[2].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[2].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[2].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={2} />
+      )}
 
       <Typography variant='base'>
         Uncover the allure and practicality of Hilton Houston Westchase, a
@@ -150,6 +213,26 @@ const Houston = () => {
       />
 
       <Typography variant='h5'>C Baldwin Curio Collection by Hilton</Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[3]}
+          city={{ name: 'Houston, TX' }}
+          duration={3}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[3].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[3].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[3].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={3} />
+      )}
 
       <Typography variant='base'>
         Embrace the distinctive charm of C Baldwin Curio Collection by Hilton –
@@ -168,6 +251,26 @@ const Houston = () => {
       <Typography variant='h5'>
         La Quinta Inn & Suites by Wyndham Houston NW Brookhollow
       </Typography>
+      {hotels.length > 0 ? (
+        <ListingCard
+          {...hotels[4]}
+          city={{ name: 'Houston, TX' }}
+          duration={4}
+          highlighted={false}
+          limitImages={true}
+          lowestAveragePrice={parseInt(hotels[4].listingsPagePromoText)}
+          petFeePolicy={{
+            ...hotels[4].petFeePolicy,
+            totalFees: utils.computePetFeePolicyTotalFees(
+              2,
+              1,
+              hotels[4].petFeePolicy
+            ),
+          }}
+        />
+      ) : (
+        <ListingCardSkeleton key={4} />
+      )}
 
       <Typography variant='base'>
         Delight in a cozy and budget-conscious stay at La Quinta Inn & Suites by
