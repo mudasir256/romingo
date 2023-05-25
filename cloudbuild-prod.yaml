@@ -6,8 +6,8 @@ steps:
 
   # npm run build
   - name: node:16.13.0
-    entrypoint: npm
-    args: ["run", "build"]
+    entrypoint: yarn
+    args: ["build"]
     env:
       - "NODE_ENV=production"
       - "REACT_APP_STRIPE_CLIENT_KEY=pk_live_51JcD2bBdk22npNeJXwmOgLZHOjxH2CK0SiDljaSeByUGjUfAE0CfpOvY3nTwCX0OE8cShJd51ICyJ8V9T3W6YoXE00JBuV4MWW"

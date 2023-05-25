@@ -6,8 +6,8 @@ steps:
 
   # npm run build
   - name: node:16.13.0
-    entrypoint: npm
-    args: ["run", "build"]
+    entrypoint: yarn
+    args: ["build"]
     env:
       - "NODE_ENV=development"
       - "SKIP_PREFLIGHT_CHECK=true"
