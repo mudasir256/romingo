@@ -1,3 +1,4 @@
+import { LicenseInfo } from '@mui/x-license-pro';
 import { FC, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
@@ -7,6 +8,8 @@ import { setList } from "./store/cityListReducer";
 import { authService } from "./services/authService.js";
 import TagManager from "react-gtm-module";
 import Routes from "./routes";
+
+LicenseInfo.setLicenseKey(process.env.REACT_APP_MUI_LICENSE);
 
 const AuthGuards = (props: any) => {
   const token = authService.getToken();

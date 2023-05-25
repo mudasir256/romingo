@@ -20,9 +20,10 @@ import { TextField, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { saveSearch } from "../../store/searchReducer";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateRangePicker } from '@mui/x-date-pickers-pro';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";

@@ -15,7 +15,6 @@ import { DateTime } from "luxon";
 
 import MobileFilterBar from '../MobileHomePageFilterBar'
 
-
 import { saveSearch } from "../../store/searchReducer";
 
 interface Props {

@@ -51,7 +51,6 @@ import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
 import { saveSearch } from "../../store/searchReducer";
 import Navbar from "../../components/Navbar";
-import { makeStyles } from "@material-ui/core/styles";
 import "./listing.css";
 const MotionBox = motion(Box);
 
@@ -858,27 +857,6 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     "Translation services",
   ];
 
-
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      width: 300
-    },
-    indeterminateColor: {
-      color: "#f50057"
-    },
-    selectAllText: {
-      fontWeight: 500
-    },
-    selectedAll: {
-      backgroundColor: "rgba(0, 0, 0, 0.08)",
-      "&:hover": {
-        backgroundColor: "rgba(0, 0, 0, 0.08)"
-      }
-    }
-  }));
-
-  const classes = useStyles();
   const isAllSelected =
     options.length > 0 && selectedFilter.length === options.length;
 
@@ -904,6 +882,24 @@ const SortBar: FC<SortBarProps> = (props: SortBarProps) => {
     setValue(newValue as number[]);
   };
 
+  const classes = {
+    formControl: {
+       margin: 1,
+       width: 300
+     },
+     indeterminateColor: {
+       color: "#f50057"
+     },
+     selectAllText: {
+       fontWeight: 500
+     },
+     selectedAll: {
+       backgroundColor: "rgba(0, 0, 0, 0.08)",
+       "&:hover": {
+         backgroundColor: "rgba(0, 0, 0, 0.08)"
+       }
+     }
+  }
 
   return (
     <>

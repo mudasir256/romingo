@@ -620,12 +620,12 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
   return (
     <>
       <Helmet>
-        <title>Pet friendly hotels {onlyCity} - Romingo</title>
+        <title>Pet Friendly Hotels {foundCity.name} | Romingo</title>
         <description>{cityContent.paragraphOne}</description>
         <meta name='keywords' content={cityContent.keywords} />
         <meta
           property='og:title'
-          content={`Pet friendly hotels ${onlyCity} - Romingo`}
+          content={`Pet Friendly Hotels ${foundCity.name} | Romingo`}
         />
         <meta property='og:description' content={cityContent.paragraphOne} />
         <meta property='og:image' content={cityContent.heroImage} />
