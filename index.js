@@ -53,7 +53,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/los-angeles-california',
-    title: 'Pet friendly hotels Los Angeles - Romingo',
+    title: 'Pet Friendly Hotels in Los Angeles | Romingo',
     description:
       "Time in the dazzling city of Los Angeles isn't complete without your pet! These pet friendly hotels will ensure you have the best stay possible.",
     image: HOTEL_DESCRIPTIONS[17].heroImage,
@@ -61,7 +61,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/san-diego-california',
-    title: 'Pet friendly hotels San Diego - Romingo',
+    title: 'Pet Friendly Hotels San Diego | Romingo',
     description:
       "San Diego is a must if you're in California. We have the best deals on pet friendly hotels so you can take your visit to the next level!",
     image: HOTEL_DESCRIPTIONS[19].heroImage,
@@ -69,7 +69,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/orange-county-california',
-    title: 'Pet friendly hotels Orange County - Romingo',
+    title: 'Pet Friendly Hotels Orange County, CA | Romingo',
     description:
       'Are you planning a visit to Orange County with your furry friend? Look no further than these top pet-friendly hotels to make your trip unforgettable!',
     image: HOTEL_DESCRIPTIONS[18].heroImage,
@@ -77,7 +77,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/san-francisco-california',
-    title: 'Pet friendly hotels San Francisco - Romingo',
+    title: 'Pet Friendly Hotels San Fransisco | Romingo',
     description:
       "A vacation to San Fransisco isn't complete without your furry friend. Find the best deals for pet friendly hotels to book here!",
     image: HOTEL_DESCRIPTIONS[20].heroImage,
@@ -85,7 +85,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/santa-barbara-california',
-    title: 'Pet friendly hotels Santa Barbara - Romingo',
+    title: 'Pet Friendly Hotels Santa Barbara | Romingo',
     description:
       'Enjoy all the relaxing sights and activities of Santa Barbara, and bring your furry friend with you! Explore the best pet friendly hotels here!',
     image: HOTEL_DESCRIPTIONS[21].heroImage,
@@ -93,8 +93,9 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/palm-springs-california',
-    title: 'Pet friendly hotels Palm Springs - Romingo',
-    description: HOTEL_DESCRIPTIONS[16].paragraphOne.slice(0, 160),
+    title: 'Palm Springs Pet Friendly Hotels | Romingo',
+    description:
+      "Palm Springs is a must-see in California. Don't leave your furry friend behind! Explore the best pet friendly hotels here.",
     image: HOTEL_DESCRIPTIONS[16].heroImage,
     keywords: HOTEL_DESCRIPTIONS[16].keywords,
   },
@@ -108,7 +109,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/dallas-texas',
-    title: 'Pet friendly hotels Dallas — Romingo',
+    title: 'Pet Friendly Hotels Dallas | Romingo ',
     description:
       'If you’re visiting Dallas, there’s no shortage of places to see and activities to enjoy. Here’s our ultimate guide to a pet-friendly stay in Dallas.',
     image: HOTEL_DESCRIPTIONS[1].heroImage,
@@ -116,7 +117,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/houston-texas',
-    title: 'Pet friendly hotels Houston — Romingo',
+    title: 'Pet Friendly Hotels Houston | Romingo',
     description:
       'There are plenty of attractions to visit in Houston! Explore the best pet friendly hotels around to take your stay to the next level.',
     image: HOTEL_DESCRIPTIONS[2].heroImage,
@@ -124,7 +125,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/oceanside-california',
-    title: 'Pet friendly hotels Oceanside — Romingo',
+    title: 'Pet Friendly Hotels in Oceanside | Romingo',
     description:
       'Explore the beautiful beaches of oceanside with your furry friend. These pet friendly hotels in Oceanside, California are a must stay. Learn more!',
     image: HOTEL_DESCRIPTIONS[3].heroImage,
@@ -132,7 +133,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/phoenix-arizona',
-    title: 'Pet friendly hotels Phoenix — Romingo',
+    title: 'Pet Friendly Hotels Phoenix, AZ | Romingo',
     description:
       "Exploring Phoenix isn't complete without your pet. Make sure you know the top rated pet friendly hotels to book for your trip!",
     image: HOTEL_DESCRIPTIONS[4].heroImage,
@@ -140,7 +141,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/scottsdale-arizona',
-    title: 'Pet friendly hotels Scottsdale — Romingo',
+    title: 'Pet Friendly Hotels in Scottsdale, AZ | Romingo',
     description:
       'Consider a visit to Scottsdale, AZ? These top-rated pet friendly hotels will take your stay to the next level. Learn more here!',
     image: HOTEL_DESCRIPTIONS[5].heroImage,
@@ -155,7 +156,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/santa-fe-new-mexico',
-    title: 'Pet friendly hotels Santa Fe — Romingo',
+    title: 'Pet Friendly Hotels Santa Fe | Romingo',
     description:
       'Explore the beautiful architecture, art, and incredible food of Santa Fe with your dog! These pet friendly hotels are a must.',
     image: HOTEL_DESCRIPTIONS[7].heroImage,
@@ -163,7 +164,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/san-antonio-texas',
-    title: 'Pet friendly hotels San Antonio — Romingo',
+    title: 'Pet Friendly Hotels San Antonio | Romingo',
     description:
       "If you're visiting the beautiful city of San Antonio, Texas, you'll need to find the best hotel deals. Explore the top pet friendly hotels here.",
     image: HOTEL_DESCRIPTIONS[8].heroImage,
@@ -171,7 +172,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/vail-colorado',
-    title: 'Pet friendly hotels Vail — Romingo',
+    title: 'Pet Friendly Hotels Colorado Springs | Romingo',
     description:
       "Colorado Springs is the perfect travel destination, especially if you're planning a trip with your pet. Explore the best pet-friendly hotels here!",
     image: HOTEL_DESCRIPTIONS[9].heroImage,
@@ -186,7 +187,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/denver-colorado',
-    title: 'Pet friendly hotels Denver — Romingo',
+    title: 'Pet Friendly Hotels Denver, CO | Romingo',
     description:
       'Thinking of exploring Denver? Compare these pet-friendly hotels with real customer reviews, along with tips for making the most of your trip.',
     image: HOTEL_DESCRIPTIONS[11].heroImage,
@@ -194,7 +195,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/seattle-washington',
-    title: 'Pet friendly hotels Seattle — Romingo',
+    title: 'Pet Friendly Hotels Seattle | Romingo',
     description:
       'Paying the vibrant city of Seattle a visit this year? Bring your pup with you and enjoy these top-rated pet friendly hotels.',
     image: HOTEL_DESCRIPTIONS[12].heroImage,
@@ -202,7 +203,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/portland-oregon',
-    title: 'Pet friendly hotels Portland — Romingo',
+    title: 'Pet Friendly Hotels Portland, Oregon | Romingo',
     description:
       'Portland, Oregon is home to fantastic food and even better people. Explore the top rate pet friendly hotels to make your trip unforgettable here!',
     image: HOTEL_DESCRIPTIONS[13].heroImage,
@@ -210,7 +211,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/sacramento-california',
-    title: 'Pet friendly hotels Sacramento — Romingo',
+    title: 'Pet Freindly Hotels Sacramento | Romingo',
     description:
       'Sacramento, CA is home to beautiful views and great people. Thinking of paying a visit? Find the best pet friendly hotels here.',
     image: HOTEL_DESCRIPTIONS[14].heroImage,
@@ -218,7 +219,7 @@ const seo = [
   },
   {
     path: '/pet-friendly-hotels/salt-lake-city-utah',
-    title: 'Pet friendly hotels Salt Lake City — Romingo',
+    title: 'Pet Friendly Hotels Salt Lake City | Romingo',
     description:
       'Are you looking to explore the mountainous beauty of Salt Lake City with your furry friend? Find the best pet friendly hotels here.',
     image: HOTEL_DESCRIPTIONS[15].heroImage,
