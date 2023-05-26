@@ -14,9 +14,9 @@ import {
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { DateRangePicker } from '@mui/x-date-pickers-pro'
 
 import OccupantSelector, {
   Occupant,
@@ -101,6 +101,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       checkDate[1]
     ) {
       setFormError("");
+    console.log(newValue)
       dispatch(
         saveSearch({
           city: newValue.city,
@@ -247,48 +248,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             <FormControl fullWidth>
               <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
             </FormControl>
-      {/*      <Box
-              sx={{
-                mb: '0.3rem',
-                ml: '0.5rem',
-                display: "flex",
-                alignItems: "center",
-                gap: '0.5rem',
-                border: 'none',
-                ["@media (max-width: 600px)"]: { mx: '0.75em' },
-                borderRadius: "6px",
-                backgroundColor: "#fff",
-                minWidth: '220px',
-                "&:hover": { background: "#efefef" },
-              }}
-              onClick={() => setShowSelectCity(!showSelectCity)}
-            >*/}
-
-              
-{/*              <img src={SearchImage} width="22.6px" height="22.5px" alt="" />
-              <Typography
-                variant="base"
-                className="auto-complete-input"
-                sx={{   
-                  cursor: 'pointer', 
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "transparent",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "transparent",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "transparent",
-                    },
-                  },
-                }}
-              >{selectedCity ? getCity(selectedCity).name : 'Select a city'}</Typography>*/}
-            {/* </Box> */}
-            {/*
-            {showSelectCity && <DesktopSelectCity />}
-            */}
-
           </Box>
 
           <Box sx={{ 

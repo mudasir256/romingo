@@ -974,7 +974,7 @@ const RoomCard: FC<Props> = ({
               right: 8,
               color: (theme) => theme.palette.grey[500],
             }}
-          >
+            size="large">
             <CloseIcon />
           </IconButton>
         </DialogTitle>

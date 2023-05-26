@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField, Dialog, AppBar, Toolbar, IconButton, useMediaQuery } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
@@ -7,7 +7,7 @@ import { gql, useQuery } from "@apollo/client";
 import { GetHotelsByLocation } from "../../constants/constants";
 import ListingMap from "../../components/ListingMap";
 import { LargeFilterBar } from '../../components/LargeFilterBar';
-import { Select, Typography } from "@material-ui/core";
+import { Select, Typography } from "@mui/material";
 import CardList from "../../components/CardList";
 import Map from "../../components/UI/Map";
 import { useSelector } from "react-redux";
@@ -19,7 +19,6 @@ import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
 
 const ListingPageNew = ({ ...props }) => {
 
-  const [loading, setLoading] = useState(true);
   const [sessionId, setSessionId] = useState('')
   const [hotels, setHotels] = useState([]);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
@@ -38,7 +37,7 @@ const ListingPageNew = ({ ...props }) => {
 
   const mobile = useMediaQuery("(max-width:800px)");
 
-  const { data } = useQuery(
+  const { data, loading } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children, search.lat, search.lng)}`);
 
 
@@ -229,7 +228,11 @@ const ListingPageNew = ({ ...props }) => {
             </Grid>
           </Grid>
           <Grid item>
-          <CardList cards={hotels} sessionId={sessionId}/>
+            {/* TODO: replace loading box with "tennis ball bouncing" lottie */}
+            {loading 
+              ? <Box>Loading...</Box> 
+              : <CardList cards={hotels} sessionId={sessionId}/>
+            }
           </Grid>
         </Grid>
       </Grid>
@@ -245,7 +248,7 @@ const ListingPageNew = ({ ...props }) => {
               color="inherit"
               onClick={() => setOpenMap(false)}
               aria-label="close"
-            >
+              size="large">
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
@@ -271,7 +274,7 @@ const ListingPageNew = ({ ...props }) => {
               color="inherit"
               onClick={() => setViewFilters(false)}
               aria-label="close"
-            >
+              size="large">
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
@@ -302,7 +305,7 @@ const ListingPageNew = ({ ...props }) => {
         </Box>
       </Dialog>
     </Grid>
-  )
+  );
 }
 
 export default (ListingPageNew);

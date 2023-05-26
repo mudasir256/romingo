@@ -752,13 +752,13 @@ const NumberInput: FC<NumberInputProps> = ({
 }) => {
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))} size="large">
         <RemoveCircleOutline />
       </IconButton>
       <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
         {value}
       </Typography>
-      <IconButton onClick={() => onChange(value + 1)}>
+      <IconButton onClick={() => onChange(value + 1)} size="large">
         <AddCircleOutline />
       </IconButton>
     </Stack>

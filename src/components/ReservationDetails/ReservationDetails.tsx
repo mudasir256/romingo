@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Button, CSSObject, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import React, { Dispatch, FC, MouseEventHandler, useEffect } from 'react';
 import styles from './ReservationDetails.module.css';
 import { useState } from 'react';
@@ -15,8 +15,9 @@ import OccupantSelector, {
 } from "../OccupantSelector/OccupantSelector";
 import { saveSearch } from '../../store/searchReducer';
 import SearchImage from '../../assets/icon/magnify.png';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { DateRangePicker } from '@mui/lab';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DateRangePicker } from '@mui/x-date-pickers-pro';
+import '@mui/lab';
 import { InsertInvitation, Today } from '@mui/icons-material';
 import SearchIcon from "@mui/icons-material/Search";
 

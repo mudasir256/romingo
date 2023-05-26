@@ -1,3 +1,4 @@
+import { LicenseInfo } from '@mui/x-license-pro';
 import { FC, useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
@@ -7,8 +8,8 @@ import { setList } from "./store/cityListReducer";
 import { authService } from "./services/authService.js";
 import TagManager from "react-gtm-module";
 import Routes from "./routes";
-import { MuiThemeProvider } from "@material-ui/core";
-import { createTheme } from '@mui/material/styles'
+
+LicenseInfo.setLicenseKey(process.env.REACT_APP_MUI_LICENSE);
 
 const AuthGuards = (props: any) => {
   const token = authService.getToken();
@@ -61,17 +62,10 @@ const App: FC = () => {
     }
   }, [data]);
 
-  const theme = createTheme({
-    typography: {
-      fontFamily: ["Poppins", "sans-serif"].join(",")
-    },
-  });
 
   return (
     <>
-      <MuiThemeProvider theme={theme}>
-        <Routes />
-      </MuiThemeProvider>
+      <Routes />
     </>
   );
 };

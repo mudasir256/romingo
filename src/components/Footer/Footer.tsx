@@ -48,69 +48,67 @@ const Footer: FC<Props> = ({ sx }) => {
     </Box>
   )
 
-  return (
-    <>
-      {showEgg &&
-        <Dialog onClose={handleClose} open={showEgg}>
-          <img loading="lazy" src={Pup} />
-        </Dialog>
-      }
-    <Box mt="4rem" mb="1.5rem">
-    
-        <Box sx={{ p: '2rem', gap: '2rem', display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, justifyContent: 'space-around', flexWrap: 'wrap'}}>
-          <Box>
-            <Link href="/"><img loading="lazy" width="220px" src={LogoImg} alt="Romingo Logo" /></Link>
-            <Typography component="p" variant="base" maxWidth="400px" mt="0.5rem" mb="0.5rem">
-              Romingo offers pet lovers an easy way to book pet-friendly travel. Experience the best dog-friendly hotels with Romingo, offering the lowest rates with $0 pet fees. You and your pet can roam the world freely with Romingo.
-            </Typography>
-            <div className="social-icons">
-              <IconButton
-                edge="start"
-                sx={{ mr: 1, color: "black" }}
-                aria-label="menu"
-                href="https://www.facebook.com/RomingoTravel/"
-                target="_blank"
-              >
-                <FacebookRoundedIcon />
-              </IconButton>
-              <IconButton
-                edge="start"
-                sx={{ mr: 1, color: "black" }}
-                aria-label="menu"
-                href="https://www.instagram.com/romingotravel/"
-                target="_blank"
-              >
-                <InstagramIcon />
-              </IconButton>
-            </div>
-          </Box>
-          <SiteLinkSection header="Site map" links={[
-            { href: "/about", text: 'About us'},
-            { href: "/faq", text: 'FAQ'},
-            { href: "/contact", text: 'Contact'},
-            { href: "/romingo-partners", text: 'RedRover Partnership'},
-          ]} />
-          <SiteLinkSection header="Content & Blog" links={[
-            { href: 'https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf', text: 'Guide to Air Travel With Your Dog'},
-            { href: '/blog', text: 'Romingo Blog', isBlank: true },
-            { href: '/blog?tag=12', text: 'Top travel tips', isBlank: true }
-          ]} />
-
-          <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
-            <img width="140px" src={IATANLogo} alt="IATAN Logo" loading="lazy" />
-            <img style={{ marginLeft: '-1rem'}} width="160px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
-          </Box>
+  return <>
+    {showEgg &&
+      <Dialog onClose={handleClose} open={showEgg}>
+        <img loading="lazy" src={Pup} />
+      </Dialog>
+    }
+  <Box mt="4rem" mb="1.5rem">
+  
+      <Box sx={{ p: '2rem', gap: '2rem', display: 'flex', flexDirection: { xs: 'column', sm: 'column', md: 'row' }, justifyContent: 'space-around', flexWrap: 'wrap'}}>
+        <Box>
+          <Link href="/"><img loading="lazy" width="220px" src={LogoImg} alt="Romingo Logo" /></Link>
+          <Typography component="p" variant="base" maxWidth="400px" mt="0.5rem" mb="0.5rem">
+            Romingo offers pet lovers an easy way to book pet-friendly travel. Experience the best dog-friendly hotels with Romingo, offering the lowest rates with $0 pet fees. You and your pet can roam the world freely with Romingo.
+          </Typography>
+          <div className="social-icons">
+            <IconButton
+              edge="start"
+              sx={{ mr: 1, color: "black" }}
+              aria-label="menu"
+              href="https://www.facebook.com/RomingoTravel/"
+              target="_blank"
+              size="large">
+              <FacebookRoundedIcon />
+            </IconButton>
+            <IconButton
+              edge="start"
+              sx={{ mr: 1, color: "black" }}
+              aria-label="menu"
+              href="https://www.instagram.com/romingotravel/"
+              target="_blank"
+              size="large">
+              <InstagramIcon />
+            </IconButton>
+          </div>
         </Box>
+        <SiteLinkSection header="Site map" links={[
+          { href: "/about", text: 'About us'},
+          { href: "/faq", text: 'FAQ'},
+          { href: "/contact", text: 'Contact'},
+          { href: "/romingo-partners", text: 'RedRover Partnership'},
+        ]} />
+        <SiteLinkSection header="Content & Blog" links={[
+          { href: 'https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf', text: 'Guide to Air Travel With Your Dog'},
+          { href: '/blog', text: 'Romingo Blog', isBlank: true },
+          { href: '/blog?tag=12', text: 'Top travel tips', isBlank: true }
+        ]} />
 
-      <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
-        <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
-        <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
+        <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
+          <img width="140px" src={IATANLogo} alt="IATAN Logo" loading="lazy" />
+          <img style={{ marginLeft: '-1rem'}} width="160px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
+        </Box>
       </Box>
 
+    <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+      <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
+      <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
+      <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
     </Box>
-    </>
-  );
+
+  </Box>
+  </>;
 };
 
 export default Footer;

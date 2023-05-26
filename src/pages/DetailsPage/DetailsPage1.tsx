@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import { Box, Button, Grid, Grow, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
@@ -6,7 +6,7 @@ import ScrollToTop from "../../components/ScrollToTop";
 import DetailsPageSkeleton from "./DetailsPageSkeleton";
 import styles from "./DetailsPageStyles";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
-import { Backdrop, Hidden, Popper, Typography } from "@material-ui/core";
+import { Backdrop, Hidden, Popper, Typography } from "@mui/material";
 import RomingoScore from "../../components/RomingoScore";
 import { Circle, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";

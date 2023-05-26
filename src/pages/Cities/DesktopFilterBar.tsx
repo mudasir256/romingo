@@ -20,9 +20,10 @@ import { TextField, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { saveSearch } from "../../store/searchReducer";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateRangePicker from "@mui/lab/DateRangePicker";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateRangePicker } from '@mui/x-date-pickers-pro';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
@@ -555,13 +556,13 @@ const NumberInput: FC<NumberInputProps> = ({
 }) => {
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))} size="large">
         <RemoveCircleOutline />
       </IconButton>
       <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
         {value}
       </Typography>
-      <IconButton onClick={() => onChange(value + 1)}>
+      <IconButton onClick={() => onChange(value + 1)} size="large">
         <AddCircleOutline />
       </IconButton>
     </Stack>
