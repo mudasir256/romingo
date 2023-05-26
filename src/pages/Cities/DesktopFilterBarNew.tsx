@@ -26,6 +26,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { DateTime } from "luxon";
 import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
+import GooglePlaceAutoComplete from "../../components/GooglePlaceAutoComplete";
 
 interface Props {
   city?: string;
@@ -41,6 +42,7 @@ export const DesktopFilterBarNew: FC = () => {
   const search = useSelector((state: any) => state.searchReducer.search);
   // eslint-disable-next-line
   const cities = useSelector((state: any) => state.cityListReducer.cities);
+  const [newValue, setNewValue] = useState(null);
 
 
   const [selectedCity, setSelectedCity] = useState(
@@ -92,15 +94,14 @@ export const DesktopFilterBarNew: FC = () => {
       new Date(checkDate[1]) >= new Date()
     ) {
       setFormError("");
-      const center = cities.find(x => x.id === selectedCity).center
       dispatch(
         saveSearch({
-          city: selectedCity,
+          city: newValue.city,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
-          lat: center.latitude,
-          lng: center.longitude,
+          lat: newValue.lat,
+          lng: newValue.lng,
         })
       );
       // refetch({
@@ -159,76 +160,7 @@ export const DesktopFilterBarNew: FC = () => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", width: '40%' }}>
-          <Autocomplete
-            options={cities.sort(function (a: any, b: any) {
-              if (a.state.name === b.state.name) {
-                // Price is only important when cities are the same
-                return b.name - a.name;
-              }
-              return a.state.name > b.state.name ? 1 : -1;
-            })}
-            groupBy={(o) => o.state.name}
-            disableClearable
-            value={getCity(selectedCity) || null}
-            getOptionLabel={(option: any) => {
-              return option.name;
-            }}
-            blurOnSelect="touch"
-            componentsProps={{
-              paper: {
-                style: {
-                  opacity: 1,
-                  backgroundColor: 'white',
-                  fontFamily: 'sansita-light',
-                  padding: '0 1em',
-                }
-              },
-            }}
-            renderOption={(props, option: any) => (
-              <li {...props} style={{ paddingLeft: 0, fontFamily: 'overpass-light', color: '#009CA1', fontSize: '0.8em' }}>
-                  {option.name.split(',')[0]}
-              </li>
-            )}
-            // eslint-disable-next-line
-            onChange={(e, values: any) => {
-              if (values) {
-                setFormError("");
-                setSelectedCity(values.id);
-              }
-            }}
-            sx={{ width: "200px" }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                color="primary"
-                variant="outlined"
-                size="small"
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "transparent",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "transparent",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "transparent",
-                    },
-                  },
-                  input: {
-                    padding: "0px",
-                    fontSize: "0.9em",
-                    fontWeight: 600,
-                    fontFamily: "overpass-light"
-                    ,
-                    cursor: "pointer",
-                    color: "primary.main",
-                    border: "none",
-                  },
-                }}
-              />
-            )}
-          />
+          <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
         </Box>
         <Box
           sx={{

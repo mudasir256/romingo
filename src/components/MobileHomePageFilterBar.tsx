@@ -37,7 +37,7 @@ import InfiniteCalendar, {
   withRange,
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css';
-
+import GooglePlaceAutoComplete from './GooglePlaceAutoComplete';
 interface FilterBarProps {
   sx?: CSSObject;
   home?: boolean;
@@ -69,6 +69,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
       ? search.checkOut
       : DateTime.local().plus({ days: 1 }).toJSDate(),
   ]);
+  const [newValue, setNewValue] = useState(null);
 
   const [occupants, setOccupants] = useState(
     search.occupants.dogs > 0
@@ -110,17 +111,15 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         onSearch(selectedCity, checkDate[0], checkDate[1], occupants)
         return
       }
-      const center = cities.find(x => x.id === selectedCity).center
-
       setFormError("");
       dispatch(
         saveSearch({
-          city: selectedCity,
+          city: newValue.city,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
-          lat: center.latitude,
-          lng: center.longitude,
+          lat: newValue.lat,
+          lng: newValue.lng,
         })
       );
 
@@ -236,40 +235,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               </Grid>
              
               <Grid item xs={10} sx={{ zIndex: 50, pl: { xs: '1.7rem', sm: '1.7rem', md: '1.25rem' }  }}>
-                <FormControl fullWidth>
-                  {!selectedCity && <Typography sx={{ position: 'absolute', top: '22%', }}>Select a city</Typography>}
-                  <Select 
-                    disableUnderline 
-                    labelId="select-city" 
-                    className="overpass no-select" 
-                    id="select-city-field" 
-                    label="Where to" 
-                    variant="standard" 
-                    sx={{ 
-                      ml: '0rem', 
-                      pt: '0.1rem',
-                      position: 'relative',
-                    }} 
-                    value={selectedCity}
-                    open={false}
-                    onOpen={() => setShowCities(!showCities)}
-                    MenuProps={{
-                      sx: { display: 'none', ml: '-0.5rem', width: '90vh', height: '50vh' }
-                    }}
-                  >
-                    {groups.map((group, index) => {
-                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1', backgroundColor: 'white', '&:hover': { backgroundColor: '#f3f5f9'} }} key={city.id} value={city.id}>{city.name.split(',')[0]}</MenuItem>));
-                      return (
-                        [
-                          <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0, backgroundColor: 'white'}}>{group[0].state.name}</ListSubheader>,
-                          <Box key={index} sx={{ pl: '0.9em', pr: '1em', pb: '0.5em', backgroundColor: 'white' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
-                          ...menuItems,
-                        ]
-                      )
-                    })}
-                  </Select>
-        
-                </FormControl>
+                <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue}/>
               </Grid>
 
 
@@ -493,7 +459,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         </Box>
       </Box>
 
-      <Slide direction='up' in={showCities} mountOnEnter unmountOnExit>
+      {/* <Slide direction='up' in={showCities} mountOnEnter unmountOnExit>
         <Box sx={{ 
           position: 'fixed', 
           overflow: 'auto',
@@ -516,7 +482,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
             )}
           </Box>
         </Box>
-      </Slide>
+      </Slide> */}
     </>
   );
 };
