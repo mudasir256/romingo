@@ -27,12 +27,15 @@ const ListingPageNew = ({ ...props }) => {
   const [center, setCenter] = useState({ lat: search.latitude, lng: search.longitude })
   const [markers, setMarkers] = useState([]);
   const [sort, setSort] = useState('alphabetSort');
-  const [selectedCity, setSelectedCity] = useState(cities.find(x => x.id === search.city).name)
+  const [selectedCity, setSelectedCity] = useState(search.city)
   const [rating, setRating] = useState([]);
   const [query, setQuery] = useState('');
   const [sliderValue, setSliderValue] = useState(1000)
   const [openMap, setOpenMap] = useState(false)
-  const [viewFilters, setViewFilters] = useState(false)
+  const [viewFilters, setViewFilters] = useState(false);
+
+  console.log(search)
+
   const mobile = useMediaQuery("(max-width:800px)");
 
   const { data } = useQuery(
@@ -40,12 +43,12 @@ const ListingPageNew = ({ ...props }) => {
 
 
   useEffect(() => {
-    if (data && data.getHotels.sessionId) {
+    if (data && data.getHotels && data.getHotels.sessionId) {
       setSessionId(data.getHotels.sessionId);
       const filteredHotels = [];
       const markers = [];
       for (const hotel of data.getHotels.hotels) {
-        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value })
+        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID,  lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
         markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName })
       }
       setHotels(filteredHotels.sort(function (a, b) {
@@ -64,7 +67,7 @@ const ListingPageNew = ({ ...props }) => {
 
     for (const hotel of data.getHotels.hotels) {
       if (hotel.DisplayName.includes(e.target.value) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
-        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
+        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       }
     }
     for (const hotel of filteredHotels) {
@@ -80,7 +83,7 @@ const ListingPageNew = ({ ...props }) => {
     const filteredHotels = [];
     for (const hotel of data.getHotels.hotels) {
       if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
-        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
+        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       }
     }
     if (e.target.value === 'alphabetSort') {
@@ -108,7 +111,7 @@ const ListingPageNew = ({ ...props }) => {
     }
 
     for (const hotel of filteredHotels) {
-      hotelsAfterFiltering.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value })
+      hotelsAfterFiltering.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude})
       markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName })
     }
 
@@ -140,7 +143,7 @@ const ListingPageNew = ({ ...props }) => {
     }
 
     for (const hotel of filteredHotels) {
-      hotelsAfterFiltering.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value })
+      hotelsAfterFiltering.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName })
     }
 
@@ -226,7 +229,7 @@ const ListingPageNew = ({ ...props }) => {
             </Grid>
           </Grid>
           <Grid item>
-          <CardList cards={hotels} />
+          <CardList cards={hotels} sessionId={sessionId}/>
           </Grid>
         </Grid>
       </Grid>

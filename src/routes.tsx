@@ -41,6 +41,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { IntercomProvider } from 'react-use-intercom';
 import ListingPageNew from "./pages/ListingPage/ListingPageNew";
+import DetailsPage1 from "./pages/DetailsPage/DetailsPage1";
 
 interface RouteInterface {
   path: string;
@@ -71,7 +72,7 @@ const routes: RouteInterface[] = [
   },
   {
     path: "/hotel/:alias",
-    component: DetailsPage,
+    component: DetailsPage1,
     requireAuth: false,
   },
   // {

@@ -2485,7 +2485,7 @@ interface FilterBarProps {
   refetch: any;
 }
 
-const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
+export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
@@ -2558,11 +2558,15 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
       checkDate[0] &&
       checkDate[1]
     ) {
+      const center = cities.find(x => x.id === selectedCity).center
+
       dispatch(
         saveSearch({
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
+          lat: center.latitude,
+          lng: center.longitude,
         })
       );
 

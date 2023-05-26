@@ -7,6 +7,8 @@ import { setList } from "./store/cityListReducer";
 import { authService } from "./services/authService.js";
 import TagManager from "react-gtm-module";
 import Routes from "./routes";
+import { MuiThemeProvider } from "@material-ui/core";
+import { createTheme } from '@mui/material/styles'
 
 const AuthGuards = (props: any) => {
   const token = authService.getToken();
@@ -59,10 +61,17 @@ const App: FC = () => {
     }
   }, [data]);
 
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Poppins", "sans-serif"].join(",")
+    },
+  });
 
   return (
     <>
-      <Routes />
+      <MuiThemeProvider theme={theme}>
+        <Routes />
+      </MuiThemeProvider>
     </>
   );
 };
