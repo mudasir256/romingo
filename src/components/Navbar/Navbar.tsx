@@ -41,6 +41,7 @@ import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
 import { authService } from "../../services/authService.js"
+import LogoImg from '../../assets/images/logo.png';
 
 interface Props {
   sx?: CSSObject;
@@ -146,9 +147,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               </Box>
               <Box
                 component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                }
+                src={LogoImg}
                 alt="Logo"
                 draggable="false"
                 onClick={() => history.push("/")}
@@ -156,7 +155,6 @@ const Navbar: FC<Props> = ({ sx }) => {
                   maxWidth: "230px",
                   margin: "auto auto",
                   cursor: "pointer",
-                  height: '77px'
                 }}
               />
               <Link
@@ -193,9 +191,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               >
                 <Box
                   component="img"
-                  src={
-                    "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                  }
+                  src={LogoImg}
                   alt="Logo"
                   draggable="false"
                   onClick={() => history.push("/")}
@@ -268,9 +264,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               </Drawer>
               <Box
                 component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                }
+                src={LogoImg}
                 alt="Logo"
                 onClick={() => {
                   history.push("/");

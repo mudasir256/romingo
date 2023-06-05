@@ -617,15 +617,68 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       </Box>
     </Box>
   );
+
+  function chooseVerbiage(city) {
+    switch (city) {
+      case 'Austin':
+        return 'Premier'
+      case 'Colorado Springs':
+        return 'Outstanding'
+      case 'Dallas':
+        return 'Top-Tier'
+      case 'Denver':
+        return 'Deluxe'
+      case 'Houston':
+        return 'Exquisite'
+      case 'Los Angeles':
+        return 'Impressive'
+      case 'Oceanside':
+        return 'Outstanding'
+      case 'Orange County':
+        return 'First-Class'
+      case 'Phoenix':
+        return 'Unforgettable'
+      case 'Portland':
+        return 'Fabulous'
+      case 'Sacramento':
+        return 'Best'
+      case 'Salt Lake City':
+        return 'Top'
+      case 'San Antonio':
+        return 'Best'
+      case 'San Diego':
+        return 'Top'
+      case 'San Francisco':
+        return 'Breathtaking'
+      case 'Santa Barbara':
+        return 'Best'
+      case 'Santa Fe':
+        return 'Remarkable'
+      case 'Scottsdale':
+        return 'Distinguished'
+      case 'Exceptional':
+        return 'Seattle'
+      case 'Arizona':
+        return 'Best'
+      case 'Vail':
+        return 'Breathtaking'
+      default:
+        return ''
+    }
+  }
+  
+  const verbiage = chooseVerbiage(onlyCity)
+
+
   return (
     <>
       <Helmet>
-        <title>Pet Friendly Hotels {foundCity.name} | Romingo</title>
+        <title>{verbiage} Pet Friendly Hotels {foundCity.name} | Romingo</title>
         <description>{cityContent.paragraphOne}</description>
         <meta name='keywords' content={cityContent.keywords} />
         <meta
           property='og:title'
-          content={`Pet Friendly Hotels ${foundCity.name} | Romingo`}
+          content={`${verbiage} Pet Friendly Hotels ${foundCity.name} | Romingo`}
         />
         <meta property='og:description' content={cityContent.paragraphOne} />
         <meta property='og:image' content={cityContent.heroImage} />
@@ -646,7 +699,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       <Container maxWidth='md'>
         <Box sx={{ textAlign: 'center', mt: 2 }}>
           <Typography component='h1' variant='h2' color='text.primary'>
-            {`Pet friendly hotels ${onlyCity}`}
+            {`${verbiage} Pet friendly hotels ${onlyCity}`}
           </Typography>
         </Box>
         <Divider variant='middle' light sx={{ my: 2 }}>
@@ -666,7 +719,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
         >
           <Grid item xs={12}>
             <Typography
-              component='h2'
+              component='p'
               variant='body1'
               sx={{ textAlign: 'justify', lineHeight: 2 }}
             >
