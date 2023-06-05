@@ -90,7 +90,8 @@ const ListingCardSquare: FC<ListingCardProps> = ({
           background: "#fff",
           transition: "all .25s ease-in-out",
           paddingBottom: "0px",
-          // "&:hover": { boxShadow: 7 },
+          boxShadow: 2,
+          "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
         }}
         {...props}
@@ -129,7 +130,9 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: 'space-between',
-                mt: '1rem'
+                mt: '1rem',
+                my: '0.5rem',
+                mx: '0.5rem'
               }}
             >
               <Box sx={{ display: 'flex' }}>

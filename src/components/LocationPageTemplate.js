@@ -609,7 +609,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       <Box sx={{ maxWidth: '240px' }}>
         <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'>
           <DoneAllIcon />
-          &nbsp;&nbsp;Romingo guarentee
+          &nbsp;&nbsp;Romingo guarantee
         </Typography>
         <Typography sx={{ fontSize: '0.9em' }}>
           Every hotel on Romingo welcomes up to 2 pets of 50 or 75 lbs. each.

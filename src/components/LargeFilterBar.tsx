@@ -162,15 +162,15 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       return a.state.name > b.state.name ? 1 : -1;
     })
 
-    const grouped = groupBy(cities, 'state')
-    console.log(grouped)
+    // const grouped = groupBy(cities, 'state')
+    // console.log(grouped)
     return (
       <Box sx={{ position: 'absolute', mt: '0.65rem', display: 'flex', gap: '1rem', flexDirection: 'row', width: '800px', backgroundColor: 'white', p: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', boxShadow: 4, borderRadius: 3,}} >
         <Box onClick={() => setShowSelectCity(false)} position="absolute" right="8px" top="8px" sx={{ cursor: 'pointer'}} ><HighlightOffIcon /></Box>
-        {Object.keys(grouped).map(cityKey => (
+        {Object.keys(cities).map(cityKey => (
           <Box key={cityKey} width="160px" my="0.25rem">
             <Typography variant="h5">{cityKey}</Typography>
-            {grouped[cityKey].map(city => (
+            {cities[cityKey].map(city => (
               <Typography onClick={() => {
                 console.log(city.id)
                 setSelectedCity(city.id)
@@ -248,14 +248,9 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             <FormControl fullWidth>
               {!selectedCity && <Typography sx={{ position: 'absolute', top: '10%', }}>Select a city</Typography>}
               <Select disableUnderline labelId="select-city" className="overpass no-select" id="select-city-field" label="Where to" variant="standard" sx={{ width: '220px', height: '29px', pt: '0.4rem' }} MenuProps={{ sx: { maxHeight: '45vh', mt: '0rem', ml: '-1rem'} }} value={selectedCity}>
-                {groups.map((group, index) => {
-                  const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: 'black' }} key={city.id} value={city.id}>{city.name}</MenuItem>));
-                  return (
-                    [
-                      <Box key={index} sx={{ pl: '0.9em', pr: '1em' }}></Box>,
-                      ...menuItems,
-                    ]
-                  )
+                {cities.map((city, index) => {
+                  return <MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: 'black' }} key={city.id} value={city.id}>{city.name}</MenuItem>
+              
                 })}
               </Select>
             </FormControl>
@@ -297,9 +292,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                 }}
               >{selectedCity ? getCity(selectedCity).name : 'Select a city'}</Typography>*/}
             {/* </Box> */}
-            {/*
-            {showSelectCity && <DesktopSelectCity />}
-            */}
+                        
 
           </Box>
 

@@ -87,6 +87,7 @@ const Footer: FC<Props> = ({ sx }) => {
           <SiteLinkSection header="Site map" links={[
             { href: "/about", text: 'About us'},
             { href: "/faq", text: 'FAQ'},
+            { href: '/list-your-property', text: 'List your property'},
             { href: "/contact", text: 'Contact'},
             { href: "/romingo-partners", text: 'RedRover Partnership'},
           ]} />

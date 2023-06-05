@@ -117,7 +117,7 @@ const Navbar: FC<Props> = ({ sx }) => {
             }}
           >
             <Hidden lgDown>
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
+              <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block'} }}>
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'flex-start' }}>
                   <Link
                     href="/faq"
@@ -153,30 +153,11 @@ const Navbar: FC<Props> = ({ sx }) => {
                 onClick={() => history.push("/")}
                 sx={{
                   maxWidth: "230px",
-                  margin: "auto auto",
+                  ml: '2rem',
                   cursor: "pointer",
                 }}
               />
-              <Link
-                href="/list-your-property"
-                sx={{
-                  padding: ".5rem 1rem",
-                  borderRadius: "6px",
-                  mr: "27px",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  "&:hover": { color: "#03989E" },
-                  color: "black",
-                }}
-              >
-                {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
-                <div
-                  style={{ marginRight: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
-                >
-                  List your property
-                </div>
-              </Link>
+              <Box></Box>
               <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
                 <Person sx={{ fontSize: '24px', color: 'black'}} />
               </Box>
@@ -251,16 +232,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   Support
                 </MenuItem>
                 <RomingoDealsMobile />
-                <MenuItem
-                  component="button"
-                  onClick={() => history.push("/list-your-property")}
-                  sx={{ fontWeight: 500, minWidth: "200px" }}
-                >
-                  <HomeWork
-                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
-                  />{" "}
-                  List your property
-                </MenuItem>
+       
               </Drawer>
               <Box
                 component="img"
@@ -302,28 +274,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   <WorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
                 </span>
               </Typography>
-              <a
-                href="/list-your-property"
-                style={{
-                  cursor: "pointer",
-                  marginRight: "0px",
-                  marginLeft: "1rem",
-                  color: "#222",
-                  fontWeight: 600,
-                  fontFamily: "Montserrat",
-                }}
-              >
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    borderRadius: "6px",
-                    padding: " .125rem .25rem",
-                  }}
-                >
-                  <HomeWorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
-                </span>
-              </a>
+      
 
               <Link
                 onClick={(e) => {

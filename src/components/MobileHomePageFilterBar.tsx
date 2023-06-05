@@ -254,16 +254,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                       sx: { display: 'none', ml: '-0.5rem', width: '90vh', height: '50vh' }
                     }}
                   >
-                    {groups.map((group, index) => {
-                      const menuItems = group.map(city => (<MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1', backgroundColor: 'white', '&:hover': { backgroundColor: '#f3f5f9'} }} key={city.id} value={city.id}>{city.name.split(',')[0]}</MenuItem>));
-                      return (
-                        [
-                          <ListSubheader key={group[0].state.name} sx={{ color: 'black', fontFamily: 'sansita-light', fontSize: '1.1em', letterSpacing: '0.5px', pb: 0, mb: 0, backgroundColor: 'white'}}>{group[0].state.name}</ListSubheader>,
-                          <Box key={index} sx={{ pl: '0.9em', pr: '1em', pb: '0.5em', backgroundColor: 'white' }}> <Box sx={{borderBottom: '1px solid black'}} /></Box>,
-                          ...menuItems,
-                        ]
-                      )
-                    })}
+                    {cities.map(city => (
+                      <MenuItem onClick={() => handleCityClick(city)} sx={{ fontFamily: 'overpass-light', fontSize: '0.9em', color: '#009CA1', backgroundColor: 'white', '&:hover': { backgroundColor: '#f3f5f9'} }} key={city.id} value={city.id}>{city.name.split(',')[0]}</MenuItem>
+                    ))}
+                  
                   </Select>
         
                 </FormControl>

@@ -159,13 +159,10 @@ export const DesktopFilterBar: FC = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
             options={cities.sort(function (a: any, b: any) {
-              if (a.state.name === b.state.name) {
-                // Price is only important when cities are the same
-                return b.name - a.name;
-              }
-              return a.state.name > b.state.name ? 1 : -1;
+           
+              return a.name > b.name ? 1 : -1;
             })}
-            groupBy={(o) => o.state.name}
+            // groupBy={(o) => o.state.name}
             disableClearable
             value={getCity(selectedCity) || null}
             getOptionLabel={(option: any) => {

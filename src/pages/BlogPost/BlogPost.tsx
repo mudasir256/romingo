@@ -172,7 +172,7 @@ const BlogPost: FC = () => {
         <meta property="og:title" content={post?.title?.rendered || ''} />
         <meta property="og:description" content={post?.content?.rendered?.slice(2, 250)} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={post?._embedded['wp:featuredmedia'][0]?.link || ''} />
+        <meta property="og:image" content={post?._embedded['wp:featuredmedia']?.find(item => true)?.link || ''} />
         <meta property="og:site_name" content="Romingo" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
@@ -219,7 +219,7 @@ const BlogPost: FC = () => {
               <Divider variant="middle" light sx={{ mt: 2, mb: 4 }} />
               <Box
                 component="img"
-                src={post._embedded["wp:featuredmedia"][0].link}
+                src={post?._embedded["wp:featuredmedia"]?.find(item => true)?.link}
                 alt="background"
                 draggable="false"
                 sx={{

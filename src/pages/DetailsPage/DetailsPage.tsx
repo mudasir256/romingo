@@ -91,6 +91,7 @@ import {
   Circle,
 } from "@mui/icons-material";
 import BookingCard from "../../components/BookingCard";
+import LogoImg from '../../assets/images/logo.png';
 
 const Map = loadable(() => import('../../components/UI/Map/Map'))
 
@@ -1566,7 +1567,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 pet fees and receive VIP pet amenities upon arrival.</Typography>
           <Box mt="1.5rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
             <Box position="relative" py="2rem" px="4rem" textAlign="center" border="solid 1px black">
-              <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
+              <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src={LogoImg} /></div>
               <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b></Typography>
               <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
                 <Typography variant="base">$0 pet fee</Typography>

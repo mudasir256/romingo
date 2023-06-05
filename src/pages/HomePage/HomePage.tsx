@@ -456,7 +456,7 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-        <Box mt="1rem">
+        <Box sx={{ my: { xs: '1rem', sm: '1rem', md: '8rem'} }}>
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
@@ -547,7 +547,7 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-        <Box mt="1rem">
+        <Box sx={{ my: { xs: '1rem', sm: '1rem', md: '8rem'} }}>
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
@@ -643,7 +643,8 @@ const HomePage: FC<Props> = () => {
       <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#A6DBE5" p="2rem" mt="2rem">
         <Box sx={{ 
           mx: 'auto', maxWidth: '760px', 
-          my: '1rem', 
+          mt: '4rem',
+          mb: '8rem', 
           p: '1.5rem',
           boxShadow: 2, 
           gap: '1rem',
