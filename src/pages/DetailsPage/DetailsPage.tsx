@@ -2556,15 +2556,14 @@ export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
       checkDate[0] &&
       checkDate[1]
     ) {
-      const center = cities.find(x => x.id === selectedCity).center
-
       dispatch(
         saveSearch({
+          city: search.city,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
-          lat: center.latitude,
-          lng: center.longitude,
+          lat: search.lat,
+          lng: search.lng,
         })
       );
 

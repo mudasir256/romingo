@@ -15,6 +15,7 @@ import {
   CreateBooking2,
   CreateSetupIntent,
   CreatePaymentIntent,
+  createBookingTravolutionary,
 } from "../../constants/constants";
 import { useSelector } from "react-redux";
 import Dialog from "@mui/material/Dialog";
@@ -76,6 +77,10 @@ const CheckoutInformation: FC<Props> = ({
     phone: "",
   });
 
+  const detail = useSelector(
+    (state: any) => state.hotelCheckoutReducer.checkout
+  );
+
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -129,6 +134,7 @@ const CheckoutInformation: FC<Props> = ({
         }
 
         const cardElement = elements.getElement(CardElement);
+        console.log(cardElement)
         if (!cardElement) {
           setPaymentLoading(false);
           return;
@@ -146,6 +152,8 @@ const CheckoutInformation: FC<Props> = ({
                },
              }
            );
+           console.log('payment intent')
+           console.log(error)
           if (paymentIntent) {
             const adults: { firstName: string; lastName: string }[] = [];
             const children: {
@@ -154,18 +162,40 @@ const CheckoutInformation: FC<Props> = ({
               age: number;
             }[] = [];
 
+            const passengers = []
+            const passengerObj = {
+              "Allocation": detail.room.Rooms[0].Id,
+                "Id": "e88e55f7-b1a0-45be-90d5-332ba5ce47b7",
+                "Email": {"Value": checkoutForm.email},
+                                 "Telephone": {
+                    "PhoneNumber": checkoutForm.phone
+                  },
+                "PersonDetails": {
+                  "Name": {
+                    "GivenName": checkoutForm.firstName,
+                    "NamePrefix": "Mr",
+                    "Surname": checkoutForm.lastName
+                  },
+                  "Type": 0
+                }
+              }
+
             Array.from(Array(occupants.adults)).forEach((_, i) => {
               if (i === 0) {
                 adults.push({
                   firstName: checkoutForm.firstName.trim(),
                   lastName: checkoutForm.lastName.trim(),
                 });
+                passengers.push(passengerObj)
               } else {
                 const guestId = String.fromCharCode(64 + i);
+                const copyObj = {...passengerObj};
                 adults.push({
                   firstName: `Adult${guestId}`,
                   lastName: checkoutForm.lastName.trim(),
                 });
+                copyObj.PersonDetails.Name.GivenName = `Adult${guestId}`
+                passengers.push(copyObj)
               }
             });
 
@@ -182,30 +212,40 @@ const CheckoutInformation: FC<Props> = ({
               );
             }
 
-            createBooking2({
-              variables: {
-                createBooking2Input: {
-                  priceKey: priceKey,
-                  customerId: paymentIntent.id,
-                  paymentIntentId: paymentIntent.id,
-                  email: checkoutForm.email,
-                  mobile: {
-                    countryCallingCode: checkoutForm.countryCode,
-                    number: checkoutForm.phone,
-                  },
-                  adults,
-                  children,
-                  noOfDogs: occupants.dogs,
-                  intentType: 'payment_intent',
-                  setupIntentObject: {
-                    created: parseInt((new Date().getTime() / 1000).toFixed(0))
-                  },
-                  utmSource: localStorage.getItem('utm_source') || '',
-                  utmMedium: localStorage.getItem('utm_medium') || ''
-                },
-              },
-            });
-            subscribeToNewsletter(checkoutForm.email)
+            console.log('creating booking')
+            console.log(adults)
+            console.log(children)
+            console.log(detail.room)
+            console.log(passengers)
+  
+            createBookingInTravolutionary({
+              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail.room, sessionId: detail.sessionId }}
+            })
+
+            // createBooking2({
+            //   variables: {
+            //     createBooking2Input: {
+            //       priceKey: priceKey,
+            //       customerId: paymentIntent.id,
+            //       paymentIntentId: paymentIntent.id,
+            //       email: checkoutForm.email,
+            //       mobile: {
+            //         countryCallingCode: checkoutForm.countryCode,
+            //         number: checkoutForm.phone,
+            //       },
+            //       adults,
+            //       children,
+            //       noOfDogs: occupants.dogs,
+            //       intentType: 'payment_intent',
+            //       setupIntentObject: {
+            //         created: parseInt((new Date().getTime() / 1000).toFixed(0))
+            //       },
+            //       utmSource: localStorage.getItem('utm_source') || '',
+            //       utmMedium: localStorage.getItem('utm_medium') || ''
+            //     },
+            //   },
+            // });
+            // subscribeToNewsletter(checkoutForm.email)
           }
           setPaymentLoading(false);
 
@@ -224,6 +264,16 @@ const CheckoutInformation: FC<Props> = ({
       }
     }
   );
+
+  const [createBookingInTravolutionary, {data, loading}] = useMutation(
+    gql`
+    ${createBookingTravolutionary}
+    `, {
+      async onCompleted(data) {
+        console.log(data)
+      }
+    }
+  )
 
   const [createSI, { data: siData, loading: siLoading }] = useMutation(
     gql`
@@ -392,15 +442,15 @@ const CheckoutInformation: FC<Props> = ({
 
     try {
 
-      if (policy.cancelable) {
-        createSI({
-          variables: { createSetupIntentInput: { email: checkoutForm.email } },
-        });
-      } else {
+      // if (policy.cancelable) {
+      //   createSI({
+      //     variables: { createSetupIntentInput: { email: checkoutForm.email } },
+      //   });
+      // } else {
         createPI({
-          variables: { createPaymentIntentInput: { priceKey: priceKey } },
+          variables: { createPaymentIntentInput: { price:  detail.room.SimplePrice } },
         });
-      }
+      // }
   
 
       if (password && confirmPassword) {

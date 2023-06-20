@@ -185,46 +185,9 @@ interface IHotelDetails {
 }
 
 interface ICheckout {
-  room: {
-    value: number;
-    description: string;
-    room: {
-      beds: {
-        code: number;
-        count: number;
-        desc: string;
-        __typename: string;
-      }[];
-      desc: string;
-      amenities: {
-        code: number;
-        desc: string;
-        value: string;
-      }[];
-      averagePrice: number;
-      averagePriceAfterTax: number;
-      breakfastIncluded: boolean;
-      dinnerIncluded: boolean;
-      totalFees?: number;
-      fees?: {
-        amount: number;
-        desc: string;
-      }[];
-      lunchIncluded: boolean;
-      maxOccupants: number;
-      nonSmoking: boolean;
-      priceKey: string;
-      totalPrice: number;
-      totalPriceAfterTax: number;
-      type: string;
-      bestRate?: boolean;
-      cancelationPolicy: {
-        deadlineLocal: string | null;
-        cancelable: boolean;
-      };
-      feesIncluded: boolean;
-    };
-  };
+  room: JSON;
+  hotel: JSON;
+  sessionId: string;
 }
 
 interface ICity {

@@ -93,7 +93,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-    if(!newValue) return
+    let city = search.city;
+    if(newValue) city = newValue;
     if (
       occupants.adults !== 0 &&
       selectedCity &&
@@ -104,12 +105,12 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     console.log(newValue)
       dispatch(
         saveSearch({
-          city: newValue.city,
+          city: city.city,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
-          lat: newValue.lat,
-          lng: newValue.lng,
+          lat: city.lat,
+          lng: city.lng,
         })
       );
     
@@ -240,7 +241,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            p: '0.5em',
             px: '1em',
           }}
         >

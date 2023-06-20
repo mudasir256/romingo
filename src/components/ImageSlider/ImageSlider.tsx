@@ -16,7 +16,6 @@ interface Props {
 const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10 }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
-
   useEffect(() => {
     if (images && images.length > 0) {
       const components = 
@@ -54,10 +53,10 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10 
                   }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>
               </>))
-
+      console.log(components)
       setItems(components);
     }
-  }, []);
+  }, [images]);
 
   useEffect(() => {
     // if (item !== 0) {

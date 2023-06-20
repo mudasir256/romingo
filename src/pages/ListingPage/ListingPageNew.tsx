@@ -32,6 +32,8 @@ const ListingPageNew = ({ ...props }) => {
   const [sliderValue, setSliderValue] = useState(1000)
   const [openMap, setOpenMap] = useState(false)
   const [viewFilters, setViewFilters] = useState(false);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
 
   console.log(search)
 
@@ -46,9 +48,18 @@ const ListingPageNew = ({ ...props }) => {
       setSessionId(data.getHotels.sessionId);
       const filteredHotels = [];
       const markers = [];
+      let min = 0;
+      let max = 0;
       for (const hotel of data.getHotels.hotels) {
-        filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID,  lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
-        markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName })
+        if(hotel.SuppliersLowestPackagePrices[0].Value < min){
+          min = hotel.SuppliersLowestPackagePrices[0].Value
+        }
+        if(hotel.SuppliersLowestPackagePrices[0].Value > max){
+          max = hotel.SuppliersLowestPackagePrices[0].Value
+        }
+        const restructuredHotel = { imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID,  lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude };
+        filteredHotels.push(restructuredHotel)
+        markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
       }
       setHotels(filteredHotels.sort(function (a, b) {
         const textA = a.name.toUpperCase();
@@ -56,6 +67,9 @@ const ListingPageNew = ({ ...props }) => {
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       }))
       setMarkers(markers);
+      setMinPrice(min);
+      setMaxPrice(max)
+      setSliderValue([min, max])
     }
 
   }, [data, search, center])
@@ -65,12 +79,13 @@ const ListingPageNew = ({ ...props }) => {
     const markers = [];
 
     for (const hotel of data.getHotels.hotels) {
-      if (hotel.DisplayName.includes(e.target.value) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
+      console.log()
+      if (hotel.DisplayName.includes(e.target.value) && hotel.SuppliersLowestPackagePrices[0].Value >= sliderValue[0] && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
         filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       }
     }
     for (const hotel of filteredHotels) {
-      markers.push({ lat: hotel.lat, lng: hotel.lng, type: 'hotel', label: hotel.name })
+      markers.push({ lat: hotel.lat, lng: hotel.lng, type: 'hotel', label: hotel.name, hotel: hotel })
     }
     setMarkers(markers)
     setHotels(filteredHotels)
@@ -81,7 +96,7 @@ const ListingPageNew = ({ ...props }) => {
     let newHotelsAfterFiltering = [];
     const filteredHotels = [];
     for (const hotel of data.getHotels.hotels) {
-      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
+      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value >= sliderValue[0] && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
         filteredHotels.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
       }
     }
@@ -91,27 +106,38 @@ const ListingPageNew = ({ ...props }) => {
         const textB = b.name.toUpperCase();
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       })
-    } else {
+    } else if (e.target.value === 'priceSort_low_to_high') {
       newHotelsAfterFiltering = filteredHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice);
-
+    } else if (e.target.value === 'priceSort_high_to_low') {
+      newHotelsAfterFiltering = filteredHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
+    } else if (e.target.value === 'featured') {
+      newHotelsAfterFiltering = filteredHotels;
+    } else if (e.target.value === 'highest_rating') {
+      newHotelsAfterFiltering = filteredHotels.sort((a, b) => b.romingoScore - a.romingoScore);
     }
     setHotels(newHotelsAfterFiltering)
     setSort(e.target.value)
+  }
+
+  const valuetext = (value: number) => {
+    return value;
   }
 
   const handleSliderChange = (e) => {
     const filteredHotels = [];
     const hotelsAfterFiltering = []
     const markers = []
+    
     for (const hotel of data.getHotels.hotels) {
-      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= e.target.value && (rating.length === 0 || rating.includes(hotel.StarRating))) {
+      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value >= e.target.value[0] && hotel.SuppliersLowestPackagePrices[0].Value <= e.target.value[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
         filteredHotels.push(hotel)
       }
     }
 
     for (const hotel of filteredHotels) {
-      hotelsAfterFiltering.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude})
-      markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName })
+      const restructuredHotel = { imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID,  lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude };
+      hotelsAfterFiltering.push(restructuredHotel)
+      markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
     }
 
     setHotels(hotelsAfterFiltering);
@@ -136,14 +162,15 @@ const ListingPageNew = ({ ...props }) => {
     const hotelsAfterFiltering = []
     const markers = []
     for (const hotel of data.getHotels.hotels) {
-      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue && (rating.length === 0 || rating.includes(hotel.StarRating))) {
+      if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value >= sliderValue[0] && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
         filteredHotels.push(hotel)
       }
     }
 
     for (const hotel of filteredHotels) {
-      hotelsAfterFiltering.push({ imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude })
-      markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName })
+      const restructuredHotel = { imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID,  lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude };
+      hotelsAfterFiltering.push(restructuredHotel)
+      markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
     }
 
     setHotels(hotelsAfterFiltering);
@@ -169,7 +196,7 @@ const ListingPageNew = ({ ...props }) => {
             View filters
           </Button>
         </Grid> : 
-        <Grid item xs={0} sm={4} >
+        <Grid item xs={0} sm={0} md={4} >
           <Box sx={{ display: "flex", my: 2, width: "100%" }}>
             <Map center={{ lat: search.lat, lng: search.lng }}
               height={300}
@@ -192,8 +219,28 @@ const ListingPageNew = ({ ...props }) => {
             <FormControlLabel control={<Checkbox />} label="Condo" />
           </FormGroup>
           <Typography>Price per night</Typography>
-          <Slider defaultValue={0} step={100} marks min={0} max={1000} onChange={handleSliderChange} />
-          <Typography>Guest Rating</Typography>
+          <Slider
+          getAriaLabel={() => 'Price range'}
+          value={sliderValue}
+          onChange={handleSliderChange}
+          valueLabelDisplay="auto"
+          getAriaValueText={valuetext}
+          min={minPrice}
+          step={1}
+          max={maxPrice}
+          marks={[
+            {
+              value: sliderValue[0],
+              label: `$${sliderValue[0]}`
+            },
+            {
+              value: sliderValue[1],
+              label: `$${sliderValue[1]}`
+            }
+          ]}
+          sx={{ ml: '1em', width: '90%', maxWidth: '240px' }}
+        />
+        <Typography>Guest Rating</Typography>
           <FormGroup onChange={handleRatingChange}>
             <FormControlLabel control={<Checkbox name="1" checked={rating.includes("1")} />} label="1" />
             <FormControlLabel control={<Checkbox name="2" checked={rating.includes("2")} />} label="2" />
@@ -203,7 +250,7 @@ const ListingPageNew = ({ ...props }) => {
           </FormGroup>
         </Grid>}
 
-        <Grid item xs={12} sm={8} style={{padding: mobile ? '0 10px' : '0 30px', width: '96%'}}>
+        <Grid item xs={12} sm={12} md={8} style={{padding: mobile ? '0 10px' : '0 30px', width: '96%'}}>
           <Grid item container direction='row'>
             <Grid item container direction='row' justifyContent='space-between'>
               <Grid item>
@@ -221,7 +268,10 @@ const ListingPageNew = ({ ...props }) => {
                     
                   >
                     <MenuItem value={'alphabetSort'}>Alphabet sort</MenuItem>
-                    <MenuItem value={'priceSort'}>Price sort</MenuItem>
+                    <MenuItem value={'priceSort_low_to_high'}>Price sort (low to high)</MenuItem>
+                    <MenuItem value={'priceSort_high_to_low'}>Price sort (high to low)</MenuItem>
+                    <MenuItem value={'highest_rating'}>Highest Rating</MenuItem>
+                    <MenuItem value={'featured'}>Featured</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

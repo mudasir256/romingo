@@ -58,7 +58,7 @@ export interface ListingCardProps {
   flag?: string;
   bookingId?: string;
 }
-const ListingCard: FC<ListingCardProps> = ({
+const MapListingCard: FC<ListingCardProps> = ({
   id,
   duration,
   imageURLs,
@@ -229,17 +229,13 @@ const ListingCard: FC<ListingCardProps> = ({
         sx={{
           color: "text.primary",
           display: "flex",
-          borderRadius: 3,
           flexDirection: { xs: "column", sm: "row" },
           maxWidth: "100%",
           justifyContent: "center",
           alignItems: "center",
           background: "#fff",
           transition: "all .25s ease-in-out",
-          border: "1px solid #ddd",
-          boxShadow: highlighted ? 10 : 1,
           paddingBottom: "0px",
-          "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
         }}
         {...props}
@@ -387,4 +383,4 @@ const ListingCard: FC<ListingCardProps> = ({
   );
 };
 
-export default ListingCard;
+export default MapListingCard;

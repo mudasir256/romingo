@@ -340,6 +340,16 @@ mutation CreatePaymentIntentMutation(
 }
 `;
 
+const createBookingTravolutionary = `
+mutation createBookingTravolutionary(
+  $createBookingInputTravolutionary: createBookingInputTravolutionary!
+) {
+  createBookingUsingTravolutionary(input: $createBookingInputTravolutionary) {
+    response
+  }
+}
+`;
+
 const CreateSetupIntent = `
 mutation CreateSetupIntentMutation(
   $createSetupIntentInput: CreateSetupIntentInput!
@@ -817,8 +827,10 @@ const getPackages = (adults: number, checkIn: number, checkOut: number, children
       latitude: "${latitude}",
       longitude: "${longitude}",
       hotelIds: "${hotelIds}"}) {
+      hotelDetails
       Result
       RoomsContent
+      sessionId
     }
   }
   `
@@ -850,4 +862,5 @@ export {
   GetHotelBySearchNew,
   GetHotelsByLocation,
   getPackages,
+  createBookingTravolutionary,
 };
