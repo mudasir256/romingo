@@ -15,8 +15,7 @@ const seo = [
   {
     path: '/',
     title: 'Book pet friendly hotels - Romingo',
-    description:
-      'Romingo offers pet lovers an easy way to book pet-friendly travel. Experience the best dog-friendly hotels with Romingo, offering the lowest rates with $0 pet fees. You and your pet can roam the world freely with Romingo.',
+    description: 'Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo.',
     image: 'https://romingo.com/public/images/home.jpg',
     keywords: defaultKeywords,
   },

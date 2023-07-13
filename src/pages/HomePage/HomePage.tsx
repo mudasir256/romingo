@@ -309,7 +309,7 @@ const HomePage: FC<Props> = () => {
     <div className="homepage">      
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo makes it easy for pet lovers to find pet-friendly hotels without costly fees. You and your pet will enjoy the best travel experience when you book with Romingo.</description>
+        <description>Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo.</description>
         <meta property="og:title" content="Book pet friendly hotels — Romingo" />
         <meta property="og:url" content="https://www.romingo.com" />
         <meta property="og:type" content="website" />
@@ -645,7 +645,7 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
-      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#A6DBE5" p="2rem" mt="2rem">
+      <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#ffffff" p="2rem" mt="2rem">
         <Box sx={{ 
           mx: 'auto', maxWidth: '760px', 
           my: '1rem', 
@@ -683,6 +683,7 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
+      <div id="cta">
       <RightPhotoBox
         imgSrc={SectionThreeImage}
         imgAlt="sign up for romingo exclusive deals"
@@ -692,6 +693,7 @@ const HomePage: FC<Props> = () => {
         text="Enter your email address below:"
         cta={<SignUpEmail />}
       />
+      </div>
 
 
       <Slide direction='up' in={showLocations} mountOnEnter unmountOnExit>

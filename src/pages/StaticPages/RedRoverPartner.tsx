@@ -14,7 +14,7 @@ const RedRoverPartner: FC = () => {
     <Container maxWidth="md" sx={{ mt: 10 }}>
       <Box sx={{ textAlign: "center" }}>
         <Typography variant="h2" color="text.primary" sx={{ mt: 2 }}>
-          Romingo’s Partners
+          Community
         </Typography>
       </Box>
       <Divider variant="middle" light sx={{ my: 4 }}>
@@ -28,7 +28,7 @@ const RedRoverPartner: FC = () => {
         </Grid>
         <Grid item xs={12} sm={12} md={8} sx={{ pl: { xs: 0, sm: 0, md: '1.5rem' } }}>
           <Typography variant="body1" sx={{ fontWeight: 500, textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }} >
-            That’s why every booking on Romingo includes a small charitable donation to Red Rover, a non-profit organization that aims to assist those in need. When you book with Romingo you’re helping real pets and their guardians find real help.
+            That&apos;s why every booking on Romingo includes a charitable donation to Red Rover, a non-profit organization that aims to assist those in need. When you book with Romingo you&apos;re helping real pets and their guardians find real help.
           </Typography>
         </Grid>
       </Grid>

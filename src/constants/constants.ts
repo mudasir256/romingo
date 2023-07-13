@@ -799,7 +799,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
   getHotels(input: {adults: ${adults},
   checkInDate: "${checkIn}",
   checkOutDate: "${checkOut}",
-  children: ${children},
+  children: "${children}",
   latitude: "${latitude}",
   longitude: "${longitude}",
   hotelIds: "${hotelIds}"

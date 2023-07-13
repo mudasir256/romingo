@@ -29,7 +29,7 @@ const ListingPageNew = ({ ...props }) => {
   const [selectedCity, setSelectedCity] = useState(search.city)
   const [rating, setRating] = useState([]);
   const [query, setQuery] = useState('');
-  const [sliderValue, setSliderValue] = useState(1000)
+  const [sliderValue, setSliderValue] = useState(0)
   const [openMap, setOpenMap] = useState(false)
   const [viewFilters, setViewFilters] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
@@ -40,7 +40,7 @@ const ListingPageNew = ({ ...props }) => {
   const mobile = useMediaQuery("(max-width:800px)");
 
   const { data, loading } = useQuery(
-    gql`${GetHotelsByLocation(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children, search.lat, search.lng)}`);
+    gql`${GetHotelsByLocation(search.occupants.adults +'', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children +'', search.lat, search.lng)}`);
 
 
   useEffect(() => {
@@ -89,6 +89,7 @@ const ListingPageNew = ({ ...props }) => {
     }
     setMarkers(markers)
     setHotels(filteredHotels)
+    console.log(filteredHotels.length)
     setQuery(e.target.value);
   }
 
