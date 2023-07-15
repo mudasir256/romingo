@@ -58,13 +58,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Romingo is a simple, user-friendly platform to book quality, pet
-              friendly hotels. Our team works exclusively with hand-selected
-              hotel partners to ensure you and your dog&apos;s guest experience
-              is welcoming, warm, and 100% enjoyable. You can finally roam the
-              world free with your pup and Romingo. Romingo does this by
-              providing one, simple pet policy across all hotel partners. We
-              call our streamlined policy the &quot;Romingo Guarantee&quot;.
+              Romingo is the future of pet-friendly travel. Recently launched in 2021, our mission is simple: <em>to provide pet owners everywhere a simple and accurate tool to search and book pet-friendly travel</em>.
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -75,8 +69,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              We hand-select our hotel partners. Romingo only partners with
-              up to 20 hotels per destination, which allows you to book quality pet friendly hotels.
+              Our team has spent countless hours hand-selecting the best pet-friendly accommodations. Romingo then partners with them to offer you the lowest rates, the clearest and most inclusive pet policies, and the guarantee that every reservation will have a pet-friendly guestroom. Our expert team of customer support agents are available around the clock to ensure that your pet-friendly travel experience is enjoyable and hassle-free.
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -87,10 +80,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              The Romingo Guarantee ensures that when you book on Romingo, your
-              reservation will include waived non-refundable pet fees, allowance
-              of up to (2) dogs with weight limits of 50-75 lbs. each. Some of our hotel partners 
-              also allow pets of all sizes, with no weight restrictions. 
+              Every reservation is backed by our Romingo Guarantee. The Romingo Guarantee ensures that every room booked on our site will be in a pet-friendly sleeping room at a pet-friendly hotel. The Romingo Guarantee also ensures that the pet policies listed on our site are accurate and representative based on the most updated pet policies provided by our accommodation partners to Romingo. If for any reason an issue arises pertaining to the accommodation&apos;s pet-friendliness status, guestroom reservation, or pet policy listed on our site, then our customer support team will do everything we can to make it right for our guests. 
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -102,10 +92,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Our team here at Romingo is working tirelessly to bring
-              pet-friendly travel to even more destinations across the US. Be
-              sure to drop us a line if you&apos;d like to see Romingo in your
-              city!
+              Romingo currently provides accommodations in the United States. Please <Link href="/#cta">sign up</Link> for our newsletter to learn more about future travel destinations that we are actively working on.  
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -116,10 +103,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Romingo works with a finite number of hotels that agree to waive
-              their pet fees and provide the best possible rates to our
-              customers. Romingo negotiates the best rates with each of our hotels individually on your behalf and pass the savings onto you. 
-              Our niche allows us to get even better rates than many competitors.
+              Our team of dedicated pet-friendly agents work with major accommodation brands, as well as individual properties, to provide you with the most favorable rates, the most inclusive pet policies, and the easiest way to book your pet-friendly accommodations.
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -127,76 +111,51 @@ const FAQ: FC = () => {
               Booking Hotels
             </Typography>
             <Typography variant="h6">
-              Are all hotels listed on Romingo pet-friendly?
-            </Typography>
+              Do all accommodation partners allow dogs?            </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Yes!
+              Yes! Please check the individual pet policy for each partner to confirm the specific pet policies.
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6">
-              How does payment of my hotel reservation work?
+              What about cats?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              The full room &amp; tax will be charged onto the credit card on file upon check in to the Hotel. Romingo does not collect any prepayment for your reservation. The hotel cancellation policy shall still apply, so please be sure to review each individual hotel cancellation policy. You may always cancel for a full refund so long as the reservation is cancelled inside the allowable cancellation window. Cancellations made inside the cancellation window are subject to the Hotel&apos;s cancellation fees.
+              Many of our accommodation partners do accept cats. Please check the individual pet policy for each partner to confirm the specific pet policies.
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              How does payment for my reservation work?
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ textAlign: "justify", lineHeight: 2 }}
+            >
+              The full room & tax will be charged onto the credit card on file at time of reservation.
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6">
-              How do I know if my dog or dogs are allowed at a hotel?
+              Can I cancel my reservation after it is booked?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Romingo hotel partners agree to either allow 2 dogs weighing 50-75 lbs. per pet in weight, and some properties allow pets of all sizes. Check out each hotel pet policy to ensure that you book the correct hotel based on your pet&apos;s size. 
+              If a refundable reservation is booked, and the reservation is cancelled within the allowable cancellation window, then cancellation is free and a refund of the deposit shall be issued to the original payment method.
             </Typography>
+            <Typography variant="body1" sx={{ textAlign: "justify", lineHeight: 2 }}>If a refundable reservation is booked, and the reservation is cancelled outside the allowable cancellation window, then the cancellation shall incur a &quot;cancellation fee&quot; as defined by the individual reservation policy. The &quot;cancellation fee&quot; shall be retained, and any difference between the deposit on file and the &quot;cancellation fee&quot; shall be issued via refund to the original payment method.</Typography>
+            <Typography variant="body1" sx={{ textAlign: "justify", lineHeight: 2 }}>If a non-refundable reservation is booked, and the reservation is cancelled at any point in time, then the cancellation shall incur a &quot;cancellation fee&quot; as defined by the individual reservation policy. The &quot;cancellation fee&quot; shall be retained, and any difference between the deposit on file and the &quot;cancellation fee&quot; shall be issued via refund to the original payment method.</Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              Can I bring my cat(s) or other pet to a Romingo reservation?{" "}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Romingo loves cats too, please be sure to check out each hotel pet policy to ensure that you book a cat-friendly hotel.
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              How do I make a hotel reservation?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Simple, check out our homepage at{" "}
-              <Link href="/">romingo.com</Link> and search through our
-              pet-friendly hotel listings!
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              How do I cancel or change a hotel reservation?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              You can click &quot;manage my reservation&quot; from our homepage
-              or use <Link href="/reservation/manage">this link</Link>. You will
-              need the email address on file with the booking as well as your
-              booking confirmation ID provided during checkout and in your
-              confirmation email.
-            </Typography>
-          </Grid>
+
           <Grid item xs={12}>
             <Typography variant="h6">
               Why is the hotel asking me for a refundable pet deposit?
@@ -205,95 +164,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Some of our hotel partners do still require a refundable pet
-              deposit upon check-in. This is to ensure that the Hotel&apos;s pet
-              policies and guest rooms are not damaged as a result of taking in
-              your pup. Keep in mind that this deposit is fully refundable so long as the guest room you stayed in is left in the same condition as you arrive.
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              Why can I book a room reservation with only up to 2 dogs?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Romingo and our hotels agree that any more than 2 dogs in a single
-              room can be too uncomfortable and a hassle. We want your
-              experience to be flawless and positive! That said, if you are
-              travelling with more than 1 adult, you can always book another
-              room with up to 2 dogs per room.
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              Why should I create a profile for myself and for my dog(s)?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              By creating your pup&apos;s profile, we can ensure that the Hotel is prepared to welcome you and your pups upon arrival. Some hotel partners will even be ready to greet your pet by name!
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              Do I need to bring anything for my pet?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Yes, you will need to bring your pet&apos;s food, bowls, bedding, toys, and any other necessary items. If you&apos;d prefer to buy these items at your destination, our pet-friendly travel guides will provide all the information you&apos;ll need!
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
-              Concerns
-            </Typography>
-            <Typography variant="h6">
-              What if I arrive at a hotel and they do not allow my dogs?
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Please reach out to Romingo Support immediately if a Romingo hotel
-              turns you away from a guaranteed reservation.
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              What if I arrive at a hotel and they charge me a non-refundable
-              pet fee?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Please reach out to Romingo Support immediately if a Romingo hotel
-              attempts to charge any sort of a non-refundable pet fee. As a
-              reminder, a hotel may ask you for a hotel pet deposit!
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              What if I arrive at a hotel and they charge me a pet deposit?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              Although Romingo and our partners do waive non-refundable pet
-              fees, some of our hotel partners do require a refundable pet
-              deposit upon check-in. Pet deposits are a way for our hotel
-              partners to ensure that their hotel pet policies are followed. Any
-              damage to the guest room, additional deep cleaning, and/or
-              violation of the hotel&apos;s pet policies may result in the Hotel
-              retaining or only partially-refunding the pet deposit to the
-              guest.
+              Some of our hotel partners do require a refundable pet deposit upon check-in. These refundable deposits are to ensure that the guestrooms are left in the same condition and working order upon departure. Refundable deposits may also be required to ensure that the hotel&apos;s pet policies are abided by at all times during a guest&apos;s stay.
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -304,56 +175,94 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Pet deposits are typically refunded or returned to the original
-              card on file no later than 7-10 business days after check out.
-              Please contact the Hotel directly if you have any issues with pet
-              deposits.
+              Pet deposits are typically refunded or returned to the original card on file no later than 7-10 business days after check out.  Please contact the Hotel directly if you have any issues with pet deposits.
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6">
-              Are pet-friendly hotels more expensive?
+              How do I know if my dog or dogs are allowed at a hotel?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Not with Romingo. We negotiate with our hotel partners to ensure that guests -- and their pets -- receive fair rates at every Romingo stay.
+              Each accommodation partner with Romingo has their individual pet policies. Please consult each accommodation&apos;s individual pet policy.
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6">
-              What if my dog has behavior issues?
+              What if I have more questions about an individual hotel pet policy?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              We understand that every pup has a unique personality. Still, if you expect your dog to bark excessively, destroy hotel property, or act aggressively towards other pets or guests, it&apos;s likely that you&apos;ll be in violation of our standardized pet policy.
+              While our <Link href="/contact">support team</Link> is available to assist you, we suggest contacting the hotel directly should you have any questions regarding a hotel pet policy. 
             </Typography>
           </Grid>
+       
           <Grid item xs={12}>
             <Typography variant="h6">
-              Can my dog sleep in the bed with me at a hotel?
+              How do I make a hotel reservation?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Yes! How pet-friendly would our hotels be if we prohibited cuddles?
+              Please visit our <Link href="/">homepage</Link> and book your next pet-friendly trip with Romingo.  
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6">
-              Can I leave my dog in the hotel room without me?
+              How do I cancel or change a hotel reservation?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Please consult each hotel pet policy to understand the hotel pet policy about unattended pets in the room.
+             Please visit &quot;My trips&quot; from our homepage, or simply <Link href="/create-account">create an account</Link> to manage your future trips with Romingo.
             </Typography>
           </Grid>
+       
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              Why should I create a profile for myself and for my dog(s)?
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ textAlign: "justify", lineHeight: 2 }}
+            >
+              By creating your pet&apos;s profile, our team can ensure that the hotel is ready to receive you and your pet and provide a first class travel experience.
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
+              Concerns
+            </Typography>
+            <Typography variant="h6">
+              What if I arrive to a hotel and they do not allow my dogs?
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ textAlign: "justify", lineHeight: 2 }}
+            >
+              Please first consult the individual hotel&apos;s pet policy, and then please reach out to our <Link href="/contact">support team</Link> immediately if an accommodation turns you away from a reservation due to their pet policy.
+            </Typography>
+          </Grid>
+    
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              What if I arrive to a hotel and they charge me a pet fee?
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ textAlign: "justify", lineHeight: 2 }}
+            >
+              Many of our hotel partners do charge pet fees in order to provide extra cleaning, pet perks, and dedicated pet-friendly rooms. Please consult each individual pet policy for a description of all pet fees. 
+            </Typography>
+          </Grid>
+       
           <Grid item xs={12}>
             <Typography variant="h4" color="primary" sx={{ mb: 2 }}>
               Customer Service
@@ -365,8 +274,7 @@ const FAQ: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              You can reach our Romingo Support team anytime from our{" "}
-              <Link href="contact">Contact Us</Link> Page
+              You can reach our <Link href="contact">support team</Link> anytime with questions, comments, or concerns. 
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -374,30 +282,13 @@ const FAQ: FC = () => {
               Hotels &amp; Partnerships
             </Typography>
             <Typography variant="h6">
-              I am a hotel or accommodations partner interested in partnering
-              with Romingo, how do I inquire?
+              I am a hotel or accommodations partner interested in partnering with Romingo, how do I inquire?
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              We love partnering with new accommodations providers, and welcome
-              any inquiries. Please{" "}
-              <Link href="/list-your-property">click here</Link> to get started.
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h6">
-              What are the participation requirements for a hotel or
-              accommodations partner?
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "justify", lineHeight: 2 }}
-            >
-              All accommodations partners must agree to adhere to our Romingo
-              Guarantee. This includes waived non-refundable pet fees and allowance
-              of up to two dogs of 50-75lbs. each.
+              We love partnering with pet-friendly accommodations, and welcome any inquiries <Link href="/list-your-property">here</Link>.
             </Typography>
           </Grid>
         </Grid>

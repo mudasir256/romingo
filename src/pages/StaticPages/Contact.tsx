@@ -30,9 +30,9 @@ const Contact: FC = () => {
   return <>
     <Helmet>
       <title>Book pet friendly hotels - Romingo</title>
-      <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
+      <description>Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo.</description>
       <meta property="og:title" content="Book pet friendly hotels - Romingo" />
-      <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+      <meta property="og:description" content="Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo." />
       <meta property="og:url" content="https://romingo.com/contact" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
@@ -70,9 +70,7 @@ const Contact: FC = () => {
               variant="body1"
               sx={{ textAlign: "justify", lineHeight: 2 }}
             >
-              Our support team is here for you 24/7! Please get in touch with
-              us using one of the below methods. If you require immediate
-              assistance, we recommend using our chat feature.
+              Our support team is here for all of your pet-friendly travel needs. Please get in touch with us using one of the below methods. If you require immediate assistance, we recommend using our chat feature, which is available Monday-Friday 9am-5pm PST.
             </Typography>
           </Grid>
           <Grid

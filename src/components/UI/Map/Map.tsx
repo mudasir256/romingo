@@ -11,6 +11,8 @@ import stylesArray from "./GoogleMapStyles";
 import Box from "@mui/material/Typography";
 import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
+import ListingCard from "../../ListingCard";
+import MapListingCard from "../../ListingCard/MapListingCard";
 
 interface Props {
   center: { lat: number; lng: number };
@@ -99,7 +101,7 @@ const Map: FC<Props> = ({
     lng: 0,
   });
 
-  const [showInfoContents, setShowInfoContents] = useState("");
+  const [showInfoContents, setShowInfoContents] = useState(null);
 
   const renderMap = () => (
     <GoogleMap
@@ -121,13 +123,14 @@ const Map: FC<Props> = ({
                   scaledSize: new google.maps.Size(35, 35),
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {
+                  console.log(marker)
                   if (marker.label) {
                     setShowInfoPostion({
                       lat: marker.lat,
                       lng: marker.lng,
                     });
                     setShowInfo(true);
-                    setShowInfoContents(marker.label);
+                    setShowInfoContents(marker.hotel);
                   }
                 }}
               />
@@ -149,7 +152,7 @@ const Map: FC<Props> = ({
                       lng: marker.lng,
                     });
                     setShowInfo(true);
-                    setShowInfoContents(marker.label);
+                    setShowInfoContents(marker.hotel);
                   }
                 }}
               />
@@ -163,16 +166,10 @@ const Map: FC<Props> = ({
             setShowInfo(false);
           }}
         >
-          <Box sx={{ px: 1, py: 0 }}>
-            <Typography
-              variant="h6"
-              sx={{
-                color: "primary.main",
-                fontSize: "80%",
-              }}
-            >
-              {showInfoContents}
-            </Typography>
+          <Box
+            sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
+          >
+            <MapListingCard {...showInfoContents} hotel={showInfoContents} />
           </Box>
         </InfoWindow>
       )}

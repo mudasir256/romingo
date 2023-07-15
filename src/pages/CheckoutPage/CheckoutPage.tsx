@@ -37,7 +37,7 @@ interface Props {
 const CheckoutPage: FC<Props> = () => {
   const [payLater, setPayLater] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
-  const { finePrint, room } = useSelector(
+  const { finePrint, room, hotel: hotelDetails } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
 
@@ -48,6 +48,9 @@ const CheckoutPage: FC<Props> = () => {
   const hotel = useSelector((state: any) => {
     return state.hotelDetailReducer.detail;
   });
+
+  console.log(room)
+  console.log(hotelDetails)
 
   const mobile = useMediaQuery("(max-width:800px)");
 
@@ -82,18 +85,18 @@ const CheckoutPage: FC<Props> = () => {
             {!mobile && (
               <Grid item xs={12} md={8} order={{ xs: 2, sm: 1 }}>
                 <CheckoutPageListingCard
-                  {...hotel}
+                  {...hotelDetails[0]}
                   showPrice={false}
                   noLink
                   small
                 />
                 <CheckoutInformation
                   sx={{ mt: 1, mb: "1rem" }}
-                  finePrint={finePrint}
-                  price={detail?.room?.room?.totalPriceAfterTax}
-                  priceKey={detail?.room?.room?.priceKey}
-                  payLater={payLater}
-                  policy={room?.room?.cancelationPolicy}
+                  // finePrint={{title: "test", description: 'test'}}
+                  // price={123.33}
+                  // priceKey={'jhrbkeurhfkeurybfekruy'}
+                  // payLater={false}
+                  policy={{cancelable: true, deadlineLocal: new Date().toISOString()}}
                 />
               </Grid>
             )}
@@ -129,10 +132,10 @@ const CheckoutPage: FC<Props> = () => {
                     </Typography>
                     <CheckoutInformation
                       sx={{ mt: 2, mb: "1rem" }}
-                      finePrint={finePrint}
-                      price={detail?.room?.room?.totalPriceAfterTax}
-                      priceKey={detail?.room?.room?.priceKey}
-                      payLater={payLater}
+                      // finePrint={finePrint}
+                      // price={detail?.room?.room?.totalPriceAfterTax}
+                      // priceKey={detail?.room?.room?.priceKey}
+                      // payLater={payLater}
                       policy={room?.room?.cancelationPolicy}
                     />
                   </Grid>
@@ -184,7 +187,7 @@ export interface ListingCardProps {
   };
 }
 
-const CheckoutPageListingCard: FC<ListingCardProps> = ({
+const CheckoutPageListingCard = ({
   imageURLs,
   name,
   addressLine1,
@@ -196,6 +199,7 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
   showPrice = true,
   ...props
 }) => {
+  console.log(props)
   return (
     <Box
       sx={{
@@ -225,10 +229,11 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
             sx={{
               width: "100%",
               height: 275,
+              mt: 3
             }}
           >
             <ImageSlider
-              images={imageURLs}
+              images={[props?.DefaultImage?.FullSize]}
               name={name}
               sx={{
                 width: "100%",
@@ -258,9 +263,9 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
                 fontWeight: 800,
               }}
             >
-              {name}
+              {props.DisplayName}
             </Typography>
-            <RomingoScore score={romingoScore} />
+            <RomingoScore score={props.StarRating} />
           </Box>
 
           <Box>
@@ -275,7 +280,7 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
                 mb: { xs: 0, md: -1 },
               }}
             >
-              {addressLine1}, {city?.name}
+              {props.Address}
             </Typography>
 
             <Box

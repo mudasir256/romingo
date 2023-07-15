@@ -62,7 +62,7 @@ const routes: RouteInterface[] = [
   },
   {
     path: "/details/:id",
-    component: DetailsPage,
+    component: DetailsPage1,
     requireAuth: false,
   },
   {
