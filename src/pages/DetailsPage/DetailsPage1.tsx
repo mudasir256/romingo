@@ -61,7 +61,7 @@ const DetailsPage1 = ({ ...props }) => {
 
   console.log(search)
 
-  //ACK: this should return hotel info from internal DB (+ travolutionary if needed)
+  //TODO: this should return hotel info from internal DB (+ travolutionary if needed)
   const { data: hotelData, error: hotelError } = useQuery(
     gql`
       ${getHotelDetailById(hotelId, initialSessionId)}
