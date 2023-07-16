@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { CSSObject } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import moment from "moment";
 
 interface Props {
   sx?: CSSObject;
@@ -13,6 +14,9 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
+
+  const search = useSelector((state: any) => state.searchReducer.search);
+
   const totalPetFees = useSelector(
     (state: any) => state.hotelDetailReducer?.detail?.petFeePolicy?.totalFees
   );
@@ -43,35 +47,42 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
       );
     }
 
+
+    const totalPrice = detail.room.PackagePrice.FinalPrice + detail.room.PackagePrice.FinalTax;
+    console.log(totalPrice)
+    const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
+    console.log(search.checkOut)
+    console.log(search.checkIn)
+    console.log(nights)
     tmp.push({
       label: "Average price per night",
-      price: detail?.room?.room?.averagePrice,
+      price: totalPrice/nights,
     });
 
     tmp.push({
       label: "Nights",
-      price: detail?.room?.room?.totalPrice / detail?.room?.room?.averagePrice,
+      price: nights,
     });
 
     tmp.push({
       label: "Total before taxes & fees",
-      price: detail?.room?.room?.totalPrice,
+      price: detail.room.PackagePrice.FinalPrice,
     });
 
     tmp.push({
       label: "Taxes & fees",
       price:
-        detail?.room?.room?.totalPriceAfterTax - detail?.room?.room?.totalPrice,
+      detail.room.PackagePrice.FinalTax,
     });
 
     tmp.push({
       label: "Pet Fees",
-      price: totalPetFees,
+      price: 0,
     });
 
     tmp.push({
       label: "Total",
-      price: detail?.room?.room?.totalPriceAfterTax,
+      price: totalPrice,
     });
 
     tmp.push({

@@ -13,9 +13,9 @@ const About: FC = () => {
     <>
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling.</description>
+        <description>Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo.</description>
         <meta property="og:title" content="Book pet friendly hotels - Romingo" />
-        <meta property="og:description" content="Romingo is revolutionizing travel by encouraging dog owners everywhere to never leave their dog home alone again while traveling." />
+        <meta property="og:description" content="Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
         <meta property="og:site_name" content="Romingo" />
@@ -51,14 +51,7 @@ const About: FC = () => {
               variant="body1"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
-              As a California native, there is nothing as relaxing and
-              refreshing as driving up and down the California Coastline. Travel
-              has always been one of my life&apos;s greatest joys, and during a
-              prolonged global pandemic, weekend and car travel escapes with my
-              partner, Jonathan, became a welcomed new outlet. Being near the
-              ocean and feeling that fresh, crisp air recharges and inspires us.
-              But I’ve always struggled leaving my French Bulldog, Maddie, at
-              home when I travel.
+              As a California native, there is nothing as relaxing and refreshing as driving up and down the California Coastline. Travel has always been one of my life&apos;s greatest joys, and during aprolonged global pandemic, weekend and car travel escapes became a welcomed new outlet. Being near the ocean and feeling that fresh air recharges and inspires. But I&apos;ve always struggled leaving my pet, Maddie, at home when I travel.
             </Typography>
             <Box
               sx={{
@@ -76,8 +69,8 @@ const About: FC = () => {
                   lineHeight: 1.5,
                 }}
               >
-                &quot;I love traveling with our Maddie, but finding pet-friendly
-                hotels has always been a challenge&quot;
+                &quot;I love traveling with Maddie, but finding pet-friendly
+                hotels has always been a challenge.&quot;
               </Typography>
             </Box>
             <Grid
@@ -117,65 +110,24 @@ const About: FC = () => {
           </Grid>
           <Grid item>
             <Typography variant="h4">
-              Travelling with dogs shouldn&apos;t be this difficult!
+              Travelling with pets should not be this difficult!
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
-              One thing has always stood in our way when planning those restful
-              getaways; finding places that will allow Maddie. I spent countless
-              hours searching for travel solutions to support pet-friendly
-              hotels that would not charge expensive pet fees, and they simply
-              do not exist. When it comes to hotels, there has never been a
-              “one-stop-shop” that allows travelers to book hotels that provide
-              a warm, welcoming experience when traveling with dogs.
-            </Typography>
-            <Box
-              sx={{
-                backgroundColor: "#efefef",
-                px: 4,
-                py: 2,
-                my: 2,
-                mb: 4,
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  textAlign: "center",
-                  lineHeight: 2,
-                }}
-              >
-                &quot;So, we started asking ourselves: What does pet-friendly
-                travel mean?&quot;
-              </Typography>
-            </Box>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
-            >
-              Most hotels have weight and/or breed restrictions, or they charge
-              expensive pet fees. Many do not even provide dog beds and bowls! I
-              always thought pet-friendly meant not paying expensive pet fees,
-              allowing any and all dogs, plus providing customer service that
-              made me feel welcomed with my pup.
+              One thing has always stood in our way when planning those restful getaways; finding places that will truly welcome Maddie. I spent countless hours searching for travel solutions to support pet-friendly hotels that display how “pet-friendly” a hotel really is. When it comes to hotels, there has never been a “one-stop-shop” that allows travelers to book hotels that provide a warm, welcoming experience when traveling with pets.
             </Typography>
           </Grid>
           <Grid item>
             <Typography variant="h4">
-              Hospitality is in Romingo&apos;s DNA
+              Hospitality is in the Romingo DNA
             </Typography>
             <Typography
               variant="body1"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
-              I have spent a long career in the hospitality industry, working
-              for, and with, small and large hotels for nearly two decades. I
-              have always enjoyed meeting and interacting with travelers,
-              hearing their stories, their passions, and their struggles. And I
-              found that many shared the same struggles that I found when
-              travelling with dogs.
+              I have spent a long career in the hospitality industry, working for, and with, small and large hotels for nearly two decades. I have always enjoyed meeting and interacting with travelers, hearing their stories, their passions, and their struggles. And I found that many shared the same struggles that I found when travelling with pets.
             </Typography>
           </Grid>
           <Grid item>
@@ -186,31 +138,20 @@ const About: FC = () => {
               variant="body1"
               sx={{ textAlign: { xs: "left", md: "justify" }, lineHeight: 2 }}
             >
-              So I set out to change the reality of travelling with dogs, for
-              myself and for dog owners across the world. We reached out to pet
-              owners and hotels, received an immediate and overwhelming
-              response, and decided to get to work. We built the hotel booking
-              platform that we always wanted. Romingo partners with dozens of
-              hand-selected, beautiful, and pet forward hotels that allow you to
-              finally roam free and rest easy with your pup. And by partnering
-              with Romingo, hotels agree to provide truly pet-friendly
-              accomodations to our users. Your Romingo reservation will always
-              include:
+              So, I set out to change the reality of travelling with pet, for myself and for pet owners across the world. We reached out to pet owners and hotels, received an immediate and overwhelming response, and decided to get to work. We built the hotel booking plaHorm that we always wanted. Romingo partners with hand-selected, welcoming, and pet forward hotels that allow you to finally roam free and rest easy with your pup. And by partnering with Romingo, hotels agree to provide truly pet-friendly accommodations to our users. Your Romingo reservation will always include:
               <Typography
                 variant="h6"
                 sx={{ textAlign: "left" }}
               >
                 <ul>
-                  <li>Competitive guestroom rates</li>
-                  <li>Waived non-refundable pet fees</li>
-                  <li>Bring up to (2) dogs weighing 75 lbs. each</li>
-                  <li>Dog beds, bowls, and treats included</li>
+                  <li>Verified pet-friendly accommodations</li>
+                  <li>Guaranteed pet-friendly guestrooms</li>
+                  <li>Competitive room rates</li>
+                  <li>Clear & transparent pet policies</li>
+                  <li>A truly pet-friendly travel experience</li>
                 </ul>
               </Typography>
-              Team Romingo is committed to a future where we may finally roam
-              free with our beloved canine companions, and our pups will never
-              be left at home again. Welcome to pet-friendly travel with
-              Romingo!
+              Team Romingo is committed to a future where we may finally roam free with our beloved pet companions, and our pets will never be left at home again. Welcome to pet-friendly travel with Romingo!
             </Typography>
             <Typography
               variant="h6"
@@ -229,6 +170,7 @@ const About: FC = () => {
               </i>
               <span style={{ fontSize: "14px" }}>Romingo</span>
             </Typography>
+            {/*
             <Typography
               variant="h6"
               sx={{
@@ -246,6 +188,7 @@ const About: FC = () => {
               </a>{" "}
               for partnership, press, and any other inquiries.
             </Typography>
+            */}
           </Grid>
         </Grid>
         <Grid

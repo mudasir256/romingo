@@ -156,7 +156,9 @@ export const DesktopFilterBarNew: FC = () => {
           mb: "1rem",
           padding: ".25rem .5rem .25rem .5rem",
           borderRadius: "12px",
-          fontFamily: 'overpass-light'
+          fontFamily: 'overpass-light',
+          width: { xs: "100%", sm: '50%' },
+          margin: 'auto'
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", width: '40%' }}>

@@ -340,6 +340,16 @@ mutation CreatePaymentIntentMutation(
 }
 `;
 
+const createBookingTravolutionary = `
+mutation createBookingTravolutionary(
+  $createBookingInputTravolutionary: createBookingInputTravolutionary!
+) {
+  createBookingUsingTravolutionary(input: $createBookingInputTravolutionary) {
+    response
+  }
+}
+`;
+
 const CreateSetupIntent = `
 mutation CreateSetupIntentMutation(
   $createSetupIntentInput: CreateSetupIntentInput!
@@ -789,7 +799,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
   getHotels(input: {adults: ${adults},
   checkInDate: "${checkIn}",
   checkOutDate: "${checkOut}",
-  children: ${children},
+  children: "${children}",
   latitude: "${latitude}",
   longitude: "${longitude}",
   hotelIds: "${hotelIds}"
@@ -803,6 +813,18 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       GeoLocation
       StarRating
       SuppliersLowestPackagePrices
+      description
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+
     }
   }
 }
@@ -817,8 +839,10 @@ const getPackages = (adults: number, checkIn: number, checkOut: number, children
       latitude: "${latitude}",
       longitude: "${longitude}",
       hotelIds: "${hotelIds}"}) {
+      hotelDetails
       Result
       RoomsContent
+      sessionId
     }
   }
   `
@@ -850,4 +874,5 @@ export {
   GetHotelBySearchNew,
   GetHotelsByLocation,
   getPackages,
+  createBookingTravolutionary,
 };

@@ -109,6 +109,13 @@ export default function GoogleMaps(props) {
   );
 
   React.useEffect(() => {
+    const fieldset = document.getElementsByTagName('fieldset');
+    for(const set of fieldset){
+      set.setAttribute('style', 'border: none;');
+    }
+  }, [])
+
+  React.useEffect(() => {
     let active = true;
 
     if (!autocompleteService.current && (window as any).google) {
@@ -149,7 +156,7 @@ export default function GoogleMaps(props) {
   return (
     <Autocomplete
       id="google-map-demo"
-      sx={{ width: 300 }}
+      sx={{ width: 300, marginTop: 2 }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
