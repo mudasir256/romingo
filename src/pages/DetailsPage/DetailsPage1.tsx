@@ -1,5 +1,5 @@
 import { withStyles } from "@mui/styles";
-import { Box, Button, Divider, Grid, Grow, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
+import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
 import { Dispatch, FC, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -8,7 +8,7 @@ import styles from "./DetailsPageStyles";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import { Backdrop, Hidden, Popper, Typography } from "@mui/material";
 import RomingoScore from "../../components/RomingoScore";
-import { Circle, Wifi } from "@mui/icons-material";
+import { Circle, Pets, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";
 import { gql, useQuery } from "@apollo/client";
 import { getPackages } from "../../constants/constants";
@@ -19,8 +19,26 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
 import { setHotel } from "../../store/hotelDetailReducer";
+import DogIcon from "../../assets/icon/dog.png";
+import SimpleReactLightbox from "simple-react-lightbox";
+import CloseIcon from "@mui/icons-material/Close";
 
 const DetailsPage1 = ({ ...props }) => {
+
+  const chipIconStyle = {
+    fontSize: { xs: "0.72em", sm: "0.75em" },
+    backgroundColor: "transparent",
+    fontFamily: "overpass-light",
+    mt: "0.35em",
+    display: "flex",
+    justifyContent: "flex-start",
+    mr: "0.4em",
+  };
+
+  const iconSpacing = {
+    mt: "0.15em",
+    ml: "0.15em",
+  };
   const classes = props.classes;
   const mobile = useMediaQuery("(max-width:800px)");
   const history = useHistory();
@@ -37,12 +55,17 @@ const DetailsPage1 = ({ ...props }) => {
   const [hotel, setHotelDetails] = useState(null)
   const search = useSelector((state: any) => state.searchReducer.search);
   const dispatch = useDispatch();
+  const [showGallery, setShowGallery] = useState(false);
   const [accessibleRooms, setAccessibleRooms] = useState([]);
+  const [showFullImage, setShowFullImage] = useState<string>('');
+
   console.log(search)
+
+  const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
   const { data, error, refetch } = useQuery(
     gql`
-      ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search?.occupants?.childrenAge?.join(','), search.lat, search.lng, [hotelId])}
+      ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
 
@@ -51,11 +74,11 @@ const DetailsPage1 = ({ ...props }) => {
     if (data && data.getHotelDetails) {
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
-      for(const room of data.getHotelDetails.Result){
+      for (const room of data.getHotelDetails.Result) {
         const filterroom = data.getHotelDetails.RoomsContent.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
-        if(filterroom && filterroom.Descriptions.includes('Room Accessible')) {
+        if (filterroom && filterroom.Descriptions.includes('Room Accessible')) {
           accessibleRooms.push(room);
-        }else{
+        } else {
           nonAccessibleRooms.push(room)
         }
       }
@@ -64,10 +87,27 @@ const DetailsPage1 = ({ ...props }) => {
       setAccessibleRooms(accessibleRooms);
       setRoomsDetails(data.getHotelDetails.RoomsContent);
       setSessionId(data.getHotelDetails.sessionId)
-      setHotelDetails(data.getHotelDetails.hotelDetails);
+      setHotelDetails(data.getHotelDetails.hotelDetails[0]);
       setLoading(false);
     }
   }, [data])
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowGallery(true);
+  };
+
+  const handleClose = () => {
+    setShowGallery(false);
+  };
+
+  const getImageCols = () => {
+    if (mobile) {
+      return 1;
+    }
+    return 3;
+  };
 
   if (loading) {
     return <DetailsPageSkeleton />
@@ -130,7 +170,7 @@ const DetailsPage1 = ({ ...props }) => {
               backgroundColor: "white",
               "&:hover": { backgroundColor: "#fff" },
             }}
-          // onClick={handleOpen}
+            onClick={handleOpen}
           >
             <PhotoCameraIcon sx={{ fontSize: 15, mr: 0.5 }} />
             View Photos
@@ -138,8 +178,8 @@ const DetailsPage1 = ({ ...props }) => {
         </Box>
       </Grid>
       <Grid container direction={'row'} sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
-        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >Yaswanth</Typography></Grid>
-        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={1000} />
+        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel.DisplayName}</Typography></Grid>
+        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel.StarRating} />
           <Circle
             sx={{
               fontWeight: 500,
@@ -164,6 +204,42 @@ const DetailsPage1 = ({ ...props }) => {
           >
             1000 reviews
           </Link>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={12}
+          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+        >
+          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+            <Chip
+              size="small"
+              sx={{ ...chipIconStyle, ".MuiChip-label": { pl: 0, ml: 0 } }}
+              label={
+                <Box sx={{ ml: "0em", pl: 0 }}>{hotel.petFee}</Box>
+              }
+            />
+            <Chip
+              size="small"
+              sx={chipIconStyle}
+              icon={<Pets fontSize="small" />}
+              label={<Box sx={iconSpacing}>{hotel.petAllowance}</Box>}
+            />
+            <Chip
+              size="small"
+              sx={chipIconStyle}
+              icon={<img width="18px" src={DogIcon} />}
+              label={<Box sx={iconSpacing}>{hotel.petSize}</Box>}
+            />
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+        >
+          <span>{hotel.description}</span>
         </Grid>
         {/* <Grid item xs={12} md={3}><Hidden mdDown>
           <BookingCardNew
@@ -196,7 +272,7 @@ const DetailsPage1 = ({ ...props }) => {
               {rooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 let images = filterroom ? filterroom.Images : [];
-                if(images.length === 0){
+                if (images.length === 0) {
                   images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
                 }
                 return (
@@ -226,7 +302,7 @@ const DetailsPage1 = ({ ...props }) => {
                     }}
                   >
                     <Grid item style={{ padding: 0 }}>
-                      <ImageSlider images={images } name={room.Rooms[0].RoomName} />
+                      <ImageSlider images={images} name={room.Rooms[0].RoomName} />
                     </Grid>
                     <Grid item style={{ padding: 10 }}>
                       <Typography
@@ -261,7 +337,7 @@ const DetailsPage1 = ({ ...props }) => {
                             variant="body2"
                             style={{ marginTop: 10 }}
                           >
-                            ${(room.PackagePrice.FinalPrice/moment(search.checkOut).diff(moment(search.checkIn),'days')).toFixed(2)} per night
+                            ${(room.PackagePrice.FinalPrice / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)} per night
                           </Typography>
                         </Box>
                       </Box>
@@ -304,14 +380,16 @@ const DetailsPage1 = ({ ...props }) => {
                       size="small"
                       color="primary"
                       style={{ position: 'absolute', bottom: 0, right: 0, margin: 10 }}
-                      onClick={() => {    dispatch(
-                        setCheckout({
-                          room: room,
-                          hotel: hotel,
-                          sessionId: sessionId
-                        })
-                      );
-                      history.push("/checkout")   }}
+                      onClick={() => {
+                        dispatch(
+                          setCheckout({
+                            room: room,
+                            hotel: hotel,
+                            sessionId: sessionId
+                          })
+                        );
+                        history.push("/checkout")
+                      }}
                     >
                       <Typography
                         sx={{
@@ -339,7 +417,7 @@ const DetailsPage1 = ({ ...props }) => {
               {accessibleRooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 let images = filterroom ? filterroom.Images : [];
-                if(images.length === 0){
+                if (images.length === 0) {
                   images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
                 }
                 return (
@@ -369,7 +447,7 @@ const DetailsPage1 = ({ ...props }) => {
                     }}
                   >
                     <Grid item style={{ padding: 0 }}>
-                      <ImageSlider images={images } name={room.Rooms[0].RoomName} />
+                      <ImageSlider images={images} name={room.Rooms[0].RoomName} />
                     </Grid>
                     <Grid item style={{ padding: 10 }}>
                       <Typography
@@ -404,7 +482,7 @@ const DetailsPage1 = ({ ...props }) => {
                             variant="body2"
                             style={{ marginTop: 10 }}
                           >
-                            ${(room.PackagePrice.FinalPrice/moment(search.checkOut).diff(moment(search.checkIn),'days')).toFixed(2)} per night
+                            ${(room.PackagePrice.FinalPrice / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)} per night
                           </Typography>
                         </Box>
                       </Box>
@@ -447,14 +525,16 @@ const DetailsPage1 = ({ ...props }) => {
                       size="small"
                       color="primary"
                       style={{ position: 'absolute', bottom: 0, right: 0, margin: 10 }}
-                      onClick={() => {    dispatch(
-                        setCheckout({
-                          room: room,
-                          hotel: hotel,
-                          sessionId: sessionId
-                        })
-                      );
-                      history.push("/checkout")   }}
+                      onClick={() => {
+                        dispatch(
+                          setCheckout({
+                            room: room,
+                            hotel: hotel,
+                            sessionId: sessionId
+                          })
+                        );
+                        history.push("/checkout")
+                      }}
                     >
                       <Typography
                         sx={{
@@ -541,6 +621,85 @@ const DetailsPage1 = ({ ...props }) => {
           </Box>
         </Box>
       </Popover>
+      <SimpleReactLightbox>
+        <Dialog
+          open={showGallery}
+          keepMounted
+          fullScreen
+          onClose={handleClose}
+          scroll="paper"
+          aria-labelledby="photo-dialog-slide-title"
+          aria-describedby="photo-dialog-slide-description"
+        >
+          <DialogTitle
+            id="photo-dialog-slide-title"
+            sx={{
+              position: "sticky",
+              backgroundColor: "white",
+              display: "flex",
+              height: "30px",
+              justifyContent: "space-between",
+              alignItems: "bottom",
+              top: 0,
+              zIndex: 10000,
+              color: "primary.main",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#222222",
+                fontWeight: 700,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+            >
+              Photos
+            </Typography>
+            <IconButton
+              aria-label="close"
+              onClick={handleClose}
+              sx={{ color: (theme) => theme.palette.grey[500] }}
+              size="large">
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent sx={{ px: 0 }}>
+
+            <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
+              <ImageList variant="standard" cols={getImageCols()} gap={8}>
+                {gallery.map((item: any, index: Integer) => (
+                  <ImageListItem key={item} onClick={() => {
+                    if (!mobile) {
+                      setShowFullImage(item)
+                    }
+                  }}>
+                    <img
+                      srcSet={`${item.replace(
+                        /^http(s?):/i,
+                        ""
+                      )}?w=161&fit=crop&auto=format 1x,
+${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                      alt={name}
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
+            </Container>
+          </DialogContent>
+        </Dialog>
+
+        {showFullImage && 
+          <Dialog maxWidth="xl" sx={{ p: '2rem',  }} open={true} onClick={() => setShowFullImage('')}>
+            <img src={showFullImage}  style={{ maxHeight: '80vh', objectFit: 'contain' }} />
+          </Dialog>
+        }
+
+        {/* <SRLWrapper options={lightBoxOptions} /> */}
+
+      </SimpleReactLightbox>
     </Grid>
   )
 }
