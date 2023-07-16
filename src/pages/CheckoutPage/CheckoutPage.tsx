@@ -85,10 +85,8 @@ const CheckoutPage: FC<Props> = () => {
             {!mobile && (
               <Grid item xs={12} md={8} order={{ xs: 2, sm: 1 }}>
                 <CheckoutPageListingCard
-                  {...hotelDetails[0]}
+                  {...hotelDetails}
                   showPrice={false}
-                  noLink
-                  small
                 />
                 <CheckoutInformation
                   sx={{ mt: 1, mb: "1rem" }}
@@ -105,10 +103,8 @@ const CheckoutPage: FC<Props> = () => {
                 {mobile && (
                   <Grid item xs={12}>
                     <CheckoutPageListingCard
-                      {...hotel}
+                      {...hotelDetails}
                       showPrice={false}
-                      noLink
-                      small
                     />
                   </Grid>
                 )}

@@ -31,6 +31,7 @@ import { authService } from "../../services/authService.js"
 import StarsIcon from '@mui/icons-material/Stars';
 import PetsIcon from '@mui/icons-material/Pets';
 import WorkHistoryIcon from '@mui/icons-material/Work';
+import * as uuid from 'uuid'
 
 interface Props {
   sx?: CSSObject;
@@ -165,7 +166,6 @@ const CheckoutInformation: FC<Props> = ({
             const passengers = []
             const passengerObj = {
               "Allocation": detail.room.Rooms[0].Id,
-                "Id": "e88e55f7-b1a0-45be-90d5-332ba5ce47b7",
                 "Email": {"Value": checkoutForm.email},
                                  "Telephone": {
                     "PhoneNumber": checkoutForm.phone
@@ -186,13 +186,14 @@ const CheckoutInformation: FC<Props> = ({
                   firstName: checkoutForm.firstName.trim(),
                   lastName: checkoutForm.lastName.trim(),
                 });
-                passengers.push(passengerObj)
+                passengers.push({...passengerObj, "Id": uuid.v4()})
               } else {
                 const guestId = String.fromCharCode(64 + i);
                 const copyObj = {...passengerObj};
                 adults.push({
                   firstName: `Adult${guestId}`,
                   lastName: checkoutForm.lastName.trim(),
+                  "Id": uuid.v4()
                 });
                 copyObj.PersonDetails.Name.GivenName = `Adult${guestId}`
                 passengers.push(copyObj)
@@ -811,7 +812,7 @@ const CheckoutInformation: FC<Props> = ({
                     <Typography component="p" variant="base" display="flex" alignItems="center" gap="0.5rem"><PetsIcon /> Receive pet-friendly tips & tricks</Typography>
                   </Box>
                   <Typography component="p" mb="1rem" variant="base">Enter a password to create an account based on the email address above.</Typography>
-                  <ValidatorForm>
+                  <ValidatorForm onSubmit={() => updateForm()}>
                     <TextValidator
                       fullWidth={true}
                       name="password"
