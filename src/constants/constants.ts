@@ -813,6 +813,18 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       GeoLocation
       StarRating
       SuppliersLowestPackagePrices
+      description
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+
     }
   }
 }

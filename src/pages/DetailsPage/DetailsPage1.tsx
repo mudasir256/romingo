@@ -42,7 +42,7 @@ const DetailsPage1 = ({ ...props }) => {
 
   const { data, error, refetch } = useQuery(
     gql`
-      ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search.occupants.children, search.lat, search.lng, [hotelId])}
+      ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), search?.occupants?.childrenAge?.join(','), search.lat, search.lng, [hotelId])}
     `
   );
 
