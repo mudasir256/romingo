@@ -848,6 +848,18 @@ const getPackages = (adults: number, checkIn: number, checkOut: number, children
   `
 }
 
+const getHotelDetailById = (hotelId: number, sessionId: string) => {
+  return `query {
+    getHotelDetailById(input: {
+      hotelId: "${hotelId}",
+      sessionId: "${sessionId}"
+    }) {
+      Result
+      RoomsContent
+    }
+  }`
+}
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -875,4 +887,5 @@ export {
   GetHotelsByLocation,
   getPackages,
   createBookingTravolutionary,
+  getHotelDetailById
 };

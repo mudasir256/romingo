@@ -11,7 +11,7 @@ import RomingoScore from "../../components/RomingoScore";
 import { Circle, Pets, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";
 import { gql, useQuery } from "@apollo/client";
-import { getPackages } from "../../constants/constants";
+import { getHotelDetailById, getPackages } from "../../constants/constants";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 import { RoomsFilterBar } from "./DetailsPage";
@@ -44,10 +44,10 @@ const DetailsPage1 = ({ ...props }) => {
   const history = useHistory();
 
   const hotelId = props?.match?.params?.alias || "undefined";
+  const initialSessionId = props?.history?.location?.state?.sessionId || "undefined";
 
   const [rooms, setRooms] = useState([])
   const [roomsDetails, setRoomsDetails] = useState([])
-  const [loading, setLoading] = useState(true)
   const [openDetails, setOpenDetails] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
@@ -61,13 +61,25 @@ const DetailsPage1 = ({ ...props }) => {
 
   console.log(search)
 
+  //ACK: this should return hotel info from internal DB (+ travolutionary if needed)
+  const { data: hotelData, error: hotelError } = useQuery(
+    gql`
+      ${getHotelDetailById(hotelId, initialSessionId)}
+    `
+  );
+
+  console.log(hotelData)
+
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
-  const { data, error, refetch } = useQuery(
+  //ACK: this should return rooms for date range selected
+  const { data, loading, error, refetch } = useQuery(
     gql`
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
+
+
 
 
   useEffect(() => {
@@ -88,7 +100,6 @@ const DetailsPage1 = ({ ...props }) => {
       setRoomsDetails(data.getHotelDetails.RoomsContent);
       setSessionId(data.getHotelDetails.sessionId)
       setHotelDetails(data.getHotelDetails.hotelDetails[0]);
-      setLoading(false);
     }
   }, [data])
 
@@ -119,6 +130,9 @@ const DetailsPage1 = ({ ...props }) => {
     'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/SANRS-P235-Penthouse-Bedroom.16x9.webp',
     'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/SANRS-P319-Conference-Suite-B-Living-Room.16x9.webp']
 
+  if (!hotel) {
+    return (<div>TODO: Error screen</div>)
+  }
 
   return (
     <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
