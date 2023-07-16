@@ -835,7 +835,7 @@ const getPackages = (adults: number, checkIn: number, checkOut: number, children
     getHotelDetails(input: {adults: ${adults},
       checkInDate: "${checkIn}",
       checkOutDate: "${checkOut}",
-      children: ${children},
+      children: "${children}",
       latitude: "${latitude}",
       longitude: "${longitude}",
       hotelIds: "${hotelIds}"}) {
