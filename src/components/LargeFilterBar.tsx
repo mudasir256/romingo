@@ -17,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { DateRangePicker } from '@mui/x-date-pickers-pro'
-
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import OccupantSelector, {
   Occupant,
 } from "./OccupantSelector/OccupantSelector";
@@ -225,14 +225,15 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       {showText && <Box component="h2" sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">Lowest rates. $0 pet fees.</Box>}
       <Box sx={{ 
           mt: '1.5em', 
-          borderRadius: '15px', 
-          border: '4px solid #D3D3D3',
+          border: '4px solid ',
           boxSizing: 'border-box',
+          background: "#f5f3f3",
           zIndex: 11,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          padding: "6px",
         }} 
         className="filter-bar-desktop"
       >
@@ -244,7 +245,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             px: '1em',
           }}
         >
-          <Box>
+          <Box sx={{background: 'white',}}>
             <FormControl fullWidth>
               <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
             </FormControl>
@@ -252,7 +253,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
 
           <Box sx={{ 
             ml: '1em',
-            ["@media (max-width: 600px)"]: { ml: '1em' }
+            ["@media (max-width: 600px)"]: { ml: '1em' },
+            background: 'white'
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
@@ -284,12 +286,12 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                       ["@media (max-width: 920px)"]: { display: 'flex' },
                       ["@media (max-width: 720px)"]: { display: 'flex' },
 
-
+                      height: 38,
+                      border: '1px solid #aaabab', borderRadius: '5px'
                     }}
                     onClick={() => setOpen(true)}
                   >
                     <Box sx={{ mr: '1.5em'}}>
-                      <Typography sx={labelStyle}>Check-in date</Typography>
                       <Box
                         sx={{
                           display: 'flex',
@@ -305,8 +307,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                   
                         }}
                       >
-                
-                        <Today />
+              
                         <Typography
                           sx={{
                             color: "black",
@@ -324,11 +325,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                         </Typography> 
                       </Box>
                     </Box>
+                    <ArrowRightAltIcon />
                     <Box sx={{ ml: '1em', mr: '1.5em',}} >
-                      <Typography
-                        sx={labelStyle}>
-                        Check-out date
-                      </Typography>
                       <Box
                         sx={{
                           display: 'flex',
@@ -347,7 +345,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                         onClick={() => setOpen(true)}
 
                       >
-                        <InsertInvitation />
                         <Typography
                           sx={{
                             color: "black",
@@ -375,13 +372,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   
           
         <Box>
-          <Typography
-            sx={{
-              ...labelStyle,
-              mb: '0.55em'
-            }}>
-            Guests
-          </Typography>
           <OccupantSelector
             value={occupants}
             onChange={onOccupantChange}
@@ -390,6 +380,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             fullWidth={false}
             sx={{
               width: '214px',
+              border: '1px solid #aaabab', borderRadius: '5px',
+              background: 'white',
               label: {
                 fontFamily: 'overpass-light',
                 fontSize: '1em',

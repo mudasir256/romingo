@@ -15,7 +15,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   const PER_PAGE = 10;
 
   const count = Math.ceil(cards.length / PER_PAGE);
-  
+
   const _DATA = usePagination(cards, PER_PAGE);
   const divRef = useRef();
 
@@ -25,13 +25,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
     _DATA.jump(p);
   };
 
-  useEffect(() => {  
-    if(divRef.current.children.length > 0)
-    for(const child of divRef.current.children){
-      console.log(child)
-      console.log(child.getAttribute('data-hotel-id'))
-    }
-      // divRef.current.removeChild(divRef.current.children[divRef.current.children.length - 1])
+  useEffect(() => {
     setPage(1);
     _DATA.jump(1);
   }, [cards]);
@@ -39,21 +33,22 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   return (
     <div>
       <div ref={divRef}>
-      {cards.length> 0 && _DATA.currentData().map((card) => {
-        const exists = cards.find(el => el.ID === card.ID);
-        if(exists){
-          return ( <div             key={card.name}
-             data-hotel-id={exists.ID}><Box
-            sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
-          >
-            <ListingCard {...card} sessionId={sessionId} hotel={card} />
-          </Box></div>)
+        {cards.length > 0 && _DATA.currentData().map((card) => {
+          const exists = cards.find(el => el.ID === card.ID);
+          if (exists) {
+            return (<div key={card.name}>
+              <Box data-hotel-id={exists.ID}
+                sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
+              >
+                <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.ID} />
+              </Box>
+            </div>)
+          }
         }
-      }
-       
-      )}
+
+        )}
       </div>
-      
+
       <Pagination
         count={count}
         size="large"
