@@ -300,7 +300,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                           cursor: "pointer",
                           transition: "all .15s ease-in-out",
                           border: 'none',
-                          "&:hover": { background: "#efefef" },
                           borderRadius: "6px",
                           backgroundColor: "#fff",
                           py: '0.25em',
@@ -326,7 +325,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                       </Box>
                     </Box>
                     <ArrowRightAltIcon />
-                    <Box sx={{ ml: '1em', mr: '1.5em',}} >
+                    <Box sx={{ ml: '1.5em', mr: '10px',}} >
                       <Box
                         sx={{
                           display: 'flex',
@@ -335,7 +334,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                           cursor: "pointer",
                           transition: "all .15s ease-in-out",
                           border: 'none',
-                          "&:hover": { background: "#efefef" },
                           borderRadius: "6px",
                           backgroundColor: "#fff",
                           py: '0.25em',
