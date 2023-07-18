@@ -112,9 +112,24 @@ const ListingPageNew = ({ ...props }) => {
       for (const hotel of filteredHotels) {
         markers.push({ lat: hotel.lat, lng: hotel.lng, type: 'hotel', label: hotel.name, hotel: hotel })
       }
+      let newFilteredHotels = [];
+      if (sort === 'alphabetSort') {
+        newFilteredHotels = filteredHotels.sort(function (a, b) {
+          const textA = a.name.toUpperCase();
+          const textB = b.name.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        })
+      } else if (sort === 'priceSort_low_to_high') {
+        newFilteredHotels = filteredHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice);
+      } else if (sort === 'priceSort_high_to_low') {
+        newFilteredHotels = filteredHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
+      } else if (sort === 'featured') {
+        newFilteredHotels = filteredHotels;
+      } else if (sort === 'highest_rating') {
+        newFilteredHotels = filteredHotels.sort((a, b) => b.romingoScore - a.romingoScore);
+      }
       setMarkers(markers)
-      setHotels(filteredHotels)
-      console.log(filteredHotels.length)
+      setHotels(newFilteredHotels)
       setQuery(e.target.value);
     }, 100)
 
@@ -186,7 +201,24 @@ const ListingPageNew = ({ ...props }) => {
         markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
       }
 
-      setHotels(hotelsAfterFiltering);
+      let newFilteredHotels = [];
+      if (sort === 'alphabetSort') {
+        newFilteredHotels = hotelsAfterFiltering.sort(function (a, b) {
+          const textA = a.name.toUpperCase();
+          const textB = b.name.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        })
+      } else if (sort === 'priceSort_low_to_high') {
+        newFilteredHotels = hotelsAfterFiltering.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice);
+      } else if (sort === 'priceSort_high_to_low') {
+        newFilteredHotels = hotelsAfterFiltering.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
+      } else if (sort === 'featured') {
+        newFilteredHotels = hotelsAfterFiltering;
+      } else if (sort === 'highest_rating') {
+        newFilteredHotels = hotelsAfterFiltering.sort((a, b) => b.romingoScore - a.romingoScore);
+      }
+
+      setHotels(newFilteredHotels);
       setMarkers(markers);
       setSliderValue(e.target.value);
     }, 100)

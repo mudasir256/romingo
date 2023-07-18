@@ -25,7 +25,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
 import { utils } from "../../services/utils";
-import  { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
+import { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import StarsIcon from '@mui/icons-material/Stars';
@@ -143,18 +143,18 @@ const CheckoutInformation: FC<Props> = ({
 
         try {
           const { error, paymentIntent } = await stripe.confirmCardPayment(
-             data?.createPaymentIntent?.paymentIntent?.clientSecret,
-             {
-               payment_method: {
-                 card: cardElement,
-                 billing_details: {
-                   name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
-                 },
-               },
-             }
-           );
-           console.log('payment intent')
-           console.log(error)
+            data?.createPaymentIntent?.paymentIntent?.clientSecret,
+            {
+              payment_method: {
+                card: cardElement,
+                billing_details: {
+                  name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
+                },
+              },
+            }
+          );
+          console.log('payment intent')
+          console.log(error)
           if (paymentIntent) {
             const adults: { firstName: string; lastName: string }[] = [];
             const children: {
@@ -166,19 +166,19 @@ const CheckoutInformation: FC<Props> = ({
             const passengers = []
             const passengerObj = {
               "Allocation": detail.room.Rooms[0].Id,
-                "Email": {"Value": checkoutForm.email},
-                                 "Telephone": {
-                    "PhoneNumber": checkoutForm.phone
-                  },
-                "PersonDetails": {
-                  "Name": {
-                    "GivenName": checkoutForm.firstName,
-                    "NamePrefix": "Mr",
-                    "Surname": checkoutForm.lastName
-                  },
-                  "Type": 0
-                }
+              "Email": { "Value": checkoutForm.email },
+              "Telephone": {
+                "PhoneNumber": checkoutForm.phone
+              },
+              "PersonDetails": {
+                "Name": {
+                  "GivenName": checkoutForm.firstName,
+                  "NamePrefix": "Mr",
+                  "Surname": checkoutForm.lastName
+                },
+                "Type": 0
               }
+            }
 
             Array.from(Array(occupants.adults)).forEach((_, i) => {
               if (i === 0) {
@@ -186,16 +186,17 @@ const CheckoutInformation: FC<Props> = ({
                   firstName: checkoutForm.firstName.trim(),
                   lastName: checkoutForm.lastName.trim(),
                 });
-                passengers.push({...passengerObj, "Id": uuid.v4()})
+                passengers.push({ ...passengerObj, "Id": uuid.v4() })
               } else {
                 const guestId = String.fromCharCode(64 + i);
-                const copyObj = {...passengerObj};
+                const copyObj = { ...passengerObj };
                 adults.push({
                   firstName: `Adult${guestId}`,
                   lastName: checkoutForm.lastName.trim(),
                   "Id": uuid.v4()
                 });
                 copyObj.PersonDetails.Name.GivenName = `Adult${guestId}`
+                copyObj.Id = uuid.v4();
                 passengers.push(copyObj)
               }
             });
@@ -204,6 +205,17 @@ const CheckoutInformation: FC<Props> = ({
               Array.from(Array(occupants?.childrenAge?.length)).forEach(
                 (x_, i) => {
                   const childId = String.fromCharCode(65 + i);
+                  const guestId = String.fromCharCode(64 + i);
+                  const copyObj = { ...passengerObj };
+                  adults.push({
+                    firstName: `Adult${guestId}`,
+                    lastName: checkoutForm.lastName.trim(),
+                    "Id": uuid.v4()
+                  });
+                  copyObj.PersonDetails.Name.GivenName = `Child${childId}`
+                  copyObj.PersonDetails.Type = 0;
+                  copyObj.Id = uuid.v4();
+                  passengers.push(copyObj)
                   children.push({
                     firstName: `Child${childId}`,
                     lastName: checkoutForm.lastName.trim(),
@@ -213,14 +225,8 @@ const CheckoutInformation: FC<Props> = ({
               );
             }
 
-            console.log('creating booking')
-            console.log(adults)
-            console.log(children)
-            console.log(detail.room)
-            console.log(passengers)
-  
             createBookingInTravolutionary({
-              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail.room, sessionId: detail.sessionId }}
+              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail.room, sessionId: detail.sessionId, stripeIntent: paymentIntent } }
             })
 
             // createBooking2({
@@ -266,14 +272,14 @@ const CheckoutInformation: FC<Props> = ({
     }
   );
 
-  const [createBookingInTravolutionary, {data, loading}] = useMutation(
+  const [createBookingInTravolutionary, { data, loading }] = useMutation(
     gql`
     ${createBookingTravolutionary}
     `, {
-      async onCompleted(data) {
-        console.log(data)
-      }
+    async onCompleted(data) {
+      console.log(data)
     }
+  }
   )
 
   const [createSI, { data: siData, loading: siLoading }] = useMutation(
@@ -448,11 +454,11 @@ const CheckoutInformation: FC<Props> = ({
       //     variables: { createSetupIntentInput: { email: checkoutForm.email } },
       //   });
       // } else {
-        createPI({
-          variables: { createPaymentIntentInput: { price:  detail.room.SimplePrice } },
-        });
+      createPI({
+        variables: { createPaymentIntentInput: { price: detail.room.SimplePrice } },
+      });
       // }
-  
+
 
       if (password && confirmPassword) {
         const data = await createAccount(checkoutForm.email, password)
@@ -461,7 +467,7 @@ const CheckoutInformation: FC<Props> = ({
           console.log(data2)
         }
       }
-      
+
     } catch (err) {
       console.log(err);
       errors.card =
@@ -561,19 +567,19 @@ const CheckoutInformation: FC<Props> = ({
               piLoading ||
               paymentLoading ||
               bnplLoading) && (
-              <>
-                <Box sx={{ zIndex: 30000 }}>
-                  <Loader size="200px" />
-                  <Typography variant="body2" color="text.secondary">
-                    Loading...please don&apos;t refresh or close the page
-                  </Typography>
-                </Box>
-              </>
-            )}
+                <>
+                  <Box sx={{ zIndex: 30000 }}>
+                    <Loader size="200px" />
+                    <Typography variant="body2" color="text.secondary">
+                      Loading...please don&apos;t refresh or close the page
+                    </Typography>
+                  </Box>
+                </>
+              )}
             {bnplData ? (
               <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
                 {!bnplData?.createBooking2?.booking?.sabreConfirmationId &&
-                !bnplData?.createBooking2?.booking?.propertyConfirmationId ? (
+                  !bnplData?.createBooking2?.booking?.propertyConfirmationId ? (
                   <Box sx={{ mt: -5 }}>
                     <ErrorDog size="150px" />
                     <Typography
@@ -640,11 +646,11 @@ const CheckoutInformation: FC<Props> = ({
                     >
                       {bnplData?.createBooking2?.booking?.propertyConfirmationId
                         ? bnplData?.createBooking2?.booking
-                            ?.propertyConfirmationId
+                          ?.propertyConfirmationId
                         : bnplData?.createBooking2?.booking
-                            ?.sabreConfirmationId}
+                          ?.sabreConfirmationId}
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 2}}>
+                    <Typography variant="body1" sx={{ mb: 2 }}>
                       We&apos;ve sent you an email with all of the details of
                       your booking.
                     </Typography>
@@ -657,9 +663,9 @@ const CheckoutInformation: FC<Props> = ({
                 sx={{
                   display:
                     siLoading ||
-                    piLoading ||
-                    paymentLoading ||
-                    bnplLoading
+                      piLoading ||
+                      paymentLoading ||
+                      bnplLoading
                       ? "none"
                       : "flex",
                   flexDirection: "column",
@@ -796,7 +802,7 @@ const CheckoutInformation: FC<Props> = ({
 
                 <Divider light sx={{ my: 2 }} />
 
-                <Grid item xs={12} sx={{ mt: 2}}>
+                <Grid item xs={12} sx={{ mt: 2 }}>
                   <Typography
                     variant="h6"
                     sx={{
