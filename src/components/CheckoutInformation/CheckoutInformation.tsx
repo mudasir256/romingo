@@ -78,9 +78,12 @@ const CheckoutInformation: FC<Props> = ({
     phone: "",
   });
 
+  const search = useSelector((state: any) => state.searchReducer.search);
+
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
+  
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -226,7 +229,7 @@ const CheckoutInformation: FC<Props> = ({
             }
 
             createBookingInTravolutionary({
-              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail.room, sessionId: detail.sessionId, stripeIntent: paymentIntent } }
+              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail.room, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
             })
 
             // createBooking2({
