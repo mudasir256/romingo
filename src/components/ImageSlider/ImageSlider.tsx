@@ -53,7 +53,6 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10 
                   }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>
               </>))
-      console.log(components)
       setItems(components);
     }
   }, [images]);

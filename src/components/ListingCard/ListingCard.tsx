@@ -248,9 +248,9 @@ const ListingCard: FC<ListingCardProps> = ({
 
         <Box
           component="a"
-          href={`/hotel/${id}`}
+          href={`/hotel/${hotel.id}`}
           onClick={() =>
-            history.push("/hotel/" + id, {
+            history.push("/hotel/" + hotel.id, {
               sessionId: sessionId,
               hotelDetails: hotel,
             })

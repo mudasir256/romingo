@@ -77,8 +77,8 @@ const OccupantSelector: FC<Props> = ({
         fullWidth={fullWidth}
         label={label ? label : ""}
         sx={sx}
-        size={size}
-        variant={variant}
+        variant='outlined'
+        size='small'
         value={
           value.adults === 0 && value.dogs === 0 && value.children === 0
             ? ""
@@ -152,7 +152,7 @@ const OccupantSelector: FC<Props> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography sx={popOverLabelText}>Dogs</Typography>
+            <Typography sx={popOverLabelText}>Pets</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
@@ -194,7 +194,9 @@ const OccupantSelector: FC<Props> = ({
                     <Select
                       key={i}
                       color="primary"
-                      sx={{ textAlign: "center" }}
+                      sx={{ textAlign: "center", mt: '20px' }}
+                      variant='outlined'
+                      size="small"
                       value={
                         value.childrenAge && value.childrenAge[i]
                           ? value.childrenAge[i].toString()

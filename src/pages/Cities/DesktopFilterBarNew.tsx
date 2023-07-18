@@ -150,12 +150,11 @@ export const DesktopFilterBarNew: FC = () => {
       <Box
         sx={{
           display: "flex",
-          background: "#fff",
+          background: "#f5f3f3",
           alignItems: "center",
-          border: "1px solid #ccc",
+          border: "3px solid",
           mb: "1rem",
-          padding: ".25rem .5rem .25rem .5rem",
-          borderRadius: "12px",
+          padding: "6px",
           fontFamily: 'overpass-light',
           width: { xs: "100%", sm: '50%' },
           margin: 'auto'

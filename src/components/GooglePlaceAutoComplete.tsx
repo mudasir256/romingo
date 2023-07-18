@@ -156,7 +156,7 @@ export default function GoogleMaps(props) {
   return (
     <Autocomplete
       id="google-map-demo"
-      sx={{ width: 300, marginTop: 2 }}
+      style={{width: 300,   border: '1px solid #aaabab', borderRadius: 5}}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
@@ -166,7 +166,6 @@ export default function GoogleMaps(props) {
       includeInputInList
       filterSelectedOptions
       value={search.city}
-
       noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {
         handleLocationChange(newValue)
@@ -175,7 +174,7 @@ export default function GoogleMaps(props) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Where to" fullWidth />
+        <TextField {...params} fullWidth variant='outlined' size="small" sx={{borderRadius: 5}}/>
       )}
       renderOption={(props, option) => {
         const matches =
@@ -189,20 +188,20 @@ export default function GoogleMaps(props) {
         return (
           <li {...props}>
             <Grid container alignItems="center">
-              <Grid item sx={{ display: 'flex', width: 44 }}>
-                <LocationOnIcon sx={{ color: 'text.secondary' }} />
+              <Grid item sx={{ display: 'flex', width: 22 }}>
+                <LocationOnIcon sx={{ color: 'text.secondary', fontSize: 16 }} />
               </Grid>
               <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
                   <Box
                     key={index}
                     component="span"
-                    sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}
+                    sx={{ fontWeight: '800', fontSize: 14}}
                   >
                     {part.text}
                   </Box>
                 ))}
-                <Typography variant="body2" color="text.secondary">
+                <Typography color="text.secondary" style={{fontSize: 10}}>
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>
