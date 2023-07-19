@@ -291,7 +291,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                     }}
                     onClick={() => setOpen(true)}
                   >
-                    <Box sx={{ mr: '1.5em'}}>
+                    <Box sx={{ mr: '1rem'}}>
                       <Box
                         sx={{
                           display: 'flex',
@@ -303,10 +303,9 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                           borderRadius: "6px",
                           backgroundColor: "#fff",
                           py: '0.25em',
-                  
                         }}
                       >
-              
+                        <Box ml="0.5rem" mt="0.1rem"><Today fontSize="small" sx={{ color: '#808080' }} /></Box>
                         <Typography
                           sx={{
                             color: "black",
@@ -325,7 +324,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                       </Box>
                     </Box>
                     <ArrowRightAltIcon />
-                    <Box sx={{ ml: '1.5em', mr: '10px',}} >
+                    <Box sx={{ ml: '0.5rem', mr: '0.5rem'}} >
                       <Box
                         sx={{
                           display: 'flex',
@@ -343,6 +342,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                         onClick={() => setOpen(true)}
 
                       >
+                        <Box mt="0.1rem" ml="0.5rem"><InsertInvitation fontSize="small" sx={{ color: '#808080' }} /></Box>
                         <Typography
                           sx={{
                             color: "black",
@@ -377,7 +377,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             size="small"
             fullWidth={false}
             sx={{
-              width: '214px',
+              width: '246px',
               border: '1px solid #aaabab', borderRadius: '5px',
               background: 'white',
               label: {

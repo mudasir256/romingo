@@ -12,6 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { FC, MouseEventHandler, useState } from "react";
 import { useMeasure } from "react-use";
 import NumberInput from "../NumberInput";
+import InputAdornment from '@mui/material/InputAdornment';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 export interface Occupant {
   adults: number;
@@ -90,6 +92,13 @@ const OccupantSelector: FC<Props> = ({
         onClick={handleClick}
         ref={ref}
         disabled={disabled}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" sx={{marginRight: '0.5rem'}}>
+              <PersonOutlineIcon fontSize="small" />
+            </InputAdornment>
+          ),
+        }} 
       />
       <Popover
         open={Boolean(anchorEl)}

@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
@@ -174,7 +176,23 @@ export default function GoogleMaps(props) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} fullWidth variant='outlined' size="small" sx={{borderRadius: 5}}/>
+        <TextField 
+          placeholder="Going to..." 
+          {...params}
+          // InputProps={{
+          //   ...params.InputProps,
+          //   startAdornment: (
+          //     <InputAdornment position="start">
+          //       <LocationOnOutlinedIcon />
+          //     </InputAdornment>
+          //   ),
+          // }} 
+          fullWidth 
+          variant='outlined' 
+          size="small" 
+          sx={{borderRadius: 5}}
+        
+        />
       )}
       renderOption={(props, option) => {
         const matches =
