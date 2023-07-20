@@ -99,7 +99,6 @@ const ListingPageNew = ({ ...props }) => {
     setHotels([])
     setTimeout(() => {
       for (const hotel of data.getHotels.hotels) {
-        console.log()
         if (hotel.DisplayName.includes(e.target.value) && hotel.SuppliersLowestPackagePrices[0].Value >= sliderValue[0] && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
           filteredHotels.push({
             imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, description: hotel.description,

@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import InputAdornment from '@mui/material/InputAdornment';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppBar, Button, Dialog, IconButton, Toolbar } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -50,6 +50,8 @@ export default function GoogleMaps(props) {
   const search = useSelector((state: any) => state.searchReducer.search);
   const loaded = React.useRef(false);
   const dispatch: Dispatch<any> = useDispatch();
+  const [showOptionsDialog, setShowOptionsDialog] = React.useState(false)
+  const isMobile = props.mobile;
 
 
   if (typeof window !== 'undefined' && !loaded.current) {
@@ -65,14 +67,14 @@ export default function GoogleMaps(props) {
   }
 
 
-  function handleLocationChange(newValue){
+  function handleLocationChange(newValue) {
 
-    if(!newValue) return
+    if (!newValue) return
 
     const geocoder = new google.maps.Geocoder();
-  
-    geocoder.geocode( { 'address': newValue.description}, function(results, status) {
-  
+
+    geocoder.geocode({ 'address': newValue.description }, function (results, status) {
+
       if (status == google.maps.GeocoderStatus.OK) {
         console.log({
           city: newValue,
@@ -112,7 +114,7 @@ export default function GoogleMaps(props) {
 
   React.useEffect(() => {
     const fieldset = document.getElementsByTagName('fieldset');
-    for(const set of fieldset){
+    for (const set of fieldset) {
       set.setAttribute('style', 'border: none;');
     }
   }, [])
@@ -158,7 +160,7 @@ export default function GoogleMaps(props) {
   return (
     <Autocomplete
       id="google-map-demo"
-      style={{width: 300,   border: '1px solid #aaabab', borderRadius: 5}}
+      style={{ width: 220, border: '1px solid white', background: 'white', borderRadius: 5 }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
@@ -176,23 +178,7 @@ export default function GoogleMaps(props) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField 
-          placeholder="Going to..." 
-          {...params}
-          // InputProps={{
-          //   ...params.InputProps,
-          //   startAdornment: (
-          //     <InputAdornment position="start">
-          //       <LocationOnOutlinedIcon />
-          //     </InputAdornment>
-          //   ),
-          // }} 
-          fullWidth 
-          variant='outlined' 
-          size="small" 
-          sx={{borderRadius: 5}}
-        
-        />
+        <TextField {...params} placeholder="Going to..." fullWidth variant='outlined' size="small" sx={{ borderRadius: 5 }} />
       )}
       renderOption={(props, option) => {
         const matches =
@@ -214,12 +200,12 @@ export default function GoogleMaps(props) {
                   <Box
                     key={index}
                     component="span"
-                    sx={{ fontWeight: '800', fontSize: 14}}
+                    sx={{ fontWeight: '800', fontSize: 14 }}
                   >
                     {part.text}
                   </Box>
                 ))}
-                <Typography color="text.secondary" style={{fontSize: 10}}>
+                <Typography color="text.secondary" style={{ fontSize: 10 }}>
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>

@@ -245,7 +245,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             px: '1em',
           }}
         >
-          <Box sx={{background: 'white',}}>
+          <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
             <FormControl fullWidth>
               <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
             </FormControl>
