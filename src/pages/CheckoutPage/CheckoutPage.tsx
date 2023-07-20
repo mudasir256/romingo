@@ -51,6 +51,8 @@ const CheckoutPage: FC<Props> = () => {
 
   console.log(room)
   console.log(hotelDetails)
+  //TODO: fetch cancellation policy for this hotel
+
 
   const mobile = useMediaQuery("(max-width:800px)");
 
@@ -94,6 +96,7 @@ const CheckoutPage: FC<Props> = () => {
                   // price={123.33}
                   // priceKey={'jhrbkeurhfkeurybfekruy'}
                   // payLater={false}
+                  //TODO: Update this policy
                   policy={{cancelable: true, deadlineLocal: new Date().toISOString()}}
                 />
               </Grid>
@@ -132,11 +135,13 @@ const CheckoutPage: FC<Props> = () => {
                       // price={detail?.room?.room?.totalPriceAfterTax}
                       // priceKey={detail?.room?.room?.priceKey}
                       // payLater={payLater}
+                      //TODO: Update this policy
                       policy={room?.room?.cancelationPolicy}
                     />
                   </Grid>
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
+                  {/* TODO: update... */}
                   <CancelPolicy policy={room?.room?.cancelationPolicy} />
                 </Grid>
               </Grid>

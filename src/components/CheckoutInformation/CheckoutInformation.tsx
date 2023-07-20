@@ -78,12 +78,16 @@ const CheckoutInformation: FC<Props> = ({
     phone: "",
   });
 
+  const [bookingSuccess, setBookingSuccess] = useState(-1)
+
   const search = useSelector((state: any) => state.searchReducer.search);
 
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
   
+  console.log('details')
+  console.log(detail)
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -229,7 +233,7 @@ const CheckoutInformation: FC<Props> = ({
             }
 
             createBookingInTravolutionary({
-              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail.room, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
+              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
             })
 
             // createBooking2({
@@ -280,8 +284,15 @@ const CheckoutInformation: FC<Props> = ({
     ${createBookingTravolutionary}
     `, {
     async onCompleted(data) {
+      //TODO: looks like data is always returning null with or without errors.
+      //Replicate by booking twice on the same room (book once, then ctrl + r refresh and book again)
+      console.log('completed')
       console.log(data)
+      setBookingSuccess(1)
+      //TODO: display confirmation number
+
     }
+    //TODO: add error, setBookingSuccess(0)
   }
   )
 
@@ -566,7 +577,7 @@ const CheckoutInformation: FC<Props> = ({
           }}
         >
           <>
-            {(siLoading ||
+            {(loading || siLoading ||
               piLoading ||
               paymentLoading ||
               bnplLoading) && (
@@ -579,10 +590,9 @@ const CheckoutInformation: FC<Props> = ({
                   </Box>
                 </>
               )}
-            {bnplData ? (
+            {bookingSuccess > -1 ? (
               <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
-                {!bnplData?.createBooking2?.booking?.sabreConfirmationId &&
-                  !bnplData?.createBooking2?.booking?.propertyConfirmationId ? (
+                { bookingSuccess === 0 ? (
                   <Box sx={{ mt: -5 }}>
                     <ErrorDog size="150px" />
                     <Typography

@@ -79,8 +79,7 @@ const DetailsPage1 = ({ ...props }) => {
     `
   );
 
-
-
+  console.log(data)
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
@@ -124,6 +123,7 @@ const DetailsPage1 = ({ ...props }) => {
     return <DetailsPageSkeleton />
   }
 
+  //TODO: replace with actual images
   const gallery = ['https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P508-Exterior-Marina.16x9.webp',
     'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P566-Lobby-Front-Desk-Wide.16x9.webp',
     'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-P214-King-View.16x9.webp',
