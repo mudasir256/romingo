@@ -160,7 +160,7 @@ export const DesktopFilterBarNew: FC = () => {
           margin: 'auto'
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", width: '40%' }}>
+        <Box sx={{ display: "flex", alignItems: "center", width: '40%',  border: '1px solid #aaabab' }}>
           <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
         </Box>
         <Box
