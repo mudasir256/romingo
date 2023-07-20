@@ -16,6 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import FilterBar from "../../components/MobileHomePageFilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
+import Loader from "../../components/UI/Loader";
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -268,6 +269,10 @@ const ListingPageNew = ({ ...props }) => {
 
   }
 
+  if (loading) {
+    return <Loader size="400px" />
+  }
+
   return (
     <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
@@ -368,11 +373,7 @@ const ListingPageNew = ({ ...props }) => {
             </Grid>
           </Grid>
           <Grid item>
-            {/* TODO: replace loading box with "tennis ball bouncing" lottie */}
-            {loading
-              ? <Box>Loading...</Box>
-              : <CardList cards={hotels} sessionId={sessionId} />
-            }
+            <CardList cards={hotels} sessionId={sessionId} />
           </Grid>
         </Grid>
       </Grid>

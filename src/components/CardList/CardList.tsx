@@ -12,7 +12,7 @@ interface Props {
 const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   // const [newCards, setNewCards] = useState(cards)
   const [page, setPage] = useState(0);
-  const PER_PAGE = 10;
+  const PER_PAGE = 25;
 
   const count = Math.ceil(cards.length / PER_PAGE);
 
