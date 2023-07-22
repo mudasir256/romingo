@@ -18,6 +18,8 @@ import ImageSlider from "../../components/ImageSlider";
 import { Star } from "@mui/icons-material";
 import RomingoScore from "../../components/RomingoScore";
 import DiscountIcon from '@mui/icons-material/LocalOffer';
+import { gql, useQuery } from "@apollo/client";
+import { getCancellationPolicy } from "../../constants/constants";
 
 declare global {
   interface Window {
@@ -37,7 +39,7 @@ interface Props {
 const CheckoutPage: FC<Props> = () => {
   const [payLater, setPayLater] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
-  const { finePrint, room, hotel: hotelDetails } = useSelector(
+  const { finePrint, room, hotel: hotelDetails, sessionId } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
 
@@ -52,8 +54,10 @@ const CheckoutPage: FC<Props> = () => {
   console.log(room)
   console.log(hotelDetails)
   //TODO: fetch cancellation policy for this hotel
+  const { data, loading } = useQuery(
+    gql`${getCancellationPolicy(hotelDetails.ID, sessionId, room.PackageId)}`);
 
-
+  console.log(data)
   const mobile = useMediaQuery("(max-width:800px)");
 
   // set payLater to true if check-in is more than 3 days in the future
@@ -142,7 +146,7 @@ const CheckoutPage: FC<Props> = () => {
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
                   {/* TODO: update... */}
-                  <CancelPolicy policy={room?.room?.cancelationPolicy} />
+                  <CancelPolicy policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
                 </Grid>
               </Grid>
             </Grid>

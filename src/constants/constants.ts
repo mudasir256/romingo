@@ -860,6 +860,19 @@ const getHotelDetailById = (hotelId: number, sessionId: string) => {
   }`
 }
 
+const getCancellationPolicy = (hotelId: number, sessionId: string, packageId: string) => {
+  return `query {
+    getCancellationPolicyMultiPackages(input: {
+      hotelId: "${hotelId}",
+      sessionId: "${sessionId}",
+      packageId: "${packageId}"
+    }) {
+      BookingRemarks
+      CancellationPolicies
+    }
+  }`
+}
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -887,5 +900,6 @@ export {
   GetHotelsByLocation,
   getPackages,
   createBookingTravolutionary,
-  getHotelDetailById
+  getHotelDetailById,
+  getCancellationPolicy,
 };

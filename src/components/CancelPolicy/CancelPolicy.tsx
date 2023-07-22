@@ -1,11 +1,12 @@
 import { FC, useState } from "react";
-import { CSSObject } from "@mui/material";
+import { CSSObject, Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Check from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { utils } from "../../services/utils";
+import moment from "moment";
 
 interface Props {
   sx?: CSSObject;
@@ -15,9 +16,22 @@ interface Props {
   };
 }
 
-const CancelPolicy: FC<Props> = ({ sx, policy }) => {
+const CancelPolicy = ({ sx, policy, search }) => {
 
   const [showExtra, setShowExtra] = useState(false)
+
+  const getTimestamp = (timestamp) => {
+    const regex = /\b\d+\b/;
+    const timestampMatch = timestamp.match(regex);
+
+    if (timestampMatch) {
+      const timestamp = parseInt(timestampMatch[0], 10);
+      return timestamp
+    } else {
+      console.log("No timestamp found in the string.");
+    }
+    return ""
+  }
 
   return (
     <Box sx={sx}>
@@ -36,7 +50,8 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
           variant="h6"
           sx={{
             color: "#222",
-            textAlign: "left",
+            textAlign: "center",
+            marginBottom: '15px'
           }}
         >
           Cancellation &amp; Refund Policy
@@ -47,82 +62,20 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
             px: 0,
           }}
         >
-          {policy?.cancelable ? (
+          {policy && policy.length > 0 ? (
             <>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "bottom",
-                  justifyContent: "start",
-                  mt: 1,
-                }}
-              >
-                <Check
-                  sx={{
-                    fontSize: { xs: 15, sm: 18 },
-                    mr: 0.75,
-                    mt: 0.25,
-                    color: "success.main",
-                  }}
-                />
-                <Typography
-                  variant="caption"
-                  sx={{
-                    mt: 0.3,
-                    fontWeight: 500,
-                    color: "text.light",
-                  }}
-                >
-                  Cancel on or before{" "}
-                  <span style={{ fontWeight: "bold" }}>
-                    {utils.getDateFull(policy?.deadlineLocal)}*
-                  </span>{" "}
-                  for a full refund
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "bottom",
-                  justifyContent: "start",
-                  mt: 1,
-                }}
-              >
-                <CloseIcon
-                  sx={{
-                    fontSize: { xs: 15, sm: 18 },
-                    mr: 0.75,
-                    mt: 0.25,
-                    color: "error.main",
-                  }}
-                />
-
-                <Typography
-                  variant="caption"
-                  sx={{
-                    mt: 0.3,
-                    fontWeight: 500,
-                    color: "text.light",
-                  }}
-                >
-                  Cancellations after{" "}
-                  <span style={{ fontWeight: "bold" }}>
-                    {utils.getDateFull(policy?.deadlineLocal)}*
-                  </span>{" "}
-                  are non-refundable
-                </Typography>
-              </Box>
-              <Typography
-                variant="caption"
-                sx={{
-                  mt: "1rem",
-                  display: "block",
-                  textAlign: "left",
-                  color: "text.light",
-                }}
-              >
-                *Dates effective in the hotel timezone.
-              </Typography>
+              <Grid container>
+                <Grid item container style={{marginBottom: 5, textAlign: 'center'}} >
+                  <Grid item style={{width: '35%'}}>Start Date</Grid>
+                  <Grid item style={{width: '35%'}}>End Date</Grid>
+                  <Grid item style={{width: '30%'}}>Price</Grid>
+                </Grid>
+                {policy.map((p, i) => <Grid item container key={i} spacing={3} style={{marginTop: 2}}  justifyContent='space-evenly'>
+                  <Grid item>{new Date(getTimestamp(p.DateFrom)).toLocaleDateString()}</Grid>
+                  <Grid item>{policy[i + 1] ? new Date(getTimestamp(policy[i + 1].DateFrom)).toLocaleDateString() : new Date(search.checkOut).toLocaleDateString()}</Grid>
+                  <Grid item>{p.CancellationFee.FinalPrice}</Grid>
+                </Grid>)}
+              </Grid>
             </>
           ) : (<>
             <Box
@@ -152,9 +105,9 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
               >
                 The rate is non-refundable.
               </Typography>
-              <InfoOutlinedIcon style={{ fontSize: '20px', color: 'red', marginBottom: '6px'}} onMouseEnter={() => setShowExtra(true)} onMouseLeave={() => setShowExtra(false)} />
+              <InfoOutlinedIcon style={{ fontSize: '20px', color: 'red', marginBottom: '6px' }} onMouseEnter={() => setShowExtra(true)} onMouseLeave={() => setShowExtra(false)} />
             </Box>
-              {showExtra && <Box position="absolute">
+            {showExtra && <Box position="absolute">
               <Typography
                 variant="body1"
                 sx={{
@@ -164,8 +117,8 @@ const CancelPolicy: FC<Props> = ({ sx, policy }) => {
               >
                 If you change or cancel your booking you will not get a refund or credit to use for a future stay. This policy will apply regardless of COVID-19, subject to any local consumer laws.
               </Typography></Box>
-              } 
-            </>
+            }
+          </>
           )}
         </Box>
       </Box>
