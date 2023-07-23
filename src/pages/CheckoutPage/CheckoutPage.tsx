@@ -55,7 +55,7 @@ const CheckoutPage: FC<Props> = () => {
   console.log(hotelDetails)
   //TODO: fetch cancellation policy for this hotel
   const { data, loading } = useQuery(
-    gql`${getCancellationPolicy(hotelDetails.ID, sessionId, room.PackageId)}`);
+    gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
 
   console.log(data)
   const mobile = useMediaQuery("(max-width:800px)");
@@ -238,7 +238,7 @@ const CheckoutPageListingCard = ({
             }}
           >
             <ImageSlider
-              images={[props?.DefaultImage?.FullSize]}
+              images={props?.images}
               name={name}
               sx={{
                 width: "100%",
@@ -268,9 +268,9 @@ const CheckoutPageListingCard = ({
                 fontWeight: 800,
               }}
             >
-              {props.DisplayName}
+              {props.hotelName}
             </Typography>
-            <RomingoScore score={props.StarRating} />
+            <RomingoScore score={props.starRating} />
           </Box>
 
           <Box>
@@ -285,7 +285,7 @@ const CheckoutPageListingCard = ({
                 mb: { xs: 0, md: -1 },
               }}
             >
-              {props.Address}
+              {props.fullAddressLine}
             </Typography>
 
             <Box

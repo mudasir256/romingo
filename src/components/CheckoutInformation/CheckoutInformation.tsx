@@ -79,7 +79,7 @@ const CheckoutInformation: FC<Props> = ({
   });
 
   const [bookingSuccess, setBookingSuccess] = useState(-1)
-
+  const [bookingData, setBookingData] = useState(null)
   const search = useSelector((state: any) => state.searchReducer.search);
 
   const detail = useSelector(
@@ -284,13 +284,10 @@ const CheckoutInformation: FC<Props> = ({
     ${createBookingTravolutionary}
     `, {
     async onCompleted(data) {
-      //TODO: looks like data is always returning null with or without errors.
-      //Replicate by booking twice on the same room (book once, then ctrl + r refresh and book again)
       console.log('completed')
       console.log(data)
       setBookingSuccess(1)
-      //TODO: display confirmation number
-
+      setBookingData(data.createBookingUsingTravolutionary.response)
     }
     //TODO: add error, setBookingSuccess(0)
   }
@@ -651,17 +648,7 @@ const CheckoutInformation: FC<Props> = ({
                     </Typography>
 
                     <Typography variant="body1" sx={{ textAlign: "left" }}>
-                      Your confirmation number is:
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
-                    >
-                      {bnplData?.createBooking2?.booking?.propertyConfirmationId
-                        ? bnplData?.createBooking2?.booking
-                          ?.propertyConfirmationId
-                        : bnplData?.createBooking2?.booking
-                          ?.sabreConfirmationId}
+                      Your confirmation number is: {bookingData ? bookingData.bookingId : ''}
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 2 }}>
                       We&apos;ve sent you an email with all of the details of

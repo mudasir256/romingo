@@ -61,15 +61,6 @@ const DetailsPage1 = ({ ...props }) => {
 
   console.log(search)
 
-  //TODO: this should return hotel info from internal DB (+ travolutionary if needed)
-  const { data: hotelData, error: hotelError } = useQuery(
-    gql`
-      ${getHotelDetailById(hotelId, initialSessionId)}
-    `
-  );
-
-  console.log(hotelData)
-
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
   //ACK: this should return rooms for date range selected
@@ -138,11 +129,11 @@ const DetailsPage1 = ({ ...props }) => {
     <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
       <Navbar />
-      <Grid container direction='row' spacing={2} sx={{ maxWidth: mobile ? '95%' : 1200, margin: 'auto', position: 'relative', }} >
-        <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : 'inherit' }}>
+      <Grid container direction='row' spacing={2} sx={{ maxWidth: mobile ? '95%' : 1200, margin: 'auto', position: 'relative', maxHeight: '500px',objectFit: 'contain' }} >
+        <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : '10px', height: '500px' }}>
           <Box
             component="img"
-            src={gallery[0]}
+            src={hotel.images[0]}
             // alt={name}
             boxShadow={2}
             // onClick={handleOpen}
@@ -152,9 +143,9 @@ const DetailsPage1 = ({ ...props }) => {
         <Grid item xs={12} sm={6} display={{ xs: 'none', sm: 'block' }}>
           {<Grid container spacing={2}>
             {
-              gallery.slice(1, 5).map((img: any) => {
+              hotel.images.slice(1, 5).map((img: any) => {
                 return (
-                  <Grid item sm={6} key={img}>
+                  <Grid item sm={6} key={img} style={{ padding: mobile ? 0 : '10px', height: '250px' }}>
                     <Box
                       // onClick={handleOpen}
                       boxShadow={2}
@@ -192,8 +183,8 @@ const DetailsPage1 = ({ ...props }) => {
         </Box>
       </Grid>
       <Grid container direction={'row'} sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
-        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel.DisplayName}</Typography></Grid>
-        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel.StarRating} />
+        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel.hotelName}</Typography></Grid>
+        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel.starRating} />
           <Circle
             sx={{
               fontWeight: 500,
@@ -683,7 +674,7 @@ const DetailsPage1 = ({ ...props }) => {
 
             <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
               <ImageList variant="standard" cols={getImageCols()} gap={8}>
-                {gallery.map((item: any, index: Integer) => (
+                {hotel?.images?.map((item: any, index: Integer) => (
                   <ImageListItem key={item} onClick={() => {
                     if (!mobile) {
                       setShowFullImage(item)
