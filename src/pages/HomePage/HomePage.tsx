@@ -371,6 +371,7 @@ const HomePage: FC<Props> = () => {
         </Box>
       </Box>
 
+
       <Box  sx={{ 
         mt: { xs: '3rem', sm: '3rem', md: "20rem" },
         marginBottom: { sm: 0, md: 0, lg: 0 }, 
@@ -379,6 +380,23 @@ const HomePage: FC<Props> = () => {
 
       }}
       >
+
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
+          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Where to next?</Typography>
+        {/* todo add locations */}
+
+        </Box>
+
+        <Box mt="1rem">
+          <LeftPhotoBox
+            imgSrc={SectionOneImage}
+            imgAlt="pet-friendly travel"
+            backgroundColor="#A6DBE5"
+            header="Book your next pet-friendly trip with Romingo and enjoy up to 20% off the lowest rates."
+            text="Book your favorite pet-friendly hotels with Romingo and enjoy up to 20% off all hotels... plus $0 pet fees!"
+            cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
+          />
+        </Box>
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
@@ -462,97 +480,6 @@ const HomePage: FC<Props> = () => {
         </Box>
 
         <Box mt="1rem">
-          <LeftPhotoBox
-            imgSrc={SectionOneImage}
-            imgAlt="pet-friendly travel"
-            backgroundColor="#A6DBE5"
-            header="Summertime savings! ☀️🏄"
-            text="Book your favorite pet-friendly hotels with Romingo and enjoy up to 20% off all hotels... plus $0 pet fees!"
-            cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
-          />
-        </Box>
-
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
-          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Feeling adventurous?</Typography>
-
-          <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
-            {(avalon) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={6}
-                  {...avalon}
-                  name="Avalon Hotel Palm Springs"
-                  city={{ name: 'Palm Springs, CA' }}
-                  lowestTotalPriceAfterTax={199}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={6} /></Grid>
-            }  
-
-            {(ghVail) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={7}
-                  {...ghVail}
-                  city={{ name: 'Vail, CO' }}
-                  lowestTotalPriceAfterTax={219}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={7} /></Grid>
-            }  
-
-            {(elRey) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={8}
-                  {...elRey}
-                  city={{ name: 'Santa Fe, NM' }}
-                  lowestTotalPriceAfterTax={109}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={8} /></Grid>
-            } 
-          </Box>
-          <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: '0.5rem' }}>
-            {(element) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={9}
-                  {...element}
-                  name="Element Colorado Springs"
-                  city={{ name: 'Colorado Springs, CO' }}
-                  lowestTotalPriceAfterTax={149}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={9} /></Grid>
-            } 
-
-            {(olive) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={10}
-                  {...olive}
-                  city={{ name: 'Seattle, WA' }}
-                  lowestTotalPriceAfterTax={169}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={10} /></Grid>
-            } 
-            {(andaz) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={11}
-                  {...andaz}
-                  city={{ name: 'Colorado Springs, CO' }}
-                  lowestTotalPriceAfterTax={199}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={11} /></Grid>
-            } 
-          </Box>
-        </Box>
-
-        <Box mt="1rem">
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
@@ -562,86 +489,6 @@ const HomePage: FC<Props> = () => {
             text="Get rewarded when you book with Romingo. Simple create a free account, book travel with your furry friend, and earn points towards future stays. For  every 5 reservations that are booked and stayed, guests will receive a $100 Romingo Reward towards a future hotel reservation."
             cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
           />
-        </Box>
-
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: '4rem', mb: '2rem' }}>
-        <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Coastal retreats</Typography>
-        <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
-          {(seabird) ?
-            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-              <ListingCardSquare
-                key={12}
-                {...seabird}
-                city={{ name: 'Oceanside, CA' }}
-                lowestTotalPriceAfterTax={299}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={12} /></Grid>
-          } 
-
-          {(leMerdien) ?
-            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-              <ListingCardSquare
-                key={13}
-                {...leMerdien}
-                name="Le Meridien Delfina"
-                city={{ name: 'Santa Monica, CA' }}
-                lowestTotalPriceAfterTax={259}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={13} /></Grid>
-          } 
-
-          {(paradisePoint) ?
-            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>           
-              <ListingCardSquare
-                key={14}
-                {...paradisePoint}
-                city={{ name: 'San Diego, CA' }}
-                lowestTotalPriceAfterTax={189}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={14} /></Grid>
-          } 
-        </Box>
-        <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
-
-          {(hiltonLongBeach) ?
-            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>            
-              <ListingCardSquare
-                key={15}
-                {...hiltonLongBeach}
-                city={{ name: 'Orange County, CA' }}
-                lowestTotalPriceAfterTax={199}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={15} /></Grid>
-          } 
-
-          {(hrOrange) ?
-            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>           
-              <ListingCardSquare
-                key={16}
-                {...hrOrange}
-                name="Hyatt Regency OC"
-                city={{ name: 'Orange County, CA' }}
-                lowestTotalPriceAfterTax={189}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={16} /></Grid>
-          } 
-          {(marina) ?
-            <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>           
-              <ListingCardSquare
-                key={17}
-                {...marina}
-                city={{ name: 'Los Angeles, CA' }}
-                lowestTotalPriceAfterTax={232}
-                highlighted={false}
-              />
-            </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={17} /></Grid>
-          } 
-        </Box>
         </Box>
       </Box>
 
