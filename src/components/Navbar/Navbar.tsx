@@ -41,6 +41,7 @@ import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
 import { authService } from "../../services/authService.js"
+import DropdownMenuNav from '../../components/DropdownMenuNav'
 
 interface Props {
   sx?: CSSObject;
@@ -159,11 +160,10 @@ const Navbar: FC<Props> = ({ sx }) => {
               }}
             />
             <Link
-              href="/list-your-property"
+              href="/blog"
               sx={{
-                padding: ".5rem 1rem",
                 borderRadius: "6px",
-                mr: "27px",
+                mr: "2rem",
                 textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
@@ -173,14 +173,26 @@ const Navbar: FC<Props> = ({ sx }) => {
             >
               {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
               <div
-                style={{ marginRight: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                style={{ marginRight: '1em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
               >
-                List your property
+                Travel tips
               </div>
             </Link>
-            <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
-              <Person sx={{ fontSize: '24px', color: 'black'}} />
+            <Box
+              onClick={() => handleProfileClick()}
+              sx={{
+                borderRadius: "6px",
+                mr: "4rem",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                "&:hover": { color: "#03989E" },
+                color: "black",
+              }}
+            >
+              Sign in
             </Box>
+            <DropdownMenuNav />
           </Hidden>
 
           <Hidden lgUp>
@@ -256,13 +268,13 @@ const Navbar: FC<Props> = ({ sx }) => {
               <RomingoDealsMobile />
               <MenuItem
                 component="button"
-                onClick={() => history.push("/list-your-property")}
+                onClick={() => history.push("/blog")}
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
                 <HomeWork
                   sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
                 />{" "}
-                List your property
+                Travel tips
               </MenuItem>
             </Drawer>
             <Box
@@ -282,9 +294,8 @@ const Navbar: FC<Props> = ({ sx }) => {
               }}
             />
 
-            <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
-              <Person sx={{ fontSize: '24px', color: 'black'}} />
-            </Box>
+            <DropdownMenuNav />
+
 
             <Typography
               onClick={() => history.push("/reservation/manage")}
@@ -307,28 +318,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 <WorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
               </span>
             </Typography>
-            <a
-              href="/list-your-property"
-              style={{
-                cursor: "pointer",
-                marginRight: "0px",
-                marginLeft: "1rem",
-                color: "#222",
-                fontWeight: 600,
-                fontFamily: "Montserrat",
-              }}
-            >
-              <span
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  borderRadius: "6px",
-                  padding: " .125rem .25rem",
-                }}
-              >
-                <HomeWorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
-              </span>
-            </a>
+         
 
             <Link
               onClick={(e) => {

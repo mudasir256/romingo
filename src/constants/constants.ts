@@ -706,6 +706,25 @@ const LocationProperties = `
   }
 `
 
+const TripReviews = `
+  query TripReviews(
+    $hotel_id: String
+  ) {
+    tripReviews(input: {
+      hotel_id: $hotel_id
+    }) {
+      success
+      data {
+        name
+        pic
+        description
+        date
+        rating
+      }
+    }
+  }
+`
+
 const TripHotelList = `
   query TripHotelList(
     $hotel_ids: String!,
@@ -877,4 +896,5 @@ export {
   createBookingTravolutionary,
   getHotelDetailById,
   getCancellationPolicy,
+  TripReviews,
 };

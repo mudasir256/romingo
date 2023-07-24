@@ -18,15 +18,15 @@ const Header: FC<Props> = ({ sx }) => {
 
   const imagesDesktop = [
     {
-      component: 'https://www.romingo.com/public/hero/dev-1.jpg',
-      placement: 'bottom -200px left 0px'
-    },
+      component: 'https://www.romingo.com/public/hero/one.jpeg', 
+      placement: 'bottom -120px right 0px'
+    }
   ];
   const imagesMobile = [
     {
-      component: 'https://www.romingo.com/public/hero/dev-1.jpg',
-      placement: 'bottom -50px left -300px'
-    }
+      component: 'https://www.romingo.com/public/hero/one.jpeg', 
+      placement: 'bottom -50px left -120px'
+    },
   ];
 
   const [mobileImage, setMobileImage] = useState({})
@@ -76,7 +76,7 @@ const Header: FC<Props> = ({ sx }) => {
               Book pet-friendly hotels
             </Box>
             <div className="filter-bar-wrapper-desc">
-              Lowest rates. $0 pet fees.
+              the easiest way to travel with your pets
             </div>
           </Box>
         </Box>

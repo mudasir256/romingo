@@ -12,7 +12,7 @@ import RomingoScore from "../../components/RomingoScore";
 import { Circle, Pets, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";
 import { gql, useQuery } from "@apollo/client";
-import { getHotelDetailById, getPackages } from "../../constants/constants";
+import { getHotelDetailById, getPackages, TripReviews, } from "../../constants/constants";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 import { RoomsFilterBar } from "./DetailsPage";
@@ -87,6 +87,17 @@ const DetailsPage1 = ({ ...props }) => {
   //     }
   //   }
   // )
+  //
+
+  // const { data: reviews, loading: taReviewsLoading, error: taReviewError } = useQuery(
+  //   gql`${TripReviews}`,
+  //   {
+  //     variables: {
+  //       hotel_id: hotelId
+  //     }
+  //   }
+  // )
+  // console.log(reviews)
 
 
   useEffect(() => {

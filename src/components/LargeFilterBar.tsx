@@ -102,19 +102,22 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       checkDate[1]
     ) {
       setFormError("");
-    console.log(newValue)
-      dispatch(
-        saveSearch({
-          city: city.city,
-          checkIn: new Date(checkDate[0]).toISOString(),
-          checkOut: new Date(checkDate[1]).toISOString(),
-          occupants,
-          lat: city.lat,
-          lng: city.lng,
-        })
-      );
-    
-          history.push("/listings");
+      console.log('huh')
+      console.log(newValue)
+      console.log(city)
+      if (newValue) {
+        dispatch(
+          saveSearch({
+            city: city.city,
+            checkIn: new Date(checkDate[0]).toISOString(),
+            checkOut: new Date(checkDate[1]).toISOString(),
+            occupants,
+            lat: city.lat,
+            lng: city.lng,
+          })
+        );
+      }
+      history.push("/listings");
     } else {
       alert("error");
       if (!selectedCity) {
