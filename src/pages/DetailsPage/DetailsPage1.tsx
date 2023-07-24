@@ -1,3 +1,4 @@
+import loadable from '@loadable/component'
 import { withStyles } from "@mui/styles";
 import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
 import { Dispatch, FC, useEffect, useState } from "react";
@@ -22,6 +23,7 @@ import { setHotel } from "../../store/hotelDetailReducer";
 import DogIcon from "../../assets/icon/dog.png";
 import SimpleReactLightbox from "simple-react-lightbox";
 import CloseIcon from "@mui/icons-material/Close";
+const Map = loadable(() => import('../../components/UI/Map/Map'))
 
 const DetailsPage1 = ({ ...props }) => {
 
@@ -70,15 +72,30 @@ const DetailsPage1 = ({ ...props }) => {
     `
   );
 
-  console.log(data)
+  //TODO: WG, implement trip advisor compare rate
+  // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
+  //   gql`${TripHotelList}`,
+  //   {
+  //     variables: {
+  //       hotel_ids: data?.getPropertyDetails?.id || '',
+  //       hotel_id_type: 'TA',
+  //       checkIn: search?.checkIn.substring(0, 10),
+  //       checkOut: search?.checkOut.substring(0, 10),
+  //       num_adults: search?.occupants?.adults.toString(),
+  //       num_rooms: '1',
+  //       currency: 'USD'
+  //     }
+  //   }
+  // )
+
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
       for (const room of data.getHotelDetails.Result) {
-        const filterroom = data.getHotelDetails.RoomsContent.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
-        if (filterroom && filterroom.Descriptions.includes('Room Accessible')) {
+        const roomName = room?.Rooms?.find(item => true)?.RoomName?.toLowerCase()
+        if (roomName?.includes('accessible')) {
           accessibleRooms.push(room);
         } else {
           nonAccessibleRooms.push(room)
@@ -114,13 +131,6 @@ const DetailsPage1 = ({ ...props }) => {
     return <DetailsPageSkeleton />
   }
 
-  //TODO: replace with actual images
-  const gallery = ['https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P508-Exterior-Marina.16x9.webp',
-    'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-San-Diego-P566-Lobby-Front-Desk-Wide.16x9.webp',
-    'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/Manchester-Grand-Hyatt-P214-King-View.16x9.webp',
-    'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/SANRS-P235-Penthouse-Bedroom.16x9.webp',
-    'https://storage.googleapis.com/romingo-production-public/images/Grand%20Hyatt%20San%20Diego/SANRS-P319-Conference-Suite-B-Living-Room.16x9.webp']
-
   if (!hotel) {
     return (<div>TODO: Error screen</div>)
   }
@@ -135,7 +145,7 @@ const DetailsPage1 = ({ ...props }) => {
             component="img"
             src={hotel.images[0]}
             // alt={name}
-            boxShadow={2}
+            boxShadow={1}
             // onClick={handleOpen}
             className={classes.mainBox}
           />
@@ -148,7 +158,7 @@ const DetailsPage1 = ({ ...props }) => {
                   <Grid item sm={6} key={img} style={{ padding: mobile ? 0 : '10px', height: '250px' }}>
                     <Box
                       // onClick={handleOpen}
-                      boxShadow={2}
+                      boxShadow={1}
                       component="img"
                       src={img}
                       // alt={name}
@@ -182,6 +192,7 @@ const DetailsPage1 = ({ ...props }) => {
           </Button>
         </Box>
       </Grid>
+
       <Grid container direction={'row'} sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
         <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel.hotelName}</Typography></Grid>
         <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel.starRating} />
@@ -244,8 +255,115 @@ const DetailsPage1 = ({ ...props }) => {
           md={10}
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >
-          <span>{hotel.description}</span>
+          <Typography variant="base">{hotel.petPolicyDescription}</Typography>
+          <Box my="2rem">
+            <Divider />
+          </Box>
         </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem'}}>
+            <Typography variant="h6">Hotel Amenities</Typography>
+            <p>TODO: See all</p>
+          </Box>
+          <Grid container direction='row' spacing={0}>
+            {hotel.amenities.map(item => 
+              <Grid item xs={6} key={item.code}><Box>icon: {item.name}</Box></Grid>
+            )}
+          </Grid>
+          <Box my="2rem">
+            <Divider />
+          </Box>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+        >
+          <Typography variant="h5">Where You&apos;ll Be</Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              letterSpacing: ".015rem",
+              mt: ".5rem",
+          
+              color: "#999",
+              fontWeight: 400,
+            }}
+          >
+            {hotel.fullAddressLine}
+          </Typography>
+          <Box sx={{ display: "flex", my: 2, width: "100%" }}>
+            <Map
+              center={{
+                lat: parseFloat(hotel.lat || 0),
+                lng: parseFloat(hotel.lng || 0),
+              }}
+              height={240}
+              markers={[{
+                lat: parseFloat(hotel.lat || 0),
+                lng: parseFloat(hotel.lng || 0),
+                type: "hotel",
+                label: hotel.hotelName,
+              }]}
+              zoom={14}
+              selectedMarker={0}
+            />
+          </Box>
+          <Box my="2rem">
+            <Divider />
+          </Box>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+        >
+          <Typography variant="h6">Hotel Description</Typography>
+          <Typography variant="base">{hotel.description}</Typography>
+          <Box my="2rem">
+            <Divider />
+          </Box>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+        >
+          <Typography variant="h6">Compare Rates</Typography>
+          <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 pet fees and receive VIP pet amenities upon arrival.</Typography>
+     {/*     <Box mt="1.5rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
+            <Box position="relative" py="2rem" px="4rem" textAlign="center" border="solid 1px black">
+              <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
+              <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b></Typography>
+              <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
+                <Typography variant="base">$0 pet fee</Typography>
+              </Box>
+            </Box>
+            <a style={{ textDecoration: 'none', color: 'black'}} href={priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.clickUrl} target="_blank" rel="noreferrer">
+              <Box position="relative" py="2rem" px="3rem" textAlign="center" border="solid 1px black">
+                <div style={{ marginBottom: '0.5rem'}}><img style={{width: '240px'}} src="https://tripadvisor.mediaroom.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered_RGB.svg" /></div>
+                <Typography variant="p" py="2rem"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b></Typography>
+                <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
+                  <Typography variant="base">${utils.computePetFeePolicyTotalFees(diffDays || 1, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {})} pet fee</Typography>
+                </Box>
+              </Box>
+            </a>
+          </Box>     */}     
+        </Grid>
+
+  
         {/* <Grid item xs={12} md={3}><Hidden mdDown>
           <BookingCardNew
             sx={{ background: "#fff" }}
@@ -264,7 +382,7 @@ const DetailsPage1 = ({ ...props }) => {
           }}
           id="rooms"
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} ml="1rem">
             <Typography
               variant="h6"
             >
@@ -415,10 +533,11 @@ const DetailsPage1 = ({ ...props }) => {
             : <Typography sx={{ textAlign: 'center' }}>No rooms found in this date range.</Typography>
           }
           {accessibleRooms.length > 0 &&
-            <Grid container >
+            <Box width="100%">
               <Divider variant="middle" light sx={{ mt: 6, mb: 2 }}>
                 <Typography variant="h6">Accessible Rooms</Typography>
               </Divider>
+              <Grid container>
               {accessibleRooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 let images = filterroom ? filterroom.Images : [];
@@ -556,10 +675,26 @@ const DetailsPage1 = ({ ...props }) => {
                   </Grid>
                 );
               })}
-            </Grid>
+              </Grid>
+            </Box>
           }
         </Grid>
+
+        {/* Review section */}
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{ paddingLeft: "16px", my: "1rem" }}
+        >
+
+          <Typography variant="h6">What People Are Saying</Typography>
+          {/* TODO: load tripadvisor reviews */}
+        </Grid>
+
       </Grid>
+
+
 
       <Popover open={Boolean(openDetails)} anchorEl={anchorEl} onClose={() => setOpenDetails(false)} anchorOrigin={{
         vertical: 'bottom',
