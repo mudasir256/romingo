@@ -535,40 +535,15 @@ const GetReservationDetails =`
         propertyConfirmationId: $propertyConfirmationId
       }
     ) {
-      id
-      propertyId
-      paymentIntentId
-      cardId
-      sabreConfirmationId
-      propertyConfirmationId
-      faunaDocId
-      firstName
-      lastName
-      email
-      mobileNumber
-      checkInAtLocal
-      checkOutAtLocal
-      deadlineLocal
-      data
-      captured
-      cancellationFeePrice
-      intentType
-      setupIntentObject
-      customerId
-      reservationStatus
-      hotel {
-        name
-        address
-        zipCode
-      }
+      response
     }
   }
 `;
 
 const CancelBooking = `
-  mutation CancelBooking($cancelBookingInput: CancelBookingInput!) {
-    cancelBooking(input: $cancelBookingInput) {
-      status
+  mutation cancelBookingUsingTravolutionary($cancelBookingInput: CancelBookingTravolutionaryInput!) {
+    cancelBookingUsingTravolutionary(input: $cancelBookingInput) {
+      response
     }
   }
 `;

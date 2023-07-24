@@ -81,11 +81,32 @@ const YourReservationPage: FC<Props> = () => {
     return new Date(timestamp).toLocaleDateString('en-US')
   }
 
-  useEffect(() => {
-    if (data?.getReservationDetails) {
-      const canCancel = data?.getReservationDetails[0]?.data.cancelationPolicy?.cancelable ? `Refundable. Cancel Before ${formatUnixLong(parseInt(data?.getReservationDetails[0]?.deadlineLocal))} hotel time` : "Non Refundable"
-      setCancellableText(canCancel)
+  const getTimestamp = (timestamp) => {
+    const regex = /\b\d+\b/;
+    const timestampMatch = timestamp.match(regex);
+  
+    if (timestampMatch) {
+      const timestamp = parseInt(timestampMatch[0], 10);
+      return timestamp
+    } else {
+      console.log("No timestamp found in the string.");
     }
+    return ""
+  }
+
+  useEffect(() => {
+    let cancellationPolicyString = 'Refundable. Cancellation fees as follows: ';
+    const oneDay = (24*60*60*1000);
+    console.log(data?.getReservationDetails?.response)
+    if(data){
+      const cancellationPolicy = JSON.parse(data?.getReservationDetails?.response[0].cancellation_meta);
+      const search = JSON.parse(data?.getReservationDetails?.response[0].searchData)
+      for (let i = 0; i< cancellationPolicy.length ;i++){
+        cancellationPolicyString += `(${new Date(getTimestamp(cancellationPolicy[i].DateFrom)).toLocaleDateString()} - ${cancellationPolicy[i + 1] ? new Date(getTimestamp(cancellationPolicy[i + 1].DateFrom) - oneDay).toLocaleDateString() : new Date(search.checkOut).toLocaleDateString()} - ${cancellationPolicy[i].CancellationFee.FinalPrice}) `
+      }
+      setCancellableText(cancellationPolicyString)
+    }
+
   }, [data])
 
   const handleCancelBooking = (confirmationId: any) => {
@@ -99,8 +120,7 @@ const YourReservationPage: FC<Props> = () => {
       cancelBooking({
         variables: {
           cancelBookingInput: {
-            confirmationId: confirmationId,
-            cancelAll: true
+            segmentID: confirmationId,
           }
         }
       }).then((status) => {
@@ -127,7 +147,7 @@ const YourReservationPage: FC<Props> = () => {
       {loading ? <p>Loading...</p>
         :
         <Box sx={{ mx: 'auto', maxWidth: '660px' }}>
-          {!data?.getReservationDetails?.length &&
+          {!data?.getReservationDetails?.response?.length &&
             <Box sx={{ ml: '2em', mt: '3em' }}>
               <Typography sx={headerStyle}>We couldn&apos;t find a reservation for that email and confirmation number.</Typography>
               <Button sx={{ mt: '0.5em' }} variant="contained" onClick={() => history.replace('/reservation/manage')}>Back</Button>
@@ -148,7 +168,7 @@ const YourReservationPage: FC<Props> = () => {
               <Loader size="300px" />
             </Box>
           )}
-          {data?.getReservationDetails?.map((reservation: any, index: number) => (
+          {data?.getReservationDetails?.response && data?.getReservationDetails.response.map((reservation: any, index: number) => (
             <Grid
               key={index}
               sx={{
@@ -158,7 +178,7 @@ const YourReservationPage: FC<Props> = () => {
                 borderRadius: "12px",
                 border: "1px solid #ddd",
                 p: "1rem",
-                mt: { xs: 5, sm: 15 }
+                mt: { xs: 5 }
               }}
               container
               spacing={2}
@@ -187,35 +207,35 @@ const YourReservationPage: FC<Props> = () => {
                 <Typography>Check In Time</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>{formatUnix(parseInt(reservation.checkInAtLocal))}</Typography>
+                <Typography>{formatUnix(reservation.checkInTime)}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
                 <Typography>Check Out Time</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>{formatUnix(parseInt(reservation.checkOutAtLocal))}</Typography>
+                <Typography>{formatUnix(reservation.checkOutTime)}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
                 <Typography>Room Type</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>{room?.name}</Typography>
+                <Typography>{reservation?.roomType}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
                 <Typography>Occupants</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>Adults: {reservation.data.noOfAdults}, Children: {reservation.data.noOfChildren}, Dogs: {reservation.data.noOfDogs}</Typography>
+                <Typography>Adults: {JSON.parse(reservation.searchData).occupants.adults}, Children: {JSON.parse(reservation.searchData).occupants.children}, Dogs: {JSON.parse(reservation.searchData).occupants.childrenAge}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
                 <Typography>Total Price</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>${reservation.data.totalPriceAfterTax}</Typography>
+                <Typography>${reservation.bookingPrice}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
@@ -239,7 +259,7 @@ const YourReservationPage: FC<Props> = () => {
                       variant="outlined"
                       color="error"
                       sx={{ mr: 2 }}
-                      onClick={() => handleCancelBooking(reservation.sabreConfirmationId)}
+                      onClick={() => handleCancelBooking(reservation.bookingId)}
                     >
                       Cancel
                     </Button>
@@ -303,7 +323,7 @@ const YourReservationPage: FC<Props> = () => {
         <DialogContent dividers={scroll === 'paper'}>
      
             {data?.getReservationDetails && (
-              <MobileSearchBar home={false} forceWidth="inherit" flag="Modify this booking" bookingId={data?.getReservationDetails[0].id} />
+              <MobileSearchBar home={false} forceWidth="inherit" flag="Modify this booking" bookingId={data?.getReservationDetails.response[0].bookingId} />
             )}
       
         </DialogContent>
