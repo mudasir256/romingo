@@ -288,18 +288,21 @@ const ListingPageNew = ({ ...props }) => {
           <Grid item container direction='row'>
             <Grid item container direction='row' justifyContent='space-between'>
               <Grid item>
+                <Box sx={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
                 <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
                 <Chip
                    size="small"
-                   label="Clear all filters"
+                   label="clear all filters"
                    onDelete={() => {
                      
                      setRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
                      setQuery('')
-                     setSliderValue([min, max])
+                     setSliderValue([minPrice, maxPrice])
+                     setShouldFilter(!shouldFilter)
                      //TODO: amenities
                    }}
                  />
+                 </Box>
               </Grid>
               <Grid item >
                 <FormControl fullWidth size="small">
