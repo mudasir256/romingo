@@ -94,6 +94,7 @@ const Blog: FC = () => {
       return;
     }
     const posts = await response.json();
+    console.log(posts)
     setPosts(posts);
     setLoading(false);
   };
@@ -210,9 +211,10 @@ const Blog: FC = () => {
                         color="text.primary"
                         sx={{ textDecoration: "none" }}
                       >
+                        {post?._embedded['wp:featuredmedia'] && 
                         <Box
                           component="img"
-                          src={post._embedded["wp:featuredmedia"][0].link}
+                          src={post?._embedded["wp:featuredmedia"]?.find(item => true)?.link}
                           alt="background"
                           draggable="false"
                           sx={{
@@ -223,6 +225,7 @@ const Blog: FC = () => {
                             boxShadow: 2,
                           }}
                         />
+                        }
                       </Link>
                       <Box
                         sx={{

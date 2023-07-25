@@ -102,22 +102,6 @@ const Footer: FC<Props> = ({ sx }) => {
             <img style={{ marginLeft: '-1rem'}} width="160px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
           </Box>
         </Box>
-        <SiteLinkSection header="Site map" links={[
-          { href: "/about", text: 'About us'},
-          { href: "/faq", text: 'FAQ'},
-          { href: "/contact", text: 'Contact'},
-          { href: "/romingo-partners", text: 'RedRover Partnership'},
-        ]} />
-        <SiteLinkSection header="Content & Blog" links={[
-          { href: 'https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf', text: 'Guide to Air Travel With Your Dog'},
-          { href: '/blog', text: 'Romingo Blog', isBlank: true },
-          { href: '/blog?tag=12', text: 'Top travel tips', isBlank: true }
-        ]} />
-
-        <Box sx={{ marginTop: 0, paddingTop: 0, marginLeft: '1rem', display: 'flex', flexDirection: { xs: 'row', sm: 'row', md: 'row', lg: 'column' }, justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
-          <img width="140px" src={IATANLogo} alt="IATAN Logo" loading="lazy" />
-          <img style={{ marginLeft: '-1rem'}} width="160px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
-        </Box>
       </Box>
 
     <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
