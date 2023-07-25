@@ -33,30 +33,27 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
   const [feesIncluded, setFeesIncluded] = useState("");
   const [fees, setFees] = useState([]);
-
+  const [markup, setMarkup] = useState(0);
   useEffect(() => {
     const tmp = [];
+    // if (detail?.room?.room?.feesIncluded) {
+    //   setFeesIncluded(
+    //     "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
+    //   );
+    // } else {
+    //   setFeesIncluded(
+    //     "*Includes all taxes. This Hotel may charge a resort or amenity fee, which you pay to the Hotel at check-in. These fees are not included in the amount above."
+    //   );
+    // }
 
-    if (detail?.room?.room?.feesIncluded) {
-      setFeesIncluded(
-        "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
-      );
-    } else {
-      setFeesIncluded(
-        "*Includes all taxes. This Hotel may charge a resort or amenity fee, which you pay to the Hotel at check-in. These fees are not included in the amount above."
-      );
-    }
+    const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
+    setMarkup(markupInitial)
+    const priceBeforeTax = detail.room.PackagePrice.FinalPrice - detail.room.PackagePrice.FinalTax;
 
-
-    const totalPrice = detail.room.PackagePrice.FinalPrice + detail.room.PackagePrice.FinalTax;
-    console.log(totalPrice)
     const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
-    console.log(search.checkOut)
-    console.log(search.checkIn)
-    console.log(nights)
     tmp.push({
       label: "Average price per night",
-      price: totalPrice/nights,
+      price: detail.room.PackagePrice.FinalPrice/nights,
     });
 
     tmp.push({
@@ -66,13 +63,12 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
     tmp.push({
       label: "Total before taxes & fees",
-      price: detail.room.PackagePrice.FinalPrice,
+      price: priceBeforeTax,
     });
 
     tmp.push({
       label: "Taxes & fees",
-      price:
-      detail.room.PackagePrice.FinalTax,
+      price: detail.room.PackagePrice.FinalTax,
     });
 
     tmp.push({
@@ -82,7 +78,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
     tmp.push({
       label: "Total",
-      price: totalPrice,
+      price: (detail.room.PackagePrice.FinalPrice + markupInitial),
     });
 
     tmp.push({
@@ -298,7 +294,45 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             </Box>
             */
         } else if (detail.label === "Taxes & fees") {
-          return (
+          return (<Box key={i}>
+            <Box
+              key="markup"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+                pt: 2,
+                borderTop: "1px solid #DDD",
+              }}
+            >
+              <Typography
+                variant="base"
+                sx={{
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 600,
+                }}
+              >
+                Service Fee
+              </Typography>
+
+              <Typography
+                variant="base"
+                sx={{
+                  fontWeight: 500,
+                  mt: 0,
+                  color: "text.primary",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                {`+ ${dollarUSLocale.format(markup)}`}
+              </Typography>
+            </Box>
             <Box
               key={i}
               sx={{
@@ -307,7 +341,6 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 alignItems: "flex-end",
                 mt: 1,
                 pt: 2,
-                mb: 1,
                 borderTop: "1px solid #DDD",
               }}
             >
@@ -338,7 +371,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 {`+ ${dollarUSLocale.format(detail?.price)}`}
               </Typography>
             </Box>
-          );
+          </Box>);
         } else {
           return (
             <Box

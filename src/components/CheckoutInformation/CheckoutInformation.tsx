@@ -648,7 +648,7 @@ const CheckoutInformation: FC<Props> = ({
                     </Typography>
 
                     <Typography variant="body1" sx={{ textAlign: "left" }}>
-                      Your confirmation number is: {bookingData ? bookingData.bookingId : ''}
+                      Your confirmation number is: <b>{bookingData ? bookingData.bookingId.toUpperCase() : ''}</b>
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 2 }}>
                       We&apos;ve sent you an email with all of the details of
@@ -662,6 +662,7 @@ const CheckoutInformation: FC<Props> = ({
               <Box
                 sx={{
                   display:
+                    loading ||
                     siLoading ||
                       piLoading ||
                       paymentLoading ||
@@ -758,6 +759,7 @@ const CheckoutInformation: FC<Props> = ({
                   <Box
                     className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
                     sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
+                    pr="1rem"
                   >
                     <CardElement
                       options={{

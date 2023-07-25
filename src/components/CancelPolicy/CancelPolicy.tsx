@@ -17,7 +17,7 @@ interface Props {
 }
 
 const CancelPolicy = ({ sx, policy, search }) => {
-
+  console.log(policy)
   const [showExtra, setShowExtra] = useState(false)
 
   const getTimestamp = (timestamp) => {
