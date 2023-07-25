@@ -846,14 +846,31 @@ const getPackages = (adults: number, checkIn: number, checkOut: number, children
   `
 }
 
-const getHotelDetailById = (hotelId: number, sessionId: string) => {
+const getHotelDetailById = (hotelId) => {
   return `query {
     getHotelDetailById(input: {
       hotelId: "${hotelId}",
-      sessionId: "${sessionId}"
     }) {
-      Result
-      RoomsContent
+      hotelName
+      fullAddressLine
+      description
+      petPolicyDescription
+      amenities
+      lat
+      lng
+      images
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+      starRating
+      numberOfReviews
     }
   }`
 }
