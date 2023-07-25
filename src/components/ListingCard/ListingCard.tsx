@@ -54,6 +54,8 @@ export interface ListingCardProps {
   };
   flag?: string;
   bookingId?: string;
+  state?: string;
+  zipcode?: string;
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
@@ -80,6 +82,8 @@ const ListingCard: FC<ListingCardProps> = ({
   limitImages = false,
   sessionId,
   hotel,
+  state,
+  zipcode,
   ...props
 }) => {
   const history = useHistory();
@@ -104,8 +108,8 @@ const ListingCard: FC<ListingCardProps> = ({
   const hasPetFeeReduction =
     !!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1;
 
-  let { pet_fee, pet_fee_value, pet_allowance, pet_size } = hotel;
-
+  let { pet_fee, pet_allowance, pet_size } = hotel;
+  const { pet_fee_value } = hotel;
 
   if (pet_fee === 'NONE') {
     pet_fee = '$0 pet fees'
@@ -324,7 +328,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 color: "#999",
               }}
             >
-              {addressLine1}, {city?.name}
+              {addressLine1}, {state} {zipcode}
             </Typography>
 
             <Box
@@ -341,7 +345,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 my: "auto",
               }}
             >
-              <Typography
+        {/*      <Typography
                 sx={{
                   fontFamily: "overpass-light",
                   color: "#036A6E",
@@ -349,7 +353,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 }}
               >
                 Reserve now, pay later.
-              </Typography>
+              </Typography>*/}
             </Box>
 
             <Box

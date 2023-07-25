@@ -44,6 +44,30 @@ const ListingPageNew = ({ ...props }) => {
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
 
 
+  const formatHotel = (hotel) => {
+    return {
+      imageURLs: [hotel.DefaultImage.FullSize],
+      name: hotel.DisplayName,
+      addressLine1: hotel.Address,
+      city: hotel.city,
+      state: hotel.state,
+      zipcode: hotel.zipcode,
+      petFeePolicy: { maxPets: 0 },
+      romingoScore: hotel.starRating,
+      numberOfReviews: hotel.numberOfReview,
+      lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value,
+      id: hotel.ID,
+      lat: hotel.GeoLocation.Latitude,
+      lng: hotel.GeoLocation.Longitude,
+      description: hotel.description,
+      pets_allowed: hotel.petsAllowed,
+      pet_fee_value: hotel.petFeeValue,
+      pet_fee: hotel.petFee,
+      pet_allowance: hotel.petAllowance,
+      pet_size: hotel.petSize,
+    }
+  }
+
   useEffect(() => {
     if (data && data.getHotels && data.getHotels.sessionId) {
       setSessionId(data.getHotels.sessionId);
@@ -58,24 +82,8 @@ const ListingPageNew = ({ ...props }) => {
         if (hotel.SuppliersLowestPackagePrices[0].Value > max) {
           max = hotel.SuppliersLowestPackagePrices[0].Value
         }
-        const restructuredHotel = {
-          imageURLs: [hotel.DefaultImage.FullSize],
-          name: hotel.DisplayName,
-          addressLine1: hotel.Address,
-          city: selectedCity,
-          petFeePolicy: { maxPets: 0 },
-          romingoScore: hotel.StarRating,
-          lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value,
-          id: hotel.ID,
-          lat: hotel.GeoLocation.Latitude,
-          lng: hotel.GeoLocation.Longitude,
-          description: hotel.description,
-          pets_allowed: hotel.petsAllowed,
-          pet_fee_value: hotel.petFeeValue,
-          pet_fee: hotel.petFee,
-          pet_allowance: hotel.petAllowance,
-          pet_size: hotel.petSize
-        }
+
+        const restructuredHotel = formatHotel(hotel)
         filteredHotels.push(restructuredHotel)
         markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
       }
@@ -92,6 +100,11 @@ const ListingPageNew = ({ ...props }) => {
 
   }, [data, search, center])
 
+  //TODO: add amenities
+  useEffect(() => {
+
+  }, [sliderValue, rating, sort])
+
   const handleSearch = (e) => {
     const filteredHotels = [];
     const markers = [];
@@ -99,14 +112,7 @@ const ListingPageNew = ({ ...props }) => {
     setTimeout(() => {
       for (const hotel of data.getHotels.hotels) {
         if (hotel.DisplayName.includes(e.target.value) && hotel.SuppliersLowestPackagePrices[0].Value >= sliderValue[0] && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
-          filteredHotels.push({
-            imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, description: hotel.description,
-            pets_allowed: hotel.petsAllowed,
-            pet_fee: hotel.petFee,
-            pet_allowance: hotel.petAllowance,
-            pet_fee_value: hotel.petFeeValue,
-            pet_size: hotel.petSize
-          })
+          filteredHotels.push(formatHotel(hotel))
         }
       }
       for (const hotel of filteredHotels) {
@@ -143,14 +149,7 @@ const ListingPageNew = ({ ...props }) => {
     setTimeout(() => {
       for (const hotel of data.getHotels.hotels) {
         if (hotel.DisplayName.includes(query) && hotel.SuppliersLowestPackagePrices[0].Value >= sliderValue[0] && hotel.SuppliersLowestPackagePrices[0].Value <= sliderValue[1] && (rating.length === 0 || rating.includes(hotel.StarRating))) {
-          filteredHotels.push({
-            imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, description: hotel.description,
-            pets_allowed: hotel.petsAllowed,
-            pet_fee: hotel.petFee,
-            pet_allowance: hotel.petAllowance,
-            pet_fee_value: hotel.petFeeValue,
-            pet_size: hotel.petSize
-          })
+          filteredHotels.push(formatHotel(hotel))
         }
       }
       if (e.target.value === 'alphabetSort') {
@@ -191,14 +190,7 @@ const ListingPageNew = ({ ...props }) => {
       }
 
       for (const hotel of filteredHotels) {
-        const restructuredHotel = {
-          imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, description: hotel.description,
-          pets_allowed: hotel.petsAllowed,
-          pet_fee: hotel.petFee,
-          pet_fee_value: hotel.petFeeValue,
-          pet_allowance: hotel.petAllowance,
-          pet_size: hotel.petSize
-        };
+        const restructuredHotel = formatHotel(hotel)
         hotelsAfterFiltering.push(restructuredHotel)
         markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
       }
@@ -252,13 +244,7 @@ const ListingPageNew = ({ ...props }) => {
       }
 
       for (const hotel of filteredHotels) {
-        const restructuredHotel = {
-          imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, description: hotel.description,
-          pets_allowed: hotel.petsAllowed,
-          pet_fee: hotel.petFee,
-          pet_allowance: hotel.petAllowance,
-          pet_size: hotel.petSize
-        };
+        const restructuredHotel = formatHotel(hotel)
         hotelsAfterFiltering.push(restructuredHotel)
         markers.push({ lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, type: 'hotel', label: hotel.DisplayName, hotel: restructuredHotel })
       }

@@ -818,7 +818,11 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       petAmenities
       petReliefArea
       catPolicy
-
+      starRating
+      numberOfReviews
+      city
+      state
+      zipcode
     }
   }
 }
