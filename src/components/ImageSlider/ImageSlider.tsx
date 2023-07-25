@@ -11,11 +11,21 @@ interface Props {
   indicators?: boolean;
   sx?: any;
   forceLarge?: boolean;
+  page?: string;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10 }) => {
+const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10, page }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
+
+  let borderRadius = '6px 0px 0px 6px'
+
+  if (page === 'listings') {
+    borderRadius = '6px 0px 0px 6px';
+  } else if (page === 'detail-room') {
+    borderRadius = '6px 6px 0px 0px'
+  }
+
   useEffect(() => {
     if (images && images.length > 0) {
       const components = 
@@ -37,7 +47,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10 
                     height: '187px',
                     objectFit: 'cover',
                     objectPosition: 'center', 
-                    borderRadius: '6px 0px 0px 6px',
+                    borderRadius: borderRadius,
                     ...sx,
                   }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>

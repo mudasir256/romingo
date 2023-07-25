@@ -40,7 +40,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
               <Box data-hotel-id={exists.ID}
                 sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
               >
-                <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.ID} />
+                <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.ID} page="listings" />
               </Box>
             </div>)
           }

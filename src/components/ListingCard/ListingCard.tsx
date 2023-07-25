@@ -85,6 +85,7 @@ const ListingCard: FC<ListingCardProps> = ({
   hotel,
   state,
   zipcode,
+  page,
   ...props
 }) => {
   const history = useHistory();
@@ -178,15 +179,9 @@ const ListingCard: FC<ListingCardProps> = ({
           <ImageSlider
             images={imageURLs}
             name={name}
-            sx={{
-              borderTopRightRadius: { xs: "6px", sm: 0 },
-              borderBottomRightRadius: { xs: 0, sm: 0 },
-              borderBottomLeftRadius: { xs: 0, sm: "6px" },
-              borderTopLeftRadius: { xs: "6px", sm: "6px" },
-              boxShadow: 0,
-            }}
             setShow={setShowRating}
             imageCount={limitImages ? 3 : 10}
+            page={page}
           />
         </Box>
 

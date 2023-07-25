@@ -162,22 +162,14 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   const RoomCard = ({ key, images, room }) => (
-    <Grid
-      item
-      container
-      direction='column'
-      spacing={2}
-      md={4}
-      lg={4}
-      sm={6}
-      xs={12}
-      key={key}
-      style={{ margin: 10, maxWidth: mobile ? '100%' : 280, position: 'relative' }}
+    <Box  
       sx={{
+        maxWidth: '480px',
         transition: "all .15s ease-in-out",
         boxShadow: 1,
         "&:hover": { boxShadow: 3 },
-        margin: '0.5rem 0px 0px',
+        margin: '1rem',
+        borderRadius: '6px',
         fontFamily: 'overpass-light',
         lineHeight: '1.5rem',
         color: 'rgba(17, 17, 17, 0.6)',
@@ -188,14 +180,14 @@ const DetailsPage1 = ({ ...props }) => {
       }}
     >
       <Grid item style={{ padding: 0 }}>
-        <ImageSlider images={images} name={room.Rooms[0].RoomName} />
+        <ImageSlider images={images} name={room.Rooms[0].RoomName} page="detail-room" />
       </Grid>
       <Grid item style={{ padding: 10 }}>
         <Typography
           variant="h6"
         // onClick={handleBook}
         >
-          {room.Rooms[0].RoomName} &nbsp;
+          {room.Rooms[0].RoomName}
         </Typography>
       </Grid>
       <Grid item style={{ display: 'flex', padding: 10 }}>
@@ -289,7 +281,7 @@ const DetailsPage1 = ({ ...props }) => {
       </Button>
 
       {/* {filterroom.Amenities.map((a, i) => <Typography key={i}>{a}</Typography>)} */}
-    </Grid>
+    </Box>
   )
 
   return (
@@ -350,7 +342,7 @@ const DetailsPage1 = ({ ...props }) => {
         </Box>
       </Grid>
 
-      <Grid container direction={'row'} sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
+      <Grid container direction="row" sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
         <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel.hotelName}</Typography></Grid>
         <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel.starRating} />
           <Circle
@@ -457,6 +449,7 @@ const DetailsPage1 = ({ ...props }) => {
               }]}
               zoom={14}
               selectedMarker={0}
+              clickable={false}
             />
           </Box>
           <Box my="2rem">
@@ -534,7 +527,7 @@ const DetailsPage1 = ({ ...props }) => {
           </Grid>
           {loading ? <Box mx="auto"><Loader size="220px" /></Box> : 
            rooms.length > 0 ?
-            <Grid container >
+            <Grid container>
               {rooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 let images = filterroom ? filterroom.Images : [];
@@ -542,7 +535,16 @@ const DetailsPage1 = ({ ...props }) => {
                   images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
                 }
                 return (
-                  <RoomCard key={key} images={images} room={room} />
+                  <Grid item   
+                    spacing={2}
+                    md={4}
+                    lg={4}
+                    sm={6}
+                    xs={12}
+                    key={key}
+                  >
+                    <RoomCard key={key} images={images} room={room} />
+                  </Grid>
                 );
               })}
             </Grid>

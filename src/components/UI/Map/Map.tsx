@@ -26,6 +26,7 @@ interface Props {
   }[];
   selectedMarker?: number;
   zoom?: number;
+  clickable?: boolean;
 }
 
 interface Size {
@@ -50,6 +51,7 @@ const Map: FC<Props> = ({
   markers,
   selectedMarker,
   zoom = 10,
+  clickable = true,
 }) => {
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
@@ -124,6 +126,9 @@ const Map: FC<Props> = ({
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {
                   console.log(marker)
+                  if (!clickable) {
+                    return
+                  }
                   if (marker.label) {
                     setShowInfoPostion({
                       lat: marker.lat,
