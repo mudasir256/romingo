@@ -330,13 +330,13 @@ const MapListingCard: FC<ListingCardProps> = ({
               display: { xs: 'block', sm: 'block' },
               my: 'auto'
             }}>
-              <Typography sx={{        
+          {/*    <Typography sx={{        
                  fontFamily: "overpass-light",
                  color: '#036A6E', 
                  fontSize: '0.9em',
                }}>
                  Reserve now, pay later.
-               </Typography>
+               </Typography>*/}
              </Box>
 
             <Box

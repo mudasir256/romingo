@@ -61,8 +61,6 @@ const DetailsPage1 = ({ ...props }) => {
   const [accessibleRooms, setAccessibleRooms] = useState([]);
   const [showFullImage, setShowFullImage] = useState<string>('');
 
-  console.log(search)
-
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
   //ACK: this should return rooms for date range selected
@@ -71,6 +69,7 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
+  console.log(data)
 
   //TODO: WG, implement trip advisor compare rate
   // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
@@ -746,7 +745,7 @@ const DetailsPage1 = ({ ...props }) => {
               variant="body2"
               sx={{ textAlign: "right", fontSize: "80%" }}
             >
-              ${selectedRoom && selectedRoom.PackagePrice.FinalPrice.toFixed(2) - (selectedRoom.PackagePrice.FinalTax).toFixed(2)}
+              ${selectedRoom && Math.abs(selectedRoom.PackagePrice.FinalPrice - selectedRoom.PackagePrice.FinalTax).toFixed(2)}
             </Typography>
           </Box>
           <Box
