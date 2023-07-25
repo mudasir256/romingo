@@ -17,6 +17,7 @@ import FilterBar from "../../components/MobileHomePageFilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
 import Loader from "../../components/UI/Loader";
+import Chip from '@mui/material'
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -288,6 +289,17 @@ const ListingPageNew = ({ ...props }) => {
             <Grid item container direction='row' justifyContent='space-between'>
               <Grid item>
                 <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
+                <Chip
+                   size="small"
+                   label="Clear all filters"
+                   onDelete={() => {
+                     
+                     setRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
+                     setQuery('')
+                     setSliderValue([min, max])
+                     //TODO: amenities
+                   }}
+                 />
               </Grid>
               <Grid item >
                 <FormControl fullWidth size="small">
