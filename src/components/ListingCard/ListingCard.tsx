@@ -117,6 +117,10 @@ const ListingCard: FC<ListingCardProps> = ({
   }
   if (pet_size === 'Any Size') {
     pet_size = 'of any size or weight'
+  } else if (pet_size.includes('combined')) {
+    //nothing
+  } else {
+    pet_size = `${pet_size} per pet`
   }
 
 
