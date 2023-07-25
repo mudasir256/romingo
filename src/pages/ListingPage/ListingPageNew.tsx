@@ -36,8 +36,6 @@ const ListingPageNew = ({ ...props }) => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
 
-  console.log(search)
-
   const mobile = useMediaQuery("(max-width:800px)");
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
@@ -73,6 +71,7 @@ const ListingPageNew = ({ ...props }) => {
           lng: hotel.GeoLocation.Longitude,
           description: hotel.description,
           pets_allowed: hotel.petsAllowed,
+          pet_fee_value: hotel.petFeeValue,
           pet_fee: hotel.petFee,
           pet_allowance: hotel.petAllowance,
           pet_size: hotel.petSize
@@ -105,6 +104,7 @@ const ListingPageNew = ({ ...props }) => {
             pets_allowed: hotel.petsAllowed,
             pet_fee: hotel.petFee,
             pet_allowance: hotel.petAllowance,
+            pet_fee_value: hotel.petFeeValue,
             pet_size: hotel.petSize
           })
         }
@@ -148,6 +148,7 @@ const ListingPageNew = ({ ...props }) => {
             pets_allowed: hotel.petsAllowed,
             pet_fee: hotel.petFee,
             pet_allowance: hotel.petAllowance,
+            pet_fee_value: hotel.petFeeValue,
             pet_size: hotel.petSize
           })
         }
@@ -194,6 +195,7 @@ const ListingPageNew = ({ ...props }) => {
           imageURLs: [hotel.DefaultImage.FullSize], name: hotel.DisplayName, addressLine1: hotel.Address, city: selectedCity, petFeePolicy: { maxPets: 0 }, romingoScore: hotel.StarRating, lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value, id: hotel.ID, lat: hotel.GeoLocation.Latitude, lng: hotel.GeoLocation.Longitude, description: hotel.description,
           pets_allowed: hotel.petsAllowed,
           pet_fee: hotel.petFee,
+          pet_fee_value: hotel.petFeeValue,
           pet_allowance: hotel.petAllowance,
           pet_size: hotel.petSize
         };
@@ -273,8 +275,7 @@ const ListingPageNew = ({ ...props }) => {
   }
 
   return (
-    <Grid sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
-      <ScrollToTop />
+    <Grid sx={{ background: "#feffff" }}>
       <Navbar />
       {mobile ?
         <Box sx={{ width: '95%', margin: '10px auto' }}>
@@ -303,7 +304,8 @@ const ListingPageNew = ({ ...props }) => {
               View on full map
             </Button>
 
-            <TextField id="outlined-basic" label="Search by property name" variant="outlined" fullWidth onChange={handleSearch} />
+            <TextField label="Search by property name" variant="filled" fullWidth onChange={handleSearch} />
+      
             <Typography style={{ marginTop: 10 }}>Filter By</Typography>
             <FormGroup>
               <FormControlLabel control={<Checkbox />} label="Pool" />

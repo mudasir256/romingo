@@ -104,7 +104,21 @@ const ListingCard: FC<ListingCardProps> = ({
   const hasPetFeeReduction =
     !!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1;
 
-  const { pet_fee, pet_allowance, pet_size } = hotel;
+  let { pet_fee, pet_fee_value, pet_allowance, pet_size } = hotel;
+
+
+  if (pet_fee === 'NONE') {
+    pet_fee = '$0 pet fees'
+  } else {
+    pet_fee = `${pet_fee_value?.split('.')?.find(item => true)} pet fees`
+  }
+  if (pet_allowance === 'Unlimited') {
+    pet_allowance = 'any number of pets'
+  }
+  if (pet_size === 'Any Size') {
+    pet_size = 'of any size or weight'
+  }
+
 
   const HotelDescriptors = () => (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -173,7 +187,7 @@ const ListingCard: FC<ListingCardProps> = ({
             }}
           >
             {currency}
-            {lowestAveragePrice}{" "}
+            {Math.abs(lowestAveragePrice).toFixed(0)}{" "}
             <Typography
               sx={{
                 fontFamily: "sansita-light",
