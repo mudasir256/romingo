@@ -713,14 +713,11 @@ const TripReviews = `
     tripReviews(input: {
       hotel_id: $hotel_id
     }) {
-      success
-      data {
-        name
-        pic
-        description
-        date
-        rating
-      }
+      name
+      pic
+      description
+      date
+      rating
     }
   }
 `

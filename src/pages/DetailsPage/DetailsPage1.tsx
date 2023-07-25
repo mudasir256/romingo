@@ -26,6 +26,7 @@ import CloseIcon from "@mui/icons-material/Close";
 const Map = loadable(() => import('../../components/UI/Map/Map'))
 import HotelTags from '../../components/HotelTags'
 import Loader from "../../components/UI/Loader";
+import StarIcon from '@mui/icons-material/Star';
 
 const DetailsPage1 = ({ ...props }) => {
 
@@ -63,7 +64,6 @@ const DetailsPage1 = ({ ...props }) => {
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
-  //ACK: this should return rooms for date range selected
   const { data, loading, error, refetch } = useQuery(
     gql`
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
@@ -100,12 +100,13 @@ const DetailsPage1 = ({ ...props }) => {
     gql`${TripReviews}`,
     {
       variables: {
-        hotel_id: hotelId
+        hotel_id: hotelId.toString()
       }
     }
   )
   console.log('reviews')
   console.log(reviews)
+  console.log(taReviewError)
 
 
   useEffect(() => {
@@ -150,6 +151,10 @@ const DetailsPage1 = ({ ...props }) => {
     }
     return 3;
   };
+
+  const formatToTimeAgo = (beforeTimestamp) => {
+    return moment(beforeTimestamp).fromNow()
+  }
 
   if (loadingHotelInfo) {
     return <DetailsPageSkeleton />
@@ -653,12 +658,34 @@ const DetailsPage1 = ({ ...props }) => {
         <Grid
           item
           xs={12}
-          md={10}
+          md={12}
           sx={{ paddingLeft: "16px", my: "1rem" }}
         >
 
           <Typography variant="h6">What People Are Saying</Typography>
+          <Typography variant="base" sx={{ color: 'grey' }}>(Powered by Trip Advisor)</Typography>
           {/* TODO: load tripadvisor reviews */}
+          {reviews?.tripReviews?.length > 0 ? 
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem', flexWrap: 'wrap', mt: '1.5rem'}}>
+              {reviews.tripReviews.map(review => (
+                <Box key={review.name} maxWidth="540px">
+                  <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'row', alignItems: 'center'}}>
+                    <img style={{ borderRadius: '100%', width: '60px', height: '60px' }} src={review.pic} />
+                    <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+                      <Typography variant="base">{review.name}</Typography>
+                      <Typography variant="base">{formatToTimeAgo(review.date)}</Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', gap: '0.5rem', flexDirection: 'row', alignItems: 'center', my: '1rem'}}>
+                    <StarIcon sx={{ color: "red" }} /> 
+                    <Typography variant="base">{review.rating}/5</Typography>
+                  </Box>
+                  <Typography variant="base" maxWidth="480px">{review.description}</Typography>
+                </Box>
+              ))}
+            </Box>
+            : <Loader size="220px" />
+          }
         </Grid>
 
       </Grid>
