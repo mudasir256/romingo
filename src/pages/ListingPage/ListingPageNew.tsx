@@ -17,7 +17,7 @@ import FilterBar from "../../components/MobileHomePageFilterBar";
 import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
 import Loader from "../../components/UI/Loader";
-import Chip from '@mui/material'
+import Chip from '@mui/material/Chip'
 
 const ListingPageNew = ({ ...props }) => {
 
