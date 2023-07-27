@@ -486,13 +486,13 @@ const DetailsPage1 = ({ ...props }) => {
         >
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem'}}>
             <Typography variant="h6">Hotel Amenities</Typography>
-            <p>TODO: See all</p>
+            {/*     <p>TODO: See all</p>*/}
           </Box>
           <Grid container direction='row' spacing={0}>
             {hotel.amenities.map(item => {
               if (validCodes.includes(item.code)) {
                 return (
-                  <Grid item xs={6} key={item.code}>
+                  <Grid item xs={6} key={item.code} my="0.25rem">
                     <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center'}}><Icon code={item.code} /> {item.name}</Box>
                   </Grid>
                 ) 

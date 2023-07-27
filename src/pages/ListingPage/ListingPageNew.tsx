@@ -49,6 +49,16 @@ const ListingPageNew = ({ ...props }) => {
 
   console.log(data)
 
+
+  const start = search.checkIn.substring(0, 10)
+  const end = search.checkOut.substring(0, 10)
+  
+  const date1 = new Date(start).getTime();
+  const date2 = new Date(end).getTime();
+  const diffTime = Math.abs(date2 - date1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+
   const formatHotel = (hotel) => {
     return {
       imageURLs: [hotel.DefaultImage.FullSize],
@@ -60,7 +70,7 @@ const ListingPageNew = ({ ...props }) => {
       petFeePolicy: { maxPets: 0 },
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReview,
-      lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value,
+      lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,
@@ -84,7 +94,7 @@ const ListingPageNew = ({ ...props }) => {
         petFeePolicy: { maxPets: 0 },
         romingoScore: hotel.starRating,
         numberOfReviews: hotel.numberOfReview,
-        lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value,
+        lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
         id: hotel.ID,
         lat: hotel.GeoLocation.Latitude,
         lng: hotel.GeoLocation.Longitude,
@@ -108,11 +118,11 @@ const ListingPageNew = ({ ...props }) => {
       let max = 0;
 
       for (const hotel of data.getHotels.hotels) {
-        if (hotel.SuppliersLowestPackagePrices[0].Value < min) {
-          min = hotel.SuppliersLowestPackagePrices[0].Value
+        if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays < min) {
+          min = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
         }
-        if (hotel.SuppliersLowestPackagePrices[0].Value > max) {
-          max = hotel.SuppliersLowestPackagePrices[0].Value
+        if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays > max) {
+          max = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
         }
 
         const restructuredHotel = formatHotel(hotel)
@@ -126,6 +136,9 @@ const ListingPageNew = ({ ...props }) => {
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       })
 
+      min = parseFloat(Math.abs(min).toFixed(2))
+      max = parseFloat(Math.abs(max).toFixed(2))
+      
       setMinPrice(min);
       setMaxPrice(max)
       setSliderValue([min, max])

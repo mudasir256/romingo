@@ -426,7 +426,7 @@ const ListingPage: FC<Props> = () => {
             name={sorted[hotelIndex]?.name}
             location={sorted[hotelIndex]?.addressLine1}
             score={sorted[hotelIndex]?.romingoScore}
-            price={sorted[hotelIndex]?.lowestAveragePrice}
+            price={sorted[hotelIndex]?.lowestAveragePrice / diffDays}
             image={sorted[hotelIndex]?.featuredImageURL}
             amenities={sorted[hotelIndex]?.dogAmenities}
             markerClickCallBack={markerClick}
