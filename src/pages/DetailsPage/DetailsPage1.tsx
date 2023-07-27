@@ -27,6 +27,9 @@ const Map = loadable(() => import('../../components/UI/Map/Map'))
 import HotelTags from '../../components/HotelTags'
 import Loader from "../../components/UI/Loader";
 import StarIcon from '@mui/icons-material/Star';
+import Icon from '../../components/Icon';
+import {validCodes} from '../../components/Icon';
+
 
 const DetailsPage1 = ({ ...props }) => {
 
@@ -69,7 +72,7 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-  // console.log(data)
+  console.log(data)
 
   //TODO: WG, implement trip advisor compare rate
   // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
@@ -92,7 +95,6 @@ const DetailsPage1 = ({ ...props }) => {
       ${getHotelDetailById(hotelId)}
     `
   );
-  console.log(hotelInfo?.getHotelDetailById)
 
  
 
@@ -104,10 +106,6 @@ const DetailsPage1 = ({ ...props }) => {
       }
     }
   )
-  console.log('reviews')
-  console.log(reviews)
-  console.log(taReviewError)
-
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
@@ -156,6 +154,8 @@ const DetailsPage1 = ({ ...props }) => {
     return moment(beforeTimestamp).fromNow()
   }
 
+  console.log(hotelInfo)
+
   if (loadingHotelInfo) {
     return <DetailsPageSkeleton />
   }
@@ -173,7 +173,7 @@ const DetailsPage1 = ({ ...props }) => {
       <Box>
         <Box  
           sx={{
-            maxWidth: '480px',
+            width: '360px',
             position: 'relative',
             transition: "all .15s ease-in-out",
             boxShadow: 1,
@@ -489,9 +489,15 @@ const DetailsPage1 = ({ ...props }) => {
             <p>TODO: See all</p>
           </Box>
           <Grid container direction='row' spacing={0}>
-            {hotel.amenities.map(item => 
-              <Grid item xs={6} key={item.code}><Box>icon: {item.name}</Box></Grid>
-            )}
+            {hotel.amenities.map(item => {
+              if (validCodes.includes(item.code)) {
+                return (
+                  <Grid item xs={6} key={item.code}>
+                    <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center'}}><Icon code={item.code} /> {item.name}</Box>
+                  </Grid>
+                ) 
+              }
+            })}
           </Grid>
           <Box my="2rem">
             <Divider />

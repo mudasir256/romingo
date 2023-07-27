@@ -231,6 +231,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+
   const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
     gql`${TripHotelList}`,
     {
