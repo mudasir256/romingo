@@ -50,16 +50,14 @@ const CheckoutPage: FC<Props> = () => {
   const hotel = useSelector((state: any) => {
     return state.hotelDetailReducer.detail;
   });
+  console.log('details')
+  console.log(detail)
 
-  console.log(room)
-  console.log(hotelDetails)
   //TODO: fetch cancellation policy for this hotel
   const { data, loading, error } = useQuery(
     gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
 
-  console.log('cancel policy from checkout page')
-  console.log(error)
-  console.log(data)
+
   const mobile = useMediaQuery("(max-width:800px)");
 
   // set payLater to true if check-in is more than 3 days in the future
@@ -107,6 +105,8 @@ const CheckoutPage: FC<Props> = () => {
                 />
               </Grid>
             )}
+
+
             <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
               <Grid container spacing={2}>
                 {mobile && (
@@ -142,13 +142,12 @@ const CheckoutPage: FC<Props> = () => {
                       // priceKey={detail?.room?.room?.priceKey}
                       // payLater={payLater}
                       //TODO: Update this policy
-                      policy={room?.room?.cancelationPolicy}
+                      policy={{cancelable: true, deadlineLocal: new Date().toISOString()}}
                     />
                   </Grid>
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
-                  {/* TODO: update... */}
-                  <CancelPolicy policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
+                  <CancelPolicy finalPrice={detail?.room?.PackagePrice?.FinalPrice} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
                 </Grid>
               </Grid>
             </Grid>

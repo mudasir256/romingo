@@ -881,6 +881,7 @@ const CheckoutInformation: FC<Props> = ({
                     sx={{ mt: 0, textAlign: "left" }}
                   >
                     <ul>
+                      {/*
                       {policy.cancelable ? (
                         <li>
                           Cancellations or changes made to your reservation
@@ -894,21 +895,11 @@ const CheckoutInformation: FC<Props> = ({
                       ) : (
                         <li>This rate is non-refundable.</li>
                       )}
-
-                      <li>
-                        You and your pet will be greeted by front desk staff
-                        upon arrival.
-                      </li>
-                      {policy.cancelable ? (
-                        <li>
-                          Hotel will collect payment from guests directly upon check-in.
-                        </li>
-                      ) : (
-                        <li>Your card will be charged immediately on a successful booking.</li>
-                      )}
-                      <li>
-                        Hotel may request a fully-refundable pet deposit and/or signed pet waiver upon check-in.
-                      </li>
+                      */}
+                      <li>Please make sure you&apos;ve reviewed the cancellation and refund policy above.</li>
+                      <li>You and your pet(s) will be greeted by front desk staff upon arrival.</li>
+                      <li>Your card will be charged immediately on a successful booking.</li>
+                      <li>Hotel may request a fully-refundable pet deposit and/or signed pet waiver upon check-in.</li>
                     </ul>
                   </Typography>
                   <Box
