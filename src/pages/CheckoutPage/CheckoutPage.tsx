@@ -54,9 +54,11 @@ const CheckoutPage: FC<Props> = () => {
   console.log(room)
   console.log(hotelDetails)
   //TODO: fetch cancellation policy for this hotel
-  const { data, loading } = useQuery(
+  const { data, loading, error } = useQuery(
     gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
 
+  console.log('cancel policy from checkout page')
+  console.log(error)
   console.log(data)
   const mobile = useMediaQuery("(max-width:800px)");
 

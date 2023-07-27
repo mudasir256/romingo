@@ -80,6 +80,7 @@ const ListingPageNew = ({ ...props }) => {
       pet_fee: hotel.petFee,
       pet_allowance: hotel.petAllowance,
       pet_size: hotel.petSize,
+      travolutionaryId: hotel.travolutionaryId,
 
       //marker
       type: 'hotel',
@@ -138,7 +139,7 @@ const ListingPageNew = ({ ...props }) => {
 
       min = parseFloat(Math.abs(min).toFixed(2))
       max = parseFloat(Math.abs(max).toFixed(2))
-      
+
       setMinPrice(min);
       setMaxPrice(max)
       setSliderValue([min, max])

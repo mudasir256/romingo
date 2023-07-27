@@ -868,6 +868,7 @@ const getHotelDetailById = (hotelId) => {
       catPolicy
       starRating
       numberOfReviews
+      travolutionaryId
     }
   }`
 }

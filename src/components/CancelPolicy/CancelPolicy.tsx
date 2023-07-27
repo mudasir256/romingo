@@ -17,6 +17,7 @@ interface Props {
 }
 
 const CancelPolicy = ({ sx, policy, search }) => {
+  console.log('cancel policy')
   console.log(policy)
   const [showExtra, setShowExtra] = useState(false)
 
