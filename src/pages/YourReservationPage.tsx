@@ -205,7 +205,7 @@ const YourReservationPage: FC<Props> = () => {
             >
               <Grid item xs={12} md={12}>
                 {console.log(reservation)}
-                <Typography sx={headerStyle}>Details for your {reservation.reservationStatus} stay:</Typography>
+                <Typography sx={headerStyle}>Details for your {reservation.status === 'cancelled' ? 'cancelled' : reservation.reservationStatus} stay:</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
@@ -273,7 +273,7 @@ const YourReservationPage: FC<Props> = () => {
                 xs={12}
                 md={12}
               >
-                {reservation.reservationStatus == 'upcoming' ? (
+                {reservation.reservationStatus == 'upcoming' && reservation.status !== 'cancelled' ? (
                   <>
                     <Button
                       variant="outlined"
