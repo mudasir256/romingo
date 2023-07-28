@@ -95,15 +95,35 @@ const YourReservationPage: FC<Props> = () => {
   }
 
   useEffect(() => {
-    let cancellationPolicyString = 'Refundable. Cancellation fees as follows: ';
+    // let cancellationPolicyString = 'Refundable. Cancellation fees as follows: ';
     const oneDay = (24*60*60*1000);
-    console.log(data?.getReservationDetails?.response)
-    if(data){
+    // console.log(data?.getReservationDetails?.response)
+
+    if (data){
       const cancellationPolicy = JSON.parse(data?.getReservationDetails?.response[0].cancellation_meta);
-      const search = JSON.parse(data?.getReservationDetails?.response[0].searchData)
-      for (let i = 0; i< cancellationPolicy.length ;i++){
-        cancellationPolicyString += `(${new Date(getTimestamp(cancellationPolicy[i].DateFrom)).toLocaleDateString()} - ${cancellationPolicy[i + 1] ? new Date(getTimestamp(cancellationPolicy[i + 1].DateFrom) - oneDay).toLocaleDateString() : new Date(search.checkOut).toLocaleDateString()} - ${cancellationPolicy[i].CancellationFee.FinalPrice}) `
+      console.log('cancel policy')
+      console.log(cancellationPolicy)
+
+      let isRefundable = false
+      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice === data?.getReservationDetails.response.find(item => true)?.bookingPrice) {
+        isRefundable = false
+      } else if (cancellationPolicy && cancellationPolicy.length === 2) {
+        isRefundable = true
+      } else {
+        //TODO: flag this, we haven't covered this case
       }
+
+      let cancellationPolicyString = ''
+      if (isRefundable) {
+        cancellationPolicyString = `Cancel before ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleDateString()} ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleTimeString('en-US')} for a partial refund. You will be charged a cancellation fee of $${cancellationPolicy[0].CancellationFee?.FinalPrice}. Cancellations after will be considered a no-show and you will be charged the full reservation price.`
+      } else {
+        cancellationPolicyString = 'This rate is non-refundable.'
+      }
+
+      // const search = JSON.parse(data?.getReservationDetails?.response[0].searchData)
+      // for (let i = 0; i< cancellationPolicy.length ;i++){
+      //   cancellationPolicyString += `(${new Date(getTimestamp(cancellationPolicy[i].DateFrom)).toLocaleDateString()} - ${cancellationPolicy[i + 1] ? new Date(getTimestamp(cancellationPolicy[i + 1].DateFrom) - oneDay).toLocaleDateString() : new Date(search.checkOut).toLocaleDateString()} - ${cancellationPolicy[i].CancellationFee.FinalPrice}) `
+      // }
       setCancellableText(cancellationPolicyString)
     }
 
