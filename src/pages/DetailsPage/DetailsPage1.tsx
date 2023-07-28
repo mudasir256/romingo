@@ -72,7 +72,6 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-  console.log(data)
 
   //TODO: WG, implement trip advisor compare rate
   // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
@@ -106,6 +105,8 @@ const DetailsPage1 = ({ ...props }) => {
       }
     }
   )
+  console.log('review')
+  console.log(reviews)
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
@@ -671,7 +672,7 @@ const DetailsPage1 = ({ ...props }) => {
           <Typography variant="h6">What People Are Saying</Typography>
           <Typography variant="base" sx={{ color: 'grey' }}>(Powered by Trip Advisor)</Typography>
           {/* TODO: load tripadvisor reviews */}
-          {reviews?.tripReviews?.length > 0 ? 
+          {!taReviewsLoading ? 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem', flexWrap: 'wrap', mt: '1.5rem'}}>
               {reviews.tripReviews.map(review => (
                 <Box key={review.name} maxWidth="540px">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { Box, Grid } from "@mui/material";
 import { FC } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -39,7 +39,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10,
               borderRadius: '6px 6px 6px 6px',
             }} src={img.replace(/'/g, "%27")} alt="hotel image" loading="lazy" />)
             : images.slice(0, imageCount).map((img, i) => (
-              <>
+              <Fragment key={img + i}>
                 <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}>
                   <img key={img + i} style={{
                     display: 'block', 
@@ -62,7 +62,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10,
                     ...sx,
                   }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>
-              </>))
+              </Fragment>))
       setItems(components);
     }
   }, [images]);

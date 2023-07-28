@@ -46,8 +46,8 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
     //   );
     // }
 
-    const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
-    setMarkup(markupInitial)
+    // const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
+    // setMarkup(markupInitial)
     const priceBeforeTax = detail.room.PackagePrice.FinalPrice - detail.room.PackagePrice.FinalTax;
 
     const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
@@ -71,14 +71,14 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
       price: detail.room.PackagePrice.FinalTax,
     });
 
-    tmp.push({
-      label: "Pet Fees",
-      price: 0,
-    });
+    // tmp.push({
+    //   label: "Pet Fees",
+    //   price: 0,
+    // });
 
     tmp.push({
       label: "Total",
-      price: (detail.room.PackagePrice.FinalPrice + markupInitial),
+      price: (detail.room.PackagePrice.FinalPrice), //+ markupInitial),
     });
 
     tmp.push({
@@ -295,44 +295,6 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             */
         } else if (detail.label === "Taxes & fees") {
           return (<Box key={i}>
-            <Box
-              key="markup"
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                mt: 1,
-                pt: 2,
-                borderTop: "1px solid #DDD",
-              }}
-            >
-              <Typography
-                variant="base"
-                sx={{
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  maxWidth: "70%",
-                  fontWeight: 600,
-                }}
-              >
-                Service Fee
-              </Typography>
-
-              <Typography
-                variant="base"
-                sx={{
-                  fontWeight: 500,
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                }}
-              >
-                {`+ ${dollarUSLocale.format(markup)}`}
-              </Typography>
-            </Box>
             <Box
               key={i}
               sx={{

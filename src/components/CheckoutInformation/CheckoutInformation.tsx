@@ -85,9 +85,6 @@ const CheckoutInformation: FC<Props> = ({
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
-  
-  console.log('details')
-  console.log(detail)
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -286,8 +283,17 @@ const CheckoutInformation: FC<Props> = ({
     async onCompleted(data) {
       console.log('completed')
       console.log(data)
+      if (data?.createBookingUsingTravolutionary?.response === null) {
+        setBookingSuccess(0)
+        return
+      }
       setBookingSuccess(1)
       setBookingData(data.createBookingUsingTravolutionary.response)
+    },
+    async onError(error) {
+      console.log(error)
+      setBookingSuccess(0)
+
     }
     //TODO: add error, setBookingSuccess(0)
   }
@@ -589,7 +595,7 @@ const CheckoutInformation: FC<Props> = ({
               )}
             {bookingSuccess > -1 ? (
               <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
-                { bookingSuccess === 0 ? (
+                { bookingSuccess == 0 ? (
                   <Box sx={{ mt: -5 }}>
                     <ErrorDog size="150px" />
                     <Typography
@@ -621,21 +627,21 @@ const CheckoutInformation: FC<Props> = ({
                         </Typography>
                       </li>
                     </ul>
+                    
                     <Typography variant="body1">
-                      If this behavior continues, please contact support with
-                      the following reference #:
+                      If this behavior continues, please contact support. 
                     </Typography>
+                      {/* with
+                      the following reference #:
                     <Typography
                       variant="body1"
                       sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
                     >
                       {bnplData?.createBooking2?.booking?.faunaDocId}
                     </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
-                      Note: your credit card may have been authorized, but not
-                      charged. If your card was authorized, authorization should
-                      automatically fall off in a few days.
-                    </Typography>
+                    */}
+              
+                  
                   </Box>
                 ) : (
                   <Box sx={{ mt: -5 }}>
@@ -896,7 +902,7 @@ const CheckoutInformation: FC<Props> = ({
                         <li>This rate is non-refundable.</li>
                       )}
                       */}
-                      <li>Please make sure you&apos;ve reviewed the cancellation and refund policy above.</li>
+                      <li>Please make sure you&apos;ve reviewed the cancellation and refund policy.</li>
                       <li>You and your pet(s) will be greeted by front desk staff upon arrival.</li>
                       <li>Your card will be charged immediately on a successful booking.</li>
                       <li>Hotel may request a fully-refundable pet deposit and/or signed pet waiver upon check-in.</li>
