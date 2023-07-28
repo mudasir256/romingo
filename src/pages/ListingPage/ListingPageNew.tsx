@@ -21,6 +21,22 @@ import Chip from '@mui/material/Chip'
 
 const ListingPageNew = ({ ...props }) => {
 
+  const initialAmenityFilterState = {
+    pool: false,
+    airportShuttle: false,
+    parking: false,
+    spa: false,
+    kitchen: false,
+    wifiIncluded: false,
+    restaurant: false,
+    gym: false,
+    cribs: false,
+    washerAndDryer: false,
+    dryCleaning: false,
+    wheelchairAccessible: false,
+    smokeFree: false
+  }
+
   const [sessionId, setSessionId] = useState('')
   const [formatHotels, setFormatHotels] = useState([]);
   const [hotels, setHotels] = useState([]);
@@ -31,6 +47,7 @@ const ListingPageNew = ({ ...props }) => {
   const [sort, setSort] = useState('alphabetSort');
   const [selectedCity, setSelectedCity] = useState(search.city)
   const [rating, setRating] = useState({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true});
+  const [filterAmenities, setFilterAmenities] = useState(initialAmenityFilterState)
   const [query, setQuery] = useState('');
   const [sliderValue, setSliderValue] = useState(0)
   const [shouldFilter, setShouldFilter] = useState(false)
@@ -60,6 +77,7 @@ const ListingPageNew = ({ ...props }) => {
 
 
   const formatHotel = (hotel) => {
+
     return {
       imageURLs: [hotel.DefaultImage.FullSize],
       name: hotel.DisplayName,
@@ -81,6 +99,7 @@ const ListingPageNew = ({ ...props }) => {
       pet_allowance: hotel.petAllowance,
       pet_size: hotel.petSize,
       travolutionaryId: hotel.travolutionaryId,
+      amenities: hotel.amenities?.map(amenity => amenity.code) || [],
 
       //marker
       type: 'hotel',
@@ -172,7 +191,48 @@ const ListingPageNew = ({ ...props }) => {
     }
   }
 
-  //TODO: add amenities
+  const hotelHasAmenities = (list, hotel) => {
+    const amenities = Object.keys(list).filter(key => list[key])
+    let passed = true
+    for (let i = 0; i < amenities.length; i++) {  
+      const amenity = amenities[i]
+      if (amenity === 'pool') {
+        passed = hotel.amenities.some(item => item == 66 || item == 71)
+      } else if (amenity === 'airportShuttle') {
+        passed = hotel.amenities.some(item => item == 41 || item == 282)
+      } else if (amenity === 'parking') {
+        passed = hotel.amenities.some(item => item == 68 || item == 42)
+      } else if (amenity === 'spa') {
+        passed = hotel.amenities.some(item => item == 84)
+      } else if(amenity === 'kitchen') {
+        passed = hotel.amenities.some(item => item == 262)
+      } else if (amenity === 'wifiIncluded') {
+        passed = hotel.amenities.some(item => item == 179 || item == 259 || item == 261)
+      } else if (amenity === 'restaurant') {
+        passed = hotel.amenities.some(item => item == 76)
+      } else if (amenity === 'gym') {
+        passed = hotel.amenities.some(item => item == 48)
+      } else if(amenity === 'cribs') {
+        passed = hotel.amenities.some(item => item == 2017)
+      } else if (amenity === 'washerAndDryer') {
+        passed = hotel.amenities.some(item => item == 168)
+      } else if (amenity === 'dryCleaning') { 
+        passed = hotel.amenities.some(item => item == 96)
+      } else if (amenity === 'wheelchairAccessible') {
+        passed = hotel.amenities.some(item => item == 101)
+      } else if (amenity === 'smokeFree') {
+        passed = hotel.amenities.some(item => item == 312)
+      } else {
+        //not handled
+      }
+      if (passed === false) {
+        return false
+      }
+    }
+    return passed;
+
+  }
+
   useEffect(() => {
     if (data?.getHotels?.hotels?.length > 0) {
       
@@ -181,13 +241,15 @@ const ListingPageNew = ({ ...props }) => {
         return (hotel.lowestAveragePrice >= sliderValue[0] && 
           hotel.lowestAveragePrice <= sliderValue[1] &&
           hotel.name.toLowerCase().includes(query.toLowerCase()) &&
-          rating[starRating])
+          rating[starRating] &&
+          hotelHasAmenities(filterAmenities, hotel)
+        )
       })
       const sorted = sortHotelsBy(newHotels, sort)
       setHotels(sorted)
       setMarkers(newHotels)
     }
-  }, [shouldFilter, rating])
+  }, [shouldFilter, filterAmenities, rating])
 
 
   const handleSearch = (e) => {
@@ -220,6 +282,12 @@ const ListingPageNew = ({ ...props }) => {
      });
    };
 
+   const handleAmenityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setFilterAmenities({
+        ...filterAmenities,
+        [event.target.name]: event.target.checked,
+      });
+    };
 
   if (loading) {
     return <Loader size="400px" />
@@ -257,37 +325,51 @@ const ListingPageNew = ({ ...props }) => {
 
             <TextField label="Search by property name" variant="filled" fullWidth onChange={handleSearch} />
       
-            <Typography style={{ marginTop: 10 }}>Filter By</Typography>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox />} label="Pool" />
-              <FormControlLabel control={<Checkbox />} label="Pet Friendly" />
-              <FormControlLabel control={<Checkbox />} label="Hot Tub" />
-              <FormControlLabel control={<Checkbox />} label="Bed & breakfast" />
-              <FormControlLabel control={<Checkbox />} label="Condo" />
-            </FormGroup>
-            <Typography>Price per night</Typography>
-            <Slider
-              getAriaLabel={() => 'Price range'}
-              value={sliderValue}
-              onChange={handleSliderChange}
-              onChangeCommitted={() => setShouldFilter(!shouldFilter)}
-              valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
-              min={minPrice}
-              step={1}
-              max={maxPrice}
-              marks={[
-                {
-                  value: sliderValue[0],
-                  label: `$${sliderValue[0]}`
-                },
-                {
-                  value: sliderValue[1],
-                  label: `$${sliderValue[1]}`
-                }
-              ]}
-              sx={{ ml: '1em', width: '90%', maxWidth: '240px' }}
-            />
+            <Box my="1rem">
+              <Typography style={{ marginTop: 10 }}>Amenities</Typography>
+              <FormGroup onChange={handleAmenityChange}>
+                <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
+                <FormControlLabel control={<Checkbox name="airportShuttle" checked={filterAmenities["airportShuttle"]} />} label="Airport shuttle service" />
+                <FormControlLabel control={<Checkbox name="parking" checked={filterAmenities["parking"]} />} label="Parking" />
+                <FormControlLabel control={<Checkbox name="spa" checked={filterAmenities["spa"]} />} label="Spa" />
+                <FormControlLabel control={<Checkbox name="kitchen" checked={filterAmenities["kitchen"]} />} label="Kitchen" />
+                <FormControlLabel control={<Checkbox name="wifiIncluded" checked={filterAmenities["wifiIncluded"]} />} label="WiFi included" />
+                <FormControlLabel control={<Checkbox name="restaurant" checked={filterAmenities["restaurant"]} />} label="Restaurant" />
+                <FormControlLabel control={<Checkbox name="gym" checked={filterAmenities["gym"]} />} label="Gym" />
+                <FormControlLabel control={<Checkbox name="cribs" checked={filterAmenities["cribs"]} />} label="Cribs" />
+                <FormControlLabel control={<Checkbox name="washerAndDryer" checked={filterAmenities["washerAndDryer"]} />} label="Washer and Dryer" />
+                <FormControlLabel control={<Checkbox name="dryCleaning" checked={filterAmenities["dryCleaning"]} />} label="Dry-cleaning service" />
+                <FormControlLabel control={<Checkbox name="wheelchairAccessible" checked={filterAmenities["wheelchairAccessible"]} />} label="Wheelchair access" />
+                <FormControlLabel control={<Checkbox name="smokeFree" checked={filterAmenities["smokeFree"]} />} label="Smoke-free property" />
+              </FormGroup>
+            </Box>
+
+            <Box my="1rem">
+              <Typography>Price per night</Typography>
+              <Slider
+                getAriaLabel={() => 'Price range'}
+                value={sliderValue}
+                onChange={handleSliderChange}
+                onChangeCommitted={() => setShouldFilter(!shouldFilter)}
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+                min={minPrice}
+                step={1}
+                max={maxPrice}
+                marks={[
+                  {
+                    value: sliderValue[0],
+                    label: `$${sliderValue[0]}`
+                  },
+                  {
+                    value: sliderValue[1],
+                    label: `$${sliderValue[1]}`
+                  }
+                ]}
+                sx={{ ml: '1em', width: '90%', maxWidth: '240px' }}
+              />
+            </Box>
+
             <Typography>Guest Rating</Typography>
             <FormGroup>
               <FormControlLabel control={<Checkbox name="1" checked={rating['1']} />} onChange={handleRatingChange} label="1" />
@@ -303,19 +385,18 @@ const ListingPageNew = ({ ...props }) => {
             <Grid item container direction='row' justifyContent='space-between'>
               <Grid item>
                 <Box sx={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
-                <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
-                <Chip
-                   size="small"
-                   label="clear all filters"
-                   onDelete={() => {
-                     
-                     setRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
-                     setQuery('')
-                     setSliderValue([minPrice, maxPrice])
-                     setShouldFilter(!shouldFilter)
-                     //TODO: amenities
-                   }}
-                 />
+                  <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
+                  <Chip
+                     size="small"
+                     label="clear all filters"
+                     onDelete={() => {
+                       setRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
+                       setQuery('')
+                       setSliderValue([minPrice, maxPrice])
+                       setShouldFilter(!shouldFilter)
+                       setFilterAmenities(initialAmenityFilterState)
+                     }}
+                   />
                  </Box>
               </Grid>
               <Grid item >
@@ -392,13 +473,22 @@ const ListingPageNew = ({ ...props }) => {
         </AppBar>
         <Box style={{ padding: 20 }}>
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" value={query} fullWidth onChange={handleSearch} />
-          <Typography style={{ marginTop: 10 }}>Filter By</Typography>
-          <FormGroup>
-            <FormControlLabel control={<Checkbox />} label="Pool" />
-            <FormControlLabel control={<Checkbox />} label="Pet Friendly" />
-            <FormControlLabel control={<Checkbox />} label="Hot Tub" />
-            <FormControlLabel control={<Checkbox />} label="Bed & breakfast" />
-            <FormControlLabel control={<Checkbox />} label="Condo" />
+          <Typography style={{ marginTop: 10 }}>Amenities</Typography>
+          <FormGroup onChange={handleAmenityChange}>
+            <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
+            <FormControlLabel control={<Checkbox name="airportShuttle" checked={filterAmenities["airportShuttle"]} />} label="Airport shuttle service" />
+            <FormControlLabel control={<Checkbox name="parking" checked={filterAmenities["parking"]} />} label="Parking" />
+            <FormControlLabel control={<Checkbox name="spa" checked={filterAmenities["spa"]} />} label="Spa" />
+            <FormControlLabel control={<Checkbox name="kitchen" checked={filterAmenities["kitchen"]} />} label="Kitchen" />
+            <FormControlLabel control={<Checkbox name="wifiIncluded" checked={filterAmenities["wifiIncluded"]} />} label="WiFi included" />
+            <FormControlLabel control={<Checkbox name="restaurant" checked={filterAmenities["restaurant"]} />} label="Restaurant" />
+            <FormControlLabel control={<Checkbox name="gym" checked={filterAmenities["gym"]} />} label="Gym" />
+            <FormControlLabel control={<Checkbox name="cribs" checked={filterAmenities["cribs"]} />} label="Cribs" />
+            <FormControlLabel control={<Checkbox name="washerAndDryer" checked={filterAmenities["washerAndDryer"]} />} label="Washer and Dryer" />
+            <FormControlLabel control={<Checkbox name="dryCleaning" checked={filterAmenities["dryCleaning"]} />} label="Dry-cleaning service" />
+            <FormControlLabel control={<Checkbox name="wheelchairAccessible" checked={filterAmenities["wheelchairAccessible"]} />} label="Wheelchair access" />
+            <FormControlLabel control={<Checkbox name="smokeFree" checked={filterAmenities["smokeFree"]} />} label="Smoke-free property" />
+
           </FormGroup>
           <Typography>Price per night</Typography>
           <Slider defaultValue={0} step={100} marks min={0} max={1000} value={sliderValue} onChange={handleSliderChange} />

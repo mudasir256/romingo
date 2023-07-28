@@ -820,6 +820,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       city
       state
       zipcode
+      amenities
     }
   }
 }
