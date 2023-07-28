@@ -58,7 +58,6 @@ const DetailsPage1 = ({ ...props }) => {
   const [roomsDetails, setRoomsDetails] = useState([])
 
   const [sessionId, setSessionId] = useState('');
-  const [hotel, setHotelDetails] = useState(null)
   const search = useSelector((state: any) => state.searchReducer.search);
   const dispatch = useDispatch();
   const [showGallery, setShowGallery] = useState(false);
@@ -128,11 +127,6 @@ const DetailsPage1 = ({ ...props }) => {
     }
   }, [data])
 
-  useEffect(() => {
-    if (hotelInfo && hotelInfo.getHotelDetailById) {
-      setHotelDetails(hotelInfo.getHotelDetailById)
-    }
-  }, [hotelInfo])
 
   const handleOpen = (e) => {
     e.preventDefault();
@@ -161,9 +155,13 @@ const DetailsPage1 = ({ ...props }) => {
     return <DetailsPageSkeleton />
   }
 
-  if (!hotel) {
-    return (<div>TODO: Error screen</div>)
+  if (!loadingHotelInfo && (errorHotelInfo || !hotelInfo.getHotelDetailById)) {
+    window.location.href = '/404'
+    return 
   }
+
+  const hotel = hotelInfo.getHotelDetailById;
+
 
   const RoomCard = ({ key, images, room }) => {
     const [anchorEl, setAnchorEl] = useState<null | Element>(null);
@@ -376,7 +374,7 @@ const DetailsPage1 = ({ ...props }) => {
         <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : '10px', height: '500px' }}>
           <Box
             component="img"
-            src={hotel.images[0]}
+            src={hotel?.images[0]}
             // alt={name}
             boxShadow={1}
             // onClick={handleOpen}
@@ -386,7 +384,7 @@ const DetailsPage1 = ({ ...props }) => {
         <Grid item xs={12} sm={6} display={{ xs: 'none', sm: 'block' }}>
           {<Grid container spacing={2}>
             {
-              hotel.images.slice(1, 5).map((img: any) => {
+              hotel?.images.slice(1, 5).map((img: any) => {
                 return (
                   <Grid item sm={6} key={img} style={{ padding: mobile ? 0 : '10px', height: '250px' }}>
                     <Box
@@ -427,8 +425,8 @@ const DetailsPage1 = ({ ...props }) => {
       </Grid>
 
       <Grid container direction="row" sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
-        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel.hotelName}</Typography></Grid>
-        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel.starRating} />
+        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel?.hotelName}</Typography></Grid>
+        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel?.starRating} />
           <Circle
             sx={{
               fontWeight: 500,
@@ -451,7 +449,7 @@ const DetailsPage1 = ({ ...props }) => {
               margin: 'auto 5px'
             }}
           >
-            {hotel.numberOfReviews} reviews
+            {hotel?.numberOfReviews} reviews
           </Link>
         </Grid>
         <Grid
@@ -674,7 +672,7 @@ const DetailsPage1 = ({ ...props }) => {
           {/* TODO: load tripadvisor reviews */}
           {!taReviewsLoading ? 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem', flexWrap: 'wrap', mt: '1.5rem'}}>
-              {reviews.tripReviews.map(review => (
+              {reviews?.tripReviews.map(review => (
                 <Box key={review.name} maxWidth="540px">
                   <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'row', alignItems: 'center'}}>
                     <img style={{ borderRadius: '100%', width: '60px', height: '60px' }} src={review.pic} />
@@ -693,6 +691,7 @@ const DetailsPage1 = ({ ...props }) => {
             </Box>
             : <Loader size="220px" />
           }
+          {(!taReviewsLoading && !reviews) && 'No reviews found.'}
         </Grid>
 
       </Grid>
