@@ -194,7 +194,7 @@ const DetailsPage1 = ({ ...props }) => {
           </Grid>
           <Grid item style={{ padding: 10 }}>
             <Typography
-              variant="h6"
+              variant="p"
             // onClick={handleBook}
             >
               {room.Rooms[0].RoomName}
