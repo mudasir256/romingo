@@ -369,27 +369,27 @@ const DetailsPage1 = ({ ...props }) => {
   const getPetSizeLabel = (petSize) => {
     if(!petSize) return ''
     if(petSize === 'Any Size'){
-      return ' of any size or weight '
+      return ' of any size or weight. '
     }
     const split = petSize.split(' ');
     if(split.length === 2 && split[1] === 'lbs.'){
-      return ' up to ' + petSize + ' per pet';
+      return ' up to ' + petSize + ' per pet. ';
     }
 
     if(split.length === 2 && split[1] === 'lbs'){
-      return ' up to ' + petSize + ' per pet';
+      return ' up to ' + petSize + ' per pet. ';
     }
 
     if(petSize.includes('combined weight')){
-      return petSize.substring(0, petSize.lastIndexOf(" "))
+      return petSize.substring(0, petSize.lastIndexOf(" ")) + '.'
     }
   }
 
   const getPetFee = (petFee) => {
     if(petFee === 'NONE'){
-      return 'No pet fees are charged at this hotel. A fully refundable pet deposit may be requested or a signed waiver upon check-in'
+      return 'No pet fees are charged at this hotel. A fully refundable pet deposit may be requested or a signed waiver upon check-in.'
     } else {
-      return `Please note that a pet fee of ${petFee} may be collected upon arrival or departure`
+      return `Please note that a pet fee of ${petFee} may be collected upon arrival or departure.`
     }
   }
 
@@ -397,13 +397,13 @@ const DetailsPage1 = ({ ...props }) => {
     if(unattendedPets === 'Not applicable'){
       return ''
     } else {
-      return `${unattendedPets}`
+      return `${unattendedPets}.`
     }
   }
 
   const getCatPolicy = (catPolicy) => {
     if(catPolicy === 'Yes'){
-      return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval'
+      return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval.'
     } else {
       return ''
     }
@@ -515,7 +515,7 @@ const DetailsPage1 = ({ ...props }) => {
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >{ hotelDetailsFromPackage && 
 <Typography variant="base">{`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} 
-welcomes ${hotelDetailsFromPackage.petAllowance !== 'unlimited' ? parseInt(hotelDetailsFromPackage.petAllowance.split(' ')[0]) > 1 ? hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pets per reservation' : hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pet per reservation' : ' any number of pets ' } ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}.  ${getPetFee(hotelDetailsFromPackage.petFee)}. ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)}. ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)}. ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
+welcomes ${hotelDetailsFromPackage.petAllowance !== 'Unlimited' ? parseInt(hotelDetailsFromPackage.petAllowance.split(' ')[0]) > 1 ? hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pets per reservation' : hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pet per reservation' : ' any number of pets ' } ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
         }
           
           <Box my="2rem">
