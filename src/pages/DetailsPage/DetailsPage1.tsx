@@ -405,7 +405,26 @@ const DetailsPage1 = ({ ...props }) => {
     if(catPolicy === 'Yes'){
       return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval.'
     } else {
-      return ''
+      return `Cats are not permi@ed at ${hotelDetailsFromPackage.hotelName}.`
+    }
+  }
+
+  const getPetAllowance = (petAllowance) => {
+    console.log(petAllowance + 'test')
+    if(petAllowance === 'Unlimited'){
+      return ' any number of pets ' 
+    }
+    const split = hotelDetailsFromPackage.petAllowance.split(' ');
+    if(parseInt(split[0]) > 1) {
+      return `${split[0]} pets per reservation`
+    }
+
+    if(parseInt(split[0]) === 1){
+      return `${split[0]} pet per reservation`
+    }
+
+    if(petAllowance.includes('combined weight')){
+      return 'pets with '
     }
   }
 
@@ -515,7 +534,7 @@ const DetailsPage1 = ({ ...props }) => {
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >{ hotelDetailsFromPackage && 
 <Typography variant="base">{`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} 
-welcomes ${hotelDetailsFromPackage.petAllowance !== 'Unlimited' ? parseInt(hotelDetailsFromPackage.petAllowance.split(' ')[0]) > 1 ? hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pets per reservation' : hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pet per reservation' : ' any number of pets ' } ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
+welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
         }
           
           <Box my="2rem">
