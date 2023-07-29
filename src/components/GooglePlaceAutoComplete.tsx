@@ -76,18 +76,22 @@ export default function GoogleMaps(props) {
     geocoder.geocode({ 'address': newValue.description }, function (results, status) {
 
       if (status == google.maps.GeocoderStatus.OK) {
-        console.log({
-          city: newValue,
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng(),
-        })
-        props.setValue({
-          city: newValue,
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng(),
-        })
+        // console.log({
+        //   city: newValue,
+        //   lat: results[0].geometry.location.lat(),
+        //   lng: results[0].geometry.location.lng(),
+        // })
+        // props.setValue({
+        //   city: newValue,
+        //   lat: results[0].geometry.location.lat(),
+        //   lng: results[0].geometry.location.lng(),
+        // })
 
-        props.setSelectedCity(newValue)
+        props.setSelectedCity({
+          city: newValue,
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        })
 
       } else {
         console.log("Geocode was not successful for the following reason: " + status);

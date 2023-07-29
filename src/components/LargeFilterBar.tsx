@@ -45,9 +45,11 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   const [isTextField, setIsTextField] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
-  const [selectedCity, setSelectedCity] = useState(
-    search.city ? search.city : null
-  );
+  const [selectedCity, setSelectedCity] = useState(search.city ? {
+    city: search.city,
+    lat: search.lat,
+    lng: search.lng
+  } : null);
 
   const [formError, setFormError] = useState("");
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
@@ -63,7 +65,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       : { adults: 2, children: 0, dogs: 1 }
   );
 
-  const [newValue, setNewValue] = useState(null);
 
   const history = useHistory();
 
@@ -93,30 +94,26 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-    let city = search.city;
-    if(newValue) city = newValue;
+
     if (
       occupants.adults !== 0 &&
       selectedCity &&
       checkDate[0] &&
       checkDate[1]
     ) {
+
       setFormError("");
-      console.log('huh')
-      console.log(newValue)
-      console.log(city)
-      if (newValue) {
-        dispatch(
-          saveSearch({
-            city: city.city,
-            checkIn: new Date(checkDate[0]).toISOString(),
-            checkOut: new Date(checkDate[1]).toISOString(),
-            occupants,
-            lat: city.lat,
-            lng: city.lng,
-          })
-        );
-      }
+      dispatch(
+        saveSearch({
+          city: selectedCity.city,
+          checkIn: new Date(checkDate[0]).toISOString(),
+          checkOut: new Date(checkDate[1]).toISOString(),
+          occupants,
+          lat: selectedCity.lat,
+          lng: selectedCity.lng,
+        })
+      );
+    
       history.push("/listings");
     } else {
       alert("error");
@@ -250,7 +247,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
             <FormControl fullWidth>
-              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} />
+              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} />
             </FormControl>
           </Box>
 
