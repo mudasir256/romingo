@@ -72,7 +72,6 @@ const DetailsPage1 = ({ ...props }) => {
     `
   );
 
-  const hotelDetailsFromPackage = data?.getHotelDetails?.hotelDetails[0]
 
   //TODO: WG, implement trip advisor compare rate
   // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
@@ -161,7 +160,9 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   const hotel = hotelInfo.getHotelDetailById;
+  const hotelDetailsFromPackage = hotel
 
+  console.log(hotel)
 
   const RoomCard = ({ key, images, room }) => {
     const [anchorEl, setAnchorEl] = useState<null | Element>(null);

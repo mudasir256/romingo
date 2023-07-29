@@ -870,6 +870,8 @@ const getHotelDetailById = (hotelId) => {
       starRating
       numberOfReviews
       travolutionaryId
+      city
+      state
     }
   }`
 }
