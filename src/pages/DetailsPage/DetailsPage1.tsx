@@ -72,6 +72,8 @@ const DetailsPage1 = ({ ...props }) => {
     `
   );
 
+  const hotelDetailsFromPackage = data?.getHotelDetails?.hotelDetails[0]
+
   //TODO: WG, implement trip advisor compare rate
   // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
   //   gql`${TripHotelList}`,
@@ -104,8 +106,6 @@ const DetailsPage1 = ({ ...props }) => {
       }
     }
   )
-  console.log('review')
-  console.log(reviews)
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
@@ -366,6 +366,49 @@ const DetailsPage1 = ({ ...props }) => {
   }
     
 
+  const getPetSizeLabel = (petSize) => {
+    if(!petSize) return ''
+    if(petSize === 'Any Size'){
+      return ' of any size or weight '
+    }
+    const split = petSize.split(' ');
+    if(split.length === 2 && split[1] === 'lbs.'){
+      return ' up to ' + petSize + ' per pet';
+    }
+
+    if(split.length === 2 && split[1] === 'lbs'){
+      return ' up to ' + petSize + ' per pet';
+    }
+
+    if(petSize.includes('combined weight')){
+      return petSize.substring(0, petSize.lastIndexOf(" "))
+    }
+  }
+
+  const getPetFee = (petFee) => {
+    if(petFee === 'NONE'){
+      return 'No pet fees are charged at this hotel. A fully refundable pet deposit may be requested or a signed waiver upon check-in'
+    } else {
+      return `Please note that a pet fee of ${petFee} may be collected upon arrival or departure`
+    }
+  }
+
+  const getUnattendedPets = (unattendedPets) => {
+    if(unattendedPets === 'Not applicable'){
+      return ''
+    } else {
+      return `${unattendedPets}`
+    }
+  }
+
+  const getCatPolicy = (catPolicy) => {
+    if(catPolicy === 'Yes'){
+      return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval'
+    } else {
+      return ''
+    }
+  }
+
   return (
     <Box sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
@@ -470,8 +513,11 @@ const DetailsPage1 = ({ ...props }) => {
           xs={12}
           md={10}
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
-        >
-          <Typography variant="base">{hotel.petPolicyDescription}</Typography>
+        >{ hotelDetailsFromPackage && 
+<Typography variant="base">{`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} 
+welcomes ${hotelDetailsFromPackage.petAllowance !== 'unlimited' ? parseInt(hotelDetailsFromPackage.petAllowance.split(' ')[0]) > 1 ? hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pets per reservation' : hotelDetailsFromPackage.petAllowance.split(' ')[0] + ' pet per reservation' : ' any number of pets ' } ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}.  ${getPetFee(hotelDetailsFromPackage.petFee)}. ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)}. ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)}. ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
+        }
+          
           <Box my="2rem">
             <Divider />
           </Box>
