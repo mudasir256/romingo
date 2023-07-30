@@ -59,12 +59,11 @@ const ListingPageNew = ({ ...props }) => {
 
   const mobile = useMediaQuery("(max-width:800px)");
 
-  const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
+  const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge : []
 
   const { data, loading } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
 
-  console.log(data)
 
 
   const start = search.checkIn.substring(0, 10)

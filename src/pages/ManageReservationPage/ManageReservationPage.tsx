@@ -93,8 +93,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 const ManageReservationPage: FC<Props> = () => {
   const history = useHistory();
-  const [emailAddress, setEmailAddress] = useState("konduriyaswanth7@gmail.com");
-  const [confirmationNumber, setConfirmationNumber] = useState("lkfahg9m");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [confirmationNumber, setConfirmationNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [bookingStatus, setBookingStatus] = useState("");
@@ -105,7 +105,7 @@ const ManageReservationPage: FC<Props> = () => {
   console.log(emailAddress)
   console.log(confirmationNumber)
   const buttonEnabled =
-    emailAddress.length > 2 && confirmationNumber.length === 8;
+    emailAddress.length > 2 && confirmationNumber.length === 7;
 
   const data = {}
 

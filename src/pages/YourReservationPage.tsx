@@ -248,7 +248,7 @@ const YourReservationPage: FC<Props> = () => {
                 <Typography>Occupants</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>Adults: {JSON.parse(reservation.searchData).occupants.adults}, Children: {JSON.parse(reservation.searchData).occupants.children}, Dogs: {JSON.parse(reservation.searchData).occupants.childrenAge}</Typography>
+                <Typography>Adults: {JSON.parse(reservation.searchData).occupants.adults}, Children: {JSON.parse(reservation.searchData).occupants.children}, Dogs: {JSON.parse(reservation.searchData).occupants.dogs}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
