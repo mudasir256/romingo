@@ -643,30 +643,29 @@ const GetSabrePropertyDetails = `
 const GetHomePageProperty = `
   query GetHomePagePropertiesThree {
     getHomepagePropertiesThree {
-      id
-      addressLine1        
-      alias          
-      dogAmenities    
-      featuredImageURL 
-      googlePlaceId      
-      id             
-      imageURLs      
-      name             
-      romingoScore
-      allows_big_dogs
-      hotelEmail    
-      hotelAlternativeEmail
-      sabreId
-      zipCode
-      lowestAveragePrice
-      petFeePolicy {
-        maxPets
-        maxWeightPerPetInLBS
-        desc
-        perPet
-        perNight
-        breakup
-      }
+      hotelName
+      fullAddressLine
+      description
+      petPolicyDescription
+      amenities
+      lat
+      lng
+      images
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+      starRating
+      numberOfReviews
+      travolutionaryId
+      city
+      state
     }
   }
 `

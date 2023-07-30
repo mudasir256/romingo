@@ -80,46 +80,36 @@ const HomePage: FC<Props> = () => {
 
   const today = new Date();
 
-  const { data: newData, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
+  const { data: newData, loading, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
-  let ghSanDiego, westin, plazaResort, saguaro, hiltonSf, hrMissionBay, thompson,
-  avalon, ghVail, elRey, element, olive, andaz,
-  seabird, leMerdien, paradisePoint, hiltonLongBeach, hrOrange, marina
+  console.log(newData)
 
   if (newData) {
-    const sorted = [...newData.getHomepagePropertiesThree].sort((a, b) => a.name.localeCompare(b.name))
-    andaz = sorted[0];
-    avalon = sorted[1];
-    elRey = sorted[2];
-    element = sorted[3];
-    ghVail = sorted[4];
-    hiltonLongBeach = sorted[5];
-    hiltonSf = sorted[6];
-    olive = sorted[7];
-    hrOrange = sorted[8];
-    leMerdien = sorted[9];
-    ghSanDiego = sorted[10];
-    marina = sorted[11];
-    paradisePoint = sorted[12];
-    plazaResort = sorted[13];
-    saguaro = sorted[14];
-    seabird = sorted[15];
-    westin = sorted[16];
-    thompson = sorted[17]
+    // const sorted = [...newData.getHomepagePropertiesThree].sort((a, b) => a.name.localeCompare(b.name))
+    // andaz = sorted[0];
+    // avalon = sorted[1];
+    // elRey = sorted[2];
+    // element = sorted[3];
+    // ghVail = sorted[4];
+    // hiltonLongBeach = sorted[5];
+    // hiltonSf = sorted[6];
+    // olive = sorted[7];
+    // hrOrange = sorted[8];
+    // leMerdien = sorted[9];
+    // ghSanDiego = sorted[10];
+    // marina = sorted[11];
+    // paradisePoint = sorted[12];
+    // plazaResort = sorted[13];
+    // saguaro = sorted[14];
+    // seabird = sorted[15];
+    // westin = sorted[16];
+    // thompson = sorted[17]
   }
 
   const [showLocations, setShowLocations] = useState(false)
   const [showPetPolicies, setShowPetPolicies] = useState(false)
   const [showFull, setShowFull] = useState(false)
 
-  const locationIds = [
-    "ba12d364-9b1f-48c5-9ddc-7e68b40df076",
-    "2714faad-9ea8-4851-9506-274710cdd51b",
-    "d4c10666-addf-47a6-9870-767518d9ebad",
-    "6f2cf61f-c769-47d9-9e46-90c5664b60b1",
-    "82145909-13b4-4aab-be20-e0db474021c1",
-    "58b23325-2016-44ef-886f-67e962dab17f",
-  ];
 
   const handleImFlexibleClick = () => {
      const thirtyDays = DateTime.local().plus({ days: 21 }).toJSDate();
@@ -131,8 +121,10 @@ const HomePage: FC<Props> = () => {
        DateTime.fromJSDate(randomCheckIn).plus({ days: 1 }).toJSDate(),
        threeDaysFromCheckIn
      );
-     const cityId = locationIds[Math.floor(Math.random() * locationIds.length)];
-     const center = cities.find(x => x.id === cityId).center
+
+
+     //TODO: add a dummy search of sorts or get rid of
+     //replace city + lat/lng with google autocomplete stuff
 
      dispatch(
        saveSearch({
@@ -335,24 +327,24 @@ const HomePage: FC<Props> = () => {
         }}>
           <InfoBox 
             imgSrc={BookNow}
-            imgAlt="pet-friendly travel"
+            imgAlt="worry-free travel"
             imgWidth="70%"
-            header="Pet-friendly travel"
-            text="Romingo has searched thousands of pet-friendly hotels and we've picked the best for travelers and their pets to enjoy." 
+            header="Worry-Free Travel"
+            text="Romingo offers reliable and clear pet policies at the best pet-friendly hotels, guaranteeing a relaxing trip with your pet." 
           />
           <InfoBox
             imgSrc={LowestRates}
             imgAlt="lowest rates"
             imgWidth="83%"
-            header="Best rates + $0 pet fees"
-            text="Many travel sites have hidden fees, but Romingo offers the lowest rates and pets always stay for $0 pet fees."
+            header="Lowest Rates"
+            text="With $0 booking fees and the lowest rates, travelers always receive the best pricing available with Romingo."
           />
           <InfoBox
             imgSrc={AuthenticPet}
             imgAlt="trusted and accredited"
             imgWidth='85%'
-            header="Trusted and accredited"
-            text="Travelers and pets receive VIP amenities at our partner hotels. Plan your next pet-friendly trip with Romingo!"
+            header="Trusted & Accredited"
+            text="Over 50,000 pets (and their humans) have trusted Romingo, and our team is always here to help with your next trip!"
           />
         </Box>
       </Box>
@@ -402,80 +394,45 @@ const HomePage: FC<Props> = () => {
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
-            {(ghSanDiego) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
+            
+            {loading && <>
+              <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
+            </>}
+
+            {!loading && newData.getHomepagePropertiesThree.slice(0,3).map((hotel, i) => (
+              <Box key={i} sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
-                  key={0}
-                  {...ghSanDiego}
-                  name="Manchester Grand Hyatt"
-                  city={{ name: 'San Diego, CA' }}
-                  lowestTotalPriceAfterTax={161}
+
+                  {...hotel}
+                  name={hotel.hotelName}
+                  city={{ name: `${hotel.city}, ${hotel.state}` }}
+                  lowestTotalPriceAfterTax={0}
                   highlighted={false}
                 />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={0} /></Grid>
-            }  
-            {(westin) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={1}
-                  {...westin}
-                  name={'The Westin Bonaventure LA'}
-                  city={{ name: 'Los Angeles, CA' }}
-                  lowestTotalPriceAfterTax={119}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={1} /></Grid>
-            }  
-            {(plazaResort) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={2}
-                  {...plazaResort}
-                  city={{ name: 'Scottsdale, AZ' }}
-                  lowestTotalPriceAfterTax={149}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={2} /></Grid>
-            }  
+              </Box>
+            ))}
           </Box>
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'block', lg: 'flex' }, mb: '0.5rem' }}>
-            {(saguaro) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={3}
-                  {...saguaro}
-                  city={{ name: 'Palm Springs, CA' }}
-                  lowestTotalPriceAfterTax={135}
-                  highlighted={false}
-                />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
-            }  
+            {loading && <>
+              <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={3} /></Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
+            </>}
 
-            {(hiltonSf) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
+            {!loading && newData.getHomepagePropertiesThree.slice(3).map((hotel, i) => (
+              <Box key={i} sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
-                  key={4}
-                  {...hiltonSf}
-                  name={'Hilton San Francisco'}
-                  city={{ name: 'San Francisco, CA' }}
-                  lowestTotalPriceAfterTax={143}
+                  {...hotel}
+                  name={hotel.hotelName}
+                  city={{ name: `${hotel.city}, ${hotel.state}` }}
+                  lowestTotalPriceAfterTax={0}
                   highlighted={false}
                 />
-              </Box>: <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={4} /></Grid>
-            }  
-
-            {(thompson) ?
-              <Box sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
-                <ListingCardSquare
-                  key={5}
-                  {...thompson}
-                  city={{ name: 'San Antonio, TX' }}
-                  lowestTotalPriceAfterTax={199}
-                  highlighted={false}
-                />
-              </Box> : <Grid item xs={12} sm={12} md={6} lg={4}><ListingCardSkeleton key={5} /></Grid>
-            } 
+              </Box>
+            ))}
           </Box>
         </Box>
 
