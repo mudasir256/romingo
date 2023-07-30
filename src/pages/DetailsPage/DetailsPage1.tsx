@@ -66,6 +66,13 @@ const DetailsPage1 = ({ ...props }) => {
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
+  const { data: hotelInfo, loading: loadingHotelInfo, error: errorHotelInfo } = useQuery(
+    gql`
+      ${getHotelDetailById(hotelId)}
+    `
+  );
+
+
   const { data, loading, error, refetch } = useQuery(
     gql`
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
@@ -89,13 +96,7 @@ const DetailsPage1 = ({ ...props }) => {
   //   }
   // )
   //
-  const { data: hotelInfo, loading: loadingHotelInfo, error: errorHotelInfo } = useQuery(
-    gql`
-      ${getHotelDetailById(hotelId)}
-    `
-  );
 
- 
 
   const { data: reviews, loading: taReviewsLoading, error: taReviewError } = useQuery(
     gql`${TripReviews}`,
@@ -735,7 +736,6 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
 
           <Typography variant="h6">What People Are Saying</Typography>
           <Typography variant="base" sx={{ color: 'grey' }}>(Powered by Trip Advisor)</Typography>
-          {/* TODO: load tripadvisor reviews */}
           {!taReviewsLoading ? 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem', flexWrap: 'wrap', mt: '1.5rem'}}>
               {reviews?.tripReviews.map(review => (
