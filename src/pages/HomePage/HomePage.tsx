@@ -297,6 +297,16 @@ const HomePage: FC<Props> = () => {
     )
   }
 
+  //TODO: on click locationURl
+  //TODO: add on click for hotel images as well
+  
+  const LocationBox = ({ imageUrl, cityName, locationUrl }) => (
+    <Box display="flex" flexDirection="column">
+      <img width="370px" height="280px" style={{ borderRadius: 6 }} src={imageUrl} />
+      <Typography pt="0.5rem" variant='p'>{cityName}</Typography>
+    </Box>
+  )
+
   return (
     <div className="homepage">      
       <Helmet>
@@ -376,6 +386,27 @@ const HomePage: FC<Props> = () => {
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Where to next?</Typography>
         {/* todo add locations */}
+          <Box sx={{ 
+            display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, 
+            mb: {xs : 0, sm: 0, md: '0.5rem'},
+            ml: '1rem',
+            justifyContent: 'space-between'
+          }}>
+            
+            <LocationBox 
+              imageUrl="https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg"
+              cityName="Escape to San Diego"
+            />
+            <LocationBox 
+              imageUrl="https://storage.googleapis.com/romingo-production-public/locations/secondary/Portland.jpg"
+              cityName="Discover Portland"
+            />
+            <LocationBox 
+              imageUrl="https://storage.googleapis.com/romingo-production-public/locations/secondary/Denver.jpg"
+              cityName="Roam to Denver"
+            />
+
+          </Box>
 
         </Box>
 

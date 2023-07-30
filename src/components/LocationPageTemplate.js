@@ -587,7 +587,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
 
   const today = new Date();
 
-  const onlyCity = foundCity.name.split(',')[0];
+  const onlyCity = foundCity?.name?.split(',')[0];
 
   const IconTags = () => (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', p: '1em' }}>
@@ -619,12 +619,12 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
   );
   return <>
     <Helmet>
-      <title>Pet Friendly Hotels {foundCity.name} | Romingo</title>
+      <title>Pet Friendly Hotels {foundCity?.name || ''} | Romingo</title>
       <description>{cityContent.paragraphOne}</description>
       <meta name='keywords' content={cityContent.keywords} />
       <meta
         property='og:title'
-        content={`Pet Friendly Hotels ${foundCity.name} | Romingo`}
+        content={`Pet Friendly Hotels ${foundCity?.name} | Romingo`}
       />
       <meta property='og:description' content={cityContent.paragraphOne} />
       <meta property='og:image' content={cityContent.heroImage} />
@@ -634,7 +634,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
     <Box
       component='img'
       src={cityContent.heroImage}
-      alt={foundCity.name}
+      alt={foundCity?.name}
       sx={{
         objectFit: 'cover',
         width: '100%',
@@ -650,7 +650,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
       </Box>
       <Divider variant='middle' light sx={{ my: 2 }}>
         <Typography variant='body1' color='text.secondary'>
-          {foundCity.state.name.toUpperCase()}
+          {foundCity?.state?.name?.toUpperCase()}
         </Typography>
       </Divider>
       <Grid
@@ -680,12 +680,12 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
           </Divider>
           <Hidden lgDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar city={foundCity.id} />
+              <LargeFilterBar city={foundCity?.id} />
             </Box>
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar city={foundCity.id} />
+            <FilterBar city={foundCity?.id} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
@@ -699,7 +699,7 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
           <Box
             component='img'
             src={cityContent.secondaryImage}
-            alt={foundCity.name}
+            alt={foundCity?.name}
             sx={{
               objectFit: 'cover',
               width: '100%',
@@ -712,9 +712,9 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
         </Grid>
 
         <InnerContent
-          cityId={foundCity.id}
+          cityId={foundCity?.id}
           cityName={onlyCity}
-          city={foundCity.name}
+          city={foundCity?.name}
         />
 
         <Grid item xs={12} sx={{ mb: 1 }}>
@@ -725,12 +725,12 @@ const LocationPageTemplate = ({ cityName, cityHeroImage }) => {
           </Divider>
           <Hidden lgDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar city={foundCity.id} />
+              <LargeFilterBar city={foundCity?.id} />
             </Box>
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar city={foundCity.id} />
+            <FilterBar city={foundCity?.id} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
