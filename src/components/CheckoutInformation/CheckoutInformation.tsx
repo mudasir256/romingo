@@ -186,19 +186,10 @@ const CheckoutInformation: FC<Props> = ({
 
             Array.from(Array(occupants.adults)).forEach((_, i) => {
               if (i === 0) {
-                adults.push({
-                  firstName: checkoutForm.firstName.trim(),
-                  lastName: checkoutForm.lastName.trim(),
-                });
                 passengers.push({ ...passengerObj, "Id": uuid.v4() })
               } else {
                 const guestId = String.fromCharCode(64 + i);
                 const copyObj = { ...passengerObj };
-                adults.push({
-                  firstName: `Adult${guestId}`,
-                  lastName: checkoutForm.lastName.trim(),
-                  "Id": uuid.v4()
-                });
                 copyObj.PersonDetails.Name.GivenName = `Adult${guestId}`
                 copyObj.Id = uuid.v4();
                 passengers.push(copyObj)
@@ -211,20 +202,12 @@ const CheckoutInformation: FC<Props> = ({
                   const childId = String.fromCharCode(65 + i);
                   const guestId = String.fromCharCode(64 + i);
                   const copyObj = { ...passengerObj };
-                  adults.push({
-                    firstName: `Adult${guestId}`,
-                    lastName: checkoutForm.lastName.trim(),
-                    "Id": uuid.v4()
-                  });
+             
                   copyObj.PersonDetails.Name.GivenName = `Child${childId}`
-                  copyObj.PersonDetails.Type = 0;
+                  copyObj.PersonDetails.Type = 1;
+                  copyObj.PersonDetails.Age = x_;
                   copyObj.Id = uuid.v4();
                   passengers.push(copyObj)
-                  children.push({
-                    firstName: `Child${childId}`,
-                    lastName: checkoutForm.lastName.trim(),
-                    age: occupants.childrenAge[i],
-                  });
                 }
               );
             }
