@@ -10,8 +10,9 @@ const BookingDetailCard: FC = () => {
   const details = useSelector((state: any) => state.searchReducer.search);
   const room = useSelector(
     // eslint-disable-next-line
-    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room
+    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.Rooms.find(item => true)
   );
+
 
   return (
     <Box
@@ -142,14 +143,14 @@ const BookingDetailCard: FC = () => {
               opacity: 0.75,
             }}
           >
-            {room?.name ? room.name : "Room"}
+            {room?.RoomName || room?.BedType || "Standard Room"}
           </Typography>
         </Box>
 
 
         <ImageSlider
           images={room?.imageURLs}
-          name={room?.name ? room.name : "Room"}
+          name={room?.RoomName || room?.BedType ||  "Standard Room"}
           sx={{
             display: "flex",
             flex: 1,

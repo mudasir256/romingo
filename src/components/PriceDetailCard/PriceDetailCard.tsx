@@ -194,7 +194,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                   paddingLeft: "8px",
                 }}
               >
-                <b>{`${dollarUSLocale.format(detail?.price)}*`}</b>
+                <b>{`${dollarUSLocale.format(detail?.price)}`}</b>
               </Typography>
             </Box>
           );

@@ -654,7 +654,7 @@ const CheckoutInformation: FC<Props> = ({
                     </Typography>
 
                     <Typography variant="body1" sx={{ textAlign: "left" }}>
-                      Your confirmation number is: <b>{bookingData ? bookingData.bookingId.toUpperCase() : ''}</b>
+                      Your confirmation number is: <b>{bookingData ? bookingData?.bookingId?.toUpperCase() : ''}</b>
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 2 }}>
                       We&apos;ve sent you an email with all of the details of
