@@ -396,11 +396,14 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   const getUnattendedPets = (unattendedPets) => {
+    let response = `${unattendedPets}`;
     if(unattendedPets === 'Not applicable'){
       return ''
-    } else {
-      return `${unattendedPets}.`
+    } 
+    if (!(response.charAt(response.length - 1) === '.')) { 
+      response = response + '.' 
     }
+    return response;
   }
 
   const getCatPolicy = (catPolicy) => {
@@ -412,7 +415,6 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   const getPetAllowance = (petAllowance) => {
-    console.log(petAllowance + 'test')
     if(petAllowance === 'Unlimited'){
       return ' any number of pets ' 
     }
