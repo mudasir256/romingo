@@ -20,18 +20,6 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
   console.log('cancel policy')
   console.log(policy)
 
-  let isRefundable = false
-
-  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === finalPrice) {
-    isRefundable = false
-  } else if (policy && policy.length === 2) {
-    isRefundable = true
-  } else {
-    //TODO: flag this, we haven't covered this case
-  }
-
-  const [showExtra, setShowExtra] = useState(false)
-
   const getTimestamp = (timestamp) => {
     const regex = /\b\d+\b/;
     const timestampMatch = timestamp.match(regex);
@@ -44,6 +32,35 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
     }
     return ""
   }
+
+  let isRefundable = false
+  let isFullRefund = false
+
+  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === finalPrice) {
+    const dateFrom = policy[0].DateFrom
+
+    const date1 = new Date(getTimestamp(dateFrom)).getTime();
+    const date2 = new Date().getTime();
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    console.log(diffDays)
+    if (diffDays < 2) {
+      isRefundable = false
+
+    } else {
+      isRefundable = true
+      isFullRefund = true
+    }
+    
+  } else if (policy && policy.length === 2) {
+    isRefundable = true
+    isFullRefund = false
+  } else {
+    //TODO: flag this, we haven't covered this case
+  }
+
+  const [showExtra, setShowExtra] = useState(false)
+
 
   return (
     <Box sx={sx}>
@@ -72,7 +89,7 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
             px: 0,
           }}
         >
-          {policy && policy.length === 1 &&
+          {policy && !isRefundable &&
             <>
               <Box
                 sx={{
@@ -117,7 +134,14 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
             </>
           }
 
-          {policy && policy.length === 2 && (
+          {(policy && isRefundable && isFullRefund) && (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <Typography variant="base">Cancel <span style={{ color: 'red'}}>before {new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()} {new Date(getTimestamp(policy[0].DateFrom)).toLocaleTimeString('en-US')}</span> for a full refund. Please allow 5-7 business days for a refund to process.</Typography>
+              <Typography variant="base">Cancellations after will be considered a no-show and you will be charged the full reservation price.</Typography>
+            </Box>          
+          )}
+
+          {(policy && isRefundable && !isFullRefund) && (
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <Typography variant="base">Cancel <span style={{ color: 'red'}}>before {new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()} {new Date(getTimestamp(policy[0].DateFrom)).toLocaleTimeString('en-US')}</span> for a partial refund. You will be charged a cancellation fee of <span style={{ color: 'red'}}>${policy[0].CancellationFee?.FinalPrice}</span>.</Typography>
               <Typography variant="base">Cancellations after will be considered a no-show and you will be charged the full reservation price.</Typography>

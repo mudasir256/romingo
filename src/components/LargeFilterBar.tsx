@@ -101,7 +101,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       checkDate[0] &&
       checkDate[1]
     ) {
-
+      console.log(occupants)
       setFormError("");
       dispatch(
         saveSearch({

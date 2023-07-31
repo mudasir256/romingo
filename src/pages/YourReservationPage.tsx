@@ -18,6 +18,7 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Loader from "../components/UI/Loader";
 import MobileSearchBar from '../components/MobileHomePageFilterBar';
+import moment from 'moment'
 
 const YourReservationPage: FC<Props> = () => {
   const history = useHistory();
@@ -105,8 +106,24 @@ const YourReservationPage: FC<Props> = () => {
       console.log(cancellationPolicy)
 
       let isRefundable = false
-      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice === data?.getReservationDetails.response.find(item => true)?.bookingPrice) {
+      let isFullRefund
+      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice === roomDetails.room.PackagePrice.FinalPrice) {
         isRefundable = false
+        const dateFrom = cancellationPolicy[0].DateFrom
+
+        const date1 = new Date(getTimestamp(dateFrom)).getTime();
+        const date2 = new Date().getTime();
+        const diffTime = Math.abs(date2 - date1);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+        if (diffDays < 2) {
+          isRefundable = false
+
+        } else {
+          isRefundable = true
+          isFullRefund = true
+        }
+
       } else if (cancellationPolicy && cancellationPolicy.length === 2) {
         isRefundable = true
       } else {
@@ -114,7 +131,9 @@ const YourReservationPage: FC<Props> = () => {
       }
 
       let cancellationPolicyString = ''
-      if (isRefundable) {
+      if (isRefundable && isFullRefund) {
+        cancellationPolicyString = `Cancel before ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleDateString()} ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleTimeString('en-US')} for a full refund. Please allow 5-7 business days for a refund to process. Cancellations after will be considered a no-show and you will be charged the full reservation price.`
+      } else if (isRefundable) {
         cancellationPolicyString = `Cancel before ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleDateString()} ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleTimeString('en-US')} for a partial refund. You will be charged a cancellation fee of $${cancellationPolicy[0].CancellationFee?.FinalPrice}. Cancellations after will be considered a no-show and you will be charged the full reservation price.`
       } else {
         cancellationPolicyString = 'This rate is non-refundable.'

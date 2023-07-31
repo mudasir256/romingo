@@ -160,13 +160,7 @@ const CheckoutInformation: FC<Props> = ({
           console.log('payment intent')
           console.log(error)
           if (paymentIntent) {
-            const adults: { firstName: string; lastName: string }[] = [];
-            const children: {
-              firstName: string;
-              lastName: string;
-              age: number;
-            }[] = [];
-
+        
             const passengers = []
             const passengerObj = {
               "Allocation": detail.room.Rooms[0].Id,
@@ -184,33 +178,67 @@ const CheckoutInformation: FC<Props> = ({
               }
             }
 
-            Array.from(Array(occupants.adults)).forEach((_, i) => {
+            for (let i = 0; i < occupants.adults ; i++) {
               if (i === 0) {
-                passengers.push({ ...passengerObj, "Id": uuid.v4() })
+                passengers.push({ 
+                  "Id": uuid.v4(),
+                  "Allocation": detail.room.Rooms[0].Id,
+                  "Email": { "Value": checkoutForm.email },
+                  "Telephone": {
+                    "PhoneNumber": checkoutForm.phone
+                  },
+                  "PersonDetails": {
+                    "Name": {
+                      "GivenName": checkoutForm.firstName,
+                      "NamePrefix": "Mr",
+                      "Surname": checkoutForm.lastName
+                    },
+                    "Type": 0
+                  }
+                })
               } else {
                 const guestId = String.fromCharCode(64 + i);
-                const copyObj = { ...passengerObj };
-                copyObj.PersonDetails.Name.GivenName = `Adult${guestId}`
-                copyObj.Id = uuid.v4();
-                passengers.push(copyObj)
+                passengers.push({
+                  "Id": uuid.v4(),
+                  "Allocation": detail.room.Rooms[0].Id,
+                  "Email": { "Value": checkoutForm.email },
+                  "Telephone": {
+                    "PhoneNumber": checkoutForm.phone
+                  },
+                  "PersonDetails": {
+                    "Name": {
+                      "GivenName": `Adult${guestId}`,
+                      "NamePrefix": "Mr",
+                      "Surname": checkoutForm.lastName
+                    },
+                    "Type": 0
+                  }
+                })
               }
-            });
+            } 
 
             if (occupants.children > 0) {
-              Array.from(Array(occupants?.childrenAge?.length)).forEach(
-                (x_, i) => {
-                  const childId = String.fromCharCode(65 + i);
-                  const guestId = String.fromCharCode(64 + i);
-                  const copyObj = { ...passengerObj };
-             
-                  copyObj.PersonDetails.Name.GivenName = `Child${childId}`
-                  copyObj.PersonDetails.Type = 1;
-                  copyObj.PersonDetails.Age = x_;
-                  copyObj.Id = uuid.v4();
-                  passengers.push(copyObj)
-                }
-              );
+              for (let x = 0; x < occupants?.childrenAge?.length; x++) {
+                const childId = String.fromCharCode(65 + x);
+                passengers.push({
+                  "Id": uuid.v4(),
+                  "Allocation": detail.room.Rooms[0].Id,
+                  "PersonDetails": {
+                    "Name": {
+                      "GivenName": `Child${childId}`,
+                      "Surname": checkoutForm.lastName,
+                      "NamePrefix": "Mr",
+                    },
+                    "Age": occupants.childrenAge[x],
+                    "Type": 1
+                  }
+                })
+              }
             }
+
+            console.log(passengers)
+
+
 
             createBookingInTravolutionary({
               variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
