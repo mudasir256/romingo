@@ -107,7 +107,7 @@ const YourReservationPage: FC<Props> = () => {
 
       let isRefundable = false
       let isFullRefund
-      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice === roomDetails.room.PackagePrice.FinalPrice) {
+      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice === data?.getReservationDetails.response[0].bookingPrice) {
         isRefundable = false
         const dateFrom = cancellationPolicy[0].DateFrom
 
@@ -163,7 +163,8 @@ const YourReservationPage: FC<Props> = () => {
           }
         }
       }).then((status) => {
-        if (status?.data?.cancelBooking?.status) {
+        console.log(status)
+        if (status?.data?.cancelBookingUsingTravolutionary?.response?.Status === 'CX') {
           setSuccesAlert(true)
           setOpenCancelConfirmation(false)
           setIsAlertOpen(true)
