@@ -51,8 +51,10 @@ export default function GoogleMaps(props) {
   const loaded = React.useRef(false);
   const dispatch: Dispatch<any> = useDispatch();
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false)
+  
+  //IF IS MOBILE, supply callback
   const isMobile = props.mobile;
-
+  const callback = props.callback;
 
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
@@ -65,7 +67,6 @@ export default function GoogleMaps(props) {
 
     loaded.current = true;
   }
-
 
   function handleLocationChange(newValue) {
 
@@ -150,6 +151,9 @@ export default function GoogleMaps(props) {
 
         if (results) {
           newOptions = [...newOptions, ...results];
+          if (isMobile) {
+            callback(results)
+          } 
         }
 
         setOptions(newOptions);
@@ -160,6 +164,29 @@ export default function GoogleMaps(props) {
       active = false;
     };
   }, [value, inputValue, fetch]);
+
+  if (props.mobile) {
+    return (
+      <Autocomplete
+        filterOptions={(x) => x}
+        options={options}
+        open={false}
+        value={search.city}
+        getOptionLabel={(option) =>
+          typeof option === 'string' ? option : option.description
+        }
+        onChange={(event: any, newValue: PlaceType | null) => {
+          handleLocationChange(newValue)
+        }}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        renderInput={(params) => (
+          <TextField {...params} placeholder="Going to..." fullWidth variant='outlined' size="small" sx={{ borderRadius: 5 }} />
+        )}
+      />
+    )
+  }
 
   return (
     <Autocomplete

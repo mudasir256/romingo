@@ -82,30 +82,6 @@ const HomePage: FC<Props> = () => {
 
   const { data: newData, loading, error } = useQuery(gql`${GetHomePageProperty}`, { variables: {}})
 
-  console.log(newData)
-
-  if (newData) {
-    // const sorted = [...newData.getHomepagePropertiesThree].sort((a, b) => a.name.localeCompare(b.name))
-    // andaz = sorted[0];
-    // avalon = sorted[1];
-    // elRey = sorted[2];
-    // element = sorted[3];
-    // ghVail = sorted[4];
-    // hiltonLongBeach = sorted[5];
-    // hiltonSf = sorted[6];
-    // olive = sorted[7];
-    // hrOrange = sorted[8];
-    // leMerdien = sorted[9];
-    // ghSanDiego = sorted[10];
-    // marina = sorted[11];
-    // paradisePoint = sorted[12];
-    // plazaResort = sorted[13];
-    // saguaro = sorted[14];
-    // seabird = sorted[15];
-    // westin = sorted[16];
-    // thompson = sorted[17]
-  }
-
   const [showLocations, setShowLocations] = useState(false)
   const [showPetPolicies, setShowPetPolicies] = useState(false)
   const [showFull, setShowFull] = useState(false)
@@ -297,14 +273,14 @@ const HomePage: FC<Props> = () => {
     )
   }
 
-  //TODO: on click locationURl
-  //TODO: add on click for hotel images as well
   
   const LocationBox = ({ imageUrl, cityName, locationUrl }) => (
-    <Box display="flex" flexDirection="column">
-      <img width="370px" height="280px" style={{ borderRadius: 6 }} src={imageUrl} />
-      <Typography pt="0.5rem" variant='p'>{cityName}</Typography>
-    </Box>
+    <Link to={locationUrl} underline="none">
+      <Box display="flex" flexDirection="column">
+        <img width="370px" height="280px" style={{ borderRadius: 6 }} src={imageUrl} />
+        <Typography pt="0.5rem" variant='p' color="black" sx={{ textDecoration: 'none'}}>{cityName}</Typography>
+      </Box>
+    </Link>
   )
 
   return (
@@ -396,14 +372,17 @@ const HomePage: FC<Props> = () => {
             <LocationBox 
               imageUrl="https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg"
               cityName="Escape to San Diego"
+              locationUrl="/pet-friendly-hotels/san-diego-california"
             />
             <LocationBox 
               imageUrl="https://storage.googleapis.com/romingo-production-public/locations/secondary/Portland.jpg"
               cityName="Discover Portland"
+              locationUrl="/pet-friendly-hotels/portland-oregon"
             />
             <LocationBox 
               imageUrl="https://storage.googleapis.com/romingo-production-public/locations/secondary/Denver.jpg"
               cityName="Roam to Denver"
+              locationUrl="/pet-friendly-hotels/denver-colorado"
             />
 
           </Box>

@@ -440,7 +440,7 @@ const DetailsPage1 = ({ ...props }) => {
         <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : '10px', height: '500px' }}>
           <Box
             component="img"
-            src={hotel?.images[0]}
+            src={hotel?.images?.find(item => true)}
             // alt={name}
             boxShadow={1}
             // onClick={handleOpen}
@@ -450,7 +450,7 @@ const DetailsPage1 = ({ ...props }) => {
         <Grid item xs={12} sm={6} display={{ xs: 'none', sm: 'block' }}>
           {<Grid container spacing={2}>
             {
-              hotel?.images.slice(1, 5).map((img: any) => {
+              hotel?.images?.slice(1, 5).map((img: any) => {
                 return (
                   <Grid item sm={6} key={img} style={{ padding: mobile ? 0 : '10px', height: '250px' }}>
                     <Box

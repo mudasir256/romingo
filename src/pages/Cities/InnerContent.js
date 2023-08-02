@@ -108,7 +108,7 @@ export default function InnerContent({ cityId, cityName, city }) {
               duration={2}
               highlighted={false}
               limitImages={true}
-              lowestAveragePrice={parseInt(card.listingsPagePromoText)}
+              lowestAveragePrice={parseInt(card?.listingsPagePromoText)}
               petFeePolicy={{
                 ...card.petFeePolicy,
                 totalFees: utils.computePetFeePolicyTotalFees(

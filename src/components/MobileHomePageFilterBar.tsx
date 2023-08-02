@@ -89,11 +89,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
 
   const dispatch: Dispatch<any> = useDispatch();
 
-  const getCityName = (cityId: string) => {
-    if (cityId) {
-      return cities.filter((city: any) => city.id === cityId)[0].name;
-    }
-  };
 
   const onOccupantChange = (value: Occupant) => setOccupants(value);
 
@@ -162,11 +157,6 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     }
   };
 
-  const handleCityClick = (city: string) => {
-    setSelectedCity(city.id)
-    setSelectedCityText(city.name)
-  }
-
   function groupCities(collection: any) {
     let i = 0, val, index;
     const values = [], result = [];
@@ -193,6 +183,57 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
 
   const CalendarWithRange = withRange(Calendar);
   const [showMobileCalendar, setShowMobileCalendar] = useState(false)
+  const [predictions, setPredictions] = useState([])
+
+
+  const handlePredictions = (newPredictions) => {
+    console.log(search.city)
+    if (!newPredictions.some(prediction => prediction.description === search.city.description)) {
+      console.log('not same search')
+      setPredictions(newPredictions)
+      setShowCities(true)     
+    }
+
+  }
+
+  const handleCityClick = (clicked) => {
+
+    const geocoder = new google.maps.Geocoder();
+    console.log(geocoder)
+    geocoder.geocode({ 'address': predictions[0].description }, function (results, status) {
+
+      if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results)
+
+        dispatch(
+          saveSearch({
+            city: predictions[0],
+            checkIn: new Date(checkDate[0]).toISOString(),
+            checkOut: new Date(checkDate[1]).toISOString(),
+            occupants,
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+          })
+        );
+
+        setSelectedCity({
+          city: predictions[0],
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        })
+        setNewValue({
+          city: predictions[0],
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        })
+        setShowCities(false)
+
+      } else {
+        console.log("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
 
   return (
     <>
@@ -222,7 +263,14 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               <LocationOnIcon xs={4} />
             </Grid>
             <Grid item xs={8} sx={{ zIndex: 50, minWidth: '90%' }}>
-              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} setValue={setNewValue} value={newValue} styles={{ width: '50%' }} />
+              <GooglePlaceAutoComplete 
+                mobile={true} 
+                callback={handlePredictions}
+                setSelectedCity={setSelectedCity} 
+                setValue={setNewValue}
+                value={newValue} 
+                styles={{ width: '100%' }} 
+              />
             </Grid>
           </Grid>
           <Box
@@ -401,7 +449,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         </Box>
       </Box>
 
-      {/* <Slide direction='up' in={showCities} mountOnEnter unmountOnExit>
+       <Slide direction='up' in={showCities} mountOnEnter unmountOnExit>
         <Box sx={{ 
           position: 'fixed', 
           overflow: 'auto',
@@ -415,16 +463,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           zIndex: 1000
         }}>
           <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
-            <Typography textAlign="center" variant="h5">{selectedCity ? getCityName(selectedCity).split(',')[0] : 'Select a city'}</Typography>
+            <Typography textAlign="center" variant="h5">Select a destination</Typography>
             <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowCities(false)}>X</Button>
           </Box>
           <Box height="88%" overflow="scroll">
-            {cities.map(city => 
-              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={city.name} onClick={() => { setSelectedCity(city.id); setShowCities(false); } }> <Typography variant="p">{city.name.split(',')[0]}</Typography></Box>
+            {predictions?.map(address => 
+              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={handleCityClick}><Typography variant="p">{address.description}</Typography></Box>
             )}
           </Box>
         </Box>
-      </Slide> */}
+      </Slide> 
     </>
   );
 };
