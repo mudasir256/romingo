@@ -31,7 +31,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   }, [cards]);
 
   return (
-    <div>
+    <Box>
       <div ref={divRef}>
         {cards.length > 0 && _DATA.currentData().map((card) => {
           const exists = cards.find(el => el.ID === card.ID);
@@ -48,16 +48,18 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
 
         )}
       </div>
+      <Box mb="1rem" ml="-2rem" sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'center', md: 'flex-start', lg: 'flex-start' } }}>
+        <Pagination
+          count={count}
+          size="large"
+          page={page}
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChange}
+        />
+      </Box>
 
-      <Pagination
-        count={count}
-        size="large"
-        page={page}
-        variant="outlined"
-        shape="rounded"
-        onChange={handleChange}
-      />
-    </div>
+    </Box>
   );
 };
 

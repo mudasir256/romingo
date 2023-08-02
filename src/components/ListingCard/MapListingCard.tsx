@@ -11,6 +11,7 @@ import {
 
 import DogIcon from '../../assets/icon/dog.png'
 import GiftIcon from '../../assets/icon/gift.svg'
+import HotelTags from '../../components/HotelTags'
 
 export interface ListingCardProps {
   id: string;
@@ -39,15 +40,6 @@ export interface ListingCardProps {
   showPrice?: boolean;
   noLink?: boolean;
   alias: string;
-  petFeePolicy?: {
-    maxPets: number;
-    maxWeightPerPetInLBS: number;
-    desc: string;
-    perPet: boolean;
-    perNight: boolean;
-    breakup: JSON;
-    totalFees: number;
-  };
   amenities?: {
     code: number;
     desc: string;
@@ -57,6 +49,10 @@ export interface ListingCardProps {
   };
   flag?: string;
   bookingId?: string;
+  pet_fee?: string;
+  pet_fee_Value?: string;
+  pet_allowance?: string;
+  pet_size?: string;
 }
 const MapListingCard: FC<ListingCardProps> = ({
   id,
@@ -77,104 +73,20 @@ const MapListingCard: FC<ListingCardProps> = ({
   highlighted = false,
   showPrice = true,
   noLink = false,
-  petFeePolicy,
   alias,
   amenities,
   limitImages = false,
   sessionId,
-  hotel,
+  pet_fee,
+  pee_fee_value,
+  pet_allowance,
+  pet_size,
   ...props
 }) => {
   const history = useHistory();
   const mobileCardPadding = 1;
 
   const [showRating, setShowRating] = useState(true)
-
-  const chipIconStyle = {
-    fontSize: { xs: '0.72em', sm: "0.75em" },
-    backgroundColor: 'transparent',
-    fontFamily: 'overpass-light',
-    mt: '0.35em',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    mr: '0.4em'
-  }
-
-  const iconSpacing = {
-    mt: '0.15em', 
-    ml: '0.15em'
-  }
-  const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
-
-  const HotelDescriptors = () => (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-      {hasPetFeeReduction ?
-        <Chip
-          size="small"
-          sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
-          label={<Box sx={{ ml: '0em', pl: 0}}><span style={{color: 'red', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900, textDecoration: 'line-through' }}>${Math.round(petFeePolicy.totalFees)}</span> $0 pet fees</Box>}
-        />
-
-        :  <Chip
-            size="small"
-            sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
-            label={<Box sx={{ ml: '0em', pl: 0}}>$0 pet fees</Box>}
-          />
-      }
-      {petFeePolicy && petFeePolicy.maxPets > 0 ?
-       <Chip
-         size="small"
-         sx={chipIconStyle}
-         icon={<Pets fontSize="small"  />}
-         label={<Box sx={iconSpacing}>{petFeePolicy.maxPets} dogs</Box>}
-       />
-       :  <Chip
-           size="small"
-           sx={chipIconStyle}
-           icon={<Pets fontSize="small"  />}
-           label={<Box sx={iconSpacing}>No limit on number of pets</Box>}
-          />
-        }
-      {petFeePolicy && (petFeePolicy.maxWeightPerPetInLBS === null || petFeePolicy.maxWeightPerPetInLBS === '') ?
-      
-          <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<img width="18px" src={DogIcon} />}
-            label={<Box sx={iconSpacing}>No pet weight limits</Box>}
-          />
-        : petFeePolicy && petFeePolicy.maxWeightPerPetInLBS <= 0 ?
-        ( 
-          <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<img width="18px" src={DogIcon} />}
-            label={<Box sx={iconSpacing}>75 lbs. each</Box>}
-          />
-          
-        ) :
-        
-            <Chip
-              size="small"
-              sx={chipIconStyle}
-              icon={<img width="18px" src={DogIcon} />}
-              label={<Box sx={iconSpacing}>{petFeePolicy ? petFeePolicy.maxWeightPerPetInLBS : 0} lbs. each</Box>}
-            />
-  
-      }
-
-      {dogAmenities.includes('dog beds & bowls') && 
-        <>
-          <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<img width="18px" src={GiftIcon} />}
-            label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities</Box>}
-          />
-        </>
-      }
-    </Box>
-  )
 
   const PriceDetails = () => (
     <Box sx={{ ml: 'auto', mr: '0.5em', mb: '0.25em' }}>
@@ -323,7 +235,7 @@ const MapListingCard: FC<ListingCardProps> = ({
             <Box sx={{ 
               mb: { xs: '0.75em', sm: '1em' },
             }}>
-              <HotelDescriptors />
+              <HotelTags pet_fee={pet_fee} pet_allowance={pet_allowance} pet_fee_value={pet_fee_value} pet_size={pet_size} />
             </Box>
 
             <Box sx={{

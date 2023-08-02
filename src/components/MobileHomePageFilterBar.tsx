@@ -79,7 +79,11 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
       ? search.checkOut
       : DateTime.local().plus({ days: 1 }).toJSDate(),
   ]);
-  const [newValue, setNewValue] = useState(null);
+  const [newValue, setNewValue] = useState(search.city ? {
+    city: search.city,
+    lat: search.lat,
+    lng: search.lng
+  } : null);
 
   const [occupants, setOccupants] = useState(
     search.occupants.dogs > 0
@@ -101,6 +105,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
+    console.log('handle click')
     if (
       occupants.adults !== 0 &&
       selectedCity &&
@@ -223,9 +228,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           zIndex: 2,
           paddingTop: "0.25rem",
           paddingBottom: "0.25rem",
-          width: '90%',
-          margin: '20px',
-          backgroundColor: '#ebecec',
+          width: (home ? '90%': '100%'),
+          margin: (home ? '20px' : 0),
+          backgroundColor: (home ? '#ebecec' : 'transparent'),
         }}
       >
         <Box

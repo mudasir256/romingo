@@ -1,5 +1,5 @@
 import { withStyles } from "@mui/styles";
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField, Dialog, AppBar, Toolbar, IconButton, useMediaQuery } from "@mui/material";
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField, Dialog, AppBar, Toolbar, IconButton, useMediaQuery, Divider } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -295,10 +295,11 @@ const ListingPageNew = ({ ...props }) => {
   return (
     <Grid sx={{ background: "#feffff" }}>
       <Navbar />
-      {mobile ?
-        <Box sx={{ width: '95%', margin: '10px auto' }}>
-          <DesktopFilterBarNew city={search.city} />
-        </Box> : <LargeFilterBar />}
+      {mobile 
+        ?<FilterBar home={false} />
+        : <LargeFilterBar />
+      }
+      {mobile && <Box mb="1rem"><Divider /></Box>}
       <Grid container direction='row' style={{ padding: mobile ? '0' : '30px', width: mobile ? '100%' : '80%', margin: 'auto', position: 'relative', }} >
         {mobile ?
           <Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
@@ -308,7 +309,7 @@ const ListingPageNew = ({ ...props }) => {
             <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setViewFilters(true)}>
               View filters
             </Button>
-          </Grid> :
+          </Grid>:
           <Grid item xs={0} sm={0} md={4} >
             <Box sx={{ display: "flex", my: 2, width: "100%" }}>
               <Map center={{ lat: search.lat, lng: search.lng }}
@@ -381,11 +382,12 @@ const ListingPageNew = ({ ...props }) => {
 
         <Grid item xs={12} sm={12} md={8} style={{ padding: mobile ? '0 10px' : '0 30px', width: '96%' }}>
           <Grid item container direction='row'>
-            <Grid item container direction='row' justifyContent='space-between'>
+            <Grid item container direction='row' justifyContent='space-between' alignItems="center">
               <Grid item>
                 <Box sx={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
                   <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
-                  <Chip
+                  {!mobile && 
+                    <Chip
                      size="small"
                      label="clear all filters"
                      onDelete={() => {
@@ -396,18 +398,15 @@ const ListingPageNew = ({ ...props }) => {
                        setFilterAmenities(initialAmenityFilterState)
                      }}
                    />
+                  }
                  </Box>
               </Grid>
               <Grid item >
                 <FormControl fullWidth size="small">
-                  <InputLabel id="demo-simple-select-label">Sort</InputLabel>
                   <Select
-                    labelId="demo-simple-select-label"
                     value={sort}
-                    label="Sort"
                     onChange={handleSort}
-                    variant='outlined'
-
+                    variant='standard'
                   >
                     <MenuItem value={'alphabetSort'}>Alphabet sort</MenuItem>
                     <MenuItem value={'priceSort_low_to_high'}>Price sort (low to high)</MenuItem>
@@ -470,9 +469,22 @@ const ListingPageNew = ({ ...props }) => {
             </Typography>
           </Toolbar>
         </AppBar>
+         <Chip
+          size="medium"
+          sx={{ py: '0.5rem', cursor: 'pointer' }}
+          label="clear all filters"
+          deleteIcon={<></>}
+          onClick={() => {
+            setRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
+            setQuery('')
+            setSliderValue([minPrice, maxPrice])
+            setShouldFilter(!shouldFilter)
+            setFilterAmenities(initialAmenityFilterState)
+          }}
+        />
         <Box style={{ padding: 20 }}>
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" value={query} fullWidth onChange={handleSearch} />
-          <Typography style={{ marginTop: 10 }}>Amenities</Typography>
+          <Typography style={{ marginTop: '1rem' }}>Amenities</Typography>
           <FormGroup onChange={handleAmenityChange}>
             <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
             <FormControlLabel control={<Checkbox name="airportShuttle" checked={filterAmenities["airportShuttle"]} />} label="Airport shuttle service" />
@@ -489,8 +501,33 @@ const ListingPageNew = ({ ...props }) => {
             <FormControlLabel control={<Checkbox name="smokeFree" checked={filterAmenities["smokeFree"]} />} label="Smoke-free property" />
 
           </FormGroup>
-          <Typography>Price per night</Typography>
-          <Slider defaultValue={0} step={100} marks min={0} max={1000} value={sliderValue} onChange={handleSliderChange} />
+
+          <Box my="1rem">
+            <Typography>Price per night</Typography>
+            <Slider
+              getAriaLabel={() => 'Price range'}
+              value={sliderValue}
+              onChange={handleSliderChange}
+              onChangeCommitted={() => setShouldFilter(!shouldFilter)}
+              valueLabelDisplay="auto"
+              getAriaValueText={valuetext}
+              min={minPrice}
+              step={1}
+              max={maxPrice}
+              marks={[
+                {
+                  value: sliderValue[0],
+                  label: `$${sliderValue[0]}`
+                },
+                {
+                  value: sliderValue[1],
+                  label: `$${sliderValue[1]}`
+                }
+              ]}
+              sx={{ ml: '1em', width: '85%', }}
+            />
+          </Box>
+
           <Typography>Guest Rating</Typography>
           <FormGroup onChange={handleRatingChange}>
             <FormControlLabel control={<Checkbox name="1" checked={rating["1"]} />} label="1" />
