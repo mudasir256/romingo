@@ -64,11 +64,12 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
   const [open, setOpen] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
-  const cities = useSelector((state: any) => state.cityListReducer.cities);
-  const [selectedCity, setSelectedCity] = useState(
-    search.city ? search.city : null
-  );
-  const [selectedCityText, setSelectedCityText] = useState('');
+  const [selectedCity, setSelectedCity] = useState(search.city ? {
+    city: search.city,
+    lat: search.lat,
+    lng: search.lng
+  } : null);
+  
   const [showCities, setShowCities] = useState(false);
 
   const [formError, setFormError] = useState("");
@@ -96,11 +97,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     if (!open) setIsTextField(false);
   }, [open]);
 
-  useEffect(() => {
-    if (city && city.length > 0 && cities.length > 0) {
-      setSelectedCity(city);
-    }
-  }, [cities]);
+ 
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
@@ -157,24 +154,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     }
   };
 
-  function groupCities(collection: any) {
-    let i = 0, val, index;
-    const values = [], result = [];
 
-
-    for (; i < collection.length; i++) {
-      val = collection[i]['state']['name'];
-      index = values.indexOf(val);
-      if (index > -1)
-        result[index].push(collection[i]);
-      else {
-        values.push(val);
-        result.push([collection[i]]);
-      }
-    }
-    return result;
-  }
-  const groups = groupCities(cities);
 
   let width = (home ? "100vw" : '85vw')
   if (forceWidth) {
@@ -241,17 +221,17 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         sx={{
           position: (home ? "absolute" : 'block'),
           zIndex: 2,
-          paddingTop: "0.1em",
-          paddingBottom: "12px",
-          width: '92%',
-          margin: '15px',
+          paddingTop: "0.25rem",
+          paddingBottom: "0.25rem",
+          width: '90%',
+          margin: '20px',
           backgroundColor: '#ebecec',
         }}
       >
         <Box
           sx={{
             display: "flex",
-            padding: (home ? ".5rem" : '0.5em'),
+            padding: (home ? "0.25rem" : '0.5em'),
             flexDirection: "column",
             alignItems: "center",
             mb: ".5rem",

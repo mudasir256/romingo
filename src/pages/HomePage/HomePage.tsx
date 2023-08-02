@@ -277,7 +277,16 @@ const HomePage: FC<Props> = () => {
   const LocationBox = ({ imageUrl, cityName, locationUrl }) => (
     <Link to={locationUrl} underline="none">
       <Box display="flex" flexDirection="column">
-        <img width="370px" height="280px" style={{ borderRadius: 6 }} src={imageUrl} />
+        <Box
+           component="img"
+           sx={{
+             borderRadius: 2,
+             height: '280px',
+             width: { xs: '93%', sm: '93%', md: '370px', lg: '370px' },
+           }}
+           alt={cityName}
+           src={imageUrl}
+         />
         <Typography pt="0.5rem" variant='p' color="black" sx={{ textDecoration: 'none'}}>{cityName}</Typography>
       </Box>
     </Link>
@@ -360,13 +369,15 @@ const HomePage: FC<Props> = () => {
       >
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
-          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Where to next?</Typography>
+          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Where to next?</Typography>
         {/* todo add locations */}
           <Box sx={{ 
-            display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, 
+            display: 'flex',
             mb: {xs : 0, sm: 0, md: '0.5rem'},
             ml: '1rem',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            flexDirection: { xs: 'column', 'sm': 'column', md: 'row', lg: 'row' }, 
+            gap: '2rem'
           }}>
             
             <LocationBox 
@@ -400,7 +411,7 @@ const HomePage: FC<Props> = () => {
           />
         </Box>
 
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '2rem', sm: '2rem', md: '4rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
