@@ -136,7 +136,7 @@ const CheckoutPage: FC<Props> = () => {
                       Finish Your Reservation
                     </Typography>
                     <CheckoutInformation
-                      sx={{ mt: 2, mb: "1rem" }}
+                      sx={{ mt: 2 }}
                       // finePrint={finePrint}
                       // price={detail?.room?.room?.totalPriceAfterTax}
                       // priceKey={detail?.room?.room?.priceKey}

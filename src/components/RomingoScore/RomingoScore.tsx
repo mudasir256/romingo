@@ -22,7 +22,6 @@ const RomingoScore: FC<Props> = ({ score, sm = false, left = false }) => {
         display: "flex",
         minWidth: 0,
         alignItems: "center",
-        mr: { sm: "0rem", xs: "auto" },
         ml: { sm: left ? "0px" : "auto", xs: "0px" },
       }}
     >

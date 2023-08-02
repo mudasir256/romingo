@@ -2591,10 +2591,10 @@ export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
         <Box
           sx={{
             zIndex: 2,
-            margin: "0px auto 12px auto",
+            margin: "0px auto 0px auto",
             paddingBottom: "12px",
-            borderBottom: "1px solid #ddd",
-            width: "90vw",
+            mr: '24px',
+            width: "93vw",
             background: "#fff",
           }}
         >

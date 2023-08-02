@@ -50,7 +50,7 @@ export interface ListingCardProps {
   flag?: string;
   bookingId?: string;
   pet_fee?: string;
-  pet_fee_Value?: string;
+  pet_fee_value?: string;
   pet_allowance?: string;
   pet_size?: string;
 }
@@ -78,7 +78,7 @@ const MapListingCard: FC<ListingCardProps> = ({
   limitImages = false,
   sessionId,
   pet_fee,
-  pee_fee_value,
+  pet_fee_value,
   pet_allowance,
   pet_size,
   ...props

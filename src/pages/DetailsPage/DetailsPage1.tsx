@@ -174,7 +174,7 @@ const DetailsPage1 = ({ ...props }) => {
       <Box>
         <Box  
           sx={{
-            width: '360px',
+            width: { xs: '93%', sm: '93%', md: '360px', lg: '360px' },
             position: 'relative',
             transition: "all .15s ease-in-out",
             boxShadow: 1,
@@ -410,7 +410,7 @@ const DetailsPage1 = ({ ...props }) => {
     if(catPolicy === 'Yes'){
       return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval.'
     } else {
-      return `Cats are not permi@ed at ${hotelDetailsFromPackage.hotelName}.`
+      return `Cats are not permitted at ${hotelDetailsFromPackage.hotelName}.`
     }
   }
 
@@ -437,7 +437,7 @@ const DetailsPage1 = ({ ...props }) => {
       <ScrollToTop />
       <Navbar />
       <Grid container direction='row' spacing={2} sx={{ maxWidth: mobile ? '95%' : 1200, margin: 'auto', position: 'relative', maxHeight: '500px',objectFit: 'contain' }} >
-        <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : '10px', height: '500px' }}>
+        <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : '10px', height: mobile ? '320px' : '500px' }}>
           <Box
             component="img"
             src={hotel?.images?.find(item => true)}
@@ -469,7 +469,7 @@ const DetailsPage1 = ({ ...props }) => {
         <Box
           sx={{
             position: "absolute",
-            right: { xs: "-10px", md: "20px" },
+            right: { xs: "5px", md: "20px" },
             bottom: { xs: "8px", md: "20px" },
             textAlign: "right",
           }}
@@ -492,7 +492,17 @@ const DetailsPage1 = ({ ...props }) => {
 
       <Grid container direction="row" sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
         <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel?.hotelName}</Typography></Grid>
-        <Grid item xs={12} md={3} sx={{ display: 'inline-flex' }}><RomingoScore score={hotel?.starRating} />
+        <Grid item xs={12} md={6} 
+          sx={{ 
+            pl: { xs: '12px', sm: '12px', md: 0, lg: 0 },
+            pr: { xs: 0, sm: 0, md: '1rem', lg: '1rem' }, 
+            display: 'flex', 
+            flexDirection: 'row', 
+            alignItems: 'center', 
+            gap: '0.25rem' 
+          }}
+        >
+          <RomingoScore score={hotel?.starRating} />
           <Circle
             sx={{
               fontWeight: 500,
@@ -500,22 +510,19 @@ const DetailsPage1 = ({ ...props }) => {
               opacity: 0.75,
               color: "#BC4749",
               fontSize: "20%",
-              margin: 'auto 10px'
             }} />
           <Link
-            // onClick={() => setReviewDialog(true)}
+            href="#reviews"
             sx={{
               cursor: "pointer",
               color: "#666",
               textDecoration: "underline",
-              display: { xs: "inline", sm: "inline", md: "block" },
               fontWeight: 500,
               opacity: 0.75,
               fontSize: "70%",
-              margin: 'auto 5px'
             }}
           >
-            {hotel?.numberOfReviews} reviews
+            <u>{hotel?.numberOfReviews} reviews</u>
           </Link>
         </Grid>
         <Grid
@@ -535,7 +542,7 @@ const DetailsPage1 = ({ ...props }) => {
           item
           xs={12}
           md={10}
-          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+          sx={{ paddingLeft: "16px", paddingRight: '16px', marginBottom: "1rem" }}
         >{ hotelDetailsFromPackage && 
 <Typography variant="base">{`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} 
 welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
@@ -576,7 +583,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           item
           xs={12}
           md={10}
-          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+          sx={{ paddingLeft: "16px", paddingRight: '16px', marginBottom: "1rem" }}
         >
           <Typography variant="h5">Where You&apos;ll Be</Typography>
           <Typography
@@ -618,7 +625,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           item
           xs={12}
           md={10}
-          sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
+          sx={{ paddingLeft: "16px", paddingRight: '16px', marginBottom: "1rem" }}
         >
           <Typography variant="h6">Hotel Description</Typography>
           <Typography variant="base">{hotel.description}</Typography>
@@ -680,7 +687,9 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
             >
               Choose your room
             </Typography>
-            <RoomsFilterBar refetch={refetch} />
+            <Box ml="0.15rem">
+              <RoomsFilterBar refetch={refetch} />
+            </Box>
           </Grid>
           {loading ? <Box mx="auto"><Loader size="220px" /></Box> : 
            rooms.length > 0 ?
@@ -733,10 +742,10 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           item
           xs={12}
           md={12}
-          sx={{ paddingLeft: "16px", my: "1rem" }}
+          sx={{ paddingLeft: "16px", paddingRight: '16px', my: "1rem" }}
         >
 
-          <Typography variant="h6">What People Are Saying</Typography>
+          <Typography id="reviews" variant="h6">What People Are Saying</Typography>
           <Typography variant="base" sx={{ color: 'grey' }}>(Powered by Trip Advisor)</Typography>
           {!taReviewsLoading ? 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem', flexWrap: 'wrap', mt: '1.5rem'}}>

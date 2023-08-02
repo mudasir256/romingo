@@ -67,10 +67,10 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
       <Box
         sx={{
           color: "#222",
-          pt: { xs: 0, sm: 2 },
+          pt: { xs: 2, sm: 2 },
           pb: 2.5,
-          px: { xs: "0rem", sm: "1rem" },
-          boxShadow: { xs: 0, sm: 0, md: 1 },
+          px: { xs: "1rem", sm: "1rem" },
+          boxShadow: { xs: 1, sm: 1, md: 1 },
           borderRadius: 2,
         }}
       >

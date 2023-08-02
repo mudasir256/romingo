@@ -156,6 +156,7 @@ const Map: FC<Props> = ({
                       lat: marker.lat,
                       lng: marker.lng,
                     });
+                    console.log(marker.hotel)
                     setShowInfo(true);
                     setShowInfoContents(marker.hotel);
                   }
