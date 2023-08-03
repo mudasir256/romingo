@@ -1,5 +1,5 @@
 import { withStyles } from "@mui/styles";
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField, Dialog, AppBar, Toolbar, IconButton, useMediaQuery, Divider } from "@mui/material";
+import { Box, Button, Checkbox, FormControl, Radio, RadioGroup, FormControlLabel, FormGroup, Grid, InputLabel, Link, MenuItem, Slider, TextField, Dialog, AppBar, Toolbar, IconButton, useMediaQuery, Divider } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -46,8 +46,13 @@ const ListingPageNew = ({ ...props }) => {
   const [markers, setMarkers] = useState([]);
   const [sort, setSort] = useState('alphabetSort');
   const [selectedCity, setSelectedCity] = useState(search.city)
+  
   const [rating, setRating] = useState({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true});
   const [filterAmenities, setFilterAmenities] = useState(initialAmenityFilterState)
+  const [petWeights, setPetWeights] = useState('all')  
+  const [allowsCats, setAllowsCats] = useState(false)
+  const [hasNoPetFees, setHasNoPetFees] = useState(false)
+
   const [query, setQuery] = useState('');
   const [sliderValue, setSliderValue] = useState(0)
   const [shouldFilter, setShouldFilter] = useState(false)
@@ -64,7 +69,7 @@ const ListingPageNew = ({ ...props }) => {
   const { data, loading } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
 
-
+  console.log(data)
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -97,6 +102,7 @@ const ListingPageNew = ({ ...props }) => {
       pet_fee: hotel.petFee,
       pet_allowance: hotel.petAllowance,
       pet_size: hotel.petSize,
+      cat_policy: hotel.catPolicy,
       travolutionaryId: hotel.travolutionaryId,
       amenities: hotel.amenities?.map(amenity => amenity.code) || [],
 
@@ -123,6 +129,7 @@ const ListingPageNew = ({ ...props }) => {
         pet_fee: hotel.petFee,
         pet_allowance: hotel.petAllowance,
         pet_size: hotel.petSize,
+        cat_policy: hotel.catPolicy
       }
 
     }
@@ -232,23 +239,42 @@ const ListingPageNew = ({ ...props }) => {
 
   }
 
+  const hotelHasWeights = (value, hotel) => {
+    const weight = parseInt(`${hotel.pet_size.charAt(0)}${hotel.pet_size.charAt(1)}`)
+
+    switch (value) {
+      case 'all':
+        return hotel.pet_size === 'Any Size'
+      case '75':
+        return weight > 75 || hotel.pet_size === 'Any Size'
+      case '50':
+        return weight > 25 || hotel.pet_size === 'Any Size'
+      case '25':
+        return true
+    }
+  }
+
   useEffect(() => {
     if (data?.getHotels?.hotels?.length > 0) {
       
       const newHotels = formatHotels.filter(hotel => {
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
+        
         return (hotel.lowestAveragePrice >= sliderValue[0] && 
           hotel.lowestAveragePrice <= sliderValue[1] &&
           hotel.name.toLowerCase().includes(query.toLowerCase()) &&
           rating[starRating] &&
-          hotelHasAmenities(filterAmenities, hotel)
+          hotelHasAmenities(filterAmenities, hotel) && 
+          (allowsCats ? hotel.cat_policy === 'Yes' : true) &&
+          (hasNoPetFees ? hotel.pet_fee === 'NONE' : true) &&
+          hotelHasWeights(petWeights, hotel)
         )
       })
       const sorted = sortHotelsBy(newHotels, sort)
       setHotels(sorted)
       setMarkers(newHotels)
     }
-  }, [shouldFilter, filterAmenities, rating])
+  }, [shouldFilter, filterAmenities, rating, hasNoPetFees, petWeights, allowsCats])
 
 
   const handleSearch = (e) => {
@@ -288,6 +314,10 @@ const ListingPageNew = ({ ...props }) => {
       });
     };
 
+    const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+       setPetWeights((event.target as HTMLInputElement).value);
+     };
+
   if (loading) {
     return <Loader size="400px" />
   }
@@ -323,8 +353,29 @@ const ListingPageNew = ({ ...props }) => {
               View on full map
             </Button>
 
-            <TextField label="Search by property name" variant="filled" fullWidth onChange={handleSearch} />
+            <TextField label="Search by property name" variant="filled" fullWidth value={query} onChange={handleSearch} />
       
+
+            <Box my="1rem">
+              <Typography style={{ marginTop: 10 }}>Pet Filters</Typography>
+
+              <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
+                <FormControlLabel value="25" control={<Radio />} label="Accepts 1-25 lbs" />
+                <FormControlLabel value="50" control={<Radio />} label="Accepts 26-75 lbs" />
+                <FormControlLabel value="75" control={<Radio />} label="Accepts 75+ lbs" />
+                <FormControlLabel value="all" control={<Radio />} label="Accepts all pet weights" />
+              </RadioGroup>
+  
+              <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
+                <FormControlLabel control={<Checkbox name="25" checked={allowsCats} />} label="Accepts cats" />
+              </FormGroup>
+
+              <FormGroup onChange={() => setHasNoPetFees(!hasNoPetFees)}>
+                <FormControlLabel control={<Checkbox name="25" checked={hasNoPetFees} />} label="$0 pet fees" />
+              </FormGroup>
+            </Box>
+
+
             <Box my="1rem">
               <Typography style={{ marginTop: 10 }}>Amenities</Typography>
               <FormGroup onChange={handleAmenityChange}>
@@ -396,6 +447,9 @@ const ListingPageNew = ({ ...props }) => {
                        setSliderValue([minPrice, maxPrice])
                        setShouldFilter(!shouldFilter)
                        setFilterAmenities(initialAmenityFilterState)
+                       setHasNoPetFees(false)
+                       setAllowsCats(false)
+                       setPetWeights('all')
                      }}
                    />
                   }
@@ -480,10 +534,33 @@ const ListingPageNew = ({ ...props }) => {
             setSliderValue([minPrice, maxPrice])
             setShouldFilter(!shouldFilter)
             setFilterAmenities(initialAmenityFilterState)
+            setHasNoPetFees(false)
+            setAllowsCats(false)
+            setPetWeights('all')
           }}
         />
         <Box style={{ padding: 20 }}>
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" value={query} fullWidth onChange={handleSearch} />
+         
+          <Box my="1rem">
+            <Typography style={{ marginTop: 10 }}>Pet Filters</Typography>
+
+            <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
+              <FormControlLabel value="25" control={<Radio />} label="Accepts 1-25 lbs" />
+              <FormControlLabel value="50" control={<Radio />} label="Accepts 26-75 lbs" />
+              <FormControlLabel value="75" control={<Radio />} label="Accepts 75+ lbs" />
+              <FormControlLabel value="all" control={<Radio />} label="Accepts all pet weights" />
+            </RadioGroup>
+          
+            <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
+              <FormControlLabel control={<Checkbox name="25" checked={allowsCats} />} label="Accepts cats" />
+            </FormGroup>
+
+            <FormGroup onChange={() => setHasNoPetFees(!hasNoPetFees)}>
+              <FormControlLabel control={<Checkbox name="25" checked={hasNoPetFees} />} label="$0 pet fees" />
+            </FormGroup>
+          </Box>
+
           <Typography style={{ marginTop: '1rem' }}>Amenities</Typography>
           <FormGroup onChange={handleAmenityChange}>
             <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
