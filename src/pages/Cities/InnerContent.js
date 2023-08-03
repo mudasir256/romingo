@@ -18,23 +18,17 @@ import Dallas from '../../components/CitiesContent/Dallas';
 import Austin from '../../components/CitiesContent/Austin';
 import Denver from '../../components/CitiesContent/Denver';
 import Houston from '../../components/CitiesContent/Houston';
-import ColoradoSprings from '../../components/CitiesContent/ColoradoSprings';
 import LosAngeles from '../../components/CitiesContent/LosAngeles';
-import Oceanside from '../../components/CitiesContent/Oceanside';
-import OrangeCounty from '../../components/CitiesContent/OrangeCounty';
 import PalmSprings from '../../components/CitiesContent/PalmSprings';
 import Phoenix from '../../components/CitiesContent/Phoenix';
 import Portland from '../../components/CitiesContent/Portland';
-import Sacramento from '../../components/CitiesContent/Sacramento';
 import SanAntonio from '../../components/CitiesContent/SanAntonio';
 import SanDiego from '../../components/CitiesContent/SanDiego';
 import SanFrancisco from '../../components/CitiesContent/SanFrancisco';
-import SantaBarbara from '../../components/CitiesContent/SantaBarbara';
 import SantaFe from '../../components/CitiesContent/SantaFe';
 import Scottsdale from '../../components/CitiesContent/Scottsdale';
 import Seattle from '../../components/CitiesContent/Seattle';
 import Tucson from '../../components/CitiesContent/Tucson';
-import Vail from '../../components/CitiesContent/Vail';
 import SaltLakeCity from '../../components/CitiesContent/SaltLakeCity';
 
 export const getHotelsByAlias = (data, aliases) => {
@@ -191,20 +185,6 @@ export default function InnerContent({ cityId, cityName, city }) {
     const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
     return <LosAngeles hotels={hotelsToDisplay} />;
 
-  } else if (cityName === 'Sacramento') {
-    const hotelAliases = [
-      'pet-friendly-hotels-sacramento-westin-sacramento',
-      'pet-friendly-hotels-sacramento-hyatt-place-sacramento-rancho-cordova',
-      'pet-friendly-hotels-sacramento-hyatt-house-sacramento-midtown',
-      'pet-friendly-hotels-sacramento-citizen-hotel-autograph-collection',
-      // 'pet-friendly-hotels-sacramento-larkspur-landing-sacramento',
-      'pet-friendly-hotels-sacramento-kimpton-sawyer-hotel',
-      'pet-friendly-hotels-sacramento-hyatt-regency-sacramento',
-    ];
-    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
-    console.log(hotelsToDisplay);
-    return <Sacramento hotels={hotelsToDisplay} />;
-
   } else if (cityName === 'Austin') {
     const hotelAliases = [
       'pet-friendly-hotels-austin-hotel-ella',
@@ -238,23 +218,6 @@ export default function InnerContent({ cityId, cityName, city }) {
     ];
     const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
     return <Denver hotels={hotelsToDisplay} />;
-
-  } else if (cityName === 'Oceanside') {
-    const hotelAliases = [''];
-    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
-    return <Oceanside hotels={hotelsToDisplay} />;
-
-  } else if (cityName === 'Orange County') {
-    const hotelAliases = [
-      'pet-friendly-hotels-orange-county-homewood-suites-anaheim-convention-center-disneyland',
-      'pet-friendly-hotels-orange-county-clarion-hotel-anaheim-resort',
-      'pet-friendly-hotels-orange-county-double-tree-by-hilton-santa-ana-orange-county-airport',
-      'pet-friendly-hotels-orange-county-sonesta-simple-suites-orange-county-airport',
-      'pet-friendly-hotels-orange-county-sonesta-select-huntington-beach-fountain-valley',
-      'pet-friendly-hotels-orange-county-sonesta-select-huntington-beach-fountain-valley',
-    ];
-    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
-    return <OrangeCounty hotels={hotelsToDisplay} />;
 
   } else if (cityName === 'Phoenix') {
     const hotelAliases = [
@@ -338,15 +301,6 @@ export default function InnerContent({ cityId, cityName, city }) {
     const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
     return <Tucson hotels={hotelsToDisplay} />;
 
-  } else if (cityName === 'Colorado Springs') {
-    const hotelAliases = [
-      'pet-friendly-hotels-colorado-springs-element-colorado-springs-downtown',
-      'pet-friendly-hotels-colorado-springs-hyatt-place-colorado-springs-garden-of-the-gods',
-      'pet-friendly-hotels-colorado-springs-wingate-by-wyndham-colorado-springs',
-    ];
-    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
-    return <ColoradoSprings hotels={hotelsToDisplay} />;
-
   } else if (cityName === 'Houston') {
     const hotelAliases = [
       'pet-friendly-hotels-houston-four-seasons-houston',
@@ -370,22 +324,6 @@ export default function InnerContent({ cityId, cityName, city }) {
     ];
     const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
     return <SanAntonio hotels={hotelsToDisplay} />;
-
-  } else if (cityName === 'Santa Barbara') {
-    const hotelAliases = [
-      'pet-friendly-hotels-santa-barbara-motel-6-goleta-ca-santa-barbara',
-      'pet-friendly-hotels-santa-barbara-motel-6-santa-barbara-ca-state-street',
-      'pet-friendly-hotels-santa-barbara-motel-6-santa-barbara-ca-beach',
-      'pet-friendly-hotels-santa-barbara-kimpton-goodland-the-leta',
-      'pet-friendly-hotels-santa-barbara-the-kimpton-canary',
-    ];
-    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
-    return <SantaBarbara hotels={hotelsToDisplay} />;
-
-  } else if (cityName === 'Vail') {
-    const hotelAliases = ['pet-friendly-hotels-denver-grand-hyatt-vail'];
-    const hotelsToDisplay = getHotelsByAlias(data, hotelAliases);
-    return <Vail hotels={hotelsToDisplay} />;
 
   } else {
     return (

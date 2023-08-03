@@ -43,12 +43,8 @@ const Austin = ({ hotels }) => {
       flexDirection='column'
       gap='1.5rem'
     >
-      <Typography mt='1rem' variant='base'>
-        Today let’s take a tour of Austin&apos;s finest pet-friendly hotels,
-        featuring a diverse selection of establishments, all the way from
-        luxurious hotel chains to charming boutique properties.
-      </Typography>
-      <Typography variant='h2'>Dedicated to Pets</Typography>
+
+      <Typography component="h2" variant='h2'>The Top Pet-Friendly Accommodations in Austin</Typography>
       <Typography variant='base'>
         With the city&apos;s dedicated commitment to providing a pet-friendly
         environment, it&apos;s no surprise that Austin boasts an impressive

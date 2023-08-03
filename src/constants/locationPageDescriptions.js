@@ -4,7 +4,7 @@ const HOTEL_DESCRIPTIONS = [
     heroImage:
       'https://storage.googleapis.com/romingo-production-public/locations/hero/austin-texas.jpg',
     paragraphOne:
-      'Austin, Texas – the bustling capital city of this fine state – is a hotspot for live music aficionados, cultural enthusiasts and outdoor adventure seekers.',
+      'Austin, Texas – the bustling capital city of this fine state – is a hotspot for live music aficionados, cultural enthusiasts and outdoor adventure seekers.\n\ntest',
     paragraphTwo:
       'Pet lovers will be pleased to know that Austin is teeming with pet-friendly accommodations to guarantee a delightful and unforgettable experience for both you and your furry companions.',
     secondaryImage:
