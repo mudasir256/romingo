@@ -133,7 +133,7 @@ const PalmSprings: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            We&apos;ve compiled our favorite hotels, activities, and restaurants for you to explore in Palm Springs with your pet. Pack your bags, grab your pet's leash, and get ready for an amazing journey of relaxation and exploration in Palm Springs.
+            We&apos;ve compiled our favorite hotels, activities, and restaurants for you to explore in Palm Springs with your pet. Pack your bags, grab your pet&apos;s leash, and get ready for an amazing journey of relaxation and exploration in Palm Springs.
           </Typography>
         </Grid>
 
