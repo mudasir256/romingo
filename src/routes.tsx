@@ -29,6 +29,8 @@ const Dallas = loadable(() => import('./pages/Cities/Dallas'))
 const Denver = loadable(() => import('./pages/Cities/Denver'))
 const Houston = loadable(() => import('./pages/Cities/Houston'))
 const LosAngeles = loadable(() => import('./pages/Cities/LosAngeles'))
+const PalmSprings = loadable(() => import('./pages/Cities/PalmSprings'))
+const Phoenix = loadable(() => import('./pages/Cities/Phoenix'))
 
 
 const Blog = loadable(() => import('./pages/Blog'))
@@ -197,7 +199,7 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/austin-texas"><Austin /></Route>
       <Route exact path="/pet-friendly-hotels/dallas-texas"><Dallas /></Route>
       <Route exact path="/pet-friendly-hotels/houston-texas"><Houston /></Route>
-      <Route exact path="/pet-friendly-hotels/phoenix-arizona"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
+      <Route exact path="/pet-friendly-hotels/phoenix-arizona"><Phoenix /></Route>
       <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
       <Route exact path="/pet-friendly-hotels/tucson-arizona"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
       <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
@@ -207,7 +209,7 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/seattle-washington"><LocationPageTemplate cityName="Seattle, WA" /></Route>
       <Route exact path="/pet-friendly-hotels/portland-oregon"><LocationPageTemplate cityName="Portland, OR" /></Route>
       <Route exact path="/pet-friendly-hotels/salt-lake-city-utah"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
-      <Route exact path="/pet-friendly-hotels/palm-springs-california"><LocationPageTemplate cityName="Palm Springs, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels/palm-springs-california"><PalmSprings /></Route>
       <Route exact path="/pet-friendly-hotels/los-angeles-california"><LosAngeles /></Route>
       <Route exact path="/pet-friendly-hotels/san-diego-california"><LocationPageTemplate cityName="San Diego, CA" /></Route>
       <Route exact path="/pet-friendly-hotels/san-francisco-california"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
