@@ -113,7 +113,7 @@ const Houston: FC = () => {
         <Grid item xs={12} sx={{ mb: 1 }}>
           <Divider light variant='middle' sx={{ mb: 1 }}>
             <Typography variant='body1' color='text.secondary'>
-              BOOK YOUR GETAWAY!
+              BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
           <Hidden lgDown>
@@ -240,7 +240,7 @@ const Houston: FC = () => {
         <Grid item xs={12} sx={{ mb: 1 }}>
           <Divider light variant='middle' sx={{ mb: 1 }}>
             <Typography variant='body1' color='text.secondary'>
-              BOOK YOUR GETAWAY!
+              BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
           <Hidden lgDown>
