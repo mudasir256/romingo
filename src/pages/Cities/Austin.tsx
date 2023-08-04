@@ -25,6 +25,7 @@ import IconTags from '../../components/IconTags';
 
 import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
+import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 const Austin: FC = () => {
 
@@ -171,6 +172,7 @@ const Austin: FC = () => {
           <Text text="Austin, Texas, is a city known for its welcoming and pet-friendly culture. Here are Austin's finest pet-friendly hotels, all the way from luxurious hotel chains to charming boutique properties." />
           
           <Bold text="Aloft Austin Downtown" />
+          <SingleLoadListingCard hotelName="Aloft Austin" />
           <Text text="Aloft Austin Downtown is a modern and pet-friendly hotel that offers a vibrant and playful atmosphere. The hotel is near the 6th Street Entertainment District, which has the area's best shopping, dining, and entertainment. The University of Texas at Austin and Zilker Metropolitan Park are also nearby. With its trendy design and rooftop pool, Aloft Austin Downtown promises an enjoyable stay for both human and furry guests." />
           <Text text="The hotel's pet-friendly policy allows two dogs weighing up to 40 pounds to stay with their owners. There is no pet fee for their stay and your pets will receive a dog bed, bowl, treats, and toys." />
           <HighlightBox
@@ -179,6 +181,7 @@ const Austin: FC = () => {
           />
 
           <Bold text="Kimpton Hotel Van Zandt" />
+          <SingleLoadListingCard hotelName="Kimpton Hotel Van Zandt" />
           <Text text="A sister property to Hotel Van Zandt, Kimpton Hotel Van Zandt is a top pet-friendly hotel in Austin. Named after the legendary Texas musician Townes Van Zandt, this hotel celebrates the city's vibrant music scene and arts culture. The rooftop pool and pet-friendly patio offer a relaxing spot for guests to unwind with their pets." />
           <Text text="This boutique hotel embraces Kimpton's &quot;Pet-Friendly&quot; ethos, allowing pets to stay with their owners at no extra charge. When you check in, your pet will receive treats, food, water bowls, and a comfy bed to enjoy during their stay!" />
           <HighlightBox
@@ -187,6 +190,7 @@ const Austin: FC = () => {
           />
 
           <Bold text="Archer Hotel Austin" />
+          <SingleLoadListingCard hotelName="Archer Hotel Austin" />
           <Text text="Archer Hotel Austin is a chic and pet-friendly hotel that welcomes pets of all shapes and sizes. The hotel is in the Domain Northside and is steps from the Rock Rose Entertainment District. Archer Hotel Austin is walking distance from many popular attractions, including pet-friendly parks and walking areas." />
           <Text text="This hotel is pet-friendly and allows you to bring one dog that is up to 50 pounds. There is a pet cleaning fee of $150 per stay that you will pay when staying at Archer Hotel Austin. Your pet will receive water and food bowls, biscuits, bandanas, a &quot;Dog in Room&quot; sign, waste bags, and a doggy bed." />
           <HighlightBox
@@ -195,6 +199,7 @@ const Austin: FC = () => {
           />
 
           <Bold text="Hyatt House Austin Downtown" />
+          <SingleLoadListingCard hotelName="Hyatt House Austin Downtown" />
           <Text text="Hyatt House Austin Downtown is a stylish and modern hotel located in the heart of Austin, Texas. This hotel is in a prime location and is close to the city's popular attractions, dining, and entertainment venues. Take advantage of the hotel's convenient location to explore nearby parks and pet-friendly attractions with your furry companion." />
           <Text text="Nestled in the heart of downtown, Hyatt House Austin Downtown offers spacious, pet-friendly suites with separate living and sleeping areas. Dogs are welcome to join you if they are under 50 pounds (under 75 pounds with two dogs). There is a fee of $75/day for stays up to 6 nights and there is an additional $100 fee if you stay 7-30 nights." />
           <HighlightBox
@@ -203,6 +208,7 @@ const Austin: FC = () => {
           />
 
           <Bold text="The Driskill" />
+          <SingleLoadListingCard hotelName="The Driskill" />
           <Text text="The Driskill Hotel is an iconic and historic landmark located in the heart of downtown Austin, Texas. Established in 1886, this grand hotel exudes timeless elegance and charm, offering a blend of classic architecture with modern amenities. The Driskill is renowned for its luxurious accommodations, impeccable service, and its rich history as one of Austin's oldest hotels." />
           <Text text="The Driskill Hotel's central location allows for easy access to Austin's vibrant entertainment, shopping, and dining scenes. This is an ideal choice for travelers seeking a luxurious and immersive experience in the heart of the city." />
           <Text text="The hotel offers a pet policy that allows dogs weighing up to 75 pounds to stay with their owners. There is a $100 fee for your pets when your bring them to The Driskill Hotel." />
@@ -212,6 +218,7 @@ const Austin: FC = () => {
           />
 
           <Bold text="Omni Austin Hotel Downtown" />
+          <SingleLoadListingCard hotelName="Omni Austin Hotel Downtown" />
           <Text text="The Omni Austin Hotel Downtown welcomes pets with open arms, making it a popular choice for pet owners. This hotel offers stunning views of the city and is close to Austin's popular attractions, live music venues, and cultural landmarks. Guests can enjoy luxurious amenities, including a rooftop pool, fitness center, and multiple dining options." />
           <Text text="The hotel's pet-friendly policy allows two dogs weighing up to 25 pounds each to stay with their owners. There is a cleaning fee of $125.00 for cleaning services." />
           <HighlightBox

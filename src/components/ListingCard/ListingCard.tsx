@@ -16,7 +16,6 @@ export interface ListingCardProps {
   name: string;
   addressLine1: string;
   romingoScore?: number;
-  allows_big_dogs?: number;
   cancellation?: boolean;
   lowestAveragePrice?: number;
   lowestTotalPriceAfterTax?: number;
@@ -63,7 +62,6 @@ const ListingCard: FC<ListingCardProps> = ({
   duration,
   imageURLs,
   name,
-  allows_big_dogs,
   addressLine1,
   googlePlaceId,
   romingoScore,
