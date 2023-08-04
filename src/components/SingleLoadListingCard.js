@@ -13,8 +13,7 @@ export default function SingleLoadListingCard({ hotelName }) {
 		const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/hotel-by-name?name=${hotelName}`)
 		const json = await result.json()
 		console.log(json)
-		console.log(json?.find(item => true))
-		setCard(json?.find(item => true))
+		setCard(json?.result?.find(item => true))
 	}
 
 	if (!card) {

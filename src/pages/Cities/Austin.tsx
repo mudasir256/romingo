@@ -147,8 +147,8 @@ const Austin: FC = () => {
         <Grid item xs={12} md={4}>
           <Box
             component="img"
-            src="https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg"
-            alt={"Sunny San Diego"}
+            src={cityContent.secondaryImage}
+            alt={"Austin"}
             sx={{
               objectFit: "cover",
               width: "100%",
@@ -226,7 +226,7 @@ const Austin: FC = () => {
             highlights={['Free breakfast', 'All day snacks', 'Free wine, beer and spirits during happy hour', 'Fitness center', 'Dining options']}
           />
 
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Activities in Austin</Typography>
+          <Typography variant="h2">The Top Pet-Friendly Activities in Austin</Typography>
           <Text text="Austin, Texas, is a very pet-friendly city and has many activities for you and your four-legged friend to enjoy. From scenic parks to pet-friendly restaurants, Austin promises a delightful experience for both you and your furry companion." />
           <Text text="Here are the best pet-friendly activities in Austin for you and your pet to enjoy." />
 

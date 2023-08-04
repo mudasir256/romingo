@@ -25,6 +25,8 @@ const CreateAccount = loadable(() => import('./pages/CreateAccount'))
 
 const LocationPageTemplate = loadable(() => import('./components/LocationPageTemplate'))
 const Austin = loadable(() => import('./pages/Cities/Austin'))
+const Dallas = loadable(() => import('./pages/Cities/Dallas'))
+const Denver = loadable(() => import('./pages/Cities/Denver'))
 
 
 const Blog = loadable(() => import('./pages/Blog'))
@@ -191,7 +193,7 @@ const Routes = () => {
       </Route>
 
       <Route exact path="/pet-friendly-hotels/austin-texas"><Austin /></Route>
-      <Route exact path="/pet-friendly-hotels/dallas-texas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
+      <Route exact path="/pet-friendly-hotels/dallas-texas"><Dallas /></Route>
       <Route exact path="/pet-friendly-hotels/houston-texas"><LocationPageTemplate cityName="Houston, TX"  /></Route>
       <Route exact path="/pet-friendly-hotels/phoenix-arizona"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
       <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
@@ -199,7 +201,7 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
       <Route exact path="/pet-friendly-hotels/san-antonio-texas"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
       <Route exact path="/pet-friendly-hotels/colorado-springs-colorado"><LocationPageTemplate cityName="Colorado Springs, CO" /></Route>
-      <Route exact path="/pet-friendly-hotels/denver-colorado"><LocationPageTemplate cityName="Denver, CO" /></Route>
+      <Route exact path="/pet-friendly-hotels/denver-colorado"><Denver /></Route>
       <Route exact path="/pet-friendly-hotels/seattle-washington"><LocationPageTemplate cityName="Seattle, WA" /></Route>
       <Route exact path="/pet-friendly-hotels/portland-oregon"><LocationPageTemplate cityName="Portland, OR" /></Route>
       <Route exact path="/pet-friendly-hotels/salt-lake-city-utah"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
