@@ -35,6 +35,11 @@ const Portland = loadable(() => import('./pages/Cities/Portland'))
 const SaltLakeCity = loadable(() => import('./pages/Cities/SaltLakeCity'))
 const SanAntonio = loadable(() => import('./pages/Cities/SanAntonio'))
 const SanDiego = loadable(() => import('./pages/Cities/SanDiego'))
+const SanFrancisco = loadable(() => import('./pages/Cities/SanFrancisco'))
+const SantaFe = loadable(() => import('./pages/Cities/SantaFe'))
+const Scottsdale = loadable(() => import('./pages/Cities/Scottsdale'))
+const Seattle = loadable(() => import('./pages/Cities/Seattle'))
+const Tucson = loadable(() => import('./pages/Cities/Tucson'))
 
 
 const Blog = loadable(() => import('./pages/Blog'))
@@ -204,19 +209,18 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/dallas-texas"><Dallas /></Route>
       <Route exact path="/pet-friendly-hotels/houston-texas"><Houston /></Route>
       <Route exact path="/pet-friendly-hotels/phoenix-arizona"><Phoenix /></Route>
-      <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
-      <Route exact path="/pet-friendly-hotels/tucson-arizona"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
-      <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
+      <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><Scottsdale /></Route>
+      <Route exact path="/pet-friendly-hotels/tucson-arizona"><Tucson /></Route>
+      <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><SantaFe /></Route>
       <Route exact path="/pet-friendly-hotels/san-antonio-texas"><SanAntonio /></Route>
-      <Route exact path="/pet-friendly-hotels/colorado-springs-colorado"><LocationPageTemplate cityName="Colorado Springs, CO" /></Route>
       <Route exact path="/pet-friendly-hotels/denver-colorado"><Denver /></Route>
-      <Route exact path="/pet-friendly-hotels/seattle-washington"><LocationPageTemplate cityName="Seattle, WA" /></Route>
+      <Route exact path="/pet-friendly-hotels/seattle-washington"><Seattle /></Route>
       <Route exact path="/pet-friendly-hotels/portland-oregon"><Portland /></Route>
       <Route exact path="/pet-friendly-hotels/salt-lake-city-utah"><SaltLakeCity /></Route>
       <Route exact path="/pet-friendly-hotels/palm-springs-california"><PalmSprings /></Route>
       <Route exact path="/pet-friendly-hotels/los-angeles-california"><LosAngeles /></Route>
       <Route exact path="/pet-friendly-hotels/san-diego-california"><SanDiego /></Route>
-      <Route exact path="/pet-friendly-hotels/san-francisco-california"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
+      <Route exact path="/pet-friendly-hotels/san-francisco-california"><SanFrancisco /></Route>
      
       <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
       <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>
