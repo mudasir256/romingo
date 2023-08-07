@@ -1,6 +1,8 @@
 import ListingCard from './ListingCard/ListingCard'
 import { useEffect, useState } from 'react'
 import ListingCardSkeleton from './UI/ListingCardSkeleton/ListingCardSkeleton'
+
+//hotelName is just sabreId
 export default function SingleLoadListingCard({ hotelName }) {
 
 	const [card, setCard] = useState(null)
@@ -10,7 +12,7 @@ export default function SingleLoadListingCard({ hotelName }) {
 	}, [])
 
 	const getHotel = async () => {
-		const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/hotel-by-name?name=${hotelName}`)
+		const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/sabre-id/${hotelName}`)
 		const json = await result.json()
 		console.log(json)
 		setCard(json?.result?.find(item => true))
