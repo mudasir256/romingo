@@ -42,7 +42,7 @@ const SaltLakeCity: FC = () => {
   )
 
   const LinkContent = ({ link, linkText, text }) => (
-    <Box>
+    <Box mt="0.5rem">
       <Typography variant='base' component='p'>
         <a href={link} target='_blank' rel='noreferrer'>
           {linkText}
@@ -53,6 +53,11 @@ const SaltLakeCity: FC = () => {
       </Typography>
     </Box>
   );
+
+  const Img = ({ src, text }) => (<>
+    <img loading="lazy" style={{ marginTop: "-1rem", borderRadius: 6, maxHeight: '480px', objectFit: 'cover' }} src={src} />
+    <Typography mt="-1.25rem" variant="base" component="p">Photo Credit: {text}</Typography>
+  </>)
 
   return <>
     <Helmet>
@@ -93,7 +98,6 @@ const SaltLakeCity: FC = () => {
       </Divider>
       <Grid
         container
-        spacing={4}
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -117,7 +121,7 @@ const SaltLakeCity: FC = () => {
             If you&apos;re up for an outdoor adventure, explore the pet-friendly hiking trails in the nearby canyons, such as Mill Creek Canyon or Big Cottonwood Canyon. Additionally, the city boasts a range of pet-friendly hotels and accommodations, ensuring a comfortable stay for both you and your pets.
           </Typography>
         </Grid>
-        <Grid item xs={12} sx={{ mb: 1 }}>
+        <Grid mt="2rem" item xs={12} sx={{ mb: 1 }}>
           <Divider light variant='middle' sx={{ mb: 1 }}>
             <Typography variant='body1' color='text.secondary'>
               BOOK PET-FRIENDLY TRAVEL
@@ -144,7 +148,7 @@ const SaltLakeCity: FC = () => {
           </Typography>
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid ml="auto" mt="0.5rem" item xs={12} md={4}>
           <Box
             component="img"
             src={cityContent.secondaryImage}
@@ -162,7 +166,7 @@ const SaltLakeCity: FC = () => {
       
         <Box
           width='100%'
-          padding='2.5rem'
+          mt="1rem"
           display='flex'
           flexDirection='column'
           gap='1.5rem'

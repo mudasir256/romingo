@@ -42,7 +42,7 @@ const PalmSprings: FC = () => {
   )
 
   const LinkContent = ({ link, linkText, text }) => (
-    <Box>
+    <Box mt="0.5rem">
       <Typography variant='base' component='p'>
         <a href={link} target='_blank' rel='noreferrer'>
           {linkText}
@@ -53,6 +53,11 @@ const PalmSprings: FC = () => {
       </Typography>
     </Box>
   );
+
+  const Img = ({ src, text }) => (<>
+    <img loading="lazy" style={{ marginTop: "-1rem", borderRadius: 6, maxHeight: '480px', objectFit: 'cover' }} src={src} />
+    <Typography mt="-1.25rem" variant="base" component="p">Photo Credit: {text}</Typography>
+  </>)
 
   return <>
     <Helmet>
@@ -93,7 +98,6 @@ const PalmSprings: FC = () => {
       </Divider>
       <Grid
         container
-        spacing={4}
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -110,7 +114,7 @@ const PalmSprings: FC = () => {
             {paragraphOne}
           </Typography>
         </Grid>
-        <Grid item xs={12} sx={{ mb: 1 }}>
+        <Grid mt="2rem" item xs={12} sx={{ mb: 1 }}>
           <Divider light variant='middle' sx={{ mb: 1 }}>
             <Typography variant='body1' color='text.secondary'>
               BOOK PET-FRIENDLY TRAVEL
@@ -137,7 +141,7 @@ const PalmSprings: FC = () => {
           </Typography>
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid ml="auto" mt="0.5rem" item xs={12} md={4}>
           <Box
             component="img"
             src={cityContent.secondaryImage}
@@ -154,8 +158,8 @@ const PalmSprings: FC = () => {
 
       
         <Box
+          mt="1rem"
           width='100%'
-          padding='2.5rem'
           display='flex'
           flexDirection='column'
           gap='1.5rem'
