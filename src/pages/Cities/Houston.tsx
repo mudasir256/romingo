@@ -235,14 +235,161 @@ const Houston: FC = () => {
             text="Johnny Steele Dog Park, located in Buffalo Bayou Park, is a spacious and well-maintained off-leash dog park that offers separate areas for large and small dogs to play freely. The park's beautiful scenery and designated dog-friendly trails make it a perfect spot for a fun-filled day with your pet."
           />
 
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image19.png" text="Downtown Houston" />
 
+          <LinkContent
+            link="https://marketsquarepark.com/"
+            linkText="Market Square Park"
+            text="Situated in the Historic District, Market Square Park is a pet-friendly green space that hosts various events and activities throughout the year. Leashed pets are welcome, making it an ideal place for a leisurely stroll or a relaxing picnic with your furry friend."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image13.png" text="Market Square Park" />
+
+          <LinkContent
+            link="https://houstonarboretum.org/"
+            linkText="Houston Arboretum & Nature Center"
+            text="This 155-acre nature sanctuary is a great place for you and your pet to immerse yourselves in the beauty of nature. Leashed pets are allowed on the trails, providing an excellent opportunity for an outdoor adventure together."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image14.png" text="Houston Arboretum & Nature Center" />
+
+          <LinkContent
+            link="https://www.citycentrehouston.com/"
+            linkText="CityCentre"
+            text="CityCentre is a pet-friendly shopping and entertainment district that welcomes leashed pets. Enjoy window shopping, al fresco dining, and live music while your furry companion enjoys the sights and sounds of this vibrant area."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image7.png" text="CityCentre" />
+
+          <LinkContent
+            link="https://www.traillink.com/trail/mktsp-rails-to-trails-(heights-hike-and-bike-trail)/"
+            linkText="Houston Heights Bike Trail"
+            text="The Houston Heights Bike Trail is a scenic trail that allows leashed pets, making it a fantastic choice for a leisurely walk or bike ride with your pet."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image8.png" text="Trail Link" />
+
+          <LinkContent
+            link="https://8thwonder.com/"
+            linkText="8th Wonder Brewery"
+            text="8th Wonder Brewery is a pet-friendly craft brewery that offers a spacious outdoor patio where you can enjoy a cold beer with your furry friend by your side."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image3.png" text="8th Wonder" />
+
+          <LinkContent
+            link="https://www.levyparkhouston.org/"
+            linkText="Levy Park"
+            text="Levy Park is a popular pet-friendly green space in the Upper Kirby District, featuring a playground, splash pad, and dog-friendly areas. It's a fantastic place to relax and have fun with your pet."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image17.png" text="Levy Park" />
+
+          <LinkContent
+            link="https://tpwd.texas.gov/huntwild/wild/species/bats/bat-watching-sites/waugh-drive-bridge.phtml"
+            linkText="Waugh Bridge Bat Colony"
+            text="Head to the Waugh Bridge at dusk to watch the famous bat emergence with your pet. This natural spectacle is a unique experience for both you and your furry friend."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image16.png" text="Houston Chronicle" />
+
+          <LinkContent
+            link="https://www.tclf.org/landscapes/sabine-promenade"
+            linkText="Sabine Promenade"
+            text="Enjoy scenic views of downtown Houston along the Sabine Promenade, a pet-friendly walkway that runs along Buffalo Bayou."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image5.png" text="Cultural Landscape Foundation" />
+
+          <LinkContent
+            link="https://www.discoverygreen.com/"
+            linkText="Discovery Green"
+            text="Discovery Green is a vibrant park in downtown Houston that hosts various pet-friendly events and activities, including concerts, festivals, and movie nights."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image6.png" text="Discovery Green" />
+
+          <Text text="From spacious dog parks to scenic trails and pet-friendly events, Houston ensures that pets are an integral part of the city's vibrant culture. Have fun exploring Houston with your furry friend!" />
+
+          <Typography variant="h2">The Top Pet-Friendly Restaurants in Houston</Typography>
+          <Text text="Houston, Texas, is a city that not only celebrates its diverse culinary scene but also embraces its love for pets. Here are the top 10 pet-friendly restaurants in Houston that we recommend you visit on your next trip." />
+
+          <LinkContent
+            link="https://barnabyscafe.com/"
+            linkText="Barnaby's Café"
+            text="Barnaby's Café is a beloved local eatery that warmly welcomes pets on their outdoor patios. This pet-friendly spot offers a diverse menu, from hearty breakfast dishes to flavorful salads and mouthwatering burgers, ensuring a delightful dining experience for both humans and their furry companions."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image9.png" text="Barnaby’s Cafe"/>
+
+
+          <LinkContent
+            link="https://www.libertykitchenoysterette.com/"
+            linkText="Liberty Kitchen & Oysterette"
+            text="Situated in the Heights, Liberty Kitchen & Oysterette boasts a pet-friendly patio where you can savor fresh seafood and delectable dishes. The restaurant offers water bowls and treats for pets, making it a perfect choice for a leisurely meal with your furry friend."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image1.png" text="Liberty Kitchen & Oysterette" />
+
+          <LinkContent
+            link="https://www.axelradhouston.com/"
+            linkText="Axelrad Beer Garden"
+            text="Axelrad Beer Garden is a trendy spot in Midtown, known for its laid-back atmosphere and extensive beer selection. The pet-friendly garden is an inviting space where you and your pet can enjoy a cold drink and unwind with live music and a friendly crowd."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image11.png" text="Axelrad Beer Garden" />
+
+          <LinkContent
+            link="https://bistromenil.com/"
+            linkText="Bistro Menil"
+            text="Located near the Menil Collection, Bistro Menil offers a chic and pet-friendly patio where you can enjoy delicious French-inspired dishes and wines. The restaurant even provides a special &quot;Bark Menu&quot; with treats for your furry friend." 
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image4.png" text="Bistro Menil" />
+
+          <LinkContent
+            link="https://www.becksprime.com/"
+            linkText="Beck's Prime"
+            text="Beck's Prime is a Houston favorite known for its mouthwatering burgers and sandwiches. Their pet-friendly patios provide a perfect setting for you and your pet to indulge in tasty comfort food."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image15.png" text="Becks' Prime" />
+
+          <LinkContent
+            link="https://www.buffbrew.com/"
+            linkText="Buffalo Bayou Brewing Company"
+            text="Buffalo Bayou Brewing Company is a popular pet-friendly brewery with a spacious outdoor area. Sip on craft beers while your furry companion enjoys the company of other pets and a friendly atmosphere."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image12.png" text="Buffalo Bayou Brewing Co." />
+
+          <LinkContent
+            link="https://gooddoghouston.com/"
+            linkText="Good Dog Houston"
+            text="True to its name, Good Dog Houston offers gourmet hot dogs and a pet-friendly patio where your furry friend can join you for a tasty meal. The restaurant even has a &quot;pup cup&quot; dessert for your pet."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image18.png" text="Good Dog Houston" />
+
+          <LinkContent
+            link="https://www.onioncreekcafe.com/"
+            linkText="Onion Creek Café"
+            text="Onion Creek Café is a laid-back café in the Heights that boasts a pet-friendly patio with a relaxed vibe. Enjoy brunch favorites and refreshing drinks while your pet lounges nearby."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image10.png" text="Onion Creek Cafe" />
+
+          <LinkContent
+            link="https://tinyboxwoods.com/"
+            linkText="Tiny Boxwoods"
+            text="Tiny Boxwoods is a charming café and garden that welcomes pets on their outdoor patio. This pet-friendly spot offers delicious fare, including brunch, salads, and delightful desserts, making it a perfect place for you and your pet to unwind."
+          />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image2.png" text="Tiny Boxwoods" />
+
+          <LinkContent
+            link="https://www.karbachbrewing.com/"
+            linkText="Karbach Brewing"
+            text="Karbach offers a wide range of craft beers, from classic styles to seasonal and limited-edition brews, all crafted with a passion for quality and taste. The brewery's spacious beer garden and taproom provide a welcoming and laid-back atmosphere, making it an excellent spot for beer lovers to gather and enjoy their favorite beverages."
+          />
+
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image20.png" text="Karbach Brewing" />
 
 
         </Box>
 
 
         
-        <Grid item xs={12} sx={{ mb: 1 }}>
+        <Grid mt="2rem" item xs={12} sx={{ mb: 1 }}>
           <Divider light variant='middle' sx={{ mb: 1 }}>
             <Typography variant='body1' color='text.secondary'>
               BOOK PET-FRIENDLY TRAVEL
