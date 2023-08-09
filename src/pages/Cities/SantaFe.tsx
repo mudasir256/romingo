@@ -265,7 +265,7 @@ const SantaFe: FC = () => {
             linkText="Santa Fe Botanical Garden"
             text="With well-maintained paths and stunning landscapes, the Santa Fe Botanical Garden is a pet-friendly place to explore. Take a leisurely walk amidst native plants and flowers, all while your pet enjoys the fresh scents and sights."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image18.png" text="Santa Fe Botanical Garden" >
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image18.png" text="Santa Fe Botanical Garden" />
 
           <LinkContent
             link="https://www.nps.gov/places/santa-fe-national-historic-trail.htm"
