@@ -10,7 +10,7 @@ import { LargeFilterBar } from '../../components/LargeFilterBar';
 import { Select, Typography } from "@mui/material";
 import CardList from "../../components/CardList";
 import Map from "../../components/UI/Map";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterBar from "../../components/MobileHomePageFilterBar";
@@ -18,6 +18,8 @@ import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
 import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
 import Loader from "../../components/UI/Loader";
 import Chip from '@mui/material/Chip'
+import { Dispatch } from "redux";
+import { saveSearch } from "../../store/searchReducer";
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -36,6 +38,9 @@ const ListingPageNew = ({ ...props }) => {
     wheelchairAccessible: false,
     smokeFree: false
   }
+
+  const dispatch: Dispatch<any> = useDispatch();
+
 
   const [sessionId, setSessionId] = useState('')
   const [formatHotels, setFormatHotels] = useState([]);
@@ -170,7 +175,7 @@ const ListingPageNew = ({ ...props }) => {
       setSliderValue([min, max])
 
       setFormatHotels(readyHotels)
-      setHotels(readyHotels)
+      setHotels(readyHotels.filter(hotel => hotelPetAllowance(hotel)))
       setMarkers(markers);
     }
 
@@ -254,6 +259,15 @@ const ListingPageNew = ({ ...props }) => {
     }
   }
 
+  const hotelPetAllowance = (hotel) => {
+    const string = hotel.pet_allowance || hotel.petAllowance
+    if (string === 'Unlimited') {
+      return true
+    }
+    const allowance =  parseInt(`${string.charAt(0)}`)
+    return (allowance >= search?.occupants.dogs)
+  }
+
   useEffect(() => {
     if (data?.getHotels?.hotels?.length > 0) {
       
@@ -267,14 +281,15 @@ const ListingPageNew = ({ ...props }) => {
           hotelHasAmenities(filterAmenities, hotel) && 
           (allowsCats ? hotel.cat_policy === 'Yes' : true) &&
           (hasNoPetFees ? hotel.pet_fee === 'NONE' : true) &&
-          hotelHasWeights(petWeights, hotel)
+          hotelHasWeights(petWeights, hotel) &&
+          hotelPetAllowance(hotel)
         )
       })
       const sorted = sortHotelsBy(newHotels, sort)
       setHotels(sorted)
       setMarkers(newHotels)
     }
-  }, [shouldFilter, filterAmenities, rating, hasNoPetFees, petWeights, allowsCats])
+  }, [shouldFilter, filterAmenities, rating, hasNoPetFees, petWeights, allowsCats, search?.occupants?.dogs])
 
 
   const handleSearch = (e) => {
@@ -307,16 +322,30 @@ const ListingPageNew = ({ ...props }) => {
      });
    };
 
-   const handleAmenityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setFilterAmenities({
-        ...filterAmenities,
-        [event.target.name]: event.target.checked,
-      });
-    };
+  const handleAmenityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterAmenities({
+      ...filterAmenities,
+      [event.target.name]: event.target.checked,
+    });
+  };
 
-    const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-       setPetWeights((event.target as HTMLInputElement).value);
-     };
+  const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPetWeights((event.target as HTMLInputElement).value);
+  };
+
+  const handlePetNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      saveSearch({
+        ...search,
+        occupants: {
+          ...search?.occupants,
+          dogs: event.target.value
+        }
+      })
+
+    )
+  }
+
 
   if (loading) {
     return <Loader size="400px" />
@@ -357,7 +386,31 @@ const ListingPageNew = ({ ...props }) => {
       
 
             <Box my="1rem">
-              <Typography style={{ marginTop: 10 }}>Pet Filters</Typography>
+              <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
+
+              <Box mb="1rem">
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel id="demo-simple-select-label">Number of Pets</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={search?.occupants?.dogs}
+                    label="Number of Pets"
+                    onChange={handlePetNumberChange}
+                  >
+                    <MenuItem value={0}>0</MenuItem>
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={6}>6</MenuItem>
+                    <MenuItem value={7}>7</MenuItem>
+                    <MenuItem value={8}>8</MenuItem>
+                    <MenuItem value={9}>9</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
 
               <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
                 <FormControlLabel value="25" control={<Radio />} label="Accepts 1-25 lbs" />
@@ -543,7 +596,31 @@ const ListingPageNew = ({ ...props }) => {
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" value={query} fullWidth onChange={handleSearch} />
          
           <Box my="1rem">
-            <Typography style={{ marginTop: 10 }}>Pet Filters</Typography>
+            <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
+
+            <Box mb="1rem">
+              <FormControl variant="standard" fullWidth>
+                <InputLabel id="demo-simple-select-label">Number of Pets</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={search?.occupants?.dogs}
+                  label="Number of Pets"
+                  onChange={handlePetNumberChange}
+                >
+                  <MenuItem value={0}>0</MenuItem>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>9</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
 
             <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
               <FormControlLabel value="25" control={<Radio />} label="Accepts 1-25 lbs" />

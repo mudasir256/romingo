@@ -165,7 +165,7 @@ const OccupantSelector: FC<Props> = ({
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
-                if (dogs > 2) return;
+                if (dogs > 9) return;
                 onChange({ ...value, dogs });
               }}
             />

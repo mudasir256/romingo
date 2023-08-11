@@ -92,6 +92,15 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     }
   }, [cities]);
 
+  useEffect(() => {
+    if (search?.occupants) {
+      setOccupants({
+        ...search.occupants
+      })
+
+    }
+  }, [search])
+
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
 
