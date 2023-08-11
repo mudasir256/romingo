@@ -81,7 +81,7 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-
+  console.log(data)
 
   //TODO: WG, implement trip advisor compare rate
   // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(

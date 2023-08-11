@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const searchData = {
+  "city" :{
+    "description": "Tucson, AZ, USA",
+    "matched_substrings": [
+        {
+            "length": 6,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJK-0sC0Fl1oYRFccWTTgtw3M",
+    "reference": "ChIJK-0sC0Fl1oYRFccWTTgtw3M",
+    "structured_formatting": {
+        "main_text": "Tucson",
+        "main_text_matched_substrings": [
+            {
+                "length": 6,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "AZ, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "Tucson"
+        },
+        {
+            "offset": 8,
+            "value": "AZ"
+        },
+        {
+            "offset": 12,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 32.2539787,
+"lng": -110.9741769
+}
+
 const Tucson: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Tucson, AZ');
@@ -127,9 +172,9 @@ const Tucson: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -382,8 +427,6 @@ const Tucson: FC = () => {
           <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image19.png" text="Lindy's on 4th" />
 
 
-
-
         </Box>
 
 
@@ -394,9 +437,9 @@ const Tucson: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>

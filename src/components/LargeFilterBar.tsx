@@ -45,11 +45,12 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   const [isTextField, setIsTextField] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
-  const [selectedCity, setSelectedCity] = useState(search.city ? {
+  const [selectedCity, setSelectedCity] = useState(city ? city : search.city ? {
     city: search.city,
     lat: search.lat,
     lng: search.lng
   } : null);
+
 
   const [formError, setFormError] = useState("");
   const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
@@ -70,8 +71,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
 
   const dispatch: Dispatch<any> = useDispatch();
 
-  const getCity = (cityId: string) =>
-    cities.filter((city: any) => city.id === cityId)[0];
   const onOccupantChange = (value: Occupant) => setOccupants(value);
 
 
@@ -86,11 +85,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     if (!open) setIsTextField(false);
   }, [open]);
 
-  useEffect(() => {
-    if (city && city.length > 0 && cities.length > 0) {
-      setSelectedCity(city);
-    }
-  }, [cities]);
 
   useEffect(() => {
     if (search?.occupants) {
@@ -174,54 +168,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     }, {});
   };
 
-  const DesktopSelectCity = () => {
-    cities.sort(function (a: any, b: any) {
-      if (a.state.name === b.state.name) {
-        // Price is only important when cities are the same
-        return b.name - a.name;
-      }
-      return a.state.name > b.state.name ? 1 : -1;
-    })
-
-    const grouped = groupBy(cities, 'state')
-    console.log(grouped)
-    return (
-      <Box sx={{ position: 'absolute', mt: '0.65rem', display: 'flex', gap: '1rem', flexDirection: 'row', width: '800px', backgroundColor: 'white', p: '1.5rem', justifyContent: 'center', flexWrap: 'wrap', boxShadow: 4, borderRadius: 3,}} >
-        <Box onClick={() => setShowSelectCity(false)} position="absolute" right="8px" top="8px" sx={{ cursor: 'pointer'}} ><HighlightOffIcon /></Box>
-        {Object.keys(grouped).map(cityKey => (
-          <Box key={cityKey} width="160px" my="0.25rem">
-            <Typography variant="h5">{cityKey}</Typography>
-            {grouped[cityKey].map(city => (
-              <Typography onClick={() => {
-                console.log(city.id)
-                setSelectedCity(city.id)
-                setShowSelectCity(false)
-              }} component="p" key={city.name} variant="base" color="primary" sx={{ '&:hover': { backgroundColor: '#d9f7fc' }, cursor: 'pointer' }}>{city.name.split(',')[0]}</Typography>
-            ))}
-          </Box>
-        ))}
-      </Box>
-    )
-  }
-
-  function groupCities(collection: any) {
-      let i = 0, val, index;
-      const values = [], result = [];
-
-
-      for (; i < collection.length; i++) {
-          val = collection[i]['state']['name'];
-          index = values.indexOf(val);
-          if (index > -1)
-              result[index].push(collection[i]);
-          else {
-              values.push(val);
-              result.push([collection[i]]);
-          }
-      }
-      return result;
-  }
-  const groups = groupCities(cities);
 
   const handleCityClick = (city: any) => {
     setSelectedCity(city.id)
@@ -260,7 +206,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
             <FormControl fullWidth>
-              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} />
+              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} city={selectedCity} />
             </FormControl>
           </Box>
 

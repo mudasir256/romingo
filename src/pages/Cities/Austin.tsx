@@ -27,6 +27,62 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+
+const austinSearchData = {
+  "city": {
+    "description": "Austin, Texas, USA",
+    "matched_substrings": [
+        {
+            "length": 6,
+            "offset": 0
+        },
+        {
+            "length": 2,
+            "offset": 8
+        }
+    ],
+    "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+    "reference": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+    "structured_formatting": {
+        "main_text": "Austin",
+        "main_text_matched_substrings": [
+            {
+                "length": 6,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "Texas, USA",
+        "secondary_text_matched_substrings": [
+            {
+                "length": 2,
+                "offset": 0
+            }
+        ]
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "Austin"
+        },
+        {
+            "offset": 8,
+            "value": "Texas"
+        },
+        {
+            "offset": 15,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+  },
+  "lat": 30.267153,
+  "lng": -97.7430608
+}
+
 const Austin: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Austin, TX');
@@ -127,9 +183,9 @@ const Austin: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={austinSearchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -438,9 +494,9 @@ const Austin: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={austinSearchData} />
             </Box>
             <IconTags />
           </Hidden>

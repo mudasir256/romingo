@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const searchData = {
+  "city": {
+    "description": "Salt Lake City, UT, USA",
+    "matched_substrings": [
+        {
+            "length": 14,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJ7THRiJQ9UocRyjFNSKC3U1s",
+    "reference": "ChIJ7THRiJQ9UocRyjFNSKC3U1s",
+    "structured_formatting": {
+        "main_text": "Salt Lake City",
+        "main_text_matched_substrings": [
+            {
+                "length": 14,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "UT, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "Salt Lake City"
+        },
+        {
+            "offset": 16,
+            "value": "UT"
+        },
+        {
+            "offset": 20,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 40.7607793,
+"lng": -111.8910474
+}
+
 const SaltLakeCity: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Salt Lake City, UT');
@@ -127,9 +172,9 @@ const SaltLakeCity: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -399,9 +444,9 @@ const SaltLakeCity: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>

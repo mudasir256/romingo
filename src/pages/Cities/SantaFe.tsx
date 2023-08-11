@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const searchData = {
+  "city": {
+    "description": "Santa Fe, NM, USA",
+    "matched_substrings": [
+        {
+            "length": 8,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJqVKY50NQGIcRQN-I_XMjkIw",
+    "reference": "ChIJqVKY50NQGIcRQN-I_XMjkIw",
+    "structured_formatting": {
+        "main_text": "Santa Fe",
+        "main_text_matched_substrings": [
+            {
+                "length": 8,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "NM, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "Santa Fe"
+        },
+        {
+            "offset": 10,
+            "value": "NM"
+        },
+        {
+            "offset": 14,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 35.6869752,
+"lng": -105.937799
+}
+
 const SantaFe: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Santa Fe, NM');
@@ -127,9 +172,9 @@ const SantaFe: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -386,9 +431,9 @@ const SantaFe: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>

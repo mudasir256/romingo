@@ -171,7 +171,7 @@ export default function GoogleMaps(props) {
         filterOptions={(x) => x}
         options={options}
         open={false}
-        value={search.city}
+        value={props.city ? props.city?.city : search.city}
         getOptionLabel={(option) =>
           typeof option === 'string' ? option : option.description
         }
@@ -200,7 +200,7 @@ export default function GoogleMaps(props) {
       autoComplete
       includeInputInList
       filterSelectedOptions
-      value={search.city}
+      value={props.city ? props.city?.city : search.city}
       noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {
         handleLocationChange(newValue)

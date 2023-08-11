@@ -14,7 +14,6 @@ export default function SingleLoadListingCard({ hotelName }) {
 	const getHotel = async () => {
 		const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/sabre-id/${hotelName}`)
 		const json = await result.json()
-		console.log(json)
 		setCard(json?.result?.find(item => true))
 	}
 

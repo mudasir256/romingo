@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const laSearchData = {
+  "city": {
+    "description": "Los Angeles, CA, USA",
+    "matched_substrings": [
+        {
+            "length": 11,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "structured_formatting": {
+        "main_text": "Los Angeles",
+        "main_text_matched_substrings": [
+            {
+                "length": 11,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "CA, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "Los Angeles"
+        },
+        {
+            "offset": 13,
+            "value": "CA"
+        },
+        {
+            "offset": 17,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 34.0522342,
+"lng": -118.2436849
+}
+
 const LosAngeles: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
@@ -127,9 +172,9 @@ const LosAngeles: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={laSearchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -395,9 +440,9 @@ const LosAngeles: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={laSearchData} />
             </Box>
             <IconTags />
           </Hidden>

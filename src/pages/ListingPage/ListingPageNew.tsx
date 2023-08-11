@@ -75,6 +75,7 @@ const ListingPageNew = ({ ...props }) => {
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
 
   console.log(data)
+  console.log(search)
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)

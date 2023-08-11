@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const searchData = {
+  "city": {
+    "description": "San Francisco, CA, USA",
+    "matched_substrings": [
+        {
+            "length": 8,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJIQBpAG2ahYAR_6128GcTUEo",
+    "reference": "ChIJIQBpAG2ahYAR_6128GcTUEo",
+    "structured_formatting": {
+        "main_text": "San Francisco",
+        "main_text_matched_substrings": [
+            {
+                "length": 8,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "CA, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "San Francisco"
+        },
+        {
+            "offset": 15,
+            "value": "CA"
+        },
+        {
+            "offset": 19,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 37.7749295,
+"lng": -122.4194155
+}
+
 const SanDiego: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'San Francisco, CA');
@@ -127,9 +172,9 @@ const SanDiego: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -391,9 +436,9 @@ const SanDiego: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>

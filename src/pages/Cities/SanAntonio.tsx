@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const searchData = {
+  "city": {
+    "description": "San Antonio, TX, USA",
+    "matched_substrings": [
+        {
+            "length": 11,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJrw7QBK9YXIYRvBagEDvhVgg",
+    "reference": "ChIJrw7QBK9YXIYRvBagEDvhVgg",
+    "structured_formatting": {
+        "main_text": "San Antonio",
+        "main_text_matched_substrings": [
+            {
+                "length": 11,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "TX, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "San Antonio"
+        },
+        {
+            "offset": 13,
+            "value": "TX"
+        },
+        {
+            "offset": 17,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 29.4251905,
+"lng": -98.4945922
+}
+
 const SanAntonio: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'San Antonio, TX');
@@ -121,9 +166,9 @@ const SanAntonio: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -414,9 +459,9 @@ const SanAntonio: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>

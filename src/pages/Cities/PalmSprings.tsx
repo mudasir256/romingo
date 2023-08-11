@@ -27,6 +27,51 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
+const searchData = {
+  "city": {
+    "description": "Palm Springs, CA, USA",
+    "matched_substrings": [
+        {
+            "length": 7,
+            "offset": 0
+        }
+    ],
+    "place_id": "ChIJs-Xb_9Qa24ARfHntwodp5aE",
+    "reference": "ChIJs-Xb_9Qa24ARfHntwodp5aE",
+    "structured_formatting": {
+        "main_text": "Palm Springs",
+        "main_text_matched_substrings": [
+            {
+                "length": 7,
+                "offset": 0
+            }
+        ],
+        "secondary_text": "CA, USA"
+    },
+    "terms": [
+        {
+            "offset": 0,
+            "value": "Palm Springs"
+        },
+        {
+            "offset": 14,
+            "value": "CA"
+        },
+        {
+            "offset": 18,
+            "value": "USA"
+        }
+    ],
+    "types": [
+        "locality",
+        "political",
+        "geocode"
+    ]
+},
+"lat": 33.8302961,
+"lng": -116.5452921
+}
+
 const PalmSprings: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Palm Springs, CA');
@@ -120,9 +165,9 @@ const PalmSprings: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData} />
             </Box>
             <IconTags />
           </Hidden>
@@ -393,9 +438,9 @@ const PalmSprings: FC = () => {
               BOOK PET-FRIENDLY TRAVEL
             </Typography>
           </Divider>
-          <Hidden lgDown>
+          <Hidden mdDown>
             <Box sx={{ ml: '-1.25em', mb: '0.75em' }}>
-              <LargeFilterBar />
+              <LargeFilterBar city={searchData}  />
             </Box>
             <IconTags />
           </Hidden>
