@@ -78,25 +78,15 @@ const routes: RouteInterface[] = [
     requireAuth: false,
   },
   {
-    path: "/details/:id",
-    component: DetailsPage1,
-    requireAuth: false,
-  },
-  {
     path: '/profile',
     component: ProfilePage,
     requireAuth: false
   },
   {
-    path: "/hotel/:alias",
+    path: "/pet-friendly-hotels/:state/:city/:name",
     component: DetailsPage1,
     requireAuth: false,
   },
-  // {
-  //   path: "/checkout*",
-  //   component: CheckoutPage,
-  //   requireAuth: false,
-  // },
   {
     path: "/reservation/manage",
     component: ManageReservationPage,

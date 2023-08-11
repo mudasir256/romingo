@@ -51,7 +51,10 @@ const DetailsPage1 = ({ ...props }) => {
   const mobile = useMediaQuery("(max-width:800px)");
   const history = useHistory();
 
-  const hotelId = props?.match?.params?.alias || "undefined";
+
+  const hotelId = props?.match?.params?.name || "undefined";
+  console.log(props?.match)
+
   const initialSessionId = props?.history?.location?.state?.sessionId || "undefined";
 
   const [rooms, setRooms] = useState([])
@@ -156,8 +159,8 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   if (!loadingHotelInfo && (errorHotelInfo || !hotelInfo.getHotelDetailById)) {
-    window.location.href = '/404'
-    return 
+    // window.location.href = '/404'
+    // return 
   }
 
   const hotel = hotelInfo.getHotelDetailById;
