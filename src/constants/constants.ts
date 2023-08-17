@@ -820,6 +820,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       state
       zipcode
       amenities
+      alias
     }
   }
 }
@@ -869,6 +870,7 @@ const getHotelDetailById = (hotelId) => {
       starRating
       numberOfReviews
       travolutionaryId
+      tripAdvisorId
       city
       state
     }

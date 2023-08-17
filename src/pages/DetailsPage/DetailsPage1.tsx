@@ -12,7 +12,7 @@ import RomingoScore from "../../components/RomingoScore";
 import { Circle, Pets, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";
 import { gql, useQuery } from "@apollo/client";
-import { getHotelDetailById, getPackages, TripReviews, } from "../../constants/constants";
+import { getHotelDetailById, getPackages, TripReviews, TripHotelList } from "../../constants/constants";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 import { RoomsFilterBar } from "./DetailsPage";
@@ -53,7 +53,6 @@ const DetailsPage1 = ({ ...props }) => {
 
 
   const hotelId = props?.match?.params?.name || "undefined";
-  console.log(props?.match)
 
   const initialSessionId = props?.history?.location?.state?.sessionId || "undefined";
 
@@ -66,6 +65,8 @@ const DetailsPage1 = ({ ...props }) => {
   const [showGallery, setShowGallery] = useState(false);
   const [accessibleRooms, setAccessibleRooms] = useState([]);
   const [showFullImage, setShowFullImage] = useState<string>('');
+
+  const [lowestRomingoRate, setLowestRomingoRate] = useState(0)
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
@@ -81,25 +82,32 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-  console.log(data)
+  // console.log(data)
 
-  //TODO: WG, implement trip advisor compare rate
-  // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
-  //   gql`${TripHotelList}`,
-  //   {
-  //     variables: {
-  //       hotel_ids: data?.getPropertyDetails?.id || '',
-  //       hotel_id_type: 'TA',
-  //       checkIn: search?.checkIn.substring(0, 10),
-  //       checkOut: search?.checkOut.substring(0, 10),
-  //       num_adults: search?.occupants?.adults.toString(),
-  //       num_rooms: '1',
-  //       currency: 'USD'
-  //     }
-  //   }
-  // )
-  //
+  const start = search.checkIn.substring(0, 10)
+  const end = search.checkOut.substring(0, 10)
+  
+  const date1 = new Date(start).getTime();
+  const date2 = new Date(end).getTime();
+  const diffTime = Math.abs(date2 - date1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
+  const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
+    gql`${TripHotelList}`,
+    {
+      variables: {
+        hotel_ids: hotelId,
+        hotel_id_type: 'TA',
+        checkIn: search?.checkIn.substring(0, 10),
+        checkOut: search?.checkOut.substring(0, 10),
+        num_adults: search?.occupants?.adults.toString(),
+        num_rooms: '1',
+        currency: 'USD'
+      }
+    }
+  )
+  
+  console.log(priceCheck)
 
   const { data: reviews, loading: taReviewsLoading, error: taReviewError } = useQuery(
     gql`${TripReviews}`,
@@ -114,7 +122,12 @@ const DetailsPage1 = ({ ...props }) => {
     if (data && data.getHotelDetails) {
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
+      let lowest = 999999
       for (const room of data.getHotelDetails.Result) {
+        console.log(room)
+        if (room.SimplePrice < lowest) {
+          lowest = room.SimplePrice
+        }
         const roomName = room?.Rooms?.find(item => true)?.RoomName?.toLowerCase()
         if (roomName?.includes('accessible')) {
           accessibleRooms.push(room);
@@ -127,6 +140,7 @@ const DetailsPage1 = ({ ...props }) => {
       setAccessibleRooms(accessibleRooms);
       setRoomsDetails(data.getHotelDetails.RoomsContent);
       setSessionId(data.getHotelDetails.sessionId)
+      setLowestRomingoRate(lowest / diffDays)
     }
   }, [data])
 
@@ -152,7 +166,6 @@ const DetailsPage1 = ({ ...props }) => {
     return moment(beforeTimestamp).fromNow()
   }
 
-  console.log(hotelInfo)
 
   if (loadingHotelInfo) {
     return <DetailsPageSkeleton />
@@ -166,7 +179,6 @@ const DetailsPage1 = ({ ...props }) => {
   const hotel = hotelInfo.getHotelDetailById;
   const hotelDetailsFromPackage = hotel
 
-  console.log(hotel)
 
   const RoomCard = ({ key, images, room }) => {
     const [anchorEl, setAnchorEl] = useState<null | Element>(null);
@@ -637,33 +649,36 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           </Box>
         </Grid>
 
-   {/* TODO: compare rates TP    <Grid
+      <Grid
           item
           xs={12}
           md={10}
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >
           <Typography variant="h6">Compare Rates</Typography>
-          <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 pet fees and receive VIP pet amenities upon arrival.</Typography>
+          <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels.</Typography>
+          {(lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&
           <Box mt="1.5rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
-            <Box position="relative" py="2rem" px="4rem" textAlign="center" border="solid 1px black">
-              <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://romingo.com/static/media/logo.11150e63.png" /></div>
-              <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b></Typography>
-              <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
+            <Box position="relative" py="1.5rem" px="4rem" textAlign="center" border="solid 1px black">
+              <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg" /></div>
+              <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b> / night</Typography>
+           {/*   <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
                 <Typography variant="base">$0 pet fee</Typography>
-              </Box>
+              </Box>*/}
             </Box>
             <a style={{ textDecoration: 'none', color: 'black'}} href={priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.clickUrl} target="_blank" rel="noreferrer">
               <Box position="relative" py="2rem" px="3rem" textAlign="center" border="solid 1px black">
                 <div style={{ marginBottom: '0.5rem'}}><img style={{width: '240px'}} src="https://tripadvisor.mediaroom.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered_RGB.svg" /></div>
-                <Typography variant="p" py="2rem"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b></Typography>
-                <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
-                  <Typography variant="base">${utils.computePetFeePolicyTotalFees(diffDays || 1, search.occupants.dogs || 1, data?.getPropertyDetails?.petFeePolicy || {})} pet fee</Typography>
-                </Box>
+                <Typography variant="p" py="2rem"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b> / night</Typography>
+               {/* <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
+                  <Typography variant="base">{hotelInfo?.getHotelDetailById?.petFeeValue} pet fee</Typography>
+                </Box>*/}
               </Box>
             </a>
-          </Box>          
-        </Grid>*/}
+          </Box>    
+          }
+
+        </Grid>
 
   
         {/* <Grid item xs={12} md={3}><Hidden mdDown>

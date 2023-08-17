@@ -90,6 +90,7 @@ const ListingPageNew = ({ ...props }) => {
 
     return {
       imageURLs: [hotel.DefaultImage.FullSize],
+      alias: hotel.alias,
       name: hotel.DisplayName,
       addressLine1: hotel.Address,
       city: hotel.city,
@@ -118,6 +119,7 @@ const ListingPageNew = ({ ...props }) => {
       hotel: {
         imageURLs: [hotel.DefaultImage.FullSize],
         name: hotel.DisplayName,
+        alias: hotel.alias,
         addressLine1: hotel.Address,
         city: hotel.city,
         state: hotel.state,

@@ -224,7 +224,7 @@ const ListingCard: FC<ListingCardProps> = ({
     return str.toLowerCase();
   }
 
-  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${slugify(name)}`
+  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
 
   return (
     <>
