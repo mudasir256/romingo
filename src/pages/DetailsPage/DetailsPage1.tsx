@@ -125,8 +125,8 @@ const DetailsPage1 = ({ ...props }) => {
       let lowest = 999999
       for (const room of data.getHotelDetails.Result) {
         console.log(room)
-        if (room.SimplePrice < lowest) {
-          lowest = room.SimplePrice
+        if ((room.SimplePrice - room.PackagePrice.OriginalTax) < lowest) {
+          lowest = (room.SimplePrice - room.PackagePrice.OriginalTax)
         }
         const roomName = room?.Rooms?.find(item => true)?.RoomName?.toLowerCase()
         if (roomName?.includes('accessible')) {
@@ -655,9 +655,9 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           md={10}
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >
+          {(lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&<>
           <Typography variant="h6">Compare Rates</Typography>
           <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels.</Typography>
-          {(lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&
           <Box mt="1.5rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
             <Box position="relative" py="1.5rem" px="4rem" textAlign="center" border="solid 1px black">
               <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg" /></div>
@@ -676,7 +676,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
               </Box>
             </a>
           </Box>    
-          }
+          </>}
 
         </Grid>
 
