@@ -104,10 +104,11 @@ const YourReservationPage: FC<Props> = () => {
       const cancellationPolicy = JSON.parse(data?.getReservationDetails?.response[0].cancellation_meta);
       console.log('cancel policy')
       console.log(cancellationPolicy)
+      console.log(data)
 
       let isRefundable = false
-      let isFullRefund
-      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice === data?.getReservationDetails.response[0].bookingPrice) {
+      let isFullRefund = false
+      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice == data?.getReservationDetails.response[0].bookingPrice) {
         isRefundable = false
         const dateFrom = cancellationPolicy[0].DateFrom
 
@@ -116,6 +117,7 @@ const YourReservationPage: FC<Props> = () => {
         const diffTime = Math.abs(date2 - date1);
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
+        console.log(diffDays)
         if (diffDays < 2) {
           isRefundable = false
 
@@ -127,6 +129,7 @@ const YourReservationPage: FC<Props> = () => {
       } else if (cancellationPolicy && cancellationPolicy.length === 2) {
         isRefundable = true
       } else {
+        console.log('unhandled')
         //TODO: flag this, we haven't covered this case
       }
 
