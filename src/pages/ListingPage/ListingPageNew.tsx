@@ -612,7 +612,7 @@ const ListingPageNew = ({ ...props }) => {
         <Box style={{ padding: 20 }}>
           <TextField id="outlined-basic" label="Search by property name" variant="outlined" value={query} fullWidth onChange={handleSearch} />
          
-          <Box my="1rem">
+          <Box my="1.5rem">
             <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
 
             <Box mb="1rem">
@@ -655,7 +655,7 @@ const ListingPageNew = ({ ...props }) => {
             </FormGroup>
           </Box>
 
-          <Typography style={{ marginTop: '1rem' }}>Amenities</Typography>
+          <Typography style={{ marginTop: '1.5rem' }}>Amenities</Typography>
           <FormGroup onChange={handleAmenityChange}>
             <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
             <FormControlLabel control={<Checkbox name="airportShuttle" checked={filterAmenities["airportShuttle"]} />} label="Airport shuttle service" />

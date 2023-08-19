@@ -658,7 +658,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           {(lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&<>
           <Typography variant="h6">Compare Rates</Typography>
           <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels.</Typography>
-          <Box mt="1.5rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
+          <Box mt="1.5rem" mr="1rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
             <Box position="relative" py="1.5rem" px="4rem" textAlign="center" border="solid 1px black">
               <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg" /></div>
               <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b> / night</Typography>
