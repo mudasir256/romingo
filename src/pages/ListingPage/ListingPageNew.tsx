@@ -20,6 +20,9 @@ import Loader from "../../components/UI/Loader";
 import Chip from '@mui/material/Chip'
 import { Dispatch } from "redux";
 import { saveSearch } from "../../store/searchReducer";
+import { setList } from "../../store/hotelListReducer";
+import { useHistory } from "react-router-dom";
+
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -40,7 +43,7 @@ const ListingPageNew = ({ ...props }) => {
   }
 
   const dispatch: Dispatch<any> = useDispatch();
-
+  const history = useHistory();
 
   const [sessionId, setSessionId] = useState('')
   const [formatHotels, setFormatHotels] = useState([]);
@@ -74,8 +77,9 @@ const ListingPageNew = ({ ...props }) => {
   const { data, loading } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
 
-  console.log(data)
-  console.log(search)
+  const cards = useSelector((state: any) => {
+    return state.hotelListReducer.hotels;
+  });
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -144,45 +148,55 @@ const ListingPageNew = ({ ...props }) => {
   }
 
   useEffect(() => {
+    if (history.action === 'POP') {
+      loadHotels(cards)
+      return
+    }
+
     if (data && data.getHotels && data.getHotels.sessionId) {
       setSessionId(data.getHotels.sessionId);
-      const filteredHotels = [];
-      const markers = [];
-      let min = 0;
-      let max = 0;
-
-      for (const hotel of data.getHotels.hotels) {
-        if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays < min) {
-          min = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
-        }
-        if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays > max) {
-          max = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
-        }
-
-        const restructuredHotel = formatHotel(hotel)
-        filteredHotels.push(restructuredHotel)
-        markers.push(restructuredHotel)
-      }
-
-      const readyHotels = filteredHotels.sort(function (a, b) {
-        const textA = a.name.toUpperCase();
-        const textB = b.name.toUpperCase();
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-      })
-
-      min = parseFloat(Math.abs(min).toFixed(2))
-      max = parseFloat(Math.abs(max).toFixed(2))
-
-      setMinPrice(min);
-      setMaxPrice(max)
-      setSliderValue([min, max])
-
-      setFormatHotels(readyHotels)
-      setHotels(readyHotels.filter(hotel => hotelPetAllowance(hotel)))
-      setMarkers(markers);
+      loadHotels(data.getHotels.hotels)
+      dispatch(setList(data.getHotels.hotels))
     }
 
   }, [data, search, center])
+
+  const loadHotels = (hotels) => {
+
+    const filteredHotels = [];
+    const markers = [];
+    let min = 0;
+    let max = 0;
+    for (const hotel of hotels) {
+      if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays < min) {
+        min = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
+      }
+      if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays > max) {
+        max = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
+      }
+
+      const restructuredHotel = formatHotel(hotel)
+      filteredHotels.push(restructuredHotel)
+      markers.push(restructuredHotel)
+    }
+
+    const readyHotels = filteredHotels.sort(function (a, b) {
+      const textA = a.name.toUpperCase();
+      const textB = b.name.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    })
+
+    min = parseFloat(Math.abs(min).toFixed(2))
+    max = parseFloat(Math.abs(max).toFixed(2))
+
+    setMinPrice(min);
+    setMaxPrice(max)
+    setSliderValue([min, max])
+
+    setFormatHotels(readyHotels)
+    setHotels(readyHotels.filter(hotel => hotelPetAllowance(hotel)))
+    setMarkers(markers);
+  }
 
   const sortHotelsBy = (toSortHotels, type) => {
     switch (type) {
@@ -350,7 +364,7 @@ const ListingPageNew = ({ ...props }) => {
   }
 
 
-  if (loading) {
+  if (loading && history.action === 'PUSH') {
     return <Loader size="400px" />
   }
 
