@@ -118,6 +118,12 @@ export interface ListingCardProps {
   bookingId?: string;
   state?: string;
   zipcode?: string;
+  // numberOfReviews?: number;
+  // catPolicy?: string;
+  // petReliefArea?: string;
+  // petAmenities?: string[];
+  // unattendedPets?: string;
+
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,

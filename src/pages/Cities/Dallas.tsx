@@ -259,7 +259,7 @@ const Dallas: FC = () => {
           />
 
           <Bold text="The Highland Dallas, Curio Collection by Hilton" />
-          {/* <SingleLoadListingCard hotelName="Highland Dallas" /> */}
+           <SingleLoadListingCard hotelName="100182820" /> 
           <Text text="The Highland Dallas, Curio Collection by Hilton is a boutique hotel nestled in the upscale Knox-Henderson neighborhood of Dallas, Texas. Guests can indulge in a range of dining options, from fine dining to casual bistro fare, complemented by impeccable service. The hotel's rooftop pool offers stunning city views, while the fitness center allows guests to maintain their wellness routines." />
           <Text text="The hotel provides designated pet-friendly rooms and a pet-friendly patio, ensuring an enjoyable stay for your furry companion. Two pets that weigh up to 80 pounds are allowed with a fee of $75 per stay, per pet." />
           <HighlightBox

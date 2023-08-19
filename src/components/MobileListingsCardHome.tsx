@@ -57,7 +57,7 @@ const ListingCardSquare = ({
           // "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
         }}
-        {...props}
+        // {...props}
       >
   
         <ImageSlider

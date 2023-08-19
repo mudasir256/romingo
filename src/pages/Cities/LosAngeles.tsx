@@ -273,7 +273,7 @@ const LosAngeles: FC = () => {
           />
 
           <Bold text="Fairmont Miramar Hotel & Bungalows" />
-          {/*<SingleLoadListingCard hotelName="Fairmont Miramar Hotel & Bungalows" />*/}
+          <SingleLoadListingCard hotelName="100368568" />
           <Text text="The Fairmont Miramar Hotel & Bungalows is an exquisite oasis that exudes luxury and tranquility. This iconic hotel offers a perfect blend of modern elegance and timeless charm, providing an unforgettable experience for discerning travelers. The guest rooms and bungalows are elegantly appointed, offering sweeping views of the Pacific Ocean or the lush gardens." />
           <Text text="Fairmont Miramar Hotel & Bungalows promises an idyllic and memorable stay in Santa Monica, where guests can immerse themselves in the epitome of coastal elegance and sophistication." />
           <Text text="You're welcome to bring your pets to this hotel for an additional $100 cleaning fee per pet, per stay." />
