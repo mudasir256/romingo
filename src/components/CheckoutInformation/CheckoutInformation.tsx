@@ -951,6 +951,7 @@ const CheckoutInformation: FC<Props> = ({
 
                 <Grid item xs={12}>
                   <Button
+                    disabled={!checkState}
                     variant="contained"
                     fullWidth={true}
                     size="large"
