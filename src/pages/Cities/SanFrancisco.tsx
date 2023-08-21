@@ -72,7 +72,7 @@ const searchData = {
 "lng": -122.4194155
 }
 
-const SanDiego: FC = () => {
+const SanFrancisco: FC = () => {
 
   const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'San Francisco, CA');
 
@@ -229,9 +229,9 @@ const SanDiego: FC = () => {
           />
 
 
-          <Bold text="Kimpton Buchanan Hotel" />
-          {/* <SingleLoadListingCard hotelName="" /> */}
-          <Text text="Located in Japantown, the Kimpton Buchanan Hotel is a luxury, pet-friendly hotel. The hotel's elegant and spacious rooms feature contemporary decor with a touch of Japanese flair, creating a soothing and inviting ambiance. The nearby Japantown Peace Plaza and Buchanan Street Mall are excellent spots for leisurely strolls with your pet." />
+          <Bold text="Kimpton Hotel Enso" />
+          <SingleLoadListingCard hotelName="100399492" /> 
+          <Text text="Located in Japantown, the Kimpton Hotel Enso is a luxury, pet-friendly hotel. The hotel's elegant and spacious rooms feature contemporary decor with a touch of Japanese flair, creating a soothing and inviting ambiance. The nearby Japantown Peace Plaza and Buchanan Street Mall are excellent spots for leisurely strolls with your pet." />
           <Text text="The Kimpton loves when you bring your pets on your trip. This is a great options because they allow pets of all sizes and breeds with no extra fees. When you check in, your pet will receive treats and the hotel offers pet beds and food bowls." />
           <HighlightBox
             title="The hotel's amenities include:"

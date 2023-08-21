@@ -220,7 +220,7 @@ const SantaFe: FC = () => {
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Santa Fe</Typography>
 
           <Bold text="La Fonda on the Plaza" />
-          {/* <SingleLoadListingCard hotelName="" />* /}
+           <SingleLoadListingCard hotelName="100217808" />
           <Text text="Situated in the heart of Santa Fe's historic Plaza, La Fonda on the Plaza exudes old-world charm while offering modern amenities. This iconic hotel not only boasts a rich history but also extends a warm welcome to pets. Upon arrival, your furry friend will receive a pet bed, bowls, and treats, making them feel right at home. The hotel's convenient location allows for leisurely strolls with your pet through the enchanting streets of Santa Fe." />
           <Text text="Up to two pets under 45 pounds can stay at La Fonda on the Plaza for a fee of $50 per night, per stay." />
           <HighlightBox
@@ -229,7 +229,7 @@ const SantaFe: FC = () => {
           />
 
           <Bold text="Hotel Santa Fe" />
-          {/* <SingleLoadListingCard hotelName="" />*/}
+          <SingleLoadListingCard hotelName="102174605" />
           <Text text="Known for its elegant Southwestern style, Hotel Santa Fe blends Native American culture with contemporary luxury. Your pets will feel like honored guests, as the hotel provides pet-friendly rooms equipped with comfortable pet beds and food bowls. The hotel's lush garden courtyards offer an excellent space for you and your furry companion to relax and unwind." />
           <Text text="When you stay at Hotel Santa Fe, you can bring two dogs of any size for a fee of $25 per pet, per night." />
           <HighlightBox
@@ -265,7 +265,7 @@ const SantaFe: FC = () => {
           />
 
           <Bold text="Inn and Spa at Loretto" />
-          {/* <SingleLoadListingCard hotelName="" />*/}
+           <SingleLoadListingCard hotelName="100416876" />
           <Text text="Nestled at the heart of Santa Fe, Inn and Spa at Loretto is a pet-friendly hotel with a serene ambiance. The hotel offers designated pet-friendly rooms and provides walking services for your pets if you wish to explore Santa Fe without them for a while. Additionally, the concierge can assist in arranging pet-sitting services, ensuring your pets are cared for while you indulge in some spa relaxation." />
           <Text text="Two dogs are welcome to travel with you to the Inn and Spa at Loretto. The pet fee is $75 per stay for the first dog and $35 per stay for the second dog." />
           <HighlightBox

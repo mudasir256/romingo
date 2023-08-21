@@ -251,7 +251,7 @@ const Seattle: FC = () => {
           />
 
           <Bold text="ACE Hotel Seattle" />
-          {/* <SingleLoadListingCard hotelName="" />*/}
+           <SingleLoadListingCard hotelName="100220096" />
           <Text text="The ACE Hotel Seattle is a trendy and vibrant boutique hotel located in the heart of the Belltown neighborhood. With its chic and eclectic design, the hotel offers a unique and artistic ambiance that sets it apart from traditional accommodations. This vibrant hotel boasts stylish accommodations, a lively bar, and a prime location within Seattle's bustling arts and entertainment district." />
           <Text text="The ACE Hotel Seattle is pet-friendly and does not charge extra for your pet to stay. Immerse yourself in the artistic spirit of the city and relish a pet-friendly sojourn at ACE Hotel Seattle." />
           <HighlightBox
@@ -259,8 +259,8 @@ const Seattle: FC = () => {
             highlights={['Dining options']}
           />
 
-          <Bold text="Hotel Ändra" />
-          {/* <SingleLoadListingCard hotelName="" /> */}
+          <Bold text="Hotel Ändra Seattle MGallery Hotel Collection" />
+           <SingleLoadListingCard hotelName="100050766" /> 
           <Text text="Hotel Ändra is a stylish and sophisticated pet-friendly hotel located in downtown Seattle, Washington. Embodying the essence of Scandinavian design, this luxury hotel offers a warm and inviting ambiance, making guests feel right at home. Hotel Ändra offers stylish rooms, a cozy fireplace lounge, and a popular restaurant serving Nordic-inspired cuisine." />
           <Text text="Hotel Ändra does not charge any additional fees for two pets weighing up to 50 pounds at their hotel. The central location of this hotel makes it a great option for your trip to Seattle." />
           <HighlightBox
