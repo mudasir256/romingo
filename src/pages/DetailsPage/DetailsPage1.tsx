@@ -91,6 +91,7 @@ const DetailsPage1 = ({ ...props }) => {
   const date2 = new Date(end).getTime();
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+  console.log(diffDays)
 
   const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
     gql`${TripHotelList}`,
@@ -125,8 +126,9 @@ const DetailsPage1 = ({ ...props }) => {
       let lowest = 999999
       for (const room of data.getHotelDetails.Result) {
         console.log(room)
-        if ((room.SimplePrice - room.PackagePrice.OriginalTax) < lowest) {
-          lowest = (room.SimplePrice - room.PackagePrice.OriginalTax)
+        const tax = room.PackagePrice.OriginalTax || room.PackagePrice.TaxesAndFees.find(item => true)?.Value
+        if ((room.SimplePrice - tax) < lowest) {
+          lowest = (room.SimplePrice - tax)
         }
         const roomName = room?.Rooms?.find(item => true)?.RoomName?.toLowerCase()
         if (roomName?.includes('accessible')) {
