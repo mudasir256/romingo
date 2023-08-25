@@ -206,7 +206,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
             <FormControl fullWidth>
-              <GooglePlaceAutoComplete setSelectedCity={setSelectedCity} city={selectedCity} />
+              <GooglePlaceAutoComplete width={240} setSelectedCity={setSelectedCity} city={selectedCity} />
             </FormControl>
           </Box>
 

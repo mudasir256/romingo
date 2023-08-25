@@ -22,7 +22,7 @@ import { Dispatch } from "redux";
 import { saveSearch } from "../../store/searchReducer";
 import { setList } from "../../store/hotelListReducer";
 import { useHistory } from "react-router-dom";
-
+import WhitePawsIcon from '../../assets/icon/white-paws.png';
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -368,14 +368,33 @@ const ListingPageNew = ({ ...props }) => {
     return <Loader size="400px" />
   }
 
+  const Banner = () => (
+    <Box 
+      backgroundColor="#03989E" 
+      borderRadius="6px" 
+      gap="1rem"
+      display="flex" 
+      flexDirection="row" 
+      alignItems="center"
+      pl="0.5rem"
+      py="0.5rem"
+    >
+  
+        <img width="40px" src={WhitePawsIcon} />
+        <Typography  variant="base" color="white">Save $5 off your first reservation when you create an account</Typography>
+        <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
+    </Box>
+  )
+
   return (
-    <Grid sx={{ background: "#feffff" }}>
+    <Box sx={{ background: "#feffff" }}>
       <Navbar />
-      {mobile 
-        ?<FilterBar home={false} />
-        : <LargeFilterBar />
-      }
+      {mobile && <FilterBar home={false} />}
       {mobile && <Box mb="1rem"><Divider /></Box>}
+
+      {!mobile && <LargeFilterBar />}
+      <Box maxWidth="624px" mx='auto'><Banner /></Box>
+
       <Grid container direction='row' style={{ padding: mobile ? '0' : '30px', width: mobile ? '100%' : '80%', margin: 'auto', position: 'relative', }} >
         {mobile ?
           <Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
@@ -709,7 +728,7 @@ const ListingPageNew = ({ ...props }) => {
           </FormGroup>
         </Box>
       </Dialog>
-    </Grid>
+    </Box>
   );
 }
 
