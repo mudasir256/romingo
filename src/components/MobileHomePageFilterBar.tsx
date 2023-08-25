@@ -224,30 +224,29 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     <>
       <Box
         sx={{
-          position: (home ? "absolute" : 'block'),
           zIndex: 2,
-          paddingTop: "0.25rem",
-          paddingBottom: "0.25rem",
           width: (home ? '90%': '100%'),
-          margin: (home ? '20px' : 0),
-          backgroundColor: (home ? '#ebecec' : 'transparent'),
+          ml: (home ? '1.5rem': 0),
+          mt: '1rem'
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            padding: (home ? "0.25rem" : '0.5em'),
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: (home ? "0rem" : '0.5em'),
             mb: ".5rem",
             mt: ".5rem",
+            py: '0.75rem',
+            backgroundColor: (home ? 'rgba(235, 236, 236, 0.7)' : 'transparent'),
           }}
         >
-          <Grid container style={{ padding: "0 0 0 20px", background: 'white', width: '84%', border: '1px solid #aaabab', borderRadius: '5px' }} alignItems='center'>
+          <Grid container style={{ padding: "0 0 0 20px", background: 'white', width: '95%', border: '1px solid #aaabab', borderRadius: '5px' }} alignItems='center'>
             <Grid>
               <LocationOnIcon xs={4} />
             </Grid>
-            <Grid item xs={8} sx={{ zIndex: 50, minWidth: '90%' }}>
+            <Grid item xs={8} sx={{ zIndex: 50, minWidth: '92%' }}>
               <GooglePlaceAutoComplete 
                 mobile={true} 
                 callback={handlePredictions}
@@ -337,10 +336,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               onClick={() => setOpen(true)}
               sx={{
                 width: "100%",
-                mt: "2rem"
+                mt: "1rem"
               }}
             >
-              <Grid onClick={() => setShowMobileCalendar(true)} item xs={6} sx={{ pl: " .25rem", width: '100%', minWidth: '100%' }}>
+              <Grid onClick={() => setShowMobileCalendar(true)} item xs={6} sx={{  width: '100%', minWidth: '100%' }}>
                 <Grid
                   sx={{
                     border: "1px solid #aaabab",
@@ -351,8 +350,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     flexDirection: 'row',
                     height: '45px',
                     alignItems: 'center',
-                    width: '85%',
+                    width: '95%',
                     margin: 'auto',
+                    mt: '0.5rem'
                   }}
                 >
                   <Grid
@@ -393,10 +393,10 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               width: "100%",
               transition: "all .15s ease-in-out",
               alignItems: "center",
-              maxHeight: "45px",
-              width: '85%',
+              maxHeight: "26px",
+              width: '95%',
               margin: 'auto',
-              mt: '0.7em',
+              mt: '0.75rem'
             }}
           >
             <OccupantSelector
@@ -415,7 +415,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
             variant="contained"
             sx={{
               height: "40px",
-              width: "85%",
+              width: "94%",
               display: "flex",
               alignItems: "center",
               padding: ".25rem 0rem",
