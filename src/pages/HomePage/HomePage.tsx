@@ -288,11 +288,14 @@ const HomePage: FC<Props> = () => {
 
   console.log(newData?.getHomepagePropertiesThree)
 
+  const pricesOne = [149, 129, 99]
+  const pricesTwo = [175, 189, 199]
+
   return (
     <div className="homepage">      
       <Helmet>
         <title>Book pet friendly hotels - Romingo</title>
-        <description>Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo.</description>
+        <description>Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and the lowest rates guaranteed provide a truly pet-friendly experience. Roam the world freely with Romingo.</description>
         <meta property="og:title" content="Book pet friendly hotels — Romingo" />
         <meta property="og:url" content="https://www.romingo.com" />
         <meta property="og:type" content="website" />
@@ -422,9 +425,8 @@ const HomePage: FC<Props> = () => {
               <Box key={i} sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   {...hotel}
-                  name={hotel.hotelName}
-                  // city={{ name: `${hotel.city}, ${hotel.state}` }}
-                  lowestTotalPriceAfterTax={0}
+                  name={hotel.hotelName === 'Margaritaville Resort Palm Springs' ? 'Margitaville Resort' : hotel.hotelName}
+                  lowestTotalPriceAfterTax={pricesOne[i]}
                   highlighted={false}
                 />
               </Box>
@@ -443,8 +445,7 @@ const HomePage: FC<Props> = () => {
                 <ListingCardSquare
                   {...hotel}
                   name={hotel.hotelName}
-                  // city={{ name: `${hotel.city}, ${hotel.state}` }}
-                  lowestTotalPriceAfterTax={0}
+                  lowestTotalPriceAfterTax={pricesTwo[i]}
                   highlighted={false}
                 />
               </Box>

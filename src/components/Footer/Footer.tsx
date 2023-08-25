@@ -61,7 +61,7 @@ const Footer: FC<Props> = ({ sx }) => {
           <Box>
             <Link href="/"><img loading="lazy" width="220px" src={LogoImg} alt="Romingo Logo" /></Link>
             <Typography component="p" variant="base" maxWidth="400px" mt="0.5rem" mb="0.5rem">
-              Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and our lowest rates guaranteed ensure that our guests enjoy a true pet-friendly experience. Roam the world freely with Romingo.
+              Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and the lowest rates guaranteed provide a truly pet-friendly experience. Roam the world freely with Romingo.
             </Typography>
             <div className="social-icons">
               <IconButton

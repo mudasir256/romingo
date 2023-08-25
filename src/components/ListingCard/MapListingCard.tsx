@@ -134,6 +134,11 @@ const MapListingCard: FC<ListingCardProps> = ({
     </Box>
   )
 
+  let starRatingFormat = romingoScore
+  if (romingoScore?.toString().length === 1) {
+    starRatingFormat = `${romingoScore}.0`
+  }
+
   return (
     <>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}
@@ -258,8 +263,8 @@ const MapListingCard: FC<ListingCardProps> = ({
               }}
             >
               <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
-                <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                <span style={{ marginLeft: '0.25em', marginRight: '0.1em', color: 'black' }}>{romingoScore}</span>
+                <Box sx={{  color: 'black'}}><StarIcon  fontSize="inherit" /></Box>
+                <span style={{ marginLeft: '0.25em', marginRight: '0.1em', color: 'black' }}>{starRatingFormat}</span>
                 <Link
                   href={`/hotel/${alias}#reviews`}
                   sx={{

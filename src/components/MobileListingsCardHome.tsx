@@ -5,6 +5,7 @@ import ImageSlider from "./ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
 import { utils } from '../services/utils'
 import HotelTags from './HotelTags';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const stateCodes = {
     "AL": "Alabama",
@@ -120,6 +121,10 @@ const ListingCardSquare = ({
   }
 
   const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+  let starRatingFormat = starRating
+  if (starRating.toString().length === 1) {
+    starRatingFormat = `${starRating}.0`
+  }
 
 
   return (
@@ -178,7 +183,7 @@ const ListingCardSquare = ({
                 flexDirection: "column",
                 justifyContent: 'space-between',
                 mt: '1rem',
-                ml: '0.25rem'
+                ml: '0.3rem'
               }}
             >
               <Box sx={{ display: 'flex' }}>
@@ -188,14 +193,15 @@ const ListingCardSquare = ({
                     color: "#222",
                     whiteSpace: 'normal',
                     textOverflow: "ellipsis",
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    flexWrap: 'none'
                   }}
                 >
                   {name}
                 </Typography>
                 <Box onClick={() => history.push(`${hotelUrl}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
-                  <Box sx={{ color: 'red'}}><StarIcon fontSize="inherit" /></Box>
-                  <Typography variant="base" mb="2px">{starRating}</Typography>
+                  <Box sx={{ color: 'black'}}><StarIcon fontSize="inherit" /></Box>
+                  <Typography variant="base" mb="2px">{starRatingFormat}</Typography>
                 </Box> 
               </Box>
 
@@ -212,11 +218,19 @@ const ListingCardSquare = ({
               >
                 {fullAddressLine}
               </Typography>
+            
 
-              <Box mb="1rem">
+              <Box mb="0.5rem">
                 <HotelTags displayOne={true} pet_fee={petFee} pet_allowance={petAllowance} pet_fee_value={petFeeValue} pet_size={petSize} />
               </Box>  
-              {/* <PriceDetails /> */}
+
+              <Box mt="0.25rem" sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '20px' }} />
+                <Typography sx={{ fontSize: '14px'}}>pet-friendly room guaranteed</Typography>
+              </Box>
+              <Box mt="-0.5rem" mr="0.5rem">
+                <PriceDetails />
+              </Box>
             </Grid>
           </Grid>
         </Box>

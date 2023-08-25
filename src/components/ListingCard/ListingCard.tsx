@@ -231,6 +231,10 @@ const ListingCard: FC<ListingCardProps> = ({
   }
 
   const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+  let starRatingFormat = romingoScore
+  if (romingoScore?.toString().length === 1) {
+    starRatingFormat = `${romingoScore}.0`
+  }
 
   return (
     <>
@@ -376,7 +380,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   fontSize: "0.9em",
                 }}
               >
-                <Box sx={{ color: "red" }}>
+                <Box sx={{ color: "black" }}>
                   <StarIcon fontSize="inherit" />
                 </Box>
                 <span
@@ -386,7 +390,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     color: "black",
                   }}
                 >
-                  {romingoScore}
+                  {starRatingFormat}
                 </span>
                 <Link
                   href={`${hotelUrl}#reviews`}

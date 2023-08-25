@@ -55,9 +55,9 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
 
 
   if (pet_fee === 'NONE') {
-    pet_fee = '$0 pet fees'
+    pet_fee = '$0 pet fee'
   } else {
-    pet_fee = `${pet_fee_value?.split('.')?.find(item => true)} pet fees`
+    pet_fee = `${pet_fee_value?.split('.')?.find(item => true)} pet fee`
   }
   if (pet_allowance === 'Unlimited') {
     pet_allowance = 'any number of pets'
