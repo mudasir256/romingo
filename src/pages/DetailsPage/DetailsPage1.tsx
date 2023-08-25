@@ -661,7 +661,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           <Box mt="1.5rem" mr="1rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
             <Box position="relative" py="1.5rem" px="4rem" textAlign="center" border="solid 1px black">
               <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg" /></div>
-              <Typography variant="p" py="2rem"><b>${lowestRomingoRate}</b> / night</Typography>
+              <Typography variant="p" py="2rem"><b>${Math.abs(lowestRomingoRate).toFixed(0)}</b> / night</Typography>
            {/*   <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
                 <Typography variant="base">$0 pet fee</Typography>
               </Box>*/}

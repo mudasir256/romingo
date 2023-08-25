@@ -645,6 +645,7 @@ const GetHomePageProperty = `
     getHomepagePropertiesThree {
       hotelName
       fullAddressLine
+      alias
       description
       petPolicyDescription
       amenities

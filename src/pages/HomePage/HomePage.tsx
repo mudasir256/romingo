@@ -286,6 +286,8 @@ const HomePage: FC<Props> = () => {
     </Link>
   )
 
+  console.log(newData?.getHomepagePropertiesThree)
+
   return (
     <div className="homepage">      
       <Helmet>
@@ -326,14 +328,14 @@ const HomePage: FC<Props> = () => {
             imgAlt="lowest rates"
             imgWidth="83%"
             header="Lowest Rates"
-            text="With $0 booking fees and the lowest rates, travelers always receive the best pricing available with Romingo."
+            text="With $0 booking fees and the lowest rates, our travelers always get the best deals."
           />
           <InfoBox
             imgSrc={AuthenticPet}
             imgAlt="trusted and accredited"
             imgWidth='85%'
             header="Trusted & Accredited"
-            text="Over 50,000 pets (and their humans) have trusted Romingo, and our team is always here to help with your next trip!"
+            text="Over 50,000 pets (and their humans) have trusted Romingo, and our team is available 24/7 to help plan your next trip!"
           />
         </Box>
       </Box>
@@ -419,10 +421,9 @@ const HomePage: FC<Props> = () => {
             {!loading && newData.getHomepagePropertiesThree.slice(0,3).map((hotel, i) => (
               <Box key={i} sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
-
                   {...hotel}
                   name={hotel.hotelName}
-                  city={{ name: `${hotel.city}, ${hotel.state}` }}
+                  // city={{ name: `${hotel.city}, ${hotel.state}` }}
                   lowestTotalPriceAfterTax={0}
                   highlighted={false}
                 />
@@ -442,7 +443,7 @@ const HomePage: FC<Props> = () => {
                 <ListingCardSquare
                   {...hotel}
                   name={hotel.hotelName}
-                  city={{ name: `${hotel.city}, ${hotel.state}` }}
+                  // city={{ name: `${hotel.city}, ${hotel.state}` }}
                   lowestTotalPriceAfterTax={0}
                   highlighted={false}
                 />

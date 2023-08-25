@@ -6,6 +6,67 @@ import StarIcon from "@mui/icons-material/Star";
 import { utils } from '../services/utils'
 import HotelTags from './HotelTags';
 
+const stateCodes = {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AS": "American Samoa",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "DC": "District Of Columbia",
+    "FM": "Federated States Of Micronesia",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "GU": "Guam",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MH": "Marshall Islands",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "MP": "Northern Mariana Islands",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PW": "Palau",
+    "PA": "Pennsylvania",
+    "PR": "Puerto Rico",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VI": "Virgin Islands",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
+}
 
 const ListingCardSquare = ({
   id,
@@ -24,6 +85,9 @@ const ListingCardSquare = ({
   petAllowance,
   petFeeValue,
   petSize,
+  alias,
+  state,
+  city,
   ...props
 }) => {
   const history = useHistory();
@@ -38,6 +102,25 @@ const ListingCardSquare = ({
       </Typography>
     </Box>
   )
+
+  function slugify(str) {
+    if (!str) {
+      return ''
+    }
+    // Convert all non-word characters to hyphens
+    str = str.replace(/[^\w-]/g, '-');
+
+    // Remove all consecutive hyphens
+    str = str.replace(/-+/g, '-');
+
+    // Trim leading and trailing hyphens
+    str = str.trim('-');
+
+    return str.toLowerCase();
+  }
+
+  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+
 
   return (
     <>
@@ -54,8 +137,9 @@ const ListingCardSquare = ({
           background: "#fff",
           transition: "all .25s ease-in-out",
           paddingBottom: "0px",
-          // "&:hover": { boxShadow: 7 },
+          "&:hover": { boxShadow: 5 },
           my: highlighted ? 4 : 0,
+          boxShadow: { xs: 5, sm: 5, md: 0, lg: 0 }
         }}
         // {...props}
       >
@@ -67,7 +151,7 @@ const ListingCardSquare = ({
         />
 
         <Box
-          onClick={() => history.push("/hotel/" + travolutionaryId)}
+          onClick={() => history.push(hotelUrl)}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
@@ -93,7 +177,8 @@ const ListingCardSquare = ({
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: 'space-between',
-                mt: '1rem'
+                mt: '1rem',
+                ml: '0.25rem'
               }}
             >
               <Box sx={{ display: 'flex' }}>
@@ -108,7 +193,7 @@ const ListingCardSquare = ({
                 >
                   {name}
                 </Typography>
-                <Box onClick={() => history.push(`/hotel/${travolutionaryId}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
+                <Box onClick={() => history.push(`${hotelUrl}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
                   <Box sx={{ color: 'red'}}><StarIcon fontSize="inherit" /></Box>
                   <Typography variant="base" mb="2px">{starRating}</Typography>
                 </Box> 
