@@ -142,9 +142,9 @@ const ListingCardSquare = ({
           background: "#fff",
           transition: "all .25s ease-in-out",
           paddingBottom: "0px",
-          "&:hover": { boxShadow: 5 },
+          "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
-          boxShadow: { xs: 5, sm: 5, md: 0, lg: 0 }
+          boxShadow: 5,
         }}
         // {...props}
       >
@@ -183,7 +183,9 @@ const ListingCardSquare = ({
                 flexDirection: "column",
                 justifyContent: 'space-between',
                 mt: '1rem',
-                ml: '0.3rem'
+                ml: '0.3rem',
+                px: '0.2rem',
+                pb: '0.25rem'
               }}
             >
               <Box sx={{ display: 'flex' }}>
@@ -228,7 +230,7 @@ const ListingCardSquare = ({
                 <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '20px' }} />
                 <Typography sx={{ fontSize: '14px'}}>pet-friendly room guaranteed</Typography>
               </Box>
-              <Box mt="-0.5rem" mr="0.5rem">
+              <Box mt="-0.5rem">
                 <PriceDetails />
               </Box>
             </Grid>

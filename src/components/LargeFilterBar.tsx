@@ -184,7 +184,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       {showText && <Box component="h2" sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">the easiest way to travel with your pets</Box>}
       <Box sx={{ 
           mt: '1.5em', 
-          border: '4px solid ',
+          border: '1px gray solid',
           boxSizing: 'border-box',
           background: "#f5f3f3",
           zIndex: 11,
@@ -192,7 +192,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: "6px",
+          borderRadius: '6px'
         }} 
         className="filter-bar-desktop"
       >
@@ -201,7 +201,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            px: '1em',
+            px: '1rem',
           }}
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
@@ -351,6 +351,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             }}
           />
         </Box>
+        {showText ?
         <Button
           onClick={handleFilterOutClick}
           variant="contained"
@@ -366,6 +367,9 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         >
           Search
         </Button>
+        : <Box onClick={handleFilterOutClick} backgroundColor="#03989E" borderRadius="100%" p="0.5rem" m="0.5rem" sx={{ cursor: 'pointer' }} ><SearchIcon sx={{ cursor: 'pointer', height: "20px", fill: 'white' }} /></Box>
+
+        }
       </Box>
     </Box>
   );
