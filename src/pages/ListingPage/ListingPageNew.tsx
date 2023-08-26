@@ -70,6 +70,19 @@ const ListingPageNew = ({ ...props }) => {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [timer, setTimer] = useState(null)
 
+  //TODO: doesn't handle number of pets currently MOBILE
+  const [previousFilterState, setPreviousFilterState] = useState({
+    query,
+    sliderValue,
+    minPrice,
+    maxPrice,
+    filterAmenities,
+    rating,
+    allowsCats,
+    hasNoPetFees,
+    petWeights
+  })
+
   const mobile = useMediaQuery("(max-width:800px)");
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge : []
@@ -366,6 +379,40 @@ const ListingPageNew = ({ ...props }) => {
     )
   }
 
+  const commitToFilters = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setViewFilters(false)
+  }
+
+  const handleViewFilters = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setViewFilters(true)
+    setPreviousFilterState({
+      query,
+      sliderValue,
+      minPrice,
+      maxPrice,
+      filterAmenities,
+      rating,
+      allowsCats,
+      hasNoPetFees,
+      petWeights
+    })
+  }
+
+  const handleCancelFilters = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setViewFilters(false)
+    setQuery(previousFilterState.query)
+    setSliderValue(previousFilterState.sliderValue)
+    setMinPrice(previousFilterState.minPrice)
+    setMaxPrice(previousFilterState.maxPrice)
+    setFilterAmenities(previousFilterState.filterAmenities)
+    setRating(previousFilterState.rating)
+    setAllowsCats(previousFilterState.allowsCats)
+    setHasNoPetFees(previousFilterState.hasNoPetFees)
+    setPetWeights(previousFilterState.petWeights)
+  }
+
 
   if (loading && history.action === 'PUSH') {
     return <Loader size="400px" />
@@ -403,7 +450,7 @@ const ListingPageNew = ({ ...props }) => {
             <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
               View on full map
             </Button>
-            <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setViewFilters(true)}>
+            <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={(e) => handleViewFilters(e)}>
               View filters
             </Button>
           </Grid>:
@@ -600,6 +647,8 @@ const ListingPageNew = ({ ...props }) => {
           markers={markers}
         />
       </Dialog>
+
+
       <Dialog
         fullScreen
         open={viewFilters}
@@ -610,7 +659,7 @@ const ListingPageNew = ({ ...props }) => {
             <IconButton
               edge="start"
               color="inherit"
-              onClick={() => setViewFilters(false)}
+              onClick={() => handleCancelFilters()}
               aria-label="close"
               size="large">
               <CloseIcon />
@@ -734,6 +783,10 @@ const ListingPageNew = ({ ...props }) => {
             <FormControlLabel control={<Checkbox name="4" checked={rating["4"]} />} label="4" />
             <FormControlLabel control={<Checkbox name="5" checked={rating["5"]} />} label="5" />
           </FormGroup>
+
+          <Box mt="1rem">
+            <Button fullWidth variant="contained" onClick={(e) => commitToFilters(e)} >Update</Button>
+          </Box>
         </Box>
       </Dialog>
     </Box>
