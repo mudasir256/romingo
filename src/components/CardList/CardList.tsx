@@ -49,7 +49,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
         )}
       </div>
       {cards.length > PER_PAGE && 
-      <Box mb="1rem" ml="-2rem" sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'center', md: 'flex-start', lg: 'flex-start' } }}>
+      <Box mb="1rem" sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'center', md: 'flex-start', lg: 'flex-start' } }}>
         <Pagination
           count={count}
           size="large"

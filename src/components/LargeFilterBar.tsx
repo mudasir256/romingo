@@ -201,7 +201,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            px: '1rem',
+            px: '0.5rem',
           }}
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>

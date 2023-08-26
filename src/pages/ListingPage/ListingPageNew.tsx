@@ -52,7 +52,7 @@ const ListingPageNew = ({ ...props }) => {
   const search = useSelector((state: any) => state.searchReducer.search);
   const [center, setCenter] = useState({ lat: search.latitude, lng: search.longitude })
   const [markers, setMarkers] = useState([]);
-  const [sort, setSort] = useState('alphabetSort');
+  const [sort, setSort] = useState('featured');
   const [selectedCity, setSelectedCity] = useState(search.city)
   
   const [rating, setRating] = useState({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true});
@@ -194,7 +194,8 @@ const ListingPageNew = ({ ...props }) => {
     setSliderValue([min, max])
 
     setFormatHotels(readyHotels)
-    setHotels(readyHotels.filter(hotel => hotelPetAllowance(hotel)))
+    const sorted = sortHotelsBy(readyHotels, sort)
+    setHotels(sorted.filter(hotel => hotelPetAllowance(hotel)))
     setMarkers(markers);
   }
 
@@ -210,8 +211,11 @@ const ListingPageNew = ({ ...props }) => {
         return toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice);
       case 'priceSort_high_to_low':
         return toSortHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
-      case 'featured':
-        return toSortHotels
+      case 'featured': {
+        const noFees = toSortHotels.filter(a => a.pet_fee === 'NONE')
+        const fees = toSortHotels.filter(a => a.pet_fee !== 'NONE')
+        return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)]
+      }
       case 'highest_rating':
         return toSortHotels.sort((a, b) => b.romingoScore - a.romingoScore);
       default:
@@ -392,10 +396,9 @@ const ListingPageNew = ({ ...props }) => {
       {mobile && <FilterBar home={false} />}
       {mobile && <Box mb="1rem"><Divider /></Box>}
 
-      {!mobile && <LargeFilterBar />}
-      <Box maxWidth="624px" mx='auto'><Banner /></Box>
+      {/* <Box maxWidth="624px" mx='auto'><Banner /></Box>*/}
 
-      <Grid container direction='row' style={{ padding: mobile ? '0' : '30px', width: mobile ? '100%' : '80%', margin: 'auto', position: 'relative', }} >
+      <Grid container direction='row' sx={{ mt: "1rem", px: { xs: 0, sm: 0, md: 0, lg: '6rem'} }} style={{ margin: 'auto', position: 'relative', }} >
         {mobile ?
           <Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
             <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
@@ -405,8 +408,8 @@ const ListingPageNew = ({ ...props }) => {
               View filters
             </Button>
           </Grid>:
-          <Grid item xs={0} sm={0} md={4} >
-            <Box sx={{ display: "flex", my: 2, width: "100%" }}>
+          <Grid item xs={0} sm={0} md={3.5}>
+            <Box sx={{ display: "flex", mt: '1.5rem', mb: 2, width: "100%" }}>
               <Map center={{ lat: search.lat, lng: search.lng }}
                 height={300}
                 zoom={11}
@@ -520,12 +523,13 @@ const ListingPageNew = ({ ...props }) => {
             </FormGroup>
           </Grid>}
 
-        <Grid item xs={12} sm={12} md={8} style={{ padding: mobile ? '0 10px' : '0 30px', width: '96%' }}>
+        <Grid item xs={12} sm={12} md={8} sx={{ p: '0.5rem', ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" } }}>
+          {!mobile && <LargeFilterBar />}
           <Grid item container direction='row'>
             <Grid item container direction='row' justifyContent='space-between' alignItems="center">
               <Grid item>
-                <Box sx={{ display: 'flex', gap: '0.2rem', alignItems: 'center' }}>
-                  <Typography style={{ padding: '8px 20px' }}>{hotels.length} properties</Typography>
+                <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <Typography my="1rem">{hotels.length} properties</Typography>
                   {!mobile && 
                     <Chip
                      size="small"
@@ -551,11 +555,11 @@ const ListingPageNew = ({ ...props }) => {
                     onChange={handleSort}
                     variant='standard'
                   >
-                    <MenuItem value={'alphabetSort'}>Alphabet sort</MenuItem>
+                    <MenuItem value={'featured'}>Featured</MenuItem>
                     <MenuItem value={'priceSort_low_to_high'}>Price sort (low to high)</MenuItem>
                     <MenuItem value={'priceSort_high_to_low'}>Price sort (high to low)</MenuItem>
                     <MenuItem value={'highest_rating'}>Highest Rating</MenuItem>
-                    <MenuItem value={'featured'}>Featured</MenuItem>
+                    <MenuItem value={'alphabetSort'}>Alphabet sort</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
