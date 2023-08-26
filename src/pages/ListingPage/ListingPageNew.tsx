@@ -420,18 +420,20 @@ const ListingPageNew = ({ ...props }) => {
 
   const Banner = () => (
     <Box 
+      width="100%"
       backgroundColor="#03989E" 
       borderRadius="6px" 
       gap="1rem"
       display="flex" 
+      justifyContent="space-between"
       flexDirection="row" 
       alignItems="center"
-      pl="0.5rem"
+      px="0.5rem"
       py="0.5rem"
     >
   
         <img width="40px" src={WhitePawsIcon} />
-        <Typography  variant="base" color="white">Save $5 off your first reservation when you create an account</Typography>
+        <Typography  variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $5 off your first reservation when you create an account</Typography>
         <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
@@ -442,7 +444,6 @@ const ListingPageNew = ({ ...props }) => {
       {mobile && <FilterBar home={false} />}
       {mobile && <Box mb="1rem"><Divider /></Box>}
 
-      {/* <Box maxWidth="624px" mx='auto'><Banner /></Box>*/}
 
       <Grid container direction='row' justifyContent="center" sx={{ mt: "1rem", px: { xs: 0, sm: 0, md: 0, lg: '6rem'} }} style={{ margin: 'auto', position: 'relative', }} >
         {mobile ?
@@ -575,8 +576,12 @@ const ListingPageNew = ({ ...props }) => {
             ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" }          
           }}
         >
+
           <Grid item container direction='row'>
             {!mobile && <Box textAlign="left"><LargeFilterBar /></Box>}
+            <Box my="1rem" textAlign="left" maxWidth="840px" mr="1rem"><Banner /></Box>
+            
+
             <Grid maxWidth="840px" item container direction='row' justifyContent='space-between' alignItems="center">
               <Grid item>
                 <Box mt="0.5rem" sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
