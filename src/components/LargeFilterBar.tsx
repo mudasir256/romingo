@@ -117,11 +117,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         })
       );
     
-      if (history.location.pathname === '/listings') {
-        window.location.reload();
-      } else {
-        history.push("/listings");
-      }
+      history.push("/listings");
     } else {
       alert("error");
       if (!selectedCity) {
