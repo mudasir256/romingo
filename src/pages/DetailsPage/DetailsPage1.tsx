@@ -1,7 +1,7 @@
 import loadable from '@loadable/component'
 import { withStyles } from "@mui/styles";
 import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
-import { Dispatch, FC, useEffect, useState } from "react";
+import { Dispatch, FC, useEffect, useState, useRef } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
 import DetailsPageSkeleton from "./DetailsPageSkeleton";
@@ -67,6 +67,7 @@ const DetailsPage1 = ({ ...props }) => {
   const [showFullImage, setShowFullImage] = useState<string>('');
 
   const [lowestRomingoRate, setLowestRomingoRate] = useState(0)
+  const reviewsRef = useRef(null)
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
@@ -120,12 +121,18 @@ const DetailsPage1 = ({ ...props }) => {
   )
 
   useEffect(() => {
+    if (history?.location?.hash === '#reviews') {
+      reviewsRef?.current?.scrollIntoView()    
+    }
+  }, [reviews])
+
+  useEffect(() => {
     if (data && data.getHotelDetails) {
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
       let lowest = 999999
       for (const room of data.getHotelDetails.Result) {
-        console.log(room)
+        // console.log(room)
         const tax = room.PackagePrice.OriginalTax || room.PackagePrice.TaxesAndFees.find(item => true)?.Value
         if ((room.SimplePrice - tax) < lowest) {
           lowest = (room.SimplePrice - tax)
@@ -143,6 +150,7 @@ const DetailsPage1 = ({ ...props }) => {
       setRoomsDetails(data.getHotelDetails.RoomsContent);
       setSessionId(data.getHotelDetails.sessionId)
       setLowestRomingoRate(lowest / diffDays)
+
     }
   }, [data])
 
@@ -530,6 +538,7 @@ const DetailsPage1 = ({ ...props }) => {
             }} />
           <Link
             href="#reviews"
+            onClick={() => reviewsRef?.current?.scrollIntoView()}
             sx={{
               cursor: "pointer",
               color: "#666",
@@ -765,7 +774,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
           sx={{ paddingLeft: "16px", paddingRight: '16px', my: "1rem" }}
         >
 
-          <Typography id="reviews" variant="h6">What People Are Saying</Typography>
+          <Typography ref={reviewsRef} id="reviews" variant="h6">What People Are Saying</Typography>
           <Typography variant="base" sx={{ color: 'grey' }}>(Powered by Trip Advisor)</Typography>
           {!taReviewsLoading ? 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem', flexWrap: 'wrap', mt: '1.5rem'}}>

@@ -91,7 +91,6 @@ const ListingPageNew = ({ ...props }) => {
 
 
   const formatHotel = (hotel) => {
-
     return {
       imageURLs: [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
@@ -102,7 +101,7 @@ const ListingPageNew = ({ ...props }) => {
       zipcode: hotel.zipcode,
       petFeePolicy: { maxPets: 0 },
       romingoScore: hotel.starRating,
-      numberOfReviews: hotel.numberOfReview,
+      numberOfReviews: hotel.numberOfReviews,
       lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
@@ -398,7 +397,7 @@ const ListingPageNew = ({ ...props }) => {
 
       {/* <Box maxWidth="624px" mx='auto'><Banner /></Box>*/}
 
-      <Grid container direction='row' sx={{ mt: "1rem", px: { xs: 0, sm: 0, md: 0, lg: '6rem'} }} style={{ margin: 'auto', position: 'relative', }} >
+      <Grid container direction='row' justifyContent="center" sx={{ mt: "1rem", px: { xs: 0, sm: 0, md: 0, lg: '6rem'} }} style={{ margin: 'auto', position: 'relative', }} >
         {mobile ?
           <Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
             <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
@@ -408,7 +407,7 @@ const ListingPageNew = ({ ...props }) => {
               View filters
             </Button>
           </Grid>:
-          <Grid item xs={0} sm={0} md={3.5}>
+          <Grid item xs={0} sm={0} md={3.2}>
             <Box sx={{ display: "flex", mt: '1.5rem', mb: 2, width: "100%" }}>
               <Map center={{ lat: search.lat, lng: search.lng }}
                 height={300}
@@ -523,12 +522,17 @@ const ListingPageNew = ({ ...props }) => {
             </FormGroup>
           </Grid>}
 
-        <Grid item xs={12} sm={12} md={8} sx={{ p: '0.5rem', ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" } }}>
-          {!mobile && <LargeFilterBar />}
+        <Grid item xs={12} sm={12} md={8} 
+          sx={{ 
+            p: '0.5rem', 
+            ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" }          
+          }}
+        >
           <Grid item container direction='row'>
-            <Grid item container direction='row' justifyContent='space-between' alignItems="center">
+            {!mobile && <Box textAlign="left"><LargeFilterBar /></Box>}
+            <Grid maxWidth="840px" item container direction='row' justifyContent='space-between' alignItems="center">
               <Grid item>
-                <Box sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                <Box mt="0.5rem" sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                   <Typography my="1rem">{hotels.length} properties</Typography>
                   {!mobile && 
                     <Chip
@@ -565,7 +569,7 @@ const ListingPageNew = ({ ...props }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item maxWidth="840px" >
             <CardList cards={hotels} sessionId={sessionId} />
           </Grid>
         </Grid>

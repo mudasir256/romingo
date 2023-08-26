@@ -12,7 +12,7 @@ interface Props {
 const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   // const [newCards, setNewCards] = useState(cards)
   const [page, setPage] = useState(0);
-  const PER_PAGE = 25;
+  const PER_PAGE = 1000;
 
   const count = Math.ceil(cards.length / PER_PAGE);
 
@@ -22,12 +22,12 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   const handleChange = (e, p) => {
     e.preventDefault()
     setPage(p);
-    _DATA.jump(p);
+    // _DATA.jump(p);
   };
 
   useEffect(() => {
     setPage(1);
-    _DATA.jump(1);
+    // _DATA.jump(1);
   }, [cards]);
 
   return (
@@ -38,7 +38,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
           if (exists) {
             return (<div key={card.ID}>
               <Box data-hotel-id={exists.ID}
-                sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
+                sx={{ maxWidth: "100%", backgroundColor: "white", py: '0.8rem' }}
               >
                 <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.ID} page="listings" />
               </Box>

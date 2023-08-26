@@ -9,6 +9,7 @@ import { Pets, Info } from "@mui/icons-material";
 import DogIcon from "../../assets/icon/dog.png";
 import GiftIcon from "../../assets/icon/gift.svg";
 import HotelTags from '../../components/HotelTags'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const stateCodes = {
     "AL": "Alabama",
@@ -118,7 +119,7 @@ export interface ListingCardProps {
   bookingId?: string;
   state?: string;
   zipcode?: string;
-  // numberOfReviews?: number;
+  numberOfReviews?: number;
   // catPolicy?: string;
   // petReliefArea?: string;
   // petAmenities?: string[];
@@ -152,6 +153,7 @@ const ListingCard: FC<ListingCardProps> = ({
   state,
   zipcode,
   page,
+  numberOfReviews = 0,
   ...props
 }) => {
   const history = useHistory();
@@ -331,6 +333,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 whiteSpace: "nowrap",
                 fontFamily: "overpass-light",
                 color: "#999",
+                fontSize: '13px'
               }}
             >
               {addressLine1}, {state} {zipcode}
@@ -338,7 +341,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
             <Box
               sx={{
-                mb: { xs: "0.75em", sm: "1em" },
+                mb: { xs: "0.75em", sm: "0.5rem" },
               }}
             >
               <HotelTags 
@@ -347,6 +350,11 @@ const ListingCard: FC<ListingCardProps> = ({
                 pet_size={hotel.pet_size}
                 pet_allowance={hotel.pet_allowance}
               />
+            </Box>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '18px' }} />
+              <Typography sx={{ fontSize: '13px'}}>pet-friendly room guaranteed</Typography>
             </Box>
 
             <Box
@@ -404,7 +412,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     fontSize: "70%",
                   }}
                 >
-                  (see reviews)
+                  <u>({numberOfReviews} reviews)</u>
                 </Link>
               </Box>
             </Box>
