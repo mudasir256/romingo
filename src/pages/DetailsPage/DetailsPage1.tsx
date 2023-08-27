@@ -134,7 +134,7 @@ const DetailsPage1 = ({ ...props }) => {
       let lowest = 999999
       for (const room of data.getHotelDetails.Result) {
         // console.log(room)
-        const tax = room.PackagePrice.OriginalTax || room.PackagePrice.TaxesAndFees.find(item => true)?.Value
+        const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
         if ((room.SimplePrice - tax) < lowest) {
           lowest = (room.SimplePrice - tax)
         }
@@ -605,7 +605,7 @@ const DetailsPage1 = ({ ...props }) => {
           >
             RESERVE A ROOM
           </Button>
-           
+
           <Box my="2rem">
             <Divider />
           </Box>
