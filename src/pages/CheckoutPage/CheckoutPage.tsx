@@ -60,16 +60,6 @@ const CheckoutPage: FC<Props> = () => {
 
   const mobile = useMediaQuery("(max-width:800px)");
 
-  // set payLater to true if check-in is more than 3 days in the future
-  useEffect(() => {
-    const dateNow = new Date();
-    const checkinDate = new Date(search.checkIn);
-    const hours = Math.abs(checkinDate.getTime() - dateNow.getTime()) / 36e5;
-    if (hours > 72) {
-      setPayLater(true);
-    }
-  }, [search]);
-
   return (
     <>
       <ScrollToTop />

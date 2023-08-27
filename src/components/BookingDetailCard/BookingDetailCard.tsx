@@ -115,7 +115,7 @@ const BookingDetailCard: FC = () => {
 
           }}
         >
-          {`${details.occupants.adults} Adults - ${details.occupants.children} Children - ${details.occupants.dogs} Dogs`}
+          {`${details.occupants.adults} Adults - ${details.occupants.children ?  `${details.occupants.children} Children -` : ''} ${details.occupants.dogs} Pets`}
         </Typography>
       </Box>
       <Box>
