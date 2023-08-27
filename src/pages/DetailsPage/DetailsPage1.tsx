@@ -133,7 +133,11 @@ const DetailsPage1 = ({ ...props }) => {
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
       let lowest = 999999
-      for (const room of data.getHotelDetails.Result) {
+      const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
+        return room.Rooms[0].RoomBasis === 'Room only RO'
+      })
+      
+      for (const room of roomPackagesOnly) {
         console.log(room)
         const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
         if ((room.SimplePrice - tax) < lowest) {
