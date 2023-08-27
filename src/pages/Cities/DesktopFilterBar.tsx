@@ -462,11 +462,11 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Dogs</Typography>
+            <Typography variant="body1">Pets</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
-                if (dogs > 2) return;
+                if (dogs > 9) return;
                 onChange({ ...value, dogs });
               }}
             />

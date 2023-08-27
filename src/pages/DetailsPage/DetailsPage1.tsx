@@ -68,6 +68,7 @@ const DetailsPage1 = ({ ...props }) => {
 
   const [lowestRomingoRate, setLowestRomingoRate] = useState(0)
   const reviewsRef = useRef(null)
+  const rateRef = useRef(null)
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge.join(',') : ''
 
@@ -432,7 +433,7 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   const getCatPolicy = (catPolicy) => {
-    if(catPolicy === 'Yes'){
+    if(catPolicy === 'Yes' || catPolicy === 'Yes, please contact hotel for pre-approval'){
       return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval.'
     } else {
       return `Cats are not permitted at ${hotelDetailsFromPackage.hotelName}.`
@@ -516,7 +517,10 @@ const DetailsPage1 = ({ ...props }) => {
       </Grid>
 
       <Grid container direction="row" sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
-        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}><Typography variant="h6" >{hotel?.hotelName}</Typography></Grid>
+        <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}>
+          <Typography variant="h6">{hotel?.hotelName}</Typography>
+          <Typography variant="base" color="gray" sx={{ fontSize: '14px' }}>{hotel.fullAddressLine}</Typography>
+        </Grid>
         <Grid item xs={12} md={6} 
           sx={{ 
             pl: { xs: '12px', sm: '12px', md: 0, lg: 0 },
@@ -546,10 +550,24 @@ const DetailsPage1 = ({ ...props }) => {
               fontWeight: 500,
               opacity: 0.75,
               fontSize: "70%",
+              mr: "6rem"
             }}
           >
             <u>{hotel?.numberOfReviews} reviews</u>
           </Link>
+          <Button
+            onClick={() => rateRef?.current?.scrollIntoView({ behavior: 'smooth'})}
+            disableElevation
+            variant="contained"
+            sx={{
+              fontWeight: 600,
+              mt: "1rem",
+              width: '320px',
+              display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' }
+            }}
+          >
+            RESERVE A ROOM
+          </Button>
         </Grid>
         <Grid
           item
@@ -570,10 +588,24 @@ const DetailsPage1 = ({ ...props }) => {
           md={10}
           sx={{ paddingLeft: "16px", paddingRight: '16px', marginBottom: "1rem" }}
         >{ hotelDetailsFromPackage && 
-<Typography variant="base">{`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} 
-welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}</Typography>
+          <Typography variant="base">
+            {`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}
+          </Typography>
         }
-          
+          <Button
+            onClick={() => rateRef?.current?.scrollIntoView({ behavior: 'smooth'})}
+            disableElevation
+            variant="contained"
+            sx={{
+              fontWeight: 600,
+              mt: "1rem",
+              width: '100%',
+              display: { xs: 'block', sm: 'block', md: 'block', lg: 'none' }
+            }}
+          >
+            RESERVE A ROOM
+          </Button>
+           
           <Box my="2rem">
             <Divider />
           </Box>
@@ -655,6 +687,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
         >
           <Typography variant="h6">Hotel Description</Typography>
           <Typography variant="base">{hotel.description}</Typography>
+
           <Box my="2rem">
             <Divider />
           </Box>
@@ -712,6 +745,7 @@ welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLa
         >
           <Grid item xs={12} ml="1rem">
             <Typography
+              ref={rateRef}
               variant="h6"
             >
               Choose your room

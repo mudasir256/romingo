@@ -16,7 +16,7 @@ interface Props {
 
 
 const chipIconStyle = {
-  fontSize: { xs: '0.72em', sm: "0.75em" },
+  fontSize: { xs: '0.72em', sm: "0.75em", md: '0.9rem' },
   backgroundColor: 'transparent',
   fontFamily: 'overpass-light',
   mt: '0.35em',
@@ -81,13 +81,13 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
       <Chip
         size="small"
         sx={chipIconStyle}
-        icon={<Pets fontSize="small" />}
+        icon={<Pets />}
         label={<Box sx={iconSpacing}>{pet_allowance}</Box>}
       />
       <Chip
         size="small"
         sx={chipIconStyle}
-        icon={<img width="18px" src={DogIcon} />}
+        icon={<img width="20px" src={DogIcon} />}
         label={<Box sx={iconSpacing}>{pet_size}</Box>}
       />
 
@@ -96,7 +96,7 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
           <Chip
             size="small"
             sx={chipIconStyle}
-            icon={<img width="18px" src={GiftIcon} />}
+            icon={<img width="20px" src={GiftIcon} />}
             label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities 
               <Info fontSize="xs" sx={{ display: { xs: 'none' , sm: 'none', md: 'block'} }} onMouseEnter={() => setShowExtraInfo(true)} onMouseLeave={() => setShowExtraInfo(false)} /> 
               <Info fontSize="xs" sx={{ display: { xs: 'block' , sm: 'block', md: 'none'} }} onClick={() => setShowMobileExtraInfo(!showMobileExtraInfo)} /> 
