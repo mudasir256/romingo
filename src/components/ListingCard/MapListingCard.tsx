@@ -155,7 +155,6 @@ const MapListingCard: FC<ListingCardProps> = ({
           paddingBottom: "0px",
           my: highlighted ? 4 : 0,
         }}
-        {...props}
       >
         <Box
           sx={{

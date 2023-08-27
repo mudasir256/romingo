@@ -23,6 +23,9 @@ import { saveSearch } from "../../store/searchReducer";
 import { setList } from "../../store/hotelListReducer";
 import { useHistory } from "react-router-dom";
 import WhitePawsIcon from '../../assets/icon/white-paws.png';
+import {
+  Info,
+} from '@mui/icons-material'
 
 const ListingPageNew = ({ ...props }) => {
 
@@ -55,9 +58,10 @@ const ListingPageNew = ({ ...props }) => {
   const [sort, setSort] = useState('featured');
   const [selectedCity, setSelectedCity] = useState(search.city)
   
+  const [hotelRating, setHotelRating] = useState({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true});
   const [rating, setRating] = useState({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true});
   const [filterAmenities, setFilterAmenities] = useState(initialAmenityFilterState)
-  const [petWeights, setPetWeights] = useState('all')  
+  const [petWeights, setPetWeights] = useState(null)  
   const [allowsCats, setAllowsCats] = useState(false)
   const [hasNoPetFees, setHasNoPetFees] = useState(false)
 
@@ -70,6 +74,8 @@ const ListingPageNew = ({ ...props }) => {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [timer, setTimer] = useState(null)
 
+  const [showInfoBox, setShowInfoBox] = useState(false)
+
   //TODO: doesn't handle number of pets currently MOBILE
   const [previousFilterState, setPreviousFilterState] = useState({
     query,
@@ -80,7 +86,8 @@ const ListingPageNew = ({ ...props }) => {
     rating,
     allowsCats,
     hasNoPetFees,
-    petWeights
+    petWeights,
+    hotelRating
   })
 
   const mobile = useMediaQuery("(max-width:800px)");
@@ -104,6 +111,7 @@ const ListingPageNew = ({ ...props }) => {
 
 
   const formatHotel = (hotel) => {
+    console.log(hotel)
     return {
       imageURLs: [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
@@ -113,6 +121,7 @@ const ListingPageNew = ({ ...props }) => {
       state: hotel.state,
       zipcode: hotel.zipcode,
       petFeePolicy: { maxPets: 0 },
+      hotelStarRating: hotel.StarRating,
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReviews,
       lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
@@ -141,6 +150,7 @@ const ListingPageNew = ({ ...props }) => {
         state: hotel.state,
         zipcode: hotel.zipcode,
         petFeePolicy: { maxPets: 0 },
+        hotelStarRating: hotel.StarRating,
         romingoScore: hotel.starRating,
         numberOfReviews: hotel.numberOfReview,
         lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
@@ -281,13 +291,13 @@ const ListingPageNew = ({ ...props }) => {
     const weight = parseInt(`${hotel.pet_size.charAt(0)}${hotel.pet_size.charAt(1)}`)
 
     switch (value) {
-      case 'all':
-        return hotel.pet_size === 'Any Size'
       case '75':
         return weight > 75 || hotel.pet_size === 'Any Size'
       case '50':
         return weight > 25 || hotel.pet_size === 'Any Size'
       case '25':
+        return true
+      default:
         return true
     }
   }
@@ -306,7 +316,8 @@ const ListingPageNew = ({ ...props }) => {
       
       const newHotels = formatHotels.filter(hotel => {
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
-        
+        const hotelRatingR = hotel.hotelStarRating ? hotel.hotelStarRating.toString().charAt(0) : 0
+
         return (hotel.lowestAveragePrice >= sliderValue[0] && 
           hotel.lowestAveragePrice <= sliderValue[1] &&
           hotel.name.toLowerCase().includes(query.toLowerCase()) &&
@@ -315,14 +326,15 @@ const ListingPageNew = ({ ...props }) => {
           (allowsCats ? hotel.cat_policy === 'Yes' : true) &&
           (hasNoPetFees ? hotel.pet_fee === 'NONE' : true) &&
           hotelHasWeights(petWeights, hotel) &&
-          hotelPetAllowance(hotel)
+          hotelPetAllowance(hotel) &&
+          hotelRating[hotelRatingR]
         )
       })
       const sorted = sortHotelsBy(newHotels, sort)
       setHotels(sorted)
       setMarkers(newHotels)
     }
-  }, [shouldFilter, filterAmenities, rating, hasNoPetFees, petWeights, allowsCats, search?.occupants?.dogs])
+  }, [shouldFilter, filterAmenities, rating, hotelRating, hasNoPetFees, petWeights, allowsCats, search?.occupants?.dogs])
 
 
   const handleSearch = (e) => {
@@ -348,6 +360,13 @@ const ListingPageNew = ({ ...props }) => {
     setSliderValue(e.target.value);
   }
 
+  const handleHotelRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+     setHotelRating({
+       ...hotelRating,
+       [event.target.name]: event.target.checked,
+     });
+   };
+
   const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
      setRating({
        ...rating,
@@ -366,13 +385,13 @@ const ListingPageNew = ({ ...props }) => {
     setPetWeights((event.target as HTMLInputElement).value);
   };
 
-  const handlePetNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePetNumberChange = (number) => {
     dispatch(
       saveSearch({
         ...search,
         occupants: {
           ...search?.occupants,
-          dogs: event.target.value
+          dogs: number
         }
       })
 
@@ -396,7 +415,8 @@ const ListingPageNew = ({ ...props }) => {
       rating,
       allowsCats,
       hasNoPetFees,
-      petWeights
+      petWeights,
+      hotelRating
     })
   }
 
@@ -411,6 +431,7 @@ const ListingPageNew = ({ ...props }) => {
     setAllowsCats(previousFilterState.allowsCats)
     setHasNoPetFees(previousFilterState.hasNoPetFees)
     setPetWeights(previousFilterState.petWeights)
+    setHotelRating(previousFilterState.hotelRating)
   }
 
 
@@ -437,6 +458,7 @@ const ListingPageNew = ({ ...props }) => {
         <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
+
 
   return (
     <Box sx={{ background: "#feffff" }}>
@@ -475,34 +497,29 @@ const ListingPageNew = ({ ...props }) => {
               <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
 
               <Box mb="1rem">
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel id="demo-simple-select-label">Number of Pets</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={search?.occupants?.dogs}
-                    label="Number of Pets"
-                    onChange={handlePetNumberChange}
-                  >
-                    <MenuItem value={0}>0</MenuItem>
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={6}>6</MenuItem>
-                    <MenuItem value={7}>7</MenuItem>
-                    <MenuItem value={8}>8</MenuItem>
-                    <MenuItem value={9}>9</MenuItem>
-                  </Select>
-                </FormControl>
+                <Typography sx={{ fontSize: '13px'}}>Number of Pets</Typography>
+                <Box display="flex" flexDirection="row" gap="0.25rem">
+                  <Button onClick={() => handlePetNumberChange(1)} variant={search?.occupants?.dogs == 1 ? 'contained' : 'outlined'}  color="primary">1</Button>
+                  <Button onClick={() => handlePetNumberChange(2)} variant={search?.occupants?.dogs == 2 ? 'contained' : 'outlined'}  color="primary">2</Button>
+                  <Button onClick={() => handlePetNumberChange(3)} variant={search?.occupants?.dogs == 3 ? 'contained' : 'outlined'}  color="primary">3</Button>
+                  <Button onClick={() => handlePetNumberChange(4)} variant={search?.occupants?.dogs == 4 ? 'contained' : 'outlined'}  color="primary">4+</Button>
+                </Box>
+              </Box>
+
+              <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
+                <Typography sx={{ fontSize: '13px'}}>Individual Pet Weight</Typography>
+                <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
+                {showInfoBox &&
+                <Box position="relative">
+                  <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Select the weight range of your heaviest pet if you have multiple.</Typography></Box>
+                </Box>
+                }
               </Box>
 
               <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
-                <FormControlLabel value="25" control={<Radio />} label="Accepts 1-25 lbs" />
-                <FormControlLabel value="50" control={<Radio />} label="Accepts 26-75 lbs" />
-                <FormControlLabel value="75" control={<Radio />} label="Accepts 75+ lbs" />
-                <FormControlLabel value="all" control={<Radio />} label="Accepts all pet weights" />
+                <FormControlLabel value="25" control={<Radio />} label="1-25 lbs" />
+                <FormControlLabel value="50" control={<Radio />} label="26-75 lbs" />
+                <FormControlLabel value="75" control={<Radio />} label="75+ lbs" />
               </RadioGroup>
   
               <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
@@ -560,6 +577,15 @@ const ListingPageNew = ({ ...props }) => {
               />
             </Box>
 
+            <Typography>Hotel Rating</Typography>
+            <FormGroup>
+              <FormControlLabel control={<Checkbox name="1" checked={hotelRating["1"]} />} onChange={handleHotelRatingChange} label="1" />
+              <FormControlLabel control={<Checkbox name="2" checked={hotelRating["2"]} />} onChange={handleHotelRatingChange} label="2" />
+              <FormControlLabel control={<Checkbox name="3" checked={hotelRating["3"]} />} onChange={handleHotelRatingChange} label="3" />
+              <FormControlLabel control={<Checkbox name="4" checked={hotelRating["4"]} />} onChange={handleHotelRatingChange} label="4" />
+              <FormControlLabel control={<Checkbox name="5" checked={hotelRating["5"]} />} onChange={handleHotelRatingChange} label="5" />
+            </FormGroup>
+
             <Typography>Guest Rating</Typography>
             <FormGroup>
               <FormControlLabel control={<Checkbox name="1" checked={rating['1']} />} onChange={handleRatingChange} label="1" />
@@ -592,13 +618,14 @@ const ListingPageNew = ({ ...props }) => {
                      label="clear all filters"
                      onDelete={() => {
                        setRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
+                       setHotelRating({'0': false, '1': true, '2': true, '3': true, '4': true, '5': true})
                        setQuery('')
                        setSliderValue([minPrice, maxPrice])
                        setShouldFilter(!shouldFilter)
                        setFilterAmenities(initialAmenityFilterState)
                        setHasNoPetFees(false)
                        setAllowsCats(false)
-                       setPetWeights('all')
+                       setPetWeights(null)
                      }}
                    />
                   }
@@ -697,34 +724,29 @@ const ListingPageNew = ({ ...props }) => {
             <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
 
             <Box mb="1rem">
-              <FormControl variant="standard" fullWidth>
-                <InputLabel id="demo-simple-select-label">Number of Pets</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={search?.occupants?.dogs}
-                  label="Number of Pets"
-                  onChange={handlePetNumberChange}
-                >
-                  <MenuItem value={0}>0</MenuItem>
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                  <MenuItem value={8}>8</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                </Select>
-              </FormControl>
+              <Typography sx={{ fontSize: '13px'}}>Number of Pets</Typography>
+              <Box display="flex" flexDirection="row" gap="0.25rem">
+                <Button onClick={() => handlePetNumberChange(1)} variant={search?.occupants?.dogs == 1 ? 'contained' : 'outlined'} color="primary">1</Button>
+                <Button onClick={() => handlePetNumberChange(2)} variant={search?.occupants?.dogs == 2 ? 'contained' : 'outlined'}  color="primary">2</Button>
+                <Button onClick={() => handlePetNumberChange(3)} variant={search?.occupants?.dogs == 3 ? 'contained' : 'outlined'}  color="primary">3</Button>
+                <Button onClick={() => handlePetNumberChange(4)} variant={search?.occupants?.dogs == 4 ? 'contained' : 'outlined'}  color="primary">4+</Button>
+              </Box>
+            </Box>
+
+            <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
+              <Typography sx={{ fontSize: '13px'}}>Individual Pet Weight</Typography>
+              <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
+              {showInfoBox &&
+              <Box position="relative">
+                <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Select the weight range of your heaviest pet if you have multiple.</Typography></Box>
+              </Box>
+              }
             </Box>
 
             <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
-              <FormControlLabel value="25" control={<Radio />} label="Accepts 1-25 lbs" />
-              <FormControlLabel value="50" control={<Radio />} label="Accepts 26-75 lbs" />
-              <FormControlLabel value="75" control={<Radio />} label="Accepts 75+ lbs" />
-              <FormControlLabel value="all" control={<Radio />} label="Accepts all pet weights" />
+              <FormControlLabel value="25" control={<Radio />} label="1-25 lbs" />
+              <FormControlLabel value="50" control={<Radio />} label="26-75 lbs" />
+              <FormControlLabel value="75" control={<Radio />} label="75+ lbs" />
             </RadioGroup>
           
             <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
@@ -780,8 +802,18 @@ const ListingPageNew = ({ ...props }) => {
             />
           </Box>
 
+
+          <Typography>Hotel Rating</Typography>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox name="1" checked={hotelRating["1"]} />} onChange={handleHotelRatingChange} label="1" />
+            <FormControlLabel control={<Checkbox name="2" checked={hotelRating["2"]} />} onChange={handleHotelRatingChange} label="2" />
+            <FormControlLabel control={<Checkbox name="3" checked={hotelRating["3"]} />} onChange={handleHotelRatingChange} label="3" />
+            <FormControlLabel control={<Checkbox name="4" checked={hotelRating["4"]} />} onChange={handleHotelRatingChange} label="4" />
+            <FormControlLabel control={<Checkbox name="5" checked={hotelRating["5"]} />} onChange={handleHotelRatingChange} label="5" />
+          </FormGroup>
+
           <Typography>Guest Rating</Typography>
-          <FormGroup onChange={handleRatingChange}>
+          <FormGroup>
             <FormControlLabel control={<Checkbox name="1" checked={rating["1"]} />} label="1" />
             <FormControlLabel control={<Checkbox name="2" checked={rating["2"]} />} label="2" />
             <FormControlLabel control={<Checkbox name="3" checked={rating["3"]} />} label="3" />
