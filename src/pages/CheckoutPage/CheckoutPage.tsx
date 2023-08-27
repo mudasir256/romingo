@@ -209,7 +209,6 @@ const CheckoutPageListingCard = ({
         backgroundColor: highlighted ? "lightBackground.main" : "white",
         pb: "1rem",
       }}
-      {...props}
     >
       <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: 0 }, maxWidth: "100%" }}>
 

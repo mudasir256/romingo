@@ -254,7 +254,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             </Box>
           );
         } else if (detail.label === "Pay now") {
-          return (<></>)
+          return (<Box key={i}></Box>)
 
         //     <Box
         //       key={i}
