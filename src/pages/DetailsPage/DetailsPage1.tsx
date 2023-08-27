@@ -614,11 +614,35 @@ const DetailsPage1 = ({ ...props }) => {
               {accessibleRooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 let images = filterroom ? filterroom.Images : [];
+                const amenities = filterroom ? filterroom.Amenities : [];
+
                 if (images.length === 0) {
                   images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
                 }
                 return (
-                  <RoomCard key={key} images={images} room={room} />
+                  <RoomCard 
+                    key={key} 
+                    featuredImageURL={images?.find(item => true)} 
+                    roomTitle={room.Rooms[0].RoomName}
+                    pricePerNight={((room.PackagePrice.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)}
+                    totalPriceAfterTax={room?.PackagePrice?.FinalPrice}
+                    totalPrice={room?.PackagePrice?.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)}
+                    imageURLs={images}
+                    isRefundable={room.Refundability === 2 ? false: true}
+                    room={room} 
+                    hotel={hotel}
+                    amenities={amenities}
+                    sessionId={sessionId}
+                    sx={{
+                      minWidth: "260px",
+                      borderRadius: "8px",
+                      p: " 0rem 1rem 1rem 1rem",
+                      border: "1px solid #ddd",
+                      transition: "all .15s ease-in-out",
+                      boxShadow: 1,
+                      "&:hover": { boxShadow: 3 },
+                    }}
+                  />
                 )   
               })}
               </Grid>
