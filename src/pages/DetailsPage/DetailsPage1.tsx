@@ -134,7 +134,7 @@ const DetailsPage1 = ({ ...props }) => {
       const nonAccessibleRooms = [];
       let lowest = 999999
       for (const room of data.getHotelDetails.Result) {
-        // console.log(room)
+        console.log(room)
         const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
         if ((room.SimplePrice - tax) < lowest) {
           lowest = (room.SimplePrice - tax)
@@ -619,7 +619,15 @@ const DetailsPage1 = ({ ...props }) => {
                 if (images.length === 0) {
                   images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
                 }
-                return (
+                return (<Grid item   
+                    spacing={2}
+                    md={4}
+                    lg={4}
+                    sm={6}
+                    xs={12}
+                    key={key}
+                    sx={{ p: '1rem' }}
+                  >
                   <RoomCard 
                     key={key} 
                     featuredImageURL={images?.find(item => true)} 
@@ -637,12 +645,14 @@ const DetailsPage1 = ({ ...props }) => {
                       minWidth: "260px",
                       borderRadius: "8px",
                       p: " 0rem 1rem 1rem 1rem",
+                      m: "0.5rem",
                       border: "1px solid #ddd",
                       transition: "all .15s ease-in-out",
                       boxShadow: 1,
                       "&:hover": { boxShadow: 3 },
                     }}
                   />
+                  </Grid>
                 )   
               })}
               </Grid>
