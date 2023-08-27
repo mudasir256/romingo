@@ -204,9 +204,12 @@ export default function GoogleMaps(props) {
       value={props.city ? props.city?.city : search.city}
       noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {
+        console.log('change')
+        console.log(newValue)
         handleLocationChange(newValue)
       }}
       onInputChange={(event, newInputValue) => {
+        console.log(newInputValue)
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (

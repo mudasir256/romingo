@@ -18,6 +18,8 @@ import RoomPreferencesOutlinedIcon from "@mui/icons-material/RoomPreferencesOutl
 import { useDispatch } from "react-redux";
 import { DateTime } from "luxon";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
 import {
   Dialog,
   DialogContent,
@@ -51,6 +53,8 @@ import {
   CarRental,
   Crib,
   Chair,
+  AcUnit,
+  Tv,
 } from "@mui/icons-material";
 import ImageSlider from "../ImageSlider";
 interface Props {
@@ -205,24 +209,12 @@ const popularAmenities = [
   // { icon: LocalCafe, text: ["coffee"], not: ["meeting rooms"] },
 ];
 
-const otherAmenities = [
-  { icon: Casino, text: ["game room"] },
-  { icon: MeetingRoom, text: ["meeting", "convention"] },
-  { icon: Crib, text: ["crib", "crib rental"] },
-  { icon: Accessible, text: ["wheelchair access", "wheelchair accessible"] },
-  { icon: SportsGolf, text: ["golf"] },
-  { icon: SportsTennis, text: ["tennis"] },
-  { icon: CarRental, text: ["car rental", "rental"] },
-  { icon: Weekend, text: ["family room"] },
-  { icon: SmokeFree, text: ["non-smoking"] },
-  { icon: ChildCare, text: ["children programs"] },
-  { icon: Work, text: ["executive"] },
-  { icon: AccountBalanceWallet, text: ["in room safe"] },
-];
 
 const RoomCard: FC<Props> = ({
   sx,
   room,
+  hotel,
+  sessionId,
   beds,
   desc,
   amenities,
@@ -232,8 +224,6 @@ const RoomCard: FC<Props> = ({
   totalFees,
   totalPrice,
   totalPriceAfterTax,
-  bestRate = false,
-  cancelationPolicy,
   feesIncluded,
   romingoMatch,
   areaInSquareFeet,
@@ -243,6 +233,9 @@ const RoomCard: FC<Props> = ({
   type,
   flag,
   bookingId,
+  pricePerNight,
+  roomTitle,
+  isRefundable,
   ...props
 }) => {
   const history = useHistory();
@@ -272,12 +265,14 @@ const RoomCard: FC<Props> = ({
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(
+     dispatch(
       setCheckout({
-        room: { value: 1, room: room, description: room.desc },
+        room: room,
+        hotel: hotel,
+        sessionId: sessionId
       })
     );
-    flag ? history.push("/modify-booking", {bookingId}) : history.push("/checkout");
+    history.push("/checkout")
   };
 
   const open = Boolean(anchorEl);
@@ -286,41 +281,13 @@ const RoomCard: FC<Props> = ({
   const refundOpen = Boolean(refundAnchorEl);
   const refundId = refundOpen ? "transitions-popper" : undefined;
 
-  const [roomTitle, setRoomTitle] = useState("");
 
-  useEffect(() => {
-    let roomDescription = "";
-    beds.map((bed) => {
-      if (roomDescription !== "") roomDescription += " + ";
-
-      roomDescription += `${bed.count} ${bed.desc}${bed.count > 1 ? "s" : ""}`;
-    });
-
-    roomDescription = (type ? type + "\n" : "") + roomDescription;
-    if (roomDescription.length === 0) {
-      roomDescription = "Room";
-    }
-    setRoomTitle(roomDescription);
-  }, []);
-
-  const includedPopular = popularAmenities.reduce(
-    (acc: Array<any>, item: any) => {
-      if (item.text.find((pop: any) => desc.toLowerCase().includes(pop))) {
-        return [
-          ...acc,
-          {
-            receivedText: item.prettyText,
-            icon: item.icon,
-          },
-        ];
-      } else {
-        return [...acc];
-      }
-    },
-    []
-  );
-
-  // .sort((a: any, b: any) => (a.receivedText > b.receivedText ? 1 : -1));
+  const AmenitiesList = {
+    'WIFI': Wifi,
+    'Air conditioning': AcUnit,
+    'TV': Tv,
+    // 'Non-Smoking': SmokeFree
+  }
 
   return (
     <Box
@@ -477,31 +444,29 @@ const RoomCard: FC<Props> = ({
               mt: ".5rem",
             }}
           >
-            <SvgIcon
-              sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
-              component={Wifi}
-            />
+            <CheckCircleOutlineIcon sx={{ fontSize: "18px", color: 'green'}} />
             <Typography
               variant="body1"
               sx={{
-                fontSize: ".9rem",
+                fontSize: ".8rem",
                 fontWeight: 500,
                 mt: 0,
                 color: "#666",
                 textIndent: "-8px",
-                paddingLeft: "8px",
+                paddingLeft: "12px",
                 letterSpacing: ".015rem",
                 fontFamily: "Roboto",
                 textTransform: "capitalize",
               }}
             >
-              Free Wifi
+              pet-friendly room guaranteed
             </Typography>
           </Box>
 
-          {includedPopular.map((amenity, index) => {
-            const AmenityIcon = amenity.icon;
-            if (index < (areaInSquareFeet ? 3 : 4)) {
+          {amenities?.map((amenity, index) => {
+
+            const AmenityIcon = AmenitiesList[amenity]
+            if (AmenityIcon) {
               return (
                 <Box
                   sx={{
@@ -530,7 +495,7 @@ const RoomCard: FC<Props> = ({
                       textTransform: "capitalize",
                     }}
                   >
-                    {amenity.receivedText.toLowerCase()}
+                    {amenity.toLowerCase()}
                   </Typography>
                 </Box>
               );
@@ -657,7 +622,7 @@ const RoomCard: FC<Props> = ({
                         variant="body2"
                         sx={{ textAlign: "right", fontSize: "80%" }}
                       >
-                        ${averagePrice.toFixed(2)}
+                        ${pricePerNight}
                       </Typography>
                     </Box>
                     <Box
@@ -759,7 +724,7 @@ const RoomCard: FC<Props> = ({
                   mb: { md: "1rem" },
                 }}
               >
-                {cancelationPolicy.cancelable && (
+                {isRefundable && (
                   <>
                     <b
                       style={{
@@ -770,19 +735,7 @@ const RoomCard: FC<Props> = ({
                         alignItems: "center",
                       }}
                     >
-                      Reserve now, pay later
-                    </b>
-                    <br />
-                    <b
-                      style={{
-                        fontWeight: 600,
-                        color: "#5B8D3E",
-                        marginBottom: ".5rem",
-                        display: "inline-flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      Fully refundable
+                      Refundable
                       <InfoOutlined
                         onClick={handleOpenRefundData}
                         sx={{
@@ -793,14 +746,16 @@ const RoomCard: FC<Props> = ({
                       />
                     </b>
                     <br />
+                    {/*
                     Before{" "}
                     {DateTime.fromISO(
                       cancelationPolicy.deadlineLocal ||
                         new Date().toISOString()
                     ).toFormat("DD")}{" "}
+                    */}
                   </>
                 )}
-                {!cancelationPolicy.cancelable && "Non-Refundable"}
+                {!isRefundable && <Box color="red">Non-Refundable</Box>}
               </Typography>
             </Box>
           </Box>
@@ -849,9 +804,8 @@ const RoomCard: FC<Props> = ({
                       >
                         By reserving on Romingo, you may cancel your reservation
                         without incurring cancellation fees on or before the
-                        date listed. <br /> <br /> Your reservation must be
-                        cancelled by the check-in time of the property&lsquo;s
-                        local time. <br /> <br /> All cancellations after this
+                        date listed for some hotels. Please check the policy of the specific hotel by going to checkout.
+                        <br /> <br /> All cancellations after this
                         date and time are subject to cancellation fee(s) in
                         accordance with hotel policy and Romingo&lsquo;s terms.
                       </Typography>
@@ -883,7 +837,7 @@ const RoomCard: FC<Props> = ({
                 textTransform: "capitalize",
               }}
             >
-              ${room.averagePrice.toString().split(".")[0]}
+              ${pricePerNight}
             </Typography>
             <Typography
               variant="body2"
@@ -908,7 +862,7 @@ const RoomCard: FC<Props> = ({
               color: "#11111199",
             }}
           >
-            ${totalPriceAfterTax.toFixed(2)} TOTAL
+            ${totalPriceAfterTax} TOTAL
             <br />
             incl. all taxes and fees
             <u
@@ -1007,7 +961,7 @@ const RoomCard: FC<Props> = ({
                       paddingLeft: "12px",
                     }}
                   >
-                    {amenity.desc}
+                    {amenity}
                   </Typography>
                 </Box>
               );

@@ -48,12 +48,13 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
     // const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
     // setMarkup(markupInitial)
-    const priceBeforeTax = detail.room.PackagePrice.FinalPrice - detail.room.PackagePrice.FinalTax;
+    const tax =  (detail.room.PackagePrice?.OriginalTax || detail.room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)
+    const priceBeforeTax = detail.room.PackagePrice.FinalPrice - tax
 
     const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
     tmp.push({
       label: "Average price per night",
-      price: detail.room.PackagePrice.FinalPrice/nights,
+      price: priceBeforeTax / nights,
     });
 
     tmp.push({
@@ -68,7 +69,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
     tmp.push({
       label: "Taxes & fees",
-      price: detail.room.PackagePrice.FinalTax,
+      price: tax,
     });
 
     // tmp.push({

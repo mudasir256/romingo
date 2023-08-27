@@ -29,6 +29,7 @@ import Loader from "../../components/UI/Loader";
 import StarIcon from '@mui/icons-material/Star';
 import Icon from '../../components/Icon';
 import {validCodes} from '../../components/Icon';
+import RoomCard from "../../components/RoomCard";
 
 
 const DetailsPage1 = ({ ...props }) => {
@@ -190,209 +191,8 @@ const DetailsPage1 = ({ ...props }) => {
   const hotel = hotelInfo.getHotelDetailById;
   const hotelDetailsFromPackage = hotel
 
+  console.log(rooms)
 
-  const RoomCard = ({ key, images, room }) => {
-    const [anchorEl, setAnchorEl] = useState<null | Element>(null);
-    const [openDetails, setOpenDetails] = useState(false);
-    const [selectedRoom, setSelectedRoom] = useState(null);
-
-    return (
-      <Box>
-        <Box  
-          sx={{
-            width: { xs: '93%', sm: '93%', md: '360px', lg: '360px' },
-            position: 'relative',
-            transition: "all .15s ease-in-out",
-            boxShadow: 1,
-            "&:hover": { boxShadow: 3 },
-            margin: '1rem',
-            borderRadius: '6px',
-            fontFamily: 'overpass-light',
-            lineHeight: '1.5rem',
-            color: 'rgba(17, 17, 17, 0.6)',
-            textAlign: 'left',
-            display: 'inline-block',
-            fontSize: '80%',
-            fontWeight: 700
-          }}
-        >
-          <Grid item style={{ padding: 0 }}>
-            <ImageSlider images={images} name={room.Rooms[0].RoomName} page="detail-room" />
-          </Grid>
-          <Grid item style={{ padding: 10 }}>
-            <Typography
-              variant="p"
-            // onClick={handleBook}
-            >
-              {room.Rooms[0].RoomName}
-            </Typography>
-          </Grid>
-          <Grid item style={{ display: 'flex', padding: 10 }}>
-            <SvgIcon
-              sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
-              component={Wifi}
-            />
-            <Typography
-              variant="body1"
-            >
-              Free Wifi
-            </Typography></Grid>
-
-          <Grid item style={{ padding: 10 }}>
-            <Box
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  style={{ marginTop: 10 }}
-                >
-                  ${(room.PackagePrice.FinalPrice / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)} per night
-                </Typography>
-              </Box>
-            </Box>
-          </Grid>
-          <Box
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                ml: '0.5rem',
-                mb: '0.5rem'
-              }}
-            >
-              <Typography
-                variant="body2"
-                style={{ marginTop: 10 }}
-              >
-                ${(room.PackagePrice.FinalPrice).toFixed(2)} TOTAL
-                <br />
-                incl. all taxes and fees
-                <u
-                  onClick={(e) => { console.log(e.currentTarget); setAnchorEl(e.currentTarget); setOpenDetails(true); setSelectedRoom(room); }}
-                  style={{
-                    cursor: "pointer",
-                    display: "block",
-                    color: "#11111180",
-                    marginTop: 10
-                  }}
-                >
-                  See Details
-                </u>
-              </Typography>
-            </Box>
-          </Box>
-          <Button
-            disableElevation
-            variant="contained"
-            size="small"
-            color="primary"
-            style={{ position: 'absolute', bottom: 0, right: 0, margin: 10 }}
-            onClick={() => {
-              dispatch(
-                setCheckout({
-                  room: room,
-                  hotel: hotel,
-                  sessionId: sessionId
-                })
-              );
-              history.push("/checkout")
-            }}
-          >
-            <Typography
-              sx={{
-                fontWeight: 600,
-                textTransform: "capitalize",
-                fontSize: { xs: "14px" },
-              }}
-            >
-              Reserve
-            </Typography>
-          </Button>
-
-          {/* {filterroom.Amenities.map((a, i) => <Typography key={i}>{a}</Typography>)} */}
-        </Box>
-
-        <Popover 
-          open={Boolean(openDetails)} 
-          anchorEl={anchorEl} 
-          onClose={() => setOpenDetails(false)} 
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          >
-          <Box style={{ textAlign: 'center', padding: 10 }}>
-            <Typography
-              variant="body2"
-              sx={{
-                fontWeight: "bold",
-                mb: ".5rem",
-                fontSize: "80%",
-                textAlign: "center",
-              }}
-            >
-              Price Details
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                px: 2,
-                mb: 0.5,
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{ textAlign: "left", fontSize: "80%" }}
-              >
-                Total amount:&nbsp;&nbsp;&nbsp;
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ textAlign: "right", fontSize: "80%" }}
-              >
-                ${selectedRoom && Math.abs(selectedRoom.PackagePrice.FinalPrice - selectedRoom.PackagePrice.FinalTax).toFixed(2)}
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                px: 2,
-                mb: 0.5,
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{ textAlign: "left", fontSize: "80%" }}
-              >
-                Taxes:&nbsp;&nbsp;&nbsp;
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ textAlign: "right", fontSize: "80%" }}
-              >
-                ${selectedRoom && (selectedRoom.PackagePrice.FinalTax).toFixed(2)}
-              </Typography>
-            </Box>
-          </Box>
-        </Popover>
-      </Box>
-    )
-  }
-    
 
   const getPetSizeLabel = (petSize) => {
     if(!petSize) return ''
@@ -469,7 +269,7 @@ const DetailsPage1 = ({ ...props }) => {
             src={hotel?.images?.find(item => true)}
             // alt={name}
             boxShadow={1}
-            // onClick={handleOpen}
+            onClick={handleOpen}
             className={classes.mainBox}
           />
         </Grid>
@@ -480,7 +280,7 @@ const DetailsPage1 = ({ ...props }) => {
                 return (
                   <Grid item sm={6} key={img} style={{ padding: mobile ? 0 : '10px', height: '250px' }}>
                     <Box
-                      // onClick={handleOpen}
+                      onClick={handleOpen}
                       boxShadow={1}
                       component="img"
                       src={img}
@@ -760,9 +560,12 @@ const DetailsPage1 = ({ ...props }) => {
               {rooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 let images = filterroom ? filterroom.Images : [];
+                const amenities = filterroom ? filterroom.Amenities : [];
+
                 if (images.length === 0) {
                   images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
                 }
+              
                 return (
                   <Grid item   
                     spacing={2}
@@ -771,8 +574,31 @@ const DetailsPage1 = ({ ...props }) => {
                     sm={6}
                     xs={12}
                     key={key}
+                    sx={{ p: '1rem' }}
                   >
-                    <RoomCard key={key} images={images} room={room} />
+                    <RoomCard 
+                      key={key} 
+                      featuredImageURL={images?.find(item => true)} 
+                      roomTitle={room.Rooms[0].RoomName}
+                      pricePerNight={((room.PackagePrice.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)}
+                      totalPriceAfterTax={room?.PackagePrice?.FinalPrice}
+                      totalPrice={room?.PackagePrice?.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)}
+                      imageURLs={images}
+                      isRefundable={room.Refundability === 2 ? false: true}
+                      room={room} 
+                      hotel={hotel}
+                      amenities={amenities}
+                      sessionId={sessionId}
+                      sx={{
+                        minWidth: "260px",
+                        borderRadius: "8px",
+                        p: " 0rem 1rem 1rem 1rem",
+                        border: "1px solid #ddd",
+                        transition: "all .15s ease-in-out",
+                        boxShadow: 1,
+                        "&:hover": { boxShadow: 3 },
+                      }}
+                    />
                   </Grid>
                 );
               })}
