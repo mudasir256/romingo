@@ -181,7 +181,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                   fontWeight: 800,
                 }}
               >
-                <b>{detail.label}</b>
+                <b>Pay now</b>
               </Typography>
 
               <Typography
@@ -254,86 +254,88 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
           );
         } else if (detail.label === "Pay now") {
           return (<></>)
-            /*
-            <Box
-              key={i}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                mt: 1,
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 0,
-                  color: "#5B8D3E",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  maxWidth: "70%",
-                  fontWeight: 600,
-                }}
-              >
-                {detail.label}
-              </Typography>
 
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 600,
-                  mt: 0,
-                  fontFamily: "Roboto",
-                  color: "#5B8D3E",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                }}
-              >
-                {`${dollarUSLocale.format(detail?.price)}`}
-              </Typography>
-            </Box>
-            */
-        } else if (detail.label === "Taxes & fees") {
-          return (<Box key={i}>
-            <Box
-              key={i}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                mt: 1,
-                pt: 2,
-                borderTop: "1px solid #DDD",
-              }}
-            >
-              <Typography
-                variant="base"
-                sx={{
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  maxWidth: "70%",
-                  fontWeight: 600,
-                }}
-              >
-                {detail.label}
-              </Typography>
+        //     <Box
+        //       key={i}
+        //       sx={{
+        //         display: "flex",
+        //         justifyContent: "space-between",
+        //         alignItems: "flex-end",
+        //         mt: 1,
+        //       }}
+        //     >
+        //       <Typography
+        //         variant="body2"
+        //         sx={{
+        //           mt: 0,
+        //           color: "#5B8D3E",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //           maxWidth: "70%",
+        //           fontWeight: 600,
+        //         }}
+        //       >
+        //         {detail.label}
+        //       </Typography>
 
-              <Typography
-                variant="base"
-                sx={{
-                  fontWeight: 500,
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                }}
-              >
-                {`+ ${dollarUSLocale.format(detail?.price)}`}
-              </Typography>
-            </Box>
-          </Box>);
+        //       <Typography
+        //         variant="body2"
+        //         sx={{
+        //           fontWeight: 600,
+        //           mt: 0,
+        //           fontFamily: "Roboto",
+        //           color: "#5B8D3E",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //         }}
+        //       >
+        //         {`${dollarUSLocale.format(detail?.price)}`}
+        //       </Typography>
+        //     </Box>
+            
+        //   )
+         
+        // } else if (detail.label === "Taxes & fees") {
+        //   return (<Box key={i}>
+        //     <Box
+        //       key={i}
+        //       sx={{
+        //         display: "flex",
+        //         justifyContent: "space-between",
+        //         alignItems: "flex-end",
+        //         mt: 1,
+        //         pt: 2,
+        //         borderTop: "1px solid #DDD",
+        //       }}
+        //     >
+        //       <Typography
+        //         variant="base"
+        //         sx={{
+        //           mt: 0,
+        //           color: "text.primary",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //           maxWidth: "70%",
+        //           fontWeight: 600,
+        //         }}
+        //       >
+        //         {detail.label}
+        //       </Typography>
+
+        //       <Typography
+        //         variant="base"
+        //         sx={{
+        //           fontWeight: 500,
+        //           mt: 0,
+        //           color: "text.primary",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //         }}
+        //       >
+        //         {`+ ${dollarUSLocale.format(detail?.price)}`}
+        //       </Typography>
+        //     </Box>
+        //   </Box>);
         } else {
           return (
             <Box
