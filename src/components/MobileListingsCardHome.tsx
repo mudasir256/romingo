@@ -122,7 +122,7 @@ const ListingCardSquare = ({
 
   const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
   let starRatingFormat = starRating
-  if (starRating.toString().length === 1) {
+  if (starRating?.toString().length === 1) {
     starRatingFormat = `${starRating}.0`
   }
 

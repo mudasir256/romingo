@@ -503,7 +503,7 @@ const DetailsPage1 = ({ ...props }) => {
           md={10}
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >
-          {(lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&<>
+          {(rooms.length > 0 && lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&<>
           <Typography variant="h6">Compare Rates</Typography>
           <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 booking fees and are guaranteed to reserve a pet-friendly room.</Typography>
           <Box mt="1.5rem" mr="1rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
@@ -563,13 +563,9 @@ const DetailsPage1 = ({ ...props }) => {
             <Grid container>
               {rooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
-                let images = filterroom ? filterroom.Images : [];
+                const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
-                if (images.length === 0) {
-                  images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
-                }
-              
                 return (
                   <Grid item   
                     spacing={2}
@@ -617,12 +613,10 @@ const DetailsPage1 = ({ ...props }) => {
               <Grid container>
               {accessibleRooms.map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
-                let images = filterroom ? filterroom.Images : [];
+                const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
-                if (images.length === 0) {
-                  images = ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png']
-                }
+  
                 return (<Grid item   
                     spacing={2}
                     md={4}

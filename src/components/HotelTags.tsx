@@ -16,7 +16,7 @@ interface Props {
 
 
 const chipIconStyle = {
-  fontSize: { xs: '0.72em', sm: "0.75em", md: '0.9rem' },
+  fontSize: { xs: '0.72em', sm: "0.75em", md: '0.75rem' },
   backgroundColor: 'transparent',
   fontFamily: 'overpass-light',
   mt: '0.35em',
@@ -53,8 +53,7 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
   const [showExtraInfo, setShowExtraInfo] = useState(false)
   const [showMobileExtraInfo, setShowMobileExtraInfo] = useState(false)
 
-
-  if (pet_fee === 'NONE') {
+  if (pet_fee === 'NONE' || pet_fee === 'No Additional Charges') {
     pet_fee = '$0 pet fee'
   } else {
     pet_fee = `${pet_fee_value?.split('.')?.find(item => true)} pet fee`

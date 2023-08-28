@@ -51,7 +51,8 @@ export default function GoogleMaps(props) {
   const loaded = React.useRef(false);
   const dispatch: Dispatch<any> = useDispatch();
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false)
-  
+  const [timer, setTimer] = React.useState(null)
+
   //IF IS MOBILE, supply callback
   const isMobile = props.mobile;
   const callback = props.callback;
@@ -141,24 +142,35 @@ export default function GoogleMaps(props) {
       return undefined;
     }
 
-    fetch({ input: inputValue }, (results?: readonly PlaceType[]) => {
-      if (active) {
-        let newOptions: readonly PlaceType[] = [];
+    clearTimeout(timer)
 
-        if (value) {
-          newOptions = [value];
+    const newTimer = setTimeout(() => {
+      autocompleteService.current.getPlacePredictions(
+        {input: inputValue},
+        function(results) {
+          console.log(results)
+          console.log('worked')
+          if (active) {
+            let newOptions: readonly PlaceType[] = [];
+
+            if (value) {
+              newOptions = [value];
+            }
+
+            if (results) {
+              newOptions = [...newOptions, ...results];
+              if (isMobile) {
+                callback(results)
+              } 
+            }
+
+            setOptions(newOptions);
+          }
         }
-
-        if (results) {
-          newOptions = [...newOptions, ...results];
-          if (isMobile) {
-            callback(results)
-          } 
-        }
-
-        setOptions(newOptions);
-      }
-    });
+      );
+    }, 400)
+    setTimer(newTimer)
+    
 
     return () => {
       active = false;

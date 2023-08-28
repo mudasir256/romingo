@@ -55,6 +55,11 @@ import {
   Chair,
   AcUnit,
   Tv,
+  Kitchen,
+  LocalMovies,
+  CleaningServices,
+  Coffee,
+  Phone,
 } from "@mui/icons-material";
 import ImageSlider from "../ImageSlider";
 interface Props {
@@ -145,71 +150,6 @@ export interface RoomInfo {
   name?: string; //its there
 }
 
-const popularAmenities = [
-  {
-    icon: Chair,
-    text: ["sofa", "couch"],
-    not: ["meeting rooms"],
-    prettyText: "sofa",
-  },
-  {
-    icon: LocalBar,
-    text: ["minibar", "mini bar"],
-    not: ["meeting rooms"],
-    prettyText: "mini bar in room",
-  },
-  {
-    icon: KingBed,
-    text: ["king bed", "king size bed", "KING BEDS", "KING SIZE BED"],
-    not: ["meeting rooms"],
-    prettyText: "King size bed",
-  },
-  {
-    icon: SingleBed,
-    text: [
-      "double bed",
-      "dbl bed",
-      "dbl",
-      "twin size bed",
-      "double size bed",
-      "twin bed",
-    ],
-    not: ["meeting rooms"],
-    prettyText: "Double size bed",
-  },
-  {
-    icon: Bed,
-    text: ["queen bed", "queen size bed", "QUEEN BEDS", "QUEEN SIZE BED"],
-    not: ["meeting rooms"],
-    prettyText: "Queen size bed",
-  },
-  {
-    icon: FreeBreakfast,
-    text: ["free breakfast", "breakfast"],
-    not: ["meeting rooms"],
-    prettyText: "Breakfast included",
-  },
-  {
-    icon: Vrpano,
-    text: ["panoramic view", "panorama view"],
-    not: ["meeting rooms"],
-    prettyText: "Panaoramic view",
-  },
-  {
-    icon: Bathtub,
-    text: ["bath tub", "bathtub"],
-    not: ["meeting rooms"],
-    prettyText: "bath tub",
-  },
-  // { icon: HotTub, text: ["hot tub"], not: ["meeting rooms"] },
-  // { icon: DryCleaning, text: ["dry cleaning"], not: ["meeting rooms"] },
-  // { icon: BusinessCenter, text: ["business center"], not: ["meeting rooms"] },
-  // { icon: RoomService, text: ["room service"], not: ["meeting rooms"] },
-  // { icon: Restaurant, text: ["restaurant"], not: ["meeting rooms"] },
-  // { icon: LocalCafe, text: ["coffee"], not: ["meeting rooms"] },
-];
-
-
 const RoomCard: FC<Props> = ({
   sx,
   room,
@@ -285,10 +225,22 @@ const RoomCard: FC<Props> = ({
   const AmenitiesList = {
     'WIFI': Wifi,
     'Air conditioning': AcUnit,
+    'In-room climate control (air conditioning)': AcUnit,
     'TV': Tv,
     // 'Non-Smoking': SmokeFree
   }
 
+  const ExtraAmenitiesList = {
+    'Refrigerator': Kitchen,
+    'KITCHEN': Kitchen,
+    'Pay movies': LocalMovies,
+    'Daily housekeeping': CleaningServices,
+    // 'COFFEE': Coffee,
+    'Premium bedding': Bed,
+    'TELEPHONE': Phone
+  }
+
+  console.log(amenities)
   return (
     <Box
       sx={{
@@ -348,11 +300,6 @@ const RoomCard: FC<Props> = ({
                   sm: "0rem -1rem 1rem -1rem",
                 },
                 borderRadius: "6px 6px 0px 0px",
-                minHeight: { xs: "200px", sm: "200px", md: "220px" },
-                background: featuredImageURL
-                  ? `url(${featuredImageURL})`
-                  : "#f3f5f6",
-                backgroundSize: "cover",
                 color: "#03989e",
               }}
             >
@@ -441,7 +388,8 @@ const RoomCard: FC<Props> = ({
               display: "inline-flex",
               flexDirection: "row",
               alignItems: "center",
-              mt: ".5rem",
+              mt: "0.5rem",
+              mb: imageURLs.length === 0 ? '0.75rem' : 0
             }}
           >
             <CheckCircleOutlineIcon sx={{ fontSize: "18px", color: 'green'}} />
@@ -502,37 +450,45 @@ const RoomCard: FC<Props> = ({
             }
           })}
 
-          {areaInSquareFeet && (
-            <Box
-              sx={{
-                display: "inline-flex",
-                flexDirection: "row",
-                alignItems: "center",
-                mt: ".5rem",
-              }}
-            >
-              <SvgIcon
-                sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
-                component={SquareFoot}
-              />
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: ".9rem",
-                  fontWeight: 500,
-                  mt: 0,
-                  color: "#666",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  letterSpacing: ".015rem",
-                  fontFamily: "Roboto",
-                  textTransform: "capitalize",
-                }}
-              >
-                {areaInSquareFeet} Sq ft
-              </Typography>
-            </Box>
-          )}
+          {imageURLs.length === 0 && amenities?.map((amenity, index) => {
+
+            const AmenityIcon = ExtraAmenitiesList[amenity]
+            if (AmenityIcon) {
+              return (
+                <Box
+                  sx={{
+                    display: "inline-flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    mt: ".5rem",
+                  }}
+                  key={index}
+                >
+                  <SvgIcon
+                    sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
+                    component={AmenityIcon}
+                  />
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: ".9rem",
+                      fontWeight: 500,
+                      mt: 0,
+                      color: "#666",
+                      textIndent: "-8px",
+                      paddingLeft: "8px",
+                      letterSpacing: ".015rem",
+                      fontFamily: "Roboto",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {amenity.toLowerCase()}
+                  </Typography>
+                </Box>
+              );
+            }
+          })}
+
 
           {amenities && amenities.length > 0 && (
             <Box
