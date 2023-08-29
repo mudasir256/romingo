@@ -125,6 +125,7 @@ const ListingPageNew = ({ ...props }) => {
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReviews,
       lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
+      totalPrice: hotel.SuppliersLowestPackagePrices[0].Value,
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,
@@ -154,6 +155,7 @@ const ListingPageNew = ({ ...props }) => {
         romingoScore: hotel.starRating,
         numberOfReviews: hotel.numberOfReview,
         lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
+        totalPrice: hotel.SuppliersLowestPackagePrices[0].Value,
         id: hotel.ID,
         lat: hotel.GeoLocation.Latitude,
         lng: hotel.GeoLocation.Longitude,
@@ -507,7 +509,7 @@ const ListingPageNew = ({ ...props }) => {
               </Box>
 
               <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
-                <Typography sx={{ fontSize: '13px'}}>Individual Pet Weight</Typography>
+                <Typography sx={{ fontSize: '13px'}}>Pet sizes</Typography>
                 <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
                 {showInfoBox &&
                 <Box position="relative">
@@ -521,7 +523,8 @@ const ListingPageNew = ({ ...props }) => {
                 <FormControlLabel value="50" control={<Radio />} label="26-75 lbs" />
                 <FormControlLabel value="75" control={<Radio />} label="75+ lbs" />
               </RadioGroup>
-  
+    
+              <Typography sx={{ fontSize: '13px'}}>Pet Amenities</Typography>
               <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
                 <FormControlLabel control={<Checkbox name="25" checked={allowsCats} />} label="Accepts cats" />
               </FormGroup>
@@ -734,7 +737,7 @@ const ListingPageNew = ({ ...props }) => {
             </Box>
 
             <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
-              <Typography sx={{ fontSize: '13px'}}>Individual Pet Weight</Typography>
+              <Typography sx={{ fontSize: '13px'}}>Pet Sizes</Typography>
               <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
               {showInfoBox &&
               <Box position="relative">
@@ -749,6 +752,7 @@ const ListingPageNew = ({ ...props }) => {
               <FormControlLabel value="75" control={<Radio />} label="75+ lbs" />
             </RadioGroup>
           
+            <Typography sx={{ fontSize: '13px'}}>Pet Amenities</Typography>
             <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
               <FormControlLabel control={<Checkbox name="25" checked={allowsCats} />} label="Accepts cats" />
             </FormGroup>

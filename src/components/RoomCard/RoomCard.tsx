@@ -60,6 +60,7 @@ import {
   CleaningServices,
   Coffee,
   Phone,
+  Microwave,
 } from "@mui/icons-material";
 import ImageSlider from "../ImageSlider";
 interface Props {
@@ -223,24 +224,26 @@ const RoomCard: FC<Props> = ({
 
 
   const AmenitiesList = {
+    'pet-friendly room': CheckCircleOutlineIcon,
     'WIFI': Wifi,
     'Air conditioning': AcUnit,
     'In-room climate control (air conditioning)': AcUnit,
     'TV': Tv,
-    // 'Non-Smoking': SmokeFree
-  }
-
-  const ExtraAmenitiesList = {
     'Refrigerator': Kitchen,
     'KITCHEN': Kitchen,
     'Pay movies': LocalMovies,
     'Daily housekeeping': CleaningServices,
-    // 'COFFEE': Coffee,
+    'COFFEE': Coffee,
     'Premium bedding': Bed,
-    'TELEPHONE': Phone
+    'TELEPHONE': Phone,
+    'MICROWAVE': Microwave,
+    'BAR': LocalBar
   }
 
   console.log(amenities)
+
+  const matchingAmenities = ['pet-friendly room', ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
+
   return (
     <Box
       sx={{
@@ -383,112 +386,44 @@ const RoomCard: FC<Props> = ({
           >
             {name ? name : roomTitle} &nbsp;
           </Typography>
-          <Box
-            sx={{
-              display: "inline-flex",
-              flexDirection: "row",
-              alignItems: "center",
-              mt: "0.5rem",
-              mb: imageURLs.length === 0 ? '0.75rem' : 0
-            }}
-          >
-            <CheckCircleOutlineIcon sx={{ fontSize: "18px", color: 'green'}} />
-            <Typography
-              variant="body1"
-              sx={{
-                fontSize: ".8rem",
-                fontWeight: 500,
-                mt: 0,
-                color: "#666",
-                textIndent: "-8px",
-                paddingLeft: "12px",
-                letterSpacing: ".015rem",
-                fontFamily: "Roboto",
-                textTransform: "capitalize",
-              }}
-            >
-              pet-friendly room guaranteed
-            </Typography>
-          </Box>
-
-          {amenities?.map((amenity, index) => {
+       
+          {matchingAmenities.slice(0, imageURLs.length === 0 ? 9: 3).map((amenity, index) => {
 
             const AmenityIcon = AmenitiesList[amenity]
-            if (AmenityIcon) {
-              return (
-                <Box
+            return (
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  mt: ".5rem",
+                }}
+                key={index}
+              >
+                <SvgIcon
+                  sx={{ color: (amenity === 'pet-friendly room' ? 'green' : "#666"), mr: "1rem", fontSize: "18px" }}
+                  component={AmenityIcon || Check}
+                />
+                <Typography
+                  variant="body1"
                   sx={{
-                    display: "inline-flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    mt: ".5rem",
+                    fontSize: ".9rem",
+                    fontWeight: 500,
+                    mt: 0,
+                    color: "#666",
+                    textIndent: "-8px",
+                    paddingLeft: "8px",
+                    letterSpacing: ".015rem",
+                    fontFamily: "Roboto",
+                    textTransform: "capitalize",
                   }}
-                  key={index}
                 >
-                  <SvgIcon
-                    sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
-                    component={AmenityIcon}
-                  />
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: ".9rem",
-                      fontWeight: 500,
-                      mt: 0,
-                      color: "#666",
-                      textIndent: "-8px",
-                      paddingLeft: "8px",
-                      letterSpacing: ".015rem",
-                      fontFamily: "Roboto",
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    {amenity.toLowerCase()}
-                  </Typography>
-                </Box>
-              );
-            }
+                  {amenity.toLowerCase()}
+                </Typography>
+              </Box>
+            );
+            
           })}
-
-          {imageURLs.length === 0 && amenities?.map((amenity, index) => {
-
-            const AmenityIcon = ExtraAmenitiesList[amenity]
-            if (AmenityIcon) {
-              return (
-                <Box
-                  sx={{
-                    display: "inline-flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    mt: ".5rem",
-                  }}
-                  key={index}
-                >
-                  <SvgIcon
-                    sx={{ color: "#666", mr: "1rem", fontSize: "18px" }}
-                    component={AmenityIcon}
-                  />
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontSize: ".9rem",
-                      fontWeight: 500,
-                      mt: 0,
-                      color: "#666",
-                      textIndent: "-8px",
-                      paddingLeft: "8px",
-                      letterSpacing: ".015rem",
-                      fontFamily: "Roboto",
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    {amenity.toLowerCase()}
-                  </Typography>
-                </Box>
-              );
-            }
-          })}
-
 
           {amenities && amenities.length > 0 && (
             <Box

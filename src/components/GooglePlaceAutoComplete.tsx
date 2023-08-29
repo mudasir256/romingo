@@ -148,8 +148,6 @@ export default function GoogleMaps(props) {
       autocompleteService.current.getPlacePredictions(
         {input: inputValue},
         function(results) {
-          console.log(results)
-          console.log('worked')
           if (active) {
             let newOptions: readonly PlaceType[] = [];
 

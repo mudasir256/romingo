@@ -85,7 +85,7 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-  // console.log(data)
+  console.log(data)
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -134,7 +134,7 @@ const DetailsPage1 = ({ ...props }) => {
       const nonAccessibleRooms = [];
       let lowest = 999999
       const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
-        return room.Rooms[0].RoomBasis === 'Room only RO'
+        return room.Rooms[0].RoomBasis === 'Room only RO' || room.Rooms[0].RoomBasis === 'Bed and Breakfast BB'
       })
       
       for (const room of roomPackagesOnly) {
@@ -561,7 +561,7 @@ const DetailsPage1 = ({ ...props }) => {
           {loading ? <Box mx="auto"><Loader size="220px" /></Box> : 
            rooms.length > 0 ?
             <Grid container>
-              {rooms.map((room: any, key: number) => {
+              {rooms.sort((a,b) => a.PackagePrice?.FinalPrice - b.PackagePrice?.FinalPrice).map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
@@ -611,7 +611,7 @@ const DetailsPage1 = ({ ...props }) => {
                 <Typography variant="h6">Accessible Rooms</Typography>
               </Divider>
               <Grid container>
-              {accessibleRooms.map((room: any, key: number) => {
+              {accessibleRooms.sort((a,b) => a.PackagePrice?.FinalPrice - b.PackagePrice?.FinalPrice).map((room: any, key: number) => {
                 const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];

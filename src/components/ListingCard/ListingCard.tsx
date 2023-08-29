@@ -138,6 +138,7 @@ const ListingCard: FC<ListingCardProps> = ({
   cancellation = false,
   lowestAveragePrice,
   lowestTotalPriceAfterTax,
+  totalPrice,
   currency = "$",
   dogAmenities = [],
   showAmenities = true,
@@ -171,22 +172,56 @@ const ListingCard: FC<ListingCardProps> = ({
           alignItems: "flex-end",
         }}
       >
-        {lowestAveragePrice ? (
+        {lowestAveragePrice &&
+        <Typography
+          variant="body2"
+          sx={{
+            mr: 0,
+            mt: "0.1em",
+            fontFamily: "sansita-light",
+            fontSize: "1.25em",
+            fontWeight: 800,
+            display: "flex",
+            alignItems: "center",
+            color: "black",
+          }}
+        >{currency}{Math.abs(lowestAveragePrice).toFixed(0)}</Typography>
+      }
+
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: { xs: "95%", sm: "90%" },
+            fontWeight: 500,
+            whiteSpace: "nowrap",
+            fontFamily: "overpass-light",
+            color: "#999",
+            fontSize: '13px'
+          }}
+        >
+          per night
+        </Typography>
+
+        {totalPrice ? (
           <Typography
             variant="body2"
             sx={{
               mr: 0,
               mt: "0.1em",
               fontFamily: "sansita-light",
-              fontSize: "1.25em",
+              fontSize: "12px",
+              color: '#666',
               fontWeight: 800,
+              lineHeight: '14px',
               display: "flex",
               alignItems: "center",
-              color: "black",
+       
             }}
           >
             {currency}
-            {Math.abs(lowestAveragePrice).toFixed(0)}{" "}
+            {Math.abs(totalPrice).toFixed(0)} total
+
+            {/* 
             <Typography
               sx={{
                 fontFamily: "sansita-light",
@@ -197,6 +232,7 @@ const ListingCard: FC<ListingCardProps> = ({
               {" "}
               / night
             </Typography>
+            */}
           </Typography>
         ) : (
           <Typography
@@ -212,6 +248,9 @@ const ListingCard: FC<ListingCardProps> = ({
             }}
           ></Typography>
         )}
+
+        <Typography sx={{ fontSize: '12px', color: '#666'}}>includes taxes and fees</Typography>
+
       </Box>
     </Box>
   );
