@@ -136,14 +136,14 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
 
           {(policy && isRefundable && isFullRefund) && (
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Typography variant="base">Cancel <span style={{ color: 'red'}}>before {new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()} {new Date(getTimestamp(policy[0].DateFrom)).toLocaleTimeString('en-US')}</span> for a full refund. Please allow 5-7 business days for a refund to process.</Typography>
+              <Typography variant="base">Cancel <span style={{ color: 'red'}}>before {new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()} {moment(getTimestamp(policy[0].DateFrom)).format('h:mm A')}</span> for a full refund. Please allow 5-7 business days for a refund to process.</Typography>
               <Typography variant="base">Cancellations after will be considered a no-show and you will be charged the full reservation price.</Typography>
             </Box>          
           )}
 
           {(policy && isRefundable && !isFullRefund) && (
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Typography variant="base">Cancel <span style={{ color: 'red'}}>before {new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()} {new Date(getTimestamp(policy[0].DateFrom)).toLocaleTimeString('en-US')}</span> for a partial refund. You will be charged a cancellation fee of <span style={{ color: 'red'}}>${policy[0].CancellationFee?.FinalPrice}</span>.</Typography>
+              <Typography variant="base">Cancel <span style={{ color: 'red'}}>before {new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()} {moment(getTimestamp(policy[0].DateFrom)).format('h:mm A')}</span> for a partial refund. You will be charged a cancellation fee of <span style={{ color: 'red'}}>${policy[0].CancellationFee?.FinalPrice}</span>.</Typography>
               <Typography variant="base">Cancellations after will be considered a no-show and you will be charged the full reservation price.</Typography>
             </Box>          
           )}

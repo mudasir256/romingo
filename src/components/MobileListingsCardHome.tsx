@@ -218,7 +218,7 @@ const ListingCardSquare = ({
                   textAlign: 'left'
                 }}
               >
-                {fullAddressLine}
+                {city}, {state}
               </Typography>
             
 

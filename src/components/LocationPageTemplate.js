@@ -25,7 +25,6 @@ import PetsIcon from '@mui/icons-material/Pets';
 import PaidIcon from '@mui/icons-material/Paid';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
-import InnerContent from '../pages/Cities/InnerContent';
 
 //TODO: fix location search bars to search proper locations
 const LocationPageTemplate = ({ cityName, state, cityHeroImage }) => {
@@ -157,11 +156,7 @@ const LocationPageTemplate = ({ cityName, state, cityHeroImage }) => {
           />
         </Grid>
 
-        <InnerContent
-          cityName={cityName}
-          city={cityName}
-          state={state}
-        />
+      
 
         <Grid item xs={12} sx={{ mb: 1 }}>
           <Divider light variant='middle' sx={{ mb: 1 }}>

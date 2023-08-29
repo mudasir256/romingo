@@ -32,6 +32,8 @@ import StarsIcon from '@mui/icons-material/Stars';
 import PetsIcon from '@mui/icons-material/Pets';
 import WorkHistoryIcon from '@mui/icons-material/Work';
 import * as uuid from 'uuid'
+import moment from "moment";
+
 
 interface Props {
   sx?: CSSObject;
@@ -52,6 +54,7 @@ const CheckoutInformation: FC<Props> = ({
   price,
   priceKey,
   policy,
+  finalPrice,
 }) => {
   const history = useHistory();
   const stripe = useStripe();
@@ -123,6 +126,46 @@ const CheckoutInformation: FC<Props> = ({
       [e?.target?.name]: e?.target?.value,
     });
   };
+
+  const getTimestamp = (timestamp) => {
+    const regex = /\b\d+\b/;
+    const timestampMatch = timestamp.match(regex);
+
+    if (timestampMatch) {
+      const timestamp = parseInt(timestampMatch[0], 10);
+      return timestamp
+    } else {
+      console.log("No timestamp found in the string.");
+    }
+    return ""
+  }
+
+  let isRefundable = false
+  let isFullRefund = false
+
+  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === finalPrice) {
+    const dateFrom = policy[0].DateFrom
+
+    const date1 = new Date(getTimestamp(dateFrom)).getTime();
+    const date2 = new Date().getTime();
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    console.log(diffDays)
+    if (diffDays < 2) {
+      isRefundable = false
+
+    } else {
+      isRefundable = true
+      isFullRefund = true
+    }
+    
+  } else if (policy && policy.length === 2) {
+    isRefundable = true
+    isFullRefund = false
+  } else {
+    //TODO: flag this, we haven't covered this case
+  }
+
 
 
   const [createPI, { data: piData, loading: piLoading }] = useMutation(
@@ -243,6 +286,9 @@ const CheckoutInformation: FC<Props> = ({
             createBookingInTravolutionary({
               variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
             })
+            // subscribeToNewsletter(checkoutForm.email)
+
+
 
             // createBooking2({
             //   variables: {
@@ -898,6 +944,20 @@ const CheckoutInformation: FC<Props> = ({
                     sx={{ mt: 0, textAlign: "left" }}
                   >
                     <ul>
+
+                      <li>Please make sure that you have reviewed the cancellation and refund policy.</li>
+
+                      {(policy && isRefundable) && (
+                        <li>
+                          <Typography variant="base">Cancellations or changes made to your reservation after <span style={{ color: 'red'}}>{moment(getTimestamp(policy[0].DateFrom)).format('h:mm A')}</span> on <span style={{ color: 'red'}}>{new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()}</span> or no-shows are subject to a cancellation fee that is listed under the cancellation policy.</Typography>
+                        </li>          
+                      )}
+                      {(policy && !isRefundable) && (
+                        <li>This rate is non-refundable.</li>
+                      )}
+
+                     
+
                       {/*
                       {policy.cancelable ? (
                         <li>
@@ -913,10 +973,11 @@ const CheckoutInformation: FC<Props> = ({
                         <li>This rate is non-refundable.</li>
                       )}
                       */}
-                      <li>Please make sure you&apos;ve reviewed the cancellation and refund policy.</li>
+              
                       <li>You and your pet(s) will be greeted by front desk staff upon arrival.</li>
                       <li>Your card will be charged immediately on a successful booking.</li>
-                      <li>Hotel may request a fully-refundable pet deposit and/or signed pet waiver upon check-in.</li>
+                      <li>If the Hotel charges a pet fee, this will be paid to the Hotel upon arrival.</li>
+                      <li>*A fully refundable pet deposit and/or signed pet waiver may be requested by the Hotel upon check-in.</li>
                     </ul>
                   </Typography>
                   <Box

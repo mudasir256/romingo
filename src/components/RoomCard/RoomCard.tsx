@@ -208,7 +208,7 @@ const RoomCard: FC<Props> = ({
     e.stopPropagation();
      dispatch(
       setCheckout({
-        room: room,
+        room: { ...room, imageURLs },
         hotel: hotel,
         sessionId: sessionId
       })

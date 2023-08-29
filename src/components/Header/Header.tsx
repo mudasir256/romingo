@@ -73,7 +73,7 @@ const Header: FC<Props> = ({ sx }) => {
             display: { xs: 'block', sm: 'block', md: 'none' }
           }}>
             <Box sx={{ textAlign: { xs: 'left', sm: 'left'} }} className="filter-bar-wrapper-title">
-              Book pet-friendly hotels
+              <b>Book pet-friendly hotels</b>
             </Box>
             <div className="filter-bar-wrapper-desc">
               the easiest way to travel with your pets

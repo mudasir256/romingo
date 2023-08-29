@@ -270,18 +270,27 @@ const HomePage: FC<Props> = () => {
   
   const LocationBox = ({ imageUrl, cityName, locationUrl }) => (
     <Link to={locationUrl} underline="none">
-      <Box display="flex" flexDirection="column">
+      <Box 
+        display="flex" 
+        flexDirection="column" 
+        boxShadow={5} 
+        borderRadius={2} 
+        sx={{ 
+          mr: { xs: '1rem', sm: '1rem', md: 0 },
+          '&:hover': { boxShadow: 7 } 
+        }}
+      >
         <Box
            component="img"
            sx={{
-             borderRadius: 2,
+             borderRadius: '6px 6px 0px 0px',
              height: '280px',
-             width: { xs: '93%', sm: '93%', md: '370px', lg: '370px' },
+             width: { xs: '100%', sm: '100%', md: '370px', lg: '370px' },
            }}
            alt={cityName}
            src={imageUrl}
          />
-        <Typography pt="0.5rem" variant='p' color="black" sx={{ textDecoration: 'none'}}>{cityName}</Typography>
+        <Typography pl="0.3rem" pb="0.25rem" pt="0.5rem" variant='p' color="black" sx={{ textDecoration: 'none'}}>{cityName}</Typography>
       </Box>
     </Link>
   )

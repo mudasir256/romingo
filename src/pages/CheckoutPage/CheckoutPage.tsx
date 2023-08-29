@@ -88,10 +88,8 @@ const CheckoutPage: FC<Props> = () => {
                   sx={{ mt: 1, mb: "1rem" }}
                   // finePrint={{title: "test", description: 'test'}}
                   // price={123.33}
-                  // priceKey={'jhrbkeurhfkeurybfekruy'}
-                  // payLater={false}
-                  //TODO: Update this policy
-                  policy={{cancelable: true, deadlineLocal: new Date().toISOString()}}
+                  finalPrice={detail?.room?.PackagePrice?.FinalPrice}
+                  policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                 />
               </Grid>
             )}
@@ -107,6 +105,22 @@ const CheckoutPage: FC<Props> = () => {
                     />
                   </Grid>
                 )}
+                <Grid item xs={12} sx={{  mt: { xs: 0, sm: 0, md: '4.5rem' } }}>
+                  <ImageSlider
+                    images={detail?.room?.imageURLs || []}
+                    name={detail?.room?.Rooms?.find(item => true).RoomName || detail?.room?.Rooms?.find(item => true).BedType ||  "Standard Room"}
+                    sx={{
+                      display: "flex",
+                      flex: 1,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "50px",
+                      borderRadius: "6px",
+                      minHeight: { xs: "200px", sm: "200px", md: "220px" },
+                      color: "#03989e",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={12} order={{ xs: 1, md: 1 }}>
                   <BookingDetailCard />
                 </Grid>
@@ -129,10 +143,8 @@ const CheckoutPage: FC<Props> = () => {
                       sx={{ mt: 2 }}
                       // finePrint={finePrint}
                       // price={detail?.room?.room?.totalPriceAfterTax}
-                      // priceKey={detail?.room?.room?.priceKey}
-                      // payLater={payLater}
-                      //TODO: Update this policy
-                      policy={{cancelable: true, deadlineLocal: new Date().toISOString()}}
+                      finalPrice={detail?.room?.PackagePrice?.FinalPrice}
+                      policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                     />
                   </Grid>
                 )}
