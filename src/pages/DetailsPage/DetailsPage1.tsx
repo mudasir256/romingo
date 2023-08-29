@@ -1,7 +1,7 @@
 import loadable from '@loadable/component'
 import { withStyles } from "@mui/styles";
 import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
-import { Dispatch, FC, useEffect, useState, useRef } from "react";
+import { Dispatch, FC, useEffect, useState, useRef, useCallback } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
 import DetailsPageSkeleton from "./DetailsPageSkeleton";
@@ -68,6 +68,7 @@ const DetailsPage1 = ({ ...props }) => {
   const [showFullImage, setShowFullImage] = useState<string>('');
 
   const [lowestRomingoRate, setLowestRomingoRate] = useState(0)
+  const [imageIndex, setImageIndex] = useState(-1)
   const reviewsRef = useRef(null)
   const rateRef = useRef(null)
 
@@ -121,6 +122,46 @@ const DetailsPage1 = ({ ...props }) => {
       }
     }
   )
+
+  const changeImage = useCallback((e) => {
+    console.log('change')
+    console.log(showFullImage)
+    if (showFullImage) {
+      console.log(showFullImage)
+      console.log('image')
+      if (event.keyCode === 39) { //arrow right
+        const newIndex = imageIndex + 1
+        if (newIndex > hotel?.images.length - 1) {
+          setImageIndex(0)
+          setShowFullImage(hotel?.images[0])
+        } else {
+          setShowFullImage(hotel?.images[newIndex])
+          setImageIndex(newIndex)
+        }
+        console.log('cycle')
+      } 
+      if (event.keyCode === 37) { //arrow left
+        const newIndex = imageIndex - 1 
+        if (newIndex < 0) {
+          const actualIndex = hotel?.images.length - 1
+          setImageIndex(actualIndex)
+          setShowFullImage(hotel?.images[actualIndex])
+        } else {
+          setImageIndex(newIndex)
+          setShowFullImage(hotel?.images[newIndex])
+        }
+        console.log('cycle down')
+
+      }
+    }
+  }, [showFullImage, imageIndex]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', changeImage)
+    return () => {
+      document.removeEventListener('keydown', changeImage)
+    }
+  }, [changeImage])
 
   useEffect(() => {
     if (history?.location?.hash === '#reviews') {
@@ -568,7 +609,6 @@ const DetailsPage1 = ({ ...props }) => {
 
                 return (
                   <Grid item   
-                    spacing={2}
                     md={4}
                     lg={4}
                     sm={6}
@@ -618,7 +658,6 @@ const DetailsPage1 = ({ ...props }) => {
 
   
                 return (<Grid item   
-                    spacing={2}
                     md={4}
                     lg={4}
                     sm={6}
@@ -700,6 +739,7 @@ const DetailsPage1 = ({ ...props }) => {
           keepMounted
           fullScreen
           onClose={handleClose}
+          onClick={handleClose}
           scroll="paper"
           aria-labelledby="photo-dialog-slide-title"
           aria-describedby="photo-dialog-slide-description"
@@ -743,9 +783,13 @@ const DetailsPage1 = ({ ...props }) => {
             <Container maxWidth="xl" sx={{ mt: { xs: 0, md: 2 } }}>
               <ImageList variant="standard" cols={getImageCols()} gap={8}>
                 {hotel?.images?.map((item: any, index: Integer) => (
-                  <ImageListItem key={item} onClick={() => {
+                  <ImageListItem key={item} onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation();
+
                     if (!mobile) {
                       setShowFullImage(item)
+                      setImageIndex(index)
                     }
                   }}>
                     <img
@@ -765,7 +809,7 @@ ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
         </Dialog>
 
         {showFullImage && 
-          <Dialog maxWidth="xl" sx={{ p: '2rem',  }} open={true} onClick={() => setShowFullImage('')}>
+          <Dialog maxWidth="xl" sx={{ p: '2rem'  }} open={true} onClick={() => setShowFullImage('')}>
             <img src={showFullImage}  style={{ maxHeight: '80vh', objectFit: 'contain' }} />
           </Dialog>
         }

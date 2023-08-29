@@ -240,8 +240,6 @@ const RoomCard: FC<Props> = ({
     'BAR': LocalBar
   }
 
-  console.log(amenities)
-
   const matchingAmenities = ['pet-friendly room', ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
 
   return (
