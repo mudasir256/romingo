@@ -215,7 +215,6 @@ const ListingCard: FC<ListingCardProps> = ({
               lineHeight: '14px',
               display: "flex",
               alignItems: "center",
-       
             }}
           >
             {currency}
