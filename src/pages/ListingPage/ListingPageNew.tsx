@@ -111,9 +111,9 @@ const ListingPageNew = ({ ...props }) => {
 
 
   const formatHotel = (hotel) => {
-    console.log(hotel)
+    
     return {
-      imageURLs: [hotel.DefaultImage.FullSize],
+      imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
       name: hotel.DisplayName,
       addressLine1: hotel.Address,
@@ -143,7 +143,7 @@ const ListingPageNew = ({ ...props }) => {
       type: 'hotel',
       label: hotel.DisplayName,
       hotel: {
-        imageURLs: [hotel.DefaultImage.FullSize],
+        imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
         name: hotel.DisplayName,
         alias: hotel.alias,
         addressLine1: hotel.Address,

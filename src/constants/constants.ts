@@ -822,6 +822,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       zipcode
       amenities
       alias
+      images
     }
   }
 }

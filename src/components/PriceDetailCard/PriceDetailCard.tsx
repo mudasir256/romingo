@@ -7,10 +7,11 @@ import moment from "moment";
 
 interface Props {
   sx?: CSSObject;
-  payLater: boolean;
+  discountAmount?: number;
 }
 
-const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
+const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
+  console.log(discountAmount)
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
@@ -79,17 +80,18 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
     tmp.push({
       label: "Total",
-      price: (detail.room.PackagePrice.FinalPrice), //+ markupInitial),
+      discount: (discountAmount > 0 ? discountAmount : 0),
+      price: (detail.room.PackagePrice.FinalPrice - (discountAmount > 0 ? discountAmount : 0)), //+ markupInitial),
     });
 
     tmp.push({
       label: "Pay now",
-      price: payLater ? 0 : detail?.room?.room?.totalPriceAfterTax,
+      price: detail?.room?.room?.totalPriceAfterTax,
     });
 
     setPriceArr([...tmp]);
     setFees(detail?.room?.room?.fees);
-  }, [detail, payLater]);
+  }, [detail, discountAmount]);
 
   const detailsLen = priceArr.length;
 
@@ -159,9 +161,9 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             </Box>
           );
         } else if (i === detailsLen - 2) { //this is Total
-          return (
+          return (<Box key={i}>
+            {(detail.discount > 0) ?
             <Box
-              key={i}
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -171,6 +173,47 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 pt: 2
               }}
             >
+
+              <Typography
+                variant="base"
+                sx={{
+                  mt: 0,
+                  color: "black",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 800,
+                }}
+              >
+                <b>Discount</b>
+              </Typography>
+
+              <Typography
+                variant="base"
+                sx={{
+                  fontWeight: 500,
+                  mt: 0,
+                  color: "black",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                -{`${dollarUSLocale.format(detail.discount)}`}
+              </Typography>
+            </Box>
+            : <></>}
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+                borderTop: (detail.discount > 0) ? "" : '1px solid #DDD',
+                pt: (detail.discount > 0) ? 0 : 2
+              }}
+            >
+
               <Typography
                 variant="base"
                 sx={{
@@ -198,7 +241,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 <b>{`${dollarUSLocale.format(detail?.price)}`}</b>
               </Typography>
             </Box>
-          );
+          </Box>);
         } else if (detail.label === "Pet Fees") {
           return (
             <Box

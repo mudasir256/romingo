@@ -12,7 +12,7 @@ import CancelPolicy from "../../components/CancelPolicy";
 import PriceDetailCard from "../../components/PriceDetailCard";
 import CheckoutInformation from "../../components/CheckoutInformation";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, Button } from "@mui/material";
 import ScrollToTop from "../../components/ScrollToTop";
 import ImageSlider from "../../components/ImageSlider";
 import { Star } from "@mui/icons-material";
@@ -37,7 +37,10 @@ interface Props {
 }
 
 const CheckoutPage: FC<Props> = () => {
-  const [payLater, setPayLater] = useState(false);
+  const [couponText, setCouponText] = useState('')
+  const [loadingCoupon, setLoadingCoupon] = useState(false)
+  const [discountAmount, setDiscountAmount] = useState(0)
+
   const search = useSelector((state: any) => state.searchReducer.search);
   const { finePrint, room, hotel: hotelDetails, sessionId } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
@@ -57,6 +60,23 @@ const CheckoutPage: FC<Props> = () => {
   const { data, loading, error } = useQuery(
     gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
 
+
+  const handleApplyCoupon = async () => {
+    setLoadingCoupon(true)
+    const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/coupon/${couponText}`)
+    const data = await result.json()
+
+    if (data.coupon.percent_off && data.coupon.valid) {
+      const discount = detail?.room?.PackagePrice?.FinalPrice * (data.coupon.percent_off / 100)
+      setDiscountAmount(discount)
+    } else if (data.coupon.amount_off && data.coupon.valid) {
+      const discount = (data.coupon.amount_off / 100)
+      setDiscountAmount(discount)
+    } else {
+      setDiscountAmount(-1)
+    }
+    setLoadingCoupon(false)
+  }
 
   const mobile = useMediaQuery("(max-width:800px)");
 
@@ -88,7 +108,7 @@ const CheckoutPage: FC<Props> = () => {
                   sx={{ mt: 1, mb: "1rem" }}
                   // finePrint={{title: "test", description: 'test'}}
                   // price={123.33}
-                  finalPrice={detail?.room?.PackagePrice?.FinalPrice}
+                  finalPrice={detail?.room?.PackagePrice?.FinalPrice - (discountAmount > 0 ? discountAmount : 0)}
                   policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                 />
               </Grid>
@@ -125,7 +145,15 @@ const CheckoutPage: FC<Props> = () => {
                   <BookingDetailCard />
                 </Grid>
                 <Grid item xs={12} order={{ xs: 2, md: 2 }}>
-                  <PriceDetailCard payLater={payLater} />
+                  <PriceDetailCard discountAmount={discountAmount} />
+                </Grid>
+                <Grid item xs={12} order={{ xs: 3, md: 3 }}>
+                  <Box sx={{ boxShadow: 3, borderRadius: 3, p: '0.75rem' }}> 
+                    <Typography variant="base">Special offer / discount code</Typography>
+                    <input value={couponText} onChange={(e) => setCouponText(e.target?.value)} style={{ width: '65%' }} type=" text" />
+                    <Button onClick={() => handleApplyCoupon()}>{loadingCoupon ? 'Loading...': 'Apply'}</Button>
+                    {discountAmount === -1 && <Typography sx={{ color: 'red', fontSize: '12px'}}>Invalid / expired coupon code</Typography>}
+                  </Box>
                 </Grid>
                 {mobile && (
                   <Grid item xs={12} order={2}>
@@ -143,7 +171,7 @@ const CheckoutPage: FC<Props> = () => {
                       sx={{ mt: 2 }}
                       // finePrint={finePrint}
                       // price={detail?.room?.room?.totalPriceAfterTax}
-                      finalPrice={detail?.room?.PackagePrice?.FinalPrice}
+                      finalPrice={detail?.room?.PackagePrice?.FinalPrice - (discountAmount > 0 ? discountAmount : 0)}
                       policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                     />
                   </Grid>

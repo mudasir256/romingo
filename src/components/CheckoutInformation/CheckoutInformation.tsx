@@ -47,6 +47,7 @@ interface Props {
     cancelable: boolean;
     deadlineLocal: string | null;
   };
+  finalPrice: number;
 }
 
 const CheckoutInformation: FC<Props> = ({
@@ -529,7 +530,7 @@ const CheckoutInformation: FC<Props> = ({
       //   });
       // } else {
       createPI({
-        variables: { createPaymentIntentInput: { price: detail.room.SimplePrice } },
+        variables: { createPaymentIntentInput: { price: finalPrice } },
       });
       // }
 
@@ -957,7 +958,6 @@ const CheckoutInformation: FC<Props> = ({
                       )}
 
                      
-
                       {/*
                       {policy.cancelable ? (
                         <li>
