@@ -226,10 +226,7 @@ const ListingCardSquare = ({
                 <HotelTags displayOne={true} pet_fee={petFee} pet_allowance={petAllowance} pet_fee_value={petFeeValue} pet_size={petSize} />
               </Box>  
 
-              <Box mt="0.25rem" sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '20px' }} />
-                <Typography sx={{ fontSize: '14px'}}>pet-friendly room guaranteed</Typography>
-              </Box>
+           
               <Box mt="-0.5rem">
                 <PriceDetails />
               </Box>

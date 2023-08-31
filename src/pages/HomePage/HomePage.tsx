@@ -316,7 +316,7 @@ const HomePage: FC<Props> = () => {
       </Helmet>
 
       <Header />
-      <Box sx={{  background: { xs: '#A6DBE5', sm: 'white', md: '#f4dac9' }, mx: 'auto', py: '1rem', height: { md: 'auto', lg: '240px' },  }}>
+      <Box sx={{  background: { xs: '#A6DBE5', sm: 'white', md: '#A6DBE5' }, mx: 'auto', py: '1rem', height: { md: 'auto', lg: '240px' },  }}>
         <Box sx={{
           display: 'flex',
           justifyContent: 'center',
@@ -330,24 +330,24 @@ const HomePage: FC<Props> = () => {
         }}>
           <InfoBox 
             imgSrc={BookNow}
-            imgAlt="worry-free travel"
+            imgAlt="pet-friendly guarantee"
             imgWidth="70%"
-            header="Worry-Free Travel"
-            text="Romingo offers reliable and clear pet policies at the best pet-friendly hotels, guaranteeing a relaxing trip with your pet." 
+            header="Pet-Friendly Guarantee"
+            text="Planning a trip with your pet? Book with Romingo for a guaranteed pet-friendly room."
           />
           <InfoBox
             imgSrc={LowestRates}
             imgAlt="lowest rates"
             imgWidth="83%"
             header="Lowest Rates"
-            text="With $0 booking fees and the lowest rates, our travelers always get the best deals."
+            text="By partnering with select pet-friendly hotels, Romingo offers the lowest rates with $0 booking fees."
           />
           <InfoBox
             imgSrc={AuthenticPet}
-            imgAlt="trusted and accredited"
+            imgAlt="trusted and accurate"
             imgWidth='85%'
-            header="Trusted & Accredited"
-            text="Over 50,000 pets (and their humans) have trusted Romingo, and our team is available 24/7 to help plan your next trip!"
+            header="Trusted & Accurate"
+            text="Our pet policies are verified and accurate. Over 50,000 pets (and their humans) have trusted us with their travel plans."
           />
         </Box>
       </Box>
@@ -412,7 +412,7 @@ const HomePage: FC<Props> = () => {
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
-            backgroundColor="#A6DBE5"
+            backgroundColor="#f4dced"
             header="Summertime savings! ☀️🏄"
             text="Book your next pet-friendly trip with Romingo and enjoy up to 20% off the lowest rates."
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}

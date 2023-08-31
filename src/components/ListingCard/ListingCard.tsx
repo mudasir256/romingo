@@ -390,10 +390,10 @@ const ListingCard: FC<ListingCardProps> = ({
               />
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+         {/*   <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
               <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '18px' }} />
               <Typography sx={{ fontSize: '13px'}}>pet-friendly room guaranteed</Typography>
-            </Box>
+            </Box>*/}
 
             <Box
               sx={{

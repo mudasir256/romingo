@@ -3,6 +3,7 @@ import { Chip, Box, Typography } from "@mui/material";
 import {
   Pets,
   Info,
+  CheckCircleOutline,
 } from '@mui/icons-material'
 import DogIcon from '../assets/icon/dog.png'
 import GiftIcon from '../assets/icon/gift.svg'
@@ -88,6 +89,15 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
         sx={chipIconStyle}
         icon={<img width="20px" src={DogIcon} />}
         label={<Box sx={iconSpacing}>{pet_size}</Box>}
+      />
+      <Chip
+        size="small"
+        sx={{
+          ...chipIconStyle,
+          ml: '-0.3rem',
+        }}
+        icon={<CheckCircleOutline sx={{ color: 'green' }} />}
+        label={<Box sx={iconSpacing}>pet-friendly room guaranteed</Box>}
       />
 
       {dogAmenities.includes("dog beds & bowls") && (
