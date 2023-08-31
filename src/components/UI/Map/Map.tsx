@@ -45,7 +45,7 @@ type Libraries = (
   | "visualization"
 )[];
 
-// const libraries: Libraries = ['places'];
+const libraries: Libraries = ['places'];
 
 const Map: FC<Props> = ({
   center,
@@ -74,7 +74,7 @@ const Map: FC<Props> = ({
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
-    libraries: ['places']
+    libraries
   });
 
   const size = useWindowSize();

@@ -128,7 +128,11 @@ const ListingPageNew = ({ ...props }) => {
 
 
   const formatHotel = (hotel) => {
-    
+    const match = hotel.SuppliersLowestPackagePrices.some(item => item.Key === 'HPT')
+    if (match) {
+      console.log(hotel)
+    }
+
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
