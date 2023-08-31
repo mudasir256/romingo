@@ -5,7 +5,10 @@ import {
   Marker,
   InfoWindow,
   useJsApiLoader,
+  OverlayView
 } from "@react-google-maps/api";
+import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
+
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
 import Box from "@mui/material/Typography";
@@ -42,7 +45,7 @@ type Libraries = (
   | "visualization"
 )[];
 
-const libraries: Libraries = ["places"];
+// const libraries: Libraries = ['places'];
 
 const Map: FC<Props> = ({
   center,
@@ -52,6 +55,7 @@ const Map: FC<Props> = ({
   selectedMarker,
   zoom = 10,
   clickable = true,
+  isFullScreen = false
 }) => {
   const [containerStyle, setContainerStyle] = useState<Size>({
     width: window.innerWidth,
@@ -67,9 +71,10 @@ const Map: FC<Props> = ({
     styles: stylesArray,
   });
 
+
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
-    libraries,
+    libraries: ['places']
   });
 
   const size = useWindowSize();
@@ -105,6 +110,13 @@ const Map: FC<Props> = ({
 
   const [showInfoContents, setShowInfoContents] = useState(null);
 
+  const getPixelPositionOffset = (offsetWidth, offsetHeight, labelAnchor) => {
+      return {
+          x: offsetWidth + labelAnchor.x,
+          y: offsetHeight + labelAnchor.y,
+      };
+  };
+
   const renderMap = () => (
     <GoogleMap
       mapContainerStyle={containerStyle}
@@ -115,14 +127,44 @@ const Map: FC<Props> = ({
       {markers !== undefined &&
         markers.map((marker, key) => {
           if (marker.type === "hotel") {
+         
+            // return (<>
+            //   <Marker
+            //     key={key+'1'}
+            //     position={marker.position}
+            //     {...marker}
+            //   />
+            //   <OverlayView
+            //       key={key}
+            //       position={marker.position}
+            //       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+            //       getPixelPositionOffset={(x, y) => getPixelPositionOffset(x, y, { x: -30, y: -15 })}>
+            //       <div
+            //           style={{
+            //               background: `#203254`,
+            //               padding: `7px 12px`,
+            //               fontSize: '11px',
+            //               color: `white`,
+            //               borderRadius: '4px',
+            //           }}
+            //       >
+            //           ${marker.lowestAveragePrice}
+            //       </div>
+            //   </OverlayView>
+
+            // </>)
             return (
               <Marker
                 position={marker}
                 animation={2}
                 key={key}
+                label={isFullScreen ? `$${Math.abs(marker.lowestAveragePrice).toFixed(0)}` : ''}   
+                labelStyle={{ color: 'red'}}     
                 icon={{
-                  url: "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/hotel_marker.svg",
-                  scaledSize: new google.maps.Size(35, 35),
+                  url: isFullScreen
+                    ? "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg"
+                    : "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/hotel_marker.svg",
+                  scaledSize: new google.maps.Size(45, 35),
                 }}
                 onClick={(e: google.maps.MapMouseEvent) => {
                   console.log(marker)
@@ -134,8 +176,8 @@ const Map: FC<Props> = ({
                       lat: marker.lat,
                       lng: marker.lng,
                     });
-                    setShowInfo(true);
                     setShowInfoContents(marker.hotel);
+                    setShowInfo(true);
                   }
                 }}
               />
@@ -157,8 +199,8 @@ const Map: FC<Props> = ({
                       lng: marker.lng,
                     });
                     console.log(marker.hotel)
-                    setShowInfo(true);
                     setShowInfoContents(marker.hotel);
+                    setShowInfo(true);
                   }
                 }}
               />
@@ -172,11 +214,7 @@ const Map: FC<Props> = ({
             setShowInfo(false);
           }}
         >
-          <Box
-            sx={{ maxWidth: "100%", backgroundColor: "white", py: 1.5 }}
-          >
-            <MapListingCard {...showInfoContents} hotel={showInfoContents} />
-          </Box>
+          <ListingCard {...showInfoContents} hotel={showInfoContents} />
         </InfoWindow>
       )}
     </GoogleMap>

@@ -383,10 +383,10 @@ const ListingCard: FC<ListingCardProps> = ({
               }}
             >
               <HotelTags 
-                pet_fee={hotel.pet_fee} 
-                pet_fee_value={hotel.pet_fee_value}
-                pet_size={hotel.pet_size}
-                pet_allowance={hotel.pet_allowance}
+                pet_fee={hotel?.pet_fee} 
+                pet_fee_value={hotel?.pet_fee_value}
+                pet_size={hotel?.pet_size}
+                pet_allowance={hotel?.pet_allowance}
               />
             </Box>
 

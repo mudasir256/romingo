@@ -25,6 +25,7 @@ import { useHistory } from "react-router-dom";
 import WhitePawsIcon from '../../assets/icon/white-paws.png';
 import {
   Info,
+  Edit,
 } from '@mui/icons-material'
 
 const ListingPageNew = ({ ...props }) => {
@@ -43,6 +44,21 @@ const ListingPageNew = ({ ...props }) => {
     dryCleaning: false,
     wheelchairAccessible: false,
     smokeFree: false
+  }
+  const amenityTitle = {
+    pool: 'Pool',
+    airportShuttle: 'Airport shuttle',
+    parking: 'Parking',
+    spa: 'Spa',
+    kitchen: 'Kitchen',
+    wifiIncluded: 'WiFi included',
+    restaurant: 'Restaurant',
+    gym: 'Gym',
+    cribs: 'Cribs',
+    washerAndDryer: 'Washer and dryer',
+    dryCleaning: 'Dry cleaning',
+    wheelchairAccessible: 'Wheelchair accessible',
+    smokeFree: 'Smoke-free property'
   }
 
   const dispatch: Dispatch<any> = useDispatch();
@@ -75,6 +91,7 @@ const ListingPageNew = ({ ...props }) => {
   const [timer, setTimer] = useState(null)
 
   const [showInfoBox, setShowInfoBox] = useState(false)
+  const [showSearchBar, setShowSearchBar] = useState(false)
 
   //TODO: doesn't handle number of pets currently MOBILE
   const [previousFilterState, setPreviousFilterState] = useState({
@@ -178,6 +195,7 @@ const ListingPageNew = ({ ...props }) => {
     }
 
     if (data && data.getHotels && data.getHotels.sessionId) {
+      setShowSearchBar(false)
       setSessionId(data.getHotels.sessionId);
       loadHotels(data.getHotels.hotels)
       dispatch(setList(data.getHotels.hotels))
@@ -465,9 +483,40 @@ const ListingPageNew = ({ ...props }) => {
   return (
     <Box sx={{ background: "#feffff" }}>
       <Navbar />
-      {mobile && <FilterBar home={false} />}
-      {mobile && <Box mb="1rem"><Divider /></Box>}
-
+      {mobile && 
+        <Box>
+          {!showSearchBar && 
+            <Box 
+              sx={{
+                borderRadius: 5,
+                border: '1px solid black',
+                p: '1rem',
+                m: '0.5rem',
+                my: '1rem',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center'
+              }}
+              onClick={() => setShowSearchBar(true)}
+            >
+              <Box>
+                <Typography variant="base"><b>{search.city?.description}</b></Typography>
+                <Box display="flex" flexDirection="row" gap="2rem">
+                  <Typography sx={{ fontSize: '12px'}}>{moment(search.checkIn).format('MMM DD')} - {moment(search.checkOut).format('MMM DD')}</Typography>
+                  <Typography sx={{ fontSize: '12px'}}>{search.occupants.adults + search.occupants.children} Guests, {search.occupants.dogs} Pets</Typography>
+                </Box>
+              </Box>  
+              <Box ml="auto">
+                <Edit sx={{ fontSize: '18px', color: 'gray' }} />
+              </Box>
+            </Box>
+          }
+          {showSearchBar && <Box mb="1rem">
+            <FilterBar home={false} />
+            <Button fullWidth onClick={() => setShowSearchBar(false)}>Close</Button>
+          </Box>}
+        </Box>
+      }
 
       <Grid container direction='row' justifyContent="center" sx={{ mt: "1rem", px: { xs: 0, sm: 0, md: 0, lg: '6rem'} }} style={{ margin: 'auto', position: 'relative', }} >
         {mobile ?
@@ -608,7 +657,7 @@ const ListingPageNew = ({ ...props }) => {
 
           <Grid item container direction='row'>
             {!mobile && <Box textAlign="left"><LargeFilterBar /></Box>}
-            <Box my="1rem" textAlign="left" maxWidth="840px" mr="1rem"><Banner /></Box>
+            <Box my="0.75rem" textAlign="left" maxWidth="840px" mr="1rem"><Banner /></Box>
             
 
             <Grid maxWidth="840px" item container direction='row' justifyContent='space-between' alignItems="center">
@@ -631,6 +680,36 @@ const ListingPageNew = ({ ...props }) => {
                        setPetWeights(null)
                      }}
                    />
+                  }
+                  {!mobile && 
+                  <Box>
+                  {(sliderValue[0] != minPrice || sliderValue[1] != maxPrice) &&
+                    <Chip
+                      size="small"
+                      label="Custom Price Range"
+                      onDelete={() => setValue([minPrice, maxPrice])}
+                    />
+                  }
+                  {Object.keys(filterAmenities).map(filter => {
+                    if (filterAmenities[filter]) {
+                      return (
+                        <Chip key={filter} size="small" label={amenityTitle[filter]} onDelete={() => {
+                          const object = { ...filterAmenities }
+                          object[filter] = false
+                          setFilterAmenities(object)
+                        }}/>
+                      )
+                    }
+                  })}
+
+                  {rating > 0 &&
+                    <Chip
+                      size="small"
+                      label={`${rating} star hotel`}
+                      onDelete={() => setRating(0)}
+                    />
+                  }
+                  </Box>
                   }
                  </Box>
               </Grid>
@@ -680,6 +759,7 @@ const ListingPageNew = ({ ...props }) => {
           zoom={11}
           selectedMarker={0}
           markers={markers}
+          isFullScreen={true}
         />
       </Dialog>
 
