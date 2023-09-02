@@ -23,7 +23,6 @@ const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartn
 const Application = loadable(() => import('./pages/StaticPages/Application'))
 const CreateAccount = loadable(() => import('./pages/CreateAccount'))
 
-const LocationPageTemplate = loadable(() => import('./components/LocationPageTemplate'))
 const Austin = loadable(() => import('./pages/Cities/Austin'))
 const Dallas = loadable(() => import('./pages/Cities/Dallas'))
 const Denver = loadable(() => import('./pages/Cities/Denver'))
@@ -40,6 +39,9 @@ const SantaFe = loadable(() => import('./pages/Cities/SantaFe'))
 const Scottsdale = loadable(() => import('./pages/Cities/Scottsdale'))
 const Seattle = loadable(() => import('./pages/Cities/Seattle'))
 const Tucson = loadable(() => import('./pages/Cities/Tucson'))
+
+//NEW
+
 
 
 const Blog = loadable(() => import('./pages/Blog'))
