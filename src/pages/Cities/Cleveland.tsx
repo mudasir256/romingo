@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Cleveland, OH, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 9,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJLWto4y7vMIgRQhhi91XLBO0",
+    "reference": "ChIJLWto4y7vMIgRQhhi91XLBO0",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Cleveland",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 9,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "OH, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Cleveland"
         },
         {
-            "offset": 13,
-            "value": "CA"
+            "offset": 11,
+            "value": "OH"
         },
         {
-            "offset": 17,
+            "offset": 15,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 41.49932,
+"lng": -81.6943605
 }
 
 const Cleveland: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Cleveland');
 
   const city = 'Cleveland'
   const paragraphOne = "Cleveland offers a delightful array of pet-friendly travel experiences for you and your furry companions. Whether you're exploring the lush parks, strolling along the picturesque waterfront, or visiting pet-welcoming attractions, there's something for everyone in this pet-loving metropolis."
@@ -165,7 +165,7 @@ const Cleveland: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            Take a leisurely walk in Edgewater Park, where your pooch can frolic freely on the sandy shores and splash in the waves. Don't miss the chance to explore the charming neighborhoods, such as Ohio City, that boast pet-friendly cafes and shops, allowing you and your pet to enjoy the city's vibrant atmosphere together. Head to one of the city's dog-friendly breweries or restaurants that offer specialized menus for your loyal companions.
+            Take a leisurely walk in Edgewater Park, where your pooch can frolic freely on the sandy shores and splash in the waves. Don&apos;t miss the chance to explore the charming neighborhoods, such as Ohio City, that boast pet-friendly cafes and shops, allowing you and your pet to enjoy the city&apos;s vibrant atmosphere together. Head to one of the city&apos;s dog-friendly breweries or restaurants that offer specialized menus for your loyal companions.
           </Typography>
         </Grid>
         <Grid mt="2rem" item xs={12} sx={{ mb: 1 }}>

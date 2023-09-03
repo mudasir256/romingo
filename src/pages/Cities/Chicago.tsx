@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Chicago, IL, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 7,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJ7cv00DwsDogRAMDACa2m4K8",
+    "reference": "ChIJ7cv00DwsDogRAMDACa2m4K8",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Chicago",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 7,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "IL, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Chicago"
+        },
+        {
+            "offset": 9,
+            "value": "IL"
         },
         {
             "offset": 13,
-            "value": "CA"
-        },
-        {
-            "offset": 17,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 41.8781136,
+"lng": -87.6297982
 }
 
 const Chicago: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Chicago');
 
   const city = 'Chicago'
   const paragraphOne = "Chicago is an ideal destination for pet-friendly travel, offering a plethora of activities and accommodations that cater to our beloved four-legged companions. The city boasts numerous parks and green spaces, such as the iconic Millennium Park and Grant Park, where dogs can run off-leash and socialize with other pups."
@@ -165,7 +165,7 @@ const Chicago: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            For a more scenic experience, pet owners can take their furry friends on leisurely strolls along the picturesque Lakefront Trail, providing breathtaking views of Lake Michigan. Chicago's vibrant restaurant scene extends its hospitality to pets, with many cafes and eateries featuring pet-friendly outdoor seating areas. Moreover, several hotels and accommodations throughout the city warmly welcome pets, ensuring a comfortable stay for both humans and their animal companions.
+            For a more scenic experience, pet owners can take their furry friends on leisurely strolls along the picturesque Lakefront Trail, providing breathtaking views of Lake Michigan. Chicago&apos;s vibrant restaurant scene extends its hospitality to pets, with many cafes and eateries featuring pet-friendly outdoor seating areas. Moreover, several hotels and accommodations throughout the city warmly welcome pets, ensuring a comfortable stay for both humans and their animal companions.
           </Typography>
         
         </Grid>
@@ -192,7 +192,7 @@ const Chicago: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            Whether exploring the Magnificent Mile, visiting the Navy Pier, or simply enjoying the city's welcoming atmosphere, Chicago's dedication to pet-friendly amenities makes it an excellent destination for travelers seeking to share their adventures with their loyal pets.
+            Whether exploring the Magnificent Mile, visiting the Navy Pier, or simply enjoying the city&apos;s welcoming atmosphere, Chicago&apos;s dedication to pet-friendly amenities makes it an excellent destination for travelers seeking to share their adventures with their loyal pets.
           </Typography>
         </Grid>
 

@@ -41,6 +41,21 @@ const Seattle = loadable(() => import('./pages/Cities/Seattle'))
 const Tucson = loadable(() => import('./pages/Cities/Tucson'))
 
 //NEW
+const Atlanta = loadable(() => import('./pages/Cities/Atlanta'))
+const Baltimore = loadable(() => import('./pages/Cities/Baltimore'))
+const Boston = loadable(() => import('./pages/Cities/Boston'))
+const Charlotte = loadable(() => import('./pages/Cities/Charlotte'))
+const Chicago = loadable(() => import('./pages/Cities/Chicago'))
+const Cleveland = loadable(() => import('./pages/Cities/Cleveland'))
+const Detroit = loadable(() => import('./pages/Cities/Detroit'))
+const Indianapolis = loadable(() => import('./pages/Cities/Indianapolis'))
+const Miami = loadable(() => import('./pages/Cities/Miami'))
+const Milwaukee = loadable(() => import('./pages/Cities/Milwaukee'))
+const Minneapolis = loadable(() => import('./pages/Cities/Minneapolis'))
+//nashville
+const NewOrleans = loadable(() => import('./pages/Cities/NewOrleans'))
+const NewYork = loadable(() => import('./pages/Cities/NewYork'))
+const Washington = loadable(() => import('./pages/Cities/Washington'))
 
 
 
@@ -213,6 +228,22 @@ const Routes = () => {
       <Route exact path="/pet-friendly-hotels/los-angeles-california"><LosAngeles /></Route>
       <Route exact path="/pet-friendly-hotels/san-diego-california"><SanDiego /></Route>
       <Route exact path="/pet-friendly-hotels/san-francisco-california"><SanFrancisco /></Route>
+
+      <Route exact path="/pet-friendly-hotels/atlanta-georgia"><Atlanta /></Route>
+      <Route exact path="/pet-friendly-hotels/baltimore-maryland"><Baltimore /></Route>
+      <Route exact path="/pet-friendly-hotels/boston-massachusetts"><Boston /></Route>
+      <Route exact path="/pet-friendly-hotels/charlotte-north-carolina"><Charlotte /></Route>
+      <Route exact path="/pet-friendly-hotels/chicago-illinois"><Chicago /></Route>
+      <Route exact path="/pet-friendly-hotels/cleveland-ohio"><Cleveland /></Route>
+      <Route exact path="/pet-friendly-hotels/detroit-michigan"><Detroit /></Route>
+      <Route exact path="/pet-friendly-hotels/indianapolis-indiana"><Indianapolis /></Route>
+      <Route exact path="/pet-friendly-hotels/miami-florida"><Miami /></Route>
+      <Route exact path="/pet-friendly-hotels/milwaukee-wisconsin"><Milwaukee /></Route>
+      <Route exact path="/pet-friendly-hotels/minneapolis-minnesota"><Minneapolis /></Route>
+      <Route exact path="/pet-friendly-hotels/new-orleans-louisiana"><NewOrleans /></Route>
+      <Route exact path="/pet-friendly-hotels/new-york-new-york"><NewYork /></Route>
+      <Route exact path="/pet-friendly-hotels/washington-dc"><Washington /></Route>
+
      
       <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
       <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>

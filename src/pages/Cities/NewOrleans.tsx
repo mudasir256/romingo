@@ -30,33 +30,33 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "New Orleans, LA, USA",
     "matched_substrings": [
         {
             "length": 11,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJZYIRslSkIIYRtNMiXuhbBts",
+    "reference": "ChIJZYIRslSkIIYRtNMiXuhbBts",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "New Orleans",
         "main_text_matched_substrings": [
             {
                 "length": 11,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "LA, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "New Orleans"
         },
         {
             "offset": 13,
-            "value": "CA"
+            "value": "LA"
         },
         {
             "offset": 17,
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 29.95106579999999,
+"lng": -90.0715323
 }
 
 const NewOrleans: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'New Orleans');
 
   const city = 'New Orleans'
   const paragraphOne = "New Orleans, the vibrant city of jazz, culture, and mouthwatering cuisine, warmly welcomes four-legged travelers. Pet-friendly travel in the Big Easy has become increasingly popular, as more hotels, activities, and restaurants embrace the presence of our furry friends. Whether you're strolling through the historic French Quarter, exploring the lush City Park, or indulging in some delicious gumbo, your pets can now join in on the fun. From pet-friendly hotels offering special amenities to a plethora of exciting activities catered to pets, New Orleans ensures a memorable and inclusive experience for every member of your family, including the ones with wagging tails."

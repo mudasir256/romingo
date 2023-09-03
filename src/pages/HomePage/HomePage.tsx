@@ -152,6 +152,22 @@ const HomePage: FC<Props> = () => {
     { to: "pet-friendly-hotels/seattle-washington", name: 'Seattle' },
     { to: "pet-friendly-hotels/portland-oregon", name: 'Portland' },
     { to: "pet-friendly-hotels/salt-lake-city-utah", name: 'Salt Lake City' },
+   
+    { to: "pet-friendly-hotels/atlanta-georgia", name: 'Atlanta' },
+    { to: "pet-friendly-hotels/baltimore-maryland", name: 'Baltimore' },
+    { to: "pet-friendly-hotels/boston-massachusetts", name: 'Boston' },
+    { to: "pet-friendly-hotels/charlotte-north-carolina", name: 'Charlotte' },
+    { to: "pet-friendly-hotels/chicago-illinois", name: 'Chicago' },
+    { to: "pet-friendly-hotels/cleveland-ohio", name: 'Cleveland' },
+    { to: "pet-friendly-hotels/detroit-michigan", name: 'Detroit' },
+    { to: "pet-friendly-hotels/indianapolis-indiana", name: 'Indianapolis' },
+    { to: "pet-friendly-hotels/miami-florida", name: 'Miami' },
+    { to: "pet-friendly-hotels/milwaukee-wisconsin", name: 'Milwaukee' },
+    { to: "pet-friendly-hotels/minneapolis-minnesota", name: 'Minneapolis' },
+    { to: "pet-friendly-hotels/new-orleans-louisiana", name: 'New Orleans' },
+    { to: "pet-friendly-hotels/new-york-new-york", name: 'New York City' },
+    { to: "pet-friendly-hotels/washington-dc", name: 'Washington D.C.' },
+
   ]
   locationLinks.sort((a, b) => a.name.localeCompare(b.name))
 

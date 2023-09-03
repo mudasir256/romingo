@@ -31,46 +31,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Austin, Texas, USA",
+    "description": "Boston, MA, USA",
     "matched_substrings": [
         {
             "length": 6,
             "offset": 0
-        },
-        {
-            "length": 2,
-            "offset": 8
         }
     ],
-    "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
-    "reference": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+    "place_id": "ChIJGzE9DS1l44kRoOhiASS_fHg",
+    "reference": "ChIJGzE9DS1l44kRoOhiASS_fHg",
     "structured_formatting": {
-        "main_text": "Austin",
+        "main_text": "Boston",
         "main_text_matched_substrings": [
             {
                 "length": 6,
                 "offset": 0
             }
         ],
-        "secondary_text": "Texas, USA",
-        "secondary_text_matched_substrings": [
-            {
-                "length": 2,
-                "offset": 0
-            }
-        ]
+        "secondary_text": "MA, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Austin"
+            "value": "Boston"
         },
         {
             "offset": 8,
-            "value": "Texas"
+            "value": "MA"
         },
         {
-            "offset": 15,
+            "offset": 12,
             "value": "USA"
         }
     ],
@@ -79,15 +69,15 @@ const searchData = {
         "political",
         "geocode"
     ]
-  },
-  "lat": 30.267153,
-  "lng": -97.7430608
+},
+  "lat": 42.3600825,
+  "lng": -71.0588801
 }
 
 const Boston: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Austin, TX');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Boston');
 
   const paragraphOne = "Boston is an ideal destination for pet-friendly travel, where the bustling city seamlessly merges with a warm and welcoming atmosphere for furry companions. Exploring this historic city becomes even more enjoyable when you can share it with your beloved pets. Numerous pet-friendly accommodations, from charming boutique hotels to cozy bed and breakfasts, readily open their doors to pets of all sizes."
 
@@ -175,7 +165,7 @@ const Boston: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2, my: '1rem' }}
           >
-            While strolling through the charming cobblestone streets of Beacon Hill or along the scenic Freedom Trail, you'll find various parks and green spaces, providing ample opportunities for your four-legged friends to stretch their legs and meet new furry acquaintances. Moreover, Boston boasts an array of pet-friendly cafes and eateries, ensuring your pets can enjoy the experience as much as you do. 
+            While strolling through the charming cobblestone streets of Beacon Hill or along the scenic Freedom Trail, you&apos;ll find various parks and green spaces, providing ample opportunities for your four-legged friends to stretch their legs and meet new furry acquaintances. Moreover, Boston boasts an array of pet-friendly cafes and eateries, ensuring your pets can enjoy the experience as much as you do. 
           </Typography>
       
         </Grid>

@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Indianapolis, IN, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 6,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJA2p5p_9Qa4gRfOq5QPadjtY",
+    "reference": "ChIJA2p5p_9Qa4gRfOq5QPadjtY",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Indianapolis",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 6,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "IN, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Indianapolis"
         },
         {
-            "offset": 13,
-            "value": "CA"
+            "offset": 14,
+            "value": "IN"
         },
         {
-            "offset": 17,
+            "offset": 18,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 39.768403,
+"lng": -86.158068
 }
 
 const Indianapolis: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Indianapolis');
 
   const city = 'Indianapolis'
   const paragraphOne = "If you're a pet owner looking to explore the vibrant city of Indianapolis, you're in for a treat as the city warmly embraces pet-friendly travel! Indianapolis boasts a myriad of pet-friendly accommodations, making it easy to find comfortable and welcoming lodgings for you and your furry companion. From charming boutique hotels to cozy motels and vacation rentals, there's something to suit every budget and preference. Once you've settled in, you'll discover a plethora of pet-friendly attractions and activities to enjoy together."
@@ -185,7 +185,7 @@ const Indianapolis: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            Take a leisurely stroll through the picturesque White River State Park, where leashed pets are welcome to explore the scenic trails. For a dose of history and culture, head to the Indiana War Memorial Plaza, where leashed pets can accompany you on a fascinating journey through the state's past. Don't miss out on the dog parks sprinkled throughout the city, where your four-legged friend can socialize and play freely. And when hunger strikes, Indianapolis' pet-friendly cafes and restaurants are more than happy to accommodate you both. 
+            Take a leisurely stroll through the picturesque White River State Park, where leashed pets are welcome to explore the scenic trails. For a dose of history and culture, head to the Indiana War Memorial Plaza, where leashed pets can accompany you on a fascinating journey through the state&apos;s past. Don&apos;t miss out on the dog parks sprinkled throughout the city, where your four-legged friend can socialize and play freely. And when hunger strikes, Indianapolis&apos; pet-friendly cafes and restaurants are more than happy to accommodate you both. 
           </Typography>
         </Grid>
 

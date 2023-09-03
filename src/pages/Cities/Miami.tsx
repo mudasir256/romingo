@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Miami, FL, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 5,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJEcHIDqKw2YgRZU-t3XHylv8",
+    "reference": "ChIJEcHIDqKw2YgRZU-t3XHylv8",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Miami",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 5,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "FL, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Miami"
         },
         {
-            "offset": 13,
-            "value": "CA"
+            "offset": 7,
+            "value": "FL"
         },
         {
-            "offset": 17,
+            "offset": 11,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 25.7616798,
+"lng": -80.1917902
 }
 
 const Miami: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Miami');
 
   const city = 'Miami'
   const paragraphOne = "Miami is an ideal destination for pet-friendly travel, offering a plethora of opportunities for unforgettable adventures with your four-legged companions. From sun-kissed beaches to vibrant parks and trendy cafes, the city ensures that no member of your family is left behind. Take a leisurely stroll along the iconic South Beach, where pets are welcomed on designated areas, allowing them to frolic in the gentle waves and soft sand."
@@ -186,7 +186,7 @@ const Miami: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            For a dose of nature, visit the beautiful Bayfront Park, where furry friends can enjoy ample green spaces and mingling with other playful pets. Several pet-friendly hotels cater to your furry companions, providing special amenities like pet beds and gourmet treats. Miami's pet-friendly dining scene is equally enticing, with various cafes and restaurants boasting outdoor seating where your pet can join you during meals. With its year-round sunny weather and a warm embrace of pets, Miami guarantees an unforgettable and inclusive experience for both you and your beloved animal companions.
+            For a dose of nature, visit the beautiful Bayfront Park, where furry friends can enjoy ample green spaces and mingling with other playful pets. Several pet-friendly hotels cater to your furry companions, providing special amenities like pet beds and gourmet treats. Miami&apos;s pet-friendly dining scene is equally enticing, with various cafes and restaurants boasting outdoor seating where your pet can join you during meals. With its year-round sunny weather and a warm embrace of pets, Miami guarantees an unforgettable and inclusive experience for both you and your beloved animal companions.
           </Typography>
         </Grid>
 

@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Washington D.C., DC, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 10,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJW-T2Wt7Gt4kRKl2I1CJFUsI",
+    "reference": "ChIJW-T2Wt7Gt4kRKl2I1CJFUsI",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Washington D.C.",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 10,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "DC, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
-        },
-        {
-            "offset": 13,
-            "value": "CA"
+            "value": "Washington D.C."
         },
         {
             "offset": 17,
+            "value": "DC"
+        },
+        {
+            "offset": 21,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 38.9059849,
+"lng": -77.03341790000002
 }
 
 const Washington: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Washington DC');
 
   const city = 'Washington D.C.'
   const paragraphOne = "Washington, D.C., the capital of the United States, is a vibrant and historical city that welcomes pet-friendly travel with open arms. Traveling to this bustling metropolis with your furry companion is a delightful experience, as many accommodations, attractions, and parks cater to pets. Numerous hotels in Washington, D.C., are pet-friendly, offering comfortable accommodations and special amenities to ensure your pet's comfort during your stay."
@@ -186,7 +186,7 @@ const Washington: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            The city is home to a variety of pet-friendly parks, such as Rock Creek Park and the National Mall, where your pet can stretch their legs and explore the outdoors alongside you. Additionally, many outdoor cafes and restaurants in the city welcome pets, allowing you to enjoy a meal or coffee with your furry friend by your side. From exploring iconic landmarks to wandering through picturesque neighborhoods, pet-friendly travel in Washington, D.C., ensures that you and your beloved pet can create unforgettable memories together in the nation's capital.
+            The city is home to a variety of pet-friendly parks, such as Rock Creek Park and the National Mall, where your pet can stretch their legs and explore the outdoors alongside you. Additionally, many outdoor cafes and restaurants in the city welcome pets, allowing you to enjoy a meal or coffee with your furry friend by your side. From exploring iconic landmarks to wandering through picturesque neighborhoods, pet-friendly travel in Washington, D.C., ensures that you and your beloved pet can create unforgettable memories together in the nation&apos;s capital.
           </Typography>
         </Grid>
 

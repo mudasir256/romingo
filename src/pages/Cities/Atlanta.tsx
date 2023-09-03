@@ -29,48 +29,39 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 
 //TODO:
+
 const searchData = {
   "city": {
-    "description": "Austin, Texas, USA",
+    "description": "Atlanta, GA, USA",
     "matched_substrings": [
         {
-            "length": 6,
+            "length": 7,
             "offset": 0
-        },
-        {
-            "length": 2,
-            "offset": 8
         }
     ],
-    "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
-    "reference": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+    "place_id": "ChIJjQmTaV0E9YgRC2MLmS_e_mY",
+    "reference": "ChIJjQmTaV0E9YgRC2MLmS_e_mY",
     "structured_formatting": {
-        "main_text": "Austin",
+        "main_text": "Atlanta",
         "main_text_matched_substrings": [
             {
-                "length": 6,
+                "length": 7,
                 "offset": 0
             }
         ],
-        "secondary_text": "Texas, USA",
-        "secondary_text_matched_substrings": [
-            {
-                "length": 2,
-                "offset": 0
-            }
-        ]
+        "secondary_text": "GA, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Austin"
+            "value": "Atlanta"
         },
         {
-            "offset": 8,
-            "value": "Texas"
+            "offset": 9,
+            "value": "GA"
         },
         {
-            "offset": 15,
+            "offset": 13,
             "value": "USA"
         }
     ],
@@ -79,15 +70,15 @@ const searchData = {
         "political",
         "geocode"
     ]
-  },
-  "lat": 30.267153,
-  "lng": -97.7430608
+  }, 
+  "lat": 33.748752,
+  "lng": -84.38768449999999
 }
 
 const Atlanta: FC = () => {
 
-  //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Austin, TX');
+
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Atlanta');
 
   const paragraphOne = "Discovering Atlanta with your dog is now simpler with many pet-friendly hotels and attractions available in the city.  Atlanta offers numerous options for pet owners who want to travel with their pets. These options include dog parks, hiking trails, and pet-friendly patios and cafes."
 

@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Charlotte, NC, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 5,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJgRo4_MQfVIgRZNFDv-ZQRog",
+    "reference": "ChIJgRo4_MQfVIgRZNFDv-ZQRog",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Charlotte",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 5,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "NC, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Charlotte"
         },
         {
-            "offset": 13,
-            "value": "CA"
+            "offset": 11,
+            "value": "NC"
         },
         {
-            "offset": 17,
+            "offset": 15,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 35.2270869,
+"lng": -80.8431267
 }
 
 const Charlotte: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Charlotte');
 
   const city = 'Charlotte'
   const paragraphOne = "Charlotte, a vibrant city nestled in the heart of North Carolina, beckons pet owners with its warm hospitality and numerous pet-friendly travel options. Whether you're a local or a visitor, exploring this bustling city with your furry companion is a delightful experience."

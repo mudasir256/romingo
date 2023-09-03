@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Detroit, MI, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 7,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJdR3LEAHKJIgR0sS5NU6Gdlc",
+    "reference": "ChIJdR3LEAHKJIgR0sS5NU6Gdlc",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Detroit",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 7,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "MI, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Detroit"
+        },
+        {
+            "offset": 9,
+            "value": "MI"
         },
         {
             "offset": 13,
-            "value": "CA"
-        },
-        {
-            "offset": 17,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 42.331427,
+"lng": -83.0457538
 }
 
 const Detroit: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Detroit');
 
   const city = 'Detroit'
   const paragraphOne = "Detroit, a city renowned for its rich history and vibrant culture, has emerged as an increasingly pet-friendly travel destination, welcoming both locals and visitors to explore its wonders with their furry companions. From charming boutique hotels and cozy bed-and-breakfasts that cater to pets, to a plethora of parks and recreational spaces designed for four-legged friends, Detroit has become a haven for pet enthusiasts. Visitors can take leisurely strolls with their dogs along the scenic RiverWalk or unwind at the numerous dog-friendly cafes and restaurants scattered throughout the city."
@@ -184,7 +184,7 @@ const Detroit: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            For a dose of culture, pet parents can explore pet-friendly art galleries and cultural attractions, providing a truly inclusive experience. Whether it's exploring the iconic landmarks or attending pet-friendly events and festivals, Detroit ensures that pets are not just tolerated but embraced, making it an ideal destination for unforgettable adventures with our beloved companions.
+            For a dose of culture, pet parents can explore pet-friendly art galleries and cultural attractions, providing a truly inclusive experience. Whether it&apos;s exploring the iconic landmarks or attending pet-friendly events and festivals, Detroit ensures that pets are not just tolerated but embraced, making it an ideal destination for unforgettable adventures with our beloved companions.
           </Typography>
         </Grid>
 

@@ -30,33 +30,33 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Minneapolis, MN, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 4,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJvbt3k5Azs1IRB-56L4TJn5M",
+    "reference": "ChIJvbt3k5Azs1IRB-56L4TJn5M",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Minneapolis",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 4,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "MN, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Minneapolis"
         },
         {
             "offset": 13,
-            "value": "CA"
+            "value": "MN"
         },
         {
             "offset": 17,
@@ -69,14 +69,15 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+        
+"lat": 44.977753,
+"lng": -93.2650108
 }
 
 const Minneapolis: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Minneapolis');
 
   const city = 'Minneapolis'
   const paragraphOne = "Minneapolis is a haven for pet-friendly travel, making it an ideal destination for those who want to explore the city without leaving their furry companions behind. From its numerous parks and green spaces to its abundance of pet-friendly accommodation options, Minneapolis warmly welcomes pets with open arms. One can begin their adventure by strolling through the iconic Chain of Lakes, where dogs can run off-leash and splash in the water. The city boasts an impressive selection of pet-friendly cafes and restaurants, ensuring that pet owners can enjoy a meal with their four-legged friends by their side."

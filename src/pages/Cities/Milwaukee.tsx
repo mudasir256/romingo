@@ -30,36 +30,36 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Los Angeles, CA, USA",
+    "description": "Milwaukee, WI, USA",
     "matched_substrings": [
         {
-            "length": 11,
+            "length": 6,
             "offset": 0
         }
     ],
-    "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
-    "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+    "place_id": "ChIJ50eLV9cCBYgRhHtBtSIZX0Q",
+    "reference": "ChIJ50eLV9cCBYgRhHtBtSIZX0Q",
     "structured_formatting": {
-        "main_text": "Los Angeles",
+        "main_text": "Milwaukee",
         "main_text_matched_substrings": [
             {
-                "length": 11,
+                "length": 6,
                 "offset": 0
             }
         ],
-        "secondary_text": "CA, USA"
+        "secondary_text": "WI, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Los Angeles"
+            "value": "Milwaukee"
         },
         {
-            "offset": 13,
-            "value": "CA"
+            "offset": 11,
+            "value": "WI"
         },
         {
-            "offset": 17,
+            "offset": 15,
             "value": "USA"
         }
     ],
@@ -69,14 +69,14 @@ const searchData = {
         "geocode"
     ]
 },
-"lat": 34.0522342,
-"lng": -118.2436849
+"lat": 43.0389025,
+"lng": -87.9064736
 }
 
 const Milwaukee: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Los Angeles, CA');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Milwaukee');
 
   const city = 'Milwaukee'
   const paragraphOne = "Milwaukee, known for its vibrant culture and scenic landscapes, is an ideal destination for pet-friendly travel enthusiasts. This charming city along the shores of Lake Michigan warmly welcomes four-legged companions, making it a haven for pet owners seeking unforgettable experiences with their furry friends. Whether exploring the picturesque Milwaukee Riverwalk, strolling through the pet-friendly parks like Estabrook Park or Grant Park, or enjoying a day at the dog-friendly Bradford Beach, there are endless opportunities for pets to stretch their paws and soak up the fresh air."
@@ -186,7 +186,7 @@ const Milwaukee: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            Many cafes, restaurants, and breweries offer pet-friendly outdoor seating, allowing travelers to relish in Milwaukee's delectable culinary scene while keeping their pets by their side. Additionally, pet-friendly accommodations such as hotels and vacation rentals ensure a comfortable stay for both humans and their beloved pets. Embracing a pet-friendly ethos, Milwaukee guarantees an unforgettable adventure filled with cherished memories for all members of the family, including the four-legged ones.
+            Many cafes, restaurants, and breweries offer pet-friendly outdoor seating, allowing travelers to relish in Milwaukee&apos;s delectable culinary scene while keeping their pets by their side. Additionally, pet-friendly accommodations such as hotels and vacation rentals ensure a comfortable stay for both humans and their beloved pets. Embracing a pet-friendly ethos, Milwaukee guarantees an unforgettable adventure filled with cherished memories for all members of the family, including the four-legged ones.
           </Typography>
         </Grid>
 
@@ -429,7 +429,7 @@ const Milwaukee: FC = () => {
             text="Located in the East Side neighborhood, Three Lions Pub allows dogs on their outdoor patio. This British-inspired pub offers a range of beers and classic pub fare for you to enjoy with your pet."
           />
           <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image9.png" text="Milwaukee Journal Sentinel" />
-                  
+
         </Box>
 
 

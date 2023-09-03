@@ -31,43 +31,33 @@ import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 //TODO:
 const searchData = {
   "city": {
-    "description": "Austin, Texas, USA",
+    "description": "Baltimore, MD, USA",
     "matched_substrings": [
         {
-            "length": 6,
+            "length": 9,
             "offset": 0
-        },
-        {
-            "length": 2,
-            "offset": 8
         }
     ],
-    "place_id": "ChIJLwPMoJm1RIYRetVp1EtGm10",
-    "reference": "ChIJLwPMoJm1RIYRetVp1EtGm10",
+    "place_id": "ChIJt4P01q4DyIkRWOcjQqiWSAQ",
+    "reference": "ChIJt4P01q4DyIkRWOcjQqiWSAQ",
     "structured_formatting": {
-        "main_text": "Austin",
+        "main_text": "Baltimore",
         "main_text_matched_substrings": [
             {
-                "length": 6,
+                "length": 9,
                 "offset": 0
             }
         ],
-        "secondary_text": "Texas, USA",
-        "secondary_text_matched_substrings": [
-            {
-                "length": 2,
-                "offset": 0
-            }
-        ]
+        "secondary_text": "MD, USA"
     },
     "terms": [
         {
             "offset": 0,
-            "value": "Austin"
+            "value": "Baltimore"
         },
         {
-            "offset": 8,
-            "value": "Texas"
+            "offset": 11,
+            "value": "MD"
         },
         {
             "offset": 15,
@@ -79,15 +69,15 @@ const searchData = {
         "political",
         "geocode"
     ]
-  },
-  "lat": 30.267153,
-  "lng": -97.7430608
+},
+  "lat": 39.2903848,
+  "lng": -76.6121893
 }
 
 const Baltimore: FC = () => {
 
   //TODO:
-  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Austin, TX');
+  const cityContent = HOTEL_DESCRIPTIONS.find((obj) => obj.city === 'Baltimore');
 
   const paragraphOne = "If you're a pet lover looking to explore a vibrant city, Baltimore is the perfect destination for pet-friendly travel! Known for its rich history, diverse culture, and scenic waterfront, this charming city welcomes furry companions with open arms."
 
@@ -175,7 +165,7 @@ const Baltimore: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2, my: '1rem' }}
           >
-            Enjoy leisurely strolls with your four-legged friend along the picturesque Inner Harbor, where you'll find many pet-friendly cafes and restaurants with outdoor seating. Don't miss out on exploring the beautiful parks and green spaces scattered throughout the city, such as Patterson Park, Federal Hill Park, and Druid Hill Park, where your pet can roam freely and make new furry friends.
+            Enjoy leisurely strolls with your four-legged friend along the picturesque Inner Harbor, where you&apos;ll find many pet-friendly cafes and restaurants with outdoor seating. Don&apos;t miss out on exploring the beautiful parks and green spaces scattered throughout the city, such as Patterson Park, Federal Hill Park, and Druid Hill Park, where your pet can roam freely and make new furry friends.
           </Typography>
           <Typography
             variant="body1"
