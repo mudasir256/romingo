@@ -187,6 +187,7 @@ const NewOrleans: FC = () => {
           </Typography>
         </Grid>
 
+        {cityContent.secondaryImage &&
         <Grid ml="auto" mt="0.5rem" item xs={12} md={4}>
           <Box
             component="img"
@@ -201,6 +202,7 @@ const NewOrleans: FC = () => {
             }}
           />
         </Grid>
+        }
 
       
         <Box

@@ -202,14 +202,14 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
             <FormControl fullWidth>
-              <GooglePlaceAutoComplete width={240} setSelectedCity={setSelectedCity} city={selectedCity} />
+              <GooglePlaceAutoComplete width={274} setSelectedCity={setSelectedCity} city={selectedCity} />
             </FormControl>
           </Box>
 
           <Box sx={{ 
             ml: '1em',
             ["@media (max-width: 600px)"]: { ml: '1em' },
-            background: 'white'
+            background: 'white',
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
@@ -241,7 +241,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                       ["@media (max-width: 920px)"]: { display: 'flex' },
                       ["@media (max-width: 720px)"]: { display: 'flex' },
 
-                      height: 38,
+                      height: 42,
                       border: '1px solid #aaabab', borderRadius: '5px'
                     }}
                     onClick={() => setOpen(true)}
@@ -332,7 +332,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             size="small"
             fullWidth={false}
             sx={{
-              width: '246px',
+              width: '226px',
+              height: '42px',
               border: '1px solid #aaabab', borderRadius: '5px',
               background: 'white',
               label: {
@@ -342,7 +343,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
               input: {
                 cursor: "pointer",
                 fontFamily: 'overpass-light',
-                fontSize: '1em',
+                fontSize: '1rem',
+                mt: '0.05rem'
               },
             }}
           />
@@ -357,7 +359,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             fontFamily: "overpass-light",
             m: '0.75em',
             p: '1.5em',
-            height: '44px',
+            height: '42px',
           }}
           startIcon={<SearchIcon sx={{ height: "24px", fill: 'white' }} />}
         >
