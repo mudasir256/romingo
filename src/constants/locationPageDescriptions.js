@@ -134,69 +134,69 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'Atlanta',
-    heroImage: '',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/Atlanta%20Hero.jpg',
     secondaryImage: '',
     keywords: "pet friendly hotels Atlanta, GA, dog friendly hotels Atlanta, GA, pet friendly bed & breakfasts Atlanta, GA, dog friendly B&Bs Atlanta, GA, pet friendly vacation rentals Atlanta, GA, dog friendly vacation rentals Atlanta, GA, Atlanta, GA pet friendly accommodations, Atlanta, GA dog friendly lodging"
   },
   {
     city: "Baltimore",
-    heroImage: '',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/Balitmore%20Hero.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Baltimore, MD, dog friendly hotels Baltimore, MD, pet friendly bed & breakfasts Baltimore, MD, dog friendly B&Bs Baltimore, MD, pet friendly vacation rentals Baltimore, MD, dog friendly vacation rentals Baltimore, MD, Baltimore, MD pet friendly accommodations, Baltimore, MD dog friendly lodging'
   },
   {
     city: 'Boston',
-    heroImage: '',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Boston%20Hero.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Boston, MA, dog friendly hotels Boston, MA, pet friendly bed & breakfasts Boston, MA, dog friendly B&Bs Boston, MA, pet friendly vacation rentals Boston, MA, dog friendly vacation rentals Boston, MA, Boston, MA pet friendly accommodations, Boston, MA dog friendly lodging' 
   },
   {
     city: 'Charlottle',
-    heroImage: '',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Charlotte%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Charlotte, NC, dog friendly hotels Charlotte, NC, pet friendly bed & breakfasts Charlotte, NC, dog friendly B&Bs Charlotte, NC, pet friendly vacation rentals Charlotte, NC, dog friendly vacation rentals Charlotte, NC, Charlotte, NC pet friendly accommodations, Charlotte, NC dog friendly lodging'
   },
   {
     city: 'Chicago',
-    heroImage: '',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Chicago%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Chicago, IL, dog friendly hotels Chicago, IL, pet friendly bed & breakfasts Chicago, IL, dog friendly B&Bs Chicago, IL, pet friendly vacation rentals Chicago, IL, dog friendly vacation rentals Chicago, IL, Chicago, IL pet friendly accommodations, Chicago, IL dog friendly lodging'
   },
   {
     city: 'Cleveland',
-    heroImage: '',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Cleveland%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Cleveland, OH, dog friendly hotels Cleveland, OH, pet friendly bed & breakfasts Cleveland, OH, dog friendly B&Bs Cleveland, OH, pet friendly vacation rentals Cleveland, OH, dog friendly vacation rentals Cleveland, OH, Cleveland, OH pet friendly accommodations, Cleveland, OH dog friendly lodging'
   },
   {
     city: 'Detroit',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Detroit%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Detroit, MI, dog friendly hotels Detroit, MI, pet friendly bed & breakfasts Detroit, MI, dog friendly B&Bs Detroit, MI, pet friendly vacation rentals Detroit, MI, dog friendly vacation rentals Detroit, MI, Detroit, MI pet friendly accommodations, Detroit, MI dog friendly lodging'
   },
   {
     city: 'Indianapolis',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Indianapolis%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Indianapolis, IN, dog friendly hotels Indianapolis, IN, pet friendly bed & breakfasts Indianapolis, IN, dog friendly B&Bs Indianapolis, IN, pet friendly vacation rentals Indianapolis, IN, dog friendly vacation rentals Indianapolis, IN, Indianapolis, IN pet friendly accommodations, Indianapolis, IN dog friendly lodging'
   },
   {
     city: 'Miami',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Miami%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Miami, FL, dog friendly hotels Miami, FL, pet friendly bed & breakfasts Miami, FL, dog friendly B&Bs Miami, FL, pet friendly vacation rentals Miami, FL, dog friendly vacation rentals Miami, FL, Miami, FL pet friendly accommodations, Miami, FL dog friendly lodging'
   },
   {
     city: 'Milwaukee',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Milwaukee%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Milwaukee, WI, dog friendly hotels Milwaukee, WI, pet friendly bed & breakfasts Milwaukee, WI, dog friendly B&Bs Milwaukee, WI, pet friendly vacation rentals Milwaukee, WI, dog friendly vacation rentals Milwaukee, WI, Milwaukee, WI pet friendly accommodations, Milwaukee, WI dog friendly lodging'
   },
   {
     city: 'Minneapolis',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/Minneapolis%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Minneapolis, MN, dog friendly hotels Minneapolis, MN, pet friendly bed & breakfasts Minneapolis, MN, dog friendly B&Bs Minneapolis, MN, pet friendly vacation rentals Minneapolis, MN, dog friendly vacation rentals Minneapolis, MN, Minneapolis, MN pet friendly accommodations, Minneapolis, MN dog friendly lodging'
   },
   // {
   //   city: 'Nashville',
@@ -208,19 +208,19 @@ const HOTEL_DESCRIPTIONS = [
     city: 'New Orleans',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/New%20Orleans%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels New Orleans, LA, dog friendly hotels New Orleans, LA, pet friendly bed & breakfasts New Orleans, LA, dog friendly B&Bs New Orleans, LA, pet friendly vacation rentals New Orleans, LA, dog friendly vacation rentals New Orleans, LA, New Orleans, LA pet friendly accommodations, New Orleans, LA dog friendly lodging'
   },
   {
     city: 'New York',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/New%20York%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels New York, NY, dog friendly hotels New York, NY, pet friendly bed & breakfasts New York, NY, dog friendly B&Bs New York, NY, pet friendly vacation rentals New York, NY, dog friendly vacation rentals New York, NY, New York, NY pet friendly accommodations, New York, NY dog friendly lodging'
   },
   {
     city: 'Washington DC',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/WashingtonDC%20Hero.jpg',
     secondaryImage: '',
-    keywords: ''
+    keywords: 'pet friendly hotels Washington, DC, dog friendly hotels Washington, DC, pet friendly bed & breakfasts Washington, DC, dog friendly B&Bs Washington, DC, pet friendly vacation rentals Washington, DC, dog friendly vacation rentals Washington, DC, Washington, DC pet friendly accommodations, Washington, DC dog friendly lodging'
   }
 ]
 
