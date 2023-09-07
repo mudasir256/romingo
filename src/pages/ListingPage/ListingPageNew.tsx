@@ -114,7 +114,7 @@ const ListingPageNew = ({ ...props }) => {
   const { data, loading } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
 
-  console.log(search)
+  console.log(data)
 
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;

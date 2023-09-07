@@ -110,7 +110,7 @@ const About: FC = () => {
           </Grid>
           <Grid item>
             <Typography variant="h4">
-              Travelling with pets should not be this difficult!
+              Traveling with pets should not be this difficult!
             </Typography>
             <Typography
               variant="body1"
