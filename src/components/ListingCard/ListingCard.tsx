@@ -202,7 +202,7 @@ const ListingCard: FC<ListingCardProps> = ({
           per night
         </Typography>
 
-        {totalPrice ? (
+        {(totalPrice && totalPrice != lowestAveragePrice)? (
           <Typography
             variant="body2"
             sx={{
@@ -248,7 +248,7 @@ const ListingCard: FC<ListingCardProps> = ({
           ></Typography>
         )}
 
-        <Typography sx={{ fontSize: '12px', color: '#666'}}>includes taxes and fees</Typography>
+        {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666'}}>includes taxes and fees</Typography>}
 
       </Box>
     </Box>
