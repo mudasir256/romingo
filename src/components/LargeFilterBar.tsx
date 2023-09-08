@@ -175,8 +175,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       zIndex: '20',
       width: 'fit-content',
     }}>
-      {showText && <Box component="h1" sx={{ ml: '0.1em', mb: '0.5em'}} className="filter-bar-wrapper-title"><b>Book pet-friendly hotels</b></Box>}
-      {showText && <Box component="h2" sx={{ ml: '0.3em' }} className="filter-bar-wrapper-desc">the easiest way to travel with your pets</Box>}
+      {showText && <Box component="h1" sx={{ ml: '0.1em', mb: '0.5em', textShadow: 'black 1px 0.5px' }} className="filter-bar-wrapper-title"><b>Book pet-friendly hotels</b></Box>}
+      {showText && <Box component="h2" sx={{ ml: '0.3em', textShadow: 'black 0.5px 0.5px' }} className="filter-bar-wrapper-desc">the easiest way to travel with your pets</Box>}
       <Box sx={{ 
           mt: '1.5em', 
           border: '1px gray solid',
