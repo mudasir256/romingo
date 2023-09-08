@@ -668,11 +668,11 @@ const ListingPageNew = ({ ...props }) => {
         >
 
           <Grid item container direction='row'>
-            {!mobile && <Box textAlign="left"><LargeFilterBar /></Box>}
-            <Box my="0.75rem" textAlign="left" width="100%" maxWidth="845px" mr="1rem"><Banner /></Box>
+            {!mobile && <Box textAlign="left" maxWidth="860px"><LargeFilterBar /></Box>}
+            <Box my="0.75rem" textAlign="left" width="100%" maxWidth="850px" mr="1rem"><Banner /></Box>
             
 
-            <Grid maxWidth="840px" item container direction='row' justifyContent='space-between' alignItems="center">
+            <Grid maxWidth="860px" item container direction='row' justifyContent='space-between' alignItems="center">
               <Grid item>
                 <Box mt="0.5rem" sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                   <Typography my="1rem">{hotels.length} properties</Typography>
@@ -764,7 +764,7 @@ const ListingPageNew = ({ ...props }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item maxWidth="840px" >
+          <Grid item maxWidth="860px" >
             <CardList cards={hotels} sessionId={sessionId} />
           </Grid>
         </Grid>

@@ -90,11 +90,13 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
         icon={<img width="20px" src={DogIcon} />}
         label={<Box sx={iconSpacing}>{pet_size}</Box>}
       />
+
       <Chip
         size="small"
         sx={{
           ...chipIconStyle,
           ml: '-0.3rem',
+          flexBasis: '100%'
         }}
         icon={<CheckCircleOutline sx={{ color: 'green' }} />}
         label={<Box sx={iconSpacing}>pet-friendly room guaranteed</Box>}
