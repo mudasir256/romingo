@@ -8,7 +8,7 @@ import Link from "@mui/material/Link";
 import IATANLogo from '../../assets/images/IATANLogo.webp';
 import BBBLogo from '../../assets/images/BBBLogo.png';
 
-import LogoImg from '../../assets/images/logo.png';
+import LogoImg from '../../assets/images/logo-backup.png';
 import Pup from '../../assets/images/pup.png';
 import "./Footer.scss";
 

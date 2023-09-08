@@ -42,6 +42,7 @@ import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
 import { authService } from "../../services/authService.js"
 import DropdownMenuNav from '../../components/DropdownMenuNav'
+import LogoImg from '../../assets/images/logo-backup.png';
 
 
 interface Props {
