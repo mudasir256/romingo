@@ -424,7 +424,7 @@ const HomePage: FC<Props> = () => {
 
         </Box>
 
-        <Box mt="1rem">
+        <Box sx={{ my: { xs: '1rem', sm: '1rem', md: '8rem'} }}>
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
@@ -478,14 +478,14 @@ const HomePage: FC<Props> = () => {
           </Box>
         </Box>
 
-        <Box mt="1rem">
+        <Box sx={{ my: { xs: '1rem', sm: '1rem', md: '8rem'} }}>
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
             backgroundColor="#ffa57f"
             fontColor="white"
             header="Romingo Rewards 🐶"
-            text="Get rewarded when you book with Romingo. Simple create a free account, book travel with your furry friend, and earn points towards future stays. For  every 5 reservations that are booked and stayed, guests will receive a $100 Romingo Reward towards a future hotel reservation."
+            text="Get rewarded when you book with Romingo. Simply create a free account, book your travel, and earn points towards future stays."
             cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
           />
         </Box>
@@ -494,7 +494,8 @@ const HomePage: FC<Props> = () => {
       <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} backgroundColor="#ffffff" p="2rem" mt="2rem">
         <Box sx={{ 
           mx: 'auto', maxWidth: '760px', 
-          my: '1rem', 
+          mt: '4rem',
+          mb: '8rem', 
           p: '1.5rem',
           boxShadow: 2, 
           gap: '1rem',
