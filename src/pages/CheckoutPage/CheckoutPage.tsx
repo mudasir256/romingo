@@ -12,12 +12,14 @@ import CancelPolicy from "../../components/CancelPolicy";
 import PriceDetailCard from "../../components/PriceDetailCard";
 import CheckoutInformation from "../../components/CheckoutInformation";
 import { RoomInfo } from "../../components/RoomCard/RoomCard";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, Button } from "@mui/material";
 import ScrollToTop from "../../components/ScrollToTop";
 import ImageSlider from "../../components/ImageSlider";
 import { Star } from "@mui/icons-material";
 import RomingoScore from "../../components/RomingoScore";
 import DiscountIcon from '@mui/icons-material/LocalOffer';
+import { gql, useQuery } from "@apollo/client";
+import { getCancellationPolicy } from "../../constants/constants";
 
 declare global {
   interface Window {
@@ -35,9 +37,12 @@ interface Props {
 }
 
 const CheckoutPage: FC<Props> = () => {
-  const [payLater, setPayLater] = useState(false);
+  const [couponText, setCouponText] = useState('')
+  const [loadingCoupon, setLoadingCoupon] = useState(false)
+  const [discountAmount, setDiscountAmount] = useState(0)
+
   const search = useSelector((state: any) => state.searchReducer.search);
-  const { finePrint, room } = useSelector(
+  const { finePrint, room, hotel: hotelDetails, sessionId } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
 
@@ -48,18 +53,32 @@ const CheckoutPage: FC<Props> = () => {
   const hotel = useSelector((state: any) => {
     return state.hotelDetailReducer.detail;
   });
+  console.log('details')
+  console.log(detail)
+
+  //TODO: fetch cancellation policy for this hotel
+  const { data, loading, error } = useQuery(
+    gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
+
+
+  const handleApplyCoupon = async () => {
+    setLoadingCoupon(true)
+    const result = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/coupon/${couponText}`)
+    const data = await result.json()
+
+    if (data.coupon.percent_off && data.coupon.valid) {
+      const discount = detail?.room?.PackagePrice?.FinalPrice * (data.coupon.percent_off / 100)
+      setDiscountAmount(discount)
+    } else if (data.coupon.amount_off && data.coupon.valid) {
+      const discount = (data.coupon.amount_off / 100)
+      setDiscountAmount(discount)
+    } else {
+      setDiscountAmount(-1)
+    }
+    setLoadingCoupon(false)
+  }
 
   const mobile = useMediaQuery("(max-width:800px)");
-
-  // set payLater to true if check-in is more than 3 days in the future
-  useEffect(() => {
-    const dateNow = new Date();
-    const checkinDate = new Date(search.checkIn);
-    const hours = Math.abs(checkinDate.getTime() - dateNow.getTime()) / 36e5;
-    if (hours > 72) {
-      setPayLater(true);
-    }
-  }, [search]);
 
   return (
     <>
@@ -82,38 +101,59 @@ const CheckoutPage: FC<Props> = () => {
             {!mobile && (
               <Grid item xs={12} md={8} order={{ xs: 2, sm: 1 }}>
                 <CheckoutPageListingCard
-                  {...hotel}
+                  {...hotelDetails}
                   showPrice={false}
-                  noLink
-                  small
                 />
                 <CheckoutInformation
                   sx={{ mt: 1, mb: "1rem" }}
-                  finePrint={finePrint}
-                  price={detail?.room?.room?.totalPriceAfterTax}
-                  priceKey={detail?.room?.room?.priceKey}
-                  payLater={payLater}
-                  policy={room?.room?.cancelationPolicy}
+                  // finePrint={{title: "test", description: 'test'}}
+                  // price={123.33}
+                  finalPrice={detail?.room?.PackagePrice?.FinalPrice - (discountAmount > 0 ? discountAmount : 0)}
+                  policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                 />
               </Grid>
             )}
+
+
             <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
               <Grid container spacing={2}>
                 {mobile && (
                   <Grid item xs={12}>
                     <CheckoutPageListingCard
-                      {...hotel}
+                      {...hotelDetails}
                       showPrice={false}
-                      noLink
-                      small
                     />
                   </Grid>
                 )}
+                <Grid item xs={12} sx={{  mt: { xs: 0, sm: 0, md: '4.5rem' } }}>
+                  <ImageSlider
+                    images={detail?.room?.imageURLs || []}
+                    name={detail?.room?.Rooms?.find(item => true).RoomName || detail?.room?.Rooms?.find(item => true).BedType ||  "Standard Room"}
+                    sx={{
+                      display: "flex",
+                      flex: 1,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "50px",
+                      borderRadius: "6px",
+                      minHeight: { xs: "200px", sm: "200px", md: "220px" },
+                      color: "#03989e",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={12} order={{ xs: 1, md: 1 }}>
                   <BookingDetailCard />
                 </Grid>
                 <Grid item xs={12} order={{ xs: 2, md: 2 }}>
-                  <PriceDetailCard payLater={payLater} />
+                  <PriceDetailCard discountAmount={discountAmount} />
+                </Grid>
+                <Grid item xs={12} order={{ xs: 3, md: 3 }}>
+                  <Box sx={{ boxShadow: 3, borderRadius: 3, p: '0.75rem' }}> 
+                    <Typography variant="base">Special offer / discount code</Typography>
+                    <input value={couponText} onChange={(e) => setCouponText(e.target?.value)} style={{ width: '65%' }} type=" text" />
+                    <Button onClick={() => handleApplyCoupon()}>{loadingCoupon ? 'Loading...': 'Apply'}</Button>
+                    {discountAmount === -1 && <Typography sx={{ color: 'red', fontSize: '12px'}}>Invalid / expired coupon code</Typography>}
+                  </Box>
                 </Grid>
                 {mobile && (
                   <Grid item xs={12} order={2}>
@@ -128,17 +168,16 @@ const CheckoutPage: FC<Props> = () => {
                       Finish Your Reservation
                     </Typography>
                     <CheckoutInformation
-                      sx={{ mt: 2, mb: "1rem" }}
-                      finePrint={finePrint}
-                      price={detail?.room?.room?.totalPriceAfterTax}
-                      priceKey={detail?.room?.room?.priceKey}
-                      payLater={payLater}
-                      policy={room?.room?.cancelationPolicy}
+                      sx={{ mt: 2 }}
+                      // finePrint={finePrint}
+                      // price={detail?.room?.room?.totalPriceAfterTax}
+                      finalPrice={detail?.room?.PackagePrice?.FinalPrice - (discountAmount > 0 ? discountAmount : 0)}
+                      policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                     />
                   </Grid>
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
-                  <CancelPolicy policy={room?.room?.cancelationPolicy} />
+                  <CancelPolicy finalPrice={detail?.room?.PackagePrice?.FinalPrice} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
                 </Grid>
               </Grid>
             </Grid>
@@ -184,7 +223,7 @@ export interface ListingCardProps {
   };
 }
 
-const CheckoutPageListingCard: FC<ListingCardProps> = ({
+const CheckoutPageListingCard = ({
   imageURLs,
   name,
   addressLine1,
@@ -196,6 +235,7 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
   showPrice = true,
   ...props
 }) => {
+  console.log(props)
   return (
     <Box
       sx={{
@@ -209,7 +249,6 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
         backgroundColor: highlighted ? "lightBackground.main" : "white",
         pb: "1rem",
       }}
-      {...props}
     >
       <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: 0 }, maxWidth: "100%" }}>
 
@@ -225,10 +264,11 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
             sx={{
               width: "100%",
               height: 275,
+              mt: 3
             }}
           >
             <ImageSlider
-              images={imageURLs}
+              images={props?.images}
               name={name}
               sx={{
                 width: "100%",
@@ -258,9 +298,9 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
                 fontWeight: 800,
               }}
             >
-              {name}
+              {props.hotelName}
             </Typography>
-            <RomingoScore score={romingoScore} />
+            <RomingoScore score={props.starRating} />
           </Box>
 
           <Box>
@@ -275,7 +315,7 @@ const CheckoutPageListingCard: FC<ListingCardProps> = ({
                 mb: { xs: 0, md: -1 },
               }}
             >
-              {addressLine1}, {city?.name}
+              {props.fullAddressLine}
             </Typography>
 
             <Box

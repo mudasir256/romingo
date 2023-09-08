@@ -52,7 +52,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   const theme = useTheme();
   const history = useHistory();
   const dispatch = useDispatch();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -478,564 +478,562 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
     })
   }
 
-  return (
-    <>
-      <Helmet>
-        <title>Book pet friendly hotels - Romingo</title>
-      </Helmet>
-      <Navbar />
-      <Box
+  return <>
+    <Helmet>
+      <title>Book pet friendly hotels - Romingo</title>
+    </Helmet>
+    <Navbar />
+    <Box
+      sx={{
+        pt: {
+          sm: "64px",
+          xs: "56px",
+        },
+      }}
+    >
+      <Container
+        maxWidth="lg"
         sx={{
-          pt: {
-            sm: "64px",
-            xs: "56px",
-          },
+          pt: 3,
+          px: 0,
+          backgroundColor: "info.main",
         }}
       >
-        <Container
-          maxWidth="lg"
-          sx={{
-            pt: 3,
-            px: 0,
-            backgroundColor: "info.main",
-          }}
-        >
-          <Box>
-            <Box
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              mb: 2,
+              px: 2,
+            }}
+          >
+            <Typography
+              variant="h4"
               sx={{
-                display: "flex",
-                mb: 2,
-                px: 2,
-              }}
-            >
-              <Typography
-                variant="h4"
-                sx={{
-                  mr: {
-                    xs: 1,
-                    sm: 2,
-                  },
-                }}
-              >
-                Pups
-              </Typography>
-              <Button
-                size="small"
-                variant="outlined"
-                sx={{
-                  borderRadius: 3,
-                  backgroundColor: "white",
-                }}
-                onClick={(e) => {
-                  handleEditDogClick();
-                }}
-              >
-                <AddIcon sx={{ fontSize: 16, mr: 0.5 }} />
-                Dog
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: "grid",
-                gridAutoFlow: {
-                  xs: "column",
+                mr: {
+                  xs: 1,
+                  sm: 2,
                 },
-                width: "100%",
-                overflow: "auto hidden",
-                pt: 1,
-                pb: 4,
-                scrollSnapType: "x",
-                justifyContent: "start",
               }}
             >
-              {data?.getUserProfile.pets.map((pup, key) => {
-                const parts = pup.petDescription.split('|')
-                let gender = '';
-                let birthday = '';
-                let weight = ''
-                if (parts.length > 2) {
-                  gender = parts[0] == 'on' ? 'F' : 'M'
-                  birthday = parts[1]
-                  weight = parts[2]
-                }
-                return (
+              Pups
+            </Typography>
+            <Button
+              size="small"
+              variant="outlined"
+              sx={{
+                borderRadius: 3,
+                backgroundColor: "white",
+              }}
+              onClick={(e) => {
+                handleEditDogClick();
+              }}
+            >
+              <AddIcon sx={{ fontSize: 16, mr: 0.5 }} />
+              Dog
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              display: "grid",
+              gridAutoFlow: {
+                xs: "column",
+              },
+              width: "100%",
+              overflow: "auto hidden",
+              pt: 1,
+              pb: 4,
+              scrollSnapType: "x",
+              justifyContent: "start",
+            }}
+          >
+            {data?.getUserProfile.pets.map((pup, key) => {
+              const parts = pup.petDescription.split('|')
+              let gender = '';
+              let birthday = '';
+              let weight = ''
+              if (parts.length > 2) {
+                gender = parts[0] == 'on' ? 'F' : 'M'
+                birthday = parts[1]
+                weight = parts[2]
+              }
+              return (
+                <Box
+                  key={key}
+                  sx={{
+                    width: "250px",
+                    mx: 1.5,
+                    position: "relative",
+                  }}
+                >
                   <Box
-                    key={key}
                     sx={{
-                      width: "250px",
-                      mx: 1.5,
-                      position: "relative",
+                      borderRadius: 3,
+                      boxShadow: 2,
+                      backgroundColor: "white",
                     }}
-                  >
+                  >{/*
+                    <Box
+                      component="img"
+                      src={pup.image}
+                      alt="background"
+                      draggable="false"
+                      sx={{
+                        objectFit: "cover",
+                        width: "100%",
+                        height: "150px",
+                        borderTopLeftRadius: 12,
+                        borderTopRightRadius: 12,
+                      }}
+                    />
+                  */}
                     <Box
                       sx={{
-                        borderRadius: 3,
-                        boxShadow: 2,
-                        backgroundColor: "white",
+                        mt: 0,
+                        pt: 1,
+                        px: 2,
+                        position: "relative",
                       }}
-                    >{/*
-                      <Box
-                        component="img"
-                        src={pup.image}
-                        alt="background"
-                        draggable="false"
+                    >
+                      <Typography
+                        variant="h6"
                         sx={{
-                          objectFit: "cover",
+                          textAlign: "center",
+                          color: "text.secondary",
+                          fontSize: "125%",
                           width: "100%",
-                          height: "150px",
-                          borderTopLeftRadius: 12,
-                          borderTopRightRadius: 12,
+                          textTransform: "uppercase",
+                          borderRadius: "10px",
+                          boxShadow: 2,
+                          zIndex: 999,
+                          background: "white",
                         }}
-                      />
-                    */}
+                      >
+                        {pup.petName}
+                      </Typography>
+                    </Box>
+                    <Box sx={{ pt: 1, pb: 0.5, px: 0.5 }}>
                       <Box
                         sx={{
-                          mt: 0,
-                          pt: 1,
-                          px: 2,
-                          position: "relative",
+                          mb: 1,
+                          display: "flex",
+                          px: 1,
                         }}
                       >
                         <Typography
-                          variant="h6"
+                          variant="body2"
                           sx={{
-                            textAlign: "center",
                             color: "text.secondary",
-                            fontSize: "125%",
-                            width: "100%",
-                            textTransform: "uppercase",
-                            borderRadius: "10px",
-                            boxShadow: 2,
-                            zIndex: 999,
-                            background: "white",
+                            mr: 0.5,
+                            fontWeight: "bold",
                           }}
                         >
-                          {pup.petName}
+                          Gender:
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {gender}
                         </Typography>
                       </Box>
-                      <Box sx={{ pt: 1, pb: 0.5, px: 0.5 }}>
-                        <Box
+                      <Box
+                        sx={{
+                          mb: 1,
+                          display: "flex",
+                          px: 1,
+                        }}
+                      >
+                        <Typography
+                          variant="body2"
                           sx={{
-                            mb: 1,
-                            display: "flex",
-                            px: 1,
+                            color: "text.secondary",
+                            mr: 0.5,
+                            fontWeight: "bold",
                           }}
                         >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              mr: 0.5,
-                              fontWeight: "bold",
-                            }}
-                          >
-                            Gender:
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            {gender}
-                          </Typography>
-                        </Box>
-                        <Box
+                          Birthday:
+                        </Typography>
+                        <Typography
+                          variant="body2"
                           sx={{
-                            mb: 1,
-                            display: "flex",
-                            px: 1,
+                            color: "text.secondary",
+                            textTransform: "capitalize",
                           }}
                         >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              mr: 0.5,
-                              fontWeight: "bold",
-                            }}
-                          >
-                            Birthday:
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            {birthday}
-                          </Typography>
-                        </Box>
-                        <Box
+                          {birthday}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          mb: 1,
+                          display: "flex",
+                          px: 1,
+                        }}
+                      >
+                        <Typography
+                          variant="body2"
                           sx={{
-                            mb: 1,
-                            display: "flex",
-                            px: 1,
+                            color: "text.secondary",
+                            mr: 0.5,
+                            fontWeight: "bold",
                           }}
                         >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              mr: 0.5,
-                              fontWeight: "bold",
-                            }}
-                          >
-                            Weight:
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            {weight}lbs
-                          </Typography>
-                        </Box>
-                        <Box
+                          Weight:
+                        </Typography>
+                        <Typography
+                          variant="body2"
                           sx={{
-                            mb: 1,
-                            display: "flex",
-                            px: 1,
+                            color: "text.secondary",
+                            textTransform: "capitalize",
                           }}
                         >
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              mr: 0.5,
-                              fontWeight: "bold",
-                            }}
-                          >
-                            Breed:
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            {pup.breedType}
-                          </Typography>
-                        </Box>
+                          {weight}lbs
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          mb: 1,
+                          display: "flex",
+                          px: 1,
+                        }}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            mr: 0.5,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Breed:
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.secondary",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {pup.breedType}
+                        </Typography>
                       </Box>
                     </Box>
-                    {/*
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: "15px",
-                        left: "15px",
-                      }}
-                    >
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        sx={{
-                          borderRadius: 3,
-                          background: "white",
-                        }}
-                        onClick={() => handleEditDogClick(key)}
-                      >
-                        Edit
-                      </Button>
-                    </Box>
-                    */}
                   </Box>
-                );
-              })}
-            </Box>
+                  {/*
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: "15px",
+                      left: "15px",
+                    }}
+                  >
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        borderRadius: 3,
+                        background: "white",
+                      }}
+                      onClick={() => handleEditDogClick(key)}
+                    >
+                      Edit
+                    </Button>
+                  </Box>
+                  */}
+                </Box>
+              );
+            })}
           </Box>
-        </Container>
-        <Container
-          maxWidth="lg"
-          sx={{
-            py: 3,
-          }}
-        >
-          <Box>
-            <Box
-              sx={{
-                display: "flex",
-                mb: 2,
-              }}
-            >
-              <Typography
-                variant="h4"
-                sx={{
-                  mr: {
-                    xs: 1,
-                    sm: 2,
-                  },
-                }}
-              >
-                Person
-              </Typography>
-              {/*
-              <Button
-                size="small"
-                variant="outlined"
-                sx={{
-                  borderRadius: 3,
-                  backgroundColor: "white",
-                }}
-                onClick={handleEditClick}
-              >
-                Edit My Info
-              </Button>
-             */}
-            </Box>
-          </Box>
-          <Box display="flex" flexDirection="column">
-            <Typography variant="base">
-              Name: {data?.getUserProfile.name || ''}
-            </Typography>
+        </Box>
+      </Container>
+      <Container
+        maxWidth="lg"
+        sx={{
+          py: 3,
+        }}
+      >
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              mb: 2,
+            }}
+          >
             <Typography
-              variant="base"
+              variant="h4"
               sx={{
-                mt: 1.5,
+                mr: {
+                  xs: 1,
+                  sm: 2,
+                },
               }}
             >
-              Email:  {data?.getUserProfile.email}
+              Person
             </Typography>
             {/*
-            <Typography
-              variant="body1"
+            <Button
+              size="small"
+              variant="outlined"
               sx={{
-                fontWeight: "bold",
-                mt: 1.5,
+                borderRadius: 3,
+                backgroundColor: "white",
               }}
+              onClick={handleEditClick}
             >
-              Phone
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mt: 0.5,
-              }}
-            >
-              {phone}
-            </Typography>
-            */}
+              Edit My Info
+            </Button>
+           */}
           </Box>
+        </Box>
+        <Box display="flex" flexDirection="column">
+          <Typography variant="base">
+            Name: {data?.getUserProfile.name || ''}
+          </Typography>
+          <Typography
+            variant="base"
+            sx={{
+              mt: 1.5,
+            }}
+          >
+            Email:  {data?.getUserProfile.email}
+          </Typography>
+          {/*
+          <Typography
+            variant="body1"
+            sx={{
+              fontWeight: "bold",
+              mt: 1.5,
+            }}
+          >
+            Phone
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 0.5,
+            }}
+          >
+            {phone}
+          </Typography>
+          */}
+        </Box>
 
 
-          <Box>
-            <Typography my="1rem" variant="h4">Trips</Typography>
-            {loadingTrips ? <CircularProgress /> :
-            <Grid container spacing={2}>
-            {trips.map(trip => {
-              const reservationStatus = findReservationStatus(trip.checkInAtLocal, trip.reservationStatus)
-              return (
-                <Grid item xs={12} sm={12} md={6} key={trip.id}>
-                  <Box boxShadow="1" p="1rem" gap="0.5rem" display="flex" flexDirection="column" >
-                    <Box display="flex">
-                      <Typography variant="h5">{trip.hotelName}</Typography>
-                      <Typography 
-                        ml="auto" 
-                        variant="base" 
-                        color={
-                          reservationStatus === 'cancelled' ? 'red' 
-                          : reservationStatus === 'current' ? 'green'
-                          : reservationStatus === 'upcoming' ? 'blue'
-                          : reservationStatus === 'past' ? 'gray'
-                          : 'black'}>
-                          {reservationStatus} trip
-                      </Typography>
-                    </Box>
-                    <Typography variant="base">{trip.addressLine1}, {trip.zipCode}</Typography>
-                    <Typography variant="base">{trip.data.noOfAdults} Adults, {trip.data.noOfChildren} Children, {trip.data.noOfDogs} Pets</Typography>
-                    <Box display="flex" mb="0.5rem">
-                      <Typography variant="p">{formatUnix(trip.checkInAtLocal)} - {formatUnix(trip.checkOutAtLocal)}</Typography>
-                      <Typography ml="auto" variant="p">${trip.data.averagePriceAfterTax} / night</Typography>
-                    </Box>
-                    {reservationStatus === 'upcoming' && <Button onClick={() => manageTrip(trip)} variant="contained">Manage Reservation</Button>}
+        <Box>
+          <Typography my="1rem" variant="h4">Trips</Typography>
+          {loadingTrips ? <CircularProgress /> :
+          <Grid container spacing={2}>
+          {trips.map(trip => {
+            const reservationStatus = findReservationStatus(trip.checkInAtLocal, trip.reservationStatus)
+            return (
+              <Grid item xs={12} sm={12} md={6} key={trip.id}>
+                <Box boxShadow="1" p="1rem" gap="0.5rem" display="flex" flexDirection="column" >
+                  <Box display="flex">
+                    <Typography variant="h5">{trip.hotelName}</Typography>
+                    <Typography 
+                      ml="auto" 
+                      variant="base" 
+                      color={
+                        reservationStatus === 'cancelled' ? 'red' 
+                        : reservationStatus === 'current' ? 'green'
+                        : reservationStatus === 'upcoming' ? 'blue'
+                        : reservationStatus === 'past' ? 'gray'
+                        : 'black'}>
+                        {reservationStatus} trip
+                    </Typography>
                   </Box>
-                </Grid>
-              )
-            })}
-            </Grid>
-            }
-          </Box>
+                  <Typography variant="base">{trip.addressLine1}, {trip.zipCode}</Typography>
+                  <Typography variant="base">{trip.data.noOfAdults} Adults, {trip.data.noOfChildren} Children, {trip.data.noOfDogs} Pets</Typography>
+                  <Box display="flex" mb="0.5rem">
+                    <Typography variant="p">{formatUnix(trip.checkInAtLocal)} - {formatUnix(trip.checkOutAtLocal)}</Typography>
+                    <Typography ml="auto" variant="p">${trip.data.averagePriceAfterTax} / night</Typography>
+                  </Box>
+                  {reservationStatus === 'upcoming' && <Button onClick={() => manageTrip(trip)} variant="contained">Manage Reservation</Button>}
+                </Box>
+              </Grid>
+            )
+          })}
+          </Grid>
+          }
+        </Box>
 
 
-          <Box mt="2rem" >
-            <Button sx={{ mr: '0.5rem' }} onClick={() => logout()} variant="contained">Logout</Button>
-            <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
-          </Box>
-        </Container>
+        <Box mt="2rem" >
+          <Button sx={{ mr: '0.5rem' }} onClick={() => logout()} variant="contained">Logout</Button>
+          <Button onClick={() => deleteAccount()} variant="outlined">Delete Account</Button>
+        </Box>
+      </Container>
 
-      </Box>
+    </Box>
 
-      <Dialog
-        open={editProfile}
-        keepMounted
-        fullWidth
-        fullScreen={fullScreen}
-        maxWidth={"sm"}
-        onClose={handleClose}
-        scroll="body"
-        aria-labelledby="amenities-dialog-slide-title"
-        aria-describedby="amenities-dialog-slide-description"
-        sx={{ maxWidth: "xl" }}
+    <Dialog
+      open={editProfile}
+      keepMounted
+      fullWidth
+      fullScreen={fullScreen}
+      maxWidth={"sm"}
+      onClose={handleClose}
+      scroll="body"
+      aria-labelledby="amenities-dialog-slide-title"
+      aria-describedby="amenities-dialog-slide-description"
+      sx={{ maxWidth: "xl" }}
+    >
+      <DialogTitle
+        id="amenities-dialog-slide-title"
+        sx={{
+          textAlign: "center",
+        }}
       >
-        <DialogTitle
-          id="amenities-dialog-slide-title"
+        <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+          Edit Your Account
+        </Typography>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
           sx={{
-            textAlign: "center",
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
           }}
-        >
-          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
-            Edit Your Account
-          </Typography>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
+          size="large">
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent
+        sx={{
+          px: {
+            xs: 1,
+            sm: 2.5,
+          },
+        }}
+      >
+        <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
+          <ValidatorForm
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleClose();
             }}
           >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent
-          sx={{
-            px: {
-              xs: 1,
-              sm: 2.5,
-            },
-          }}
-        >
-          <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
-            <ValidatorForm
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleClose();
+            <TextValidator
+              fullWidth={true}
+              name="name"
+              label="Name"
+              variant="outlined"
+              value={name}
+              validators={["required"]}
+              errorMessages={["This field is required"]}
+              onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                setName(e.currentTarget.value);
+              }}
+              FormHelperTextProps={{}}
+            />
+            <TextValidator
+              fullWidth={true}
+              name="email"
+              label="Email Address"
+              variant="outlined"
+              value={email}
+              validators={["required", "isEmail"]}
+              errorMessages={["This field is required", "Email is not valid"]}
+              onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                setEmail(e.currentTarget.value);
+              }}
+              FormHelperTextProps={{}}
+              sx={{
+                mt: 1,
+              }}
+            />
+            <TextValidator
+              fullWidth={true}
+              name="phone"
+              label="Phone Number"
+              variant="outlined"
+              value={phone}
+              validators={["required", "isPhone"]}
+              errorMessages={[
+                "This field is required",
+                "Phone number is not valid(xxx-xxx-xxxx)",
+              ]}
+              onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                setPhone(e.currentTarget.value);
+              }}
+              FormHelperTextProps={{}}
+              sx={{
+                mt: 1,
+              }}
+            />
+            <Box
+              sx={{
+                mt: 3,
+                textAlign: "center",
               }}
             >
-              <TextValidator
-                fullWidth={true}
-                name="name"
-                label="Name"
-                variant="outlined"
-                value={name}
-                validators={["required"]}
-                errorMessages={["This field is required"]}
-                onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                  setName(e.currentTarget.value);
-                }}
-                FormHelperTextProps={{}}
-              />
-              <TextValidator
-                fullWidth={true}
-                name="email"
-                label="Email Address"
-                variant="outlined"
-                value={email}
-                validators={["required", "isEmail"]}
-                errorMessages={["This field is required", "Email is not valid"]}
-                onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                  setEmail(e.currentTarget.value);
-                }}
-                FormHelperTextProps={{}}
-                sx={{
-                  mt: 1,
-                }}
-              />
-              <TextValidator
-                fullWidth={true}
-                name="phone"
-                label="Phone Number"
-                variant="outlined"
-                value={phone}
-                validators={["required", "isPhone"]}
-                errorMessages={[
-                  "This field is required",
-                  "Phone number is not valid(xxx-xxx-xxxx)",
-                ]}
-                onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                  setPhone(e.currentTarget.value);
-                }}
-                FormHelperTextProps={{}}
-                sx={{
-                  mt: 1,
-                }}
-              />
-              <Box
-                sx={{
-                  mt: 3,
-                  textAlign: "center",
-                }}
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                type="submit"
               >
-                <Button
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                  type="submit"
-                >
-                  Edit Account
-                </Button>
-              </Box>
-            </ValidatorForm>
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
-      <Dialog
-        open={editDog}
-        keepMounted
-        fullWidth
-        fullScreen={fullScreen}
-        maxWidth={"xs"}
-        onClose={handleDogClose}
-        scroll="body"
-        aria-labelledby="amenities-dialog-slide-title"
-        aria-describedby="amenities-dialog-slide-description"
-        sx={{ maxWidth: "xl" }}
+                Edit Account
+              </Button>
+            </Box>
+          </ValidatorForm>
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+    <Dialog
+      open={editDog}
+      keepMounted
+      fullWidth
+      fullScreen={fullScreen}
+      maxWidth={"xs"}
+      onClose={handleDogClose}
+      scroll="body"
+      aria-labelledby="amenities-dialog-slide-title"
+      aria-describedby="amenities-dialog-slide-description"
+      sx={{ maxWidth: "xl" }}
+    >
+      <DialogTitle
+        id="amenities-dialog-slide-title"
+        sx={{
+          textAlign: "center",
+        }}
       >
-        <DialogTitle
-          id="amenities-dialog-slide-title"
+        <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
+          {editDogInfo.name ? "Edit Dog" : "Add Dog"}
+        </Typography>
+        <IconButton
+          aria-label="close"
+          onClick={handleDogClose}
           sx={{
-            textAlign: "center",
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
           }}
-        >
-          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
-            {editDogInfo.name ? "Edit Dog" : "Add Dog"}
-          </Typography>
-          <IconButton
-            aria-label="close"
-            onClick={handleDogClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent
-          sx={{
-            px: {
-              xs: 1,
-              sm: 2.5,
-            },
-          }}
-        >
-          <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
-            <EditDogModal {...editDogInfo}/>
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
-    </>
-  );
+          size="large">
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent
+        sx={{
+          px: {
+            xs: 1,
+            sm: 2.5,
+          },
+        }}
+      >
+        <DialogContentText id="edit-dialog-slide-description" sx={{ py: 1 }}>
+          <EditDogModal {...editDogInfo}/>
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+  </>;
 };
 
 export default ProfilePage;

@@ -232,6 +232,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     }
   );
 
+
   const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
     gql`${TripHotelList}`,
     {
@@ -316,7 +317,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   >([]);
 
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const isMobile = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
@@ -627,7 +628,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
         <Grid container spacing={2} sx={{ position: "relative" }}>
           <Grid item xs={12} sm={6}>
             {loading && (
-              <Hidden mdDown>
+              <Hidden lgDown>
                 <Skeleton
                   variant="rectangular"
                   animation="wave"
@@ -658,7 +659,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               />
             )}
           </Grid>
-          <Hidden mdDown>
+          <Hidden lgDown>
             <Grid item xs={12} sm={6}>
               <Grid container spacing={2}>
                 {!loading &&
@@ -757,7 +758,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               >
                 Search other great Romingo rooms below
               </Typography>
-              <Hidden mdDown>
+              <Hidden lgDown>
                 <DesktopFilterBar />
               </Hidden>
               <Hidden mdUp>
@@ -1518,7 +1519,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
               </Grid>
             </Grid>
             <Grid item xs={12} md={5} lg={4}>
-              <Hidden mdDown>
+              <Hidden lgDown>
                 <BookingCard
                   sx={{ background: "#fff" }}
                   roomList={roomDropDown}
@@ -1887,7 +1888,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 aria-label="close"
                 onClick={handleClose}
                 sx={{ color: (theme) => theme.palette.grey[500] }}
-              >
+                size="large">
                 <CloseIcon />
               </IconButton>
             </DialogTitle>
@@ -2037,7 +2038,7 @@ interface AmenitiesProps {
 const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
   const [showDialog, setShowDialog] = useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const popularAmenities = [
     { icon: Pool, text: ["pool"], not: ["meeting rooms"] },
     {
@@ -2237,7 +2238,7 @@ const AmenitiesCard: FC<AmenitiesProps> = ({ title, amenities, viewAll }) => {
                     top: 8,
                     color: (theme) => theme.palette.grey[500],
                   }}
-                >
+                  size="large">
                   <CloseIcon />
                 </IconButton>
               </DialogTitle>
@@ -2484,7 +2485,7 @@ interface FilterBarProps {
   refetch: any;
 }
 
-const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
+export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
@@ -2559,9 +2560,12 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
     ) {
       dispatch(
         saveSearch({
+          city: search.city,
           checkIn: new Date(checkDate[0]).toISOString(),
           checkOut: new Date(checkDate[1]).toISOString(),
           occupants,
+          lat: search.lat,
+          lng: search.lng,
         })
       );
 
@@ -2588,10 +2592,10 @@ const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
         <Box
           sx={{
             zIndex: 2,
-            margin: "0px auto 12px auto",
+            margin: "0px auto 0px auto",
             paddingBottom: "12px",
-            borderBottom: "1px solid #ddd",
-            width: "90vw",
+            mr: '24px',
+            width: "93vw",
             background: "#fff",
           }}
         >
@@ -3260,11 +3264,11 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Dogs</Typography>
+            <Typography variant="body1">Pets</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
-                if (dogs > 2) return;
+                if (dogs > 9) return;
                 onChange({ ...value, dogs });
               }}
             />
@@ -3345,13 +3349,13 @@ const NumberInput: FC<NumberInputProps> = ({
 }) => {
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))} size="large">
         <RemoveCircleOutline />
       </IconButton>
       <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
         {value}
       </Typography>
-      <IconButton onClick={() => onChange(value + 1)}>
+      <IconButton onClick={() => onChange(value + 1)} size="large">
         <AddCircleOutline />
       </IconButton>
     </Stack>

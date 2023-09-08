@@ -46,6 +46,7 @@ import { setList } from "../../store/hotelListReducer";
 import { setViewStatus } from "../../store/viewStatusReducer";
 import {
   GetHotelBySearch,
+  GetHotelBySearchNew
 } from "../../constants/constants";
 import ScrollToTop from "../../components/ScrollToTop";
 import Loader from "../../components/UI/Loader";
@@ -121,22 +122,50 @@ const ListingPage: FC<Props> = () => {
 
   const { loading, error, data, refetch } = useQuery(
     gql`
-      ${GetHotelBySearch}
+      ${GetHotelBySearchNew}
     `,
     {
+      //TODO: replace variables here with dynamic values
       variables: {
-        adults: search.occupants.adults,
-        cityId: search.city,
-        checkIn: search.checkIn.substring(0, 10),
-        checkOut: search.checkOut.substring(0, 10),
-        children: ageParam,
-        dogs: search.occupants.dogs,
-        allows_big_dogs: allowBigDogs
+        adults: 1,//search.occupants.adults,
+        checkInDate: '1686460399000', //unix timestamp june 11
+        checkOutDate: '1686633199000', //june 13
+        latitude: '40.7128',
+        longitude: '-74.0060',
+        children: 1
+        // adults: search.occupants.adults,
+        // checkInDate: search.checkIn.substring(0, 10),
+        // checkOutDate: search.checkOut.substring(0, 10),
+        // children: 1//TODO: replace with a number,
+        // dogs: search.occupants.dogs,
       },
     }
   );
 
+  console.log(data)
+
+
+
   const dispatch: Dispatch<any> = useDispatch();
+
+  //Reference for graphql errors
+  // useEffect(() => {
+  //   fetch('http://localhost:4000/graphql', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       query: GetHotelBySearchNew,
+  //       variables: {
+      
+  //       },
+  //     }),
+  //   }).then(res => res.json())
+  //   .then(data => console.log(data))
+  //   .catch(err => console.log(err))
+  // },[])
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -315,369 +344,180 @@ const ListingPage: FC<Props> = () => {
   const location = useLocation<any>();
 
 
-  return (
-    <>
-      <Helmet>
-        <title>Find pet friendly hotels - Romingo</title>
-        <description>Search for and find pet friendly hotels in your area.</description>
-        <meta property="og:title" content="Romingo | Find pet friendly hotels" />
-        <meta property="og:description" content="Search for and find pet friendly hotels in your area." />
-        <meta property="og:url" content="https://www.romingo.com/listings" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
-        <meta property="og:site_name" content="Romingo" />
-        <meta name="twitter:title" content="Romingo | Find pet friendly hotels" />
-        <meta name="twitter:description" content="Search for and find pet friendly hotels in your area." />
-        <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+  return <>
+    <Helmet>
+      <title>Find pet friendly hotels - Romingo</title>
+      <description>Search for and find pet friendly hotels in your area.</description>
+      <meta property="og:title" content="Romingo | Find pet friendly hotels" />
+      <meta property="og:description" content="Search for and find pet friendly hotels in your area." />
+      <meta property="og:url" content="https://www.romingo.com/listings" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+      <meta property="og:site_name" content="Romingo" />
+      <meta name="twitter:title" content="Romingo | Find pet friendly hotels" />
+      <meta name="twitter:description" content="Search for and find pet friendly hotels in your area." />
+      <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
+      <meta name="twitter:card" content="summary_large_image" />
+    </Helmet>
 
-      <ScrollToTop />
-      <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
-        <Navbar />
-      </Box>
+    <ScrollToTop />
+    <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
+      <Navbar />
+    </Box>
 
-      {animate === 'collapsed' && 
-        <Box 
-          sx={{  
-            display: { xs: 'flex', md: 'none'},
-            position: { xs: 'fixed' },
-            top: 0,
-            left: 0,
-            right: 0,
-            width: "100%",
-            margin: "0 auto",
-            boxShadow: { xs: 0, md: 2 },
-            justifyContent: { xs: "center" },
-            overflow: "hidden",
-            zIndex: 1000,
-          }}
-        >
-          <Box sx={{ mt: '6em' }}>
-            <FilterBar />
-          </Box>
-        </Box>
-      }
-
-      <Box
-        sx={{
-          backgroundColor: "#feffff",
-          display: { md: "flex" },
-          height: { xs: `100vh`, md: "calc(100vh - 59px)" },
+    {animate === 'collapsed' && 
+      <Box 
+        sx={{  
+          display: { xs: 'flex', md: 'none'},
+          position: { xs: 'fixed' },
+          top: 0,
+          left: 0,
+          right: 0,
+          width: "100%",
+          margin: "0 auto",
+          boxShadow: { xs: 0, md: 2 },
+          justifyContent: { xs: "center" },
+          overflow: "hidden",
+          zIndex: 1000,
         }}
       >
-        {loading ? (
-          <Box
-            sx={{
-              color: "text.primary",
-              borderRadius: 0,
-              p: 0,
-              m: 0,
-              boxShadow: 4,
-              width: { xs: "100%", md: "75%" },
-              height: "100%",
-              position: "relative",
-              overflow: "hidden",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+        <Box sx={{ mt: '6em' }}>
+          <FilterBar />
+        </Box>
+      </Box>
+    }
+
+    <Box
+      sx={{
+        backgroundColor: "#feffff",
+        display: { md: "flex" },
+        height: { xs: `100vh`, md: "calc(100vh - 59px)" },
+      }}
+    >
+      {loading ? (
+        <Box
+          sx={{
+            color: "text.primary",
+            borderRadius: 0,
+            p: 0,
+            m: 0,
+            boxShadow: 4,
+            width: { xs: "100%", md: "75%" },
+            height: "100%",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Loader size="300px" />
+        </Box>
+      ) : (
+        cards.length >= 0 && (
+          <ListingMap
+            loading={loading}
+            center={{
+              lat: selectedCity?.center?.latitude,
+              lng: selectedCity?.center?.longitude,
             }}
-          >
-            <Loader size="300px" />
-          </Box>
-        ) : (
-          cards.length >= 0 && (
-            <ListingMap
-              loading={loading}
-              center={{
-                lat: selectedCity?.center?.latitude,
-                lng: selectedCity?.center?.longitude,
-              }}
-              zoom={selectedCity?.zoom}
-              markers={markers}
-              name={sorted[hotelIndex]?.name}
-              location={sorted[hotelIndex]?.addressLine1}
-              score={sorted[hotelIndex]?.romingoScore}
-              price={sorted[hotelIndex]?.lowestAveragePrice}
-              image={sorted[hotelIndex]?.featuredImageURL}
-              amenities={sorted[hotelIndex]?.dogAmenities}
-              markerClickCallBack={markerClick}
-              selectedMarker={hoverIndex}
-              id={sorted[hotelIndex]?.id}
-              onClick={() => {
-                setAnimate("collapsed");
+            zoom={selectedCity?.zoom}
+            markers={markers}
+            name={sorted[hotelIndex]?.name}
+            location={sorted[hotelIndex]?.addressLine1}
+            score={sorted[hotelIndex]?.romingoScore}
+            price={sorted[hotelIndex]?.lowestAveragePrice / diffDays}
+            image={sorted[hotelIndex]?.featuredImageURL}
+            amenities={sorted[hotelIndex]?.dogAmenities}
+            markerClickCallBack={markerClick}
+            selectedMarker={hoverIndex}
+            id={sorted[hotelIndex]?.id}
+            onClick={() => {
+              setAnimate("collapsed");
+            }}
+          />
+        )
+      )}
+
+      <Hidden mdUp>
+        <motion.div
+          drag={animate !== "expanded" && "y"}
+          dragElastic={0.5}
+          dragConstraints={{
+            top: variants[animate].y,
+            bottom: variants[animate].y,
+          }}
+          ref={scrollRef}
+          style={{
+            y,
+            position: animate !== 'expanded' ? 'fixed' : "absolute",
+            left: 0,
+            right: 0,
+            padding: '0.45em',
+            backgroundColor: "#feffff",
+            overflow: animate !== "expanded" ? "hidden" : "scroll",
+            zIndex: 100,
+            overscrollBehavior: "none",
+          }}
+          variants={variants}
+          animate={animate}
+          transition={{ duration: 0.4 }}
+          onDragEnd={(_, { offset }) => {
+            if (offset.y < -30) {
+              if (animate === "collapsed") {
+                setAnimate("expanded");
+              }
+            }
+          }}
+        >
+          <Box sx={{ 
+            display: "flex", 
+            justifyContent: "center",             
+          }}>
+            <MotionBox
+              variants={triggerVariants}
+              animate={animate}
+              sx={{
+                width: 40,
+                borderRadius: 3,
+                backgroundColor: "grey.200",
               }}
             />
-          )
-        )}
-
-        <Hidden mdUp>
-          <motion.div
-            drag={animate !== "expanded" && "y"}
-            dragElastic={0.5}
-            dragConstraints={{
-              top: variants[animate].y,
-              bottom: variants[animate].y,
-            }}
-            ref={scrollRef}
-            style={{
-              y,
-              position: animate !== 'expanded' ? 'fixed' : "absolute",
-              left: 0,
-              right: 0,
-              padding: '0.45em',
-              backgroundColor: "#feffff",
-              overflow: animate !== "expanded" ? "hidden" : "scroll",
-              zIndex: 100,
-              overscrollBehavior: "none",
-            }}
-            variants={variants}
-            animate={animate}
-            transition={{ duration: 0.4 }}
-            onDragEnd={(_, { offset }) => {
-              if (offset.y < -30) {
-                if (animate === "collapsed") {
-                  setAnimate("expanded");
-                }
-              }
-            }}
-          >
-            <Box sx={{ 
-              display: "flex", 
-              justifyContent: "center",             
-            }}>
-              <MotionBox
-                variants={triggerVariants}
-                animate={animate}
-                sx={{
-                  width: 40,
-                  borderRadius: 3,
-                  backgroundColor: "grey.200",
-                }}
-              />
-            </Box>
-            {loading ? (
-              <Stack spacing={3} sx={{ marginTop: "120px" }}>
-                {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
-                {Array.from({ length: 6 }, (_, i: number) => (
-                  <ListingCardSkeleton key={i} />
-                ))}
-              </Stack>
-            ) : (
-              <Stack
-                spacing={3}
-                sx={{
-                  pt: "3em",
-                  height: sorted.length > 0 ? 'auto' : '120vh'
-                }}
-              >
-                
-
-                <Grid container spacing={1}>
-                  <FilterBar />
-                  <Grid sx={{ mt: '1em' }} item xs={6}>
-                    <Button onClick={() => {
-                      setShowFilters(!showFilters)
-                      setShowExtras(false)
-                    }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Sort & Filter</Button>
-                  </Grid>
-                  <Grid sx={{ mt: '1em' }} item xs={6}>
-                    <Button onClick={() => {
-                      setShowExtras(!showExtras)
-                      setShowFilters(false)
-                    }} sx={{ width: '95%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Hotel Rating & Price</Button>
-                  </Grid>
-                </Grid>
-
-                <div style={{ marginTop: '0.5em' }}>
-                  {(value[0] != minPrice || value[1] != maxPrice) &&
-                    <Chip
-                      size="small"
-                      label="Custom Price Range"
-                      onDelete={() => setValue([minPrice, maxPrice])}
-                    />
-                  }
-                  {selectedFilter.map(filter => (
-                    <Chip key={filter} size="small" label={filter} onDelete={() => {
-                      const indexOf = selectedFilter.indexOf(filter)
-                      const newArray = [...selectedFilter]
-                      newArray.splice(indexOf, 1)
-                      setSelectedFilter(newArray)
-                    }}/>
-                  ))}
-                  {rating > 0 &&
-                    <Chip
-                      size="small"
-                      label={`${rating} star hotel`}
-                      onDelete={() => setRating(0)}
-                    />
-                  }
-                  {(rating > 0 || selectedFilter.length > 0 || value[0] != minPrice || value[1] != maxPrice) &&
-                    <Chip
-                      size="small"
-                      label="Clear all filters"
-                      onDelete={() => {
-                        setSelectedFilter([])
-                        setRating(null)
-                        setValue([minPrice, maxPrice])
-                      }}
-                    />
-                  }
-                </div>
-
-                <SortBar 
-                  size="small" 
-                  sortBy={sortBy} 
-                  bigDog={allowBigDogs} 
-                  setBigDog={setAllowBigDogs} 
-                  setSortBy={setSortBy}
-                  selectedFilter={selectedFilter}
-                  setSelectedFilter={setSelectedFilter}
-                  value={value}
-                  setValue={setValue}
-                  maxPrice={maxPrice}
-                  rating={rating}
-                  setRating={setRating}
-                  showFilters={showFilters}
-                  showExtras={showExtras}
-                  minPrice={minPrice}
-                  noPetRestrictions={noPetRestrictions}
-                  setNoPetRestrictions={setNoPetRestrictions}
-                  freeAmenities={freeAmenities}
-                  setFreeAmenities={setFreeAmenities}
-                />
-
-                
-
-                {(showFilters || showExtras) && 
-                <Grid item xs={12}>
-                  <Button onClick={() => {
-                    setShowExtras(false)
-                    setShowFilters(false)
-                  }} sx={{ width: '95%' }} size="small" variant="outlined">Done</Button>
-                </Grid>
-                }
-
-                {cards.length > 0 && (
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: "#222222",
-                      fontWeight: 700,
-                      pl: '0.25em',
-                      fontFamily: "overpass-light",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
-                    {getCityName(search.city)}
-                    {location.state?.flag && ` (${location.state?.flag})`}
-                  </Typography>
-                )}
-                {!cards.length ? (
-                  <>
-                    <Typography
-                      variant="h6"
-                      sx={{ textAlign: "center", mt: "2rem" }}
-                      color="text.secondary"
-                    >
-                      <ReportRounded sx={{ fontSize: "2rem" }} /> <br />
-                      No rooms found for this search...
-                    </Typography>
-                  </>
-                ) : (
-                  sorted.map((card: any, index: number) => (
-                    <ListingCard
-                      key={card.id}
-                      {...card}
-                      duration={diffDays}
-                      highlighted={false}//{hotelIndex === index ? true : false}
-                    />
-                  ))
-                )}
-              </Stack>
-            )}
-          </motion.div>
-          {animate === "expanded" && (
-            <Button
-              size="large"
-              color="secondary"
-              variant="contained"
-              onClick={() => {
-                if (scrollRef?.current?.scrollTop === 0) {
-                  setAnimate("collapsed");
-                } else {
-                  setAnimate("collapsed");
-                  scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
-                }
-              }}
+          </Box>
+          {loading ? (
+            <Stack spacing={3} sx={{ marginTop: "120px" }}>
+              {/* <RomingoGuarantee sx={{ mb: 0 }} /> */}
+              {Array.from({ length: 6 }, (_, i: number) => (
+                <ListingCardSkeleton key={i} />
+              ))}
+            </Stack>
+          ) : (
+            <Stack
+              spacing={3}
               sx={{
-                position: "fixed",
-                bottom: 32,
-                left: "50%",
-                transform: "translateX(-50%)",
-                zIndex: 100,
-                boxShadow: 10,
-                borderRadius: 3,
+                pt: "3em",
+                height: sorted.length > 0 ? 'auto' : '120vh'
               }}
             >
-              <MapIcon sx={{ fontSize: 15, mr: 0.5 }} />
-              Map
-            </Button>
-          )}
-        </Hidden>
-        <Hidden mdDown>
-          <Box
-            sx={{
-              position: "relative",
-              px: 3,
-              pt: 2,
-              pb: 3,
-              width: "80%",
-              scrollBehavior: "smooth",
-              overflowY: "auto",
-              "&::-webkit-scrollbar": {
-                width: "0.4em",
-              },
-              "&::-webkit-scrollbar-track": {
-                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
-                borderRadius: "0.3em",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                backgroundColor: "rgba(0,0,0,.1)",
-                borderRadius: "0.3em",
-              },
-            }}
-            ref={ScrollBarRef}
-          >
+              
 
-            <Grid
-              sx={{
-                display: "flex",
-                flex: 1,
-                mb: "1rem",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-              }}
-            >
-              <Hidden mdDown>
-
-              <Box sx={{ mx: 'auto' }}>
-                <DesktopFilterBar />
-              </Box>
-              </Hidden>
               <Grid container spacing={1}>
-                <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={12}>
+                <FilterBar />
+                <Grid sx={{ mt: '1em' }} item xs={6}>
                   <Button onClick={() => {
                     setShowFilters(!showFilters)
-                    setShowExtras(!showExtras)
+                    setShowExtras(false)
                   }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Sort & Filter</Button>
+                </Grid>
+                <Grid sx={{ mt: '1em' }} item xs={6}>
+                  <Button onClick={() => {
+                    setShowExtras(!showExtras)
+                    setShowFilters(false)
+                  }} sx={{ width: '95%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Hotel Rating & Price</Button>
                 </Grid>
               </Grid>
 
-              <Grid xs={12} style={{ marginTop: '0.5em' }}>
+              <div style={{ marginTop: '0.5em' }}>
                 {(value[0] != minPrice || value[1] != maxPrice) &&
                   <Chip
                     size="small"
@@ -710,19 +550,17 @@ const ListingPage: FC<Props> = () => {
                       setValue([minPrice, maxPrice])
                     }}
                   />
-                } 
-              </Grid>
-            </Grid>
+                }
+              </div>
 
-         
-            <Box sx={{mb: '1em', display: 'grid',   gridTemplateColumns: 'repeat(2, 1fr)', alignItems: 'center' }}>
               <SortBar 
+                size="small" 
                 sortBy={sortBy} 
                 bigDog={allowBigDogs} 
                 setBigDog={setAllowBigDogs} 
                 setSortBy={setSortBy}
                 selectedFilter={selectedFilter}
-                setSelectedFilter={setSelectedFilter} 
+                setSelectedFilter={setSelectedFilter}
                 value={value}
                 setValue={setValue}
                 maxPrice={maxPrice}
@@ -736,91 +574,280 @@ const ListingPage: FC<Props> = () => {
                 freeAmenities={freeAmenities}
                 setFreeAmenities={setFreeAmenities}
               />
-            </Box>
 
+              
 
-            {(showFilters || showExtras) && 
-            <Grid item xs={12} sx={{ mb: '1em' }}>
-              <Button onClick={() => {
-                setShowExtras(false)
-                setShowFilters(false)
-              }} sx={{ width: '97%' }} size="small" variant="outlined">Done</Button>
-            </Grid>
-            }
+              {(showFilters || showExtras) && 
+              <Grid item xs={12}>
+                <Button onClick={() => {
+                  setShowExtras(false)
+                  setShowFilters(false)
+                }} sx={{ width: '95%' }} size="small" variant="outlined">Done</Button>
+              </Grid>
+              }
 
-            {loading ? (
-              <Stack spacing={3}>
-                <Skeleton
-                  animation="wave"
-                  width={150}
-                  height={58}
-                  sx={{ mt: -1, mb: -1, borderRadius: 0 }}
-                />
-                {Array.from({ length: 6 }, (_, i: number) => (
-                  <ListingCardSkeleton key={i} />
-                ))}
-              </Stack>
-            ) : (
-              <Stack spacing={3}>
-                {cards.length > 0 && (
+              {cards.length > 0 && (
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "#222222",
+                    fontWeight: 700,
+                    pl: '0.25em',
+                    fontFamily: "overpass-light",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
+                  {getCityName(search.city)}
+                  {location.state?.flag && ` (${location.state?.flag})`}
+                </Typography>
+              )}
+              {!cards.length ? (
+                <>
                   <Typography
                     variant="h6"
-                    sx={{
-                      color: "#222222",
-                      fontWeight: 700,
-                      fontFamily: "overpass-light",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
+                    sx={{ textAlign: "center", mt: "2rem" }}
+                    color="text.secondary"
+                  >
+                    <ReportRounded sx={{ fontSize: "2rem" }} /> <br />
+                    No rooms found for this search...
+                  </Typography>
+                </>
+              ) : (
+                sorted.map((card: any, index: number) => (
+                  <ListingCard
+                    key={card.id}
+                    {...card}
+                    duration={diffDays}
+                    highlighted={false}//{hotelIndex === index ? true : false}
+                  />
+                ))
+              )}
+            </Stack>
+          )}
+        </motion.div>
+        {animate === "expanded" && (
+          <Button
+            size="large"
+            color="secondary"
+            variant="contained"
+            onClick={() => {
+              if (scrollRef?.current?.scrollTop === 0) {
+                setAnimate("collapsed");
+              } else {
+                setAnimate("collapsed");
+                scrollRef?.current?.scrollTo({ top: 0, behavior: "auto" });
+              }
+            }}
+            sx={{
+              position: "fixed",
+              bottom: 32,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 100,
+              boxShadow: 10,
+              borderRadius: 3,
+            }}
+          >
+            <MapIcon sx={{ fontSize: 15, mr: 0.5 }} />
+            Map
+          </Button>
+        )}
+      </Hidden>
+      <Hidden lgDown>
+        <Box
+          sx={{
+            position: "relative",
+            px: 3,
+            pt: 2,
+            pb: 3,
+            width: "80%",
+            scrollBehavior: "smooth",
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              width: "0.4em",
+            },
+            "&::-webkit-scrollbar-track": {
+              boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+              borderRadius: "0.3em",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "rgba(0,0,0,.1)",
+              borderRadius: "0.3em",
+            },
+          }}
+          ref={ScrollBarRef}
+        >
 
+          <Grid
+            sx={{
+              display: "flex",
+              flex: 1,
+              mb: "1rem",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+            }}
+          >
+            <Hidden lgDown>
+
+            <Box sx={{ mx: 'auto' }}>
+              <DesktopFilterBar />
+            </Box>
+            </Hidden>
+            <Grid container spacing={1}>
+              <Grid sx={{ mt: { xs: '1em', md: '0em' } }} item xs={12}>
+                <Button onClick={() => {
+                  setShowFilters(!showFilters)
+                  setShowExtras(!showExtras)
+                }} sx={{ width: '100%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Sort & Filter</Button>
+              </Grid>
+            </Grid>
+
+            <Grid xs={12} style={{ marginTop: '0.5em' }}>
+              {(value[0] != minPrice || value[1] != maxPrice) &&
+                <Chip
+                  size="small"
+                  label="Custom Price Range"
+                  onDelete={() => setValue([minPrice, maxPrice])}
+                />
+              }
+              {selectedFilter.map(filter => (
+                <Chip key={filter} size="small" label={filter} onDelete={() => {
+                  const indexOf = selectedFilter.indexOf(filter)
+                  const newArray = [...selectedFilter]
+                  newArray.splice(indexOf, 1)
+                  setSelectedFilter(newArray)
+                }}/>
+              ))}
+              {rating > 0 &&
+                <Chip
+                  size="small"
+                  label={`${rating} star hotel`}
+                  onDelete={() => setRating(0)}
+                />
+              }
+              {(rating > 0 || selectedFilter.length > 0 || value[0] != minPrice || value[1] != maxPrice) &&
+                <Chip
+                  size="small"
+                  label="Clear all filters"
+                  onDelete={() => {
+                    setSelectedFilter([])
+                    setRating(null)
+                    setValue([minPrice, maxPrice])
+                  }}
+                />
+              } 
+            </Grid>
+          </Grid>
+
+       
+          <Box sx={{mb: '1em', display: 'grid',   gridTemplateColumns: 'repeat(2, 1fr)', alignItems: 'center' }}>
+            <SortBar 
+              sortBy={sortBy} 
+              bigDog={allowBigDogs} 
+              setBigDog={setAllowBigDogs} 
+              setSortBy={setSortBy}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter} 
+              value={value}
+              setValue={setValue}
+              maxPrice={maxPrice}
+              rating={rating}
+              setRating={setRating}
+              showFilters={showFilters}
+              showExtras={showExtras}
+              minPrice={minPrice}
+              noPetRestrictions={noPetRestrictions}
+              setNoPetRestrictions={setNoPetRestrictions}
+              freeAmenities={freeAmenities}
+              setFreeAmenities={setFreeAmenities}
+            />
+          </Box>
+
+
+          {(showFilters || showExtras) && 
+          <Grid item xs={12} sx={{ mb: '1em' }}>
+            <Button onClick={() => {
+              setShowExtras(false)
+              setShowFilters(false)
+            }} sx={{ width: '97%' }} size="small" variant="outlined">Done</Button>
+          </Grid>
+          }
+
+          {loading ? (
+            <Stack spacing={3}>
+              <Skeleton
+                animation="wave"
+                width={150}
+                height={58}
+                sx={{ mt: -1, mb: -1, borderRadius: 0 }}
+              />
+              {Array.from({ length: 6 }, (_, i: number) => (
+                <ListingCardSkeleton key={i} />
+              ))}
+            </Stack>
+          ) : (
+            <Stack spacing={3}>
+              {cards.length > 0 && (
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "#222222",
+                    fontWeight: 700,
+                    fontFamily: "overpass-light",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+
+                  }}
+                >
+                  {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
+                  {getCityName(search.city)}
+                  {location.state?.flag && ` (${location.state?.flag})`}
+                </Typography>    
+              )}
+              {!cards.length ? (
+                <>
+                  <Typography
+                    variant="h6"
+                    sx={{ textAlign: "center", mt: "2rem" }}
+                    color="text.secondary"
+                  >
+                    <ReportRounded sx={{ fontSize: "2rem" }} /> <br />
+                    No rooms were found for this search
+                  </Typography>
+                </>
+              ) : (
+                sorted.map((card: any, index: number) => (
+                  <Box
+                    key={card.id}
+                    ref={refArray[index]}
+                    onMouseOver={() => {
+                      setHoverIndex(index);
                     }}
                   >
-                    {sorted.length} Result{sorted.length === 1 ? "" : "s"} in{" "}
-                    {getCityName(search.city)}
-                    {location.state?.flag && ` (${location.state?.flag})`}
-                  </Typography>    
-                )}
-                {!cards.length ? (
-                  <>
-                    <Typography
-                      variant="h6"
-                      sx={{ textAlign: "center", mt: "2rem" }}
-                      color="text.secondary"
-                    >
-                      <ReportRounded sx={{ fontSize: "2rem" }} /> <br />
-                      No rooms were found for this search
-                    </Typography>
-                  </>
-                ) : (
-                  sorted.map((card: any, index: number) => (
-                    <Box
-                      key={card.id}
-                      ref={refArray[index]}
-                      onMouseOver={() => {
-                        setHoverIndex(index);
-                      }}
-                    >
-                      <ListingCard
-                        {...card}
-                        imageURLs={[...new Set([card.featuredImageURL, ...card.imageURLs])]}
-                        duration={diffDays}
-                        highlighted={false} //{hotelIndex === index ? true : false}
-                        flag={location.state?.flag}
-                        bookingId={location.state?.bookingId}
-                      />
-                    </Box>
-                  ))
-                )}
-              </Stack>
-            )}
-          </Box>
-        </Hidden>
-      </Box>
-      <Box display={{ xs: "none", sm: "none", md: 'block' }}>
-        <Footer />
-      </Box>
-    </>
-  );
+                    <ListingCard
+                      {...card}
+                      imageURLs={[...new Set([card.featuredImageURL, ...card.imageURLs])]}
+                      duration={diffDays}
+                      highlighted={false} //{hotelIndex === index ? true : false}
+                      flag={location.state?.flag}
+                      bookingId={location.state?.bookingId}
+                    />
+                  </Box>
+                ))
+              )}
+            </Stack>
+          )}
+        </Box>
+      </Hidden>
+    </Box>
+    <Box display={{ xs: "none", sm: "none", md: 'block' }}>
+      <Footer />
+    </Box>
+  </>;
 };
 
 interface SortBarProps {

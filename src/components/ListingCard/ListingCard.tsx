@@ -4,13 +4,74 @@ import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
 
-import {
-  Pets,
-  Info,
-} from '@mui/icons-material'
+import { Pets, Info } from "@mui/icons-material";
 
-import DogIcon from '../../assets/icon/dog.png'
-import GiftIcon from '../../assets/icon/gift.svg'
+import DogIcon from "../../assets/icon/dog.png";
+import GiftIcon from "../../assets/icon/gift.svg";
+import HotelTags from '../../components/HotelTags'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
+const stateCodes = {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AS": "American Samoa",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "DC": "District Of Columbia",
+    "FM": "Federated States Of Micronesia",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "GU": "Guam",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MH": "Marshall Islands",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "MP": "Northern Mariana Islands",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PW": "Palau",
+    "PA": "Pennsylvania",
+    "PR": "Puerto Rico",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VI": "Virgin Islands",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
+}
 
 export interface ListingCardProps {
   id: string;
@@ -18,7 +79,6 @@ export interface ListingCardProps {
   name: string;
   addressLine1: string;
   romingoScore?: number;
-  allows_big_dogs?: number;
   cancellation?: boolean;
   lowestAveragePrice?: number;
   lowestTotalPriceAfterTax?: number;
@@ -57,13 +117,20 @@ export interface ListingCardProps {
   };
   flag?: string;
   bookingId?: string;
+  state?: string;
+  zipcode?: string;
+  numberOfReviews?: number;
+  // catPolicy?: string;
+  // petReliefArea?: string;
+  // petAmenities?: string[];
+  // unattendedPets?: string;
+
 }
 const ListingCard: FC<ListingCardProps> = ({
   id,
   duration,
   imageURLs,
   name,
-  allows_big_dogs,
   addressLine1,
   googlePlaceId,
   romingoScore,
@@ -71,6 +138,7 @@ const ListingCard: FC<ListingCardProps> = ({
   cancellation = false,
   lowestAveragePrice,
   lowestTotalPriceAfterTax,
+  totalPrice,
   currency = "$",
   dogAmenities = [],
   showAmenities = true,
@@ -81,144 +149,132 @@ const ListingCard: FC<ListingCardProps> = ({
   alias,
   amenities,
   limitImages = false,
+  sessionId,
+  hotel,
+  state,
+  zipcode,
+  page,
+  numberOfReviews = 0,
   ...props
 }) => {
   const history = useHistory();
   const mobileCardPadding = 1;
 
-  const [showRating, setShowRating] = useState(true)
-
-  const chipIconStyle = {
-    fontSize: { xs: '0.72em', sm: "0.75em" },
-    backgroundColor: 'transparent',
-    fontFamily: 'overpass-light',
-    mt: '0.35em',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    mr: '0.4em'
-  }
-
-  const iconSpacing = {
-    mt: '0.15em', 
-    ml: '0.15em'
-  }
-  const hasPetFeeReduction = (!!petFeePolicy?.totalFees && petFeePolicy.totalFees !== -1)
-
-  const HotelDescriptors = () => (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-      {hasPetFeeReduction ?
-        <Chip
-          size="small"
-          sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
-          label={<Box sx={{ ml: '0em', pl: 0}}><span style={{color: 'red', fontSize: '1.1em', fontFamily: 'overpass-bold', fontWeight: 900, textDecoration: 'line-through' }}>${Math.round(petFeePolicy.totalFees)}</span> $0 pet fees</Box>}
-        />
-
-        :  <Chip
-            size="small"
-            sx={{...chipIconStyle, '.MuiChip-label': { pl: 0, ml: 0} }}
-            label={<Box sx={{ ml: '0em', pl: 0}}>$0 pet fees</Box>}
-          />
-      }
-      {petFeePolicy.maxPets > 0 ?
-       <Chip
-         size="small"
-         sx={chipIconStyle}
-         icon={<Pets fontSize="small"  />}
-         label={<Box sx={iconSpacing}>{petFeePolicy.maxPets} dogs</Box>}
-       />
-       :  <Chip
-           size="small"
-           sx={chipIconStyle}
-           icon={<Pets fontSize="small"  />}
-           label={<Box sx={iconSpacing}>No limit on number of pets</Box>}
-          />
-        }
-      {(petFeePolicy.maxWeightPerPetInLBS === null || petFeePolicy.maxWeightPerPetInLBS === '') ?
-      
-          <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<img width="18px" src={DogIcon} />}
-            label={<Box sx={iconSpacing}>No pet weight limits</Box>}
-          />
-        : petFeePolicy.maxWeightPerPetInLBS <= 0 ?
-        ( 
-          <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<img width="18px" src={DogIcon} />}
-            label={<Box sx={iconSpacing}>75 lbs. each</Box>}
-          />
-          
-        ) :
-        
-            <Chip
-              size="small"
-              sx={chipIconStyle}
-              icon={<img width="18px" src={DogIcon} />}
-              label={<Box sx={iconSpacing}>{petFeePolicy.maxWeightPerPetInLBS} lbs. each</Box>}
-            />
-  
-      }
-
-      {dogAmenities.includes('dog beds & bowls') && 
-        <>
-          <Chip
-            size="small"
-            sx={chipIconStyle}
-            icon={<img width="18px" src={GiftIcon} />}
-            label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities</Box>}
-          />
-        </>
-      }
-    </Box>
-  )
+  const [showRating, setShowRating] = useState(true);
 
   const PriceDetails = () => (
-    <Box sx={{ ml: 'auto', mr: '0.5em', mb: '0.25em' }}>
-
+    <Box sx={{ ml: "auto", mr: "0.5em", mb: "0.25em" }}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: 'flex-end',
+          justifyContent: "flex-end",
           alignItems: "flex-end",
         }}
       >
-        {lowestAveragePrice ? 
+        {lowestAveragePrice &&
+        <Typography
+          variant="body2"
+          sx={{
+            mr: 0,
+            mt: "0.1em",
+            fontFamily: "sansita-light",
+            fontSize: "1.25em",
+            fontWeight: 800,
+            display: "flex",
+            alignItems: "center",
+            color: "black",
+          }}
+        >{currency}{Math.abs(lowestAveragePrice).toFixed(0)}</Typography>
+      }
+
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: { xs: "95%", sm: "90%" },
+            fontWeight: 500,
+            whiteSpace: "nowrap",
+            fontFamily: "overpass-light",
+            color: "#999",
+            fontSize: '13px'
+          }}
+        >
+          per night
+        </Typography>
+
+        {(totalPrice && totalPrice != lowestAveragePrice)? (
           <Typography
             variant="body2"
             sx={{
               mr: 0,
-              mt: '0.1em',
+              mt: "0.1em",
               fontFamily: "sansita-light",
-              fontSize: '1.25em',
+              fontSize: "12px",
+              color: '#666',
               fontWeight: 800,
-              display: 'flex',
-              alignItems: 'center',
-              color: 'black'
+              lineHeight: '14px',
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            {currency}{Math.round(lowestAveragePrice)} <Typography sx={{ fontFamily:'sansita-light', ml: '0.25em', fontSize: '0.75em'}}> / night</Typography>
+            {currency}
+            {Math.abs(totalPrice).toFixed(0)} total
+
+            {/* 
+            <Typography
+              sx={{
+                fontFamily: "sansita-light",
+                ml: "0.25em",
+                fontSize: "0.75em",
+              }}
+            >
+              {" "}
+              / night
+            </Typography>
+            */}
           </Typography>
-          :  <Typography
+        ) : (
+          <Typography
             variant="body2"
             sx={{
               mr: 0,
-              mt: '0.1em',
+              mt: "0.1em",
               fontFamily: "overpass-light",
-              fontSize: '1.25em',
+              fontSize: "1.25em",
               fontWeight: 800,
-              display: 'flex',
-              alignItems: 'center'
+              display: "flex",
+              alignItems: "center",
             }}
-          >
-            
-          </Typography>
-        }
+          ></Typography>
+        )}
+
+        {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666'}}>includes taxes and fees</Typography>}
+
       </Box>
     </Box>
-  )
+  );
+
+  function slugify(str) {
+    if (!str) {
+      return ''
+    }
+    // Convert all non-word characters to hyphens
+    str = str.replace(/[^\w-]/g, '-');
+
+    // Remove all consecutive hyphens
+    str = str.replace(/-+/g, '-');
+
+    // Trim leading and trailing hyphens
+    str = str.trim('-');
+
+    return str.toLowerCase();
+  }
+
+  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+  let starRatingFormat = romingoScore
+  if (romingoScore?.toString().length === 1) {
+    starRatingFormat = `${romingoScore}.0`
+  }
 
   return (
     <>
@@ -251,30 +307,28 @@ const ListingCard: FC<ListingCardProps> = ({
           <ImageSlider
             images={imageURLs}
             name={name}
-            sx={{
-              borderTopRightRadius: { xs: "6px", sm: 0 },
-              borderBottomRightRadius: { xs: 0, sm: 0 },
-              borderBottomLeftRadius: { xs: 0, sm: "6px" },
-              borderTopLeftRadius: { xs: "6px", sm: "6px" },
-              boxShadow: 0,
-            }}
             setShow={setShowRating}
             imageCount={limitImages ? 3 : 10}
+            page={page}
           />
         </Box>
 
         <Box
           component="a"
-          href={`/hotel/${alias}`}
-
-          onClick={() => history.push("/hotel/" + alias, {flag: props?.flag, bookingId: props?.bookingId})}
+          href={hotelUrl}
+          onClick={() =>
+            history.push(hotelUrl, {
+              sessionId: sessionId,
+              hotelDetails: hotel,
+            })
+          }
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
             pb: { xs: mobileCardPadding, sm: "0" },
             width: "100%",
-            position: 'relative',
-            textDecoration: 'none'
+            position: "relative",
+            textDecoration: "none",
           }}
         >
           <Box
@@ -285,11 +339,11 @@ const ListingCard: FC<ListingCardProps> = ({
                 sm: ".5rem .5rem .5rem 1rem",
                 md: "0rem 1rem",
               },
-              ml: { xs: '0.4rem', md: 0 },
-              my: { xs: 0 , md: '0.5em' },
-              display: 'flex',
-              flexDirection: 'column',
-              position: 'relative'
+              ml: { xs: "0.4rem", md: 0 },
+              my: { xs: 0, md: "0.5em" },
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
             }}
           >
             <Typography
@@ -297,11 +351,11 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 color: "#222",
                 fontFamily: "overpass-light",
-                fontSize: '1.25em',
+                fontSize: "1.25em",
                 fontWeight: 800,
-                letterSpacing: '0px',
-                width: '100%',
-                whiteSpace: {xs: 'normal', sm: 'normal' },
+                letterSpacing: "0px",
+                width: "100%",
+                whiteSpace: { xs: "normal", sm: "normal" },
                 textOverflow: "ellipsis",
               }}
             >
@@ -317,41 +371,75 @@ const ListingCard: FC<ListingCardProps> = ({
                 whiteSpace: "nowrap",
                 fontFamily: "overpass-light",
                 color: "#999",
+                fontSize: '13px'
               }}
             >
-              {addressLine1}, {city?.name}
+              {addressLine1}, {state} {zipcode}
             </Typography>
-
-            <Box sx={{ 
-              mb: { xs: '0.75em', sm: '1em' },
-            }}>
-              <HotelDescriptors />
-            </Box>
-
-            <Box sx={{
-              display: { xs: 'block', sm: 'block' },
-              my: 'auto'
-            }}>
-              <Typography sx={{        
-                 fontFamily: "overpass-light",
-                 color: '#036A6E', 
-                 fontSize: '0.9em',
-               }}>
-                 Reserve now, pay later.
-               </Typography>
-             </Box>
 
             <Box
               sx={{
-                display: { xs: "block", sm: 'block' },
-                mt: 'auto',
+                mb: { xs: "0.75em", sm: "0.5rem" },
               }}
             >
-              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '0.9em' }}>
-                <Box sx={{  color: 'red'}}><StarIcon  fontSize="inherit" /></Box>
-                <span style={{ marginLeft: '0.25em', marginRight: '0.1em', color: 'black' }}>{romingoScore}</span>
+              <HotelTags 
+                pet_fee={hotel?.pet_fee} 
+                pet_fee_value={hotel?.pet_fee_value}
+                pet_size={hotel?.pet_size}
+                pet_allowance={hotel?.pet_allowance}
+              />
+            </Box>
+
+         {/*   <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+              <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '18px' }} />
+              <Typography sx={{ fontSize: '13px'}}>pet-friendly room guaranteed</Typography>
+            </Box>*/}
+
+            <Box
+              sx={{
+                display: { xs: "block", sm: "block" },
+                my: "auto",
+              }}
+            >
+        {/*      <Typography
+                sx={{
+                  fontFamily: "overpass-light",
+                  color: "#036A6E",
+                  fontSize: "0.9em",
+                }}
+              >
+                Reserve now, pay later.
+              </Typography>*/}
+            </Box>
+
+            <Box
+              sx={{
+                display: { xs: "block", sm: "block" },
+                mt: "auto",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  fontSize: "0.9em",
+                }}
+              >
+                <Box sx={{ color: "black" }}>
+                  <StarIcon fontSize="inherit" />
+                </Box>
+                <span
+                  style={{
+                    marginLeft: "0.25em",
+                    marginRight: "0.1em",
+                    color: "black",
+                  }}
+                >
+                  {starRatingFormat}
+                </span>
                 <Link
-                  href={`/hotel/${alias}#reviews`}
+                  href={`${hotelUrl}#reviews`}
                   sx={{
                     color: "#666",
                     fontFamily: "overpass-light",
@@ -362,22 +450,21 @@ const ListingCard: FC<ListingCardProps> = ({
                     fontSize: "70%",
                   }}
                 >
-                  (see reviews)
+                  <u>({numberOfReviews} reviews)</u>
                 </Link>
-              </Box> 
-
+              </Box>
             </Box>
-
           </Box>
 
-          <Box sx={{
-            position: 'absolute',
-            bottom: 4,
-            right: 12
-          }}>
-            <PriceDetails />
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 4,
+              right: 12,
+            }}
+          >
+            {showPrice && <PriceDetails /> }
           </Box>
-
         </Box>
       </Box>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}

@@ -93,128 +93,126 @@ const FilterBar: FC<Props> = ({
     fontSize: '.9em'
   }
 
-  return (
-    <>
+  return <>
+    <Box
+      sx={{
+        width: { xs: "100%", sm: "auto" },
+        justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Box
         sx={{
-          width: { xs: "100%", sm: "auto" },
-          justifyContent: "center",
-          display: "flex",
-          flexDirection: "column",
+          display: "inline-block",
+          minWidth: { xs: "95%" },
+          margin: "0px auto",
         }}
       >
         <Box
           sx={{
-            display: "inline-block",
-            minWidth: { xs: "95%" },
-            margin: "0px auto",
+            display: "flex",
+            minHeight: "45px",
+            boxShadow: { xs: "1px 2px 2px rgba(0, 0, 0, 0.15)", sm: "0" },
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            border: "1px solid #DDDDDD",
+            borderRadius: 3,
+            backgroundColor: "white",
+            pr: { xs: "0", sm: ".5rem" },
           }}
         >
+          <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
+            <Typography sx={fontStyle}>
+              {getCityName(selectedCity) || "Choose City"}
+            </Typography>
+          </Button>
           <Box
             sx={{
-              display: "flex",
-              minHeight: "45px",
-              boxShadow: { xs: "1px 2px 2px rgba(0, 0, 0, 0.15)", sm: "0" },
-              justifyContent: "space-evenly",
-              alignItems: "center",
-              border: "1px solid #DDDDDD",
-              borderRadius: 3,
-              backgroundColor: "white",
-              pr: { xs: "0", sm: ".5rem" },
+              backgroundColor: "#DDDDDD",
+              flex: "0 0 1px",
+              height: "24px",
+              width: "1px",
             }}
-          >
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography sx={fontStyle}>
-                {getCityName(selectedCity) || "Choose City"}
-              </Typography>
-            </Button>
-            <Box
-              sx={{
-                backgroundColor: "#DDDDDD",
-                flex: "0 0 1px",
-                height: "24px",
-                width: "1px",
-              }}
-            ></Box>
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography
-                sx={fontStyle}
-              >
-                {checkDate[0]
-                  ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
-                    "MMM dd"
-                  )
-                  : ""}
-                &nbsp;&#8212;&nbsp;
-                {checkDate[1]
-                  ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
-                    "MMM dd"
-                  )
-                  : ""}
-              </Typography>
-            </Button>
-            <Box
-              sx={{
-                backgroundColor: "#DDDDDD",
-                flex: "0 0 1px",
-                height: "24px",
-                width: "1px",
-              }}
-            ></Box>
-            <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
-              <Typography sx={fontStyle}>{occupants.adults + occupants.children}</Typography>
-              <PersonIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1 }}/>
-              <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
+          ></Box>
+          <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
+            <Typography
+              sx={fontStyle}
+            >
+              {checkDate[0]
+                ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
+                  "MMM dd"
+                )
+                : ""}
+              &nbsp;&#8212;&nbsp;
+              {checkDate[1]
+                ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
+                  "MMM dd"
+                )
+                : ""}
+            </Typography>
+          </Button>
+          <Box
+            sx={{
+              backgroundColor: "#DDDDDD",
+              flex: "0 0 1px",
+              height: "24px",
+              width: "1px",
+            }}
+          ></Box>
+          <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
+            <Typography sx={fontStyle}>{occupants.adults + occupants.children}</Typography>
+            <PersonIcon sx={{ color: "primary.main", fontSize: "100%", mb: 0, ml: 0.1 }}/>
+            <Divider orientation="vertical" flexItem sx={{ mx: 1 }} />
 
-              <Typography sx={fontStyle}>{occupants.dogs}</Typography>
-              <PetsIcon
-                sx={{
-                  color: "primary.main",
-                  fontSize: "100%",
-                  mb: 0.2,
-                  ml: 0.3,
-                }}
-              />
-            </Button>
-            <IconButton onClick={handleFilterInClick}>
-              <SearchOutlinedIcon />
-            </IconButton>
-          </Box>
+            <Typography sx={fontStyle}>{occupants.dogs}</Typography>
+            <PetsIcon
+              sx={{
+                color: "primary.main",
+                fontSize: "100%",
+                mb: 0.2,
+                ml: 0.3,
+              }}
+            />
+          </Button>
+          <IconButton onClick={handleFilterInClick} size="large">
+            <SearchOutlinedIcon />
+          </IconButton>
         </Box>
       </Box>
-      <Dialog
-        open={zoomIn}
-        onClose={() => setZoomIn(false)}
-        BackdropProps={{
-          style: {
-            backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)",
-          },
-        }}
-        PaperProps={{
-          style: {
-            backgroundColor: 'transparent',
-            boxShadow: 'none',
-            border: 'none',
-            color: 'inherit',
-            opacity: 1
-          }
-        }}
-      >
-        <MobileFilterBar home={false} onSearch={handleSearch} />
+    </Box>
+    <Dialog
+      open={zoomIn}
+      onClose={() => setZoomIn(false)}
+      BackdropProps={{
+        style: {
+          backdropFilter: "blur(6px)",
+          WebkitBackdropFilter: "blur(6px)",
+        },
+      }}
+      PaperProps={{
+        style: {
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+          border: 'none',
+          color: 'inherit',
+          opacity: 1
+        }
+      }}
+    >
+      <MobileFilterBar home={false} onSearch={handleSearch} />
 
-        {formError.length > 0 && (
-          <Typography
-            variant="body2"
-            color="error"
-            sx={{ textAlign: "center", mt: 1 }}
-          >
-            {formError}
-          </Typography>
-        )}
-      </Dialog>
-    </>
-  );
+      {formError.length > 0 && (
+        <Typography
+          variant="body2"
+          color="error"
+          sx={{ textAlign: "center", mt: 1 }}
+        >
+          {formError}
+        </Typography>
+      )}
+    </Dialog>
+  </>;
 };
 
 export default FilterBar;

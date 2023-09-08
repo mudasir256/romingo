@@ -17,41 +17,16 @@ interface Props {
 const Header: FC<Props> = ({ sx }) => {
 
   const imagesDesktop = [
-    // {
-    //   component: 'https://www.romingo.com/public/hero/five.jpeg',
-    //   placement: 'bottom 0px left 0px'
-    // },
-    // {
-    //   component: 'https://www.romingo.com/public/hero/two.jpeg', 
-    //   placement: 'bottom -200px left 0px'
-    // },
-    // {
-    //   component: 'https://www.romingo.com/public/hero/one.jpeg', 
-    //   placement: 'bottom -120px right 0px'
-    // }
     {
-      component: 'https://www.romingo.com/public/hero/dev-1.jpg',
-      placement: 'bottom -200px left 0px'
-    },
+      component: 'https://www.romingo.com/public/hero/one.jpeg', 
+      placement: 'bottom -120px right 0px'
+    }
   ];
   const imagesMobile = [
     {
-    component: 'https://www.romingo.com/public/hero/dev-1.jpg',
-    placement: 'bottom -50px left -300px'
-    }
-    // {
-    //   component:  'https://www.romingo.com/public/hero/three.jpeg', 
-    //   placement: 'bottom -50px right 0px',
-    //   extra: 'linear-gradient(160deg, #000000 -100%, #29292900 55%, #000000 300%),'
-    // },
-    // {
-    //   component: 'https://www.romingo.com/public/hero/one.jpeg', 
-    //   placement: 'bottom -50px left -120px'
-    // },
-    // {
-    //   component: 'https://www.romingo.com/public/hero/four.jpeg',
-    //   placement: 'bottom -50px right -0px'
-    // }
+      component: 'https://www.romingo.com/public/hero/one.jpeg', 
+      placement: 'bottom -50px left -120px'
+    },
   ];
 
   const [mobileImage, setMobileImage] = useState({})
@@ -78,8 +53,6 @@ const Header: FC<Props> = ({ sx }) => {
       className="header-wrapper"
     >
       <Navbar />
-
-    {/* `linear-gradient(178deg, #000000 30%, #29292900 70%, #000000 130%) */}
       <Box
         className="filter-bar-wrapper"
         sx={{
@@ -100,10 +73,10 @@ const Header: FC<Props> = ({ sx }) => {
             display: { xs: 'block', sm: 'block', md: 'none' }
           }}>
             <Box sx={{ textAlign: { xs: 'left', sm: 'left'} }} className="filter-bar-wrapper-title">
-              Book pet-friendly hotels
+              <b>Book pet-friendly hotels</b>
             </Box>
             <div className="filter-bar-wrapper-desc">
-              Lowest rates. $0 pet fees.
+              the easiest way to travel with your pets
             </div>
           </Box>
         </Box>

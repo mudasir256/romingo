@@ -235,7 +235,7 @@ const BookingManageCard: FC<BookingCardProps> = ({
           display: "grid",
         }}
       >
-        <Hidden smDown>
+        <Hidden mdDown>
           <Box
             sx={{
               px: {

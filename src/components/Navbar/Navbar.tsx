@@ -41,7 +41,8 @@ import LoginCard from "../../components/AuthCard/Login";
 import RegisterCard from "../../components/AuthCard/Register";
 import ResetPassword from "../../components/AuthCard/ResetPassword";
 import { authService } from "../../services/authService.js"
-import LogoImg from '../../assets/images/logo.png';
+import DropdownMenuNav from '../../components/DropdownMenuNav'
+
 
 interface Props {
   sx?: CSSObject;
@@ -50,7 +51,7 @@ interface Props {
 const Navbar: FC<Props> = ({ sx }) => {
   const history = useHistory();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [showLogin, setShowLogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<any>(null);
@@ -95,56 +96,114 @@ const Navbar: FC<Props> = ({ sx }) => {
     color: "black",
   }
 
-  return (
-    <>
-      <AppBar
-        position={path === '/' ? 'fixed': 'relative'}
-        style={{
-          background: "white",
-          WebkitBackdropFilter: "blur(6px)",
-          backdropFilter: "blur(6px)",
-          backgroundColor: "white",
-        }}
-        sx={{ boxShadow: trigger ? 2 : 0, borderBottom: "1px solid #ddd" }}
-      >
-        <Toolbar sx={{ display: "block", position: "relative" }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              minHeight: { xs: "56px", sm: "84px" },
-            }}
-          >
-            <Hidden lgDown>
-              <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'block'} }}>
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'flex-start' }}>
-                  <Link
-                    href="/faq"
-                    sx={linkStyle}
-                  >
-                    <div
-                      style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
-                    >
-                      FAQ
-                    </div>
-                  </Link>
-                  <Link
-                    href="/reservation/manage"
-                    sx={{
-                      ml: "auto",
-                      ...linkStyle
-                    }}
-                  >
-                    <div
-                      style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
-                    >
-                      My trips
-                    </div>
-                  </Link>
-                </Box>
+  return <>
+    <AppBar
+      position={path === '/' ? 'fixed': 'relative'}
+      style={{
+        background: "white",
+        WebkitBackdropFilter: "blur(6px)",
+        backdropFilter: "blur(6px)",
+        backgroundColor: "white",
+      }}
+      sx={{ boxShadow: trigger ? 2 : 0, borderBottom: "1px solid #ddd" }}
+    >
+      <Toolbar sx={{ display: "block", position: "relative" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            minHeight: { xs: "56px", sm: "84px" },
+          }}
+        >
+          <Hidden lgDown>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
+              <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'flex-start' }}>
+                <Link
+                  href="/faq"
+                  sx={linkStyle}
+                >
+                  <div
+                    style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
 
+                  >
+                    FAQ
+                  </div>
+                </Link>
+                <Link
+                  href="/reservation/manage"
+                  sx={{
+                    ml: "auto",
+                    ...linkStyle
+                  }}
+                >
+                  <div
+                    style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                  >
+                    My trips
+                  </div>
+                </Link>
               </Box>
+
+            </Box>
+            <Box
+              component="img"
+              src={
+                "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+              }
+              alt="Logo"
+              draggable="false"
+              onClick={() => history.push("/")}
+              sx={{
+                maxWidth: "230px",
+                margin: "auto auto",
+                cursor: "pointer",
+                height: '77px'
+              }}
+            />
+            <Link
+              href="/blog"
+              sx={{
+                borderRadius: "6px",
+                mr: "2rem",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                "&:hover": { color: "#03989E" },
+                color: "black",
+              }}
+            >
+              {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
+              <div
+                style={{ marginRight: '1em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+              >
+                Travel tips
+              </div>
+            </Link>
+            <Box
+              onClick={() => handleProfileClick()}
+              sx={{
+                borderRadius: "6px",
+                mr: "4rem",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                "&:hover": { color: "#03989E" },
+                color: "black",
+              }}
+            >
+              Sign in
+            </Box>
+            <DropdownMenuNav />
+          </Hidden>
+
+          <Hidden lgUp>
+            <Drawer
+              PaperProps={{ sx: { minWidth: "280px" } }}
+              anchor="right"
+              onClose={() => setAnchorEl(null)}
+              open={anchorEl ? true : false}
+            >
               <Box
                 component="img"
                 src={LogoImg}
@@ -152,284 +211,268 @@ const Navbar: FC<Props> = ({ sx }) => {
                 draggable="false"
                 onClick={() => history.push("/")}
                 sx={{
-                  maxWidth: "230px",
-                  ml: '2rem',
-                  cursor: "pointer",
+                  maxWidth: "120px",
+                  margin: "1rem auto",
                 }}
               />
-              <Box></Box>
-              <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
-                <Person sx={{ fontSize: '24px', color: 'black'}} />
-              </Box>
-            </Hidden>
-
-            <Hidden lgUp>
-              <Drawer
-                PaperProps={{ sx: { minWidth: "280px" } }}
-                anchor="right"
-                onClose={() => setAnchorEl(null)}
-                open={anchorEl ? true : false}
+              <MenuItem
+                onClick={() => history.push("/about")}
+                component="button"
+                sx={{ fontWeight: 500, minWidth: "200px" }}
               >
-                <Box
-                  component="img"
-                  src={LogoImg}
-                  alt="Logo"
-                  draggable="false"
-                  onClick={() => history.push("/")}
-                  sx={{
-                    maxWidth: "120px",
-                    margin: "1rem auto",
-                  }}
-                />
-                <MenuItem
-                  onClick={() => history.push("/about")}
-                  component="button"
-                  sx={{ fontWeight: 500, minWidth: "200px" }}
-                >
-                  <Pets
-                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
-                  />{" "}
-                  Our story
-                </MenuItem>
-                <MenuItem
-                  onClick={() => history.push("/romingo-partners")}
-                  component="button"
-                  sx={{ fontWeight: 500, minWidth: "200px" }}
-                >
-                  <Groups
-                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
-                  />{" "}
-                  Philanthropy
-                </MenuItem>
-                <MenuItem
-                  onClick={() => history.push("/faq")}
-                  component="button"
-                  sx={{ fontWeight: 500, minWidth: "200px" }}
-                >
-                  <LiveHelp
-                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
-                  />{" "}
-                  FAQ
-                </MenuItem>
-                <MenuItem
-                  onClick={() => history.push("/blog")}
-                  component="button"
-                  sx={{ fontWeight: 500, minWidth: "200px" }}
-                >
-                  <PushPin
-                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
-                  />{" "}
-                  Blog
-                </MenuItem>
-                <MenuItem
-                  onClick={() => history.push("/contact")}
-                  component="button"
-                  sx={{ fontWeight: 500, minWidth: "200px" }}
-                >
-                  <Support
-                    sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
-                  />{" "}
-                  Support
-                </MenuItem>
-                <RomingoDealsMobile />
-       
-              </Drawer>
-              <Box
-                component="img"
-                src={LogoImg}
-                alt="Logo"
-                onClick={() => {
-                  history.push("/");
-                }}
-                draggable="false"
-                sx={{
-                  mr: "auto",
-                  ml: "0px",
-                  maxHeight: { xs: "44px", md: "44px" },
-                }}
-              />
-
-              <Box onClick={() => handleProfileClick()} sx={{ cursor: 'pointer', mr: '1.5em', mt: '0.5em'}}>
-                <Person sx={{ fontSize: '24px', color: 'black'}} />
-              </Box>
-
-              <Typography
-                onClick={() => history.push("/reservation/manage")}
-                variant="body2"
-                sx={{
-                  cursor: "pointer",
-                  color: "#222",
-                  fontWeight: 600,
-                  fontFamily: "Montserrat",
-                }}
+                <Pets
+                  sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                />{" "}
+                Our story
+              </MenuItem>
+              <MenuItem
+                onClick={() => history.push("/romingo-partners")}
+                component="button"
+                sx={{ fontWeight: 500, minWidth: "200px" }}
               >
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    borderRadius: "6px",
-                    padding: " .125rem .25rem",
-                  }}
-                >
-                  <WorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
-                </span>
-              </Typography>
-      
+                <Groups
+                  sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                />{" "}
+                Philanthropy
+              </MenuItem>
+              <MenuItem
+                onClick={() => history.push("/faq")}
+                component="button"
+                sx={{ fontWeight: 500, minWidth: "200px" }}
+              >
+                <LiveHelp
+                  sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                />{" "}
+                FAQ
+              </MenuItem>
+              <MenuItem
+                onClick={() => history.push("/blog")}
+                component="button"
+                sx={{ fontWeight: 500, minWidth: "200px" }}
+              >
+                <PushPin
+                  sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                />{" "}
+                Blog
+              </MenuItem>
+              <MenuItem
+                onClick={() => history.push("/contact")}
+                component="button"
+                sx={{ fontWeight: 500, minWidth: "200px" }}
+              >
+                <Support
+                  sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                />{" "}
+                Support
+              </MenuItem>
+              <RomingoDealsMobile />
+              <MenuItem
+                component="button"
+                onClick={() => history.push("/blog")}
+                sx={{ fontWeight: 500, minWidth: "200px" }}
+              >
+                <HomeWork
+                  sx={{ mr: "1.5rem", fontSize: "16px", color: "#666" }}
+                />{" "}
+                Travel tips
+              </MenuItem>
+            </Drawer>
+            <Box
+              component="img"
+              src={
+                "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
+              }
+              alt="Logo"
+              onClick={() => {
+                history.push("/");
+              }}
+              draggable="false"
+              sx={{
+                mr: "auto",
+                ml: "0px",
+                maxHeight: { xs: "44px", md: "44px" },
+              }}
+            />
 
-              <Link
-                onClick={(e) => {
-                  setMenuOpen(!menuOpen);
-                  setAnchorEl(e.currentTarget);
-                }}
-                sx={{
-                  padding: ".5rem 1rem",
-                  minWidth: "20px",
-                  background: "transparent",
-                  borderRadius: "6px",
+            <DropdownMenuNav />
+
+
+            <Typography
+              onClick={() => history.push("/reservation/manage")}
+              variant="body2"
+              sx={{
+                cursor: "pointer",
+                color: "#222",
+                fontWeight: 600,
+                fontFamily: "Montserrat",
+              }}
+            >
+              <span
+                style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "cener",
-                  textDecoration: "none",
-                  "&:hover": { color: "#999" },
-                  cursor: "pointer",
-                  color: menuOpen ? "#999" : "#222",
-                  fontFamily: "Montserrat",
-                  fontWeight: 500,
-                  fontSize: "14px",
+                  borderRadius: "6px",
+                  padding: " .125rem .25rem",
                 }}
               >
-                <MenuIcon sx={{ margin: "0px auto" }} />
-              </Link>
-            </Hidden>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Dialog
-        open={showLogin}
-        keepMounted
-        fullWidth
-        fullScreen={fullScreen}
-        maxWidth={"xs"}
-        onClose={handleClose}
-        scroll="body"
-        aria-labelledby="amenities-dialog-slide-title"
-        aria-describedby="amenities-dialog-slide-description"
+                <WorkRounded sx={{ fontSize: "20px", mr: ".25rem" }} />
+              </span>
+            </Typography>
+         
+
+            <Link
+              onClick={(e) => {
+                setMenuOpen(!menuOpen);
+                setAnchorEl(e.currentTarget);
+              }}
+              sx={{
+                padding: ".5rem 1rem",
+                minWidth: "20px",
+                background: "transparent",
+                borderRadius: "6px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "cener",
+                textDecoration: "none",
+                "&:hover": { color: "#999" },
+                cursor: "pointer",
+                color: menuOpen ? "#999" : "#222",
+                fontFamily: "Montserrat",
+                fontWeight: 500,
+                fontSize: "14px",
+              }}
+            >
+              <MenuIcon sx={{ margin: "0px auto" }} />
+            </Link>
+          </Hidden>
+        </Box>
+      </Toolbar>
+    </AppBar>
+    <Dialog
+      open={showLogin}
+      keepMounted
+      fullWidth
+      fullScreen={fullScreen}
+      maxWidth={"xs"}
+      onClose={handleClose}
+      scroll="body"
+      aria-labelledby="amenities-dialog-slide-title"
+      aria-describedby="amenities-dialog-slide-description"
+    >
+      <DialogTitle
+        id="amenities-dialog-slide-title"
+        sx={{
+          textAlign: "center",
+        }}
       >
-        <DialogTitle
-          id="amenities-dialog-slide-title"
+        <Typography
+          variant="body1"
+          color="primary"
+          sx={{ fontWeight: "bold" }}
+        >
+          {selectDialog === LOGIN
+            ? "Login"
+            : selectDialog === REGISTER
+              ? "Register"
+              : "Reset Your Password"}
+        </Typography>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
           sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+          size="large">
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent
+        sx={{
+          px: {
+            xs: 1,
+            sm: 2.5,
+          },
+        }}
+      >
+        {selectDialog === LOGIN && (
+          <LoginCard
+            sx={{
+              mt: 1,
+              py: 1,
+            }}
+            handleClose={handleClose}
+          />
+        )}
+        {selectDialog === REGISTER && (<>
+          <Typography variant="base">Create an account with Romingo to earn rewards, manage reservations, and receive special deals / offers.</Typography>
+          <RegisterCard
+            sx={{
+              mt: 1,
+              py: 1,
+            }}
+          />
+        </>)}
+        {selectDialog === FORGOT_PASSWORD && (
+          <ResetPassword
+            sx={{
+              mt: 1,
+              py: 1,
+            }}
+          />
+        )}
+        <Typography
+          variant="body2"
+          sx={{
+            color: "text.secondary",
+            mt: 1,
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="body1"
-            color="primary"
-            sx={{ fontWeight: "bold" }}
-          >
-            {selectDialog === LOGIN
-              ? "Login"
-              : selectDialog === REGISTER
-                ? "Register"
-                : "Reset Your Password"}
-          </Typography>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent
-          sx={{
-            px: {
-              xs: 1,
-              sm: 2.5,
-            },
+          {selectDialog === LOGIN ? "Not a member?" : "Already a member?"}
+        </Typography>
+        <Link
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // setSelectDialog(FORGOT_PASSWORD);
+            if (selectDialog === LOGIN) {
+              setSelectDialog(REGISTER);
+            } else {
+              setSelectDialog(LOGIN);
+            }
           }}
         >
-          {selectDialog === LOGIN && (
-            <LoginCard
-              sx={{
-                mt: 1,
-                py: 1,
-              }}
-              handleClose={handleClose}
-            />
-          )}
-          {selectDialog === REGISTER && (<>
-            <Typography variant="base">Create an account with Romingo to earn rewards, manage reservations, and receive special deals / offers.</Typography>
-            <RegisterCard
-              sx={{
-                mt: 1,
-                py: 1,
-              }}
-            />
-          </>)}
-          {selectDialog === FORGOT_PASSWORD && (
-            <ResetPassword
-              sx={{
-                mt: 1,
-                py: 1,
-              }}
-            />
-          )}
-          <Typography
-            variant="body2"
-            sx={{
-              color: "text.secondary",
-              mt: 1,
-              textAlign: "center",
-            }}
-          >
-            {selectDialog === LOGIN ? "Not a member?" : "Already a member?"}
+          <Typography variant="body2" sx={{ mt: 1, textAlign: "center" }}>
+            {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
           </Typography>
+        </Link>
+{/*          {selectDialog === LOGIN && (
           <Link
             href="#"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              // setSelectDialog(FORGOT_PASSWORD);
-              if (selectDialog === LOGIN) {
-                setSelectDialog(REGISTER);
-              } else {
-                setSelectDialog(LOGIN);
-              }
+              setSelectDialog(FORGOT_PASSWORD);
             }}
           >
-            <Typography variant="body2" sx={{ mt: 1, textAlign: "center" }}>
-              {selectDialog === LOGIN ? "Create Your Account" : "Log In"}
-            </Typography>
-          </Link>
-{/*          {selectDialog === LOGIN && (
-            <Link
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setSelectDialog(FORGOT_PASSWORD);
+            <Typography
+              variant="body2"
+              sx={{
+                mt: 1,
+                textAlign: "center",
               }}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 1,
-                  textAlign: "center",
-                }}
-              >
-                Forgot Password?
-              </Typography>
-            </Link>
-          )}*/}
-        </DialogContent>
-      </Dialog>
-    </>
-  );
+              Forgot Password?
+            </Typography>
+          </Link>
+        )}*/}
+      </DialogContent>
+    </Dialog>
+  </>;
 };
 
 const RomingoDealsMobile = () => {

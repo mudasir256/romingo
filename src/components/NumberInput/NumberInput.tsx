@@ -13,15 +13,15 @@ interface Props {
 
 const NumberInput: FC<Props> = ({ value, onChange, minimum = 0 }) => {
   return (
-    <Stack spacing={2} direction="row" alignItems="center">
-      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
-        <RemoveCircleOutline />
+    <Stack direction="row" alignItems="center" justifyContent='flex-end'>
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))} size="large">
+        <RemoveCircleOutline style={{fontSize: 20}}/>
       </IconButton>
       <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
         {value}
       </Typography>
-      <IconButton onClick={() => onChange(value + 1)}>
-        <AddCircleOutline />
+      <IconButton onClick={() => onChange(value + 1)} size="large">
+        <AddCircleOutline style={{fontSize: 20}}/>
       </IconButton>
     </Stack>
   );

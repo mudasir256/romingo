@@ -102,8 +102,10 @@ const ManageReservationPage: FC<Props> = () => {
   const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
   const [list, setList] = useState<BookingInterface[]>([]);
+  console.log(emailAddress)
+  console.log(confirmationNumber)
   const buttonEnabled =
-    emailAddress.length > 2 && confirmationNumber.length > 8;
+    emailAddress.length > 2 && confirmationNumber.length === 7;
 
   const data = {}
 

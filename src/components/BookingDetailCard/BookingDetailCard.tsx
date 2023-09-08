@@ -1,16 +1,19 @@
 import { FC } from "react";
-import Box from "@mui/material/Box";
+import {
+ Box,
+ Grid,
+} from "@mui/material";
+
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
-import ImageSlider from "../ImageSlider";
 
-const BookingDetailCard: FC = () => {
+const BookingDetailCard: FC = ({ roomImages }) => {
   // eslint-disable-next-line
   const details = useSelector((state: any) => state.searchReducer.search);
   const room = useSelector(
     // eslint-disable-next-line
-    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room
+    (state: any) => state.hotelCheckoutReducer?.checkout?.room?.Rooms.find(item => true)
   );
 
   return (
@@ -18,7 +21,6 @@ const BookingDetailCard: FC = () => {
       sx={{
         color: "text.primary",
         py: { xs: 0, sm: 0, md: 1 },
-        mt: { xs: 0, sm: 0, md: '8.75rem' },
         pb: { xs: "1rem", sm: "1rem" },
         px: { xs: "0rem", sm: "1rem" },
         boxShadow: { xs: 0, sm: 0, md: 1 },
@@ -33,92 +35,94 @@ const BookingDetailCard: FC = () => {
       >
         Booking Details
       </Typography>
- 
-      <Box mt="0.75rem">
-        <Typography
-          variant="base"
-          sx={{
-            color: "#222",
-            textIndent: "-8px",
-            fontWeight: 600,
-          }}
-        >
-          Check-in:&nbsp;
-        </Typography>
-        <Typography
-          variant="base"
-          sx={{
-            fontWeight: 500,
-            mt: 0.5,
-            color: "text.primary",
-            opacity: 0.75,
-    
-          }}
-        >
-          {DateTime.fromISO(details.checkIn).toFormat("ccc, MMM dd")}
-        </Typography>
-      </Box>
-  
-      <Box mb="1rem">
-        <Typography
-          variant="base"
-          sx={{
-            mt: 0,
-            color: "#222",
-            textIndent: "-8px",
-            fontWeight: 600,
-          }}
-        >
-          Check-out:&nbsp;
-        </Typography>
-        <Typography
-          variant="base"
-          sx={{
-            fontWeight: 500,
-            mt: 0.5,
-            textTransform: "capitalize",
-            color: "text.primary",
-            opacity: 0.75,
-          }}
-        >
-          {DateTime.fromISO(details.checkOut).toFormat("ccc, MMM dd")}
-        </Typography>
-      </Box>
 
-      <Box
-        sx={{
-          mt: 1,
-        }}
-      >
-        <Typography
-          variant="base"
-  
-          sx={{
-            mt: 0,
-            textTransform: "capitalize",
-            color: "#222",
-            textIndent: "-8px",
-            fontWeight: 600,
-          }}
-        >
-          Guests:&nbsp;
-        </Typography>
-        <Typography
-          variant="base"
-          sx={{
-            fontWeight: 500,
-            mt: 0.5,
-            textTransform: "capitalize",
-            opacity: 0.75,
-            color: "text.primary",
+      <Grid container spacing={0.25}>
+        <Grid xs={4} item>
+          <Typography
+            variant="base"
+            sx={{
+              color: "#222",
+              textIndent: "-8px",
+              fontWeight: 600,
+            }}
+          >
+            Check-in:&nbsp;
+          </Typography>
+        </Grid>
+        <Grid xs={5} item>
+          <Typography
+            variant="base"
+            sx={{
+              fontWeight: 500,
+              mt: 0.5,
+              color: "text.primary",
+              opacity: 0.75,
+          
+            }}
+          >
+            {DateTime.fromISO(details.checkIn).toFormat("ccc, MMM dd")}
+          </Typography>
+        </Grid>
+        <Grid xs={4} item>
+          <Typography
+            variant="base"
+            sx={{
+              mt: 0,
+              color: "#222",
+              textIndent: "-8px",
+              fontWeight: 600,
+            }}
+          >
+            Check-out:&nbsp;
+          </Typography>
+        </Grid>
+        <Grid xs={5} item>
+          <Typography
+            variant="base"
+            sx={{
+              fontWeight: 500,
+              mt: 0.5,
+              textTransform: "capitalize",
+              color: "text.primary",
+              opacity: 0.75,
+            }}
+          >
+            {DateTime.fromISO(details.checkOut).toFormat("ccc, MMM dd")}
+          </Typography>
+        </Grid>
+        <Grid xs={4} item>
+          <Typography
+            variant="base"
+          
+            sx={{
+              mt: 0,
+              textTransform: "capitalize",
+              color: "#222",
+              textIndent: "-8px",
+              fontWeight: 600,
+            }}
+          >
+            Guests:&nbsp;
+          </Typography>
+        </Grid>
 
-          }}
-        >
-          {`${details.occupants.adults} Adults - ${details.occupants.children} Children - ${details.occupants.dogs} Dogs`}
-        </Typography>
-      </Box>
-      <Box>
-        <Box mb="1rem">
+        <Grid xs={5} item>
+          <Typography
+            variant="base"
+            sx={{
+              fontWeight: 500,
+              mt: 0.5,
+              textTransform: "capitalize",
+              opacity: 0.75,
+              color: "text.primary",
+
+            }}
+          >
+            {`${details.occupants.adults} Adults - ${details.occupants.children ?  `${details.occupants.children} Children -` : ''} ${details.occupants.dogs} Pets`}
+          </Typography>
+        </Grid>
+
+        <Grid xs={4} item>
           <Typography
             variant="base"
             sx={{
@@ -131,7 +135,9 @@ const BookingDetailCard: FC = () => {
           >
             Room Type:&nbsp;
           </Typography>
+        </Grid>
 
+        <Grid xs={5} item>
           <Typography
             variant="base"
             sx={{
@@ -142,26 +148,11 @@ const BookingDetailCard: FC = () => {
               opacity: 0.75,
             }}
           >
-            {room?.name ? room.name : "Room"}
+            {room?.RoomName || room?.BedType || "Standard Room"}
           </Typography>
-        </Box>
+        </Grid>
+      </Grid>
 
-
-        <ImageSlider
-          images={room?.imageURLs}
-          name={room?.name ? room.name : "Room"}
-          sx={{
-            display: "flex",
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "50px",
-            borderRadius: "6px",
-            minHeight: { xs: "200px", sm: "200px", md: "220px" },
-            color: "#03989e",
-          }}
-        />
-      </Box>
     </Box>
   );
 };

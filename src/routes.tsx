@@ -23,7 +23,41 @@ const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartn
 const Application = loadable(() => import('./pages/StaticPages/Application'))
 const CreateAccount = loadable(() => import('./pages/CreateAccount'))
 
-const LocationPageTemplate = loadable(() => import('./components/LocationPageTemplate'))
+const Austin = loadable(() => import('./pages/Cities/Austin'))
+const Dallas = loadable(() => import('./pages/Cities/Dallas'))
+const Denver = loadable(() => import('./pages/Cities/Denver'))
+const Houston = loadable(() => import('./pages/Cities/Houston'))
+const LosAngeles = loadable(() => import('./pages/Cities/LosAngeles'))
+const PalmSprings = loadable(() => import('./pages/Cities/PalmSprings'))
+const Phoenix = loadable(() => import('./pages/Cities/Phoenix'))
+const Portland = loadable(() => import('./pages/Cities/Portland'))
+const SaltLakeCity = loadable(() => import('./pages/Cities/SaltLakeCity'))
+const SanAntonio = loadable(() => import('./pages/Cities/SanAntonio'))
+const SanDiego = loadable(() => import('./pages/Cities/SanDiego'))
+const SanFrancisco = loadable(() => import('./pages/Cities/SanFrancisco'))
+const SantaFe = loadable(() => import('./pages/Cities/SantaFe'))
+const Scottsdale = loadable(() => import('./pages/Cities/Scottsdale'))
+const Seattle = loadable(() => import('./pages/Cities/Seattle'))
+const Tucson = loadable(() => import('./pages/Cities/Tucson'))
+
+//NEW
+const Atlanta = loadable(() => import('./pages/Cities/Atlanta'))
+const Baltimore = loadable(() => import('./pages/Cities/Baltimore'))
+const Boston = loadable(() => import('./pages/Cities/Boston'))
+const Charlotte = loadable(() => import('./pages/Cities/Charlotte'))
+const Chicago = loadable(() => import('./pages/Cities/Chicago'))
+const Cleveland = loadable(() => import('./pages/Cities/Cleveland'))
+const Detroit = loadable(() => import('./pages/Cities/Detroit'))
+const Indianapolis = loadable(() => import('./pages/Cities/Indianapolis'))
+const Miami = loadable(() => import('./pages/Cities/Miami'))
+const Milwaukee = loadable(() => import('./pages/Cities/Milwaukee'))
+const Minneapolis = loadable(() => import('./pages/Cities/Minneapolis'))
+//nashville
+const NewOrleans = loadable(() => import('./pages/Cities/NewOrleans'))
+const NewYork = loadable(() => import('./pages/Cities/NewYork'))
+const Washington = loadable(() => import('./pages/Cities/Washington'))
+
+
 
 const Blog = loadable(() => import('./pages/Blog'))
 const BlogPost = loadable(() => import('./pages/BlogPost'))
@@ -40,6 +74,8 @@ import { authService } from "./services/authService.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { IntercomProvider } from 'react-use-intercom';
+import ListingPageNew from "./pages/ListingPage/ListingPageNew";
+import DetailsPage1 from "./pages/DetailsPage/DetailsPage1";
 
 interface RouteInterface {
   path: string;
@@ -55,12 +91,7 @@ const routes: RouteInterface[] = [
   },
   {
     path: "/listings",
-    component: ListingPage,
-    requireAuth: false,
-  },
-  {
-    path: "/details/:id",
-    component: DetailsPage,
+    component: ListingPageNew,
     requireAuth: false,
   },
   {
@@ -69,15 +100,10 @@ const routes: RouteInterface[] = [
     requireAuth: false
   },
   {
-    path: "/hotel/:alias",
-    component: DetailsPage,
+    path: "/pet-friendly-hotels/:state/:city/:name",
+    component: DetailsPage1,
     requireAuth: false,
   },
-  // {
-  //   path: "/checkout*",
-  //   component: CheckoutPage,
-  //   requireAuth: false,
-  // },
   {
     path: "/reservation/manage",
     component: ManageReservationPage,
@@ -185,28 +211,39 @@ const Routes = () => {
           <CheckoutPage />
         </Elements>
       </Route>
-      <Route exact path="/pet-friendly-hotels/austin-texas"><LocationPageTemplate cityName="Austin, TX" /></Route>
-      <Route exact path="/pet-friendly-hotels/dallas-texas"><LocationPageTemplate cityName="Dallas, TX" /></Route>
-      <Route exact path="/pet-friendly-hotels/houston-texas"><LocationPageTemplate cityName="Houston, TX" /></Route>
-      <Route exact path="/pet-friendly-hotels/oceanside-california"><LocationPageTemplate cityName="Oceanside, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/phoenix-arizona"><LocationPageTemplate cityName="Phoenix, AZ" /></Route>
-      <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><LocationPageTemplate cityName="Scottsdale, AZ" /></Route>
-      <Route exact path="/pet-friendly-hotels/tucson-arizona"><LocationPageTemplate cityName="Tucson, AZ" /></Route>
-      <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><LocationPageTemplate cityName="Santa Fe, NM" /></Route>
-      <Route exact path="/pet-friendly-hotels/san-antonio-texas"><LocationPageTemplate cityName="San Antonio, TX" /></Route>
-      <Route exact path="/pet-friendly-hotels/vail-colorado"><LocationPageTemplate cityName="Vail, CO" /></Route>
-      <Route exact path="/pet-friendly-hotels/colorado-springs-colorado"><LocationPageTemplate cityName="Colorado Springs, CO" /></Route>
-      <Route exact path="/pet-friendly-hotels/denver-colorado"><LocationPageTemplate cityName="Denver, CO" /></Route>
-      <Route exact path="/pet-friendly-hotels/seattle-washington"><LocationPageTemplate cityName="Seattle, WA" /></Route>
-      <Route exact path="/pet-friendly-hotels/portland-oregon"><LocationPageTemplate cityName="Portland, OR" /></Route>
-      <Route exact path="/pet-friendly-hotels/sacramento-california"><LocationPageTemplate cityName="Sacramento, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/salt-lake-city-utah"><LocationPageTemplate cityName="Salt Lake City, UT" /></Route>
-      <Route exact path="/pet-friendly-hotels/palm-springs-california"><LocationPageTemplate cityName="Palm Springs, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/los-angeles-california"><LocationPageTemplate cityName="Los Angeles, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/orange-county-california"><LocationPageTemplate cityName="Orange County, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/san-diego-california"><LocationPageTemplate cityName="San Diego, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/san-francisco-california"><LocationPageTemplate cityName="San Francisco, CA" /></Route>
-      <Route exact path="/pet-friendly-hotels/santa-barbara-california"><LocationPageTemplate cityName="Santa Barbara, CA" /></Route>
+
+      <Route exact path="/pet-friendly-hotels/austin-texas"><Austin /></Route>
+      <Route exact path="/pet-friendly-hotels/dallas-texas"><Dallas /></Route>
+      <Route exact path="/pet-friendly-hotels/houston-texas"><Houston /></Route>
+      <Route exact path="/pet-friendly-hotels/phoenix-arizona"><Phoenix /></Route>
+      <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><Scottsdale /></Route>
+      <Route exact path="/pet-friendly-hotels/tucson-arizona"><Tucson /></Route>
+      <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><SantaFe /></Route>
+      <Route exact path="/pet-friendly-hotels/san-antonio-texas"><SanAntonio /></Route>
+      <Route exact path="/pet-friendly-hotels/denver-colorado"><Denver /></Route>
+      <Route exact path="/pet-friendly-hotels/seattle-washington"><Seattle /></Route>
+      <Route exact path="/pet-friendly-hotels/portland-oregon"><Portland /></Route>
+      <Route exact path="/pet-friendly-hotels/salt-lake-city-utah"><SaltLakeCity /></Route>
+      <Route exact path="/pet-friendly-hotels/palm-springs-california"><PalmSprings /></Route>
+      <Route exact path="/pet-friendly-hotels/los-angeles-california"><LosAngeles /></Route>
+      <Route exact path="/pet-friendly-hotels/san-diego-california"><SanDiego /></Route>
+      <Route exact path="/pet-friendly-hotels/san-francisco-california"><SanFrancisco /></Route>
+
+      <Route exact path="/pet-friendly-hotels/atlanta-georgia"><Atlanta /></Route>
+      <Route exact path="/pet-friendly-hotels/baltimore-maryland"><Baltimore /></Route>
+      <Route exact path="/pet-friendly-hotels/boston-massachusetts"><Boston /></Route>
+      <Route exact path="/pet-friendly-hotels/charlotte-north-carolina"><Charlotte /></Route>
+      <Route exact path="/pet-friendly-hotels/chicago-illinois"><Chicago /></Route>
+      <Route exact path="/pet-friendly-hotels/cleveland-ohio"><Cleveland /></Route>
+      <Route exact path="/pet-friendly-hotels/detroit-michigan"><Detroit /></Route>
+      <Route exact path="/pet-friendly-hotels/indianapolis-indiana"><Indianapolis /></Route>
+      <Route exact path="/pet-friendly-hotels/miami-florida"><Miami /></Route>
+      <Route exact path="/pet-friendly-hotels/milwaukee-wisconsin"><Milwaukee /></Route>
+      <Route exact path="/pet-friendly-hotels/minneapolis-minnesota"><Minneapolis /></Route>
+      <Route exact path="/pet-friendly-hotels/new-orleans-louisiana"><NewOrleans /></Route>
+      <Route exact path="/pet-friendly-hotels/new-york-new-york"><NewYork /></Route>
+      <Route exact path="/pet-friendly-hotels/washington-dc"><Washington /></Route>
+
      
       <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
       <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>

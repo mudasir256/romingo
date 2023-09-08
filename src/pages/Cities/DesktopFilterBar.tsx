@@ -459,11 +459,11 @@ const OccupantSelector: FC<OccupantSelectorProps> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography variant="body1">Dogs</Typography>
+            <Typography variant="body1">Pets</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
-                if (dogs > 2) return;
+                if (dogs > 9) return;
                 onChange({ ...value, dogs });
               }}
             />
@@ -553,13 +553,13 @@ const NumberInput: FC<NumberInputProps> = ({
 }) => {
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))}>
+      <IconButton onClick={() => onChange(Math.max(value - 1, minimum))} size="large">
         <RemoveCircleOutline />
       </IconButton>
       <Typography variant="body1" sx={{ width: 16, textAlign: "center" }}>
         {value}
       </Typography>
-      <IconButton onClick={() => onChange(value + 1)}>
+      <IconButton onClick={() => onChange(value + 1)} size="large">
         <AddCircleOutline />
       </IconButton>
     </Stack>

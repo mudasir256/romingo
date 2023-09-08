@@ -1,3 +1,38 @@
+const GetHotelBySearchNew = `
+  query SearchHotelsInput(
+    $checkInDate: String!
+    $checkOutDate: String! 
+    $latitude: String!
+    $longitude: String!
+    $adults: Int!
+    $children: Int!
+  ) {
+    getHotels(
+      input: {
+        adults: $adults,
+        children: $children,
+        checkInDate: $checkInDate,
+        checkOutDate: $checkOutDate,
+        latitude: $latitude,
+        longitude: $longitude
+      }
+    ) {
+      sessionId
+      hotels {
+        Address
+        GeoLocation
+        ID
+        StarRating
+        address
+        DisplayName
+        DefaultImage
+        zipCode
+        name
+      }
+    }
+  }
+`
+
 const GetHotelBySearch = `
     query PropertiesInput(
       $adults: Int!,
@@ -305,6 +340,16 @@ mutation CreatePaymentIntentMutation(
 }
 `;
 
+const createBookingTravolutionary = `
+mutation createBookingTravolutionary(
+  $createBookingInputTravolutionary: createBookingInputTravolutionary!
+) {
+  createBookingUsingTravolutionary(input: $createBookingInputTravolutionary) {
+    response
+  }
+}
+`;
+
 const CreateSetupIntent = `
 mutation CreateSetupIntentMutation(
   $createSetupIntentInput: CreateSetupIntentInput!
@@ -490,40 +535,15 @@ const GetReservationDetails =`
         propertyConfirmationId: $propertyConfirmationId
       }
     ) {
-      id
-      propertyId
-      paymentIntentId
-      cardId
-      sabreConfirmationId
-      propertyConfirmationId
-      faunaDocId
-      firstName
-      lastName
-      email
-      mobileNumber
-      checkInAtLocal
-      checkOutAtLocal
-      deadlineLocal
-      data
-      captured
-      cancellationFeePrice
-      intentType
-      setupIntentObject
-      customerId
-      reservationStatus
-      hotel {
-        name
-        address
-        zipCode
-      }
+      response
     }
   }
 `;
 
 const CancelBooking = `
-  mutation CancelBooking($cancelBookingInput: CancelBookingInput!) {
-    cancelBooking(input: $cancelBookingInput) {
-      status
+  mutation cancelBookingUsingTravolutionary($cancelBookingInput: CancelBookingTravolutionaryInput!) {
+    cancelBookingUsingTravolutionary(input: $cancelBookingInput) {
+      response
     }
   }
 `;
@@ -623,30 +643,30 @@ const GetSabrePropertyDetails = `
 const GetHomePageProperty = `
   query GetHomePagePropertiesThree {
     getHomepagePropertiesThree {
-      id
-      addressLine1        
-      alias          
-      dogAmenities    
-      featuredImageURL 
-      googlePlaceId      
-      id             
-      imageURLs      
-      name             
-      romingoScore
-      allows_big_dogs
-      hotelEmail    
-      hotelAlternativeEmail
-      sabreId
-      zipCode
-      lowestAveragePrice
-      petFeePolicy {
-        maxPets
-        maxWeightPerPetInLBS
-        desc
-        perPet
-        perNight
-        breakup
-      }
+      hotelName
+      fullAddressLine
+      alias
+      description
+      petPolicyDescription
+      amenities
+      lat
+      lng
+      images
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+      starRating
+      numberOfReviews
+      travolutionaryId
+      city
+      state
     }
   }
 `
@@ -682,6 +702,22 @@ const LocationProperties = `
         perNight
         breakup
       }
+    }
+  }
+`
+
+const TripReviews = `
+  query TripReviews(
+    $hotel_id: String
+  ) {
+    tripReviews(input: {
+      hotel_id: $hotel_id
+    }) {
+      name
+      pic
+      description
+      date
+      rating
     }
   }
 `
@@ -750,6 +786,112 @@ const UserProfile = `
   }
 `
 
+const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => { return `query {
+  getHotels(input: {adults: ${adults},
+  checkInDate: "${checkIn}",
+  checkOutDate: "${checkOut}",
+  children: "${children}",
+  latitude: "${latitude}",
+  longitude: "${longitude}",
+  hotelIds: "${hotelIds}"
+}) {
+    sessionId
+    hotels {
+      ID
+      Address 
+      DefaultImage
+      DisplayName
+      GeoLocation
+      StarRating
+      SuppliersLowestPackagePrices
+      description
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+      starRating
+      numberOfReviews
+      city
+      state
+      zipcode
+      amenities
+      alias
+      images
+    }
+  }
+}
+`}
+
+const getPackages = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => {
+  return `query {
+    getHotelDetails(input: {adults: ${adults},
+      checkInDate: "${checkIn}",
+      checkOutDate: "${checkOut}",
+      children: "${children}",
+      latitude: "${latitude}",
+      longitude: "${longitude}",
+      hotelIds: "${hotelIds}"}) {
+      hotelDetails
+      Result
+      RoomsContent
+      sessionId
+    }
+  }
+  `
+}
+
+const getHotelDetailById = (hotelId) => {
+  return `query {
+    getHotelDetailById(input: {
+      hotelId: "${hotelId}",
+    }) {
+      hotelName
+      fullAddressLine
+      description
+      petPolicyDescription
+      amenities
+      lat
+      lng
+      images
+      petsAllowed
+      petFee
+      petFeeValue
+      petFeeDetail
+      petSize
+      petAllowance
+      unattendedPets
+      petAmenities
+      petReliefArea
+      catPolicy
+      starRating
+      numberOfReviews
+      travolutionaryId
+      tripAdvisorId
+      city
+      state
+    }
+  }`
+}
+
+const getCancellationPolicy = (hotelId: number, sessionId: string, packageId: string) => {
+  return `query {
+    getCancellationPolicyMultiPackages(input: {
+      hotelId: "${hotelId}",
+      sessionId: "${sessionId}",
+      packageId: "${packageId}"
+    }) {
+      BookingRemarks
+      CancellationPolicies
+    }
+  }`
+}
+
 export {
   GetHotelBySearch,
   GetHotelRackBySearch,
@@ -771,4 +913,13 @@ export {
   LocationProperties,
   UserProfile,
   TripHotelList,
+
+  //v2
+  GetHotelBySearchNew,
+  GetHotelsByLocation,
+  getPackages,
+  createBookingTravolutionary,
+  getHotelDetailById,
+  getCancellationPolicy,
+  TripReviews,
 };

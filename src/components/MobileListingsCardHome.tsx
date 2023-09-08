@@ -5,61 +5,90 @@ import ImageSlider from "./ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
 import { utils } from '../services/utils'
 import HotelTags from './HotelTags';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-export interface ListingCardProps {
-  id: string;
-  imageURLs: string[];
-  name: string;
-  addressLine1: string;
-  romingoScore: number;
-  allows_big_dogs: number;
-  cancellation?: boolean;
-  lowestAveragePrice: number;
-  lowestTotalPriceAfterTax: number;
-  currency?: string;
-  dogAmenities?: string[];
-  showAmenities?: boolean;
-  highlighted?: boolean;
-  googlePlaceId?: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  city: {
-    id: string;
-    name: string;
-  };
-  showPrice?: boolean;
-  alias: string;
-  petFeePolicy: {
-    maxPets: number;
-    maxWeightPerPetInLBS: number;
-    desc: string;
-    perPet: boolean;
-    perNight: boolean;
-    breakup: JSON;
-    totalFees: number;
-  };
+const stateCodes = {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AS": "American Samoa",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "DC": "District Of Columbia",
+    "FM": "Federated States Of Micronesia",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "GU": "Guam",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MH": "Marshall Islands",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "MP": "Northern Mariana Islands",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PW": "Palau",
+    "PA": "Pennsylvania",
+    "PR": "Puerto Rico",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VI": "Virgin Islands",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
 }
-const ListingCardSquare: FC<ListingCardProps> = ({
+
+const ListingCardSquare = ({
   id,
-  imageURLs,
+  travolutionaryId,
+  images,
   name,
-  allows_big_dogs,
-  addressLine1,
-  googlePlaceId,
-  romingoScore,
-  city,
+  fullAddressLine,
+  starRating,
   cancellation = false,
-  lowestAveragePrice,
   lowestTotalPriceAfterTax,
   currency = "$",
-  dogAmenities = [],
   showAmenities = true,
   highlighted = false,
   showPrice = true,
-  petFeePolicy,
+  petFee,
+  petAllowance,
+  petFeeValue,
+  petSize,
   alias,
+  state,
+  city,
   ...props
 }) => {
   const history = useHistory();
@@ -74,6 +103,29 @@ const ListingCardSquare: FC<ListingCardProps> = ({
       </Typography>
     </Box>
   )
+
+  function slugify(str) {
+    if (!str) {
+      return ''
+    }
+    // Convert all non-word characters to hyphens
+    str = str.replace(/[^\w-]/g, '-');
+
+    // Remove all consecutive hyphens
+    str = str.replace(/-+/g, '-');
+
+    // Trim leading and trailing hyphens
+    str = str.trim('-');
+
+    return str.toLowerCase();
+  }
+
+  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+  let starRatingFormat = starRating
+  if (starRating?.toString().length === 1) {
+    starRatingFormat = `${starRating}.0`
+  }
+
 
   return (
     <>
@@ -90,21 +142,21 @@ const ListingCardSquare: FC<ListingCardProps> = ({
           background: "#fff",
           transition: "all .25s ease-in-out",
           paddingBottom: "0px",
-          boxShadow: 2,
           "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
+          boxShadow: 5,
         }}
-        {...props}
+        // {...props}
       >
   
         <ImageSlider
-          images={imageURLs}
+          images={images}
           name={name}
           forceLarge={true}
         />
 
         <Box
-          onClick={() => history.push("/hotel/" + alias)}
+          onClick={() => history.push(hotelUrl)}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
@@ -131,29 +183,33 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                 flexDirection: "column",
                 justifyContent: 'space-between',
                 mt: '1rem',
-                my: '0.5rem',
-                mx: '0.5rem'
+                ml: '0.3rem',
+                px: '0.2rem',
+                pb: '0.25rem'
+
               }}
             >
               <Box sx={{ display: 'flex' }}>
                 <Typography
-                  variant="h5"
+                  variant="h6"
                   sx={{
                     color: "#222",
                     whiteSpace: 'normal',
                     textOverflow: "ellipsis",
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    flexWrap: 'none'
                   }}
                 >
                   {name}
                 </Typography>
-                <Box onClick={() => history.push(`/hotel/${alias}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
-                  <Box sx={{ color: 'red'}}><StarIcon fontSize="inherit" /></Box>
-                  <Typography variant="base" mb="2px">{romingoScore}</Typography>
+                <Box onClick={() => history.push(`${hotelUrl}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
+                  <Box sx={{ color: 'black'}}><StarIcon fontSize="inherit" /></Box>
+                  <Typography variant="base" mb="2px">{starRatingFormat}</Typography>
                 </Box> 
               </Box>
 
               <Typography
+                mb="0.25rem"
                 variant="base"
                 sx={{
                   overflow: "hidden",
@@ -163,13 +219,18 @@ const ListingCardSquare: FC<ListingCardProps> = ({
                   textAlign: 'left'
                 }}
               >
-                {addressLine1}, {city?.name}
+                {city}, {state}
               </Typography>
+            
 
-              <Box mb="-1rem">
-                <HotelTags displayOne={true} petFeePolicy={{ ...petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, petFeePolicy)}} allows_big_dogs={allows_big_dogs} />
+              <Box mb="0.5rem">
+                <HotelTags displayOne={true} pet_fee={petFee} pet_allowance={petAllowance} pet_fee_value={petFeeValue} pet_size={petSize} />
               </Box>  
-              <PriceDetails />
+
+           
+              <Box mt="-0.5rem">
+                <PriceDetails />
+              </Box>
             </Grid>
           </Grid>
         </Box>
