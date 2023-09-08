@@ -61,7 +61,7 @@ const Footer: FC<Props> = ({ sx }) => {
           <Box>
             <Link href="/"><img loading="lazy" width="220px" src={LogoImg} alt="Romingo Logo" /></Link>
             <Typography component="p" variant="base" maxWidth="400px" mt="0.5rem" mb="0.5rem">
-              Romingo offers pet lovers an easy way to book pet-friendly travel. Experience the best dog-friendly hotels with Romingo, offering the lowest rates with $0 pet fees. You and your pet can roam the world freely with Romingo.
+              Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and the lowest rates guaranteed provide a truly pet-friendly experience. Roam the world freely with Romingo.
             </Typography>
             <div className="social-icons">
               <IconButton
@@ -89,7 +89,7 @@ const Footer: FC<Props> = ({ sx }) => {
             { href: "/faq", text: 'FAQ'},
             { href: '/list-your-property', text: 'List your property'},
             { href: "/contact", text: 'Contact'},
-            { href: "/romingo-partners", text: 'RedRover Partnership'},
+            { href: "/romingo-partners", text: 'Community'},
           ]} />
           <SiteLinkSection header="Content & Blog" links={[
             { href: 'https://storage.googleapis.com/romingo-development-public/ebooks/Air%20Travel%20Guide.pdf', text: 'Guide to Air Travel With Your Dog'},
@@ -102,16 +102,14 @@ const Footer: FC<Props> = ({ sx }) => {
             <img style={{ marginLeft: '-1rem'}} width="160px" src={BBBLogo} alt="BBB Logo" loading="lazy" />
           </Box>
         </Box>
-
-      <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-        <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
-        <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
-        <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
       </Box>
 
+    <Box sx={{ m: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+      <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
+      <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
+      <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
     </Box>
-    </>
-  );
+  </>);
 };
 
 export default Footer;

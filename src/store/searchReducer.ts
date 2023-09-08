@@ -11,6 +11,8 @@ export const saveSearch = (search: ISearch) => {
       adults: search.occupants.adults,
       children: search.occupants.children,
       dogs: search.occupants.dogs,
+      lat: search.lat,
+      lng: search.lng,
     },
   });
   const action: SearchAction = {

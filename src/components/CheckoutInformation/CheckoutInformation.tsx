@@ -15,6 +15,7 @@ import {
   CreateBooking2,
   CreateSetupIntent,
   CreatePaymentIntent,
+  createBookingTravolutionary,
 } from "../../constants/constants";
 import { useSelector } from "react-redux";
 import Dialog from "@mui/material/Dialog";
@@ -24,12 +25,15 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Loader from "../UI/Loader";
 import ErrorDog from "../UI/ErrorDog";
 import { utils } from "../../services/utils";
-import  { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
+import { subscribeToNewsletter, createAccount, addNameToAccount } from '../../services/endpoints'
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import StarsIcon from '@mui/icons-material/Stars';
 import PetsIcon from '@mui/icons-material/Pets';
 import WorkHistoryIcon from '@mui/icons-material/Work';
+import * as uuid from 'uuid'
+import moment from "moment";
+
 
 interface Props {
   sx?: CSSObject;
@@ -43,6 +47,7 @@ interface Props {
     cancelable: boolean;
     deadlineLocal: string | null;
   };
+  finalPrice: number;
 }
 
 const CheckoutInformation: FC<Props> = ({
@@ -50,6 +55,7 @@ const CheckoutInformation: FC<Props> = ({
   price,
   priceKey,
   policy,
+  finalPrice,
 }) => {
   const history = useHistory();
   const stripe = useStripe();
@@ -75,6 +81,14 @@ const CheckoutInformation: FC<Props> = ({
     countryCode: 1,
     phone: "",
   });
+
+  const [bookingSuccess, setBookingSuccess] = useState(-1)
+  const [bookingData, setBookingData] = useState(null)
+  const search = useSelector((state: any) => state.searchReducer.search);
+
+  const detail = useSelector(
+    (state: any) => state.hotelCheckoutReducer.checkout
+  );
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -114,6 +128,46 @@ const CheckoutInformation: FC<Props> = ({
     });
   };
 
+  const getTimestamp = (timestamp) => {
+    const regex = /\b\d+\b/;
+    const timestampMatch = timestamp.match(regex);
+
+    if (timestampMatch) {
+      const timestamp = parseInt(timestampMatch[0], 10);
+      return timestamp
+    } else {
+      console.log("No timestamp found in the string.");
+    }
+    return ""
+  }
+
+  let isRefundable = false
+  let isFullRefund = false
+
+  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === finalPrice) {
+    const dateFrom = policy[0].DateFrom
+
+    const date1 = new Date(getTimestamp(dateFrom)).getTime();
+    const date2 = new Date().getTime();
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    console.log(diffDays)
+    if (diffDays < 2) {
+      isRefundable = false
+
+    } else {
+      isRefundable = true
+      isFullRefund = true
+    }
+    
+  } else if (policy && policy.length === 2) {
+    isRefundable = true
+    isFullRefund = false
+  } else {
+    //TODO: flag this, we haven't covered this case
+  }
+
+
 
   const [createPI, { data: piData, loading: piLoading }] = useMutation(
     gql`
@@ -129,6 +183,7 @@ const CheckoutInformation: FC<Props> = ({
         }
 
         const cardElement = elements.getElement(CardElement);
+        console.log(cardElement)
         if (!cardElement) {
           setPaymentLoading(false);
           return;
@@ -136,76 +191,130 @@ const CheckoutInformation: FC<Props> = ({
 
         try {
           const { error, paymentIntent } = await stripe.confirmCardPayment(
-             data?.createPaymentIntent?.paymentIntent?.clientSecret,
-             {
-               payment_method: {
-                 card: cardElement,
-                 billing_details: {
-                   name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
-                 },
-               },
-             }
-           );
-          if (paymentIntent) {
-            const adults: { firstName: string; lastName: string }[] = [];
-            const children: {
-              firstName: string;
-              lastName: string;
-              age: number;
-            }[] = [];
-
-            Array.from(Array(occupants.adults)).forEach((_, i) => {
-              if (i === 0) {
-                adults.push({
-                  firstName: checkoutForm.firstName.trim(),
-                  lastName: checkoutForm.lastName.trim(),
-                });
-              } else {
-                const guestId = String.fromCharCode(64 + i);
-                adults.push({
-                  firstName: `Adult${guestId}`,
-                  lastName: checkoutForm.lastName.trim(),
-                });
-              }
-            });
-
-            if (occupants.children > 0) {
-              Array.from(Array(occupants?.childrenAge?.length)).forEach(
-                (x_, i) => {
-                  const childId = String.fromCharCode(65 + i);
-                  children.push({
-                    firstName: `Child${childId}`,
-                    lastName: checkoutForm.lastName.trim(),
-                    age: occupants.childrenAge[i],
-                  });
-                }
-              );
-            }
-
-            createBooking2({
-              variables: {
-                createBooking2Input: {
-                  priceKey: priceKey,
-                  customerId: paymentIntent.id,
-                  paymentIntentId: paymentIntent.id,
-                  email: checkoutForm.email,
-                  mobile: {
-                    countryCallingCode: checkoutForm.countryCode,
-                    number: checkoutForm.phone,
-                  },
-                  adults,
-                  children,
-                  noOfDogs: occupants.dogs,
-                  intentType: 'payment_intent',
-                  setupIntentObject: {
-                    created: parseInt((new Date().getTime() / 1000).toFixed(0))
-                  },
-                  utmSource: localStorage.getItem('utm_source') || '',
-                  utmMedium: localStorage.getItem('utm_medium') || ''
+            data?.createPaymentIntent?.paymentIntent?.clientSecret,
+            {
+              payment_method: {
+                card: cardElement,
+                billing_details: {
+                  name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
                 },
               },
-            });
-            subscribeToNewsletter(checkoutForm.email)
+            }
+          );
+          console.log('payment intent')
+          console.log(error)
+          if (paymentIntent) {
+        
+            const passengers = []
+            const passengerObj = {
+              "Allocation": detail.room.Rooms[0].Id,
+              "Email": { "Value": checkoutForm.email },
+              "Telephone": {
+                "PhoneNumber": checkoutForm.phone
+              },
+              "PersonDetails": {
+                "Name": {
+                  "GivenName": checkoutForm.firstName,
+                  "NamePrefix": "Mr",
+                  "Surname": checkoutForm.lastName
+                },
+                "Type": 0
+              }
+            }
+
+            for (let i = 0; i < occupants.adults ; i++) {
+              if (i === 0) {
+                passengers.push({ 
+                  "Id": uuid.v4(),
+                  "Allocation": detail.room.Rooms[0].Id,
+                  "Email": { "Value": checkoutForm.email },
+                  "Telephone": {
+                    "PhoneNumber": checkoutForm.phone
+                  },
+                  "PersonDetails": {
+                    "Name": {
+                      "GivenName": checkoutForm.firstName,
+                      "NamePrefix": "Mr",
+                      "Surname": checkoutForm.lastName
+                    },
+                    "Type": 0
+                  }
+                })
+              } else {
+                const guestId = String.fromCharCode(64 + i);
+                passengers.push({
+                  "Id": uuid.v4(),
+                  "Allocation": detail.room.Rooms[0].Id,
+                  "Email": { "Value": checkoutForm.email },
+                  "Telephone": {
+                    "PhoneNumber": checkoutForm.phone
+                  },
+                  "PersonDetails": {
+                    "Name": {
+                      "GivenName": `Adult${guestId}`,
+                      "NamePrefix": "Mr",
+                      "Surname": checkoutForm.lastName
+                    },
+                    "Type": 0
+                  }
+                })
+              }
+            } 
+
+            if (occupants.children > 0) {
+              for (let x = 0; x < occupants?.childrenAge?.length; x++) {
+                const childId = String.fromCharCode(65 + x);
+                passengers.push({
+                  "Id": uuid.v4(),
+                  "Allocation": detail.room.Rooms[0].Id,
+                  "PersonDetails": {
+                    "Name": {
+                      "GivenName": `Child${childId}`,
+                      "Surname": checkoutForm.lastName,
+                      "NamePrefix": "Mr",
+                    },
+                    "Age": occupants.childrenAge[x],
+                    "Type": 1
+                  }
+                })
+              }
+            }
+
+            console.log(passengers)
+
+
+
+            createBookingInTravolutionary({
+              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
+            })
+            // subscribeToNewsletter(checkoutForm.email)
+
+
+
+            // createBooking2({
+            //   variables: {
+            //     createBooking2Input: {
+            //       priceKey: priceKey,
+            //       customerId: paymentIntent.id,
+            //       paymentIntentId: paymentIntent.id,
+            //       email: checkoutForm.email,
+            //       mobile: {
+            //         countryCallingCode: checkoutForm.countryCode,
+            //         number: checkoutForm.phone,
+            //       },
+            //       adults,
+            //       children,
+            //       noOfDogs: occupants.dogs,
+            //       intentType: 'payment_intent',
+            //       setupIntentObject: {
+            //         created: parseInt((new Date().getTime() / 1000).toFixed(0))
+            //       },
+            //       utmSource: localStorage.getItem('utm_source') || '',
+            //       utmMedium: localStorage.getItem('utm_medium') || ''
+            //     },
+            //   },
+            // });
+            // subscribeToNewsletter(checkoutForm.email)
           }
           setPaymentLoading(false);
 
@@ -224,6 +333,29 @@ const CheckoutInformation: FC<Props> = ({
       }
     }
   );
+
+  const [createBookingInTravolutionary, { data, loading }] = useMutation(
+    gql`
+    ${createBookingTravolutionary}
+    `, {
+    async onCompleted(data) {
+      console.log('completed')
+      console.log(data)
+      if (data?.createBookingUsingTravolutionary?.response === null) {
+        setBookingSuccess(0)
+        return
+      }
+      setBookingSuccess(1)
+      setBookingData(data.createBookingUsingTravolutionary.response)
+    },
+    async onError(error) {
+      console.log(error)
+      setBookingSuccess(0)
+
+    }
+    //TODO: add error, setBookingSuccess(0)
+  }
+  )
 
   const [createSI, { data: siData, loading: siLoading }] = useMutation(
     gql`
@@ -392,16 +524,16 @@ const CheckoutInformation: FC<Props> = ({
 
     try {
 
-      if (policy.cancelable) {
-        createSI({
-          variables: { createSetupIntentInput: { email: checkoutForm.email } },
-        });
-      } else {
-        createPI({
-          variables: { createPaymentIntentInput: { priceKey: priceKey } },
-        });
-      }
-  
+      // if (policy.cancelable) {
+      //   createSI({
+      //     variables: { createSetupIntentInput: { email: checkoutForm.email } },
+      //   });
+      // } else {
+      createPI({
+        variables: { createPaymentIntentInput: { price: finalPrice } },
+      });
+      // }
+
 
       if (password && confirmPassword) {
         const data = await createAccount(checkoutForm.email, password)
@@ -410,7 +542,7 @@ const CheckoutInformation: FC<Props> = ({
           console.log(data2)
         }
       }
-      
+
     } catch (err) {
       console.log(err);
       errors.card =
@@ -506,23 +638,22 @@ const CheckoutInformation: FC<Props> = ({
           }}
         >
           <>
-            {(siLoading ||
+            {(loading || siLoading ||
               piLoading ||
               paymentLoading ||
               bnplLoading) && (
-              <>
-                <Box sx={{ zIndex: 30000 }}>
-                  <Loader size="200px" />
-                  <Typography variant="body2" color="text.secondary">
-                    Loading...please don&apos;t refresh or close the page
-                  </Typography>
-                </Box>
-              </>
-            )}
-            {bnplData ? (
+                <>
+                  <Box sx={{ zIndex: 30000 }}>
+                    <Loader size="200px" />
+                    <Typography variant="body2" color="text.secondary">
+                      Loading...please don&apos;t refresh or close the page
+                    </Typography>
+                  </Box>
+                </>
+              )}
+            {bookingSuccess > -1 ? (
               <Box sx={{ display: "flex", px: 5, flexDirection: "column" }}>
-                {!bnplData?.createBooking2?.booking?.sabreConfirmationId &&
-                !bnplData?.createBooking2?.booking?.propertyConfirmationId ? (
+                { bookingSuccess == 0 ? (
                   <Box sx={{ mt: -5 }}>
                     <ErrorDog size="150px" />
                     <Typography
@@ -554,21 +685,21 @@ const CheckoutInformation: FC<Props> = ({
                         </Typography>
                       </li>
                     </ul>
+                    
                     <Typography variant="body1">
-                      If this behavior continues, please contact support with
-                      the following reference #:
+                      If this behavior continues, please contact support. 
                     </Typography>
+                      {/* with
+                      the following reference #:
                     <Typography
                       variant="body1"
                       sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
                     >
                       {bnplData?.createBooking2?.booking?.faunaDocId}
                     </Typography>
-                    <Typography variant="body2" sx={{ textAlign: "left" }}>
-                      Note: your credit card may have been authorized, but not
-                      charged. If your card was authorized, authorization should
-                      automatically fall off in a few days.
-                    </Typography>
+                    */}
+              
+                  
                   </Box>
                 ) : (
                   <Box sx={{ mt: -5 }}>
@@ -581,19 +712,9 @@ const CheckoutInformation: FC<Props> = ({
                     </Typography>
 
                     <Typography variant="body1" sx={{ textAlign: "left" }}>
-                      Your confirmation number is:
+                      Your confirmation number is: <b>{bookingData ? bookingData?.bookingId?.toUpperCase() : ''}</b>
                     </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ textAlign: "left", my: 2, fontWeight: "bold" }}
-                    >
-                      {bnplData?.createBooking2?.booking?.propertyConfirmationId
-                        ? bnplData?.createBooking2?.booking
-                            ?.propertyConfirmationId
-                        : bnplData?.createBooking2?.booking
-                            ?.sabreConfirmationId}
-                    </Typography>
-                    <Typography variant="body1" sx={{ mb: 2}}>
+                    <Typography variant="body1" sx={{ mb: 2 }}>
                       We&apos;ve sent you an email with all of the details of
                       your booking.
                     </Typography>
@@ -605,10 +726,11 @@ const CheckoutInformation: FC<Props> = ({
               <Box
                 sx={{
                   display:
+                    loading ||
                     siLoading ||
-                    piLoading ||
-                    paymentLoading ||
-                    bnplLoading
+                      piLoading ||
+                      paymentLoading ||
+                      bnplLoading
                       ? "none"
                       : "flex",
                   flexDirection: "column",
@@ -701,6 +823,7 @@ const CheckoutInformation: FC<Props> = ({
                   <Box
                     className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
                     sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
+                    pr="1rem"
                   >
                     <CardElement
                       options={{
@@ -745,7 +868,7 @@ const CheckoutInformation: FC<Props> = ({
 
                 <Divider light sx={{ my: 2 }} />
 
-                <Grid item xs={12} sx={{ mt: 2}}>
+                <Grid item xs={12} sx={{ mt: 2 }}>
                   <Typography
                     variant="h6"
                     sx={{
@@ -761,7 +884,7 @@ const CheckoutInformation: FC<Props> = ({
                     <Typography component="p" variant="base" display="flex" alignItems="center" gap="0.5rem"><PetsIcon /> Receive pet-friendly tips & tricks</Typography>
                   </Box>
                   <Typography component="p" mb="1rem" variant="base">Enter a password to create an account based on the email address above.</Typography>
-                  <ValidatorForm>
+                  <ValidatorForm onSubmit={() => updateForm()}>
                     <TextValidator
                       fullWidth={true}
                       name="password"
@@ -822,6 +945,20 @@ const CheckoutInformation: FC<Props> = ({
                     sx={{ mt: 0, textAlign: "left" }}
                   >
                     <ul>
+
+                      <li>Please make sure that you have reviewed the cancellation and refund policy.</li>
+
+                      {(policy && isRefundable) && (
+                        <li>
+                          <Typography variant="base">Cancellations or changes made to your reservation after <span style={{ color: 'red'}}>{moment(getTimestamp(policy[0].DateFrom)).format('h:mm A')}</span> on <span style={{ color: 'red'}}>{new Date(getTimestamp(policy[0].DateFrom)).toLocaleDateString()}</span> or no-shows are subject to a cancellation fee that is listed under the cancellation policy.</Typography>
+                        </li>          
+                      )}
+                      {(policy && !isRefundable) && (
+                        <li>This rate is non-refundable.</li>
+                      )}
+
+                     
+                      {/*
                       {policy.cancelable ? (
                         <li>
                           Cancellations or changes made to your reservation
@@ -835,21 +972,12 @@ const CheckoutInformation: FC<Props> = ({
                       ) : (
                         <li>This rate is non-refundable.</li>
                       )}
-
-                      <li>
-                        You and your pet will be greeted by front desk staff
-                        upon arrival.
-                      </li>
-                      {policy.cancelable ? (
-                        <li>
-                          Hotel will collect payment from guests directly upon check-in.
-                        </li>
-                      ) : (
-                        <li>Your card will be charged immediately on a successful booking.</li>
-                      )}
-                      <li>
-                        Hotel may request a fully-refundable pet deposit and/or signed pet waiver upon check-in.
-                      </li>
+                      */}
+              
+                      <li>You and your pet(s) will be greeted by front desk staff upon arrival.</li>
+                      <li>Your card will be charged immediately on a successful booking.</li>
+                      <li>If the Hotel charges a pet fee, this will be paid to the Hotel upon arrival.</li>
+                      <li>*A fully refundable pet deposit and/or signed pet waiver may be requested by the Hotel upon check-in.</li>
                     </ul>
                   </Typography>
                   <Box
@@ -884,6 +1012,7 @@ const CheckoutInformation: FC<Props> = ({
 
                 <Grid item xs={12}>
                   <Button
+                    disabled={!checkState}
                     variant="contained"
                     fullWidth={true}
                     size="large"

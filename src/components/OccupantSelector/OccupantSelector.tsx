@@ -12,6 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { FC, MouseEventHandler, useState } from "react";
 import { useMeasure } from "react-use";
 import NumberInput from "../NumberInput";
+import InputAdornment from '@mui/material/InputAdornment';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 export interface Occupant {
   adults: number;
@@ -77,8 +79,8 @@ const OccupantSelector: FC<Props> = ({
         fullWidth={fullWidth}
         label={label ? label : ""}
         sx={sx}
-        size={size}
-        variant={variant}
+        variant='outlined'
+        size='small'
         value={
           value.adults === 0 && value.dogs === 0 && value.children === 0
             ? ""
@@ -90,6 +92,13 @@ const OccupantSelector: FC<Props> = ({
         onClick={handleClick}
         ref={ref}
         disabled={disabled}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" sx={{marginRight: '0.5rem'}}>
+              <PersonOutlineIcon fontSize="small" />
+            </InputAdornment>
+          ),
+        }} 
       />
       <Popover
         open={Boolean(anchorEl)}
@@ -152,11 +161,11 @@ const OccupantSelector: FC<Props> = ({
             justifyContent="space-between"
             sx={{ width: "100%" }}
           >
-            <Typography sx={popOverLabelText}>Dogs</Typography>
+            <Typography sx={popOverLabelText}>Pets</Typography>
             <NumberInput
               value={value.dogs}
               onChange={(dogs) => {
-                if (dogs > 2) return;
+                if (dogs > 9) return;
                 onChange({ ...value, dogs });
               }}
             />
@@ -194,7 +203,9 @@ const OccupantSelector: FC<Props> = ({
                     <Select
                       key={i}
                       color="primary"
-                      sx={{ textAlign: "center" }}
+                      sx={{ textAlign: "center", mt: '20px' }}
+                      variant='outlined'
+                      size="small"
                       value={
                         value.childrenAge && value.childrenAge[i]
                           ? value.childrenAge[i].toString()

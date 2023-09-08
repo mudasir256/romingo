@@ -3,16 +3,21 @@ import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import { CSSObject } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import moment from "moment";
 
 interface Props {
   sx?: CSSObject;
-  payLater: boolean;
+  discountAmount?: number;
 }
 
-const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
+const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
+  console.log(discountAmount)
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
+
+  const search = useSelector((state: any) => state.searchReducer.search);
+
   const totalPetFees = useSelector(
     (state: any) => state.hotelDetailReducer?.detail?.petFeePolicy?.totalFees
   );
@@ -29,59 +34,77 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
 
   const [feesIncluded, setFeesIncluded] = useState("");
   const [fees, setFees] = useState([]);
+  const [markup, setMarkup] = useState(0);
+
+  const addTotalTaxes = (taxes) => {
+    let total = 0
+    taxes.forEach(tax => {
+      total = total + parseFloat(tax?.Value || 0)
+    })
+    return total
+  }
 
   useEffect(() => {
     const tmp = [];
+    // if (detail?.room?.room?.feesIncluded) {
+    //   setFeesIncluded(
+    //     "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
+    //   );
+    // } else {
+    //   setFeesIncluded(
+    //     "*Includes all taxes. This Hotel may charge a resort or amenity fee, which you pay to the Hotel at check-in. These fees are not included in the amount above."
+    //   );
+    // }
 
-    if (detail?.room?.room?.feesIncluded) {
-      setFeesIncluded(
-        "*Includes all taxes and applicable fees (ie: resort/amenity fees)."
-      );
-    } else {
-      setFeesIncluded(
-        "*Includes all taxes. This Hotel may charge a resort or amenity fee, which you pay to the Hotel at check-in. These fees are not included in the amount above."
-      );
-    }
+    // const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
+    // setMarkup(markupInitial)
+    const tax =  (
+      detail.room.PackagePrice?.OriginalTax 
+      || addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
+      || 0
+    )
+    const priceBeforeTax = detail.room.PackagePrice.FinalPrice - tax
 
+    const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
     tmp.push({
       label: "Average price per night",
-      price: detail?.room?.room?.averagePrice,
+      price: priceBeforeTax / nights,
     });
 
     tmp.push({
       label: "Nights",
-      price: detail?.room?.room?.totalPrice / detail?.room?.room?.averagePrice,
+      price: nights,
     });
 
     tmp.push({
       label: "Total before taxes & fees",
-      price: detail?.room?.room?.totalPrice,
+      price: priceBeforeTax,
     });
 
     tmp.push({
       label: "Taxes & fees",
-      price:
-        detail?.room?.room?.totalPriceAfterTax - detail?.room?.room?.totalPrice,
+      price: tax,
     });
 
-    tmp.push({
-      label: "Pet Fees",
-      price: totalPetFees,
-    });
+    // tmp.push({
+    //   label: "Pet Fees",
+    //   price: 0,
+    // });
 
     tmp.push({
       label: "Total",
-      price: detail?.room?.room?.totalPriceAfterTax,
+      discount: (discountAmount > 0 ? discountAmount : 0),
+      price: (detail.room.PackagePrice.FinalPrice - (discountAmount > 0 ? discountAmount : 0)), //+ markupInitial),
     });
 
     tmp.push({
       label: "Pay now",
-      price: payLater ? 0 : detail?.room?.room?.totalPriceAfterTax,
+      price: detail?.room?.room?.totalPriceAfterTax,
     });
 
     setPriceArr([...tmp]);
     setFees(detail?.room?.room?.fees);
-  }, [detail, payLater]);
+  }, [detail, discountAmount]);
 
   const detailsLen = priceArr.length;
 
@@ -151,9 +174,9 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             </Box>
           );
         } else if (i === detailsLen - 2) { //this is Total
-          return (
+          return (<Box key={i}>
+            {(detail.discount > 0) ?
             <Box
-              key={i}
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -163,6 +186,7 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                 pt: 2
               }}
             >
+
               <Typography
                 variant="base"
                 sx={{
@@ -174,7 +198,47 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                   fontWeight: 800,
                 }}
               >
-                <b>{detail.label}</b>
+                <b>Discount</b>
+              </Typography>
+
+              <Typography
+                variant="base"
+                sx={{
+                  fontWeight: 500,
+                  mt: 0,
+                  color: "black",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                }}
+              >
+                -{`${dollarUSLocale.format(detail.discount)}`}
+              </Typography>
+            </Box>
+            : <></>}
+            <Box
+              key={i}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                mt: 1,
+                borderTop: (detail.discount > 0) ? "" : '1px solid #DDD',
+                pt: (detail.discount > 0) ? 0 : 2
+              }}
+            >
+
+              <Typography
+                variant="base"
+                sx={{
+                  mt: 0,
+                  color: "black",
+                  textIndent: "-8px",
+                  paddingLeft: "8px",
+                  maxWidth: "70%",
+                  fontWeight: 800,
+                }}
+              >
+                <b>Pay now</b>
               </Typography>
 
               <Typography
@@ -187,10 +251,10 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
                   paddingLeft: "8px",
                 }}
               >
-                <b>{`${dollarUSLocale.format(detail?.price)}*`}</b>
+                <b>{`${dollarUSLocale.format(detail?.price)}`}</b>
               </Typography>
             </Box>
-          );
+          </Box>);
         } else if (detail.label === "Pet Fees") {
           return (
             <Box
@@ -246,88 +310,89 @@ const PriceDetailCard: FC<Props> = ({ sx, payLater }) => {
             </Box>
           );
         } else if (detail.label === "Pay now") {
-          return (<></>)
-            /*
-            <Box
-              key={i}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                mt: 1,
-              }}
-            >
-              <Typography
-                variant="body2"
-                sx={{
-                  mt: 0,
-                  color: "#5B8D3E",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  maxWidth: "70%",
-                  fontWeight: 600,
-                }}
-              >
-                {detail.label}
-              </Typography>
+          return (<Box key={i}></Box>)
 
-              <Typography
-                variant="body2"
-                sx={{
-                  fontWeight: 600,
-                  mt: 0,
-                  fontFamily: "Roboto",
-                  color: "#5B8D3E",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                }}
-              >
-                {`${dollarUSLocale.format(detail?.price)}`}
-              </Typography>
-            </Box>
-            */
-        } else if (detail.label === "Taxes & fees") {
-          return (
-            <Box
-              key={i}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                mt: 1,
-                pt: 2,
-                mb: 1,
-                borderTop: "1px solid #DDD",
-              }}
-            >
-              <Typography
-                variant="base"
-                sx={{
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                  maxWidth: "70%",
-                  fontWeight: 600,
-                }}
-              >
-                {detail.label}
-              </Typography>
+        //     <Box
+        //       key={i}
+        //       sx={{
+        //         display: "flex",
+        //         justifyContent: "space-between",
+        //         alignItems: "flex-end",
+        //         mt: 1,
+        //       }}
+        //     >
+        //       <Typography
+        //         variant="body2"
+        //         sx={{
+        //           mt: 0,
+        //           color: "#5B8D3E",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //           maxWidth: "70%",
+        //           fontWeight: 600,
+        //         }}
+        //       >
+        //         {detail.label}
+        //       </Typography>
 
-              <Typography
-                variant="base"
-                sx={{
-                  fontWeight: 500,
-                  mt: 0,
-                  color: "text.primary",
-                  textIndent: "-8px",
-                  paddingLeft: "8px",
-                }}
-              >
-                {`+ ${dollarUSLocale.format(detail?.price)}`}
-              </Typography>
-            </Box>
-          );
+        //       <Typography
+        //         variant="body2"
+        //         sx={{
+        //           fontWeight: 600,
+        //           mt: 0,
+        //           fontFamily: "Roboto",
+        //           color: "#5B8D3E",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //         }}
+        //       >
+        //         {`${dollarUSLocale.format(detail?.price)}`}
+        //       </Typography>
+        //     </Box>
+            
+        //   )
+         
+        // } else if (detail.label === "Taxes & fees") {
+        //   return (<Box key={i}>
+        //     <Box
+        //       key={i}
+        //       sx={{
+        //         display: "flex",
+        //         justifyContent: "space-between",
+        //         alignItems: "flex-end",
+        //         mt: 1,
+        //         pt: 2,
+        //         borderTop: "1px solid #DDD",
+        //       }}
+        //     >
+        //       <Typography
+        //         variant="base"
+        //         sx={{
+        //           mt: 0,
+        //           color: "text.primary",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //           maxWidth: "70%",
+        //           fontWeight: 600,
+        //         }}
+        //       >
+        //         {detail.label}
+        //       </Typography>
+
+        //       <Typography
+        //         variant="base"
+        //         sx={{
+        //           fontWeight: 500,
+        //           mt: 0,
+        //           color: "text.primary",
+        //           textIndent: "-8px",
+        //           paddingLeft: "8px",
+        //         }}
+        //       >
+        //         {`+ ${dollarUSLocale.format(detail?.price)}`}
+        //       </Typography>
+        //     </Box>
+        //   </Box>);
         } else {
           return (
             <Box

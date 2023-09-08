@@ -6,7 +6,7 @@ import { store, persistor } from "./redux/store";
 import { createBrowserHistory } from "history";
 import { PersistGate } from "redux-persist/integration/react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider, Theme, StyledEngineProvider, adaptV4Theme } from "@mui/material/styles";
 import { Router } from "react-router-dom";
 import { theme } from "./theme";
 // import { Elements } from "@stripe/react-stripe-js";
@@ -14,9 +14,16 @@ import { theme } from "./theme";
 
 import "./index.scss";
 
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
 const hist = createBrowserHistory();
 
-const muTheme = createTheme(theme);
+const muTheme = createTheme(adaptV4Theme(theme));
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_ENDPOINT,
@@ -37,19 +44,21 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={muTheme}>
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-{/*            <Elements stripe={stripePromise}>
-*/}              <Router history={hist}>
-                <App />
-              </Router>
-{/*            </Elements>*/}
-          </PersistGate>
-        </Provider>
-      </ApolloProvider>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={muTheme}>
+        <ApolloProvider client={client}>
+          <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+  {/*            <Elements stripe={stripePromise}>
+  */}              <Router history={hist}>
+                  <App />
+                </Router>
+  {/*            </Elements>*/}
+            </PersistGate>
+          </Provider>
+        </ApolloProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
