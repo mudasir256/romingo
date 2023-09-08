@@ -463,7 +463,7 @@ const ListingCard: FC<ListingCardProps> = ({
               right: 12,
             }}
           >
-            <PriceDetails />
+            {showPrice && <PriceDetails /> }
           </Box>
         </Box>
       </Box>

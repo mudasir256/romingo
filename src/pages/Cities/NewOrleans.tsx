@@ -176,7 +176,6 @@ const NewOrleans: FC = () => {
           <Hidden mdUp>
             <FilterBar />
           </Hidden>{' '}
-          <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography

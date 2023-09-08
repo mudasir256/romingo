@@ -185,7 +185,7 @@ const Cleveland: FC = () => {
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item my="0.5rem" xs={12} md={8}>
           <Typography
             variant="body1"
             color="text.secondary"
@@ -194,6 +194,8 @@ const Cleveland: FC = () => {
             With its blend of welcoming locals, scenic parks, and pet-friendly establishments, Cleveland promises an unforgettable and fantastic adventure for both you and your beloved pets.
           </Typography>
         </Grid>
+
+        {cityContent.secondaryImage &&
 
         <Grid ml="auto" mt="0.5rem" item xs={12} md={4}>
           <Box
@@ -209,6 +211,7 @@ const Cleveland: FC = () => {
             }}
           />
         </Grid>
+        }
 
       
         <Box

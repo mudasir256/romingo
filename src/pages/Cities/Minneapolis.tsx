@@ -181,7 +181,7 @@ const Minneapolis: FC = () => {
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item my='0.5rem' xs={12} md={8}>
           <Typography
             variant="body1"
             color="text.secondary"
@@ -191,6 +191,7 @@ const Minneapolis: FC = () => {
           </Typography>
         </Grid>
 
+        {cityContent.secondaryImage &&
         <Grid ml="auto" mt="0.5rem" item xs={12} md={4}>
           <Box
             component="img"
@@ -205,6 +206,7 @@ const Minneapolis: FC = () => {
             }}
           />
         </Grid>
+        }
 
       
         <Box

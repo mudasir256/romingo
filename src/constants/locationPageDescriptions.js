@@ -151,7 +151,7 @@ const HOTEL_DESCRIPTIONS = [
     keywords: 'pet friendly hotels Boston, MA, dog friendly hotels Boston, MA, pet friendly bed & breakfasts Boston, MA, dog friendly B&Bs Boston, MA, pet friendly vacation rentals Boston, MA, dog friendly vacation rentals Boston, MA, Boston, MA pet friendly accommodations, Boston, MA dog friendly lodging' 
   },
   {
-    city: 'Charlottle',
+    city: 'Charlotte',
     heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Charlotte%20Hero.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Charlotte, NC, dog friendly hotels Charlotte, NC, pet friendly bed & breakfasts Charlotte, NC, dog friendly B&Bs Charlotte, NC, pet friendly vacation rentals Charlotte, NC, dog friendly vacation rentals Charlotte, NC, Charlotte, NC pet friendly accommodations, Charlotte, NC dog friendly lodging'

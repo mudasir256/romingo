@@ -469,7 +469,7 @@ const HomePage: FC<Props> = () => {
               <Box key={i} sx={{ p: '1em', width: { xs: '90%', sm: '90%', md: '400px'} , mx: 'auto'}}>
                 <ListingCardSquare
                   {...hotel}
-                  name={hotel.hotelName}
+                  name={hotel.hotelName === 'Margaritaville Resort Palm Springs' ? 'Margitaville Resort' : hotel.hotelName}
                   lowestTotalPriceAfterTax={pricesTwo[i]}
                   highlighted={false}
                 />

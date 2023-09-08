@@ -61,6 +61,12 @@ const ListingPageNew = ({ ...props }) => {
     smokeFree: 'Smoke-free property'
   }
 
+  const PET_LABEL_WEIGHT = {
+    '25': '1-25 lbs',
+    '50': '26-75 lbs',
+    '75': '75+ lbs'
+  }
+
   const dispatch: Dispatch<any> = useDispatch();
   const history = useHistory();
 
@@ -480,7 +486,7 @@ const ListingPageNew = ({ ...props }) => {
     >
   
         <img width="40px" src={WhitePawsIcon} />
-        <Typography  variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $5 off your first reservation when you create an account</Typography>
+        <Typography  variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $10 off your first reservation when you create an account</Typography>
         <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
@@ -663,7 +669,7 @@ const ListingPageNew = ({ ...props }) => {
 
           <Grid item container direction='row'>
             {!mobile && <Box textAlign="left"><LargeFilterBar /></Box>}
-            <Box my="0.75rem" textAlign="left" maxWidth="840px" mr="1rem"><Banner /></Box>
+            <Box my="0.75rem" textAlign="left" width="100%" maxWidth="845px" mr="1rem"><Banner /></Box>
             
 
             <Grid maxWidth="840px" item container direction='row' justifyContent='space-between' alignItems="center">
@@ -689,6 +695,27 @@ const ListingPageNew = ({ ...props }) => {
                   }
                   {!mobile && 
                   <Box>
+                  {petWeights &&
+                    <Chip
+                      size="small"
+                      label={PET_LABEL_WEIGHT[petWeights]}
+                      onDelete={() => setPetWeights(null)}
+                    />
+                  }
+                  {allowsCats && 
+                    <Chip
+                      size="small"
+                      label="Accepts cats"
+                      onDelete={() => setAllowsCats(false)}
+                    />
+                  }
+                  {hasNoPetFees && 
+                    <Chip
+                      size="small"
+                      label="$0 pet fees"
+                      onDelete={() => setHasNoPetFees(false)}
+                    />
+                  }
                   {(sliderValue[0] != minPrice || sliderValue[1] != maxPrice) &&
                     <Chip
                       size="small"
@@ -707,6 +734,7 @@ const ListingPageNew = ({ ...props }) => {
                       )
                     }
                   })}
+
 
                   {rating > 0 &&
                     <Chip

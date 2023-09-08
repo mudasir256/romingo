@@ -28,6 +28,7 @@ export default function SingleLoadListingCard({ hotelName }) {
 			name={card?.hotelName}
 			addressLine1={card?.addressLine}
 			romingoScore={card?.starRating}
+			numberOfReviews={card?.numberOfReviews}
 			city={card?.city}
 			showPrice={false}
 			alias={card?.travolutionaryId}

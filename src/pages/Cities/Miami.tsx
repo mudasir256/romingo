@@ -180,7 +180,7 @@ const Miami: FC = () => {
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item my="0.5rem" xs={12} md={12}>
           <Typography
             variant="body1"
             color="text.secondary"
@@ -190,6 +190,7 @@ const Miami: FC = () => {
           </Typography>
         </Grid>
 
+        {cityContent.secondaryImage &&
         <Grid ml="auto" mt="0.5rem" item xs={12} md={4}>
           <Box
             component="img"
@@ -204,6 +205,7 @@ const Miami: FC = () => {
             }}
           />
         </Grid>
+        }
 
       
         <Box
@@ -254,7 +256,7 @@ const Miami: FC = () => {
           />
 
           <Bold text="The Confidante Miami Beach" />
-          <SingleLoadListingCard hotelName="10086316" />
+          <SingleLoadListingCard hotelName="100086316" />
           <Text text="The Confidante Miami Beach is a captivating and artfully designed oceanfront oasis situated in the heart of Miami Beach, Florida. As part of the Hyatt Unbound Collection, the hotel exudes a distinct blend of retro charm and modern luxury, paying homage to the glamour of the 1940s and 1950s with a contemporary twist. " />
           <Text text="Guests are greeted with spacious and comfortable rooms and suites, many of which offer panoramic views of the Atlantic Ocean or the city skyline. The Confidante's private beachfront, complete with colorful umbrellas and loungers, invites relaxation and leisure, while its heated outdoor pool area provides a chic and lively atmosphere. The hotel's commitment to culinary excellence is showcased through its diverse dining options that feature locally inspired cuisine and innovative cocktails. " />
           <Text text="The Confidante Miami Beach is pet-friendly and allows you to bring two pets with a combined weight of 75 pounds or less. If you are staying between 1-5 days, the fee is $100." />

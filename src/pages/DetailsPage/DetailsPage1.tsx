@@ -1,4 +1,5 @@
 import loadable from '@loadable/component'
+import {Helmet} from 'react-helmet';
 import { withStyles } from "@mui/styles";
 import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
 import { Dispatch, FC, useEffect, useState, useRef, useCallback } from "react";
@@ -303,7 +304,21 @@ const DetailsPage1 = ({ ...props }) => {
     }
   }
 
-  return (
+  return (<>
+    <Helmet>
+      <title>{hotel?.hotelName} | Romingo</title>
+      <description>{hotel?.description}</description>
+      <meta property="og:title" content={`${hotel?.hotelName} | Romingo`} />
+      <meta property="og:description" content={hotel?.description} />
+      {/*      <meta property="og:url" content={`https://www.romingo.com/hotel/${hotelAlias}`} />*/}      
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={hotel?.images?.find(item => true)} />
+      <meta property="og:site_name" content="Romingo" />
+      <meta name="twitter:title" content={`${hotel?.hotelName} | Romingo`} />
+      <meta name="twitter:description" content={hotel?.description} />
+      <meta name="twitter:image" content={hotel?.images?.find(item => true)} />
+      <meta name="twitter:card" content="summary_large_image" />
+    </Helmet>
     <Box sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
       <Navbar />
@@ -818,7 +833,7 @@ ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
 
       </SimpleReactLightbox>
     </Box>
-  )
+  </>)
 }
 
 export default withStyles(styles)(DetailsPage1);
