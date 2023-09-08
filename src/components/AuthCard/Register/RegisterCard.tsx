@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { CSSObject } from "@mui/material";
 import Button from "@mui/material/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { createAccount, addNameToAccount } from '../../../services/endpoints'
+import { createAccount, addNameToAccount, subscribeToNewsletter } from '../../../services/endpoints'
 
 interface Props {
   sx?: CSSObject;
@@ -35,6 +35,7 @@ const RegisterCard: FC<Props> = ({ sx }) => {
     setErrorMessage('')
     const data = await createAccount(email, password)
     if (data.data.createUser?.id) {
+      subscribeToNewsletter(email)
       const data2 = await addNameToAccount(data.data.createUser.id, name)
       console.log(data2)
       setSuccessMessage('Account created! Please login to your account to access your profile!')

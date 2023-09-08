@@ -20,6 +20,7 @@ import {
   Dialog,
   AppBar,
   Toolbar,
+  TextField,
 } from "@mui/material";
 
 import {
@@ -84,6 +85,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
     lat: search.lat,
     lng: search.lng
   } : null);
+  const [mobileText, setMobileText] = useState(search?.city?.description || '')
 
   const [occupants, setOccupants] = useState(
     search.occupants.dogs > 0
@@ -181,18 +183,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
 
   }
 
-  const handleCityClick = (clicked) => {
-
+  const handleCityClick = (e, index) => {
+  
     const geocoder = new google.maps.Geocoder();
     console.log(geocoder)
-    geocoder.geocode({ 'address': predictions[0].description }, function (results, status) {
+    geocoder.geocode({ 'address': predictions[index].description }, function (results, status) {
 
       if (status == google.maps.GeocoderStatus.OK) {
         console.log(results)
 
         dispatch(
           saveSearch({
-            city: predictions[0],
+            city: predictions[index],
             checkIn: new Date(checkDate[0]).toISOString(),
             checkOut: new Date(checkDate[1]).toISOString(),
             occupants,
@@ -202,16 +204,17 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         );
 
         setSelectedCity({
-          city: predictions[0],
+          city: predictions[index],
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
         })
         setNewValue({
-          city: predictions[0],
+          city: predictions[index],
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
         })
         setShowCities(false)
+        setMobileText(predictions[index]?.description)
 
       } else {
         console.log("Geocode was not successful for the following reason: " + status);
@@ -249,6 +252,9 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
             <Grid item xs={8} sx={{ zIndex: 50, minWidth: '92%' }}>
               <GooglePlaceAutoComplete 
                 mobile={true} 
+                mobileText={mobileText}
+                setMobileText={setMobileText}
+                setShowCities={setShowCities}
                 callback={handlePredictions}
                 setSelectedCity={setSelectedCity} 
                 setValue={setNewValue}
@@ -448,13 +454,19 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           zIndex: 1000
         }}>
           <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
-            <Typography textAlign="center" variant="h5">Select a destination</Typography>
+            <TextField 
+              fullWidth
+              variant="standard"
+              value={mobileText}
+              onChange={(e) => setMobileText(e.target?.value)}
+            />
             <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowCities(false)}>X</Button>
           </Box>
           <Box height="88%" overflow="scroll">
-            {predictions?.map(address => 
-              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={handleCityClick}><Typography variant="p">{address.description}</Typography></Box>
+            {predictions?.map((address, index) => 
+              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={(e) => handleCityClick(e, index)}><Typography variant="p">{address.description}</Typography></Box>
             )}
+            {predictions?.length == 0 && <Typography ml="0.75rem" variant="base">No destinations found.</Typography>}
           </Box>
         </Box>
       </Slide> 

@@ -70,7 +70,9 @@ export default function GoogleMaps(props) {
   }
 
   function handleLocationChange(newValue) {
-
+    if (isMobile && !newValue) {
+      props.setMobileText(newValue)
+    }
     if (!newValue) return
 
     const geocoder = new google.maps.Geocoder();
@@ -124,6 +126,13 @@ export default function GoogleMaps(props) {
       set.setAttribute('style', 'border: none;');
     }
   }, [])
+
+  React.useEffect(() => {
+    if (isMobile) {
+      console.log(props.mobileText)
+      setInputValue(props.mobileText)      
+    }
+  }, [props.mobileText])
 
   React.useEffect(() => {
     let active = true;
@@ -181,6 +190,7 @@ export default function GoogleMaps(props) {
         filterOptions={(x) => x}
         options={options}
         open={false}
+        onOpen={() => props.setShowCities(true)}
         value={props.city ? props.city?.city : search.city}
         getOptionLabel={(option) =>
           typeof option === 'string' ? option : option.description

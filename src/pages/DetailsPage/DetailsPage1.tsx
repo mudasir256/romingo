@@ -181,6 +181,11 @@ const DetailsPage1 = ({ ...props }) => {
       
       for (const room of roomPackagesOnly) {
         console.log(room)
+
+        //skip resort_fee hotels
+        if (room.PackagePrice?.TaxesAndFees?.some(item => item.FeeTitle === 'resort_fee')) {
+          continue
+        }
         const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
         if ((room.SimplePrice - tax) < lowest) {
           lowest = (room.SimplePrice - tax)

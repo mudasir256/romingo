@@ -35,6 +35,15 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
   const [feesIncluded, setFeesIncluded] = useState("");
   const [fees, setFees] = useState([]);
   const [markup, setMarkup] = useState(0);
+
+  const addTotalTaxes = (taxes) => {
+    let total = 0
+    taxes.forEach(tax => {
+      total = total + parseFloat(tax?.Value || 0)
+    })
+    return total
+  }
+
   useEffect(() => {
     const tmp = [];
     // if (detail?.room?.room?.feesIncluded) {
@@ -49,7 +58,11 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
 
     // const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
     // setMarkup(markupInitial)
-    const tax =  (detail.room.PackagePrice?.OriginalTax || detail.room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)
+    const tax =  (
+      detail.room.PackagePrice?.OriginalTax 
+      || addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
+      || 0
+    )
     const priceBeforeTax = detail.room.PackagePrice.FinalPrice - tax
 
     const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
