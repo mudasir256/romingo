@@ -164,7 +164,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     }, {});
   };
 
-
   const handleCityClick = (city: any) => {
     setSelectedCity(city.id)
   }

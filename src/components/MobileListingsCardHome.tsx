@@ -186,6 +186,7 @@ const ListingCardSquare = ({
                 ml: '0.3rem',
                 px: '0.2rem',
                 pb: '0.25rem'
+
               }}
             >
               <Box sx={{ display: 'flex' }}>

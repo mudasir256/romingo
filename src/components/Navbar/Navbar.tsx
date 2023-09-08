@@ -43,6 +43,7 @@ import ResetPassword from "../../components/AuthCard/ResetPassword";
 import { authService } from "../../services/authService.js"
 import DropdownMenuNav from '../../components/DropdownMenuNav'
 
+
 interface Props {
   sx?: CSSObject;
 }
@@ -124,6 +125,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 >
                   <div
                     style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+
                   >
                     FAQ
                   </div>
@@ -204,9 +206,7 @@ const Navbar: FC<Props> = ({ sx }) => {
             >
               <Box
                 component="img"
-                src={
-                  "https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg"
-                }
+                src={LogoImg}
                 alt="Logo"
                 draggable="false"
                 onClick={() => history.push("/")}
