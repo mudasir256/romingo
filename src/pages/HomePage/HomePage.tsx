@@ -98,18 +98,59 @@ const HomePage: FC<Props> = () => {
        threeDaysFromCheckIn
      );
 
-
-     //TODO: add a dummy search of sorts or get rid of
-     //replace city + lat/lng with google autocomplete stuff
+    const laSearchData = {
+      "city": {
+        "description": "Los Angeles, CA, USA",
+        "matched_substrings": [
+            {
+                "length": 11,
+                "offset": 0
+            }
+        ],
+        "place_id": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+        "reference": "ChIJE9on3F3HwoAR9AhGJW_fL-I",
+        "structured_formatting": {
+            "main_text": "Los Angeles",
+            "main_text_matched_substrings": [
+                {
+                    "length": 11,
+                    "offset": 0
+                }
+            ],
+            "secondary_text": "CA, USA"
+        },
+        "terms": [
+            {
+                "offset": 0,
+                "value": "Los Angeles"
+            },
+            {
+                "offset": 13,
+                "value": "CA"
+            },
+            {
+                "offset": 17,
+                "value": "USA"
+            }
+        ],
+        "types": [
+            "locality",
+            "political",
+            "geocode"
+        ]
+    },
+    "lat": 34.0522342,
+    "lng": -118.2436849
+    }
 
      dispatch(
        saveSearch({
-         city: cityId,
+         city: laSearchData.city,
          checkIn: new Date(randomCheckIn).toISOString(),
          checkOut: new Date(randomCheckOut).toISOString(),
          occupants: { adults: 2, children: 0, dogs: 1 },
-         lat: center.latitude,
-         lng: center.longitude,
+         lat: laSearchData.lat,
+         lng: laSearchData.lng,
        })
      );
      setTimeout(() => {

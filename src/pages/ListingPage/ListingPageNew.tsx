@@ -136,10 +136,10 @@ const ListingPageNew = ({ ...props }) => {
 
 
   const formatHotel = (hotel) => {
-    const match = hotel.SuppliersLowestPackagePrices.some(item => item.Key === 'HPT')
-    if (match) {
-      console.log(hotel)
-    }
+    // const match = hotel.SuppliersLowestPackagePrices.some(item => item.Key === 'HPT')
+    // if (match) {
+    //   console.log(hotel)
+    // }
 
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
@@ -347,6 +347,7 @@ const ListingPageNew = ({ ...props }) => {
     if (data?.getHotels?.hotels?.length > 0) {
       
       const newHotels = formatHotels.filter(hotel => {
+        console.log(hotel)
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
         const hotelRatingR = hotel.hotelStarRating ? hotel.hotelStarRating.toString().charAt(0) : 0
 
@@ -356,7 +357,7 @@ const ListingPageNew = ({ ...props }) => {
           rating[starRating] &&
           hotelHasAmenities(filterAmenities, hotel) && 
           (allowsCats ? hotel.cat_policy === 'Yes' : true) &&
-          (hasNoPetFees ? hotel.pet_fee === 'NONE' : true) &&
+          (hasNoPetFees ? hotel.pet_fee_value === 'NONE' : true) &&
           hotelHasWeights(petWeights, hotel) &&
           hotelPetAllowance(hotel) &&
           hotelRating[hotelRatingR]

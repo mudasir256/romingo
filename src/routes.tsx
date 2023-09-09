@@ -22,6 +22,8 @@ const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProp
 const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartner'))
 const Application = loadable(() => import('./pages/StaticPages/Application'))
 const CreateAccount = loadable(() => import('./pages/CreateAccount'))
+const SignIn = loadable(() => import('./pages/SignIn'))
+
 
 const Austin = loadable(() => import('./pages/Cities/Austin'))
 const Dallas = loadable(() => import('./pages/Cities/Dallas'))
@@ -162,6 +164,11 @@ const routes: RouteInterface[] = [
   {
     path: '/create-account',
     component: CreateAccount,
+    requireAuth: false,
+  },
+  {
+    path: '/login',
+    component: SignIn,
     requireAuth: false,
   }
 ];
