@@ -172,7 +172,7 @@ const PalmSprings: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={searchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
@@ -445,7 +445,7 @@ const PalmSprings: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={searchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>

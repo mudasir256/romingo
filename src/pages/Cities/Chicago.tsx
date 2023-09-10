@@ -27,7 +27,6 @@ import { HOTEL_DESCRIPTIONS } from '../../constants/locationPageDescriptions';
 import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
-//TODO:
 const searchData = {
   "city": {
     "description": "Chicago, IL, USA",
@@ -182,7 +181,7 @@ const Chicago: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={searchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
@@ -450,7 +449,7 @@ const Chicago: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={searchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>

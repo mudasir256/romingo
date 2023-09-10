@@ -172,7 +172,7 @@ const Houston: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={houstonSearchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
@@ -447,7 +447,7 @@ const Houston: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={houstonSearchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>

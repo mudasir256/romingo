@@ -28,7 +28,6 @@ import HighlightBox from '../../components/CitiesContent/HighlightBox';
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 
-//TODO:
 const searchData = {
   "city": {
     "description": "Baltimore, MD, USA",
@@ -189,7 +188,7 @@ const Baltimore: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={searchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>
@@ -452,7 +451,7 @@ const Baltimore: FC = () => {
             <IconTags />
           </Hidden>
           <Hidden mdUp>
-            <FilterBar />
+            <FilterBar city={searchData} />
           </Hidden>{' '}
           <Divider light variant='middle' sx={{ mt: 3 }} />
         </Grid>

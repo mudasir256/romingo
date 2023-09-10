@@ -66,7 +66,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
   const [open, setOpen] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
-  const [selectedCity, setSelectedCity] = useState(search.city ? {
+  const [selectedCity, setSelectedCity] = useState(city ? city : search.city ? {
     city: search.city,
     lat: search.lat,
     lng: search.lng
@@ -265,6 +265,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                 setMobileText={setMobileText}
                 setShowCities={setShowCities}
                 callback={handlePredictions}
+                city={selectedCity}
                 setSelectedCity={setSelectedCity} 
                 setValue={setNewValue}
                 value={newValue} 

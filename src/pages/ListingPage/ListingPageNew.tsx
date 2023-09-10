@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterBar from "../../components/MobileHomePageFilterBar";
-import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
-import { DesktopFilterBarNew } from "../Cities/DesktopFilterBarNew";
 import Loader from "../../components/UI/Loader";
 import Chip from '@mui/material/Chip'
 import { Dispatch } from "redux";

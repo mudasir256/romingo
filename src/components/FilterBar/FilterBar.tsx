@@ -93,6 +93,7 @@ const FilterBar: FC<Props> = ({
     fontSize: '.9em'
   }
 
+  console.log(city)
   return <>
     <Box
       sx={{
@@ -124,7 +125,7 @@ const FilterBar: FC<Props> = ({
         >
           <Button onClick={handleFilterInClick} sx={{ px: { xs: 1, md: 3 } }}>
             <Typography sx={fontStyle}>
-              {getCityName(selectedCity) || "Choose City"}
+              {city?.city?.description || "Choose City"}
             </Typography>
           </Button>
           <Box
@@ -182,6 +183,7 @@ const FilterBar: FC<Props> = ({
       </Box>
     </Box>
     <Dialog
+      fullWidth
       open={zoomIn}
       onClose={() => setZoomIn(false)}
       BackdropProps={{
@@ -200,8 +202,7 @@ const FilterBar: FC<Props> = ({
         }
       }}
     >
-      <MobileFilterBar home={false} onSearch={handleSearch} />
-
+      <MobileFilterBar home={false} onSearch={handleSearch} city={city} />
       {formError.length > 0 && (
         <Typography
           variant="body2"
