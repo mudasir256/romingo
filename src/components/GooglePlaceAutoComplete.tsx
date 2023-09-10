@@ -190,7 +190,7 @@ export default function GoogleMaps(props) {
         filterOptions={(x) => x}
         options={options}
         open={false}
-        onOpen={() => props.setShowCities(true)}
+        onOpen={(e) => { props.setShowCities(true); }}
         value={props.city ? props.city?.city : search.city}
         getOptionLabel={(option) =>
           typeof option === 'string' ? option : option.description

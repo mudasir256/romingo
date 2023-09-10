@@ -61,6 +61,7 @@ interface FilterBarProps {
 const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, forceWidth, flag, bookingId }) => {
 
   const calendarRef = useRef(null)
+  const mobileTextSearchRef = useRef(null)
 
   const [open, setOpen] = useState(false);
   const [isTextField, setIsTextField] = useState(false);
@@ -102,6 +103,14 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
   useEffect(() => {
     if (!open) setIsTextField(false);
   }, [open]);
+
+  useEffect(() => {
+    if (showCities) {
+      setTimeout(() => {
+        mobileTextSearchRef.current.focus()
+      }, 100)
+    }
+  }, [showCities])
 
  
 
@@ -456,8 +465,11 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
             <TextField 
               fullWidth
+              autoFocus
+              id="mobileTextSearch"
               variant="standard"
               value={mobileText}
+              inputRef={mobileTextSearchRef}
               onChange={(e) => setMobileText(e.target?.value)}
             />
             <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowCities(false)}>X</Button>
