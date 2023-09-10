@@ -80,11 +80,6 @@ export default function GoogleMaps(props) {
     geocoder.geocode({ 'address': newValue.description }, function (results, status) {
 
       if (status == google.maps.GeocoderStatus.OK) {
-        // console.log({
-        //   city: newValue,
-        //   lat: results[0].geometry.location.lat(),
-        //   lng: results[0].geometry.location.lng(),
-        // })
         // props.setValue({
         //   city: newValue,
         //   lat: results[0].geometry.location.lat(),
@@ -135,7 +130,11 @@ export default function GoogleMaps(props) {
   }, [props.mobileText])
 
   React.useEffect(() => {
-    let active = true;
+
+    console.log('auto complete?')
+    console.log(autocompleteService)
+    console.log(autocompleteService?.current?.getPlacePredictions)
+    console.log(inputValue)
 
     if (!autocompleteService.current && (window as any).google) {
       autocompleteService.current = new (
@@ -153,35 +152,32 @@ export default function GoogleMaps(props) {
 
     clearTimeout(timer)
 
+    console.log('timer')
     const newTimer = setTimeout(() => {
       autocompleteService.current.getPlacePredictions(
         {input: inputValue},
         function(results) {
-          if (active) {
-            let newOptions: readonly PlaceType[] = [];
+          console.log('results!')
+          let newOptions: readonly PlaceType[] = [];
 
-            if (value) {
-              newOptions = [value];
-            }
-
-            if (results) {
-              newOptions = [...newOptions, ...results];
-              if (isMobile) {
-                callback(results)
-              } 
-            }
-
-            setOptions(newOptions);
+          if (value) {
+            newOptions = [value];
           }
+
+          if (results) {
+            newOptions = [...newOptions, ...results];
+            if (isMobile) {
+              callback(results)
+            } 
+          }
+
+          setOptions(newOptions);
+
         }
       );
     }, 400)
     setTimer(newTimer)
     
-
-    return () => {
-      active = false;
-    };
   }, [value, inputValue, fetch]);
 
   if (props.mobile) {
