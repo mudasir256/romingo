@@ -823,6 +823,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       amenities
       alias
       images
+      addressLine
     }
   }
 }

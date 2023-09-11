@@ -139,11 +139,12 @@ const ListingPageNew = ({ ...props }) => {
     //   console.log(hotel)
     // }
 
+    console.log(hotel)
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
       name: hotel.DisplayName,
-      addressLine1: hotel.Address,
+      addressLine1: hotel.addressLine,
       city: hotel.city,
       state: hotel.state,
       zipcode: hotel.zipcode,
@@ -173,7 +174,7 @@ const ListingPageNew = ({ ...props }) => {
         imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
         name: hotel.DisplayName,
         alias: hotel.alias,
-        addressLine1: hotel.Address,
+        addressLine1: hotel.addressLine,
         city: hotel.city,
         state: hotel.state,
         zipcode: hotel.zipcode,

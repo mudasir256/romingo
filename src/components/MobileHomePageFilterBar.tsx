@@ -465,7 +465,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         }}>
           <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
             <TextField 
-              fullWidth
+              sx={{ width: '80%', ml: '-4.5rem' }}
               autoFocus
               id="mobileTextSearch"
               variant="standard"
@@ -473,7 +473,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               inputRef={mobileTextSearchRef}
               onChange={(e) => setMobileText(e.target?.value)}
             />
-            <Button sx={{ position: 'absolute', top: -6, right: 0 }}  variant="outlined" onClick={() => setShowCities(false)}>X</Button>
+            <Button sx={{ position: 'absolute', top: -6, right: 0, zIndex: 90 }}  variant="contained" onClick={() => setShowCities(false)}>X</Button>
           </Box>
           <Box height="88%" overflow="scroll">
             {predictions?.map((address, index) => 
