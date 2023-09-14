@@ -265,8 +265,8 @@ const ListingPageNew = ({ ...props }) => {
       case 'priceSort_high_to_low':
         return toSortHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
       case 'featured': {
-        const noFees = toSortHotels.filter(a => a.pet_fee === 'NONE')
-        const fees = toSortHotels.filter(a => a.pet_fee !== 'NONE')
+        const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE')
+        const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE')
         return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)]
       }
       case 'highest_rating':
