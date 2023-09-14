@@ -139,7 +139,9 @@ const ListingPageNew = ({ ...props }) => {
     //   console.log(hotel)
     // }
 
-    console.log(hotel)
+    // console.log(hotel)
+    const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
+
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
@@ -152,8 +154,8 @@ const ListingPageNew = ({ ...props }) => {
       hotelStarRating: hotel.StarRating,
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReviews,
-      lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
-      totalPrice: hotel.SuppliersLowestPackagePrices[0].Value,
+      lowestAveragePrice: pricing / diffDays,
+      totalPrice: pricing,
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,
@@ -182,8 +184,8 @@ const ListingPageNew = ({ ...props }) => {
         hotelStarRating: hotel.StarRating,
         romingoScore: hotel.starRating,
         numberOfReviews: hotel.numberOfReview,
-        lowestAveragePrice: hotel.SuppliersLowestPackagePrices[0].Value / diffDays,
-        totalPrice: hotel.SuppliersLowestPackagePrices[0].Value,
+        lowestAveragePrice: pricing / diffDays,
+        totalPrice: pricing,
         id: hotel.ID,
         lat: hotel.GeoLocation.Latitude,
         lng: hotel.GeoLocation.Longitude,
@@ -221,11 +223,13 @@ const ListingPageNew = ({ ...props }) => {
     let min = 0;
     let max = 0;
     for (const hotel of hotels) {
-      if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays < min) {
-        min = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
+      const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
+
+      if (pricing / diffDays < min) {
+        min = pricing / diffDays
       }
-      if (hotel.SuppliersLowestPackagePrices[0].Value / diffDays > max) {
-        max = hotel.SuppliersLowestPackagePrices[0].Value / diffDays
+      if (pricing / diffDays > max) {
+        max = pricing / diffDays
       }
 
       const restructuredHotel = formatHotel(hotel)
