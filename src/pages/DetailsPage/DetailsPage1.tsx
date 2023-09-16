@@ -175,29 +175,71 @@ const DetailsPage1 = ({ ...props }) => {
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
       let lowest = 999999
-      const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
-        return room.Rooms[0].RoomBasis === 'Room only RO' || room.Rooms[0].RoomBasis === 'Bed and Breakfast BB'
-      })
-      
-      for (const room of roomPackagesOnly) {
-        console.log(room)
 
-        //skip resort_fee hotels
-        // if (room.PackagePrice?.TaxesAndFees?.some(item => item.FeeTitle === 'resort_fee')) {
-        //   continue
-        // }
-        
-        const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
-        if ((room.SimplePrice - tax) < lowest) {
-          lowest = (room.SimplePrice - tax)
-        }
-        const roomName = room?.Rooms?.find(item => true)?.RoomName?.toLowerCase()
-        if (roomName?.includes('accessible')) {
-          accessibleRooms.push(room);
+
+
+      const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
+        return (room.Rooms[0].RoomBasis === 'Room only RO' || room.Rooms[0].RoomBasis === 'Bed and Breakfast BB')
+      })
+
+      console.log('console rooms content')
+      console.log(data.getHotelDetails.RoomsContent)
+
+      const uniqueRoomsByKey = [...new Set(data.getHotelDetails.RoomsContent.map(room => room.RoomKey))]
+  
+      for (const key of uniqueRoomsByKey) {
+    
+        const possibleRoomsRefundable = roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 1)
+        const possibleRoomsNonRefundable =roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 2)
+        console.log('for key')
+        console.log(key)
+        console.log(possibleRoomsNonRefundable)
+        console.log(possibleRoomsRefundable)
+
+        if (possibleRoomsNonRefundable.length === 1) {
+          const newRoom = possibleRoomsNonRefundable[0]
+          newRoom.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(newRoom) : nonAccessibleRooms.push(newRoom)
+        } else if (possibleRoomsNonRefundable.length > 1) {
+          const lowestPrice = possibleRoomsNonRefundable.reduce((min, current) => {
+                                return current.SimplePrice < min ? current.SimplePrice : min;
+                              });
+          lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(lowestPrice) : nonAccessibleRooms.push(lowestPrice)
         } else {
-          nonAccessibleRooms.push(room)
+          //none
         }
+
+        if (possibleRoomsRefundable.length === 1) {
+          const newRoom = possibleRoomsRefundable[0]
+          newRoom.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(newRoom) : nonAccessibleRooms.push(newRoom)
+        } else if (possibleRoomsRefundable.length > 1) {
+          const lowestPrice = possibleRoomsRefundable.reduce((min, current) => {
+                                return current.SimplePrice < min ? current.SimplePrice : min;
+                              });
+          lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(lowestPrice) : nonAccessibleRooms.push(lowestPrice)
+        } else {
+          //none
+        }
+
+
       }
+
+      console.log('rooms')
+      console.log(nonAccessibleRooms)
+
+      nonAccessibleRooms.sort(function(a, b) {
+          return a.SimplePrice - b.SimplePrice
+      });
+      
+      if (nonAccessibleRooms.length > 0) {
+        const room = nonAccessibleRooms[0].Rooms[0]
+        const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
+        lowest = nonAccessibleRooms[0].SimplePrice - tax
+      }
+
+      accessibleRooms.sort(function(a, b) {
+          return a.SimplePrice - b.SimplePrice
+      });
+  
 
       setRooms(nonAccessibleRooms);
       setAccessibleRooms(accessibleRooms);
