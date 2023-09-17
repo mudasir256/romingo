@@ -282,7 +282,7 @@ const Indianapolis: FC = () => {
             linkText="White River State Park"
             text="Treat your four-legged friend to a leisurely stroll through the scenic White River State Park. This expansive urban park offers picturesque walking trails, lush green spaces, and stunning views of the White River. Dogs must be leashed, and there are plenty of pet waste stations for easy clean-up."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image9.png" text="Life in Indy" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/White%20River.jpeg" text="https://www.visitindy.com/listing/canal-%26-white-river-state-park-district/6064/" />
 
           <LinkContent
             link="https://eaglecreekpark.org/"
@@ -290,21 +290,21 @@ const Indianapolis: FC = () => {
             text="Explore the great outdoors at Eagle Creek Park, one of the largest municipal parks in the country. This vast park features several pet-friendly trails, including the Eagle Creek Reservoir Loop, where your dog can enjoy the sights and sounds of nature."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image6.png" text="Indystar" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Eagle%20Creek.jpeg" text="https://www.hikingproject.com/photo/7014941/the-marina-at-eagle-creek-park" />
 
           <LinkContent
             link="https://indyculturaltrail.org/"
             linkText="Indianapolis Cultural Trail"
             text="For an urban adventure, head to the Indianapolis Cultural Trail, a 8-mile-long pedestrian and bike pathway that winds through the city. Leashed pets are welcome, and the trail connects several cultural districts, parks, and landmarks."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image11.png" text="Visit Indy" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Cultural%20Trail.jpeg" text="https://www.cleveland.com/architecture/2013/05/the_new_indianapolis_cultural.html" />
 
           <LinkContent
             link="https://www.hollidaypark.org/"
             linkText="Holliday Park"
             text="Treat your pet to a day of fun at Holliday Park. This 94-acre park offers designated off-leash areas where your furry friend can romp and play with other dogs. Explore the scenic trails and don't miss the picturesque Ruins, perfect for a photo op!"
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image15.png" text="Holliday Park Foundation" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Holliday%20Park.jpeg" text="https://www.hollidaypark.org/" />
 
           <LinkContent
             link="https://www.indycm.com/"
@@ -325,14 +325,14 @@ const Indianapolis: FC = () => {
             linkText="Indiana War Memorial Plaza"
             text="Take a step back in history at the Indiana War Memorial Plaza. Leashed pets are welcome to join you as you explore the beautiful monuments and memorials in this historic area."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image3.png" text="Life In Indy" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Indiana%20World%20War%20Memorial.jpg" text="https://www.knownowgolater.com/location/indiana-world-war-memorial-plaza" />
 
           <LinkContent
             link="https://www.in.gov/dnr/state-parks/parks-lakes/fort-harrison-state-park/"
             linkText="Fort Harrison State Park"
             text="Venture to Fort Harrison State Park and enjoy a day of outdoor recreation with your pet. The park offers various pet-friendly trails, and you can even rent a canoe or paddleboat to explore the park's lake together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image12.png" text="Visit Indiana" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Fort%20Harrison%20State%20Park.jpeg" text=" https://en.wikipedia.org/wiki/Fort_Harrison_State_Park" />
 
           <LinkContent
             link="https://www.pintspoundsandpate.com/travelingtheusandcanada/fountain-square-indianapolis"
@@ -362,7 +362,7 @@ const Indianapolis: FC = () => {
             linkText="Metazoa Brewing Company"
             text="This pet-friendly brewery is dedicated to supporting animal-related causes, making it a perfect spot for pet lovers. Metazoa Brewing boasts a spacious outdoor patio where your furry companion can relax while you sample a wide range of craft beers."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image10.png" text="Metazoa Brewing Company" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Metazoa.jpeg" text="https://thevendry.com/venue/199892/metazoa-brewing-company-indianapolis-in" />
 
           <LinkContent
             link="https://thegardentable.com/massave"
@@ -376,7 +376,7 @@ const Indianapolis: FC = () => {
             linkText="Union 50"
             text="If you're craving contemporary American cuisine and a vibrant atmosphere, Union 50 won't disappoint. This restaurant has a pet-friendly outdoor patio, where your well-behaved dog can enjoy the sights and sounds of the bustling Mass Ave."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image16.png" text="Visit Indiana" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Union%2050.jpeg" text="https://www.americascuisine.com/indiana/indianapolis/union-50.aspx" />
 
           <LinkContent
             link="https://www.broadripplebrewpub.com/"
@@ -390,14 +390,14 @@ const Indianapolis: FC = () => {
             linkText="Goodfellas Pizzeria"
             text="Craving some pizza? Head to Goodfellas Pizzeria, where your furry friend is welcome to join you on the outdoor patio. Enjoy New York-style slices and specialty pies while your pup lounges comfortably at your feet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image13.png" text="One Bite" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/One%20Bite.jpeg" text="https://www.americascuisine.com/indiana/indianapolis/union-50.aspx" />
 
           <LinkContent
             link="https://www.booksnbrews.com/"
             linkText="Books & Brews"
             text="Books & Brews is a unique combination of a taproom and a used bookstore. Along with their extensive selection of beers, they serve sandwiches, salads, and appetizers. Your dog can join you on their pet-friendly patio while you browse through books or enjoy a board game."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/image18.png" text="Books & Brews" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Books%20and%20Brew.jpeg" text="https://www.onlyinyourstate.com/indiana/library-bar-in/" />
 
           <LinkContent
             link="https://louvino.com/massave/"

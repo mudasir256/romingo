@@ -288,14 +288,14 @@ const LosAngeles: FC = () => {
             linkText="Runyon Canyon Park"
             text="One of LA's most popular dog-friendly hiking spots, Runyon Canyon offers scenic trails with breathtaking views of the city. Leash up your pup and enjoy a refreshing hike together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image3.png" text="" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Runyon_Canyon_Park_Hike_Hollywood.jpg" text="https://runyoncanyontrails.com/" />
 
           <LinkContent
             link="https://www.surfcityusa.com/things-to-do/beaches/dog-beach/"
             linkText="Huntington Dog Beach"
             text="Located in Long Beach, this off-leash dog beach is a paw-some spot for your pet to splash in the waves and socialize with other dogs."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image4.png" text="Surf City USA" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Dog_Beach_webpage_e5fa8d8d-027f-4dba-b000-f045301613bd.jpg" text="https://www.surfcityusa.com/things-to-do/beaches/dog-beach/" />
 
           <LinkContent
             link="https://griffithobservatory.org/"
@@ -317,14 +317,14 @@ const LosAngeles: FC = () => {
             text="This picturesque park offers scenic trails and open spaces, perfect for a leisurely walk or a picnic with your furry companion."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image9.png" text="Malibu Creek State Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/61dcb2757058511671f6dd62_24-Malibu%20Creek%20SP.jpeg" text="https://www.bewilder.camp/itineraries/malibu-creek-state-park-mesa-peak" />
 
           <LinkContent
             link="https://www.californiabeaches.com/beach/granada-beach-rosies-dog-beach/"
             linkText="Rosie's Dog Beach"
             text="Located in Long Beach, this dog beach is a paradise for dogs who love to swim. Your pet can frolic in the surf and play in the sand off-leash."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image20.png" text="California Beaches" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Cal%20Beaches_2030.webp" text="https://theocbarkyard.wordpress.com/2015/02/11/dog-friendly-beaches-in-orange-county/" />
 
           <LinkContent
             link="https://www.thedogbakery.com/"
@@ -338,21 +338,21 @@ const LosAngeles: FC = () => {
             linkText="The Getty Center"
             text="Enjoy art and culture with your pet at The Getty Center's beautiful gardens, where leashed dogs are allowed to roam with their owners."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image15.png" text="Getty" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/The%20Getty%20Center.jpeg" text="https://blogs.getty.edu/iris/the-getty-center-at-20/" />
 
           <LinkContent
             link="https://www.laparks.org/dogpark/silverlake"
             linkText="Silver Lake Dog Park"
             text="This spacious off-leash dog park in the trendy Silver Lake neighborhood is a fantastic place for your pet to run and play with other dogs. You’ll even catch a sighting of the Hollywood sign!"
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image10.png" text="LA Parks" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Silver%20Lake.jpeg" text="https://www.silverlakereservoirs.org/" />
 
           <LinkContent
             link="https://www.laparks.org/park/elysian"
             linkText="Elysian Park"
             text="The oldest public park in LA, Elysian Park offers tranquil walking paths and beautiful views of the city, perfect for an on-leash stroll with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image13.png" text="LA Parks" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Elysian%20Park.webp" text="https://akikoliu.photos/2020/02/28/hidden-swing-elysian-park/" />
 
           <Typography variant="h2">The Top Pet-Friendly Restaurants in Los Angeles</Typography>
           <LinkContent
@@ -360,14 +360,14 @@ const LosAngeles: FC = () => {
             linkText="The Morrison"
             text="Located in Atwater Village, The Morrison boasts a pet-friendly patio where you can enjoy delicious comfort food and craft beers while your furry friend lounges beside you."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image17.png" text="The Morrison" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/The%20Morrison.jpeg" text="https://www.timeout.com/los-angeles/bars/the-morrison" />
 
           <LinkContent
             link="https://lazydogrestaurants.com/"
             linkText="Lazy Dog Restaurant & Bar"
             text="Lazy Dog Restaurant & Bar in Los Angeles is a beloved eatery that warmly welcomes both two-legged and four-legged guests. Inspired by the owner's love for his Golden Retriever, the restaurant aims to create a relaxing and comfortable atmosphere where patrons can enjoy delicious food and drinks while their pets are equally cherished."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image8.png" text="Lazy Dog Restaurant & Bar" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Lazy%20Dog.jpeg" text="https://newsroom.socalgas.com/stories/take-the-challenge-energy-savings-competition-launches-with-lazy-dog-restaurant-bar" />
 
           <LinkContent
             link="https://cafegratitude.com/"
@@ -375,14 +375,14 @@ const LosAngeles: FC = () => {
             text="Café Gratitude in Los Angeles is a popular plant-based restaurant that delights both vegans and non-vegans alike with its delicious and nourishing dishes. The restaurant's focus on gratitude and sustainability shines through in its thoughtfully prepared menu, featuring a variety of flavorful and wholesome options made from organic and locally sourced ingredients."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image6.png" text="Cafe Gratitude" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Cafe%20Gratitude.webp" text="https://www.discoverlosangeles.com/eat-drink/cafe-gratitude-venice" />
 
           <LinkContent
             link="https://www.thetrailseatery.com/"
             linkText="The Trails Café"
             text="Nestled in Griffith Park, this charming café is a favorite among hikers and their pets. Enjoy a light breakfast or a tasty lunch on their pet-friendly patio before hitting the trails."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image12.png" text="The Trails Cafe" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Trails%20Cafe.jpeg" text="https://www.timeout.com/los-angeles/restaurants/the-trails-cafe" />
 
           <LinkContent
             link="https://www.blueplateoysterette.com/"
@@ -390,7 +390,7 @@ const LosAngeles: FC = () => {
             text="Blue Plate Oysterette is a coastal-inspired seafood restaurant located in Santa Monica, California. With its beachy vibe and fresh seafood offerings, this eatery captures the essence of the Southern California coastal lifestyle. From oysters and seafood platters to tasty tacos and sandwiches, Blue Plate Oysterette promises a delightful dining experience with a taste of the ocean in the heart of Santa Monica."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image18.png" text="Blue Plate Oysterette" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Blue_Plate_Oysterette_Exterior_H.0.0.jpeg" text="https://la.eater.com/2016/12/1/13806774/blue-plate-oysterette-west-third-closed-shutter" />
 
           <LinkContent
             link="https://www.goldenroad.la/"
@@ -420,7 +420,7 @@ const LosAngeles: FC = () => {
             text="Figaro Bistrot is a charming and authentic French restaurant located in the trendy Los Feliz neighborhood of Los Angeles. With its vintage-inspired décor and classic French bistro dishes, this eatery offers a delightful taste of Parisian cuisine in the heart of LA. Whether you're savoring a croissant during breakfast or enjoying coq au vin for dinner, Figaro Bistrot provides a warm and inviting ambiance that transports guests to the streets of Paris."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/image5.png" text="Figaro Bistrot" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Figaro%20Cafe.jpeg" text="https://www.bringfido.com/restaurant/5788" />
 
           <LinkContent
             link="https://www.ettarestaurant.com/"

@@ -297,7 +297,7 @@ const Portland: FC = () => {
             linkText="Forest Park"
             text="Embark on a hike in Forest Park, one of the largest urban forests in the country. With over 5,000 acres of lush greenery and miles of trails, this pet-friendly park provides the perfect setting for you and your pets to explore nature together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image7.png" text="Portland.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Forest%20Park%20.jpeg" text="https://www.hikeoregon.net/forest-park.html" />
 
           <LinkContent
             link="https://www.portland.gov/parks/sellwood-riverfront-park"
@@ -319,14 +319,14 @@ const Portland: FC = () => {
             linkText="Cathedral Park"
             text="Located beneath the iconic St. Johns Bridge, Cathedral Park is a picturesque spot for a leisurely walk with your pets. The park's stunning views of the bridge and Willamette River make it a favorite among locals and visitors alike."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image18.png" text="" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Cathedral%20Park.jpeg" text="https://www.kimsmithmiller.com/wedding/cathedral-park-wedding/attachment/kimsmithmiller-cathedral-park-wedding-051/" />
 
           <LinkContent
             link="https://www.portland.gov/parks/wallace-park"
             linkText="Wallace Park"
             text="Wallace Park features a spacious off-leash area, making it an ideal spot for your pets to run and play freely. The park's central location in the Northwest District allows for easy access to nearby pet-friendly shops and cafes."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image3.png" text="" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Wallace%20Park.jpeg" text="https://en.wikipedia.org/wiki/Columbia_Park_%28Portland,_Oregon%29" />
 
           <LinkContent
             link="https://visittheoregoncoast.com/"
@@ -347,7 +347,7 @@ const Portland: FC = () => {
             linkText="Laurelhurst Park"
             text="Laurelhurst Park is a beautiful and pet-friendly park offering scenic walking trails and a large off-leash area for dogs. The park's tranquil pond and lush green lawns provide a peaceful retreat for you and your pets."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image5.png" text="Portland.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Laurelhurst%20Park.webp" text="https://www.travelportland.com/attractions/laurelhurst-park/" />
 
           <LinkContent
             link="https://www.portland.gov/parks/governor-tom-mccall-waterfront-park"
@@ -355,7 +355,7 @@ const Portland: FC = () => {
             text="Stroll along the scenic Tom McCall Waterfront Park with your pets and enjoy views of the Willamette River and downtown Portland. The park's paved paths are perfect for leisurely walks with your furry companions."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image5.png" text="Portland.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Tom%20McCall%20Waterfront%20Park.webp" text="https://www.koin.com/news/oregon/here-are-8-photo-worthy-spots-to-see-cherry-blossom-trees-in-spring-2023/" />
 
           <LinkContent
             link="https://www.portlandsaturdaymarket.com/"
@@ -390,14 +390,14 @@ const Portland: FC = () => {
             linkText="Alberta Street Pub"
             text="Alberta Street Pub is a pet-friendly eatery and pub located on the bustling Alberta Street. Your pets are welcome to join you on their outdoor patio as you enjoy live music and a selection of delicious food and drinks."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image16.png" text="Alberta Street Pub" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Alberta%20Street%20Pub.jpeg" text="https://dopdx.com/venues/alberta-street-pub" />
 
           <LinkContent
             link="https://backyardsocialpdx.com/"
             linkText="Backyard Social"
             text="Backyard Social is a pet-friendly restaurant with a charming outdoor seating area where dogs are always welcome. Their diverse menu offers comfort food classics, salads, and refreshing cocktails."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image13.png" text="Portland Weekly" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Backyard%20Social%20.avif" text="https://www.oregonlive.com/dining/2016/04/portlands_best_patios_bars_and.html" />
 
           <LinkContent
             link="https://www.barcarlopdx.com/"
@@ -405,7 +405,7 @@ const Portland: FC = () => {
             text="Bar Carlo is a popular pet-friendly restaurant that features a lovely garden patio where dogs are welcome. Their menu includes a mix of comfort food and international dishes, making it a perfect place to enjoy a meal with your pets."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image10.png" text="Bar Carlo" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Bar%20Carlo.jpeg" text="https://www.barcarlopdx.com/events" />
 
           <LinkContent
             link="https://www.teotepdx.com/"
@@ -420,21 +420,21 @@ const Portland: FC = () => {
             text="Radio Room is a pet-friendly eatery with a spacious outdoor seating area. Your furry companions can relax by your side as you indulge in tasty pub food and drinks."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image8.png" text="The Rooftop Guide" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Radio%20Room.avif" text="https://www.oregonlive.com/dining/2012/02/portland_happy_hour_radio_room.html" />
 
           <LinkContent
             link="https://www.stormbreakerbrewing.com/"
             linkText="StormBreaker Brewing"
             text="StormBreaker Brewing is a pet-friendly brewery with a welcoming outdoor patio. Enjoy their craft beers and pub fare while your pets lounge comfortably with you."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image4.png" text="Stormbreaker Brewing" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/StormBreaker%20Brewing.jpg" text="https://pdx.eater.com/2017/9/21/16347658/stormbreaker-brewing-st-johns-location-pdx" />
 
           <LinkContent
             link="https://www.voodoodoughnut.com/"
             linkText="Voodoo Donut"
             text="Voodoo Doughnut is a quirky and iconic doughnut shop with locations in Portland, Oregon, and several other cities across the United States. Founded in 2003, Voodoo Doughnut quickly gained fame for its innovative and playful approach to doughnuts, offering an array of unique flavors and eccentric designs."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/image4.png" text="Voodoo Donut" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/%E2%80%8B%E2%80%8BVoodoo%20Doughnut.webp" text="https://www.travelportland.com/attractions/voodoo-doughnut/" />
 
           <LinkContent
             link="https://saltandstraw.com/"

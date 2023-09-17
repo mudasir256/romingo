@@ -338,21 +338,21 @@ const Charlotte: FC = () => {
             linkText="Latta Plantation Nature Preserve"
             text="Escape the hustle and bustle of the city at Latta Plantation Nature Preserve. This expansive preserve offers over 16 miles of pet-friendly hiking trails, scenic views, and opportunities for birdwatching and wildlife spotting."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/image12.png" text="Visit North Carolina" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Latta%20Plantation.jpeg" text="https://charlotte.axios.com/17470/latta-plantation-nature-center-preserve-history-horses-hiking-and-the-occasional-snake/" />
 
           <LinkContent
             link="https://www.yelp.com/biz_photos/frazier-park-charlotte?select=8UadRHDpzV3JcvmxAR8iOA"
             linkText="Frazier Dog Park"
             text="Treat your pet to some off-leash fun at the Frazier Dog Park. Divided into separate sections for large and small dogs, this park allows your furry friend to play, run, and make new friends in a safe and secure environment."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/image12.png" text="Yelp" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Frazier%20Dog%20Park.jpeg" text="http://basilstravels.com/category/boston-terriers-of-charlotte/frazier-dog-park/" />
 
           <LinkContent
             link="https://www.charlottesgotalot.com/blog/eat-drink/where-to-drink-beer-with-your-dog-in-charlotte"
             linkText="Pet-friendly Breweries Tour"
             text="Embark on a pet-friendly breweries tour in Charlotte. Many breweries in the city welcome well-behaved dogs in their outdoor seating areas, creating the perfect opportunity for you and your pet to socialize while savoring local brews."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/image11.png" text="Charlotte Got a Lot" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Pet%20Friendly%20Brewery.jpeg" text="https://dogclt.com/eat-drink/charlotte-dog-friendly-brewery-guide-south-end-loso/" />
 
           <LinkContent
             link="https://southendclt.org/about/south-ends-story"
@@ -378,7 +378,7 @@ const Charlotte: FC = () => {
             linkText="Sycamore Brewing"
             text="Sycamore Brewing is not just a brewery; it's a pet-friendly gathering spot. With an expansive outdoor patio, you can enjoy a variety of craft beers while your furry friend basks in the company of other dogs. The laid-back atmosphere and food trucks serving delicious treats make it a favorite among pet owners."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/image5.png" text="Sycamore Brewing" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Sycamore%20Brewing.jpeg" text="https://www.charlotteonthecheap.com/ipa-day-sycamore-brewing/" />
 
           <LinkContent
             link="https://www.catawbabrewing.com/"
@@ -413,7 +413,7 @@ const Charlotte: FC = () => {
             linkText="Tupelo Honey"
             text="Tupelo Honey is a pet-friendly restaurant that offers a delightful Southern-inspired menu. Their outdoor patio allows you to dine with your furry friend while relishing dishes like fried chicken and sweet potato pancakes."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/image14.png" text="Tupelo Honey" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Tupelo%20Honey.jpeg" text="https://www.youtube.com/watch?v=lvww2LRpxWI" />
 
           <LinkContent
             link="https://www.kidcashew.com/"
@@ -441,7 +441,7 @@ const Charlotte: FC = () => {
             linkText="Luna’s Living Kitchen"
             text="Luna's Living Kitchen in Charlotte is a culinary gem that embraces the essence of healthy and sustainable dining. Nestled in the heart of this vibrant city, Luna's Living Kitchen offers an inviting space where food becomes an art form. With a focus on plant-based cuisine, the restaurant boasts a diverse menu filled with colorful and nourishing dishes, each crafted with a careful selection of fresh, organic, and locally-sourced ingredients."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/image9.png" text="Luna's Living Kitchen" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Luna%202.jpeg" text="https://vegcharlottenc.com/tag/lunas-living-kitchen/" />
 
   
         </Box>

@@ -303,7 +303,7 @@ const Cleveland: FC = () => {
             linkText="Holden Arboretum"
             text="The Holden Arboretum in Cleveland warmly welcomes dogs to explore its beautiful grounds, providing a pet-friendly environment for both visitors and their four-legged companions. With miles of scenic trails and open spaces, it's a perfect destination for dog owners to enjoy nature together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image12.png" text="Cleveland Traveler" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Holdon%20Arboetum.jpeg" text="https://holdenfg.org/holden-arboretum/gardens-and-attractions/" />
 
           <LinkContent
             link="https://scoundrelsfieldguide.com/bar-crawls/ohio-city-cleveland-dive-bar-brewery-crawl/"
@@ -317,14 +317,14 @@ const Cleveland: FC = () => {
             linkText="Whiskey Island Dog Park"
             text="Let your dog run free and wild at Whiskey Island Dog Park where there is space for off-leash play and socialization. With Lake Erie in the backdrop, it's a pawfect spot for water-loving dogs to take a refreshing dip. Make sure to bring some toys for an entertaining game of fetch on the open green fields."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image8.png" text="Only In Your State" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Whiskey%20Island%20Dog%20Park.jpeg" text="https://www.clevelandmetroparks.com/parks/visit/parks/lakefront-reservation" />
 
           <LinkContent
             link="https://www.cvsr.org/"
             linkText="Cuyahoga Valley Scenic Railroad - Tow Path"
             text="All aboard! The Cuyahoga Valley Scenic Railroad invites leashed pets to join their human companions on a picturesque journey through the stunning Cuyahoga Valley National Park. Sit back, relax, and enjoy the scenery, offering your pet a new and exciting experience."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image10.png" text="Cuyahoga Valley Scenic Railroad" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Cuyahoga%20Valley%20Scenic%20Railroad%20-%20Tow%20Path.jpeg" text="https://www.traillink.com/trail-photo/ohio--erie-canal-towpath-trail_152435/" />
 
           <LinkContent
             link="https://northcoastbeachfitters.com/"
@@ -376,7 +376,7 @@ const Cleveland: FC = () => {
             linkText="Luxe Kitchen & Lounge"
             text="Luxe Kitchen & Lounge is a trendy spot known for its delectable brunch options and welcoming pet-friendly patio. From fluffy pancakes to gourmet sandwiches, the menu has something for every palate. Relax with your pet, soak up the sunshine, and savor the laid-back charm of this popular spot."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image15.png" text="Luxe Kitchen & Lounge" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Lux.webp" text="https://thevendry.com/venue/224887/luxe-kitchen-lounge-cleveland-oh" />
 
           <LinkContent
             link="https://www.nanobrewcleveland.com/reserve"
@@ -390,7 +390,7 @@ const Cleveland: FC = () => {
             linkText="The South Side"
             text="With a spacious patio that welcomes pets, The South Side is a favorite among locals and visitors alike. The diverse menu features American classics with a twist, making it a great spot for a casual lunch or a lively dinner with your furry companion by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image1.png" text="The South Side Cleveland" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/South%20Side%20Cleveland.avif" text="https://www.cleveland.com/patios/2011/06/southside_a_year-round_wonder.html" />
 
           <LinkContent
             link="https://terrestrialbrewing.com/"
@@ -411,14 +411,14 @@ const Cleveland: FC = () => {
             linkText="Bookhouse Brewing"
             text="Bookhouse Brewing is a unique spot where you can enjoy a good book, great beer, and quality time with your pet. This pet-friendly brewery offers a laid-back atmosphere and a rotating selection of craft beers, perfect for unwinding after a long day."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image6.png" text="City Brew Tours" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Bookhouse%20Brewing.jpeg" text="https://www.bookhouse.beer/home2" />
 
           <LinkContent
             link="https://www.clevelandmetroparks.com/parks/visit/parks/lakefront-reservation/merwin-s-wharf"
             linkText="Merwin's Wharf"
             text="Nestled in the Cleveland Metroparks' Rivergate Park, Merwin's Wharf boasts a stunning waterfront patio where leashed pets are welcome. Enjoy a meal with a view as you and your pet watch boats drift along the Cuyahoga River."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/image2.png" text="Cleveland Metroparks" />
+          <Img src="Location:https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Merwin's%20Warf.png" text="https://www.clevelandmetroparks.com/parks/calendar/summer-concert-series-locations/summer-concert-series-merwin-s-wharf" />
 
           <LinkContent
             link="https://www.brewnutscleveland.com/"

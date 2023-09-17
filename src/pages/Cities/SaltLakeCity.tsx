@@ -289,7 +289,7 @@ const SaltLakeCity: FC = () => {
             text="Explore Memory Grove Park, a beautiful oasis in the heart of the city, with your pets. This pet-friendly park features walking trails, stunning gardens, and a creek where your pets can cool down on hot days."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image1.png" text="SLC.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Memory%20Grove%20Park.jpeg" text="https://www.visitsaltlake.com/listing/memory-grove-park/55148/" />
 
           <LinkContent
             link="https://www.outdoorproject.com/united-states/utah/tanner-dog-park"
@@ -303,14 +303,14 @@ const SaltLakeCity: FC = () => {
             linkText="Red Butte Garden and Arboretum"
             text="Discover the natural beauty of Red Butte Garden and Arboretum with your leashed pets. This botanic garden provides a picturesque setting for a leisurely stroll with your furry companions."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image10.png" text="Red Butte Garden and Arboretum" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Red%20Butte%20Garden%20and%20Arboretum.jpeg" text="https://www.tripadvisor.in/Attraction_Review-g60922-d269627-Reviews-Red_Butte_Garden-Salt_Lake_City_Utah.html" />
 
           <LinkContent
             link="https://slco.org/wheeler-farm/"
             linkText="Wheeler Historic Farm"
             text="Wheeler Historic Farm is a charming pet-friendly attraction that allows leashed pets to explore the farm with you. Enjoy the scenic surroundings and interact with farm animals during your visit."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image10.png" text="Salt Lake County" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Wheeler%20Historic%20Farm.jpeg" text="https://www.onlyinyourstate.com/utah/wheeler-farm-free-admission-ut/" />
 
           <LinkContent
             link="https://slco.org/parks-recreation/parks-trails/millcreek-canyon/"
@@ -324,14 +324,14 @@ const SaltLakeCity: FC = () => {
             linkText="Sugar House Park"
             text="Sugar House Park is a large dog park and is a great spot for a picnic or a game of fetch with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image11.png" text="Sugar House Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Sugar%20House%20Park.jpeg" text="https://www.sugarhousepark.org/park-info-1" />
 
           <LinkContent
             link="https://historicparkcityutah.com/"
             linkText="Park City Main Street"
             text="Visit nearby Park City Main Street, where many shops and restaurants are pet-friendly. Stroll along the street with your leashed pets and explore the charming boutiques and cafes."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image6.png" text="Historic Park City Utah" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Park%20City%20Main%20Street.avif" text="https://historicparkcityutah.com/" />
 
           <LinkContent
             link="https://www.fs.usda.gov/uwcnf"
@@ -345,7 +345,7 @@ const SaltLakeCity: FC = () => {
             linkText="Liberty Park"
             text="Liberty Park is a pet-friendly urban oasis that features walking paths, a large pond, and plenty of green space. Leash up your pets and enjoy a relaxing afternoon in this vibrant park."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image20.png" text="Visit Salt Lake" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Liberty%20Park.jpeg" text="https://cityhomecollective.com/community/blog/top-9-things-to-do-liberty-park" />
 
           <LinkContent
             link="https://www.slc-golf.com/mountaindell/"
@@ -363,7 +363,7 @@ const SaltLakeCity: FC = () => {
             linkText="Sugar House Coffee"
             text="Sugar House Coffee is a pet-friendly cafe that not only serves excellent coffee but also offers a range of delicious breakfast and lunch options. Their outdoor seating area allows you to enjoy a delightful meal with your furry friends by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image8.png" text="Sugar House Coffee" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Sugar%20House%20Coffee.jpeg" text="https://sugarhousecoffee.com/" />
 
           <LinkContent
             link="https://properbrewingco.com/locations/proper-burger-downtown/"
@@ -379,7 +379,7 @@ const SaltLakeCity: FC = () => {
             text="East Liberty Tap House is a pet-friendly restaurant with a diverse menu of pub food and drinks. Their outdoor seating area is a great place to unwind with your pets while enjoying the vibrant atmosphere."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image19.png" text="East Liberty Tap House" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/East%20Liberty%20Tap%20House.jpeg" text="https://redrockbrewing.com/craftybeergirls/2017/04/01/east-liberty-tap-house/" />
 
           <LinkContent
             link="https://www.taqueria27.com/"
@@ -395,7 +395,7 @@ const SaltLakeCity: FC = () => {
             text="Spitz is a pet-friendly eatery known for its delicious Mediterranean-inspired dishes. Their outdoor patio is a pet-friendly spot where you and your furry companions can enjoy flavorful wraps and street-style fries."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image2.png" text="Spitz" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Spitz.jpeg" text="https://onthegrid.city/salt-lake-city/salt-lake-city/spitz" />
 
           <LinkContent
             link="https://properbrewingco.com/locations/avenues-proper/"
@@ -410,7 +410,7 @@ const SaltLakeCity: FC = () => {
             linkText="Whiskey Street"
             text="Whiskey Street is a pet-friendly restaurant and bar with a lively outdoor patio that is a fun spot for the whole family to enjoy. They offer a range of whiskey and cocktails, as well as a menu of American fare that you and your pets can enjoy together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image18.png" text="Whiskey Street" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Whiskey%20Street.jpeg" text="https://whiskey-street.r365hire.com/account" />
 
           <LinkContent
             link="https://triodiningslc.com/"
@@ -431,7 +431,7 @@ const SaltLakeCity: FC = () => {
             linkText="Green Pig Pub"
             text="Green Pig Pub is a lively and popular gastropub in the heart of downtown. Known for its friendly atmosphere and vibrant nightlife, the Green Pig Pub has a diverse menu that featured classic pub fare with a modern twist. From mouthwatering burgers and hearty sandwiches to creative small plates and appetizers, the pub's menu caters to a wide range of tastes."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/image17.png" text="Green Pig Pub" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Green%20Pig%20Pub.jpeg" text="https://www.google.com/url?sa=i&url=https%3A%2F%2Fthegreenpigpub.com%2F&psig=AOvVaw1uvCmespu4UDR_T4-1Z7kX&ust=1694662462303000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCOjBvuLTpoEDFQAAAAAdAAAAABAE" />
 
 
         </Box>

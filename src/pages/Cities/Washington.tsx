@@ -328,7 +328,7 @@ const Washington: FC = () => {
             linkText="Smithsonian Gardens"
             text="Leashed pets are allowed in the gardens surrounding the Smithsonian museums. Explore the colorful blooms and historic architecture while taking a break from the city's bustle."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/image15.png" text="Smithsonian Gardens" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/Smithsonian%20Gardens.jpeg" text="https://gardens.si.edu/smithsonian-gardens-map/" />
 
           <LinkContent
             link="https://www.humanerescuealliance.org/special-events-new#:~:text=The%20Embassy%20Row%20Hotel%20invites,benefitting%20the%20Humane%20Rescue%20Alliance."
@@ -374,7 +374,7 @@ const Washington: FC = () => {
             linkText="The Brig DC"
             text="This laid-back beer garden in Capitol Riverfront is a pet-friendly hotspot with a large outdoor space for pets to roam freely while you enjoy a variety of beers and snacks." 
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/image2.png" text="Brig DC" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/The%20Brig.jpeg" text="https://barredindc.com/2021/04/04/best-dc-restaurants-bars-to-eat-and-drink-outdoors-right-now/comment-page-1/" />
 
           <LinkContent
             link="https://www.dachabeergarden.com/"
@@ -388,7 +388,7 @@ const Washington: FC = () => {
             linkText="Farmers Fishers Bakers"
             text="Located at the Georgetown waterfront, this restaurant offers a scenic view and a pet-friendly patio where you can savor farm-to-table cuisine."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/image19.png" text="Drink DC" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/Farmers%20Fishers%20Bakers.jpg" text="https://archello.com/project/farmers-fishers-bakers" />
 
           <LinkContent
             link="https://www.perrysam.com/"
@@ -409,7 +409,7 @@ const Washington: FC = () => {
             linkText="RedRocks"
             text="With multiple locations throughout the city, RedRocks offers pet-friendly outdoor patios where you can enjoy wood-fired pizzas and other Italian favorites."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/image8.png" text="RedRocks" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/Redrocks.jpeg" text="https://www.tripadvisor.com/Restaurant_Review-g28970-d3609310-Reviews-Red_Rocks_Pizza-Washington_DC_District_of_Columbia.html" />
 
           <LinkContent
             link="https://bardo.beer/"

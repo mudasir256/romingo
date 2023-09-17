@@ -298,7 +298,7 @@ const SanFrancisco: FC = () => {
             linkText="Baker Beach Bliss"
             text="Take your dog to Baker Beach, a picturesque spot where they can play in the sand and splash in the waves. Keep in mind that dogs should remain on-leash north of Lobos Creek to protect the endangered Snowy Plover."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image20.png" text="Presidio" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/Baker%20Bearch.jpeg" text="https://ph.hotels.com/go/usa/baker-beach-san-francisco" />
 
           <LinkContent
             link="https://www.cityexperiences.com/san-francisco/city-cruises/dog-day-on-the-bay-petco/"
@@ -312,7 +312,7 @@ const SanFrancisco: FC = () => {
             linkText="Pet Pampering at Fort Mason Center"
             text="Visit Fort Mason Center's &quot;Canine Cove,&quot; a designated off-leash area where dogs can mingle and enjoy the ocean breezes. After, you can wash your pet at the Fort Mason Dog Wash, where they can enjoy a spa-like experience."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image4.png" text="Fort Mason" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/Fort%20Mason%20Center.jpeg" text="https://flaxart.com/flax-canvas/a-new-flax-store-in-fort-mason-center/" />
 
           <LinkContent
             link="https://sanfran.com/best-san-francisco-dog-friendly-bars"
@@ -333,7 +333,7 @@ const SanFrancisco: FC = () => {
             linkText="Muttville Senior Dog Rescue"
             text="If you're looking to give back and spread some love, volunteer at Muttville Senior Dog Rescue. This organization rescues and rehabilitates senior dogs, providing them with a second chance at finding a loving forever home."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image15.png" text="Muttville" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/Muttville%20Senior%20Dog%20Rescue.jpeg" text="https://foreverhome.muttville.org/gallery" />
 
           <LinkContent
             link="https://dogfriendlyareas.com/dog-friendly-stores-in-san-francisco/"
@@ -341,14 +341,14 @@ const SanFrancisco: FC = () => {
             text="Indulge in a pet-friendly shopping spree at the numerous pet boutiques scattered throughout the city. From fashionable accessories to gourmet treats, your furry friend will be happy!"
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image1.png" text="" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/San%20Fransisco.jpeg" text="https://fcgaarchitecture.com/project/san-francisco-premium-outlets/" />
 
           <LinkContent
             link="https://sfrecpark.org/facilities/facility/details/Alamo-Square-323"
             linkText="Pet Picnic at Alamo Square Park"
             text="Enjoy a pet picnic at Alamo Square Park, known for its iconic &quot;Painted Ladies&quot; Victorian homes. This lovely park offers plenty of green space for you and your pet to relax, unwind, and enjoy the beautiful surroundings."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image7.png" text="San Francisco Recreation and Parks" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/Alamo%20Square%20Park.jpeg" text="https://www.sftravel.com/things-to-do/attractions/iconic-sf/painted-ladies" />
 
           <Typography variant="h2">The Top Pet-Friendly Restaurants in San Francisco</Typography>
           <LinkContent
@@ -372,14 +372,14 @@ const SanFrancisco: FC = () => {
             linkText="Zeitgeist"
             text="Zeitgeist offers a dog-friendly beer garden where your pet can join you while you socialize and enjoy pub-style fare. This restaurant is well-known for its vibrant environment and large beer selection. This popular Mission District spot is perfect for a laid-back evening with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image16.png" text="Eater San Francisco" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/Zeitgeist.jpeg" text="https://missionlocal.org/2016/12/zeitgeist-concerned-over-shadow-to-oppose-mission-housing-project/" />
 
           <LinkContent
             link="https://www.rampsf.com/"
             linkText="The Ramp Restaurant"
             text="Nestled along the waterfront, The Ramp Restaurant is a hidden gem that invites dogs to dine on its dog-friendly patio. This restaurant offers delicious seafood dishes and American classics, and an amazing view of the marina."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image10.png" text="The Ramp" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/The%20Ramp%20Restaurant.avif" text="https://www.theinfatuation.com/san-francisco/reviews/the-ramp" />
 
           <LinkContent
             link="https://www.parkcafelife.com/"
@@ -393,7 +393,7 @@ const SanFrancisco: FC = () => {
             linkText="The Little Chihuahua"
             text="This popular Mexican eatery welcomes pets on its outdoor patio while you indulge in flavorful tacos, burritos, and fresh salsas. The Little Chihuahua is a must-visit spot for Mexican cuisine enthusiasts exploring the Mission District."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image6.png" text="The Little Chihuahua" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/The%20Little%20Chihuahua.jpeg" text="https://onthegrid.city/san-francisco/nopa/the-little-chihuahua" />
 
           <LinkContent
             link="https://sparksocialsf.com/"
@@ -408,14 +408,14 @@ const SanFrancisco: FC = () => {
             text="The Cavalier is a chic brasserie in SoMa that welcomes pets on its outdoor patio. Enjoy British-inspired dishes with a modern twist. And you can even order a treat for your pet from their dog menu."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image12.png" text="The Cavalier" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/The%20Cavalier.avif" text="https://www.thecavaliersf.com/private-events-venue/blue-bar/" />
 
           <LinkContent
             link="https://www.zaziesf.com/"
             linkText="Zazie"
             text="Zazie is a quaint French-inspired bistro in Cole Valley and offers a charming pet-friendly garden patio. Here you can enjoy delectable brunch options with your pet by your side. This spot is a favorite among locals and tourists alike."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/image8.png" text="Zazie" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/Zazie.jpg" text="https://sf.eater.com/2020/1/17/21070740/zazie-cole-valley-brunch-sale" />
 
           <LinkContent
             link="https://rosescafesf.com/"

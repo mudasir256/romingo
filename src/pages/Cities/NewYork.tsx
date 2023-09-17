@@ -314,21 +314,21 @@ const NewYork: FC = () => {
             linkText="Coney Island Beach"
             text="During the off-season, leashed pets are welcome to roam the boardwalk and feel the sand beneath their paws."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/image12.png" text="Brooklyn Paper" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/Coney%20Island%20Beach.jpeg" text="https://www.timeout.com/newyork/news/8-essentials-of-a-coney-island-beach-day-070323" />
 
           <LinkContent
             link="https://www.statueoflibertytickets.com/?gclid=Cj0KCQjw84anBhCtARIsAISI-xc3yjrc7vPEYK0EzHA9jAXE03U7_1g44lBWtBVPlHDTsx0hidqAjJwaAmYTEALw_wcB"
             linkText="Ferry to Statue of Liberty and Ellis Island"
             text="Some ferry companies allow leashed pets aboard, enabling you to experience these iconic landmarks together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/image17.png" text="The Statue of Liberty" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/Ferry%20to%20Statue%20of%20Liberty%20and%20Ellis%20Island.jpeg" text="https://www.statueofliberty.org/visit/tickets/" />
 
           <LinkContent
             link="https://www.nycgovparks.org/parks/fort-tryon-park"
             linkText="Fort Tryon Park"
             text="Located in Upper Manhattan, this park welcomes leashed pets and offers scenic views of the Hudson River."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/image14.png" text="Untapped City" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/Fort%20Tryon%20Park.jpeg" text="https://www.nyctourism.com/places/fort-tryon-park" />
 
           <LinkContent
             link="https://www.viator.com/New-York-City-tourism/d687-r6517264451-s109979651?mcid=28353&tsem=true&supci=2026042029&supag=6517264451&supsc=kwd-68388635065&supai=296358812874&supap=&supdv=c&supnt=g&supti=kwd-68388635065&suplp=9031303&supli=&m=28353&supag=6517264451&supsc=kwd-68388635065&supai=296358812874&supap=&supdv=c&supnt=nt:g&suplp=9031303&supli=&supti=kwd-68388635065&tsem=true&supci=kwd-68388635065&supap1=&supap2=&gclid=Cj0KCQjw84anBhCtARIsAISI-xcWPiYI7Yhm_MpNGW7GCdlcrxJdRAHBA5AxX0fTjiXP5XKpt8I9SpkaAg4bEALw_wcB"
@@ -353,7 +353,7 @@ const NewYork: FC = () => {
             linkText="Barking Dog"
             text="Located on the Upper East Side, this restaurant is a haven for pet lovers. Barking Dog features a dog-friendly patio and offers a &quot;Canine Cuisine&quot; menu with delicious treats for your furry friend."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/image4.png" text="TimeOut" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/Barking%20Dog.jpeg" text="https://www.bringfido.com/restaurant/84102" />
 
           <LinkContent
             link="https://eatatthewilson.com/"
@@ -402,7 +402,7 @@ const NewYork: FC = () => {
             linkText="Lucky Dog"
             text="As the name suggests, this Brooklyn-based bar is an ideal spot for you and your pet to unwind together. They offer a backyard garden where dogs can play and socialize."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/image5.png" text="Brooklyn Magazine" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/Lucky%20Dog.jpeg" text="https://www.theinfatuation.com/new-york/reviews/lucky-dog" />
 
           <LinkContent
             link="https://www.pigbeachnyc.com/"
@@ -416,7 +416,7 @@ const NewYork: FC = () => {
             linkText="The Wilson"
             text="The Wilson Restaurant in NYC offers a culinary experience that combines modern elegance with a touch of classic comfort. With its thoughtfully curated menu and inviting ambiance, The Wilson showcases a contemporary twist on traditional American cuisine, making it a captivating destination for both locals and visitors seeking an unforgettable dining experience."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/image13.png" text="The Wilson" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/Wilson.jpeg" text="https://eventsand.co/venues/wilson/nyc/" />
 
         </Box>
 

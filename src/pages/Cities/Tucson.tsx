@@ -241,7 +241,7 @@ const Tucson: FC = () => {
           />
 
           <Bold text="La Quinta Inn & Suites Tucson Reid Park" />
-          {/* <SingleLoadListingCard hotelName="" /> */}
+          <SingleLoadListingCard hotelName="100036502" /> 
           <Text text="La Quinta Inn & Suites Tucson Reid Park is a welcoming and comfortable hotel located in Tucson, Arizona. Situated near the beautiful Reid Park and the Reid Park Zoo, the hotel offers a convenient location for both leisure and business travelers." />
           <Text text="With its affordable rates, convenient location, and pet-friendly atmosphere, La Quinta Inn & Suites Tucson Reid Park is an excellent choice for travelers looking for a budget-friendly and comfortable stay in Tucson." />
           <Text text="One of the standout features of this hotel is its pet-friendly policy, allowing guests to bring their furry companions along. You can bring two pets of any weight and size for a fee of $25 per pet, per night." />
@@ -287,14 +287,14 @@ const Tucson: FC = () => {
             linkText="Sentinel Peak Park (A Mountain)"
             text='Take a hike up to Sentinel Peak, known as "A Mountain," and enjoy breathtaking views of Tucson&apos;s cityscape and surrounding mountains. This pet-friendly trail offers a rewarding experience for both you and your pup.'
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image1.png" text="Tucsonaz.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Sentinel%20Peak%20.jpeg" text="https://www.knau.org/knau-and-arizona-news/2023-05-01/tucson-to-return-land-to-tohono-oodham-nation" />
 
           <LinkContent
             link="https://www.pima.gov/1292/Sweetwater-Preserve"
             linkText="Sweetwater Preserve"
             text="Explore the scenic trails of Sweetwater Preserve, where leashed dogs are welcome. The stunning desert landscapes and diverse flora will make this adventure unforgettable."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image17.png" text="Pima.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Sweetwater%20Preserve.jpeg" text="https://www.phoenixmag.com/2022/01/09/sweetwater-preserve-hike-in-tucson/" />
 
           <LinkContent
             link="https://tucsonbotanical.org/"
@@ -315,7 +315,7 @@ const Tucson: FC = () => {
             linkText="Brandi Fenton Memorial Park"
             text="This spacious park offers a designated dog park, allowing your furry friend to play off-leash and socialize with other dogs."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image2.png" text="pima.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Brandi%20Fenton%20Memorial%20Park%20.jpeg" text="https://localtucsonscene.wordpress.com/2012/08/06/brandi-fenton-tucson-park/" />
 
           <LinkContent
             link="https://mercadodistrict.com/"
@@ -336,14 +336,14 @@ const Tucson: FC = () => {
             linkText="Reid Park"
             text="Visit Reid Park and its adjoining Reid Park Zoo. While pets are not allowed inside the zoo, the park offers plenty of open spaces for your furry friend to enjoy."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image16.png" text="Reid Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Reid%20Park.jpeg" text="https://en.wikipedia.org/wiki/Gene_C._Reid_Park" />
 
           <LinkContent
             link="https://www.pima.gov/1270/Santa-Cruz-River-Park"
             linkText="Santa Cruz River Park"
             text="Take a leisurely walk along the Santa Cruz River Park, a pet-friendly oasis with walking trails and beautiful river views."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image18.png" text="Pima.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Santa%20Cruz%20River%20Park.jpeg" text="https://www.nps.gov/places/santa-cruz-river.htm" />
 
           <LinkContent
             link="https://www.tucsontopia.com/himmel-park/"
@@ -380,7 +380,7 @@ const Tucson: FC = () => {
             linkText="Ghini's French Caffe"
             text="This cozy French café welcomes pets on their shaded patio. Indulge in delicious crepes and quiches while your pet relaxes by your feet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/image20.png" text="Ghini’s French Caffe" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Ghini's%20French%20Caffe%20.jpeg" text="https://tucsonfoodie.com/2021/03/02/must-try-dishes-ghinis-french-cafe/" />
 
           <LinkContent
             link="https://www.zinburgeraz.com/"

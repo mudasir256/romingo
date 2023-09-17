@@ -293,7 +293,7 @@ const Milwaukee: FC = () => {
             linkText="Estabrook Park Dog Park"
             text="Treat your dog to a day of off-leash fun at the Estabrook Park Dog Park. This well-maintained and spacious area allows your furry friend to socialize and romp freely with other dogs. With separate sections for small and large dogs, it ensures a safe and enjoyable experience for all."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image11.png" text="Milwaukee County"  />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Estabrook_Park_dog_park.jpeg" text="https://commons.wikimedia.org/wiki/File:Estabrook_Park_dog_park_and_signage.jpg"  />
 
           <LinkContent
             link="https://city.milwaukee.gov/DCD/Projects/RiverWalk"
@@ -321,14 +321,14 @@ const Milwaukee: FC = () => {
             linkText="Oak Leaf Trail"
             text="For a more extensive adventure, explore the Oak Leaf Trail, a multi-use trail that spans throughout the city. Leashed pets are allowed, and the trail offers a diverse range of landscapes to discover together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image18.png" text="Rails-to-Trails Conservancy" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Oak%20Leaf%20Trail.jpeg" text="https://www.wuwm.com/2022-07-13/exploring-what-the-milwaukee-county-parks-trail-system-has-to-offer" />
 
           <LinkContent
             link="https://county.milwaukee.gov/EN/Parks/Explore/Boerner-Botanical-Gardens"
             linkText="Boerner Botanical Gardens"
             text="While pets aren't allowed inside the buildings, leashed dogs can explore the stunning outdoor gardens at Boerner Botanical Gardens. This is a great place for a leisurely walk surrounded by beautiful flora."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image20.png" text="Milwaukee County" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Boerner%20Botanical%20Gardens.jpeg" text="https://botaniquest.com/quests-botanical-gardens/boerner-botanical-gardens/" />
 
           <LinkContent
             link="https://www.thevalleymke.org/three-bridges-park"
@@ -350,7 +350,7 @@ const Milwaukee: FC = () => {
             linkText="Brady Street"
             text="Take a stroll along Brady Street, a vibrant and pet-welcoming neighborhood. Many cafes and shops offer pet-friendly outdoor seating, so you can grab a bite to eat or do some shopping with your furry friend by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image1.png" text="City of Milwaukee" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Brady%20Street.jpeg" text="https://urbanmilwaukee.com/2023/06/20/brady-street-festival-adds-indoors-stages-dog-yoga/" />
 
           <LinkContent
             link="https://milwaukeepedalandpaddletavern.com/paddle/"
@@ -366,7 +366,7 @@ const Milwaukee: FC = () => {
             linkText="Café Benelux"
             text="Located in the Historic Third Ward, Café Benelux is a popular spot that offers a pet-friendly outdoor seating area. Indulge in their Belgian-inspired cuisine while your pet relaxes beside you, taking in the bustling atmosphere of the neighborhood."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image5.png" text="Cafe Benelux" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Cafe%CC%81%20Benelux.webp" text="https://www.jsonline.com/story/entertainment/dining/2018/12/03/lux-domes-cafe-benelux-what-experience-like-dining-milwaukee-rooftop-outdoors/2190316002/" />
 
           <LinkContent
             link="https://www.artbarwonderland.com/"
@@ -409,7 +409,7 @@ const Milwaukee: FC = () => {
             text="This vibrant Mexican restaurant has two pet-friendly locations in Milwaukee. Their patios are perfect for a relaxing meal with your pet while enjoying delicious Mexican cuisine."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/image15.png" text="On Milwaukee" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Cafe%CC%81%20Corazon%20.jpeg" text="https://www.cafecorazonkc.com/" />
 
           <LinkContent
             link="https://shepherdexpress.com/locations/oscar-s-pierce/"

@@ -285,7 +285,7 @@ const SanAntonio: FC = () => {
             linkText="McAllister Park"
             text="For an active day, head to the dog park at McAllister Park. Your pup can run off-leash and socialize with other furry friends in a secure environment."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/image12.png" text="McAllister Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/McAllister%20Park.jpeg" text="https://www.tripadvisor.com/Attraction_Review-g48430-d7331461-Reviews-McAllister_Park-Port_Jefferson_Long_Island_New_York.html" />
 
           <LinkContent
             link="https://www.nps.gov/saan/index.htm"
@@ -300,7 +300,7 @@ const SanAntonio: FC = () => {
             text="This neighborhood hosts a weekly farmer's market and many outdoor events, and it is a fun and pet-friendly spot for you and your furry companion to enjoy."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/image16.png" text="The Pearl District" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/The%20Pearl%20District.webp" text="https://www.travelportland.com/neighborhoods/pearl-district/" />
 
           <LinkContent
             link="https://www.philhardbergerpark.org/"
@@ -314,7 +314,7 @@ const SanAntonio: FC = () => {
             linkText="Alamo Quarry Market"
             text="Many shops in this retail complex are pet-friendly, and some even provide water bowls and treats for your furry friend. Enjoy some retail therapy with your pet by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/image5.png" text="Alamo Quarry Market" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/Alamo%20Quarry%20Market.jpeg" text="https://www.tripadvisor.com/Attraction_Review-g60956-d4411078-Reviews-Alamo_Quarry_Market-San_Antonio_Texas.html" />
 
           <LinkContent
             link="https://www.thealamo.org/"
@@ -346,7 +346,7 @@ const SanAntonio: FC = () => {
             linkText="The Friendly Spot Ice House"
             text="As the name suggests, this popular spot is as welcoming to pets as it is to humans. The Friendly Spot Ice House has a pet-friendly patio, a large menu of craft beers, and comfort food."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/image10.png" text="The Friendlt Spot Ice House" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/The%20Friendly%20Spot%20Ice%20House.webp" text="https://scoundrelsfieldguide.com/friendly-spot-ice-house-san-antonio-dive-bar/" />
 
           <LinkContent
             link="https://thecove.us/"
@@ -360,14 +360,14 @@ const SanAntonio: FC = () => {
             linkText="La Tuna Grill"
             text="La Tuna Grill is located in the Southtown neighborhood and has a pet-friendly patio where you can enjoy Tex-Mex favorites and live music."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/image19.png" text="La Tuna Grill" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/La%20Tuna%20Grill.jpeg" text="https://www.sacurrent.com/food-drink/san-antonio-mainstay-la-tuna-icehouse-celebrating-30th-anniversary-with-saturday-bash-29092596" />
 
           <LinkContent
             link="https://tycoonflats.com/"
             linkText="Tycoon Flats"
             text="Tycoon Flats is a pet-friendly restaurant known for its juicy burgers, cold beers, and shaded outdoor seating perfect for you and your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/image13.png" text="Tycoon Flats" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/Tycoon%20Flats.webp" text="https://whatnowsat.com/tycoon-flats-is-opening-its-second-location-in-san-antonio/" />
 
           <LinkContent
             link="https://alamobiscuitco.com/"

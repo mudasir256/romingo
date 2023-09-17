@@ -280,7 +280,7 @@ const Houston: FC = () => {
             text="Johnny Steele Dog Park, located in Buffalo Bayou Park, is a spacious and well-maintained off-leash dog park that offers separate areas for large and small dogs to play freely. The park's beautiful scenery and designated dog-friendly trails make it a perfect spot for a fun-filled day with your pet."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image19.png" text="Downtown Houston" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Johnny%20Steele.jpeg" text="https://www.houstonchronicle.com/news/houston-texas/houston/article/Beloved-dog-park-ravaged-by-Harvey-reopens-12985998.php" />
 
           <LinkContent
             link="https://marketsquarepark.com/"
@@ -295,7 +295,7 @@ const Houston: FC = () => {
             text="This 155-acre nature sanctuary is a great place for you and your pet to immerse yourselves in the beauty of nature. Leashed pets are allowed on the trails, providing an excellent opportunity for an outdoor adventure together."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image14.png" text="Houston Arboretum & Nature Center" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Houston%20Arborethum.webp" text="https://www.houstoniamag.com/travel-and-outdoors/guide-to-hiking-houston-arboretum" />
 
           <LinkContent
             link="https://www.citycentrehouston.com/"
@@ -309,7 +309,7 @@ const Houston: FC = () => {
             linkText="Houston Heights Bike Trail"
             text="The Houston Heights Bike Trail is a scenic trail that allows leashed pets, making it a fantastic choice for a leisurely walk or bike ride with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image8.png" text="Trail Link" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Trail%20Link.webp" text="https://houston.culturemap.com/news/city-life/04-30-18-buffalo-bayou-park-white-oak-bayou-link-now-open-hike-bike/" />
 
           <LinkContent
             link="https://8thwonder.com/"
@@ -332,7 +332,7 @@ const Houston: FC = () => {
             linkText="Waugh Bridge Bat Colony"
             text="Head to the Waugh Bridge at dusk to watch the famous bat emergence with your pet. This natural spectacle is a unique experience for both you and your furry friend."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image16.png" text="Houston Chronicle" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Bat%20Watching.jpeg" text="https://thebuzzmagazines.com/articles/2021/10/were-going-batty-bat-watching-bayou-city" />
 
           <LinkContent
             link="https://www.tclf.org/landscapes/sabine-promenade"
@@ -360,7 +360,7 @@ const Houston: FC = () => {
             text="Barnaby's Café is a beloved local eatery that warmly welcomes pets on their outdoor patios. This pet-friendly spot offers a diverse menu, from hearty breakfast dishes to flavorful salads and mouthwatering burgers, ensuring a delightful dining experience for both humans and their furry companions."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image9.png" text="Barnaby’s Cafe"/>
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Barnaby's%20Cafe.jpeg" text="https://www.houstonlgbthistory.org/misc-barnabys.html"/>
 
 
           <LinkContent
@@ -368,7 +368,7 @@ const Houston: FC = () => {
             linkText="Liberty Kitchen & Oysterette"
             text="Situated in the Heights, Liberty Kitchen & Oysterette boasts a pet-friendly patio where you can savor fresh seafood and delectable dishes. The restaurant offers water bowls and treats for pets, making it a perfect choice for a leisurely meal with your furry friend."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image1.png" text="Liberty Kitchen & Oysterette" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Liberty%20Kitchen.jpeg" text="https://www.opentable.com/r/liberty-kitchen-and-oysterette-memorial-houston" />
 
           <LinkContent
             link="https://www.axelradhouston.com/"
@@ -405,7 +405,7 @@ const Houston: FC = () => {
             linkText="Good Dog Houston"
             text="True to its name, Good Dog Houston offers gourmet hot dogs and a pet-friendly patio where your furry friend can join you for a tasty meal. The restaurant even has a &quot;pup cup&quot; dessert for your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image18.png" text="Good Dog Houston" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Good%20Dog.jpg" text="https://houston.eater.com/2020/11/16/21569689/good-dog-houston-montrose-closing-feges-bbq-nationwide-shipping-citycentre-new-restaurants" />
 
           <LinkContent
             link="https://www.onioncreekcafe.com/"
@@ -427,7 +427,7 @@ const Houston: FC = () => {
             text="Karbach offers a wide range of craft beers, from classic styles to seasonal and limited-edition brews, all crafted with a passion for quality and taste. The brewery's spacious beer garden and taproom provide a welcoming and laid-back atmosphere, making it an excellent spot for beer lovers to gather and enjoy their favorite beverages."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/image20.png" text="Karbach Brewing" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Karbach.jpeg" text="https://eventup.com/venue/karbach-brewing-co/" />
 
 
         </Box>

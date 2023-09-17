@@ -297,14 +297,14 @@ const SanDiego: FC = () => {
             text="Fiesta Island is a must-visit destination for active dogs. This large off-leash dog park has sandy shores and calm waters. This is an ideal spot for dogs who love to swim and play fetch. With plenty of open space, your pet will have a blast running and frolicking in this doggie wonderland."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/image20.png" text="City of San Diego" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/Fiesta%20Island.jpeg" text="https://lajolla.com/profiles/fiesta-island-dog-park/" />
 
           <LinkContent
             link="https://www.nps.gov/cabr/learn/coastal-trail.htm"
             linkText="Cabrillo Tide Pools Trail"
             text="Enjoy a scenic hike with your pet along the Cabrillo Tide Pools Trail. Leashed dogs are welcome to explore this coastal trail as you enjoy beautiful views of the Pacific Ocean."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/image17.png" text="National Park Service" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/Cabrillo%20Tide%20Pools%20Trail.jpeg" text="https://www.nps.gov/thingstodo/visit-the-cabrillo-tidepools.htm" />
 
           <LinkContent
             link="https://balboapark.org/parks-trails-gardens/"
@@ -362,7 +362,7 @@ const SanDiego: FC = () => {
             linkText="Wonderland Ocean Pub"
             text="Located on Ocean Beach's bustling Newport Avenue, Wonderland Ocean Pub boasts a spacious and pet-friendly patio with stunning ocean views. The restaurant's relaxed atmosphere makes it an ideal spot for enjoying craft beers, delectable seafood, and burgers with your furry friend."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/image9.png" text="Wonderland" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/Wonderland%20Ocean%20Pub.jpeg" text="https://www.facebook.com/WonderlandOB/photos/friday-views-/1969249829790396/" />
 
           <LinkContent
             link="https://www.lazydogrestaurants.com/locations/san-diego-ca"
@@ -411,7 +411,7 @@ const SanDiego: FC = () => {
             linkText="Regal Beagle"
             text="Regal Beagle is a beloved gem known for its charming ambiance and delectable American cuisine. Located in the heart of San Diego, this quaint eatery offers a warm and welcoming setting, making it a favorite spot for locals and visitors alike. With its pet-friendly patio, Regal Beagle warmly invites four-legged companions to join their owners for a delightful meal. The restaurant's diverse menu features a variety of dishes, including mouthwatering burgers, hearty sandwiches, and flavorful salads."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/image2.png" text="Thrillist" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/Regal%20Beagle.jpeg" text="https://www.riversandroutes.com/directory/ropers-regal-beagle/" />
 
           <LinkContent
             link="http://barcrushed.com/"
@@ -425,14 +425,14 @@ const SanDiego: FC = () => {
             linkText="The Rabbit Hole"
             text="The Rabbit Hole restaurant in San Diego is a whimsical and unique dining destination that takes guests on a delightful culinary journey. Nestled in the heart of Normal Heights, this Alice in Wonderland-themed eatery offers a creative and playful menu inspired by the beloved tale. With its imaginative decor, quirky cocktails, and delicious comfort food, The Rabbit Hole provides a one-of-a-kind dining experience that appeals to both the young at heart and the curious food adventurer."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/image6.png" text="The Rabbit Hole" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/The%20Rabbit%20Hole.jpeg" text="https://thevendry.com/venue/23899/the-rabbit-hole-san-diego-ca" />
 
           <LinkContent
             link="https://www.parkhousesd.com/"
             linkText="Park House Eatery"
             text="Parkhouse Eatery is a charming and welcoming restaurant that combines modern elegance with a cozy atmosphere. Located in the heart of University Heights, this eatery offers a diverse and delicious menu featuring locally sourced ingredients and seasonal dishes. With its warm hospitality, inviting patio, and mouthwatering meals, Parkhouse Eatery is a popular choice for brunch, lunch, and dinner, providing a delightful dining experience for patrons seeking a memorable culinary escape."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/image1.png" text="Park House Eatery" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/Parkhouse%20Eatery.jpeg" text="https://www.afar.com/places/parkhouse-eatery-san-diego" />
 
 
         </Box>

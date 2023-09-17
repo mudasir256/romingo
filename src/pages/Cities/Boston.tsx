@@ -299,7 +299,7 @@ const Boston: FC = () => {
             linkText="Castle Island"
             text="Take a short drive to South Boston and explore Castle Island with your pup. This recreational area offers picturesque views of the Boston Harbor and the city skyline. Dogs are allowed on-leash, and they can join you for a stroll along the waterfront or a relaxing picnic on the grass."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/image8.png" text="Mass.gov" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Castle%20Island%20Park%20%26%20Fort.jpeg" text="https://www.timeout.com/boston/attractions/castle-island-park-fort-independence" />
 
         
           <LinkContent
@@ -321,28 +321,28 @@ const Boston: FC = () => {
             linkText="Boston Harbor Islands"
             text="Embark on a pet-friendly adventure by hopping on a ferry to the Boston Harbor Islands. While dogs are not allowed on the beaches, they are welcome on the islands' hiking trails and picnic areas. Enjoy the fresh air and scenic views while creating lasting memories with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/image7.png" text="Viator" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Boston%20Harbor.avif" text="https://unsplash.com/photos/vnVX1INJ-fM" />
 
           <LinkContent
             link="https://www.peterspark.org/"
             linkText="Peter's Park"
             text="Located in the South End, Peter's Park is a well-maintained, off-leash dog park where your furry friend can socialize and play freely. The park provides separate areas for small and large dogs, water fountains, and seating for pet owners."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/image16.png" text="Peter's Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Peters%20Park.avif" text="https://unsplash.com/photos/eSQNlt0QmXI" />
 
           <LinkContent
             link="https://esplanade.org/events/5-canine-promenade/"
             linkText="The Esplanade Association Canine Promenade"
             text="Join the annual Esplanade Association Canine Promenade, a fun-filled event that celebrates dogs and their owners. This pet-friendly gathering includes a dog parade, contests, and pet-related activities, all while supporting the efforts to maintain and enhance the Charles River Esplanade."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/image16.png" text="Esplanade Association" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Esplanade%20Association%20Canine%20Promenade.jpeg" text="https://www.bostonmagazine.com/arts-entertainment/2016/10/24/canine-promenade-2016-photos/" />
 
           <LinkContent
             link="https://bostonfrogpond.com/"
             linkText="Boston Common Frog Pond"
             text="During the winter months, when the Frog Pond turns into a charming ice skating rink, it transforms into a fun pet-friendly play area in the warmer seasons. Dogs are allowed off-leash in the pond's fenced area, giving them the opportunity to splash around and cool off on hot days."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/image15.png" text="Boston Common Frog Pond" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Boston%20Common%20Frog%20Pond.jpeg" text="https://www.shegotguts.com/posts/2018/10/13/your-guide-to-visiting-boston-common-amp-public-garden-with-a-toddler" />
 
       
           <Typography variant="h2">The Top Pet-Friendly Restaurants in Boston</Typography>
@@ -367,7 +367,7 @@ const Boston: FC = () => {
             linkText="Shake Shack"
             text="Located in various spots around the city, Shake Shack is a popular pet-friendly chain offering a mouthwatering menu of burgers, hot dogs, and frozen custard. Their spacious outdoor patios are perfect for you and your furry friend to relax and enjoy a casual meal together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/image5.png" text="Shake Shack" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Shake%20Shack.jpg" text="https://boston.eater.com/2016/8/16/12496044/shake-shack-seaport-danny-meyer-interview" />
 
           <LinkContent
             link="https://www.stephaniesonnewbury.com/"

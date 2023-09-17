@@ -292,14 +292,14 @@ const NewOrleans: FC = () => {
             linkText="Swamp Tours"
             text="Experience the enchanting swamps and bayous of Louisiana with your pet by your side on a pet-friendly swamp tour."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/image9.png" text="Viator" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/Swamp%20Tours.webp" text="https://www.cajunencounters.com/blog/cajun-encounters/rated-best-new-orleans-swamp-tour/" />
 
           <LinkContent
             link="http://www.crescentparknola.org/"
             linkText="Crescent Park"
             text="Take a leisurely stroll or bike ride along the Mississippi River at Crescent Park, a beautiful pet-friendly green space."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/image20.png" text="Crescent Park NOLA" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/Crescent%20Park.jpeg" text="https://www.architectmagazine.com/project-gallery/crescent-park" />
 
           <LinkContent
             link="https://www.neworleansbrewerytour.com/"
@@ -335,7 +335,7 @@ const NewOrleans: FC = () => {
             linkText="Cemetery Tours"
             text="Many pet-friendly walking tours take you through the intriguing and historic cemeteries of New Orleans."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/image6.png" text="Viator" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/Cemetery%20Tour.jpeg" text="https://www.viator.com/tours/New-Orleans/New-Orleans-Cemetery-and-Voodoo-Walking-Tour/d675-3780HAUNT" />
 
           <LinkContent
             link="https://www.neworleans.com/blog/post/best-public-gardens-in-new-orleans/"
@@ -360,7 +360,7 @@ const NewOrleans: FC = () => {
             text="This pub offers a wide selection of craft beers and a pet-friendly patio where your furry companion can relax while you enjoy your meal."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/image2.png" text="New Orleans" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/The%20bulldog.jpg" text="https://www.nola.com/gambit/best_of_new_orleans/best-of-new-orleans-2022-bars/article_c0a2a3e2-3dc1-11ed-ad8e-7b3f52318d7a.html" />
 
           <LinkContent
             link="https://thecountryclubneworleans.com/"

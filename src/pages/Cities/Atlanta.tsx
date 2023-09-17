@@ -235,15 +235,15 @@ const Atlanta: FC = () => {
             highlights={['Fitness center', 'Spa services', 'Multiple dining options']}
           />
 
-
-          <Bold text="Ritz Carlton Atlanta" />
-          <SingleLoadListingCard hotelName="100372040" />
-          <Text text="The Ritz-Carlton Hotel is a pet-friendly hotel known for the amenities and services it offers. Conveniently located in the heart of downtown Atlanta, this hotel is a great option for your next trip." />
-          <Text text="When traveling to The Ritz-Carlton Hotel, you can bring pets that weigh up to 25 pounds. Your pet-friendly room will have a plush bed, food bowls, and treats. Your pet will feel pampered as they explore Atlanta alongside you!" />
+          <Bold text="Intercontinental Buckhead" />
+          <SingleLoadListingCard hotelName="1004003423" />
+          <Text text="The Intercontinental Hotel is located in Buckhead-Atlanta and offers guests and their pets a luxurious experience from the moment they set foot on the property. Located directly across from the Lenox Square Shopping center, this hotel would be a perfect match for those looking for a shoppers paradise while on vacation." />
+          <Text text="This 5-star pet friendly hotel allows guests to bring one cat or dog up to 70 lbs per room for $100 per stay. Pet beds, food and water bowls, and treats are available at the front desk upon request. Pets must be leashed and attended by the guest at all times and are not permitted in the swimming pool, spa, restaurant, or bar." />
           <HighlightBox
             title="The hotel's amenities include:"
-            highlights={['Fitness center', 'Wellness floor', 'Dining options', 'VIP treatment for children']}
+            highlights={['Heated saltwater pool', 'Jurlique Spa', 'Fitness Center', 'Dry cleaning service', 'On-Call nanny service']}
           />
+      
 
           <Bold text="Kimpton Overland" />
           <SingleLoadListingCard hotelName="100668120" />
@@ -352,14 +352,14 @@ const Atlanta: FC = () => {
             linkText="Ponce City Market"
             text="Take your pet on a shopping adventure at Ponce City Market, a trendy marketplace with pet-friendly stores. Enjoy browsing boutiques, art galleries, and specialty shops while your pet enjoys the attention of passersby."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/image13.png" text="Ponce City Market" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/Ponce%20City%20Market.jpeg" text="https://www.ajc.com/lifestyles/everything-you-need-know-about-ponce-city-market/HEv1g4gO3eDVbYzpaMNerL/" />
 
           <LinkContent
             link="https://piedmontpark.org/dog-parks/"
             linkText="Piedmont Dog Park"
             text="For pups who love to socialize, a visit to Piedmont Dog Park is a must. This fully fenced, off-leash park provides ample space for dogs to play and make new furry friends. It's a great opportunity for your pet to burn off energy and have a blast."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/image7.png" text="Piedmont Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/Piedmont%20Dog%20Park.jpeg" text="https://www.11alive.com/article/news/local/piedmont-park-safety-fundraiser/85-9a066fa8-ca52-4875-aea6-0b8896f0d802" />
 
           <LinkContent
             link="https://www.eventbrite.com/d/ga--atlanta/dog-events/"
@@ -398,7 +398,7 @@ const Atlanta: FC = () => {
             linkText="The Nook on Piedmont Park"
             text="Situated near Piedmont Park, The Nook is a pet-friendly restaurant that boasts a charming outdoor patio. With a variety of food options, it's the perfect pet-friendly spot for a laid-back meal after a stroll in the park."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/image4.png" text="The Nook" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/The%20Nook.jpeg" text="https://thenookatlanta.com/gallery/" />
 
 
           <LinkContent

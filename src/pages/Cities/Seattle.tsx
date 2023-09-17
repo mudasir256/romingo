@@ -276,14 +276,14 @@ const Seattle: FC = () => {
             linkText="Magnuson Park Off-Leash Area"
             text="Treat your pet to an adventure at Magnuson Park Off-Leash Area, one of Seattle's largest and most popular dog parks. There are over eight acres of land where your pet can roam freely and enjoy a dog swimming area."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image14.png" text="Seattle" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Magnuson%20Park%20Off-Leash%20Area.jpeg" text="https://www.beautemia.com/warren-g-magnuson-park-off-leash-area-review-seattle-wa/" />
 
           <LinkContent
             link="https://www.seattle.gov/parks/allparks/discovery-park"
             linkText="Discovery Park"
             text="Head to Discovery Park, Seattle's largest city park, for a scenic adventure with your pet. Leashed pets are welcome to explore the park's many trails, offering breathtaking views of Puget Sound and the Olympic Mountains."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image5.png" text="Seattle" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Discovery%20Park.webp" text="https://www.cntraveler.com/activities/seattle/discovery-park" />
 
           <LinkContent
             link="https://www.seattle.gov/parks/allparks/volunteer-park"
@@ -305,7 +305,7 @@ const Seattle: FC = () => {
             text="Take a leisurely walk along the Seattle Waterfront with your leashed pet. Enjoy the sights and sounds of Elliott Bay while exploring attractions like the Seattle Great Wheel and the Olympic Sculpture Park."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image9.png" text="Seattle Waterfront" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Seattle%20Great%20Wheel.webp" text="https://seattlegreatwheel.com/" />
 
           <LinkContent
             link="http://www.fremontmarket.com/"
@@ -319,7 +319,7 @@ const Seattle: FC = () => {
             linkText="Alki Beach"
             text="Unwind at Alki Beach, a pet-friendly destination where your leashed pet can frolic on the sandy shores and dip their paws in the refreshing waters of Puget Sound."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image20.png" text="Alki Beach" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Alki%20Beach.jpeg" text="https://www.lonelyplanet.com/articles/a-guide-to-seattles-alki-beach" />
 
           <LinkContent
             link="https://www.seattle.gov/parks/allparks/green-lake-park"
@@ -350,7 +350,7 @@ const Seattle: FC = () => {
             linkText="Norm's Eatery & Ale House"
             text="Situated in Fremont, Norm's Eatery & Ale House is a beloved pet-friendly spot that boasts a welcoming atmosphere for both patrons and their pets. The restaurant offers an outdoor patio where dogs are more than welcome to accompany their owners. Norm's serves up mouthwatering American pub fare and an impressive selection of craft beers, ensuring a delightful dining experience for all."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image4.png" text="Norm’s Eatery & Ale House" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Norm's%20Eatery%20%26%20Ale%20House.jpeg" text="https://www.bringfido.com/restaurant/191" />
 
           <LinkContent
             link="https://thefathenseattle.com/"
@@ -365,42 +365,42 @@ const Seattle: FC = () => {
             linkText="Ray's Cafe"
             text="Located on the shores of Puget Sound, Ray's Cafe offers breathtaking waterfront views and a pet-friendly patio for a memorable dining experience. Leashed pets are welcome to join their owners as they savor fresh seafood and classic Pacific Northwest cuisine, all while enjoying the soothing sound of the waves."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image6.png" text="Ray’s Cafe" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Ray's%20Cafe.jpeg" text="https://www.rays.com/cafe/cafe-gallery/" />
 
           <LinkContent
             link="https://bluemoonburgers.com/"
             linkText="Blue Moon Burgers"
             text="With multiple locations throughout the city, Blue Moon Burgers is a pet-friendly burger joint that has something for everyone. The restaurant offers a designated outdoor area where pets can enjoy the company of fellow canine patrons while you indulge in a variety of mouthwatering burgers, including delicious vegetarian options."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image10.png" text=" Blue Moon Burgers" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Blue%20Moon%20Burgers.jpg" text="https://seattle.eater.com/2015/3/30/8313697/blue-moon-burgers-opens-today-on-alki" />
 
           <LinkContent
             link="https://www.thestationbh.com/"
             linkText="The Station"
             text="The Station is a hip and welcoming coffee shop in Beacon Hill that warmly welcomes pets. This pet-friendly establishment offers an inviting outdoor patio, making it an ideal spot for pet owners to sip on coffee, savor tasty pastries, and socialize with their four-legged companions."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image17.png" text="The Station" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/The%20Station.jpeg" text="https://en.wikipedia.org/wiki/Union_Station_%28Seattle%29" />
 
           <LinkContent
             link="https://www.portagebaycafe.com/south-lake-union"
             linkText="Portage Bay Cafe"
             text="With multiple locations in Seattle, Portage Bay Cafe is a popular choice for breakfast and brunch lovers, and it's also pet-friendly. The restaurant offers outdoor seating where leashed pets can relax while their owners enjoy a hearty farm-to-table breakfast experience."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image7.png" text="Portage Bay Cafe" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Portage%20Bay%20Cafe.jpeg" text="https://www.portagebaycafe.com/roosevelt" />
 
           <LinkContent
             link="https://www.vivapoquitos.com/"
             linkText="Poquitos"
             text="In Capitol Hill, Poquitos is a lively Mexican restaurant with a pet-friendly patio where your furry companion can join you for some south-of-the-border flavors. The restaurant serves up delicious tacos, enchiladas, and refreshing cocktails, creating a festive and enjoyable dining experience."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image19.png" text="Poquitos" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Poquitos.jpeg" text="https://www.opentable.com/r/poquitos-tacoma" />
 
           <LinkContent
             link="https://thebarkingdogalehouse.com/"
             linkText="Barking Dog Alehouse"
             text="As the name suggests, Barking Dog Alehouse is a dog-friendly gastropub in Ballard that caters to both two-legged and four-legged guests. With its dog-friendly outdoor patio, the pub offers a diverse menu and an extensive selection of beers for a relaxing and enjoyable time with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/image3.png" text="Barking Dog Alehouse" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Barking%20Dog%20Alehouse.jpeg" text="https://www.weddingwire.com/biz/barking-dog-ale-house-haverhill/e48c6ece8fc70008.html" />
 
           <LinkContent
             link="https://www.chuckshopshop.com/"

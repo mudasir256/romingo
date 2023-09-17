@@ -282,21 +282,21 @@ const SantaFe: FC = () => {
             linkText="Santa Fe Plaza"
             text="Take a leisurely stroll with your furry friend through the iconic Santa Fe Plaza, the heart of the city. Rich in history and surrounded by charming adobe buildings, the Plaza is a great place to soak in the vibrant atmosphere and immerse yourself in the local culture."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image19.png" text="Santa Fe Plaza" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/Santa%20Fe%20Plaza%20.jpeg" text="https://fourkachinas.com/blog/spend-the-day-at-the-santa-fe-plaza/" />
 
           <LinkContent
             link="https://www.alltrails.com/trail/us/new-mexico/dale-ball-trails-north"
             linkText="Dale Ball Trails"
             text="For the active and adventurous, the Dale Ball Trails offer a network of well-marked, pet-friendly hiking paths. You and your pet can explore the beautiful Santa Fe foothills, providing ample opportunities for scenic hikes and outdoor adventures."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image20.png" text="AllTrails" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/Dale%20Ball%20Trails%20.jpeg" text="https://casualtravelist.com/best-things-to-do-in-santa-fe-new-mexico/" />
 
           <LinkContent
             link="https://railyardsantafe.com/"
             linkText="Santa Fe Railyard Arts District"
             text="Discover the artistic side of Santa Fe at the Railyard Arts District. This pet-friendly area is home to galleries, boutiques, and restaurants with outdoor seating that welcome your pets. Enjoy some art appreciation and indulge in delicious local cuisine while your furry companion lounges beside you."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image6.png" text="Santa Fe Railyard Arts District" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/Railyard%20Arts%20District.jpeg" text="https://www.tripadvisor.com/Attraction_Review-g60958-d8670359-Reviews-Railyard_Arts_District-Santa_Fe_New_Mexico.html" />
 
           <LinkContent
             link="https://www.emnrd.nm.gov/spd/find-a-park/hyde-memorial-state-park/"
@@ -332,7 +332,7 @@ const SantaFe: FC = () => {
             linkText="Cerrillos Hills State Park"
             text="Embark on a pet-friendly adventure to Cerrillos Hills State Park, a hidden gem with scenic trails and historical sites. The diverse terrain makes it an exciting spot for hikers, and leashed pets are welcome to join the fun."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image12.png" text="Cerrillos Hills State Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/Cerrillos%20Hills%20State%20Park.jpeg" text="https://commons.wikimedia.org/wiki/File:Looking_south_from_Cerrillos_Hills_State_Park_towards_the_Ortiz_Mountains.jpg" />
 
           <LinkContent
             link="https://golondrinas.org/"
@@ -368,7 +368,7 @@ const SantaFe: FC = () => {
             linkText="Tia Sophia's"
             text="Known for its traditional New Mexican breakfast and lunch fare, Tia Sophia's welcomes pets on their charming outdoor patio. Treat yourself to mouthwatering breakfast burritos and enchiladas while your furry friend receives attention from the friendly staff."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image16.png" text="Tia Sophia's" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/Sophia's%20.jpeg" text="https://www.onlyinyourstate.com/new-mexico/breakfast-burrito-tia-sophias-nm/" />
 
           <LinkContent
             link="https://www.boxcar-restaurants.com/santafe/"
@@ -389,7 +389,7 @@ const SantaFe: FC = () => {
             linkText="El Parasol"
             text="A local favorite for quick and delicious Mexican food, El Parasol provides outdoor seating for you and your pet to enjoy together. From tacos to tamales, the menu boasts a variety of mouthwatering options that will satisfy your cravings."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/image17.png" text="El Parasol" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/El%20Parasol.png" text="https://www.dallasites101.com/blog/post/the-best-restaurants-in-santa-fe/" />
 
           <LinkContent
             link="https://www.secondstreetbrewery.com/"

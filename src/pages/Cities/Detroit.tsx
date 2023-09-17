@@ -321,7 +321,7 @@ const Detroit: FC = () => {
             linkText="Dequindre Cut Greenway"
             text="The Dequindre Cut Greenway is a dog-friendly urban trail that provides a safe and scenic route for walking, jogging, and biking. Surrounded by street art and greenery, this converted railway path is a delightful way to explore Detroit with your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/image8.png" text="Dequindre Cut" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Dequindre%20Cut%20Greenway.jpeg" text="https://network.thehighline.org/projects/dequindre-cut/" />
 
           <LinkContent
             link="https://detroitfleat.com/"
@@ -350,7 +350,7 @@ const Detroit: FC = () => {
             linkText="Dodge Park"
             text="Dodge Park in Detroit warmly welcomes furry companions, offering a dog-friendly haven where both canines and their owners can enjoy the outdoors. With ample green spaces and designated areas for off-leash play, Dodge Park provides an ideal spot for dogs to socialize and stretch their legs"
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/image11.png" text="Only In Your State" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Dodge%20Park.jpeg" text="https://www.michigan.org/property/dodge-4-state-park" />
 
 
           <Typography variant="h2">The Top Pet-Friendly Restaurants in Detroit</Typography>
@@ -388,28 +388,28 @@ const Detroit: FC = () => {
             linkText="Jolly Pumpkin Pizzeria & Brewery"
             text="If you're a fan of craft beer and wood-fired pizzas, Jolly Pumpkin Pizzeria & Brewery is a must-visit pet-friendly spot. Located in Midtown, this restaurant boasts a pet-friendly patio where you can indulge in gourmet pizzas and a wide selection of artisanal beers."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/image9.png" text="Jolly Pumpkin" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/JollyPumpkin%20.jpg" text="https://detroit.eater.com/2015/5/8/8571299/reviews-restaurants-wicked-table-jolly-pumpkin-detroit" />
 
           <LinkContent
             link="mudgiesdeli.com/wp/"
             linkText="Mudgie's Deli"
             text="For sandwich lovers, Mudgie's Deli in Corktown is a top choice. This pet-friendly eatery offers a diverse range of sandwiches and craft beers, all of which you can savor with your furry friend on their outdoor patio."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/image13.png" text="Mudgie's Deli" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Dequindre%20Cut%20Greenway.jpeg" text="https://www.freep.com/story/news/local/michigan/detroit/2022/03/10/mudgies-deli-fire-set-intentionally-fire-department-says/6993987001/" />
 
           <LinkContent
             link="https://www.atwaterbeer.com/"
             linkText="Atwater Brewery" 
             text="Atwater Brewery is a well-known Detroit brewery with a pet-friendly outdoor seating area. Enjoy a cold brew with your pup by your side as you take in views of the Detroit River and the city's skyline."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/image16.png" text="Atwater Brewery" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Atwater%20Brewery.jpeg" text="https://www.atwaterbeer.com/location/detroit/" />
 
           <LinkContent
             link="https://thecongregationdetroit.com/"
             linkText="Congregation Detroit"
             text="Congregation Detroit is a captivating cocktail bar in the heart of the city, known for its inventive mixology and stylish ambiance. With a focus on craft cocktails and a rotating menu inspired by the seasons, Congregation Detroit offers a sophisticated yet inviting space for locals and visitors to gather and enjoy exceptional drinks in a vibrant setting."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/image14.png" text="Congregation Detroit" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Congregation%20Detroit.webp" text="https://www.detroitnews.com/restricted/?return=https%3A%2F%2Fwww.detroitnews.com%2Fstory%2Fnews%2Flocal%2Fmichigan%2F2023%2F08%2F23%2Fborn-again-old-metro-detroit-churches-new-lives-reinvented-new-spaces%2F70623913007%2F" />
 
           <LinkContent
             link="https://stillonmain.com/"

@@ -296,7 +296,7 @@ const Scottsdale: FC = () => {
             linkText="Chaparral Dog Park"
             text="Let your dog roam freely in this spacious and well-maintained off-leash dog park. With separate areas for small and large dogs, it's an ideal spot for your furry companion to socialize and play."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image19.png" text="Chaparral Dog Park" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/Chaparral%20Dog%20Park.jpeg" text="https://www.bringfido.com/attraction/144" />
 
           <LinkContent
             link="https://www.mcdowellsonoran.org/"
@@ -317,7 +317,7 @@ const Scottsdale: FC = () => {
             linkText="Scottsdale Quarter"
             text="This stylish outdoor shopping and dining destination is pet-friendly, offering water stations and pet-friendly stores. Pamper yourself with some retail therapy while your pet enjoys the lively atmosphere."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image10.png" text="Scottsdale Quarter" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/Scottsdale%20Quarter.png" text="https://www.visitphoenix.com/listing/scottsdale-quarter/5281/" />
 
           <LinkContent
             link="https://www.scottsdaleaz.gov/parks/pinnacle-peak-park"
@@ -339,21 +339,21 @@ const Scottsdale: FC = () => {
             linkText="O.H.S.O. Brewery + Distillery"
             text="This pet-friendly brewery offers a fantastic selection of craft beers and a menu dedicated to your pet. Your furry companion will enjoy their own menu of treats and pup-friendly drinks."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image16.png" text=" O.H.S.O Brewery + Distillery" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/O.H.S.O.%20Brewery%20%2B%20Distillery.jpeg" text="https://www.ohsobrewery.com/find-our-spirits/" />
 
           <LinkContent
             link="https://villageclubs.com/membership-village-health-clubs/view-all-locations/gainey/"
             linkText="Gainey Village Health Club & Spa"
             text="If you need some relaxation and pampering, this pet-friendly spa welcomes pets in designated areas. While you unwind, your pet can enjoy some tranquil moments by your side."
           />
-          <Img src='https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image18.png' text="Gainey Village Health Club & Spa" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/Gainey%20Village%20Health%20Club%20%26%20Spa.jpeg" text="https://villageclubs.com/membership-village-health-clubs/view-all-locations/gainey/" />
 
           <LinkContent
             link="https://www.fashionsquare.com/"
             linkText="Scottsdale Fashion Square"
             text="One of the largest shopping malls in the Southwest, Scottsdale Fashion Square is pet-friendly and offers a variety of stores where you can shop with your furry friend."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image2.png" text="Scottsdale Fashion Square" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/Scottsdale%20Fashion%20Square.jpg" text="https://wwd.com/feature/scottsdale-fashion-square-retail-1203397338/" />
 
           <LinkContent
             link="https://saltriverfields.com/"
@@ -361,7 +361,7 @@ const Scottsdale: FC = () => {
             text="Catch a baseball game during spring training at this pet-friendly stadium. Pets are welcome in the lawn seating area, making it a great outing for the whole family."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image4.png" text="Salt River Fields at Talking Stick" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/Salt%20River%20Fields%20at%20Talking%20Stick.jpeg" text="https://www.experiencescottsdale.com/listing/salt-river-fields-at-talking-stick/44836/" />
 
           <Typography variant="h2">The Top Pet-Friendly Restaurants in Scottsdale</Typography>
           <LinkContent
@@ -436,7 +436,7 @@ const Scottsdale: FC = () => {
             linkText="The Montauk"
             text="This coastal-inspired restaurant welcomes pets on its charming patio. Enjoy seafood delights and refreshing beverages while your furry companion relaxes in the Arizona sunshine."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/image6.png" text="The Montauk" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/The%20Montauk.jpeg" text="https://www.themontaukaz.com/" />
 
 
         </Box>

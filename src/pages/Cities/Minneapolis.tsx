@@ -306,7 +306,7 @@ const Minneapolis: FC = () => {
             text="Take a historic walk across the Stone Arch Bridge, which offers breathtaking views of the Minneapolis skyline and the Mississippi River. Pets are welcome, and the bridge provides an excellent photo opportunity with your furry companion."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/image12.png" text="National Park Services" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/Stone%20Arch%20Bridge.jpeg" text="https://www.cynthiafroid.com/downtown-digest/historic-spotlight-series-stone-arch-bridge" />
 
           <LinkContent
             link="https://www.minneapolisparks.org/parks-destinations/parks-lakes/bde_maka_ska_park/"
@@ -347,7 +347,7 @@ const Minneapolis: FC = () => {
             linkText="Canine Carnival"
             text="If you happen to visit Minneapolis during the summer, don't miss the annual Canine Carnival at the Lake Harriet Bandshell. This fun-filled event includes pet-friendly activities, contests, and a doggy play zone."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/image18.png" text="Pioneer Press" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/Canine%20Carnival.jpeg" text="https://www.mypitbullisfamily.org/caninecarnival" />
 
           <LinkContent
             link="https://wheelfunrentals.com/mn/minneapolis/lake-nokomis/about/social-medias/pet-friendly-pedal-boat-rides-in-minnesota"
@@ -392,7 +392,7 @@ const Minneapolis: FC = () => {
             linkText="Psycho Suzi's Motor Lounge"
             text="For a unique dining experience, head to Psycho Suzi's, a pet-friendly tiki-themed restaurant. Its riverfront patio offers scenic views of the Mississippi River, making it a fantastic spot for a meal with your furry friend." 
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/image5.png" text="Minneapolis Northwest" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/Psycho%20Suzi's.jpg" text="https://twincities.eater.com/2023/8/3/23818632/psycho-suzis-closing-tiki-bar-restaurant-northeast-minneapolis" />
 
           <LinkContent
             link="https://www.lakeandirving.com/"
@@ -406,7 +406,7 @@ const Minneapolis: FC = () => {
             linkText="The Lowry"
             text="Located in the Uptown area, The Lowry is a pet-friendly establishment that serves up classic American fare. With its inviting atmosphere and outdoor seating, you can relish your meal while your furry companion relaxes by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/image19.png" text="Tanek" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/The%20Lowry.jpeg" text="https://submerge.me/festival/venues/the-lowry/" />
 
           <LinkContent
             link="https://www.thelynhall.com/"

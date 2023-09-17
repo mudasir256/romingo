@@ -305,7 +305,7 @@ const Phoenix: FC = () => {
             linkText="Roosevelt Row Arts District"
             text="Visit the Roosevelt Row Arts District, where pets are welcome to explore the vibrant street art and local galleries. Many shops and cafes in this artsy neighborhood offer pet-friendly seating, making it a great spot for a pet-friendly stroll."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image16.png" text="Roosevelt Row Art District" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/Roosevelt%20Row%20Art%20District.jpeg" text="https://www.adventurestudenttravel.com/roosevelt-row/" />
 
           <LinkContent
             link="https://shopdesertridge.com/"
@@ -326,7 +326,7 @@ const Phoenix: FC = () => {
             linkText="O.H.S.O. Brewery + Distillery"
             text="Enjoy a delicious meal or craft beer at O.H.S.O. Brewery, a pet-friendly establishment with a special dog-friendly patio. They even offer a &quot;Bark Bar&quot; menu with treats and water bowls for your furry companions."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image12.png" text="O.H.S.O Brewery + Distillery" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/O.H.S.O%20Brewery%20%2B%20Distillery.webp" text="https://absolutebeer.com/breweries/ohso-brewery-distillery/" />
 
           <LinkContent
             link="https://www.visitphoenix.com/sonoran-desert/parks/phoenix-mountains-preserve/"
@@ -347,7 +347,7 @@ const Phoenix: FC = () => {
             linkText="Dog-Friendly Patio Dining"
             text="Phoenix boasts a variety of pet-friendly restaurants with outdoor patios, such as Postino WineCafé and The Vig. Indulge in delicious meals while your pets lounge comfortably by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image10.png" text="Eater Phoenix" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/Eater%20Phoenix.jpeg" text="https://phoenix.eater.com/maps/phoenix-best-restaurants-38" />
 
           <Text text="Before embarking on these pet-friendly activities, remember to bring along water, waste bags, and check the individual park or venue rules regarding pet policies. With these ten pet-friendly activities in Phoenix, you and your pets can create lasting memories and enjoy a truly unforgettable experience in the Valley of the Sun. So, leash up your furry friends, grab your sunscreen, and get ready for an adventure-filled journey together in Phoenix!" />
 
@@ -381,7 +381,7 @@ const Phoenix: FC = () => {
             linkText="The Farm at South Mountain"
             text="For a tranquil and picturesque setting, The Farm at South Mountain welcomes pets in its beautiful outdoor dining areas. The restaurant features farm-fresh ingredients and a delightful menu of breakfast and lunch dishes."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image15.png" text="The Farm at South Mountain" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/The%20Farm%20at%20South%20Mountain%20.jpeg" text="https://thefarmatsouthmountain.com/morning-glory-patio/" />
 
           <LinkContent
             link="https://www.neighborlypublichouse.com/"
@@ -395,7 +395,7 @@ const Phoenix: FC = () => {
             linkText="Flower Child"
             text="Flower Child is a health-conscious eatery that embraces pets at their outdoor seating areas. Indulge in fresh, nutritious salads, bowls, and wraps while your pets relax beside you."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image5.png" text="Flower Child" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/Flower%20Child.jpeg" text="https://www.iamaflowerchild.com/locations/phoenix-az-desert-ridge/" />
 
           <LinkContent
             link="https://www.joyridetacohouse.com/"
@@ -424,7 +424,7 @@ const Phoenix: FC = () => {
             linkText="Keegan’s"
             text="Keegan's is a popular restaurant located in Phoenix, Arizona. Known for its warm and inviting atmosphere, Keegan's is a favorite spot among locals and visitors alike. The restaurant offers a diverse menu that includes classic American dishes, pub-style favorites, and mouthwatering steaks. With friendly service, a wide selection of drinks, and a welcoming ambiance, Keegan's provides a perfect setting for gathering with friends and family to enjoy a delicious meal and create lasting memories."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/image7.png" text="Keegan’s" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/Keegan's.jpeg" text="https://www.crexi.com/lease/properties/194253/arizona-biltmore-plaza-shopping-center" />
 
 
 

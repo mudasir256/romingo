@@ -281,8 +281,8 @@ const Denver: FC = () => {
             linkText="Railyard Dog Park"
             text="Located near Union Station, the Railyard Dog Park is a paw-some urban retreat for playful pups. This park features a large enclosed area where dogs can run and explore while you enjoy views of the city."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image5.png"
-            text="Riverfront Park Community Foundation"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Railyard%20Dog%20Park.jpeg"
+            text="https://www.bringfido.com/attraction/3309"
           />
 
           <LinkContent
@@ -299,7 +299,7 @@ const Denver: FC = () => {
             linkText="Washington Park"
             text='Known as "Wash Park," this scenic urban park is a must-visit for pet owners. Pets can join you on a walk around the lakes or you can explore the 2.6-mile loop trail around the park.'
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image15.png" text="Denver" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Washington%20Park%20.jpeg" text="https://www.livelaughdenver.com/areas/washington-park" />
 
           <LinkContent
             link="https://www.5280.com/best-dog-parks-denver-metro/"
@@ -313,7 +313,7 @@ const Denver: FC = () => {
             linkText="Lowry Dog Park"
             text="Situated in the Lowry neighborhood, this well-maintained off-leash dog park features separate areas for large and small dogs. With ample shaded spots and water stations, it's the perfect place for your furry friend to socialize and expend some energy."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image7.png" text="Top Dog Parks" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Lowry%20Dog%20Park.jpeg" text="https://streamla.com/work/lowry-east-open-space-and-dog-park/" />
 
           <LinkContent
             link="https://pawsnplay.com/"
@@ -321,7 +321,7 @@ const Denver: FC = () => {
             text="Paws 'n' Bites is a delightful dog treat store nestled in the heart of Denver, Colorado, that caters to the taste buds and well-being of our beloved canine companions. This charming store offers an array of handcrafted and all-natural dog treats that are not only delicious but also made with the finest, locally sourced ingredients."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image3.png" text="Paws 'n Play" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Paw's%20%26%20Play.jpeg" text="https://www.sidewalkdog.com/indoor-dog-parks-denver/" />
 
           <LinkContent
             link="https://www.jeffco.us/1332/Mount-Falcon-Park"
@@ -344,7 +344,7 @@ const Denver: FC = () => {
             text="Enjoy breathtaking views of downtown Denver at Sloan's Lake Park, a serene and pet-friendly destination. Leashed pets are welcome to join you as you walk along the lake's shores and take in Denver's skyline."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image12.png" text="Uncover Colorado" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Sloan%20Lake.png" text="https://www.denverdeveloper.co/denver-developer-blog/sloans-lake-and-its-history-a-denver-landmark" />
 
           <Typography variant="h2"> The Top Pet-Friendly Restaurants in {city}</Typography>
 
@@ -354,7 +354,7 @@ const Denver: FC = () => {
             text="Nestled in a rustic setting, Forest Room 5 is a dog-friendly gem that welcomes pets on its outdoor patio. The restaurant boasts a creative menu with delectable dishes like elk sliders and salmon BLTs. Enjoy a relaxing meal amidst the towering trees and enjoy the ambiance of nature with your pet by your side."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image2.png" text="Forest 5" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Forrest%20Room%205.jpeg" text="https://www.bringfido.com/restaurant/1136" />
 
           <LinkContent
             link="https://www.denbisco.com/"
@@ -404,15 +404,14 @@ const Denver: FC = () => {
             linkText="Just Be Kitchen"
             text="The Watering Well Eatery is a hidden gem in the Berkeley neighborhood featuring flavorful dishes made with locally-sourced ingredients. They also have a pet-friendly patio and a menu featuring special treats that your pet will love."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image17.png" text="Just Be Kitchen" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Just%20Be%20.jpeg" text="https://www.westword.com/restaurants/first-look-just-be-kitchen-opens-with-paleo-breakfast-and-lunch-menu-on-15th-street-9003270" />
 
           <LinkContent
             link="https://tapandburger.com/"
             linkText="Sloan's Lake Tap and Burger"
             text="Sloan's Lake Tap and Burger is near Sloan's Lake Park and offers delicious burgers and a variety of craft beers. After a day of exploring the lake with your pet, enjoy Sloan's Lake Tap and Burger's patio with your furry friend."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/image4.png" text="Sloan’s Lake Tap and Burger" />
-
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Sloan's%20Lake%20Tap%20and%20Burger.webp" text="https://www.checkle.com/biz/tap-burger-sloans-lake-denver-1" />
 
         </Box>
 

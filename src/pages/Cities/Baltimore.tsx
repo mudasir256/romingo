@@ -323,7 +323,7 @@ const Baltimore: FC = () => {
             linkText="Federal Hill Park"
             text="Offering stunning views of the city skyline, Federal Hill Park is another pet-friendly gem in Baltimore. Take a scenic walk with your pet and capture some memorable photos with the cityscape as the backdrop."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/image3.png" text="Baltimore City Recreation and Parks" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/Baltimore%20Rec%20City%20and%20Parks.jpg" text="https://baltimore.org/what-to-do/best-parks-and-scenic-running-paths-in-baltimore/" />
 
           <LinkContent
             link="https://baltimoreghosttours.com/fellspointghosttour/"
@@ -358,7 +358,7 @@ const Baltimore: FC = () => {
             linkText="Locust Point Dog Park"
             text="Located in the scenic Locust Point neighborhood, this off-leash dog park provides a safe and spacious area for dogs to socialize, play, and stretch their legs. The park is fully fenced, ensuring a secure environment for furry friends to roam freely and interact with other dogs. With separate areas designated for small and large dogs, owners can have peace of mind knowing that their pets are enjoying the company of dogs similar in size and temperament."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/image14.png" text="Maryland Pet" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/Baltimore%20Locust%20Point%20Dog%20Park.jpeg" text="https://www.google.com/url?sa=i&url=https%3A%2F%2Fbaltimore.org%2Fguides%2Fa-guide-to-pet-friendly-baltimore%2F&psig=AOvVaw1K-0OG7sG_hpAKNXqWRvwn&ust=1694288837687000&source=images&cd=vfe&opi=89978449&ved=0CBMQ3YkBahcKEwiQsOv045uBAxUAAAAAHQAAAAAQBA" />
 
 
       
@@ -390,7 +390,7 @@ const Baltimore: FC = () => {
             linkText="Golden West Cafe"
             text="This funky cafe in Hampden is known for its diverse menu and pet-friendly outdoor seating. Their patio is the perfect spot to relish creative dishes with your furry friend by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/image13.png" text="Golden West Cafe" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/Golden%20West%20Dog.jpeg" text="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rover.com%2Fblog%2Fsniffspot-airbnb-of-dog-parks%2F&psig=AOvVaw0Lv-oOi2uBND4K870ABd4D&ust=1694289160214000&source=images&cd=vfe&opi=89978449&ved=0CBMQ3YkBahcKEwi49pSO5ZuBAxUAAAAAHQAAAAAQBA" />
 
           <LinkContent
             link="http://www.slaintepub.com/"
@@ -411,14 +411,14 @@ const Baltimore: FC = () => {
             linkText="Iron Rooster"
             text="Famous for its all-day breakfast menu, Iron Rooster offers a pet-friendly patio where you and your pet can enjoy a variety of delicious brunch options together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/image17.png" text="Iron Rooster" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/Iron%20Rooster.webp" text="https://lancotf.com/projects/iron-rooster/" />
 
           <LinkContent
             link="https://www.lacucharabaltimore.com/"
             linkText="La Cuchara"
             text="If you're craving Spanish-inspired cuisine, La Cuchara in Woodberry has a pet-friendly patio where you and your furry friend can savor the rich flavors of Spain."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/image4.png" text="La Cuchara" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/La%20Cuchara.jpeg" text="https://www.facebook.com/LaCucharaBaltimore/photos/a.846691845378130/3230760370304587/?type=3" />
 
           <LinkContent
             link="https://www.missshirleys.com/"

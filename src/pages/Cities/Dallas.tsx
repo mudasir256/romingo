@@ -286,8 +286,8 @@ const Dallas: FC = () => {
             linkText="White Rock Lake Dog Park"
             text="Located on the shores of White Rock Lake, this dog park offers plenty of space for dogs to run and play. The park features separate areas for large and small dogs, ensuring a safe and enjoyable experience for all pups."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image18.png"
-            text="Dallas Parks"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/White%20Rock%20Lake%20Dog%20Park.jpeg"
+            text="https://petfriendlytravel.com/pft_dog_parks/white-rock-lake-dog-park-dallas-tx/"
           />
 
           <LinkContent
@@ -295,8 +295,8 @@ const Dallas: FC = () => {
             linkText="Katy Trail"
             text="Grab your furry friend and take a walk along the scenic Katy Trail that spans 3.5 miles long in Dallas. Enjoy beautiful views of the city while getting some exercise with your pet by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image11.png"
-            text="Missouri State Parks"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Katy%20Dog%20Park.jpeg"
+            text="https://www.dallasnews.com/arts-entertainment/lifestyle/2018/06/15/dog-about-town-celebrating-with-dad-and-more-things-to-do/"
           />
 
           <LinkContent
@@ -304,8 +304,8 @@ const Dallas: FC = () => {
             linkText="Mutts Canine Cantina"
             text="Treat your pet to a unique experience at Mutts Canine Cantina, a dog-friendly restaurant and dog park combined. While you eat or have drinks on the patio, your pet can meet other dogs and enjoy playing in the off-leash area."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image10.png"
-            text="Mutts Canine Cantina"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Mutts.jpeg"
+            text="https://planomagazine.com/mutts-canine-cantina-coming-to-allen/"
           />
 
           <LinkContent
@@ -324,8 +324,8 @@ const Dallas: FC = () => {
             text="This urban park offers scenic trails for leashed walks with your pet and has open green spaces where your furry friend can stretch their legs and enjoy some outdoor playtime."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image13.png"
-            text="Dallas Parks"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/REVERCHON_PARK.webp"
+            text="https://www.nbcdfw.com/news/local/city-council-votes-neglected-century-old-park-in-dallas-one-step-closer-to-major-changes/2288972/"
           />
 
           <LinkContent
@@ -334,8 +334,8 @@ const Dallas: FC = () => {
             text="Lee Harvey's is a dog-friendly bar with a spacious outdoor patio. This is a perfect spot to enjoy a cold drink or a tasty meal with your pet by your side!"
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image14.png"
-            text="Dallas Observer"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Lee%20Harvey's.jpeg"
+            text="https://www.dallasnews.com/arts-entertainment/lifestyle/2019/08/16/dog-about-town-splash-around-with-your-pooch/"
           />
 
           <LinkContent
@@ -344,8 +344,8 @@ const Dallas: FC = () => {
             text="Leashed pets are welcome at Klyde Warren Park, a vibrant urban oasis that hosts a variety of events and activities. Enjoy a picnic or simply relax with your pet while taking in the lively atmosphere."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image6.png"
-            text="Klyde Warren Park"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Kylde%20Warren%20Park.jpeg"
+            text="https://www.klydewarrenpark.org"
           />
 
           <LinkContent
@@ -362,8 +362,8 @@ const Dallas: FC = () => {
             linkText="Cedar Ridge Preserve"
             text="Escape the city and take a hike at Cedar Ridge Preserve. Leashed pets are allowed on the hiking trails, providing an excellent opportunity to enjoy the great outdoors together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image12.png"
-            text="Cedar Ridge Preserve"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Cedar%20Ridge.jpeg"
+            text="https://dallastrinitytrails.blogspot.com/2013/04/dogwood-canyon-and-cedar-ridge-preserve.html"
           />
 
           <LinkContent
@@ -387,8 +387,8 @@ const Dallas: FC = () => {
             linkText="Mutts Canine Cantina"
             text="Mutts Canine Cantina is a pet-friendly restaurant and dog park that epitomizes the pet-friendly culture of Dallas. Located in Uptown and Addison, this unique spot offers a dedicated off-leash dog park where your pet can socialize and enjoy playtime while you savor tasty burgers, hot dogs, and craft beers on the patio."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image7.png"
-            text="Mutt's Cantina"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Mutts.jpeg"
+            text="https://planomagazine.com/mutts-canine-cantina-coming-to-allen/"
           />
 
           <LinkContent
@@ -397,8 +397,8 @@ const Dallas: FC = () => {
             text="Katy Trail Ice House, situated near the scenic Katy Trail, boasts a spacious and pet-friendly patio that invites you to bring your furry friend along. The restaurant offers a relaxed atmosphere, making it a popular spot for locals and visitors alike to enjoy a cold drink, classic American fare, and live music with their pets."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image5.png"
-            text="Katy Trail Ice House"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Katy%20Trail%20Ice%20House%20Rest.webp"
+            text="https://www.fox4news.com/news/city-of-dallas-cites-katy-trail-ice-house-for-re-opening"
           />
 
           <LinkContent
@@ -406,8 +406,8 @@ const Dallas: FC = () => {
             linkText="Mutiny Wine Room"
             text="Mutiny Wine Room in the trendy Trinity Groves district is a chic and pet-friendly wine bar. Their welcoming patio is the perfect spot to enjoy an extensive selection of wines while your furry companion lounges by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image19.png"
-            text="Mutiny Wine Room"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Mutiny%20Wine%20Room.jpeg"
+            text="https://www.mutinywineroom.com/"
           />
 
           <LinkContent
@@ -434,8 +434,8 @@ const Dallas: FC = () => {
             linkText="Snuffer's Restaurant & Bar"
             text="Snuffer's is a Dallas institution known for its famous cheddar fries. Their pet-friendly patios are an inviting spot for you and your furry friend to enjoy classic American comfort food."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/image16.png"
-            text="Snuffer’s Restaurant & Bar"
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Snuffers%20Restaurant.avif"
+            text="https://www.snuffers.com/contact"
           />
 
           <LinkContent

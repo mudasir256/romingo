@@ -299,7 +299,7 @@ const Chicago: FC = () => {
             linkText="Montrose Dog Beach"
             text="Located on the shores of Lake Michigan, Montrose Dog Beach is a haven for dogs who love to swim and socialize. This sandy paradise provides a designated off-leash area where dogs can frolic in the water and play fetch to their heart's content. It's the perfect spot to meet other canine friends and for you to enjoy the stunning lakefront views."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/image10.png" text="Chicago Sun Times" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/The%20Doc%20at%20Montrose%20Beach.webp" text="https://windycitypaws.com/blog/is-your-dog-allowed-on-chicago-beaches/" />
 
           <LinkContent
             link="https://www.choosechicago.com/neighborhoods/lincoln-park/"
@@ -327,7 +327,7 @@ const Chicago: FC = () => {
             linkText="Wiggly Field Dog Park"
             text="Situated in the Lincoln Park neighborhood, Wiggly Field Dog Park is a dedicated off-leash area where your dog can run, play, and socialize safely. The park features separate enclosures for small and large dogs, ensuring a positive experience for pets of all sizes."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/image9.png" text="Chicago Parks District" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Lincoln-Park-Chicago-Wiggly-Field-Dog-Park-1024x768.jpg" text="https://www.hotspotrentals.com/the-ultimate-guide-to-chicagos-lincoln-park-neighborhood/" />
 
           <LinkContent
             link="https://www.themagnificentmile.com/explore/listing/mercurys-canine-cruise"
@@ -341,21 +341,21 @@ const Chicago: FC = () => {
             linkText="Fido to Go"
             text="When hunger strikes, head over to Fido to Go, a food truck specifically designed for dogs. This gourmet dog treat truck offers a variety of delicious and healthy snacks, from frozen yogurt to homemade dog biscuits. It's the perfect pit stop to pamper your pet during your adventures."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/image15.png" text="Fido to Go" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Fido%20on%20the%20Go.jpeg" text="https://www.facebook.com/photo/?fbid=539449398207649&set=a.539449368207652" />
 
           <LinkContent
             link="http://www.jacksonbark.com/"
             linkText="Jackson Bark"
             text="Located in the Jackson Park neighborhood, Jackson Bark is a unique dog park that combines fitness with play. With agility equipment and an obstacle course, dogs can enjoy an active and engaging experience, making it an excellent choice for energetic pups."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/image12.png" text="Jackson Bark" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Jackson%20Bark.jpeg" text="https://www.facebook.com/jjacksonbark/photos/pb.100071501084549.-2207520000/4254121371381026/?type=3" />
 
           <LinkContent
             link="https://www.chicagoparkdistrict.com/movies-parks"
             linkText="Movies in the Park"
             text='During the summer months, Chicago hosts "Movies in the Park" events throughout the city. Many of these outdoor movie screenings are pet-friendly, so bring a blanket, some treats, and enjoy a movie night under the stars with your furry companion by your side.'
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/image14.png" text="Chicago Park District" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Movies%20in%20the%20Park.jpeg" text="https://www.choosechicago.com/articles/festivals-special-events/millennium-park-summer-film-series/" />
 
           <LinkContent
             link="https://chicago.eater.com/maps/dog-friendly-chicago-bars-restaurants"
@@ -386,7 +386,7 @@ const Chicago: FC = () => {
             linkText="3 Arts Club Café"
             text="Tucked within the luxurious Restoration Hardware store in the Gold Coast neighborhood, 3 Arts Club Café welcomes pets on its enchanting outdoor patio. The elegant setting and delectable Mediterranean-inspired cuisine create a charming dining experience for both you and your pet."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/image3.png" text=" 3 Arts Club Café" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/3%20Arts%20Club.jpeg" text="https://www.chicagotribune.com/redeye/ct-redeye-chicago-date-idea-3-arts-club-vig-20180405-story.html" />
 
           <LinkContent
             link="https://www.thewarblerchicago.com/"

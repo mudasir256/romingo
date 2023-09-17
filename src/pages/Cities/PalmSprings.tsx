@@ -296,7 +296,7 @@ const PalmSprings: FC = () => {
             text="On Thursday evenings, head to the Palm Springs VillageFest, a bustling street fair that welcomes pets on leashes. You and your furry friend can explore the vibrant market filled with local vendors, food stalls, and live entertainment. It's a great opportunity for your pets to experience the lively atmosphere of Palm Springs."
           />
 
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/image5.png" text="Palm Springs VillageFest" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/Palm%20Springs%20VillageFest.jpeg" text="https://www.visitcalifornia.com/in/attraction/palm-springs-villagefest" />
 
           <LinkContent
             link="https://pstramway.com/"
@@ -310,7 +310,7 @@ const PalmSprings: FC = () => {
             linkText="Cactus to Clouds Trail"
             text="If you and your dog are avid hikers, consider conquering the Cactus to Clouds Trail. This trail is a favorite amongst locals as you climb to the top of San Jacinto Mountain. Be sure to prepare plenty of water and snacks for both you and your furry companion."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/image2.png" text="Hiking Guy" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/Cactus.jpeg" text="https://hikingguy.com/hiking-trails/los-angeles-hikes/cactus-to-clouds-hike/" />
       
           <LinkContent
             link="http://www.moortenbotanicalgarden.com/"
@@ -345,7 +345,7 @@ const PalmSprings: FC = () => {
             linkText="Airbnb Experiences"
             text="For a tailored pet-friendly experience, check out Airbnb Experiences in Palm Springs. Some hosts offer activities that include your pets, such as guided hikes, pet photography sessions, and more."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/image18.png" text="AirBnB" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/Airbnb%20Experiences.jpeg" text="https://www.timeout.com/palm-springs/hotels/best-airbnbs-in-palm-springs" />
 
           <Text text="Try these ten pet-friendly activities in Palm Springs to create memories with your furry friends in this desert paradise." />
 
@@ -364,7 +364,7 @@ const PalmSprings: FC = () => {
             linkText="Jake's Palm Springs"
             text="Jake's Palm Springs has a pet-friendly patio that allows your furry friends to enjoy the company of other pets while you enjoy the food and cocktails."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/image15.png" text="Jake’s Palm Springs" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/Jake's%20Palm%20Springs.webp" text="https://www.desertsun.com/story/life/2020/03/27/jakes-palm-springs-gofundme-assists-laid-off-employees/2923300001/" />
 
           <LinkContent
             link="https://www.cheekysps.com/"
@@ -401,7 +401,7 @@ const PalmSprings: FC = () => {
             linkText="Bill's Pizza"
             text="While in Palm Springs, head to Bill's Pizza, where pets are welcome on their patio. This local restaurant has a variety of pizza options, ensuring a delightful pizza experience for you and your pets alike."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/image8.png" text="Bill's Pizza" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/Bill's%20Pizza.jpeg" text="https://www.joshuakennon.com/bills-pizza-palm-springs-deserves-cult-following/" />
 
           <LinkContent
             link="https://azucarpalmsprings.com/"
@@ -416,7 +416,7 @@ const PalmSprings: FC = () => {
             linkText="FARM"
             text="For a delightful farm-to-table experience, visit FARM at the La Plaza shopping district. Their pet-friendly patio is the perfect spot to indulge in fresh, locally sourced ingredients and contemporary American cuisine."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/image3.png" text="FARM" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/FARM.jpeg" text="https://www.visitgreaterpalmsprings.com/listing/farm-palm-springs/25904/" />
 
           <LinkContent
             link="https://www.copleyspalmsprings.com/"

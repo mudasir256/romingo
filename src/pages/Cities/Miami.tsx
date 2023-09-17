@@ -305,7 +305,7 @@ const Miami: FC = () => {
             linkText="Venetian Causeway Walk"
             text="Take a scenic stroll along the Venetian Causeway, a pet-friendly pedestrian path connecting Miami Beach and mainland Miami. The views of the bay and the passing boats are delightful, and your pet will love the opportunity to explore a new environment."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image16.png" text="Great Runs" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Ventetian%20Causeway.jpeg" text="https://www.hotels.com/go/usa/venetian-bridge-miami" />
 
           <LinkContent
             link="https://www.miami.gov/Parks-Public-Places/Parks-Directory/David-T.-Kennedy-Park"
@@ -333,7 +333,7 @@ const Miami: FC = () => {
             linkText="Barnacle Historic State Park"
             text="Barnacle Historic State Park in Coconut Grove offers a charming and pet-friendly escape, inviting you to step back in time and explore the oldest home in Miami. Take a leisurely stroll with your four-legged companion through the lush grounds, enjoying the historic ambiance and picturesque views of Biscayne Bay."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image9.png" text="The Barnacle Society" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Barnacle.avif" text="https://www.expedia.com/Barnacle-State-Historic-Park-Coconut-Grove.d6239337.Vacation-Attraction" />
 
           <LinkContent
             link="https://www.floridastateparks.org/OletaRiver"
@@ -365,14 +365,14 @@ const Miami: FC = () => {
             linkText="Lokal"
             text="This Coconut Grove gem is a haven for burger lovers, offering locally-sourced, grass-fed beef. With a dog-friendly patio, Lokal's menu even includes a &quot;Bow Wow Burger&quot; specially crafted for your canine companion."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image11.png" text="TimeOut" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Lokal%20Miami.jpeg" text="https://www.boatinternational.com/destinations/americas-yacht-destinations/best-restaurants-bars-miami--1153" />
 
           <LinkContent
             link="https://www.greenstreetcafe.net/"
             linkText="GreenStreet Café"
             text="Nestled in the heart of Coconut Grove, GreenStreet Café boasts a spacious outdoor seating area perfect for pet owners. Enjoy their diverse menu of salads, sandwiches, and more while your furry friend lounges by your side."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image10.png" text="Opentable" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Green%20Street%20Cafe.webp" text="https://www.cntraveler.com/restaurants/london/greenstreet-cafe" />
 
           <LinkContent
             link="https://www.montysrawbar.com/"
@@ -393,14 +393,14 @@ const Miami: FC = () => {
             linkText="Morgans Restaurant"
             text="This Wynwood eatery features a dog-friendly courtyard where you can savor their farm-to-table menu. Morgans Restaurant is an ideal spot for brunch with your pup, offering everything from avocado toast to hearty omelets."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image6.png" text="Morgans Restaurant" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Morgan's%20Restaurant.jpeg" text="https://nonseafoodeats.wordpress.com/2012/11/06/morgans-miami-big-taste-huge-quantity/" />
 
           <LinkContent
             link="https://www.dogmagrill.com/"
             linkText="Dogma Grill"
             text="Tucked in the Design District, Dogma Grill is a hot dog haven. Their pet-friendly outdoor seating area ensures that your furry friend can accompany you while you sample their creative hot dog concoctions."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image2.png" text="Miami New Times" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Dogma%20Grill.webp" text="https://www.axios.com/local/miami/2023/07/06/dogma-grill-miami-florida-review" />
 
           <LinkContent
             link="https://www.panthercoffee.com/"
@@ -425,10 +425,10 @@ const Miami: FC = () => {
 
           <LinkContent
             link="https://www.atchanas.com/"
-            linkText="Atchana's Homegrown Thai"
-            text="Atchana's Homegrown Thai in Miami offers a pet-friendly dining experience, allowing you to enjoy authentic Thai cuisine while your four-legged companion relaxes by your side in the outdoor seating area. With a focus on fresh, flavorful ingredients, you and your pet can savor a taste of Thailand together."
+            linkText="Atachana's Homegrown Thai"
+            text="Atachana's Homegrown Thai in Miami offers a pet-friendly dining experience, allowing you to enjoy authentic Thai cuisine while your four-legged companion relaxes by your side in the outdoor seating area. With a focus on fresh, flavorful ingredients, you and your pet can savor a taste of Thailand together."
           />
-          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/image17.png" text="Atchana's Homegrown Thai" />
+          <Img src="https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Atacha's.jpeg" text="https://www.tripadvisor.com/LocationPhotoDirectLink-g34438-d12453130-i473229281-Atchana_s_Homegrown_Thai-Miami_Florida.html" />
 
         </Box>
 
