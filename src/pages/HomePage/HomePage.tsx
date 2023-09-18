@@ -469,8 +469,8 @@ const HomePage: FC<Props> = () => {
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
-            backgroundColor="#f4dced"
-            header="Summertime savings! ☀️🏄"
+            backgroundColor="#f5e5a3"
+            header="Fall into savings! 🍁🎃"
             text="Book your next pet-friendly trip with Romingo and enjoy up to 20% off the lowest rates."
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
@@ -523,9 +523,9 @@ const HomePage: FC<Props> = () => {
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
-            backgroundColor="#ffa57f"
-            fontColor="white"
-            header="Romingo Rewards 🐶"
+            backgroundColor="#f0ddec"
+            fontColor="black"
+            header="Romingo rewards 🐶"
             text="Get rewarded when you book with Romingo. Simply create a free account, book your travel, and earn points towards future stays."
             cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
           />

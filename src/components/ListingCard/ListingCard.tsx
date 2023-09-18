@@ -190,19 +190,21 @@ const ListingCard: FC<ListingCardProps> = ({
         >{currency}{Math.abs(lowestAveragePrice).toFixed(0)}</Typography>
       }
 
-        <Typography
-          variant="body2"
-          sx={{
-            fontSize: { xs: "95%", sm: "90%" },
-            fontWeight: 500,
-            whiteSpace: "nowrap",
-            fontFamily: "overpass-light",
-            color: "#999",
-            fontSize: '13px'
-          }}
-        >
-          per night
-        </Typography>
+        {totalPrice == lowestAveragePrice &&
+           <Typography
+            variant="body2"
+            sx={{
+              fontSize: { xs: "95%", sm: "90%" },
+              fontWeight: 500,
+              whiteSpace: "nowrap",
+              fontFamily: "overpass-light",
+              color: "#999",
+              fontSize: '13px'
+            }}
+          >
+            per night
+          </Typography>
+        }
 
         {(totalPrice && totalPrice != lowestAveragePrice)? (
           <Typography
