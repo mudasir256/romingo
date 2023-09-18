@@ -31,7 +31,7 @@ export default function SingleLoadListingCard({ hotelName }) {
 			numberOfReviews={card?.numberOfReviews}
 			city={card?.city}
 			showPrice={false}
-			alias={card?.travolutionaryId}
+			alias={card?.alias}
 			hotel={{
 				id: card?.travolutionaryId,
 				pet_fee: card?.petFee,
