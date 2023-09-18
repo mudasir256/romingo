@@ -1,7 +1,7 @@
 import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { CSSObject } from "@mui/material";
+import { CSSObject, FormControl, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 import { Dispatch } from "redux";
 import { useHistory } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
@@ -177,6 +177,12 @@ const RoomCard: FC<Props> = ({
   pricePerNight,
   roomTitle,
   isRefundable,
+  nights = 1,
+  hasCombinedRate,
+  altFinalPrice,
+  normalFinalPrice,
+  refundableRoom,
+  markup,
   ...props
 }) => {
   const history = useHistory();
@@ -185,6 +191,7 @@ const RoomCard: FC<Props> = ({
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [refundAnchorEl, setRefundAnchorEl] = useState<null | Element>(null);
+  const [selectedRadio, setSelectedRadio] = useState('non')
 
   const handleOpenPrice: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -206,6 +213,19 @@ const RoomCard: FC<Props> = ({
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (selectedRadio === 'refundable') {
+
+       dispatch(
+        setCheckout({
+          finalPrice: (refundableRoom?.PackagePrice?.FinalPrice + markup),
+          room: { ...refundableRoom, imageURLs },
+          hotel: hotel,
+          sessionId: sessionId
+        })
+      );
+      history.push("/checkout")
+      return 
+    }
      dispatch(
       setCheckout({
         finalPrice: totalPriceAfterTax,
@@ -242,6 +262,9 @@ const RoomCard: FC<Props> = ({
   }
 
   const matchingAmenities = ['pet-friendly room', ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
+
+
+  const refundablePrice = Math.abs(altFinalPrice - normalFinalPrice).toFixed(0)
 
   return (
     <Box
@@ -512,7 +535,7 @@ const RoomCard: FC<Props> = ({
                         variant="body2"
                         sx={{ textAlign: "right", fontSize: "80%" }}
                       >
-                        ${pricePerNight}
+                        ${parseFloat(pricePerNight) + (selectedRadio === 'refundable' ? (parseFloat(refundablePrice) / nights) : 0)}
                       </Typography>
                     </Box>
                     <Box
@@ -533,6 +556,7 @@ const RoomCard: FC<Props> = ({
                         variant="body2"
                         sx={{ textAlign: "right", fontSize: "80%" }}
                       >
+
                         ${(totalPriceAfterTax - totalPrice).toFixed(2)}
                       </Typography>
                     </Box>
@@ -645,7 +669,24 @@ const RoomCard: FC<Props> = ({
                     */}
                   </>
                 )}
-                {!isRefundable && <Box color="red">Non-Refundable</Box>}
+                {!isRefundable && !hasCombinedRate && <Box color="red">Non-Refundable</Box>}
+                {hasCombinedRate && 
+                  <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+                    <FormControl>
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="non"
+                        name="radio-buttons-group"
+                        value={selectedRadio}
+                        onChange={(e) => setSelectedRadio(e.target?.value)}
+                      >
+                        <FormControlLabel value="non" control={<Radio />} label="Non-Refundable $0" />
+                        <FormControlLabel value="refundable" control={<Radio />} label={`Refundable +$${refundablePrice}`} />
+                      </RadioGroup>
+                    </FormControl>
+
+                  </Box>
+                }
               </Typography>
             </Box>
           </Box>
@@ -727,7 +768,7 @@ const RoomCard: FC<Props> = ({
                 textTransform: "capitalize",
               }}
             >
-              ${pricePerNight}
+              ${parseFloat(pricePerNight) + (selectedRadio === 'refundable' ? (parseFloat(refundablePrice) / nights) : 0) }
             </Typography>
             <Typography
               variant="body2"
@@ -752,7 +793,7 @@ const RoomCard: FC<Props> = ({
               color: "#11111199",
             }}
           >
-            ${totalPriceAfterTax} TOTAL
+            ${parseFloat(totalPriceAfterTax) + (selectedRadio === 'refundable' ? parseFloat(refundablePrice) : 0) } TOTAL
             <br />
             incl. all taxes and fees
             <u

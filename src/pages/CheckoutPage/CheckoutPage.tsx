@@ -53,12 +53,11 @@ const CheckoutPage: FC<Props> = () => {
   const hotel = useSelector((state: any) => {
     return state.hotelDetailReducer.detail;
   });
-  console.log('details')
-  console.log(detail)
-
-  //TODO: fetch cancellation policy for this hotel
+  
   const { data, loading, error } = useQuery(
     gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
+
+  console.log(data)
 
   const addTotalTaxes = (taxes) => {
     if (!taxes) {
@@ -128,6 +127,7 @@ const CheckoutPage: FC<Props> = () => {
                   // finePrint={{title: "test", description: 'test'}}
                   // price={123.33}
                   discountAmount={discountAmount || 0}
+                  withoutFeesPrice={detail?.room?.PackagePrice?.FinalPrice}
                   finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)}
                   policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                 />
@@ -191,6 +191,7 @@ const CheckoutPage: FC<Props> = () => {
                       sx={{ mt: 2 }}
                       // finePrint={finePrint}
                       // price={detail?.room?.room?.totalPriceAfterTax}
+                      withoutFeesPrice={detail?.room?.PackagePrice?.FinalPrice}
                       discountAmount={discountAmount || 0}
                       finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)}
                       policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
@@ -198,7 +199,7 @@ const CheckoutPage: FC<Props> = () => {
                   </Grid>
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
-                  <CancelPolicy finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
+                  <CancelPolicy withoutFeesPrice={detail?.room?.PackagePrice?.FinalPrice} finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
                 </Grid>
               </Grid>
             </Grid>

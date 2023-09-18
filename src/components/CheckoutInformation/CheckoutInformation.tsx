@@ -55,6 +55,7 @@ const CheckoutInformation: FC<Props> = ({
   price,
   priceKey,
   policy,
+  withoutFeesPrice,
   finalPrice,
   discountAmount,
 }) => {
@@ -145,7 +146,10 @@ const CheckoutInformation: FC<Props> = ({
   let isRefundable = false
   let isFullRefund = false
 
-  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === finalPrice) {
+  console.log('final prices')
+  console.log(withoutFeesPrice)
+  console.log(policy)
+  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === withoutFeesPrice) {
     const dateFrom = policy[0].DateFrom
 
     const date1 = new Date(getTimestamp(dateFrom)).getTime();
@@ -168,6 +172,7 @@ const CheckoutInformation: FC<Props> = ({
     //TODO: flag this, we haven't covered this case
   }
 
+  console.log(isRefundable)
 
 
   const [createPI, { data: piData, loading: piLoading }] = useMutation(

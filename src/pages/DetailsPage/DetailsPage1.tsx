@@ -193,6 +193,19 @@ const DetailsPage1 = ({ ...props }) => {
         // console.log(key)
         // console.log(possibleRoomsNonRefundable)
         // console.log(possibleRoomsRefundable)
+        if (possibleRoomsNonRefundable.length > 1 && possibleRoomsRefundable.length > 1) {
+          console.log('combined room card')
+          const lowestPriceNon = possibleRoomsNonRefundable.reduce((min, current) => {
+                                return current.SimplePrice < min ? current.SimplePrice : min;
+                              });
+          const lowestPrice = possibleRoomsRefundable.reduce((min, current) => {
+                                return current.SimplePrice < min ? current.SimplePrice : min;
+                              });
+          lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') 
+          ? accessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice }) 
+          : nonAccessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice }) 
+          continue
+        }
 
         if (possibleRoomsNonRefundable.length === 1) {
           const newRoom = possibleRoomsNonRefundable[0]
@@ -694,15 +707,21 @@ const DetailsPage1 = ({ ...props }) => {
                     sx={{ p: '1rem' }}
                   >
                     <RoomCard 
+                      hasCombinedRate={room.combinedRate}
+                      altFinalPrice={room.refundablePrice}
+                      normalFinalPrice={room?.PackagePrice?.FinalPrice}
                       key={key} 
                       featuredImageURL={images?.find(item => true)} 
                       roomTitle={room.Rooms[0].RoomName}
                       pricePerNight={(((room.PackagePrice.FinalPrice - tax) + markup) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(0)}
                       totalPriceAfterTax={(room?.PackagePrice?.FinalPrice + markup).toFixed(2)}
                       totalPrice={(room?.PackagePrice?.FinalPrice - tax + markup).toFixed(2)}
+                      nights={moment(search.checkOut).diff(moment(search.checkIn), 'days')}
                       imageURLs={images}
                       isRefundable={room.Refundability === 2 ? false: true}
                       room={room} 
+                      refundableRoom={room.refundableRoom}
+                      markup={markup}
                       hotel={hotel}
                       amenities={amenities}
                       sessionId={sessionId}
@@ -753,14 +772,20 @@ const DetailsPage1 = ({ ...props }) => {
                   >
                   <RoomCard 
                     key={key} 
+                    hasCombinedRate={room.combinedRate}
+                    altFinalPrice={room.refundablePrice}
+                    normalFinalPrice={room?.PackagePrice?.FinalPrice}
                     featuredImageURL={images?.find(item => true)} 
                     roomTitle={room.Rooms[0].RoomName}
                     pricePerNight={(((room.PackagePrice.FinalPrice - tax) + markup) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(0)}
+                    nights={moment(search.checkOut).diff(moment(search.checkIn), 'days')}
                     totalPriceAfterTax={(room?.PackagePrice?.FinalPrice + markup).toFixed(2)}
                     totalPrice={(room?.PackagePrice?.FinalPrice - tax + markup).toFixed(2)}
                     imageURLs={images}
                     isRefundable={room.Refundability === 2 ? false: true}
                     room={room} 
+                    refundableRoom={room.refundableRoom}
+                    markup={markup}
                     hotel={hotel}
                     amenities={amenities}
                     sessionId={sessionId}

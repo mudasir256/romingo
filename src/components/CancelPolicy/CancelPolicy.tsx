@@ -16,7 +16,7 @@ interface Props {
   };
 }
 
-const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
+const CancelPolicy = ({ sx, policy, finalPrice, search, withoutFeesPrice }) => {
   console.log('cancel policy')
   console.log(policy)
 
@@ -36,7 +36,7 @@ const CancelPolicy = ({ sx, policy, finalPrice, search }) => {
   let isRefundable = false
   let isFullRefund = false
 
-  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === finalPrice) {
+  if (policy && policy.length === 1 && policy[0].CancellationFee?.FinalPrice === withoutFeesPrice) {
     const dateFrom = policy[0].DateFrom
 
     const date1 = new Date(getTimestamp(dateFrom)).getTime();
