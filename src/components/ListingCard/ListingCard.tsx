@@ -120,6 +120,7 @@ export interface ListingCardProps {
   state?: string;
   zipcode?: string;
   numberOfReviews?: number;
+  taxRate?: string;
   // catPolicy?: string;
   // petReliefArea?: string;
   // petAmenities?: string[];
@@ -155,6 +156,7 @@ const ListingCard: FC<ListingCardProps> = ({
   zipcode,
   page,
   numberOfReviews = 0,
+  taxRate,
   ...props
 }) => {
   const history = useHistory();

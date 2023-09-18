@@ -176,8 +176,6 @@ const DetailsPage1 = ({ ...props }) => {
       const nonAccessibleRooms = [];
       let lowest = 999999
 
-
-
       const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
         return (room.Rooms[0].RoomBasis === 'Room only RO' || room.Rooms[0].RoomBasis === 'Bed and Breakfast BB')
       })
@@ -232,7 +230,12 @@ const DetailsPage1 = ({ ...props }) => {
       
       if (nonAccessibleRooms.length > 0) {
         const room = nonAccessibleRooms[0].Rooms[0]
-        const tax = room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0
+        let tax = room.Price?.OriginalTax || room.Price?.TaxesAndFees?.find(item => true)?.Value || 0
+        
+        if (tax === 0) {
+          tax = ((parseFloat(hotel?.taxRate)*100) * room?.Price?.FinalPrice) / 100
+        }
+
         lowest = nonAccessibleRooms[0].SimplePrice - tax
       }
 
@@ -670,6 +673,16 @@ const DetailsPage1 = ({ ...props }) => {
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
+                // console.log(room)
+                let tax = (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)
+                if (tax === 0) {
+                  tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
+                  // console.log(beforePrice)
+                  // tax = room?.PackagePrice?.FinalPrice - beforePrice
+                  // console.log(tax)
+                }
+
+
                 return (
                   <Grid item   
                     md={4}
@@ -683,9 +696,9 @@ const DetailsPage1 = ({ ...props }) => {
                       key={key} 
                       featuredImageURL={images?.find(item => true)} 
                       roomTitle={room.Rooms[0].RoomName}
-                      pricePerNight={((room.PackagePrice.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)}
+                      pricePerNight={((room.PackagePrice.FinalPrice / moment(search.checkOut).diff(moment(search.checkIn), 'days')) - tax).toFixed(0)}
                       totalPriceAfterTax={room?.PackagePrice?.FinalPrice}
-                      totalPrice={room?.PackagePrice?.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)}
+                      totalPrice={room?.PackagePrice?.FinalPrice - tax}
                       imageURLs={images}
                       isRefundable={room.Refundability === 2 ? false: true}
                       room={room} 
@@ -719,6 +732,13 @@ const DetailsPage1 = ({ ...props }) => {
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
+                let tax = (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)
+                if (tax === 0) {
+                  tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
+                  // console.log(beforePrice)
+                  // tax = room?.PackagePrice?.FinalPrice - beforePrice
+                  // console.log(tax)
+                }
   
                 return (<Grid item   
                     md={4}
@@ -732,9 +752,9 @@ const DetailsPage1 = ({ ...props }) => {
                     key={key} 
                     featuredImageURL={images?.find(item => true)} 
                     roomTitle={room.Rooms[0].RoomName}
-                    pricePerNight={((room.PackagePrice.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(2)}
+                    pricePerNight={((room.PackagePrice.FinalPrice / moment(search.checkOut).diff(moment(search.checkIn), 'days')) - tax).toFixed(0)}
                     totalPriceAfterTax={room?.PackagePrice?.FinalPrice}
-                    totalPrice={room?.PackagePrice?.FinalPrice - (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => true)?.Value || 0)}
+                    totalPrice={room?.PackagePrice?.FinalPrice - tax}
                     imageURLs={images}
                     isRefundable={room.Refundability === 2 ? false: true}
                     room={room} 

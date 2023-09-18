@@ -37,6 +37,9 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
   const [markup, setMarkup] = useState(0);
 
   const addTotalTaxes = (taxes) => {
+    if (!taxes) {
+      return null
+    }
     let total = 0
     taxes.forEach(tax => {
       total = total + parseFloat(tax?.Value || 0)
@@ -58,9 +61,11 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
 
     // const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
     // setMarkup(markupInitial)
+    console.log(detail)
     const tax =  (
       detail.room.PackagePrice?.OriginalTax 
       || addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
+      || ((parseFloat(detail.hotel?.taxRate)*100) * detail.room?.PackagePrice?.FinalPrice) / 100
       || 0
     )
     const priceBeforeTax = detail.room.PackagePrice.FinalPrice - tax

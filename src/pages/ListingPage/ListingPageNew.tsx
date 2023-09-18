@@ -155,7 +155,7 @@ const ListingPageNew = ({ ...props }) => {
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReviews,
       lowestAveragePrice: pricing / diffDays,
-      totalPrice: pricing,
+      totalPrice: hotel?.taxRate ? pricing + (pricing * hotel?.taxRate) : pricing,
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,

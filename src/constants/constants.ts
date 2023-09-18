@@ -825,6 +825,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       alias
       images
       addressLine
+      taxRate
     }
   }
 }
@@ -877,6 +878,7 @@ const getHotelDetailById = (hotelId) => {
       tripAdvisorId
       city
       state
+      taxRate
     }
   }`
 }
