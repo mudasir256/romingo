@@ -152,12 +152,12 @@ export default function GoogleMaps(props) {
 
     clearTimeout(timer)
 
-    // console.log('timer')
+    console.log('timer')
     const newTimer = setTimeout(() => {
       autocompleteService.current.getPlacePredictions(
         {input: inputValue},
         function(results) {
-          // console.log('results!')
+          console.log('results!')
           let newOptions: readonly PlaceType[] = [];
 
           if (value) {

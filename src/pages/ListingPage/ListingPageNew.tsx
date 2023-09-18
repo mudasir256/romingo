@@ -142,6 +142,9 @@ const ListingPageNew = ({ ...props }) => {
     // console.log(hotel)
     const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
 
+    const tax = ((parseFloat(hotel?.taxRate)*100) * pricing) / 100
+    console.log(tax)
+
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
@@ -154,8 +157,8 @@ const ListingPageNew = ({ ...props }) => {
       hotelStarRating: hotel.StarRating,
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReviews,
-      lowestAveragePrice: pricing / diffDays,
-      totalPrice: hotel?.taxRate ? pricing + (pricing * hotel?.taxRate) : pricing,
+      lowestAveragePrice: (pricing - tax)  / diffDays,
+      totalPrice: pricing,
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,

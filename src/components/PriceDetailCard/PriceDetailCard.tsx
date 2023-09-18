@@ -64,7 +64,7 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
     console.log(detail)
     const tax =  (
       detail.room.PackagePrice?.OriginalTax 
-      || addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
+      || detail.room?.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value //addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
       || ((parseFloat(detail.hotel?.taxRate)*100) * detail.room?.PackagePrice?.FinalPrice) / 100
       || 0
     )
