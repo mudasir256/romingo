@@ -56,6 +56,7 @@ const CheckoutInformation: FC<Props> = ({
   priceKey,
   policy,
   finalPrice,
+  discountAmount,
 }) => {
   const history = useHistory();
   const stripe = useStripe();
@@ -285,7 +286,16 @@ const CheckoutInformation: FC<Props> = ({
 
 
             createBookingInTravolutionary({
-              variables: { createBookingInputTravolutionary: { passengers: passengers, roomDetails: detail, sessionId: detail.sessionId, stripeIntent: paymentIntent, checkoutForm: checkoutForm, search,  } }
+              variables: { 
+                createBookingInputTravolutionary: { 
+                  passengers: passengers, 
+                  roomDetails: { ...detail, discountAmount }, 
+                  sessionId: detail.sessionId, 
+                  stripeIntent: paymentIntent, 
+                  checkoutForm: checkoutForm, 
+                  search  
+                } 
+              }
             })
             // subscribeToNewsletter(checkoutForm.email)
 
@@ -357,111 +367,111 @@ const CheckoutInformation: FC<Props> = ({
   }
   )
 
-  const [createSI, { data: siData, loading: siLoading }] = useMutation(
-    gql`
-      ${CreateSetupIntent}
-    `,
-    {
-      async onCompleted(data) {
-        setPaymentLoading(true);
-        try {
-          if (!stripe || !elements) {
-            setPaymentLoading(false);
-            return;
-          }
-          const cardElement = await elements.getElement(CardElement);
-          if (!cardElement) {
-            setPaymentLoading(false);
-            return;
-          }
+  // const [createSI, { data: siData, loading: siLoading }] = useMutation(
+  //   gql`
+  //     ${CreateSetupIntent}
+  //   `,
+  //   {
+  //     async onCompleted(data) {
+  //       setPaymentLoading(true);
+  //       try {
+  //         if (!stripe || !elements) {
+  //           setPaymentLoading(false);
+  //           return;
+  //         }
+  //         const cardElement = await elements.getElement(CardElement);
+  //         if (!cardElement) {
+  //           setPaymentLoading(false);
+  //           return;
+  //         }
 
-          const { error, setupIntent } = await stripe.confirmCardSetup(
-            data?.createSetupIntent?.clientSecret,
-            {
-              payment_method: {
-                card: cardElement,
-                billing_details: {
-                  name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
-                },
-              },
-            }
-          );
-          if (setupIntent) {
-            const adults: { firstName: string; lastName: string }[] = [];
-            const children: {
-              firstName: string;
-              lastName: string;
-              age: number;
-            }[] = [];
+  //         const { error, setupIntent } = await stripe.confirmCardSetup(
+  //           data?.createSetupIntent?.clientSecret,
+  //           {
+  //             payment_method: {
+  //               card: cardElement,
+  //               billing_details: {
+  //                 name: `${checkoutForm.firstName.trim()} ${checkoutForm.lastName.trim()}`,
+  //               },
+  //             },
+  //           }
+  //         );
+  //         if (setupIntent) {
+  //           const adults: { firstName: string; lastName: string }[] = [];
+  //           const children: {
+  //             firstName: string;
+  //             lastName: string;
+  //             age: number;
+  //           }[] = [];
 
-            Array.from(Array(occupants.adults)).forEach((_, i) => {
-              if (i === 0) {
-                adults.push({
-                  firstName: checkoutForm.firstName.trim(),
-                  lastName: checkoutForm.lastName.trim(),
-                });
-              } else {
-                const guestId = String.fromCharCode(64 + i);
-                adults.push({
-                  firstName: `Adult${guestId}`,
-                  lastName: checkoutForm.lastName.trim(),
-                });
-              }
-            });
+  //           Array.from(Array(occupants.adults)).forEach((_, i) => {
+  //             if (i === 0) {
+  //               adults.push({
+  //                 firstName: checkoutForm.firstName.trim(),
+  //                 lastName: checkoutForm.lastName.trim(),
+  //               });
+  //             } else {
+  //               const guestId = String.fromCharCode(64 + i);
+  //               adults.push({
+  //                 firstName: `Adult${guestId}`,
+  //                 lastName: checkoutForm.lastName.trim(),
+  //               });
+  //             }
+  //           });
 
-            if (occupants.children > 0) {
-              Array.from(Array(occupants?.childrenAge?.length)).forEach(
-                (x_, i) => {
-                  const childId = String.fromCharCode(65 + i);
-                  children.push({
-                    firstName: `Child${childId}`,
-                    lastName: checkoutForm.lastName.trim(),
-                    age: occupants.childrenAge[i],
-                  });
-                }
-              );
-            }
+  //           if (occupants.children > 0) {
+  //             Array.from(Array(occupants?.childrenAge?.length)).forEach(
+  //               (x_, i) => {
+  //                 const childId = String.fromCharCode(65 + i);
+  //                 children.push({
+  //                   firstName: `Child${childId}`,
+  //                   lastName: checkoutForm.lastName.trim(),
+  //                   age: occupants.childrenAge[i],
+  //                 });
+  //               }
+  //             );
+  //           }
 
-            createBooking2({
-              variables: {
-                createBooking2Input: {
-                  priceKey: priceKey,
-                  customerId: data?.createSetupIntent?.customerId,
-                  paymentIntentId: '',
-                  email: checkoutForm.email,
-                  mobile: {
-                    countryCallingCode: checkoutForm.countryCode,
-                    number: checkoutForm.phone,
-                  },
-                  adults,
-                  children,
-                  noOfDogs: occupants.dogs,
-                  intentType: 'setup_intent',
-                  setupIntentObject: setupIntent,
-                  utmSource: localStorage.getItem('utm_source') || '',
-                  utmMedium: localStorage.getItem('utm_medium') || ''
-                },
-              },
-            });
-            subscribeToNewsletter(checkoutForm.email)
+  //           createBooking2({
+  //             variables: {
+  //               createBooking2Input: {
+  //                 priceKey: priceKey,
+  //                 customerId: data?.createSetupIntent?.customerId,
+  //                 paymentIntentId: '',
+  //                 email: checkoutForm.email,
+  //                 mobile: {
+  //                   countryCallingCode: checkoutForm.countryCode,
+  //                   number: checkoutForm.phone,
+  //                 },
+  //                 adults,
+  //                 children,
+  //                 noOfDogs: occupants.dogs,
+  //                 intentType: 'setup_intent',
+  //                 setupIntentObject: setupIntent,
+  //                 utmSource: localStorage.getItem('utm_source') || '',
+  //                 utmMedium: localStorage.getItem('utm_medium') || ''
+  //               },
+  //             },
+  //           });
+  //           subscribeToNewsletter(checkoutForm.email)
 
-          }
-          setPaymentLoading(false);
-        } catch (err) {
-          console.log(err);
-          setFormError({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            check: "",
-            card: "*We were unable to process this transaction. Please try again.",
-          });
-          setPaymentLoading(false);
-        }
-      },
-    }
-  );
+  //         }
+  //         setPaymentLoading(false);
+  //       } catch (err) {
+  //         console.log(err);
+  //         setFormError({
+  //           firstName: "",
+  //           lastName: "",
+  //           email: "",
+  //           phone: "",
+  //           check: "",
+  //           card: "*We were unable to process this transaction. Please try again.",
+  //         });
+  //         setPaymentLoading(false);
+  //       }
+  //     },
+  //   }
+  // );
 
   const submitStripe = async () => {
     setPaymentLoading(true);
@@ -638,7 +648,7 @@ const CheckoutInformation: FC<Props> = ({
           }}
         >
           <>
-            {(loading || siLoading ||
+            {(loading ||
               piLoading ||
               paymentLoading ||
               bnplLoading) && (
@@ -727,7 +737,6 @@ const CheckoutInformation: FC<Props> = ({
                 sx={{
                   display:
                     loading ||
-                    siLoading ||
                       piLoading ||
                       paymentLoading ||
                       bnplLoading

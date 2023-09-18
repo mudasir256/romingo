@@ -87,7 +87,7 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-  console.log(data)
+  // console.log(data)
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -96,7 +96,7 @@ const DetailsPage1 = ({ ...props }) => {
   const date2 = new Date(end).getTime();
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-  console.log(diffDays)
+  // console.log(diffDays)
 
   const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
     gql`${TripHotelList}`,
@@ -189,10 +189,10 @@ const DetailsPage1 = ({ ...props }) => {
     
         const possibleRoomsRefundable = roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 1)
         const possibleRoomsNonRefundable =roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 2)
-        console.log('for key')
-        console.log(key)
-        console.log(possibleRoomsNonRefundable)
-        console.log(possibleRoomsRefundable)
+        // console.log('for key')
+        // console.log(key)
+        // console.log(possibleRoomsNonRefundable)
+        // console.log(possibleRoomsRefundable)
 
         if (possibleRoomsNonRefundable.length === 1) {
           const newRoom = possibleRoomsNonRefundable[0]
@@ -221,8 +221,8 @@ const DetailsPage1 = ({ ...props }) => {
 
       }
 
-      console.log('rooms')
-      console.log(nonAccessibleRooms)
+      // console.log('rooms')
+      // console.log(nonAccessibleRooms)
 
       nonAccessibleRooms.sort(function(a, b) {
           return a.SimplePrice - b.SimplePrice
@@ -235,8 +235,9 @@ const DetailsPage1 = ({ ...props }) => {
         if (tax === 0) {
           tax = ((parseFloat(hotel?.taxRate)*100) * room?.Price?.FinalPrice) / 100
         }
+        const markup = (room.Price.FinalPrice - tax) * .1
 
-        lowest = nonAccessibleRooms[0].SimplePrice - tax
+        lowest = nonAccessibleRooms[0].SimplePrice - tax + markup
       }
 
       accessibleRooms.sort(function(a, b) {
@@ -287,8 +288,6 @@ const DetailsPage1 = ({ ...props }) => {
 
   const hotel = hotelInfo.getHotelDetailById;
   const hotelDetailsFromPackage = hotel
-
-  console.log(rooms)
 
 
   const getPetSizeLabel = (petSize) => {
@@ -610,7 +609,7 @@ const DetailsPage1 = ({ ...props }) => {
           md={10}
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >
-          {(rooms.length > 0 && lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) &&<>
+          {(!taLoading && rooms.length > 0 && lowestRomingoRate && priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice) && <>
           <Typography variant="h6">Compare Rates</Typography>
           <Typography variant="base">Book with Romingo.com to get the best rates at pet-friendly hotels. Romingo guests pay $0 booking fees and are guaranteed to reserve a pet-friendly room.</Typography>
           <Box mt="1.5rem" mr="1rem" display="flex" gap="2rem" sx={{ flexDirection: { xs: 'column', sm: 'column', md: 'row'}  }}>
@@ -674,7 +673,6 @@ const DetailsPage1 = ({ ...props }) => {
                 const amenities = filterroom ? filterroom.Amenities : [];
 
                 // console.log(room)
-                console.log(room)
                 let tax = (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value || 0)
                 if (tax === 0) {
                   tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
@@ -682,7 +680,8 @@ const DetailsPage1 = ({ ...props }) => {
                   // tax = room?.PackagePrice?.FinalPrice - beforePrice
                   // console.log(tax)
                 }
-                console.log(tax)
+                // console.log(tax)
+                const markup = (room.PackagePrice.FinalPrice - tax) * .1
 
 
                 return (
@@ -698,9 +697,9 @@ const DetailsPage1 = ({ ...props }) => {
                       key={key} 
                       featuredImageURL={images?.find(item => true)} 
                       roomTitle={room.Rooms[0].RoomName}
-                      pricePerNight={((room.PackagePrice.FinalPrice - tax) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(0)}
-                      totalPriceAfterTax={room?.PackagePrice?.FinalPrice}
-                      totalPrice={room?.PackagePrice?.FinalPrice - tax}
+                      pricePerNight={(((room.PackagePrice.FinalPrice - tax) + markup) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(0)}
+                      totalPriceAfterTax={(room?.PackagePrice?.FinalPrice + markup).toFixed(2)}
+                      totalPrice={(room?.PackagePrice?.FinalPrice - tax + markup).toFixed(2)}
                       imageURLs={images}
                       isRefundable={room.Refundability === 2 ? false: true}
                       room={room} 
@@ -741,6 +740,8 @@ const DetailsPage1 = ({ ...props }) => {
                   // tax = room?.PackagePrice?.FinalPrice - beforePrice
                   // console.log(tax)
                 }
+                const markup = (room.PackagePrice.FinalPrice - tax) * .1
+
   
                 return (<Grid item   
                     md={4}
@@ -754,9 +755,9 @@ const DetailsPage1 = ({ ...props }) => {
                     key={key} 
                     featuredImageURL={images?.find(item => true)} 
                     roomTitle={room.Rooms[0].RoomName}
-                    pricePerNight={((room.PackagePrice.FinalPrice / moment(search.checkOut).diff(moment(search.checkIn), 'days')) - tax).toFixed(0)}
-                    totalPriceAfterTax={room?.PackagePrice?.FinalPrice}
-                    totalPrice={room?.PackagePrice?.FinalPrice - tax}
+                    pricePerNight={(((room.PackagePrice.FinalPrice - tax) + markup) / moment(search.checkOut).diff(moment(search.checkIn), 'days')).toFixed(0)}
+                    totalPriceAfterTax={(room?.PackagePrice?.FinalPrice + markup).toFixed(2)}
+                    totalPrice={(room?.PackagePrice?.FinalPrice - tax + markup).toFixed(2)}
                     imageURLs={images}
                     isRefundable={room.Refundability === 2 ? false: true}
                     room={room} 

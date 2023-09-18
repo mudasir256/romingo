@@ -208,6 +208,7 @@ const RoomCard: FC<Props> = ({
     e.stopPropagation();
      dispatch(
       setCheckout({
+        finalPrice: totalPriceAfterTax,
         room: { ...room, imageURLs },
         hotel: hotel,
         sessionId: sessionId

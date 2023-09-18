@@ -142,8 +142,10 @@ const ListingPageNew = ({ ...props }) => {
     // console.log(hotel)
     const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
 
-    const tax = ((parseFloat(hotel?.taxRate)*100) * pricing) / 100
+    const tax = ((parseFloat(hotel?.taxRate || 0)*100) * pricing) / 100
     console.log(tax)
+
+    const markup = (pricing - tax) * .1
 
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
@@ -157,8 +159,8 @@ const ListingPageNew = ({ ...props }) => {
       hotelStarRating: hotel.StarRating,
       romingoScore: hotel.starRating,
       numberOfReviews: hotel.numberOfReviews,
-      lowestAveragePrice: (pricing - tax)  / diffDays,
-      totalPrice: pricing,
+      lowestAveragePrice: ((pricing - tax) + markup) / diffDays,
+      totalPrice: (pricing + markup),
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,
@@ -187,8 +189,8 @@ const ListingPageNew = ({ ...props }) => {
         hotelStarRating: hotel.StarRating,
         romingoScore: hotel.starRating,
         numberOfReviews: hotel.numberOfReview,
-        lowestAveragePrice: pricing / diffDays,
-        totalPrice: pricing,
+        lowestAveragePrice: ((pricing - tax) + markup) / diffDays,
+        totalPrice: (pricing + markup),
         id: hotel.ID,
         lat: hotel.GeoLocation.Latitude,
         lng: hotel.GeoLocation.Longitude,

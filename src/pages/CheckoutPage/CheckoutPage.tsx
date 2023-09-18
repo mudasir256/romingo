@@ -60,6 +60,16 @@ const CheckoutPage: FC<Props> = () => {
   const { data, loading, error } = useQuery(
     gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
 
+  const addTotalTaxes = (taxes) => {
+    if (!taxes) {
+      return null
+    }
+    let total = 0
+    taxes.forEach(tax => {
+      total = total + parseFloat(tax?.Value || 0)
+    })
+    return total
+  }
 
   const handleApplyCoupon = async () => {
     setLoadingCoupon(true)
@@ -77,6 +87,15 @@ const CheckoutPage: FC<Props> = () => {
     }
     setLoadingCoupon(false)
   }
+
+  const tax =  (
+    detail.room.PackagePrice?.OriginalTax 
+    || detail.room?.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value //addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
+    || ((parseFloat(detail.hotel?.taxRate)*100) * detail.room?.PackagePrice?.FinalPrice) / 100
+    || 0
+  )
+
+  const markup = (detail?.room?.PackagePrice?.FinalPrice - tax) * 0.1
 
   const mobile = useMediaQuery("(max-width:800px)");
 
@@ -108,7 +127,8 @@ const CheckoutPage: FC<Props> = () => {
                   sx={{ mt: 1, mb: "1rem" }}
                   // finePrint={{title: "test", description: 'test'}}
                   // price={123.33}
-                  finalPrice={detail?.room?.PackagePrice?.FinalPrice - (discountAmount > 0 ? discountAmount : 0)}
+                  discountAmount={discountAmount || 0}
+                  finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)}
                   policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                 />
               </Grid>
@@ -145,7 +165,7 @@ const CheckoutPage: FC<Props> = () => {
                   <BookingDetailCard />
                 </Grid>
                 <Grid item xs={12} order={{ xs: 2, md: 2 }}>
-                  <PriceDetailCard discountAmount={discountAmount} />
+                  <PriceDetailCard discountAmount={discountAmount} tax={tax} />
                 </Grid>
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
                   <Box sx={{ boxShadow: 3, borderRadius: 3, p: '0.75rem' }}> 
@@ -171,13 +191,14 @@ const CheckoutPage: FC<Props> = () => {
                       sx={{ mt: 2 }}
                       // finePrint={finePrint}
                       // price={detail?.room?.room?.totalPriceAfterTax}
-                      finalPrice={detail?.room?.PackagePrice?.FinalPrice - (discountAmount > 0 ? discountAmount : 0)}
+                      discountAmount={discountAmount || 0}
+                      finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)}
                       policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                     />
                   </Grid>
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
-                  <CancelPolicy finalPrice={detail?.room?.PackagePrice?.FinalPrice} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
+                  <CancelPolicy finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
                 </Grid>
               </Grid>
             </Grid>

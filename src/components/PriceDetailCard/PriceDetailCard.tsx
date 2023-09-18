@@ -10,7 +10,7 @@ interface Props {
   discountAmount?: number;
 }
 
-const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
+const PriceDetailCard: FC<Props> = ({ sx, discountAmount, tax = 0 }) => {
   console.log(discountAmount)
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
@@ -62,18 +62,15 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
     // const markupInitial = detail.room.PackagePrice.FinalPrice * 0.15
     // setMarkup(markupInitial)
     console.log(detail)
-    const tax =  (
-      detail.room.PackagePrice?.OriginalTax 
-      || detail.room?.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value //addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
-      || ((parseFloat(detail.hotel?.taxRate)*100) * detail.room?.PackagePrice?.FinalPrice) / 100
-      || 0
-    )
+
     const priceBeforeTax = detail.room.PackagePrice.FinalPrice - tax
+
+    const markup = (priceBeforeTax * .1)
 
     const nights = moment(search.checkOut).diff(moment(search.checkIn),'days')
     tmp.push({
       label: "Average price per night",
-      price: priceBeforeTax / nights,
+      price: (priceBeforeTax + markup) / nights,
     });
 
     tmp.push({
@@ -83,7 +80,7 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
 
     tmp.push({
       label: "Total before taxes & fees",
-      price: priceBeforeTax,
+      price: priceBeforeTax + markup,
     });
 
     tmp.push({
@@ -99,12 +96,12 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount }) => {
     tmp.push({
       label: "Total",
       discount: (discountAmount > 0 ? discountAmount : 0),
-      price: (detail.room.PackagePrice.FinalPrice - (discountAmount > 0 ? discountAmount : 0)), //+ markupInitial),
+      price: (detail.room.PackagePrice.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)), //+ markupInitial),
     });
 
     tmp.push({
       label: "Pay now",
-      price: detail?.room?.room?.totalPriceAfterTax,
+      price: detail?.room?.room?.totalPriceAfterTax + markup,
     });
 
     setPriceArr([...tmp]);
