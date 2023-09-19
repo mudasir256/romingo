@@ -389,21 +389,21 @@ const HomePage: FC<Props> = () => {
             imgSrc={BookNow}
             imgAlt="pet-friendly guarantee"
             imgWidth="70%"
-            header="Pet-Friendly Guarantee"
+            header="Pet-friendly guarantee"
             text="Planning a trip with your pet? Book with Romingo for a guaranteed pet-friendly room."
           />
           <InfoBox
             imgSrc={LowestRates}
             imgAlt="lowest rates"
             imgWidth="83%"
-            header="Lowest Rates"
+            header="Lowest rates"
             text="By partnering with select pet-friendly hotels, Romingo offers the lowest rates with $0 booking fees."
           />
           <InfoBox
             imgSrc={AuthenticPet}
             imgAlt="trusted and accurate"
             imgWidth='85%'
-            header="Trusted & Accurate"
+            header="Trusted & accurate"
             text="Our pet policies are verified and accurate. Over 50,000 pets (and their humans) have trusted us with their travel plans."
           />
         </Box>
