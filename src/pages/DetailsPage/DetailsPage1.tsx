@@ -177,8 +177,14 @@ const DetailsPage1 = ({ ...props }) => {
       let lowest = 999999
 
       const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
-        return (room.Rooms[0].RoomBasis === 'Room only RO' || room.Rooms[0].RoomBasis === 'Bed and Breakfast BB')
+        return (
+          (room.Rooms[0].RoomBasis === 'Room only RO' || 
+          room.Rooms[0].RoomBasis === 'Bed and Breakfast BB')
+          && !room.Rooms[0].RoomName.toLowerCase().includes('quad')
+          && !room.Rooms[0].RoomName.toLowerCase().includes('tri')
+        )
       })
+      console.log(roomPackagesOnly)
 
       console.log('console rooms content')
       console.log(data.getHotelDetails.RoomsContent)
