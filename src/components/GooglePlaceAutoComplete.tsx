@@ -52,6 +52,7 @@ export default function GoogleMaps(props) {
   const dispatch: Dispatch<any> = useDispatch();
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false)
   const [timer, setTimer] = React.useState(null)
+  const [focused, setFocused] = React.useState(false)
 
   //IF IS MOBILE, supply callback
   const isMobile = props.mobile;
@@ -206,8 +207,33 @@ export default function GoogleMaps(props) {
 
   return (
     <Autocomplete
-      id="google-map-demo"
-      style={{ width: props.width || 280, border: '1px solid white', background: 'white', borderRadius: 5 }}
+      id="google-map-input"
+      // style={{ }}
+      sx={{
+        "& .MuiInputBase-root": { 
+          width: (props.width || 280), 
+          // position: 'relative',
+          // height: focused ? '60px' : '42px',
+          border: focused ? 'none' : '1px solid white', 
+          boxShadow: focused ? 5 : 0,
+          background: 'white', 
+
+  
+     
+        }
+      }}
+      componentsProps={{
+        paper: {
+          sx: {
+            width: 400,
+          }
+        },
+        popper: {
+          placement: 'bottom-start',
+
+        }
+
+      }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
@@ -219,9 +245,17 @@ export default function GoogleMaps(props) {
       filterSelectedOptions
       value={props.city ? props.city?.city : search.city}
       noOptionsText="No locations"
+      onOpen={() => {
+        console.log('should open?')
+        setFocused(true)          
+      }}
+      onClose={() => {
+        setFocused(false)
+      }}
       onChange={(event: any, newValue: PlaceType | null) => {
         console.log('change')
         console.log(newValue)
+      
         handleLocationChange(newValue)
       }}
       onInputChange={(event, newInputValue) => {
@@ -229,7 +263,7 @@ export default function GoogleMaps(props) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} placeholder="Going to..." fullWidth variant='outlined' size="small" sx={{ borderRadius: 5 }} />
+        <TextField {...params} placeholder="Going to..." fullWidth size="small" variant="outlined"  />
       )}
       renderOption={(props, option) => {
         const matches =
@@ -239,7 +273,6 @@ export default function GoogleMaps(props) {
           option.structured_formatting.main_text,
           matches.map((match: any) => [match.offset, match.offset + match.length]),
         );
-
         return (
           <li {...props}>
             <Grid container alignItems="center">
@@ -251,12 +284,12 @@ export default function GoogleMaps(props) {
                   <Box
                     key={index}
                     component="span"
-                    sx={{ fontWeight: '800', fontSize: 14 }}
+                    sx={{ fontWeight: '800', fontSize: 18 }}
                   >
                     {part.text}
                   </Box>
                 ))}
-                <Typography color="text.secondary" style={{ fontSize: 10 }}>
+                <Typography color="text.secondary" style={{ fontSize: 11 }}>
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>
