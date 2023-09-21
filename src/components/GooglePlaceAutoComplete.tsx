@@ -10,6 +10,7 @@ import { debounce } from '@mui/material/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Button, Dialog, IconButton, Toolbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -217,8 +218,6 @@ export default function GoogleMaps(props) {
           border: focused ? 'none' : '1px solid white', 
           boxShadow: focused ? 5 : 0,
           background: 'white', 
-
-  
      
         }
       }}
@@ -239,7 +238,7 @@ export default function GoogleMaps(props) {
       }
       filterOptions={(x) => x}
       options={options}
-      clearIcon={<></>}
+      clearIcon={focused ? <HighlightOffIcon /> : <></>}
       autoComplete
       includeInputInList
       filterSelectedOptions

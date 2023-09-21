@@ -66,6 +66,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       : { adults: 2, children: 0, dogs: 1 }
   );
 
+  console.log(occupants)
 
   const history = useHistory();
 

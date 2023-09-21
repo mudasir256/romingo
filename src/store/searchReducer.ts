@@ -42,8 +42,8 @@ export const simulateHttpRequest = (action: SearchAction) => {
 
 let checkInDate = ""
 let checOutDate = ""
-let adultsCount = 0
-let dogsCount = 0
+let adultsCount = 2
+let dogsCount = 1
 
 const isPropertyPage = (path:string) => {
   if (path.match(/\/hotel\/.*$/gm) || path.match(/\/details\/.*$/gm) ) return true

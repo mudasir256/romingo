@@ -84,7 +84,7 @@ const OccupantSelector: FC<Props> = ({
         value={
           value.adults === 0 && value.dogs === 0 && value.children === 0
             ? ""
-            : `${value.adults} ${(value.adults === 1) ? 'Adult' : 'Adults'}, ${value.children} ${(value.children == 1) ? 'Child' : 'Children'}, ${value.dogs} ${(value.dogs === 1) ? 'Pet' : 'Pets'}  `
+            : `${value.adults} ${(value.adults === 1) ? 'Adult' : 'Adults'}, ${value.children == 0 ? '' : value.children} ${(value.children == 0 ? '' : value.children == 1 ? 'Child, ' : 'Children, ')}${value.dogs} ${(value.dogs === 1) ? 'Pet' : 'Pets'}  `
         }
         inputProps={{
           readOnly: true,
