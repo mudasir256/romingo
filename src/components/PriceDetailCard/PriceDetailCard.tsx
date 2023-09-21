@@ -36,17 +36,6 @@ const PriceDetailCard: FC<Props> = ({ sx, discountAmount, tax = 0 }) => {
   const [fees, setFees] = useState([]);
   const [markup, setMarkup] = useState(0);
 
-  const addTotalTaxes = (taxes) => {
-    if (!taxes) {
-      return null
-    }
-    let total = 0
-    taxes.forEach(tax => {
-      total = total + parseFloat(tax?.Value || 0)
-    })
-    return total
-  }
-
   useEffect(() => {
     const tmp = [];
     // if (detail?.room?.room?.feesIncluded) {

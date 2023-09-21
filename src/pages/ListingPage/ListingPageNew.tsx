@@ -274,9 +274,10 @@ const ListingPageNew = ({ ...props }) => {
       case 'priceSort_high_to_low':
         return toSortHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
       case 'featured': {
-        const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE')
-        const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE')
-        return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)]
+        const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
+        const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
+        const exclude = toSortHotels.filter(a => (a.romingoScore != '4' && a.romingoScore != '4.5' && a.romingoScore != '3.5' && a.romingoScore != '3'))
+        return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...exclude.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice)]
       }
       case 'highest_rating':
         return toSortHotels.sort((a, b) => b.romingoScore - a.romingoScore);

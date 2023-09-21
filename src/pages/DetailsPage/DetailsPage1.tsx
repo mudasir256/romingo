@@ -87,7 +87,7 @@ const DetailsPage1 = ({ ...props }) => {
       ${getPackages(search.occupants.adults, parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng, [hotelId])}
     `
   );
-  // console.log(data)
+  console.log(data)
 
   const start = search.checkIn.substring(0, 10)
   const end = search.checkOut.substring(0, 10)
@@ -249,11 +249,9 @@ const DetailsPage1 = ({ ...props }) => {
       
       if (nonAccessibleRooms.length > 0) {
         const room = nonAccessibleRooms[0].Rooms[0]
-        let tax = room.Price?.OriginalTax || room.Price?.TaxesAndFees?.find(item => true)?.Value || 0
-        
-        if (tax === 0) {
-          tax = ((parseFloat(hotel?.taxRate)*100) * room?.Price?.FinalPrice) / 100
-        }
+        // let tax = room.Price?.OriginalTax || room.Price?.TaxesAndFees?.find(item => true)?.Value || 0
+        const tax = ((parseFloat(hotel?.taxRate)*100) * room?.Price?.FinalPrice) / 100
+      
         const markup = (room.Price.FinalPrice - tax) * .1
 
         lowest = nonAccessibleRooms[0].SimplePrice - tax + markup
@@ -692,13 +690,12 @@ const DetailsPage1 = ({ ...props }) => {
                 const amenities = filterroom ? filterroom.Amenities : [];
 
                 // console.log(room)
-                let tax = (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value || 0)
-                if (tax === 0) {
-                  tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
+                // let tax = 0// (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value || 0)
+                const tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
                   // console.log(beforePrice)
                   // tax = room?.PackagePrice?.FinalPrice - beforePrice
                   // console.log(tax)
-                }
+                // }
                 // console.log(tax)
                 const markup = (room.PackagePrice.FinalPrice - tax) * .1
 
@@ -758,13 +755,13 @@ const DetailsPage1 = ({ ...props }) => {
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
-                let tax = (room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value || 0)
-                if (tax === 0) {
-                  tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
+                // let tax = 0//(room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value || 0)
+                // if (tax === 0) {
+                const tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
                   // console.log(beforePrice)
                   // tax = room?.PackagePrice?.FinalPrice - beforePrice
                   // console.log(tax)
-                }
+                // }
                 const markup = (room.PackagePrice.FinalPrice - tax) * .1
 
   
