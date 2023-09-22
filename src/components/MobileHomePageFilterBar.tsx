@@ -41,7 +41,7 @@ import InfiniteCalendar, {
   Calendar,
   withRange,
 } from 'react-infinite-calendar';
-import 'react-infinite-calendar/styles.css';
+import '../mobileCalendar.css';
 import GooglePlaceAutoComplete from './GooglePlaceAutoComplete';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
@@ -57,6 +57,54 @@ interface FilterBarProps {
   flag?: string;
   bookingId?: string;
 }
+
+const initialStates = [
+  { 
+    isInitial: true,
+    index: 0,
+    description: 'San Diego, CA, USA',
+    structured_formatting: {
+      main_text: "San Diego",
+      secondary_text: 'CA, USA'
+    }
+  },
+  {
+    isInitial: true,
+    index: 1,
+    description: 'Asheville, NC, USA',
+    structured_formatting: {
+      main_text: "Asheville",
+      secondary_text: 'NC, USA'
+    }
+  },
+  {
+    isInitial: true,
+    index: 2,
+    description: 'Austin, TX, USA',
+    structured_formatting: {
+      main_text: "Austin",
+      secondary_text: 'TX, USA'
+    }
+  },
+  {
+    isInitial: true,
+    index: 3,
+    description: 'Seattle, WA, USA',
+    structured_formatting: {
+      main_text: "Seattle",
+      secondary_text: 'WA, USA'
+    }
+  },
+  {
+    isInitial: true,
+    index: 4,
+    description: 'Santa Fe, NM, USA',
+    structured_formatting: {
+      main_text: "Santa Fe",
+      secondary_text: 'NM, USA'
+    }
+  },
+]
 
 const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, forceWidth, flag, bookingId }) => {
 
@@ -192,18 +240,21 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
 
   }
 
-  const handleCityClick = (e, index) => {
+  const handleCityClick = (e, city) => {
   
     const geocoder = new google.maps.Geocoder();
+
+
+
     console.log(geocoder)
-    geocoder.geocode({ 'address': predictions[index].description }, function (results, status) {
+    geocoder.geocode({ 'address': city.description}, function (results, status) {
 
       if (status == google.maps.GeocoderStatus.OK) {
         console.log(results)
 
         dispatch(
           saveSearch({
-            city: predictions[index],
+            city: city,
             checkIn: new Date(checkDate[0]).toISOString(),
             checkOut: new Date(checkDate[1]).toISOString(),
             occupants,
@@ -213,17 +264,17 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         );
 
         setSelectedCity({
-          city: predictions[index],
+          city: city,
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
         })
         setNewValue({
-          city: predictions[index],
+          city: city,
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
         })
         setShowCities(false)
-        setMobileText(predictions[index]?.description)
+        setMobileText(city?.description)
 
       } else {
         console.log("Geocode was not successful for the following reason: " + status);
@@ -288,7 +339,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               open={showMobileCalendar}
               onClose={() => setShowMobileCalendar(false)}
             >
-              <AppBar sx={{ position: 'relative' }}>
+              <AppBar sx={{ position: 'relative', backgroundColor: 'white' }}>
                 <Toolbar>
                   <IconButton
                     edge="start"
@@ -296,7 +347,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     onClick={() => setShowMobileCalendar(false)}
                     aria-label="close"
                   >
-                    <CloseIcon />
+                    <CloseIcon sx={{ color: '#03989E' }} />
                   </IconButton>
                 </Toolbar>
               </AppBar>
@@ -315,7 +366,8 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                   Component={CalendarWithRange}
                   width="100%"
                   displayOptions={{
-                    showHeader: true
+                    showHeader: true,
+                    showWeekdays: false,
                   }}
                   minDate={new Date()}
                   selected={{
@@ -325,12 +377,13 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                   locale={{
                     headerFormat: 'MMM Do',
                   }}
+           
                   theme={{
-                    headerColor: '#03989E',
+                    headerColor: 'white',
                     floatingNav: {
-                      background: '#717171',
+                      background: '#f0f0f0',
                       chevron: 'transparent',
-                      color: '#FFF',
+                      color: 'black',
                     },
                     accentColor: '#03989E',
                     selectionColor: '#03989E',
@@ -476,10 +529,18 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
             <Button sx={{ position: 'absolute', top: -6, right: 0, zIndex: 90 }}  variant="contained" onClick={() => setShowCities(false)}>X</Button>
           </Box>
           <Box height="88%" overflow="scroll">
+
             {predictions?.map((address, index) => 
-              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={(e) => handleCityClick(e, index)}><Typography variant="p">{address.description}</Typography></Box>
+              <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={(e) => handleCityClick(e, predictions[index])}><Typography variant="p">{address.description}</Typography></Box>
             )}
-            {predictions?.length == 0 && <Typography ml="0.75rem" variant="base">No destinations found.</Typography>}
+            {predictions?.length == 0 &&
+             <Typography ml="0.75rem" variant="base">Popular pet-lovers</Typography>
+            }
+            {predictions?.length === 0 &&
+              initialStates.map(address => (
+                <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={(e) => handleCityClick(e, initialStates[address.index])}><Typography variant="p">{address.description}</Typography></Box>
+              ))
+            }
           </Box>
         </Box>
       </Slide> 

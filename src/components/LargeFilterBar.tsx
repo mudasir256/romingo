@@ -197,19 +197,19 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
+            gap: '0.5rem',
             px: '0.5rem',
           }}
         >
-          <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', width: '50%'}}>
+          <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px'}}>
             <FormControl fullWidth>
               <GooglePlaceAutoComplete width={274} setSelectedCity={setSelectedCity} city={selectedCity} />
             </FormControl>
           </Box>
 
           <Box sx={{ 
-            ml: '1em',
-            ["@media (max-width: 600px)"]: { ml: '1em' },
-            background: 'white',
+
+             background: 'white',
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
@@ -238,15 +238,13 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                       justifyContent: 'space-around',
                       flexDirection: 'row',
                       alignItems: 'center',
-                      ["@media (max-width: 920px)"]: { display: 'flex' },
-                      ["@media (max-width: 720px)"]: { display: 'flex' },
-
-                      height: 42,
+                      gap: '0.75rem',
+                      height: '40px',
                       border: '1px solid #aaabab', borderRadius: '5px'
                     }}
                     onClick={() => setOpen(true)}
                   >
-                    <Box sx={{ mr: '1rem'}}>
+                    <Box>
                       <Box
                         sx={{
                           display: 'flex',
@@ -257,29 +255,28 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                           border: 'none',
                           borderRadius: "6px",
                           backgroundColor: "#fff",
-                          py: '0.25em',
                         }}
                       >
-                        <Box ml="0.5rem" mt="0.1rem"><Today fontSize="small" sx={{ color: '#808080' }} /></Box>
+                        <Box ml="0.5rem" mt="0.1rem"><Today fontSize="small" sx={{ color: 'black' }} /></Box>
                         <Typography
                           sx={{
                             color: "black",
                             fontFamily: "overpass-light",
                             textTransform: "none",
-                            fontSize: '1em',
+                            fontSize: '15px',
                             ml: '0.5em',
                             ["@media (max-width: 600px)"]: { fontSize: '1em' }
                           }}
                         >
                           {checkDate[0]
-                            ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MM/dd/yy")
+                            ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
                             : "Check-in date"
                           }
                         </Typography> 
                       </Box>
                     </Box>
                     <ArrowRightAltIcon />
-                    <Box sx={{ ml: '0.5rem', mr: '0.5rem'}} >
+                    <Box >
                       <Box
                         sx={{
                           display: 'flex',
@@ -290,26 +287,25 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                           border: 'none',
                           borderRadius: "6px",
                           backgroundColor: "#fff",
-                          py: '0.25em',
 
-                
                         }}
                         onClick={() => setOpen(true)}
 
                       >
-                        <Box mt="0.1rem" ml="0.5rem"><InsertInvitation fontSize="small" sx={{ color: '#808080' }} /></Box>
+                        <Box mt="0.1rem"><InsertInvitation fontSize="small" sx={{ color: 'black' }} /></Box>
                         <Typography
                           sx={{
                             color: "black",
                             fontFamily: "overpass-light",
                             textTransform: "none",
-                            fontSize: '1em',
+                            fontSize: '15px',
                             ml: '0.5em',
+                            mr: '0.5rem',
                             ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
                           }}
                         >
                           {checkDate[1]
-                            ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MM/dd/yy")
+                            ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM d")
                             : "Check-out date"
                           }
                         </Typography> 
@@ -332,18 +328,20 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             size="small"
             fullWidth={false}
             sx={{
-              width: '226px',
-              height: '42px',
+              width: '224px',
+              height: '40px',
               border: '1px solid #aaabab', borderRadius: '5px',
               background: 'white',
               label: {
                 fontFamily: 'overpass-light',
-                fontSize: '1em',
+                fontSize: '15px',
+                color: 'black',
               },
               input: {
                 cursor: "pointer",
                 fontFamily: 'overpass-light',
-                fontSize: '1rem',
+                fontSize: '15px',
+                color: 'black',
                 mt: '0.05rem'
               },
             }}
@@ -358,8 +356,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             textTransform: "none",
             fontFamily: "overpass-light",
             m: '0.75em',
-            p: '1.5em',
-            height: '42px',
+            p: '1rem',
+            height: '41.5px',
           }}
           startIcon={<SearchIcon sx={{ height: "24px", fill: 'white' }} />}
         >

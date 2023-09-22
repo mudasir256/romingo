@@ -2,16 +2,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import parse from 'autosuggest-highlight/parse';
+// import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppBar, Button, Dialog, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Button, Dialog, IconButton, Toolbar, InputAdornment } from '@mui/material';
+
 import CloseIcon from '@mui/icons-material/Close';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDZAHqC_b5YOl00aj2LRivjvm0tNyxkZcI';
@@ -59,6 +59,54 @@ export default function GoogleMaps(props) {
   const isMobile = props.mobile;
   const callback = props.callback;
 
+  const initialStates = [
+    { 
+      isInitial: true,
+      index: 0,
+      description: 'San Diego, CA, USA',
+      structured_formatting: {
+        main_text: "San Diego",
+        secondary_text: 'CA, USA'
+      }
+    },
+    {
+      isInitial: true,
+      index: 1,
+      description: 'Asheville, NC, USA',
+      structured_formatting: {
+        main_text: "Asheville",
+        secondary_text: 'NC, USA'
+      }
+    },
+    {
+      isInitial: true,
+      index: 2,
+      description: 'Austin, TX, USA',
+      structured_formatting: {
+        main_text: "Austin",
+        secondary_text: 'TX, USA'
+      }
+    },
+    {
+      isInitial: true,
+      index: 3,
+      description: 'Seattle, WA, USA',
+      structured_formatting: {
+        main_text: "Seattle",
+        secondary_text: 'WA, USA'
+      }
+    },
+    {
+      isInitial: true,
+      index: 4,
+      description: 'Santa Fe, NM, USA',
+      structured_formatting: {
+        main_text: "Santa Fe",
+        secondary_text: 'NM, USA'
+      }
+    },
+  ]
+
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
@@ -72,6 +120,8 @@ export default function GoogleMaps(props) {
   }
 
   function handleLocationChange(newValue) {
+    console.log('new value')
+    console.log(newValue)
     if (isMobile && !newValue) {
       props.setMobileText(newValue)
     }
@@ -122,7 +172,14 @@ export default function GoogleMaps(props) {
     for (const set of fieldset) {
       set.setAttribute('style', 'border: none;');
     }
+    setOptions(initialStates)
   }, [])
+
+  React.useEffect(() => {
+    // if (options.length === 0) {
+    //   setOptions(initialStates) 
+    // }
+  }, [options])
 
   React.useEffect(() => {
     if (isMobile) {
@@ -133,10 +190,12 @@ export default function GoogleMaps(props) {
 
   React.useEffect(() => {
 
-    // console.log('auto complete?')
+    console.log('auto complete?')
     // console.log(autocompleteService)
     // console.log(autocompleteService?.current?.getPlacePredictions)
     // console.log(inputValue)
+    clearTimeout(timer)
+
 
     if (!autocompleteService.current && (window as any).google) {
       autocompleteService.current = new (
@@ -148,11 +207,11 @@ export default function GoogleMaps(props) {
     }
 
     if (inputValue === '') {
-      setOptions(value ? [value] : []);
+      setOptions(initialStates);
       return undefined;
     }
 
-    clearTimeout(timer)
+    // clearTimeout(timer)
 
     console.log('timer')
     const newTimer = setTimeout(() => {
@@ -162,18 +221,13 @@ export default function GoogleMaps(props) {
           console.log('results!')
           let newOptions: readonly PlaceType[] = [];
 
-          if (value) {
-            newOptions = [value];
-          }
-
           if (results) {
-            newOptions = [...newOptions, ...results];
+            newOptions = [...results];
             if (isMobile) {
               callback(results)
             } 
           }
-
-          setOptions(newOptions);
+          setOptions(newOptions || initialStates);
 
         }
       );
@@ -186,6 +240,8 @@ export default function GoogleMaps(props) {
     return (
       <Autocomplete
         filterOptions={(x) => x}
+        forcePopupIcon={false}
+        clearIcon={<></>}
         options={options}
         open={false}
         onOpen={(e) => { props.setShowCities(true); }}
@@ -209,12 +265,18 @@ export default function GoogleMaps(props) {
   return (
     <Autocomplete
       id="google-map-input"
+      forcePopupIcon={false}
       // style={{ }}
       sx={{
+        "& .MuiAutocomplete-input": {
+         color: 'black', 
+         fontSize: '15px',
+         pl: '0 !important'
+        },
         "& .MuiInputBase-root": { 
           width: (props.width || 280), 
           // position: 'relative',
-          // height: focused ? '60px' : '42px',
+          height: '40px',
           border: focused ? 'none' : '1px solid white', 
           boxShadow: focused ? 5 : 0,
           background: 'white', 
@@ -225,6 +287,7 @@ export default function GoogleMaps(props) {
         paper: {
           sx: {
             width: 400,
+            whiteSpace: 'nowrap'
           }
         },
         popper: {
@@ -238,56 +301,71 @@ export default function GoogleMaps(props) {
       }
       filterOptions={(x) => x}
       options={options}
-      clearIcon={focused ? <HighlightOffIcon /> : <></>}
+      clearIcon={(focused && inputValue) ? <HighlightOffIcon /> : <></>}
       autoComplete
       includeInputInList
       filterSelectedOptions
       value={props.city ? props.city?.city : search.city}
       noOptionsText="No locations"
       onOpen={() => {
-        console.log('should open?')
         setFocused(true)          
       }}
       onClose={() => {
         setFocused(false)
       }}
       onChange={(event: any, newValue: PlaceType | null) => {
-        console.log('change')
-        console.log(newValue)
-      
         handleLocationChange(newValue)
       }}
       onInputChange={(event, newInputValue) => {
-        console.log(newInputValue)
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} placeholder="Going to..." fullWidth size="small" variant="outlined"  />
+        <TextField 
+          {...params}
+          InputProps={{ 
+            ...params.InputProps,
+            startAdornment: focused ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
+          }}
+          placeholder="Going to..." 
+          fullWidth 
+          size="small" 
+          variant="outlined"  
+        />
       )}
-      renderOption={(props, option) => {
-        const matches =
-          option.structured_formatting.main_text_matched_substrings || [];
-
-        const parts = parse(
-          option.structured_formatting.main_text,
-          matches.map((match: any) => [match.offset, match.offset + match.length]),
-        );
+      groupBy={(option) => option.isInitial}
+      renderGroup={(params) => {
         return (
-          <li {...props}>
-            <Grid container alignItems="center">
+          <li key={params.key}>
+            {params.group && <Box my="0.5rem"><Typography variant="base"ml="1rem" sx={{ fontWeight: 800}}>Popular pet-lovers</Typography></Box>}
+            <Box>{params.children}</Box>
+          </li>
+        )
+      }}
+      renderOption={(props, option) => {
+        console.log(option)
+        // const matches =
+        //   option.structured_formatting.main_text_matched_substrings || [];
+
+        // const parts = parse(
+        //   option.structured_formatting.main_text,
+        //   matches.map((match: any) => [match.offset, match.offset + match.length]),
+        // );
+        return (
+          <li {...props} key={option.structured_formatting.main_text} >
+
+            <Grid container alignItems="center" my="0.20rem">
               <Grid item sx={{ display: 'flex', width: 22 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary', fontSize: 16 }} />
               </Grid>
               <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
-                {parts.map((part, index) => (
-                  <Box
-                    key={index}
-                    component="span"
-                    sx={{ fontWeight: '800', fontSize: 18 }}
-                  >
-                    {part.text}
-                  </Box>
-                ))}
+              
+                <Box
+                  component="span"
+                  sx={{ fontWeight: '800', fontSize: 18 }}
+                >
+                  {option.structured_formatting.main_text.length > 40 ? `${option.structured_formatting.main_text.slice(0,40)}...` :  option.structured_formatting.main_text} 
+                </Box>
+           
                 <Typography color="text.secondary" style={{ fontSize: 11 }}>
                   {option.structured_formatting.secondary_text}
                 </Typography>
