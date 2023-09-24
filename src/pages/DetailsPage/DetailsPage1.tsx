@@ -98,22 +98,22 @@ const DetailsPage1 = ({ ...props }) => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
   // console.log(diffDays)
 
-  const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
-    gql`${TripHotelList}`,
-    {
-      variables: {
-        hotel_ids: hotelId,
-        hotel_id_type: 'TA',
-        checkIn: search?.checkIn.substring(0, 10),
-        checkOut: search?.checkOut.substring(0, 10),
-        num_adults: search?.occupants?.adults.toString(),
-        num_rooms: '1',
-        currency: 'USD'
-      }
-    }
-  )
+  // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
+  //   gql`${TripHotelList}`,
+  //   {
+  //     variables: {
+  //       hotel_ids: hotelId,
+  //       hotel_id_type: 'TA',
+  //       checkIn: search?.checkIn.substring(0, 10),
+  //       checkOut: search?.checkOut.substring(0, 10),
+  //       num_adults: search?.occupants?.adults.toString(),
+  //       num_rooms: '1',
+  //       currency: 'USD'
+  //     }
+  //   }
+  // )
   
-  console.log(priceCheck)
+  // console.log(priceCheck)
 
   const { data: reviews, loading: taReviewsLoading, error: taReviewError } = useQuery(
     gql`${TripReviews}`,
@@ -620,6 +620,7 @@ const DetailsPage1 = ({ ...props }) => {
           </Box>
         </Grid>
 
+      {/*
       <Grid
           item
           xs={12}
@@ -633,23 +634,19 @@ const DetailsPage1 = ({ ...props }) => {
             <Box position="relative" py="1.5rem" px="4rem" textAlign="center" border="solid 1px black">
               <div style={{ marginBottom: '0.5rem'}}><img style={{width: '206px'}} src="https://storage.googleapis.com/romingo-development-public/images/front-end/Romingo_Logo_Black.svg" /></div>
               <Typography variant="p" py="2rem"><b>${Math.abs(lowestRomingoRate).toFixed(0)}</b> / night</Typography>
-           {/*   <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
-                <Typography variant="base">$0 pet fee</Typography>
-              </Box>*/}
+       
             </Box>
             <a style={{ textDecoration: 'none', color: 'black'}} href={priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.clickUrl} target="_blank" rel="noreferrer">
               <Box position="relative" py="2rem" px="3rem" textAlign="center" border="solid 1px black">
                 <div style={{ marginBottom: '0.5rem'}}><img style={{width: '240px'}} src="https://tripadvisor.mediaroom.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered_RGB.svg" /></div>
                 <Typography variant="p" py="2rem"><b>{priceCheck?.tripHotelList?.data?.results.find(Boolean)?.offers?.find(Boolean)?.displayPrice}</b> / night</Typography>
-               {/* <Box position="absolute" bottom="-12px" left="50%" style={{ transform: 'translate(-49%, 0%)' }} backgroundColor="white">
-                  <Typography variant="base">{hotelInfo?.getHotelDetailById?.petFeeValue} pet fee</Typography>
-                </Box>*/}
+              
               </Box>
             </a>
           </Box>    
           </>}
-
         </Grid>
+      */}
 
   
         {/* <Grid item xs={12} md={3}><Hidden mdDown>
