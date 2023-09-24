@@ -238,7 +238,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                       justifyContent: 'space-around',
                       flexDirection: 'row',
                       alignItems: 'center',
-                      gap: '0.75rem',
+                      gap: '0.35rem',
                       height: '40px',
                       border: '1px solid #aaabab', borderRadius: '5px'
                     }}
@@ -275,7 +275,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                         </Typography> 
                       </Box>
                     </Box>
-                    <ArrowRightAltIcon />
+                    <Typography variant="base">-</Typography>
+                    {/* <ArrowRightAltIcon /> */}
                     <Box >
                       <Box
                         sx={{
@@ -292,14 +293,13 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                         onClick={() => setOpen(true)}
 
                       >
-                        <Box mt="0.1rem"><InsertInvitation fontSize="small" sx={{ color: 'black' }} /></Box>
+                        {/* <Box mt="0.1rem"><InsertInvitation fontSize="small" sx={{ color: 'black' }} /></Box> */}
                         <Typography
                           sx={{
                             color: "black",
                             fontFamily: "overpass-light",
                             textTransform: "none",
                             fontSize: '15px',
-                            ml: '0.5em',
                             mr: '0.5rem',
                             ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
                           }}
