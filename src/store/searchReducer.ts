@@ -58,7 +58,7 @@ if (isPropertyPage(window.location.pathname)) {
    checkInOut.setDate(checkInOut.getDate() + 1)
    checkInDate = checkInDateIns.toISOString()
    checOutDate = checkInOut.toISOString()
-   adultsCount = 1
+   adultsCount = 2
    dogsCount = 1
 }
 

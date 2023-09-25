@@ -73,6 +73,10 @@ const ListingPageNew = ({ ...props }) => {
   const [hotels, setHotels] = useState([]);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const search = useSelector((state: any) => state.searchReducer.search);
+  
+  console.log('search')
+  console.log(search)
+
   const [center, setCenter] = useState({ lat: search.latitude, lng: search.longitude })
   const [markers, setMarkers] = useState([]);
   const [sort, setSort] = useState('featured');
@@ -132,6 +136,23 @@ const ListingPageNew = ({ ...props }) => {
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
+  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = deg2rad(lat2-lat1);  // deg2rad below
+    const dLon = deg2rad(lon2-lon1); 
+    const a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    const d = R * c; // Distance in km
+    return d;
+  }
+
+  function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
 
   const formatHotel = (hotel) => {
     // const match = hotel.SuppliersLowestPackagePrices.some(item => item.Key === 'HPT')
@@ -143,9 +164,12 @@ const ListingPageNew = ({ ...props }) => {
     const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
 
     const tax = ((parseFloat(hotel?.taxRate || 0)*100) * pricing) / 100
-    console.log(tax)
+    // console.log(tax)
 
     const markup = (pricing - tax) * .1
+
+    const km = getDistanceFromLatLonInKm(hotel.GeoLocation.Latitude, hotel.GeoLocation.Longitude, search.lat, search.lng)
+    // console.log(search)
 
     return {
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
@@ -164,6 +188,7 @@ const ListingPageNew = ({ ...props }) => {
       id: hotel.ID,
       lat: hotel.GeoLocation.Latitude,
       lng: hotel.GeoLocation.Longitude,
+      distanceFromSearch: km,
       description: hotel.description,
       pets_allowed: hotel.petsAllowed,
       pet_fee_value: hotel.petFeeValue,
@@ -194,6 +219,7 @@ const ListingPageNew = ({ ...props }) => {
         id: hotel.ID,
         lat: hotel.GeoLocation.Latitude,
         lng: hotel.GeoLocation.Longitude,
+        distanceFromSearch: km,
         description: hotel.description,
         pets_allowed: hotel.petsAllowed,
         pet_fee_value: hotel.petFeeValue,
@@ -262,6 +288,9 @@ const ListingPageNew = ({ ...props }) => {
   }
 
   const sortHotelsBy = (toSortHotels, type) => {
+    if (toSortHotels.length === 0) {
+      return []
+    }
     switch (type) {
       case 'alphabetSort':
         return toSortHotels.sort(function (a, b) {
@@ -274,10 +303,32 @@ const ListingPageNew = ({ ...props }) => {
       case 'priceSort_high_to_low':
         return toSortHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
       case 'featured': {
-        const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
-        const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
-        const exclude = toSortHotels.filter(a => (a.romingoScore != '4' && a.romingoScore != '4.5' && a.romingoScore != '3.5' && a.romingoScore != '3'))
-        return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...exclude.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice)]
+        const ordered = toSortHotels.sort((a, b) => a.distanceFromSearch - b.distanceFromSearch)
+        const closest = ordered[0]
+        // ordered.shift()
+        const fourStars = ordered.filter(a => 
+          (a.romingoScore == '4' || a.romingoScore == '4.5') && 
+          (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
+        )
+        const threeStars = ordered.filter(a =>
+          (a.romingoScore == '3' || a.romingoScore == '3.5') && 
+          (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 200)
+        )
+
+        //does this remove from back ordered?
+        const unique = [...new Set([
+          closest, 
+          ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), 
+          ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), 
+          ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
+        ])]
+
+        console.log(unique)
+        return unique
+        // const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
+        // const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
+        // const exclude = toSortHotels.filter(a => (a.romingoScore != '4' && a.romingoScore != '4.5' && a.romingoScore != '3.5' && a.romingoScore != '3'))
+        // return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...exclude.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice)]
       }
       case 'highest_rating':
         return toSortHotels.sort((a, b) => b.romingoScore - a.romingoScore);
@@ -356,7 +407,7 @@ const ListingPageNew = ({ ...props }) => {
     if (data?.getHotels?.hotels?.length > 0) {
       
       const newHotels = formatHotels.filter(hotel => {
-        console.log(hotel)
+        // console.log(hotel)
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
         const hotelRatingR = hotel.hotelStarRating ? hotel.hotelStarRating.toString().charAt(0) : 0
 

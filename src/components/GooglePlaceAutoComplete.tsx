@@ -67,7 +67,8 @@ export default function GoogleMaps(props) {
       structured_formatting: {
         main_text: "San Diego",
         secondary_text: 'CA, USA'
-      }
+      },
+      types: ['locality']
     },
     {
       isInitial: true,
@@ -76,7 +77,8 @@ export default function GoogleMaps(props) {
       structured_formatting: {
         main_text: "Asheville",
         secondary_text: 'NC, USA'
-      }
+      },
+      types: ['locality']
     },
     {
       isInitial: true,
@@ -85,7 +87,8 @@ export default function GoogleMaps(props) {
       structured_formatting: {
         main_text: "Austin",
         secondary_text: 'TX, USA'
-      }
+      },
+      types: ['locality']
     },
     {
       isInitial: true,
@@ -94,7 +97,8 @@ export default function GoogleMaps(props) {
       structured_formatting: {
         main_text: "Seattle",
         secondary_text: 'WA, USA'
-      }
+      },
+      types: ['locality']
     },
     {
       isInitial: true,
@@ -103,7 +107,8 @@ export default function GoogleMaps(props) {
       structured_formatting: {
         main_text: "Santa Fe",
         secondary_text: 'NM, USA'
-      }
+      },
+      types: ['locality']
     },
   ]
 
@@ -137,11 +142,13 @@ export default function GoogleMaps(props) {
         //   lat: results[0].geometry.location.lat(),
         //   lng: results[0].geometry.location.lng(),
         // })
+        console.log(newValue)
 
         props.setSelectedCity({
           city: newValue,
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
+          // isLodging: newValue.types.some(type => type === 'lodging')
         })
 
       } else {

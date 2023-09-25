@@ -36,7 +36,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
         {cards.length > 0 && _DATA.currentData().map((card) => {
           const exists = cards.find(el => el.ID === card.ID);
           if (exists) {
-            return (<div key={card.ID}>
+            return (<div key={card.id}>
               <Box data-hotel-id={exists.ID}
                 sx={{ maxWidth: "100%", backgroundColor: "white", py: '0.8rem' }}
               >

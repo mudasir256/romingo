@@ -48,7 +48,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   const [selectedCity, setSelectedCity] = useState(city ? city : search.city ? {
     city: search.city,
     lat: search.lat,
-    lng: search.lng
+    lng: search.lng,
   } : null);
 
 

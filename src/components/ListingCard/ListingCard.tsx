@@ -300,7 +300,7 @@ const ListingCard: FC<ListingCardProps> = ({
           "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
         }}
-        {...props}
+        // {...props}
       >
         <Box
           sx={{
@@ -318,7 +318,7 @@ const ListingCard: FC<ListingCardProps> = ({
         </Box>
 
         <Box
-          component="a"
+          // component="a"
           href={hotelUrl}
           onClick={() =>
             history.push(hotelUrl, {

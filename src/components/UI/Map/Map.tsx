@@ -117,7 +117,13 @@ const Map: FC<Props> = ({
       };
   };
 
-  const renderMap = () => (
+
+
+  if (loadError) {
+    return <div>Map cannot be loaded right now, sorry.</div>;
+  }
+
+  return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -218,14 +224,6 @@ const Map: FC<Props> = ({
         </InfoWindow>
       )}
     </GoogleMap>
-  );
-
-  if (loadError) {
-    return <div>Map cannot be loaded right now, sorry.</div>;
-  }
-
-  return isLoaded ? (
-    renderMap()
   ) : (
     <Skeleton
       variant="rectangular"
