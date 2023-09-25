@@ -157,6 +157,7 @@ const ListingCard: FC<ListingCardProps> = ({
   page,
   numberOfReviews = 0,
   taxRate,
+  distanceFromSearch,
   ...props
 }) => {
   const history = useHistory();

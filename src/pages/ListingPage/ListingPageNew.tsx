@@ -312,14 +312,14 @@ const ListingPageNew = ({ ...props }) => {
         )
         const threeStars = ordered.filter(a =>
           (a.romingoScore == '3' || a.romingoScore == '3.5') && 
-          (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 200)
+          (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
         )
 
         //does this remove from back ordered?
         const unique = [...new Set([
           closest, 
-          ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), 
-          ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), 
+          ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+          ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
           ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
         ])]
 
