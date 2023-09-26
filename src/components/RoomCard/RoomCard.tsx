@@ -183,6 +183,7 @@ const RoomCard: FC<Props> = ({
   normalFinalPrice,
   refundableRoom,
   markup,
+  removeNonRefundableOption = false,
   ...props
 }) => {
   const history = useHistory();
@@ -191,7 +192,7 @@ const RoomCard: FC<Props> = ({
 
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [refundAnchorEl, setRefundAnchorEl] = useState<null | Element>(null);
-  const [selectedRadio, setSelectedRadio] = useState('non')
+  const [selectedRadio, setSelectedRadio] = useState(removeNonRefundableOption ? 'refundable' : 'non')
 
   const handleOpenPrice: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
@@ -210,9 +211,14 @@ const RoomCard: FC<Props> = ({
     setAnchorEl(null);
   };
 
+
   const handleBook: MouseEventHandler<Element> = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    // if (removeNonRefundableOption) {
+
+    // }
+
     if (selectedRadio === 'refundable') {
 
        dispatch(
@@ -670,7 +676,7 @@ const RoomCard: FC<Props> = ({
                   </>
                 )}
                 {!isRefundable && !hasCombinedRate && <Box color="red">Non-Refundable</Box>}
-                {hasCombinedRate && 
+                {(hasCombinedRate && !removeNonRefundableOption) &&
                   <Box sx={{ display: 'flex', flexDirection: 'column'}}>
                     <FormControl>
                       <RadioGroup
@@ -685,6 +691,11 @@ const RoomCard: FC<Props> = ({
                       </RadioGroup>
                     </FormControl>
 
+                  </Box>
+                }
+                {(hasCombinedRate && removeNonRefundableOption) &&
+                  <Box color="#5B8D3E">
+                    Refundable
                   </Box>
                 }
               </Typography>

@@ -207,9 +207,15 @@ const DetailsPage1 = ({ ...props }) => {
           const lowestPrice = possibleRoomsRefundable.reduce((min, current) => {
                                 return current.SimplePrice < min ? current.SimplePrice : min;
                               });
+
+          let removeNonRefundableOption = false;
+          if (lowestPriceNon > lowestPrice) { 
+            removeNonRefundableOption = true;
+          }
+
           lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') 
-          ? accessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice }) 
-          : nonAccessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice }) 
+          ? accessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }) 
+          : nonAccessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }) 
           continue
         }
 
@@ -708,6 +714,7 @@ const DetailsPage1 = ({ ...props }) => {
                   >
                     <RoomCard 
                       hasCombinedRate={room.combinedRate}
+                      removeNonRefundableOption={room?.removeNonRefundableOption}
                       altFinalPrice={room.refundablePrice}
                       normalFinalPrice={room?.PackagePrice?.FinalPrice}
                       key={key} 
@@ -773,6 +780,7 @@ const DetailsPage1 = ({ ...props }) => {
                   <RoomCard 
                     key={key} 
                     hasCombinedRate={room.combinedRate}
+                    removeNonRefundableOption={room?.removeNonRefundableOption}
                     altFinalPrice={room.refundablePrice}
                     normalFinalPrice={room?.PackagePrice?.FinalPrice}
                     featuredImageURL={images?.find(item => true)} 
