@@ -154,6 +154,44 @@ const ListingPageNew = ({ ...props }) => {
     return deg * (Math.PI/180)
   }
 
+  const calculateCardScore = (km, rating, price, petFee) => {
+    let score = 0;
+    if (km < 3.2) {
+      score = score + 100
+    } else if (km < 8.04) {
+      score = score + 75
+    } else if (km < 16.09) {
+      score = score + 50
+    } else if (km < 32.18) {
+      score = score + 25
+    }
+
+    if (rating == '4' || rating == '4.5') {
+      if ((price >= 0 && price <= 400)) {
+        score = score + 75
+      } else if (price > 400) {
+        score = score + 50
+      }
+    } 
+    if (rating == '3' || rating == '3.5') {
+      if ((price >= 0 && price <= 250)) {
+        score = score + 75
+      } else if (price > 250) {
+        score = score + 25
+      }
+    }
+    if (petFee === 'NONE' || petFee === 'No Additional Charges') {
+      score = score + 75
+    } else {
+      const value = parseInt(petFee?.split('.')?.find(item => true)?.slice(1))
+      console.log(value)
+      if (value < 100) {
+        score = score + 25
+      }
+    }
+    return score
+  }
+
   const formatHotel = (hotel) => {
     // const match = hotel.SuppliersLowestPackagePrices.some(item => item.Key === 'HPT')
     // if (match) {
@@ -171,7 +209,10 @@ const ListingPageNew = ({ ...props }) => {
     const km = getDistanceFromLatLonInKm(hotel.GeoLocation.Latitude, hotel.GeoLocation.Longitude, search.lat, search.lng)
     // console.log(search)
 
+    const pointValue = calculateCardScore(km, hotel.starRating, ((pricing - tax) + markup) / diffDays, hotel.petFee)
+    // conso
     return {
+      pointValue,
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
       name: hotel.DisplayName,
@@ -203,6 +244,7 @@ const ListingPageNew = ({ ...props }) => {
       type: 'hotel',
       label: hotel.DisplayName,
       hotel: {
+        pointValue,
         imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
         name: hotel.DisplayName,
         alias: hotel.alias,
@@ -306,21 +348,22 @@ const ListingPageNew = ({ ...props }) => {
         const ordered = toSortHotels.sort((a, b) => a.distanceFromSearch - b.distanceFromSearch)
         const closest = ordered[0]
         // ordered.shift()
-        const fourStars = ordered.filter(a => 
-          (a.romingoScore == '4' || a.romingoScore == '4.5') && 
-          (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
-        )
-        const threeStars = ordered.filter(a =>
-          (a.romingoScore == '3' || a.romingoScore == '3.5') && 
-          (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
-        )
+        // const fourStars = ordered.filter(a => 
+        //   (a.romingoScore == '4' || a.romingoScore == '4.5') && 
+        //   (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
+        // )
+        // const threeStars = ordered.filter(a =>
+        //   (a.romingoScore == '3' || a.romingoScore == '3.5') && 
+        //   (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
+        // )
 
         //does this remove from back ordered?
         const unique = [...new Set([
           closest, 
-          ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
-          ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
-          ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
+          ...toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => a.pointValue - b.pointValue < 0 ? 1 : -1) 
+          // ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+          // ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+          // ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
         ])]
 
         console.log(unique)
