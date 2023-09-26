@@ -11,28 +11,38 @@ interface Props {
 
 const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
   // const [newCards, setNewCards] = useState(cards)
-  const [page, setPage] = useState(0);
-  const PER_PAGE = 1000;
+  // const [page, setPage] = useState(0);
+  // const PER_PAGE = 1000;
 
-  const count = Math.ceil(cards.length / PER_PAGE);
+  // const count = Math.ceil(cards.length / PER_PAGE);
 
-  const _DATA = usePagination(cards, PER_PAGE);
-  const divRef = useRef();
+  // const _DATA = usePagination(cards, PER_PAGE);
+  // const divRef = useRef();
 
-  const handleChange = (e, p) => {
-    e.preventDefault()
-    setPage(p);
-    // _DATA.jump(p);
-  };
+  // const handleChange = (e, p) => {
+  //   e.preventDefault()
+  //   setPage(p);
+  //   // _DATA.jump(p);
+  // };
 
-  useEffect(() => {
-    setPage(1);
-    // _DATA.jump(1);
-  }, [cards]);
+  // useEffect(() => {
+  //   setPage(1);
+  //   // _DATA.jump(1);
+  // }, [cards]);
 
   return (
     <Box>
-      <div ref={divRef}>
+      {cards.map(card =>(
+        <div key={card.id}>
+          <Box
+            sx={{ maxWidth: "100%", backgroundColor: "white", py: '0.8rem' }}
+          >
+            <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.id} page="listings" />
+          </Box>
+        </div>
+      ))}
+    
+     {/* <div ref={divRef}>
         {cards.length > 0 && _DATA.currentData().map((card) => {
           const exists = cards.find(el => el.ID === card.ID);
           if (exists) {
@@ -47,8 +57,8 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
         }
 
         )}
-      </div>
-      {cards.length > PER_PAGE && 
+      </div>*/}
+  {/*    {cards.length > PER_PAGE && 
       <Box mb="1rem" sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'center', md: 'flex-start', lg: 'flex-start' } }}>
         <Pagination
           count={count}
@@ -59,7 +69,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
           onChange={handleChange}
         />
       </Box>
-      }
+      }*/}
 
     </Box>
   );

@@ -120,7 +120,11 @@ const ListingPageNew = ({ ...props }) => {
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge : []
 
   const { data, loading } = useQuery(
-    gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`);
+    gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`,
+    {
+      fetchPolicy: 'cache-and-network' //TODO
+    }
+  );
 
   console.log(data)
 
@@ -184,7 +188,7 @@ const ListingPageNew = ({ ...props }) => {
       score = score + 75
     } else {
       const value = parseInt(petFee?.split('.')?.find(item => true)?.slice(1))
-      console.log(value)
+      // console.log(value)
       if (value < 100) {
         score = score + 25
       }
@@ -210,7 +214,7 @@ const ListingPageNew = ({ ...props }) => {
     // console.log(search)
 
     const pointValue = calculateCardScore(km, hotel.starRating, ((pricing - tax) + markup) / diffDays, hotel.petFee)
-    // conso
+    // console.log(pointValue)
     return {
       pointValue,
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
@@ -276,6 +280,8 @@ const ListingPageNew = ({ ...props }) => {
 
   useEffect(() => {
     if (history.action === 'POP') {
+      console.log('cards')
+      console.log(cards)
       loadHotels(cards)
       return
     }

@@ -774,14 +774,14 @@ const RoomCard: FC<Props> = ({
                 alignItems: "center",
                 color: "#222",
                 textAlign: "left",
-                fontSize: "120%",
+                fontSize: "1.30em",
                 letterSpacing: 0,
                 textTransform: "capitalize",
               }}
             >
               ${parseFloat(pricePerNight) + (selectedRadio === 'refundable' ? (parseFloat(refundablePrice) / nights) : 0) }
             </Typography>
-            <Typography
+        {/*    <Typography
               variant="body2"
               sx={{
                 color: "text.secondary",
@@ -791,32 +791,42 @@ const RoomCard: FC<Props> = ({
               }}
             >
               per night
-            </Typography>
+            </Typography>*/}
           </Box>
           <Typography
             variant="body2"
             sx={{
               textAlign: "left",
               display: "inline-block",
-              mt: ".5rem",
-              fontSize: "80%",
+              lineHeight: '16px',
+              fontSize: "12px",
               fontWeight: "bold",
-              color: "#11111199",
+              color: "#666",
             }}
           >
-            ${parseFloat(totalPriceAfterTax) + (selectedRadio === 'refundable' ? parseFloat(refundablePrice) : 0) } TOTAL
-            <br />
-            incl. all taxes and fees
-            <u
-              onClick={handleOpenPrice}
-              style={{
-                cursor: "pointer",
-                display: "block",
-                color: "#11111180",
-              }}
-            >
-              See Details
-            </u>
+            ${Math.floor(parseFloat(totalPriceAfterTax) + (selectedRadio === 'refundable' ? parseFloat(refundablePrice) : 0)) } total
+          </Typography>
+          <Typography variant="base" sx={{
+            fontSize: "80%",
+            color: '#666',
+            fontSize: '12px',
+            lineHeight: '16px'
+          }}>includes taxes & fees</Typography>
+          <Typography variant="base" sx={{
+            mt: '0.5rem',
+            fontSize: "80%" 
+          }}>
+          <u
+            onClick={handleOpenPrice}
+            style={{
+              cursor: "pointer",
+              display: "block",
+              color: "#666",
+
+            }}
+          >
+            Price details
+          </u>
           </Typography>
         </Grid>
         <Grid item xs={6} sx={{ display: "flex" }}>

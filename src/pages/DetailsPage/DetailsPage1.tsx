@@ -176,7 +176,7 @@ const DetailsPage1 = ({ ...props }) => {
       const nonAccessibleRooms = [];
       let lowest = 999999
 
-      const roomPackagesOnly = data.getHotelDetails.Result.filter(room => {
+      const roomPackagesOnly = data.getHotelDetails?.Result?.filter(room => {
         return (
           (room.Rooms[0].RoomBasis === 'Room only RO' || 
           room.Rooms[0].RoomBasis === 'Bed and Breakfast BB')
@@ -768,7 +768,7 @@ const DetailsPage1 = ({ ...props }) => {
                 // }
                 const markup = (room.PackagePrice.FinalPrice - tax) * .1
 
-  
+
                 return (<Grid item   
                     md={4}
                     lg={4}

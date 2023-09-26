@@ -182,7 +182,7 @@ const ListingCard: FC<ListingCardProps> = ({
             mr: 0,
             mt: "0.1em",
             fontFamily: "sansita-light",
-            fontSize: "1.25em",
+            fontSize: "1.30em",
             fontWeight: 800,
             display: "flex",
             alignItems: "center",

@@ -21,7 +21,7 @@ import Link from "@mui/material/Link";
 import Navbar from "../../components/Navbar";
 import Loader from "../../components/UI/Loader";
 import FilterBar from "../../components/FilterBar";
-import { DesktopFilterBar } from "../Cities/DesktopFilterBar";
+import { LargeFilterBar } from "../../components/LargeFilterBar";
 import "./blog.css";
 
 const categoryMap = [
@@ -236,8 +236,8 @@ const BlogPost: FC = () => {
                 </Typography>
               </Divider>
               <Hidden mdDown>
-                <Box sx={{ mx: 'auto', maxWidth:'500px'}}>
-                  <DesktopFilterBar city={cityId} />
+                <Box sx={{ mx: 'auto' }}>
+                  <LargeFilterBar />
                 </Box>
               </Hidden>
               <Hidden mdUp>

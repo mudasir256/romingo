@@ -1,4 +1,3 @@
-import {Helmet} from "react-helmet";
 import {
   InputLabel,
   FormControl,
@@ -272,40 +271,7 @@ const ListingPage: FC<Props> = () => {
   };
 
   useEffect(() => {
-    let filtered = [...cards]
-    if (selectedFilter.length > 0) {
-      filtered = cards.filter(card => selectedFilter.every(filter => {
-        if (card.amenities) {
-          return card.amenities.map(amenity => amenity.desc).includes(filter)
-        }
-        return []
-      }))
-    }
-    filtered = filtered.filter(card => (card.lowestAveragePrice >= value[0] && card.lowestAveragePrice <= value[1]) )
-    if (rating) {
-      filtered = filtered.filter(card => parseInt(card.starRating) === rating)
-    }
 
-    if (noPetRestrictions) {
-      console.log(filtered)
-      filtered = filtered.filter(card => card.petFeePolicy.maxWeightPerPetInLBS === null || card.petFeePolicy.maxWeightPerPetInLBS === '')
-    }
-    if (freeAmenities) {
-      filtered = filtered.filter(card => card.dogAmenities.includes('dog beds & bowls'))
-    }
-
-    setSorted(
-      [...filtered].sort((a: any, b: any) =>
-        (
-          sortBy === "score"  ? a.romingoScore < b.romingoScore 
-          : sortBy === "high" ? a.lowestAveragePrice < b.lowestAveragePrice
-          : sortBy === 'low'  ?  a.lowestAveragePrice > b.lowestAveragePrice
-          : a.page_rank > b.page_rank
-        )
-          ? 1
-          : -1
-      )
-    );
     setMarkers(
       [...filtered]
         .sort((a: any, b: any) =>
@@ -345,20 +311,6 @@ const ListingPage: FC<Props> = () => {
 
 
   return <>
-    <Helmet>
-      <title>Find pet friendly hotels - Romingo</title>
-      <description>Search for and find pet friendly hotels in your area.</description>
-      <meta property="og:title" content="Romingo | Find pet friendly hotels" />
-      <meta property="og:description" content="Search for and find pet friendly hotels in your area." />
-      <meta property="og:url" content="https://www.romingo.com/listings" />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content="https://romingo.com/static/media/logo.11150e63.png" />
-      <meta property="og:site_name" content="Romingo" />
-      <meta name="twitter:title" content="Romingo | Find pet friendly hotels" />
-      <meta name="twitter:description" content="Search for and find pet friendly hotels in your area." />
-      <meta name="twitter:image" content="https://romingo.com/static/media/logo.11150e63.png" />
-      <meta name="twitter:card" content="summary_large_image" />
-    </Helmet>
 
     <ScrollToTop />
     <Box sx={{ width: '100%', position: { xs: 'absolute', sm: 'absolute', md:'relative' }, zIndex: 2000}}>
@@ -516,42 +468,6 @@ const ListingPage: FC<Props> = () => {
                   }} sx={{ width: '95%', backgroundColor: 'white', color: '#03989E', '&:hover': { color: 'white' } }} variant="contained">Hotel Rating & Price</Button>
                 </Grid>
               </Grid>
-
-              <div style={{ marginTop: '0.5em' }}>
-                {(value[0] != minPrice || value[1] != maxPrice) &&
-                  <Chip
-                    size="small"
-                    label="Custom Price Range"
-                    onDelete={() => setValue([minPrice, maxPrice])}
-                  />
-                }
-                {selectedFilter.map(filter => (
-                  <Chip key={filter} size="small" label={filter} onDelete={() => {
-                    const indexOf = selectedFilter.indexOf(filter)
-                    const newArray = [...selectedFilter]
-                    newArray.splice(indexOf, 1)
-                    setSelectedFilter(newArray)
-                  }}/>
-                ))}
-                {rating > 0 &&
-                  <Chip
-                    size="small"
-                    label={`${rating} star hotel`}
-                    onDelete={() => setRating(0)}
-                  />
-                }
-                {(rating > 0 || selectedFilter.length > 0 || value[0] != minPrice || value[1] != maxPrice) &&
-                  <Chip
-                    size="small"
-                    label="Clear all filters"
-                    onDelete={() => {
-                      setSelectedFilter([])
-                      setRating(null)
-                      setValue([minPrice, maxPrice])
-                    }}
-                  />
-                }
-              </div>
 
               <SortBar 
                 size="small" 
