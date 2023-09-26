@@ -180,8 +180,8 @@ const DetailsPage1 = ({ ...props }) => {
         return (
           (room.Rooms[0].RoomBasis === 'Room only RO' || 
           room.Rooms[0].RoomBasis === 'Bed and Breakfast BB')
-          && !room.Rooms[0].RoomName.toLowerCase().includes('quad')
-          && !room.Rooms[0].RoomName.toLowerCase().includes('tri')
+          && !room.Rooms[0].RoomName?.toLowerCase().includes('quad')
+          && !room.Rooms[0].RoomName?.toLowerCase().includes('tri')
         )
       })
       console.log(roomPackagesOnly)
@@ -213,7 +213,7 @@ const DetailsPage1 = ({ ...props }) => {
             removeNonRefundableOption = true;
           }
 
-          lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') 
+          lowestPrice.Rooms[0].RoomName?.toLowerCase().includes('accessible') 
           ? accessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }) 
           : nonAccessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }) 
           continue
@@ -221,24 +221,24 @@ const DetailsPage1 = ({ ...props }) => {
 
         if (possibleRoomsNonRefundable.length === 1) {
           const newRoom = possibleRoomsNonRefundable[0]
-          newRoom.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(newRoom) : nonAccessibleRooms.push(newRoom)
+          newRoom.Rooms[0].RoomName?.toLowerCase().includes('accessible') ? accessibleRooms.push(newRoom) : nonAccessibleRooms.push(newRoom)
         } else if (possibleRoomsNonRefundable.length > 1) {
           const lowestPrice = possibleRoomsNonRefundable.reduce((min, current) => {
                                 return current.SimplePrice < min ? current.SimplePrice : min;
                               });
-          lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(lowestPrice) : nonAccessibleRooms.push(lowestPrice)
+          lowestPrice.Rooms[0].RoomName?.toLowerCase().includes('accessible') ? accessibleRooms.push(lowestPrice) : nonAccessibleRooms.push(lowestPrice)
         } else {
           //none
         }
 
         if (possibleRoomsRefundable.length === 1) {
           const newRoom = possibleRoomsRefundable[0]
-          newRoom.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(newRoom) : nonAccessibleRooms.push(newRoom)
+          newRoom.Rooms[0].RoomName?.toLowerCase().includes('accessible') ? accessibleRooms.push(newRoom) : nonAccessibleRooms.push(newRoom)
         } else if (possibleRoomsRefundable.length > 1) {
           const lowestPrice = possibleRoomsRefundable.reduce((min, current) => {
                                 return current.SimplePrice < min ? current.SimplePrice : min;
                               });
-          lowestPrice.Rooms[0].RoomName.toLowerCase().includes('accessible') ? accessibleRooms.push(lowestPrice) : nonAccessibleRooms.push(lowestPrice)
+          lowestPrice.Rooms[0].RoomName?.toLowerCase().includes('accessible') ? accessibleRooms.push(lowestPrice) : nonAccessibleRooms.push(lowestPrice)
         } else {
           //none
         }
