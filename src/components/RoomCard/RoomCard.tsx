@@ -804,7 +804,7 @@ const RoomCard: FC<Props> = ({
               color: "#666",
             }}
           >
-            ${Math.floor(parseFloat(totalPriceAfterTax) + (selectedRadio === 'refundable' ? parseFloat(refundablePrice) : 0)) } total
+            ${(parseFloat(totalPriceAfterTax) + (selectedRadio === 'refundable' ? parseFloat(refundablePrice) : 0)).toFixed(0) } total
           </Typography>
           <Typography variant="base" sx={{
             fontSize: "80%",

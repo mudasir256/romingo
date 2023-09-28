@@ -194,12 +194,12 @@ const DetailsPage1 = ({ ...props }) => {
       for (const key of uniqueRoomsByKey) {
     
         const possibleRoomsRefundable = roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 1)
-        const possibleRoomsNonRefundable =roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 2)
-        // console.log('for key')
-        // console.log(key)
-        // console.log(possibleRoomsNonRefundable)
-        // console.log(possibleRoomsRefundable)
-        if (possibleRoomsNonRefundable.length > 1 && possibleRoomsRefundable.length > 1) {
+        const possibleRoomsNonRefundable = roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 2)
+        console.log('for key')
+        console.log(key)
+        console.log(possibleRoomsNonRefundable)
+        console.log(possibleRoomsRefundable)
+        if (possibleRoomsNonRefundable.length > 0 && possibleRoomsRefundable.length > 0) {
           console.log('combined room card')
           const lowestPriceNon = possibleRoomsNonRefundable.reduce((min, current) => {
                                 return current.SimplePrice < min ? current.SimplePrice : min;
@@ -213,9 +213,12 @@ const DetailsPage1 = ({ ...props }) => {
             removeNonRefundableOption = true;
           }
 
+          const finalRoomCard = { combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }
+          console.log(finalRoomCard)
+
           lowestPrice.Rooms[0].RoomName?.toLowerCase().includes('accessible') 
-          ? accessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }) 
-          : nonAccessibleRooms.push({ combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }) 
+          ? accessibleRooms.push(finalRoomCard) 
+          : nonAccessibleRooms.push(finalRoomCard) 
           continue
         }
 
