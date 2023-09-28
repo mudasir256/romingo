@@ -245,7 +245,7 @@ const Boston: FC = () => {
             highlights={['Fitness center', 'Wine hours', 'Yoga mats', 'Bike rentals', 'Scooters', 'Seasonal movies in the courtyard', 'Free coffee and tea service']}
           />
 
-          <Bold text="Tehe Colonnade Hotel" />
+          <Bold text="The Colonnade Hotel" />
           <SingleLoadListingCard hotelName="100438110" />
           <Text text="The Colonnade Hotel, a refined and contemporary gem nestled in the heart of Boston's Back Bay, offers a sophisticated and pet-friendly retreat. When it's time to venture out, The Colonnade Hotel's prime location grants easy access to the beautiful Southwest Corridor Park, where you and your pet can enjoy leisurely strolls amidst lush greenery. Back at the hotel, indulge in delectable dining at the rooftop pool and lounge, boasting panoramic views of the city skyline." />
           <Text text="As one of Boston's premier pet-friendly hotels, The Colonnade Hotel in Back Bay promises a delightful experience for both you and your furry companion. Offering stunning views of the city skyline, the hotel's pet-friendly rooms come equipped with comfortable bedding and pet amenities. The Colonnade Hotel is also close to the Southwest Corridor Park, providing ample greenery for leisurely strolls and play." />
