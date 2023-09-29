@@ -19,6 +19,8 @@ import { useDispatch } from "react-redux";
 import { DateTime } from "luxon";
 import { setCheckout } from "../../store/hotelCheckoutReducer";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import LocalHotelIcon from '@mui/icons-material/LocalHotel';
+import PeopleIcon from '@mui/icons-material/People';
 
 import {
   Dialog,
@@ -186,6 +188,8 @@ const RoomCard: FC<Props> = ({
   removeNonRefundableOption = false,
   ...props
 }) => {
+
+
   const history = useHistory();
   const [showDialog, setShowDialog] = useState(false);
   const dispatch: Dispatch<any> = useDispatch();
@@ -264,10 +268,38 @@ const RoomCard: FC<Props> = ({
     'Premium bedding': Bed,
     'TELEPHONE': Phone,
     'MICROWAVE': Microwave,
-    'BAR': LocalBar
+    'BAR': LocalBar,
+
+    //Bed types
+    'KING bed': LocalHotelIcon,
+    'DOUBLE bed': LocalHotelIcon,
+    '2 DOUBLE beds': LocalHotelIcon,
+    '2 DOUBLE KING 2 QUEEN bed': LocalHotelIcon,
+    'KING 2 QUEEN bed': LocalHotelIcon,
+    '2 QUEEN KING 2 bed': LocalHotelIcon, 
+    'QUEEN bed': LocalHotelIcon,
+    '2 QUEEN beds': LocalHotelIcon,
+    'Sleeps 3': PeopleIcon,
+    'Sleeps 5': PeopleIcon,
   }
 
-  const matchingAmenities = ['pet-friendly room', ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
+  const SLEEP_AMOUNT = {
+    'KING': 3,
+    'DOUBLE': 3,
+    '2 DOUBLE': 5,
+    'QUEEN': 3,
+    '2 QUEEN': 5
+  }
+
+  const bedType = room?.Rooms[0].BedType
+  const sleeps = SLEEP_AMOUNT[bedType]
+  
+  let matchingAmenities = []
+  if (bedType && sleeps) {
+    matchingAmenities = ['pet-friendly room', `${bedType} ${bedType.charAt(0) == '2' ? 'beds' : 'bed'}`, `Sleeps ${sleeps}`, ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
+  } else {
+    matchingAmenities = ['pet-friendly room', ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
+  }
 
 
   const refundablePrice = Math.abs(altFinalPrice - normalFinalPrice).toFixed(0)
@@ -334,6 +366,7 @@ const RoomCard: FC<Props> = ({
                 color: "#03989e",
               }}
             >
+        
               {beds && beds?.map((bed, key) => {
                 return Array.from({ length: bed.count }, (_, i: number) => (
                   <React.Fragment key={key + "_" + i +bed.code}>
@@ -416,7 +449,7 @@ const RoomCard: FC<Props> = ({
           </Typography>
        
           {matchingAmenities.slice(0, imageURLs.length === 0 ? 9: 3).map((amenity, index) => {
-
+            // console.log(amenity)
             const AmenityIcon = AmenitiesList[amenity]
             return (
               <Box
@@ -446,7 +479,7 @@ const RoomCard: FC<Props> = ({
                     textTransform: "capitalize",
                   }}
                 >
-                  {amenity.toLowerCase()}
+                  {amenity?.toLowerCase()}
                 </Typography>
               </Box>
             );

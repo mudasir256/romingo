@@ -195,12 +195,12 @@ const DetailsPage1 = ({ ...props }) => {
     
         const possibleRoomsRefundable = roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 1)
         const possibleRoomsNonRefundable = roomPackagesOnly.filter(room => room.Rooms[0].TargetRoomKey === key && room.Refundability === 2)
-        console.log('for key')
-        console.log(key)
-        console.log(possibleRoomsNonRefundable)
-        console.log(possibleRoomsRefundable)
+        // console.log('for key')
+        // console.log(key)
+        // console.log(possibleRoomsNonRefundable)
+        // console.log(possibleRoomsRefundable)
         if (possibleRoomsNonRefundable.length > 0 && possibleRoomsRefundable.length > 0) {
-          console.log('combined room card')
+          // console.log('combined room card')
           const lowestPriceNon = possibleRoomsNonRefundable.reduce((min, current) => {
                                 return current.SimplePrice < min ? current.SimplePrice : min;
                               });
@@ -214,7 +214,7 @@ const DetailsPage1 = ({ ...props }) => {
           }
 
           const finalRoomCard = { combinedRate: true, ...lowestPriceNon, refundablePrice: lowestPrice.SimplePrice, refundableRoom: lowestPrice, removeNonRefundableOption }
-          console.log(finalRoomCard)
+          // console.log(finalRoomCard)
 
           lowestPrice.Rooms[0].RoomName?.toLowerCase().includes('accessible') 
           ? accessibleRooms.push(finalRoomCard) 
@@ -279,6 +279,11 @@ const DetailsPage1 = ({ ...props }) => {
 
     }
   }, [data])
+
+  useEffect(() => {
+    console.log('rooms')
+    console.log(rooms)
+  }, [rooms, accessibleRooms])
 
 
   const handleOpen = (e) => {
