@@ -236,7 +236,7 @@ const Atlanta: FC = () => {
           />
 
           <Bold text="Intercontinental Buckhead" />
-          <SingleLoadListingCard hotelName="1004003423" />
+          <SingleLoadListingCard hotelName="100400342" />
           <Text text="The Intercontinental Hotel is located in Buckhead-Atlanta and offers guests and their pets a luxurious experience from the moment they set foot on the property. Located directly across from the Lenox Square Shopping center, this hotel would be a perfect match for those looking for a shoppers paradise while on vacation." />
           <Text text="This 5-star pet friendly hotel allows guests to bring one cat or dog up to 70 lbs per room for $100 per stay. Pet beds, food and water bowls, and treats are available at the front desk upon request. Pets must be leashed and attended by the guest at all times and are not permitted in the swimming pool, spa, restaurant, or bar." />
           <HighlightBox
