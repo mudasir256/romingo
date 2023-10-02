@@ -1,7 +1,7 @@
 import loadable from '@loadable/component'
 import {Helmet} from 'react-helmet';
 import { withStyles } from "@mui/styles";
-import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery } from "@mui/material";
+import { Box, Button, Chip, Container, Dialog, DialogContent, DialogTitle, Divider, Grid, Grow, IconButton, ImageList, ImageListItem, Link, Popover, SvgIcon, useMediaQuery, Fab } from "@mui/material";
 import { Dispatch, FC, useEffect, useState, useRef, useCallback } from "react";
 import Navbar from "../../components/Navbar";
 import ScrollToTop from "../../components/ScrollToTop";
@@ -13,7 +13,7 @@ import RomingoScore from "../../components/RomingoScore";
 import { Circle, Pets, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";
 import { gql, useQuery } from "@apollo/client";
-import { getHotelDetailById, getPackages, TripReviews, TripHotelList } from "../../constants/constants";
+import { getHotelDetailById, getPackages, TripReviews, TripHotelList, getCancellationPolicyMulti } from "../../constants/constants";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 import { RoomsFilterBar } from "./DetailsPage";
@@ -31,6 +31,7 @@ import StarIcon from '@mui/icons-material/Star';
 import Icon from '../../components/Icon';
 import {validCodes} from '../../components/Icon';
 import RoomCard from "../../components/RoomCard";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 const DetailsPage1 = ({ ...props }) => {
@@ -403,6 +404,25 @@ const DetailsPage1 = ({ ...props }) => {
     <Box sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
       <Navbar />
+
+      <Fab
+        color="default"
+        size="small"
+        onClick={() => history.goBack()}
+        aria-label="back"
+        sx={{
+          backgroundColor: "white",
+          color: "text.secondary",
+          position: "absolute",
+          width: 35,
+          height: 35,
+          top: 70,
+          left: 15,
+        }}
+      >
+        <ArrowBackIcon sx={{ fontSize: 16 }} />
+      </Fab>
+
       <Grid container direction='row' spacing={2} sx={{ maxWidth: mobile ? '95%' : 1200, margin: 'auto', position: 'relative', maxHeight: '500px',objectFit: 'contain' }} >
         <Grid item xs={12} md={6} style={{ padding: mobile ? 0 : '10px', height: mobile ? '320px' : '500px' }}>
           <Box

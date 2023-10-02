@@ -280,9 +280,13 @@ const ListingPageNew = ({ ...props }) => {
 
   useEffect(() => {
     if (history.action === 'POP') {
-      console.log('cards')
-      console.log(cards)
-      loadHotels(cards)
+      setMarkers(cards?.markers)
+      setHotels(cards?.hotels)
+    }
+  })
+
+  useEffect(() => {
+    if (history.action === 'POP') {
       return
     }
 
@@ -290,7 +294,6 @@ const ListingPageNew = ({ ...props }) => {
       setShowSearchBar(false)
       setSessionId(data.getHotels.sessionId);
       loadHotels(data.getHotels.hotels)
-      dispatch(setList(data.getHotels.hotels))
     }
 
   }, [data, search, center])
@@ -331,8 +334,11 @@ const ListingPageNew = ({ ...props }) => {
 
     setFormatHotels(readyHotels)
     const sorted = sortHotelsBy(readyHotels, sort)
-    setHotels(sorted.filter(hotel => hotelPetAllowance(hotel)))
+    const finalHotels = sorted.filter(hotel => hotelPetAllowance(hotel))
+    setHotels(finalHotels)
     setMarkers(markers);
+
+    dispatch(setList({ hotels: finalHotels, markers }))
   }
 
   const sortHotelsBy = (toSortHotels, type) => {
