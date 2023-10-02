@@ -404,18 +404,18 @@ const seo = [
     keywords: defaultKeywords,
   },
 ];
-fs.createReadStream('./hotels.csv')
-  .pipe(csv.parse({ headers: false }))
-  .on('error', error => console.error(error))
-  .on('data', row => {
-    seo.push({
-      path: `/hotel/${row[22]}`,
-      title: `${row[4]} Pet Policy - Romingo`,
-      description: row[5],
-      image: `https://storage.googleapis.com/romingo-production-public/images/${encodeURIComponent(row[16])}/${row[11]}`,
-    })
-  })
-  .on('end', () => console.log('loaded hotels.csv'));
+// fs.createReadStream('./hotels.csv')
+//   .pipe(csv.parse({ headers: false }))
+//   .on('error', error => console.error(error))
+//   .on('data', row => {
+//     seo.push({
+//       path: `/hotel/${row[22]}`,
+//       title: `${row[4]} Pet Policy - Romingo`,
+//       description: row[5],
+//       image: `https://storage.googleapis.com/romingo-production-public/images/${encodeURIComponent(row[16])}/${row[11]}`,
+//     })
+//   })
+//   .on('end', () => console.log('loaded hotels.csv'));
 
 async function loadBlogPosts(page) {
   const result = await fetch(`https://blog.romingo.com/wp-json/wp/v2/posts?page=${page}&per_page=50&_embed&_fields=id,slug,excerpt,title,link,_links,_embedded`)

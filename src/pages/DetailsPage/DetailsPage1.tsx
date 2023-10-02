@@ -383,7 +383,6 @@ const DetailsPage1 = ({ ...props }) => {
   }
 
   const hotel = hotelInfo.getHotelDetailById;
-  const hotelDetailsFromPackage = hotel
 
 
   const getPetSizeLabel = (petSize) => {
@@ -428,7 +427,7 @@ const DetailsPage1 = ({ ...props }) => {
     if(catPolicy === 'Yes' || catPolicy === 'Yes, please contact hotel for pre-approval'){
       return 'Cats are permitted, but please contact the hotel’s front desk in advance for approval.'
     } else {
-      return `Cats are not permitted at ${hotelDetailsFromPackage.hotelName}.`
+      return `Cats are not permitted at ${hotel?.hotelName}.`
     }
   }
 
@@ -436,7 +435,7 @@ const DetailsPage1 = ({ ...props }) => {
     if(petAllowance === 'Unlimited'){
       return ' any number of pets ' 
     }
-    const split = hotelDetailsFromPackage.petAllowance.split(' ');
+    const split = petAllowance.split(' ');
     if(parseInt(split[0]) > 1) {
       return `${split[0]} pets per reservation`
     }
@@ -450,21 +449,27 @@ const DetailsPage1 = ({ ...props }) => {
     }
   }
 
+  const createPetPolicy = ({ hotelName, city, state, petAllowance, petSize, petFee, unattendedPets, petReliefArea, catPolicy }) => {
+    return `${hotelName} offers pet-friendly accommodations in ${city}, ${state}. The pet policy at ${hotelName} welcomes ${getPetAllowance(petAllowance)} ${getPetSizeLabel(petSize)}  ${getPetFee(petFee)} ${getUnattendedPets(unattendedPets)} ${getUnattendedPets(petReliefArea)} ${getCatPolicy(catPolicy)}`
+  }
+
   return (<>
+
     <Helmet>
       <title>{hotel?.hotelName} | Romingo</title>
-      <description>{hotel?.description}</description>
+      <description>{hotel ? createPetPolicy({ ...hotel}) : hotel?.description}</description>
       <meta property="og:title" content={`${hotel?.hotelName} | Romingo`} />
-      <meta property="og:description" content={hotel?.description} />
+      <meta property="og:description" content={hotel ? createPetPolicy({ ...hotel}) : hotel?.description} />
       {/*      <meta property="og:url" content={`https://www.romingo.com/hotel/${hotelAlias}`} />*/}      
       <meta property="og:type" content="website" />
       <meta property="og:image" content={hotel?.images?.find(item => true)} />
       <meta property="og:site_name" content="Romingo" />
       <meta name="twitter:title" content={`${hotel?.hotelName} | Romingo`} />
-      <meta name="twitter:description" content={hotel?.description} />
+      <meta name="twitter:description" content={hotel ? createPetPolicy({ ...hotel}) : hotel?.description} />
       <meta name="twitter:image" content={hotel?.images?.find(item => true)} />
       <meta name="twitter:card" content="summary_large_image" />
     </Helmet>
+  
     <Box sx={{ background: "#feffff", scrollBehavior: "smooth" }}>
       <ScrollToTop />
       <Navbar />
@@ -612,9 +617,9 @@ const DetailsPage1 = ({ ...props }) => {
           xs={12}
           md={10}
           sx={{ paddingLeft: "16px", paddingRight: '16px', marginBottom: "1rem" }}
-        >{ hotelDetailsFromPackage && 
+        >{ hotel && 
           <Typography variant="base">
-            {`${hotelDetailsFromPackage.hotelName} offers pet-friendly accommodations in ${hotelDetailsFromPackage.city}, ${hotelDetailsFromPackage.state}. The pet policy at ${hotelDetailsFromPackage.hotelName} welcomes ${getPetAllowance(hotelDetailsFromPackage.petAllowance)} ${getPetSizeLabel(hotelDetailsFromPackage.petSize)}  ${getPetFee(hotelDetailsFromPackage.petFee)} ${getUnattendedPets(hotelDetailsFromPackage.unattendedPets)} ${getUnattendedPets(hotelDetailsFromPackage.petReliefArea)} ${getCatPolicy(hotelDetailsFromPackage.catPolicy)}`}
+            {createPetPolicy({ ...hotel })}
           </Typography>
         }
           <Button

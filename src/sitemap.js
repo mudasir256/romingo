@@ -1,94 +1,123 @@
 const fs = require("fs");
 const csv = require('fast-csv');
 const fetch = require('node-fetch')
+const {
+  simpleSitemapAndIndex,
+  lineSeparatedURLsToSitemapOptions
+} = require('sitemap')
 
-const Sitemap = require("react-router-sitemap").default;
+const hostname = 'https://romingo.com';
+
 
 const routes = [
+  { url: "/", changefreq: 'daily' },
   {
-    path: "/",
+    url: "/listings",
   },
   {
-    path: "/listings",
-  },
-  // {
-  //   path: "/details/:id",
-  // },
-  {
-    path: "/hotel/:alias",
+    url: "/checkout*",
   },
   {
-    path: "/checkout*",
-  },
-  {
-    path: "/reservation/manage",
+    url: "/reservation/manage",
   },
 
   {
-    path: "/about",
+    url: "/about",
   },
   {
-    path: "/faq",
+    url: "/faq",
   },
   {
-    path: "/contact",
+    url: "/contact",
   },
   {
-    path: "/romingo-score",
+    url: "/romingo-score",
   },
   {
-    path: "/privacy",
+    url: "/privacy",
   },
   {
-    path: "/terms-of-use",
+    url: "/terms-of-use",
   },
   {
-    path: "/romingo-partners",
+    url: "/romingo-partners",
   },
   {
-    path: "/list-your-property",
+    url: "/list-your-property",
   },
   {
-    path: "/application",
+    url: "/application",
   },
-  // {
-  //   path: "/blog/:tag?",
-  // },
-  {
-    path: "/blog/post/:id",
-  },
-    { path: "pet-friendly-hotels/los-angeles-california" },
-    { path: "pet-friendly-hotels/san-francisco-california" },
-    { path: "pet-friendly-hotels/san-diego-california" },
-    { path: "pet-friendly-hotels/orange-county-california" },
-    { path: "pet-friendly-hotels/santa-barbara-california" },
-    { path: "pet-friendly-hotels/palm-springs-california" },
-    { path: "pet-friendly-hotels/austin-texas" },
-    { path: "pet-friendly-hotels/dallas-texas" },
-    { path: "pet-friendly-hotels/houspathn-texas" },
-    { path: "pet-friendly-hotels/oceanside-california" },
-    { path: "pet-friendly-hotels/phoenix-arizona" },
-    { path: "pet-friendly-hotels/scottsdale-arizona" },
-    { path: "pet-friendly-hotels/tucson-arizona" },
-    { path: "pet-friendly-hotels/santa-fe-new-mexico" },
-    { path: "pet-friendly-hotels/san-antonio-texas" },
-    { path: "pet-friendly-hotels/vail-colorado" },
-    { path: "pet-friendly-hotels/colorado-springs-colorado" },
-    { path: "pet-friendly-hotels/denver-colorado" },
-    { path: "pet-friendly-hotels/seattle-washington" },
-    { path: "pet-friendly-hotels/portland-oregon" },
-    { path: "pet-friendly-hotels/sacramento-california" },
-    { path: "pet-friendly-hotels/salt-lake-city-utah" },
-    { path: '/hyatt-pet-policy' },
-    { path: '/hilton-pet-policy' },
-    { path: '/marriott-pet-policy'},
-    { path: '/boutique-pet-policy'},
-    { path: '/ihg-pet-policy'},
-    { path: '/motel-6-pet-policy'}
+    { url: "pet-friendly-hotels/los-angeles-california" },
+    { url: "pet-friendly-hotels/san-francisco-california" },
+    { url: "pet-friendly-hotels/san-diego-california" },
+    { url: "pet-friendly-hotels/orange-county-california" },
+    { url: "pet-friendly-hotels/santa-barbara-california" },
+    { url: "pet-friendly-hotels/palm-springs-california" },
+    { url: "pet-friendly-hotels/austin-texas" },
+    { url: "pet-friendly-hotels/dallas-texas" },
+    { url: "pet-friendly-hotels/housurln-texas" },
+    { url: "pet-friendly-hotels/oceanside-california" },
+    { url: "pet-friendly-hotels/phoenix-arizona" },
+    { url: "pet-friendly-hotels/scottsdale-arizona" },
+    { url: "pet-friendly-hotels/tucson-arizona" },
+    { url: "pet-friendly-hotels/santa-fe-new-mexico" },
+    { url: "pet-friendly-hotels/san-antonio-texas" },
+    { url: "pet-friendly-hotels/vail-colorado" },
+    { url: "pet-friendly-hotels/colorado-springs-colorado" },
+    { url: "pet-friendly-hotels/denver-colorado" },
+    { url: "pet-friendly-hotels/seattle-washington" },
+    { url: "pet-friendly-hotels/portland-oregon" },
+    { url: "pet-friendly-hotels/sacramento-california" },
+    { url: "pet-friendly-hotels/salt-lake-city-utah" },
+
+    { url: "pet-friendly-hotels/atlanta-georgia" },
+    { url: "pet-friendly-hotels/baltimore-maryland" },
+    { url: "pet-friendly-hotels/boston-massachusetts" },
+    { url: "pet-friendly-hotels/charlotte-north-carolina" },
+    { url: "pet-friendly-hotels/chicago-illinois" },
+    { url: "pet-friendly-hotels/cleveland-ohio" },
+    { url: "pet-friendly-hotels/detroit-michigan" },
+    { url: "pet-friendly-hotels/indianapolis-indiana" },
+    { url: "pet-friendly-hotels/miami-florida" },
+    { url: "pet-friendly-hotels/milwaukee-wisconsin" },
+    { url: "pet-friendly-hotels/minneapolis-minnesota" },
+    { url: "pet-friendly-hotels/new-orleans-louisiana" },
+    { url: "pet-friendly-hotels/new-york-new-york" },
+    { url: "pet-friendly-hotels/washington-dc"},
+    { url: '/hyatt-pet-policy' },
+    { url: '/hilton-pet-policy' },
+    { url: '/marriott-pet-policy'},
+    { url: '/boutique-pet-policy'},
+    { url: '/ihg-pet-policy'},
+    { url: '/motel-6-pet-policy'}
 ];
 
-const aliasMap = []
-const idMap = []
+
+fs.createReadStream('./hotels-oct-2.csv')
+  .pipe(csv.parse({ headers: false }))
+  .on('error', error => console.error(error))
+  .on('data', row => {
+    // console.log(row)
+    routes.push({
+      url: `/pet-friendly-hotels/${slugify(row[2])}/${slugify(row[3])}/${row[1]}`,
+      changefreq: 'monthly'
+    })
+  })
+  .on('end', async () => {
+
+    await loadBlogPosts(1)
+
+    simpleSitemapAndIndex({
+      hostname,
+      destinationDir: './',
+      sourceData: routes
+    }).then(() => {
+      console.log('done')
+    })
+
+  });
+
 
 async function loadBlogPosts(page) {
   const result = await fetch(`https://blog.romingo.com/wp-json/wp/v2/posts?page=${page}&per_page=50&_embed&_fields=id,excerpt,slug,title,link,_links,_embedded`)
@@ -97,7 +126,7 @@ async function loadBlogPosts(page) {
   for (let i = 0 ; i < json.length; i++) {
     const postId = json[i].id
     const slug = json[i].slug
-    idMap.push({ id: slug })
+    routes.push({ url: `/blog/post/${slug}`, changefreq: 'monthly' })
   }
 
   if (total > (50 * page)) {
@@ -107,20 +136,18 @@ async function loadBlogPosts(page) {
   }
 }
 
+function slugify(str) {
+  if (!str) {
+    return ''
+  }
+  // Convert all non-word characters to hyphens
+  str = str.replace(/[^\w-]/g, '-');
 
-fs.createReadStream('./hotels.csv')
-  .pipe(csv.parse({ headers: false }))
-  .on('error', error => console.error(error))
-  .on('data', row => {
-    aliasMap.push({
-      alias: row[22],
-    })
-  })
-  .on('end', async () => {
-    await loadBlogPosts(1)
-    const paramsConfig = {
-      "/hotel/:alias": aliasMap,
-      "/blog/post/:id": idMap
-    }
-    new Sitemap(routes).applyParams(paramsConfig).build("https://romingo.com/").save("./sitemap.xml");
-  });
+  // Remove all consecutive hyphens
+  str = str.replace(/-+/g, '-');
+
+  // Trim leading and trailing hyphens
+  str = str.trim('-');
+
+  return str.toLowerCase();
+}
