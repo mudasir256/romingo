@@ -71,6 +71,7 @@ const DetailsPage1 = ({ ...props }) => {
 
   const [lowestRomingoRate, setLowestRomingoRate] = useState(0)
   const [imageIndex, setImageIndex] = useState(-1)
+  const [refundabilityLoaded, setRefundabilityLoaded] = useState(false)
   const reviewsRef = useRef(null)
   const rateRef = useRef(null)
 
@@ -173,6 +174,7 @@ const DetailsPage1 = ({ ...props }) => {
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
+      setRefundabilityLoaded(false)
       const accessibleRooms = [];
       const nonAccessibleRooms = [];
       let lowest = 999999
@@ -260,18 +262,6 @@ const DetailsPage1 = ({ ...props }) => {
         }
       })
 
-      // nonAccessibleRooms.map(room => {
-      //   const details = data.getHotelDetails.RoomsContent.find(d => d.RoomKey === room.Rooms[0].TargetRoomKey)
-      //   if (!details) {
-
-      //   }
-
-      //   return {
-      //     ...room,
-
-      //   }
-      // })
-
       nonAccessibleRooms.sort(function(a, b) {
           return a.SimplePrice - b.SimplePrice
       });
@@ -295,6 +285,8 @@ const DetailsPage1 = ({ ...props }) => {
       setAccessibleRooms(accessibleRooms);
       setRoomsDetails(formatRoomKey);
       setSessionId(data.getHotelDetails.sessionId)
+      console.log('session id')
+      console.log(data.getHotelDetails.sessionId)
       setLowestRomingoRate(lowest / diffDays)
 
     }
@@ -303,6 +295,59 @@ const DetailsPage1 = ({ ...props }) => {
   useEffect(() => {
     console.log('rooms')
     console.log(rooms)
+
+    if (rooms.length && !refundabilityLoaded) {
+      setRefundabilityLoaded(true)
+      fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/refundability`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          hotelId: rooms[0].HotelId, 
+          sessionId, 
+          packageIds: rooms.map(room => room.refundableRoom?.PackageId || room.PackageId)
+        })
+      }).then((res) => res.json())
+        .then((result) => {
+          console.log('loaded refund policy')
+          const newRooms = rooms.map(room => {
+            return {
+              ...room,
+              refundPolicy: result?.Items.find(item => (room.refundableRoom?.PackageId || room.PackageId) === item.PackageId)
+            }
+          })
+          // console.log(newRooms)
+          setRooms(newRooms)
+        });      
+    }
+    if (accessibleRooms.length && !refundabilityLoaded) {
+      setRefundabilityLoaded(true)
+      fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/refundability`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          hotelId: rooms[0].HotelId, 
+          sessionId, 
+          packageIds: accessibleRooms.map(room => room.refundableRoom?.PackageId || room.PackageId)
+        })
+      }).then((res) => res.json())
+        .then((result) => {
+          console.log('loaded refund policy')
+          const newRooms = accessibleRooms.map(room => {
+            return {
+              ...room,
+              refundPolicy: result?.Items.find(item => (room.refundableRoom?.PackageId || room.PackageId) === item.PackageId)
+            }
+          })
+          // console.log(newRooms)
+          setAccessibleRooms(newRooms)
+        });   
+    }
+
+
   }, [rooms, accessibleRooms])
 
 
@@ -773,6 +818,7 @@ const DetailsPage1 = ({ ...props }) => {
                       nights={moment(search.checkOut).diff(moment(search.checkIn), 'days')}
                       imageURLs={images}
                       isRefundable={room.Refundability === 2 ? false: true}
+                      refundPolicy={room?.refundPolicy}
                       room={room} 
                       refundableRoom={room.refundableRoom}
                       markup={markup}
@@ -838,6 +884,7 @@ const DetailsPage1 = ({ ...props }) => {
                     totalPrice={(room?.PackagePrice?.FinalPrice - tax + markup).toFixed(2)}
                     imageURLs={images}
                     isRefundable={room.Refundability === 2 ? false: true}
+                    refundPolicy={room?.refundPolicy}
                     room={room} 
                     refundableRoom={room.refundableRoom}
                     markup={markup}

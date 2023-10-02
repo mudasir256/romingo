@@ -186,6 +186,7 @@ const RoomCard: FC<Props> = ({
   refundableRoom,
   markup,
   removeNonRefundableOption = false,
+  refundPolicy,
   ...props
 }) => {
 
@@ -301,8 +302,27 @@ const RoomCard: FC<Props> = ({
     matchingAmenities = ['pet-friendly room', ...Object.keys(AmenitiesList).filter(key => amenities.indexOf(key) > -1), ...amenities.filter(key => Object.keys(AmenitiesList).indexOf(key) === -1)]
   }
 
+  const getTimestamp = (timestamp) => {
+    if (!timestamp) {
+      return ''
+    }
 
+    const regex = /\b\d+\b/;
+    const timestampMatch = timestamp.match(regex);
+
+    if (timestampMatch) {
+      const timestamp = parseInt(timestampMatch[0], 10);
+      return timestamp
+    } else {
+      console.log("No timestamp found in the string.");
+    }
+    return ""
+  }
+
+  console.log('refund policy')
+  console.log(refundPolicy)
   const refundablePrice = Math.abs(altFinalPrice - normalFinalPrice).toFixed(0)
+  const formatCancelPolicy = new Date(getTimestamp(refundPolicy?.CancellationPolicy?.CancellationPolicies?.find(item => true)?.DateFrom)).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
 
   return (
     <Box
@@ -719,8 +739,14 @@ const RoomCard: FC<Props> = ({
                         value={selectedRadio}
                         onChange={(e) => setSelectedRadio(e.target?.value)}
                       >
-                        <FormControlLabel value="non" control={<Radio />} label="Non-Refundable $0" />
-                        <FormControlLabel value="refundable" control={<Radio />} label={`Refundable +$${refundablePrice}`} />
+                        <Box display="flex" justifyContent="space-between" alignItems="center" mr="1rem">
+                          <FormControlLabel value="non" control={<Radio />} label="Non-Refundable" />
+                          <Typography variant="base">$0</Typography>
+                        </Box>
+                        <Box display="flex" justifyContent="space-between" alignItems="center" mr="1rem">
+                          <FormControlLabel value="refundable" control={<Radio />} label={`Cancel before ${refundPolicy? formatCancelPolicy : '...'}`} />
+                          <Typography variant="base">+${refundablePrice}</Typography>
+                        </Box>
                       </RadioGroup>
                     </FormControl>
 
