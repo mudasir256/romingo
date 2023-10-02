@@ -252,6 +252,25 @@ const DetailsPage1 = ({ ...props }) => {
 
       // console.log('rooms')
       // console.log(nonAccessibleRooms)
+      const formatRoomKey = data.getHotelDetails.RoomsContent.map(detail => {
+        const room = nonAccessibleRooms.find(room => detail.RoomKey === room.Rooms[0].TargetRoomKey)
+        return {
+          ...detail,
+          BedType: room?.Rooms[0].BedType || 'NOT_FOUND'
+        }
+      })
+
+      // nonAccessibleRooms.map(room => {
+      //   const details = data.getHotelDetails.RoomsContent.find(d => d.RoomKey === room.Rooms[0].TargetRoomKey)
+      //   if (!details) {
+
+      //   }
+
+      //   return {
+      //     ...room,
+
+      //   }
+      // })
 
       nonAccessibleRooms.sort(function(a, b) {
           return a.SimplePrice - b.SimplePrice
@@ -274,7 +293,7 @@ const DetailsPage1 = ({ ...props }) => {
 
       setRooms(nonAccessibleRooms);
       setAccessibleRooms(accessibleRooms);
-      setRoomsDetails(data.getHotelDetails.RoomsContent);
+      setRoomsDetails(formatRoomKey);
       setSessionId(data.getHotelDetails.sessionId)
       setLowestRomingoRate(lowest / diffDays)
 
@@ -716,7 +735,7 @@ const DetailsPage1 = ({ ...props }) => {
            rooms.length > 0 ?
             <Grid container>
               {rooms.sort((a,b) => a.PackagePrice?.FinalPrice - b.PackagePrice?.FinalPrice).map((room: any, key: number) => {
-                const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
+                const filterroom = roomsDetails.find(d => d.RoomKey === room.Rooms[0].TargetRoomKey || d.BedType === room.Rooms[0].BedType);
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
@@ -783,7 +802,7 @@ const DetailsPage1 = ({ ...props }) => {
               </Divider>
               <Grid container>
               {accessibleRooms.sort((a,b) => a.PackagePrice?.FinalPrice - b.PackagePrice?.FinalPrice).map((room: any, key: number) => {
-                const filterroom = roomsDetails.filter(d => d.RoomKey === room.Rooms[0].TargetRoomKey)[0];
+                const filterroom = roomsDetails.find(d => d.RoomKey === room.Rooms[0].TargetRoomKey || d.BedType === room.Rooms[0].BedType);
                 const images = filterroom ? filterroom.Images : [];
                 const amenities = filterroom ? filterroom.Amenities : [];
 
