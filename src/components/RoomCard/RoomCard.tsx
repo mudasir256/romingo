@@ -845,7 +845,7 @@ const RoomCard: FC<Props> = ({
                 textTransform: "capitalize",
               }}
             >
-              ${parseFloat(pricePerNight) + (selectedRadio === 'refundable' ? (parseFloat(refundablePrice) / nights) : 0) }
+              ${(parseFloat(pricePerNight) + (selectedRadio === 'refundable' ? (parseFloat(refundablePrice) / nights) : 0)).toFixed(0) }
             </Typography>
         {/*    <Typography
               variant="body2"
