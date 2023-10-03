@@ -205,7 +205,7 @@ const ListingPageNew = ({ ...props }) => {
     // console.log(hotel)
     const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
 
-    const tax = ((parseFloat(hotel?.taxRate || 0)*100) * pricing) / 100
+    const tax = (parseFloat(hotel?.taxRate) * pricing)
     // console.log(tax)
 
     const markup = (pricing - tax) * .1

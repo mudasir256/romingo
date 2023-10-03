@@ -859,7 +859,7 @@ const DetailsPage1 = ({ ...props }) => {
 
                 // let tax = 0//(room.PackagePrice?.OriginalTax || room.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value || 0)
                 // if (tax === 0) {
-                const tax = ((parseFloat(hotel?.taxRate)*100) * room?.PackagePrice?.FinalPrice) / 100
+                const tax = (parseFloat(hotel?.taxRate) * room?.PackagePrice?.FinalPrice)
                   // console.log(beforePrice)
                   // tax = room?.PackagePrice?.FinalPrice - beforePrice
                   // console.log(tax)
