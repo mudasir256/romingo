@@ -185,7 +185,6 @@ const Atlanta: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            We are going to explore some of the best pet-friendly hotels and activities for you and your pet to enjoy during your trip to Atlanta.
           </Typography>
         </Grid>
 
@@ -210,12 +209,14 @@ const Atlanta: FC = () => {
         <Box
           mt="1rem"
           width='100%'
+          maxWidth="760px"
           display='flex'
           flexDirection='column'
           gap='1.5rem'
         >
-          <Divider />
+      
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Atlanta</Typography>
+          <Text text="We are going to explore some of the best pet-friendly hotels and activities for you and your pet to enjoy during your trip to Atlanta." />
           
           <Bold text="Loews Atlanta Hotel" />
           <SingleLoadListingCard hotelName="100395944" />

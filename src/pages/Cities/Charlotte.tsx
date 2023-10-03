@@ -198,7 +198,6 @@ const Charlotte: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            With a plethora of pet-friendly attractions, eateries, and accommodations, Charlotte stands out as an ideal destination for pet owners seeking unforgettable adventures with their beloved companions.
           </Typography>
         </Grid>
 
@@ -223,12 +222,13 @@ const Charlotte: FC = () => {
           mt="1rem"
           width='100%'
           display='flex'
+          maxWidth="760px"
           flexDirection='column'
           gap='1.5rem'
         >
-          <Divider />
+          
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Charlotte</Typography>
-        
+          <Text text="With a plethora of pet-friendly attractions, eateries, and accommodations, Charlotte stands out as an ideal destination for pet owners seeking unforgettable adventures with their beloved companions." />
 
     
           <Bold text="The Westin Charlotte" />

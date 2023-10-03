@@ -186,7 +186,6 @@ const Milwaukee: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            Many cafes, restaurants, and breweries offer pet-friendly outdoor seating, allowing travelers to relish in Milwaukee&apos;s delectable culinary scene while keeping their pets by their side. Additionally, pet-friendly accommodations such as hotels and vacation rentals ensure a comfortable stay for both humans and their beloved pets. Embracing a pet-friendly ethos, Milwaukee guarantees an unforgettable adventure filled with cherished memories for all members of the family, including the four-legged ones.
           </Typography>
         </Grid>
 
@@ -214,10 +213,11 @@ const Milwaukee: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
-          <Divider />
+
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Milwaukee</Typography>
-        
+          <Text text="Many cafes, restaurants, and breweries offer pet-friendly outdoor seating, allowing travelers to relish in Milwaukee&apos;s delectable culinary scene while keeping their pets by their side. Additionally, pet-friendly accommodations such as hotels and vacation rentals ensure a comfortable stay for both humans and their beloved pets. Embracing a pet-friendly ethos, Milwaukee guarantees an unforgettable adventure filled with cherished memories for all members of the family, including the four-legged ones." />        
 
 
           <Bold text="Kimpton Journeyman Hotel" />

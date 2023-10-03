@@ -198,7 +198,6 @@ const Baltimore: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            From historic landmarks to bustling neighborhoods, Baltimore offers a diverse range of experiences that you and your pet can enjoy together, making it an unforgettable destination for pet-friendly travel.
           </Typography>
         </Grid>
 
@@ -224,12 +223,12 @@ const Baltimore: FC = () => {
           mt="1rem"
           width='100%'
           display='flex'
+          maxWidth="760px"
           flexDirection='column'
           gap='1.5rem'
         >
-          <Divider />
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Baltimore</Typography>
-          
+          <Text text="From historic landmarks to bustling neighborhoods, Baltimore offers a diverse range of experiences that you and your pet can enjoy together, making it an unforgettable destination for pet-friendly travel." />
           <Bold text="Hotel Revival Baltimore" />
           <SingleLoadListingCard hotelName="100211906" />
           <Text text="Hotel Revival Baltimore is a chic and trendy boutique hotel located in the heart of Mount Vernon, offering a vibrant and artistic ambiance that reflects the city's rich cultural heritage. The hotel boasts well-appointed rooms and suites, complete with modern amenities and stylish decor, providing a relaxing retreat after a day of exploring Baltimore's attractions." />

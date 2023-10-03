@@ -161,7 +161,7 @@ const SaltLakeCity: FC = () => {
           <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ textAlign: "justify", lineHeight: 2 }}
+            sx={{ textAlign: "justify", lineHeight: 2, mt: '1rem' }}
           >
             If you&apos;re up for an outdoor adventure, explore the pet-friendly hiking trails in the nearby canyons, such as Mill Creek Canyon or Big Cottonwood Canyon. Additionally, the city boasts a range of pet-friendly hotels and accommodations, ensuring a comfortable stay for both you and your pets.
           </Typography>
@@ -187,7 +187,7 @@ const SaltLakeCity: FC = () => {
           <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ textAlign: "justify", lineHeight: 2 }}
+            sx={{ textAlign: "justify", lineHeight: 2  }}
           >
             With its warm hospitality and numerous pet-friendly options, Salt Lake City promises an enjoyable and rewarding pet-friendly travel experience for the whole family.
           </Typography>
@@ -215,6 +215,7 @@ const SaltLakeCity: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
           <Divider />
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Salt Lake City</Typography>

@@ -186,7 +186,6 @@ const Washington: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            The city is home to a variety of pet-friendly parks, such as Rock Creek Park and the National Mall, where your pet can stretch their legs and explore the outdoors alongside you. Additionally, many outdoor cafes and restaurants in the city welcome pets, allowing you to enjoy a meal or coffee with your furry friend by your side. From exploring iconic landmarks to wandering through picturesque neighborhoods, pet-friendly travel in Washington, D.C., ensures that you and your beloved pet can create unforgettable memories together in the nation&apos;s capital.
           </Typography>
         </Grid>
 
@@ -214,10 +213,12 @@ const Washington: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="780px"
         >
-          <Divider />
+   
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Washington DC</Typography>
-        
+          <Text text="The city is home to a variety of pet-friendly parks, such as Rock Creek Park and the National Mall, where your pet can stretch their legs and explore the outdoors alongside you. Additionally, many outdoor cafes and restaurants in the city welcome pets, allowing you to enjoy a meal or coffee with your furry friend by your side. From exploring iconic landmarks to wandering through picturesque neighborhoods, pet-friendly travel in Washington, D.C., ensures that you and your beloved pet can create unforgettable memories together in the nation&apos;s capital." />
+
           <Bold text="Kimpton Hotel Monaco Washington DC" />
           <SingleLoadListingCard hotelName="100408416" />
           <Text text="Kimpton Hotel Monaco Washington DC is a chic and pet-friendly boutique hotel located in the heart of the city. This upscale accommodation warmly welcomes pets of all sizes and breeds, making it an ideal choice for pet owners looking for a stylish and comfortable stay. The hotel's pet-friendly rooms feature elegant décor and provide amenities such as pet beds, food bowls, and tasty treats to ensure your furry friend feels at home. With its central location, guests and their pets can easily explore the nearby attractions, parks, and pet-friendly restaurants while experiencing the best of Washington, D.C.'s hospitality." />

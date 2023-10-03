@@ -219,13 +219,13 @@ const Cleveland: FC = () => {
           width='100%'
           display='flex'
           flexDirection='column'
+          maxWidth="760px"
           gap='1.5rem'
         >
           <Divider />
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Cleveland</Typography>
-        
-
-    
+          <Text text="Whether exploring the Magnificent Mile, visiting the Navy Pier, or simply enjoying the city&apos;s welcoming atmosphere, Chicago&apos;s dedication to pet-friendly amenities makes it an excellent destination for travelers seeking to share their adventures with their loyal pets."/>
+          
           <Bold text="Kimpton Schofield Hotel" />
           <SingleLoadListingCard hotelName="100184252" />
           <Text text="Housed in a historic building that exudes old-world charm, Kimpton Schofield Hotel property seamlessly blends modern amenities with timeless elegance. The guest rooms at the Kimpton Schofield are tastefully designed, featuring chic decor, luxurious linens, and unique touches that reflect the hotel's distinct personality." />

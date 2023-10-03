@@ -161,7 +161,7 @@ const SantaFe: FC = () => {
           <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ textAlign: "justify", lineHeight: 2 }}
+            sx={{ textAlign: "justify", lineHeight: 2, mt: '1rem' }}
           >
             Take a leisurely stroll through the historic Plaza or venture into the vibrant Railyard Arts District, where many restaurants and cafes have outdoor seating areas that cater to pets. Nature-loving pet owners will be delighted by the numerous pet-friendly hiking trails and parks dotted throughout the city and surrounding areas. Additionally, Santa Fe&apos;s warm and friendly community extends a warm welcome to pets, making it easy to find pet grooming services, pet supply stores, and even pet-friendly events.
           </Typography>
@@ -215,6 +215,7 @@ const SantaFe: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
           <Divider />
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Santa Fe</Typography>

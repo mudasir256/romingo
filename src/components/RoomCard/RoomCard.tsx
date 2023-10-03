@@ -323,6 +323,7 @@ const RoomCard: FC<Props> = ({
   console.log(refundPolicy)
   const refundablePrice = Math.abs(altFinalPrice - normalFinalPrice).toFixed(0)
   const formatCancelPolicy = new Date(getTimestamp(refundPolicy?.CancellationPolicy?.CancellationPolicies?.find(item => true)?.DateFrom)).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+  const isFullyRefundable = !(refundPolicy?.CancellationPolicy?.CancellationPolicies?.length === 2) 
 
   return (
     <Box
@@ -697,7 +698,13 @@ const RoomCard: FC<Props> = ({
                   mb: { md: "1rem" },
                 }}
               >
-                {isRefundable && (
+                {isRefundable &&
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <FormControlLabel value="non" control={<Radio checked={true} />} label={`${isFullyRefundable ? 'Fully' : 'Partially'} refundable before ${refundPolicy? formatCancelPolicy : '...'}`}  />
+                    <Typography variant="base">+ $0</Typography>                  
+                  </Box>
+                }
+             {/* isRefundable && (
                   <>
                     <b
                       style={{
@@ -708,7 +715,7 @@ const RoomCard: FC<Props> = ({
                         alignItems: "center",
                       }}
                     >
-                      Refundable
+                      
                       <InfoOutlined
                         onClick={handleOpenRefundData}
                         sx={{
@@ -719,15 +726,15 @@ const RoomCard: FC<Props> = ({
                       />
                     </b>
                     <br />
-                    {/*
+               
                     Before{" "}
                     {DateTime.fromISO(
                       cancelationPolicy.deadlineLocal ||
                         new Date().toISOString()
                     ).toFormat("DD")}{" "}
-                    */}
+                
                   </>
-                )}
+                )*/}
                 {!isRefundable && !hasCombinedRate && <Box color="red">Non-Refundable</Box>}
                 {(hasCombinedRate && !removeNonRefundableOption) &&
                   <Box sx={{ display: 'flex', flexDirection: 'column'}}>
@@ -740,12 +747,12 @@ const RoomCard: FC<Props> = ({
                         onChange={(e) => setSelectedRadio(e.target?.value)}
                       >
                         <Box display="flex" justifyContent="space-between" alignItems="center" mr="1rem">
-                          <FormControlLabel value="non" control={<Radio />} label="Non-Refundable" />
-                          <Typography variant="base">$0</Typography>
+                          <FormControlLabel value="non" control={<Radio />} label="Non-Refundable"  />
+                          <Typography variant="base">+ $0</Typography>
                         </Box>
                         <Box display="flex" justifyContent="space-between" alignItems="center" mr="1rem">
-                          <FormControlLabel value="refundable" control={<Radio />} label={`Cancel before ${refundPolicy? formatCancelPolicy : '...'}`} />
-                          <Typography variant="base">+${refundablePrice}</Typography>
+                          <FormControlLabel value="refundable" control={<Radio />} label={`${isFullyRefundable ? 'Fully' : 'Partially'} refundable before ${refundPolicy? formatCancelPolicy : '...'}`} />
+                          <Typography variant="base">+ ${refundablePrice}</Typography>
                         </Box>
                       </RadioGroup>
                     </FormControl>

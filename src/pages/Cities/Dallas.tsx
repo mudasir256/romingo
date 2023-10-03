@@ -215,6 +215,7 @@ const Dallas: FC = () => {
           width='100%'
           display='flex'
           flexDirection='column'
+          maxWidth="760px"
           gap='1.5rem'
         >
           <Divider />

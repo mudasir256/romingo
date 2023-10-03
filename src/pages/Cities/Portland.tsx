@@ -161,7 +161,7 @@ const Portland: FC = () => {
           <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ textAlign: "justify", lineHeight: 2 }}
+            sx={{ textAlign: "justify", lineHeight: 2, my: '1rem' }}
           >
             Portland offers a plethora of pet-friendly parks, hiking trails, and off-leash areas where your pets can roam and play freely. Forest Park, one of the largest urban forests in the country, provides ample opportunities for scenic walks and adventures in nature.
           </Typography>
@@ -222,6 +222,7 @@ const Portland: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
           <Divider />
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Portland</Typography>

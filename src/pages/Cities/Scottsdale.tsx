@@ -161,7 +161,7 @@ const Scottsdale: FC = () => {
           <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ textAlign: "justify", lineHeight: 2 }}
+            sx={{ textAlign: "justify", lineHeight: 2, my: '1rem' }}
           >
             From spacious parks and hiking trails to pet-friendly restaurants and hotels, there are plenty of options for your furry friend to explore and enjoy. Many parks, such as Chaparral Park and Horizon Park, provide designated off-leash areas where your pet can romp and socialize with other dogs. Scottsdale&apos;s picturesque desert landscape offers numerous hiking trails, allowing you and your pet to venture out together and enjoy the breathtaking scenery.
           </Typography>
@@ -222,6 +222,7 @@ const Scottsdale: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
           <Divider />
           <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Scottsdale</Typography>

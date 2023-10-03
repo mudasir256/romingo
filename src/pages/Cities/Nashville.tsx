@@ -213,6 +213,7 @@ const Nashville: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
           <Divider />
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Minneapolis</Typography>

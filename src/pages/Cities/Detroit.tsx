@@ -184,7 +184,6 @@ const Detroit: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            For a dose of culture, pet parents can explore pet-friendly art galleries and cultural attractions, providing a truly inclusive experience. Whether it&apos;s exploring the iconic landmarks or attending pet-friendly events and festivals, Detroit ensures that pets are not just tolerated but embraced, making it an ideal destination for unforgettable adventures with our beloved companions.
           </Typography>
         </Grid>
 
@@ -212,10 +211,12 @@ const Detroit: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
-          <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Cleveland</Typography>
       
+          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Detroit</Typography>
+          <Text text="For a dose of culture, pet parents can explore pet-friendly art galleries and cultural attractions, providing a truly inclusive experience. Whether it&apos;s exploring the iconic landmarks or attending pet-friendly events and festivals, Detroit ensures that pets are not just tolerated but embraced, making it an ideal destination for unforgettable adventures with our beloved companions." />
+
           <Bold text="The Westin Book Cadillac Detroit" />
           <SingleLoadListingCard hotelName="100000998" />
           <Text text="The Westin Book Cadillac Detroit stands as an iconic testament to the city's rich history and vibrant future. Its grand architecture and sophisticated interiors harken back to a bygone era, while the meticulously designed rooms and suites offer contemporary comfort and breathtaking city views." />

@@ -161,7 +161,7 @@ const Tucson: FC = () => {
           <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ textAlign: "justify", lineHeight: 2 }}
+            sx={{ textAlign: "justify", lineHeight: 2, mt: '1rem' }}
           >
             Many parks and trails in the city allow leashed pets, providing ample opportunities for leisurely walks and exploration of the stunning desert landscapes. For a taste of nature, take your furry friend to Sabino Canyon or Saguaro National Park, where leashed pets can enjoy the scenic trails. Tucson&apos;s pet-friendly restaurants and cafes ensure you can savor delicious meals while your pet relaxes on outdoor patios.
           </Typography>
@@ -215,6 +215,7 @@ const Tucson: FC = () => {
           display='flex'
           flexDirection='column'
           gap='1.5rem'
+          maxWidth="760px"
         >
           <Divider />
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Tucson</Typography>

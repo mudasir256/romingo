@@ -184,7 +184,6 @@ const Indianapolis: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            Take a leisurely stroll through the picturesque White River State Park, where leashed pets are welcome to explore the scenic trails. For a dose of history and culture, head to the Indiana War Memorial Plaza, where leashed pets can accompany you on a fascinating journey through the state&apos;s past. Don&apos;t miss out on the dog parks sprinkled throughout the city, where your four-legged friend can socialize and play freely. And when hunger strikes, Indianapolis&apos; pet-friendly cafes and restaurants are more than happy to accommodate you both. 
           </Typography>
         </Grid>
 
@@ -211,11 +210,12 @@ const Indianapolis: FC = () => {
           width='100%'
           display='flex'
           flexDirection='column'
+          maxWidth="760px"
           gap='1.5rem'
         >
-          <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Cleveland</Typography>
-        
+
+          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Indianapolis</Typography>
+          <Text text="Take a leisurely stroll through the picturesque White River State Park, where leashed pets are welcome to explore the scenic trails. For a dose of history and culture, head to the Indiana War Memorial Plaza, where leashed pets can accompany you on a fascinating journey through the state&apos;s past. Don&apos;t miss out on the dog parks sprinkled throughout the city, where your four-legged friend can socialize and play freely. And when hunger strikes, Indianapolis&apos; pet-friendly cafes and restaurants are more than happy to accommodate you both. " />
 
     
           <Bold text="The Alexander" />

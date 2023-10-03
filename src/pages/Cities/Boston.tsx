@@ -191,7 +191,6 @@ const Boston: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            With its rich history, picturesque landscapes, and abundant pet-friendly amenities, Boston offers an unforgettable experience for both human and animal travelers alike.
           </Typography>
         </Grid>
 
@@ -218,12 +217,12 @@ const Boston: FC = () => {
           mt="1rem"
           width='100%'
           display='flex'
+          maxWidth="760px"
           flexDirection='column'
           gap='1.5rem'
         >
-          <Divider />
           <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Boston</Typography>
-          
+          <Text text="With its rich history, picturesque landscapes, and abundant pet-friendly amenities, Boston offers an unforgettable experience for both human and animal travelers alike." />
        
           <Bold text="The Liberty Hotel" />
           <SingleLoadListingCard hotelName="100123304" />

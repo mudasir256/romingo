@@ -361,19 +361,19 @@ export default function GoogleMaps(props) {
           <li {...props} key={option.structured_formatting.main_text} >
 
             <Grid container alignItems="center" my="0.20rem">
-              <Grid item sx={{ display: 'flex', width: 22 }}>
-                <LocationOnIcon sx={{ color: 'text.secondary', fontSize: 16 }} />
+              <Grid item sx={{ display: 'flex', width: '1.75rem' }}>
+                <LocationOnIcon sx={{ fontSize: '1.25rem' }} />
               </Grid>
               <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
               
                 <Box
                   component="span"
-                  sx={{ fontWeight: '800', fontSize: 18 }}
+                  sx={{ fontWeight: '800', fontSize: '1rem', color: 'black' }}
                 >
-                  {option.structured_formatting.main_text.length > 40 ? `${option.structured_formatting.main_text.slice(0,40)}...` :  option.structured_formatting.main_text} 
+                  {option.structured_formatting.main_text.length > 45 ? `${option.structured_formatting.main_text.slice(0,45)}...` :  option.structured_formatting.main_text} 
                 </Box>
            
-                <Typography color="text.secondary" style={{ fontSize: 11 }}>
+                <Typography style={{ fontSize: '0.75rem' }}>
                   {option.structured_formatting.secondary_text}
                 </Typography>
               </Grid>

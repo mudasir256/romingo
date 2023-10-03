@@ -784,11 +784,11 @@ const ListingPageNew = ({ ...props }) => {
         >
 
           <Grid item container direction='row'>
-            {!mobile && <Box textAlign="left" maxWidth="860px"><LargeFilterBar /></Box>}
-            <Box my="0.75rem" textAlign="left" width="100%" maxWidth="850px" mr="1rem"><Banner /></Box>
+            {!mobile && <Box textAlign="left" maxWidth="780px"><LargeFilterBar /></Box>}
+            <Box my="0.75rem" textAlign="left" width="100%" maxWidth="742px" mr="1rem"><Banner /></Box>
             
 
-            <Grid maxWidth="860px" item container direction='row' justifyContent='space-between' alignItems="center">
+            <Grid maxWidth="750px" item container direction='row' justifyContent='space-between' alignItems="center">
               <Grid item>
                 <Box mt="0.5rem" sx={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                   <Typography my="1rem">{hotels.length} properties</Typography>
@@ -880,7 +880,7 @@ const ListingPageNew = ({ ...props }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item maxWidth="860px" >
+          <Grid item maxWidth="760px" >
             <CardList cards={hotels} sessionId={sessionId} />
           </Grid>
         </Grid>
