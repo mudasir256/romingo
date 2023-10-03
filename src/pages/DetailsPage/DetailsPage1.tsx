@@ -807,7 +807,7 @@ const DetailsPage1 = ({ ...props }) => {
                     sm={6}
                     xs={12}
                     key={key}
-                    sx={{ p: '1rem' }}
+                    sx={{ p: '0.75rem' }}
                   >
                     <RoomCard 
                       hasCombinedRate={room.combinedRate}
@@ -873,7 +873,7 @@ const DetailsPage1 = ({ ...props }) => {
                     sm={6}
                     xs={12}
                     key={key}
-                    sx={{ p: '1rem' }}
+                    sx={{ p: '0.75rem' }}
                   >
                   <RoomCard 
                     key={key} 

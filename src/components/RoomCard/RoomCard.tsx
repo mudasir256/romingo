@@ -469,7 +469,7 @@ const RoomCard: FC<Props> = ({
             {name ? name : roomTitle} &nbsp;
           </Typography>
        
-          {matchingAmenities.slice(0, imageURLs.length === 0 ? 9: 4).map((amenity, index) => {
+          {matchingAmenities.slice(0, imageURLs.length === 0 ? 4: 4).map((amenity, index) => {
             // console.log(amenity)
             const AmenityIcon = AmenitiesList[amenity]
             return (
