@@ -215,7 +215,7 @@ const Atlanta: FC = () => {
           gap='1.5rem'
         >
       
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Atlanta</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Atlanta</Typography>
           <Text text="We are going to explore some of the best pet-friendly hotels and activities for you and your pet to enjoy during your trip to Atlanta." />
           
           <Bold text="Loews Atlanta Hotel" />

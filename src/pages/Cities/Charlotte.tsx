@@ -227,7 +227,7 @@ const Charlotte: FC = () => {
           gap='1.5rem'
         >
           
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Charlotte</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Charlotte</Typography>
           <Text text="With a plethora of pet-friendly attractions, eateries, and accommodations, Charlotte stands out as an ideal destination for pet owners seeking unforgettable adventures with their beloved companions." />
 
     

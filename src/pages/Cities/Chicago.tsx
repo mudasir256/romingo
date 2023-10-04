@@ -221,7 +221,7 @@ const Chicago: FC = () => {
           gap='1.5rem'
         >
 
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Chicago</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Chicago</Typography>
           <Text text="Whether exploring the Magnificent Mile, visiting the Navy Pier, or simply enjoying the city&apos;s welcoming atmosphere, Chicago&apos;s dedication to pet-friendly amenities makes it an excellent destination for travelers seeking to share their adventures with their loyal pets." />
           
           <Bold text="The Gwen, a Luxury Collection Hotel" />

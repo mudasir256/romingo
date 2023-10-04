@@ -211,7 +211,7 @@ const PalmSprings: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Palm Springs</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Palm Springs</Typography>
           <Text text="Palm Springs, with its breathtaking landscapes and year-round sunshine, is a dream destination for travelers seeking a relaxing getaway. Let's explore six of the best pet-friendly hotels in Palm Springs that will leave you with lifelong memories." />
 
     

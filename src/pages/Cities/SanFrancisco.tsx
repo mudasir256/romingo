@@ -218,7 +218,7 @@ const SanFrancisco: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in San Francisco</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in San Francisco</Typography>
 
           <Bold text="Hilton San Francisco Union Square" />
           <SingleLoadListingCard hotelName="100436878" />

@@ -219,7 +219,7 @@ const Dallas: FC = () => {
           gap='1.5rem'
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Dallas</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Dallas</Typography>
           <Text text="Dallas, Texas, is a lively city that loves pets, making it a great destination for pet owners looking to explore the city. Dallas offers a variety of pet-friendly options that ensure a comfortable and inclusive stay for both humans and pets." />          
           <Text text="Here are six pet-friendly hotels in Dallas that provide exceptional amenities and a welcoming environment for you and your pet." />
 

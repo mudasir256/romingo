@@ -218,7 +218,7 @@ const SanDiego: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in San Diego</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in San Diego</Typography>
 
           <Bold text="The Manchester Grand Hyatt San Diego" />
           <SingleLoadListingCard hotelName="100210840" />

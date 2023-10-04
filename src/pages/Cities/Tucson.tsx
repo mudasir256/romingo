@@ -218,7 +218,7 @@ const Tucson: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Tucson</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Tucson</Typography>
           <Text text="Tucson, Arizona, is a captivating destination known for its breathtaking desert landscapes and warm hospitality. If you're planning a trip to this vibrant city and want to bring your beloved pet along, you're in luck! Tucson offers a variety of pet-friendly hotels that cater to both human and four-legged guests. From upscale resorts to cozy inns, here are six top-notch accommodations that will ensure a comfortable and enjoyable stay for both you and your furry companion." />
 
 

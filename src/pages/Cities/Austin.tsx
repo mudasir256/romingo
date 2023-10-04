@@ -173,7 +173,7 @@ const Austin: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2, my: '1rem' }}
           >
-            With numerous pet-friendly parks, hiking trails, and outdoor spaces, Austin is the ideal city to travel to with your pet. You can enjoy restaurants, cafes, and breweries in Austin that have pet-friendly patios and dining options. Additionally, there are several pet-friendly hotels that cater to the needs of both you and your beloved pets.
+            With numerous pet friendly parks, hiking trails, and outdoor spaces, Austin is the ideal city to travel to with your pet. You can enjoy restaurants, cafes, and breweries in Austin that have pet-friendly patios and dining options. Additionally, there are several pet-friendly hotels that cater to the needs of both you and your beloved pets.
           </Typography>
  
         </Grid>
@@ -229,7 +229,7 @@ const Austin: FC = () => {
           gap='1.5rem'
         >
           <Divider />
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Austin</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Austin</Typography>
           <Text text="Austin, Texas, is a city known for its welcoming and pet-friendly culture. Here are Austin's finest pet-friendly hotels, all the way from luxurious hotel chains to charming boutique properties." />
           
           <Bold text="Aloft Austin Downtown" />

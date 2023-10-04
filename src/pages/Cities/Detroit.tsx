@@ -214,7 +214,7 @@ const Detroit: FC = () => {
           maxWidth="760px"
         >
       
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Detroit</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Detroit</Typography>
           <Text text="For a dose of culture, pet parents can explore pet-friendly art galleries and cultural attractions, providing a truly inclusive experience. Whether it&apos;s exploring the iconic landmarks or attending pet-friendly events and festivals, Detroit ensures that pets are not just tolerated but embraced, making it an ideal destination for unforgettable adventures with our beloved companions." />
 
           <Bold text="The Westin Book Cadillac Detroit" />

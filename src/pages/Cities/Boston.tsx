@@ -221,7 +221,7 @@ const Boston: FC = () => {
           flexDirection='column'
           gap='1.5rem'
         >
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Boston</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Boston</Typography>
           <Text text="With its rich history, picturesque landscapes, and abundant pet-friendly amenities, Boston offers an unforgettable experience for both human and animal travelers alike." />
        
           <Bold text="The Liberty Hotel" />

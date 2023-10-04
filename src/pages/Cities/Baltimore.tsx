@@ -227,7 +227,7 @@ const Baltimore: FC = () => {
           flexDirection='column'
           gap='1.5rem'
         >
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Baltimore</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Baltimore</Typography>
           <Text text="From historic landmarks to bustling neighborhoods, Baltimore offers a diverse range of experiences that you and your pet can enjoy together, making it an unforgettable destination for pet-friendly travel." />
           <Bold text="Hotel Revival Baltimore" />
           <SingleLoadListingCard hotelName="100211906" />

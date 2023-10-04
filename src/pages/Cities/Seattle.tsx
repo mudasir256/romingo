@@ -211,7 +211,7 @@ const Seattle: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Seattle</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Seattle</Typography>
 
           <Bold text="Hyatt Regency Seattle" />
           <SingleLoadListingCard hotelName="100482909" />

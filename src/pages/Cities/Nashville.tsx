@@ -216,7 +216,7 @@ const Nashville: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Minneapolis</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Minneapolis</Typography>
         
 
           <Bold text="Loews Minneapolis Hotel" />

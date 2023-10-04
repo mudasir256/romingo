@@ -217,7 +217,7 @@ const Miami: FC = () => {
           gap='1.5rem'
         >
           <Divider />
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Miami</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Miami</Typography>
         
 
           <Bold text="The Standard Spa Miami Beach" />

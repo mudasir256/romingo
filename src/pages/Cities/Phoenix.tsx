@@ -218,7 +218,7 @@ const Phoenix: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Phoenix</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Phoenix</Typography>
 
     
           <Bold text="Hyatt Place Phoenix Downtown" />

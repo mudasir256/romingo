@@ -211,7 +211,7 @@ const Houston: FC = () => {
           gap='1.5rem'
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Houston</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Houston</Typography>
           <Text text="Houston, Texas, is a city that embraces pet-friendly travel, making it an ideal destination for pet owners seeking inclusive hotels. Here are six pet-friendly hotels in Houston where you and your four-legged friend can create cherished memories together." />
 
           <Bold text="Hotel ZaZa Houston" />

@@ -196,7 +196,7 @@ const Portland: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2 }}
           >
-            With its laid-back and pet-loving atmosphere, pet-friendly travel in Portland promises a memorable and rewarding experience for all members of the family, including the furry ones.
+            With its laid-back and pet-loving atmosphere, pet friendly travel in Portland promises a memorable and rewarding experience for all members of the family, including the furry ones.
           </Typography>
         </Grid>
 
@@ -225,7 +225,7 @@ const Portland: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Portland</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Portland</Typography>
 
           <Bold text="Aloft Portland at Cascade Station" />
           <SingleLoadListingCard hotelName="100000716" />

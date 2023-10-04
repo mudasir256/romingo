@@ -211,7 +211,7 @@ const Denver: FC = () => {
           gap='1.5rem'
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in {city}</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in {city}</Typography>
           <Bold text="Hyatt Centric Downtown Denver" />
           <SingleLoadListingCard hotelName="102265335" />
           <Text text="Hyatt Centric Downtown Denver is a pet-friendly hotel that offers a warm welcome to both guests and their furry companions. Situated in the heart of the city, this modern and stylish hotel ensures a comfortable stay for everyone in the family. The hotel's rooftop bar offers stunning views of the city and the Rocky Mountains, creating a perfect spot to unwind." />

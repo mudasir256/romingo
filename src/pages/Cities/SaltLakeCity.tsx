@@ -189,7 +189,7 @@ const SaltLakeCity: FC = () => {
             color="text.secondary"
             sx={{ textAlign: "justify", lineHeight: 2  }}
           >
-            With its warm hospitality and numerous pet-friendly options, Salt Lake City promises an enjoyable and rewarding pet-friendly travel experience for the whole family.
+            With its warm hospitality and numerous pet friendly options, Salt Lake City promises an enjoyable and rewarding pet-friendly travel experience for the whole family.
           </Typography>
         </Grid>
 
@@ -218,7 +218,7 @@ const SaltLakeCity: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Salt Lake City</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Salt Lake City</Typography>
 
           <Bold text="Sheraton Salt Lake City Hotel" />
           <SingleLoadListingCard hotelName="100437140" />

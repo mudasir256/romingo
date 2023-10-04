@@ -212,7 +212,7 @@ const SanAntonio: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in San Antonio</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in San Antonio</Typography>
 
           <Bold text="Sheraton Gunter Hotel" />
           <SingleLoadListingCard hotelName="100219412" />

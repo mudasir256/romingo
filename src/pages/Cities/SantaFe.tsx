@@ -218,7 +218,7 @@ const SantaFe: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in Santa Fe</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in Santa Fe</Typography>
 
           <Bold text="La Fonda on the Plaza" />
            <SingleLoadListingCard hotelName="100217808" />

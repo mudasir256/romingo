@@ -213,7 +213,7 @@ const NewYork: FC = () => {
           maxWidth="760px"
         >
 
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in New York</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in New York</Typography>
           <Text text="Beyond the hotel scene, New York City boasts a plethora of pet-friendly parks, including Central Park, where dogs can roam freely in designated areas and enjoy the lush greenery alongside their owners. Additionally, numerous pet-friendly cafes and restaurants offer delightful treats and meals for both humans and pets to indulge in together. Whether strolling through bustling streets or experiencing the city&apos;s iconic landmarks, pet owners can embrace a true sense of inclusivity and camaraderie with their beloved pets by their side in this pet-friendly paradise that is New York City." /> 
        
           <Bold text="The Muse Hotel" />

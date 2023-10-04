@@ -212,7 +212,7 @@ const NewOrleans: FC = () => {
           maxWidth="760px"
         >
           <Divider />
-          <Typography component="h2" variant="h2"> The Top Pet-Friendly Accommodations in New Orleans</Typography>
+          <Typography component="h2" variant="h2"> The Top Pet Friendly Accommodations in New Orleans</Typography>
       
         
           <Bold text="Virgin Hotels New Orleans" />

@@ -216,7 +216,7 @@ const Minneapolis: FC = () => {
           gap='1.5rem'
           maxWidth="760px"
         >
-          <Typography component="h2" variant="h2">The Top Pet-Friendly Accommodations in Minneapolis</Typography>
+          <Typography component="h2" variant="h2">The Top Pet Friendly Accommodations in Minneapolis</Typography>
           <Text text="For a memorable experience, pet parents can visit Minnehaha Regional Park, offering scenic trails and a breathtaking waterfall that will surely captivate both humans and pets alike. With an array of pet-friendly hotels, ranging from boutique inns to luxury resorts, travelers can rest assured that their beloved pets will receive the same level of hospitality as they do. In Minneapolis, the bond between humans and their pets is cherished, creating a welcoming and unforgettable experience for all pet-loving travelers." />
 
           <Bold text="Loews Minneapolis Hotel" />
