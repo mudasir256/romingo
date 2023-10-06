@@ -33,6 +33,7 @@ import {
 } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from '@mui/icons-material/Close';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
 import { saveSearch } from "../store/searchReducer";
 import { DateTime } from "luxon";
@@ -516,17 +517,28 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
           borderTopLeftRadius: '20px',
           zIndex: 1000
         }}>
-          <Box position="relative" width="90%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
+
+          <Box position="relative" width="100%" textAlign="center" sx={{ m: '1rem', mt: '1.5rem', backgroundColor: 'white', }}>
+            <IconButton  sx={{ position: 'absolute', top: -25, left: -10, zIndex: 90, color: '#03989E' }} onClick={() => setShowCities(false)}><CloseIcon /></IconButton>
             <TextField 
-              sx={{ width: '80%', ml: '-4.5rem' }}
+              sx={{ width: '90%', ml: '-2.5rem', mt: '0.5rem' }}
               autoFocus
               id="mobileTextSearch"
               variant="standard"
               value={mobileText}
               inputRef={mobileTextSearchRef}
+              InputProps={{
+                endAdornment: (
+                  <IconButton
+                    sx={{ visibility: mobileText ? "visible" : "hidden" }}
+                    onClick={() => setMobileText('')}
+                  >
+                    <CancelIcon />
+                  </IconButton>
+                )
+              }}
               onChange={(e) => setMobileText(e.target?.value)}
             />
-            <Button sx={{ position: 'absolute', top: -6, right: 0, zIndex: 90 }}  variant="contained" onClick={() => setShowCities(false)}>X</Button>
           </Box>
           <Box height="88%" overflow="scroll">
 
@@ -534,13 +546,13 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={(e) => handleCityClick(e, predictions[index])}><Typography variant="p">{address.description}</Typography></Box>
             )}
             {predictions?.length == 0 &&
-             <Typography ml="0.75rem" variant="base">Popular pet-lovers</Typography>
+             <Typography ml="0.75rem" variant="base">No destinations found.</Typography>
             }
-            {predictions?.length === 0 &&
+         {/*   {predictions?.length === 0 &&
               initialStates.map(address => (
                 <Box sx={{ px: '1.25rem', py: '0.75rem', cursor: 'pointer', '&:hover': { backgroundColor: '#d9f7fc'} }} key={address.description} onClick={(e) => handleCityClick(e, initialStates[address.index])}><Typography variant="p">{address.description}</Typography></Box>
               ))
-            }
+            }*/}
           </Box>
         </Box>
       </Slide> 
