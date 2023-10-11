@@ -93,6 +93,7 @@ const routes = [
     { url: '/motel-6-pet-policy'}
 ];
 
+// let array = []
 
 fs.createReadStream('./hotels-oct-2.csv')
   .pipe(csv.parse({ headers: false }))
@@ -103,8 +104,19 @@ fs.createReadStream('./hotels-oct-2.csv')
       url: `/pet-friendly-hotels/${slugify(row[2])}/${slugify(row[3])}/${row[1]}`,
       changefreq: 'monthly'
     })
+    // array.push(`/pet-friendly-hotels/${slugify(row[2])}/${slugify(row[3])}/${row[1]}`)
   })
   .on('end', async () => {
+
+    // fs.writeFile('./alias.csv', array.join(','), 'utf8', function (err) {
+    //   if (err) {
+    //     console.log('Some error occured - file either not saved or corrupted file saved.');
+    //   } else{
+    //     console.log('It\'s saved!');
+    //   }
+    // });
+    // return
+
 
     await loadBlogPosts(1)
 
