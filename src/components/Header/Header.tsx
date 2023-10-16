@@ -25,7 +25,7 @@ const Header: FC<Props> = ({ sx }) => {
   const imagesMobile = [
     {
       component: 'https://www.romingo.com/public/hero/one.jpeg', 
-      placement: 'bottom -50px left -120px'
+      placement: 'bottom -50px left -120px',
     },
   ];
 
@@ -76,7 +76,7 @@ const Header: FC<Props> = ({ sx }) => {
               <b>Book pet-friendly hotels</b>
             </Box>
             <div className="filter-bar-wrapper-desc">
-              the easiest way to travel with your pets
+              the hassle-free way to travel with your pets
             </div>
           </Box>
         </Box>

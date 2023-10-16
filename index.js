@@ -14,7 +14,7 @@ const defaultKeywords = "hotels, travel, pet friendly hotels, hotels near me, bo
 const seo = [
   {
     path: '/',
-    title: 'Book pet friendly hotels - Romingo',
+    title: 'Romingo: Pet Friendly Hotels',
     description: 'Romingo is the easiest way to book pet-friendly travel. Hand-selected hotels, responsive customer service, and the lowest rates guaranteed provide a truly pet-friendly experience. Roam the world freely with Romingo.',
     image: 'https://romingo.com/public/images/home.jpg',
     keywords: defaultKeywords,
