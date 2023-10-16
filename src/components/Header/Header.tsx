@@ -18,15 +18,31 @@ const Header: FC<Props> = ({ sx }) => {
 
   const imagesDesktop = [
     {
-      component: 'https://www.romingo.com/public/hero/one.jpeg', 
+      component: 'https://www.romingo.com/public/hero/one.jpg', 
       placement: 'bottom -120px right 0px'
+    },
+    {
+      component: 'https://www.romingo.com/public/hero/two.jpg', 
+      placement: 'bottom -40px right 0px'
+    },
+    {
+      component: 'https://romingo.com/public/hero/three.jpg',
+      placement: 'bottom -80px right 0px'
     }
   ];
   const imagesMobile = [
     {
-      component: 'https://www.romingo.com/public/hero/one.jpeg', 
+      component: 'https://www.romingo.com/public/hero/one.jpg', 
       placement: 'bottom -50px left -120px',
     },
+    {
+      component: 'https://www.romingo.com/public/hero/two.jpg', 
+      placement: 'bottom -50px left 50%'
+    },
+    {
+      component: 'https://romingo.com/public/hero/three.jpg',
+      placement: 'bottom -50px left 50%'
+    }
   ];
 
   const [mobileImage, setMobileImage] = useState({})

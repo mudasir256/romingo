@@ -67,9 +67,9 @@ const SectionOneImage = 'https://www.romingo.com/public/sections-icons/section-o
 const SectionTwoImage = 'https://www.romingo.com/public/sections-icons/home-hero.jpg'
 const SectionThreeImage = 'https://www.romingo.com/public/sections-icons/homepage-dog.jpg'
 
-const LowestRates = 'https://www.romingo.com/public/sections-icons/icon-01.png'
-const AuthenticPet = 'https://www.romingo.com/public/sections-icons/icon-03.png'
-const BookNow = 'https://www.romingo.com/public/sections-icons/icon-04.png'
+const LowestRates = 'https://www.romingo.com/public/sections-icons/lowest-rates.svg' //icon-01.png'
+const AuthenticPet = 'https://www.romingo.com/public/sections-icons/pet-friendly.svg'//'icon-03.png'
+const BookNow = 'https://www.romingo.com/public/sections-icons/trusted.svg' //icon-04.png'
 
 const HomePage: FC<Props> = () => {
   const history = useHistory();
@@ -226,7 +226,7 @@ const HomePage: FC<Props> = () => {
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '300px', mt: '2rem', p: '1.5rem', backgroundColor: 'white', borderRadius: '24px', boxShadow: '21px 7px 63px #0000000d' }}>
       <img style={{ width: imgWidth, textAlign: 'center'}} src={imgSrc} alt={imgAlt} />
       <Box textAlign="center">
-        <Typography variant="h5" pt="1rem" pb="0.5rem">{header}</Typography>
+        <Typography variant="h5" pb="0.5rem">{header}</Typography>
         <Typography component="p" variant="base">{text}</Typography>
       </Box>
     </Box>
@@ -388,23 +388,23 @@ const HomePage: FC<Props> = () => {
           <InfoBox 
             imgSrc={BookNow}
             imgAlt="pet-friendly guarantee"
-            imgWidth="70%"
+            imgWidth="82%"
             header="Pet-friendly guarantee"
-            text="Planning a trip with your pet? Book with Romingo for a guaranteed pet-friendly room."
+            text="Our team hand-selects hotel partners that offer a warm and welcoming stay for your four-legged friends."
+          />
+          <InfoBox
+            imgSrc={AuthenticPet}
+            imgAlt="accurate pet policies"
+            imgWidth='82%'
+            header="Accurate pet policies"
+            text="Experience enjoyable and stress-free travels with your pets with our accurate and verified hotel pet policies."
           />
           <InfoBox
             imgSrc={LowestRates}
             imgAlt="lowest rates"
-            imgWidth="83%"
+            imgWidth="90%"
             header="Lowest rates"
-            text="By partnering with select pet-friendly hotels, Romingo offers the lowest rates with $0 booking fees."
-          />
-          <InfoBox
-            imgSrc={AuthenticPet}
-            imgAlt="trusted and accurate"
-            imgWidth='85%'
-            header="Trusted & accurate"
-            text="Our pet policies are verified and accurate. Over 50,000 pets (and their humans) have trusted us with their travel plans."
+            text="Unlike other sites, Romingo negotiates the lowest hotel rates, allowing you to travel with your pets without breaking the bank."
           />
         </Box>
       </Box>
@@ -435,7 +435,6 @@ const HomePage: FC<Props> = () => {
 
         <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Where to next?</Typography>
-        {/* todo add locations */}
           <Box sx={{ 
             display: 'flex',
             mb: {xs : 0, sm: 0, md: '0.5rem'},
@@ -446,17 +445,17 @@ const HomePage: FC<Props> = () => {
           }}>
             
             <LocationBox 
-              imageUrl="https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg"
+              imageUrl="https://storage.googleapis.com/romingo-production-public/San%20Diego%20Pet-Friendly%20Travel.jpg "
               cityName="Escape to San Diego"
               locationUrl="/pet-friendly-hotels/san-diego-california"
             />
             <LocationBox 
-              imageUrl="https://storage.googleapis.com/romingo-production-public/locations/secondary/Portland.jpg"
+              imageUrl="https://storage.googleapis.com/romingo-production-public/Portland%20Pet-Friendly%20Travel.jpg "
               cityName="Discover Portland"
               locationUrl="/pet-friendly-hotels/portland-oregon"
             />
             <LocationBox 
-              imageUrl="https://storage.googleapis.com/romingo-production-public/locations/secondary/Denver.jpg"
+              imageUrl="https://storage.googleapis.com/romingo-production-public/Denver%20Pet-Friendly%20Travel.jpg "
               cityName="Roam to Denver"
               locationUrl="/pet-friendly-hotels/denver-colorado"
             />
