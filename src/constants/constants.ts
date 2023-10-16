@@ -805,6 +805,7 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       StarRating
       SuppliersLowestPackagePrices
       Packages
+      hotelName
       description
       petsAllowed
       petFee

@@ -219,7 +219,7 @@ const ListingPageNew = ({ ...props }) => {
       pointValue,
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
       alias: hotel.alias,
-      name: hotel.DisplayName,
+      name: hotel.hotelName || '',
       addressLine1: hotel.addressLine,
       city: hotel.city,
       state: hotel.state,

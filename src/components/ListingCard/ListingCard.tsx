@@ -379,7 +379,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 fontSize: '13px'
               }}
             >
-              {addressLine1}, {state} {zipcode}
+              {addressLine1}, {city}, {state} {zipcode}
             </Typography>
 
             <Box
