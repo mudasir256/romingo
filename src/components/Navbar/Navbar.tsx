@@ -125,7 +125,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   sx={linkStyle}
                 >
                   <div
-                    style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                    style={{ marginLeft: '4em', fontSize: '1em', lineHeight: '28px',  }}
 
                   >
                     FAQ
@@ -139,7 +139,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                   }}
                 >
                   <div
-                    style={{ fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                    style={{ fontSize: '1em', lineHeight: '28px' }}
                   >
                     My trips
                   </div>
@@ -176,7 +176,7 @@ const Navbar: FC<Props> = ({ sx }) => {
             >
               {/* <HomeWork sx={{ mr: ".5rem", fontSize: "16px" }} /> */}
               <div
-                style={{ marginRight: '1em', fontSize: '1em', lineHeight: '28px', fontFamily: 'overpass-light' }}
+                style={{ marginRight: '1em', fontSize: '1em', lineHeight: '28px' }}
               >
                 Travel tips
               </div>

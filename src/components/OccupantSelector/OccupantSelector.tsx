@@ -37,7 +37,7 @@ interface Props {
 
 const popOverLabelText = {
   fontSize: '1em', 
-  fontFamily: 'overpass-light', 
+  fontFamily: 'Poppins-Light', 
   color: 'black',
 }
 

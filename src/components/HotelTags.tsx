@@ -19,7 +19,7 @@ interface Props {
 const chipIconStyle = {
   fontSize: { xs: '0.72em', sm: "0.75em", md: '0.75rem' },
   backgroundColor: 'transparent',
-  fontFamily: 'overpass-light',
+  fontFamily: 'Poppins-Light',
   mt: '0.35em',
   display: 'flex',
   justifyContent: 'flex-start',

@@ -36,13 +36,13 @@ const Footer: FC<Props> = ({ sx }) => {
 
   const SiteLinkSection = ({ header, links }) => (
     <Box>
-      <Typography variant="h5">{header}</Typography>
+      <Typography variant="h6">{header}</Typography>
       <Box display="flex" flexDirection="column">
         {links.map(link => {
           if (link.isBlank) {
-            return <Link my="0.75rem" key={link.href} href={link.href} target="_blank">{link.text}</Link>
+            return <Link my="0.5rem" key={link.href} href={link.href} target="_blank">{link.text}</Link>
           }
-          return <Link my="0.75rem" key={link.href} href={link.href}>{link.text}</Link>
+          return <Link my="0.5rem" key={link.href} href={link.href}>{link.text}</Link>
         })}
       </Box>
     </Box>

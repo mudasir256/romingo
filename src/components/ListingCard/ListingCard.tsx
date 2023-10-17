@@ -181,7 +181,6 @@ const ListingCard: FC<ListingCardProps> = ({
           sx={{
             mr: 0,
             mt: "0.1em",
-            fontFamily: "sansita-light",
             fontSize: "1.30em",
             fontWeight: 800,
             display: "flex",
@@ -198,7 +197,6 @@ const ListingCard: FC<ListingCardProps> = ({
               fontSize: { xs: "95%", sm: "90%" },
               fontWeight: 500,
               whiteSpace: "nowrap",
-              fontFamily: "overpass-light",
               color: "#999",
               fontSize: '13px'
             }}
@@ -213,10 +211,8 @@ const ListingCard: FC<ListingCardProps> = ({
             sx={{
               mr: 0,
               mt: "0.1em",
-              fontFamily: "sansita-light",
               fontSize: "12px",
-              color: '#666',
-              fontWeight: 800,
+
               lineHeight: '14px',
               display: "flex",
               alignItems: "center",
@@ -244,7 +240,6 @@ const ListingCard: FC<ListingCardProps> = ({
             sx={{
               mr: 0,
               mt: "0.1em",
-              fontFamily: "overpass-light",
               fontSize: "1.25em",
               fontWeight: 800,
               display: "flex",
@@ -355,7 +350,7 @@ const ListingCard: FC<ListingCardProps> = ({
               variant="body2"
               sx={{
                 color: "#222",
-                fontFamily: "overpass-light",
+     
                 fontSize: "1.25em",
                 fontWeight: 800,
                 letterSpacing: "0px",
@@ -374,7 +369,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 mt: { xs: "0rem", sm: ".125rem" },
                 fontWeight: 500,
                 whiteSpace: "nowrap",
-                fontFamily: "overpass-light",
+
                 color: "#999",
                 fontSize: '13px'
               }}
@@ -431,7 +426,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   fontSize: "0.9em",
                 }}
               >
-                <Box sx={{ color: "black" }}>
+                <Box sx={{ color: "black", mt: '0.1rem' }}>
                   <StarIcon fontSize="inherit" />
                 </Box>
                 <span
@@ -447,7 +442,6 @@ const ListingCard: FC<ListingCardProps> = ({
                   href={`${hotelUrl}#reviews`}
                   sx={{
                     color: "#666",
-                    fontFamily: "overpass-light",
                     textDecoration: "underline",
                     ml: { xs: 0.25 },
                     fontWeight: 500,

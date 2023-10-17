@@ -85,6 +85,7 @@ const HomePage: FC<Props> = () => {
   const [showLocations, setShowLocations] = useState(false)
   const [showPetPolicies, setShowPetPolicies] = useState(false)
   const [showFull, setShowFull] = useState(false)
+  const [showSticky, setShowSticky] = useState(false)
 
 
   const handleImFlexibleClick = () => {
@@ -160,12 +161,10 @@ const HomePage: FC<Props> = () => {
 
   /* Method that will fix header after a specific scrollable */
   const isSticky = () => {
-    const header = document.querySelector(".sticky-header");
     const scrollTop = window.scrollY;
-
-    scrollTop >= 0
-      ? header && header.classList.add("is-sticky")
-      : header && header.classList.remove("is-sticky");
+    scrollTop >= 200
+      ? setShowSticky(true)
+      : setShowSticky(false)
   };
 
   useEffect(() => {
@@ -372,6 +371,39 @@ const HomePage: FC<Props> = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
+      {showSticky && <>
+        <Box sx= {{ display: { xs: 'none', sm: 'none', md: 'block'} }} 
+          position="fixed" 
+          top="30px" 
+          left="280px" 
+          zIndex="9999"
+        >
+          <Box 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})} 
+            color="blue" 
+            sx={{ 
+            cursor: 'pointer',
+            '&:hover': {
+              color: '#0000A3'
+            }
+
+          }}>Book Now</Box>
+        </Box>
+
+        <Box sx= {{ display: { xs: 'block', sm: 'block', md: 'none'} }} 
+          position="fixed" 
+          bottom="20px" 
+          right="30px" 
+          zIndex="9999"
+        >
+          <Button
+            variant="contained"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})} 
+          >Book Now</Button>
+        </Box>
+
+      </>}
+
       <Header />
       <Box sx={{  background: { xs: '#A6DBE5', sm: 'white', md: '#A6DBE5' }, mx: 'auto', py: '1rem', height: { md: 'auto', lg: '240px' },  }}>
         <Box sx={{
@@ -464,7 +496,7 @@ const HomePage: FC<Props> = () => {
 
         </Box>
 
-        <Box sx={{ my: { xs: '1rem', sm: '1rem', md: '8rem'} }}>
+        <Box sx={{ mt: { xs: '1rem', sm: '1rem', md: '8rem'} }}>
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
@@ -475,7 +507,21 @@ const HomePage: FC<Props> = () => {
           />
         </Box>
 
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '2rem', sm: '2rem', md: '4rem' }, mb: '2rem' }}>
+
+        <Box backgroundColor="#F4DAC9" height="380px">
+          <Box backgroundColor="#F4DAC9" sx={{ height: { xs: '50px', sm: '50px', md: '120px' } }}></Box>
+          <Box display="flex" flexDirection="column" gap="1.5rem" maxWidth="720px" backgroundColor="white" mx="auto" mt="1rem" p="2rem"  borderRadius="40px 40px 0px 0px">
+            <Typography variant="base">As a pet-friendly travel lover, I&apos;ve always struggled when booking trips for me and my pup. I founded Romingo with the goal to make pet-friendly travel more enjoyable and accessible for everyone.</Typography>
+            <Typography variant="base">Romingo partners with the best pet-friendly hotels to provide you with a warm and welcoming travel experience. When you book with Romingo, you&apos;re investing in an unforgettable travel experience with your pets.</Typography>
+            <Typography variant="base">Thank you for supporting our small business, and safe travels!</Typography>
+            <Typography variant="base">Zach Somers, Founder</Typography>
+          </Box>
+        </Box>
+        <Box pb="8rem"></Box>
+
+
+
+        <Box sx={{ maxWidth: '1240px', mx: 'auto', mt: { xs: '2rem', sm: '2rem', md: '2rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>

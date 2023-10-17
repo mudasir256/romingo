@@ -278,7 +278,8 @@ export default function GoogleMaps(props) {
         "& .MuiAutocomplete-input": {
          color: 'black', 
          fontSize: '15px',
-         pl: '0 !important'
+         pl: '0 !important',
+         fontFamily: 'Poppins-Light'
         },
         "& .MuiInputBase-root": { 
           width: (props.width || 280), 
@@ -343,7 +344,7 @@ export default function GoogleMaps(props) {
       renderGroup={(params) => {
         return (
           <li key={params.key}>
-            {params.group && <Box my="0.5rem"><Typography variant="base"ml="1rem" sx={{ fontWeight: 800}}>Popular pet-lovers</Typography></Box>}
+            {params.group && <Box my="0.5rem"><Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Popular pet-lovers</Typography></Box>}
             <Box>{params.children}</Box>
           </li>
         )
@@ -368,7 +369,7 @@ export default function GoogleMaps(props) {
               
                 <Box
                   component="span"
-                  sx={{ fontWeight: '800', fontSize: '1rem', color: 'black' }}
+                  sx={{ fontFamily: 'Poppins', fontSize: '1rem', color: 'black' }}
                 >
                   {option.structured_formatting.main_text.length > 45 ? `${option.structured_formatting.main_text.slice(0,45)}...` :  option.structured_formatting.main_text} 
                 </Box>

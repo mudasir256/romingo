@@ -590,7 +590,7 @@ const DetailsPage1 = ({ ...props }) => {
             disableElevation
             variant="contained"
             sx={{
-              fontWeight: 600,
+              fontFamily: 'Poppins-Light',
               mt: "1rem",
               width: '320px',
               display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' }
@@ -627,7 +627,7 @@ const DetailsPage1 = ({ ...props }) => {
             disableElevation
             variant="contained"
             sx={{
-              fontWeight: 600,
+              fontFamily: 'Poppins-Light',
               mt: "1rem",
               width: '100%',
               display: { xs: 'block', sm: 'block', md: 'block', lg: 'none' }

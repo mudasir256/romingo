@@ -26,13 +26,13 @@ export const theme = {
     },
   },
   typography: {
-    fontFamily: `"sansita-light", "sansita-light", sans-serif`,
+    fontFamily: `"Poppins", "Poppins-Light", sans-serif`,
     h1: {
-      fontFamily: "sansita-light",
+      fontFamily: "Poppins",
       fontWeight: 900,
     },
     h2: {
-      fontFamily: "sansita-light",
+      fontFamily: "Poppins",
       fontWeight: 900,
       fontSize: '2rem',
       '@media (min-width: 600px)': {
@@ -40,11 +40,11 @@ export const theme = {
       }
     },
     h3: {
-      fontFamily: "sansita-light",
+      fontFamily: "Poppins",
       fontWeight: 900,
     },
     h4: {
-      fontFamily: "sansita-light",
+      fontFamily: "Poppins",
       fontWeight: 900,
       fontSize: '1.75rem',
       '@media (min-width: 600px)': {
@@ -52,7 +52,7 @@ export const theme = {
       }
     },
     h5: {
-      fontFamily: "sansita-light",
+      fontFamily: "Poppins",
       fontWeight: 900,
       fontSize: '1.5rem',
       '@media (min-width: 600px)': {
@@ -60,63 +60,28 @@ export const theme = {
       }
     },
     h6: {
-      fontFamily: "sansita-light",
+      fontFamily: "Poppins",
       fontWeight: 700,
       letterSpacing: 0.5,
     },
-    body1: {
-      fontFamily: "overpass-light",
-      fontWeight: 500,
-      color: "#000000c7",
-    },
-    body2: {
-      fontFamily: "overpass-light",
-      fontWeight: 500,
-      fontSize: '1.25rem',
-      lineHeight: '1.5rem',
-    },
     p: {
-      fontFamily: 'sansita-light',
-      fontWeight: 500,
-      fontSize: '1.25rem',
-      lineHeight: '1.5rem',
-    },
-    p2: {
-      fontFamily: "overpass-light",
+      fontFamily: 'Poppins-Light',
       fontWeight: 500,
       fontSize: '1.25rem',
       lineHeight: '1.5rem',
     },
     base: {
-      fontFamily: 'sansita-light',
+      fontFamily: 'Poppins-Light',
       fontWeight: 500,
       fontSize: '1rem',
       lineHeight: '1.5rem',
     },
-    base2: {
-      fontFamily: "overpass-light",
+    body1: {
+      fontFamily: 'Poppins-Light',
       fontWeight: 500,
-      fontSize: '1rem'
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
     },
-    subtitle1: {
-      fontFamily: "overpass-light",
-      fontWeight: 300,
-    },
-    subtitle2: {
-      fontFamily: "overpass-light",
-      fontWeight: 300,
-    },
-    button: {
-      fontFamily: "sansita-light",
-      fontWeight: 300,
-    },
-    caption: {
-      fontFamily: "overpass-light",
-      fontWeight: 300,
-    },
-    overline: {
-      fontFamily: "overpass-light",
-      fontWeight: 300,
-    },
+   
   },
 };

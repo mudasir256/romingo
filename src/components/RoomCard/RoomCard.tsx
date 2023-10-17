@@ -746,11 +746,11 @@ const RoomCard: FC<Props> = ({
                         value={selectedRadio}
                         onChange={(e) => setSelectedRadio(e.target?.value)}
                       >
-                        <Box display="flex" justifyContent="space-between" alignItems="center" mr="1rem">
+                        <Box display="flex" justifyContent="space-between" alignItems="center" mr="0.5rem">
                           <FormControlLabel value="non" control={<Radio />} label="Non-Refundable"  />
                           <Typography variant="base">+ $0</Typography>
                         </Box>
-                        <Box display="flex" justifyContent="space-between" alignItems="center" mr="1rem">
+                        <Box display="flex" justifyContent="space-between" alignItems="center" mr="0.5rem">
                           <FormControlLabel value="refundable" control={<Radio />} label={`${isFullyRefundable ? 'Fully' : 'Partially'} refundable before ${refundPolicy? formatCancelPolicy : '...'}`} />
                           <Typography variant="base">+ ${refundablePrice}</Typography>
                         </Box>
@@ -866,7 +866,6 @@ const RoomCard: FC<Props> = ({
               display: "inline-block",
               lineHeight: '16px',
               fontSize: "12px",
-              fontWeight: "bold",
               color: "#666",
             }}
           >
@@ -915,7 +914,7 @@ const RoomCard: FC<Props> = ({
             <Typography
               variant="h6"
               sx={{
-                fontWeight: 600,
+                fontFamily: 'Poppins-Light',
                 textTransform: "capitalize",
                 fontSize: { xs: "14px" },
               }}

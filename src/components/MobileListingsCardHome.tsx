@@ -98,7 +98,7 @@ const ListingCardSquare = ({
   const PriceDetails = () => (
     <Box textAlign="right" mr="0.5rem">
       <Typography variant="base" sx={{ fontSize: '0.75rem'}}>rates from</Typography>
-      <Typography variant="h5">
+      <Typography variant="h6">
         {currency}{Math.round(lowestTotalPriceAfterTax)} <span style={{ fontSize: '1rem', fontWeight: 400}}>/ night</span>
       </Typography>
     </Box>
@@ -197,7 +197,8 @@ const ListingCardSquare = ({
                     whiteSpace: 'normal',
                     textOverflow: "ellipsis",
                     textAlign: 'left',
-                    flexWrap: 'none'
+                    flexWrap: 'none',
+                    fontSize: '1.20rem'
                   }}
                 >
                   {name}

@@ -151,7 +151,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   const [showSelectCity, setShowSelectCity] = useState<boolean>(false)
 
   const labelStyle = {
-    fontFamily: 'overpass-light',
+    fontFamily: 'Poppins-Light',
     fontSize: '0.75em', 
     fontWeight: 100, 
     ml: '0.1em',
@@ -203,7 +203,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             flexDirection: 'row',
             alignItems: 'center',
             gap: '0.5rem',
-            px: '0.5rem',
+            px: '0.75rem',
           }}
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px'}}>
@@ -240,82 +240,53 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                   <Box
                     sx={{
                       display: 'flex',
-                      justifyContent: 'space-around',
+                      justifyContent: 'flex-start',
                       flexDirection: 'row',
                       alignItems: 'center',
-                      gap: '0.35rem',
+                      gap: '0.3rem',
                       height: '40px',
+                      width: showText ? '290px' : '170px',
                       border: '1px solid #aaabab', borderRadius: '5px'
                     }}
                     onClick={() => setOpen(true)}
                   >
-                    <Box>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          cursor: "pointer",
-                          transition: "all .15s ease-in-out",
-                          border: 'none',
-                          borderRadius: "6px",
-                          backgroundColor: "#fff",
-                        }}
-                      >
-                        <Box ml="0.5rem" mt="0.1rem"><Today fontSize="small" sx={{ color: 'black' }} /></Box>
-                        <Typography
-                          sx={{
-                            color: "black",
-                            fontFamily: "overpass-light",
-                            textTransform: "none",
-                            fontSize: '15px',
-                            ml: '0.5em',
-                            ["@media (max-width: 600px)"]: { fontSize: '1em' }
-                          }}
-                        >
-                          {checkDate[0]
-                            ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
-                            : "Check-in date"
-                          }
-                        </Typography> 
-                      </Box>
-                    </Box>
+                  
+                    <Box ml="0.75rem" mt="0.4rem"><Today fontSize="small" sx={{ color: 'black' }} /></Box>
+                    <Typography
+                      sx={{
+                        ml: '0.25rem',
+                        color: "black",
+                        fontFamily: "Poppins-Light",
+                        textTransform: "none",
+                        fontSize: '15px',
+                        ["@media (max-width: 600px)"]: { fontSize: '1em' }
+                      }}
+                    >
+                      {checkDate[0]
+                        ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
+                        : "Check-in date"
+                      }
+                    </Typography> 
+                
+                    
                     <Typography variant="base">-</Typography>
-                    {/* <ArrowRightAltIcon /> */}
-                    <Box >
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          cursor: "pointer",
-                          transition: "all .15s ease-in-out",
-                          border: 'none',
-                          borderRadius: "6px",
-                          backgroundColor: "#fff",
 
-                        }}
-                        onClick={() => setOpen(true)}
-
-                      >
-                        {/* <Box mt="0.1rem"><InsertInvitation fontSize="small" sx={{ color: 'black' }} /></Box> */}
-                        <Typography
-                          sx={{
-                            color: "black",
-                            fontFamily: "overpass-light",
-                            textTransform: "none",
-                            fontSize: '15px',
-                            mr: '0.5rem',
-                            ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
-                          }}
-                        >
-                          {checkDate[1]
-                            ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM d")
-                            : "Check-out date"
-                          }
-                        </Typography> 
-                      </Box>
-                    </Box>
+                    <Typography
+                      sx={{
+                        color: "black",
+                        fontFamily: "Poppins-Light",
+                        textTransform: "none",
+                        fontSize: '15px',
+                        mr: '0.5rem',
+                        ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
+                      }}
+                    >
+                      {checkDate[1]
+                        ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM d")
+                        : "Check-out date"
+                      }
+                    </Typography> 
+               
                   </Box>
                 )}
               />
@@ -333,18 +304,18 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             size="small"
             fullWidth={false}
             sx={{
-              width: '224px',
+              width: showText ? '290px' : 'auto',
               height: '40px',
               border: '1px solid #aaabab', borderRadius: '5px',
               background: 'white',
               label: {
-                fontFamily: 'overpass-light',
+                fontFamily: 'Poppins-Light',
                 fontSize: '15px',
                 color: 'black',
               },
               input: {
                 cursor: "pointer",
-                fontFamily: 'overpass-light',
+                fontFamily: 'Poppins-Light',
                 fontSize: '15px',
                 color: 'black',
                 mt: '0.05rem'
@@ -359,7 +330,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
           size="medium"
           sx={{
             textTransform: "none",
-            fontFamily: "overpass-light",
+            fontFamily: "Poppins-Light",
             m: '0.75em',
             p: '1rem',
             height: '41.5px',
