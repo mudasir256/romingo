@@ -508,20 +508,20 @@ const HomePage: FC<Props> = () => {
         </Box>
 
 
-        <Box backgroundColor="#F4DAC9" height="380px">
-          <Box backgroundColor="#F4DAC9" sx={{ height: { xs: '50px', sm: '50px', md: '120px' } }}></Box>
-          <Box display="flex" flexDirection="column" gap="1.5rem" maxWidth="720px" backgroundColor="white" mx="auto" mt="1rem" p="2rem"  borderRadius="40px 40px 0px 0px">
+        <Box backgroundColor="#F4DAC9" py="4rem">
+          <Box sx={{ mx: { xs: '1rem', sm: '1rem', md: 'auto'}  }} display="flex" flexDirection="column" gap="1.5rem" maxWidth="720px" backgroundColor="white" p="2rem"  borderRadius="40px 40px 40px 40px">
+            <Typography variant="h6">Welcome to Romingo!</Typography>
             <Typography variant="base">As a pet-friendly travel lover, I&apos;ve always struggled when booking trips for me and my pup. I founded Romingo with the goal to make pet-friendly travel more enjoyable and accessible for everyone.</Typography>
             <Typography variant="base">Romingo partners with the best pet-friendly hotels to provide you with a warm and welcoming travel experience. When you book with Romingo, you&apos;re investing in an unforgettable travel experience with your pets.</Typography>
             <Typography variant="base">Thank you for supporting our small business, and safe travels!</Typography>
             <Typography variant="base">Zach Somers, Founder</Typography>
           </Box>
         </Box>
-        <Box pb="8rem"></Box>
+        
 
 
 
-        <Box sx={{ maxWidth: '1240px', mx: 'auto', mt: { xs: '2rem', sm: '2rem', md: '2rem' }, mb: '2rem' }}>
+        <Box sx={{ maxWidth: '1240px', mx: 'auto', mt: { xs: '2rem', sm: '2rem', md: '4rem' }, mb: '2rem' }}>
           <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.9em', sm: '1em', lg: '0.6em' } }}>Pet-approved favorites</Typography>
 
           <Box sx={{ display: { xs: 'block', 'sm': 'block', md: 'flex', lg: 'flex' }, mb: {xs : 0, sm: 0, md: '0.5rem'} }}>
