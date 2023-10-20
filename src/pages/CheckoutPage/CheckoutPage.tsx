@@ -41,6 +41,9 @@ const CheckoutPage: FC<Props> = () => {
   const [loadingCoupon, setLoadingCoupon] = useState(false)
   const [discountAmount, setDiscountAmount] = useState(0)
 
+  console.log(sessionStorage.getItem('tax'))
+  console.log(sessionStorage.getItem('pricePerNight'))
+
   const search = useSelector((state: any) => state.searchReducer.search);
   const { finePrint, room, hotel: hotelDetails, sessionId } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
