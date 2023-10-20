@@ -158,6 +158,7 @@ const ListingCard: FC<ListingCardProps> = ({
   numberOfReviews = 0,
   taxRate,
   distanceFromSearch,
+  search,
   ...props
 }) => {
   const history = useHistory();
@@ -270,7 +271,15 @@ const ListingCard: FC<ListingCardProps> = ({
     return str.toLowerCase();
   }
 
-  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+  const params = new URLSearchParams({
+    checkIn: search.checkIn,
+    checkOut: search.checkOut,
+    adults: search.occupants.adults,
+    children: search.occupants.childrenAge,
+    sessionId
+  });
+
+  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}?${params.toString()}`
   let starRatingFormat = romingoScore
   if (romingoScore?.toString().length === 1) {
     starRatingFormat = `${romingoScore}.0`

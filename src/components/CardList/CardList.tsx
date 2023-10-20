@@ -7,9 +7,11 @@ import usePagination from "./pagination";
 interface Props {
   cards: ListingCardProps[];
   boxShadow?: number;
+  sessionId: string;
+  search: JSON
 }
 
-const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
+const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId, search }) => {
   // const [newCards, setNewCards] = useState(cards)
   // const [page, setPage] = useState(0);
   // const PER_PAGE = 1000;
@@ -37,7 +39,7 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId }) => {
           <Box
             sx={{ maxWidth: "100%", backgroundColor: "white", py: '0.8rem' }}
           >
-            <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.id} page="listings" />
+            <ListingCard {...card} sessionId={sessionId} hotel={card} id={card.id} page="listings" search={search} />
           </Box>
         </div>
       ))}

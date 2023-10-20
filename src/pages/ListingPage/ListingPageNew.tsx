@@ -881,7 +881,7 @@ const ListingPageNew = ({ ...props }) => {
             </Grid>
           </Grid>
           <Grid item maxWidth="760px" >
-            <CardList cards={hotels} sessionId={sessionId} />
+            <CardList cards={hotels} sessionId={sessionId} search={search} />
           </Grid>
         </Grid>
       </Grid>
