@@ -45,20 +45,16 @@ const CheckoutPage: FC<Props> = () => {
   console.log(sessionStorage.getItem('pricePerNight'))
 
   const search = useSelector((state: any) => state.searchReducer.search);
-  const { finePrint, room, hotel: hotelDetails, sessionId } = useSelector(
-    (state: any) => state.hotelCheckoutReducer.checkout
-  );
-
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
-
   const hotel = useSelector((state: any) => {
     return state.hotelDetailReducer.detail;
   });
   
+
   const { data, loading, error } = useQuery(
-    gql`${getCancellationPolicy(hotelDetails.travolutionaryId, sessionId, room.PackageId)}`);
+    gql`${getCancellationPolicy(sessionStorage.getItem('travolutionaryId'), sessionStorage.getItem('sessionId'), sessionStorage.getItem('packageId')}`);
 
   console.log(data)
 
@@ -79,7 +75,8 @@ const CheckoutPage: FC<Props> = () => {
     const data = await result.json()
 
     if (data.coupon.percent_off && data.coupon.valid) {
-      const discount = detail?.room?.PackagePrice?.FinalPrice * (data.coupon.percent_off / 100)
+
+      const discount =  sessionStorage.getItem('totalPriceAfterTax') * (data.coupon.percent_off / 100)
       setDiscountAmount(discount)
     } else if (data.coupon.amount_off && data.coupon.valid) {
       const discount = (data.coupon.amount_off / 100)
@@ -90,14 +87,10 @@ const CheckoutPage: FC<Props> = () => {
     setLoadingCoupon(false)
   }
 
-  const tax =  (
-    detail.room.PackagePrice?.OriginalTax 
-    || detail.room?.PackagePrice?.TaxesAndFees?.find(item => item.FeeTitle === 'occupancy_tax')?.Value //addTotalTaxes(detail.room.PackagePrice?.TaxesAndFees)
-    || ((parseFloat(detail.hotel?.taxRate)*100) * detail.room?.PackagePrice?.FinalPrice) / 100
-    || 0
-  )
-
-  const markup = (detail?.room?.PackagePrice?.FinalPrice - tax) * 0.1
+  const finalPrice = sessionStorage.getItem('totalPriceAfterTax')
+  const SimplePrice = sessionStorage.getItem('travoPrice')
+  const tax = sessionStorage.getItem('tax')
+  const markup = sessionStorage.getItem('markup')
 
   const mobile = useMediaQuery("(max-width:800px)");
 
@@ -130,8 +123,8 @@ const CheckoutPage: FC<Props> = () => {
                   // finePrint={{title: "test", description: 'test'}}
                   // price={123.33}
                   discountAmount={discountAmount || 0}
-                  withoutFeesPrice={detail?.room?.PackagePrice?.FinalPrice}
-                  finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)}
+                  withoutFeesPrice={SimplePrice}
+                  finalPrice={finalPrice - (discountAmount > 0 ? discountAmount : 0)}
                   policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                 />
               </Grid>
@@ -150,8 +143,8 @@ const CheckoutPage: FC<Props> = () => {
                 )}
                 <Grid item xs={12} sx={{  mt: { xs: 0, sm: 0, md: '4.5rem' } }}>
                   <ImageSlider
-                    images={detail?.room?.imageURLs || []}
-                    name={detail?.room?.Rooms?.find(item => true).RoomName || detail?.room?.Rooms?.find(item => true).BedType ||  "Standard Room"}
+                    images={[sessionStorage.getItem('hotelImage')] || []}
+                    name={sessionStorage.getItem('roomType')}
                     sx={{
                       display: "flex",
                       flex: 1,
@@ -194,15 +187,15 @@ const CheckoutPage: FC<Props> = () => {
                       sx={{ mt: 2 }}
                       // finePrint={finePrint}
                       // price={detail?.room?.room?.totalPriceAfterTax}
-                      withoutFeesPrice={detail?.room?.PackagePrice?.FinalPrice}
+                      withoutFeesPrice={SimplePrice}
                       discountAmount={discountAmount || 0}
-                      finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup - (discountAmount > 0 ? discountAmount : 0)}
+                      finalPrice={finalPrice - (discountAmount > 0 ? discountAmount : 0)}
                       policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} 
                     />
                   </Grid>
                 )}
                 <Grid item xs={12} order={{ xs: 3, md: 3 }}>
-                  <CancelPolicy withoutFeesPrice={detail?.room?.PackagePrice?.FinalPrice} finalPrice={detail?.room?.PackagePrice?.FinalPrice + markup} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
+                  <CancelPolicy withoutFeesPrice={SimplePrice} finalPrice={finalPrice} policy={data?.getCancellationPolicyMultiPackages?.CancellationPolicies} search={search} />
                 </Grid>
               </Grid>
             </Grid>
@@ -293,8 +286,8 @@ const CheckoutPageListingCard = ({
             }}
           >
             <ImageSlider
-              images={props?.images}
-              name={name}
+              images={[sessionStorage.getItem('hotelImage')]}
+              name="hotel photo"
               sx={{
                 width: "100%",
                 height: 275,
@@ -323,9 +316,9 @@ const CheckoutPageListingCard = ({
                 fontWeight: 800,
               }}
             >
-              {props.hotelName}
+              {sessionStorage.getItem('hotelName')}
             </Typography>
-            <RomingoScore score={props.starRating} />
+            <RomingoScore score={sessionStorage.getItem('hotelRating')} />
           </Box>
 
           <Box>
@@ -340,7 +333,7 @@ const CheckoutPageListingCard = ({
                 mb: { xs: 0, md: -1 },
               }}
             >
-              {props.fullAddressLine}
+              {sessionStorage.getItem('hotelAddress')}
             </Typography>
 
             <Box

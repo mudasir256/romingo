@@ -8,13 +8,18 @@ import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
 
-const BookingDetailCard: FC = ({ roomImages }) => {
+const BookingDetailCard: FC = ({ roomImages, checkInIso, checkOutIso, adults, children, dogs, roomName }) => {
   // eslint-disable-next-line
   const details = useSelector((state: any) => state.searchReducer.search);
   const room = useSelector(
     // eslint-disable-next-line
     (state: any) => state.hotelCheckoutReducer?.checkout?.room?.Rooms.find(item => true)
   );
+
+  let children = []
+  if (sessionStorage.getItem('children')) {
+    children = sessionStorage.getItem('children').split(',')
+  }
 
   return (
     <Box
@@ -60,7 +65,7 @@ const BookingDetailCard: FC = ({ roomImages }) => {
           
             }}
           >
-            {DateTime.fromISO(details.checkIn).toFormat("ccc, MMM dd")}
+            {DateTime.fromISO(sessionStorage.getItem('checkIn')).toFormat("ccc, MMM dd")}
           </Typography>
         </Grid>
         <Grid xs={4} item>
@@ -87,7 +92,7 @@ const BookingDetailCard: FC = ({ roomImages }) => {
               opacity: 0.75,
             }}
           >
-            {DateTime.fromISO(details.checkOut).toFormat("ccc, MMM dd")}
+            {DateTime.fromISO(sessionStorage.getItem('checkOut')).toFormat("ccc, MMM dd")}
           </Typography>
         </Grid>
         <Grid xs={4} item>
@@ -118,7 +123,7 @@ const BookingDetailCard: FC = ({ roomImages }) => {
 
             }}
           >
-            {`${details.occupants.adults} Adults - ${details.occupants.children ?  `${details.occupants.children} Children -` : ''} ${details.occupants.dogs} Pets`}
+            {`${sessionStorage.getItem('adults')} Adults - ${children?.length > 0 ?  `${children.length} Children -` : ''} ${sessionStorage.getItem('dogs')} Pets`}
           </Typography>
         </Grid>
 
@@ -148,7 +153,7 @@ const BookingDetailCard: FC = ({ roomImages }) => {
               opacity: 0.75,
             }}
           >
-            {room?.RoomName || room?.BedType || "Standard Room"}
+            {sessionStorage.getItem('roomType')}
           </Typography>
         </Grid>
       </Grid>

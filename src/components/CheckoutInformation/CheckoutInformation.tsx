@@ -272,7 +272,7 @@ const CheckoutInformation: FC<Props> = ({
                 const childId = String.fromCharCode(65 + x);
                 passengers.push({
                   "Id": uuid.v4(),
-                  "Allocation": detail.room.Rooms[0].Id,
+                  "Allocation": sessionStorage.getItem('roomId'),
                   "PersonDetails": {
                     "Name": {
                       "GivenName": `Child${childId}`,
@@ -289,16 +289,32 @@ const CheckoutInformation: FC<Props> = ({
             console.log(passengers)
 
 
+            let childrenNumber = 0
+            if (sessionStorage.getItem('children')) {
+              childrenNumber = sessionStorage.getItem('children').split(',').length
+            }
 
             createBookingInTravolutionary({
               variables: { 
                 createBookingInputTravolutionary: { 
                   passengers: passengers, 
-                  roomDetails: { ...detail, discountAmount }, 
-                  sessionId: detail.sessionId, 
+                  roomDetails: { 
+                    travoPrice: sessionStorage.getItem('travoPrice'),
+                    HotelID: sessionStorage.getItem('travolutionaryId'),
+                    LeadPaxRoomId: sessionStorage.getItem('roomId'),
+                    PackageID: sessionStorage.getItem('packageId'),
+                    discountAmount 
+                  }, 
+                  sessionId: sessionStorage.getItem('sessionId'), 
                   stripeIntent: paymentIntent, 
                   checkoutForm: checkoutForm, 
-                  search  
+                  search: {
+                    occupants: {
+                      adults: sessionStorage.getItem('adults'),
+                      children: childrenNumber,
+                      dogs: sessionStorage.getItem('dogs')
+                    }
+                  }
                 } 
               }
             })
