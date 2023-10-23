@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 import { DateTime } from "luxon";
 
-const BookingDetailCard: FC = ({ roomImages, checkInIso, checkOutIso, adults, children, dogs, roomName }) => {
+const BookingDetailCard: FC = ({ roomImages, checkInIso, checkOutIso, adults, dogs, roomName }) => {
   // eslint-disable-next-line
   const details = useSelector((state: any) => state.searchReducer.search);
   const room = useSelector(
