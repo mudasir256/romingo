@@ -107,6 +107,11 @@ const routes: RouteInterface[] = [
     requireAuth: false,
   },
   {
+    path: "/pet-friendly-hotels/:state/:city/:name",
+    component: DetailsPage1,
+    requireAuth: false,
+  },
+  {
     path: "/reservation/manage",
     component: ManageReservationPage,
     requireAuth: false,
