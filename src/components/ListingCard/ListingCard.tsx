@@ -326,10 +326,11 @@ const ListingCard: FC<ListingCardProps> = ({
           // component="a"
           href={hotelUrl}
           onClick={() =>
-            history.push(hotelUrl, {
-              sessionId: sessionId,
-              hotelDetails: hotel,
-            })
+            window.location.href = hotelUrl;
+            // history.push(hotelUrl, {
+            //   sessionId: sessionId,
+            //   hotelDetails: hotel,
+            // })
           }
           sx={{
             cursor: "pointer",

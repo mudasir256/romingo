@@ -156,7 +156,7 @@ const ListingCardSquare = ({
         />
 
         <Box
-          onClick={() => history.push(hotelUrl)}
+          onClick={() => (window.location.href = hotelUrl)}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
