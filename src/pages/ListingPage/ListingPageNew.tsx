@@ -292,6 +292,7 @@ const ListingPageNew = ({ ...props }) => {
 
     if (data && data.getHotels && data.getHotels.sessionId) {
       setShowSearchBar(false)
+      console.log(data.getHotels)
       setSessionId(data.getHotels.sessionId);
       loadHotels(data.getHotels.hotels)
     }
