@@ -279,7 +279,7 @@ const ListingCard: FC<ListingCardProps> = ({
     sessionId
   });
 
-  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}?${params.toString()}`
+  const hotelUrl = `/pet-friendly-hotel/${slugify(stateCodes[state])}/${slugify(city)}/${alias}?${params.toString()}`
   let starRatingFormat = romingoScore
   if (romingoScore?.toString().length === 1) {
     starRatingFormat = `${romingoScore}.0`

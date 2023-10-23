@@ -120,7 +120,7 @@ const ListingCardSquare = ({
     return str.toLowerCase();
   }
 
-  const hotelUrl = `/pet-friendly-hotels/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
+  const hotelUrl = `/pet-friendly-hotel/${slugify(stateCodes[state])}/${slugify(city)}/${alias}`
   let starRatingFormat = starRating
   if (starRating?.toString().length === 1) {
     starRatingFormat = `${starRating}.0`

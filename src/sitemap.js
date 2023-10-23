@@ -101,7 +101,7 @@ fs.createReadStream('./hotels-oct-2.csv')
   .on('data', row => {
     // console.log(row)
     routes.push({
-      url: `/pet-friendly-hotels/${slugify(row[2])}/${slugify(row[3])}/${row[1]}`,
+      url: `/pet-friendly-hotel/${slugify(row[2])}/${slugify(row[3])}/${row[1]}`,
       changefreq: 'monthly'
     })
     // array.push(`/pet-friendly-hotels/${slugify(row[2])}/${slugify(row[3])}/${row[1]}`)

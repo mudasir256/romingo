@@ -102,7 +102,7 @@ const routes: RouteInterface[] = [
     requireAuth: false
   },
   {
-    path: "/pet-friendly-hotels/:state/:city/:name",
+    path: "/pet-friendly-hotel/:state/:city/:name",
     component: DetailsPage1,
     requireAuth: false,
   },
