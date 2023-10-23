@@ -325,13 +325,13 @@ const ListingCard: FC<ListingCardProps> = ({
         <Box
           // component="a"
           href={hotelUrl}
-          onClick={() =>
+          onClick={() => {
             window.location.href = hotelUrl;
             // history.push(hotelUrl, {
             //   sessionId: sessionId,
             //   hotelDetails: hotel,
             // })
-          }
+          }}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },
