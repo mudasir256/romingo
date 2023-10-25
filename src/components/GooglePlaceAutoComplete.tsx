@@ -359,7 +359,7 @@ export default function GoogleMaps(props) {
         //   matches.map((match: any) => [match.offset, match.offset + match.length]),
         // );
         return (
-          <li {...props} key={option.structured_formatting.main_text} >
+          <li {...props} key={option.place_id} >
 
             <Grid container alignItems="center" my="0.20rem">
               <Grid item sx={{ display: 'flex', width: '1.75rem' }}>
