@@ -469,30 +469,6 @@ const ListingPage: FC<Props> = () => {
                 </Grid>
               </Grid>
 
-              <SortBar 
-                size="small" 
-                sortBy={sortBy} 
-                bigDog={allowBigDogs} 
-                setBigDog={setAllowBigDogs} 
-                setSortBy={setSortBy}
-                selectedFilter={selectedFilter}
-                setSelectedFilter={setSelectedFilter}
-                value={value}
-                setValue={setValue}
-                maxPrice={maxPrice}
-                rating={rating}
-                setRating={setRating}
-                showFilters={showFilters}
-                showExtras={showExtras}
-                minPrice={minPrice}
-                noPetRestrictions={noPetRestrictions}
-                setNoPetRestrictions={setNoPetRestrictions}
-                freeAmenities={freeAmenities}
-                setFreeAmenities={setFreeAmenities}
-              />
-
-              
-
               {(showFilters || showExtras) && 
               <Grid item xs={12}>
                 <Button onClick={() => {
@@ -637,50 +613,11 @@ const ListingPage: FC<Props> = () => {
                   setSelectedFilter(newArray)
                 }}/>
               ))}
-              {rating > 0 &&
-                <Chip
-                  size="small"
-                  label={`${rating} star hotel`}
-                  onDelete={() => setRating(0)}
-                />
-              }
-              {(rating > 0 || selectedFilter.length > 0 || value[0] != minPrice || value[1] != maxPrice) &&
-                <Chip
-                  size="small"
-                  label="Clear all filters"
-                  onDelete={() => {
-                    setSelectedFilter([])
-                    setRating(null)
-                    setValue([minPrice, maxPrice])
-                  }}
-                />
-              } 
+        
             </Grid>
           </Grid>
 
-       
-          <Box sx={{mb: '1em', display: 'grid',   gridTemplateColumns: 'repeat(2, 1fr)', alignItems: 'center' }}>
-            <SortBar 
-              sortBy={sortBy} 
-              bigDog={allowBigDogs} 
-              setBigDog={setAllowBigDogs} 
-              setSortBy={setSortBy}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter} 
-              value={value}
-              setValue={setValue}
-              maxPrice={maxPrice}
-              rating={rating}
-              setRating={setRating}
-              showFilters={showFilters}
-              showExtras={showExtras}
-              minPrice={minPrice}
-              noPetRestrictions={noPetRestrictions}
-              setNoPetRestrictions={setNoPetRestrictions}
-              freeAmenities={freeAmenities}
-              setFreeAmenities={setFreeAmenities}
-            />
-          </Box>
+      
 
 
           {(showFilters || showExtras) && 

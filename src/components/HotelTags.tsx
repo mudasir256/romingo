@@ -72,35 +72,35 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
 
   return (
     
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+    <Box sx={{ display: "flex", flexDirection: 'column', flexWrap: "wrap", mt: '0.5rem', mb: '1rem' }}>
       <Chip
         size="small"
-        sx={{ ...chipIconStyle, ".MuiChip-label": { pl: 0, ml: 0 } }}
-        label={<Box sx={{ ml: "0em", pl: 0 }}>{pet_fee}</Box>}
+        sx={{ ...chipIconStyle }}
+        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Wallet%20Icon.png" />}
+        label={<Box sx={{ ml: "0.25rem" }}>{pet_fee}</Box>}
       />
-      <Chip
-        size="small"
-        sx={chipIconStyle}
-        icon={<Pets />}
-        label={<Box sx={iconSpacing}>{pet_allowance}</Box>}
-      />
-      <Chip
-        size="small"
-        sx={chipIconStyle}
-        icon={<img width="20px" src={DogIcon} />}
-        label={<Box sx={iconSpacing}>{pet_size}</Box>}
-      />
-
       <Chip
         size="small"
         sx={{
           ...chipIconStyle,
-          ml: '-0.3rem',
-          flexBasis: '100%'
         }}
-        icon={<CheckCircleOutline sx={{ color: 'green' }} />}
-        label={<Box sx={iconSpacing}>pet-friendly room guaranteed</Box>}
+        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Bone%20Icon.png" />}
+        label={<Box sx={{ ml: "0.25rem" }}>pet-friendly room guaranteed</Box>}
       />
+      <Chip
+        size="small"
+        sx={chipIconStyle}
+        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Dog%20Icon.png" />}
+        label={<Box sx={{ ml: "0.25rem" }}>{pet_allowance}</Box>}
+      />
+      <Chip
+        size="small"
+        sx={chipIconStyle}
+        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Paw%20Icon.png" />}
+        label={<Box sx={{ ml: "0.25rem" }}>{pet_size}</Box>}
+      />
+
+ 
 
       {dogAmenities.includes("dog beds & bowls") && (
         <>

@@ -182,7 +182,7 @@ const ListingCard: FC<ListingCardProps> = ({
           sx={{
             mr: 0,
             mt: "0.1em",
-            fontSize: "1.30em",
+            fontSize: "1.4em",
             fontWeight: 800,
             display: "flex",
             alignItems: "center",
@@ -211,7 +211,7 @@ const ListingCard: FC<ListingCardProps> = ({
             variant="body2"
             sx={{
               mr: 0,
-              mt: "0.1em",
+              mt: "0.1rem",
               fontSize: "12px",
 
               lineHeight: '14px',
@@ -249,8 +249,8 @@ const ListingCard: FC<ListingCardProps> = ({
           ></Typography>
         )}
 
-        {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666'}}>includes taxes and fees</Typography>}
-
+        {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666', lineHeight: '16px'}}>includes taxes and fees</Typography>}
+        <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#03989E'}}>Free cancel + pay</Typography>
       </Box>
     </Box>
   );
@@ -310,7 +310,7 @@ const ListingCard: FC<ListingCardProps> = ({
         <Box
           sx={{
             width: { xs: "100%", sm: 400, md: 350, lg: 350 },
-            height: { xs: "auto", sm: 211, md: 186 },
+            height: { xs: "auto", sm: 211, md: '236px' },
           }}
         >
           <ImageSlider
@@ -334,8 +334,8 @@ const ListingCard: FC<ListingCardProps> = ({
           }}
           sx={{
             cursor: "pointer",
-            px: { xs: mobileCardPadding, sm: 0 },
-            pb: { xs: mobileCardPadding, sm: "0" },
+            px: { xs: mobileCardPadding, sm: mobileCardPadding },
+            pb: { xs: mobileCardPadding, sm: mobileCardPadding },
             width: "100%",
             position: "relative",
             textDecoration: "none",
@@ -347,10 +347,10 @@ const ListingCard: FC<ListingCardProps> = ({
               p: {
                 xs: ".5rem .25rem 0rem .25rem",
                 sm: ".5rem .5rem .5rem 1rem",
-                md: "0rem 1rem",
+                md: "0rem 0.6rem",
               },
               ml: { xs: "0.4rem", md: 0 },
-              my: { xs: 0, md: "0.5em" },
+              my: { xs: 0 },
               display: "flex",
               flexDirection: "column",
               position: "relative",
@@ -364,8 +364,11 @@ const ListingCard: FC<ListingCardProps> = ({
                 fontSize: "1.25em",
                 fontWeight: 800,
                 letterSpacing: "0px",
-                width: "100%",
-                whiteSpace: { xs: "normal", sm: "normal" },
+                width: '100%',
+                maxWidth: '480px',
+                overflow: 'hidden',
+                mt: { xs: '0.2rem', sm: '0.2rem', md: 0 },
+                whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
                 textOverflow: "ellipsis",
               }}
             >
@@ -376,7 +379,7 @@ const ListingCard: FC<ListingCardProps> = ({
               variant="body2"
               sx={{
                 fontSize: { xs: "95%", sm: "90%" },
-                mt: { xs: "0rem", sm: ".125rem" },
+                mt: { xs: "0.25rem", sm: "0.25rem" },
                 fontWeight: 500,
                 whiteSpace: "nowrap",
 
@@ -434,6 +437,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   flexDirection: "row",
                   alignItems: "center",
                   fontSize: "0.9em",
+                  mt: { xs: '0.5rem', sm: '0.5rem', md: 0 }
                 }}
               >
                 <Box sx={{ color: "black", mt: '0.1rem' }}>
