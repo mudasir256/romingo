@@ -20,7 +20,7 @@ const chipIconStyle = {
   fontSize: { xs: '0.72em', sm: "0.75em", md: '0.75rem' },
   backgroundColor: 'transparent',
   fontFamily: 'Poppins-Light',
-  mt: '0.35em',
+  mt: '0.1em',
   display: 'flex',
   justifyContent: 'flex-start',
   mr: '0.1em',
@@ -76,7 +76,7 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
       <Chip
         size="small"
         sx={{ ...chipIconStyle }}
-        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Wallet%20Icon.png" />}
+        icon={<img width="17px" src="https://storage.googleapis.com/romingo-production-public/assets/Wallet%20Icon.png" />}
         label={<Box sx={{ ml: "0.25rem" }}>{pet_fee}</Box>}
       />
       <Chip
@@ -84,19 +84,19 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
         sx={{
           ...chipIconStyle,
         }}
-        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Bone%20Icon.png" />}
+        icon={<img width="17px" src="https://storage.googleapis.com/romingo-production-public/assets/Bone%20Icon.png" />}
         label={<Box sx={{ ml: "0.25rem" }}>pet-friendly room guaranteed</Box>}
       />
       <Chip
         size="small"
         sx={chipIconStyle}
-        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Dog%20Icon.png" />}
+        icon={<img width="17px" src="https://storage.googleapis.com/romingo-production-public/assets/Dog%20Icon.png" />}
         label={<Box sx={{ ml: "0.25rem" }}>{pet_allowance}</Box>}
       />
       <Chip
         size="small"
         sx={chipIconStyle}
-        icon={<img width="20px" src="https://storage.googleapis.com/romingo-production-public/assets/Paw%20Icon.png" />}
+        icon={<img width="17px" src="https://storage.googleapis.com/romingo-production-public/assets/Paw%20Icon.png" />}
         label={<Box sx={{ ml: "0.25rem" }}>{pet_size}</Box>}
       />
 

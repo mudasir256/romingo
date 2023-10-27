@@ -250,7 +250,7 @@ const ListingCard: FC<ListingCardProps> = ({
         )}
 
         {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666', lineHeight: '16px'}}>includes taxes and fees</Typography>}
-        <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#03989E'}}>Free cancel + pay</Typography>
+        <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#0070C0'}}>Free cancel + pay</Typography>
       </Box>
     </Box>
   );
@@ -271,11 +271,17 @@ const ListingCard: FC<ListingCardProps> = ({
     return str.toLowerCase();
   }
 
+
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const twoDays = new Date()
+  twoDays.setDate(twoDays.getDate() + 2)
+
   const params = new URLSearchParams({
-    checkIn: search.checkIn,
-    checkOut: search.checkOut,
-    adults: search.occupants.adults,
-    children: search.occupants.childrenAge,
+    checkIn: search?.checkIn || tomorrow,
+    checkOut: search?.checkOut || twoDays,
+    adults: search?.occupants?.adults || 2,
+    children: search?.occupants?.childrenAge || [],
     sessionId
   });
 

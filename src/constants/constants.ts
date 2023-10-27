@@ -21,6 +21,8 @@ const GetHotelBySearchNew = `
       hotels {
         Address
         GeoLocation
+        Refundability
+        Packages
         ID
         StarRating
         address

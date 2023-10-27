@@ -125,8 +125,8 @@ export default function GoogleMaps(props) {
   }
 
   function handleLocationChange(newValue) {
-    console.log('new value')
-    console.log(newValue)
+    // console.log('new value')
+    // console.log(newValue)
     if (isMobile && !newValue) {
       props.setMobileText(newValue)
     }
@@ -142,7 +142,7 @@ export default function GoogleMaps(props) {
         //   lat: results[0].geometry.location.lat(),
         //   lng: results[0].geometry.location.lng(),
         // })
-        console.log(newValue)
+        // console.log(newValue)
 
         props.setSelectedCity({
           city: newValue,
@@ -197,7 +197,7 @@ export default function GoogleMaps(props) {
 
   React.useEffect(() => {
 
-    console.log('auto complete?')
+    // console.log('auto complete?')
     // console.log(autocompleteService)
     // console.log(autocompleteService?.current?.getPlacePredictions)
     // console.log(inputValue)
@@ -220,12 +220,12 @@ export default function GoogleMaps(props) {
 
     // clearTimeout(timer)
 
-    console.log('timer')
+    // console.log('timer')
     const newTimer = setTimeout(() => {
       autocompleteService.current.getPlacePredictions(
         {input: inputValue},
         function(results) {
-          console.log('results!')
+          // console.log('results!')
           let newOptions: readonly PlaceType[] = [];
 
           if (results) {
