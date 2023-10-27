@@ -13142,11 +13142,6 @@
   "resolved" "https://registry.npmjs.org/prepend-http/-/prepend-http-1.0.4.tgz"
   "version" "1.0.4"
 
-"prerender-node@^3.7.0":
-  "integrity" "sha512-FuhXsH0RIjxMbR/K/+S6lpnFu+lgkYd7Vy9qTob2Tp7h7p7n1NYmslPpCEz8xLYwIMgbU9vrTOoxXy5/gRY8mA=="
-  "resolved" "https://registry.npmjs.org/prerender-node/-/prerender-node-3.7.0.tgz"
-  "version" "3.7.0"
-
 "preserve@^0.2.0":
   "integrity" "sha512-s/46sYeylUfHNjI+sA/78FAHlmIuKqI9wNnzEOGehAlUUYeObv5C2mOinXBjyUyWmJ2SfcS2/ydApH4hTF4WXQ=="
   "resolved" "https://registry.npmjs.org/preserve/-/preserve-0.2.0.tgz"
