@@ -39,7 +39,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10,
               borderRadius: '6px 6px 0px 0px',
             }} src={img.replace(/'/g, "%27")} alt="hotel image" loading="lazy" />)
             : images.slice(0, imageCount).map((img, i) => (
-              <Fragment key={img + i}>
+              <Fragment key={img + i+name}>
                 <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}>
                   <img key={img + i} style={{
                     display: 'block', 
@@ -52,7 +52,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10,
                   }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
                 </Box>
                 <Box sx={{ display: { xs: 'block', sm: 'block', md: 'none'} }}>
-                  <img key={img + i} style={{
+                  <img key={img + i+name} style={{
                     display: 'block', 
                     width: '100%', 
                     height: '244px',

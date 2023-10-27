@@ -305,7 +305,15 @@ const ListingPageNew = ({ ...props }) => {
     const markers = [];
     let min = 0;
     let max = 0;
-    for (const hotel of hotels) {
+
+    const newHotels = hotels.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.ID === value.ID
+      ))
+    )
+    console.log(newHotels.length)
+
+    for (const hotel of newHotels) {
       const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
 
       if (pricing / diffDays < min) {
