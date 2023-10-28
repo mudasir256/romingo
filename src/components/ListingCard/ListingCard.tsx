@@ -250,7 +250,6 @@ const ListingCard: FC<ListingCardProps> = ({
         )}
 
         {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666', lineHeight: '16px'}}>includes taxes and fees</Typography>}
-        <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#0070C0'}}>Free cancel + pay</Typography>
       </Box>
     </Box>
   );
@@ -316,7 +315,7 @@ const ListingCard: FC<ListingCardProps> = ({
         <Box
           sx={{
             width: { xs: "100%", sm: 400, md: 350, lg: 350 },
-            height: { xs: "auto", sm: 211, md: '236px' },
+            height: { xs: "auto", sm: 211, md: '283px' },
           }}
         >
           <ImageSlider
@@ -373,7 +372,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 width: '100%',
                 maxWidth: '480px',
                 overflow: 'hidden',
-                mt: { xs: '0.2rem', sm: '0.2rem', md: 0 },
+                mt: { xs: '0.2rem', sm: '0.2rem', md: '0.5rem' },
                 whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
                 textOverflow: "ellipsis",
               }}
@@ -409,26 +408,18 @@ const ListingCard: FC<ListingCardProps> = ({
               />
             </Box>
 
-         {/*   <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              <CheckCircleOutlineIcon sx={{ color: 'green', fontSize: '18px' }} />
-              <Typography sx={{ fontSize: '13px'}}>pet-friendly room guaranteed</Typography>
-            </Box>*/}
+
+
 
             <Box
               sx={{
-                display: { xs: "block", sm: "block" },
-                my: "auto",
+                display: 'flex',
+                flexDirection: 'column',
+                mb: '1.5rem',
               }}
             >
-        {/*      <Typography
-                sx={{
-                  fontFamily: "overpass-light",
-                  color: "#036A6E",
-                  fontSize: "0.9em",
-                }}
-              >
-                Reserve now, pay later.
-              </Typography>*/}
+              <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#0070C0'}}>Free cancellation</Typography>
+              <Typography variant="base" sx={{ lineHeight: '12px', fontSize: '0.75rem', color: '#0070C0'}}>Book now, pay later</Typography>
             </Box>
 
             <Box

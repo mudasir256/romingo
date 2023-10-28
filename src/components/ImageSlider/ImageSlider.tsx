@@ -44,7 +44,7 @@ const ImageSlider: FC<Props> = ({ sx, images, name, forceLarge, imageCount = 10,
                   <img key={img + i} style={{
                     display: 'block', 
                     width: '100%', 
-                    height: '237px',
+                    height: '284px',
                     objectFit: 'cover',
                     objectPosition: 'center', 
                     borderRadius: borderRadius,
