@@ -257,7 +257,7 @@ const SanDiego: FC = () => {
           />
 
           <Bold text="Omni San Diego Hotel" />
-          <SingleLoadListingCard hotelName="100012092" />
+          <SingleLoadListingCard hotelName="100402748" />
           <Text text="The Omni San Diego Hotel is in downtown San Diego and loves when you bring your pets. There are nearby dog parks and pet-friendly attractions, such as Waterfront Park. When you stay at Omni San Diego Hotel, you and your pet will have a great time!" />
           <Text text="Omni San Diego Hotel is close to numerous pet-friendly parks and walking areas in downtown San Diego. Upon check-in, your pet will receive a pet-friendly amenity kit with toys, treats, and clean-up bags. When you stay here, your pet can weigh up to 40 pounds and there is a $100 non-refundable pet fee." />
           <HighlightBox
