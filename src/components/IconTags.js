@@ -6,23 +6,29 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 export default function IconTags() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: '1.5rem', gap: '1.5rem'}}>
-      <Box sx={{ maxWidth: '280px' }}>
+    <Box sx={{ 
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      mt: '1.5rem', 
+      gap: '1.5rem',
+      flexDirection: { xs: 'column', sm: 'column', md: 'row' }
+    }}>
+      <Box sx={{ maxWidth: '300px' }}>
         <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'>
           <PetsIcon />
           &nbsp;&nbsp;Pet-friendly
         </Typography>
         <Typography sx={{ fontSize: '0.9em' }}>
-          Our team has hand-selected the best pet-friendlyhotels and vacation rentals in the US for you to book with Romingo.
+          Our team has hand-selected the best pet-friendly hotels and vacation rentals in the US for you to book with Romingo.
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '280px' }}>
+      <Box sx={{ maxWidth: '300px' }}>
         <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'><PaidIcon />&nbsp;&nbsp;Lowest rates</Typography>
         <Typography sx={{ fontSize: '0.9em' }}>
           Romingo builds relationships with each of our partners to offer you the lowest rates and $0 booking fees.
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '280px' }}>
+      <Box sx={{ maxWidth: '300px' }}>
         <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'>
           <CheckCircleIcon />
           &nbsp;&nbsp;Accurate & transparent

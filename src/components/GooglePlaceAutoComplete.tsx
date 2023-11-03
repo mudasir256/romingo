@@ -286,7 +286,7 @@ export default function GoogleMaps(props) {
           // position: 'relative',
           height: '40px',
           border: focused ? 'none' : '1px solid white', 
-          boxShadow: focused ? 5 : 0,
+          boxShadow: (focused && !props.showShrinkText) ? 5 : 0,
           background: 'white', 
      
         }
@@ -330,14 +330,20 @@ export default function GoogleMaps(props) {
       renderInput={(params) => (
         <TextField 
           {...params}
+          label={props.showShrinkText ? "LOCATION" : ""}
+          sx={{ ml: '0.5rem', mt: props.showShrinkText ? '0.5rem': 0 }}
           InputProps={{ 
             ...params.InputProps,
-            startAdornment: focused ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
+            disableUnderline: true,
+            startAdornment: (focused || props.showShrinkText) ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
           }}
-          placeholder="Going to..." 
+          placeholder="Going to..."
           fullWidth 
           size="small" 
-          variant="outlined"  
+          variant={props.showShrinkText ? "standard" : "outlined"}
+          InputLabelProps={{
+            shrink: true
+          }} 
         />
       )}
       groupBy={(option) => option.isInitial}
@@ -349,15 +355,7 @@ export default function GoogleMaps(props) {
           </li>
         )
       }}
-      renderOption={(props, option) => {
-        console.log(option)
-        // const matches =
-        //   option.structured_formatting.main_text_matched_substrings || [];
-
-        // const parts = parse(
-        //   option.structured_formatting.main_text,
-        //   matches.map((match: any) => [match.offset, match.offset + match.length]),
-        // );
+      renderOption={(props, option) => {  
         return (
           <li {...props} key={option.place_id} >
 
