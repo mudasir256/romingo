@@ -246,12 +246,12 @@ const LosAngeles: FC = () => {
         
 
     
-          {/* <SingleLoadListingCard hotelName="The Kimpton Hotel Palomar" />*/}
+          {/* <SingleLoadListingCard hotelName="The Kimpton Hotel Palomar" />
           <Text text="The Kimpton Hotel Palomar Los Angeles is a sophisticated and stylish boutique hotel situated in the vibrant neighborhood of Beverly Hills. As part of the renowned Kimpton Hotels & Restaurants group, this chic hotel embraces the brand's signature warmth and hospitality. As part of the renowned Kimpton Hotels & Restaurants group, this chic hotel embraces the brand's signature warmth and hospitality." />
           <Text text="With its prime location near Rodeo Drive and other famous attractions, The Kimpton Hotel Palomar Los Angeles promises a luxurious and unforgettable stay for travelers seeking a chic and contemporary escape in the heart of Beverly Hills." />
           <Text text="The Kimpton welcomes pets with open arms and allows you to bring as many pets as you want in all sizes for no extra fees. Your pets will receive goodies upon arriving too, such as bowls, treats, and bags." />
-          
-
+          */}        
+  
           
      
           <SingleLoadListingCard 

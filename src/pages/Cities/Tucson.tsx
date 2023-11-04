@@ -273,7 +273,7 @@ const Tucson: FC = () => {
           />
        
 
-          {/* <SingleLoadListingCard hotelName="" /> */}
+          {/* <SingleLoadListingCard hotelName="" /> 
           <Text text="The Best Western Royal Sun Inn & Suites is a charming and inviting hotel situated in the heart of Tucson, Arizona. With its warm hospitality and convenient location, this hotel is an ideal choice for both business and leisure travelers." />
           <Text text="The Best Western Royal Sun Inn & Suites is conveniently located near the University of Arizona, making it an excellent choice for parents visiting students or attendees of university events. With its friendly staff, comfortable accommodations, and central location, the Best Western Royal Sun Inn & Suites offers a pleasant and memorable stay for travelers seeking a comfortable and affordable experience in Tucson." />
           <Text text="When staying at this hotel, you are able to bring two pets that weigh up to 80 pounds for a fee of $30 per pet, per night." />
@@ -281,7 +281,7 @@ const Tucson: FC = () => {
             title="The hotel's amenities include:"
             highlights={['Heated outdoor pool', 'Fitness center', 'Free breakfast daily']}
           />
-
+          */}
 
           <Typography variant="h2">The Top Pet-Friendly Activities in Tucson</Typography>
           <Carousel

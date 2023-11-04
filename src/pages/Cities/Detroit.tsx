@@ -255,13 +255,15 @@ const Detroit: FC = () => {
             ]}
           />
 
-          {/* add hotel card 
-          <Text text="MGM Grand Detroit stands as a premier destination that seamlessly blends luxury, entertainment, and excitement in the heart of the city. This world-class resort and casino offers a captivating experience that captures the essence of both Las Vegas-style entertainment and the unique character of Detroit." />
-          <Text text="The sprawling casino floor beckons with a myriad of gaming options, while the diverse dining choices, from upscale restaurants to casual eateries, cater to every palate. The resort's entertainment venues host a variety of shows and events, adding to the vibrant atmosphere. Additionally, the spa and wellness facilities provide a haven of relaxation." />
-          <Text text="MGM Grand Detroit is pet-friendly and allows you to bring up to two dogs with a combined weight of less than 100 pounds for a fee of $100 per night, per dog." />
-          */}      
-  
 
+          <SingleLoadListingCard
+            hotelName="100467860"
+            paragraphs={[
+              "MGM Grand Detroit stands as a premier destination that seamlessly blends luxury, entertainment, and excitement in the heart of the city. This world-class resort and casino offers a captivating experience that captures the essence of both Las Vegas-style entertainment and the unique character of Detroit.",
+              "The sprawling casino floor beckons with a myriad of gaming options, while the diverse dining choices, from upscale restaurants to casual eateries, cater to every palate. The resort's entertainment venues host a variety of shows and events, adding to the vibrant atmosphere. Additionally, the spa and wellness facilities provide a haven of relaxation.",
+              "MGM Grand Detroit is pet-friendly and allows you to bring up to two dogs with a combined weight of less than 100 pounds for a fee of $100 per night, per dog."
+            ]}
+          />
 
           <SingleLoadListingCard 
             hotelName="100027845"
