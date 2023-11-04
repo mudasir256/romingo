@@ -61,7 +61,7 @@ export default function LocationPageFilterBar({ search }) {
 
   return (
     <Box display="flex" flexDirection="column" gap="0.75rem">
-      <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px'}}>
+      <Box sx={{background: 'white',  border: '1px solid #D3D3D3', borderRadius: '5px'}}>
         <GooglePlaceAutoComplete 
           width="95%" 
           setSelectedCity={setSelectedCity} 
@@ -87,7 +87,7 @@ export default function LocationPageFilterBar({ search }) {
           }}
           renderInput={(startProps, endProps) => (
               <React.Fragment>
-                <Box sx={{ width: '100%', background: 'white',  border: '1px solid #aaabab', borderRadius: '5px', p: '0.5rem', pb: '0.25rem' }}>
+                <Box sx={{ width: '100%', background: 'white',  border: '1px solid #D3D3D3', borderRadius: '5px', p: '0.5rem', pb: '0.25rem' }}>
                   <TextField 
                     variant="standard" 
                     InputProps={{
@@ -119,7 +119,7 @@ export default function LocationPageFilterBar({ search }) {
         />
       </LocalizationProvider>
 
-      <Box sx={{ border: '1px solid #aaabab', display: 'flex', p: '0.5rem', pb: '0.25rem', borderRadius: '6px' }}>
+      <Box sx={{ border: '1px solid #D3D3D3', display: 'flex', p: '0.5rem', pb: '0.25rem', borderRadius: '6px' }}>
         <FormControl 
           fullWidth
           sx={{ borderRight: 'solid #D3D3D3', mr: '0.5rem' }} 
