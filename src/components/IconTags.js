@@ -13,28 +13,28 @@ export default function IconTags() {
       gap: '1.5rem',
       flexDirection: { xs: 'column', sm: 'column', md: 'row' }
     }}>
-      <Box sx={{ maxWidth: '300px' }}>
-        <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'>
+      <Box sx={{ maxWidth: '290px' }}>
+        <Typography sx={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem' }} variant='h6'>
           <PetsIcon />
-          &nbsp;&nbsp;Pet-friendly
+          &nbsp;Pet-friendly guarantee
         </Typography>
         <Typography sx={{ fontSize: '0.9em' }}>
-          Our team has hand-selected the best pet-friendly hotels and vacation rentals in the US for you to book with Romingo.
+          Our team hand-selects hotel partners that offer a warm and welcoming stay for your four-legged friends.
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '300px' }}>
-        <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'><PaidIcon />&nbsp;&nbsp;Lowest rates</Typography>
+      <Box sx={{ maxWidth: '270px' }}>
+        <Typography sx={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem' }} variant='h6'> <CheckCircleIcon />&nbsp;Accurate pet policies</Typography>
         <Typography sx={{ fontSize: '0.9em' }}>
-          Romingo builds relationships with each of our partners to offer you the lowest rates and $0 booking fees.
+          Experience enjoyable and stress-free travels with your pets with our accurate and verified hotel pet policies.
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '300px' }}>
-        <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='h6'>
-          <CheckCircleIcon />
-          &nbsp;&nbsp;Accurate & transparent
+      <Box sx={{ maxWidth: '264px' }}>
+        <Typography sx={{ display: 'flex', alignItems: 'center', fontSize: '1.2rem' }} variant='h6'>
+          <PaidIcon />
+          &nbsp;Lowest rates
         </Typography>
         <Typography sx={{ fontSize: '0.9em' }}>
-          Our pet policies are accurate, transparent, and crystal clear. Book with Romingo for a hassle-free and enjoyable pet-friendly trip.
+          Unlike other sites, Romingo negotiates the lowest hotel rates, allowing you to travel with your pets without breaking the bank.
         </Typography>
       </Box>
     </Box>

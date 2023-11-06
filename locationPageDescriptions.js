@@ -1,19 +1,19 @@
 const HOTEL_DESCRIPTIONS = [
   {
     city: 'Austin, TX',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/austin-texas.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Austin/Austin%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Austin.jpg',
     keywords: "pet friendly hotels Austin, TX, dog friendly hotels Austin, TX, pet friendly bed &amp; breakfasts Austin, TX, dog friendly BBs Austin, TX, pet friendly vacation rentals Austin, TX, dog friendly vacation rentals Austin, TX, Austin, TX pet friendly accommodations, Austin, TX dog friendly lodging"
   },
   {
     city: 'Dallas, TX',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Dallas%20Texas.jpeg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Dallas/Dallas%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Dallas.jpg',
     keywords: "pet friendly hotels Dallas, TX, dog friendly hotels Dallas, TX, pet friendly bed &amp; breakfasts Dallas, TX, dog friendly B&amp;Bs Dallas, TX, pet friendly vacation rentals Dallas, TX, dog friendly vacation rentals Dallas, TX, Dallas, TX pet friendly accommodations, Dallas, TX dog friendly lodging"
   },
   {
     city: 'Houston, TX',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Houston%20Texas.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Houston/Houston%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Houston.jpg',
     keywords: "pet friendly hotels Houston, TX, dog friendly hotels Houston, TX, pet friendly bed & breakfasts Houston, TX, dog friendly B&Bs Houston, TX, pet friendly vacation rentals Houston, TX, dog friendly vacation rentals Houston, TX, Houston, TX pet friendly accommodations, Houston, TX dog friendly lodging"
   },
@@ -25,32 +25,32 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'Phoenix, AZ',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Phoenix%20Arizona.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Phoenix/Phoenix/Phoenix%20pet%20friendly%20hotels.webp',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Phoenix.jpg',
     keywords: "pet friendly hotels Phoenix, AZ, dog friendly hotels Phoenix, AZ, pet friendly bed & breakfasts Phoenix, AZ, dog friendly B&Bs Phoenix, AZ, pet friendly vacation rentals Phoenix, AZ, dog friendly vacation rentals Phoenix, AZ, Phoenix, AZ pet friendly accommodations, Phoenix, AZ dog friendly lodging"
   },
   {
     city: 'Scottsdale, AZ',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Scottsdale%20Arizona.jpeg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Scottsdale/Scottsdale%20pet%20friendly%20hotels.webp',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Scottsdale.jpg',
     keywords: "pet friendly hotels Scottsdale, AZ, dog friendly hotels Scottsdale, AZ, pet friendly bed & breakfasts Scottsdale, AZ, dog friendly B&Bs Scottsdale, AZ, pet friendly vacation rentals Scottsdale, AZ, dog friendly vacation rentals Scottsdale, AZ, Scottsdale, AZ pet friendly accommodations, Scottsdale, AZ dog friendly lodging"
   },
   {
     city: 'Tucson, AZ',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Tucson%20Arizona.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Tucson/Tucson%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Tucson.jpg',
     keywords: "pet friendly hotels Tucson, AZ, dog friendly hotels Tucson, AZ, pet friendly bed & breakfasts Tucson, AZ, dog friendly B&Bs Tucson, AZ, pet friendly vacation rentals Tucson, AZ, dog friendly vacation rentals Tucson, AZ, Tucson, AZ pet friendly accommodations, Tucson, AZ dog friendly lodging"
 
   },
   {
     city: 'Santa Fe, NM',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Santa%20Fe%20New%20Mexico.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Santa%20Fe/Santa%20Fe%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Santa%20Fe.jpg',
     keywords: "pet friendly hotels Santa Fe, NM, dog friendly hotels Santa Fe, NM, pet friendly bed & breakfasts Santa Fe, NM, dog friendly B&Bs Santa Fe, NM, pet friendly vacation rentals Santa Fe, NM, dog friendly vacation rentals Santa Fe, NM, Santa Fe, NM pet friendly accommodations, Santa Fe, NM dog friendly lodging"
   },
   {
     city: 'San Antonio, TX',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/San%20Antonio.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Antonio/San%20Antonio%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/San%20Antonio.jpg',
     keywords: "pet friendly hotels San Antonio, TX, dog friendly hotels San Antonio, TX, pet friendly bed & breakfasts San Antonio, TX, dog friendly B&Bs San Antonio, TX, pet friendly vacation rentals San Antonio, TX, dog friendly vacation rentals San Antonio, TX, San Antonio, TX pet friendly accommodations, San Antonio, TX dog friendly lodging"
   },
@@ -68,19 +68,19 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'Denver, CO',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Denver.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Denver/Denver%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Denver.jpg',
     keywords: "pet friendly hotels Denver, CO, dog friendly hotels Denver, CO, pet friendly bed & breakfasts Denver, CO, dog friendly B&Bs Denver, CO, pet friendly vacation rentals Denver, CO, dog friendly vacation rentals Denver, CO, Denver, CO pet friendly accommodations, Denver, CO dog friendly lodging"
   },
   {
     city: 'Seattle, WA',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Seattle.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Seattle/Seattle%20pet%20friendly%20hotels.webp',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Seattle.jpg',
     keywords: "pet friendly hotels Seattle, WA, dog friendly hotels Seattle, WA, pet friendly bed & breakfasts Seattle, WA, dog friendly B&Bs Seattle, WA, pet friendly vacation rentals Seattle, WA, dog friendly vacation rentals Seattle, WA, Seattle, WA pet friendly accommodations, Seattle, WA dog friendly lodging"
   },
   {
     city: 'Portland, OR',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Portland.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Portland/Portland%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Portland.jpg',
     keywords: "pet friendly hotels Portland, OR, dog friendly hotels Portland, OR, pet friendly bed & breakfasts Portland, OR, dog friendly B&Bs Portland, OR, pet friendly vacation rentals Portland, OR, dog friendly vacation rentals Portland, OR, Portland, OR pet friendly accommodations, Portland, OR dog friendly lodging"
   },
@@ -92,19 +92,19 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'Salt Lake City, UT',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/locations/hero/Salt%20Lake%20City.jpeg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Salt%20Lake%20City/Salt%20Lake%20City%20pet%20friendly%20hotels.jpg',
     secondaryImage: 'https://storage.googleapis.com/romingo-production-public/locations/secondary/Salt%20Lake%20City.jpg',
     keywords: "pet friendly hotels Salt Lake City, UT, dog friendly hotels Salt Lake City, UT, pet friendly bed & breakfasts Salt Lake City, UT, dog friendly B&Bs Salt Lake City, UT, pet friendly vacation rentals Salt Lake City, UT, dog friendly vacation rentals Salt Lake City, UT, Salt Lake City, UT pet friendly accommodations, Salt Lake City, UT dog friendly lodging"
   },
   {
     city: 'Palm Springs, CA',
-    heroImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-hero.jpeg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Palm%20Springs/Palm%20Springs%20pet%20friendly%20hotels.webp',
     secondaryImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/ps-4.jpeg',
     keywords: "pet friendly hotels Palm Springs, CA, dog friendly hotels Palm Springs, CA, pet friendly bed & breakfasts Palm Springs, CA, dog friendly B&Bs Palm Springs, CA, pet friendly vacation rentals Palm Springs, CA, dog friendly vacation rentals Palm Springs, CA, Palm Springs, CA pet friendly accommodations, Palm Springs, CA dog friendly lodging"
   },
   {
     city: 'Los Angeles, CA',
-    heroImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-hero.jpeg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Los%20Angeles/Los%20Angeles%20pet%20friendly%20hotels.jpeg',
     secondaryImage: 'https://storage.googleapis.com/romingo-development-public/images/front-end/la-4.jpeg',
     keywords: "pet friendly hotels Los Angeles, CA, dog friendly hotels Los Angeles, CA, pet friendly bed & breakfasts Los Angeles, CA, dog friendly B&Bs Los Angeles, CA, pet friendly vacation rentals Los Angeles, CA, dog friendly vacation rentals Los Angeles, CA, Los Angeles, CA pet friendly accommodations, Los Angeles, CA dog friendly lodging"
   },
@@ -116,13 +116,13 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'San Diego, CA',
-    heroImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sd-hero.jpeg",
+    heroImage: "https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Diego/San%20Diego%20pet%20friendly%20hotels.jpg",
     secondaryImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sd-4.jpeg",
     keywords: "pet friendly hotels San Diego, CA, dog friendly hotels San Diego, CA, pet friendly bed & breakfasts San Diego, CA, dog friendly B&Bs San Diego, CA, pet friendly vacation rentals San Diego, CA, dog friendly vacation rentals San Diego, CA, San Diego, CA pet friendly accommodations, San Diego, CA dog friendly lodging"
   },
   {
     city: 'San Francisco, CA',
-    heroImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sf-4.jpeg",
+    heroImage: "https://storage.googleapis.com/romingo-production-public/destination%20images/San%20Francisco/San%20Francisco%20pet%20friendly%20hotels.jpg",
     secondaryImage: "https://storage.googleapis.com/romingo-development-public/images/front-end/sf-4.jpeg",
     keywords: "pet friendly hotels San Francisco, CA, dog friendly hotels San Francisco, CA, pet friendly bed & breakfasts San Francisco, CA, dog friendly B&Bs San Francisco, CA, pet friendly vacation rentals San Francisco, CA, dog friendly vacation rentals San Francisco, CA, San Francisco, CA pet friendly accommodations, San Francisco, CA dog friendly lodging"
   },
@@ -134,7 +134,7 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'Atlanta',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/Atlanta%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Baltimore/Baltimore%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: "pet friendly hotels Atlanta, GA, dog friendly hotels Atlanta, GA, pet friendly bed & breakfasts Atlanta, GA, dog friendly B&Bs Atlanta, GA, pet friendly vacation rentals Atlanta, GA, dog friendly vacation rentals Atlanta, GA, Atlanta, GA pet friendly accommodations, Atlanta, GA dog friendly lodging"
   },
@@ -146,55 +146,55 @@ const HOTEL_DESCRIPTIONS = [
   },
   {
     city: 'Boston',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Boston%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Boston/Boston%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Boston, MA, dog friendly hotels Boston, MA, pet friendly bed & breakfasts Boston, MA, dog friendly B&Bs Boston, MA, pet friendly vacation rentals Boston, MA, dog friendly vacation rentals Boston, MA, Boston, MA pet friendly accommodations, Boston, MA dog friendly lodging' 
   },
   {
     city: 'Charlotte',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Charlotte%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Charlotte%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Charlotte, NC, dog friendly hotels Charlotte, NC, pet friendly bed & breakfasts Charlotte, NC, dog friendly B&Bs Charlotte, NC, pet friendly vacation rentals Charlotte, NC, dog friendly vacation rentals Charlotte, NC, Charlotte, NC pet friendly accommodations, Charlotte, NC dog friendly lodging'
   },
   {
     city: 'Chicago',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Chicago%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Chicago/Charlotte%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Chicago, IL, dog friendly hotels Chicago, IL, pet friendly bed & breakfasts Chicago, IL, dog friendly B&Bs Chicago, IL, pet friendly vacation rentals Chicago, IL, dog friendly vacation rentals Chicago, IL, Chicago, IL pet friendly accommodations, Chicago, IL dog friendly lodging'
   },
   {
     city: 'Cleveland',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Cleveland%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Cleveland/Cleveland%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Cleveland, OH, dog friendly hotels Cleveland, OH, pet friendly bed & breakfasts Cleveland, OH, dog friendly B&Bs Cleveland, OH, pet friendly vacation rentals Cleveland, OH, dog friendly vacation rentals Cleveland, OH, Cleveland, OH pet friendly accommodations, Cleveland, OH dog friendly lodging'
   },
   {
     city: 'Detroit',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Detroit%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Detroit/Detroit%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Detroit, MI, dog friendly hotels Detroit, MI, pet friendly bed & breakfasts Detroit, MI, dog friendly B&Bs Detroit, MI, pet friendly vacation rentals Detroit, MI, dog friendly vacation rentals Detroit, MI, Detroit, MI pet friendly accommodations, Detroit, MI dog friendly lodging'
   },
   {
     city: 'Indianapolis',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Indianapolis%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Indianapolis/Indianapolis%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Indianapolis, IN, dog friendly hotels Indianapolis, IN, pet friendly bed & breakfasts Indianapolis, IN, dog friendly B&Bs Indianapolis, IN, pet friendly vacation rentals Indianapolis, IN, dog friendly vacation rentals Indianapolis, IN, Indianapolis, IN pet friendly accommodations, Indianapolis, IN dog friendly lodging'
   },
   {
     city: 'Miami',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Miami%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Miami/Miami%20pet%20friendly%20hotels.webp',
     secondaryImage: '',
     keywords: 'pet friendly hotels Miami, FL, dog friendly hotels Miami, FL, pet friendly bed & breakfasts Miami, FL, dog friendly B&Bs Miami, FL, pet friendly vacation rentals Miami, FL, dog friendly vacation rentals Miami, FL, Miami, FL pet friendly accommodations, Miami, FL dog friendly lodging'
   },
   {
     city: 'Milwaukee',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Milwaukee%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Milwaukee/Milwaukee%20pet%20friendly%20hotels.webp',
     secondaryImage: '',
     keywords: 'pet friendly hotels Milwaukee, WI, dog friendly hotels Milwaukee, WI, pet friendly bed & breakfasts Milwaukee, WI, dog friendly B&Bs Milwaukee, WI, pet friendly vacation rentals Milwaukee, WI, dog friendly vacation rentals Milwaukee, WI, Milwaukee, WI pet friendly accommodations, Milwaukee, WI dog friendly lodging'
   },
   {
     city: 'Minneapolis',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/Minneapolis%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Minneapolis/Minneapolis%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels Minneapolis, MN, dog friendly hotels Minneapolis, MN, pet friendly bed & breakfasts Minneapolis, MN, dog friendly B&Bs Minneapolis, MN, pet friendly vacation rentals Minneapolis, MN, dog friendly vacation rentals Minneapolis, MN, Minneapolis, MN pet friendly accommodations, Minneapolis, MN dog friendly lodging'
   },
@@ -206,19 +206,19 @@ const HOTEL_DESCRIPTIONS = [
   // },
   {
     city: 'New Orleans',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/New%20Orleans%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/New%20Orleans/New%20Orleans%20pet%20friendly%20hotels.webp',
     secondaryImage: '',
     keywords: 'pet friendly hotels New Orleans, LA, dog friendly hotels New Orleans, LA, pet friendly bed & breakfasts New Orleans, LA, dog friendly B&Bs New Orleans, LA, pet friendly vacation rentals New Orleans, LA, dog friendly vacation rentals New Orleans, LA, New Orleans, LA pet friendly accommodations, New Orleans, LA dog friendly lodging'
   },
   {
     city: 'New York',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/New%20York%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/New%20York/New%20York%20pet%20friendly%20hotels.jpg',
     secondaryImage: '',
     keywords: 'pet friendly hotels New York, NY, dog friendly hotels New York, NY, pet friendly bed & breakfasts New York, NY, dog friendly B&Bs New York, NY, pet friendly vacation rentals New York, NY, dog friendly vacation rentals New York, NY, New York, NY pet friendly accommodations, New York, NY dog friendly lodging'
   },
   {
     city: 'Washington DC',
-    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/WashingtonDC%20Hero.jpg',
+    heroImage: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Washington%20DC/Washington%20DC%20pet%20friendly%20hotels.webp',
     secondaryImage: '',
     keywords: 'pet friendly hotels Washington, DC, dog friendly hotels Washington, DC, pet friendly bed & breakfasts Washington, DC, dog friendly B&Bs Washington, DC, pet friendly vacation rentals Washington, DC, dog friendly vacation rentals Washington, DC, Washington, DC pet friendly accommodations, Washington, DC dog friendly lodging'
   }
