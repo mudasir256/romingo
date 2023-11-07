@@ -160,37 +160,48 @@ const ListingPageNew = ({ ...props }) => {
 
   const calculateCardScore = (km, rating, price, petFee) => {
     let score = 0;
-    if (km < 3.2) {
-      score = score + 100
+    if (km < 1.60934) {
+      score = score + 150
+    } else if (km < 3.2) {
+      score = score + 125
     } else if (km < 8.04) {
       score = score + 75
-    } else if (km < 16.09) {
+    } else if (km < 11.26) {
       score = score + 50
-    } else if (km < 32.18) {
+    } else if (km < 16.09) {
       score = score + 25
+    } else if (km < 32.18) {
+      score = score + 10
     }
 
     if (rating == '4' || rating == '4.5') {
       if ((price >= 0 && price <= 400)) {
-        score = score + 75
+        score = score + 150
       } else if (price > 400) {
         score = score + 50
       }
     } 
     if (rating == '3' || rating == '3.5') {
       if ((price >= 0 && price <= 250)) {
-        score = score + 75
+        score = score + 125
       } else if (price > 250) {
-        score = score + 25
+        score = score + 75
       }
     }
+    if (rating == '2' || rating == '2.5') {
+      score = score - 50
+    }
+    if (rating == '5') {
+      score = score - 25
+    }
+
     if (petFee === 'NONE' || petFee === 'No Additional Charges') {
-      score = score + 75
+      score = score + 40
     } else {
       const value = parseInt(petFee?.split('.')?.find(item => true)?.slice(1))
       // console.log(value)
       if (value < 100) {
-        score = score + 25
+        score = score + 20
       }
     }
     return score
@@ -215,6 +226,7 @@ const ListingPageNew = ({ ...props }) => {
 
     const pointValue = calculateCardScore(km, hotel.starRating, ((pricing - tax) + markup) / diffDays, hotel.petFee)
     // console.log(pointValue)
+
     return {
       pointValue,
       imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
