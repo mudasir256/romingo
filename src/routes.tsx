@@ -117,11 +117,6 @@ const routes: RouteInterface[] = [
     requireAuth: false,
   },
   {
-    path: '/reservation/details',
-    component: YourReservationPage,
-    requireAuth: false,
-  },
-  {
     path: "/about",
     component: About,
     requireAuth: false,
@@ -223,6 +218,13 @@ const Routes = () => {
           <CheckoutPage />
         </Elements>
       </Route>
+
+      <Route exact path="/reservation/details">
+        <Elements stripe={stripePromise}>
+          <YourReservationPage />
+        </Elements>
+      </Route>
+
 
       <Route exact path="/pet-friendly-hotels/austin-texas"><Austin /></Route>
       <Route exact path="/pet-friendly-hotels/dallas-texas"><Dallas /></Route>

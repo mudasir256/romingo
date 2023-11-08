@@ -10,6 +10,7 @@ import {
   DialogActions,
   DialogTitle,
   DialogProps,
+  CircularProgress,
 } from "@mui/material";
 import { GetReservationDetails, CancelBooking } from '../constants/constants';
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
@@ -19,6 +20,7 @@ import { useSelector } from "react-redux";
 import Loader from "../components/UI/Loader";
 import MobileSearchBar from '../components/MobileHomePageFilterBar';
 import moment from 'moment'
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 const YourReservationPage: FC<Props> = () => {
   const history = useHistory();
@@ -38,6 +40,7 @@ const YourReservationPage: FC<Props> = () => {
     emailAddress = email
     confirmationNumber = confirmation
   }
+
 
   const [
     handleFindReservation,
@@ -68,19 +71,16 @@ const YourReservationPage: FC<Props> = () => {
     (state: any) => state.hotelCheckoutReducer?.checkout?.room?.room
   );
 
-  ///Modify
-  // const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
-  //   setModifyDialogOpen(true);
-  //   setScroll(scrollType);
-  // };
+
+  const [showCreditCardForm, setShowCreditCardForm] = useState(false)
+  const [loadingUpdateCC, setLoadingUpdateCC] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const elements = useElements();
+  const stripe = useStripe();
 
   const [cancellableText, setCancellableText] = useState<any>("")
-  const formatUnixLong = (timestamp: number) => {
-    return new Date(timestamp).toLocaleString()
-  }
-  const formatUnix = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString('en-US')
-  }
+  const formatUnixLong = (timestamp: number) => (new Date(timestamp).toLocaleString())
+  const formatUnix = (timestamp: number) => (new Date(timestamp).toLocaleDateString('en-US'))
 
   const getTimestamp = (timestamp) => {
     const regex = /\b\d+\b/;
@@ -96,59 +96,19 @@ const YourReservationPage: FC<Props> = () => {
   }
 
   useEffect(() => {
-    // let cancellationPolicyString = 'Refundable. Cancellation fees as follows: ';
     const oneDay = (24*60*60*1000);
     // console.log(data?.getReservationDetails?.response)
 
-    if (data){
-      const cancellationPolicy = JSON.parse(data?.getReservationDetails?.response[0].cancellation_meta);
-      console.log('cancel policy')
-      console.log(cancellationPolicy)
-      console.log(data)
+    if (data && data?.getReservationDetails) {
 
-      let isRefundable = false
-      let isFullRefund = false
-      if (cancellationPolicy && cancellationPolicy.length === 1 && cancellationPolicy[0].CancellationFee?.FinalPrice == data?.getReservationDetails.response[0].bookingPrice) {
-        isRefundable = false
-        const dateFrom = cancellationPolicy[0].DateFrom
-
-        const date1 = new Date(getTimestamp(dateFrom)).getTime();
-        const date2 = new Date().getTime();
-        const diffTime = Math.abs(date2 - date1);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-
-        console.log(diffDays)
-        if (diffDays < 2) {
-          isRefundable = false
-
-        } else {
-          isRefundable = true
-          isFullRefund = true
-        }
-
-      } else if (cancellationPolicy && cancellationPolicy.length === 2) {
-        isRefundable = true
+      const cancellationPolicy = JSON.parse(data?.getReservationDetails?.response[0].cancellation_meta);      
+      if (data?.getReservationDetails?.response[0].isRefundable) {
+        setCancellableText(`Cancel before ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleDateString()} ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleTimeString('en-US')} for a full refund. Please allow 5-7 business days for a refund to process. Cancellations after will be considered a no-show and you will be charged the full reservation price.`)
       } else {
-        console.log('unhandled')
-        //TODO: flag this, we haven't covered this case
+        setCancellableText('This rate is non-refundable.')
       }
-
-      let cancellationPolicyString = ''
-      if (isRefundable && isFullRefund) {
-        cancellationPolicyString = `Cancel before ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleDateString()} ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleTimeString('en-US')} for a full refund. Please allow 5-7 business days for a refund to process. Cancellations after will be considered a no-show and you will be charged the full reservation price.`
-      } else if (isRefundable) {
-        cancellationPolicyString = `Cancel before ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleDateString()} ${new Date(getTimestamp(cancellationPolicy[0].DateFrom)).toLocaleTimeString('en-US')} for a partial refund. You will be charged a cancellation fee of $${cancellationPolicy[0].CancellationFee?.FinalPrice}. Cancellations after will be considered a no-show and you will be charged the full reservation price.`
-      } else {
-        cancellationPolicyString = 'This rate is non-refundable.'
-      }
-
-      // const search = JSON.parse(data?.getReservationDetails?.response[0].searchData)
-      // for (let i = 0; i< cancellationPolicy.length ;i++){
-      //   cancellationPolicyString += `(${new Date(getTimestamp(cancellationPolicy[i].DateFrom)).toLocaleDateString()} - ${cancellationPolicy[i + 1] ? new Date(getTimestamp(cancellationPolicy[i + 1].DateFrom) - oneDay).toLocaleDateString() : new Date(search.checkOut).toLocaleDateString()} - ${cancellationPolicy[i].CancellationFee.FinalPrice}) `
-      // }
-      setCancellableText(cancellationPolicyString)
+    
     }
-
   }, [data])
 
   const handleCancelBooking = (confirmationId: any) => {
@@ -177,18 +137,87 @@ const YourReservationPage: FC<Props> = () => {
     }
   }
 
+  const handleUpdatePaymentMethod = async (bookingId, email, firstName, lastName, bookingPrice) => {
+    if (!showCreditCardForm) {
+      setShowCreditCardForm(true)
+      return
+    }
+
+    if (stripe && elements) {
+      setLoadingUpdateCC(true)
+      const getSetupIntent = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/stripe/setup-intent`, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({ email }), // b
+      })
+      const data = await getSetupIntent.json()
+
+      const cardElement = await elements.getElement(CardElement);
+      if (!cardElement) {
+        throw 'Something unexpected occurred. Please try again.'
+      }
+
+      const { error, setupIntent } = await stripe.confirmCardSetup(
+        data.clientSecret,
+        {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: `${firstName} ${lastName}`,
+            },
+          },
+        }
+      )
+      console.log(setupIntent)
+
+      const updateCC = await fetch(`${process.env.REACT_APP_BASE_ENDPOINT}v2/update-booking/cc`, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+          bookingId,
+          setupIntent: setupIntent,
+          customerId: data.customerId,
+          finalPrice: bookingPrice
+        })
+      })
+ 
+
+      setLoadingUpdateCC(false)
+      setShowCreditCardForm(false)
+      setSuccessMessage('Your payment information has been updated.')
+    }
+
+  }
+
 
   const headerStyle = {
     fontSize: '1.5em',
-    fontFamily: "overpass-regular",
     textAlign: "center"
+  }
+
+
+
+  if (loading) {
+    return (<p>Loading...</p>)
+  }
+
+  if (data?.getReservationDetails === null) {
+    return (<p>No reservation with this confirmation ID found.</p>)
   }
 
   return (
     <Box>
       <Navbar />
-      {loading ? <p>Loading...</p>
-        :
+    
         <Box sx={{ mx: 'auto', maxWidth: '660px' }}>
           {!data?.getReservationDetails?.response?.length &&
             <Box sx={{ ml: '2em', mt: '3em' }}>
@@ -232,6 +261,15 @@ const YourReservationPage: FC<Props> = () => {
               </Grid>
               <Grid item xs={3} md={4}
               >
+                <Typography>Confirmation ID:</Typography>
+              </Grid>
+              <Grid item xs={9} md={8}
+              >
+                <Typography>{reservation?.bookingId}</Typography>
+              </Grid>
+
+              <Grid item xs={3} md={4}
+              >
                 <Typography>Hotel Name:</Typography>
               </Grid>
               <Grid item xs={9} md={8}
@@ -271,7 +309,7 @@ const YourReservationPage: FC<Props> = () => {
                 <Typography>Occupants</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>Adults: {JSON.parse(reservation.searchData).occupants.adults}, Children: {JSON.parse(reservation.searchData).occupants.children}, Dogs: {JSON.parse(reservation.searchData).occupants.dogs}</Typography>
+                <Typography>Adults: {JSON.parse(reservation.searchData)?.adults}, Children: {JSON.parse(reservation.searchData)?.children?.length}, Dogs: {JSON.parse(reservation.searchData)?.dogs}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
@@ -287,6 +325,57 @@ const YourReservationPage: FC<Props> = () => {
               <Grid item xs={9} md={8} >
                 <Typography>{cancellableText}</Typography>
               </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Payment Status:</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>{reservation.isPaid ? 'PAID' : 'Not paid'} {reservation.paymentFailed && ', please update your payment information.'}</Typography>
+              </Grid>
+              <Grid item xs={3} md={4}
+              >
+                <Typography>Payment Method on File:</Typography>
+              </Grid>
+              <Grid item xs={9} md={8} >
+                <Typography>&#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; {reservation?.card?.card.last4} | exp: <span style={{fontSize: '0.8rem'}}>{reservation?.card?.card.exp_month} / {reservation?.card.card.exp_year}</span></Typography>
+              </Grid>
+              {successMessage &&
+                <Grid item xs={12}><Typography sx={{ color: 'green' }}>{successMessage}</Typography></Grid>
+              }
+
+              {showCreditCardForm && 
+                <Grid item xs={12}>
+                   <Box
+                    className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1hy0p19-MuiInputBase-root-MuiOutlinedInput-root"
+                    sx={{ border: "1px solid rgba(0, 0, 0, 0.2)" }}
+                    pr="1rem"
+                  >
+                    <CardElement
+                      options={{
+                        iconStyle: "solid",
+                        classes: {
+                          base: "MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input",
+                        },
+                        style: {
+                          base: {
+                            fontFamily: `"Work Sans", "Montserrat", sans-serif`,
+                            iconColor: "#03989E",
+                            fontSize: "16px",
+                            color: "rgba(0, 0, 0, 0.78)",
+                            "::placeholder": {
+                              color: "rgba(0, 0, 0, 0.58)",
+                            },
+                          },
+                          invalid: {
+                            color: "#9e2146",
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              }
+
               <Grid
                 sx={{
                   display: "flex",
@@ -296,25 +385,26 @@ const YourReservationPage: FC<Props> = () => {
                 xs={12}
                 md={12}
               >
-                {reservation.reservationStatus == 'upcoming' && reservation.status !== 'cancelled' ? (
+                {reservation.status !== 'cancelled' ? (
                   <>
                     <Button
                       variant="outlined"
-                      color="error"
+                      color="success"
+                      onClick={() => handleUpdatePaymentMethod(reservation.bookingId, reservation.email, reservation.firstName, reservation.lastName, reservation.bookingPrice)}
                       sx={{ mr: 2 }}
+                    >
+                      {loadingUpdateCC ? <CircularProgress /> : 'Update payment method'}
+                    </Button>
+
+                    <Button
+                      variant="outlined"
+                      color="error"
+                   
                       onClick={() => handleCancelBooking(reservation.bookingId)}
                     >
                       Cancel
                     </Button>
-                    {/* 
-                    <Button
-                      variant="outlined"
-                      color="success"
-                      onClick={handleClickOpen('body')}
-                    >
-                      Modify
-                    </Button>
-                    */}
+         
                   </>
                 ) : (
                   <Button
@@ -352,7 +442,7 @@ const YourReservationPage: FC<Props> = () => {
 
 
         </Box>
-      }
+     
       <Dialog
         open={modifyDialogOpen}
         onClose={() => setModifyDialogOpen(false)}
