@@ -285,14 +285,14 @@ const YourReservationPage: FC<Props> = () => {
               </Grid>
               <Grid item xs={3} md={4}
               >
-                <Typography>Check In Time</Typography>
+                <Typography>Check In:</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
                 <Typography>{formatUnix(reservation.checkInTime)}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
-                <Typography>Check Out Time</Typography>
+                <Typography>Check Out:</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
                 <Typography>{formatUnix(reservation.checkOutTime)}</Typography>
@@ -332,13 +332,15 @@ const YourReservationPage: FC<Props> = () => {
               <Grid item xs={9} md={8} >
                 <Typography>{reservation.isPaid ? 'PAID' : 'Not paid'} {reservation.paymentFailed && ', please update your payment information.'}</Typography>
               </Grid>
-              <Grid item xs={3} md={4}
-              >
-                <Typography>Payment Method on File:</Typography>
-              </Grid>
-              <Grid item xs={9} md={8} >
-                <Typography>&#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; {reservation?.card?.card.last4} | exp: <span style={{fontSize: '0.8rem'}}>{reservation?.card?.card.exp_month} / {reservation?.card.card.exp_year}</span></Typography>
-              </Grid>
+              {reservation?.card?.card?.last4 && <>
+                <Grid item xs={3} md={4}
+                >
+                  <Typography>Payment Method on File:</Typography>
+                </Grid>
+                <Grid item xs={9} md={8} >
+                  <Typography>&#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; {reservation?.card?.card?.last4} | exp: <span style={{fontSize: '0.8rem'}}>{reservation?.card?.card?.exp_month} / {reservation?.card?.card?.exp_year}</span></Typography>
+                </Grid>
+              </>}
               {successMessage &&
                 <Grid item xs={12}><Typography sx={{ color: 'green' }}>{successMessage}</Typography></Grid>
               }
