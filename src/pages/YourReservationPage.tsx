@@ -341,6 +341,11 @@ const YourReservationPage: FC<Props> = () => {
                   <Typography>&#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; &#x2022;&#x2022;&#x2022;&#x2022; {reservation?.card?.card?.last4} | exp: <span style={{fontSize: '0.8rem'}}>{reservation?.card?.card?.exp_month} / {reservation?.card?.card?.exp_year}</span></Typography>
                 </Grid>
               </>}
+              {reservation.paymentFailed &&
+                 <Grid item xs={12}>
+                   <Typography sx={{ fontSize: '0.9rem', color: 'red'}}>We couldn&apos;t charge this payment method. Please update this payment method or your reservation will be canceled.</Typography>
+                 </Grid>
+              }
               {successMessage &&
                 <Grid item xs={12}><Typography sx={{ color: 'green' }}>{successMessage}</Typography></Grid>
               }
