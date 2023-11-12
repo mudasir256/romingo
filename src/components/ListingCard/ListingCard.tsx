@@ -159,6 +159,8 @@ const ListingCard: FC<ListingCardProps> = ({
   taxRate,
   distanceFromSearch,
   search,
+  petBeds,
+  petBowls,
   ...props
 }) => {
   const history = useHistory();
@@ -301,7 +303,7 @@ const ListingCard: FC<ListingCardProps> = ({
           flexDirection: { xs: "column", sm: "row" },
           maxWidth: "100%",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: { xs: "center", sm: 'center', md: 'flex-start' },
           background: "#fff",
           transition: "all .25s ease-in-out",
           border: "1px solid #ddd",
@@ -314,8 +316,8 @@ const ListingCard: FC<ListingCardProps> = ({
       >
         <Box
           sx={{
-            width: { xs: "100%", sm: 400, md: 350, lg: 350 },
-            height: { xs: "auto", sm: 211, md: '283px' },
+            width: { xs: "100%", sm: 400, md: 460, lg: 460 },
+            height: { xs: "auto", sm: 211, md: '300px' },
           }}
         >
           <ImageSlider
@@ -370,7 +372,7 @@ const ListingCard: FC<ListingCardProps> = ({
                 fontWeight: 800,
                 letterSpacing: "0px",
                 width: '100%',
-                maxWidth: '480px',
+                maxWidth: '440px',
                 overflow: 'hidden',
                 mt: { xs: '0.2rem', sm: '0.2rem', md: '0.5rem' },
                 whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
@@ -397,7 +399,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
             <Box
               sx={{
-                mb: { xs: "0.75em", sm: "0.5rem" },
+                mb: { xs: "0.5em", sm: "0rem" },
               }}
             >
               <HotelTags 
@@ -405,6 +407,8 @@ const ListingCard: FC<ListingCardProps> = ({
                 pet_fee_value={hotel?.pet_fee_value}
                 pet_size={hotel?.pet_size}
                 pet_allowance={hotel?.pet_allowance}
+                pet_bowls={hotel?.petBowls}
+                pet_beds={hotel?.petBeds}
               />
             </Box>
 
@@ -415,7 +419,7 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                mb: '1.5rem',
+                mb: '1.25rem',
               }}
             >
               <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#0070C0'}}>Free cancellation</Typography>

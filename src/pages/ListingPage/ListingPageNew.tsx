@@ -252,6 +252,8 @@ const ListingPageNew = ({ ...props }) => {
       pet_fee: hotel.petFee,
       pet_allowance: hotel.petAllowance,
       pet_size: hotel.petSize,
+      petBowls: hotel.petBowls,
+      petBeds: hotel.petBeds,
       cat_policy: hotel.catPolicy,
       travolutionaryId: hotel.travolutionaryId,
       amenities: hotel.amenities?.map(amenity => amenity.code) || [],
@@ -284,6 +286,8 @@ const ListingPageNew = ({ ...props }) => {
         pet_fee: hotel.petFee,
         pet_allowance: hotel.petAllowance,
         pet_size: hotel.petSize,
+        petBowls: hotel.petBowls,
+        petBeds: hotel.petBeds,
         cat_policy: hotel.catPolicy
       }
 

@@ -157,7 +157,7 @@ const SantaFe: FC = () => {
         alt={city}
         sx={{
           objectFit: "cover",
-          width: { xs: '95%', sm: '95%', md: "85%" },
+          width: { xs: '95%', sm: '95%', md: "65%" },
           m: { xs: '0.5rem', sm: '0.5rem', md: '2rem' },
           borderRadius: '10px',
           height: { xs: "40vh", md: "70vh" },

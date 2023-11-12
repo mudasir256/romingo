@@ -403,53 +403,6 @@ const GetStripeClientSecret = `
   }
 `;
 
-const GetPropertyDetails = `
-  query GetPropertyDetailInput($alias: String!) {
-    getPropertyDetails(input: { alias: $alias }) {
-      addressLine1        
-      alias          
-      city {
-        id
-        name
-        state {
-          id
-          code
-          name
-          country {
-            id
-            name
-          }
-        }
-      }    
-      checkoutPagePromoText
-      desc              
-      detailsPagePromoText 
-      dogAmenities    
-      featuredImageURL 
-      googlePlaceId      
-      id             
-      imageURLs      
-      name             
-      romingoScore
-      listingsPagePromoText
-      page_rank          
-      allows_big_dogs
-      hotelEmail    
-      hotelAlternativeEmail
-      sabreId
-      zipCode
-      lowestAveragePrice
-      petFeePolicy {
-        maxPets
-        maxWeightPerPetInLBS
-        desc
-        perPet
-        perNight
-        breakup
-      }
-    }
-  }
-`
 
 const GetSabreRoomReservations = `
   query GetAvailableRoomsInput(
@@ -788,6 +741,7 @@ const UserProfile = `
   }
 `
 
+/* Listings Page Callout */
 const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => { return `query {
   getHotels(input: {adults: ${adults},
   checkInDate: "${checkIn}",
@@ -815,6 +769,8 @@ const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, 
       petFeeDetail
       petSize
       petAllowance
+      petBowls
+      petBeds
       unattendedPets
       petAmenities
       petReliefArea
@@ -923,7 +879,6 @@ export {
   CreateBooking,
   CreateBooking2,
   GetStripeClientSecret,
-  GetPropertyDetails,
   GetSabreRoomReservations,
   GetReservationDetails,
   CancelBooking,

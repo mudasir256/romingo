@@ -14,7 +14,7 @@ interface Props {
   page?: string;
 }
 
-const ImageSlider: FC<Props> = ({ sx, images, height= '284px', name, forceLarge, imageCount = 10, page }) => {
+const ImageSlider: FC<Props> = ({ sx, images, height= '301px', name, forceLarge, imageCount = 10, page }) => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [item, setItem] = useState(0);
 

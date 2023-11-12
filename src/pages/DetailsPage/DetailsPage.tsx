@@ -102,7 +102,6 @@ import { RoomInfo } from "../../components/RoomCard/RoomCard";
 
 import { gql, useQuery } from "@apollo/client";
 import { 
-  GetPropertyDetails, 
   GetSabreRoomReservations,
   GetSabrePropertyDetails,
   TripHotelList,
@@ -220,18 +219,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     return str?.replace("http:", "");
   };
 
-
-  const { data, loading, error } = useQuery(
-    gql`
-      ${GetPropertyDetails}
-    `,
-    {
-      variables: {
-        alias:hotelAlias,
-      },
-    }
-  );
-
+  const data = {}
 
   const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
     gql`${TripHotelList}`,
@@ -315,7 +303,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
   const [markers, setMarkers] = useState<
     { lat: number; lng: number; type: string; label: string }[]
   >([]);
-
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const isMobile = useMediaQuery("(max-width: 800px)");
@@ -590,7 +577,6 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
       {!loading && data && (
         <Box
           component="img"
-          src={removeHttpLink(data?.getPropertyDetails?.featuredImageURL)}
           alt={name}
           boxShadow={2}
           onClick={handleOpen}
@@ -608,21 +594,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
           }}
         />
       )}
-      {loading && (
-        <Hidden mdUp>
-          <Skeleton
-            variant="rectangular"
-            animation="wave"
-            sx={{
-              height: { xs: "200px", sm: "300px" },
-              objectFit: "cover",
-              mx: "0px",
-              px: 0,
-              width: "100%",
-            }}
-          />
-        </Hidden>
-      )}
+   
       <Container sx={{ mt: { xs: 0, md: 3 }, mb: { xs: 10, lg: 3 } }}>
         <Typography variant="h5" sx={{mb: 3}}>{locationState.state?.flag}</Typography>
         <Grid container spacing={2} sx={{ position: "relative" }}>

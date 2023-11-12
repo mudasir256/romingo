@@ -49,7 +49,15 @@ const iconSpacing = {
 
 
 
-const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size, dogAmenities = [] }) => {
+const HotelTags: FC<Props> = ({ 
+  pet_fee,
+  pet_allowance,
+  pet_fee_value, 
+  pet_size, 
+  dogAmenities = [],
+  pet_bowls,
+  pet_beds
+}) => {
   
   const [showExtraInfo, setShowExtraInfo] = useState(false)
   const [showMobileExtraInfo, setShowMobileExtraInfo] = useState(false)
@@ -102,25 +110,28 @@ const HotelTags: FC<Props> = ({ pet_fee, pet_allowance, pet_fee_value, pet_size,
 
  
 
-      {dogAmenities.includes("dog beds & bowls") && (
+      {(pet_beds || pet_bowls) ? (
         <>
           <Chip
             size="small"
             sx={chipIconStyle}
-            icon={<img width="20px" src={GiftIcon} />}
-            label={<Box sx={iconSpacing} display="flex" alignItems="center" gap="0.25rem">Free pet amenities 
-              <Info fontSize="xs" sx={{ display: { xs: 'none' , sm: 'none', md: 'block'} }} onMouseEnter={() => setShowExtraInfo(true)} onMouseLeave={() => setShowExtraInfo(false)} /> 
+            icon={<img width="17px" src={GiftIcon} />}
+            label={<Box sx={{ ml: '0.25rem' }} display="flex" alignItems="center" gap="0.25rem">free pet amenities 
+              {/* <Info fontSize="xs" sx={{ display: { xs: 'none' , sm: 'none', md: 'block'} }} onMouseEnter={() => setShowExtraInfo(true)} onMouseLeave={() => setShowExtraInfo(false)} /> 
               <Info fontSize="xs" sx={{ display: { xs: 'block' , sm: 'block', md: 'none'} }} onClick={() => setShowMobileExtraInfo(!showMobileExtraInfo)} /> 
+              */}
             </Box>}
           />
+          {/*
           {showExtraInfo && <Box position="relative">
             <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Romingo guests will receive use of free pet amenities at this hotel including pet beds, bowls, and treats (subject to availability).</Typography></Box>
           </Box>}
           {showMobileExtraInfo && <Box mt="0.5rem">
             <Typography variant="caption">*Romingo guests will receive use of free pet amenities at this hotel including pet beds, bowls, and treats (subject to availability).</Typography>
           </Box>}
+          */}
         </>
-      )}
+      ) : <Box sx={{ height: { xs: 0, sm: 0, md: '24px' } }} /> }
     </Box>
 
 
