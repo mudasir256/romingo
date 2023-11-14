@@ -28,7 +28,6 @@ const YourReservationPage: FC<Props> = () => {
   let confirmationNumber = history.location.state?.confirmationNumber;
 
   const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
-  const [succesAlert, setSuccesAlert] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(true);
   const [confirmationId, setConfirmationId] = useState("");
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
@@ -127,8 +126,10 @@ const YourReservationPage: FC<Props> = () => {
         }
       }).then((status) => {
         console.log(status)
+        if (status?.data?.cancelBookingUsingTravolutionary?.response === null) {
+          history.push('/listings')
+        }
         if (status?.data?.cancelBookingUsingTravolutionary?.response?.Status === 'CX') {
-          setSuccesAlert(true)
           setOpenCancelConfirmation(false)
           setIsAlertOpen(true)
           history.push('/listings')
@@ -316,7 +317,7 @@ const YourReservationPage: FC<Props> = () => {
                 <Typography>Total Price</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>${reservation.bookingPrice}</Typography>
+                <Typography>${parseFloat(reservation.bookingPrice).toFixed(2)}</Typography>
               </Grid>
               <Grid item xs={3} md={4}
               >
@@ -330,7 +331,9 @@ const YourReservationPage: FC<Props> = () => {
                 <Typography>Payment Status:</Typography>
               </Grid>
               <Grid item xs={9} md={8} >
-                <Typography>{reservation.isPaid ? 'PAID' : 'Not paid'} {reservation.paymentFailed && ', please update your payment information.'}</Typography>
+                <Typography>{reservation.isPaid 
+                  ? 'PAID' 
+                  : `Not paid ${reservation.status !== 'cancelled' ? ': your payment method will be charged 1-2 days prior to the cancellation deadline.' : ''}`} {reservation.paymentFailed && ', please update your payment information.'}</Typography>
               </Grid>
               {reservation?.card?.card?.last4 && <>
                 <Grid item xs={3} md={4}
