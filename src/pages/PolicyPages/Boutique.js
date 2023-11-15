@@ -8,6 +8,7 @@ import {
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -120,14 +121,41 @@ export default function Boutique() {
 			<Content text="Now that we've covered the benefits of choosing a dog-friendly boutique hotel, let's take a closer look at some of the top hotels across the United States." />
 
 			<Typography variant="p" mb="0.5rem"><b>West Coast:</b></Typography>
-			<Content text="1. The Kimpton Hotel Monaco, Seattle, Washington: Located in the heart of downtown Seattle, this hotel offers luxurious accommodations for both you and your furry friend. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats." />
+			
+			<Box my="1rem" display="flex" flexDirection="column" gap="1rem">
+				<SingleLoadListingCard 
+					hotelName="100212948" 
+					paragraphs={[
+						"Located in the heart of downtown Seattle, this hotel offers luxurious accommodations for both you and your furry friend. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats."
+					]}
+				/>
+		
+
+			</Box>
 			<Content text="2. Cypress Inn, Carmel-by-the-Sea, California: This hotel was co-owned by actress Doris Day, who was a devoted animal lover. It's located just a few blocks from the beach and welcomes dogs of all sizes. The hotel provides a variety of pet amenities, including pet beds, food, water bowls, and treats." />
 
 			<Typography variant="p" mb="0.5rem"><b>Midwest:</b></Typography>
-			<Content text="3. The Iron Horse Hotel, Milwaukee, Wisconsin: This hotel is a great spot for pet owners who want to explore Milwaukee with their furry friend. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats. Plus, the hotel is located in the trendy Walker's Point neighborhood, known for its excellent restaurants and nightlife." />
-			<Content text="4. Hotel Covington, Covington, Kentucky: This chic boutique hotel is located just across the river from Cincinnati, Ohio. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats. Plus, the hotel is just a short walk from local parks and dog-friendly restaurants." />
+			
+
+			<Box my="1rem" display="flex" flexDirection="column" gap="1rem">
+				<SingleLoadListingCard 
+					hotelName="100432980" 
+					paragraphs={[
+						"This hotel is a great spot for pet owners who want to explore Milwaukee with their furry friend. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats. Plus, the hotel is located in the trendy Walker's Point neighborhood, known for its excellent restaurants and nightlife."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100369016" 
+					paragraphs={[
+						"This chic boutique hotel is located just across the river from Cincinnati, Ohio. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats. Plus, the hotel is just a short walk from local parks and dog-friendly restaurants."
+					]}
+				/>
+			
+
+			</Box>
 
 			<Typography variant="p" mb="0.5rem"><b>East Coast:</b></Typography>
+		
 			<Content text="5. The Goodwin Hotel, Hartford, Connecticut: This hotel is located in the heart of downtown Hartford and offers stylish accommodations for both you and your furry friend. Dogs of all sizes are welcome, and the hotel provides pet beds, food, water bowls, and treats. Plus, the hotel is just a short drive from several dog-friendly parks." />
 			<Content text="6. Hotel Indigo, Savannah, Georgia: Located in the heart of Savannah's historic district, this hotel welcomes dogs of all sizes. The hotel provides pet beds, food, water bowls, and treats. Plus, the hotel's central location makes it easy to explore Savannah with your furry friend." />
 
