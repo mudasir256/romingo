@@ -8,6 +8,7 @@ import {
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
+import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
@@ -69,6 +70,44 @@ export default function Hilton() {
 			<Typography mt="2rem" mb="0.5rem" variant="h5">Pet-Friendly Hilton Hotels: Where to Stay with Your Furry Friend</Typography>
 			<Typography variant="base">If you&apos;re planning a vacation with your furry friend, it can be challenging to find pet-friendly hotels that are accommodating and comfortable. However, Hilton Hotels have several pet-friendly options that are perfect for you and your pet. Let&apos;s take a closer look at the best pet-friendly Hilton hotels and what makes them stand out.</Typography>
 
+			<Box display="flex" flexDirection="column" gap="1rem" mt="1rem">
+				<SingleLoadListingCard 
+					hotelName="100428462" 
+					paragraphs={[
+						"First on the list is Hilton Hotels & Resorts, a top-tier brand within the Hilton portfolio. Hilton Hotels & Resorts provides spacious and luxurious accommodations that cater to both guests and their pets. The hotel welcomes pets weighing up to 75 pounds and even provides a comfortable bed, food, and water bowls. Additionally, there is a designated pet area for you to take your furry friend for a stroll."
+					]}
+				/>
+
+
+			<SingleLoadListingCard 
+				hotelName="100007982" 
+				paragraphs={[
+					"If you're looking for a more relaxed and comfortable atmosphere, Embassy Suites by Hilton might be the perfect option for you. The hotel provides two-room suites, perfect for those traveling with pets. These suites offer separate living and sleeping areas, providing ample space for both you and your furry companion. The hotel also provides a complimentary cooked-to-order breakfast, ensuring you start your day on a high note."
+				]}
+			/>
+
+			<SingleLoadListingCard 
+				hotelName="100204686" 
+				paragraphs={[
+					"For a modern and affordable option, look no further than Home2 Suites by Hilton. This unique hotel provides pet-friendly accommodations that won't break the bank. The hotel features a designated pet area, perfect for your furry friend to play and relax, as well as a complimentary breakfast. The hotel's spacious suites also include a kitchen, perfect for preparing your meals if you're traveling with your pet."
+				]}
+			/>
+
+			<SingleLoadListingCard 
+				hotelName="100029914" 
+				paragraphs={[
+					"Hilton Garden Inn is another great option for those seeking a comfortable and convenient pet-friendly hotel. The hotel provides comfortable rooms and suites that cater to both you and your pet. Additionally, the hotel has a designated pet area where your furry friend can play and relax."
+				]}
+			/>
+
+			<SingleLoadListingCard 
+				hotelName="100015990" 
+				paragraphs={[
+					"Last but not least, DoubleTree by Hilton is another top option for pet-friendly accommodations. The hotel offers spacious rooms and suites that provide plenty of space for you and your furry friend. Additionally, the hotel provides a warm chocolate chip cookie at check-in, which is a nice touch."
+				]}
+			/>
+			</Box>
+			{/*
 			<Typography mt="2rem" mb="0.5rem" variant="h5">1. Hilton Hotels & Resorts</Typography>
 			<Typography variant="base">First on the list is Hilton Hotels & Resorts, a top-tier brand within the Hilton portfolio. Hilton Hotels & Resorts provides spacious and luxurious accommodations that cater to both guests and their pets. The hotel welcomes pets weighing up to 75 pounds and even provides a comfortable bed, food, and water bowls. Additionally, there is a designated pet area for you to take your furry friend for a stroll.</Typography>
 		
@@ -83,6 +122,7 @@ export default function Hilton() {
 
 			<Typography mt="2rem" mb="0.5rem" variant="h5">5. DoubleTree by Hilton</Typography>
 			<Typography variant="base">Last but not least, DoubleTree by Hilton is another top option for pet-friendly accommodations. The hotel offers spacious rooms and suites that provide plenty of space for you and your furry friend. Additionally, the hotel provides a warm chocolate chip cookie at check-in, which is a nice touch.</Typography>
+			*/}
 
 			<Typography mt="2rem" mb="0.5rem" variant="h5">How to Find and Book Pet-Friendly Rooms at Hilton Hotels</Typography>
 			<img src={Two} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
@@ -109,19 +149,7 @@ export default function Hilton() {
 			<img src={Five} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Typography variant="base">When preparing for a trip with pets to a Hilton hotel, it is important to plan ahead. Be sure to bring along any necessary supplies and medications your pet may need during the stay. Additionally, you should make sure your pet is up-to-date on all vaccinations and has a collar and tags with your contact information in case they get lost. Finally, it is important to be aware of the local laws and regulations regarding animals when traveling.</Typography>
 			
-			<Box mt="1rem" />
-			{hotels.map(card => (
-				<Box key={card.id} sx={{ py: '0.5rem' }}>
-					<ListingCard
-						{...card}
-						duration={2}
-						highlighted={false}
-						limitImages={true}
-						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
-					/>
-				</Box>
-			))}
-			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+	
 		</Box>
 		<Footer />
 	</>)

@@ -8,6 +8,7 @@ import {
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
+import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
@@ -83,8 +84,8 @@ export default function Marriott() {
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<br />
-			<Content text="Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it's important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free." />
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Marriott Hotels Pet Policy: An Overview</Typography>
+			<Content text="Marriott Hotels is a global hotel brand that prides itself on providing comfortable and convenient accommodations for travelers. They also have a reputation for being pet-friendly, allowing guests to bring their furry friends along for the journey. Before booking your stay at a Marriott hotel with your pet, it's important to understand their pet policy and any associated fees or restrictions. Luckily, with resources like Romingo, finding and booking pet-friendly rooms at Marriott hotels is easy and stress-free." />
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Content text="Marriott Hotels allows guests to bring up to two pets per room, with a weight limit of 150 pounds per pet. The pets allowed at Marriott hotels include dogs, cats, birds, and fish. Marriott also welcomes service animals at all of their locations. Guests who wish to bring their pets to Marriott hotels will be charged a non-refundable fee of $100 per stay and an additional cleaning fee in some cases." />
 
@@ -96,11 +97,36 @@ export default function Marriott() {
 			<Header text="Pet-Friendly Marriott Hotel Brands" />
 			<Content text="Marriott has several pet-friendly hotel brands, offering a range of options for you and your furry friend. Some of the most pet-friendly Marriott brands include:" />
 
+			<Box mt="1rem" display="flex" flexDirection="column" gap="1rem">
+				<SingleLoadListingCard 
+					hotelName="100014070" 
+					paragraphs={[
+						"The Ritz-Carlton is a luxurious hotel brand that welcomes pets at select locations. They offer special amenities such as gourmet treats and pet-sitting services."
+					]}
+				/>
+
+				<SingleLoadListingCard 
+					hotelName="100014664" 
+					paragraphs={[
+						"Westin is a high-end hotel brand that allows pets at select locations. They offer special amenities such as dog beds, food bowls, and treats."
+					]}
+				/>
+
+				<SingleLoadListingCard 
+					hotelName="100036916" 
+					paragraphs={[
+						"Residence Inn is an extended-stay hotel brand that allows pets at all of their locations. They offer spacious suites with full kitchens, perfect for travelers with pets."
+					]}
+				/>
+
+			</Box>
+			{/*
 			<ul>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>The Ritz-Carlton</b>: The Ritz-Carlton is a luxurious hotel brand that welcomes pets at select locations. They offer special amenities such as gourmet treats and pet-sitting services.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Residence Inn</b>: Residence Inn is an extended-stay hotel brand that allows pets at all of their locations. They offer spacious suites with full kitchens, perfect for travelers with pets.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Westin Hotels & Resorts</b>: Westin is a high-end hotel brand that allows pets at select locations. They offer special amenities such as dog beds, food bowls, and treats.</li>
 			</ul>
+			*/}
 
 			<Header text="Amenities and Services Provided for Pets at Marriott Hotels:" />
 			<img src={Two} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
@@ -137,21 +163,7 @@ export default function Marriott() {
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}>Be respectful of other guests at the hotel, and keep your pet on a leash in common areas.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}>Clean up after your pet and dispose of waste properly.</li>
 			</ul>
-
-			<Box mt="1rem" />
-			{hotels.map(card => (
-				<Box key={card.id} sx={{ py: '0.5rem' }}>
-					<ListingCard
-						{...card}
-						duration={2}
-						highlighted={false}
-						limitImages={true}
-						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
-					/>
-				</Box>
-			))}
-			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
-		
+	
 		</Box>
 		<Footer />
 	</>)

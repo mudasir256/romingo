@@ -90,7 +90,9 @@ export default function Boutique() {
 
 		<Navbar />
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem' }}>
+	
 			<br />
+			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Boutique Pet Policy Hotels: An Overview</Typography>
 			<Content text="Are you tired of leaving your furry best friend behind when you hit the road for a vacation? Well, we've got some good news for you! Dog-friendly boutique hotels are on the rise, and we've put together the ultimate guide to help you find the perfect spot for you and your pooch." />
 			<Content text="Traveling with your dog can be a game-changer. No more guilt-ridden goodbyes and no more worrying about your furry friend's well-being while you're away. Plus, having your dog by your side can make for an even more enjoyable trip! You'll have a built-in companion for long hikes, beach days, and exploring new places." />
 			<Content text="In this article, we'll introduce you to the world of dog-friendly boutique hotels, highlight why they're a better choice than traditional hotel chains for pet owners, and give you the lowdown on the top hotels across the United States. We'll also provide some tips and tricks for traveling with your furry friend and answers to some frequently asked questions. So buckle up, grab your pup, and let's dive in!" />
@@ -164,19 +166,7 @@ export default function Boutique() {
 
 			<img src={Four} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			
-			<Box mt="1rem" />
-			{hotels.map(card => (
-				<Box key={card.id} sx={{ py: '0.5rem' }}>
-					<ListingCard
-						{...card}
-						duration={2}
-						highlighted={false}
-						limitImages={true}
-						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
-					/>
-				</Box>
-			))}
-			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+			
 		</Box>
 		<Footer />
 	</>)

@@ -100,20 +100,20 @@ const DetailsPage1 = ({ ...props }) => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
   // console.log(diffDays)
 
-  // const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
-  //   gql`${TripHotelList}`,
-  //   {
-  //     variables: {
-  //       hotel_ids: hotelId,
-  //       hotel_id_type: 'TA',
-  //       checkIn: search?.checkIn.substring(0, 10),
-  //       checkOut: search?.checkOut.substring(0, 10),
-  //       num_adults: search?.occupants?.adults.toString(),
-  //       num_rooms: '1',
-  //       currency: 'USD'
-  //     }
-  //   }
-  // )
+  const { data: priceCheck, loading: taLoading, error: taError } = useQuery(
+    gql`${TripHotelList}`,
+    {
+      variables: {
+        hotel_ids: hotelId,
+        hotel_id_type: 'TA',
+        checkIn: search?.checkIn.substring(0, 10),
+        checkOut: search?.checkOut.substring(0, 10),
+        num_adults: search?.occupants?.adults.toString(),
+        num_rooms: '1',
+        currency: 'USD'
+      }
+    }
+  )
   
   // console.log(priceCheck)
 
@@ -723,7 +723,7 @@ const DetailsPage1 = ({ ...props }) => {
           </Box>
         </Grid>
 
-      {/*
+   
       <Grid
           item
           xs={12}
@@ -749,7 +749,7 @@ const DetailsPage1 = ({ ...props }) => {
           </Box>    
           </>}
         </Grid>
-      */}
+
 
   
         {/* <Grid item xs={12} md={3}><Hidden mdDown>

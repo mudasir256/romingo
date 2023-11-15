@@ -67,7 +67,7 @@ const stateCodes = {
 		"WY": "Wyoming"
 }
 
-export default function SingleLoadListingCard({ hotelName, paragraphs = [] }) {
+export default function SingleLoadListingCard({ hotelName, paragraphs = [], displayNormal = false}) {
 
 	const [card, setCard] = useState(null)
 	const mobile = useMediaQuery("(max-width:800px)");
@@ -104,6 +104,30 @@ export default function SingleLoadListingCard({ hotelName, paragraphs = [] }) {
 
 	const hotelUrl = `/pet-friendly-hotel/${slugify(stateCodes[card?.state])}/${slugify(card?.city)}/${card?.alias}`
 
+	if (displayNormal) {
+		return (
+			<ListingCard 
+				id={card?.travolutionaryId}
+				imageURLs={card?.images}
+				name={card?.hotelName}
+				addressLine1={card?.addressLine}
+				romingoScore={card?.starRating}
+				numberOfReviews={card?.numberOfReviews}
+				city={card?.city}
+				showPrice={false}
+				alias={card?.alias}
+				hotel={{
+					id: card?.travolutionaryId,
+					pet_fee: card?.petFee,
+					pet_fee_value: card?.petFeeValue,
+					pet_size: card?.petSize,
+					pet_allowance: card?.petAllowance
+				}}
+				state={card?.state}
+				zipcode={card?.zipcode}
+			/>
+		)
+	}
 
 
 	return(<Box display="flex" flexDirection="row" gap="1rem" justifyContent="justify-between">

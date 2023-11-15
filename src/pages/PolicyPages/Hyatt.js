@@ -8,6 +8,7 @@ import {
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -115,19 +116,28 @@ export default function Hyatt() {
 				<li style={{ marginBottom: '0.5rem', fontSize: '1rem'}}>Clean up after your pet and dispose of waste properly.</li>
 			</ul>
 
-			<Box mt="1rem" />
-			{hotels.map(card => (
-				<Box key={card.id} sx={{ py: '0.5rem' }}>
-					<ListingCard
-						{...card}
-						duration={2}
-						highlighted={false}
-						limitImages={true}
-						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
-					/>
-				</Box>
-			))}
-			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+			<Box mt="1rem" display="flex" flexDirection="column" gap="1rem">
+				<SingleLoadListingCard 
+					hotelName="100003526" 
+					displayNormal={true}
+				/>
+				<SingleLoadListingCard 
+					hotelName="102100211" 
+					displayNormal={true}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100038252" 
+					displayNormal={true}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100191176" 
+					displayNormal={true}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100086998" 
+					displayNormal={true}
+				/>
+			</Box>
 		</Box>
 		<Footer />
 	</>)

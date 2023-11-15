@@ -8,6 +8,7 @@ import {
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
+import SingleLoadListingCard from '../../components/SingleLoadListingCard';
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -77,7 +78,69 @@ export default function IHG() {
 			<img src={One} width="100%" style={{ borderRadius: 5, marginTop: '0.5rem', marginBottom: '1rem' }} />
 			<Typography variant="base">Traveling with your furry companion can be a fun adventure, but it&apos;s crucial to make sure you&apos;re booking a pet-friendly hotel. IHG Hotels & Resorts is a leading hospitality company that offers pet-friendly options across many of its 17 distinct brands. Whether you&apos;re looking for a luxury experience or a budget-friendly stay, there&apos;s an IHG brand that caters to your needs and welcomes your furry friend. Let&apos;s take a closer look at IHG&apos;s pet policies and highlight some of the best pet-friendly options in the portfolio.</Typography>
 
-			<Header text="Top 10 Pet-Friendly IHG Hotel Brands" />
+			<Header text="Top 9 Pet-Friendly IHG Hotel Brands" />
+			
+			<Box mt="1rem" display="flex" flexDirection="column" gap="1rem">
+				<SingleLoadListingCard 
+					hotelName="101034302" 
+					paragraphs={[
+						"Value brand with free breakfast and fresh coffee, pet policies vary by property with some allowing pets for a reasonable fee of $20 per night."
+					]}
+				/>
+
+				<SingleLoadListingCard 
+					hotelName="100039890" 
+					paragraphs={[
+						"Extended-stay brand with fully-equipped kitchens, outdoor grills, and free laundry, all locations are pet-friendly with a non-refundable fee of $75 for stays up to 6 nights and $150 for stays 7 nights or longer."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100135376" 
+					paragraphs={[
+						"Found in cities and urban areas with solid Wi-Fi, premium bedding, gyms, and on-site dining, pet policies vary by location with fees ranging from $75 to $100."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100206366" 
+					paragraphs={[
+						"Wellness-focused brand with fitness, dining, relaxation, and sleeping pillars, pets must weigh less than 50 pounds with a fee of $100 per stay."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100396330" 
+					paragraphs={[
+						"Well-known brand with affordable prices and free hot breakfast, many locations allow dogs with fees around $50 per stay."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100329848" 
+					paragraphs={[
+						"Family-friendly brand with activities included, many locations accept pets with fees around $50."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100007904" 
+					paragraphs={[
+						"Luxury brand with fine dining and spas, some locations allow small dogs for fees up to $250."
+					]}
+				/>
+				<SingleLoadListingCard 
+					hotelName="100399492" 
+					paragraphs={[
+						"Boutique brand focused on art, wellness, and dining with a “sincerely personal” guest experience, all hotels are pet-friendly with no extra charge for pets of any size, weight, or breed."
+					]}
+				/>
+	
+				<SingleLoadListingCard 
+					hotelName="100079452" 
+					paragraphs={[
+						"Extended-stay brand with all-suite accommodations and home-away-from-home amenities, dogs under 50 pounds are welcome with fees around $75 for a 1-week stay."
+					]}
+				/>
+
+			</Box>
+
+			{/* 
 			<ul>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Atwell Suites</b>: All-suites brand with co-working spaces and free breakfast, dogs under 40 pounds are welcome but must be crated when the guest is away.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Avid Hotels</b>: Value brand with free breakfast and fresh coffee, pet policies vary by property with some allowing pets for a reasonable fee of $20 per night.</li>
@@ -91,6 +154,7 @@ export default function IHG() {
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Mr & Mrs Smith</b>: Boutique hotel travel club with access to hundreds of unique properties around the world that tend to be pet-friendly, amenities for pets include beds, special menus, toys, walking options, and massages.</li>
 				<li style={{ marginBottom: '1rem', fontSize: '1rem'}}><b>Staybridge Suites</b>: Extended-stay brand with all-suite accommodations and home-away-from-home amenities, dogs under 50 pounds are welcome with fees around $75 for a 1-week stay.</li>
 			</ul>
+				*/}
 
 			<Header text="Pet-Friendly Amenities at IHG Hotels" />
 			<Content text="In addition to allowing pets at many of their hotels, IHG offers pet-friendly amenities to make your furry friend feel right at home. Depending on the brand and location, amenities may include pet beds, bowls, treats, and even designated pet areas. Some hotels may also offer pet walking services or recommendations for local pet-friendly parks and trails." />
@@ -112,20 +176,7 @@ export default function IHG() {
 
 			<Header text="Why IHG Hotels Are Great For Pet-Friendly Stays" />
 			<Content text="IHG Hotels are the perfect place for a pet-friendly stay because they offer a variety of brands that cater to different travel styles, from extended-stay suites to luxury resorts. With some planning and preparation, guests can enjoy a stress-free stay with their pets and create unforgettable memories together." />
-
-			<Box mt="1rem" />
-			{hotels.map(card => (
-				<Box key={card.id} sx={{ py: '0.5rem' }}>
-					<ListingCard
-						{...card}
-						duration={2}
-						highlighted={false}
-						limitImages={true}
-						petFeePolicy={{ ...card.petFeePolicy, totalFees: utils.computePetFeePolicyTotalFees(2, 1, card.petFeePolicy)}} 
-					/>
-				</Box>
-			))}
-			{loading && <Box><ListingCardSkeleton key={0} /><ListingCardSkeleton key={0} /></Box>}
+		
 		</Box>
 		<Footer />
 	</>)
