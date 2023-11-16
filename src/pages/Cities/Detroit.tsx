@@ -222,7 +222,7 @@ const Detroit: FC = () => {
             hotelName="100000998" 
             paragraphs={[
               "The Westin Book Cadillac Detroit stands as an iconic testament to the city's rich history and vibrant future. Its grand architecture and sophisticated interiors harken back to a bygone era, while the meticulously designed rooms and suites offer contemporary comfort and breathtaking city views.",
-              "As a cornerstone of Detroit's skyline, The Westin Book Cadillac plays a vital role in the city's revitalization, providing a haven for travelers and locals alike. With its upscale dining options, rejuvenating spa, and convenient access to nearby attractions, this hotel captures the essence of Detroit's resilience and resurgence, welcoming visitors to experience the perfect fusion of past and present.",
+              //"As a cornerstone of Detroit's skyline, The Westin Book Cadillac plays a vital role in the city's revitalization, providing a haven for travelers and locals alike. With its upscale dining options, rejuvenating spa, and convenient access to nearby attractions, this hotel captures the essence of Detroit's resilience and resurgence, welcoming visitors to experience the perfect fusion of past and present.",
               "The Westin Book Cadillac Detroit is a pet-friendly hotel that allows you to bring two pets weighing up to 40 pounds for no additional fee. Upon arrival, pets receive a warm greeting, complete with a pet bed and food/water bowls for their comfort. The hotel's concierge can also provide information about nearby parks and pet-friendly attractions, making it easy for you and your pet to explore the city together."
             ]}
           />
@@ -231,7 +231,7 @@ const Detroit: FC = () => {
             hotelName="100087944" 
             paragraphs={[
               "Nestled within the historic David Whitney Building, Aloft Detroit at the David Whitney offers a refreshing blend of contemporary design and historic charm. The revitalized interiors boast a vibrant and energetic atmosphere, showcasing artistic flair and innovative architecture. The rooms and suites exude a youthful and dynamic vibe, providing guests with a comfortable and stylish retreat.",
-              "With its prime location, Aloft Detroit offers easy access to the city's cultural, culinary, and entertainment offerings. Whether enjoying the panoramic views from the rooftop bar or immersing oneself in the surrounding cultural scene, Aloft Detroit at The David Whitney promises a wonderful experience.",
+             // "With its prime location, Aloft Detroit offers easy access to the city's cultural, culinary, and entertainment offerings. Whether enjoying the panoramic views from the rooftop bar or immersing oneself in the surrounding cultural scene, Aloft Detroit at The David Whitney promises a wonderful experience.",
               "Aloft Detroit at The David Whitney is pet-friendly and welcomes pets of all sizes with no additional fees. They offer plush pet beds and delicious treats upon check-in. The hotel's central location in downtown Detroit also allows for easy access to various pet-friendly parks and walking trails."
             ]}
           />
@@ -240,7 +240,7 @@ const Detroit: FC = () => {
             hotelName="100087656"
             paragraphs={[
               "Trumbull & Porter Hotel, formerly a warehouse, has been transformed into a contemporary haven that reflects Detroit's vibrant arts and culture scene. The industrial-chic design seamlessly blends raw elements with modern comforts, offering guests a unique and immersive stay. The rooms and suites boast a minimalist yet stylish aesthetic, providing a cozy retreat after a day of exploring the city.",
-              "With its emphasis on community and local collaboration, the hotel serves as a hub for both travelers and Detroit residents, hosting events, pop-up shops, and art exhibitions. Its central location allows easy access to Detroit's bustling neighborhoods, museums, and dining destinations.",
+             // "With its emphasis on community and local collaboration, the hotel serves as a hub for both travelers and Detroit residents, hosting events, pop-up shops, and art exhibitions. Its central location allows easy access to Detroit's bustling neighborhoods, museums, and dining destinations.",
               "Trumbull & Porter Hotel is pet-friendly and allows dogs that weigh 75 pounds or less. They charge a fee of $50 per day, per pet."
             ]}
           />
@@ -250,7 +250,7 @@ const Detroit: FC = () => {
             hotelName="100596287"
             paragraphs={[
               "The Shinola Hotel stands as a true embodiment of luxury craftsmanship and urban sophistication in the heart of downtown Detroit. Collaboratively designed and curated with meticulous attention to detail, this boutique hotel represents a fusion of Shinola's commitment to quality and Detroit's storied history.",
-              "The Shinola Hotel goes beyond accommodation, offering an array of dining options, from upscale restaurants to cozy cafes, all emphasizing locally sourced ingredients. With its strategic location, guests can effortlessly explore the city's cultural landmarks, entertainment venues, and business districts.",
+             // "The Shinola Hotel goes beyond accommodation, offering an array of dining options, from upscale restaurants to cozy cafes, all emphasizing locally sourced ingredients. With its strategic location, guests can effortlessly explore the city's cultural landmarks, entertainment venues, and business districts.",
               "The Shinola Hotel is pet-friendly and allows you to bring two pets that weigh less than 70 pounds for no additional fee."
             ]}
           />
@@ -260,7 +260,7 @@ const Detroit: FC = () => {
             hotelName="100467860"
             paragraphs={[
               "MGM Grand Detroit stands as a premier destination that seamlessly blends luxury, entertainment, and excitement in the heart of the city. This world-class resort and casino offers a captivating experience that captures the essence of both Las Vegas-style entertainment and the unique character of Detroit.",
-              "The sprawling casino floor beckons with a myriad of gaming options, while the diverse dining choices, from upscale restaurants to casual eateries, cater to every palate. The resort's entertainment venues host a variety of shows and events, adding to the vibrant atmosphere. Additionally, the spa and wellness facilities provide a haven of relaxation.",
+             // "The sprawling casino floor beckons with a myriad of gaming options, while the diverse dining choices, from upscale restaurants to casual eateries, cater to every palate. The resort's entertainment venues host a variety of shows and events, adding to the vibrant atmosphere. Additionally, the spa and wellness facilities provide a haven of relaxation.",
               "MGM Grand Detroit is pet-friendly and allows you to bring up to two dogs with a combined weight of less than 100 pounds for a fee of $100 per night, per dog."
             ]}
           />
@@ -269,7 +269,7 @@ const Detroit: FC = () => {
             hotelName="100027845"
             paragraphs={[
               "Housed within the historic Wurlitzer Building, The Siren Hotel exudes an ambiance that transports guests to a bygone era, with its carefully curated interiors and intricate architectural details.",
-              "The Siren Hotel not only offers a comfortable stay but also embraces a sense of community through its communal spaces, which include an inviting lobby, a rooftop bar with panoramic city views, and a variety of dining options that celebrate local flavors. With its central location, guests can effortlessly explore Detroit's cultural landmarks, theaters, and bustling streets.",
+              //"The Siren Hotel not only offers a comfortable stay but also embraces a sense of community through its communal spaces, which include an inviting lobby, a rooftop bar with panoramic city views, and a variety of dining options that celebrate local flavors. With its central location, guests can effortlessly explore Detroit's cultural landmarks, theaters, and bustling streets.",
               "The Siren Hotel is pet-friendly and allows you to bring one dog up to 50 pounds for no additional fee."
             ]}
           />

@@ -248,7 +248,7 @@ const Atlanta: FC = () => {
             hotelName="100668120" 
             paragraphs={[
               "The Kimpton Overland is a modern, pet-friendly hotel in Atlanta located just outside of the city. The Kimpton is a great choice for your next trip because they love when you bring your pets with you! When staying at this hotel, you can spend time enjoying the Porsche Experience Center. The Hartsfield-Jackson Atlanta International Airport is nearby, making this hotel great for traveling.",
-              "The Kimpton Overland is one of the most pet-friendly hotels we've found. They get excited when you bring your pets on your trip, so this is a great travel option. When traveling here with your pet, you will not have to pay a deposit for your stay. There is no size or weight limit to your pet and you can bring as many furry friends as you'd like.",
+              //"The Kimpton Overland is one of the most pet-friendly hotels we've found. They get excited when you bring your pets on your trip, so this is a great travel option. When traveling here with your pet, you will not have to pay a deposit for your stay. There is no size or weight limit to your pet and you can bring as many furry friends as you'd like.",
               "Water bowls will be delivered to your room and you'll receive bags for walking your dog. There are also dedicated floors for travelers with pets. As long as your pet can fit in the elevator, they are welcome to join you!",  
             ]}
           />

@@ -230,7 +230,7 @@ const Washington: FC = () => {
             hotelName="100069144" 
             paragraphs={[
               "The Jefferson, Washington DC, is a luxurious and pet-friendly boutique hotel that exudes sophistication and historical charm. Welcoming pets of all sizes, this elegant accommodation offers a refined stay for both guests and their furry companions. ",
-              "The hotel provides pet-friendly rooms with plush bedding, water bowls, and a thoughtful turndown service to make your pet feel pampered. With its prime location near the White House and other iconic landmarks, The Jefferson ensures that both you and your pet have an unforgettable experience in the nation's capital.",
+             // "The hotel provides pet-friendly rooms with plush bedding, water bowls, and a thoughtful turndown service to make your pet feel pampered. With its prime location near the White House and other iconic landmarks, The Jefferson ensures that both you and your pet have an unforgettable experience in the nation's capital.",
               "The Jefferson, Washington DC is pet-friendly and allows you to bring your dogs for a fee of $50 per stay."
             ]}
           />
@@ -239,7 +239,7 @@ const Washington: FC = () => {
             hotelName="100191036" 
             paragraphs={[
               "Nestled in the vibrant Adams Morgan neighborhood, The LINE DC is a pet-friendly hotel that offers a blend of contemporary design and cultural immersion. Welcoming pets with open arms, the hotel features pet-friendly rooms equipped with comfortable amenities and pet essentials. ",
-              "The LINE DC's central location allows you and your pet to explore the city's eclectic dining scene, pet-friendly parks, and cultural attractions while enjoying a unique and artistic ambiance.",
+             // "The LINE DC's central location allows you and your pet to explore the city's eclectic dining scene, pet-friendly parks, and cultural attractions while enjoying a unique and artistic ambiance.",
               "The LINE DC is pet-friendly and allows you to bring pets of all sizes for no additional cost."
             ]}
           />
@@ -248,7 +248,7 @@ const Washington: FC = () => {
             hotelName="100145410"
             paragraphs={[
               "The Fairmont Washington DC is a luxurious and pet-friendly hotel situated in the heart of the city. Welcoming pets to stay with their human companions, the hotel offers pet-friendly rooms and provides amenities upon request. ",
-              "Guests and their furry friends can enjoy the hotel's elegant ambiance and convenient location near the city's landmarks, museums, and pet-friendly activities, creating a memorable and indulgent stay for both you and your pets.",
+            //  "Guests and their furry friends can enjoy the hotel's elegant ambiance and convenient location near the city's landmarks, museums, and pet-friendly activities, creating a memorable and indulgent stay for both you and your pets.",
               "The Fairmont Washington DC is pet-friendly and allows you to bring one pet of any size for no additional fee."
             ]} 
           />
@@ -257,7 +257,7 @@ const Washington: FC = () => {
             hotelName="00179670" 
             paragraphs={[
               "Overlooking the picturesque Potomac River, the Salamander, Washington DC, is a pet-friendly hotel that offers a serene and luxurious experience for both guests and their pets. Welcoming pets of all sizes, the hotel provides pet-friendly rooms with comfortable accommodations and ensures your pet feels pampered throughout their stay. ",
-              "With its prime location near the National Mall and other attractions, guests and their furry companions can immerse themselves in the city's history and cultural offerings while enjoying impeccable hospitality.",
+             // "With its prime location near the National Mall and other attractions, guests and their furry companions can immerse themselves in the city's history and cultural offerings while enjoying impeccable hospitality.",
               "Salamander is a dog friendly property and allows you to bring up to 2 dogs with a maximum combined weight of 40lbs. The hotel requires a $150 pet fee upon check-in. "
             ]}
           />
@@ -266,7 +266,7 @@ const Washington: FC = () => {
             hotelName="100208430" 
             paragraphs={[
               "Located in the charming Georgetown neighborhood, The Westin Georgetown is a pet-friendly hotel that offers a tranquil and relaxing retreat for both you and your furry friend. Welcoming pets of all sizes, the hotel provides comfortable accommodations and designated pet-friendly areas where your pet can unwind and play.",
-              "The Westin Georgetown's central location allows you to explore the historic streets, pet-friendly shops, and outdoor cafes in the neighborhood, making it an excellent choice for pet owners seeking a pet-friendly getaway in Washington, D.C.",
+             // "The Westin Georgetown's central location allows you to explore the historic streets, pet-friendly shops, and outdoor cafes in the neighborhood, making it an excellent choice for pet owners seeking a pet-friendly getaway in Washington, D.C.",
               "The Westin Georgetown is pet-friendly and allows you to bring a dog weighing less than 40 pounds for a fee of $25 per night."
             ]}
           />

@@ -229,8 +229,8 @@ const Chicago: FC = () => {
             hotelName="100159836" 
             paragraphs={[
               "The Gwen, a Luxury Collection Hotel, is a refined and opulent oasis nestled in the heart of downtown Chicago. Boasting an exquisite blend of modern sophistication and timeless elegance, The Gwen offers an unparalleled experience for discerning travelers.",
-              "The Gwen also offers an array of amenities, including a rooftop terrace with breathtaking views of the city skyline, a state-of-the-art fitness center, and world-class dining options. Upon arrival, your pet will receive a warm welcome with special treats, a cozy bed, and bowls for food and water. The hotel's central location allows for easy access to pet-friendly attractions, parks, and walking paths, making it a top choice for pet owners seeking convenience and style.",
-              "The Gwen, a Luxury Collection Hotel is pet-friendly and allows pets up to 40 pounds for a fee of $125 per stay.",
+              //"The Gwen also offers an array of amenities, including a rooftop terrace with breathtaking views of the city skyline, a state-of-the-art fitness center, and world-class dining options. Upon arrival, your pet will receive a warm welcome with special treats, a cozy bed, and bowls for food and water. The hotel's central location allows for easy access to pet-friendly attractions, parks, and walking paths, making it a top choice for pet owners seeking convenience and style.",
+              //"The Gwen, a Luxury Collection Hotel is pet-friendly and allows pets up to 40 pounds for a fee of $125 per stay.",
               "Upon arrival, your pet will receive a warm welcome with special treats, a cozy bed, and bowls for food and water. The hotel's central location allows for easy access to pet-friendly attractions, parks, and walking paths, making it a top choice for pet owners seeking convenience and style."
             ]}
           />
@@ -240,7 +240,7 @@ const Chicago: FC = () => {
             hotelName="100290782" 
             paragraphs={[
               "Kimpton Hotel Monaco Chicago is a luxurious and pet-friendly hotel located in the heart of downtown Chicago. As part of the renowned Kimpton Hotels group, the Monaco offers a sophisticated and inviting ambiance that caters to both human guests and their furry companions.",
-              "As part of the renowned Kimpton Hotels group, the Monaco is renowned for its pet-friendly policies. They offer a &quot;VIPaws&quot; program, ensuring that your pet receives royal treatment during their stay. The hotel provides pet beds, food, and water bowls, and even has a concierge available to assist with pet sitting, dog walking, and grooming arrangements. Furthermore, there are no size or weight restrictions on pets, making this hotel an excellent choice for travelers with larger breeds.",
+              //"As part of the renowned Kimpton Hotels group, the Monaco is renowned for its pet-friendly policies. They offer a &quot;VIPaws&quot; program, ensuring that your pet receives royal treatment during their stay. The hotel provides pet beds, food, and water bowls, and even has a concierge available to assist with pet sitting, dog walking, and grooming arrangements. Furthermore, there are no size or weight restrictions on pets, making this hotel an excellent choice for travelers with larger breeds.",
               "Kimpton Hotel Monaco Chicago is pet-friendly and there are no size or weight restrictions for pets, making it an ideal choice for all pet owners. The hotel provides pet beds, food and water bowls, and even offers pet sitting, dog walking, and grooming services. With its central location, guests can easily explore the city's vibrant attractions and return to the hotel's elegant and comfortable rooms after a day of adventure."
             ]}
           />
@@ -249,7 +249,7 @@ const Chicago: FC = () => {
             hotelName="100047378" 
             paragraphs={[
               "The Royal Sonesta Chicago River North is a very pet-friendly hotel located in the heart of Chicago. This urban retreat is a beautiful hotel, where luxury and modernity converge. The hotel features a gorgeous indoor swimming pool, a spacious indoor sundeck for lounging, a modern and buzzing lobby bar, and many pet-friendly offerings.",
-              "The Royal Sonesta Chicago River North is perfectly located for walks with your pet along the river, shopping at the numerous pet-friendly shops in River North, and tons of outdoor patios for dining with your pet. The Royal Sonesta Chicago River North also offers a pet-friendly welcome program, which welcomes your pet with beds, bowls, and treats upon arrival.",
+              //"The Royal Sonesta Chicago River North is perfectly located for walks with your pet along the river, shopping at the numerous pet-friendly shops in River North, and tons of outdoor patios for dining with your pet. The Royal Sonesta Chicago River North also offers a pet-friendly welcome program, which welcomes your pet with beds, bowls, and treats upon arrival.",
               "The hotel welcomes 2 pets per reservation with a one-time non-refundable fee of $75.00 per stay. Included in this fee is the use of pet beds, bowls, and treats. Additionally, there is ample pet relief space within walking distance from the hotel."
             ]}
           />
@@ -266,7 +266,7 @@ const Chicago: FC = () => {
             hotelName="100136199" 
             paragraphs={[
               "Aloft Chicago Mag Mile is a trendy and pet-friendly hotel located in the heart of Chicago's Magnificent Mile. The hotel's prime location allows for easy access to the city's renowned shopping, dining, and entertainment options, while its pet-friendly policies ensure that your furry friend can join in on the fun.",
-              "Aloft Chicago Mag Mile is pet-friendly and allows you to bring pets that weigh up to 40 pounds for no additional fee.",
+             // "Aloft Chicago Mag Mile is pet-friendly and allows you to bring pets that weigh up to 40 pounds for no additional fee.",
               'Upon arrival, pets receive a warm welcome with the "ARF" (Animals Are Fun) program, which includes pet beds, food and water bowls, and a complimentary pet toy. There are no size or weight restrictions for pets, making Aloft a fantastic option for all pet owners.'
             ]}
           />
@@ -275,7 +275,7 @@ const Chicago: FC = () => {
             hotelName="100026030"
             paragraphs={[
               "The Westin Chicago River North is an upscale and pet-friendly hotel situated in the heart of downtown Chicago, overlooking the scenic Chicago River. With its sophisticated and contemporary design, the hotel offers a luxurious retreat.",
-              "The Westin offers an array of amenities, including a fitness center, a rooftop bar with stunning city views, and a delicious on-site restaurant. Its central location grants easy access to popular attractions and pet-friendly parks.",
+              //"The Westin offers an array of amenities, including a fitness center, a rooftop bar with stunning city views, and a delicious on-site restaurant. Its central location grants easy access to popular attractions and pet-friendly parks.",
               "The Westin Chicago River North is pet-friendly and allows you to bring one dog that weighs up to 35 pounds for no additional fee."
             ]}
           />
@@ -284,7 +284,7 @@ const Chicago: FC = () => {
             hotelName="100431386" 
             paragraphs={[
               "The W Chicago - Lakeshore is a luxurious and stylish hotel nestled along the scenic shores of Lake Michigan in Chicago, Illinois. Boasting a prime location, this upscale hotel offers breathtaking views of the iconic Navy Pier and the city skyline.",
-              "The hotel's amenities are equally impressive, with a fitness center offering cutting-edge equipment and a serene spa where guests can indulge in rejuvenating treatments. The on-site dining options are second to none, with a stylish rooftop lounge providing delicious cocktails and panoramic views of the lake and city lights.",
+              //"The hotel's amenities are equally impressive, with a fitness center offering cutting-edge equipment and a serene spa where guests can indulge in rejuvenating treatments. The on-site dining options are second to none, with a stylish rooftop lounge providing delicious cocktails and panoramic views of the lake and city lights.",
               "W Chicago - Lakeshore is pet-friendly and allows you to bring up to two pets per room for a $100 fee, plus a $25 nightly fee per pet."
             ]}
           />

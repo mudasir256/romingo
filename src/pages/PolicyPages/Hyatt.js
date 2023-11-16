@@ -9,6 +9,8 @@ import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
+import LocationPageFilterBar from '../../components/LocationPageFilterBar'
+import IconTags from '../../components/IconTags';
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -20,25 +22,7 @@ const Three = 'https://www.romingo.com/public/images/policy-images/hyatt-3.jpg';
 
 export default function Hyatt() {
 
-	const [hotels, setHotels] = useState([])
-	const [loading, setLoading] = useState(true)
 
-	const fetchHotels = async () => {
-		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hyatt', {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				}
-			})
-		const data = await result.json()
-		console.log(data)
-		setHotels(data.hotels)
-		setLoading(false)
-	}
-
-	useEffect(() => {
-		fetchHotels()
-	}, [])
 
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h5">{text}</Typography>
@@ -58,7 +42,56 @@ export default function Hyatt() {
 		</Helmet>
 
 		<Navbar />
+
+		<Box 
+			sx={{ flexDirection: { xs: 'column-reverse', sm: 'column-reverse', md: 'row' } }} 
+			display="flex"  
+			gap="1rem" 
+			alignItems="center"
+			maxWidth="1800px"
+			mx="auto"
+		>
+
+			<Box 
+				borderRadius={4}
+				backgroundColor="white" 
+				sx={{
+					width: { xs: 'auto', sm: 'auto', md: '420px' },
+					p: { xs: '1rem', sm: '1rem', md: '1.5rem' },
+					pt: { xs: 0, sm: 0 },
+					left: { xs: 0, sm: 0, md: '7%' },
+					boxShadow: { xs: 0, sm: 0, md: 3 },
+					position: { xs: 'relative', sm: 'relative', md: 'relative' }
+				}}
+			>
+				<Typography variant="h4" component="h1">Find pet-friendly Hyatt Hotels on Romingo</Typography>
+				<Typography variant="base">The hassle free way to travel with your pet</Typography>
+				<Box sx={{  width: '100%', mt: '1rem' }}>
+					<LocationPageFilterBar />
+				</Box>
+			</Box>
+
+			<Box
+				component="img"
+				src="https://storage.googleapis.com/romingo-production-public/Pet%20Policy%20Images/ae1f9151-4525-4f36-8350-4f3a345f360a.jpg"
+				alt="hyatt hotel"
+				sx={{
+					objectFit: "cover",
+					width: { xs: '95%', sm: '95%', md: "65%" },
+					m: { xs: '0.5rem', sm: '0.5rem', md: '2rem' },
+					borderRadius: '10px',
+					height: { xs: "40vh", md: "70vh" },
+					boxShadow: 0,
+				}}
+			/>
+		</Box>
+
+		<Box maxWidth="920px" mx="auto" px="1rem" sx={{ py: { xs: '1rem', sm: '1rem', md: '4rem'} }}>
+			<IconTags />
+		</Box>
+
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
+
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hyatt Hotels Pet Policy: What You Need to Know</Typography>
 			<Typography variant="base">Are you planning to travel with your furry friend and looking for a pet-friendly hotel? Look no further than Hyatt, a hotel brand that has a longstanding commitment to creating comfortable and welcoming experiences for both pets and their owners. But before booking your stay, it&apos;s important to understand Hyatt&apos;s pet policy and any fees and restrictions that come with bringing your pet along. Luckily, you don&apos;t have to navigate this process alone. Romingo is the premier resource for booking pet-friendly hotels, and we&apos;ve got all the information you need to plan the perfect pet-friendly getaway with Hyatt.</Typography>
 

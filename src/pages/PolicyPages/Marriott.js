@@ -9,6 +9,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
+import LocationPageFilterBar from '../../components/LocationPageFilterBar'
+import IconTags from '../../components/IconTags';
 
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
@@ -20,49 +22,6 @@ const Three = 'https://www.romingo.com/public/images/policy-images/marriott-3.jp
 
 export default function Marriott() {
 
-	const [hotels, setHotels] = useState([])
-	const [loading, setLoading] = useState(true)
-
-	const fetchHotels = async () => {
-		const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Westin', {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				}
-			})
-		const data = await result.json()
-
-		const result2 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Residence', {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				}
-			})
-		const data2 = await result2.json()
-
-		const result3 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Aloft', {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				}
-			})
-		const data3 = await result3.json()
-
-		const result4 = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Sheraton', {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				}
-			})
-		const data4 = await result4.json()
-		
-		setHotels([...data.hotels, ...data2.hotels, ...data3.hotels, ...data4.hotels])
-		setLoading(false)
-	}
-
-	useEffect(() => {
-		fetchHotels()
-	}, [])
 
 	const Header = ({ text }) => (
 		<Typography mt="2rem" mb="0.5rem" variant="h5">{text}</Typography>
@@ -82,6 +41,54 @@ export default function Marriott() {
 		</Helmet>
 
 		<Navbar />
+
+		<Box 
+			sx={{ flexDirection: { xs: 'column-reverse', sm: 'column-reverse', md: 'row' } }} 
+			display="flex"  
+			gap="1rem" 
+			alignItems="center"
+			maxWidth="1800px"
+			mx="auto"
+		>
+
+			<Box 
+				borderRadius={4}
+				backgroundColor="white" 
+				sx={{
+					width: { xs: 'auto', sm: 'auto', md: '420px' },
+					p: { xs: '1rem', sm: '1rem', md: '1.5rem' },
+					pt: { xs: 0, sm: 0 },
+					left: { xs: 0, sm: 0, md: '7%' },
+					boxShadow: { xs: 0, sm: 0, md: 3 },
+					position: { xs: 'relative', sm: 'relative', md: 'relative' }
+				}}
+			>
+				<Typography variant="h4" component="h1">Find pet-friendly Marriot Hotels on Romingo</Typography>
+				<Typography variant="base">The hassle free way to travel with your pet</Typography>
+				<Box sx={{  width: '100%', mt: '1rem' }}>
+					<LocationPageFilterBar />
+				</Box>
+			</Box>
+
+			<Box
+				component="img"
+				src="https://storage.googleapis.com/romingo-production-public/Pet%20Policy%20Images/d425a322-f45f-427e-ab7f-7959c4b1b883.jpg"
+				alt="marriot hotel"
+				sx={{
+					objectFit: "cover",
+					width: { xs: '95%', sm: '95%', md: "65%" },
+					m: { xs: '0.5rem', sm: '0.5rem', md: '2rem' },
+					borderRadius: '10px',
+					height: { xs: "40vh", md: "70vh" },
+					boxShadow: 0,
+				}}
+			/>
+		</Box>
+
+		<Box maxWidth="920px" mx="auto" px="1rem" sx={{ py: { xs: '1rem', sm: '1rem', md: '4rem'} }}>
+			<IconTags />
+		</Box>
+
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<br />
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">Marriott Hotels Pet Policy: An Overview</Typography>

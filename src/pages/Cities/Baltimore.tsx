@@ -231,7 +231,7 @@ const Baltimore: FC = () => {
             hotelName="100211906" 
             paragraphs={[
               "Hotel Revival Baltimore is a chic and trendy boutique hotel located in the heart of Mount Vernon, offering a vibrant and artistic ambiance that reflects the city's rich cultural heritage. The hotel boasts well-appointed rooms and suites, complete with modern amenities and stylish decor, providing a relaxing retreat after a day of exploring Baltimore's attractions.",
-              "With its central location, guests and their pets can easily access nearby pet-friendly parks and cafes, making it an ideal choice for those seeking a pet-friendly and immersive Baltimore experience.",
+              //"With its central location, guests and their pets can easily access nearby pet-friendly parks and cafes, making it an ideal choice for those seeking a pet-friendly and immersive Baltimore experience.",
               "For pets, the hotel provides plush pet beds, food and water bowls, and even a special pet menu, ensuring they receive the same level of pampering as their human companions. You can bring two dogs of any size to Hotel Revival Baltimore for no additional fee."
             ]}
           />

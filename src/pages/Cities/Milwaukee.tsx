@@ -221,7 +221,7 @@ const Milwaukee: FC = () => {
             hotelName="100186590" 
             paragraphs={[
               "The Kimpton Journeyman Hotel stands as a distinctive and captivating destination for modern travelers seeking an authentic and enriching experience in the heart of Milwaukee. Nestled within the vibrant Historic Third Ward district, this boutique hotel seamlessly blends contemporary design with the neighborhood's historic charm. The Journeyman Hotel prides itself on creating a warm and welcoming atmosphere, where guests are greeted with personalized service and a sense of belonging.",
-              "Its well-appointed rooms and suites provide a comfortable haven, while the hotel's rooftop bar and lounge offer breathtaking views of the city skyline, allowing visitors to unwind in style. With its dedication to sustainability, culinary excellence, and a genuine connection to the local community, the Kimpton Journeyman Hotel offers more than accommodation; it offers an exceptional journey for the modern explorer.",
+             // "Its well-appointed rooms and suites provide a comfortable haven, while the hotel's rooftop bar and lounge offer breathtaking views of the city skyline, allowing visitors to unwind in style. With its dedication to sustainability, culinary excellence, and a genuine connection to the local community, the Kimpton Journeyman Hotel offers more than accommodation; it offers an exceptional journey for the modern explorer.",
               "Kimpton Journeyman Hotel is pet-friendly and allows pets of all sizes for no extra charge. "
             ]}
           />
@@ -230,7 +230,7 @@ const Milwaukee: FC = () => {
             hotelName="100432980" 
             paragraphs={[
               "The Iron Horse Hotel stands as an iconic and rugged haven for travelers in the heart of Milwaukee, Wisconsin. With a unique blend of industrial charm and contemporary luxury, this boutique hotel captures the essence of the city's history while catering to modern sensibilities. Nestled in the historic Third Ward district, The Iron Horse Hotel offers a distinctive experience where motorcycle enthusiasts, business travelers, and leisure seekers can all find a welcoming sanctuary.",
-              "The hotel's on-site restaurant and bar serve up delectable cuisine and craft cocktails, fostering a vibrant social atmosphere. Whether relaxing in the inviting courtyard or exploring the nearby attractions, The Iron Horse Hotel offers a unique blend of grit and elegance that truly embodies the spirit of Milwaukee.",
+             // "The hotel's on-site restaurant and bar serve up delectable cuisine and craft cocktails, fostering a vibrant social atmosphere. Whether relaxing in the inviting courtyard or exploring the nearby attractions, The Iron Horse Hotel offers a unique blend of grit and elegance that truly embodies the spirit of Milwaukee.",
               "The Iron Horse Hotel is pet-friendly and there is no charge to bring your pets. However, there are incidental fees if there are any damages or incidents on the property."
             ]}
           />
@@ -239,7 +239,7 @@ const Milwaukee: FC = () => {
             hotelName="100193466" 
             paragraphs={[
               "The Westin Milwaukee stands as a beacon of modern sophistication and comfort in the heart of downtown Milwaukee, Wisconsin. With its sleek and contemporary design, this upscale hotel offers a tranquil retreat for both business and leisure travelers. Boasting stunning views of the cityscape and Lake Michigan, The Westin Milwaukee provides a serene escape from the bustling urban surroundings.",
-              "The hotel's commitment to wellness shines through its fitness center, allowing guests to maintain their routines even while traveling. Additionally, the on-site dining options provide a culinary journey that caters to diverse palates. With its prime location near the city's cultural attractions, The Westin Milwaukee offers a seamless blend of luxury and convenience for a truly elevated stay experience.",
+            //  "The hotel's commitment to wellness shines through its fitness center, allowing guests to maintain their routines even while traveling. Additionally, the on-site dining options provide a culinary journey that caters to diverse palates. With its prime location near the city's cultural attractions, The Westin Milwaukee offers a seamless blend of luxury and convenience for a truly elevated stay experience.",
               "The Westin Milwaukee is pet-friendly and allows dogs that weigh up to 75 pounds for no additional fee."
             ]}
           />
@@ -248,7 +248,7 @@ const Milwaukee: FC = () => {
             hotelName="100009908" 
             paragraphs={[
               "Aloft Milwaukee Downtown brings a vibrant and contemporary vibe to the heart of downtown Milwaukee, Wisconsin. This modern hotel offers a refreshing and energetic atmosphere, appealing to travelers seeking a dynamic urban experience. With its loft-inspired design, the Aloft Milwaukee Downtown exudes a sense of creativity and innovation, from its open spaces to its tech-forward amenities. ",
-              "The W XYZ Bar serves as a lively hub for both visitors and locals, offering craft cocktails and live music. The hotel's prime location puts guests within easy reach of the city's cultural attractions, making it an ideal base for exploration. With its contemporary charm and youthful spirit, Aloft Milwaukee Downtown offers a fresh perspective on hospitality, appealing to those seeking a dynamic and memorable stay.",
+              //"The W XYZ Bar serves as a lively hub for both visitors and locals, offering craft cocktails and live music. The hotel's prime location puts guests within easy reach of the city's cultural attractions, making it an ideal base for exploration. With its contemporary charm and youthful spirit, Aloft Milwaukee Downtown offers a fresh perspective on hospitality, appealing to those seeking a dynamic and memorable stay.",
               "Aloft Milwaukee Downtown is pet-friendly and allows two pets that weigh up to 40 pounds for no additional fee."
             ]}
           />
@@ -257,7 +257,7 @@ const Milwaukee: FC = () => {
             hotelName="100437150" 
             paragraphs={[
               "The Hyatt Regency Milwaukee stands as a pillar of elegance and convenience in the heart of downtown Milwaukee, Wisconsin. Boasting a seamless blend of modern luxury and warm hospitality, this upscale hotel offers a refined sanctuary for both business and leisure travelers. ",
-              "The Hyatt Regency Milwaukee is renowned for its exceptional event spaces, making it a preferred choice for conferences, weddings, and other special occasions. With a commitment to culinary excellence, the hotel's dining options showcase a range of flavors to satisfy diverse palates. The prime location allows guests to easily access the city's attractions, entertainment, and business districts. Whether indulging in relaxation at the indoor pool or enjoying skyline views from the elegant lounge, the Hyatt Regency Milwaukee offers a harmonious blend of luxury and functionality, making it a premier destination for discerning travelers.",
+             // "The Hyatt Regency Milwaukee is renowned for its exceptional event spaces, making it a preferred choice for conferences, weddings, and other special occasions. With a commitment to culinary excellence, the hotel's dining options showcase a range of flavors to satisfy diverse palates. The prime location allows guests to easily access the city's attractions, entertainment, and business districts. Whether indulging in relaxation at the indoor pool or enjoying skyline views from the elegant lounge, the Hyatt Regency Milwaukee offers a harmonious blend of luxury and functionality, making it a premier destination for discerning travelers.",
               "Hyatt Regency Milwaukee is pet-friendly and allows you to bring two dogs that weigh up to 150 pounds for a fee of $40 per night."
             ]}
           />
@@ -266,7 +266,7 @@ const Milwaukee: FC = () => {
             hotelName="100202334" 
             paragraphs={[
               "The Hilton Milwaukee City Center stands as a timeless landmark in the heart of downtown Milwaukee, Wisconsin. With its classic architecture and modern amenities, this historic hotel offers a seamless fusion of elegance and contemporary comfort. Boasting a rich history of hosting dignitaries and events, the Hilton Milwaukee City Center features well-appointed guest rooms and suites that provide a luxurious haven for travelers. Its extensive event spaces make it a preferred choice for conferences, weddings, and gatherings of all sizes. Guests can savor a range of culinary experiences at the hotel's dining venues, each offering a distinct atmosphere and delectable cuisine. ",
-              "The hotel's central location offers easy access to the city's cultural attractions, entertainment, and business districts. Whether relaxing by the indoor pool, unwinding in the inviting lobby, or admiring the stunning city views from the rooftop bar, the Hilton Milwaukee City Center offers a timeless blend of sophistication and modernity, ensuring an exceptional stay for every guest.",
+             // "The hotel's central location offers easy access to the city's cultural attractions, entertainment, and business districts. Whether relaxing by the indoor pool, unwinding in the inviting lobby, or admiring the stunning city views from the rooftop bar, the Hilton Milwaukee City Center offers a timeless blend of sophistication and modernity, ensuring an exceptional stay for every guest.",
               "Hilton Milwaukee City Center is pet-friendly and allows you to bring two pets that weigh up to 75 pounds for a fee of $50 per stay."
             ]}
           />

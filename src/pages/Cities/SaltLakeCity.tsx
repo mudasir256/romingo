@@ -260,7 +260,7 @@ const SaltLakeCity: FC = () => {
             hotelName="100279934"
             paragraphs={[
               "Featuring the ultimate in convenience and comfort, the Hilton Salt Lake City Center is a pet-friendly haven designed to cater to the needs of both business and leisure travelers. With a nominal fee of just $50 per stay, this exceptional hotel extends a warm welcome to two pets weighing up to 75 lbs each, ensuring that your furry companions can accompany you on your journey.",
-              "Nestled in the heart of the vibrant downtown area, Hilton Salt Lake City Center stands as a beacon of modernity and sophistication, offering an array of contemporary amenities, spacious accommodations, and unparalleled service.",
+             // "Nestled in the heart of the vibrant downtown area, Hilton Salt Lake City Center stands as a beacon of modernity and sophistication, offering an array of contemporary amenities, spacious accommodations, and unparalleled service.",
               "Whether you're seeking to explore the city's renowned attractions or attending a conference at the nearby convention center, this pet-friendly sanctuary serves as an inviting and accommodating home base throughout your stay."
             ]} 
           />

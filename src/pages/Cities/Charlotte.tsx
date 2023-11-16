@@ -235,7 +235,7 @@ const Charlotte: FC = () => {
             hotelName="100218922" 
             paragraphs={[
               "The Westin Charlotte is a luxurious and upscale hotel situated in the heart of Uptown Charlotte, North Carolina. With its modern architecture and elegant interior, The Westin offers a sophisticated retreat for both business and leisure travelers. The hotel has an array of amenities, including spacious and well-appointed rooms with stunning city views, plush Heavenly Beds for a restful sleep, and rejuvenating Heavenly Baths to unwind after a long day.",
-              "The hotel features a fitness center, rooftop pool, and multiple dining options, including a restaurant with locally inspired cuisine and a bar serving craft cocktails. Its central location allows easy access to popular attractions, cultural venues, and corporate offices, making The Westin Charlotte a prime choice for a luxurious and pet-friendly stay in the bustling city.",
+              //"The hotel features a fitness center, rooftop pool, and multiple dining options, including a restaurant with locally inspired cuisine and a bar serving craft cocktails. Its central location allows easy access to popular attractions, cultural venues, and corporate offices, making The Westin Charlotte a prime choice for a luxurious and pet-friendly stay in the bustling city.",
               "The Westin Charlotte is pet-friendly and welcomes up to two dogs that weigh 50 pounds each for a fee of $50 per night."
             ]}
           />
@@ -247,7 +247,7 @@ const Charlotte: FC = () => {
             hotelName="100201780" 
             paragraphs={[
               "Kimpton Tryon Park Hotel is an exquisite boutique hotel nestled in the heart of Uptown Charlotte, North Carolina. With its chic and contemporary design, this pet-friendly hotel offers a stylish haven for both business and leisure travelers. The hotel features elegant rooms with modern amenities, a rooftop bar with stunning views of the city skyline, and a trendy restaurant serving delectable dishes inspired by local flavors.",
-              "Kimpton Tryon Park Hotel is pet-friendly and pets of all sizes are welcome for no additional fee. Upon arrival, your pet will receive courtesy bags for walking, pet beds, water bowls, and treats.",
+              //"Kimpton Tryon Park Hotel is pet-friendly and pets of all sizes are welcome for no additional fee. Upon arrival, your pet will receive courtesy bags for walking, pet beds, water bowls, and treats.",
               "Upon arrival, pets are greeted with special amenities, including plush pet beds, food and water bowls, and delicious treats. The hotel's dedication to pet-friendly hospitality extends to the staff, who are always ready to offer pet-sitting services and recommendations for nearby pet-friendly attractions."
             ]}
           />
@@ -257,7 +257,7 @@ const Charlotte: FC = () => {
             hotelName="100002010" 
             paragraphs={[
               "Aloft Charlotte Uptown at the EpiCentre is a trendy and vibrant hotel located in the heart of Uptown Charlotte, North Carolina. The hotel's contemporary design and modern amenities ensure a comfortable and enjoyable stay for all guests.",
-              "The spacious and well-appointed rooms boast stunning city views, and the vibrant lobby is a hub of activity, featuring a bar and lounge area where guests can unwind and mingle. Conveniently situated within the EpiCentre, guests can explore the city's entertainment district, which offers a plethora of dining, shopping, and nightlife options.",
+              //"The spacious and well-appointed rooms boast stunning city views, and the vibrant lobby is a hub of activity, featuring a bar and lounge area where guests can unwind and mingle. Conveniently situated within the EpiCentre, guests can explore the city's entertainment district, which offers a plethora of dining, shopping, and nightlife options.",
               "Aloft Charlotte Uptown at the EpiCentre is pet-friendly and allows you to bring up to two pets that weigh 40 pounds or less for a fee of $50 per night."
             ]}
           />
@@ -266,7 +266,7 @@ const Charlotte: FC = () => {
             hotelName="100196448" 
             paragraphs={[
               "The Ivey's Hotel is an elegant and luxurious boutique hotel located in the heart of Uptown Charlotte, North Carolina. Housed in a historic building, this pet-friendly hotel seamlessly blends modern amenities with classic charm. The hotel's beautifully designed rooms and suites exude sophistication and offer a tranquil retreat for guests and their pets.",
-              "The Ivey's Hotel boasts exceptional service, personalized attention to detail, and a rooftop terrace with stunning views of the city.",
+              //"The Ivey's Hotel boasts exceptional service, personalized attention to detail, and a rooftop terrace with stunning views of the city.",
               "The Ivey's Hotel is pet-friendly and allows you to bring one dog that weighs up to 25 pounds for a fee of $150 for the first two nights; the fee is $50 per night for stays longer than two nights."
             ]}
           />
@@ -276,7 +276,7 @@ const Charlotte: FC = () => {
             hotelName="100388138" 
             paragraphs={[
               "The Sheraton Charlotte Hotel is a prestigious and elegant accommodation located in the heart of Charlotte, North Carolina. Offering a perfect blend of modern luxury and Southern hospitality, this upscale hotel is a preferred choice for business travelers, tourists, and event attendees alike.",
-              "The Sheraton Charlotte boasts an impressive array of amenities, including spacious and beautifully appointed guest rooms, state-of-the-art conference facilities, and exquisite dining options that cater to diverse palates. Guests can unwind and relax in the rooftop pool area while enjoying stunning views of the city skyline.",
+              //"The Sheraton Charlotte boasts an impressive array of amenities, including spacious and beautifully appointed guest rooms, state-of-the-art conference facilities, and exquisite dining options that cater to diverse palates. Guests can unwind and relax in the rooftop pool area while enjoying stunning views of the city skyline.",
               "The Sheraton Charlotte Hotel is pet-friendly and allows you to bring up to two pets that weigh 80 pounds for a fee of $50 per night."
             ]}
           />
@@ -285,7 +285,7 @@ const Charlotte: FC = () => {
             hotelName="100398296" 
             paragraphs={[
               "Residence Inn Charlotte Uptown is a welcoming and pet-friendly hotel located in the vibrant Uptown area of Charlotte, North Carolina. As an extended-stay hotel, Residence Inn offers spacious and well-appointed suites with fully equipped kitchens, making it an ideal choice for both short and long-term stays with pets.",
-              "The hotel's amenities include a fitness center, outdoor patio with BBQ area, and a complimentary hot breakfast to kickstart the day. Its central location allows easy access to nearby attractions, dining options, and pet-friendly parks where guests can enjoy quality time with their pets.",
+              //"The hotel's amenities include a fitness center, outdoor patio with BBQ area, and a complimentary hot breakfast to kickstart the day. Its central location allows easy access to nearby attractions, dining options, and pet-friendly parks where guests can enjoy quality time with their pets.",
               "Residence Inn Charlotte Uptown is pet-friendly and allows two pets that weigh up to 150 pounds for a fee of $100 per stay."
             ]}
           />

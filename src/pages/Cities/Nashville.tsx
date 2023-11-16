@@ -230,7 +230,7 @@ const Nashville: FC = () => {
             hotelName="100410586" 
             paragraphs={[
               "The Loews Minneapolis Hotel stands as a luxurious and contemporary haven in the heart of the vibrant cityscape. Nestled in downtown Minneapolis, this sophisticated establishment offers a seamless fusion of modern design and warm hospitality. With its sleek architecture and refined interiors, the hotel provides a perfect blend of comfort and elegance. ",
-              "The meticulously appointed rooms and suites offer breathtaking views of the city skyline, while the thoughtful amenities cater to the needs of both leisure and business travelers. The hotel's culinary offerings are equally enticing, featuring innovative cuisine crafted from locally sourced ingredients. Whether it's unwinding in the stylish lounge, hosting an event in the state-of-the-art meeting spaces, or simply indulging in the tranquil spa, the Loews Minneapolis Hotel promises an exceptional urban retreat that embodies the essence of luxury and urban sophistication.",
+             // "The meticulously appointed rooms and suites offer breathtaking views of the city skyline, while the thoughtful amenities cater to the needs of both leisure and business travelers. The hotel's culinary offerings are equally enticing, featuring innovative cuisine crafted from locally sourced ingredients. Whether it's unwinding in the stylish lounge, hosting an event in the state-of-the-art meeting spaces, or simply indulging in the tranquil spa, the Loews Minneapolis Hotel promises an exceptional urban retreat that embodies the essence of luxury and urban sophistication.",
               "Loews Minneapolis Hotel is pet-friendly and allows you to bring two pets of any size for $100 per stay."
             ]}
           />
@@ -239,7 +239,7 @@ const Nashville: FC = () => {
             hotelName="100420974" 
             paragraphs={[
               "Hyatt Centric Downtown Minneapolis epitomizes urban charm and timeless elegance in the heart of downtown Minneapolis. This distinctive hotel seamlessly combines historic architectural elements with contemporary design, creating an ambiance that is both inviting and sophisticated. Located within close proximity to renowned cultural attractions and entertainment venues, the Hyatt Centric Downtown Minneapolis offers an ideal starting point for exploring the city's vibrant scene. The guest rooms and suites are meticulously curated to provide comfort and style, while the hotel's commitment to personalized service ensures a memorable stay for every guest. Dining experiences at the hotel's restaurants showcase a culinary journey that celebrates local flavors and global inspirations.",
-              "With its impeccable blend of classic grandeur and modern comforts, the Hyatt Centric Downtown Minneapolis offers a distinctive retreat that captures the essence of the city's rich heritage and dynamic spirit.",
+              //"With its impeccable blend of classic grandeur and modern comforts, the Hyatt Centric Downtown Minneapolis offers a distinctive retreat that captures the essence of the city's rich heritage and dynamic spirit.",
               "The Hyatt Centric Downtown Minneapolis is pet-friendly and allows you to bring up to 2 pets of any sizes for a one-time $75 pet fee (1 pet) or a one-time $100 pet fee (2 pets)."
             ]}
           />
@@ -249,7 +249,7 @@ const Nashville: FC = () => {
             hotelName="100682023" 
             paragraphs={[
               "The AC Hotel by Marriott Minneapolis Downtown stands as a contemporary and stylish urban oasis in the heart of Minneapolis. With its sleek and minimalist design, this hotel offers a refreshing blend of European elegance and modern sophistication. Situated in a prime downtown location, it provides easy access to the city's cultural attractions, dining, and entertainment options.",
-              "The hotel's social spaces exude a cosmopolitan ambiance, creating a welcoming environment for guests to relax, work, or connect. Whether it's enjoying artisanal cocktails at the bar, savoring delectable cuisine at the on-site restaurant, or taking in panoramic city views from the rooftop terrace, the AC Hotel by Marriott Minneapolis Downtown offers a distinctive experience that encapsulates modern elegance and urban allure.",
+             // "The hotel's social spaces exude a cosmopolitan ambiance, creating a welcoming environment for guests to relax, work, or connect. Whether it's enjoying artisanal cocktails at the bar, savoring delectable cuisine at the on-site restaurant, or taking in panoramic city views from the rooftop terrace, the AC Hotel by Marriott Minneapolis Downtown offers a distinctive experience that encapsulates modern elegance and urban allure.",
               "The AC Hotel by Marriott Minneapolis is pet-friendly and allows you to bring one pet of any size for $50 per night."
             ]}
           />
@@ -258,7 +258,7 @@ const Nashville: FC = () => {
             hotelName="100423510" 
             paragraphs={[
               "The Westin Minneapolis stands as a refined haven of comfort and luxury at the heart of downtown Minneapolis. Housed within a historic landmark, this hotel seamlessly blends classic architecture with modern amenities, creating an ambiance that's both sophisticated and inviting. The guest rooms and suites are elegantly appointed, offering a serene retreat with plush bedding, contemporary furnishings, and state-of-the-art technology.",
-              "With its central location, the hotel provides easy access to the city's cultural landmarks, shopping districts, and dining options. The Westin's commitment to wellness is evident through offerings such as the WestinWORKOUT® fitness studio and signature Heavenly® Bed, ensuring a restful and rejuvenating stay for guests. Whether unwinding at the hotel's signature restaurant, hosting events in the versatile meeting spaces, or simply indulging in relaxation at the spa, The Westin Minneapolis promises a refined and enriching urban escape that combines timeless charm with modern comforts.",
+             // "With its central location, the hotel provides easy access to the city's cultural landmarks, shopping districts, and dining options. The Westin's commitment to wellness is evident through offerings such as the WestinWORKOUT® fitness studio and signature Heavenly® Bed, ensuring a restful and rejuvenating stay for guests. Whether unwinding at the hotel's signature restaurant, hosting events in the versatile meeting spaces, or simply indulging in relaxation at the spa, The Westin Minneapolis promises a refined and enriching urban escape that combines timeless charm with modern comforts.",
               "The Westin Minneapolis is pet-friendly and allows you to bring one dog up to 40 pounds for no additional fee. "
             ]}
           />
@@ -267,7 +267,7 @@ const Nashville: FC = () => {
             hotelName="100191860"
             paragraphs={[
               "The Hewing Hotel stands as a distinctive and captivating retreat in the heart of Minneapolis' North Loop neighborhood. Nestled within a historic warehouse building, this boutique hotel seamlessly merges the area's industrial heritage with contemporary design and upscale amenities. The guest rooms and suites exude a blend of rustic elegance and modern comfort, featuring exposed brick walls, original timber beams, and luxurious furnishings that create a unique and inviting atmosphere. ",
-              "The hotel's emphasis on local culture is evident in its curated art collection, locally sourced cuisine, and vibrant rooftop bar, offering stunning views of the city skyline. With its proximity to eclectic boutiques, galleries, and trendy eateries, the Hewing Hotel provides an authentic urban experience that captures the essence of Minneapolis' creative spirit and urban charm.",
+              //"The hotel's emphasis on local culture is evident in its curated art collection, locally sourced cuisine, and vibrant rooftop bar, offering stunning views of the city skyline. With its proximity to eclectic boutiques, galleries, and trendy eateries, the Hewing Hotel provides an authentic urban experience that captures the essence of Minneapolis' creative spirit and urban charm.",
               "Hewing Hotel is pet-friendly and allows you to bring two pets of any size for a fee of $75 per stay."
             ]} 
           />
@@ -276,7 +276,7 @@ const Nashville: FC = () => {
             hotelName="100015582" 
             paragraphs={[
               "The Graduate Hotel Minneapolis embodies a spirited blend of youthful energy and classic charm in the heart of the city. Reflecting the vibrant college town culture, this hotel offers a unique and nostalgic experience that pays homage to its surroundings. The guest rooms and suites are thoughtfully designed with a playful and eclectic touch, featuring elements that evoke memories of campus life and local heritage. The hotel's communal spaces exude a lively ambiance, inviting guests to connect, socialize, and create memorable moments. ",
-              "Located within close proximity to the University of Minnesota campus and other cultural attractions, the Graduate Hotel provides an ideal base for exploring the city's dynamic arts scene, diverse dining options, and lively entertainment. Whether it's unwinding at the rooftop bar with panoramic views, immersing in the colorful decor, or discovering local artistry woven into the hotel's design, the Graduate Hotel Minneapolis offers an engaging and distinctive stay that captures the youthful spirit of the city.",
+              //"Located within close proximity to the University of Minnesota campus and other cultural attractions, the Graduate Hotel provides an ideal base for exploring the city's dynamic arts scene, diverse dining options, and lively entertainment. Whether it's unwinding at the rooftop bar with panoramic views, immersing in the colorful decor, or discovering local artistry woven into the hotel's design, the Graduate Hotel Minneapolis offers an engaging and distinctive stay that captures the youthful spirit of the city.",
               "The Graduate Hotel Minneapolis is pet-friendly and allows you to bring two dogs of any size for a fee of $75 per stay."
             ]}
           />

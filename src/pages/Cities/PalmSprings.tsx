@@ -236,7 +236,7 @@ const PalmSprings: FC = () => {
             hotelName="100196902" 
             paragraphs={[
               "Find respite in the sophistication at Kimpton Rowan Palm Springs, a pet-friendly haven. This refined hotel caters to the needs of travelers and their pets, ensuring an indelible and enjoyable stay for all.",
-              "Positioned ideally, Kimpton Rowan Palm Springs offers seamless access to Palm Springs' top attractions. The hotel also has a pet-friendly park that your furry companion can enjoy during your stay.",
+             // "Positioned ideally, Kimpton Rowan Palm Springs offers seamless access to Palm Springs' top attractions. The hotel also has a pet-friendly park that your furry companion can enjoy during your stay.",
               "As part of the Kimpton Hotels chain, the hotel warmly welcomes pets, providing special amenities and treats for furry companions. Kimpton Pittman Hotel loves when you bring your pets on your trip. This is a great option because they allow pets of all sizes and breeds with no extra fees."
             ]}
           />

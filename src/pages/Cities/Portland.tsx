@@ -237,8 +237,8 @@ const Portland: FC = () => {
             paragraphs={[
               "This contemporary hotel, exuding a perfect blend of style and convenience, sets the stage for an unforgettable stay in the vibrant heart of Portland. As you step into the spacious and pet-friendly accommodations, a sense of home envelops you and your furry friends, creating a haven where their happiness and comfort are paramount.",
               "Pets up to 70 pounds are welcome at no additional charge. This contemporary hotel blends style and convenience, offering a vibrant atmosphere for you and your furry friends. With spacious pet-friendly accommodations, your beloved companions will feel right at home.",
-              "Every aspect of Aloft Portland at Cascade Station has been thoughtfully designed to cater to the needs of both you and your pets. The sleek and contemporary ambiance sets a lively tone, providing an energizing backdrop for your adventures in the city. The modern amenities and thoughtful touches ensure that your stay is as convenient as it is enjoyable.",
-              "Embrace the nearby friendly dog park, a haven for outdoor activities and social interactions, ensuring a delightful stay for pets and their owners."
+              //"Every aspect of Aloft Portland at Cascade Station has been thoughtfully designed to cater to the needs of both you and your pets. The sleek and contemporary ambiance sets a lively tone, providing an energizing backdrop for your adventures in the city. The modern amenities and thoughtful touches ensure that your stay is as convenient as it is enjoyable.",
+              //"Embrace the nearby friendly dog park, a haven for outdoor activities and social interactions, ensuring a delightful stay for pets and their owners."
             ]}  
           />
       
@@ -263,9 +263,9 @@ const Portland: FC = () => {
             hotelName="100204986" 
             paragraphs={[
               "Every corner of The Porter Portland Curio Collection by Hilton exudes an air of refined ambiance, carefully curated to cater to your every need. The hotel's commitment to luxury is evident in its exquisite accommodations, which are designed to provide the utmost comfort and indulgence.",
-              "Elegant furnishings, plush bedding, and tasteful decor create a haven of relaxation and tranquility, inviting you and your pets to unwind in style.",
+              //"Elegant furnishings, plush bedding, and tasteful decor create a haven of relaxation and tranquility, inviting you and your pets to unwind in style.",
               "The Porter Portland Curio Collection by Hilton allows two pets weighing up to 50 pounds for a fee of $75 per stay. This elegant hotel combines luxury with convenience, boasting exquisite accommodations and impeccable service.",
-              "Unleash your pet's playful spirit at the nearby dog park, a delightful haven for outdoor exploration and joyful social interactions."
+              //"Unleash your pet's playful spirit at the nearby dog park, a delightful haven for outdoor exploration and joyful social interactions."
             ]}
           />
 

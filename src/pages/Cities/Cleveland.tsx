@@ -235,7 +235,7 @@ const Cleveland: FC = () => {
             hotelName="100184252" 
             paragraphs={[
               "Housed in a historic building that exudes old-world charm, Kimpton Schofield Hotel property seamlessly blends modern amenities with timeless elegance. The guest rooms at the Kimpton Schofield are tastefully designed, featuring chic decor, luxurious linens, and unique touches that reflect the hotel's distinct personality.",
-              "The hotel's on-site restaurant showcases the region's culinary delights, while the rooftop bar offers stunning views of the city skyline. Its prime location allows easy access to cultural landmarks, sports arenas, and entertainment venues.",
+              //"The hotel's on-site restaurant showcases the region's culinary delights, while the rooftop bar offers stunning views of the city skyline. Its prime location allows easy access to cultural landmarks, sports arenas, and entertainment venues.",
               "Kimpton Schofield Hotel is pet-friendly and allows pets of all sizes with no weight restrictions. The hotel offers pet amenities, including plush pet beds, food bowls, and a selection of treats"
             ]}
           />
@@ -245,8 +245,8 @@ const Cleveland: FC = () => {
             hotelName="100082888"
             paragraphs={[
               "Part of the Autograph Collection by Marriott, Metropolitan at The 9 is a hotel in Cleveland that offers a great experience for its guests. Housed in the historic Cleveland Trust building, The Metropolitan at The 9 seamlessly blends classic architecture with modern luxury, creating a captivating ambiance throughout.",
-              "The hotel's rooftop bar, Azure, provides breathtaking views of the city skyline, while the chic, industrial-inspired lobby features an awe-inspiring 40-foot-tall art installation.",
-              "Additionally, The Metropolitan at The 9 is home to a cutting-edge theater and a diverse selection of dining options, including a renowned restaurant curated by a celebrity chef.",
+              //"The hotel's rooftop bar, Azure, provides breathtaking views of the city skyline, while the chic, industrial-inspired lobby features an awe-inspiring 40-foot-tall art installation.",
+              //"Additionally, The Metropolitan at The 9 is home to a cutting-edge theater and a diverse selection of dining options, including a renowned restaurant curated by a celebrity chef.",
               "Metropolitan at The 9 is pet-friendly and welcomes two dogs that weigh up to 75 pounds for a fee of $100.",
 
             ]}
@@ -259,7 +259,7 @@ const Cleveland: FC = () => {
             hotelName="100053276" 
             paragraphs={[
               "Aloft Cleveland Downtown is a trendy and modern hotel located in the vibrant Flats East Bank district of Cleveland, Ohio. The guest rooms at Aloft Cleveland Downtown are thoughtfully designed, featuring contemporary furnishings, vibrant colors, and tech-savvy amenities that cater to the needs of today's travelers.",
-              "The hotel's W XYZ Bar is a popular hangout spot, serving craft cocktails and hosting live music events, creating a lively and social ambiance. Guests can stay active in the 24/7 fitness center or take a dip in the indoor pool with floor-to-ceiling windows, offering scenic views of the Cuyahoga River.",
+              //"The hotel's W XYZ Bar is a popular hangout spot, serving craft cocktails and hosting live music events, creating a lively and social ambiance. Guests can stay active in the 24/7 fitness center or take a dip in the indoor pool with floor-to-ceiling windows, offering scenic views of the Cuyahoga River.",
               "Aloft Cleveland Downtown is pet-friendly and allows you to bring pets that weigh up to 40 pounds for no additional fee."
             ]}
           />
@@ -268,7 +268,7 @@ const Cleveland: FC = () => {
             hotelName="100182536" 
             paragraphs={[
               "The Drury Plaza Hotel Cleveland Downtown is a welcoming and elegant hotel situated in the heart of downtown Cleveland, Ohio. As part of the esteemed Drury Hotels chain, this property offers a blend of sophistication and comfort.",
-              "The rooftop pool and fitness center offer opportunities for relaxation while enjoying panoramic views of the city. With its central location, the hotel is conveniently located near popular attractions such as the Rock & Roll Hall of Fame, Progressive Field, and the Cleveland Convention Center.",
+              //"The rooftop pool and fitness center offer opportunities for relaxation while enjoying panoramic views of the city. With its central location, the hotel is conveniently located near popular attractions such as the Rock & Roll Hall of Fame, Progressive Field, and the Cleveland Convention Center.",
               "Drury Plaza Hotel Cleveland Downtown is pet-friendly and allows you to bring two pets with a combined weight of 80 pounds for a fee of $40 per room."
             ]}
           />
@@ -286,7 +286,7 @@ const Cleveland: FC = () => {
             hotelName="100398606" 
             paragraphs={[
               "Housed within the iconic Arcade, a stunning architectural gem dating back to 1890, the Hyatt Regency Cleveland at The Arcade seamlessly combines timeless elegance with modern amenities. The guest rooms at Hyatt Regency Cleveland at The Arcade are spacious and beautifully appointed, offering a serene escape for travelers seeking comfort and relaxation.",
-              "With its prime location, guests have easy access to popular attractions such as the Playhouse Square, Rocket Mortgage FieldHouse, and the Rock & Roll Hall of Fame.",
+              //"With its prime location, guests have easy access to popular attractions such as the Playhouse Square, Rocket Mortgage FieldHouse, and the Rock & Roll Hall of Fame.",
               "Hyatt Regency Cleveland at The Arcade is pet-friendly and allows you to bring one dog that weighs up to 50 pounds for a fee of $100.",
 
             ]}

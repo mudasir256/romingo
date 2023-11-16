@@ -227,7 +227,7 @@ const Boston: FC = () => {
             hotelName="100123304" 
             paragraphs={[
               "The Liberty Hotel, located in the heart of Boston's historic Beacon Hill neighborhood, is a captivating and luxurious destination that effortlessly blends history with modern sophistication. Housed in a beautifully restored 19th-century jail, The Liberty Hotel offers guests a unique and memorable experience.",
-              "The architectural beauty of the former jail is perfectly complemented by stylish contemporary décor and upscale amenities. The hotel features elegantly appointed rooms and suites with breathtaking views of the Charles River, Cambridge, or the city skyline. Along with its luxurious accommodations, The Liberty Hotel boasts an array of impressive dining options, including acclaimed restaurants and chic bars that cater to diverse palates.",
+              //"The architectural beauty of the former jail is perfectly complemented by stylish contemporary décor and upscale amenities. The hotel features elegantly appointed rooms and suites with breathtaking views of the Charles River, Cambridge, or the city skyline. Along with its luxurious accommodations, The Liberty Hotel boasts an array of impressive dining options, including acclaimed restaurants and chic bars that cater to diverse palates.",
               "The Liberty Hotel is pet-friendly and welcomes two pets of any size for a fee of $100 per stay. The Liberty Hotel also offers pet-friendly amenities, including dog beds, food bowls, and a special dog menu for in-room dining. Pet-walking services and nearby green spaces make it easy to take your furry friend for a walk and enjoy the historic charm of Beacon Hill."
             ]}
           />
@@ -247,7 +247,7 @@ const Boston: FC = () => {
             hotelName="100438110" 
             paragraphs={[
               "The Colonnade Hotel, a refined and contemporary gem nestled in the heart of Boston's Back Bay, offers a sophisticated and pet-friendly retreat. When it's time to venture out, The Colonnade Hotel's prime location grants easy access to the beautiful Southwest Corridor Park, where you and your pet can enjoy leisurely strolls amidst lush greenery. Back at the hotel, indulge in delectable dining at the rooftop pool and lounge, boasting panoramic views of the city skyline.",
-              "As one of Boston's premier pet-friendly hotels, The Colonnade Hotel in Back Bay promises a delightful experience for both you and your furry companion. Offering stunning views of the city skyline, the hotel's pet-friendly rooms come equipped with comfortable bedding and pet amenities. The Colonnade Hotel is also close to the Southwest Corridor Park, providing ample greenery for leisurely strolls and play.",
+              //"As one of Boston's premier pet-friendly hotels, The Colonnade Hotel in Back Bay promises a delightful experience for both you and your furry companion. Offering stunning views of the city skyline, the hotel's pet-friendly rooms come equipped with comfortable bedding and pet amenities. The Colonnade Hotel is also close to the Southwest Corridor Park, providing ample greenery for leisurely strolls and play.",
               "The Colonnade Hotel is pet-friendly and allows you to bring two pets that weigh up to 75 pounds for no additional fee."
             ]}
           />
@@ -265,7 +265,7 @@ const Boston: FC = () => {
             hotelName="100003686" 
             paragraphs={[
               "Steeped in grandeur and elegance, The Fairmont Copley Plaza stands as an iconic symbol of luxury and sophistication in the heart of Boston's Back Bay neighborhood. This historic hotel, with its rich history dating back to 1912, seamlessly blends timeless charm with modern comforts.",
-              "Located just steps away from the picturesque Copley Square and Boston Public Library, this majestic hotel serves as an ideal starting point for exploring Boston's cultural landmarks and historic sites. After a day of exploration, indulge in delectable cuisine at the hotel's acclaimed restaurant or unwind with a cocktail at the sophisticated lounge.",
+              //"Located just steps away from the picturesque Copley Square and Boston Public Library, this majestic hotel serves as an ideal starting point for exploring Boston's cultural landmarks and historic sites. After a day of exploration, indulge in delectable cuisine at the hotel's acclaimed restaurant or unwind with a cocktail at the sophisticated lounge.",
               "The Fairmont Copley Plaza is pet-friendly and allows you to bring two pets of any size for a fee of $50 per pet."
             ]}
           />

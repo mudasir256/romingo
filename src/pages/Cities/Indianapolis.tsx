@@ -222,7 +222,7 @@ const Indianapolis: FC = () => {
             hotelName="100016136" 
             paragraphs={[
               "The Alexander, located in the heart of downtown Indianapolis, stands as a contemporary and sophisticated urban retreat that seamlessly blends modern design with artistic flair. This upscale hotel offers a unique fusion of luxury and culture, boasting thoughtfully curated interiors adorned with local artwork that reflect the city's vibrant spirit.",
-              "With its commitment to showcasing Indianapolis' artistic community, the hotel hosts art installations and events, contributing to a dynamic atmosphere that extends beyond its walls. Whether indulging in gourmet dining, relaxing by the rooftop pool, or exploring nearby attractions, The Alexander invites guests to immerse themselves in the city's evolving landscape while enjoying an unparalleled level of comfort and sophistication.",
+              //"With its commitment to showcasing Indianapolis' artistic community, the hotel hosts art installations and events, contributing to a dynamic atmosphere that extends beyond its walls. Whether indulging in gourmet dining, relaxing by the rooftop pool, or exploring nearby attractions, The Alexander invites guests to immerse themselves in the city's evolving landscape while enjoying an unparalleled level of comfort and sophistication.",
               "The Alexander is pet-friendly and allows you to bring two dogs that weigh up to 75 pounds for a fee of $50 per dog, per stay."
             ]}
           />
@@ -231,7 +231,7 @@ const Indianapolis: FC = () => {
             hotelName="100076768" 
             paragraphs={[
               "The Omni Severin Hotel, nestled in the heart of downtown Indianapolis, stands as a timeless and elegant destination that captures the essence of the city's rich history and modern vitality. This historic luxury hotel seamlessly blends classic charm with contemporary comfort, offering guests a refined and welcoming experience.",
-              "Guests can easily explore Indianapolis' cultural attractions, dining scene, and entertainment options. The Omni Severin Hotel's historic significance and dedication to providing a superior hospitality experience make it a true gem in the urban landscape, inviting travelers to immerse themselves in the best that Indianapolis has to offer.",
+              //"Guests can easily explore Indianapolis' cultural attractions, dining scene, and entertainment options. The Omni Severin Hotel's historic significance and dedication to providing a superior hospitality experience make it a true gem in the urban landscape, inviting travelers to immerse themselves in the best that Indianapolis has to offer.",
               "The Omni Severin Hotel is pet-friendly and allows you to bring pets that weigh 25 pounds or less for a $125 fee per stay."
             ]}
           />
@@ -240,7 +240,7 @@ const Indianapolis: FC = () => {
             hotelName="100802681" 
             paragraphs={[
               "The Hyatt House Indianapolis/Downtown stands as a beacon of comfort and convenience in the heart of the city, offering a seamless blend of modern living and exceptional hospitality. ",
-              "With its contemporary design and spacious suites, this extended-stay hotel provides a home away from home for both leisure and business travelers. The well-equipped suites feature kitchenettes and separate living areas, catering to guests seeking comfort and flexibility during their stay. ",
+              //"With its contemporary design and spacious suites, this extended-stay hotel provides a home away from home for both leisure and business travelers. The well-equipped suites feature kitchenettes and separate living areas, catering to guests seeking comfort and flexibility during their stay. ",
               "The Hyatt House Indianapolis/Downtown is pet-friendly and allows you to bring up to two dogs with a combined weight less than 75 pounds. When staying 1-6 days, there is a $75 fee; when staying 7-30 days, there is an additional $100 deep cleaning fee."
             ]}
           />
@@ -250,7 +250,7 @@ const Indianapolis: FC = () => {
             hotelName="100183596" 
             paragraphs={[
               "Nestled in the heart of Indianapolis, the Home2 Suites by Hilton Indianapolis Downtown offers a refreshing take on modern hospitality. This extended-stay hotel combines comfort and functionality, providing travelers with spacious suites that feature separate living areas and fully-equipped kitchens. ",
-              "Its central location provides easy access to the city's attractions, making the Home2 Suites an ideal base for exploring the dynamic energy and cultural offerings of downtown Indianapolis. With suites featuring fully-equipped kitchens, it's easy to maintain a comfortable routine for both you and your pet during your stay.",
+              //"Its central location provides easy access to the city's attractions, making the Home2 Suites an ideal base for exploring the dynamic energy and cultural offerings of downtown Indianapolis. With suites featuring fully-equipped kitchens, it's easy to maintain a comfortable routine for both you and your pet during your stay.",
               "Home2 Suites by Hilton Indianapolis Downtown is pet-frienly and allows you to bring two pets with you during your stay. When staying 1-4 days, there is a $75 fee; when staying more than 5 nights, the fee is $125."
             ]}
           />
@@ -259,7 +259,7 @@ const Indianapolis: FC = () => {
             hotelName="100202748" 
             paragraphs={[
               "The Ironworks Hotel Indy stands as a luxurious and captivating escape in the vibrant city of Indianapolis. This boutique hotel effortlessly blends industrial charm with modern elegance, offering guests a unique and memorable experience. ",
-              "Situated within the Ironworks at Keystone, a mixed-use development featuring retail, dining, and entertainment options, the hotel offers a seamless blend of convenience and leisure. Whether indulging in gourmet dining, relaxing by the rooftop pool, or exploring the nearby attractions, the Ironworks Hotel Indy invites guests to immerse themselves in the city's eclectic culture.",
+             // "Situated within the Ironworks at Keystone, a mixed-use development featuring retail, dining, and entertainment options, the hotel offers a seamless blend of convenience and leisure. Whether indulging in gourmet dining, relaxing by the rooftop pool, or exploring the nearby attractions, the Ironworks Hotel Indy invites guests to immerse themselves in the city's eclectic culture.",
               "Ironworks Hotel Indy is pet-friendly and allows you to bring two pets of any size for a fee of $20 per night."
             ]}
           />
@@ -269,7 +269,7 @@ const Indianapolis: FC = () => {
             hotelName="100003102" 
             paragraphs={[
               "The Westin Indianapolis stands as a modern oasis of comfort and refinement in the heart of downtown. With its sleek and contemporary design, this upscale hotel offers a sanctuary for both business and leisure travelers. ",
-              "Situated within close proximity to the city's landmarks, dining, and entertainment options, The Westin Indianapolis ensures that guests can easily explore the dynamic energy of the city while enjoying the superior service and comfort that the Westin brand is known for. Whether attending a conference or exploring the cultural attractions, the hotel offers a seamless fusion of convenience and luxury.",
+             // "Situated within close proximity to the city's landmarks, dining, and entertainment options, The Westin Indianapolis ensures that guests can easily explore the dynamic energy of the city while enjoying the superior service and comfort that the Westin brand is known for. Whether attending a conference or exploring the cultural attractions, the hotel offers a seamless fusion of convenience and luxury.",
               "The Westin Indianapolis is pet-friendly and allows you to bring two pets weighing up to 40 pounds for no additional fee."
             ]}
           />

@@ -244,7 +244,7 @@ const Seattle: FC = () => {
             hotelName="100309614" 
             paragraphs={[
               "Hyatt at Olive 8 is a pet-friendly hotel in downtown Seattle that offers sustainable practices for guests and their pets. When you stay at Hyatt at Olive 8, you can enjoy the Space Needle, Seattle Center, or the Climate Pledge Arena.",
-              "When you travel to Seattle, Hyatt at Olive 8 is a great hotel option. This hotel is pet-friendly and offers cozy spaces for your pet to unwind. When you arrive, your dog will receive a welcome letter, a bed, food, water bowls, and a welcome biscuit. The Hyatt team is always available to provide information on walking routes, pet shops, groomers, vets, and local pet-friendly establishments.",
+             // "When you travel to Seattle, Hyatt at Olive 8 is a great hotel option. This hotel is pet-friendly and offers cozy spaces for your pet to unwind. When you arrive, your dog will receive a welcome letter, a bed, food, water bowls, and a welcome biscuit. The Hyatt team is always available to provide information on walking routes, pet shops, groomers, vets, and local pet-friendly establishments.",
               "Hyatt at Olive 8 allows you to bring two dogs with you and there is a $50 fee per stay."
             ]}
           />

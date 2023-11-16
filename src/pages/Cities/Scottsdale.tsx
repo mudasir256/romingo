@@ -238,7 +238,7 @@ const Scottsdale: FC = () => {
             hotelName="100059052" 
             paragraphs={[
               "The Westin Kierland Resort & Spa is a luxurious oasis nestled amidst the captivating landscapes of Scottsdale, Arizona. Offering a seamless blend of contemporary elegance and Southwest charm, this resort provides a truly memorable and rejuvenating experience for its guests.",
-              "With its breathtaking desert surroundings, outstanding facilities, and warm hospitality, The Westin Kierland Resort & Spa provides a tranquil escape for guests seeking a remarkable and unforgettable stay in Scottsdale.",
+             // "With its breathtaking desert surroundings, outstanding facilities, and warm hospitality, The Westin Kierland Resort & Spa provides a tranquil escape for guests seeking a remarkable and unforgettable stay in Scottsdale.",
               "The Westin Kierland Resort & Spa is pet-friendly and allows you to bring two pets up to 40 pounds for no additional fee."
             ]}
           />
@@ -247,7 +247,7 @@ const Scottsdale: FC = () => {
             hotelName="100272506" 
             paragraphs={[
               "Hotel Valley Ho is a timeless and iconic boutique hotel nestled in the heart of Old Town Scottsdale, Arizona. Built in 1956, this mid-century modern gem has been meticulously restored to its original glory, exuding retro-chic elegance and contemporary comforts.",
-              "The hotel boasts a vibrant and lively ambiance, with its chic pool area being a hotspot for both guests and locals alike. With two fantastic restaurants and a trendy rooftop lounge, Hotel Valley Ho offers a delightful culinary experience, complemented by a welcoming and attentive staff.",
+             // "The hotel boasts a vibrant and lively ambiance, with its chic pool area being a hotspot for both guests and locals alike. With two fantastic restaurants and a trendy rooftop lounge, Hotel Valley Ho offers a delightful culinary experience, complemented by a welcoming and attentive staff.",
               "When you stay at Hotel Valley Ho, your pets stay for free, but are subject to additional fees should any damages occur during your stay."
             ]}
           />
@@ -257,7 +257,7 @@ const Scottsdale: FC = () => {
             hotelName="100427012" 
             paragraphs={[
               "Nestled in the picturesque Gainey Ranch area of Scottsdale, Arizona, the Hyatt Regency Scottsdale Resort & Spa at Gainey Ranch is a lavish retreat that promises an unparalleled experience for travelers seeking the perfect blend of luxury and tranquility. Surrounded by lush greenery and serene water features, this resort offers a serene ambiance that allows guests to unwind and rejuvenate.",
-              "The guest rooms and suites are elegantly designed, providing a comfortable and stylish sanctuary after a day of exploration. Culinary delights await at the resort's restaurants, each offering a unique dining experience that caters to various tastes.",
+            //  "The guest rooms and suites are elegantly designed, providing a comfortable and stylish sanctuary after a day of exploration. Culinary delights await at the resort's restaurants, each offering a unique dining experience that caters to various tastes.",
               "Dogs are welcome with open arms at the Hyatt Regency Scottsdale Resort & Spa at Gainey Ranch. Upon arrival, they will receive goodies, such as toys, bags, a bed, and bowls. There is a $150 fee per stay for up to 6 nights and an additional $150 fee if you stay between 7 and 30 days."
             ]}
           />
@@ -266,7 +266,7 @@ const Scottsdale: FC = () => {
             hotelName="100192464"
             paragraphs={[
               "Nestled against the majestic Camelback Mountain, Mountain Shadows Resort in Scottsdale, Arizona, is a modern oasis that offers a luxurious and serene escape. With its breathtaking views of the surrounding desert landscape, the resort seamlessly blends contemporary design with mid-century modern aesthetics.",
-              "Culinary enthusiasts will delight in the resort's exceptional dining options, including Hearth '61, offering contemporary American cuisine, and Rusty's, a poolside eatery. Whether seeking a romantic getaway or a family retreat, Mountain Shadows Resort Scottsdale offers a memorable and sophisticated stay.",
+             // "Culinary enthusiasts will delight in the resort's exceptional dining options, including Hearth '61, offering contemporary American cuisine, and Rusty's, a poolside eatery. Whether seeking a romantic getaway or a family retreat, Mountain Shadows Resort Scottsdale offers a memorable and sophisticated stay.",
               "Mountain Shadows Resort is pet-friendly. Your pet will receive a pet amenity package when they arrive that includes a bed, food and water bowls, water, and doggie bags."
             ]} 
           />
@@ -276,7 +276,7 @@ const Scottsdale: FC = () => {
             hotelName="100000782" 
             paragraphs={[
               "The Phoenician, a Luxury Collection Resort, is a true oasis of luxury and elegance set against the breathtaking backdrop of Camelback Mountain in Scottsdale, Arizona. With its exquisite architecture and lush landscapes, the resort exudes a sense of grandeur and sophistication.",
-              "The resort boasts a myriad of world-class amenities, including nine swimming pools, a championship golf course, and a state-of-the-art spa, providing guests with endless opportunities for relaxation and indulgence. The Phoenician, a Luxury Collection Resort, promises an unforgettable and indulgent experience for guests seeking a refined and sophisticated escape in the heart of the Sonoran Desert.",
+            //  "The resort boasts a myriad of world-class amenities, including nine swimming pools, a championship golf course, and a state-of-the-art spa, providing guests with endless opportunities for relaxation and indulgence. The Phoenician, a Luxury Collection Resort, promises an unforgettable and indulgent experience for guests seeking a refined and sophisticated escape in the heart of the Sonoran Desert.",
               "Two dogs that weigh less than 40 pounds are welcome to travel with you to The Phoenician for a fee of $150 per stay."
             ]}
           />
@@ -286,7 +286,7 @@ const Scottsdale: FC = () => {
             hotelName="100405686"
             paragraphs={[
               "The Scottsdale Resort at McCormick Ranch is a captivating retreat that captures the essence of the Sonoran Desert while providing a luxurious and tranquil escape. Set amidst 200 acres of lush greenery and shimmering lakes in Scottsdale, Arizona, the resort offers a serene and picturesque ambiance.",
-              "The resort features a range of amenities, including two outdoor pools, a full-service spa, and a fitness center, ensuring guests have ample opportunities for relaxation and recreation. For dining, the resort offers an array of culinary delights, including farm-to-table cuisine and Southwestern-inspired dishes.",
+            //  "The resort features a range of amenities, including two outdoor pools, a full-service spa, and a fitness center, ensuring guests have ample opportunities for relaxation and recreation. For dining, the resort offers an array of culinary delights, including farm-to-table cuisine and Southwestern-inspired dishes.",
               "The Scottsdale Resort at McCormick Ranch allows you to bring up to two dogs with a combined weight of 50 pounds for a fee of $100 per stay."
             ]} 
           />

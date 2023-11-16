@@ -258,7 +258,7 @@ const LosAngeles: FC = () => {
             hotelName="100402716" 
             paragraphs={[
               "Loews Hollywood Hotel is a glamorous and contemporary retreat located at the epicenter of Hollywood, California. Situated in the heart of the entertainment capital, this upscale hotel offers a prime location for guests looking to immerse themselves in the glitz and glamour of Tinseltown. The guest rooms and suites are designed with modern amenities and have breathtaking views of the Hollywood Hills.",
-              "With its proximity to famous attractions like the Hollywood Walk of Fame and the Dolby Theatre, Loews Hollywood Hotel promises an unforgettable and star-studded stay for visitors seeking an upscale and glamorous escape in the heart of Hollywood.",
+              //"With its proximity to famous attractions like the Hollywood Walk of Fame and the Dolby Theatre, Loews Hollywood Hotel promises an unforgettable and star-studded stay for visitors seeking an upscale and glamorous escape in the heart of Hollywood.",
               "Loews is a pet-friendly hotel that allows you to bring two pets under 75 pounds each with an additional fee of $100 per stay."
             ]}
           />

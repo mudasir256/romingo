@@ -228,8 +228,8 @@ const Miami: FC = () => {
             hotelName="100124650"
             paragraphs={[
               "The Standard Spa, Miami Beach, is a luxurious and renowned wellness retreat nestled in the heart of the vibrant city of Miami Beach, Florida. With its serene waterfront location overlooking Biscayne Bay, this establishment offers a unique fusion of relaxation and indulgence.",
-              "The Standard Spa is celebrated for its holistic approach to well-being, featuring an array of therapeutic treatments, revitalizing yoga sessions, and rejuvenating hydrotherapy experiences. The lush garden landscapes and tranquil outdoor spaces further contribute to a sense of serenity and escape from the bustling city.",
-              "Guests are invited to unwind in stylishly designed rooms and suites, each exuding comfort and contemporary elegance. The Standard Spa Miami Beach, promises an exceptional retreat where guests can harmonize their mind, body, and spirit in a setting that seamlessly combines luxury with wellness.",
+              //"The Standard Spa is celebrated for its holistic approach to well-being, featuring an array of therapeutic treatments, revitalizing yoga sessions, and rejuvenating hydrotherapy experiences. The lush garden landscapes and tranquil outdoor spaces further contribute to a sense of serenity and escape from the bustling city.",
+              //"Guests are invited to unwind in stylishly designed rooms and suites, each exuding comfort and contemporary elegance. The Standard Spa Miami Beach, promises an exceptional retreat where guests can harmonize their mind, body, and spirit in a setting that seamlessly combines luxury with wellness.",
               "The Standard Spa Miami Beach is pet-friendly and allows you to bring two dogs during your visit for no additional fee."
             ]} 
           />
@@ -238,7 +238,7 @@ const Miami: FC = () => {
             hotelName="100597236" 
             paragraphs={[
               "The Kimpton EPIC Hotel stands as a distinguished urban sanctuary in the heart of downtown Miami, Florida. As part of the renowned Kimpton Hotels & Restaurants brand, the EPIC Hotel offers a distinctive blend of contemporary sophistication and warm hospitality. Its prime waterfront location along the Miami River provides breathtaking views of the city skyline and Biscayne Bay, setting the stage for a luxurious escape.",
-              "With a focus on culinary excellence, the hotel boasts world-class dining options that showcase locally inspired flavors and ingredients. From its inviting rooftop pool deck to its state-of-the-art fitness center, the Kimpton EPIC Hotel seamlessly caters to both leisure and business travelers, offering an urban oasis where modern luxury meets Miami's vibrant energy.",
+              //"With a focus on culinary excellence, the hotel boasts world-class dining options that showcase locally inspired flavors and ingredients. From its inviting rooftop pool deck to its state-of-the-art fitness center, the Kimpton EPIC Hotel seamlessly caters to both leisure and business travelers, offering an urban oasis where modern luxury meets Miami's vibrant energy.",
               "Kimpton EPIC Hotel is pet-friendly and allows you to bring your pets during your visit for no additional fee."
             ]}
           />
@@ -247,7 +247,7 @@ const Miami: FC = () => {
             hotelName="100815117" 
             paragraphs={[
               "The Loews Miami Beach Hotel stands as an iconic and upscale beachfront destination, nestled in the heart of South Beach, Miami. With its prime location along the sparkling Atlantic Ocean, the hotel offers guests a luxurious and vibrant escape that perfectly captures the essence of Miami's renowned energy and style. Boasting a blend of contemporary design and beachfront elegance, the Loews Miami Beach Hotel features spacious and meticulously appointed rooms and suites, each offering stunning views and modern amenities.",
-              "The hotel's emphasis on relaxation is highlighted by its expansive palm-fringed pool area, where guests can unwind in style or enjoy direct access to the pristine sandy shores. Culinary experiences at the on-site restaurants are a true delight, showcasing a diverse range of flavors and dining options. Whether lounging by the pool, indulging in rejuvenating spa treatments, or exploring the vibrant nearby attractions, the Loews Miami Beach Hotel offers a complete and unforgettable Miami experience that blends luxury, comfort, and the captivating allure of the oceanfront.",
+             // "The hotel's emphasis on relaxation is highlighted by its expansive palm-fringed pool area, where guests can unwind in style or enjoy direct access to the pristine sandy shores. Culinary experiences at the on-site restaurants are a true delight, showcasing a diverse range of flavors and dining options. Whether lounging by the pool, indulging in rejuvenating spa treatments, or exploring the vibrant nearby attractions, the Loews Miami Beach Hotel offers a complete and unforgettable Miami experience that blends luxury, comfort, and the captivating allure of the oceanfront.",
               "Loews Miami Beach Hotel is pet-friendly and allows you to bring two pets during your stay for $50 per stay."
             ]}
           />
@@ -256,7 +256,7 @@ const Miami: FC = () => {
             hotelName="100086316" 
             paragraphs={[
               "The Confidante Miami Beach is a captivating and artfully designed oceanfront oasis situated in the heart of Miami Beach, Florida. As part of the Hyatt Unbound Collection, the hotel exudes a distinct blend of retro charm and modern luxury, paying homage to the glamour of the 1940s and 1950s with a contemporary twist. ",
-              "Guests are greeted with spacious and comfortable rooms and suites, many of which offer panoramic views of the Atlantic Ocean or the city skyline. The Confidante's private beachfront, complete with colorful umbrellas and loungers, invites relaxation and leisure, while its heated outdoor pool area provides a chic and lively atmosphere. The hotel's commitment to culinary excellence is showcased through its diverse dining options that feature locally inspired cuisine and innovative cocktails. ",
+              //"Guests are greeted with spacious and comfortable rooms and suites, many of which offer panoramic views of the Atlantic Ocean or the city skyline. The Confidante's private beachfront, complete with colorful umbrellas and loungers, invites relaxation and leisure, while its heated outdoor pool area provides a chic and lively atmosphere. The hotel's commitment to culinary excellence is showcased through its diverse dining options that feature locally inspired cuisine and innovative cocktails. ",
               "The Confidante Miami Beach is pet-friendly and allows you to bring two pets with a combined weight of 75 pounds or less. If you are staying between 1-5 days, the fee is $100."
             ]}
           />
@@ -265,7 +265,7 @@ const Miami: FC = () => {
             hotelName="100795735" 
             paragraphs={[
               "The W Miami Brickell stands as a sleek and modern urban retreat, perfectly situated within the dynamic Brickell neighborhood of Miami, Florida. With its distinctive blend of contemporary luxury and vibrant energy, the hotel offers a sophisticated escape that caters to both leisure and business travelers. The W's striking architecture and stylish interiors create a dynamic ambiance that mirrors the cosmopolitan spirit of the city. Guests are welcomed into chic and well-appointed rooms and suites, many of which provide breathtaking views of the Miami skyline and Biscayne Bay.",
-              "The hotel's rooftop pool deck, complete with cabanas and a bar, offers a stylish oasis where guests can bask in the sun or enjoy panoramic vistas. Innovative dining options that showcase global flavors and artistic presentations further elevate the experience. The W Miami Brickell also boasts a state-of-the-art fitness center and a range of luxurious amenities designed to create an immersive and indulgent stay. ",
+              //"The hotel's rooftop pool deck, complete with cabanas and a bar, offers a stylish oasis where guests can bask in the sun or enjoy panoramic vistas. Innovative dining options that showcase global flavors and artistic presentations further elevate the experience. The W Miami Brickell also boasts a state-of-the-art fitness center and a range of luxurious amenities designed to create an immersive and indulgent stay. ",
               "The W Miami Brickell is pet-friendly and allows you to bring two pets weighing up to 40 pounds during your stay for a $100 fee per stay, plus $25 for any additional night.",
             ]}
           />
@@ -274,7 +274,7 @@ const Miami: FC = () => {
             hotelName="100429030" 
             paragraphs={[
               "Nestled along the sun-kissed shores of Miami Beach, 1 Hotel South Beach is a harmonious blend of eco-luxury and coastal elegance. With a deep commitment to sustainability and nature-inspired design, the hotel offers an unparalleled retreat that resonates with both tranquility and vitality. Each aspect of the hotel is thoughtfully curated to reflect a seamless integration with the surrounding environment. Guests are welcomed into spacious and naturally lit rooms and suites adorned with reclaimed wood and organic textures, evoking a sense of calm and connection to nature. ",
-              "The hotel's rooftop pool, enveloped by lush greenery and offering panoramic ocean views, serves as a serene sanctuary. Culinary offerings highlight locally sourced, organic ingredients, showcasing the region's vibrant flavors and culinary creativity. The beachfront setting allows for direct access to the sandy shores, where guests can embrace the ocean's embrace. 1 Hotel South Beach invites guests to immerse themselves in a transformative experience where sustainable luxury and the beauty of the natural world converge to create an unforgettable Miami escape.",
+             // "The hotel's rooftop pool, enveloped by lush greenery and offering panoramic ocean views, serves as a serene sanctuary. Culinary offerings highlight locally sourced, organic ingredients, showcasing the region's vibrant flavors and culinary creativity. The beachfront setting allows for direct access to the sandy shores, where guests can embrace the ocean's embrace. 1 Hotel South Beach invites guests to immerse themselves in a transformative experience where sustainable luxury and the beauty of the natural world converge to create an unforgettable Miami escape.",
               "1 Hotel South Beach is pet-friendly and allows you to bring pets weighing up to 25 pounds. Pets are not allowed by the pool or lounge areas."
             ]}  
           />

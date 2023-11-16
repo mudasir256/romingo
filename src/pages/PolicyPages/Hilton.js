@@ -9,6 +9,8 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 import SingleLoadListingCard from '../../components/SingleLoadListingCard';
+import LocationPageFilterBar from '../../components/LocationPageFilterBar'
+import IconTags from '../../components/IconTags';
 
 import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
@@ -22,32 +24,6 @@ const Five = 'https://www.romingo.com/public/images/policy-images/hilton-5.jpg';
 
 export default function Hilton() {
 
-	const [hotels, setHotels] = useState([])
-	const [loading, setLoading] = useState(true)
-
-	const fetchHotels = async () => {
-		try {
-			console.log(process.env.REACT_APP_BASE_ENDPOINT)
-			const result = await fetch(process.env.REACT_APP_BASE_ENDPOINT + 'v2/hotels-by-name/Hilton', {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				}
-			})
-			const data = await result.json()
-			console.log(data)
-			setHotels(data.hotels)
-			setLoading(false)
-		} catch (err) {
-			console.log(err)
-			setLoading(false)
-		}
-	}
-
-	useEffect(() => {
-		console.log('fetch hotels!')
-		fetchHotels()
-	}, [])
 
 	return (<>
 		<Helmet>
@@ -59,6 +35,55 @@ export default function Hilton() {
 		</Helmet>
 
 		<Navbar />
+
+
+		<Box 
+			sx={{ flexDirection: { xs: 'column-reverse', sm: 'column-reverse', md: 'row' } }} 
+			display="flex"  
+			gap="1rem" 
+			alignItems="center"
+			maxWidth="1800px"
+			mx="auto"
+		>
+
+			<Box 
+				borderRadius={4}
+				backgroundColor="white" 
+				sx={{
+					width: { xs: 'auto', sm: 'auto', md: '420px' },
+					p: { xs: '1rem', sm: '1rem', md: '1.5rem' },
+					pt: { xs: 0, sm: 0 },
+					left: { xs: 0, sm: 0, md: '7%' },
+					boxShadow: { xs: 0, sm: 0, md: 3 },
+					position: { xs: 'relative', sm: 'relative', md: 'relative' }
+				}}
+			>
+				<Typography variant="h4" component="h1">Find pet-friendly Hilton Hotels on Romingo</Typography>
+				<Typography variant="base">The hassle free way to travel with your pet</Typography>
+				<Box sx={{  width: '100%', mt: '1rem' }}>
+					<LocationPageFilterBar />
+				</Box>
+			</Box>
+
+			<Box
+				component="img"
+				src="https://storage.googleapis.com/romingo-production-public/Pet%20Policy%20Images/a2925c39-1cab-4e05-aeb0-8fd5cca6f1ea.jpg"
+				alt="hilton hotel"
+				sx={{
+					objectFit: "cover",
+					width: { xs: '95%', sm: '95%', md: "65%" },
+					m: { xs: '0.5rem', sm: '0.5rem', md: '2rem' },
+					borderRadius: '10px',
+					height: { xs: "40vh", md: "70vh" },
+					boxShadow: 0,
+				}}
+			/>
+		</Box>
+
+		<Box maxWidth="920px" mx="auto" px="1rem" sx={{ py: { xs: '1rem', sm: '1rem', md: '4rem'} }}>
+			<IconTags />
+		</Box>
+
 		<Box sx={{ maxWidth: '760px', mx: 'auto', pb: '1rem', px: '1rem' }}>
 			<Typography mt="2rem" mb="0.5rem" variant="h4" component="h1">A Guide to Hilton Hotels Pet Policy: What You Need to Know</Typography>
 			<Typography variant="base">If you&apos;re traveling with your furry friend, it&apos;s important to understand the pet policies of the hotels you&apos;re considering. Hilton is one hotel chain that is known for being pet-friendly, but what exactly does that mean? In this guide, we&apos;ll provide an overview of Hilton&apos;s pet policy and offer tips for traveling with pets to Hilton hotels.</Typography>

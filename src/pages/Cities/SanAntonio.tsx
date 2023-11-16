@@ -221,7 +221,7 @@ const SanAntonio: FC = () => {
             hotelName="100219412" 
             paragraphs={[
               "The Sheraton Gunter Hotel in San Antonio is a historic gem that exudes timeless elegance and modern comforts. Located in the heart of downtown, this iconic hotel has been a fixture in the city since 1909, offering a seamless blend of rich history and contemporary amenities. As soon as guests step into the lobby, they are greeted with a sense of grandeur, adorned with stunning chandeliers and polished marble floors.",
-              "The guest rooms and suites are tastefully appointed, providing a luxurious retreat after a day of exploring the city's attractions. The hotel also features a rooftop pool and fitness center, allowing guests to unwind and stay active during their stay.",
+             // "The guest rooms and suites are tastefully appointed, providing a luxurious retreat after a day of exploring the city's attractions. The hotel also features a rooftop pool and fitness center, allowing guests to unwind and stay active during their stay.",
               "For a fee of $60 per stay, you can bring along two pets weighing up to 50 lbs. This iconic hotel seamlessly blends modern amenities with classic decor, providing a luxurious retreat for both you and your furry friends."
             ]}
           />
@@ -230,8 +230,8 @@ const SanAntonio: FC = () => {
             hotelName="100211814" 
             paragraphs={[
               "The Hyatt Regency Hill Country Resort and Spa is a luxurious oasis nestled amidst the picturesque landscapes of San Antonio, Texas. Situated on 300 acres of stunning Hill Country terrain, this resort offers a serene retreat with a perfect blend of upscale amenities and natural beauty.",
-              "Golf enthusiasts can tee off on the 27-hole championship golf course, while nature lovers can explore the walking and biking trails that wind through the property. The resort's Windflower - The Hill Country Spa provides a tranquil escape, offering a range of rejuvenating treatments to pamper and revitalize guests.",
-              "This beautiful, pet-friendly resort is not only perfect for human guests but also goes the extra mile to accommodate their furry companions. With its spacious grounds and walking trails, your pet will have plenty of opportunities to stretch their legs and enjoy the fresh air.",
+              //"Golf enthusiasts can tee off on the 27-hole championship golf course, while nature lovers can explore the walking and biking trails that wind through the property. The resort's Windflower - The Hill Country Spa provides a tranquil escape, offering a range of rejuvenating treatments to pamper and revitalize guests.",
+              //"This beautiful, pet-friendly resort is not only perfect for human guests but also goes the extra mile to accommodate their furry companions. With its spacious grounds and walking trails, your pet will have plenty of opportunities to stretch their legs and enjoy the fresh air.",
               "When traveling to Hyatt Regency Hill Country Resort and Spa, you can bring two dogs that weigh 50 pounds and under. There is also a $100 pet fee per stay."
             ]}
           /> 
@@ -241,7 +241,7 @@ const SanAntonio: FC = () => {
             hotelName="100410224" 
             paragraphs={[
               "Experience the luxury and sophistication of Thompson San Antonio Hotel Contessa Riverwalk, a pet-friendly hotel catering to both business and leisure travelers. Their pet fee is $125 per stay per pet with a weight limit of 40 pounds.",
-              "Guests with pets are only available on set floors and select room types based on availability – so call them early if you are traveling with a pet. This upscale hotel offers elegant accommodations, stunning views of the Riverwalk, and a range of amenities to enhance your stay.",
+             // "Guests with pets are only available on set floors and select room types based on availability – so call them early if you are traveling with a pet. This upscale hotel offers elegant accommodations, stunning views of the Riverwalk, and a range of amenities to enhance your stay.",
               "San Antonio warmly embraces pets, offering a variety of pet-friendly hotels that provide comfortable accommodations and exceptional service. Whether you seek affordability, modern comfort, or upscale luxury, there's a pet-friendly option to suit your preferences. Explore the city's rich history, vibrant culture, and warm hospitality with your beloved pets by your side."
             ]}
           />
@@ -250,7 +250,7 @@ const SanAntonio: FC = () => {
             hotelName="102262683" 
             paragraphs={[
               "Aloft San Antonio Northwest is a trendy and modern hotel that offers a vibrant and youthful atmosphere in the heart of San Antonio, Texas. With its bold and contemporary design, the hotel appeals to young travelers and those seeking a fresh and energetic stay. The hotel's W XYZ Bar is a lively hotspot where guests can enjoy signature cocktails and mingle with fellow travelers. Additionally, the gym allows fitness enthusiasts to stay active during their stay.",
-              "Experience contemporary comfort at Aloft San Antonio Northwest, a pet-friendly hotel that welcomes two pets weighing up to 40 pounds for no additional fee.",
+             // "Experience contemporary comfort at Aloft San Antonio Northwest, a pet-friendly hotel that welcomes two pets weighing up to 40 pounds for no additional fee.",
               "Whether you're visiting for business or leisure, Aloft San Antonio Northwest offers a welcoming and pet-friendly environment for you and your furry companions."
             ]}
           />
@@ -259,7 +259,7 @@ const SanAntonio: FC = () => {
             hotelName="100437618" 
             paragraphs={[
               "La Quinta Inn & Suites by Wyndham San Antonio Riverwalk is a fantastic choice for travelers seeking comfortable accommodations in the heart of San Antonio. Located just steps away from the famous River Walk, this hotel offers convenience and easy access to the city's most popular attractions.",
-              "Known for its pet-friendly policy, La Quinta Inn & Suites provides a comfortable stay without breaking the bank. Conveniently located near downtown attractions, this hotel ensures easy access to pet-friendly spots in the city.",
+             // "Known for its pet-friendly policy, La Quinta Inn & Suites provides a comfortable stay without breaking the bank. Conveniently located near downtown attractions, this hotel ensures easy access to pet-friendly spots in the city.",
               "This hotel welcomes up to two pets per stay of any size for a fee of $25 per night."
             ]}
           /> 
@@ -268,7 +268,7 @@ const SanAntonio: FC = () => {
             hotelName="100082108" 
             paragraphs={[
               "Home2 Suites by Hilton San Antonio Downtown is a contemporary and inviting hotel that offers a comfortable and convenient stay in the heart of downtown San Antonio. With its modern design and spacious suites, this hotel caters to both short-term and extended-stay guests, providing all the comforts of home.",
-              "Each suite features a well-equipped kitchenette, making it easy for guests to prepare their meals and enjoy a sense of independence during their stay. The hotel offers complimentary breakfast, ensuring a great start to each day. The indoor pool and fitness center are ideal for relaxation and staying active while on the road.",
+            //  "Each suite features a well-equipped kitchenette, making it easy for guests to prepare their meals and enjoy a sense of independence during their stay. The hotel offers complimentary breakfast, ensuring a great start to each day. The indoor pool and fitness center are ideal for relaxation and staying active while on the road.",
               "You're welcome to bring up to two pets that weigh less than 80 pounds to this hotel. There is an additional fee of $75 per pet, per stay at this hotel."
             ]}
           />

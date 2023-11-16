@@ -219,7 +219,7 @@ const NewOrleans: FC = () => {
             hotelName="102262557" 
             paragraphs={[
               "Virgin Hotels New Orleans, part of the renowned Virgin Group, brings its signature style and innovation to the heart of the city. Located in the Warehouse District, this chic and contemporary hotel offers a vibrant atmosphere, blending modern design with local flair. ",
-              "The hotel boasts comfortable and stylish rooms with all the amenities you need for a comfortable stay. Guests can indulge in delectable dining options, enjoy the rooftop pool, and experience the energetic vibe of the Commons Club. With its pet-friendly policy, Virgin Hotels New Orleans ensures that your four-legged companions are also treated like royalty.",
+             // "The hotel boasts comfortable and stylish rooms with all the amenities you need for a comfortable stay. Guests can indulge in delectable dining options, enjoy the rooftop pool, and experience the energetic vibe of the Commons Club. With its pet-friendly policy, Virgin Hotels New Orleans ensures that your four-legged companions are also treated like royalty.",
               "Virgin Hotels New Orleans is pet-friendly and allows you to bring pets of all sizes for no additional fee."
             ]}
           />
@@ -228,7 +228,7 @@ const NewOrleans: FC = () => {
             hotelName="100221170" 
             paragraphs={[
               "Situated in the Arts District, Kimpton Hotel Fontenot exudes sophistication and charm. This boutique hotel, part of the InterContinental Hotels Group (IHG), offers an artistic ambiance, blending contemporary design with the spirit of New Orleans. The well-appointed rooms feature modern amenities and thoughtful touches to ensure a memorable stay.",
-              "Guests can savor locally inspired cuisine at the hotel's restaurant and unwind with crafted cocktails in the rooftop lounge. Known for their pet-friendly approach, Kimpton Hotel Fontenot welcomes pets with open arms, providing all the necessary comforts to ensure a delightful stay for both you and your furry friends.",
+             // "Guests can savor locally inspired cuisine at the hotel's restaurant and unwind with crafted cocktails in the rooftop lounge. Known for their pet-friendly approach, Kimpton Hotel Fontenot welcomes pets with open arms, providing all the necessary comforts to ensure a delightful stay for both you and your furry friends.",
               "Kimpton Hotel Fontenot, an IHG Hotel is pet-friendly and allows you to bring pets of all sizes for no additional fee."
             ]}
           />
@@ -237,7 +237,7 @@ const NewOrleans: FC = () => {
             hotelName="100389402" 
             paragraphs={[
               "Steeped in history and located in the heart of the French Quarter, Bourbon Orleans Hotel offers an authentic New Orleans experience with a touch of Southern hospitality. The hotel's elegant and comfortable rooms are adorned with classic decor and modern amenities. ",
-              "Guests can savor traditional Creole cuisine at the hotel's restaurant and soak in the charming courtyard with a refreshing drink. Bourbon Orleans Hotel's pet-friendly policy ensures that you can explore the city's historic streets with your furry companion by your side. With its prime location, guests are just steps away from iconic landmarks, lively nightlife, and the vibrant culture of New Orleans.",
+             // "Guests can savor traditional Creole cuisine at the hotel's restaurant and soak in the charming courtyard with a refreshing drink. Bourbon Orleans Hotel's pet-friendly policy ensures that you can explore the city's historic streets with your furry companion by your side. With its prime location, guests are just steps away from iconic landmarks, lively nightlife, and the vibrant culture of New Orleans.",
               "Bourbon Orleans Hotel is pet-friendly and allows you to bring two dogs per room for an additional fee of $75."
             ]}
           />
@@ -246,7 +246,7 @@ const NewOrleans: FC = () => {
             hotelName="100005998" 
             paragraphs={[
               "An iconic landmark in the heart of downtown New Orleans, The Roosevelt captures the essence of the city's rich history and luxury. The hotel's elegant rooms feature plush furnishings, and guests can enjoy top-notch amenities, including a rooftop pool and multiple dining options. The Sazerac Bar, a historic gem within the hotel, is famous for its classic cocktails and lively ambiance.",
-              "The Roosevelt New Orleans welcomes pets, ensuring that your furry friends can enjoy a taste of luxury as well. With its prime location on Roosevelt Way, the hotel offers easy access to the French Quarter, Canal Street shopping, and other notable attractions.",
+             // "The Roosevelt New Orleans welcomes pets, ensuring that your furry friends can enjoy a taste of luxury as well. With its prime location on Roosevelt Way, the hotel offers easy access to the French Quarter, Canal Street shopping, and other notable attractions.",
               "The Roosevelt New Orleans is pet-friendly and allows you to bring pets for an additional fee of $175."
             ]}
           />
@@ -255,7 +255,7 @@ const NewOrleans: FC = () => {
             hotelName="100185804" 
             paragraphs={[
               "Nestled in the Warehouse District, Ace Hotel New Orleans infuses the city's artistic spirit into every aspect of its design. The hotel's industrial-chic aesthetic, complemented by locally sourced artwork and unique decor, creates a hip and vibrant atmosphere. The rooms are stylishly furnished, and guests can enjoy creative dining options and lively entertainment within the hotel's premises. ",
-              "Ace Hotel New Orleans embraces a pet-friendly policy, encouraging guests to bring their furry companions along for the adventure. With its trendy ambiance and central location, this hotel provides an excellent base for exploring the city's art scene, diverse culinary offerings, and lively nightlife.",
+             // "Ace Hotel New Orleans embraces a pet-friendly policy, encouraging guests to bring their furry companions along for the adventure. With its trendy ambiance and central location, this hotel provides an excellent base for exploring the city's art scene, diverse culinary offerings, and lively nightlife.",
               "Ace Hotel New Orleans is pet-friendly and allows you to bring two pets that weigh up to 50 pounds for a fee of $25 per pet, per night."
             ]}
           />
@@ -264,7 +264,7 @@ const NewOrleans: FC = () => {
             hotelName="100409330" 
             paragraphs={[
               "Located in the heart of the French Quarter, Homewood Suites by Hilton New Orleans offers a comfortable and convenient stay for both short and extended visits. The hotel's spacious suites feature fully equipped kitchens, making it an ideal choice for travelers seeking a home-away-from-home experience. ",
-              "Guests can enjoy complimentary breakfast and evening socials, creating a welcoming and social atmosphere. The hotel's pet-friendly policy ensures that your four-legged family members can join you on your adventure through the lively streets of New Orleans. With its central location, guests can easily explore nearby attractions, restaurants, and the city's unique culture.",
+             // "Guests can enjoy complimentary breakfast and evening socials, creating a welcoming and social atmosphere. The hotel's pet-friendly policy ensures that your four-legged family members can join you on your adventure through the lively streets of New Orleans. With its central location, guests can easily explore nearby attractions, restaurants, and the city's unique culture.",
               "Homewood Suites by Hilton New Orleans is pet-friendly and allows you to bring two pets of any size for an additional fee of $75 for stays up to four nights; $125 for stays longer than four nights."
             ]}
           />  

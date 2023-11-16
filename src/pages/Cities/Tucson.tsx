@@ -241,7 +241,7 @@ const Tucson: FC = () => {
             hotelName="100013582" 
             paragraphs={[
               "Nestled amidst the natural beauty of the Sonoran Desert, the Westward Look Wyndham Grand Resort & Spa in Tucson, Arizona, is an enchanting oasis that offers a luxurious and tranquil escape. This historic resort, dating back to the late 19th century, seamlessly blends its rich heritage with modern amenities, providing an unforgettable experience for every guest.",
-              "With its breathtaking surroundings, warm hospitality, and exceptional facilities, Westward Look Wyndham Grand Resort & Spa promises a remarkable and rejuvenating stay for travelers seeking an enchanting desert retreat.",
+             // "With its breathtaking surroundings, warm hospitality, and exceptional facilities, Westward Look Wyndham Grand Resort & Spa promises a remarkable and rejuvenating stay for travelers seeking an enchanting desert retreat.",
               "Westward Look Wyndham Grand Resort & Spa is also pet-friendly, ensuring that your furry companion can join in the adventure. You can bring two pets of any size for a fee of $75 per stay."
             ]}
           />
@@ -250,7 +250,7 @@ const Tucson: FC = () => {
             hotelName="100036502" 
             paragraphs={[
               "La Quinta Inn & Suites Tucson Reid Park is a welcoming and comfortable hotel located in Tucson, Arizona. Situated near the beautiful Reid Park and the Reid Park Zoo, the hotel offers a convenient location for both leisure and business travelers.",
-              "With its affordable rates, convenient location, and pet-friendly atmosphere, La Quinta Inn & Suites Tucson Reid Park is an excellent choice for travelers looking for a budget-friendly and comfortable stay in Tucson.",
+             // "With its affordable rates, convenient location, and pet-friendly atmosphere, La Quinta Inn & Suites Tucson Reid Park is an excellent choice for travelers looking for a budget-friendly and comfortable stay in Tucson.",
               "One of the standout features of this hotel is its pet-friendly policy, allowing guests to bring their furry companions along. You can bring two pets of any weight and size for a fee of $25 per pet, per night."
             ]}
           /> 
@@ -267,7 +267,7 @@ const Tucson: FC = () => {
             hotelName="100193918" 
             paragraphs={[
               "Hotel Congress is an iconic and historic landmark located in the heart of downtown Tucson, Arizona. Established in 1919, this boutique hotel exudes vintage charm and a vibrant atmosphere, making it a popular destination. The guest rooms are tastefully decorated, preserving the hotel's historic character while providing modern amenities for a comfortable stay.",
-              "The hotel's unique personality extends beyond its accommodations, as it houses various entertainment venues, including the historic Club Congress, which hosts live music and events.",
+              //"The hotel's unique personality extends beyond its accommodations, as it houses various entertainment venues, including the historic Club Congress, which hosts live music and events.",
               "Hotel Congress is pet-friendly and allows pets that weigh up to 80 pounds for a fee of $50 per pet for one night and an additional $25 per pet for each extra night."
             ]}
           />

@@ -269,7 +269,7 @@ const Phoenix: FC = () => {
             hotelName="100218610" 
             paragraphs={[
               "At Comfort Inn and Suites Phoenix North - Deer Valley, you and your pet can revel in a comfortable and budget-friendly stay. For a nominal fee of $25 per night, you can bring along two pets, with a combined weight of up to 75 lbs each.",
-              "Rest assured knowing that your furry companion will find respite and solace in the cozy and inviting surroundings. Unleash their playful spirit at the nearby friendly dog park, where they can embark on thrilling explorations and engage in delightful social interactions.",
+             // "Rest assured knowing that your furry companion will find respite and solace in the cozy and inviting surroundings. Unleash their playful spirit at the nearby friendly dog park, where they can embark on thrilling explorations and engage in delightful social interactions.",
               "Phoenix opens its arms to both you and your cherished pet, providing a sanctuary where unforgettable moments and stress-free experiences await. From the contemporary allure of Hyatt Place Phoenix Downtown to the sophisticated charm of Kimpton Hotel Palomar Phoenix, the accommodation options cater to every preference."
             ]}
           />
