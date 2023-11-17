@@ -146,7 +146,7 @@ const NewYork: FC = () => {
           position: { xs: 'relative', sm: 'relative', md: 'relative' }
         }}
       >
-        <Typography variant="h4" component="h1">Find pet-friendly hotels in {city}</Typography>
+        <Typography variant="h4" component="h1">Find pet-friendly hotels in New York</Typography>
         <Typography variant="base">The hassle free way to travel with your pet</Typography>
         <Box sx={{  width: '100%', mt: '1rem' }}>
           <LocationPageFilterBar search={searchData} />
@@ -156,7 +156,7 @@ const NewYork: FC = () => {
       <Box
         component="img"
         src={cityContent.heroImage}
-        alt={city}
+        alt="New York"
         sx={{
           objectFit: "cover",
           width: { xs: '95%', sm: '95%', md: "65%" },

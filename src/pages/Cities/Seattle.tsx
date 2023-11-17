@@ -257,7 +257,7 @@ const Seattle: FC = () => {
             ]}
           />
           
-          <SingleLoadListingCard 
+     {/*     <SingleLoadListingCard 
             hotelName="100220096" 
             paragraphs={[
               "The ACE Hotel Seattle is a trendy and vibrant boutique hotel located in the heart of the Belltown neighborhood. With its chic and eclectic design, the hotel offers a unique and artistic ambiance that sets it apart from traditional accommodations. This vibrant hotel boasts stylish accommodations, a lively bar, and a prime location within Seattle's bustling arts and entertainment district.",
@@ -265,7 +265,7 @@ const Seattle: FC = () => {
 
             ]}
           />
-          
+          */}
 
           
           <SingleLoadListingCard 

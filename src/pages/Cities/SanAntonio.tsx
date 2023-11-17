@@ -237,14 +237,14 @@ const SanAntonio: FC = () => {
           /> 
          
 
-          <SingleLoadListingCard 
+     {/*  TODO :REPLACE   <SingleLoadListingCard 
             hotelName="100410224" 
             paragraphs={[
               "Experience the luxury and sophistication of Thompson San Antonio Hotel Contessa Riverwalk, a pet-friendly hotel catering to both business and leisure travelers. Their pet fee is $125 per stay per pet with a weight limit of 40 pounds.",
              // "Guests with pets are only available on set floors and select room types based on availability – so call them early if you are traveling with a pet. This upscale hotel offers elegant accommodations, stunning views of the Riverwalk, and a range of amenities to enhance your stay.",
               "San Antonio warmly embraces pets, offering a variety of pet-friendly hotels that provide comfortable accommodations and exceptional service. Whether you seek affordability, modern comfort, or upscale luxury, there's a pet-friendly option to suit your preferences. Explore the city's rich history, vibrant culture, and warm hospitality with your beloved pets by your side."
             ]}
-          />
+          />*/}
         
           <SingleLoadListingCard 
             hotelName="102262683" 

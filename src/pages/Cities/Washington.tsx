@@ -253,14 +253,14 @@ const Washington: FC = () => {
             ]} 
           />
         
-          <SingleLoadListingCard 
+     {/*     <SingleLoadListingCard 
             hotelName="00179670" 
             paragraphs={[
               "Overlooking the picturesque Potomac River, the Salamander, Washington DC, is a pet-friendly hotel that offers a serene and luxurious experience for both guests and their pets. Welcoming pets of all sizes, the hotel provides pet-friendly rooms with comfortable accommodations and ensures your pet feels pampered throughout their stay. ",
              // "With its prime location near the National Mall and other attractions, guests and their furry companions can immerse themselves in the city's history and cultural offerings while enjoying impeccable hospitality.",
               "Salamander is a dog friendly property and allows you to bring up to 2 dogs with a maximum combined weight of 40lbs. The hotel requires a $150 pet fee upon check-in. "
             ]}
-          />
+          />*/}
        
           <SingleLoadListingCard 
             hotelName="100208430" 
