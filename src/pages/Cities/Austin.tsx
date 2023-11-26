@@ -308,7 +308,7 @@ const Austin: FC = () => {
           >
 
              <Box textAlign="left" m="0.5rem" pb="0.25rem" minHeight="580px" boxShadow={1} borderRadius={4}>
-                 <img style={{ objectFit: 'cover', borderRadius: '6px 6px 0 0' }} src="" height="340px" />
+                 <img style={{ objectFit: 'cover', borderRadius: '6px 6px 0 0' }} src="https://storage.googleapis.com/romingo-production-public/destination%20images/Austin/Zilker%20Metro%20Park%20Austin.jpg" height="340px" />
                   <LinkContent
                     link="https://www.austintexas.gov/department/zilker-metropolitan-park"
                     linkText="Zilker Metropolitan Park"
@@ -489,7 +489,7 @@ const Austin: FC = () => {
              <Box textAlign="left" m="0.5rem" pb="0.25rem" minHeight="580px" boxShadow={1} borderRadius={4}>
                  <img 
                   style={{ objectFit: 'cover', borderRadius: '6px 6px 0 0' }} 
-                  src="" 
+                  src="https://storage.googleapis.com/romingo-production-public/destination%20images/Austin/Moontower%20Austin.jpg" 
                   height="340px" 
                 />
                  <LinkContent

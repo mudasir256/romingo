@@ -498,7 +498,7 @@ const Atlanta: FC = () => {
                   )
                 },
                 {
-                  src: "",
+                  src: "https://storage.googleapis.com/romingo-production-public/destination%20images/Atlanta/West%20Egg%20Cafe%20Atlanta.jpg",
                   component: (
                     <LinkContent
                       link="https://www.westeggcafe.com/"

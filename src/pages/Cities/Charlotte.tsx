@@ -354,7 +354,7 @@ const Charlotte: FC = () => {
                   )
                 },
                 {
-                  src: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Latta%20Plantation.jpeg"',
+                  src: 'https://storage.googleapis.com/romingo-production-public/destination%20images/Charlotte/Latta%20Plantation%20Nature%20Preserve%20Charlotte.jpg',
                   component: (
                     <LinkContent
                       link="https://www.visitnc.com/listing/4NBE/latta-plantation-nature-center-preserve"
