@@ -461,6 +461,10 @@ app.get('/robots.txt', function(req, res, next) {
 
 })
 
+app.get('/favicon.ico', function(req,res, next) {
+  res.sendFile(__dirname + '/public/favicon.ico'); 
+})
+
 app.get("*", (req, res) => {
   let pathname = req.pathname || req.originalUrl;
   console.log(pathname)
