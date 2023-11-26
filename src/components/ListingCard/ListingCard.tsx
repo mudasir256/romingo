@@ -423,7 +423,7 @@ const ListingCard: FC<ListingCardProps> = ({
               }}
             >
               <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#0070C0'}}>Free cancellation</Typography>
-              <Typography variant="base" sx={{ lineHeight: '12px', fontSize: '0.75rem', color: '#0070C0'}}>Book now, pay later</Typography>
+              <Typography variant="base" sx={{ lineHeight: '12px', fontSize: '0.75rem', color: '#3F8825'}}>Book now, pay later</Typography>
             </Box>
 
             <Box
