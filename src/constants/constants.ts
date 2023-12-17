@@ -742,53 +742,63 @@ const UserProfile = `
 `
 
 /* Listings Page Callout */
-const GetHotelsByLocation = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => { return `query {
-  getHotels(input: {adults: ${adults},
-  checkInDate: "${checkIn}",
-  checkOutDate: "${checkOut}",
-  children: "${children}",
-  latitude: "${latitude}",
-  longitude: "${longitude}",
-  hotelIds: "${hotelIds}"
-}) {
-    sessionId
-    hotels {
-      ID
-      Address 
-      DefaultImage
-      DisplayName
-      GeoLocation
-      StarRating
-      SuppliersLowestPackagePrices
-      Packages
-      hotelName
-      description
-      petsAllowed
-      petFee
-      petFeeValue
-      petFeeDetail
-      petSize
-      petAllowance
-      petBowls
-      petBeds
-      unattendedPets
-      petAmenities
-      petReliefArea
-      catPolicy
-      starRating
-      numberOfReviews
-      city
-      state
-      zipcode
-      amenities
-      alias
-      images
-      addressLine
-      taxRate
+const GetHotelsByLocation = (
+  adults: number, 
+  checkIn: number, 
+  checkOut: number, 
+  children: number, 
+  latitude: number, 
+  longitude: number, 
+  hotelIds = []
+) => { 
+  console.log('DEV: GetHotelsByLocation() fired');
+  return `query {
+    getHotels(input: {adults: ${adults},
+      checkInDate: "${checkIn}",
+      checkOutDate: "${checkOut}",
+      children: "${children}",
+      latitude: "${latitude}",
+      longitude: "${longitude}",
+      hotelIds: "${hotelIds}"
+    }) {
+      sessionId
+      hotels {
+        ID
+        Address 
+        DefaultImage
+        DisplayName
+        GeoLocation
+        StarRating
+        SuppliersLowestPackagePrices
+        Packages
+        hotelName
+        description
+        petsAllowed
+        petFee
+        petFeeValue
+        petFeeDetail
+        petSize
+        petAllowance
+        petBowls
+        petBeds
+        unattendedPets
+        petAmenities
+        petReliefArea
+        catPolicy
+        starRating
+        numberOfReviews
+        city
+        state
+        zipcode
+        amenities
+        alias
+        images
+        addressLine
+        taxRate
+      }
     }
-  }
+  }`
 }
-`}
 
 const getPackages = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => {
   return `query {

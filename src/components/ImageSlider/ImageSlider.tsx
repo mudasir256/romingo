@@ -102,6 +102,7 @@ const ImageSlider: FC<Props> = ({ sx, images, height= '301px', name, forceLarge,
         showThumbs={false}
         preventMovementUntilSwipeScrollTolerance
         swipeScrollTolerance={100}
+        dynamicHeight
       >
         {items}
       </Carousel>

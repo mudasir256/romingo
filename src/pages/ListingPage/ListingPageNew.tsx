@@ -74,7 +74,6 @@ const ListingPageNew = ({ ...props }) => {
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const search = useSelector((state: any) => state.searchReducer.search);
   
-  console.log('search')
   console.log(search)
 
   const [center, setCenter] = useState({ lat: search.latitude, lng: search.longitude })
@@ -119,14 +118,12 @@ const ListingPageNew = ({ ...props }) => {
 
   const childrenAge = search?.occupants?.children > 0 ? search?.occupants?.childrenAge : []
 
-  const { data, loading } = useQuery(
+  const { data, loading, error } = useQuery(
     gql`${GetHotelsByLocation(search.occupants.adults + '', parseInt(moment(search.checkIn).format('x')), parseInt(moment(search.checkOut).format('x')), childrenAge, search.lat, search.lng)}`,
     {
-      fetchPolicy: 'cache-and-network' //TODO
+      fetchPolicy: 'cache-and-network', // TODO
     }
   );
-
-  console.log(data)
 
   const cards = useSelector((state: any) => {
     return state.hotelListReducer.hotels;
@@ -307,6 +304,7 @@ const ListingPageNew = ({ ...props }) => {
     }
 
     if (data && data.getHotels && data.getHotels.sessionId) {
+      console.log('DEV: useEffect() if(data && data.getHotels ...) fired')
       setShowSearchBar(false)
       sessionStorage.setItem('sessionId', data.getHotels.sessionId)
       setSessionId(data.getHotels.sessionId);
@@ -485,7 +483,7 @@ const ListingPageNew = ({ ...props }) => {
 
   useEffect(() => {
     if (data?.getHotels?.hotels?.length > 0) {
-      
+      console.log('DEV: useEffect() if(data?...) fired');
       const newHotels = formatHotels.filter(hotel => {
         // console.log(hotel)
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
@@ -625,13 +623,15 @@ const ListingPageNew = ({ ...props }) => {
       px="0.5rem"
       py="0.5rem"
     >
-  
-        <img width="40px" src={WhitePawsIcon} />
-        <Typography  variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $10 off your first reservation when you create an account</Typography>
-        <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
+      <img width="40px" src={WhitePawsIcon} />
+      <Typography  variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $10 off your first reservation when you create an account</Typography>
+      <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
 
+  useEffect(() => {
+    console.log('hotels:', hotels);
+  }, [hotels]); 
 
   return (
     <Box sx={{ background: "#feffff" }}>
@@ -672,142 +672,139 @@ const ListingPageNew = ({ ...props }) => {
       }
 
       <Grid container direction='row' justifyContent="center" sx={{ mt: "1rem", px: { xs: 0, sm: 0, md: 0, lg: '6rem'} }} style={{ margin: 'auto', position: 'relative', }} >
-        {mobile ?
-          <Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
-            <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
-              View on full map
-            </Button>
-            <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={(e) => handleViewFilters(e)}>
-              View filters
-            </Button>
-          </Grid>:
-          <Grid item xs={0} sm={0} md={3.2}>
-            <Box sx={{ display: "flex", mt: '1.5rem', mb: 2, width: "100%" }}>
-              <Map center={{ lat: search.lat, lng: search.lng }}
-                height={300}
-                zoom={11}
-                selectedMarker={0}
-                markers={markers}
-              />
-            </Box>
-            <Button variant="outlined" style={{ width: '100%', marginBottom: 10, }} onClick={() => setOpenMap(true)}>
-              View on full map
-            </Button>
-
-            <TextField label="Search by property name" variant="filled" fullWidth value={query} onChange={handleSearch} />
-      
-
-            <Box my="1rem">
-              <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
-
-              <Box mb="1rem">
-                <Typography sx={{ fontSize: '13px'}}>Number of Pets</Typography>
-                <Box display="flex" flexDirection="row" gap="0.25rem">
-                  <Button onClick={() => handlePetNumberChange(1)} variant={search?.occupants?.dogs == 1 ? 'contained' : 'outlined'}  color="primary">1</Button>
-                  <Button onClick={() => handlePetNumberChange(2)} variant={search?.occupants?.dogs == 2 ? 'contained' : 'outlined'}  color="primary">2</Button>
-                  <Button onClick={() => handlePetNumberChange(3)} variant={search?.occupants?.dogs == 3 ? 'contained' : 'outlined'}  color="primary">3</Button>
-                  <Button onClick={() => handlePetNumberChange(4)} variant={search?.occupants?.dogs == 4 ? 'contained' : 'outlined'}  color="primary">4+</Button>
-                </Box>
+        {mobile
+          ? (<Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
+              <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
+                View on full map
+              </Button>
+              <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={(e) => handleViewFilters(e)}>
+                View filters
+              </Button>
+            </Grid>)
+          : (<Grid item xs={0} sm={0} md={3.2}>
+              <Box sx={{ display: "flex", mt: '1.5rem', mb: 2, width: "100%" }}>
+                <Map center={{ lat: search.lat, lng: search.lng }}
+                  height={300}
+                  zoom={11}
+                  selectedMarker={0}
+                  markers={markers}
+                />
               </Box>
+              <Button variant="outlined" style={{ width: '100%', marginBottom: 10, }} onClick={() => setOpenMap(true)}>
+                View on full map
+              </Button>
 
-              <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
-                <Typography sx={{ fontSize: '13px'}}>Pet sizes</Typography>
-                <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
-                {showInfoBox &&
-                <Box position="relative">
-                  <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Select the weight range of your heaviest pet if you have multiple.</Typography></Box>
+              <TextField label="Search by property name" variant="filled" fullWidth value={query} onChange={handleSearch} />
+
+              <Box my="1rem">
+                <Typography style={{ marginTop: 10, marginBottom: 10 }}>Pet Filters</Typography>
+                <Box mb="1rem">
+                  <Typography sx={{ fontSize: '13px'}}>Number of Pets</Typography>
+                  <Box display="flex" flexDirection="row" gap="0.25rem">
+                    <Button onClick={() => handlePetNumberChange(1)} variant={search?.occupants?.dogs == 1 ? 'contained' : 'outlined'}  color="primary">1</Button>
+                    <Button onClick={() => handlePetNumberChange(2)} variant={search?.occupants?.dogs == 2 ? 'contained' : 'outlined'}  color="primary">2</Button>
+                    <Button onClick={() => handlePetNumberChange(3)} variant={search?.occupants?.dogs == 3 ? 'contained' : 'outlined'}  color="primary">3</Button>
+                    <Button onClick={() => handlePetNumberChange(4)} variant={search?.occupants?.dogs == 4 ? 'contained' : 'outlined'}  color="primary">4+</Button>
+                  </Box>
                 </Box>
-                }
-              </Box>
 
-              <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
-                <FormControlLabel value="25" control={<Radio />} label="1-25 lbs" />
-                <FormControlLabel value="50" control={<Radio />} label="26-75 lbs" />
-                <FormControlLabel value="75" control={<Radio />} label="75+ lbs" />
-              </RadioGroup>
-    
-              <Typography sx={{ fontSize: '13px'}}>Pet Amenities</Typography>
-              <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
-                <FormControlLabel control={<Checkbox name="25" checked={allowsCats} />} label="Accepts cats" />
-              </FormGroup>
-
-              <FormGroup onChange={() => setHasNoPetFees(!hasNoPetFees)}>
-                <FormControlLabel control={<Checkbox name="25" checked={hasNoPetFees} />} label="$0 pet fees" />
-              </FormGroup>
-            </Box>
-
-
-            <Box my="1rem">
-              <Typography style={{ marginTop: 10 }}>Amenities</Typography>
-              <FormGroup onChange={handleAmenityChange}>
-                <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
-                <FormControlLabel control={<Checkbox name="airportShuttle" checked={filterAmenities["airportShuttle"]} />} label="Airport shuttle service" />
-                <FormControlLabel control={<Checkbox name="parking" checked={filterAmenities["parking"]} />} label="Parking" />
-                <FormControlLabel control={<Checkbox name="spa" checked={filterAmenities["spa"]} />} label="Spa" />
-                <FormControlLabel control={<Checkbox name="kitchen" checked={filterAmenities["kitchen"]} />} label="Kitchen" />
-                <FormControlLabel control={<Checkbox name="wifiIncluded" checked={filterAmenities["wifiIncluded"]} />} label="WiFi included" />
-                <FormControlLabel control={<Checkbox name="restaurant" checked={filterAmenities["restaurant"]} />} label="Restaurant" />
-                <FormControlLabel control={<Checkbox name="gym" checked={filterAmenities["gym"]} />} label="Gym" />
-                <FormControlLabel control={<Checkbox name="cribs" checked={filterAmenities["cribs"]} />} label="Cribs" />
-                <FormControlLabel control={<Checkbox name="washerAndDryer" checked={filterAmenities["washerAndDryer"]} />} label="Washer and Dryer" />
-                <FormControlLabel control={<Checkbox name="dryCleaning" checked={filterAmenities["dryCleaning"]} />} label="Dry-cleaning service" />
-                <FormControlLabel control={<Checkbox name="wheelchairAccessible" checked={filterAmenities["wheelchairAccessible"]} />} label="Wheelchair access" />
-                <FormControlLabel control={<Checkbox name="smokeFree" checked={filterAmenities["smokeFree"]} />} label="Smoke-free property" />
-              </FormGroup>
-            </Box>
-
-            <Box my="1rem">
-              <Typography>Price per night</Typography>
-              <Slider
-                getAriaLabel={() => 'Price range'}
-                value={sliderValue}
-                onChange={handleSliderChange}
-                onChangeCommitted={() => setShouldFilter(!shouldFilter)}
-                valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
-                min={minPrice}
-                step={1}
-                max={maxPrice}
-                marks={[
-                  {
-                    value: sliderValue[0],
-                    label: `$${sliderValue[0]}`
-                  },
-                  {
-                    value: sliderValue[1],
-                    label: `$${sliderValue[1]}`
+                <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
+                  <Typography sx={{ fontSize: '13px'}}>Pet sizes</Typography>
+                  <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
+                  {showInfoBox &&
+                  <Box position="relative">
+                    <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Select the weight range of your heaviest pet if you have multiple.</Typography></Box>
+                  </Box>
                   }
-                ]}
-                sx={{ ml: '1em', width: '90%', maxWidth: '240px' }}
-              />
-            </Box>
+                </Box>
 
-            <Typography>Hotel Rating</Typography>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox name="1" checked={hotelRating["1"]} />} onChange={handleHotelRatingChange} label="1" />
-              <FormControlLabel control={<Checkbox name="2" checked={hotelRating["2"]} />} onChange={handleHotelRatingChange} label="2" />
-              <FormControlLabel control={<Checkbox name="3" checked={hotelRating["3"]} />} onChange={handleHotelRatingChange} label="3" />
-              <FormControlLabel control={<Checkbox name="4" checked={hotelRating["4"]} />} onChange={handleHotelRatingChange} label="4" />
-              <FormControlLabel control={<Checkbox name="5" checked={hotelRating["5"]} />} onChange={handleHotelRatingChange} label="5" />
-            </FormGroup>
+                <RadioGroup defaultValue="all" value={petWeights} onChange={handleWeightChange}>
+                  <FormControlLabel value="25" control={<Radio />} label="1-25 lbs" />
+                  <FormControlLabel value="50" control={<Radio />} label="26-75 lbs" />
+                  <FormControlLabel value="75" control={<Radio />} label="75+ lbs" />
+                </RadioGroup>
+      
+                <Typography sx={{ fontSize: '13px'}}>Pet Amenities</Typography>
+                <FormGroup onChange={() => setAllowsCats(!allowsCats)}>
+                  <FormControlLabel control={<Checkbox name="25" checked={allowsCats} />} label="Accepts cats" />
+                </FormGroup>
 
-            <Typography>Guest Rating</Typography>
-            <FormGroup>
-              <FormControlLabel control={<Checkbox name="1" checked={rating['1']} />} onChange={handleRatingChange} label="1" />
-              <FormControlLabel control={<Checkbox name="2" checked={rating['2']} />} onChange={handleRatingChange} label="2" />
-              <FormControlLabel control={<Checkbox name="3" checked={rating["3"]} />} onChange={handleRatingChange} label="3" />
-              <FormControlLabel control={<Checkbox name="4" checked={rating["4"]} />} onChange={handleRatingChange} label="4" />
-              <FormControlLabel control={<Checkbox name="5" checked={rating["5"]} />} onChange={handleRatingChange} label="5" />
-            </FormGroup>
-          </Grid>}
+                <FormGroup onChange={() => setHasNoPetFees(!hasNoPetFees)}>
+                  <FormControlLabel control={<Checkbox name="25" checked={hasNoPetFees} />} label="$0 pet fees" />
+                </FormGroup>
+              </Box>
 
+
+              <Box my="1rem">
+                <Typography style={{ marginTop: 10 }}>Amenities</Typography>
+                <FormGroup onChange={handleAmenityChange}>
+                  <FormControlLabel control={<Checkbox name="pool" checked={filterAmenities["pool"]} />} label="Pool" />
+                  <FormControlLabel control={<Checkbox name="airportShuttle" checked={filterAmenities["airportShuttle"]} />} label="Airport shuttle service" />
+                  <FormControlLabel control={<Checkbox name="parking" checked={filterAmenities["parking"]} />} label="Parking" />
+                  <FormControlLabel control={<Checkbox name="spa" checked={filterAmenities["spa"]} />} label="Spa" />
+                  <FormControlLabel control={<Checkbox name="kitchen" checked={filterAmenities["kitchen"]} />} label="Kitchen" />
+                  <FormControlLabel control={<Checkbox name="wifiIncluded" checked={filterAmenities["wifiIncluded"]} />} label="WiFi included" />
+                  <FormControlLabel control={<Checkbox name="restaurant" checked={filterAmenities["restaurant"]} />} label="Restaurant" />
+                  <FormControlLabel control={<Checkbox name="gym" checked={filterAmenities["gym"]} />} label="Gym" />
+                  <FormControlLabel control={<Checkbox name="cribs" checked={filterAmenities["cribs"]} />} label="Cribs" />
+                  <FormControlLabel control={<Checkbox name="washerAndDryer" checked={filterAmenities["washerAndDryer"]} />} label="Washer and Dryer" />
+                  <FormControlLabel control={<Checkbox name="dryCleaning" checked={filterAmenities["dryCleaning"]} />} label="Dry-cleaning service" />
+                  <FormControlLabel control={<Checkbox name="wheelchairAccessible" checked={filterAmenities["wheelchairAccessible"]} />} label="Wheelchair access" />
+                  <FormControlLabel control={<Checkbox name="smokeFree" checked={filterAmenities["smokeFree"]} />} label="Smoke-free property" />
+                </FormGroup>
+              </Box>
+
+              <Box my="1rem">
+                <Typography>Price per night</Typography>
+                <Slider
+                  getAriaLabel={() => 'Price range'}
+                  value={sliderValue}
+                  onChange={handleSliderChange}
+                  onChangeCommitted={() => setShouldFilter(!shouldFilter)}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                  min={minPrice}
+                  step={1}
+                  max={maxPrice}
+                  marks={[
+                    {
+                      value: sliderValue[0],
+                      label: `$${sliderValue[0]}`
+                    },
+                    {
+                      value: sliderValue[1],
+                      label: `$${sliderValue[1]}`
+                    }
+                  ]}
+                  sx={{ ml: '1em', width: '90%', maxWidth: '240px' }}
+                />
+              </Box>
+
+              <Typography>Hotel Rating</Typography>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox name="1" checked={hotelRating["1"]} />} onChange={handleHotelRatingChange} label="1" />
+                <FormControlLabel control={<Checkbox name="2" checked={hotelRating["2"]} />} onChange={handleHotelRatingChange} label="2" />
+                <FormControlLabel control={<Checkbox name="3" checked={hotelRating["3"]} />} onChange={handleHotelRatingChange} label="3" />
+                <FormControlLabel control={<Checkbox name="4" checked={hotelRating["4"]} />} onChange={handleHotelRatingChange} label="4" />
+                <FormControlLabel control={<Checkbox name="5" checked={hotelRating["5"]} />} onChange={handleHotelRatingChange} label="5" />
+              </FormGroup>
+
+              <Typography>Guest Rating</Typography>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox name="1" checked={rating['1']} />} onChange={handleRatingChange} label="1" />
+                <FormControlLabel control={<Checkbox name="2" checked={rating['2']} />} onChange={handleRatingChange} label="2" />
+                <FormControlLabel control={<Checkbox name="3" checked={rating["3"]} />} onChange={handleRatingChange} label="3" />
+                <FormControlLabel control={<Checkbox name="4" checked={rating["4"]} />} onChange={handleRatingChange} label="4" />
+                <FormControlLabel control={<Checkbox name="5" checked={rating["5"]} />} onChange={handleRatingChange} label="5" />
+              </FormGroup>
+            </Grid>)
+        }
         <Grid item xs={12} sm={12} md={8} 
           sx={{ 
             p: '0.5rem', 
             ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" }          
           }}
         >
-
           <Grid item container direction='row'>
             {!mobile && <Box textAlign="left" maxWidth="780px"><LargeFilterBar /></Box>}
             <Box my="0.75rem" textAlign="left" width="100%" maxWidth="742px" mr="1rem"><Banner /></Box>
@@ -937,7 +934,6 @@ const ListingPageNew = ({ ...props }) => {
           isFullScreen={true}
         />
       </Dialog>
-
 
       <Dialog
         fullScreen

@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Chip, Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
@@ -168,8 +168,8 @@ const ListingCard: FC<ListingCardProps> = ({
 
   const [showRating, setShowRating] = useState(true);
 
-  const PriceDetails = () => (
-    <Box sx={{ ml: "auto", mr: "0.5em", mb: "0.25em" }}>
+  const PriceDetails = () => {
+    return (
       <Box
         sx={{
           display: "flex",
@@ -179,29 +179,31 @@ const ListingCard: FC<ListingCardProps> = ({
         }}
       >
         {lowestAveragePrice &&
-        <Typography
-          variant="body2"
-          sx={{
-            mr: 0,
-            mt: "0.1em",
-            fontSize: "1.4em",
-            fontWeight: 800,
-            display: "flex",
-            alignItems: "center",
-            color: "black",
-          }}
-        >{currency}{Math.abs(lowestAveragePrice).toFixed(0)}</Typography>
-      }
+          <Typography
+            variant="body2"
+            sx={{
+              mr: 0,
+              mt: "0.1em",
+              fontSize: "1.4em",
+              fontWeight: 800,
+              display: "flex",
+              alignItems: "center",
+              color: "black",
+            }}
+          >
+            {currency}{Math.abs(lowestAveragePrice).toFixed(0)}
+          </Typography>
+        }
 
         {totalPrice == lowestAveragePrice &&
-           <Typography
+          <Typography
             variant="body2"
             sx={{
               fontSize: { xs: "95%", sm: "90%" },
               fontWeight: 500,
               whiteSpace: "nowrap",
               color: "#999",
-              fontSize: '13px'
+              // fontSize: '13px'
             }}
           >
             per night
@@ -253,8 +255,8 @@ const ListingCard: FC<ListingCardProps> = ({
 
         {totalPrice != lowestAveragePrice && <Typography sx={{ fontSize: '12px', color: '#666', lineHeight: '16px'}}>includes taxes and fees</Typography>}
       </Box>
-    </Box>
-  );
+    )
+  };
 
   function slugify(str) {
     if (!str) {
@@ -292,18 +294,20 @@ const ListingCard: FC<ListingCardProps> = ({
     starRatingFormat = `${romingoScore}.0`
   }
 
+  const neighborhood = null; // TODO: get this from Google API
+
   return (
     <>
       {highlighted && <Box sx={{ borderTop: "1px solid #ddd" }} />}
       <Box
         sx={{
-          color: "text.primary",
           display: "flex",
-          borderRadius: 3,
           flexDirection: { xs: "column", sm: "row" },
-          maxWidth: "100%",
           justifyContent: "center",
-          alignItems: { xs: "center", sm: 'center', md: 'flex-start' },
+          alignItems: { xs: "center", sm: 'stretch' },
+          color: "text.primary",
+          borderRadius: 3,
+          maxWidth: "100%",
           background: "#fff",
           transition: "all .25s ease-in-out",
           border: "1px solid #ddd",
@@ -311,13 +315,14 @@ const ListingCard: FC<ListingCardProps> = ({
           paddingBottom: "0px",
           "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
+          maxHeight: { xs: "auto", sm: '300px', md: '300px' },
         }}
         // {...props}
       >
         <Box
           sx={{
             width: { xs: "100%", sm: 400, md: 460, lg: 460 },
-            height: { xs: "auto", sm: 211, md: '300px' },
+            alignSelf: { xs: "center", md: 'auto' },
           }}
         >
           <ImageSlider
@@ -331,7 +336,7 @@ const ListingCard: FC<ListingCardProps> = ({
 
         <Box
           // component="a"
-          href={hotelUrl}
+          // href={hotelUrl}
           onClick={() => {
             window.location.href = hotelUrl;
             // history.push(hotelUrl, {
@@ -342,9 +347,8 @@ const ListingCard: FC<ListingCardProps> = ({
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: mobileCardPadding },
-            pb: { xs: mobileCardPadding, sm: mobileCardPadding },
+            py: { xs: mobileCardPadding, sm: mobileCardPadding },
             width: "100%",
-            position: "relative",
             textDecoration: "none",
           }}
         >
@@ -353,55 +357,58 @@ const ListingCard: FC<ListingCardProps> = ({
               minHeight: { xs: 160, sm: 170 },
               p: {
                 xs: ".5rem .25rem 0rem .25rem",
-                sm: ".5rem .5rem .5rem 1rem",
+                // sm: ".5rem .5rem .5rem 1rem",
+                sm: 0,
                 md: "0rem 0.6rem",
               },
-              ml: { xs: "0.4rem", md: 0 },
+              mx: { xs: "0.4rem", sm: 0 },
               my: { xs: 0 },
               display: "flex",
               flexDirection: "column",
-              position: "relative",
+              justifyContent: 'flex-start',
+              height: '100%',
+              maxHeight: '100%',
+              // border: 1
             }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#222",
-     
-                fontSize: "1.25em",
-                fontWeight: 800,
-                letterSpacing: "0px",
-                width: '100%',
-                maxWidth: '440px',
-                overflow: 'hidden',
-                mt: { xs: '0.2rem', sm: '0.2rem', md: '0.5rem' },
-                whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
-                textOverflow: "ellipsis",
-              }}
-            >
-              {name}
-            </Typography>
+          > 
+            <Box>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "#222",
+                  fontSize: "1.30em",
+                  fontWeight: 800,
+                  letterSpacing: "0px",
+                  width: '100%',
+                  maxWidth: '440px',
+                  overflow: 'hidden',
+                  whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
+                  textOverflow: "ellipsis",
+                  lineHeight: 1,
+                }}
+              >
+                {name}
+              </Typography>
 
-            <Typography
-              variant="body2"
-              sx={{
-                fontSize: { xs: "95%", sm: "90%" },
-                mt: { xs: "0.25rem", sm: "0.25rem" },
-                fontWeight: 500,
-                whiteSpace: "nowrap",
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: { xs: "95%", sm: "95%" },
+                  mt: "0.25rem",
+                  fontWeight: 500,
+                  whiteSpace: "nowrap",
+                  color: "#999",
+                }}
+              >
+                {
+                  neighborhood 
+                  ? `${addressLine1}, ${city}, ${state} ${zipcode}`
+                  : `${city}`
+                }
+              </Typography>
+            </Box>
 
-                color: "#999",
-                fontSize: '13px'
-              }}
-            >
-              {addressLine1}, {city}, {state} {zipcode}
-            </Typography>
-
-            <Box
-              sx={{
-                mb: { xs: "0.5em", sm: "0rem" },
-              }}
-            >
+            <Box sx={{mb: 2}}>
               <HotelTags 
                 pet_fee={hotel?.pet_fee} 
                 pet_fee_value={hotel?.pet_fee_value}
@@ -409,27 +416,32 @@ const ListingCard: FC<ListingCardProps> = ({
                 pet_allowance={hotel?.pet_allowance}
                 pet_bowls={hotel?.petBowls}
                 pet_beds={hotel?.petBeds}
+                grid={true}
               />
             </Box>
-
-
-
-
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                mb: '1.25rem',
+                // mb: '1.25rem',
+                width: 1,
+                mt: 'auto'
               }}
             >
-              <Typography variant="base" sx={{ fontSize: '0.75rem', color: '#3F8825'}}>Free cancellation</Typography>
-              <Typography variant="base" sx={{ lineHeight: '12px', fontSize: '0.75rem', color: '#3F8825'}}>Book now, pay later</Typography>
+              <Typography variant="base" sx={{ fontSize: '0.9rem', color: '#3F8825'}}>Free cancellation</Typography>
+              <Typography variant="base" sx={{ lineHeight: '12px', fontSize: '0.9rem', color: '#3F8825'}}>Book now, pay later</Typography>
             </Box>
+            
 
             <Box
               sx={{
-                display: { xs: "block", sm: "block" },
-                mt: "auto",
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
+                width: 1,
+                marginTop: 'auto',
+                // mb: 1
               }}
             >
               <Box
@@ -438,7 +450,6 @@ const ListingCard: FC<ListingCardProps> = ({
                   flexDirection: "row",
                   alignItems: "center",
                   fontSize: "0.9em",
-                  mt: { xs: '0.5rem', sm: '0.5rem', md: 0 }
                 }}
               >
                 <Box sx={{ color: "black", mt: '0.1rem' }}>
@@ -467,17 +478,10 @@ const ListingCard: FC<ListingCardProps> = ({
                   <u>({numberOfReviews} reviews)</u>
                 </Link>
               </Box>
+              <Box>
+                {showPrice && <PriceDetails /> }
+              </Box>
             </Box>
-          </Box>
-
-          <Box
-            sx={{
-              position: "absolute",
-              bottom: 4,
-              right: 12,
-            }}
-          >
-            {showPrice && <PriceDetails /> }
           </Box>
         </Box>
       </Box>
