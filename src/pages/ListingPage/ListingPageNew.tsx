@@ -304,7 +304,6 @@ const ListingPageNew = ({ ...props }) => {
     }
 
     if (data && data.getHotels && data.getHotels.sessionId) {
-      console.log('DEV: useEffect() if(data && data.getHotels ...) fired')
       setShowSearchBar(false)
       sessionStorage.setItem('sessionId', data.getHotels.sessionId)
       setSessionId(data.getHotels.sessionId);
@@ -483,7 +482,6 @@ const ListingPageNew = ({ ...props }) => {
 
   useEffect(() => {
     if (data?.getHotels?.hotels?.length > 0) {
-      console.log('DEV: useEffect() if(data?...) fired');
       const newHotels = formatHotels.filter(hotel => {
         // console.log(hotel)
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
@@ -628,10 +626,6 @@ const ListingPageNew = ({ ...props }) => {
       <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
-
-  useEffect(() => {
-    console.log('hotels:', hotels);
-  }, [hotels]); 
 
   return (
     <Box sx={{ background: "#feffff" }}>
