@@ -191,7 +191,7 @@ const ListingCard: FC<ListingCardProps> = ({
               color: "black",
             }}
           >
-            {currency}{Math.abs(lowestAveragePrice).toFixed(0)}
+            {currency}{Math.abs(Number(lowestAveragePrice)).toFixed(0)}
           </Typography>
         }
 
