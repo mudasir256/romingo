@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { createBrowserHistory } from "history";
 import { PersistGate } from "redux-persist/integration/react";
-import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink, from } from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { createTheme, ThemeProvider, Theme, StyledEngineProvider, adaptV4Theme } from "@mui/material/styles";
 import { Router } from "react-router-dom";
 import { theme } from "./theme";
@@ -13,13 +13,13 @@ import { theme } from "./theme";
 // import { loadStripe } from "@stripe/stripe-js";
 
 import "./index.scss";
-import { onError } from "@apollo/client/link/error";
 
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
+
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
@@ -32,7 +32,6 @@ declare module '@mui/styles/defaultTheme' {
 // });
 
 // const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' })
-
 
 const hist = createBrowserHistory();
 
