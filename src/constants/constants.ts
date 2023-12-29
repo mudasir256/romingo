@@ -741,80 +741,64 @@ const UserProfile = `
   }
 `
 
-/* Begin Listings Page Queries */
-  interface GetHotelsByLocationParamsType {
-    adults: number | any, 
-    checkIn: number, 
-    checkOut: number, 
-    children: number, 
-    latitude: number, 
-    longitude: number, 
-    maxWaitInSeconds: number, 
-    hotelIds?: Array<any>,
-  }
-
-  // Longer timeout, to get a full list of hotels.
-  const GetHotelsByLocation = (params: GetHotelsByLocationParamsType) => { 
-    const {
-      adults,
-      checkIn,
-      checkOut,
-      children,
-      latitude,
-      longitude,
-      maxWaitInSeconds,
-      hotelIds = [],
-    } = params;
-    return `query {
-      getHotels(input: {
-        adults: ${adults},
-        checkInDate: "${checkIn}",
-        checkOutDate: "${checkOut}",
-        children: "${children}",
-        latitude: "${latitude}",
-        longitude: "${longitude}",
-        maxWaitInSeconds: ${maxWaitInSeconds},
-        hotelIds: "${hotelIds}"
-      }) {
-        sessionId
-        hotels {
-          ID
-          Address 
-          DefaultImage
-          DisplayName
-          GeoLocation
-          StarRating
-          SuppliersLowestPackagePrices
-          Packages
-          hotelName
-          description
-          petsAllowed
-          petFee
-          petFeeValue
-          petFeeDetail
-          petSize
-          petAllowance
-          petBowls
-          petBeds
-          unattendedPets
-          petAmenities
-          petReliefArea
-          catPolicy
-          starRating
-          numberOfReviews
-          city
-          state
-          zipcode
-          amenities
-          alias
-          images
-          addressLine
-          taxRate
-        }
+/* Listings Page Callout */
+const GetHotelsByLocation = (
+  adults: number, 
+  checkIn: number, 
+  checkOut: number, 
+  children: number, 
+  latitude: number, 
+  longitude: number, 
+  hotelIds = []
+) => { 
+  console.log('DEV: GetHotelsByLocation() fired');
+  return `query {
+    getHotels(input: {adults: ${adults},
+      checkInDate: "${checkIn}",
+      checkOutDate: "${checkOut}",
+      children: "${children}",
+      latitude: "${latitude}",
+      longitude: "${longitude}",
+      hotelIds: "${hotelIds}"
+    }) {
+      sessionId
+      hotels {
+        ID
+        Address 
+        DefaultImage
+        DisplayName
+        GeoLocation
+        StarRating
+        SuppliersLowestPackagePrices
+        Packages
+        hotelName
+        description
+        petsAllowed
+        petFee
+        petFeeValue
+        petFeeDetail
+        petSize
+        petAllowance
+        petBowls
+        petBeds
+        unattendedPets
+        petAmenities
+        petReliefArea
+        catPolicy
+        starRating
+        numberOfReviews
+        city
+        state
+        zipcode
+        amenities
+        alias
+        images
+        addressLine
+        taxRate
       }
-    }`
-  }
-/* End Listings Page Queries */
+    }
+  }`
+}
 
 const getPackages = (adults: number, checkIn: number, checkOut: number, children: number, latitude: number, longitude: number, hotelIds = []) => {
   return `query {

@@ -37,8 +37,8 @@ interface FilterBarProps {
   zoomed?: boolean;
   home?: boolean;
   city?: string;
-  showText?: boolean;
 }
+
 export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
@@ -65,6 +65,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
+
+  console.log(occupants)
 
   const history = useHistory();
 
@@ -103,6 +105,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       checkDate[0] &&
       checkDate[1]
     ) {
+      console.log(occupants)
       setFormError("");
       dispatch(
         saveSearch({
@@ -114,9 +117,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
           lng: selectedCity.lng,
         })
       );
-      
+    
       history.push("/listings");
-      // history.go(0)
     } else {
       alert("error");
       if (!selectedCity) {

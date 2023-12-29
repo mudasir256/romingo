@@ -31,7 +31,6 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId, search }) => {
   //   setPage(1);
   //   // _DATA.jump(1);
   // }, [cards]);
-  console.log('DEV: CardList sessionId:', sessionId);
 
   return (
     <Box>
