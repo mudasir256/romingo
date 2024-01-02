@@ -95,6 +95,7 @@ const ListingPageNew = ({ ...props }) => {
   const [showSearchBar, setShowSearchBar] = useState(false)
 
   const [displayHotels, setDisplayHotels] = useState([]);
+  const [displayLoader, setDisplayLoader] = useState(true);
   const {hotels, loading, loadingMore, sessionId} = useHotelsQuery({
     search: search,
     maxWaitInSeconds: 2,
@@ -131,7 +132,7 @@ const ListingPageNew = ({ ...props }) => {
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
-  // DEV: begin helper and handler functions
+  // NOTE: begin helper and handler functions
     function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
       const R = 6371; // Radius of the earth in km
       const dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -273,11 +274,8 @@ const ListingPageNew = ({ ...props }) => {
       }
     }
 
-    const loadHotels = () => {      
-      console.log('DEV: loadHotels() hotels.length:', hotels.length);
-
+    const loadHotels = () => {
       const hotelsWithTaxRate = hotels.filter(h => h.taxRate);
-      console.log('DEV: hotelsWithTaxRate:', hotelsWithTaxRate);
 
       const filteredHotels = [];
       const markers = [];
@@ -317,7 +315,6 @@ const ListingPageNew = ({ ...props }) => {
       setMinPrice(min);
       setMaxPrice(max);
       setSliderValue([min, max]);
-      console.log('DEV: setting formatHotels.length:', formatHotels.length);
       setFormatHotels(readyHotels);
 
       const sorted = sortHotelsBy(readyHotels, sort);
@@ -334,6 +331,7 @@ const ListingPageNew = ({ ...props }) => {
       setOldSearch(search);
       setDisplayHotels(newDisplayHotels);
       setMarkers(markers);
+      setDisplayLoader(false);
 
       dispatch(setList({ hotels: newDisplayHotels, markers }));
     }
@@ -550,11 +548,10 @@ const ListingPageNew = ({ ...props }) => {
       setPetWeights(previousFilterState.petWeights)
       setHotelRating(previousFilterState.hotelRating)
     }
-  // DEV: end helper and handler functions
+  // NOTE: end helper and handler functions
 
   useEffect(() => {
     if (!loading && hotels.length > 0) {
-      console.log('DEV: getting formatHotels.length:', formatHotels.length);
       const newHotels = formatHotels.filter(hotel => {
         const starRating = hotel.romingoScore ? hotel.romingoScore.toString().charAt(0) : 0
         const hotelRatingR = hotel.hotelStarRating ? hotel.hotelStarRating.toString().charAt(0) : 0
@@ -589,17 +586,17 @@ const ListingPageNew = ({ ...props }) => {
     //   return
     // }
     if(!loading && hotels?.length) {
+      setDisplayLoader(true);
       loadHotels();
       setShowSearchBar(false);
     }
   }, [hotels, center, search])
 
   useEffect(() => {
-    console.log('DEV: sessionId changed:', sessionId);
     sessionId && sessionStorage.setItem('sessionId', sessionId)
   },[sessionId]);
 
-  if(loading) {
+  if(loading || displayLoader) {
     return <Loader size="400px"/>
   }
 
