@@ -9,17 +9,17 @@ import { Message } from "@mui/icons-material";
 
 import ScrollToTop from "../../components/ScrollToTop";
 import { ChatBubble, Email, Send } from "@mui/icons-material";
-import { useIntercom } from 'react-use-intercom';
+// import { useIntercom } from 'react-use-intercom';
 
 const Contact: FC = () => {
 
-  const { boot, shutdown, hide, show, update } = useIntercom();
+  // const { boot, shutdown, hide, show, update } = useIntercom();
 
-  const startChat = () => {
-    boot()
-    update()
-    show()
-  };
+  // const startChat = () => {
+  //   boot()
+  //   update()
+  //   show()
+  // };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -145,32 +145,34 @@ const Contact: FC = () => {
               Please complete the form below
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8 }}>
-            <Link href="#" onClick={startChat}>
+          {/* 
+            <Grid item xs={12} md={4} sx={{ mt: 4, mb: 8 }}>
+              <Link href="#" onClick={startChat}>
+                <Typography
+                  variant="h5"
+                  color="primary"
+                  sx={{
+                    mb: ".5rem",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {" "}
+                  <ChatBubble sx={{ mb: ".5rem" }} />
+                  Start a Chat
+                </Typography>
+              </Link>
               <Typography
-                variant="h5"
-                color="primary"
-                sx={{
-                  mb: ".5rem",
-                  textAlign: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
+                variant="body1"
+                sx={{ textAlign: "center" }}
               >
-                {" "}
-                <ChatBubble sx={{ mb: ".5rem" }} />
-                Start a Chat
+                During business hours
               </Typography>
-            </Link>
-            <Typography
-              variant="body1"
-              sx={{ textAlign: "center" }}
-            >
-              During business hours
-            </Typography>
-          </Grid>
+            </Grid> 
+          */}
           <Grid item xs={12}>
             <div data-paperform-id="5rnusmd7"></div>
           </Grid>
@@ -191,33 +193,35 @@ const Contact: FC = () => {
       </>
     </Container>
     
-      <div
-        id="CUSTOM"
-        onClick={startChat}
-        style={{
-          padding: ".5rem 1rem .5rem .5rem",
-          fontFamily: "Roboto",
-          zIndex: 1501,
-          position: "fixed",
-          flexDirection: "row",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "8px",
-          bottom: "1.25rem",
-          right: "1.25rem",
-          boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.25)",
-          background: "#03989Ebf",
-          border: "1px solid #a6dbe5",
-          WebkitBackdropFilter: "blur(12px)",
-          backdropFilter: "blur(12px)",
-          fontSize: "14px",
-          color: "#fff",
-        }}
-      >
-        <Message sx={{ fontSize: "18px", color: "#fff", mr: ".5rem" }} />
-        Chat with us
-      </div>
+      {/* 
+        <div
+          id="CUSTOM"
+          onClick={startChat}
+          style={{
+            padding: ".5rem 1rem .5rem .5rem",
+            fontFamily: "Roboto",
+            zIndex: 1501,
+            position: "fixed",
+            flexDirection: "row",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "8px",
+            bottom: "1.25rem",
+            right: "1.25rem",
+            boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.25)",
+            background: "#03989Ebf",
+            border: "1px solid #a6dbe5",
+            WebkitBackdropFilter: "blur(12px)",
+            backdropFilter: "blur(12px)",
+            fontSize: "14px",
+            color: "#fff",
+          }}
+        >
+          <Message sx={{ fontSize: "18px", color: "#fff", mr: ".5rem" }} />
+          Chat with us
+        </div> 
+      */}
     
     <Footer />
   </>;
