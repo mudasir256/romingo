@@ -38,6 +38,7 @@ import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
 import { subscribeToNewsletter } from '../../services/endpoints'
 
+import winterPromo from '../../assets/images/Winter-Promo.jpg'
 import "./Sticky.css";
 import "./HomePage.scss";
 
@@ -63,7 +64,7 @@ interface Props {
   };
 }
 
-const SectionOneImage = 'https://www.romingo.com/public/sections-icons/section-one.jpg'
+const SectionOneImage = winterPromo
 const SectionTwoImage = 'https://www.romingo.com/public/sections-icons/home-hero.jpg'
 const SectionThreeImage = 'https://www.romingo.com/public/sections-icons/homepage-dog.jpg'
 
@@ -500,8 +501,8 @@ const HomePage: FC<Props> = () => {
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
-            backgroundColor="#f5e5a3"
-            header="Fall into savings! 🍁🎃"
+            backgroundColor="#f0ddec"
+            header="Winter is here! 🍁🎃"
             text="Book your next pet-friendly trip with Romingo and enjoy up to 20% off the lowest rates."
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
@@ -568,11 +569,19 @@ const HomePage: FC<Props> = () => {
           <RightPhotoBox
             imgSrc={SectionTwoImage}
             imgAlt="romingo rewards"
-            backgroundColor="#f0ddec"
+            backgroundColor="#f4ebe3"
             fontColor="black"
             header="Romingo rewards 🐶"
-            text="Get rewarded when you book with Romingo. Simply create a free account, book your travel, and earn points towards future stays."
+            text="Get rewarded with Romingo. Earn free travel 
+            credits for every 5 qualified* reservations booked 
+            with our pet-friendly hotel partners!"
             cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
+            extraText="*Guests will earn a $100 travel voucher when a minimum of 5 
+            reservations are actually consumed. Each reservation must have a 
+            minimum net spend of $200, exclusive of taxes/fees. Cancellation 
+            fees do not count towards stays or spend requirements. Travel 
+            vouchers will be sent within 7 days post-stay and must be used 
+            within one (1) calendar year from issue date."
           />
         </Box>
       </Box>
