@@ -380,28 +380,43 @@ const HomePage: FC<Props> = () => {
 
   
   const LocationBox = ({ imageUrl, cityName, locationUrl }) => (
-    <Link to={locationUrl} underline="none">
+    <Link to={locationUrl}>
       <Box 
         display="flex" 
         flexDirection="column" 
         boxShadow={5} 
-        borderRadius={2} 
         sx={{ 
-          mr: { xs: '1rem', sm: '1rem', md: 0 },
-          '&:hover': { boxShadow: 7 } 
+          '&:hover': { boxShadow: 7 } ,
+          maxWidth: {xs: '370px', md: '100%'},
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderRadius: '8px',
         }}
       >
         <Box
-           component="img"
-           sx={{
-             borderRadius: '6px 6px 0px 0px',
-             height: '280px',
-             width: { xs: '100%', sm: '100%', md: '370px', lg: '370px' },
-           }}
-           alt={cityName}
-           src={imageUrl}
-         />
-        <Typography pl="0.3rem" pb="0.25rem" pt="0.5rem" variant='p' color="black" sx={{ textDecoration: 'none'}}>{cityName}</Typography>
+          component="img"
+          sx={{
+            maxHeight: '280px',
+            maxWidth: {xs: '370px', md: '100%'},
+            objectFit: "contain",
+            borderRadius: '8px 8px 0px 0px',
+          }}
+          alt={cityName}
+          src={imageUrl}
+        />
+        <Typography 
+          pl="0.3rem" 
+          pb="0.25rem" 
+          pt="0.5rem" 
+          variant='p' 
+          color="black" 
+          sx={{ 
+            textDecoration: 'none',
+            alignSelf: 'flex-start'
+          }}
+        >
+          {cityName}
+        </Typography>
       </Box>
     </Link>
   )
@@ -520,35 +535,49 @@ const HomePage: FC<Props> = () => {
       }}
       >
 
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', mt: { xs: '0rem', sm: '0rem', md: '4rem' }, mb: '2rem' }}>
-          <Typography variant="h4" sx={{ mb: '1rem', ml: { xs: '0.5em', sm: '1em', lg: '0.6em' } }}>Where to next?</Typography>
-          <Box sx={{ 
-            display: 'flex',
-            mb: {xs : 0, sm: 0, md: '0.5rem'},
-            ml: '1rem',
-            justifyContent: 'space-between',
-            flexDirection: { xs: 'column', 'sm': 'column', md: 'row', lg: 'row' }, 
-            gap: '2rem'
-          }}>
+        <Box 
+          sx={{ 
+            mx: { xs: '0.5em', sm: '1em', lg: '0.6em' }, 
+            mt: { xs: '0rem', sm: '0rem', md: '4rem' }, 
+            mb: '2rem',
             
-            <LocationBox 
-              imageUrl="https://storage.googleapis.com/romingo-production-public/San%20Diego%20Pet-Friendly%20Travel.jpg "
-              cityName="Escape to San Diego"
-              locationUrl="/pet-friendly-hotels/san-diego-california"
-            />
-            <LocationBox 
-              imageUrl="https://storage.googleapis.com/romingo-production-public/Portland%20Pet-Friendly%20Travel.jpg "
-              cityName="Discover Portland"
-              locationUrl="/pet-friendly-hotels/portland-oregon"
-            />
-            <LocationBox 
-              imageUrl="https://storage.googleapis.com/romingo-production-public/Denver%20Pet-Friendly%20Travel.jpg "
-              cityName="Roam to Denver"
-              locationUrl="/pet-friendly-hotels/denver-colorado"
-            />
-
+          }}
+        >
+          <Box
+            sx={{
+              mx: 'auto',
+              maxWidth: '1200px'
+            }}
+          >
+            <Typography variant="h4" sx={{ mb: '1rem', textAlign: { xs: 'center', md: 'left' } }}>Where to next?</Typography>
+            <Box 
+              sx={{ 
+                display: 'flex',
+                justifyContent: {xs: 'space-between', md: 'space-between'},
+                flexDirection: { xs: 'column' , md: 'row' }, 
+                alignItems: { xs: 'center' , md: 'auto' }, 
+                maxWidth: '100%',
+                mb: {xs : 0, sm: 0, md: '0.5rem'},
+                gap: '2rem',
+              }}
+            >
+              <LocationBox 
+                imageUrl="https://storage.googleapis.com/romingo-production-public/San%20Diego%20Pet-Friendly%20Travel.jpg "
+                cityName="Escape to San Diego"
+                locationUrl="/pet-friendly-hotels/san-diego-california"
+              />
+              <LocationBox 
+                imageUrl="https://storage.googleapis.com/romingo-production-public/Portland%20Pet-Friendly%20Travel.jpg "
+                cityName="Discover Portland"
+                locationUrl="/pet-friendly-hotels/portland-oregon"
+              />
+              <LocationBox 
+                imageUrl="https://storage.googleapis.com/romingo-production-public/Denver%20Pet-Friendly%20Travel.jpg "
+                cityName="Roam to Denver"
+                locationUrl="/pet-friendly-hotels/denver-colorado"
+              />
+            </Box>
           </Box>
-
         </Box>
 
         <Box sx={{ mt: { xs: '1rem', sm: '1rem', md: '8rem'} }}>

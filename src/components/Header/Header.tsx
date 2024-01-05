@@ -98,13 +98,13 @@ const Header: FC<Props> = ({ sx }) => {
         </Box>
 
         <Box sx={{ 
-          display: { xs: 'block', sm: 'block', md: 'none' },
+          display: { xs: 'block', lg: 'none' },
           top: { sm: '30px' },
         }}>
           <MobileFilterBar />
         </Box>
         <Box sx={{ 
-          display: { xs: 'none', sm: 'none', md: 'block' }
+          display: { xs: 'none', lg: 'block' }
         }}>
           <LargeFilterBar showText={true} />
         </Box>
