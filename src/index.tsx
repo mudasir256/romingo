@@ -33,6 +33,13 @@ declare module '@mui/styles/defaultTheme' {
 
 // const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' })
 
+if(!window.location.host.startsWith('www')) {
+  window.location = window.location.protocol 
+    + "//"
+    + "www."
+    + window.location.host
+    + window.location.pathname;
+}
 
 const hist = createBrowserHistory();
 
