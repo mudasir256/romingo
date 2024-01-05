@@ -245,20 +245,74 @@ const HomePage: FC<Props> = () => {
         alt={imgAlt}
         loading="lazy"
       />
-      <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '440px' } , mx: 'auto', my: 'auto'}}>
-        <Typography variant="h2" sx={{ color: fontColor, textAlign: { xs: 'left', sm: 'left', md: 'left' }, mt: { xs: '1rem', sm: '1rem', md: 0 },  mb: '1.5rem'}}>{header}</Typography>
-        <Typography variant="p" sx={{ color: fontColor, fontSize: '1.25rem', mb: '2rem'}}>{text}</Typography>
-        <Box sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' }, mt: '2rem', mb: '1.5rem' }}>
-          {cta}
+      <Box sx={{ p: { xs: '1.5rem', sm: '1.5rem', md: 0 },  maxWidth: { xs: 'auto', sm: 'auto', md: '440px' }, mx: 'auto', my: !extraText && 'auto' }}>
+        <Box 
+          sx={extraText 
+            ? { mt: {md: '2rem', lg:'5rem'} } 
+            : { mt: 'auto' }
+          }
+        >
+          <Typography 
+            variant="h2" 
+            sx={{ 
+              color: fontColor, 
+              textAlign: { xs: 'left', sm: 'left', md: 'left' }, 
+              mt: { xs: '1rem', sm: '1rem', md: 0 },  
+              mb: extraText ? { xs: '1rem', lg: '1.5rem' } : '1.5rem',
+              fontSize: extraText
+                ? {xs: '1.25rem', md: '1.25rem', lg: 'auto'}
+                : 'auto', 
+            }}
+          >
+            {header}
+          </Typography>
+          <Typography 
+            variant="p" 
+            sx={{ 
+              color: fontColor, 
+              fontSize: extraText
+                ? {xs: '1rem', lg: '1.25rem'}
+                : 'auto', 
+              mb: '2rem'
+            }}
+          >
+            {text}
+          </Typography>
+          <Box
+            sx={{
+              textAlign: { xs: 'center', sm: 'center', md: 'left' },
+              mt: extraText 
+                ? {xs: '1.2rem', md: '1rem', lg: '2rem'}
+                : '2rem',
+              mb: extraText 
+                ? {xs: '1.2rem', md: '1rem', lg: '1.5rem'}
+                : '1.5rem',
+            }}
+          >
+            {cta}
+          </Box>
         </Box>
-        {extraText && <Typography variant="base" sx={{ color: fontColor }}>{extraText}</Typography>}
+        {extraText &&
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              color: fontColor, 
+              mt: {xs: '2rem', md: '2.5rem', lg: '5rem'},
+              mb: '1rem',
+              fontWeight: { xs: 0.1, lg: 1 },
+              fontSize: { xs: '0.75rem', md: '0.6rem', lg: '0.8rem' }
+            }}
+          >
+            {extraText}
+          </Typography>
+        }
       </Box>
       <Box 
         component="img" 
         sx={{ 
           marginLeft: 'auto', 
           maxWidth: { xs: '100%', sm: '100%', md: '500px', lg: '800px', xl: '800px' },
-          display: { xs: 'none', sm: 'none', md: 'block'}
+          display: { xs: 'none', sm: 'none', md: 'block'},
         }} 
         src={imgSrc} 
         alt={imgAlt}
