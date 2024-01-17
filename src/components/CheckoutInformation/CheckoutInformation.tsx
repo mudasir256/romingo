@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import { CSSObject } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -59,7 +59,7 @@ const CheckoutInformation: FC<Props> = ({
   finalPrice,
   discountAmount,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const [paymentLoading, setPaymentLoading] = useState(false);
@@ -603,7 +603,7 @@ const CheckoutInformation: FC<Props> = ({
       bnplData?.createBooking2?.booking?.sabreConfirmationId &&
       bnplData?.createBooking2?.booking?.propertyConfirmationId
     ) {
-      history.push("?success=true", []);
+      navigate("?success=true", []);
     }
   }, [bnplData]);
 
@@ -644,7 +644,7 @@ const CheckoutInformation: FC<Props> = ({
             <Button
               variant="contained"
               color="primary"
-              onClick={() => history.push("/listings")}
+              onClick={() => navigate("/listings")}
             >
               Back to Search
             </Button>

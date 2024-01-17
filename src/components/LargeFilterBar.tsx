@@ -1,6 +1,6 @@
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
   Button,
@@ -66,7 +66,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       : { adults: 2, children: 0, dogs: 1 }
   );
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -115,8 +115,7 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         })
       );
       
-      history.push("/listings");
-      // history.go(0)
+      navigate("/listings");
     } else {
       alert("error");
       if (!selectedCity) {

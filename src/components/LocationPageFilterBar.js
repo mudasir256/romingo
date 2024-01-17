@@ -9,7 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { DateRangePicker } from '@mui/x-date-pickers-pro'
 
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { saveSearch } from "../store/searchReducer";
 
 export default function LocationPageFilterBar({ search }) {
@@ -31,7 +31,7 @@ export default function LocationPageFilterBar({ search }) {
   const [adults, setAdults] = useState(2)
   const [children, setChildren] = useState(0)
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSearch = () => {
@@ -54,7 +54,7 @@ export default function LocationPageFilterBar({ search }) {
         })
       );
       
-      history.push("/listings");
+      navigate("/listings");
     }
 
   }

@@ -14,7 +14,7 @@ import Chip from '@mui/material/Chip'
 import { Dispatch } from "redux";
 import { saveSearch } from "../../store/searchReducer";
 import { setList } from "../../store/hotelListReducer";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import WhitePawsIcon from '../../assets/icon/white-paws.png';
 import {
   Info,
@@ -64,7 +64,7 @@ const ListingPageNew = ({ ...props }) => {
   }
 
   const dispatch: Dispatch<any> = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // const [sessionId, setSessionId] = useState('')
   const [formatHotels, setFormatHotels] = useState([]);
@@ -615,7 +615,7 @@ const ListingPageNew = ({ ...props }) => {
     }}>
       <img width="40px" src={WhitePawsIcon} />
       <Typography variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $10 off your first reservation when you create an account</Typography>
-      <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
+      <Button onClick={() => navigate('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
 

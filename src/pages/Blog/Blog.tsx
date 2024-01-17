@@ -1,5 +1,5 @@
 import {Helmet} from "react-helmet";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
 import { FC, useState, useEffect, useMemo } from "react";
 import {
@@ -57,7 +57,7 @@ interface Tag {
 }
 
 const Blog: FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { search } = useLocation<string | null>();
   const params = useMemo(() => new URLSearchParams(search), [search]);
   const tag = params.get('tag')
@@ -109,7 +109,7 @@ const Blog: FC = () => {
     console.log(params)
 
     params.append('page', page)
-    history.push({
+    navigate({
       search: params.toString(),
     });
     setPage(page);
@@ -154,7 +154,7 @@ const Blog: FC = () => {
                   mx: 0.25,
                 }}
                 label={`#${tag.name}`}
-                onClick={() => history.push(`/blog?tag=${tag.id}`)}
+                onClick={() => navigate(`/blog?tag=${tag.id}`)}
               />
             ))}
           </Box>
@@ -179,7 +179,7 @@ const Blog: FC = () => {
                 label={`#${tagName[0].name}`}
                 onDelete={() => {
                   setTagName(undefined);
-                  history.push("/blog");
+                  navigate("/blog");
                 }}
               />
             )}
@@ -202,7 +202,7 @@ const Blog: FC = () => {
                     >
                       <Link
                         onClick={() =>
-                          history.push(`/blog/post/${post.slug}`, {
+                          navigate(`/blog/post/${post.slug}`, {
                             fromBlog: true,
                             postId: post.id
                           })

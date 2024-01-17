@@ -1,6 +1,6 @@
 import React, { FC, useState, MouseEventHandler, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
   IconButton,
@@ -142,7 +142,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -189,7 +189,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         })
       );
 
-      history.push("/listings", { flag, bookingId });
+      navigate("/listings", { flag, bookingId });
     } else {
       alert("error");
       if (!selectedCity) {

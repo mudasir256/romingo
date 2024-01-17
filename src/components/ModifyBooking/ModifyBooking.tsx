@@ -17,7 +17,7 @@ import ScrollToTop from "../../components/ScrollToTop";
 import ImageSlider from "../../components/ImageSlider";
 import { Star } from "@mui/icons-material";
 import RomingoScore from "../../components/RomingoScore";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ModifyBookingDetails, GetBookingDetails } from '../../constants/constants'
 import { gql, useMutation, useQuery } from "@apollo/client";
 import Loader from "../../components/UI/Loader";
@@ -43,7 +43,7 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
   const { finePrint, room } = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
   );
-  const history = useHistory();
+  const navigate = useNavigate();
   const pageLocation = useLocation<any>();
   const detail = useSelector(
     (state: any) => state.hotelCheckoutReducer.checkout
@@ -159,7 +159,7 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
       }).then((status) => {
         if (status.data.cancelBooking.status) {
           setTimeout(() => {
-            history.push('/');
+            navigate('/');
           }, 3000);
         }
       })
@@ -264,7 +264,7 @@ const ModifyBooking: FC<ModifyBookingProps> = () => {
                           variant="outlined"
                           color="error"
                           size="large"
-                          onClick={() => history.push('/reservation/manage')}
+                          onClick={() => navigate('/reservation/manage')}
                         >
                           Cancel
                         </Button>

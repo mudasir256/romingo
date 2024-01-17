@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Routes, Route, Navigate } from "react-router-dom";
 import loadable from '@loadable/component'
 
 import HomePage from './pages/HomePage'
@@ -179,96 +179,101 @@ const AuthGuards = (props: any) => {
     return props.children;
   }
 
-  return <Redirect to={"/login"} />;
+  return <Navigate to="/login" replace />;
 };
 
 const stripePromise = loadStripe(
   process.env.REACT_APP_STRIPE_CLIENT_KEY as string
 );
 
-const Routes = () => {
+const AllRoutes = () => {
   return (
-    <Switch>
-      {routes.map((route, key) => {
-        if (!route.requireAuth)
-          return (
-            <Route
-              exact
-              path={route.path}
-              component={route.component}
-              key={key}
-            />
-          );
-        else
-          return (
-            <AuthGuards key={key}>
-              <Route exact path={route.path} component={route.component} />
-            </AuthGuards>
-          );
-      })}
+    <Routes>
+      {routes.map((route, key) => 
+        // {
+        //   if (!route.requireAuth)
+        //     return (
+        //       <Route
+        //         path={route.path}
+        //         element={<route.component />}
+        //         key={key}
+        //       />
+        //     );
+        //   else
+        //     return (
+        //       <AuthGuards key={key}>
+        //         <Route path={route.path} element={<route.component />} />
+        //       </AuthGuards>
+        //     );
+        // }
+        <Route
+          path={route.path}
+          element={<route.component />}
+          key={key}
+        />
+      )}
 
-      <Route exact path="/contact">
-        <IntercomProvider appId="qa6datd3">
-          <ContactPage />
-        </IntercomProvider>
-      </Route>
+      <Route 
+        path="/contact" 
+        element={
+          <IntercomProvider appId="qa6datd3">
+            <ContactPage />
+          </IntercomProvider>
+        }
+      />
 
-      <Route exact path="/checkout*">
-        <Elements stripe={stripePromise}>
-          <CheckoutPage />
-        </Elements>
-      </Route>
+      <Route 
+        path="/reservation/details" 
+        element={
+          <Elements stripe={stripePromise}>
+            <YourReservationPage />
+          </Elements>
+        }
+      />
 
-      <Route exact path="/reservation/details">
-        <Elements stripe={stripePromise}>
-          <YourReservationPage />
-        </Elements>
-      </Route>
+      <Route path="/pet-friendly-hotels/austin-texas" element={<Austin />} />
+      <Route path="/pet-friendly-hotels/dallas-texas" element={<Dallas />} />
+      <Route path="/pet-friendly-hotels/houston-texas" element={<Houston />} />
+      <Route path="/pet-friendly-hotels/phoenix-arizona" element={<Phoenix />} />
+      <Route path="/pet-friendly-hotels/scottsdale-arizona" element={<Scottsdale />} />
+      <Route path="/pet-friendly-hotels/tucson-arizona" element={<Tucson />} />
+      <Route path="/pet-friendly-hotels/santa-fe-new-mexico" element={<SantaFe />} />
+      <Route path="/pet-friendly-hotels/san-antonio-texas" element={<SanAntonio />} />
+      <Route path="/pet-friendly-hotels/denver-colorado" element={<Denver />} />
+      <Route path="/pet-friendly-hotels/seattle-washington" element={<Seattle />} />
+      <Route path="/pet-friendly-hotels/portland-oregon" element={<Portland />} />
+      <Route path="/pet-friendly-hotels/salt-lake-city-utah" element={<SaltLakeCity />} />
+      <Route path="/pet-friendly-hotels/palm-springs-california" element={<PalmSprings />} />
+      <Route path="/pet-friendly-hotels/los-angeles-california" element={<LosAngeles />} />
+      <Route path="/pet-friendly-hotels/san-diego-california" element={<SanDiego />} />
+      <Route path="/pet-friendly-hotels/san-francisco-california" element={<SanFrancisco />} />
 
-
-      <Route exact path="/pet-friendly-hotels/austin-texas"><Austin /></Route>
-      <Route exact path="/pet-friendly-hotels/dallas-texas"><Dallas /></Route>
-      <Route exact path="/pet-friendly-hotels/houston-texas"><Houston /></Route>
-      <Route exact path="/pet-friendly-hotels/phoenix-arizona"><Phoenix /></Route>
-      <Route exact path="/pet-friendly-hotels/scottsdale-arizona"><Scottsdale /></Route>
-      <Route exact path="/pet-friendly-hotels/tucson-arizona"><Tucson /></Route>
-      <Route exact path="/pet-friendly-hotels/santa-fe-new-mexico"><SantaFe /></Route>
-      <Route exact path="/pet-friendly-hotels/san-antonio-texas"><SanAntonio /></Route>
-      <Route exact path="/pet-friendly-hotels/denver-colorado"><Denver /></Route>
-      <Route exact path="/pet-friendly-hotels/seattle-washington"><Seattle /></Route>
-      <Route exact path="/pet-friendly-hotels/portland-oregon"><Portland /></Route>
-      <Route exact path="/pet-friendly-hotels/salt-lake-city-utah"><SaltLakeCity /></Route>
-      <Route exact path="/pet-friendly-hotels/palm-springs-california"><PalmSprings /></Route>
-      <Route exact path="/pet-friendly-hotels/los-angeles-california"><LosAngeles /></Route>
-      <Route exact path="/pet-friendly-hotels/san-diego-california"><SanDiego /></Route>
-      <Route exact path="/pet-friendly-hotels/san-francisco-california"><SanFrancisco /></Route>
-
-      <Route exact path="/pet-friendly-hotels/atlanta-georgia"><Atlanta /></Route>
-      <Route exact path="/pet-friendly-hotels/baltimore-maryland"><Baltimore /></Route>
-      <Route exact path="/pet-friendly-hotels/boston-massachusetts"><Boston /></Route>
-      <Route exact path="/pet-friendly-hotels/charlotte-north-carolina"><Charlotte /></Route>
-      <Route exact path="/pet-friendly-hotels/chicago-illinois"><Chicago /></Route>
-      <Route exact path="/pet-friendly-hotels/cleveland-ohio"><Cleveland /></Route>
-      <Route exact path="/pet-friendly-hotels/detroit-michigan"><Detroit /></Route>
-      <Route exact path="/pet-friendly-hotels/indianapolis-indiana"><Indianapolis /></Route>
-      <Route exact path="/pet-friendly-hotels/miami-florida"><Miami /></Route>
-      <Route exact path="/pet-friendly-hotels/milwaukee-wisconsin"><Milwaukee /></Route>
-      <Route exact path="/pet-friendly-hotels/minneapolis-minnesota"><Minneapolis /></Route>
-      <Route exact path="/pet-friendly-hotels/new-orleans-louisiana"><NewOrleans /></Route>
-      <Route exact path="/pet-friendly-hotels/new-york-new-york"><NewYork /></Route>
-      <Route exact path="/pet-friendly-hotels/washington-dc"><Washington /></Route>
+      <Route path="/pet-friendly-hotels/atlanta-georgia" element={<Atlanta />} />
+      <Route path="/pet-friendly-hotels/baltimore-maryland" element={<Baltimore />} />
+      <Route path="/pet-friendly-hotels/boston-massachusetts" element={<Boston />} />
+      <Route path="/pet-friendly-hotels/charlotte-north-carolina" element={<Charlotte />} />
+      <Route path="/pet-friendly-hotels/chicago-illinois" element={<Chicago />} />
+      <Route path="/pet-friendly-hotels/cleveland-ohio" element={<Cleveland />} />
+      <Route path="/pet-friendly-hotels/detroit-michigan" element={<Detroit />} />
+      <Route path="/pet-friendly-hotels/indianapolis-indiana" element={<Indianapolis />} />
+      <Route path="/pet-friendly-hotels/miami-florida" element={<Miami />} />
+      <Route path="/pet-friendly-hotels/milwaukee-wisconsin" element={<Milwaukee />} />
+      <Route path="/pet-friendly-hotels/minneapolis-minnesota" element={<Minneapolis />} />
+      <Route path="/pet-friendly-hotels/new-orleans-louisiana" element={<NewOrleans />} />
+      <Route path="/pet-friendly-hotels/new-york-new-york" element={<NewYork />} />
+      <Route path="/pet-friendly-hotels/washington-dc" element={<Washington />} />
 
      
-      <Route exact path="/hilton-pet-policy"><HiltonPolicy /></Route>
-      <Route exact path="/hyatt-pet-policy"><HyattPolicy /></Route>
-      <Route exact path="/ihg-pet-policy"><IHGPolicy /></Route>
-      <Route exact path="/marriott-pet-policy"><MarriottPolicy /></Route>
-      <Route exact path="/motel-6-pet-policy"><Motel6Policy /></Route>
-      <Route exact path="/boutique-pet-policy"><BoutiquePolicy /></Route>
+      <Route path="/hilton-pet-policy" element={<HiltonPolicy />} />
+      <Route path="/hyatt-pet-policy" element={<HyattPolicy />} />
+      <Route path="/ihg-pet-policy" element={<IHGPolicy />} />
+      <Route path="/marriott-pet-policy" element={<MarriottPolicy />} />
+      <Route path="/motel-6-pet-policy" element={<Motel6Policy />} />
+      <Route path="/boutique-pet-policy" element={<BoutiquePolicy />} />
 
-      <Route component={ErrorPage} />
-    </Switch>
+      <Route element={ErrorPage} />
+    </Routes>
   );
 };
 
-export default Routes;
+export default AllRoutes;

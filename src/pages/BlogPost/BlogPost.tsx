@@ -10,7 +10,7 @@ import {
   Divider,
   Hidden,
 } from "@mui/material";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FC, useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -97,7 +97,7 @@ interface Location {
 }
 
 const BlogPost: FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { state } = useLocation<Location>();
   const { id } = useParams<PostParams>();
   const [subscribed, setSubscribed] = useState(false);
@@ -197,7 +197,7 @@ const BlogPost: FC = () => {
               {state?.fromBlog ? (
                 <Link
                   sx={{ cursor: "pointer" }}
-                  onClick={() => history.goBack()}
+                  onClick={() => navigate(-1)}
                 >
                   <Typography variant="h6">&#8592; More Blog Posts</Typography>
                 </Link>
@@ -265,7 +265,7 @@ const BlogPost: FC = () => {
                     mx: 0.25,
                   }}
                   label={`#${tag.name}`}
-                  onClick={() => history.push(`/blog?tag=${tag.id}`)}
+                  onClick={() => navigate(`/blog?tag=${tag.id}`)}
                 />
               ))}
               <Divider light sx={{ mt: 2, mb: 2 }} />

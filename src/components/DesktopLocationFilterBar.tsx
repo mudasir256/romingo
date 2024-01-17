@@ -1,6 +1,6 @@
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
   Button,
@@ -14,9 +14,10 @@ import {
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { DateRangePicker } from '@mui/x-date-pickers-pro'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { DateRangePicker } from '@mui/x-date-pickers-pro';
+import {parseISO } from 'date-fns';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import OccupantSelector, {
   Occupant,
@@ -68,7 +69,7 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
 
   console.log(occupants)
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -118,7 +119,7 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
         })
       );
     
-      history.push("/listings");
+      navigate("/listings");
     } else {
       alert("error");
       if (!selectedCity) {
@@ -212,7 +213,7 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
                 }}
                 calendars={2}
                 clearable={true}
-                value={checkDate || null}
+                value={parseISO(checkDate) || null}
                 minDate={new Date()}
                 onChange={(newValue) => {
                   setFormError("");

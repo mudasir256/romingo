@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
 import { FC, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { TextField, Button } from "@mui/material";
@@ -33,7 +33,7 @@ interface Props {
 }
 
 export const DesktopFilterBar: FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [isAccept, setIsAccept] = useState(false);
   const isTextField = false;
@@ -113,7 +113,7 @@ export const DesktopFilterBar: FC = () => {
       //   }
       // })
 
-      history.push("/listings");
+      navigate("/listings");
     } else {
       if (!selectedCity) {
         setFormError("Location required");

@@ -14,7 +14,7 @@ import { Circle, Pets, Wifi } from "@mui/icons-material";
 import BookingCardNew from "../../components/BookingCard/BookingCardNew";
 import { gql, useQuery } from "@apollo/client";
 import { getHotelDetailById, getPackages, TripReviews, TripHotelList, getCancellationPolicyMulti } from "../../constants/constants";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 import { RoomsFilterBar } from "./DetailsPage";
 import moment from "moment";
@@ -52,12 +52,12 @@ const DetailsPage1 = ({ ...props }) => {
   };
   const classes = props.classes;
   const mobile = useMediaQuery("(max-width:800px)");
-  const history = useHistory();
+  const navigate = useNavigate();
 
 
   const hotelId = props?.match?.params?.name || "undefined";
 
-  const initialSessionId = props?.history?.location?.state?.sessionId || "undefined";
+  // const initialSessionId = props?.history?.location?.state?.sessionId || "undefined";
 
   const [rooms, setRooms] = useState([])
   const [roomsDetails, setRoomsDetails] = useState([])
@@ -166,11 +166,11 @@ const DetailsPage1 = ({ ...props }) => {
     }
   }, [changeImage])
 
-  useEffect(() => {
-    if (history?.location?.hash === '#reviews') {
-      reviewsRef?.current?.scrollIntoView()    
-    }
-  }, [reviews])
+  // useEffect(() => {
+  //   if (history?.location?.hash === '#reviews') {
+  //     reviewsRef?.current?.scrollIntoView()    
+  //   }
+  // }, [reviews])
 
   useEffect(() => {
     if (data && data.getHotelDetails) {
@@ -477,7 +477,7 @@ const DetailsPage1 = ({ ...props }) => {
       <Fab
         color="default"
         size="small"
-        onClick={() => history.goBack()}
+        onClick={() => navigate(-1)}
         aria-label="back"
         sx={{
           backgroundColor: "white",

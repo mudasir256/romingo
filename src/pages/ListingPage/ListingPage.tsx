@@ -30,7 +30,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useStore, useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Dispatch } from "redux";
 import { ListingCardProps } from "../../components/ListingCard/ListingCard";
@@ -227,7 +227,7 @@ const ListingPage: FC<Props> = () => {
   const [animate, setAnimate] = useState<keyof typeof variants>(viewStatus);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const [hotelIndex, setHotelIndex] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(0);
 
@@ -307,7 +307,7 @@ const ListingPage: FC<Props> = () => {
   const date2 = new Date(end).getTime();
   const diffTime = Math.abs(date2 - date1);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-  const location = useLocation<any>();
+  const location = useLocation();
 
 
   return <>

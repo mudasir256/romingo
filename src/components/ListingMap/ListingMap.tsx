@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { FC } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CSSObject } from "@mui/material";
 import Link from "@mui/material/Link";
 import ListingCardMap from "../ListingCardMap/ListingCardMap";
@@ -49,7 +49,7 @@ const ListingMap: FC<Props> = ({
   id,
   onClick,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const moreProps = onClick ? { onPointerDown: onClick } : null;
 
   return (
@@ -102,7 +102,7 @@ const ListingMap: FC<Props> = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                history.push("/hotel/" + id);
+                navigate("/hotel/" + id);
               }}
             >
               <Hidden mdUp>

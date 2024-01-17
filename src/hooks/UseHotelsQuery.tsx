@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { WatchQueryFetchPolicy, gql, useLazyQuery, useQuery } from "@apollo/client";
 import { GetHotelsByLocation } from "../constants/constants";
 import moment from 'moment';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface SearchParams {
     search: any,

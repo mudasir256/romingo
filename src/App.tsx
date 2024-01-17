@@ -1,13 +1,13 @@
 import { LicenseInfo } from '@mui/x-license-pro';
 import { FC, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { GetCities } from "./constants/constants";
 import { setList } from "./store/cityListReducer";
 import { authService } from "./services/authService.js";
 import TagManager from "react-gtm-module";
-import Routes from "./routes";
+import AllRoutes from "./routes";
 
 LicenseInfo.setLicenseKey(process.env.REACT_APP_MUI_LICENSE);
 
@@ -17,7 +17,7 @@ const AuthGuards = (props: any) => {
     return props.children;
   }
 
-  return <Redirect to={"/login"} />;
+  return <Navigate to="/login" replace />;
 };
 
 const randomNumber = (max: number) => Math.floor(Math.random() * max);
@@ -58,6 +58,7 @@ const App: FC = () => {
 
   useEffect(() => {
     if (data) {
+      /* eslint-disable-next-line no-unsafe-optional-chaining */
       dispatch(setList([...data?.cities]));
     }
   }, [data]);
@@ -65,7 +66,7 @@ const App: FC = () => {
 
   return (
     <>
-      <Routes />
+      <AllRoutes />
     </>
   );
 };

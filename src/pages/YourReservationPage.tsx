@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { GetReservationDetails, CancelBooking } from '../constants/constants';
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Loader from "../components/UI/Loader";
@@ -23,9 +23,10 @@ import moment from 'moment'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 const YourReservationPage: FC<Props> = () => {
-  const history = useHistory();
-  let emailAddress = history.location.state?.emailAddress;
-  let confirmationNumber = history.location.state?.confirmationNumber;
+  const navigate = useNavigate();
+  const location = useLocation();
+  let emailAddress = location.state?.emailAddress;
+  let confirmationNumber = location.state?.confirmationNumber;
 
   const [openCancelConfirmation, setOpenCancelConfirmation] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(true);
@@ -34,8 +35,8 @@ const YourReservationPage: FC<Props> = () => {
   const [modifyDialogOpen, setModifyDialogOpen] = useState(false)
 
   if (!emailAddress && !confirmationNumber) {
-    const email = new URLSearchParams(history.location.search).get('email')
-    const confirmation = new URLSearchParams(history.location.search).get('id')
+    const email = new URLSearchParams(location.search).get('email')
+    const confirmation = new URLSearchParams(location.search).get('id')
     emailAddress = email
     confirmationNumber = confirmation
   }
@@ -127,12 +128,12 @@ const YourReservationPage: FC<Props> = () => {
       }).then((status) => {
         console.log(status)
         if (status?.data?.cancelBookingUsingTravolutionary?.response === null) {
-          history.push('/listings')
+          navigate('/listings')
         }
         if (status?.data?.cancelBookingUsingTravolutionary?.response?.Status === 'CX') {
           setOpenCancelConfirmation(false)
           setIsAlertOpen(true)
-          history.push('/listings')
+          navigate('/listings')
         }
       })
     }
@@ -223,7 +224,7 @@ const YourReservationPage: FC<Props> = () => {
           {!data?.getReservationDetails?.response?.length &&
             <Box sx={{ ml: '2em', mt: '3em' }}>
               <Typography sx={headerStyle}>We couldn&apos;t find a reservation for that email and confirmation number.</Typography>
-              <Button sx={{ mt: '0.5em' }} variant="contained" onClick={() => history.replace('/reservation/manage')}>Back</Button>
+              <Button sx={{ mt: '0.5em' }} variant="contained" onClick={() => navigate('/reservation/manage', { replace: true })}>Back</Button>
             </Box>
           }
           {mutationLoading && (
@@ -420,7 +421,7 @@ const YourReservationPage: FC<Props> = () => {
                   <Button
                     variant="outlined"
                     color="info"
-                    onClick={() => history.push('/reservation/manage')}
+                    onClick={() => navigate('/reservation/manage')}
                   >
                     Go Back
                   </Button>

@@ -9,7 +9,7 @@ import Header from '../../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { RangeInput } from '@mui/lab/DateRangePicker/RangeTypes';
 import { DateTime } from 'luxon';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
@@ -57,7 +57,7 @@ const ReservationDetails: FC<ReservationDetailsProps> = ({
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
-  const history = useHistory();
+  const navigate = useNavigate();
   const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
   const below900 = useMediaQuery("(max-width:900px)");
 
@@ -120,7 +120,7 @@ const ReservationDetails: FC<ReservationDetailsProps> = ({
         })
       );
         
-      history.push("/listings", {flag, bookingId});
+      navigate("/listings", {flag, bookingId});
     } else {
       alert("error");
       if (!selectedCity) {

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Box, Typography, Link } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -163,7 +163,7 @@ const ListingCard: FC<ListingCardProps> = ({
   petBowls,
   ...props
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const mobileCardPadding = 1;
 
   const [showRating, setShowRating] = useState(true);
@@ -339,7 +339,7 @@ const ListingCard: FC<ListingCardProps> = ({
           // href={hotelUrl}
           onClick={() => {
             window.location.href = hotelUrl;
-            // history.push(hotelUrl, {
+            // navigate(hotelUrl, {
             //   sessionId: sessionId,
             //   hotelDetails: hotel,
             // })

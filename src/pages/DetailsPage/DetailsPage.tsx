@@ -2,7 +2,7 @@ import loadable from '@loadable/component'
 import {Helmet} from 'react-helmet';
 import React, { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { DateTime } from "luxon";
 import { Dispatch } from "redux";
 import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
@@ -322,7 +322,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
      if (data && data?.getPropertyDetails) {
       if (isIdPage(pageLocation.pathname)) {
          if (data?.getPropertyDetails?.alias) {
-           history.push(`/hotel/${data?.getPropertyDetails?.alias}`)
+           navigate(`/hotel/${data?.getPropertyDetails?.alias}`)
            return;
          }
       }
@@ -511,7 +511,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
     return 3;
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const RateCardRef = React.createRef<HTMLDivElement>();
 
@@ -1502,7 +1502,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 <Fab
                   color="default"
                   size="small"
-                  onClick={() => history.goBack()}
+                  onClick={() => navigate(-1)}
                   aria-label="back"
                   sx={{
                     backgroundColor: "white",

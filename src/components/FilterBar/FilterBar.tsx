@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import { Dialog, CSSObject, Divider } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -31,7 +31,7 @@ const FilterBar: FC<Props> = ({
   city = "",
   searchOnClose = true,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [zoomIn, setZoomIn] = useState(zoomed);
   // eslint-disable-next-line
   const search = useSelector((state: any) => state.searchReducer.search);
@@ -84,7 +84,7 @@ const FilterBar: FC<Props> = ({
         occupants: newOccupants,
       })
     );
-    history.push("/listings");
+    navigate("/listings");
   };
 
   const fontStyle = {
