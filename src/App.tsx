@@ -11,15 +11,6 @@ import AllRoutes from "./routes";
 
 LicenseInfo.setLicenseKey(process.env.REACT_APP_MUI_LICENSE);
 
-const AuthGuards = (props: any) => {
-  const token = authService.getToken();
-  if (token && props.children) {
-    return props.children;
-  }
-
-  return <Navigate to="/login" replace />;
-};
-
 const randomNumber = (max: number) => Math.floor(Math.random() * max);
 
 const App: FC = () => {

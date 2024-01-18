@@ -34,7 +34,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from '@mui/icons-material/Close';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
+import { RangeInput } from "@mui/lab/DateRangePicker";
 import { saveSearch } from "../store/searchReducer";
 import { DateTime } from "luxon";
 
@@ -391,7 +391,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     weekdayColor: '#03989E',
                   }}
                 />
-                <Box zIndex="900" position="fixed" width="94%" backgroundColor="white" bottom="0" p="1rem">
+                <Box 
+                  sx={{
+                    zIndex: "900" ,
+                    position: "fixed" ,
+                    width: "94%" ,
+                    backgroundColor: "white",
+                    bottom: "0" ,
+                    p: "1rem",
+                  }}
+                >
                   <Button onClick={() => {
                     const { start, end } = calendarRef.current.state.selected
                     setCheckDate([start, end])

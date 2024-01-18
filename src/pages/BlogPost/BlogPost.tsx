@@ -167,15 +167,15 @@ const BlogPost: FC = () => {
   return (
     <>
       {post &&
-      <Helmet>
-        <title>{post?.title?.rendered}</title>
-        <meta property="og:title" content={post?.title?.rendered || ''} />
-        <meta property="og:description" content={post?.content?.rendered?.slice(2, 250)} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={post?._embedded['wp:featuredmedia']?.find(item => true)?.link || ''} />
-        <meta property="og:site_name" content="Romingo" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+        <Helmet>
+          <title>{post?.title?.rendered}</title>
+          <meta property="og:title" content={post?.title?.rendered || ''} />
+          <meta property="og:description" content={post?.content?.rendered?.slice(2, 250)} />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content={post?._embedded['wp:featuredmedia']?.find(item => true)?.link || ''} />
+          <meta property="og:site_name" content="Romingo" />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
       }
 
       <Navbar />

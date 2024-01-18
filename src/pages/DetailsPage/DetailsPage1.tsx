@@ -406,7 +406,7 @@ const DetailsPage1 = ({ ...props }) => {
 
   const getPetFee = (petFee) => {
     if(petFee === 'NONE'){
-      return 'No pet fees are charged at this hotel. A fully refundable pet deposit may be requested or a signed waiver upon check-in.'
+      return 'No pet fees are charged at this hotel?. A fully refundable pet deposit may be requested or a signed waiver upon check-in.'
     } else {
       return `Please note that a pet fee of ${petFee} may be collected upon arrival or departure.`
     }
@@ -453,14 +453,14 @@ const DetailsPage1 = ({ ...props }) => {
     return `${hotelName} offers pet-friendly accommodations in ${city}, ${state}. The pet policy at ${hotelName} welcomes ${getPetAllowance(petAllowance)} ${getPetSizeLabel(petSize)}  ${getPetFee(petFee)} ${getUnattendedPets(unattendedPets)} ${getUnattendedPets(petReliefArea)} ${getCatPolicy(catPolicy)}`
   }
 
-  return (<>
+  return <>
 
     <Helmet>
       <title>{hotel?.hotelName} | Romingo</title>
       <description>{hotel ? createPetPolicy({ ...hotel}) : hotel?.description}</description>
       <meta property="og:title" content={`${hotel?.hotelName} | Romingo`} />
       <meta property="og:description" content={hotel ? createPetPolicy({ ...hotel}) : hotel?.description} />
-      {/*      <meta property="og:url" content={`https://www.romingo.com/hotel/${hotelAlias}`} />*/}      
+      {/* <meta property="og:url" content={`https://www.romingo.com/hotel/${hotelAlias}`} /> */}
       <meta property="og:type" content="website" />
       <meta property="og:image" content={hotel?.images?.find(item => true)} />
       <meta property="og:site_name" content="Romingo" />
@@ -549,7 +549,7 @@ const DetailsPage1 = ({ ...props }) => {
       <Grid container direction="row" sx={{ maxWidth: 1200, margin: 'auto', position: 'relative', marginTop: '20px' }}>
         <Grid item xs={12} md={6} sx={{ paddingLeft: '16px' }}>
           <Typography variant="h6">{hotel?.hotelName}</Typography>
-          <Typography variant="base" color="gray" sx={{ fontSize: '14px' }}>{hotel.fullAddressLine}</Typography>
+          <Typography variant="base" color="gray" sx={{ fontSize: '14px' }}>{hotel?.fullAddressLine}</Typography>
         </Grid>
         <Grid item xs={12} md={6} 
           sx={{ 
@@ -606,10 +606,10 @@ const DetailsPage1 = ({ ...props }) => {
           sx={{ paddingLeft: "16px", marginBottom: "1rem" }}
         >
           <HotelTags 
-            pet_fee={hotel.petFee}
-            pet_fee_value={hotel.petFeeValue}
-            pet_allowance={hotel.petAllowance}
-            pet_size={hotel.petSize}
+            pet_fee={hotel?.petFee}
+            pet_fee_value={hotel?.petFeeValue}
+            pet_allowance={hotel?.petAllowance}
+            pet_size={hotel?.petSize}
           />
         </Grid>
         <Grid
@@ -652,7 +652,7 @@ const DetailsPage1 = ({ ...props }) => {
             {/*     <p>TODO: See all</p>*/}
           </Box>
           <Grid container direction='row' spacing={0}>
-            {hotel.amenities.map(item => {
+            {hotel?.amenities.map(item => {
               if (validCodes.includes(item.code)) {
                 return (
                   <Grid item xs={6} key={item.code} my="0.25rem">
@@ -684,20 +684,20 @@ const DetailsPage1 = ({ ...props }) => {
               fontWeight: 400,
             }}
           >
-            {hotel.fullAddressLine}
+            {hotel?.fullAddressLine}
           </Typography>
           <Box sx={{ display: "flex", my: 2, width: "100%" }}>
             <Map
               center={{
-                lat: parseFloat(hotel.lat || 0),
-                lng: parseFloat(hotel.lng || 0),
+                lat: parseFloat(hotel?.lat || 0),
+                lng: parseFloat(hotel?.lng || 0),
               }}
               height={240}
               markers={[{
-                lat: parseFloat(hotel.lat || 0),
-                lng: parseFloat(hotel.lng || 0),
+                lat: parseFloat(hotel?.lat || 0),
+                lng: parseFloat(hotel?.lng || 0),
                 type: "hotel",
-                label: hotel.hotelName,
+                label: hotel?.hotelName,
               }]}
               zoom={14}
               selectedMarker={0}
@@ -716,7 +716,7 @@ const DetailsPage1 = ({ ...props }) => {
           sx={{ paddingLeft: "16px", paddingRight: '16px', marginBottom: "1rem" }}
         >
           <Typography variant="h6">Hotel Description</Typography>
-          <Typography variant="base">{hotel.description}</Typography>
+          <Typography variant="base">{hotel?.description}</Typography>
 
           <Box my="2rem">
             <Divider />
@@ -1036,7 +1036,7 @@ ${item.replace(/^http(s?):/i, "")}?w=161&fit=crop&auto=format&dpr=2 2x`}
 
       </SimpleReactLightbox>
     </Box>
-  </>)
+  </>;
 }
 
 export default withStyles(styles)(DetailsPage1);

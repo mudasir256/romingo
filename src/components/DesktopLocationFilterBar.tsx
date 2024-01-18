@@ -14,10 +14,9 @@ import {
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { DateRangePicker } from '@mui/x-date-pickers-pro';
-import {parseISO } from 'date-fns';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import OccupantSelector, {
   Occupant,
@@ -41,8 +40,7 @@ interface FilterBarProps {
 }
 
 export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
-  const [open, setOpen] = useState(false);
-  const [isAccept, setIsAccept] = useState(false);
+  
   const [isTextField, setIsTextField] = useState(false);
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
@@ -52,14 +50,18 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
     lng: search.lng,
   } : null);
 
-
   const [formError, setFormError] = useState("");
-  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
-    search.checkIn ? search.checkIn : new Date(),
-    search.checkOut
-      ? search.checkOut
-      : DateTime.local().plus({ days: 1 }).toJSDate(),
-  ]);
+
+  const [open, setOpen] = useState(false);
+  const [isAccept, setIsAccept] = useState(false);
+  const [checkDate, setCheckDate] = useState<DateRange<Date | null>>(
+    [
+      search.checkIn ? search.checkIn : new Date(),
+      search.checkOut
+        ? search.checkOut
+        : DateTime.local().plus({ days: 1 }).toJSDate(),
+    ]
+  );
 
   const [occupants, setOccupants] = useState(
     search.occupants.dogs > 0
@@ -67,14 +69,13 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
       : { adults: 2, children: 0, dogs: 1 }
   );
 
-  console.log(occupants)
+  const [showSelectCity, setShowSelectCity] = useState<boolean>(false)
 
   const navigate = useNavigate();
 
   const dispatch: Dispatch<any> = useDispatch();
 
   const onOccupantChange = (value: Occupant) => setOccupants(value);
-
 
   const handleDateRangeClose = () => {
     setIsAccept(false);
@@ -99,7 +100,6 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
 
   const handleFilterOutClick: MouseEventHandler<Element> = () => {
     // TagManager.dataLayer({ dataLayer: { event: "clicked_search" } });
-
     if (
       occupants.adults !== 0 &&
       selectedCity &&
@@ -149,8 +149,6 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
     }
   };
 
-  const [showSelectCity, setShowSelectCity] = useState<boolean>(false)
-
   const labelStyle = {
     fontFamily: 'Poppins-Light',
     fontSize: '0.75em', 
@@ -171,15 +169,16 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
   }
 
   return (
-    <Box sx={{ 
-      mx: 'auto',
-      mt: '0em',
-      zIndex: '20',
-      width: '90%',
-    }}>
-    
-  
-      <Box sx={{ 
+    <Box 
+      sx={{ 
+        mx: 'auto',
+        mt: '0em',
+        zIndex: '20',
+        width: '90%',
+      }}
+    >  
+      <Box 
+        sx={{ 
           mt: '1.5em', 
           zIndex: 11,
           display: 'flex',
@@ -188,95 +187,93 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
           gap: '0.5rem'
         }} 
       >
+        <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px'}}>
+          <FormControl fullWidth>
+            <GooglePlaceAutoComplete width={372} setSelectedCity={setSelectedCity} city={selectedCity} />
+          </FormControl>
+        </Box>
 
-          <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px'}}>
-            <FormControl fullWidth>
-              <GooglePlaceAutoComplete width={372} setSelectedCity={setSelectedCity} city={selectedCity} />
-            </FormControl>
-          </Box>
-
-          <Box sx={{ 
-            width: '100%',
-             background: 'white',
-          }}>    
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateRangePicker
-                inputFormat="MMM dd"
-                disableMaskedInput={true}
-                open={open}
-                onAccept={() => setIsAccept(true)}
-                onClose={handleDateRangeClose}
-                onOpen={() => {
-                  if (!isAccept) {
-                    setOpen(true);
-                  }
-                }}
-                calendars={2}
-                clearable={true}
-                value={parseISO(checkDate) || null}
-                minDate={new Date()}
-                onChange={(newValue) => {
-                  setFormError("");
-                  setCheckDate(newValue);
-                }}
-                renderInput={(startProps, endProps) => (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'flex-start',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: '0.3rem',
-                      height: '40px',
-                      width: '100%',
-                      border: '1px solid #aaabab', borderRadius: '5px'
-                    }}
-                    onClick={() => setOpen(true)}
-                  >
-                  
-                    <Box ml="0.75rem" mt="0.4rem"><Today fontSize="small" sx={{ color: 'black' }} /></Box>
-                    <Typography
-                      sx={{
-                        ml: '0.25rem',
-                        color: "black",
-                        fontFamily: "Poppins-Light",
-                        textTransform: "none",
-                        fontSize: '15px',
-                        ["@media (max-width: 600px)"]: { fontSize: '1em' }
-                      }}
-                    >
-                      {checkDate[0]
-                        ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
-                        : "Check-in date"
-                      }
-                    </Typography> 
+        <Box sx={{ 
+          width: '100%',
+          background: 'white',
+        }}>    
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DateRangePicker
+              format="MMM dd"
+              // disableMaskedInput={true}
+              open={open}
+              onAccept={() => setIsAccept(true)}
+              onClose={handleDateRangeClose}
+              onOpen={() => {
+                if (!isAccept) {
+                  setOpen(true);
+                }
+              }}
+              calendars={2}
+              // clearable={true}
+              value={checkDate || null}
+              minDate={new Date()}
+              onChange={(newValue: DateRange<Date>) => {
+                setFormError("");
+                setCheckDate(newValue);
+              }}
+              // renderInput={(startProps, endProps) => (
+              //   <Box
+              //     sx={{
+              //       display: 'flex',
+              //       justifyContent: 'flex-start',
+              //       flexDirection: 'row',
+              //       alignItems: 'center',
+              //       gap: '0.3rem',
+              //       height: '40px',
+              //       width: '100%',
+              //       border: '1px solid #aaabab', borderRadius: '5px'
+              //     }}
+              //     onClick={() => setOpen(true)}
+              //   >
                 
-                    
-                    <Typography variant="base">-</Typography>
+              //     <Box ml="0.75rem" mt="0.4rem"><Today fontSize="small" sx={{ color: 'black' }} /></Box>
+              //     <Typography
+              //       sx={{
+              //         ml: '0.25rem',
+              //         color: "black",
+              //         fontFamily: "Poppins-Light",
+              //         textTransform: "none",
+              //         fontSize: '15px',
+              //         ["@media (max-width: 600px)"]: { fontSize: '1em' }
+              //       }}
+              //     >
+              //       {checkDate[0]
+              //         ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
+              //         : "Check-in date"
+              //       }
+              //     </Typography> 
+              
+                  
+              //     <Typography variant="base">-</Typography>
 
-                    <Typography
-                      sx={{
-                        color: "black",
-                        fontFamily: "Poppins-Light",
-                        textTransform: "none",
-                        fontSize: '15px',
-                        mr: '0.5rem',
-                        ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
-                      }}
-                    >
-                      {checkDate[1]
-                        ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM d")
-                        : "Check-out date"
-                      }
-                    </Typography> 
-               
-                  </Box>
-                )}
-              />
-            </LocalizationProvider>
-          </Box>
-
-  
+              //     <Typography
+              //       sx={{
+              //         color: "black",
+              //         fontFamily: "Poppins-Light",
+              //         textTransform: "none",
+              //         fontSize: '15px',
+              //         mr: '0.5rem',
+              //         ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
+              //       }}
+              //     >
+              //       {checkDate[1]
+              //         ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM d")
+              //         : "Check-out date"
+              //       }
+              //     </Typography> 
+              
+              //   </Box>
+              // )}
+              slotProps={{ textField: { variant: 'outlined' } }}
+            />
+          </LocalizationProvider>
+        </Box>
           
         <Box>
           <OccupantSelector
@@ -321,8 +318,6 @@ export const DesktopLocationFilterBar: FC<FilterBarProps> = ({ showText = false,
         >
           Search
         </Button>
-       
-  
       </Box>
     </Box>
   );

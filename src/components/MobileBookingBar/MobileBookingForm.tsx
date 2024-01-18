@@ -81,8 +81,6 @@ const MobileBookingForm: FC<Props> = ({
         <Grid item xs={12}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MobileDateRangePicker
-              startText="Check-in"
-              endText="Check-out"
               calendars={1}
               value={value}
               minDate={new Date()}
@@ -99,6 +97,10 @@ const MobileBookingForm: FC<Props> = ({
                   </Grid>
                 </Grid>
               )}
+              localeText={{
+                start: "Check-in",
+                end: "Check-out"
+              }} 
             />
           </LocalizationProvider>
         </Grid>

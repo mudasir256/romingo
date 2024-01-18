@@ -421,8 +421,6 @@ const HomePage: FC<Props> = () => {
     </Link>
   )
 
-  console.log(newData?.getHomepagePropertiesThree)
-
   const pricesOne = [149, 129, 99]
   const pricesTwo = [175, 189, 199]
 

@@ -190,27 +190,27 @@ const AllRoutes = () => {
   return (
     <Routes>
       {routes.map((route, key) => 
-        // {
-        //   if (!route.requireAuth)
-        //     return (
-        //       <Route
-        //         path={route.path}
-        //         element={<route.component />}
-        //         key={key}
-        //       />
-        //     );
-        //   else
-        //     return (
-        //       <AuthGuards key={key}>
-        //         <Route path={route.path} element={<route.component />} />
-        //       </AuthGuards>
-        //     );
-        // }
-        <Route
-          path={route.path}
-          element={<route.component />}
-          key={key}
-        />
+        {
+          if (!route.requireAuth)
+            return (
+              <Route
+                path={route.path}
+                element={<route.component />}
+                key={key}
+              />
+            );
+          else
+            return (
+              <AuthGuards key={key}>
+                <Route path={route.path} element={<route.component />} />
+              </AuthGuards>
+            );
+        }
+        // <Route
+        //   path={route.path}
+        //   element={<route.component />}
+        //   key={key}
+        // />
       )}
 
       <Route 

@@ -236,8 +236,8 @@ export const DesktopFilterBar: FC = () => {
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateRangePicker
-              inputFormat="MMM dd"
-              disableMaskedInput={true}
+              format="MMM dd"
+              // disableMaskedInput={true}
               open={open}
               onAccept={() => setIsAccept(true)}
               onClose={handleDateRangeClose}
@@ -248,40 +248,41 @@ export const DesktopFilterBar: FC = () => {
               }}
               // allowSameDateSelection
               calendars={2}
-              clearable={true}
+              // clearable={true}
               value={checkDate || null}
               minDate={new Date()}
               onChange={(newValue) => {
                 setFormError("");
                 setCheckDate(newValue);
               }}
-              renderInput={() => (
-                <Button
-                  onClick={() => setOpen(true)}
-                  sx={{ px: { xs: 1, md: 1 } }}
-                >
-                  <Typography
-                    sx={{
-                      fontFamily: "overpass-light",
-                      textTransform: "none",
-                      fontWeight: 600,
-                      fontSize: '1em',
-                    }}
-                  >
-                    {checkDate[0]
-                      ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
-                        "MMM dd"
-                      )
-                      : ""}
-                    &nbsp;&#8212;&nbsp;
-                    {checkDate[1]
-                      ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
-                        "MMM dd"
-                      )
-                      : ""}
-                  </Typography>
-                </Button>
-              )}
+              // renderInput={() => (
+              //   <Button
+              //     onClick={() => setOpen(true)}
+              //     sx={{ px: { xs: 1, md: 1 } }}
+              //   >
+              //     <Typography
+              //       sx={{
+              //         fontFamily: "overpass-light",
+              //         textTransform: "none",
+              //         fontWeight: 600,
+              //         fontSize: '1em',
+              //       }}
+              //     >
+              //       {checkDate[0]
+              //         ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat(
+              //           "MMM dd"
+              //         )
+              //         : ""}
+              //       &nbsp;&#8212;&nbsp;
+              //       {checkDate[1]
+              //         ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat(
+              //           "MMM dd"
+              //         )
+              //         : ""}
+              //     </Typography>
+              //   </Button>
+              // )}
+              slotProps={{ textField: { variant: 'outlined' } }}
             />
           </LocalizationProvider>
         </Box>

@@ -1,4 +1,4 @@
-import { FC, useState, MouseEventHandler, useEffect } from "react";
+import { FC, useState, MouseEventHandler, useEffect, forwardRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Dispatch } from "redux";
@@ -14,23 +14,24 @@ import {
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from "@mui/icons-material/Search";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { DateRangePicker } from '@mui/x-date-pickers-pro'
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro';
+import { 
+  SingleInputDateRangeField,
+  SingleInputDateRangeFieldProps,
+} from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import OccupantSelector, {
-  Occupant,
-} from "./OccupantSelector/OccupantSelector";
-import {
-  Today,
-  InsertInvitation,
-} from "@mui/icons-material";
+import OccupantSelector, { Occupant } from "./OccupantSelector/OccupantSelector";
+import { Today, InsertInvitation } from "@mui/icons-material";
 import { DateTime } from "luxon";
 import { saveSearch } from "../store/searchReducer";
 import SearchImage from '../assets/icon/magnify.png';
 
 import "./Header/Header.scss";
 import GooglePlaceAutoComplete from "./GooglePlaceAutoComplete";
+
+import { parseISO } from 'date-fns';
 
 interface FilterBarProps {
   sx?: CSSObject;
@@ -39,11 +40,26 @@ interface FilterBarProps {
   city?: string;
   showText?: boolean;
 }
-export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
-  const [open, setOpen] = useState(false);
-  const [isAccept, setIsAccept] = useState(false);
+
+type FieldComponent = (<TDate>(
+  props: SingleInputDateRangeFieldProps<TDate> &
+    React.RefAttributes<HTMLInputElement>,
+) => React.JSX.Element) & { fieldType?: string };
+
+// eslint-disable-next-line react/display-name
+const WrappedSingleInputDateRangeField = forwardRef(
+  (
+    props: SingleInputDateRangeFieldProps<DateRange<Date>>,
+    ref: React.Ref<HTMLInputElement>,
+  ) => {
+    return <SingleInputDateRangeField {...props} ref={ref} />;
+  },
+) as FieldComponent;
+
+const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
+  
   const [isTextField, setIsTextField] = useState(false);
-  const search = useSelector((state: any) => state.searchReducer.search);
+  const search: ISearch = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const [selectedCity, setSelectedCity] = useState(city ? city : search.city ? {
     city: search.city,
@@ -51,12 +67,17 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     lng: search.lng,
   } : null);
 
-
   const [formError, setFormError] = useState("");
-  const [checkDate, setCheckDate] = useState<RangeInput<Date | null>>([
-    search.checkIn ? search.checkIn : new Date(),
+
+  const [open, setOpen] = useState(false);
+  const [isAccept, setIsAccept] = useState(false);
+
+  const [checkDate, setCheckDate] = useState<DateRange<Date | null>>([
+    search.checkIn 
+      ? parseISO(search.checkIn)
+      : new Date(),
     search.checkOut
-      ? search.checkOut
+      ? parseISO(search.checkOut)
       : DateTime.local().plus({ days: 1 }).toJSDate(),
   ]);
 
@@ -66,12 +87,13 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
       : { adults: 2, children: 0, dogs: 1 }
   );
 
+  const [showSelectCity, setShowSelectCity] = useState<boolean>(false)
+
   const navigate = useNavigate();
 
   const dispatch: Dispatch<any> = useDispatch();
 
   const onOccupantChange = (value: Occupant) => setOccupants(value);
-
 
   const handleDateRangeClose = () => {
     setIsAccept(false);
@@ -145,8 +167,6 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
     }
   };
 
-  const [showSelectCity, setShowSelectCity] = useState<boolean>(false)
-
   const labelStyle = {
     fontFamily: 'Poppins-Light',
     fontSize: '0.75em', 
@@ -167,12 +187,14 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
   }
 
   return (
-    <Box sx={{ 
-      mx: 'auto',
-      mt: '0em',
-      zIndex: '20',
-      width: 'fit-content',
-    }}>
+    <Box 
+      sx={{ 
+        mx: 'auto',
+        mt: '0em',
+        zIndex: '20',
+        width: 'fit-content',
+      }}
+    >
       {showText &&
         <Box>
           <Box component="h1" sx={{ ml: '0.1em', mb: '0.5em' }} className="filter-bar-wrapper-title"><b>Book pet-friendly hotels</b></Box>
@@ -180,7 +202,8 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
         </Box>
       }
       
-      <Box sx={{ 
+      <Box 
+        sx={{ 
           mt: '1.5em', 
           border: '1px gray solid',
           boxSizing: 'border-box',
@@ -209,14 +232,14 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             </FormControl>
           </Box>
 
-          <Box sx={{ 
-
-             background: 'white',
-          }}>    
+          <Box
+            sx={{
+              background: 'white',
+            }}
+          >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
-                inputFormat="MMM dd"
-                disableMaskedInput={true}
+                format="MMM dd"
                 open={open}
                 onAccept={() => setIsAccept(true)}
                 onClose={handleDateRangeClose}
@@ -226,73 +249,71 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
                   }
                 }}
                 calendars={2}
-                clearable={true}
-                value={checkDate || null}
+                // clearable={true}
+                value={checkDate}
                 minDate={new Date()}
-                onChange={(newValue) => {
+                onChange={(newValue: DateRange<Date>) => {
                   setFormError("");
                   setCheckDate(newValue);
                 }}
-                renderInput={(startProps, endProps) => (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'flex-start',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: '0.3rem',
-                      height: '40px',
-                      width: showText ? '290px' : '170px',
-                      border: '1px solid #aaabab', borderRadius: '5px'
-                    }}
-                    onClick={() => setOpen(true)}
-                  >
-                  
-                    <Box ml="0.75rem" mt="0.4rem"><Today fontSize="small" sx={{ color: 'black' }} /></Box>
-                    <Typography
-                      sx={{
-                        ml: '0.25rem',
-                        color: "black",
-                        fontFamily: "Poppins-Light",
-                        textTransform: "none",
-                        fontSize: '15px',
-                        ["@media (max-width: 600px)"]: { fontSize: '1em' }
-                      }}
-                    >
-                      {checkDate[0]
-                        ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
-                        : "Check-in date"
-                      }
-                    </Typography> 
-                
-                    
-                    <Typography variant="base">-</Typography>
+                slots={{
+                  field: SingleInputDateRangeField,
+                }}
+                slotProps={{ 
+                  textField: ({ position }) => {
+                    const isStart = position == 'start';
 
-                    <Typography
-                      sx={{
-                        color: "black",
-                        fontFamily: "Poppins-Light",
-                        textTransform: "none",
-                        fontSize: '15px',
-                        mr: '0.5rem',
-                        ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
-                      }}
-                    >
-                      {checkDate[1]
-                        ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM d")
-                        : "Check-out date"
-                      }
-                    </Typography> 
-               
-                  </Box>
-                )}
+                    const startValue = checkDate[0]
+                      ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MMM dd")
+                      : "Check-in date";
+                    const endValue = checkDate[1]
+                      ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MMM dd")
+                      : isStart ? "Check-in date" : "Check-out date";
+
+                    return ({
+                      variant: 'standard',
+                      sx: { // wrapper styles
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        height: '40px',
+                        width: showText ? '290px' : '170px',
+                        border: '1px solid #aaabab', 
+                        borderRadius: '5px',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                      },
+                      InputProps: { // internal input styles
+                        value: `${startValue} - ${endValue}`,
+                        startAdornment: (
+                          <Box ml="0.75rem" mr="0.75rem" mt="0.4rem">
+                            <Today fontSize="small" sx={{ color: 'black' }} />
+                          </Box>
+                        ),
+                        sx: {
+                          color: "black",
+                          fontFamily: "Poppins-Light",
+                          textTransform: "none",
+                          fontSize: '15px',
+                          ["@media (max-width: 600px)"]: { fontSize: '1em' },
+                          width: '100%',
+                          border: 'none'
+                        },
+                        disableUnderline: true,
+                      },
+                    })
+                  },
+                  actionBar: {
+                    actions: ['clear'],
+                  },
+                }}
               />
             </LocalizationProvider>
           </Box>
-
         </Box>
-  
-          
+
         <Box>
           <OccupantSelector
             value={occupants}
@@ -320,26 +341,40 @@ export const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoome
             }}
           />
         </Box>
-        {showText ?
-        <Button
-          onClick={handleFilterOutClick}
-          variant="contained"
-          size="medium"
-          sx={{
-            textTransform: "none",
-            fontFamily: "Poppins-Light",
-            m: '0.75em',
-            p: '1rem',
-            height: '41.5px',
-          }}
-          startIcon={<SearchIcon sx={{ height: "24px", fill: 'white' }} />}
-        >
-          Search
-        </Button>
-        : <Box onClick={handleFilterOutClick} backgroundColor="#03989E" borderRadius="100%" p="0.5rem" m="0.5rem" sx={{ cursor: 'pointer' }} ><SearchIcon sx={{ cursor: 'pointer', height: "20px", fill: 'white' }} /></Box>
 
-        }
+        {showText ? (
+          <Button
+            onClick={handleFilterOutClick}
+            variant="contained"
+            size="medium"
+            sx={{
+              textTransform: "none",
+              fontFamily: "Poppins-Light",
+              m: '0.75em',
+              p: '1rem',
+              height: '41.5px',
+            }}
+            startIcon={<SearchIcon sx={{ height: "24px", fill: 'white' }} />}
+          >
+            Search
+          </Button>
+          ) : (
+          <Box 
+            onClick={handleFilterOutClick} 
+            sx={{ 
+              cursor: 'pointer',
+              backgroundColor: "#03989E",
+              borderRadius: "100%",
+              p: "0.5rem",
+              m: "0.5rem",
+            }}
+          >
+            <SearchIcon sx={{ cursor: 'pointer', height: "20px", fill: 'white' }} />
+          </Box>
+        )}
       </Box>
     </Box>
   );
 };
+
+export { LargeFilterBar };

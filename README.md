@@ -101,3 +101,12 @@ A quick look at the top-level files and directories included with this template.
 cloudbuild-dev.yaml is set to automatically deploy to dev.romingo.com when dev branch is pushed to. This is configured in GCP "Cloud Build"
 
 cloudbuild-prod.yaml is set to automatically deploy to PRODUCTION. This is configured in GCP "Cloud Build"
+
+---
+
+## Upgrade to 20 Notes
+
+1. We need to run npm i --legacy-peer-deps to install the project, a few packages such as ``
+
+2. Add to `TSC_COMPILE_ON_ERROR=true` to `.env` file
+  - This will allow for the project to compile even with TypeScript errors. There may be more in-depth configuration that we can do to block compiling with TypeScript errors in development, but not in prod (as you would expect, to leverage TS in development), but given the current state of the project, with a massive amount of tech-debt (and particularly TS errors/warnings), we don't have time to fix all of the TypeScript erros, and need to continue developing. Adding `TSC_COMPILE_ON_ERROR=true` to `.env` file allows for that.

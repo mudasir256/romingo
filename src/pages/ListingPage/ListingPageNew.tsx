@@ -351,34 +351,35 @@ const ListingPageNew = ({ ...props }) => {
           return toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice);
         case 'priceSort_high_to_low':
           return toSortHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
-        case 'featured': {
-          const ordered = toSortHotels.sort((a, b) => a.distanceFromSearch - b.distanceFromSearch)
-          const closest = ordered[0]
-          // ordered.shift()
-          // const fourStars = ordered.filter(a => 
-          //   (a.romingoScore == '4' || a.romingoScore == '4.5') && 
-          //   (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
-          // )
-          // const threeStars = ordered.filter(a =>
-          //   (a.romingoScore == '3' || a.romingoScore == '3.5') && 
-          //   (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
-          // )
+        // TODO: reintroduce this if causing no errors.
+        // case 'featured': {
+        //   const ordered = toSortHotels.sort((a, b) => a.distanceFromSearch - b.distanceFromSearch)
+        //   const closest = ordered[0]
+        //   // ordered.shift()
+        //   // const fourStars = ordered.filter(a => 
+        //   //   (a.romingoScore == '4' || a.romingoScore == '4.5') && 
+        //   //   (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
+        //   // )
+        //   // const threeStars = ordered.filter(a =>
+        //   //   (a.romingoScore == '3' || a.romingoScore == '3.5') && 
+        //   //   (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
+        //   // )
 
-          //does this remove from back ordered?
-          const unique = [...new Set([
-            closest, 
-            ...toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => a.pointValue - b.pointValue < 0 ? 1 : -1) 
-            // ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
-            // ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
-            // ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
-          ])]
+        //   //does this remove from back ordered?
+        //   const unique = [...new Set([
+        //     closest, 
+        //     ...toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => a.pointValue - b.pointValue < 0 ? 1 : -1) 
+        //     // ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+        //     // ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+        //     // ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
+        //   ])]
 
-          return unique
+        //   return unique
           // const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
           // const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
           // const exclude = toSortHotels.filter(a => (a.romingoScore != '4' && a.romingoScore != '4.5' && a.romingoScore != '3.5' && a.romingoScore != '3'))
           // return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...exclude.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice)]
-        }
+        // }
         case 'highest_rating':
           return toSortHotels.sort((a, b) => b.romingoScore - a.romingoScore);
         default:

@@ -72,11 +72,10 @@ export default function LocationPageFilterBar({ search }) {
 
       <LocalizationProvider 
         dateAdapter={AdapterDateFns}
-        localeText={{ start: 'CHECK IN', end: 'CHECK OUT' }}
       >
-
         <DateRangePicker
-          inputFormat="MMM dd"
+          localeText={{ start: 'CHECK IN', end: 'CHECK OUT' }}
+          format="MMM dd"
           disableMaskedInput={true}
           calendars={1}
           clearable={true}
@@ -85,37 +84,37 @@ export default function LocationPageFilterBar({ search }) {
           onChange={(newValue) => {
             setDateRange(newValue)
           }}
-          renderInput={(startProps, endProps) => (
-              <React.Fragment>
-                <Box sx={{ width: '100%', background: 'white',  border: '1px solid #D3D3D3', borderRadius: '5px', p: '0.5rem', pb: '0.25rem' }}>
-                  <TextField 
-                    variant="standard" 
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                    InputLabelProps={{
-                      shrink: true
-                    }}
+          // renderInput={(startProps, endProps) => (
+          //   <React.Fragment>
+          //     <Box sx={{ width: '100%', background: 'white',  border: '1px solid #D3D3D3', borderRadius: '5px', p: '0.5rem', pb: '0.25rem' }}>
+          //       <TextField 
+          //         variant="standard" 
+          //         InputProps={{
+          //           disableUnderline: true,
+          //         }}
+          //         InputLabelProps={{
+          //           shrink: true
+          //         }}
 
-                    sx={{ width: '48.75%', borderRight: 'solid #D3D3D3', mr: '0.5rem' }} 
-                    {...startProps} 
-                  />
+          //         sx={{ width: '48.75%', borderRight: 'solid #D3D3D3', mr: '0.5rem' }} 
+          //         {...startProps} 
+          //       />
 
-                  <TextField 
-                    variant="standard" 
-                    InputProps={{
-                      disableUnderline: true,
-                    }}
-                    InputLabelProps={{
-                      shrink: true,  
-                    }}
-                    sx={{ width: '48%' }}
-                    {...endProps} 
-                  />
-                </Box>
-              </React.Fragment>
-            )}
-
+          //       <TextField 
+          //         variant="standard" 
+          //         InputProps={{
+          //           disableUnderline: true,
+          //         }}
+          //         InputLabelProps={{
+          //           shrink: true,  
+          //         }}
+          //         sx={{ width: '48%' }}
+          //         {...endProps} 
+          //       />
+          //     </Box>
+          //   </React.Fragment>
+          // )}
+          slotProps={{ textField: { variant: 'outlined' } }}
         />
       </LocalizationProvider>
 
@@ -134,7 +133,7 @@ export default function LocationPageFilterBar({ search }) {
             }}
             value={adults}
             onChange={(e) => setAdults(e.target?.value)}
-            disableUnderline={true}
+            // disableUnderline={true}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -156,7 +155,7 @@ export default function LocationPageFilterBar({ search }) {
             }}
             value={children}
             onChange={(e) => setChildren(e.target?.value)}
-            disableUnderline={true}
+            // disableUnderline={true}
           >
             <option value={0}>0</option>
             <option value={1}>1</option>
@@ -172,5 +171,5 @@ export default function LocationPageFilterBar({ search }) {
 
       <Button variant="contained" onClick={() => handleSearch()}>Search</Button>
     </Box>
-  )
+  );
 }
