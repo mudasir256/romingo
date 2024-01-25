@@ -17,10 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro';
-import { 
-  SingleInputDateRangeField,
-  SingleInputDateRangeFieldProps,
-} from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
+import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import OccupantSelector, { Occupant } from "./OccupantSelector/OccupantSelector";
 import { Today, InsertInvitation } from "@mui/icons-material";
@@ -40,21 +37,6 @@ interface FilterBarProps {
   city?: string;
   showText?: boolean;
 }
-
-type FieldComponent = (<TDate>(
-  props: SingleInputDateRangeFieldProps<TDate> &
-    React.RefAttributes<HTMLInputElement>,
-) => React.JSX.Element) & { fieldType?: string };
-
-// eslint-disable-next-line react/display-name
-const WrappedSingleInputDateRangeField = forwardRef(
-  (
-    props: SingleInputDateRangeFieldProps<DateRange<Date>>,
-    ref: React.Ref<HTMLInputElement>,
-  ) => {
-    return <SingleInputDateRangeField {...props} ref={ref} />;
-  },
-) as FieldComponent;
 
 const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
   
@@ -282,7 +264,6 @@ const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = fal
                         width: showText ? '290px' : '170px',
                         border: '1px solid #aaabab', 
                         borderRadius: '5px',
-                        fontWeight: 'bold',
                         cursor: 'pointer',
                       },
                       InputProps: { // internal input styles
