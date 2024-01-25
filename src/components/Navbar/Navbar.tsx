@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, MouseEventHandler } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   MenuItem,
   CircularProgress,
@@ -50,7 +50,9 @@ interface Props {
 }
 
 const Navbar: FC<Props> = ({ sx }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [showLogin, setShowLogin] = useState(false);
@@ -78,13 +80,13 @@ const Navbar: FC<Props> = ({ sx }) => {
     const token = authService.getUser();
     console.log(token)
     if (token) {
-      history.push('/profile')
+      navigate('/profile')
       return
     }
     setShowLogin(true)
   }
 
-  const path = history.location.pathname
+  const path = location.pathname
 
   const linkStyle = {
     padding: ".25rem 1rem",
@@ -154,7 +156,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               }
               alt="Logo"
               draggable="false"
-              onClick={() => history.push("/")}
+              onClick={() => navigate("/")}
               sx={{
                 maxWidth: "230px",
                 margin: "auto auto",
@@ -210,14 +212,14 @@ const Navbar: FC<Props> = ({ sx }) => {
                 src={LogoImg}
                 alt="Logo"
                 draggable="false"
-                onClick={() => history.push("/")}
+                onClick={() => navigate("/")}
                 sx={{
                   maxWidth: "120px",
                   margin: "1rem auto",
                 }}
               />
               <MenuItem
-                onClick={() => history.push("/about")}
+                onClick={() => navigate("/about")}
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
@@ -227,7 +229,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 Our story
               </MenuItem>
               <MenuItem
-                onClick={() => history.push("/romingo-partners")}
+                onClick={() => navigate("/romingo-partners")}
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
@@ -237,7 +239,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 Philanthropy
               </MenuItem>
               <MenuItem
-                onClick={() => history.push("/faq")}
+                onClick={() => navigate("/faq")}
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
@@ -247,7 +249,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 FAQ
               </MenuItem>
               <MenuItem
-                onClick={() => history.push("/blog")}
+                onClick={() => navigate("/blog")}
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
@@ -257,7 +259,7 @@ const Navbar: FC<Props> = ({ sx }) => {
                 Blog
               </MenuItem>
               <MenuItem
-                onClick={() => history.push("/contact")}
+                onClick={() => navigate("/contact")}
                 component="button"
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
@@ -269,7 +271,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               <RomingoDealsMobile />
               <MenuItem
                 component="button"
-                onClick={() => history.push("/blog")}
+                onClick={() => navigate("/blog")}
                 sx={{ fontWeight: 500, minWidth: "200px" }}
               >
                 <HomeWork
@@ -285,7 +287,7 @@ const Navbar: FC<Props> = ({ sx }) => {
               }
               alt="Logo"
               onClick={() => {
-                history.push("/");
+                navigate("/");
               }}
               draggable="false"
               sx={{
@@ -299,7 +301,7 @@ const Navbar: FC<Props> = ({ sx }) => {
 
 
             <Typography
-              onClick={() => history.push("/reservation/manage")}
+              onClick={() => navigate("/reservation/manage")}
               variant="body2"
               sx={{
                 cursor: "pointer",

@@ -10,7 +10,7 @@ import {
   Divider,
   Hidden,
 } from "@mui/material";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FC, useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -97,7 +97,7 @@ interface Location {
 }
 
 const BlogPost: FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { state } = useLocation<Location>();
   const { id } = useParams<PostParams>();
   const [subscribed, setSubscribed] = useState(false);
@@ -167,15 +167,15 @@ const BlogPost: FC = () => {
   return (
     <>
       {post &&
-      <Helmet>
-        <title>{post?.title?.rendered}</title>
-        <meta property="og:title" content={post?.title?.rendered || ''} />
-        <meta property="og:description" content={post?.content?.rendered?.slice(2, 250)} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={post?._embedded['wp:featuredmedia']?.find(item => true)?.link || ''} />
-        <meta property="og:site_name" content="Romingo" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
+        <Helmet>
+          <title>{post?.title?.rendered}</title>
+          <meta property="og:title" content={post?.title?.rendered || ''} />
+          <meta property="og:description" content={post?.content?.rendered?.slice(2, 250)} />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content={post?._embedded['wp:featuredmedia']?.find(item => true)?.link || ''} />
+          <meta property="og:site_name" content="Romingo" />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
       }
 
       <Navbar />
@@ -197,7 +197,7 @@ const BlogPost: FC = () => {
               {state?.fromBlog ? (
                 <Link
                   sx={{ cursor: "pointer" }}
-                  onClick={() => history.goBack()}
+                  onClick={() => navigate(-1)}
                 >
                   <Typography variant="h6">&#8592; More Blog Posts</Typography>
                 </Link>
@@ -265,7 +265,7 @@ const BlogPost: FC = () => {
                     mx: 0.25,
                   }}
                   label={`#${tag.name}`}
-                  onClick={() => history.push(`/blog?tag=${tag.id}`)}
+                  onClick={() => navigate(`/blog?tag=${tag.id}`)}
                 />
               ))}
               <Divider light sx={{ mt: 2, mb: 2 }} />

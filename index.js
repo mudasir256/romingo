@@ -496,6 +496,7 @@ app.get("*", (req, res) => {
     return res.send(htmlWithSeo);
   }
 });
+
 app.listen(parseInt(process.env.PORT) || 8080, () => {
   console.log("listened on");
 });

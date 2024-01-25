@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { alpha, styled } from "@mui/material/styles";
 import {
   FormControl,
@@ -92,7 +92,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ManageReservationPage: FC<Props> = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [emailAddress, setEmailAddress] = useState("");
   const [confirmationNumber, setConfirmationNumber] = useState("");
   const [loading, setLoading] = useState(false);
@@ -110,10 +110,10 @@ const ManageReservationPage: FC<Props> = () => {
   const data = {}
 
   const handleFindReservation = () => {
-    history.push({
-      pathname: '/reservation/details',
-      state: { emailAddress, confirmationNumber }
-    })
+    navigate(
+      '/reservation/details',
+      { state: { emailAddress, confirmationNumber } }
+    )
   }
 
   const startChat = () => {

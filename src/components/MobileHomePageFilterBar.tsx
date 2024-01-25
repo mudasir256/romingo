@@ -1,6 +1,6 @@
 import React, { FC, useState, MouseEventHandler, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import {
   IconButton,
@@ -34,7 +34,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from '@mui/icons-material/Close';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { RangeInput } from "@mui/lab/DateRangePicker/RangeTypes";
+import { RangeInput } from "@mui/lab/DateRangePicker";
 import { saveSearch } from "../store/searchReducer";
 import { DateTime } from "luxon";
 
@@ -142,7 +142,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -189,7 +189,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
         })
       );
 
-      history.push("/listings", { flag, bookingId });
+      navigate("/listings", { flag, bookingId });
     } else {
       alert("error");
       if (!selectedCity) {
@@ -391,7 +391,16 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
                     weekdayColor: '#03989E',
                   }}
                 />
-                <Box zIndex="900" position="fixed" width="94%" backgroundColor="white" bottom="0" p="1rem">
+                <Box 
+                  sx={{
+                    zIndex: "900" ,
+                    position: "fixed" ,
+                    width: "94%" ,
+                    backgroundColor: "white",
+                    bottom: "0" ,
+                    p: "1rem",
+                  }}
+                >
                   <Button onClick={() => {
                     const { start, end } = calendarRef.current.state.selected
                     setCheckDate([start, end])

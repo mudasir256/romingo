@@ -14,7 +14,7 @@ import Chip from '@mui/material/Chip'
 import { Dispatch } from "redux";
 import { saveSearch } from "../../store/searchReducer";
 import { setList } from "../../store/hotelListReducer";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import WhitePawsIcon from '../../assets/icon/white-paws.png';
 import {
   Info,
@@ -64,7 +64,7 @@ const ListingPageNew = ({ ...props }) => {
   }
 
   const dispatch: Dispatch<any> = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // const [sessionId, setSessionId] = useState('')
   const [formatHotels, setFormatHotels] = useState([]);
@@ -351,34 +351,35 @@ const ListingPageNew = ({ ...props }) => {
           return toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice);
         case 'priceSort_high_to_low':
           return toSortHotels.sort((a, b) => b.lowestAveragePrice - a.lowestAveragePrice);
-        case 'featured': {
-          const ordered = toSortHotels.sort((a, b) => a.distanceFromSearch - b.distanceFromSearch)
-          const closest = ordered[0]
-          // ordered.shift()
-          // const fourStars = ordered.filter(a => 
-          //   (a.romingoScore == '4' || a.romingoScore == '4.5') && 
-          //   (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
-          // )
-          // const threeStars = ordered.filter(a =>
-          //   (a.romingoScore == '3' || a.romingoScore == '3.5') && 
-          //   (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
-          // )
+        // TODO: reintroduce this if causing no errors.
+        // case 'featured': {
+        //   const ordered = toSortHotels.sort((a, b) => a.distanceFromSearch - b.distanceFromSearch)
+        //   const closest = ordered[0]
+        //   // ordered.shift()
+        //   // const fourStars = ordered.filter(a => 
+        //   //   (a.romingoScore == '4' || a.romingoScore == '4.5') && 
+        //   //   (a.lowestAveragePrice >= 100 && a.lowestAveragePrice <= 400)
+        //   // )
+        //   // const threeStars = ordered.filter(a =>
+        //   //   (a.romingoScore == '3' || a.romingoScore == '3.5') && 
+        //   //   (a.lowestAveragePrice >= 50 && a.lowestAveragePrice <= 200)
+        //   // )
 
-          //does this remove from back ordered?
-          const unique = [...new Set([
-            closest, 
-            ...toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => a.pointValue - b.pointValue < 0 ? 1 : -1) 
-            // ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
-            // ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
-            // ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
-          ])]
+        //   //does this remove from back ordered?
+        //   const unique = [...new Set([
+        //     closest, 
+        //     ...toSortHotels.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => a.pointValue - b.pointValue < 0 ? 1 : -1) 
+        //     // ...fourStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+        //     // ...threeStars.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore).sort((a, b) => a.distanceFromSearch - b.distanceFromSearch), 
+        //     // ...ordered.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore)
+        //   ])]
 
-          return unique
+        //   return unique
           // const noFees = toSortHotels.filter(a => a.pet_fee_value === 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
           // const fees = toSortHotels.filter(a => a.pet_fee_value !== 'NONE' && (a.romingoScore == '4' || a.romingoScore == '4.5' || a.romingoScore == '3.5' || a.romingoScore == '3'))
           // const exclude = toSortHotels.filter(a => (a.romingoScore != '4' && a.romingoScore != '4.5' && a.romingoScore != '3.5' && a.romingoScore != '3'))
           // return [...noFees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...fees.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice).sort((a, b) => b.romingoScore - a.romingoScore), ...exclude.sort((a, b) => a.lowestAveragePrice - b.lowestAveragePrice)]
-        }
+        // }
         case 'highest_rating':
           return toSortHotels.sort((a, b) => b.romingoScore - a.romingoScore);
         default:
@@ -615,7 +616,7 @@ const ListingPageNew = ({ ...props }) => {
     }}>
       <img width="40px" src={WhitePawsIcon} />
       <Typography variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $10 off your first reservation when you create an account</Typography>
-      <Button onClick={() => history.push('/create-account')} variant="contained" color="secondary">Sign up</Button>
+      <Button onClick={() => navigate('/create-account')} variant="contained" color="secondary">Sign up</Button>
     </Box>
   )
 

@@ -273,7 +273,6 @@ export default function GoogleMaps(props) {
     <Autocomplete
       id="google-map-input"
       forcePopupIcon={false}
-      // style={{ }}
       sx={{
         "& .MuiAutocomplete-input": {
          color: 'black', 
@@ -296,13 +295,12 @@ export default function GoogleMaps(props) {
           sx: {
             width: 400,
             whiteSpace: 'nowrap'
-          }
+          },
         },
         popper: {
           placement: 'bottom-start',
 
-        }
-
+        },
       }}
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
@@ -334,7 +332,9 @@ export default function GoogleMaps(props) {
           sx={{ ml: '0.5rem', mt: props.showShrinkText ? '0.5rem': 0 }}
           InputProps={{ 
             ...params.InputProps,
-            disableUnderline: true,
+            // TODO: This causes an error in the console.
+            // Find alternate solution if possible.
+            disableUnderline: props.showShrinkText && true,
             startAdornment: (focused || props.showShrinkText) ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
           }}
           placeholder="Going to..."

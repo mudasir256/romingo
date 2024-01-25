@@ -9,7 +9,7 @@ import Header from '../../components/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { RangeInput } from '@mui/lab/DateRangePicker/RangeTypes';
 import { DateTime } from 'luxon';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import OccupantSelector, {
   Occupant,
 } from "../OccupantSelector/OccupantSelector";
@@ -57,7 +57,7 @@ const ReservationDetails: FC<ReservationDetailsProps> = ({
       ? search.occupants
       : { adults: 2, children: 0, dogs: 1 }
   );
-  const history = useHistory();
+  const navigate = useNavigate();
   const biggerThanTenForty = useMediaQuery("(min-width:1040px)");
   const below900 = useMediaQuery("(max-width:900px)");
 
@@ -120,7 +120,7 @@ const ReservationDetails: FC<ReservationDetailsProps> = ({
         })
       );
         
-      history.push("/listings", {flag, bookingId});
+      navigate("/listings", {flag, bookingId});
     } else {
       alert("error");
       if (!selectedCity) {
@@ -283,14 +283,8 @@ const ReservationDetails: FC<ReservationDetailsProps> = ({
           }}>    
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
-                PaperProps={{
-                  sx: {
-                    fontWeight: 700,
-                    "& .MuiTypography-root": { fontWeight: 500 },
-                  },
-                }}
-                inputFormat="MMM dd"
-                disableMaskedInput={true}
+                format="MMM dd"
+                // disableMaskedInput={true}
                 open={open}
                 onAccept={() => setIsAccept(true)}
                 onClose={handleDateRangeClose}
@@ -299,108 +293,117 @@ const ReservationDetails: FC<ReservationDetailsProps> = ({
                     setOpen(true);
                   }
                 }}
-                allowSameDateSelection
+                // allowSameDateSelection
                 calendars={1}
-                clearable={true}
+                // clearable={true}
                 value={checkDate || null}
                 minDate={new Date()}
                 onChange={(newValue) => {
                   setFormError("");
                   setCheckDate(newValue);
                 }}
-                renderInput={(startProps, endProps) => (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-around',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      ["@media (max-width: 920px)"]: { display: 'flex' },
-                      ["@media (max-width: 720px)"]: { display: 'flex' },
+                // renderInput={(startProps, endProps) => (
+                //   <Box
+                //     sx={{
+                //       display: 'flex',
+                //       justifyContent: 'space-around',
+                //       flexDirection: 'row',
+                //       alignItems: 'center',
+                //       ["@media (max-width: 920px)"]: { display: 'flex' },
+                //       ["@media (max-width: 720px)"]: { display: 'flex' },
 
 
-                    }}
-                    onClick={() => setOpen(true)}
-                  >
-                    <Box sx={{ mr: '1.5em'}}>
-                      <Typography sx={labelStyle}>Check-in date</Typography>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          cursor: "pointer",
-                          transition: "all .15s ease-in-out",
-                          border: 'none',
-                          "&:hover": { background: "#efefef" },
-                          borderRadius: "6px",
-                          backgroundColor: "#fff",
-                          py: '0.25em',
+                //     }}
+                //     onClick={() => setOpen(true)}
+                //   >
+                //     <Box sx={{ mr: '1.5em'}}>
+                //       <Typography sx={labelStyle}>Check-in date</Typography>
+                //       <Box
+                //         sx={{
+                //           display: 'flex',
+                //           flexDirection: 'row',
+                //           alignItems: 'center',
+                //           cursor: "pointer",
+                //           transition: "all .15s ease-in-out",
+                //           border: 'none',
+                //           "&:hover": { background: "#efefef" },
+                //           borderRadius: "6px",
+                //           backgroundColor: "#fff",
+                //           py: '0.25em',
                   
-                        }}
-                      >
+                //         }}
+                //       >
                 
-                        <Today />
-                        <Typography
-                          sx={{
-                            color: "black",
-                            fontFamily: "overpass-light",
-                            textTransform: "none",
-                            fontSize: '1em',
-                            ml: '0.5em',
-                            ["@media (max-width: 600px)"]: { fontSize: '1em' }
-                          }}
-                        >
-                          {checkDate[0]
-                            ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MM/dd/yy")
-                            : "Check-in date"
-                          }
-                        </Typography> 
-                      </Box>
-                    </Box>
-                    <Box sx={{ ml: '1em', mr: '1.5em',}} >
-                      <Typography
-                        sx={labelStyle}>
-                        Check-out date
-                      </Typography>
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          cursor: "pointer",
-                          transition: "all .15s ease-in-out",
-                          border: 'none',
-                          "&:hover": { background: "#efefef" },
-                          borderRadius: "6px",
-                          backgroundColor: "#fff",
-                          py: '0.25em',
+                //         <Today />
+                //         <Typography
+                //           sx={{
+                //             color: "black",
+                //             fontFamily: "overpass-light",
+                //             textTransform: "none",
+                //             fontSize: '1em',
+                //             ml: '0.5em',
+                //             ["@media (max-width: 600px)"]: { fontSize: '1em' }
+                //           }}
+                //         >
+                //           {checkDate[0]
+                //             ? DateTime.fromJSDate(new Date(checkDate[0])).toFormat("MM/dd/yy")
+                //             : "Check-in date"
+                //           }
+                //         </Typography> 
+                //       </Box>
+                //     </Box>
+                //     <Box sx={{ ml: '1em', mr: '1.5em',}} >
+                //       <Typography
+                //         sx={labelStyle}>
+                //         Check-out date
+                //       </Typography>
+                //       <Box
+                //         sx={{
+                //           display: 'flex',
+                //           flexDirection: 'row',
+                //           alignItems: 'center',
+                //           cursor: "pointer",
+                //           transition: "all .15s ease-in-out",
+                //           border: 'none',
+                //           "&:hover": { background: "#efefef" },
+                //           borderRadius: "6px",
+                //           backgroundColor: "#fff",
+                //           py: '0.25em',
 
                 
-                        }}
-                        onClick={() => setOpen(true)}
+                //         }}
+                //         onClick={() => setOpen(true)}
 
-                      >
-                        <InsertInvitation />
-                        <Typography
-                          sx={{
-                            color: "black",
-                            fontFamily: "overpass-light",
-                            textTransform: "none",
-                            fontSize: '1em',
-                            ml: '0.5em',
-                            ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
-                          }}
-                        >
-                          {checkDate[1]
-                            ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MM/dd/yy")
-                            : "Check-out date"
-                          }
-                        </Typography> 
-                      </Box>
-                    </Box>
-                  </Box>
-                )}
+                //       >
+                //         <InsertInvitation />
+                //         <Typography
+                //           sx={{
+                //             color: "black",
+                //             fontFamily: "overpass-light",
+                //             textTransform: "none",
+                //             fontSize: '1em',
+                //             ml: '0.5em',
+                //             ["@media (max-width: 600px)"]: { fontSize: '1.25em' }
+                //           }}
+                //         >
+                //           {checkDate[1]
+                //             ? DateTime.fromJSDate(new Date(checkDate[1])).toFormat("MM/dd/yy")
+                //             : "Check-out date"
+                //           }
+                //         </Typography> 
+                //       </Box>
+                //     </Box>
+                //   </Box>
+                // )}
+                slotProps={{
+                  desktopPaper: {
+                    sx: {
+                      fontWeight: 700,
+                      "& .MuiTypography-root": { fontWeight: 500 },
+                    },
+                  },
+                  textField: { variant: 'outlined' }
+                }} 
               />
             </LocalizationProvider>
           </Box>

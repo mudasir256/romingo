@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Chip, Box, Typography, Link } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -83,7 +83,7 @@ const MapListingCard: FC<ListingCardProps> = ({
   pet_size,
   ...props
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const mobileCardPadding = 1;
 
   const [showRating, setShowRating] = useState(true)
@@ -181,7 +181,7 @@ const MapListingCard: FC<ListingCardProps> = ({
           component="a"
           href={`/hotel/${id}`}
 
-          onClick={() => history.push("/hotel/" + id, {sessionId: sessionId, hotelDetails: hotel})}
+          onClick={() => navigate("/hotel/" + id, {sessionId: sessionId, hotelDetails: hotel})}
           sx={{
             cursor: "pointer",
             px: { xs: mobileCardPadding, sm: 0 },

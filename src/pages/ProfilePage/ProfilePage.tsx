@@ -24,7 +24,7 @@ import { UserProfile } from '../../constants/constants'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { authService } from "../../services/authService.js"
 import Navbar from "../../components/Navbar";
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { logoutUser } from "../../store/userReducer";
 import { useDispatch } from "react-redux";
 import { formatUnix, findReservationStatus } from '../../services/utils.js'
@@ -50,7 +50,7 @@ interface Props {
 
 const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   const theme = useTheme();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [name, setName] = useState('');
@@ -96,7 +96,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
 
   const logout = () => {
     dispatch(logoutUser())
-    history.push('/')
+    navigate('/')
   }
 
   const deleteAccount = async () => {
@@ -472,7 +472,7 @@ const ProfilePage: FC<Props> = ({ sx, userInfo, pups = [] }) => {
   }
 
   const manageTrip = (trip) => {
-    history.push('/reservation/details', {
+    navigate('/reservation/details', {
       emailAddress: trip.email,
       confirmationNumber: trip.propertyConfirmationId
     })

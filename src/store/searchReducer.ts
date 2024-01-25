@@ -50,16 +50,16 @@ const isPropertyPage = (path:string) => {
   return false
 }
 
-if (isPropertyPage(window.location.pathname)) {
-   const cdate = new Date()
-   const odate = new Date()
-   const checkInDateIns = (new Date(cdate.setMonth(cdate.getMonth()+1)))
-   const checkInOut = (new Date(odate.setMonth(odate.getMonth()+1)))
-   checkInOut.setDate(checkInOut.getDate() + 1)
-   checkInDate = checkInDateIns.toISOString()
-   checOutDate = checkInOut.toISOString()
-   adultsCount = 2
-   dogsCount = 1
+if (window.location?.pathname) {
+  const cdate = new Date()
+  const odate = new Date()
+  const checkInDateIns = (new Date(cdate.setMonth(cdate.getMonth()+1)))
+  const checkInOut = (new Date(odate.setMonth(odate.getMonth()+1)))
+  checkInOut.setDate(checkInOut.getDate() + 1)
+  checkInDate = checkInDateIns.toISOString()
+  checOutDate = checkInOut.toISOString()
+  adultsCount = 2
+  dogsCount = 1
 }
 
 const cdate = new Date()

@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { useWindowSize } from "react-use";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Box,
   CSSObject,
@@ -73,7 +73,7 @@ const AuthenticPet = 'https://www.romingo.com/public/sections-icons/pet-friendly
 const BookNow = 'https://www.romingo.com/public/sections-icons/trusted.svg' //icon-04.png'
 
 const HomePage: FC<Props> = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const search = useSelector((state: any) => state.searchReducer.search);
   const cities = useSelector((state: any) => state.cityListReducer.cities);
   const dispatch: Dispatch<any> = useDispatch();
@@ -156,7 +156,7 @@ const HomePage: FC<Props> = () => {
        })
      );
      setTimeout(() => {
-       history.push("/listings");
+       navigate("/listings");
      }, 250);
    };
 
@@ -421,8 +421,6 @@ const HomePage: FC<Props> = () => {
     </Link>
   )
 
-  console.log(newData?.getHomepagePropertiesThree)
-
   const pricesOne = [149, 129, 99]
   const pricesTwo = [175, 189, 199]
 
@@ -564,17 +562,17 @@ const HomePage: FC<Props> = () => {
               <LocationBox 
                 imageUrl="https://storage.googleapis.com/romingo-production-public/San%20Diego%20Pet-Friendly%20Travel.jpg "
                 cityName="Escape to San Diego"
-                locationUrl="/pet-friendly-hotels/san-diego-california"
+                locationUrl="pet-friendly-hotels/san-diego-california"
               />
               <LocationBox 
                 imageUrl="https://storage.googleapis.com/romingo-production-public/Portland%20Pet-Friendly%20Travel.jpg "
                 cityName="Discover Portland"
-                locationUrl="/pet-friendly-hotels/portland-oregon"
+                locationUrl="pet-friendly-hotels/portland-oregon"
               />
               <LocationBox 
                 imageUrl="https://storage.googleapis.com/romingo-production-public/Denver%20Pet-Friendly%20Travel.jpg "
                 cityName="Roam to Denver"
-                locationUrl="/pet-friendly-hotels/denver-colorado"
+                locationUrl="pet-friendly-hotels/denver-colorado"
               />
             </Box>
           </Box>
@@ -658,7 +656,7 @@ const HomePage: FC<Props> = () => {
             text="Get rewarded with Romingo. Earn free travel 
             credits for every 5 qualified* reservations booked 
             with our pet-friendly hotel partners!"
-            cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => history.push('/create-account')}>Create an account</Button>}
+            cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => navigate('/create-account')}>Create an account</Button>}
             extraText="*Guests will earn a $100 travel voucher when a minimum of 5 
             reservations are actually consumed. Each reservation must have a 
             minimum net spend of $200, exclusive of taxes/fees. Cancellation 
@@ -686,7 +684,18 @@ const HomePage: FC<Props> = () => {
             <Typography variant="h2" mb="1rem" textAlign="center">Plan your next trip with Romingo</Typography>
           </Box>
           {!showFull && <Box position="relative">
-            <Box onClick={() => setShowFull(!showFull)} textAlign="center" position="absolute" top="160px" backgroundColor="white" width="100%" py="0.25rem" clickable sx={{ '&:hover': { backgroundColor: '#D3D3D3' } }}>
+            <Box 
+              onClick={() => setShowFull(!showFull)} 
+              sx={{
+                textAlign: "center",
+                position: "absolute",
+                top: "160px",
+                backgroundColor: "white",
+                width: "100%",
+                py: "0.25rem",
+                '&:hover': { backgroundColor: '#D3D3D3' } 
+              }}
+            >
               <KeyboardArrowDownIcon color="white" />
             </Box>
           </Box>
@@ -695,13 +704,25 @@ const HomePage: FC<Props> = () => {
             <Box display="flex" flexDirection="column" gap="0.5rem">
               <Typography borderBottom="1px solid black" variant="p" fontSize="1.25rem">Explore our destinations</Typography>
               {locationLinks.map(link => 
-                <Box key={link.to}><Link key={link.to} to={link.to}><Typography variant="base">{link.name} pet-friendly hotels</Typography></Link></Box>
+                <Box key={link.to}>
+                  <Link key={link.to} to={link.to}>
+                    <Typography variant="base">
+                      {link.name} pet-friendly hotels
+                    </Typography>
+                  </Link>
+                </Box>
               )}
             </Box>
             <Box display="flex" flexDirection="column" gap="0.5rem">
               <Typography borderBottom="1px solid black" variant="p" fontSize="1.25rem">Hotel pet policies</Typography>
               {policyLinks.map(link => 
-                <Box key={link.to}><Link key={link.to} to={link.to}><Typography variant="base">{link.name} pet-friendly hotels</Typography></Link></Box>
+                <Box key={link.to}>
+                  <Link key={link.to} to={link.to}>
+                    <Typography variant="base">
+                      {link.name} pet-friendly hotels
+                    </Typography>
+                  </Link>
+                </Box>
               )}
             </Box>
           </Box>   

@@ -133,15 +133,15 @@ const Portland: FC = () => {
     >
 
       <Box 
-        borderRadius={4}
-        backgroundColor="white" 
         sx={{
           width: { xs: 'auto', sm: 'auto', md: '420px' },
           p: { xs: '1rem', sm: '1rem', md: '1.5rem' },
           pt: { xs: 0, sm: 0 },
           left: { xs: 0, sm: 0, md: '7%' },
           boxShadow: { xs: 0, sm: 0, md: 3 },
-          position: { xs: 'relative', sm: 'relative', md: 'relative' }
+          position: { xs: 'relative', sm: 'relative', md: 'relative' },
+          borderRadius: 4,
+          backgroundColor: "white" 
         }}
       >
         <Typography variant="h4" component="h1">Find pet-friendly hotels in {city}</Typography>

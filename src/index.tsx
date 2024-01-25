@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
@@ -7,7 +7,7 @@ import { createBrowserHistory } from "history";
 import { PersistGate } from "redux-persist/integration/react";
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink, from } from "@apollo/client";
 import { createTheme, ThemeProvider, Theme, StyledEngineProvider, adaptV4Theme } from "@mui/material/styles";
-import { Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { theme } from "./theme";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
@@ -62,24 +62,24 @@ const client = new ApolloClient({
 // const stripePromise = loadStripe(
 //   process.env.REACT_APP_STRIPE_CLIENT_KEY as string
 // );
-
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={muTheme}>
         <ApolloProvider client={client}>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-  {/*            <Elements stripe={stripePromise}>
-  */}              <Router history={hist}>
+                {/* <Elements stripe={stripePromise}> */}              
+                <Router>
                   <App />
                 </Router>
-  {/*            </Elements>*/}
+                {/* </Elements> */}
             </PersistGate>
           </Provider>
         </ApolloProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>,
-  document.getElementById("root")
 );

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { CSSObject, FormControl, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 import { Dispatch } from "redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import Check from "@mui/icons-material/Check";
 import Popper from "@mui/material/Popper";
@@ -191,7 +191,7 @@ const RoomCard: FC<Props> = ({
 }) => {
 
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -234,7 +234,7 @@ const RoomCard: FC<Props> = ({
           sessionId: sessionId
         })
       );
-      history.push("/checkout")
+      navigate("/checkout")
       return 
     }
      dispatch(
@@ -245,7 +245,7 @@ const RoomCard: FC<Props> = ({
         sessionId: sessionId
       })
     );
-    history.push("/checkout")
+    navigate("/checkout")
   };
 
   const open = Boolean(anchorEl);

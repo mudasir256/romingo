@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Grid, Box, Typography } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ImageSlider from "./ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
 import { utils } from '../services/utils'
@@ -91,7 +91,7 @@ const ListingCardSquare = ({
   city,
   ...props
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const mobileCardPadding = 1;
 
 
@@ -203,7 +203,7 @@ const ListingCardSquare = ({
                 >
                   {name}
                 </Typography>
-                <Box onClick={() => history.push(`${hotelUrl}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
+                <Box onClick={() => navigate(`${hotelUrl}#reviews`)} sx={{ ml: 'auto', mt: '0.25rem', mr: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
                   <Box sx={{ color: 'black'}}><StarIcon fontSize="inherit" /></Box>
                   <Typography variant="base" mb="2px">{starRatingFormat}</Typography>
                 </Box> 

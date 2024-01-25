@@ -1,6 +1,6 @@
 import { FC, useState, MouseEventHandler, useEffect } from "react";
 import { CSSObject } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import Box from "@mui/material/Box";
@@ -29,7 +29,7 @@ interface Props {
 }
 
 const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [roomType, setRoomType] = useState("0");
 
   const search = useSelector(
@@ -82,7 +82,7 @@ const MobileBookingBar: FC<Props> = ({ sx, roomList }) => {
         room: selectedRoom,
       })
     );
-    history.push("/checkout");
+    navigate("/checkout");
   };
 
   const handleRoomChange = (roomValue: string) => {
