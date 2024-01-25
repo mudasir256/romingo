@@ -15,6 +15,7 @@ steps:
       - "REACT_APP_BASE_ENDPOINT=https://graphql.romingo.com/"
       - "SKIP_PREFLIGHT_CHECK=true"
       - "REACT_APP_MUI_LICENSE=362ba15d1302d65b235b27fb1249c342Tz02NzMxMCxFPTE3MTY2Njc0NjkwMTAsUz1wcm8sTE09c3Vic2NyaXB0aW9uLEtWPTI="
+      - "TSC_COMPILE_ON_ERROR=true"
   # deploy the service
   - name: gcr.io/cloud-builders/gcloud
     args: ["app", "deploy", "--appyaml", "app.prod.yaml"]
