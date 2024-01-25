@@ -23,7 +23,6 @@ import ListingCardSquare from "../../components/MobileListingsCardHome";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
 // import SectionOneImage from '../../assets/images/section-one.jpg';
-// import SectionTwoImage from '../../assets/images/home-hero.jpg';
 // import SectionThreeImage from '../../assets/images/homepage-dog.jpg';
 
 // import LowestRates from '../../assets/images/icon-01.png';
@@ -38,7 +37,15 @@ import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
 import { subscribeToNewsletter } from '../../services/endpoints'
 
-import winterPromo from '../../assets/images/Winter-Promo.jpg'
+import SectionOneImage from '../../assets/images/Winter-Promo.jpg'
+import SectionTwoImage from '../../assets/public/sections-icons/home-hero.jpg';
+import SectionThreeImage from '../../assets/public/sections-icons/homepage-dog.jpg'
+
+import LowestRates from '../../assets/public/sections-icons/lowest-rates.svg' //icon-01.png
+import AuthenticPet from '../../assets/public/sections-icons/pet-friendly.svg' //'icon-03.png
+import BookNow from '../../assets/public/sections-icons/trusted.svg' //icon-04.png'
+
+
 import "./Sticky.css";
 import "./HomePage.scss";
 
@@ -64,13 +71,11 @@ interface Props {
   };
 }
 
-const SectionOneImage = winterPromo
-const SectionTwoImage = 'https://www.romingo.com/public/sections-icons/home-hero.jpg'
-const SectionThreeImage = 'https://www.romingo.com/public/sections-icons/homepage-dog.jpg'
+// const SectionOneImage = winterPromo
+// const SectionTwoImage = sectionTwoImage; // '${process.env.REACT_APP_BASE_ENDPOINT}/public/sections-icons/home-hero.jpg'
 
-const LowestRates = 'https://www.romingo.com/public/sections-icons/lowest-rates.svg' //icon-01.png'
-const AuthenticPet = 'https://www.romingo.com/public/sections-icons/pet-friendly.svg'//'icon-03.png'
-const BookNow = 'https://www.romingo.com/public/sections-icons/trusted.svg' //icon-04.png'
+
+
 
 const HomePage: FC<Props> = () => {
   const navigate = useNavigate();

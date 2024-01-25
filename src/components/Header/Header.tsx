@@ -10,6 +10,10 @@ import { LargeFilterBar } from '../LargeFilterBar'
 
 import "./Header.scss";
 
+import hero1 from '../../assets/public/hero/one.jpg'
+import hero2 from '../../assets/public/hero/two.jpg'
+import hero3 from '../../assets/public/hero/three.jpg'
+
 interface Props {
   sx?: CSSObject;
 }
@@ -18,29 +22,29 @@ const Header: FC<Props> = ({ sx }) => {
 
   const imagesDesktop = [
     {
-      component: 'https://www.romingo.com/public/hero/one.jpg', 
+      component: hero1, 
       placement: 'bottom -120px right 0px'
     },
     {
-      component: 'https://www.romingo.com/public/hero/two.jpg', 
+      component: hero2,
       placement: 'bottom -40px right 0px'
     },
     {
-      component: 'https://romingo.com/public/hero/three.jpg',
+      component: hero3,
       placement: 'bottom -80px right 0px'
     }
   ];
   const imagesMobile = [
     {
-      component: 'https://www.romingo.com/public/hero/one.jpg', 
+      component: hero1, 
       placement: 'bottom -50px left -120px',
     },
     {
-      component: 'https://www.romingo.com/public/hero/two.jpg', 
+      component: hero2, 
       placement: 'bottom -50px left 50%'
     },
     {
-      component: 'https://romingo.com/public/hero/three.jpg',
+      component: hero3,
       placement: 'bottom -50px left 50%'
     }
   ];
