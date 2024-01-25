@@ -16,9 +16,13 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 
-const One = 'https://www.romingo.com/public/images/policy-images/hyatt.jpg';
-const Two = 'https://www.romingo.com/public/images/policy-images/hyatt-2.jpg';
-const Three = 'https://www.romingo.com/public/images/policy-images/hyatt-3.jpg';
+import One from '../../assets/public/images/policy-images/hyatt.jpg';
+import Two from '../../assets/public/images/policy-images/hyatt-2.jpg';
+import Three from '../../assets/public/images/policy-images/hyatt-3.jpg';
+
+// const One = 'https://www.romingo.com/public/images/policy-images/hyatt.jpg';
+// const Two = 'https://www.romingo.com/public/images/policy-images/hyatt-2.jpg';
+// const Three = 'https://www.romingo.com/public/images/policy-images/hyatt-3.jpg';
 
 export default function Hyatt() {
 

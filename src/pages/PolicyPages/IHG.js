@@ -16,8 +16,11 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 
-const One = 'https://www.romingo.com/public/images/policy-images/ihg.jpg';
-const Two = 'https://www.romingo.com/public/images/policy-images/ihg-2.jpg';
+import One from '../../assets/public/images/policy-images/ihg.jpg';
+import Two from '../../assets/public/images/policy-images/ihg-2.jpg';
+
+// const One = 'https://www.romingo.com/public/images/policy-images/ihg.jpg';
+// const Two = 'https://www.romingo.com/public/images/policy-images/ihg-2.jpg';
 
 export default function IHG() {
 

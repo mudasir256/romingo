@@ -16,10 +16,15 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet";
 
-const One = 'https://www.romingo.com/public/images/policy-images/boutique.webp';
-const Two = 'https://www.romingo.com/public/images/policy-images/boutique-2.jpeg';
-const Three = 'https://www.romingo.com/public/images/policy-images/boutique-3.jpg';
-const Four = 'https://www.romingo.com/public/images/policy-images/boutique-4.jpeg';
+import One from '../../assets/public/images/policy-images/boutique.webp';
+import Two from '../../assets/public/images/policy-images/boutique-2.jpeg';
+import Three from '../../assets/public/images/policy-images/boutique-3.jpg';
+import Four from '../../assets/public/images/policy-images/boutique-4.jpeg';
+
+// const One = 'https://www.romingo.com/public/images/policy-images/boutique.webp';
+// const Two = 'https://www.romingo.com/public/images/policy-images/boutique-2.jpeg';
+// const Three = 'https://www.romingo.com/public/images/policy-images/boutique-3.jpg';
+// const Four = 'https://www.romingo.com/public/images/policy-images/boutique-4.jpeg';
 
 export default function Boutique() {
 

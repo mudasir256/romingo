@@ -16,9 +16,13 @@ import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
-const One = 'https://www.romingo.com/public/images/policy-images/marriott.jpg';
-const Two = 'https://www.romingo.com/public/images/policy-images/marriott-2.jpg';
-const Three = 'https://www.romingo.com/public/images/policy-images/marriott-3.jpg';
+import One from '../../assets/public/images/policy-images/marriott.jpg';
+import Two from '../../assets/public/images/policy-images/marriott-2.jpg';
+import Three from '../../assets/public/images/policy-images/marriott-3.jpg';
+
+// const One = 'https://www.romingo.com/public/images/policy-images/marriott.jpg';
+// const Two = 'https://www.romingo.com/public/images/policy-images/marriott-2.jpg';
+// const Three = 'https://www.romingo.com/public/images/policy-images/marriott-3.jpg';
 
 export default function Marriott() {
 

@@ -16,8 +16,11 @@ import { utils } from '../../services/utils'
 import ListingCard from "../../components/ListingCard";
 import ListingCardSkeleton from "../../components/UI/ListingCardSkeleton";
 
-const One = 'https://www.romingo.com/public/images/policy-images/motel-6.jpeg';
-const Two = 'https://www.romingo.com/public/images/policy-images/motel-6-2.jpg';
+import One from '../../assets/public/images/policy-images/motel-6.jpeg';
+import Two from '../../assets/public/images/policy-images/motel-6-2.jpg';
+
+// const One = 'https://www.romingo.com/public/images/policy-images/motel-6.jpeg';
+// const Two = 'https://www.romingo.com/public/images/policy-images/motel-6-2.jpg';
 
 export default function Motel6() {
 
