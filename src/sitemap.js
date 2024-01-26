@@ -1,10 +1,14 @@
+import fetch from 'node-fetch';
+// const fetch = require('node-fetch')
+
 const fs = require("fs");
 const csv = require('fast-csv');
-const fetch = require('node-fetch')
 const {
   simpleSitemapAndIndex,
   lineSeparatedURLsToSitemapOptions
 } = require('sitemap')
+
+
 
 const hostname = 'https://romingo.com';
 
