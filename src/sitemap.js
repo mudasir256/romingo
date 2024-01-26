@@ -1,6 +1,3 @@
-import fetch from 'node-fetch';
-// const fetch = require('node-fetch')
-
 const fs = require("fs");
 const csv = require('fast-csv');
 const {
@@ -8,7 +5,8 @@ const {
   lineSeparatedURLsToSitemapOptions
 } = require('sitemap')
 
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+// const fetch = require('node-fetch')
 
 const hostname = 'https://romingo.com';
 
