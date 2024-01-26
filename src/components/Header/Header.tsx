@@ -5,7 +5,7 @@ import {
   CSSObject,
 } from "@mui/material";
 
-import MobileFilterBar from '../MobileHomePageFilterBar'
+import MobileFilterBar from '../MobileHomePageFilterBar/MobileHomePageFilterBar'
 import { LargeFilterBar } from '../LargeFilterBar'
 
 import "./Header.scss";

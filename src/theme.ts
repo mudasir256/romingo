@@ -1,4 +1,39 @@
-export const theme = {
+import { createTheme } from '@mui/material/styles';
+
+
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    base: React.CSSProperties;
+    p: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    base?: React.CSSProperties;
+    p?: React.CSSProperties;
+  }
+
+  interface PaletteColorOptions {
+    main?: string,
+    black?: string,
+    lighter?: string,
+  }
+
+  interface PaletteOptions {
+    lightBackground?: PaletteColorOptions;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    base: true;
+    p: true;
+  }
+}
+
+
+export const theme = createTheme({
   palette: {
     primary: {
       main: "#03989E",
@@ -14,7 +49,9 @@ export const theme = {
     warning: {
       main: "#F9C171",
     },
-    info: { main: "#F4DAC9" },
+    info: { 
+      main: "#F4DAC9" 
+    },
     error: {
       main: "#BC4749",
     },
@@ -82,6 +119,18 @@ export const theme = {
       fontSize: '1rem',
       lineHeight: '1.5rem',
     },
-   
   },
-};
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // TODO:
+          // <span> is the default value for the variant mapping.
+          // We should update this to be a more semantic element, which may break styles in some cases due to default CSS values.
+          // When updating to a more semantic element, we may need more variants, or custom element overrides.
+          base: 'span'
+        },
+      },
+    },
+  },
+});

@@ -13,7 +13,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import PetsIcon from "@mui/icons-material/Pets";
 import { DateTime } from "luxon";
 
-import MobileFilterBar from '../MobileHomePageFilterBar'
+import MobileFilterBar from '../MobileHomePageFilterBar/MobileHomePageFilterBar'
 
 import { saveSearch } from "../../store/searchReducer";
 

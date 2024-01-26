@@ -18,7 +18,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Loader from "../components/UI/Loader";
-import MobileSearchBar from '../components/MobileHomePageFilterBar';
+import MobileSearchBar from '../components/MobileHomePageFilterBar/MobileHomePageFilterBar';
 import moment from 'moment'
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 

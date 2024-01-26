@@ -350,7 +350,11 @@ export default function GoogleMaps(props) {
       renderGroup={(params) => {
         return (
           <li key={params.key}>
-            {params.group && <Box my="0.5rem"><Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Popular pet-lovers</Typography></Box>}
+            {params.group && 
+              <Box my="0.5rem">
+                  <Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Where in the United States are you traveling?</Typography>
+              </Box>
+            }
             <Box>{params.children}</Box>
           </li>
         )

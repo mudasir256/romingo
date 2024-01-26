@@ -6,7 +6,7 @@ import { store, persistor } from "./redux/store";
 import { createBrowserHistory } from "history";
 import { PersistGate } from "redux-persist/integration/react";
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink, from } from "@apollo/client";
-import { createTheme, ThemeProvider, Theme, StyledEngineProvider, adaptV4Theme } from "@mui/material/styles";
+import { ThemeProvider, Theme, StyledEngineProvider } from "@mui/material/styles";
 import { BrowserRouter as Router } from "react-router-dom";
 import { theme } from "./theme";
 // import { Elements } from "@stripe/react-stripe-js";
@@ -14,12 +14,6 @@ import { theme } from "./theme";
 
 import "./index.scss";
 import { onError } from "@apollo/client/link/error";
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
@@ -33,6 +27,11 @@ declare module '@mui/styles/defaultTheme' {
 
 // const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' })
 
+declare module '@mui/styles' {
+  interface DefaultTheme extends Theme {}
+}
+
+
 if(!window.location.host.startsWith('www')) {
   window.location = window.location.protocol 
     + "//"
@@ -42,8 +41,6 @@ if(!window.location.host.startsWith('www')) {
 }
 
 const hist = createBrowserHistory();
-
-const muTheme = createTheme(adaptV4Theme(theme));
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_ENDPOINT,
@@ -67,7 +64,7 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={muTheme}>
+      <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
