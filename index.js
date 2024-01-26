@@ -3,7 +3,9 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const csv = require('fast-csv');
-const fetch = require('node-fetch')
+
+// const fetch = require('node-fetch')
+import fetch from 'node-fetch';
 
 const { HOTEL_DESCRIPTIONS } = require('./locationPageDescriptions')
 
