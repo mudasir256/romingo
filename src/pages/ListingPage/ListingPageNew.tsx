@@ -62,6 +62,9 @@ const ListingPageNew = ({ ...props }) => {
     '50': '26-75 lbs',
     '75': '75+ lbs'
   }
+  function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
 
   const dispatch: Dispatch<any> = useDispatch();
   const navigate = useNavigate();
@@ -206,9 +209,11 @@ const ListingPageNew = ({ ...props }) => {
       const markup = (pricing - tax) * .1
       const km = getDistanceFromLatLonInKm(hotel.GeoLocation.Latitude, hotel.GeoLocation.Longitude, search.lat, search.lng)
       const pointValue = calculateCardScore(km, hotel.starRating, ((pricing - tax) + markup) / diffDays, hotel.petFee)
-      
+      const rndInt = randomIntFromInterval(0, 6)
+
       return {
         pointValue,
+        rndInt,
         imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
         alias: hotel.alias,
         name: hotel.hotelName || '',
@@ -243,6 +248,7 @@ const ListingPageNew = ({ ...props }) => {
         label: hotel.DisplayName,
         hotel: {
           pointValue,
+          rndInt,
           imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
           name: hotel.DisplayName,
           alias: hotel.alias,
