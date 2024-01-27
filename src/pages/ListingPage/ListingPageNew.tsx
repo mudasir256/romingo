@@ -668,15 +668,17 @@ const ListingPageNew = ({ ...props }) => {
         style={{ margin: 'auto', position: 'relative', }} 
       >
         {mobile
-          ? (<Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
+          ? (
+            <Grid item container justifyContent='space-between' style={{ padding: '0 10px' }}>
               <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={() => setOpenMap(true)}>
                 View on full map
               </Button>
               <Button variant="outlined" style={{ width: '48%', marginBottom: 10 }} onClick={(e) => handleViewFilters(e)}>
                 View filters
               </Button>
-            </Grid>)
-          : (<Grid item xs={0} sm={0} md={3.2}>
+            </Grid>
+          ) : (
+            <Grid item xs={0} sm={0} md={3.2}>
               <Box sx={{ display: "flex", mt: '1.5rem', mb: 2, width: "100%" }}>
                 <Map center={{ lat: search.lat, lng: search.lng }}
                   height={300}
@@ -696,10 +698,10 @@ const ListingPageNew = ({ ...props }) => {
                 <Box mb="1rem">
                   <Typography sx={{ fontSize: '13px'}}>Number of Pets</Typography>
                   <Box display="flex" flexDirection="row" gap="0.25rem">
-                    <Button onClick={() => handlePetNumberChange(1)} variant={search?.occupants?.dogs == 1 ? 'contained' : 'outlined'}  color="primary">1</Button>
-                    <Button onClick={() => handlePetNumberChange(2)} variant={search?.occupants?.dogs == 2 ? 'contained' : 'outlined'}  color="primary">2</Button>
-                    <Button onClick={() => handlePetNumberChange(3)} variant={search?.occupants?.dogs == 3 ? 'contained' : 'outlined'}  color="primary">3</Button>
-                    <Button onClick={() => handlePetNumberChange(4)} variant={search?.occupants?.dogs == 4 ? 'contained' : 'outlined'}  color="primary">4+</Button>
+                    <Button onClick={() => handlePetNumberChange(1)} variant={search?.occupants?.dogs == 1 ? 'contained' : 'outlined'} color="primary">1</Button>
+                    <Button onClick={() => handlePetNumberChange(2)} variant={search?.occupants?.dogs == 2 ? 'contained' : 'outlined'} color="primary">2</Button>
+                    <Button onClick={() => handlePetNumberChange(3)} variant={search?.occupants?.dogs == 3 ? 'contained' : 'outlined'} color="primary">3</Button>
+                    <Button onClick={() => handlePetNumberChange(4)} variant={search?.occupants?.dogs == 4 ? 'contained' : 'outlined'} color="primary">4+</Button>
                   </Box>
                 </Box>
 

@@ -16,7 +16,7 @@ interface FullPageDialogProps {
     children: ReactNode;
 }
 
-const FullPageDialog: FC<FullPageDialogProps> = ({ isOpen, close, onDone = () => {},children }) => {
+const FullPageDialog: FC<FullPageDialogProps> = ({ isOpen, close, onDone, children }) => {
     return (
         <Dialog
             fullScreen
