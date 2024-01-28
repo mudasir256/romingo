@@ -282,9 +282,9 @@ const ListingCard: FC<ListingCardProps> = ({
   const twoDays = new Date()
   twoDays.setDate(twoDays.getDate() + 2)
 
-  const isTrending = (numberOfReviews > 1250)
+  const isTrending = (numberOfReviews > 1000)
   const isRomingoFavorite = (props.pet_fee_value === 'NONE')
-  const isSelect = (props.rndInt > 3)
+  const isSelect = (props.rndInt > 5)
   const newPrice = (Math.abs(totalPrice) * 117.5) / 100
 
   const params = new URLSearchParams({
