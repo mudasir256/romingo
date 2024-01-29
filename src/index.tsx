@@ -62,7 +62,6 @@ const client = new ApolloClient({
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
-  <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
@@ -78,5 +77,4 @@ root.render(
         </ApolloProvider>
       </ThemeProvider>
     </StyledEngineProvider>
-  </React.StrictMode>,
 );

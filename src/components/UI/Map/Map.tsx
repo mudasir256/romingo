@@ -2,21 +2,16 @@
 import { FC, useState, useEffect } from "react";
 import {
   GoogleMap,
-  Marker,
+  MarkerF,
+  MarkerClustererF,
   InfoWindow,
   useJsApiLoader,
-  OverlayView
 } from "@react-google-maps/api";
-import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
 
 import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
-import Box from "@mui/material/Typography";
-import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 import ListingCard from "../../ListingCard";
-import MapListingCard from "../../ListingCard/MapListingCard";
-
 interface Props {
   center: { lat: number; lng: number };
   height?: string | number | undefined;
@@ -30,6 +25,8 @@ interface Props {
   selectedMarker?: number;
   zoom?: number;
   clickable?: boolean;
+  isFullScreen?: boolean;
+  disabled?: boolean;
 }
 
 interface Size {
@@ -47,29 +44,36 @@ type Libraries = (
 
 const libraries: Libraries = ['places'];
 
+const initOptions = {
+  fullscreenControl: false,
+  mapTypeControl: false,
+  streetViewControl: false,
+  zoomControl: false,
+  zoomControlOptions: { position: 7 },
+  keyboardShortcuts: false,
+  styles: stylesArray,
+}
+
+const disabledOptions = { 
+  gestureHandling: 'none', 
+  disableDefaultUI: true 
+}
+
 const Map: FC<Props> = ({
   center,
   height,
   width,
   markers,
-  selectedMarker,
   zoom = 10,
   clickable = true,
-  isFullScreen = false
+  isFullScreen = false,
+  disabled = false,
 }) => {
-  const [containerStyle, setContainerStyle] = useState<Size>({
+  const [containerStyle, setContainerStyle] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const [mapOptions, setMapOptions] = useState({
-    fullscreenControl: false,
-    mapTypeControl: false,
-    streetViewControl: false,
-    zoomControl: false,
-    zoomControlOptions: { position: 7 },
-    keyboardShortcuts: false,
-    styles: stylesArray,
-  });
+  const [mapOptions, setMapOptions] = useState(initOptions);
 
 
   const { isLoaded, loadError } = useJsApiLoader({
@@ -80,26 +84,21 @@ const Map: FC<Props> = ({
   const size = useWindowSize();
 
   useEffect(() => {
-    if (!height && !width) {
-      setContainerStyle(size);
-    } else if (width) {
-      setContainerStyle({
-        width,
-        height: size.height,
-      });
-    } else if (height) {
-      setContainerStyle({
-        width: size.width,
-        height,
-      });
+    setContainerStyle({ 
+      width: width || size.width, 
+      height: height || size.height,
+    });
+
+    let newOptions = disabled 
+      ? { ...mapOptions, ...disabledOptions }
+      : mapOptions
+    if (size.width > 720 && !disabled) {
+      newOptions = { ...newOptions, zoomControl: true}
     } else {
-      setContainerStyle({ width, height });
+      newOptions = { ...newOptions, zoomControl: false}
     }
-    if (size.width > 720) {
-      setMapOptions({ ...mapOptions, zoomControl: true });
-    } else {
-      setMapOptions({ ...mapOptions, zoomControl: false });
-    }
+
+    setMapOptions(newOptions);
   }, [size]);
 
   const [showInfo, setShowInfo] = useState(false);
@@ -110,14 +109,15 @@ const Map: FC<Props> = ({
 
   const [showInfoContents, setShowInfoContents] = useState(null);
 
-  const getPixelPositionOffset = (offsetWidth, offsetHeight, labelAnchor) => {
-      return {
-          x: offsetWidth + labelAnchor.x,
-          y: offsetHeight + labelAnchor.y,
-      };
-  };
+  useEffect(() => {
+    if(isFullScreen) {
+      console.log('DEV: markers:', markers.length)
 
-
+      const hotelMarkers = markers.filter(m => m.type == 'hotel');
+      console.log('DEV: hotelMarkers.length:', hotelMarkers.length);
+      console.log('DEV: disabled:', disabled)
+    }
+  }, [markers])
 
   if (loadError) {
     return <div>Map cannot be loaded right now, sorry.</div>;
@@ -127,92 +127,66 @@ const Map: FC<Props> = ({
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      options={mapOptions}
+      options={disabled 
+        ? {
+          ...mapOptions,
+          ...disabledOptions,
+        } : mapOptions
+      }
       zoom={size.width > 720 ? zoom : zoom - 1}
     >
-      {markers !== undefined &&
-        markers.map((marker, key) => {
-          if (marker.type === "hotel") {
-         
-            // return (<>
-            //   <Marker
-            //     key={key+'1'}
-            //     position={marker.position}
-            //     {...marker}
-            //   />
-            //   <OverlayView
-            //       key={key}
-            //       position={marker.position}
-            //       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-            //       getPixelPositionOffset={(x, y) => getPixelPositionOffset(x, y, { x: -30, y: -15 })}>
-            //       <div
-            //           style={{
-            //               background: `#203254`,
-            //               padding: `7px 12px`,
-            //               fontSize: '11px',
-            //               color: `white`,
-            //               borderRadius: '4px',
-            //           }}
-            //       >
-            //           ${marker.lowestAveragePrice}
-            //       </div>
-            //   </OverlayView>
-
-            // </>)
-            return (
-              <Marker
-                position={marker}
-                animation={2}
-                key={key}
-                label={isFullScreen ? `$${Math.abs(marker.lowestAveragePrice).toFixed(0)}` : ''}   
-                labelStyle={{ color: 'red'}}     
-                icon={{
-                  url: isFullScreen
-                    ? "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg"
-                    : "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/hotel_marker.svg",
-                  scaledSize: new google.maps.Size(45, 35),
-                }}
-                onClick={(e: google.maps.MapMouseEvent) => {
-                  console.log(marker)
-                  if (!clickable) {
-                    return
-                  }
-                  if (marker.label) {
-                    setShowInfoPostion({
-                      lat: marker.lat,
-                      lng: marker.lng,
-                    });
-                    setShowInfoContents(marker.hotel);
-                    setShowInfo(true);
-                  }
-                }}
-              />
-            );
-          } else {
-            return (
-              <Marker
-                position={marker}
-                animation={2}
-                key={key}
-                icon={{
-                  url: "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/google-map-potty-park.svg",
-                  scaledSize: new google.maps.Size(30, 30),
-                }}
-                onClick={(e: google.maps.MapMouseEvent) => {
-                  if (marker.label) {
-                    setShowInfoPostion({
-                      lat: marker.lat,
-                      lng: marker.lng,
-                    });
-                    console.log(marker.hotel)
-                    setShowInfoContents(marker.hotel);
-                    setShowInfo(true);
-                  }
-                }}
-              />
-            );
-          }
-        })}
+      {markers !== undefined && !disabled &&
+        <MarkerClustererF
+          options={{
+            averageCenter: true,
+            styles: [
+              {
+                textColor: 'black',
+                url: "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
+                height: 35,
+                width: 45,
+              },
+            ]
+          }}
+        >
+          {(clusterer) => (
+            <div>
+              {markers.map((marker, key) => (
+                <MarkerF
+                  position={{ 
+                    lat: marker.lat, 
+                    lng: marker.lng 
+                  }}
+                  // animation={google.maps.Animation.DROP}
+                  clusterer={clusterer}
+                  key={key}
+                  label={isFullScreen ? `$${Math.abs(marker.lowestAveragePrice).toFixed(0)}` : 'TEST'}   
+                  icon={{
+                    url: isFullScreen
+                      ? "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg"
+                      : "https://storage.googleapis.com/romingo-development-public/images/front-end/icons/hotel_marker.svg",
+                    scaledSize: new google.maps.Size(45, 35),
+                  }}
+                  onClick={(e: google.maps.MapMouseEvent) => {
+                    console.log(marker)
+                    if (!clickable) {
+                      return
+                    }
+                    if (marker.label) {
+                      setShowInfoPostion({
+                        lat: marker.lat,
+                        lng: marker.lng,
+                      });
+                      setShowInfoContents(marker.hotel);
+                      setShowInfo(true);
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </MarkerClustererF>
+      }
       {showInfo && (
         <InfoWindow
           position={showInfoPosition}

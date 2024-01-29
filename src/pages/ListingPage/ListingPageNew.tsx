@@ -678,13 +678,22 @@ const ListingPageNew = ({ ...props }) => {
               </Button>
             </Grid>
           ) : (
-            <Grid item xs={0} sm={0} md={3.2}>
-              <Box sx={{ display: "flex", mt: '1.5rem', mb: 2, width: "100%" }}>
-                <Map center={{ lat: search.lat, lng: search.lng }}
-                  height={300}
+            <Grid item xs={0} sm={0} md={2}>
+              <Box 
+                sx={{ 
+                  display: "flex", 
+                  mt: '1.5rem', mb: 2, 
+                  width: "100%",
+                }}
+                onClick={() => setOpenMap(true)}
+              >
+                <Map 
+                  center={{ lat: search.lat, lng: search.lng }}
+                  height={250}
                   zoom={11}
                   selectedMarker={0}
                   markers={markers}
+                  disabled
                 />
               </Box>
               <Button variant="outlined" style={{ width: '100%', marginBottom: 10, }} onClick={() => setOpenMap(true)}>
@@ -707,11 +716,28 @@ const ListingPageNew = ({ ...props }) => {
 
                 <Box display="flex" gap="0.5rem" flexDirection="row" alignItems="center">
                   <Typography sx={{ fontSize: '13px'}}>Pet sizes</Typography>
-                  <Info onMouseOver={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)} onClick={() => setShowInfoBox(!showInfoBox)} fontSize="xs" /> 
+                  <Info
+                    onMouseOver={() => setShowInfoBox(true)}
+                    onMouseLeave={() => setShowInfoBox(false)}
+                    onClick={() => setShowInfoBox(!showInfoBox)}
+                    fontSize="small"
+                  /> 
                   {showInfoBox &&
-                  <Box position="relative">
-                    <Box position="absolute" zIndex="20" backgroundColor="white" left="0" boxShadow="1" p="0.5rem" width="280px"><Typography variant="base">Select the weight range of your heaviest pet if you have multiple.</Typography></Box>
-                  </Box>
+                    <Box position="relative">
+                      <Box 
+                        sx={{
+                          position: "absolute",
+                          zIndex: "20",
+                          backgroundColor: "white",
+                          left: "0",
+                          boxShadow: "1",
+                          p: "0.5rem",
+                          width: "280px",
+                        }}
+                      >
+                        <Typography variant="base">Select the weight range of your heaviest pet if you have multiple.</Typography>
+                      </Box>
+                    </Box>
                   }
                 </Box>
 
@@ -929,11 +955,12 @@ const ListingPageNew = ({ ...props }) => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Map center={{ lat: search.lat, lng: search.lng }}
+        <Map 
+          center={{ lat: search.lat, lng: search.lng }}
           zoom={11}
           selectedMarker={0}
           markers={markers}
-          isFullScreen={true}
+          isFullScreen
         />
       </Dialog>
 
