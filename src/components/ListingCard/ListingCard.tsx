@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ImageSlider from "../ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
@@ -223,6 +223,8 @@ const ListingCard: FC<ListingCardProps> = ({
               alignItems: "center",
             }}
           >
+            {isRomingoFavorite && <Typography sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(totalPrice + 100).toFixed(0)}</Typography>}
+            {(isSelect && !isRomingoFavorite) && <Typography sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(newPrice).toFixed(0)}</Typography>}
             {currency}
             {Math.abs(totalPrice).toFixed(0)} total
 
@@ -280,11 +282,19 @@ const ListingCard: FC<ListingCardProps> = ({
   const twoDays = new Date()
   twoDays.setDate(twoDays.getDate() + 2)
 
+  const isTrending = (numberOfReviews > 1000)
+  const isRomingoFavorite = (props.pet_fee_value === 'NONE')
+  const isSelect = (props.rndInt > 5)
+  const newPrice = (Math.abs(totalPrice) * 117.5) / 100
+
   const params = new URLSearchParams({
     checkIn: search?.checkIn || tomorrow,
     checkOut: search?.checkOut || twoDays,
     adults: search?.occupants?.adults || 2,
     children: search?.occupants?.childrenAge || [],
+    isTrending,
+    isRomingoFavorite,
+    isSelect,
     sessionId
   });
 
@@ -372,23 +382,31 @@ const ListingCard: FC<ListingCardProps> = ({
             }}
           > 
             <Box>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "#222",
-                  fontSize: "1.30em",
-                  fontWeight: 800,
-                  letterSpacing: "0px",
-                  width: '100%',
-                  maxWidth: '440px',
-                  overflow: 'hidden',
-                  whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
-                  textOverflow: "ellipsis",
-                  lineHeight: 1,
-                }}
-              >
-                {name}
-              </Typography>
+              <Box sx={{ position: 'relative' }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#222",
+                    fontSize: "1.30em",
+                    fontWeight: 800,
+                    letterSpacing: "0px",
+                    width: '100%',
+                    maxWidth: '340px',
+                    overflow: 'hidden',
+                    whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
+                    textOverflow: "ellipsis",
+                    lineHeight: 1,
+                  }}
+                >
+                  {name}
+                </Typography>
+                <Box sx={{ position: 'absolute', top: 0, right: { xs: 0, sm: 0, md: -10 }, ml: 'auto' }}>
+                  {isRomingoFavorite && <Chip size="small" color="primary" label="Romingo Favorite" sx={{ fontSize: '0.75rem' }} />}
+                  {(!isRomingoFavorite && isSelect) && (<Chip size="small" color="warning" label="15% off sale" sx={{ fontSize: '0.75rem' }} />)}
+                  {(!isRomingoFavorite && !isSelect && isTrending) && (<Chip size="small" color="info" label="Popular Hotel" sx={{ fontSize: '0.75rem' }} />)}
+
+                </Box>
+              </Box>
 
               <Typography
                 variant="body2"
