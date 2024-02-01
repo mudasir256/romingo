@@ -25,15 +25,7 @@ interface Size {
   height: string | number | undefined;
 }
 
-type Libraries = (
-  | "drawing"
-  | "geometry"
-  | "localContext"
-  | "places"
-  | "visualization"
-)[];
-
-const libraries: Libraries = ["places"];
+const libraries = ["places"];
 
 const ListingPageMap: FC<Props> = ({
   center,
@@ -45,8 +37,8 @@ const ListingPageMap: FC<Props> = ({
   zoom = 10,
 }) => {
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
-    libraries,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: libraries,
   });
   const [localCenter, setLocalCenter] = useState(center);
   useEffect(() => {

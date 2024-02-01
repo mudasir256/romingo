@@ -1,10 +1,9 @@
-import * as React from 'react';
+import { useState, useEffect, useMemo, useRef, FC } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-// import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Button, Dialog, IconButton, Toolbar, InputAdornment } from '@mui/material';
@@ -12,21 +11,6 @@ import { AppBar, Button, Dialog, IconButton, Toolbar, InputAdornment } from '@mu
 import CloseIcon from '@mui/icons-material/Close';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-// This key was created specifically for the demo in mui.com.
-// You need to create a new one for your application.
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDZAHqC_b5YOl00aj2LRivjvm0tNyxkZcI';
-
-function loadScript(src: string, position: HTMLElement | null, id: string) {
-  if (!position) {
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.setAttribute('async', '');
-  script.setAttribute('id', id);
-  script.src = src;
-  position.appendChild(script);
-}
 
 const autocompleteService = { current: null };
 
@@ -44,20 +28,37 @@ interface PlaceType {
   structured_formatting: StructuredFormatting;
 }
 
-export default function GoogleMaps(props) {
-  const [value, setValue] = React.useState<PlaceType | null>(null);
-  const [inputValue, setInputValue] = React.useState('');
-  const [options, setOptions] = React.useState<readonly PlaceType[]>([]);
-  const search = useSelector((state: any) => state.searchReducer.search);
-  const loaded = React.useRef(false);
-  const dispatch: Dispatch<any> = useDispatch();
-  const [showOptionsDialog, setShowOptionsDialog] = React.useState(false)
-  const [timer, setTimer] = React.useState(null)
-  const [focused, setFocused] = React.useState(false)
+interface Props {
+  mobile?: boolean;
+  callback?: any;
+  mobileText?: any;
+  setMobileText?: any;
+  setSelectedCity?: any;
+  setShowCities?: any;
+  city?: any;
+  width?: any;
+  showShrinkText?: any;
+  mapOnPage?: boolean;
+}
 
-  //IF IS MOBILE, supply callback
-  const isMobile = props.mobile;
-  const callback = props.callback;
+const GoogleMaps: FC<Props> = ({
+  mobile = false,
+  callback,
+  mobileText,
+  setMobileText,
+  setSelectedCity,
+  setShowCities,
+  city,
+  width,
+  showShrinkText,
+  mapOnPage = false
+}) => {
+  const [inputValue, setInputValue] = useState('');
+  const [options, setOptions] = useState<readonly PlaceType[]>([]);
+  const search = useSelector((state: any) => state.searchReducer.search);
+  const loaded = useRef(false);
+  const [timer, setTimer] = useState(null)
+  const [focused, setFocused] = useState(false)
 
   const initialStates = [
     { 
@@ -112,23 +113,17 @@ export default function GoogleMaps(props) {
     },
   ]
 
-  if (typeof window !== 'undefined' && !loaded.current) {
-    if (!document.querySelector('#google-maps')) {
-      loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`,
-        document.querySelector('head'),
-        'google-maps',
-      );
-    }
-
-    loaded.current = true;
+  const loadScript = () => {
+    const script = document.createElement('script');
+    script.setAttribute('async', '');
+    script.setAttribute('id', 'google-maps');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&loading=async`;
+    document.querySelector('head').appendChild(script);
   }
 
   function handleLocationChange(newValue) {
-    // console.log('new value')
-    // console.log(newValue)
-    if (isMobile && !newValue) {
-      props.setMobileText(newValue)
+    if (mobile && !newValue) {
+      setMobileText(newValue)
     }
     if (!newValue) return
 
@@ -137,78 +132,31 @@ export default function GoogleMaps(props) {
     geocoder.geocode({ 'address': newValue.description }, function (results, status) {
 
       if (status == google.maps.GeocoderStatus.OK) {
-        // props.setValue({
-        //   city: newValue,
-        //   lat: results[0].geometry.location.lat(),
-        //   lng: results[0].geometry.location.lng(),
-        // })
-        // console.log(newValue)
-
-        props.setSelectedCity({
+        setSelectedCity({
           city: newValue,
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng(),
-          // isLodging: newValue.types.some(type => type === 'lodging')
         })
-
       } else {
         console.log("Geocode was not successful for the following reason: " + status);
       }
     });
   }
 
-  const fetch = React.useMemo(
-    () =>
-      debounce(
-        (
-          request: { input: string },
-          callback: (results?: readonly PlaceType[]) => void,
-        ) => {
-          (autocompleteService.current as any).getPlacePredictions(
-            request,
-            callback,
-          );
-        },
-        400,
-      ),
-    [],
-  );
 
-  React.useEffect(() => {
-    const fieldset = document.getElementsByTagName('fieldset');
-    for (const set of fieldset) {
-      set.setAttribute('style', 'border: none;');
+  useEffect(() => {
+    if (mobile) {
+      setInputValue(mobileText)      
     }
-    setOptions(initialStates)
-  }, [])
+  }, [mobileText])
 
-  React.useEffect(() => {
-    // if (options.length === 0) {
-    //   setOptions(initialStates) 
-    // }
-  }, [options])
-
-  React.useEffect(() => {
-    if (isMobile) {
-      console.log(props.mobileText)
-      setInputValue(props.mobileText)      
-    }
-  }, [props.mobileText])
-
-  React.useEffect(() => {
-
-    // console.log('auto complete?')
-    // console.log(autocompleteService)
-    // console.log(autocompleteService?.current?.getPlacePredictions)
-    // console.log(inputValue)
+  useEffect(() => {
     clearTimeout(timer)
 
-
-    if (!autocompleteService.current && (window as any).google) {
-      autocompleteService.current = new (
-        window as any
-      ).google.maps.places.AutocompleteService();
+    if (!autocompleteService.current && (window as any).google?.maps?.places) {
+      autocompleteService.current =  new (window as any).google.maps.places.AutocompleteService()
     }
+
     if (!autocompleteService.current) {
       return undefined;
     }
@@ -218,32 +166,52 @@ export default function GoogleMaps(props) {
       return undefined;
     }
 
-    // clearTimeout(timer)
-
-    // console.log('timer')
     const newTimer = setTimeout(() => {
       autocompleteService.current.getPlacePredictions(
         {input: inputValue},
         function(results) {
-          // console.log('results!')
           let newOptions: readonly PlaceType[] = [];
 
           if (results) {
             newOptions = [...results];
-            if (isMobile) {
+            if (mobile) {
               callback(results)
             } 
           }
           setOptions(newOptions || initialStates);
-
         }
       );
     }, 400)
     setTimer(newTimer)
-    
-  }, [value, inputValue, fetch]);
+  }, [inputValue]);
 
-  if (props.mobile) {
+  useEffect(() => {
+    const fieldset = document.getElementsByTagName('fieldset');
+    for (const set of fieldset) {
+      set.setAttribute('style', 'border: none;');
+    }
+    setOptions(initialStates)
+
+    // Load google maps script if it is not already loaded on the page.
+    if(!mapOnPage) {
+      const startOfGoogleMapsScriptSrc = "https://maps.googleapis.com/maps/api/js"
+      const scripts = document.getElementsByTagName('script');
+
+      let alreadyLoaded = false;
+      Array.from(scripts).forEach(script => {
+        if (script.src.startsWith(startOfGoogleMapsScriptSrc)) {
+          alreadyLoaded = true
+        }
+      });
+
+      if (!alreadyLoaded) {
+        loadScript();
+        loaded.current = true;
+      }
+    }
+  }, [])
+  
+  if (mobile) {
     return (
       <Autocomplete
         filterOptions={(x) => x}
@@ -251,8 +219,8 @@ export default function GoogleMaps(props) {
         clearIcon={<></>}
         options={options}
         open={false}
-        onOpen={(e) => { props.setShowCities(true); }}
-        value={props.city ? props.city?.city : search.city}
+        onOpen={(e) => { setShowCities(true); }}
+        value={city ? city?.city : search.city}
         getOptionLabel={(option) =>
           typeof option === 'string' ? option : option.description
         }
@@ -281,11 +249,11 @@ export default function GoogleMaps(props) {
          fontFamily: 'Poppins-Light'
         },
         "& .MuiInputBase-root": { 
-          width: (props.width || 280), 
+          width: (width || 280), 
           // position: 'relative',
           height: '40px',
           border: focused ? 'none' : '1px solid white', 
-          boxShadow: (focused && !props.showShrinkText) ? 5 : 0,
+          boxShadow: (focused && !showShrinkText) ? 5 : 0,
           background: 'white', 
      
         }
@@ -311,36 +279,28 @@ export default function GoogleMaps(props) {
       autoComplete
       includeInputInList
       filterSelectedOptions
-      value={props.city ? props.city?.city : search.city}
+      value={city ? city?.city : search.city}
       noOptionsText="No locations"
-      onOpen={() => {
-        setFocused(true)          
-      }}
-      onClose={() => {
-        setFocused(false)
-      }}
-      onChange={(event: any, newValue: PlaceType | null) => {
-        handleLocationChange(newValue)
-      }}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
-      }}
+      onOpen={() => setFocused(true)}
+      onClose={() => setFocused(false)}
+      onChange={(event: any, newValue: PlaceType | null) => handleLocationChange(newValue)}
+      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
       renderInput={(params) => (
-        <TextField 
+        <TextField
           {...params}
-          label={props.showShrinkText ? "LOCATION" : ""}
-          sx={{ ml: '0.5rem', mt: props.showShrinkText ? '0.5rem': 0 }}
-          InputProps={{ 
+          label={showShrinkText ? "LOCATION" : ""}
+          sx={{ ml: '0.5rem', mt: showShrinkText ? '0.5rem': 0 }}
+          InputProps={{
             ...params.InputProps,
             // TODO: This causes an error in the console.
             // Find alternate solution if possible.
-            disableUnderline: props.showShrinkText && true,
-            startAdornment: (focused || props.showShrinkText) ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
+            // disableUnderline: showShrinkText && true,
+            startAdornment: (focused || showShrinkText) ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
           }}
           placeholder="Going to..."
           fullWidth 
           size="small" 
-          variant={props.showShrinkText ? "standard" : "outlined"}
+          variant={showShrinkText ? "standard" : "outlined"}
           InputLabelProps={{
             shrink: true
           }} 
@@ -348,21 +308,25 @@ export default function GoogleMaps(props) {
       )}
       groupBy={(option) => option.isInitial}
       renderGroup={(params) => {
+        console.log('DEV: params:', params)
         return (
-          <li key={params.key}>
-            {params.group && 
-              <Box my="0.5rem">
-                  <Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Where in the United States are you traveling?</Typography>
-              </Box>
-            }
-            <Box>{params.children}</Box>
-          </li>
+          <>
+            
+              {params.group && 
+                <li key={'list-header-text'}>
+                  <Box my="0.5rem">
+                      <Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Where in the United States are you traveling?</Typography>
+                  </Box>
+                </li>
+              }
+            {params.children}
+          </>
         )
       }}
       renderOption={(props, option) => {  
+        console.log('DEV: option:', option)
         return (
-          <li {...props} key={option.place_id} >
-
+          <li {...props} key={option.place_id || option.description} >
             <Grid container alignItems="center" my="0.20rem">
               <Grid item sx={{ display: 'flex', width: '1.75rem' }}>
                 <LocationOnIcon sx={{ fontSize: '1.25rem' }} />
@@ -387,3 +351,5 @@ export default function GoogleMaps(props) {
     />
   );
 }
+
+export default GoogleMaps

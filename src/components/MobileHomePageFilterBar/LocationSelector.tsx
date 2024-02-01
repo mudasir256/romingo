@@ -25,6 +25,7 @@ interface LocationSelectorProps {
     mobileTextSearchRef: any;
     showCities: boolean;
     predictions: Array<any>;
+    mapOnPage?: boolean;
 }
 
 const LocationSelector: FC<LocationSelectorProps> = ({
@@ -40,6 +41,7 @@ const LocationSelector: FC<LocationSelectorProps> = ({
     handleCityClick,
     showCities,
     predictions,
+    mapOnPage = false,
 }) => {
     return (
         <>
@@ -65,9 +67,7 @@ const LocationSelector: FC<LocationSelectorProps> = ({
                         callback={handlePredictions}
                         city={selectedCity}
                         setSelectedCity={setSelectedCity} 
-                        setValue={setNewValue}
-                        value={newValue} 
-                        styles={{ width: '100%' }} 
+                        mapOnPage={mapOnPage}
                     />
                 </Grid>
             </Grid>

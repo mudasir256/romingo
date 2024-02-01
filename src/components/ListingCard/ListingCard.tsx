@@ -223,8 +223,8 @@ const ListingCard: FC<ListingCardProps> = ({
               alignItems: "center",
             }}
           >
-            {isRomingoFavorite && <Typography sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(totalPrice + 100).toFixed(0)}</Typography>}
-            {(isSelect && !isRomingoFavorite) && <Typography sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(newPrice).toFixed(0)}</Typography>}
+            {isRomingoFavorite && <Typography component="span" sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(totalPrice + 100).toFixed(0)}</Typography>}
+            {(isSelect && !isRomingoFavorite) && <Typography component="span" sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(newPrice).toFixed(0)}</Typography>}
             {currency}
             {Math.abs(totalPrice).toFixed(0)} total
 
@@ -275,7 +275,6 @@ const ListingCard: FC<ListingCardProps> = ({
 
     return str.toLowerCase();
   }
-
 
   const tomorrow = new Date()
   tomorrow.setDate(tomorrow.getDate() + 1)
@@ -428,12 +427,12 @@ const ListingCard: FC<ListingCardProps> = ({
 
             <Box sx={{mb: 2}}>
               <HotelTags 
-                pet_fee={hotel?.pet_fee} 
-                pet_fee_value={hotel?.pet_fee_value}
-                pet_size={hotel?.pet_size}
-                pet_allowance={hotel?.pet_allowance}
-                pet_bowls={hotel?.petBowls}
-                pet_beds={hotel?.petBeds}
+                pet_fee={hotel?.pet_fee || hotel?.petFee} 
+                pet_fee_value={hotel?.pet_fee_value || hotel?.petFeeValue}
+                pet_size={hotel?.pet_size || hotel?.petSize}
+                pet_allowance={hotel?.pet_allowance || hotel?.petAllowance}
+                pet_bowls={hotel?.pet_bowls || hotel?.petBowls}
+                pet_beds={hotel?.pet_beds || hotel?.petBeds}
                 grid={true}
               />
             </Box>

@@ -36,9 +36,16 @@ interface FilterBarProps {
   home?: boolean;
   city?: string;
   showText?: boolean;
+  mapOnPage?: boolean;
 }
 
-const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = false, city = "" }) => {
+const LargeFilterBar: FC<FilterBarProps> = ({ 
+  showText = false, 
+  sx, 
+  zoomed = false, 
+  city = "",
+  mapOnPage = false,
+}) => {
   
   const [isTextField, setIsTextField] = useState(false);
   const search: ISearch = useSelector((state: any) => state.searchReducer.search);
@@ -210,7 +217,12 @@ const LargeFilterBar: FC<FilterBarProps> = ({ showText = false, sx, zoomed = fal
         >
           <Box sx={{background: 'white',  border: '1px solid #aaabab', borderRadius: '5px'}}>
             <FormControl fullWidth>
-              <GooglePlaceAutoComplete width={290} setSelectedCity={setSelectedCity} city={selectedCity} />
+              <GooglePlaceAutoComplete 
+                width={290} 
+                setSelectedCity={setSelectedCity} 
+                city={selectedCity}
+                mapOnPage={mapOnPage}
+              />
             </FormControl>
           </Box>
 

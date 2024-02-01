@@ -40,9 +40,19 @@ interface FilterBarProps {
   forceWidth?: string;
   flag?: string;
   bookingId?: string;
+  mapOnPage?: boolean;
 }
 
-const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, forceWidth, flag, bookingId }) => {
+const FilterBar: FC<FilterBarProps> = ({ 
+  sx, 
+  home = true, 
+  city = "", 
+  onSearch, 
+  forceWidth, 
+  flag, 
+  bookingId,
+  mapOnPage = false,
+}) => {
 
   const calendarRef = useRef(null)
   const mobileTextSearchRef = useRef(null)
@@ -241,6 +251,7 @@ const FilterBar: FC<FilterBarProps> = ({ sx, home = true, city = "", onSearch, f
               mobileTextSearchRef={mobileTextSearchRef}
               showCities={showCities}
               predictions={predictions}
+              mapOnPage={mapOnPage}
             />
           </Box>
 

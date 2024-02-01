@@ -523,7 +523,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
 
   const [reviewDialog, setReviewDialog] = useState<boolean>(false);
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 

@@ -1,6 +1,6 @@
 import { Pagination } from "@mui/material";
 import Box from "@mui/material/Box";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import ListingCard, { ListingCardProps } from "../ListingCard/ListingCard";
 import usePagination from "./pagination";
 
@@ -31,7 +31,6 @@ const CardList: FC<Props> = ({ cards, boxShadow = 4, sessionId, search }) => {
   //   setPage(1);
   //   // _DATA.jump(1);
   // }, [cards]);
-
   return (
     <Box>
       {cards.map(card =>(

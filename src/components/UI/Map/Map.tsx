@@ -12,6 +12,7 @@ import useWindowSize from "../../../hooks/UseWindowSize";
 import stylesArray from "./GoogleMapStyles";
 import Skeleton from "@mui/material/Skeleton";
 import ListingCard from "../../ListingCard";
+
 interface Props {
   center: { lat: number; lng: number };
   height?: string | number | undefined;
@@ -29,20 +30,7 @@ interface Props {
   disabled?: boolean;
 }
 
-interface Size {
-  width: string | number | undefined;
-  height: string | number | undefined;
-}
-
-type Libraries = (
-  | "drawing"
-  | "geometry"
-  | "localContext"
-  | "places"
-  | "visualization"
-)[];
-
-const libraries: Libraries = ['places'];
+const libraries = ['places'];
 
 const initOptions = {
   fullscreenControl: false,
@@ -75,18 +63,17 @@ const Map: FC<Props> = ({
   });
   const [mapOptions, setMapOptions] = useState(initOptions);
 
-
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAnlMeQQ072sRw22U6aG0zLTHbyh0g8TB0",
-    libraries
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: libraries
   });
 
   const size = useWindowSize();
 
   useEffect(() => {
     setContainerStyle({ 
-      width: width || size.width, 
-      height: height || size.height,
+      width: Number(width) || size.width, 
+      height: Number(height) || size.height,
     });
 
     let newOptions = disabled 
@@ -108,16 +95,6 @@ const Map: FC<Props> = ({
   });
 
   const [showInfoContents, setShowInfoContents] = useState(null);
-
-  useEffect(() => {
-    if(isFullScreen) {
-      console.log('DEV: markers:', markers.length)
-
-      const hotelMarkers = markers.filter(m => m.type == 'hotel');
-      console.log('DEV: hotelMarkers.length:', hotelMarkers.length);
-      console.log('DEV: disabled:', disabled)
-    }
-  }, [markers])
 
   if (loadError) {
     return <div>Map cannot be loaded right now, sorry.</div>;
@@ -168,7 +145,6 @@ const Map: FC<Props> = ({
                     scaledSize: new google.maps.Size(45, 35),
                   }}
                   onClick={(e: google.maps.MapMouseEvent) => {
-                    console.log(marker)
                     if (!clickable) {
                       return
                     }
