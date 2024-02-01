@@ -114,6 +114,13 @@ const Map: FC<Props> = ({
     >
       {markers !== undefined && !disabled &&
         <MarkerClustererF
+          calculator={(markers, num) => ({
+            text: `${markers.length} properties`,
+            // index of style in styles array + 1.
+            // e.g. 'index: 1' corresponds to styles[0]
+            index: 1, 
+          })}
+          gridSize={80}
           options={{
             averageCenter: true,
             styles: [
@@ -121,7 +128,7 @@ const Map: FC<Props> = ({
                 textColor: 'black',
                 url: "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
                 height: 35,
-                width: 45,
+                width: 80,
               },
             ]
           }}
@@ -137,7 +144,7 @@ const Map: FC<Props> = ({
                   // animation={google.maps.Animation.DROP}
                   clusterer={clusterer}
                   key={key}
-                  label={isFullScreen ? `$${Math.abs(marker.lowestAveragePrice).toFixed(0)}` : 'TEST'}   
+                  label={isFullScreen ? `$${Math.abs(marker.lowestAveragePrice).toFixed(0)}` : ''}   
                   icon={{
                     url: isFullScreen
                       ? "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg"
