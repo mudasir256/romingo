@@ -1,11 +1,8 @@
-import { FC } from "react";
 import { Grid, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ImageSlider from "./ImageSlider";
 import StarIcon from "@mui/icons-material/Star";
-import { utils } from '../services/utils'
 import HotelTags from './HotelTags';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const stateCodes = {
     "AL": "Alabama",
@@ -223,11 +220,14 @@ const ListingCardSquare = ({
                 {city}, {state}
               </Typography>
             
-
               <Box mb="0.5rem">
-                <HotelTags displayOne={true} pet_fee={petFee} pet_allowance={petAllowance} pet_fee_value={petFeeValue} pet_size={petSize} />
-              </Box>  
-
+                <HotelTags
+                  pet_fee={petFee}
+                  pet_allowance={petAllowance}
+                  pet_fee_value={petFeeValue}
+                  pet_size={petSize}
+                />
+              </Box>
            
               <Box mt="-0.5rem">
                 <PriceDetails />

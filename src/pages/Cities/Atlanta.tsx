@@ -115,7 +115,7 @@ const Atlanta: FC = () => {
   return <>
     <Helmet>
       <title>Pet Friendly Hotels Atlanta, GA | Romingo</title>
-      <description>{paragraphOne}</description>
+      <meta property="description" content={paragraphOne} />
       <meta name='keywords' content={cityContent.keywords} />
       <meta
         property='og:title'

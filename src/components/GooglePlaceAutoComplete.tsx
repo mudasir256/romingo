@@ -308,23 +308,20 @@ const GoogleMaps: FC<Props> = ({
       )}
       groupBy={(option) => option.isInitial}
       renderGroup={(params) => {
-        console.log('DEV: params:', params)
         return (
           <>
-            
-              {params.group && 
-                <li key={'list-header-text'}>
-                  <Box my="0.5rem">
-                      <Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Where in the United States are you traveling?</Typography>
-                  </Box>
-                </li>
-              }
+            {params.group && 
+              <li key={'list-header-text'}>
+                <Box my="0.5rem">
+                    <Typography variant="base" ml="1rem" sx={{ fontWeight: 800}}>Where in the United States are you traveling?</Typography>
+                </Box>
+              </li>
+            }
             {params.children}
           </>
         )
       }}
       renderOption={(props, option) => {  
-        console.log('DEV: option:', option)
         return (
           <li {...props} key={option.place_id || option.description} >
             <Grid container alignItems="center" my="0.20rem">

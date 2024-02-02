@@ -1589,7 +1589,7 @@ const DetailsPage: FC<Props> = ({ ...props }) => {
                 >
                   Choose your room
                 </Typography>
-                <RoomsFilterBar refetch={refetch} />
+                {/* <RoomsFilterBar refetch={refetch} /> */}
                 {roomsLoading ? <Box sx={{ mx: 'auto', textAlign: 'center'}}><CircularProgress /></Box> 
                    : rooms.length > 0 ?
                    <Grid container columnSpacing={6} rowSpacing={6}>
@@ -2594,7 +2594,7 @@ export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
               maxHeight: "47px",
             }}
           >
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
                 format="MMM dd"
                 // disableMaskedInput={true}
@@ -2617,7 +2617,7 @@ export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
                 // renderInput={() => <Grid sx={{ display: "none" }}></Grid>}
                 slotProps={{ textField: { variant: 'outlined' } }}
               />
-            </LocalizationProvider>
+            </LocalizationProvider> */}
 
             <Grid
               container
@@ -2796,7 +2796,7 @@ export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
               borderRadius: "6px",
             }}
           >
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
                 format="MMM dd"
                 // disableMaskedInput={true}
@@ -2943,7 +2943,7 @@ export const RoomsFilterBar: FC<FilterBarProps> = ({ city = "", refetch }) => {
                   textField: { variant: 'outlined' }
                 }} 
               />
-            </LocalizationProvider>
+            </LocalizationProvider> */}
           </Box>
           <Box
             sx={{

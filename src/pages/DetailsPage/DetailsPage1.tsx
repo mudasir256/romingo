@@ -456,7 +456,7 @@ const DetailsPage1 = ({ ...props }) => {
   return <>
 
     <Helmet>
-      <title>{hotel?.hotelName} | Romingo</title>
+      <title>{`${hotel?.hotelName} | Romingo`}</title>
       <description>{hotel ? createPetPolicy({ ...hotel}) : hotel?.description}</description>
       <meta property="og:title" content={`${hotel?.hotelName} | Romingo`} />
       <meta property="og:description" content={hotel ? createPetPolicy({ ...hotel}) : hotel?.description} />

@@ -12,6 +12,8 @@ interface Props {
   sx?: any;
   forceLarge?: boolean;
   page?: string;
+  height?: string;
+  imageCount?: number;
 }
 
 const ImageSlider: FC<Props> = ({ sx, images, height= '301px', name, forceLarge, imageCount = 10, page }) => {
@@ -40,53 +42,46 @@ const ImageSlider: FC<Props> = ({ sx, images, height= '301px', name, forceLarge,
             }} src={img.replace(/'/g, "%27")} alt="hotel image" loading="lazy" />)
             : images.slice(0, imageCount).map((img, i) => (
               <Fragment key={img + i+name}>
-                <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}>
-                  <img key={img + i} style={{
-                    display: 'block', 
-                    width: '100%', 
-                    height: height,
-                    objectFit: 'cover',
-                    objectPosition: 'center', 
-                    borderRadius: borderRadius,
-                    ...sx,
-                  }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
+                <Box 
+                  sx={{ display: { xs: 'none', sm: 'none', md: 'block'} }}
+                >
+                  <img 
+                    key={img + i} 
+                    style={{
+                      display: 'block', 
+                      width: '100%', 
+                      height: height,
+                      objectFit: 'cover',
+                      objectPosition: 'center', 
+                      borderRadius: borderRadius,
+                      ...sx,
+                    }} 
+                    src={img.replace(/'/g, "%27")} 
+                    loading="lazy" 
+                    alt="hotel image" 
+                  />
                 </Box>
                 <Box sx={{ display: { xs: 'block', sm: 'block', md: 'none'} }}>
-                  <img key={img + i+name} style={{
-                    display: 'block', 
-                    width: '100%', 
-                    height: '244px',
-                    objectFit: 'cover',
-                    objectPosition: 'center', 
-                    borderRadius: '6px 6px 0 0',
-                    ...sx,
-                  }} src={img.replace(/'/g, "%27")} loading="lazy" alt="hotel image" />
+                  <img 
+                    key={img + i + name} 
+                    style={{
+                      display: 'block', 
+                      width: '100%', 
+                      height: '244px',
+                      objectFit: 'cover',
+                      objectPosition: 'center', 
+                      borderRadius: '6px 6px 0 0',
+                      ...sx,
+                    }} 
+                    src={img.replace(/'/g, "%27")} 
+                    loading="lazy" 
+                    alt="hotel image" 
+                  />
                 </Box>
               </Fragment>))
       setItems(components);
     }
   }, [images]);
-
-  useEffect(() => {
-    // if (item !== 0) {
-    //   const addItems = [...items];
-    //   const addItem = (
-    //     <Box
-    //       key={images[item]}
-    //       sx={{
-    //         ...sx,
-    //         display: "block",
-    //         backgroundSize: "cover",
-    //         backgroundPosition: "center center",
-    //         width: "100%",
-    //         backgroundImage: `url('${images[item].replace(/'/g, "%27")}')`,
-    //       }}
-    //     />
-    //   );
-    //   addItems[item] = addItem;
-    //   setItems(addItems);
-    // }
-  }, [item]);
 
   return (
     (items.length > 0 && (
