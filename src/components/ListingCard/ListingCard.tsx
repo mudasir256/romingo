@@ -158,6 +158,9 @@ const ListingCard: FC<ListingCardProps> = ({
   search,
   petBeds,
   petBowls,
+  isRomingoFavorite,
+  isTrending,
+  isSelect,
   ...props
 }) => {
   const navigate = useNavigate();
@@ -175,6 +178,12 @@ const ListingCard: FC<ListingCardProps> = ({
           alignItems: "flex-end",
         }}
       >
+      
+        {(!isRomingoFavorite && lowestAveragePrice && isSelect) &&
+          <Box sx={{ borderRadius: '6px', backgroundColor: '#F9C171', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
+            LIMITED TIME OFFER: 15% off
+          </Box>
+        } 
         {lowestAveragePrice &&
           <Typography
             variant="body2"
@@ -188,6 +197,7 @@ const ListingCard: FC<ListingCardProps> = ({
               color: "black",
             }}
           >
+            {(!isRomingoFavorite && isSelect) && <Typography component="span" sx={{ fontSize: '16px', mb: 0, pb: 0, textDecoration: 'line-through underline', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(newPrice).toFixed(0)}</Typography>}
             {currency}{Math.abs(Number(lowestAveragePrice)).toFixed(0)}
           </Typography>
         }
@@ -220,8 +230,6 @@ const ListingCard: FC<ListingCardProps> = ({
               alignItems: "center",
             }}
           >
-            {isRomingoFavorite && <Typography component="span" sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(totalPrice + 100).toFixed(0)}</Typography>}
-            {(isSelect && !isRomingoFavorite) && <Typography component="span" sx={{ fontSize: '16px', color: 'red', textDecoration: 'line-through', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(newPrice).toFixed(0)}</Typography>}
             {currency}
             {Math.abs(totalPrice).toFixed(0)} total
 
@@ -278,10 +286,8 @@ const ListingCard: FC<ListingCardProps> = ({
   const twoDays = new Date()
   twoDays.setDate(twoDays.getDate() + 2)
 
-  const isTrending = (numberOfReviews > 1000)
-  const isRomingoFavorite = (props.pet_fee_value === 'NONE')
-  const isSelect = (props.rndInt > 5)
-  const newPrice = (Math.abs(totalPrice) * 117.5) / 100
+
+  const newPrice = (Math.abs(lowestAveragePrice) * 117.5) / 100
 
   const params = new URLSearchParams({
     checkIn: search?.checkIn || tomorrow,
@@ -339,6 +345,8 @@ const ListingCard: FC<ListingCardProps> = ({
             page={page}
           />
         </Box>
+
+      
 
         <Box
           // component="a"
@@ -398,7 +406,6 @@ const ListingCard: FC<ListingCardProps> = ({
                 </Typography>
                 <Box sx={{ position: 'absolute', top: 0, right: { xs: 0, sm: 0, md: -10 }, ml: 'auto' }}>
                   {isRomingoFavorite && <Chip size="small" color="primary" label="Romingo Favorite" sx={{ fontSize: '0.75rem' }} />}
-                  {(!isRomingoFavorite && isSelect) && (<Chip size="small" color="warning" label="15% off sale" sx={{ fontSize: '0.75rem' }} />)}
                   {(!isRomingoFavorite && !isSelect && isTrending) && (<Chip size="small" color="info" label="Popular Hotel" sx={{ fontSize: '0.75rem' }} />)}
 
                 </Box>

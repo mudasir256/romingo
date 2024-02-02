@@ -810,6 +810,8 @@ const UserProfile = `
           images
           addressLine
           taxRate
+          travoTaxRate
+          extraFees
         }
       }
     }`

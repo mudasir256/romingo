@@ -200,18 +200,27 @@ const ListingPageNew = ({ ...props }) => {
       return score
     }
 
-    const formatHotel = (hotel) => {
+    const formatHotel = (hotel, tag) => {
 
       const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
-      const tax = (parseFloat(hotel?.taxRate) * pricing)
-      const markup = (pricing - tax) * .1
+      
+
+      const tax = (parseFloat(hotel?.travoTaxRate || hotel?.taxRate || 0) * pricing)
+      const priceWithoutTax = pricing - tax
+      const markup = priceWithoutTax * .15
+      const extraFees = parseFloat(hotel.extraFees?.find(fee => fee.FeeTitle === 'resort_fee')?.Value) || 0
+      const total = pricing + markup + extraFees;
+
       const km = getDistanceFromLatLonInKm(hotel.GeoLocation.Latitude, hotel.GeoLocation.Longitude, search.lat, search.lng)
       const pointValue = calculateCardScore(km, hotel.starRating, ((pricing - tax) + markup) / diffDays, hotel.petFee)
-      const rndInt = randomIntFromInterval(0, 6)
 
       return {
         pointValue,
-        rndInt,
+        extraFees,
+        tax,
+        isSelect: tag === 'IS_SELECT',
+        isRomingoFavorite: tag === 'IS_ROMINGO_FAVORITE',
+        isTrending: tag === 'IS_POPULAR',
         imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
         alias: hotel.alias,
         name: hotel.hotelName || '',
@@ -223,8 +232,8 @@ const ListingPageNew = ({ ...props }) => {
         hotelStarRating: hotel.StarRating,
         romingoScore: hotel.starRating,
         numberOfReviews: hotel.numberOfReviews,
-        lowestAveragePrice: ((pricing - tax) + markup) / diffDays,
-        totalPrice: (pricing + markup),
+        lowestAveragePrice: (priceWithoutTax) / diffDays,
+        totalPrice: total,
         id: hotel.ID,
         lat: hotel.GeoLocation.Latitude,
         lng: hotel.GeoLocation.Longitude,
@@ -246,7 +255,11 @@ const ListingPageNew = ({ ...props }) => {
         label: hotel.DisplayName,
         hotel: {
           pointValue,
-          rndInt,
+          extraFees,
+          tax,
+          isSelect: tag === 'IS_SELECT',
+          isRomingoFavorite: tag === 'IS_ROMINGO_FAVORITE',
+          isTrending: tag === 'IS_POPULAR',
           imageURLs: hotel.images || [hotel.DefaultImage.FullSize],
           name: hotel.DisplayName,
           alias: hotel.alias,
@@ -258,8 +271,8 @@ const ListingPageNew = ({ ...props }) => {
           hotelStarRating: hotel.StarRating,
           romingoScore: hotel.starRating,
           numberOfReviews: hotel.numberOfReview,
-          lowestAveragePrice: ((pricing - tax) + markup) / diffDays,
-          totalPrice: (pricing + markup),
+          lowestAveragePrice: ((priceWithoutTax) / diffDays,
+          totalPrice: (pricing),
           id: hotel.ID,
           lat: hotel.GeoLocation.Latitude,
           lng: hotel.GeoLocation.Longitude,
@@ -278,6 +291,30 @@ const ListingPageNew = ({ ...props }) => {
       }
     }
 
+    function shuffle(array) {
+      let currentIndex = array.length,  randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex > 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+
+      return array;
+    }
+
+    const createTenOf = () => {
+      const tags = ['IS_SELECT', 'IS_SELECT', 'IS_SELECT', 'IS_SELECT', 'IS_POPULAR', 'IS_POPULAR', 'IS_ROMINGO_FAVORITE', "NONE", 'NONE', 'NONE']
+      const shuffled = shuffle(tags)
+      return shuffled
+    }
+
     const loadHotels = () => {
       const hotelsWithTaxRate = hotels.filter(h => h.taxRate);
 
@@ -292,7 +329,15 @@ const ListingPageNew = ({ ...props }) => {
         ))
       )
 
-      for (const hotel of newHotels) {
+      let tags = []
+
+      for (let z = 0; z < newHotels.length; z++) {
+        if (z % 10 === 0) {
+          tags = createTenOf()
+        }
+        const tag = tags[(z % 10)]
+
+        const hotel = newHotels[z]
         const pricing = hotel?.Packages?.find(item => true)?.SimplePrice || hotel?.SuppliersLowestPackagePrices?.find(item => true)?.Value
 
         if (pricing / diffDays < min) {
@@ -302,10 +347,11 @@ const ListingPageNew = ({ ...props }) => {
           max = pricing / diffDays
         }
 
-        const restructuredHotel = formatHotel(hotel)
+        const restructuredHotel = formatHotel(hotel, tag)
         filteredHotels.push(restructuredHotel)
         markers.push(restructuredHotel)
       }
+
 
       const readyHotels = filteredHotels.sort(function (a, b) {
         const textA = a.name.toUpperCase();
@@ -326,7 +372,10 @@ const ListingPageNew = ({ ...props }) => {
 
       let newDisplayHotels = [];
       if(loadingMore || search != oldSearch) {
-        newDisplayHotels =  finalHotels;
+        newDisplayHotels = finalHotels;
+        newDisplayHotels[0].isSelect = true;
+        newDisplayHotels[0].isRomingoFavorite = false;
+        newDisplayHotels[0].isTrending = false;
       } else {
         const filteredFinalHotels = finalHotels.filter((h: any)=> !displayHotels.find((val: any) => val.id == h.id));
         newDisplayHotels = displayHotels.concat(filteredFinalHotels);
