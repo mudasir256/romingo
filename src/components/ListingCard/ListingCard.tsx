@@ -179,9 +179,17 @@ const ListingCard: FC<ListingCardProps> = ({
         }}
       >
       
+        {isRomingoFavorite && <Box sx={{ color: 'white', borderRadius: '6px', backgroundColor: '#03989E', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
+          Romingo Favorite
+        </Box>}
+        {((!isRomingoFavorite && !isSelect && isTrending) &&  <Box sx={{ borderRadius: '6px', backgroundColor: '#F4DAC9', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
+          Popular Hotel
+          </Box>
+        )}
+        
         {(!isRomingoFavorite && lowestAveragePrice && isSelect) &&
           <Box sx={{ borderRadius: '6px', backgroundColor: '#F9C171', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
-            LIMITED TIME OFFER: 15% off
+            15% off sale
           </Box>
         } 
         {lowestAveragePrice &&
@@ -395,7 +403,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     fontWeight: 800,
                     letterSpacing: "0px",
                     width: '100%',
-                    maxWidth: '340px',
+                    maxWidth: '420px',
                     overflow: 'hidden',
                     whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
                     textOverflow: "ellipsis",
@@ -404,11 +412,9 @@ const ListingCard: FC<ListingCardProps> = ({
                 >
                   {name}
                 </Typography>
-                <Box sx={{ position: 'absolute', top: 0, right: { xs: 0, sm: 0, md: -10 }, ml: 'auto' }}>
-                  {isRomingoFavorite && <Chip size="small" color="primary" label="Romingo Favorite" sx={{ fontSize: '0.75rem' }} />}
-                  {(!isRomingoFavorite && !isSelect && isTrending) && (<Chip size="small" color="info" label="Popular Hotel" sx={{ fontSize: '0.75rem' }} />)}
+           {/*     <Box sx={{ position: 'absolute', top: 0, right: { xs: 0, sm: 0, md: -10 }, ml: 'auto' }}>
 
-                </Box>
+                </Box>*/}
               </Box>
 
               <Typography
