@@ -33,7 +33,7 @@ const RegisterCard: FC<Props> = ({ sx }) => {
   const registerAccount = async (e: React.SyntheticEvent) => {
     setSuccessMessage('')
     setErrorMessage('')
-    const data = await createAccount(email, password)
+    const data = await createAccount(email, password, name)
     if (data.data.createUser?.id) {
       subscribeToNewsletter(email)
       const data2 = await addNameToAccount(data.data.createUser.id, name)

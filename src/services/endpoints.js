@@ -18,7 +18,7 @@ export const subscribeToNewsletter = (email) => {
   return { success: true }
 }
 
-export const createAccount = async (email, password) => {
+export const createAccount = async (email, password, name) => {
   const result =  await fetch(process.env.REACT_APP_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -28,9 +28,10 @@ export const createAccount = async (email, password) => {
       query: `
         mutation CreateUserInput(
           $email: String!,
-          $password: String!
+          $password: String!,
+          $name: String
         ){
-          createUser(input: { email: $email, password: $password }) {
+          createUser(input: { email: $email, password: $password, name: $name }) {
             id
             email
           }
@@ -38,7 +39,8 @@ export const createAccount = async (email, password) => {
       `,
       variables: {
         email: email,
-        password: password
+        password: password,
+        name: name
       }
     })
   })
