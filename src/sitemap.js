@@ -8,7 +8,7 @@ const {
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 // const fetch = require('node-fetch')
 
-const hostname = 'https://romingo.com';
+const hostname = 'https://www.romingo.com';
 
 
 const routes = [
