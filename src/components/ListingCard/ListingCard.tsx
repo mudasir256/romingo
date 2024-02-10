@@ -232,7 +232,6 @@ const ListingCard: FC<ListingCardProps> = ({
               mr: 0,
               mt: "0.1rem",
               fontSize: "12px",
-
               lineHeight: '14px',
               display: "flex",
               alignItems: "center",
@@ -407,7 +406,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     overflow: 'hidden',
                     whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
                     textOverflow: "ellipsis",
-                    lineHeight: 1,
+                    // lineHeight: 1,
                   }}
                 >
                   {name}

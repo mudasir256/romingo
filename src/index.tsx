@@ -13,7 +13,7 @@ import { theme } from "./theme";
 // import { loadStripe } from "@stripe/stripe-js";
 
 import "./index.scss";
-import { onError } from "@apollo/client/link/error";
+// import { onError } from "@apollo/client/link/error";
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
