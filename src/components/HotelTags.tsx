@@ -141,14 +141,14 @@ const HotelTags = ({
           label={<Box sx={iconLabelStyle}>{pet_size}</Box>}
         /> */}
         
-        <Chip
+        {/* <Chip
           size="small"
           sx={{
             ...chipIconStyle,
           }}
           icon={<img style={{ width: "17px"}}  src="https://storage.googleapis.com/romingo-production-public/assets/Bone%20Icon.png" />}
           label={<Box sx={iconLabelStyle}>pet-friendly room guaranteed</Box>}
-        />
+        /> */}
         <Chip
           size="small"
           sx={{ ...chipIconStyle }}

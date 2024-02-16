@@ -404,7 +404,7 @@ const ListingCard: FC<ListingCardProps> = ({
                     width: '100%',
                     maxWidth: '420px',
                     overflow: 'hidden',
-                    whiteSpace: { xs: "normal", sm: "normal", md: 'nowrap' },
+                    whiteSpace: 'nowrap',
                     textOverflow: "ellipsis",
                     // lineHeight: 1,
                   }}
