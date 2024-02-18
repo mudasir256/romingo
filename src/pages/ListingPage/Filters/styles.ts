@@ -4,23 +4,22 @@ const styles = {
         fontWeight: 'extrabold',
         textDecoration: 'underline'
     },
-        filterHeader: {
+    filterHeader: {
         fontSize: '16px',
         fontWeight: 'bold',
         mb: '0.3rem'
     },
-        filterContainer: {
+    filterContainer: {
         my: '2rem',
         fontSize: '14px',
-        fontWeight: 'regular'
     },
-        filterItemText: {
+    filterItemText: {
         fontSize: '14px',
     },
-        filterFormControlLabel: { 
+    filterFormControlLabel: { 
         my: "0.3rem" 
     },
-        filterCheckBox: {
+    filterCheckBox: {
         py: 0
     },
 }

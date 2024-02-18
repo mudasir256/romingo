@@ -866,10 +866,18 @@ const ListingPageNew = ({ ...props }) => {
           md={8} 
           sx={{ 
             p: '0.5rem',
-            ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" } 
+            ml: { xs: 0, sm: 0, md: 0, lg: "2.5rem" },
           }}
         >
-          <Grid item container direction='row'>
+          <Grid
+            item
+            container
+            direction='row'
+            sx={{
+              maxWidth: {xs: '650px', md: "760px"},
+              mx: {xs: 'auto', md: 0}
+            }}
+          >
             {!mobile && 
               <Box textAlign="left" maxWidth="780px">
                 <LargeFilterBar mapOnPage />
@@ -971,7 +979,13 @@ const ListingPageNew = ({ ...props }) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item maxWidth="760px">
+          <Grid
+            item
+            sx={{
+              maxWidth: {xs: '650px', md: "760px"},
+              mx: {xs: 'auto', md: 0}
+            }}
+          >
             <CardList cards={displayHotels} sessionId={sessionId} search={search} />
           </Grid>
         </Grid>

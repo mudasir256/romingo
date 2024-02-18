@@ -179,11 +179,14 @@ const ListingCard: FC<ListingCardProps> = ({
         }}
       >
       
-        {isRomingoFavorite && <Box sx={{ color: 'white', borderRadius: '6px', backgroundColor: '#03989E', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
-          Romingo Favorite
-        </Box>}
-        {((!isRomingoFavorite && !isSelect && isTrending) &&  <Box sx={{ borderRadius: '6px', backgroundColor: '#F4DAC9', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
-          Popular Hotel
+        {isRomingoFavorite && 
+          <Box sx={{ color: 'white', borderRadius: '6px', backgroundColor: '#03989E', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
+            Romingo Favorite
+          </Box>
+        }
+        {((!isRomingoFavorite && !isSelect && isTrending) &&  
+          <Box sx={{ borderRadius: '6px', backgroundColor: '#F4DAC9', fontSize: '14px', px: '0.5rem', py: '0.25rem' }}>
+            Popular Hotel
           </Box>
         )}
         
@@ -205,7 +208,21 @@ const ListingCard: FC<ListingCardProps> = ({
               color: "black",
             }}
           >
-            {(!isRomingoFavorite && isSelect) && <Typography component="span" sx={{ fontSize: '16px', mb: 0, pb: 0, textDecoration: 'line-through underline', fontWeight: 600, mr: '0.25rem' }}>${Math.abs(newPrice).toFixed(0)}</Typography>}
+            {(!isRomingoFavorite && isSelect) && 
+              <Typography 
+                component="span" 
+                sx={{ 
+                  fontSize: '16px', 
+                  mb: 0, 
+                  pb: 0, 
+                  textDecoration: 'line-through underline', 
+                  fontWeight: 600, 
+                  mr: '0.25rem' 
+                }}
+              >
+                ${Math.abs(newPrice).toFixed(0)}
+              </Typography>
+            }
             {currency}{Math.abs(Number(lowestAveragePrice)).toFixed(0)}
           </Typography>
         }
@@ -214,11 +231,10 @@ const ListingCard: FC<ListingCardProps> = ({
           <Typography
             variant="body2"
             sx={{
-              fontSize: { xs: "95%", sm: "90%" },
+              fontSize: { xs: "95%", md: "90%" },
               fontWeight: 500,
               whiteSpace: "nowrap",
               color: "#999",
-              // fontSize: '13px'
             }}
           >
             per night
@@ -321,9 +337,9 @@ const ListingCard: FC<ListingCardProps> = ({
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
+          flexDirection: { xs: "column", md: "row" },
           justifyContent: "center",
-          alignItems: { xs: "center", sm: 'stretch' },
+          alignItems: { xs: "center", md: 'stretch' },
           color: "text.primary",
           borderRadius: 3,
           maxWidth: "100%",
@@ -334,13 +350,13 @@ const ListingCard: FC<ListingCardProps> = ({
           paddingBottom: "0px",
           "&:hover": { boxShadow: 7 },
           my: highlighted ? 4 : 0,
-          maxHeight: { xs: "auto", sm: '300px', md: '300px' },
+          maxHeight: { xs: "auto", md: '300px' },
         }}
         // {...props}
       >
         <Box
           sx={{
-            width: { xs: "100%", sm: 400, md: 460, lg: 460 },
+            width: { xs: "100%",  md: 460 },
             alignSelf: { xs: "center", md: 'auto' },
           }}
         >
@@ -356,42 +372,33 @@ const ListingCard: FC<ListingCardProps> = ({
       
 
         <Box
-          // component="a"
-          // href={hotelUrl}
           onClick={() => {
             window.location.href = hotelUrl;
-            // navigate(hotelUrl, {
-            //   sessionId: sessionId,
-            //   hotelDetails: hotel,
-            // })
           }}
           sx={{
             cursor: "pointer",
-            px: { xs: mobileCardPadding, sm: mobileCardPadding },
-            py: { xs: mobileCardPadding, sm: mobileCardPadding },
+            px: mobileCardPadding,
+            py: mobileCardPadding,
             width: "100%",
             textDecoration: "none",
           }}
         >
           <Box
             sx={{
-              minHeight: { xs: 160, sm: 170 },
+              minHeight: { xs: 160, md: 170 },
               p: {
                 xs: ".5rem .25rem 0rem .25rem",
-                // sm: ".5rem .5rem .5rem 1rem",
-                sm: 0,
                 md: "0rem 0.6rem",
               },
-              mx: { xs: "0.4rem", sm: 0 },
-              my: { xs: 0 },
+              mx: { xs: "0.4rem", md: 0 },
+              my: 0,
               display: "flex",
               flexDirection: "column",
               justifyContent: 'flex-start',
               height: '100%',
               maxHeight: '100%',
-              // border: 1
             }}
-          > 
+          >
             <Box>
               <Box sx={{ position: 'relative' }}>
                 <Typography
@@ -406,20 +413,16 @@ const ListingCard: FC<ListingCardProps> = ({
                     overflow: 'hidden',
                     whiteSpace: 'nowrap',
                     textOverflow: "ellipsis",
-                    // lineHeight: 1,
                   }}
                 >
                   {name}
                 </Typography>
-           {/*     <Box sx={{ position: 'absolute', top: 0, right: { xs: 0, sm: 0, md: -10 }, ml: 'auto' }}>
-
-                </Box>*/}
               </Box>
 
               <Typography
                 variant="body2"
                 sx={{
-                  fontSize: { xs: "95%", sm: "95%" },
+                  fontSize: { xs: "95%", md: "95%" },
                   mt: "0.25rem",
                   fontWeight: 500,
                   whiteSpace: "nowrap",
@@ -427,16 +430,16 @@ const ListingCard: FC<ListingCardProps> = ({
                 }}
               >
                 {
-                  neighborhood 
+                  neighborhood
                   ? `${addressLine1}, ${city}, ${state} ${zipcode}`
                   : `${city}`
                 }
               </Typography>
             </Box>
 
-            <Box sx={{mb: 2}}>
-              <HotelTags 
-                pet_fee={hotel?.pet_fee || hotel?.petFee} 
+            <Box sx={{ mb: 2 }}>
+              <HotelTags
+                pet_fee={hotel?.pet_fee || hotel?.petFee}
                 pet_fee_value={hotel?.pet_fee_value || hotel?.petFeeValue}
                 pet_size={hotel?.pet_size || hotel?.petSize}
                 pet_allowance={hotel?.pet_allowance || hotel?.petAllowance}
@@ -449,7 +452,6 @@ const ListingCard: FC<ListingCardProps> = ({
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                // mb: '1.25rem',
                 width: 1,
                 mt: 'auto'
               }}
@@ -458,7 +460,6 @@ const ListingCard: FC<ListingCardProps> = ({
               <Typography variant="base" sx={{ lineHeight: '12px', fontSize: '0.9rem', color: '#3F8825'}}>Book now, pay later</Typography>
             </Box>
             
-
             <Box
               sx={{
                 display: 'flex',
@@ -467,7 +468,6 @@ const ListingCard: FC<ListingCardProps> = ({
                 alignItems: 'flex-end',
                 width: 1,
                 marginTop: 'auto',
-                // mb: 1
               }}
             >
               <Box
@@ -495,7 +495,7 @@ const ListingCard: FC<ListingCardProps> = ({
                   sx={{
                     color: "#666",
                     textDecoration: "underline",
-                    ml: { xs: 0.25 },
+                    ml: 0.25,
                     fontWeight: 500,
                     opacity: 0.75,
                     fontSize: "70%",
