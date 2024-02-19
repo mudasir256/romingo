@@ -150,8 +150,7 @@ const SingleLoadListingCard = ({ hotelName, paragraphs = [], displayNormal = fal
 	return ( 
 		<>
 			{card ? (
-				isCarouselCard
-				? (
+				isCarouselCard ? (
 					<CarouselCard 
 						card={card}
 						hotelUrl={hotelUrl}
