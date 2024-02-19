@@ -31,7 +31,6 @@ declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
 }
 
-
 if(!window.location.host.startsWith('www')) {
   window.location = window.location.protocol 
     + "//"
