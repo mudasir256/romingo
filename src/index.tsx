@@ -25,7 +25,7 @@ import { onError } from "@apollo/client/link/error";
 //   if (networkError) console.log(`[Network error]: ${networkError}`);
 // });
 
-const httpLink = new HttpLink({ uri: process.env.REACT_APP_ENDPOINT })
+// const httpLink = new HttpLink({ uri: process.env.REACT_APP_ENDPOINT })
 
 declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
