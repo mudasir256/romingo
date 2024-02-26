@@ -292,9 +292,7 @@ const GoogleMaps: FC<Props> = ({
           sx={{ ml: '0.5rem', mt: showShrinkText ? '0.5rem': 0 }}
           InputProps={{
             ...params.InputProps,
-            // TODO: This causes an error in the console.
-            // Find alternate solution if possible.
-            // disableUnderline: showShrinkText && true,
+            disableUnderline: showShrinkText ? true : false,
             startAdornment: (focused || showShrinkText) ? <></> : <><InputAdornment position="start"><LocationOnIcon sx={{ color: 'black'}} /></InputAdornment></>
           }}
           placeholder="Going to..."
