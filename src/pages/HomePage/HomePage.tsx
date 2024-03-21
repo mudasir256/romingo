@@ -37,7 +37,7 @@ import { DateTime } from "luxon";
 import { randomDate } from "../../tools.js";
 import { subscribeToNewsletter } from '../../services/endpoints'
 
-import SectionOneImage from '../../assets/images/Winter-Promo.jpg'
+import SectionOneImage from '../../assets/public/sections-icons/iStock-1456209324.jpg';
 import SectionTwoImage from '../../assets/public/sections-icons/home-hero.jpg';
 import SectionThreeImage from '../../assets/public/sections-icons/homepage-dog.jpg'
 
@@ -326,7 +326,7 @@ const HomePage: FC<Props> = () => {
     </Box>
   )
 
-  const LeftPhotoBox = ({ imgSrc, imgAlt, fontColor = 'black', backgroundColor, header, text, cta, extraText }) => (
+  const LeftPhotoBox = ({ imgSrc, imgAlt, fontColor = 'black', backgroundColor, header, text, cta, extraText = null}) => (
     <Box sx={{ position: 'relative', backgroundColor: backgroundColor, display: { sm: 'block', md: 'flex' }, alignItems: 'flex-start'}}> 
       <Box 
         component="img" 
@@ -587,9 +587,31 @@ const HomePage: FC<Props> = () => {
           <LeftPhotoBox
             imgSrc={SectionOneImage}
             imgAlt="pet-friendly travel"
-            backgroundColor="#f0ddec"
-            header="Winter is here! 🍁🎃"
-            text="Book your next pet-friendly trip with Romingo and enjoy up to 20% off the lowest rates."
+            backgroundColor="rgb(240, 224, 154)"
+            header="Summer is almost here!"
+            text={
+              <Typography 
+                sx={{
+                  fontSize: '1.5rem',
+                }}
+                variant="p"
+              > 
+                Book your next pet-friendly trip using promo code 
+                <Typography 
+                  sx={{
+                    fontWeight: 900,
+                    fontSize: '1.7rem',
+                    // fontWeight: 500,
+                    // fontSize: '1.25rem',
+                    // lineHeight: '1.5rem',
+                  }}
+                  variant="p"
+                >
+                  {" SUMMERPROMO20 "}
+                </Typography>
+                to receive $20 off your next booking.*
+              </Typography>
+            }
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
         </Box>
