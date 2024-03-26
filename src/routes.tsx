@@ -17,6 +17,7 @@ const About = loadable(() => import('./pages/StaticPages/About'))
 const FAQ = loadable(() => import('./pages/StaticPages/FAQ'))
 const ContactPage = loadable(() => import('./pages/StaticPages/Contact'))
 const Privacy = loadable(() => import('./pages/StaticPages/Privacy'))
+const Reward = loadable(() => import('./pages/StaticPages/Reward'))
 const Terms = loadable(() => import('./pages/StaticPages/Terms'))
 const ListYourProperty = loadable(() => import('./pages/StaticPages/ListYourProperty'))
 const RedRoverPartner = loadable(() => import('./pages/StaticPages/RedRoverPartner'))
@@ -129,6 +130,11 @@ const routes: RouteInterface[] = [
   {
     path: "/privacy",
     component: Privacy,
+    requireAuth: false,
+  },
+  {
+    path: "/reward",
+    component: Reward,
     requireAuth: false,
   },
   {

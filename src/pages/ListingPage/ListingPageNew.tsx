@@ -714,21 +714,40 @@ const ListingPageNew = ({ ...props }) => {
   const Banner = () => (
     <Box sx={{
       width: "100%",
-      backgroundColor: "#03989E" ,
-      borderRadius: "6px" ,
+      backgroundColor: "#03989E",
+      borderRadius: "6px",
       gap: "1rem",
-      display: "flex" ,
+      display: "flex",
       justifyContent: "space-between",
-      flexDirection: "row" ,
+      flexDirection: "row",
       alignItems: "center",
       px: "0.5rem",
       py: "0.5rem",
     }}>
-      <img width="40px" src={WhitePawsIcon} />
-      <Typography variant="base" color="white" sx={{ maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>Save $10 off your first reservation when you create an account</Typography>
-      <Button onClick={() => navigate('/create-account')} variant="contained" color="secondary">Sign up</Button>
+      <img width="40px" src={WhitePawsIcon} alt="White Paws Icon" />
+      <Box sx={{ display: "flex", flexDirection: "column", color: "white", maxWidth: { xs: '300px', sm: '300px', md: '9999px', lg: '9999px' } }}>
+        <Box sx={{ display: 'inline-flex', flexWrap: 'wrap' }}>
+          <Typography variant="base" component="span">
+            Save $20 off your reservation by using promo code&nbsp;
+          </Typography>
+          <Typography 
+            component="span"
+            sx={{
+              fontWeight: 800,
+              fontSize: '1.25rem',
+              fontFamily: "sans-serif",
+            }}
+          >
+            SUMMERPROMO20
+          </Typography>
+        </Box>
+        <Typography variant="base" sx={{ fontSize: '0.8rem', mt: 1, ml: "auto" }}>
+          *$400 minimum spend required
+        </Typography>
+      </Box>
     </Box>
-  )
+  );
+  
 
   return (
     <Box sx={{ background: "#feffff" }}>

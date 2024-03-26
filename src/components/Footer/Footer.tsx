@@ -108,6 +108,7 @@ const Footer: FC<Props> = ({ sx }) => {
       <div onMouseLeave={() => clearTimeout(timer)} onMouseEnter={() => easterEgg()} className="footer-wrapper-year">© 2023 Romingo, Inc.</div>
       <Link style={{ marginLeft: '1em' }} href="/privacy">Privacy policy</Link>
       <Link style={{ marginLeft: '1em' }} href="/terms-of-use">Terms & Conditions</Link>
+      <Link style={{ marginLeft: '1em' }} href="/reward">Romingo Rewards</Link>
     </Box>
   </>);
 };

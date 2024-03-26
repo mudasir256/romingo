@@ -612,6 +612,9 @@ const HomePage: FC<Props> = () => {
                 to receive $20 off your next booking.*
               </Typography>
             }
+            extraText={
+              <Typography>* special offer applies to any new reservations booked with a minimum $400.00 spend. Does not apply to existing reservations, late-cancellation fees, or no-show fees.</Typography>
+            }
             cta={<Button sx={{ width: '300px' }} onClick={handleImFlexibleClick} variant="contained">Book Now</Button>}
           />
         </Box>
@@ -684,12 +687,12 @@ const HomePage: FC<Props> = () => {
             credits for every 5 qualified* reservations booked 
             with our pet-friendly hotel partners!"
             cta={<Button sx={{  width: '300px' }} variant="contained" onClick={() => navigate('/create-account')}>Create an account</Button>}
-            extraText="*Guests will earn a $100 travel voucher when a minimum of 5 
-            reservations are actually consumed. Each reservation must have a 
-            minimum net spend of $200, exclusive of taxes/fees. Cancellation 
-            fees do not count towards stays or spend requirements. Travel 
-            vouchers will be sent within 7 days post-stay and must be used 
-            within one (1) calendar year from issue date."
+            extraText="*Guests will earn a $100 travel voucher when a minimum of 10 qualified
+            room nights are booked and consumed. Each room night must have a minimum
+            spend of $200 per room, per night, including taxes/fees. Late-cancellation and no-
+            show fees do not count towards stay or spend requirements. Travel vouchers will
+            be sent within 7 days post-stay and must be used within one (1) calendar year
+            from issue date."
           />
         </Box>
       </Box>
