@@ -110,3 +110,4 @@ cloudbuild-prod.yaml is set to automatically deploy to PRODUCTION. This is confi
 
 2. Add to `TSC_COMPILE_ON_ERROR=true` to `.env` file
   - This will allow for the project to compile even with TypeScript errors. There may be more in-depth configuration that we can do to block compiling with TypeScript errors in development, but not in prod (as you would expect, to leverage TS in development), but given the current state of the project, with a massive amount of tech-debt (and particularly TS errors/warnings), we don't have time to fix all of the TypeScript erros, and need to continue developing. Adding `TSC_COMPILE_ON_ERROR=true` to `.env` file allows for that.
+# romingo
